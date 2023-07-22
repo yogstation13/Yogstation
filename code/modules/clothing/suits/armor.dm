@@ -115,6 +115,12 @@
 	icon_state = "capformal"
 	item_state = "capspacesuit"
 
+/obj/item/clothing/suit/armor/vest/hop_formal
+	name = "head of personnel's parade jacket"
+	desc = "For when an armoured vest isn't fashionable enough."
+	icon_state = "hopformal"
+	item_state = "hopformal"
+
 /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	name = "\improper CentCom carapace"
 	desc = "A CentCom green alteration of the captain's carapace. Issued only to Nanotrasen's finest, although it does chafe your pecks."
@@ -408,7 +414,7 @@
 //////////////// PLATED ARMOR ////////////////
 // Helmet type in code/modules/clothing/head/helmet.dm
 /obj/item/clothing/suit/armor/plated
-	name = "empty plated armor vest"	
+	name = "empty plated armor vest"
 	desc = "A lightweight general-purpose over-armor suit that is designed to hold various types of armor plating. Won't do much without them."
 	icon_state = "plate-armor"
 	item_state = "plate-armor"
@@ -423,7 +429,7 @@
 	if(!plating)
 		to_chat(user, span_warning("[src] doesn't have any plating to remove!"))
 		return
-	
+
 	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
 
 	user.put_in_hands(plating)
@@ -446,10 +452,10 @@
 		return
 	if(plating)
 		to_chat(user, span_warning("[src] already has [plating] slotted!"))
-		return 
+		return
 	if(!user.transferItemToLoc(I, src))
 		return
-	
+
 	user.visible_message("[user] inserts [plating] into [src]!", span_notice("You insert [plating] into [src]."))
 
 	var/obj/item/kevlar_plating/K = I
@@ -457,7 +463,7 @@
 	name = "[K.name_set] plated armor vest"
 	slowdown = K.slowdown_set
 
-	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc
 		armor = getArmor(arglist(armor))
 	if (islist(K.armor) || isnull(K.armor))
 		K.armor = getArmor(arglist(K.armor))

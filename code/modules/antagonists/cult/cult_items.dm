@@ -387,7 +387,8 @@
 	max = 40
 	prefix = "darkened"
 
-/obj/item/sharpener/cult/update_icon()
+/obj/item/sharpener/cult/update_icon_state()
+	. = ..()
 	icon_state = "cult_sharpener[used ? "_used" : ""]"
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield
@@ -698,7 +699,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		qdel(spear_act)
 	..()
 
-/obj/item/cult_spear/update_icon()
+/obj/item/cult_spear/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
 
 /obj/item/cult_spear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

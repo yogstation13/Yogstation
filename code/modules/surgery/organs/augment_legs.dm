@@ -11,7 +11,7 @@
 
 /obj/item/organ/cyberimp/leg/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
@@ -59,7 +59,8 @@
 		else
 			CRASH("Invalid zone for [type]")
 
-/obj/item/organ/cyberimp/leg/update_icon()
+/obj/item/organ/cyberimp/leg/update_icon(updates=ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_LEG)
 		transform = null
 	else // Mirroring the icon
@@ -81,7 +82,7 @@
 		zone = BODY_ZONE_R_LEG
 	SetSlotFromZone()
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
@@ -134,7 +135,7 @@
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
 	name = "advanced antislip implant"
-	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	syndicate_implant = TRUE
 	implant_type = "noslipall"
 

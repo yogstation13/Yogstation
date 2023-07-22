@@ -22,25 +22,24 @@
 	var/list/stack_overlays
 	var/edible = FALSE //can a preternis eat it for some funny effect?
 
-/obj/item/stack/ore/update_icon()
+/obj/item/stack/ore/update_overlays()
+	. = ..()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
 		return
 	else if(difference < 0 && LAZYLEN(stack_overlays))			//amount < stack_overlays, remove excess.
-		cut_overlays()
 		if (LAZYLEN(stack_overlays)-difference <= 0)
 			stack_overlays = null;
 		else
 			stack_overlays.len += difference
 	else if(difference > 0)			//amount > stack_overlays, add some.
-		cut_overlays()
 		for(var/i in 1 to difference)
 			var/mutable_appearance/newore = mutable_appearance(icon, icon_state)
 			newore.pixel_x = rand(-8,8)
 			newore.pixel_y = rand(-8,8)
 			LAZYADD(stack_overlays, newore)
 	if (stack_overlays)
-		add_overlay(stack_overlays)
+		. += stack_overlays
 
 /obj/item/stack/ore/welder_act(mob/living/user, obj/item/I)
 	if(!refined_type)
@@ -359,6 +358,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/value = 1
 	var/coinflip
 	var/coin_stack_icon_state = "coin_stack"
+	var/list/allowed_ricochet_types = list(/obj/item/projectile/bullet/c38, /obj/item/projectile/bullet/a357, /obj/item/projectile/bullet/ipcmartial)
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -567,31 +567,38 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38) && !istype(P, /obj/item/projectile/bullet/a357) &&!istype(P, /obj/item/projectile/bullet/ipcmartial)) //only energy projectiles get deflected (also revolvers because damn thats cool)
+	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 		
 	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
-		var/turf/center = get_turf(src)
 		for(var/mob/living/T in viewers(5, src))
-			if(T != P.firer && T.stat != DEAD && !(T in P.permutated)) //don't fire at someone if they're dead or if we already hit them
+			if(istype(T) && T != P.firer && T.stat != DEAD) //don't fire at someone if they're dead or if we already hit them
 				targets |= T
 		P.damage *= 1.5
+		P.speed *= 0.5
+		P.ricochets++
+		P.on_ricochet(src)
+		P.permutated = list(src)
+		P.pixel_x = pixel_x
+		P.pixel_y = pixel_y
 		if(!targets.len)
 			var/spr = rand(0, 360) //randomize the direction
 			P.preparePixelProjectile(src, src, spread = spr)
+			P.fire(rand(0, 360))
 		else
 			var/mob/living/target = get_closest_atom(/mob/living, targets, src)
 			P.preparePixelProjectile(target, src)
+			P.fire(get_angle(P, target))
 			targets -= target
 			if(targets.len)
 				P = DuplicateObject(P, sameloc=1) //split into another projectile
 				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
 				P.last_process = initial(P.last_process)
 				P.last_projectile_move = initial(P.last_projectile_move)
-				target = pick(targets)
-				P.preparePixelProjectile(target, center)
-				P.fire()
+				target = get_closest_atom(/mob/living, targets, src)
+				P.preparePixelProjectile(target, src)
+				P.fire(get_angle(P, target))
 		visible_message(span_danger("[P] ricochets off of [src]!"))
 		playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
 		if(cooldown < world.time)
@@ -616,7 +623,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/coinstack/examine(mob/user)
 	. = ..()
@@ -630,11 +637,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(antag > 1)
 		. += span_info("But they told me I could only have one at a time...")
 
-/obj/item/coinstack/update_icon()
-	cut_overlays()
+/obj/item/coinstack/update_overlays()
+	. = ..()
 	for(var/i in 1 to length(coins))
 		var/obj/item/coin/C = coins[i]
-		src.add_overlay(image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2))
+		. += image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2)
 
 /obj/item/coinstack/attack_hand(mob/user) ///take a coin off the top of the stack
 	remove_from_stack(user)
@@ -659,7 +666,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	C.pixel_y = 0
 	src.add_fingerprint(user)
 	to_chat(user,span_notice("You add [C] to the stack of coins."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/coinstack/proc/remove_from_stack(mob/living/user) //you can only remove the topmost coin from the stack
@@ -667,7 +674,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(top_coin)
 		coins -= top_coin
 		user.put_in_active_hand(top_coin)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(length(coins) <= 1) //one coin left, we're done here
 		var/obj/item/coin/lastCoin = coins[1]
 		coins -= coins[1]

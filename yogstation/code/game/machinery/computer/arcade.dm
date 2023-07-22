@@ -23,9 +23,9 @@
 		return
 	if(board.game_status == MINESWEEPER_IDLE || board.game_status == MINESWEEPER_DEAD || board.game_status == MINESWEEPER_VICTORY)
 		if(obj_flags & EMAGGED)
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'yogstation/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff_exponent = 10)
 		else
-			playsound(loc, 'yogstation/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
+			playsound(loc, 'yogstation/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff_exponent = 10)
 
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
@@ -154,8 +154,8 @@
 	obj_flags |= EMAGGED
 	if(board.game_status != MINESWEEPER_CONTINUE)
 		to_chat(user, span_warning("An ominous tune plays from the arcade's speakers!"))
-		playsound(user, 'yogstation/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff = 10)
+		playsound(user, 'yogstation/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)
 	else	//Can't let you do that, star fox!
 		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
-		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff = 10)	//Loud buzz
+		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
 		board.game_status = MINESWEEPER_IDLE

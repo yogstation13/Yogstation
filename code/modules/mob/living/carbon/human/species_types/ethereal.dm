@@ -20,7 +20,7 @@
 	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
 	mutant_bodyparts = list("ethereal_mark")
@@ -147,7 +147,6 @@
 	H.visible_message(span_danger("[H] stops flickering and goes back to their normal state!"))
 
 /datum/species/ethereal/proc/handle_charge(mob/living/carbon/human/H)
-	brutemod = 1.25
 	switch(get_charge(H))
 		if(ETHEREAL_CHARGE_NONE)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
@@ -155,16 +154,12 @@
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
 			if(H.health > 10.5)
 				apply_damage(0.65, TOX, null, null, H)
-			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
-			brutemod = 1.5
 		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
-			brutemod = 1.5
 		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
-			brutemod = 1.75
 			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
 				discharge_process(H)
 		else
@@ -187,11 +182,6 @@
 			stomach.adjust_charge(ETHEREAL_CHARGE_FULL - stomach.crystal_charge)
 		to_chat(H, "<span class='warning'>You violently discharge energy!</span>")
 		H.visible_message("<span class='danger'>[H] violently discharges energy!</span>")
-		if(prob(10)) //chance of developing heart disease to dissuade overcharging oneself
-			var/datum/disease/D = new /datum/disease/heart_failure
-			H.ForceContractDisease(D)
-			to_chat(H, "<span class='userdanger'>You're pretty sure you just felt your heart stop for a second there..</span>")
-			H.playsound_local(H, 'sound/effects/singlebeat.ogg', 100, 0)
 		H.Paralyze(100)
 		return
 

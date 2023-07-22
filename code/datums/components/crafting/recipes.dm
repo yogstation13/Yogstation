@@ -683,17 +683,18 @@
 /datum/crafting_recipe/ointment
 	name = "Ointment"
 	result = /obj/item/stack/medical/ointment
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
-				/datum/reagent/ash = 10,
-				/datum/reagent/medicine/c2/lenturi = 15)
+	reqs = list(/datum/reagent/water = 10,
+				/datum/reagent/ash = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/antisepticointment
 	name = "Antiseptic Ointment"
 	result = /obj/item/stack/medical/ointment/antiseptic
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
+	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10,
-				/datum/reagent/space_cleaner/sterilizine = 15)
+				/datum/reagent/silver = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh

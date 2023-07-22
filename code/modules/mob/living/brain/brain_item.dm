@@ -21,6 +21,10 @@
 	var/decoy_override = FALSE	//if it's a fake brain with no brainmob assigned. Feedback messages will be faked as if it does have a brainmob. See changelings & dullahans.
 	//two variables necessary for calculating whether we get a brain trauma or not
 	var/damage_delta = 0
+	/// Times how long the brain has been decaying for, used for memory loss
+	var/decay_progress = 0
+	/// Times how many times process has been run, used for stasis calculations
+	var/process_count = 0
 
 	var/list/datum/brain_trauma/traumas = list()
 
@@ -51,6 +55,10 @@
 		var/datum/brain_trauma/BT = X
 		BT.owner = owner
 		BT.on_gain()
+
+	/// Re-add the mindslave datum because we "lost" it when we got decapitated
+	for(var/obj/item/implant/mindslave/ms_implant in C.implants)
+		ms_implant.slave_mob(C)
 
 	//Update the body's icon so it doesnt appear debrained anymore
 	C.update_hair()
@@ -214,8 +222,14 @@
 		owner.death()
 		brain_death = TRUE
 
-/obj/item/organ/brain/process()	//needs to run in life AND death
+/obj/item/organ/brain/process(delta_time)	//needs to run in life AND death
 	..()
+	// Intentionally not using delta_time, stasis will skip every n ticks, not caring about how long they took
+	// Technically subject to timing inconsistencies when the tick rate is changed, but unless the timing is changed dramatically
+	// the effect is within tolerance
+	process_count += 1
+	if(!((organ_flags & ORGAN_SYNTHETIC) || (owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS) || !SHOULD_LIFETICK(owner, process_count)))))
+		decay_progress += (delta_time SECONDS) // delta_time is in seconds
 	//if we're not more injured than before, return without gambling for a trauma
 	if(damage <= prev_damage)
 		prev_damage = damage
@@ -257,6 +271,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC
 
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
@@ -272,7 +287,7 @@
 		if(1)
 			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
 		if(2)
-			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
+			to_chat(owner, span_warning("Alert: Posibrain damaged."))
 
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////

@@ -132,7 +132,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/explorer(src)
 	new /obj/item/storage/belt/medical/mining(src)
 	new /obj/item/clothing/glasses/hud/health/meson(src)
-	new /obj/item/clothing/gloves/color/latex/nitrile(src)
+	new /obj/item/clothing/gloves/color/latex/fireproof(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	new	/obj/item/radio/headset/headset_medcargo(src)
 	new /obj/item/clothing/mask/gas/explorer(src)

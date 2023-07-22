@@ -11,10 +11,11 @@
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/clothing/neck/cloak/ce(src)
+	new /obj/item/clothing/mask/gas/atmos(src)
 	new /obj/item/areaeditor/blueprints(src)
 	new /obj/item/airlock_painter(src)
 	new /obj/item/holosign_creator/atmos(src)
-	new /obj/item/multitool(src)
+	new /obj/item/multitool/tricorder(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/construction/rcd/loaded(src)
 	new /obj/item/door_remote/chief_engineer(src)
@@ -29,7 +30,6 @@
 	new /obj/item/storage/backpack/duffelbag/clothing/ce(src)
 	new /obj/item/storage/lockbox/medal/eng(src)
 	new /obj/item/barrier_taperoll/engineering(src)
-	new /obj/item/analyzer/ranged(src)
 	new /obj/item/multisurgeon/magboots(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -97,5 +97,6 @@
 	new /obj/item/clothing/head/hardhat/atmos(src)
 	new /obj/item/clothing/glasses/meson/engine/tray(src)
 	new /obj/item/clothing/gloves/atmos(src)
+	new /obj/item/clothing/mask/gas/atmos(src)
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/barrier_taperoll/engineering(src)

@@ -60,3 +60,25 @@
 		S.forceMove(D)
 		D.injector = S
 	..()
+
+/obj/item/ammo_casing/blowgun
+	name = "blow gun spring"
+	desc = "A low-power spring that throws syringes a short distance." // how does a blowgun have a spring
+	projectile_type = /obj/item/projectile/bullet/reusable/dart/syringe/blowgun
+	firing_effect_type = null
+
+/obj/item/ammo_casing/blowgun/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	if(!BB)
+		return
+	if(istype(loc, /obj/item/gun/syringe/blowgun))
+		var/obj/item/gun/syringe/BG = loc
+		var/obj/item/projectile/bullet/reusable/dart/D = BB
+		if(!BG.syringes.len)
+			return
+
+		var/obj/item/reagent_containers/syringe/S = BG.syringes[1]
+
+		S.reagents.trans_to(BB, S.reagents.total_volume, transfered_by = user)
+		D.add_dart(S, S.proj_piercing)
+		BG.syringes.Remove(S)
+	..()

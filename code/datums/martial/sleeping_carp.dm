@@ -188,9 +188,9 @@
 		force_wielded = 14, \
 	)
 
-/obj/item/melee/bostaff/update_icon()
+/obj/item/melee/bostaff/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
-	return
 
 /obj/item/melee/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)

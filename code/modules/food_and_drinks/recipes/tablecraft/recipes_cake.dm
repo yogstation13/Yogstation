@@ -133,3 +133,12 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/cake/slimecake
 	subcategory = CAT_CAKE
+
+/datum/crafting_recipe/food/weddingcake
+	name = "Wedding Cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 3,
+		/datum/reagent/consumable/sugar = 100
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/wedding
+	subcategory = CAT_CAKE

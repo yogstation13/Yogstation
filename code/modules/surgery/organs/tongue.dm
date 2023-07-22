@@ -39,10 +39,10 @@
 	. = ..()
 	languages_possible = languages_possible_base
 
-/obj/item/organ/tongue/update_icon()
+/obj/item/organ/tongue/update_overlays()
 	. = ..()
 	if(honked) // This tongue has a bike horn inside of it. Let's draw it
-		add_overlay("honked")
+		. += "honked"
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
@@ -75,7 +75,7 @@
 
 /obj/item/organ/tongue/Initialize(mapload) // this only exists to make sure the spawned tongue has a horn inside of it visually
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/tongue/examine(mob/user)
 	. = ..()
@@ -123,6 +123,7 @@
 	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
 	icon_state = "tongueayylmao"
 	say_mod = "gibbers"
+	process_flags = ORGANIC | SYNTHETIC // fuck it, alien technology
 	taste_sensitivity = NO_TASTE_SENSITIVITY // ayys cannot taste anything.
 	modifies_speech = TRUE
 	var/mothership
@@ -254,6 +255,7 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
+	process_flags = ORGANIC | SYNTHETIC
 	organ_flags = ORGAN_SYNTHETIC
 	icon_state = "tonguerobot"
 	say_mod = "states"

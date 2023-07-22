@@ -57,14 +57,7 @@
 		return FALSE
 	if(world.time < next_activation)
 		return FALSE
-
-	var/can_process = FALSE
-	if(!can_process && A.affected_mob?.dna?.species?.reagent_tag & PROCESS_SYNTHETIC && (process_flags & SYNTHETIC))//some symptoms don't affect synthetic mobs
-		can_process = TRUE
-	if(!can_process && A.affected_mob?.dna?.species?.reagent_tag & PROCESS_ORGANIC && (process_flags & ORGANIC))//some symptoms don't affect organic mobs
-		can_process = TRUE
-		
-	if(can_process)
+	if(process_flags & A.affected_mob.get_process_flags())
 		next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
 		return TRUE
 

@@ -4,13 +4,12 @@
 /datum/hud/slime/New(mob/living/simple_animal/slime/owner)
 	..()
 
-	pull_icon = new /atom/movable/screen/pull()
+	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = ui_style
-	pull_icon.update_icon()
+	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_living_pull
-	pull_icon.hud = src
 	static_inventory += pull_icon
 
 
-	healths = new /atom/movable/screen/healths/slime()
+	healths = new /atom/movable/screen/healths/slime(src)
 	infodisplay += healths

@@ -46,33 +46,30 @@
 	. = ..()
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-
-/obj/item/weldingtool/proc/update_torch()
-	if(welding)
-		add_overlay("[initial(icon_state)]-on")
-		item_state = "[initial(item_state)]1"
-	else
-		item_state = "[initial(item_state)]"
-
-
-/obj/item/weldingtool/update_icon()
-	cut_overlays()
+/obj/item/weldingtool/update_overlays()
+	. = ..()
 	if(change_icons)
 		var/ratio = get_fuel() / max_fuel
 		ratio = CEILING(ratio*4, 1) * 25
-		add_overlay("[initial(icon_state)][ratio]")
-	update_torch()
-	return
+		. += "[initial(icon_state)][ratio]"
+	if(welding)
+		. += "[initial(icon_state)]-on"
 
+/obj/item/weldingtool/update_icon_state()
+	. = ..()
+	if(welding)
+		item_state = "[initial(item_state)]1"
+	else
+		item_state = "[initial(item_state)]"
 
 /obj/item/weldingtool/process(delta_time)
 	switch(welding)
 		if(0)
 			force = 3
 			damtype = "brute"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(!can_off_process)
 				STOP_PROCESSING(SSobj, src)
 			return
@@ -83,7 +80,7 @@
 			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	//This is to start fires. process() is only called if the welder is on.
 	open_flame()
@@ -118,7 +115,7 @@
 			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 			return TRUE
 
-	if(isOn() && user.a_intent == INTENT_HELP && ishuman(M))
+	if(user.a_intent == INTENT_HELP && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)
@@ -127,9 +124,11 @@
 				return FALSE
 			if(INTERACTING_WITH(user, H))
 				return FALSE
+			if(!tool_start_check(user, 1))
+				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
-			heal_robo_limb(src, H, user, 15, 0, 1, 50)
+			heal_robo_limb(src, H, user, 10, 0, 1, 50)
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
@@ -143,7 +142,7 @@
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume, transfered_by = user)
 		to_chat(user, span_notice("You empty [src]'s fuel tank into [O]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(isOn())
 		use(1)
 		var/turf/location = get_turf(user)
@@ -164,7 +163,7 @@
 		explode()
 	switched_on(user)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
 	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
@@ -204,7 +203,7 @@
 	if(get_fuel() <= 0 && welding)
 		set_light_on(FALSE)
 		switched_on(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		//mob icon update
 		if(ismob(loc))
 			var/mob/M = loc
@@ -226,7 +225,7 @@
 			force = 15
 			damtype = BURN
 			hitsound = 'sound/items/welder.ogg'
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			START_PROCESSING(SSobj, src)
 		else
 			to_chat(user, span_warning("You need more fuel!"))
@@ -243,7 +242,7 @@
 	force = 3
 	damtype = "brute"
 	hitsound = "swing_hit"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/weldingtool/examine(mob/user)

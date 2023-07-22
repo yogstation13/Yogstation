@@ -63,9 +63,10 @@
 		ENABLE_BITFIELD(reagents.flags, DRAINABLE)
 		DISABLE_BITFIELD(reagents.flags, REFILLABLE)
 		to_chat(user, span_notice("You close [src], letting you draw from its tap."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/fermenting_barrel/update_icon()
+/obj/structure/fermenting_barrel/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = "barrel_open"
 	else

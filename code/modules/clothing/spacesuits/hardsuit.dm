@@ -20,6 +20,8 @@
 	var/radiation_count = 0
 	var/grace = RAD_GEIGER_GRACE_PERIOD
 	var/datum/looping_sound/geiger/soundloop
+	var/mutable_appearance/hat_overlay
+	var/obj/item/clothing/head/hat
 
 /obj/item/clothing/head/helmet/space/hardsuit/Initialize(mapload)
 	. = ..()
@@ -41,6 +43,56 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
+
+/obj/item/clothing/head/helmet/space/hardsuit/worn_overlays(isinhands = FALSE)
+	. = ..()
+	if(!isinhands && hat_overlay)
+		. += hat_overlay
+
+/obj/item/clothing/head/helmet/space/hardsuit/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(istype(I, /obj/item/clothing/head))
+		equip_hat(I)
+
+/obj/item/clothing/head/helmet/space/hardsuit/proc/equip_hat(obj/item/clothing/head/new_hat)
+	if(!istype(new_hat))
+		return
+	if(!QDELETED(hat))
+		unequip_hat()
+	hat = new_hat
+	hat.pixel_y += 10
+	hat.layer = FLOAT_LAYER
+	hat.plane = FLOAT_PLANE
+	add_overlay(hat)
+	hat.forceMove(src)
+
+	hat_overlay = mutable_appearance(hat.mob_overlay_icon, hat.icon_state)
+	hat_overlay.alpha = hat.alpha
+	hat_overlay.color = hat.color
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		H.update_inv_head()
+
+/obj/item/clothing/head/helmet/space/hardsuit/proc/unequip_hat()
+	hat_overlay = null
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		H.update_inv_head()
+
+	if(QDELETED(hat))
+		hat = null
+		return
+
+	hat.pixel_y -= 10
+	hat.layer = initial(hat.layer)
+	hat.plane = initial(hat.plane)
+	cut_overlays()
+	var/drop = drop_location()
+	if(drop)
+		hat.forceMove(drop)
+	hat = null
 
 /obj/item/clothing/head/helmet/space/hardsuit/dropped(mob/user)
 	..()
@@ -305,7 +357,8 @@
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	visor_flags = STOPSPRESSUREDAMAGE
 
-/obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon()
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon_state()
+	. = ..()
 	icon_state = "hardsuit[on]-[hardsuit_type]"
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize(mapload)
@@ -336,7 +389,7 @@
 		flags_cover &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 		flags_inv &= ~visor_flags_inv
 		cold_protection &= ~HEAD
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src.loc, 'sound/mecha/mechmove03.ogg', 50, 1)
 	toggle_hardsuit_mode(user)
 	user.update_inv_head()
@@ -363,7 +416,7 @@
 			linkedsuit.cold_protection &= ~(CHEST | GROIN | LEGS | FEET | ARMS | HANDS)
 
 		linkedsuit.icon_state = "hardsuit[on]-[hardsuit_type]"
-		linkedsuit.update_icon()
+		linkedsuit.update_appearance(UPDATE_ICON)
 		user.update_inv_wear_suit()
 		user.update_inv_w_uniform()
 

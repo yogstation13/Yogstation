@@ -79,7 +79,25 @@
 
 	var/global/global_uid = 0
 	var/uid
-	var/list/ambientsounds = GENERIC
+
+	var/ambience_index = AMBIENCE_GENERIC
+	var/list/ambientsounds
+
+	///Ambient buzz of the station, plays repeatedly, also IC
+	var/ambient_buzz = 'sound/ambience/shipambience.ogg'
+	///The volume of the ambient buzz
+	var/ambient_buzz_vol = 30
+	///Used to decide what the minimum time between ambience is
+	var/min_ambience_cooldown = 30 SECONDS
+	///Used to decide what the maximum time between ambience is
+	var/max_ambience_cooldown = 240 SECONDS
+	///Used to decide what kind of reverb the area makes sound have
+	var/sound_environment = SOUND_ENVIRONMENT_NONE
+
+	var/ambient_music_index
+	var/list/ambientmusic
+
+
 	flags_1 = CAN_BE_DIRTY_1
 
 	var/list/firedoors
@@ -164,6 +182,13 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	uid = ++global_uid
 	map_name = name // Save the initial (the name set in the map) name of the area.
 	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
+
+
+	if(!ambientsounds && ambience_index)
+		ambientsounds = GLOB.ambience_assoc[ambience_index]
+
+	if(!ambientmusic && ambient_music_index)
+		ambientmusic = GLOB.ambient_music_assoc[ambient_music_index]
 
 	if(requires_power)
 		luminosity = 0
@@ -381,7 +406,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		ModifyFiredoors(FALSE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	for (var/item in GLOB.alert_consoles)
 		var/obj/machinery/computer/station_alert/a = item
@@ -412,7 +437,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		ModifyFiredoors(TRUE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	for (var/item in GLOB.silicon_mobs)
 		var/mob/living/silicon/aiPlayer = item
@@ -519,25 +544,26 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		L.update()
 
 /**
-  * Update the icon of the area
+  * Update the icon state of the area
   *
   * Im not sure what the heck this does, somethign to do with weather being able to set icon
   * states on areas?? where the heck would that even display?
   */
-/area/update_icon()
+/area/update_icon_state()
 	var/weather_icon
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
+	for(var/datum/weather/W as anything in SSweather.processing)
 		if(W.stage != END_STAGE && (src in W.impacted_areas))
 			W.update_areas()
 			weather_icon = TRUE
 	if(!weather_icon)
 		icon_state = null
+	return ..()
 
 /**
   * Update the icon of the area (overridden to always be null for space
   */
-/area/space/update_icon()
+/area/space/update_icon_state()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = null
 
 
@@ -577,7 +603,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()				// reverify power status (to update icons etc.)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Return the usage of power per channel
@@ -652,28 +678,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	set waitfor = FALSE
 	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, M)
 	SEND_SIGNAL(M, COMSIG_ENTER_AREA, src) //The atom that enters the area
-	if(!isliving(M))
-		return
-
-	var/mob/living/L = M
-	if(!L.ckey)
-		return
-
-	// Ambience goes down here -- make sure to list each area separately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(L.client && !L.client.ambience_playing && L.client.prefs.toggles & SOUND_SHIP_AMBIENCE)
-		L.client.ambience_playing = 1
-		SEND_SOUND(L, sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = CHANNEL_BUZZ))
-
-	if(!(L.client && (L.client.prefs.toggles & SOUND_AMBIENCE)))
-		return //General ambience check is below the ship ambience so one can play without the other
-
-	if(prob(35))
-		var/sound = pick(ambientsounds)
-
-		if(!L.client.played)
-			SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE))
-			L.client.played = TRUE
-			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 1 MINUTES)
 
 /**
   * Called when an atom exits an area
@@ -683,12 +687,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Exited(atom/movable/M)
 	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
 	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
-
-/**
-  * Reset the played var to false on the client
-  */
-/client/proc/ResetAmbiencePlayed()
-	played = FALSE
 
 /**
   * Returns true if this atom has gravity for the passed in turf

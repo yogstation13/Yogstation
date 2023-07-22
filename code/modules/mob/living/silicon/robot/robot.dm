@@ -170,7 +170,7 @@
 		mmi.brainmob.name = src.real_name
 		mmi.brainmob.real_name = src.real_name
 		mmi.brainmob.container = mmi
-		mmi.update_icon()
+		mmi.update_appearance(UPDATE_ICON)
 
 	updatename()
 
@@ -195,7 +195,7 @@
 				mmi.brainmob.remove_from_dead_mob_list()
 				mmi.brainmob.add_to_alive_mob_list()
 			mind.transfer_to(mmi.brainmob)
-			mmi.update_icon()
+			mmi.update_appearance(UPDATE_ICON)
 			if(istype(mmi, /obj/item/mmi/posibrain))
 				ADD_TRAIT(mmi.brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 		else
@@ -453,7 +453,7 @@
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
-	else if(W.tool_behaviour == TOOL_CROWBAR)	// crowbar means open or close the cover
+	else if(W.tool_behaviour == TOOL_CROWBAR && (user.a_intent != INTENT_HARM || user == src))	// crowbar means open or close the cover
 		if(opened)
 			to_chat(user, span_notice("You close the cover."))
 			opened = 0
@@ -803,14 +803,14 @@
 			set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
 		set_light_on(FALSE)
 		lamp_enabled = FALSE
-		lampButton?.update_icon()
+		lampButton?.update_appearance(UPDATE_ICON)
 		update_icons()
 		return
 	set_light_range(lamp_intensity)
 	set_light_color(lamp_color)
 	set_light_on(TRUE)
 	lamp_enabled = TRUE
-	lampButton?.update_icon()
+	lampButton?.update_appearance(UPDATE_ICON)
 	update_icons()
 
 /mob/living/silicon/robot/proc/deconstruct()
@@ -1092,6 +1092,11 @@
 	if(hud_used)
 		hud_used.update_robot_modules_display()
 
+	// Drops all items found in any storage bags on the Cyborg.
+	for(var/obj/item/storage/bag in module.contents)
+		for(var/obj/item in bag)
+			item.forceMove(drop_location())
+			
 	while(expansion_count)
 		resize = 0.5
 		expansion_count--

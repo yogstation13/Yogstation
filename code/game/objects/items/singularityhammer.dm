@@ -26,9 +26,8 @@
 		icon_wielded = "[base_icon_state]1", \
 	)
 
-/obj/item/singularityhammer/update_icon()
+/obj/item/singularityhammer/update_icon_state()
 	icon_state = "[base_icon_state]0"
-	return
 
 /obj/item/singularityhammer/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -38,6 +37,10 @@
 	if(charged < 5)
 		charged++
 	return
+
+/obj/item/singularityhammer/update_icon_state()  //Currently only here to fuck with the on-mob icons.
+	. = ..()
+	icon_state = "[base_icon_state]0"
 
 /obj/item/singularityhammer/proc/vortex(turf/pull, mob/wielder)
 	for(var/atom/X in orange(5,pull))
@@ -99,7 +102,7 @@
 		icon_wielded = "[base_icon_state]1", \
 	)
 
-/obj/item/mjolnir/update_icon()
+/obj/item/mjolnir/update_icon_state()
 	icon_state = "[base_icon_state]0"
 
 /obj/item/mjolnir/proc/shock(mob/living/target)

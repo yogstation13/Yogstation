@@ -57,7 +57,7 @@
 			loaded.amount += transfer_amount
 		else
 			return
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You add the cables to [src]. It now contains [loaded.amount]."))
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(!loaded)
@@ -89,7 +89,7 @@
 			loaded.forceMove(get_turf(user))
 
 		loaded = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		..()
 
@@ -105,7 +105,8 @@
 	QDEL_NULL(wiring_gui_menu)
 	return ..()
 
-/obj/item/rcl/update_icon()
+/obj/item/rcl/update_icon_state()
+	. = ..()
 	if(!loaded)
 		icon_state = "rcl-0"
 		item_state = "rcl-0"
@@ -125,7 +126,7 @@
 			item_state = "rcl-0"
 
 /obj/item/rcl/proc/is_empty(mob/user, loud = 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(!loaded || !loaded.amount)
 		if(loud)
 			to_chat(user, span_notice("The last of the cables unreel from [src]."))
@@ -204,7 +205,7 @@
 		loaded.color = colors[current_color_index]
 		last = loaded.place_turf(get_turf(src), user, turn(user.dir, 180))
 		is_empty(user) //If we've run out, display message
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 //searches the current tile for a stub cable of the same colour
@@ -297,11 +298,11 @@
 	loaded = new()
 	loaded.max_amount = max_amount
 	loaded.amount = max_amount
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/rcl/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/rcl/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/rcl_col))
@@ -326,7 +327,8 @@
 	name = "makeshift rapid cable layer"
 	ghetto = TRUE
 
-/obj/item/rcl/ghetto/update_icon()
+/obj/item/rcl/ghetto/update_icon_state()
+	. = ..()
 	if(!loaded)
 		icon_state = "rclg-0"
 		item_state = "rclg-0"

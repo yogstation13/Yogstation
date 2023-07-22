@@ -38,7 +38,7 @@
 		if(BRUTE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, 1)
 
-/obj/structure/emergency_shield/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/emergency_shield/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.) //damage was dealt
 		new /obj/effect/temp_visual/impact_effect/ion(loc)
@@ -93,7 +93,7 @@
 
 /obj/machinery/shieldgen/proc/shields_up()
 	active = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	move_resist = INFINITY
 
 	for(var/turf/target_tile in range(shield_range, src))
@@ -104,7 +104,7 @@
 /obj/machinery/shieldgen/proc/shields_down()
 	active = FALSE
 	move_resist = initial(move_resist)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	QDEL_LIST(deployed_shields)
 
 /obj/machinery/shieldgen/process(delta_time)
@@ -164,7 +164,7 @@
 			obj_integrity = max_integrity
 			stat &= ~BROKEN
 			to_chat(user, span_notice("You repair \the [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		if(locked)
@@ -203,11 +203,12 @@
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
 
-/obj/machinery/shieldgen/update_icon()
+/obj/machinery/shieldgen/update_icon_state()
+	. = ..()
 	if(active)
-		icon_state = (stat & BROKEN) ? "shieldonbr":"shieldon"
+		icon_state = (stat & BROKEN) ? "shieldonbr" : "shieldon"
 	else
-		icon_state = (stat & BROKEN) ? "shieldoffbr":"shieldoff"
+		icon_state = (stat & BROKEN) ? "shieldoffbr" : "shieldoff"
 
 #define ACTIVE_SETUPFIELDS 1
 #define ACTIVE_HASFIELDS 2
@@ -440,7 +441,7 @@
 			playsound(loc, 'sound/effects/empulse.ogg', 75, 1)
 
 //the shield wall is immune to damage but it drains the stored power of the generators.
-/obj/machinery/shieldwall/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/shieldwall/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(damage_type == BRUTE || damage_type == BURN)
 		drain_power(damage_amount)

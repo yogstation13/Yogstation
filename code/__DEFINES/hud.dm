@@ -232,3 +232,5 @@
 #define SCRN_OBJ_IN_PALETTE "palette"
 ///Inserted first in the list
 #define SCRN_OBJ_INSERT_FIRST "first"
+/// The filter name for the hover outline
+#define HOVER_OUTLINE_FILTER "hover_outline"

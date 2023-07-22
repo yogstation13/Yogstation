@@ -352,6 +352,7 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 /// trait associated to being held in a chokehold
 #define CHOKEHOLD_TRAIT "chokehold"
+#define CRYO_TRAIT "cryo_trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"

@@ -55,7 +55,8 @@
 	playsound(loc, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return (TOXLOSS)
 
-/obj/item/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon_state()
+	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
 		return
@@ -66,7 +67,8 @@
 		icon_state = "[initial(icon_state)]1"
 	else if(contents.len < 21)
 		icon_state = "[initial(icon_state)]2"
-	else icon_state = "[initial(icon_state)]3"
+	else
+		icon_state = "[initial(icon_state)]3"
 
 /obj/item/storage/bag/trash/cyborg
 	insertable = FALSE
@@ -75,7 +77,7 @@
 	if(insertable)
 		J.put_in_cart(src, user)
 		J.mybag=src
-		J.update_icon()
+		J.update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
@@ -208,7 +210,7 @@
 	STR.set_holdable(list(/obj/item/gem))
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 48
-	STR.max_items = 48 
+	STR.max_items = 48
 
 /obj/item/storage/bag/gem/equipped(mob/user)
 	. = ..()
@@ -358,6 +360,15 @@
 /obj/item/storage/bag/tray/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 8 // Can hold two plates!
+	STR.set_holdable(list(
+		/obj/item/kitchen,
+		/obj/item/plate,
+		/obj/item/reagent_containers/food, // Includes drinking glasses, as they are a subtype
+		/obj/item/trash
+	), list(
+		/obj/item/plate/oven_tray
+	))
 	STR.insert_preposition = "on"
 
 /obj/item/storage/bag/tray/attack(mob/living/M, mob/living/user)
@@ -379,23 +390,20 @@
 	else
 		playsound(M, 'sound/items/trayhit2.ogg', 50, 1)
 
-	if(ishuman(M) || ismonkey(M))
-		if(prob(10))
-			M.Paralyze(40)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/bag/tray/update_icon()
-	cut_overlays()
+/obj/item/storage/bag/tray/update_overlays()
+	. = ..()
 	for(var/obj/item/I in contents)
-		add_overlay(new /mutable_appearance(I))
+		. += new /mutable_appearance(I)
 
 /obj/item/storage/bag/tray/Entered()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/Exited()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /*
  *	Chemistry bag
@@ -464,7 +472,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 1000
 	STR.max_items = 100
-	
+
 /obj/item/storage/bag/construction/admin/full/PopulateContents()
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"red")
 	for(var/i in 1 to 10)

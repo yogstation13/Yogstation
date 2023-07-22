@@ -77,13 +77,13 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	holder = null
 
 /// Applies this reagent to a [/mob/living]
-/datum/reagent/proc/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/proc/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return 0
-	if(method == VAPOR) //smoke, foam, spray
+	if(methods & VAPOR) //smoke, foam, spray
 		if(M.reagents)
 			var/modifier = clamp(permeability, 0, 1)
-			var/amount = round(reac_volume*modifier, 0.1)
+			var/amount = round(max(reac_volume - M.reagents.get_reagent_amount(type), 0) * modifier, 0.1) // no reagent duplication on mobs
 			if(amount >= 0.5)
 				M.reagents.add_reagent(type, amount)
 	return 1
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 ///Called after a reagent is transfered
-/datum/reagent/proc/on_transfer(atom/A, method=TOUCH, trans_volume)
+/datum/reagent/proc/on_transfer(atom/A, methods=TOUCH, trans_volume)
 /// Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
 	return

@@ -269,25 +269,6 @@
 /obj/structure/chair/wood/normal,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
-"mM" = (
-/obj/machinery/door/airlock{
-	name = "Crematorium";
-	req_access_txt = "27"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "oG" = (
 /obj/structure/table/wood/fancy,
 /obj/structure/railing{
@@ -723,6 +704,25 @@
 /obj/structure/closet/crate/coffin,
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
+"Jj" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/public/glass{
+	name = "Chapel Office";
+	req_access_txt = "22"
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -1366,7 +1366,7 @@ Zp
 Zw
 GD
 Cw
-mM
+Jj
 Gs
 ED
 by

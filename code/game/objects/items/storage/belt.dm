@@ -17,17 +17,16 @@
 	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/storage/belt/update_icon()
-	cut_overlays()
+/obj/item/storage/belt/update_overlays()
+	. = ..()
 	if(content_overlays)
 		for(var/obj/item/I in contents)
 			var/mutable_appearance/M = I.get_belt_overlay()
-			add_overlay(M)
-	..()
+			. += M
 
 /obj/item/storage/belt/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/utility
 	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -106,7 +105,6 @@
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much //It's been 5 years
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
@@ -122,7 +120,6 @@
 	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
 	to_preload += /obj/item/handdrill
 	to_preload += /obj/item/jawsoflife
-	to_preload += /obj/item/analyzer/ranged
 	to_preload += /obj/item/weldingtool/experimental
 	to_preload += /obj/item/multitool/tricorder
 	to_preload += /obj/item/stack/cable_coil
@@ -139,7 +136,6 @@
 	SSwardrobe.provide_type(/obj/item/shuttle_creator/admin, src)
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
@@ -253,7 +249,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/medspray,
 		/obj/item/lighter,
-		/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
@@ -356,7 +352,7 @@
 	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/chief
 	name = "\improper Head of Security's toolbelt"
@@ -378,7 +374,7 @@
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
 	SSwardrobe.provide_type(/obj/item/shield/riot/tele, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
@@ -427,7 +423,7 @@
 		/obj/item/stack/sheet/sinew,
 		/obj/item/stack/sheet/bone,
 		/obj/item/lighter,
-		/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes,
 		/obj/item/reagent_containers/food/drinks/bottle,
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
@@ -619,7 +615,6 @@
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
-	new /obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)
@@ -819,8 +814,8 @@
 	content_overlays = TRUE
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
-/obj/item/storage/belt/quiver/update_icon()
-	..()
+/obj/item/storage/belt/quiver/update_icon(updates=ALL)
+	. = ..()
 	if(content_overlays && ismob(loc))
 		var/mob/M = loc
 		M.update_inv_belt()
@@ -912,7 +907,7 @@
 			if(bow.chambered == arrow)
 				bow.chambered = null
 			bow.update_slowdown()
-			bow.update_icon()
+			bow.update_appearance(UPDATE_ICON)
 
 	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
 		return
@@ -1186,11 +1181,12 @@
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src].", span_notice("You take [I] out of [src]."))
 		user.put_in_hands(I)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, "[src] is empty.")
 
-/obj/item/storage/belt/sabre/update_icon()
+/obj/item/storage/belt/sabre/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "sheath"
 	item_state = "sheath"
 	if(contents.len)
@@ -1199,11 +1195,10 @@
 	if(loc && isliving(loc))
 		var/mob/living/L = loc
 		L.regenerate_icons()
-	..()
 
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/multi
 	name = "multi-belt"

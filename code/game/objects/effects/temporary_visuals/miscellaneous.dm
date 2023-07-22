@@ -164,7 +164,7 @@
 
 /obj/effect/temp_visual/dir_setting/curse/hand/Initialize(mapload, set_dir, handedness)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/effect/temp_visual/bsa_splash
 	name = "\improper Bluespace energy wave"
@@ -183,7 +183,8 @@
 		if(EAST)
 			icon_state = "beam_splash_e"
 
-/obj/item/projectile/curse_hand/update_icon()
+/obj/item/projectile/curse_hand/update_icon_state()
+	. = ..()
 	icon_state = "[icon_state][handedness]"
 
 /obj/effect/temp_visual/wizard
@@ -245,6 +246,9 @@
 
 /obj/effect/temp_visual/decoy/fading/fivesecond
 	duration = 5 SECONDS
+
+/obj/effect/temp_visual/decoy/fading/onesecond
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/decoy/fading/halfsecond
 	duration = 0.5 SECONDS
@@ -531,9 +535,10 @@
 		delay -= 11
 		icon_state = "rcd_end_reverse"
 	else
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/effect/constructing_effect/update_icon()
+/obj/effect/constructing_effect/update_icon_state()
+	. = ..()
 	icon_state = "rcd"
 	if (delay < 10)
 		icon_state += "_shortest"

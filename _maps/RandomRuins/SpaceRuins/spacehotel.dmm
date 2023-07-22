@@ -3976,7 +3976,7 @@
 /area/ruin/space/has_grav/hotel/security)
 "kA" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "kB" = (

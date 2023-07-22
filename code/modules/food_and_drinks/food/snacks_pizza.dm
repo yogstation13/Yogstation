@@ -174,7 +174,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/dank
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/doctor_delight = 5, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "drugs" = 1)
 	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/dank/raw
@@ -192,7 +192,7 @@
 	desc = "So good, man..."
 	icon_state = "dankpizzaslice"
 	filling_color = "#2E8B57"
-	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "drugs" = 1)
 	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/sassysage

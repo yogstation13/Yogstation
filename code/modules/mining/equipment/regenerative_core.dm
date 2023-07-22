@@ -24,6 +24,7 @@
 	icon_state = "roro core 2"
 	visual = FALSE
 	item_flags = NOBLUDGEON
+	process_flags = ORGANIC | SYNTHETIC
 	slot = "hivecore"
 	force = 0
 	actions_types = list(/datum/action/item_action/organ_action/use)
@@ -41,7 +42,7 @@
 /obj/item/organ/regenerative_core/proc/preserved(implanted = 0)
 	inert = FALSE
 	preserved = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	name = "preserved regenerative core"
 	desc = "All that remains of a hivelord. It is preserved, allowing you to use it to heal completely without danger of decay."
 	if(implanted)
@@ -54,7 +55,7 @@
 	name = "decayed regenerative core"
 	desc = "All that remains of a hivelord. It has decayed, and is completely useless."
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "inert"))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/regenerative_core/ui_action_click()
 	if(inert)
@@ -134,16 +135,18 @@
 
 /obj/item/organ/regenerative_core/legion/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/regenerative_core/update_icon()
+/obj/item/organ/regenerative_core/update_icon_state()
+	. = ..()
 	icon_state = inert ? "legion_soul_inert" : "legion_soul"
-	cut_overlays()
-	if(!inert && !preserved)
-		add_overlay("legion_soul_crackle")
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
+
+/obj/item/organ/regenerative_core/update_overlays()
+	. = ..()
+	if(!inert && !preserved)
+		. += "legion_soul_crackle"
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()

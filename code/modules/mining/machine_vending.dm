@@ -105,7 +105,8 @@
 		var/datum/data/mining_equipment/M = p
 		GLOB.vending_products[M.equipment_path] = 1
 
-/obj/machinery/mineral/equipment_vendor/update_icon()
+/obj/machinery/mineral/equipment_vendor/update_icon_state()
+	. = ..()
 	if(powered())
 		icon_state = initial(icon_state)
 	else
