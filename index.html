@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(684 modules,
-    1836/8822 macros, 20.8%)</aside></h3>
+<aside>(685 modules,
+    1845/8830 macros, 20.9%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -261,6 +261,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/content_barfer.html" title="code&#x2F;datums&#x2F;elements&#x2F;content_barfer">content_barfer</a></li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
+    <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;helper_datums">helper_datums</span><ul class="index-tree">
     <li><a href="code/datums/helper_datums/stack_end_detector.html" title="code&#x2F;datums&#x2F;helper_datums&#x2F;stack_end_detector">stack_end_detector</a></li>
@@ -300,7 +301,6 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     <li><a href="code/datums/view.html" title="code&#x2F;datums&#x2F;view">view</a></li>
     <li><a href="code/datums/weakrefs.html" title="code&#x2F;datums&#x2F;weakrefs">weakrefs</a></li>
-    <li><span class="no-substance">wires&#x2F;</span><a href="code/datums/wires/_wires.html" title="code&#x2F;datums&#x2F;wires&#x2F;_wires">_wires</a></li>
     <li><a href="code/datums/world_topic.html" title="code&#x2F;datums&#x2F;world_topic">world_topic</a></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;wounds">wounds</span><ul class="index-tree">
     <li><a href="code/datums/wounds/bones.html" title="code&#x2F;datums&#x2F;wounds&#x2F;bones">bones</a></li>
@@ -528,10 +528,13 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/atmospherics/gasmixtures/reactions.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;reactions">reactions</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery">machinery</span><ul class="index-tree">
-    <li class="has-children"><span class="no-substance">components&#x2F;</span><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion">fusion</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components">components</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion">fusion</span><ul class="index-tree">
     <li><a href="code/modules/atmospherics/machinery/components/fusion/hfr_core.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion&#x2F;hfr_core">hfr_core</a></li>
     <li><a href="code/modules/atmospherics/machinery/components/fusion/hfr_defines.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion&#x2F;hfr_defines">hfr_defines</a></li>
     <li><a href="code/modules/atmospherics/machinery/components/fusion/hfr_parts.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;fusion&#x2F;hfr_parts">hfr_parts</a></li>
+    </ul></li>
+    <li><span class="no-substance">unary_devices&#x2F;</span><a href="code/modules/atmospherics/machinery/components/unary_devices/cryo.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;components&#x2F;unary_devices&#x2F;cryo">cryo</a></li>
     </ul></li>
     <li><span class="no-substance">portable&#x2F;</span><a href="code/modules/atmospherics/machinery/portable/canister.html" title="code&#x2F;modules&#x2F;atmospherics&#x2F;machinery&#x2F;portable&#x2F;canister">canister</a></li>
     </ul></li>
@@ -1010,7 +1013,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(860 detailed/1651 documented/27990 total, 5.9%)</aside></h3>
+<aside>(865 detailed/1658 documented/28005 total, 5.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1067,6 +1070,7 @@ you want to show on the map, which you usually attach to &quot;vis_contents&quot
     <li><span class="no-substance" title="&#x2F;atom&#x2F;movable&#x2F;screen&#x2F;plane_master&#x2F;parallax">parallax plane master</span> - Contains space parallax</li>
     </ul></li>
     </ul></li>
+    <li><span class="no-substance">visual&#x2F;</span><span class="no-substance" title="&#x2F;atom&#x2F;movable&#x2F;visual&#x2F;cryo_occupant">cryo_occupant</span> - This is a visual helper that shows the occupant inside the cryo cell.</li>
     </ul></li>
     </ul></li>
     <li><a href="client.html" title="&#x2F;client">client</a></li>
@@ -1389,6 +1393,7 @@ and apply it as an overlay of the action button</li>
 poisoned food damages it
 no food found, but you're dead: it bites you slightly, and doesn't regain health.
 no food found: it bites you and regains some health.</li>
+    <li><a href="datum/component/echolocation.html" title="&#x2F;datum&#x2F;component&#x2F;echolocation">echolocation</a></li>
     <li><a href="datum/component/explodable.html" title="&#x2F;datum&#x2F;component&#x2F;explodable">explodable</a> - Component specifically for explosion sensetive things, currently only applies to heat based explosions but can later perhaps be used for things that are dangerous to handle carelessly like nitroglycerin.</li>
     <li><a href="datum/component/grillable.html" title="&#x2F;datum&#x2F;component&#x2F;grillable">grillable</a></li>
     <li><a href="datum/component/gunpoint.html" title="&#x2F;datum&#x2F;component&#x2F;gunpoint">gunpoint</a></li>
@@ -1659,6 +1664,7 @@ When the object moves, it will unhook the signal and rehook it to the new object
     <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
     <li><a href="datum/element/squish.html" title="&#x2F;datum&#x2F;element&#x2F;squish">squish</a> - squish.dm</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;update_icon_blocker">update_icon_blocker</span> - Prevents calling anything in update_icon() like update_icon_state() or update_overlays()</li>
     </ul></li>
     <li><a href="datum/emote.html" title="&#x2F;datum&#x2F;emote">emote</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;fantasy_affix">fantasy_affix</span><ul class="index-tree">
@@ -1927,7 +1933,9 @@ Number of times hard deletes took longer than the configured threshold
 Number of times it's not respected force=TRUE
 Number of times it's not even bother to give a qdel hint
 Number of times it's slept in its destroy</li>
-    <li><a href="datum/quirk.html" title="&#x2F;datum&#x2F;quirk">Test Quirk</a></li>
+    <li class="has-children"><a href="datum/quirk.html" title="&#x2F;datum&#x2F;quirk">Test Quirk</a><ul class="index-tree">
+    <li><a href="datum/quirk/bald.html" title="&#x2F;datum&#x2F;quirk&#x2F;bald">Smooth-Headed</a></li>
+    </ul></li>
     <li><a href="datum/radial_menu.html" title="&#x2F;datum&#x2F;radial_menu">radial_menu</a></li>
     <li><a href="datum/radial_menu_choice.html" title="&#x2F;datum&#x2F;radial_menu_choice">radial_menu_choice</a> - Can be provided to choices in radial menus if you want to provide more information</li>
     <li class="has-children"><a href="datum/reagent.html" title="&#x2F;datum&#x2F;reagent">Reagent</a> - A single reagent<ul class="index-tree">
@@ -2730,7 +2738,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><a href="obj/item/gun/ballistic/bow.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;bow">wooden bow</a></li>
     <li><span class="no-substance">revolver&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;revolver&#x2F;ipcmartial">ipcmartial</span> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
     </ul></li>
-    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy">energy</span><ul class="index-tree">
+    <li class="has-children"><a href="obj/item/gun/energy.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy">energy gun</a><ul class="index-tree">
     <li><a href="obj/item/gun/energy/beam_rifle.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy&#x2F;beam_rifle">particle acceleration rifle</a></li>
     <li><span class="no-substance">laser&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy&#x2F;laser&#x2F;bluetag">laser tag gun</span> - Laser Tag</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy&#x2F;lasercannon">accelerator laser cannon</span> - Laser Cannon</li>
@@ -3032,6 +3040,7 @@ Reduce delay by 20% if medical</li>
     <li><a href="obj/item/storage/belt/quiver/returning.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;belt&#x2F;quiver&#x2F;returning">quiver of returning</a></li>
     </ul></li>
     <li><span class="no-substance">box&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;box&#x2F;clown">clown box</span> - clown box &amp; honkbot assembly</li>
+    <li><span class="no-substance">fancy&#x2F;</span><a href="obj/item/storage/fancy/cigarettes.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;fancy&#x2F;cigarettes">Space Cigarettes packet</a></li>
     <li><a href="obj/item/storage/pod.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;pod">emergency space suits</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;syndicatedetonator">big red button</span> - Syndicate Detonator (aka the big red button)</li>
@@ -3070,7 +3079,7 @@ Reduce delay by 20% if medical</li>
     </ul></li>
     <li><span class="no-substance">trinary&#x2F;</span><a href="obj/machinery/atmospherics/components/trinary/filter.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;trinary&#x2F;filter">gas filter</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary">unary</span><ul class="index-tree">
-    <li><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
+    <li><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a> - Cryo cell</li>
     <li class="has-children"><a href="obj/machinery/atmospherics/components/unary/hypertorus.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;hypertorus">thermomachine</a> - This file contain the eight parts surrounding the main core, those are: fuel input, moderator input, waste output, interface and the corners
 The file also contain the guicode of the machine<ul class="index-tree">
     <li><a href="obj/machinery/atmospherics/components/unary/hypertorus/core.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;hypertorus&#x2F;core">HFR core</a> - This section contain the hfr core with all the variables and the Initialize(mapload) and Destroy() procs</li>
@@ -3137,7 +3146,7 @@ See [limbgrower_designs.dm] for everything we can make.</li>
     <li><a href="obj/machinery/plate_press.html" title="&#x2F;obj&#x2F;machinery&#x2F;plate_press">license plate press</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;plortrefinery">plort redemption machine</span> - Plort Redemption Machine</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;porta_turret_cover">turret</span> - PORTABLE TURRET COVER</li>
-    <li class="has-children"><span class="no-substance">portable_atmospherics&#x2F;</span><span title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister">canister</span><ul class="index-tree">
+    <li class="has-children"><span class="no-substance">portable_atmospherics&#x2F;</span><a href="obj/machinery/portable_atmospherics/canister.html" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister">canister</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister&#x2F;fusion_test">Fusion Test Canister</span> - Canister 1 Kelvin below the fusion point. Is highly unoptimal, do not spawn to start fusion, only good for testing low instability mixes.</li>
     <li><a href="obj/machinery/portable_atmospherics/canister/fusion_test_2.html" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister&#x2F;fusion_test_2">fusion_test_2</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister&#x2F;fusion_test_3">Fusion Test Canister</span> - Canister at the perfect conditions to start and continue fusion for a long time.</li>
@@ -3297,7 +3306,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/a646ebf8c426d301abecd509127d7b69f2c2058c">a646ebf</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/563746a44e2a40a7a595c460912de5ffc1af3ebd">563746a</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
