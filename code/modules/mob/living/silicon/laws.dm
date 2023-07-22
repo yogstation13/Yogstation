@@ -262,8 +262,6 @@
 
 /datum/law_manager/ui_status(mob/user)
 	// TODO: If the owner suddenly stops existing/is deleted, do UI_CLOSE
-	if(!owner) // UI us moot without an owner.
-		return UI_CLOSE
 	return (is_admin(user) || owner == user) ? UI_INTERACTIVE : UI_CLOSE // This should handle the pains of 'GLOB.always_state'.
 
 /datum/law_manager/ui_act(action, params)
@@ -516,69 +514,16 @@
 		data["connected"] = FALSE
 		data["lawsync"] = FALSE
 	data["pai"] = ispAI(owner) // pAIs are much different from AIs and Cyborgs. They are heavily restricted.
-	data["view"] = current_view
-
-	// Owner's Laws:
-	var/datum/ai_laws/laws = owner.laws
-	var/list/devil = list() // This is how to get rid of the 'field access requires static type: "len"' error.
-	for(var/index = 1, index <= laws.devil.len, index++)
-		devil[++devil.len] = list("law" = laws.devil[index], "index" = index, "indexdisplay" = 666,  "state" = (laws.devilstate.len >= index ? laws.devilstate[index] : 0), "type" = "devil", "hidebuttons" = data["isAntag"] ? TRUE : FALSE)
-		data["has_devil"] = devil.len
-	data["devil"] = devil
-
-	var/list/zeroth = list()
-	if(laws.zeroth)
-		zeroth[++zeroth.len] = list("law" = laws.zeroth, "index" = 0, "indexdisplay" = 0, "state" = (!isnull(laws.zerothstate) ? laws.zerothstate : 0), "type" = "zeroth", "hidebuttons" = data["isAntag"] ? TRUE : FALSE)
-		data["has_zeroth"] = zeroth.len
-	data["zeroth"] = zeroth
-
-	var/list/hacked = list()
-	for(var/index = 1, index <= laws.hacked.len, index++)
-		hacked[++hacked.len] += list("law" = laws.hacked[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.hackedstate.len >= index ? laws.hackedstate[index] : 1 ), "type" = "hacked", "hidebuttons" = FALSE)
-		data["has_hacked"] = hacked.len
-	data["hacked"] = hacked
-
-	var/list/ion = list()
-	for(var/index = 1, index <= laws.ion.len, index++)
-		ion[++ion.len] += list("law" = laws.ion[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.ionstate.len >= index ? laws.ionstate[index] : 1 ), "type" = "ion", "hidebuttons" = FALSE)
-		data["has_ion"] = ion.len
-	data["ion"] = ion
-
-	var/list/inherent = list()
-	for(var/index = 1, index <= laws.inherent.len, index++)
-		inherent[++inherent.len] += list("law" = laws.inherent[index], "index" = index, "indexdisplay" = index, "state" = (laws.inherentstate.len >= index ? laws.inherentstate[index] : 1 ), "type" = "inherent", "hidebuttons" = FALSE)
-		data["has_inherent"] = inherent.len
-	data["inherent"] = inherent
-
-	var/list/supplied = list()
-	for(var/index = 1, index <= laws.supplied.len, index++)
-		if(length(laws.supplied[index]) > 0)
-			supplied[++supplied.len] += list("law" = laws.supplied[index], "index" = index, "indexdisplay" = index, "state" = (laws.suppliedstate.len >= index ? laws.suppliedstate[index] : 1 ), "type" = "supplied", "hidebuttons" = FALSE)
-			data["has_supplied"] = supplied.len
-	data["supplied"] = supplied
-
-	// Channels:
-	var/list/channels = list()
-	channels += list(list("name" = "Default"))
-	channels += list(list("name" = "None"))
-	if(!ispAI(owner))
-		channels += list(list("name" = "Holopad"))
-		channels += list(list("name" = "Binary"))
-	for(var/ch_name in owner.radio.channels)
-		channels += list(list("name" = ch_name))
-
-	data["channels"] = channels
-	data["channel"] = "None"
-	if(owner.radiomodname) // TODO: Add check if they actually have access to the radiomodname.
-		data["channel"] = owner.radiomodname
-	// Law Editting:
+	
+	handle_laws(data, owner.laws)
+	handle_channels(data)
 	data["zeroth_law"] = zeroth_law
 	data["hacked_law"] = hacked_law
 	data["ion_law"] = ion_law
 	data["inherent_law"] = inherent_law
 	data["supplied_law"] = supplied_law
 	data["supplied_law_position"] = supplied_law_position
-	// Law Transfers:
+	data["view"] = current_view
 	data["lawsets"] = handle_lawsets(is_admin(user) ? admin_laws : player_laws)
 	return data
 
@@ -615,7 +560,6 @@
 			supplied[++supplied.len] += list("law" = laws.supplied[index], "index" = index, "indexdisplay" = index, "state" = (laws.suppliedstate.len >= index ? laws.suppliedstate[index] : 1 ), "type" = "supplied", "hidebuttons" = FALSE)
 	data["supplied"] = supplied
 
-/*
 /datum/law_manager/proc/handle_channels(list/data)
 	var/list/channels = list()
 
@@ -631,7 +575,6 @@
 	data["channel"] = "None"
 	if(owner.radiomodname) // TODO: Add check if they actually have access to the radiomodname.
 		data["channel"] = owner.radiomodname
-*/
 
 /datum/law_manager/proc/handle_lawsets(list/datum/ai_laws/laws)
 	var/list/lawsets_data = list()
