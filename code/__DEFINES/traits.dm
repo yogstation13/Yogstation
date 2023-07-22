@@ -137,7 +137,6 @@
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
-#define TRAIT_BLIND_ECHO		"blind_echolocation"
 #define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
@@ -408,6 +407,7 @@
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
+#define ECHOLOCATION_TRAIT "echolocation_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

@@ -14,10 +14,7 @@
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-					AddComponent(/datum/component/echolocation, echo_group = "quirk")
-				else
-					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 
 /**
   * Adjust a mobs blindness by an amount
@@ -34,10 +31,7 @@
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-					AddComponent(/datum/component/echolocation, echo_group = "quirk")
-				else
-					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if((stat != CONSCIOUS && stat != SOFT_CRIT))
@@ -66,10 +60,7 @@
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-					AddComponent(/datum/component/echolocation, echo_group = "quirk")
-				else
-					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS && stat != SOFT_CRIT)
