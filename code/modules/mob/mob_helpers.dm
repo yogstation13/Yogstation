@@ -312,15 +312,6 @@
 		var/mob/B = A
 		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
-
-///Is the mob hallucinating?
-/mob/proc/hallucinating()
-	return FALSE
-
-/mob/living/carbon/hallucinating()
-	if(has_status_effect(/datum/status_effect/hallucination))
-		return TRUE
-	return FALSE
 	
 // moved out of admins.dm because things other than admin procs were calling this.
 /**

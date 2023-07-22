@@ -201,7 +201,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemDispenser", name)
-		if(user.hallucinating())
+		if(user.has_status_effect(/datum/status_effect/hallucination))
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
 
@@ -232,7 +232,7 @@
 	var/chemicals[0]
 	var/recipes[0]
 	var/is_hallucinating = FALSE
-	if(user.hallucinating())
+	if(user.has_status_effect(/datum/status_effect/hallucination))
 		is_hallucinating = TRUE
 	for(var/re in display_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
