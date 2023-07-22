@@ -25,12 +25,6 @@ type LawSectionData = {
   pai: BooleanLike;
   antag: BooleanLike;
   admin: BooleanLike;
-  has_devil: number;
-  has_zeroth: number;
-  has_hacked: number;
-  has_ion: number;
-  has_inherent: number;
-  has_supplied: number;
   devil: string[];
   zeroth: string;
   hacked: string[];
@@ -56,7 +50,7 @@ type ChannelInfo = {
 
 type LawAddData = {
   admin: BooleanLike;
-  has_zeroth: number;
+  zeroth: string[];
   zeroth_law: string;
   hacked_law: string;
   ion_law: string;
@@ -115,7 +109,7 @@ export const LawManager = (props, context) => {
 };
 
 const LawManagementView = (props, context) => {
-  const { act, data } = useBackend<LawManagementData>(context);
+  const { data } = useBackend<LawManagementData>(context);
   const { pai, antag, admin } = data;
   return (
     <Fragment>
@@ -130,26 +124,25 @@ const LawManagementView = (props, context) => {
 
 const LawSection = (props, context) => {
   const { data } = useBackend<LawSectionData>(context);
-  const { has_devil, has_zeroth, has_hacked, has_ion, has_inherent, has_supplied } = data;
   const { devil, zeroth, hacked, ion, inherent, supplied } = data;
   return (
     <Section title="Laws">
-      {!!(has_devil > 0) && (
+      {!!(devil.length > 0) && (
         <LawTable color="#cc5500" title="Devil" laws={devil} />
       )}
-      {!!(has_zeroth > 0) && (
+      {!!(zeroth.length > 0) && (
         <LawTable color="#ff0000" title="Zeroth" laws={zeroth} />
       )}
-      {!!(has_hacked > 0) && (
+      {!!(hacked.length > 0) && (
         <LawTable color="#660000" title="Hacked" laws={hacked} />
       )}
-      {!!(has_ion > 0) && (
+      {!!(ion.length > 0) && (
         <LawTable color="#547DFE" title="Ion" laws={ion} />
       )}
-      {!!(has_inherent > 0) && (
+      {!!(inherent.length > 0) && (
         <LawTable title="Inherent" laws={inherent} />
       )}
-      {!!(has_supplied > 0) && (
+      {!!(supplied.length > 0) && (
         <LawTable color="#990099" title="Supplied" laws={supplied} />
       )}
     </Section>
@@ -241,7 +234,7 @@ const LawStatementSection = (props, context) => {
 
 const LawAddSection = (props, context) => {
   const { data } = useBackend<LawAddData>(context);
-  const { admin, has_zeroth, zeroth_law, hacked_law, ion_law, inherent_law, supplied_law, supplied_law_position } = data;
+  const { admin, zeroth, zeroth_law, hacked_law, ion_law, inherent_law, supplied_law, supplied_law_position } = data;
   return (
     <Section title="Add Laws">
       <Table>
@@ -251,7 +244,7 @@ const LawAddSection = (props, context) => {
           <Table.Cell width="10%">Index</Table.Cell>
           <Table.Cell width="20%">Actions</Table.Cell>
         </Table.Row>
-        {!!(admin && !has_zeroth) && (
+        {!!(admin && zeroth.length === 0) && (
             <LawAddTable type="zeroth" type_display="Zeroth" color="#ff0000" law={zeroth_law} index="0" />
         )}
         <LawAddTable type="hacked" type_display="Hacked" color="#660000" law={hacked_law} index="N/A" />
@@ -314,37 +307,37 @@ const LawsetsView = (props, context) => {
             />
           }>
           <LabeledList>
-            {l.laws.has_devil > 0 &&
+            {l.laws.devil.length > 0 &&
               l.laws.devil.map((zl) => (
                 <LabeledList.Item key={zl.index} label={zl.indexdisplay}>
                   {zl.law}
                 </LabeledList.Item>
             ))}
-            {l.laws.has_zeroth > 0 &&
+            {l.laws.zeroth.length > 0 &&
               l.laws.zeroth.map((zl) => (
                 <LabeledList.Item key={zl.index} label={zl.indexdisplay}>
                   {zl.law}
                 </LabeledList.Item>
             ))}
-            {l.laws.has_hacked > 0 &&
+            {l.laws.hacked.length > 0 &&
               l.laws.hacked.map((zl) => (
                 <LabeledList.Item key={zl.index} label={zl.indexdisplay}>
                   {zl.law}
                 </LabeledList.Item>
             ))}
-            {l.laws.has_ion > 0 &&
+            {l.laws.ion.length > 0 &&
               l.laws.ion.map((il) => (
                 <LabeledList.Item key={il.index} label={il.indexdisplay}>
                   {il.law}
                 </LabeledList.Item>
             ))}
-            {l.laws.has_inherent > 0 &&
+            {l.laws.inherent.length > 0 &&
               l.laws.inherent.map((il) => (
                 <LabeledList.Item key={il.index} label={il.indexdisplay}>
                   {il.law}
                 </LabeledList.Item>
             ))}
-            {l.laws.has_supplied > 0 &&
+            {l.laws.supplied.length > 0 &&
               l.laws.inherent.map((sl) => (
                 <LabeledList.Item key={sl.index} label={sl.indexdisplay}>
                   {sl.law}
