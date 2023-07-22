@@ -775,7 +775,7 @@
 		name = "gibtonite deposit"
 		desc = "An active gibtonite reserve. Run!"
 		stage = GIBTONITE_ACTIVE
-		visible_message(span_danger("There was gibtonite inside! It's going to explode!"))
+		visible_message(span_danger("There was gibtonite inside! It's going to explode!"), blind_message = span_danger("You hear an evil hissing!")) 
 
 		var/notify_admins = 0
 		if(z != 5)

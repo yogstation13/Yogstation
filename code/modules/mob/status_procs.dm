@@ -44,6 +44,9 @@
 		if(!eye_blind)
 			clear_alert("blind")
 			clear_fullscreen("blind")
+			var/datum/component/echo_component = GetComponent(/datum/component/echolocation)
+			if (echo_component)
+				echo_component.Destroy()
 /**
   * Force set the blindness of a mob to some level
   */
@@ -70,6 +73,9 @@
 		if(!eye_blind)
 			clear_alert("blind")
 			clear_fullscreen("blind")
+			var/datum/component/echo_component = GetComponent(/datum/component/echolocation)
+			if (echo_component)
+				echo_component.Destroy()
 
 /**
   * Make the mobs vision blurry
