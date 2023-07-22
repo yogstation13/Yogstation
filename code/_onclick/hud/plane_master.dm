@@ -137,8 +137,6 @@
 
 /atom/movable/screen/plane_master/parallax/Initialize(mapload)
 	. = ..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_STATION_ADRIFT))
-		SpinAnimation(30 MINUTES)
 	// Should be moved to the world render plate when render plates get ported in
 	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
