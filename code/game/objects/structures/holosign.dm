@@ -227,14 +227,15 @@
 /obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
-/obj/structure/holobed/update_icon()
+/obj/structure/holobed/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
 
 /obj/structure/holobed/AltClick(mob/living/user)
 	if(user.a_intent == INTENT_HELP)
 		stasis = !stasis
 		handle_stasis(occupant)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_warning("You [stasis ? "activate" : "deactivate"] the stasis field."))
 
 /obj/structure/holobed/Exited(atom/movable/AM, atom/newloc)
