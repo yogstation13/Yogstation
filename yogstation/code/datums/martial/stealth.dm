@@ -74,13 +74,13 @@
 
 /datum/martial_art/stealth/proc/injection(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak, INJECTION_COMBO))
-		D.reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 8)
-		to_chat(A, span_warning("You inject sodium thiopental into [D]!"))
+		D.reagents.add_reagent(/datum/reagent/toxin/cyanide, 5)
+		to_chat(A, span_warning("You inject cyanide into [D]!"))
 		to_chat(D, span_notice("You feel a tiny prick."))
 		streak = ""
 	else 
-		D.reagents.add_reagent(/datum/reagent/toxin/cyanide, 5)
-		to_chat(A, span_warning("You inject cyanide into [D]!"))
+		D.reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 8)
+		to_chat(A, span_warning("You inject sodium thiopental into [D]!"))
 		to_chat(D, span_notice("You feel a tiny prick."))		
 
 /datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -138,7 +138,7 @@
 	to_chat(usr, "<b><i>You try to remember some basic actions from your upgraded combat modules.</i></b>")
 
 	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hidden blade, dealing 30 brute damage.")
-	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third attack will stealthy inject respectively 5 units of cyanide and 8 unites of sodium thiopental.")
+	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third input will silently inject 8 units of sodium thiopental and 5 units of cyanide respectively.")
 	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyse your target and place a stealthy version of a stechkin in your hand.")
 
 #undef PRE_DAGGER_COMBO
