@@ -271,7 +271,7 @@
 	setAnchored(TRUE)
 	timer_set = rand(480, 600) //once the supply shuttle docks (after 5 minutes travel time), players have between 3-5 minutes to defuse the bomb
 	activate()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/paper/fluff/cargo/bomb
 	name = "hastly scribbled note"

@@ -757,7 +757,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/assembly/flash/handheld,
 /obj/item/reagent_containers/spray/pepper,
 /obj/effect/turf_decal/tile/red{
@@ -781,7 +781,7 @@
 	pixel_x = -24
 	},
 /obj/structure/rack,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/gun/energy/e_gun/dragnet,
 /obj/item/gun/energy/e_gun/dragnet,
 /obj/effect/turf_decal/tile/neutral{
@@ -5688,7 +5688,7 @@
 "apS" = (
 /obj/structure/table,
 /obj/item/folder/red,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/clothing/mask/gas/sechailer,
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -7933,7 +7933,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/item/storage/box/fancy/candle_box{
+/obj/item/storage/fancy/candle_box{
 	pixel_y = 5
 	},
 /obj/structure/table/wood,
@@ -11438,26 +11438,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"aDP" = (
-/obj/structure/toilet{
-	pixel_y = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/machinery/button/door{
-	id = "Toilet3";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	pixel_x = -25;
-	specialfunctions = 4
-	},
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/toilet/restrooms)
 "aDQ" = (
 /obj/machinery/door/airlock{
 	id_tag = "Toilet3";
@@ -12600,26 +12580,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/security/detectives_office)
-"aGz" = (
-/obj/structure/toilet{
-	pixel_y = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/effect/landmark/blobstart,
-/obj/machinery/button/door{
-	id = "Toilet2";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	pixel_x = -25;
-	specialfunctions = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/toilet/restrooms)
 "aGA" = (
 /obj/machinery/door/airlock{
 	id_tag = "Toilet2";
@@ -13780,26 +13740,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aJa" = (
-/obj/structure/toilet{
-	pixel_y = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/obj/effect/landmark/blobstart,
-/obj/machinery/button/door{
-	id = "Toilet1";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	pixel_x = -25;
-	specialfunctions = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/toilet/restrooms)
 "aJb" = (
 /obj/machinery/door/airlock{
 	id_tag = "Toilet1";
@@ -13811,26 +13751,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/plasteel/freezer,
-/area/crew_quarters/toilet/restrooms)
-"aJc" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/newscaster{
-	pixel_x = 32
-	},
-/obj/machinery/button/door{
-	id = "Toilet4";
-	name = "Lock Control";
-	normaldoorcontrol = 1;
-	pixel_y = -25;
-	specialfunctions = 4
-	},
-/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
 "aJd" = (
@@ -16989,7 +16909,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/storage/box/donkpockets,
 /obj/machinery/airalarm{
 	dir = 8;
@@ -19010,7 +18930,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "aUJ" = (
@@ -22263,7 +22183,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "bdc" = (
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/structure/table/glass,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -23085,7 +23005,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "bff" = (
@@ -25677,7 +25597,7 @@
 /area/bridge)
 "bkJ" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "Serving Hatch"
@@ -45646,8 +45566,8 @@
 	name = "memorial board";
 	pixel_y = 32
 	},
-/obj/item/storage/box/fancy/candle_box,
-/obj/item/storage/box/fancy/candle_box{
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -50885,6 +50805,26 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"emV" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/obj/machinery/button/door{
+	id = "Toilet4";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_y = -25;
+	specialfunctions = 4
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/restrooms)
 "enb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -51171,6 +51111,27 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison/hallway)
+"ext" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/effect/landmark/blobstart,
+/obj/machinery/button/door{
+	id = "Toilet1";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/restrooms)
 "exx" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/medical";
@@ -61376,6 +61337,27 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"lcJ" = (
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/machinery/button/door{
+	id = "Toilet3";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/restrooms)
 "lcL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -64527,6 +64509,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"mYe" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/effect/landmark/blobstart,
+/obj/machinery/button/door{
+	id = "Toilet2";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/structure/toilet{
+	dir = 4;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/restrooms)
 "mYD" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -66129,7 +66132,7 @@
 	icon_state = "minibar";
 	name = "skeletal minibar"
 	},
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/open/floor/engine/cult,
 /area/library)
 "nXM" = (
@@ -70841,7 +70844,7 @@
 /obj/item/gps{
 	gpstag = "QM0"
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars{
+/obj/item/storage/fancy/cigarettes/cigars{
 	pixel_y = 4
 	},
 /obj/item/lighter,
@@ -81794,7 +81797,7 @@
 /area/crew_quarters/theatre)
 "xTA" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/carpet,
@@ -115234,11 +115237,11 @@ dIw
 dhz
 alH
 axC
-aDP
+lcJ
 axC
-aGz
+mYe
 axC
-aJa
+ext
 axC
 bbG
 aBV
@@ -116523,7 +116526,7 @@ awF
 bJS
 aGD
 aHK
-aJc
+emV
 axC
 aHP
 aBY

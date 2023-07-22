@@ -199,7 +199,7 @@
 	. = ..()
 	if(src.type == /turf/open/floor/grass) //don't want grass subtypes getting the icon state,
 		icon_state = "grass[rand(1,4)]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
 	if((C.tool_behaviour == TOOL_SHOVEL) && params)
@@ -296,10 +296,11 @@
 
 /turf/open/floor/carpet/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/turf/open/floor/carpet/update_icon()
-	if(!..())
+/turf/open/floor/carpet/update_icon(updates=ALL)
+	. = ..()
+	if(!.)
 		return 0
 	if(!broken && !burnt)
 		if(smooth)
@@ -405,11 +406,11 @@
 
 /turf/open/floor/carpet/break_tile()
 	broken = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/floor/carpet/burn_tile()
 	burnt = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/floor/carpet/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	return FALSE

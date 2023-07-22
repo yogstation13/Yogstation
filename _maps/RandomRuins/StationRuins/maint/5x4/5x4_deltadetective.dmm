@@ -50,8 +50,8 @@
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
-/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes/cigpack_carp,
+/obj/item/storage/fancy/cigarettes,
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "n" = (

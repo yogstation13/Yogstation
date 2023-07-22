@@ -56,14 +56,14 @@
 		igniter.flamethrower_process(location)
 
 
-/obj/item/flamethrower/update_icon()
-	cut_overlays()
+/obj/item/flamethrower/update_overlays()
+	. = ..()
 	if(igniter)
-		add_overlay("+igniter[status]")
+		. += "+igniter[status]"
 	if(ptank)
-		add_overlay("+ptank")
+		. += "+ptank"
 	if(lit)
-		add_overlay("+lit")
+		. += "+lit"
 		item_state = "flamethrower_1"
 	else
 		item_state = "flamethrower_0"
@@ -108,7 +108,7 @@
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && igniter && !lit)
 		status = !status
 		to_chat(user, span_notice("[igniter] is now [status ? "secured" : "unsecured"]!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	else if(isigniter(W))
@@ -120,7 +120,7 @@
 		if(!user.transferItemToLoc(W, src))
 			return
 		igniter = I
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	else if(istype(W, /obj/item/tank/internals/plasma))
@@ -133,7 +133,7 @@
 		if(!user.transferItemToLoc(W, src))
 			return
 		ptank = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	else
@@ -154,7 +154,7 @@
 		user.put_in_hands(ptank)
 		ptank = null
 		to_chat(user, span_notice("You remove the plasma tank from [src]!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/flamethrower/examine(mob/user)
 	. = ..()
@@ -182,7 +182,7 @@
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
 	set_light_on(lit)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/flamethrower/CheckParts(list/parts_list)
 	..()
@@ -323,7 +323,7 @@
 		status = TRUE
 		if(create_with_tank)
 			ptank = new /obj/item/tank/internals/plasma/full(src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/flamethrower/full
 	create_full = TRUE

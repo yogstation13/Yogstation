@@ -351,11 +351,12 @@
 	. = ..()
 	if(amount == max_amount)	 //only seal full mesh packs
 		is_open = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/item/stack/medical/mesh/update_icon()
+/obj/item/stack/medical/mesh/update_icon_state()
+	. = ..()
 	if(is_open)
-		return ..()
+		return
 	icon_state = "regen_mesh_closed"
 
 /obj/item/stack/medical/mesh/heal(mob/living/M, mob/user)
@@ -390,7 +391,7 @@
 	if(!is_open)
 		is_open = TRUE
 		to_chat(user, span_notice("You open the sterile mesh package."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src, 'sound/items/poster_ripped.ogg', 20, TRUE)
 		return
 	. = ..()
@@ -408,9 +409,10 @@
 	flesh_regeneration = 3.5
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
-/obj/item/stack/medical/mesh/advanced/update_icon()
+/obj/item/stack/medical/mesh/advanced/update_icon_state()
+	. = ..()
 	if(is_open)
-		return ..()
+		return
 	icon_state = "aloe_mesh_closed"
 
 /obj/item/stack/medical/aloe

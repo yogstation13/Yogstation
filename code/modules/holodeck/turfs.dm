@@ -34,7 +34,7 @@
 	. = ..()
 	if(src.type == /turf/open/floor/holofloor/grass) //don't want grass subtypes getting the icon state,
 		icon_state = "grass[rand(1,4)]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /turf/open/floor/holofloor/beach
 	gender = PLURAL
@@ -119,9 +119,10 @@
 	. = ..()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 1)
 
-/turf/open/floor/holofloor/carpet/update_icon()
-	if(!..())
-		return 0
+/turf/open/floor/holofloor/carpet/update_icon(updates=ALL)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(intact)
 		queue_smooth(src)
 
