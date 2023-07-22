@@ -49,7 +49,8 @@
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
-/obj/item/melee/spear/update_icon()
+/obj/item/melee/spear/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
 
 /obj/item/melee/spear/deconstruct() //we drop our rod and maybe the glass shard used
@@ -71,7 +72,7 @@
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
 		mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi' //yogs
 		base_icon_state = "spearplasma"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	qdel(tip)
 	var/obj/item/grenade/G = locate() in parts_list
 	if(G && can_be_explosive)
@@ -101,7 +102,7 @@
 	default_grenade.forceMove(src)
 	explosive = default_grenade
 	desc = "A makeshift spear with [default_grenade] attached to it"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/melee/spear/explosive/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))

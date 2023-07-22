@@ -31,9 +31,9 @@
 	)
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
-/obj/item/fireaxe/update_icon()
+/obj/item/fireaxe/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
-	return
 
 /obj/item/fireaxe/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] axes [user.p_them()]self from head to toe! It looks like [user.p_theyre()] trying to commit suicide!"))

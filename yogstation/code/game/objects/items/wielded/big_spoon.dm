@@ -36,5 +36,6 @@
 /obj/item/bigspoon/proc/on_unwield(atom/source, mob/living/user)
 	hitsound = initial(hitsound)
 
-/obj/item/bigspoon/update_icon()
+/obj/item/bigspoon/update_icon_state()
+	. = ..()
 	item_state = "[base_icon_state]0" //i don't know why it's item_state rather than icon_state like every other wielded weapon //because you're changing in-hand icons not the inventory icon

@@ -86,7 +86,8 @@
 		user.visible_message(span_suicide("[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!"))
 	return BRUTELOSS
 
-/obj/item/melee/dualsaber/update_icon()
+/obj/item/melee/dualsaber/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
@@ -173,7 +174,7 @@
 			hacked = TRUE
 			to_chat(user, span_warning("2XRNBW_ENGAGE"))
 			saber_color = "rainbow"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
 		return

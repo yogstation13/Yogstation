@@ -314,7 +314,7 @@
 		defib = spawned_in
 		forceMove(defib)
 		busy = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/shockpaddles/equipped(mob/user, slot)
 	. = ..()

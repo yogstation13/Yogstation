@@ -51,7 +51,8 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
-/obj/item/melee/vxtvulhammer/update_icon()
+/obj/item/melee/vxtvulhammer/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]-[supercharged]"
 
 /obj/item/melee/vxtvulhammer/examine(mob/living/carbon/user)
@@ -95,7 +96,7 @@
 		set_light_on(FALSE)
 		force = initial(force) + (HAS_TRAIT(src, TRAIT_WIELDED) ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/melee/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
