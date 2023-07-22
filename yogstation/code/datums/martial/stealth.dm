@@ -2,8 +2,8 @@
 #define PRE_DAGGER_COMBO "HH"
 #define DAGGER_COMBO "HHG"
 ///injection
-#define PRE_INJECTION_COMBO "DH"
-#define INJECTION_COMBO "DHD"
+#define PRE_INJECTION_COMBO "DG"
+#define INJECTION_COMBO "DGD"
 ///fingergun
 #define FINGERGUN_COMBO "HDD"
 
@@ -138,7 +138,7 @@
 	to_chat(usr, "<b><i>You try to remember some basic actions from your upgraded combat modules.</i></b>")
 
 	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hidden blade, dealing 30 brute damage.")
-	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third input will silently inject 8 units of sodium thiopental and 5 units of cyanide respectively.")
+	to_chat(usr, "[span_notice("Injection")]: Disarm Grab Disarm. The second and third input will silently inject 8 units of sodium thiopental and 5 units of cyanide respectively.")
 	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyse your target and place a stealthy version of a stechkin in your hand.")
 
 #undef PRE_DAGGER_COMBO
