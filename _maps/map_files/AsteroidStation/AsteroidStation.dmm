@@ -23165,11 +23165,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"gGu" = (
-/obj/structure/beebox,
-/obj/item/queen_bee/bought,
-/turf/open/floor/grass,
-/area/hydroponics/garden)
 "gGE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -47625,6 +47620,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"oxc" = (
+/obj/structure/beebox,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "oxe" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -111191,7 +111192,7 @@ vrt
 bEw
 iSr
 uAR
-gGu
+oxc
 jLH
 alW
 fhK
@@ -111705,7 +111706,7 @@ imK
 bEw
 iSr
 uAR
-gGu
+oxc
 iya
 beN
 rls
