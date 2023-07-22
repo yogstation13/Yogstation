@@ -461,7 +461,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, src))
+		if(do_after(src, 1 SECONDS, src, stayStill = FALSE))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -984,6 +984,10 @@
 /mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
 
+/// Returns the type of organs, reagents, and symptoms this mob is compatible with
+/mob/living/proc/get_process_flags()
+	return (MOB_ROBOTIC in mob_biotypes) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
+
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
 
@@ -1249,7 +1253,7 @@
 		if(buckled.buckle_lying != -1)
 			should_be_lying = buckled.buckle_lying
 
-	if(should_be_lying)
+	if(should_be_lying && !HAS_TRAIT(src, TRAIT_FORCED_STANDING))
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
 			if(buckled.buckle_lying != -1)

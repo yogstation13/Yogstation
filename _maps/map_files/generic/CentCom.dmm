@@ -3273,7 +3273,7 @@
 /area/centcom/control)
 "aiz" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/centcom/control)
@@ -6303,7 +6303,7 @@
 /area/centcom/ferry)
 "aoD" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "aoE" = (
@@ -6686,7 +6686,7 @@
 /area/centcom/control)
 "apn" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -6807,7 +6807,7 @@
 /area/centcom/control)
 "apu" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -8796,7 +8796,7 @@
 /area/holodeck/rec_center/spacechess)
 "atc" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigars/havana,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "atd" = (
@@ -9006,7 +9006,7 @@
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "atB" = (
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/carpet/green,
@@ -10160,7 +10160,7 @@
 /area/centcom/control)
 "avK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -11666,7 +11666,7 @@
 /area/syndicate_mothership/control)
 "ayY" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -12877,7 +12877,7 @@
 /area/space)
 "aBx" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -13088,7 +13088,7 @@
 "aBN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	dir = 1;
@@ -14101,7 +14101,7 @@
 "aDt" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -16605,13 +16605,13 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "aIe" = (
-/obj/item/storage/box/fancy/cigarettes/cigars{
+/obj/item/storage/fancy/cigarettes/cigars{
 	pixel_y = 6
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 3
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars/havana,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17930,7 +17930,7 @@
 /area/tdome/tdomeadmin)
 "aKx" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -18390,7 +18390,7 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/item/hand_labeler,
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
@@ -19289,9 +19289,9 @@
 /obj/item/vending_refill/autodrobe,
 /obj/item/stack/sheet/paperframes/fifty,
 /obj/item/stack/sheet/paperframes/fifty,
-/obj/item/storage/box/fancy/candle_box,
-/obj/item/storage/box/fancy/candle_box,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -22606,7 +22606,7 @@
 /area/centcom/testchamber)
 "aTT" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
 "aTU" = (
@@ -23127,8 +23127,8 @@
 /obj/item/gun/ballistic/automatic/proto/unrestricted{
 	pixel_y = 12
 	},
-/obj/item/gun/ballistic/automatic/sniper_rifle,
-/obj/item/gun/ballistic/automatic/sniper_rifle,
+/obj/item/gun/ballistic/rifle/sniper_rifle,
+/obj/item/gun/ballistic/rifle/sniper_rifle,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aUY" = (
@@ -25635,7 +25635,7 @@
 /area/brazil)
 "bfK" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = 12;
 	pixel_y = 7
 	},
@@ -25840,7 +25840,7 @@
 /area/centcom/testchamber)
 "fpM" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 3
 	},
 /obj/effect/spawner/lootdrop/donkpockets{

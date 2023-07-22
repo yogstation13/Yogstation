@@ -93,7 +93,7 @@
 			. += ""
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
-		
+
 		//WS Begin - Display Ethereal Charge
 		if(istype(src))
 			var/datum/species/ethereal/eth_species = src.dna?.species
@@ -427,6 +427,7 @@
 											if(H.canUseHUD())
 												if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 													investigate_log("[key_name(src)] has been set from [R.fields["criminal"]] to [setcriminal] by [key_name(usr)].", INVESTIGATE_RECORDS)
+													R.fields["comments"] |= GLOB.data_core.createCommentEntry("Criminal status set to [setcriminal].", allowed_access)
 													R.fields["criminal"] = setcriminal
 													sec_hud_set_security_status()
 									return
@@ -1127,6 +1128,10 @@
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
+
+/// Returns the type of organs, reagents, and symptoms this mob is compatible with
+/mob/living/carbon/human/get_process_flags()
+	return dna?.species?.process_flags // uses the process flags of whichever species we are
 
 /mob/living/carbon/human/species
 	var/race = null

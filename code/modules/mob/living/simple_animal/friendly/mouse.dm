@@ -267,7 +267,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
 		evolve()
 	if(istype(F, /obj/item/grown/bananapeel/bluespace))
-		var/obj/item/grown/bananapeel/bluespace/B
+		var/obj/item/grown/bananapeel/bluespace/B = F
 		var/teleport_radius = max(round(B.seed.potency / 10), 1)
 		var/turf/T = get_turf(src)
 		do_teleport(src, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)

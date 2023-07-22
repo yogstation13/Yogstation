@@ -19,9 +19,10 @@
 	. = ..()
 	if(prob(50))
 		desc = "Oh no, not again."
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/power/emitter/energycannon/magical/update_icon()
+/obj/machinery/power/emitter/energycannon/magical/update_icon_state()
+	. = ..()
 	if(active)
 		icon_state = icon_state_on
 	else
@@ -39,7 +40,7 @@
 			visible_message("<span class='revenboldnotice'>\
 				[src] closes its eyes.</span>")
 		active = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/emitter/energycannon/magical/attackby(obj/item/W, mob/user, params)
 	return
@@ -202,6 +203,24 @@
 	var/obj/item/card/id/ID = user.get_idcard(FALSE)
 	if(ID && (ACCESS_CENT_BAR in ID.access))
 		return TRUE
+
+//Drone Mafia, like barstaff but italian
+/mob/living/simple_animal/drone/snowflake/mafia
+	name = "Mafiosdrone"
+	icon_state = "drone_synd"
+	desc = "An indestructable drone \"\ probably\"\ involved in some shady buisness. Good thing its pacificm circuits are still there."
+	hacked = TRUE
+	laws = "1. Be loyal to members of the organization.\n\
+		2. Be rational.\n\
+		3. Be a member of the team.\n\
+		4. Have class.\n\
+		5. Show hospitality to others unless they don't show class." //Actual mafia rules, look it up ;)
+	status_flags = GODMODE // Bad Idea to mess with hardened criminals
+	unique_name = TRUE
+	picked = TRUE //they will stay shady
+	initial_language_holder = /datum/language_holder/universal
+	default_hatmask = null //hats are on the table
+	default_storage = /obj/item/melee/classic_baton/secconbaton
 
 //Luxury Shuttle Blockers
 

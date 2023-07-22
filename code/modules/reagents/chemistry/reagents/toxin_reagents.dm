@@ -198,6 +198,7 @@
 			M.adjust_slurring(3 SECONDS)
 		if(5 to 8)
 			M.adjustStaminaLoss(40, 0)
+			M.clear_stamina_regen()
 		if(9 to INFINITY)
 			fakedeath_active = TRUE
 			M.fakedeath(type)
@@ -392,6 +393,7 @@
 
 /datum/reagent/toxin/staminatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(REM * data, 0)
+	M.clear_stamina_regen()
 	data = max(data - 1, 3)
 	..()
 	. = 1
@@ -664,6 +666,7 @@
 	if(current_cycle >= 10)
 		M.Sleeping(40, 0)
 	M.adjustStaminaLoss(10*REM, 0)
+	M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -935,6 +938,7 @@
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(7.5, 0)
+	M.clear_stamina_regen()
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.adjustBruteLoss(0.5, 0)
 	if(prob(20))
@@ -992,6 +996,7 @@
 
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
+	M.clear_stamina_regen()
 	..()
 
 /datum/reagent/toxin/mushroom_powder

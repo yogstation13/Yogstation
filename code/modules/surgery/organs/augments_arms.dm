@@ -18,7 +18,7 @@
 	if(ispath(holder))
 		holder = new holder(src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 	items_list = contents.Copy()
 
@@ -29,9 +29,12 @@
 		if(BODY_ZONE_R_ARM)
 			slot = ORGAN_SLOT_RIGHT_ARM_AUG
 		else
-			CRASH("Invalid zone for [type]")
+			stack_trace("Invalid zone for [type]")
+			return FALSE
+	return TRUE
 
-/obj/item/organ/cyberimp/arm/update_icon()
+/obj/item/organ/cyberimp/arm/update_icon(updates=ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_ARM)
 		transform = null
 	else // Mirroring the icon
@@ -45,14 +48,16 @@
 	. = ..()
 	if(.)
 		return TRUE
-	I.play_tool_sound(src)
 	if(zone == BODY_ZONE_R_ARM)
 		zone = BODY_ZONE_L_ARM
-	else
+	else if(zone == BODY_ZONE_L_ARM)
 		zone = BODY_ZONE_R_ARM
-	SetSlotFromZone()
-	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
-	update_icon()
+	if(SetSlotFromZone())
+		I.play_tool_sound(src)
+		update_appearance(UPDATE_ICON)
+		to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
+	else
+		to_chat(user, span_warning("[src] cannot be modified!"))
 
 /obj/item/organ/cyberimp/arm/Remove(mob/living/carbon/M, special = 0)
 	Retract()
@@ -419,7 +424,11 @@
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
 	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
-	zone = "l_arm"
+	process_flags = SYNTHETIC
+	zone = BODY_ZONE_CHEST
+
+/obj/item/organ/cyberimp/arm/power_cord/SetSlotFromZone() // don't swap the zone
+	return FALSE
 
 /obj/item/organ/cyberimp/arm/flash/rev
 	name = "revolutionary brainwashing implant"

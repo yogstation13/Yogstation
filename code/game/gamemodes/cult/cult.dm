@@ -104,7 +104,10 @@
 	return ..()
 
 /datum/game_mode/cult/check_finished(force_ending)
-	if (..())
+	if(!SSticker.setup_done || !gamemode_ready)
+		return FALSE
+	. = ..()
+	if (.)
 		return TRUE
 
 	return !main_cult.check_sacrifice_status() //we should remove this any time soon
@@ -186,7 +189,7 @@
 			return //We're done here
 		else
 			B.current_fullness++
-		B.update_icon()
+		B.update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
 
 /datum/game_mode/proc/create_anchor_bloodstone()

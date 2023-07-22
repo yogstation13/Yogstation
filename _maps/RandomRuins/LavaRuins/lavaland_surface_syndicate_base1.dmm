@@ -132,9 +132,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
-"aL" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/testlab)
 "aM" = (
 /obj/machinery/vending/syndichem,
 /obj/effect/turf_decal/siding/purple{
@@ -437,9 +434,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"dP" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/cargo)
 "dQ" = (
 /obj/structure/sink{
 	pixel_y = 23
@@ -650,7 +644,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ev" = (
@@ -663,9 +657,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/virology)
-"ex" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/engineering)
 "ey" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -747,9 +738,6 @@
 	},
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
-"eK" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "eN" = (
 /obj/structure/flora/tree/jungle/small,
@@ -970,7 +958,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/thermomachine/heater/on,
+/obj/machinery/atmospherics/components/unary/thermomachine/heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "fr" = (
@@ -1686,9 +1674,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"hO" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "hP" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -1715,7 +1700,7 @@
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/siding/blue{
 	dir = 9
 	},
@@ -2072,9 +2057,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"iN" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/vault)
 "iP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -2177,7 +2159,7 @@
 	},
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "jc" = (
@@ -2519,9 +2501,6 @@
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/grass,
 /area/ruin/powered/syndicate_lava_base/virology)
-"jP" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/bar)
 "jQ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -3444,9 +3423,6 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "mn" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
-"mo" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "mq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -5796,14 +5772,14 @@
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/vending_refill/sovietsoda,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -7648,7 +7624,7 @@ eC
 yl
 gw
 gX
-eK
+kQ
 hX
 Jv
 eh
@@ -7768,7 +7744,7 @@ zN
 Nq
 Nq
 ed
-jP
+jy
 ZV
 ov
 jZ
@@ -7866,7 +7842,7 @@ kp
 Cg
 Lg
 Je
-dP
+dy
 jq
 Sr
 iV
@@ -7985,7 +7961,7 @@ iV
 ab
 FN
 ha
-iN
+ha
 ha
 FN
 ab
@@ -8095,7 +8071,7 @@ Hn
 oP
 iV
 dS
-iN
+ha
 Gv
 it
 dE
@@ -8104,7 +8080,7 @@ TA
 IC
 Ib
 jo
-hO
+hz
 KZ
 kf
 hz
@@ -8163,7 +8139,7 @@ da
 hz
 ft
 hz
-hO
+hz
 hz
 no
 hz
@@ -8197,7 +8173,7 @@ MN
 RC
 eT
 zq
-aL
+ae
 as
 Om
 dU
@@ -8209,7 +8185,7 @@ iV
 ab
 FN
 ha
-iN
+ha
 ha
 FN
 ab
@@ -8304,7 +8280,7 @@ ab
 ab
 ab
 ab
-aL
+ae
 kw
 ae
 mJ
@@ -8387,13 +8363,13 @@ jq
 hz
 gE
 lR
-hO
+hz
 JV
 hg
-hO
+hz
 dQ
 TY
-hO
+hz
 Yn
 FB
 mT
@@ -8486,13 +8462,13 @@ as
 ju
 ju
 ju
-ex
+ju
 ju
 ju
 ju
 ie
 mn
-mo
+mn
 mn
 Hi
 mn
@@ -8883,7 +8859,7 @@ hA
 hl
 hU
 mH
-mo
+vl
 iJ
 qB
 kY
