@@ -135,7 +135,7 @@
 		mask = new mask_type(src)
 	if(storage_type)
 		storage = new storage_type(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/suit_storage_unit/Destroy()
 	QDEL_NULL(suit)
@@ -144,36 +144,35 @@
 	QDEL_NULL(storage)
 	return ..()
 
-/obj/machinery/suit_storage_unit/update_icon()
-	cut_overlays()
+/obj/machinery/suit_storage_unit/update_overlays()
+	. = ..()
 
 	if(uv)
 		if(uv_super)
-			add_overlay("super")
+			. += "super"
 		else if(occupant)
-			add_overlay("uvhuman")
+			. += "uvhuman"
 		else
-			add_overlay("uv")
+			. += "uv"
 	else if(state_open)
 		if(stat & BROKEN)
-			add_overlay("broken")
+			. += "broken"
 		else
-			add_overlay("open")
+			. += "open"
 			if(suit)
-				add_overlay("suit")
+				. += "suit"
 			if(helmet)
-				add_overlay("helm")
+				. += "helm"
 			if(storage)
-				add_overlay("storage")
+				. += "storage"
 	else if(occupant)
-		add_overlay("human")
+		. += "human"
 
 /obj/machinery/suit_storage_unit/power_change()
-	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()
-	update_icon()
+	return ..()
 
 /obj/machinery/suit_storage_unit/proc/dump_contents()
 	dropContents()
@@ -222,7 +221,7 @@
 		uv_cycles--
 		uv = TRUE
 		locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(occupant)
 			if(uv_super)
 				mob_occupant.adjustFireLoss(rand(20, 36))
@@ -365,7 +364,7 @@
 			storage = I
 
 		visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You load [I] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(panel_open && is_wire_tool(I))
@@ -472,7 +471,7 @@
 				if(I)
 					I.forceMove(loc)
 			. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/suit_storage_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -496,4 +495,4 @@
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
 		return
 	locked = !locked
-	update_icon()
+	update_appearance(UPDATE_ICON)

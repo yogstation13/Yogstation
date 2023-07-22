@@ -11,7 +11,7 @@
 /obj/machinery/papershredder/proc/try_insert(mob/user, insert_size = 0)
 	if(paperamount <= max_paper - insert_size)
 		paperamount += insert_size
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
 		return TRUE
 	else
@@ -30,7 +30,7 @@
 				if(ran == 3)
 					SP.color = null
 				paperamount -=1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			to_chat(user, span_warning("The [src] was too full and shredded paper goes everywhere!"))
 		else
 			to_chat(user, span_warning("The [src] is full please empty it before you continue."))
@@ -74,7 +74,7 @@
 					SP.color = null
 				STR.handle_item_insertion(SP)
 				paperamount -=1
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			else
 				to_chat(user, span_warning("The [W] is full."))
 				return
@@ -85,7 +85,7 @@
 		if(paperamount < max_paper)
 			qdel(W)
 			paperamount += 1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 	
 	if(shred_amount && try_insert(user, shred_amount))
@@ -113,25 +113,26 @@
 			if(ran == 3)
 				SP.color = null
 			paperamount -=1
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/papershredder/AltClick(mob/living/user)
 	emptypaper()
 
-/obj/machinery/papershredder/update_icon()
-	if(paperamount == 0)
-		icon_state = "papershredder0"
-	if(paperamount == 1||paperamount == 2)
-		icon_state = "papershredder1"
-	if(paperamount == 3||paperamount == 4)
-		icon_state = "papershredder2"
-	if(paperamount == 5||paperamount == 6)
-		icon_state = "papershredder3"
-	if(paperamount == 7||paperamount == 8)
-		icon_state = "papershredder4"
-	if(paperamount == 9||paperamount == 10)
-		icon_state = "papershredder5"
-	return
+/obj/machinery/papershredder/update_icon_state()
+	. = ..()
+	switch(paperamount) //cant we just use round(paperamount, 2)
+		if(0)
+			icon_state = "papershredder0"
+		if(1, 2)
+			icon_state = "papershredder1"
+		if(3, 4)
+			icon_state = "papershredder2"
+		if(5, 6)
+			icon_state = "papershredder3"
+		if(7, 8)
+			icon_state = "papershredder4"
+		if(9, 10)
+			icon_state = "papershredder5"
 
 /obj/item/shreddedpaper
 	name = "shredded paper"

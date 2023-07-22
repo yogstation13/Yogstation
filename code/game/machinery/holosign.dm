@@ -14,9 +14,10 @@
 		lit = FALSE
 	else
 		lit = !lit
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holosign/update_icon()
+/obj/machinery/holosign/update_icon(updates=ALL)
+	. = ..()
 	if(!lit)
 		icon_state = initial(icon_state)
 		set_light(0)
@@ -27,7 +28,7 @@
 /obj/machinery/holosign/power_change()
 	if(!is_operational())
 		lit = FALSE
-	update_icon()
+	return ..()
 
 /obj/machinery/holosign/surgery
 	name = "surgery holosign"

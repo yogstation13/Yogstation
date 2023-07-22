@@ -189,11 +189,13 @@
 	name = "cape of the atmospheric technician"
 	icon_state = "atmos-skillcape"
 	item_state = "atmos-skillcape"
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/skillcape/trimmed/atmos
 	name = "cape of the grand atmospheric technician"
 	icon_state = "atmos-trimmed"
 	item_state = "atmos-trimmed"
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/skillcape/engineer
 	name = "cape of the station engineer"

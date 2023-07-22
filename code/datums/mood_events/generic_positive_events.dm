@@ -188,6 +188,10 @@
 	mood_change = 10
 	timeout = 4 MINUTES
 
+/datum/mood_event/confident_mane
+	description = "I'm feeling confident with a head full of hair."
+	mood_change = 2
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0
