@@ -87,6 +87,7 @@
 	update_icon()
 
 /obj/item/storage/fancy/donut_box/update_icon_state()
+	. = ..()
 	if(fancy_open)
 		icon_state = "donutbox_inner"
 	else
