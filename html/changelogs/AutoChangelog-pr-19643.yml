@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - experiment: "Adds update_appearance. REPORT ANYTHING WRONG YOU MAY FIND!!"
-  - bugfix: "Eguns with a flashlight on them wont stick around in your action buttons unnecessarily."
