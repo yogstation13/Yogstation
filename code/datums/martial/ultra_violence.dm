@@ -386,7 +386,6 @@
 	to_chat(usr, span_notice("This module has made you a hell-bound killing machine."))
 	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
 	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, releases the energy into anyone nearby."))
-	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
 	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
 	to_chat(usr, span_warning("Your grab has been replaced with the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you, but taking too much damage will build up \"hard damage\" which cannot be healed and decays over time.</b>"))
