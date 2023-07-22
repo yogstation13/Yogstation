@@ -389,7 +389,7 @@
 				if(1 to 99)
 					character.playsound_local(get_turf(character), 'sound/voice/ApproachingYOG.ogg', 25)
 				if(100)
-					character.playsound_local(get_turf(character), 'sound/voice/ApproachingYOGbutepic.ogg', 25)
+					character.playsound_local(get_turf(character), 'sound/voice/ApproachingYogSeth.ogg', 25)
 
 		character.update_parallax_teleport()
 
