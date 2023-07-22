@@ -92,10 +92,6 @@
 	tastes = list("jelly" = 1, "donut" = 3)
 	foodtype = JUNKFOOD | GRAIN | FRIED | FRUIT | SUGAR | BREAKFAST
 
-// Jelly donuts don't have holes, but look the same on the outside
-/obj/item/reagent_containers/food/snacks/donut/jelly/in_box_sprite()
-	return "[replacetext(icon_state, "jelly", "donut")]_inbox"
-
 /obj/item/reagent_containers/food/snacks/donut/jelly/Initialize(mapload)
 	. = ..()
 	if(extra_reagent)
