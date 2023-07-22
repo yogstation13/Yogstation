@@ -123,7 +123,7 @@
 	qdel(src)
 
 /obj/machinery/shower/proc/reduce_rads(mob/living/L)
-	L.radiation -= min(M.radiation, 5)
+	L.radiation -= min(L.radiation, 5)
 
 /obj/machinery/shower/proc/check_heat(mob/living/L)
 	var/mob/living/carbon/C = L
