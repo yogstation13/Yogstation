@@ -269,64 +269,6 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-
-/mob/var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
-/mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
-
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
-	if(!user || !target)
-		return 0
-	var/user_loc = user.loc
-
-	if(target)
-		LAZYADD(user.do_afters, target)
-		LAZYADD(target.targeted_by, user)
-
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
-
-	var/target_loc = target.loc
-
-	var/holding = user.get_active_held_item()
-	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
-	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, time, target)
-
-	var/endtime = world.time+time
-	var/starttime = world.time
-	. = 1
-	while (world.time < endtime)
-		stoplag(1)
-		if (progress)
-			progbar.update(world.time - starttime)
-		if(QDELETED(user) || QDELETED(target))
-			. = 0
-			break
-
-		if(target && !(target in user.do_afters))
-			. = FALSE
-			break
-
-		if(uninterruptible)
-			continue
-
-		if(drifting && !user.inertia_dir)
-			drifting = 0
-			user_loc = user.loc
-
-		if((!drifting && user.loc != user_loc) || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-			. = 0
-			break
-	if (progress)
-		qdel(progbar)
-
-	if(!QDELETED(target))
-		LAZYREMOVE(user.do_afters, target)
-		LAZYREMOVE(target.targeted_by, user)
-
-
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks)
 	if(check_clicks && next_move > world.time)
@@ -418,62 +360,61 @@ GLOBAL_LIST_EMPTY(species_list)
 		LAZYREMOVE(user.do_afters, target)
 		LAZYREMOVE(target.targeted_by, user)
 
-/mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
-	. = 1
-	return
-
-/proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks, required_mobility_flags = MOBILITY_STAND)
-	if(!user || !targets)
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
+	if(!user || !target)
 		return 0
-	if(!islist(targets))
-		targets = list(targets)
 	var/user_loc = user.loc
+
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 
 	var/drifting = 0
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
 		drifting = 1
 
-	var/list/originalloc = list()
-	for(var/atom/target in targets)
-		originalloc[target] = target.loc
+	var/target_loc = target.loc
 
 	var/holding = user.get_active_held_item()
 	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
-	if(progress)
-		progbar = new(user, time, targets[1])
+	if (progress)
+		progbar = new(user, time, target)
 
-	var/endtime = world.time + time
+	var/endtime = world.time+time
 	var/starttime = world.time
-	var/mob/living/L
-	if(isliving(user))
-		L = user
 	. = 1
-	mainloop:
-		while(world.time < endtime)
-			stoplag(1)
-			if(progress)
-				progbar.update(world.time - starttime)
-			if(QDELETED(user) || !targets)
-				. = 0
-				break
-			if(uninterruptible)
-				continue
+	while (world.time < endtime)
+		stoplag(1)
+		if (progress)
+			progbar.update(world.time - starttime)
+		if(QDELETED(user) || QDELETED(target))
+			. = 0
+			break
 
-			if(drifting && !user.inertia_dir)
-				drifting = 0
-				user_loc = user.loc
+		if(target && !(target in user.do_afters))
+			. = FALSE
+			break
 
-			if(L && !CHECK_MULTIPLE_BITFIELDS(L.mobility_flags, required_mobility_flags))
-				. = 0
-				break
+		if(uninterruptible)
+			continue
 
-			for(var/atom/target in targets)
-				if((!drifting && user_loc != user.loc) || QDELETED(target) || originalloc[target] != target.loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-					. = 0
-					break mainloop
-	if(progbar)
+		if(drifting && !user.inertia_dir)
+			drifting = 0
+			user_loc = user.loc
+
+		if((!drifting && user.loc != user_loc) || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
+			. = 0
+			break
+	if (progress)
 		qdel(progbar)
+
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
+
+/mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
+	. = 1
 
 /proc/is_species(A, species_datum)
 	. = FALSE
