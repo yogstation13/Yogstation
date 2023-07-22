@@ -8,16 +8,18 @@
 	caliber = LASER
 	max_ammo = 20
 
-/obj/item/ammo_box/magazine/recharge/update_icon()
-	..()
+/obj/item/ammo_box/magazine/recharge/update_desc(updates=ALL)
+	. = ..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
-	cut_overlays()
+
+/obj/item/ammo_box/magazine/recharge/update_overlays()
+	. = ..()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo >= max_ammo)
-			add_overlay("[icon_state]_o_full")
+			. += "[icon_state]_o_full"
 		else
-			add_overlay("[icon_state]_o_mid")
+			. += "[icon_state]_o_mid"
 
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
@@ -28,10 +30,9 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "lasgunmag"
 	desc = "A rechargeable, detachable battery that serves as a magazine for las weaponry."
-	
-/obj/item/ammo_box/magazine/recharge/lasgun/update_icon()
-	..()
-	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
+
+/obj/item/ammo_box/magazine/recharge/lasgun/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "[initial(icon_state)]"
 	else
@@ -74,7 +75,8 @@
 		"fire" = 2
 	)
 
-/obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon()
+/obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon(updates=ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		// Tricks the parent proc into thinking we have a skin so it uses the laser-variant icon_state
@@ -82,7 +84,6 @@
 		current_skin = "ntusp-l"
 		unique_reskin = list()
 		unique_reskin[current_skin] = current_skin
-	..()
 	current_skin = null
 	unique_reskin = null
 
@@ -104,7 +105,7 @@
 		var/bullets_to_remove = round(bullet_count / (severity*2))
 		for(var/i = 0; i < bullets_to_remove, i++)
 			qdel(get_round())
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(isgun(loc))
 			var/obj/item/gun/ballistic/G = loc
 			if(!G.magazine == src)
@@ -135,15 +136,14 @@
 	icon_state = "powerpack_small-l"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_icon()
-	..()
-	cut_overlays()
+/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_overlays()
+	. = ..()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo >= max_ammo)
-			add_overlay("powerpack_small_o_full")
+			. += "powerpack_small_o_full"
 		else
-			add_overlay("powerpack_small_o_mid")
+			. += "powerpack_small_o_mid"
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
 	start_empty = TRUE

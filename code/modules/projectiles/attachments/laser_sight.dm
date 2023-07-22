@@ -48,7 +48,7 @@
 		else
 			attached_gun.spread += 6
 			QDEL_LIST(attached_gun.current_tracers)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/attachment/laser_sight/process()
 	return aiming_beam(TRUE)

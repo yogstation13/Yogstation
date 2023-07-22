@@ -36,7 +36,7 @@
 /area/template_noop)
 "T" = (
 /obj/structure/chair,
-/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/obj/item/storage/fancy/cigarettes/cigpack_uplift,
 /turf/open/floor/plating,
 /area/template_noop)
 

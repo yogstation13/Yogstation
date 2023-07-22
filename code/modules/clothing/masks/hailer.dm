@@ -34,7 +34,7 @@
 		'sound/voice/cpdeath/die4.ogg',
 	)
 	///List of all lines that can be said by the sechailer, with their respective sound file.
-	var/list/sechailer_voicelines = list(
+	var/static/list/sechailer_voicelines = list(
 		"Affirmative" = 'sound/voice/cpvoicelines/affirmative.ogg',
 		"Copy" = 'sound/voice/cpvoicelines/copy.ogg',
 		"Alright, you can go" = 'sound/voice/cpvoicelines/allrightyoucango.ogg',

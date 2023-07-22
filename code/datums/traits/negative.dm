@@ -49,13 +49,13 @@
 	name = "Blind"
 	desc = "You are completely blind, nothing can counteract this."
 	icon = "eye-slash"
-	value = -9
+	value = -6
 	gain_text = span_danger("You can't see anything.")
 	lose_text = span_notice("You miraculously gain back your vision.")
 	medical_record_text = "Patient has permanent blindness."
 
 /datum/quirk/blindness/add()
-	quirk_holder.become_blind(ROUNDSTART_TRAIT)
+	quirk_holder.AddComponent(/datum/component/echolocation)
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -592,14 +592,14 @@
 	accessory_type = /obj/item/lighter/greyscale
 
 /datum/quirk/junkie/smoker/on_spawn()
-	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
+	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes/cigpack_midori,
+		/obj/item/storage/fancy/cigarettes/cigpack_uplift,
+		/obj/item/storage/fancy/cigarettes/cigpack_robust,
+		/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
+		/obj/item/storage/fancy/cigarettes/cigpack_carp,
+		/obj/item/storage/fancy/cigarettes/cigars,
+		/obj/item/storage/fancy/cigarettes/cigars/havana)
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -611,7 +611,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(ITEM_SLOT_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
+		var/obj/item/storage/fancy/cigarettes/C = drug_instance
 		if(istype(I, C.spawn_type))
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
