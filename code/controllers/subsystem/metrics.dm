@@ -77,20 +77,36 @@ SUBSYSTEM_DEF(metrics_publish)
 
 /datum/controller/subsystem/metrics_publish/proc/queue_publish()
 	if (length(SSmetrics.queue) > threshold)
-		RUSTG_CALL(RUST_G, "influxdb2_publish")(json_encode(SSmetrics.queue), CONFIG_GET(string/metrics_api), CONFIG_GET(string/metrics_token))
+		var/id = RUSTG_CALL(RUST_G, "influxdb2_publish")(json_encode(SSmetrics.queue), CONFIG_GET(string/metrics_api), CONFIG_GET(string/metrics_token))
 		SSmetrics.queue = list()
+		handle_response(id, "subsystem")
 
 /datum/controller/subsystem/metrics_publish/proc/profile_publish()
 	if ((last_profile_publish + profile_publish_interval) < REALTIMEOFDAY)
 		last_profile_publish = REALTIMEOFDAY
 		var/data = world.Profile(PROFILE_REFRESH, "json")
 		world.Profile(PROFILE_CLEAR)
-		RUSTG_CALL(RUST_G, "influxdb2_publish_profile")(
+		var/id = RUSTG_CALL(RUST_G, "influxdb2_publish_profile")(
 			data, 
 			CONFIG_GET(string/metrics_api_profile), 
 			CONFIG_GET(string/metrics_token_profile), 
 			GLOB.round_id
 		)
+		handle_response(id, "profiler")
+
+/datum/controller/subsystem/metrics_publish/proc/handle_response(id, metric_type)
+	set waitfor = FALSE
+
+	var/datum/http_request/request = new
+	request.from_id(id)
+	UNTIL(request.is_complete())
+	var/datum/http_response/response = request.into_response()
+	if(response.errored)
+		log_world("Failed to publish [metric_type] metrics (send error)")
+		log_world(response.error)
+	if(response.status_code >= 400)
+		log_world("Failed to publish [metric_type] metrics (status [response.status_code])")
+		log_world(response.body)
 
 #undef METRICS_BUFFER_MAX_DEFAULT
 #undef METRICS_BUFFER_PUBLISH_DEFAULT
