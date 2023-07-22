@@ -196,7 +196,7 @@
 	var/datum/click_intercept
 
 	///For storing what do_after's someone has, in case we want to restrict them to only one of a certain do_after at a time
-	var/list/do_afters	
+	var/list/do_afters
 
 	///THe z level this mob is currently registered in
 	var/registered_z = null
