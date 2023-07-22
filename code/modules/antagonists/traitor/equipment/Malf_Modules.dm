@@ -306,8 +306,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		var/turf/T = get_turf(L)
 		if(!T || !is_station_level(T.z))
 			continue
-		if(L.mob_biotypes & MOB_ROBOTIC) // mechanical races are spared
-			to_chat(L, span_notice("You feel nothing as the blast wave hits you. You've been spared!"))
+		if((L.mob_biotypes & MOB_ROBOTIC) && !(L.mob_biotypes & MOB_ORGANIC)) // mechanical races are spared
 			continue
 		to_chat(L, span_userdanger("The blast wave from [src] tears you atom from atom!"))
 		L.dust()
