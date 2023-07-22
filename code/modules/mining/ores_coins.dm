@@ -68,7 +68,7 @@
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
-	
+
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
 
@@ -84,7 +84,7 @@
 	if(eaten_text)
 		to_chat(H, span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
-	
+
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
 		H.changeNext_move(CLICK_CD_MELEE * 0.5)
 
@@ -593,7 +593,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/bullet_act(obj/item/projectile/P)
 	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
-		
+
 	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
 		for(var/mob/living/T in viewers(5, src))
@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			P.fire(get_angle(P, target))
 			targets -= target
 			if(targets.len)
-				P = DuplicateObject(P, sameloc=1) //split into another projectile
+				P = duplicate_object(P, sameloc=1) //split into another projectile
 				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
 				P.last_process = initial(P.last_process)
 				P.last_projectile_move = initial(P.last_projectile_move)
@@ -628,7 +628,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		if(cooldown < world.time)
 			INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //flip the coin if it isn't already doing that
 		return BULLET_ACT_FORCE_PIERCE
-			
+
 	//we instead flip the coin
 	INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF

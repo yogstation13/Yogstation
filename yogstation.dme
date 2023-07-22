@@ -200,6 +200,7 @@
 #include "code\__HELPERS\config.dm"
 #include "code\__HELPERS\dates.dm"
 #include "code\__HELPERS\dna.dm"
+#include "code\__HELPERS\duplicating.dm"
 #include "code\__HELPERS\files.dm"
 #include "code\__HELPERS\filters.dm"
 #include "code\__HELPERS\game.dm"
