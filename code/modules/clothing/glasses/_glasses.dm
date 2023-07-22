@@ -373,7 +373,7 @@
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	thermal_overload()
 
@@ -402,7 +402,7 @@
 
 /obj/item/clothing/glasses/thermal/syndi/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	chameleon_action.emp_randomise()
 

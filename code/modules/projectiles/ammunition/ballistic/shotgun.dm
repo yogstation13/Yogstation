@@ -229,7 +229,7 @@
 	variance = 20
 
 /obj/item/ammo_casing/shotgun/hardlight/emp_act(severity)
-	if (. & TRAIT_EMPPROOF_SELF)
+	if (. & EMP_PROTECT_SELF)
 		return
 	variance = 60 // yikes
 	if(severity == EMP_HEAVY)

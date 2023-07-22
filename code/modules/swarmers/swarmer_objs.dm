@@ -25,7 +25,7 @@
 
 /obj/structure/swarmer/emp_act()
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	qdel(src)
 

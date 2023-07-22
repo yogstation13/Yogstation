@@ -88,7 +88,7 @@
 /mob/living/silicon/emp_act(severity)
 	. = ..()
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	switch(severity)
 		if(1)

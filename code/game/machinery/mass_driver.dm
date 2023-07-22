@@ -33,7 +33,7 @@
 
 /obj/machinery/mass_driver/emp_act(severity)
 	. = ..()
-	if (. & TRAIT_EMPPROOF_SELF)
+	if (. & EMP_PROTECT_SELF)
 		return
 	if(stat & (BROKEN|NOPOWER))
 		return

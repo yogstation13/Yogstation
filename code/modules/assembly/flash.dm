@@ -201,7 +201,7 @@
 
 /obj/item/assembly/flash/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if(!try_use_flash())
 		return

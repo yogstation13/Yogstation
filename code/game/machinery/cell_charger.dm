@@ -125,7 +125,7 @@
 /obj/machinery/cell_charger/emp_act(severity)
 	. = ..()
 
-	if(stat & (BROKEN|NOPOWER) || . & TRAIT_EMPPROOF_CONTENTS)
+	if(stat & (BROKEN|NOPOWER) || . & EMP_PROTECT_CONTENTS)
 		return
 
 	if(charging)

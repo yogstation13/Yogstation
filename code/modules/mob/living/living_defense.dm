@@ -379,7 +379,7 @@
 
 /mob/living/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_CONTENTS)
+	if(. & EMP_PROTECT_CONTENTS)
 		return
 	for(var/obj/O in contents)
 		O.emp_act(severity)

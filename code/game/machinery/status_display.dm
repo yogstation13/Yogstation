@@ -83,7 +83,7 @@
 
 /obj/machinery/status_display/emp_act(severity)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN) || . & TRAIT_EMPPROOF_SELF)
+	if(stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_SELF)
 		return
 	set_picture("ai_bsod")
 

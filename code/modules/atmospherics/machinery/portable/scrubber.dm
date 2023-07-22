@@ -74,7 +74,7 @@
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if(is_operational())
 		if(prob(50 / severity))

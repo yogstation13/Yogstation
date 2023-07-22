@@ -411,7 +411,7 @@
 
 /obj/machinery/power/smes/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	input_attempt = rand(0,1)
 	inputting = input_attempt

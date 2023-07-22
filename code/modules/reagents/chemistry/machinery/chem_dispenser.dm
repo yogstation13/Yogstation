@@ -387,7 +387,7 @@
 
 /obj/machinery/chem_dispenser/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	var/list/datum/reagents/R = list()
 	var/total = min(rand(7,15), FLOOR(cell.charge*powerefficiency, 1))

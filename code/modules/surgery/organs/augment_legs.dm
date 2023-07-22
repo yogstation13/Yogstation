@@ -16,7 +16,7 @@
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	
 	var/obj/item/bodypart/L = owner.get_bodypart(zone)
@@ -85,7 +85,7 @@
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(15/severity) && owner)
 		to_chat(owner, span_warning("[src] is hit by EMP!"))

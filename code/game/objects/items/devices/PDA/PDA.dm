@@ -1222,10 +1222,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
 /obj/item/pda/emp_act(severity)
 	. = ..()
-	if (!(. & TRAIT_EMPPROOF_CONTENTS))
+	if (!(. & EMP_PROTECT_CONTENTS))
 		for(var/atom/A in src)
 			A.emp_act(severity)
-	if (!(. & TRAIT_EMPPROOF_SELF))
+	if (!(. & EMP_PROTECT_SELF))
 		emped += 1
 		spawn(200 * severity)
 			emped -= 1

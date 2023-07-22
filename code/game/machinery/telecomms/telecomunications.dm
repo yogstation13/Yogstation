@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(100/severity) && !(stat & EMPED))
 		stat |= EMPED

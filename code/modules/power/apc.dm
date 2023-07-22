@@ -1434,12 +1434,12 @@
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity)
 	. = ..()
-	if (!(. & TRAIT_EMPPROOF_CONTENTS))
+	if (!(. & EMP_PROTECT_CONTENTS))
 		if(cell)
 			cell.emp_act(severity)
 		if(occupier)
 			occupier.emp_act(severity)
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	lighting = 0
 	equipment = 0

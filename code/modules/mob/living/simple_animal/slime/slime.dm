@@ -293,7 +293,7 @@
 
 /mob/living/simple_animal/slime/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	powerlevel = 0 // oh no, the power!
 

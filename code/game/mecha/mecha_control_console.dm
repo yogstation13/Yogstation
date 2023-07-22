@@ -102,7 +102,7 @@
 
 /obj/item/mecha_parts/mecha_tracking/emp_act()
 	. = ..()
-	if(!(. & TRAIT_EMPPROOF_SELF))
+	if(!(. & EMP_PROTECT_SELF))
 		qdel(src)
 
 /obj/item/mecha_parts/mecha_tracking/Destroy()

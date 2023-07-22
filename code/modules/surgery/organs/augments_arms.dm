@@ -64,7 +64,7 @@
 
 /obj/item/organ/cyberimp/arm/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(15/severity) && owner)
 		to_chat(owner, span_warning("[src] is hit by EMP!"))
@@ -159,7 +159,7 @@
 
 /obj/item/organ/cyberimp/arm/gun/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(30/severity) && owner && (organ_flags & ORGAN_FAILING))
 		Retract()

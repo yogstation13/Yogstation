@@ -4,7 +4,7 @@
 
 /mob/living/silicon/pai/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	take_holo_damage(50/severity)
 	Paralyze(400/severity)

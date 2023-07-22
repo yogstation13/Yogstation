@@ -464,7 +464,7 @@ Auto Patrol[]"},
 	if(severity == 2 && prob(70))
 		severity = 1
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	if (severity >= 2)
 		new /obj/effect/temp_visual/emp(loc)

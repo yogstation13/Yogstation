@@ -1033,7 +1033,7 @@
 
 /obj/item/storage/belt/quiver/anomaly/pyro/emp_act(severity)
 	. = ..()
-	if((. & TRAIT_EMPPROOF_SELF) || TIMER_COOLDOWN_CHECK(src, ignite_cooldown))
+	if((. & EMP_PROTECT_SELF) || TIMER_COOLDOWN_CHECK(src, ignite_cooldown))
 		return
 	TIMER_COOLDOWN_START(src, "ignite_cooldown", ignite_cooldown)
 	visible_message(span_danger("\The [src] backfires and spews fire!"))

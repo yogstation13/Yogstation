@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system/emp_act(severity)
 	. = ..()
-	if(!(stat & (NOPOWER|BROKEN)) && !(. & TRAIT_EMPPROOF_SELF))
+	if(!(stat & (NOPOWER|BROKEN)) && !(. & EMP_PROTECT_SELF))
 		act_up()
 
 /obj/machinery/announcement_system/emag_act()

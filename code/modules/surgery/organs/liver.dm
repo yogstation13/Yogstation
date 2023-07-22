@@ -115,7 +115,7 @@
 
 /obj/item/organ/liver/cybernetic/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 
 	damage += 50/severity

@@ -66,7 +66,7 @@
 
 /obj/item/robot_module/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_CONTENTS)
+	if(. & EMP_PROTECT_CONTENTS)
 		return
 	for(var/obj/O in modules)
 		O.emp_act(severity)

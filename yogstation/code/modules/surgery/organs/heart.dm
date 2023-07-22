@@ -8,7 +8,7 @@
 
 /obj/item/organ/heart/nanite/emp_act()
 	. = ..()
-	if(!owner || . & TRAIT_EMPPROOF_SELF)
+	if(!owner || . & EMP_PROTECT_SELF)
 		return .
 	Stop()
 

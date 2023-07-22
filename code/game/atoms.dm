@@ -429,7 +429,7 @@
 		protection |= TRAIT_EMPPROOF_CONTENTS
 	if(HAS_TRAIT(src, TRAIT_EMPPROOF_SELF))
 		protection |= TRAIT_EMPPROOF_SELF
-	if(!(protection & TRAIT_EMPPROOF_CONTENTS) && istype(wires))
+	if(!(protection & EMP_PROTECT_CONTENTS) && istype(wires))
 		wires.emp_pulse()
 	return protection // Pass the protection value collected here upwards
 

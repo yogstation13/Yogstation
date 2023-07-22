@@ -176,7 +176,7 @@
 
 /obj/item/stock_parts/cell/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	charge -= max((charge * 0.1), 500) / severity
 	if (charge < 0)
@@ -388,7 +388,7 @@
 
 /obj/item/stock_parts/cell/beam_rifle/emp_act(severity)
 	. = ..()
-	if(. & TRAIT_EMPPROOF_SELF)
+	if(. & EMP_PROTECT_SELF)
 		return
 	charge = clamp((charge-(10000/severity)),0,maxcharge)
 

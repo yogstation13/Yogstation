@@ -176,7 +176,7 @@
 
 /obj/machinery/computer/slot_machine/emp_act(severity)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN) || . & TRAIT_EMPPROOF_SELF)
+	if(stat & (NOPOWER|BROKEN) || . & EMP_PROTECT_SELF)
 		return
 	if(prob(15 * severity))
 		return

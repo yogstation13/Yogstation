@@ -281,7 +281,7 @@
 
 /obj/machinery/door/emp_act(severity)
 	. = ..()
-	if (. & TRAIT_EMPPROOF_SELF)
+	if (. & EMP_PROTECT_SELF)
 		return
 	if(prob(20/severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)) )
 		INVOKE_ASYNC(src, PROC_REF(open))

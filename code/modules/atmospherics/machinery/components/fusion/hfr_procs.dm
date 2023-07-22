@@ -360,7 +360,7 @@
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/emp_act(severity)
 	. = ..()
-	if (. & TRAIT_EMPPROOF_SELF)
+	if (. & EMP_PROTECT_SELF)
 		return
 	warning_damage_flags |= HYPERTORUS_FLAG_EMPED
 

@@ -156,10 +156,10 @@
 /obj/item/defibrillator/emp_act(severity)
 	. = ..()
 
-	if(cell && !(. & TRAIT_EMPPROOF_CONTENTS))
+	if(cell && !(. & EMP_PROTECT_CONTENTS))
 		deductcharge(5000 / severity)
 
-	if (. & TRAIT_EMPPROOF_SELF)
+	if (. & EMP_PROTECT_SELF)
 		return
 
 	if(!safety)

@@ -481,7 +481,7 @@
 
 /obj/item/clothing/neck/cloak/ranger/syndie/emp_act(severity)
 	. = ..()
-	if(CHECK_BITFIELD(., TRAIT_EMPPROOF_SELF))
+	if(CHECK_BITFIELD(., EMP_PROTECT_SELF))
 		return
 	if(severity == EMP_HEAVY)
 		set_cloak(0)
