@@ -13,7 +13,7 @@
 	throw_range = 7
 	item_flags = NOBLUDGEON
 	///List of all holosigns currently made.
-	var/list/obj/item/holosign_creator/signs = list()
+	var/list/obj/structure/holosign/signs = list()
 	///The type of holosign to make from this projector.
 	var/obj/structure/holosign/holosign_type = /obj/structure/holosign/wetsign
 	var/max_signs = 10
