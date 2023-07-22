@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscdel: "Removed station adrift trait caused a lot of issues to users"
-  - bugfix: "Blackscreen, fps issues on low end users"
