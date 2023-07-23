@@ -46,7 +46,7 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
 		return
-	if(INTERACTING_WITH(user, M))
+	if(DOING_INTERACTION_WITH_TARGET(user, M))
 		return
 	if(M == user)
 		playsound(src, pick(apply_sounds), 25)

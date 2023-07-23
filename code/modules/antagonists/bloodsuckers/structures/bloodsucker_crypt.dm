@@ -256,7 +256,7 @@
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
 	if(!IS_BLOODSUCKER(user)) //only bloodsucker will attack this with their hand
 		return
-	if(INTERACTING_WITH(user, src))
+	if(DOING_INTERACTION(user, src))
 		return
 	if(user.mind in src.siphoners)
 		balloon_alert(user, "already harvested!")
@@ -858,7 +858,7 @@
  */
 
 /obj/structure/bloodsucker/vassalrack/proc/torture_victim(mob/living/user, mob/living/target)
-	if(INTERACTING_WITH(user, target))
+	if(DOING_INTERACTION(user, target))
 		balloon_alert(user, "already interacting!")
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)

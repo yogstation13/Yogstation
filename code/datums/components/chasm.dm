@@ -213,7 +213,7 @@
 	if(!rod.wielded)
 		to_chat(user, span_warning("You need to wield the rod in both hands before you can fish in the chasm!"))
 		return
-	if(do_after(user, 3 SECONDS, src.parent))
+	if(do_after(user, 3 SECONDS, parent))
 		if(!rod.wielded)
 			return
 

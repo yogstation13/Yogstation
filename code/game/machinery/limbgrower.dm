@@ -137,7 +137,7 @@
 			"<span class='hear'>You hear the clatter of a floppy drive.</span>")
 		busy = TRUE
 		var/obj/item/disk/design_disk/limbs/limb_design_disk = user_item
-		if(do_after(user, 2 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS, src))
 			for(var/datum/design/found_design in limb_design_disk.blueprints)
 				stored_research.add_design(found_design)
 			update_static_data(user)
