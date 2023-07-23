@@ -249,7 +249,7 @@
 /obj/machinery/decontamination_unit/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its maintenance panel is smoking slightly.")
+		. += span_warning("The maintenance panel is smoking slightly.")
 	if(in_range(user, src) || isobserver(user))
 		if (contents.len >= max_n_of_items)
 			. += span_notice("The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.")
