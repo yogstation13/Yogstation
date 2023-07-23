@@ -50,7 +50,7 @@
 /area/template_noop)
 "K" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = -2;
 	pixel_y = 5
 	},

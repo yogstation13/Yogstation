@@ -20,27 +20,26 @@
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
-	var/edible = FALSE //can a preternis eat it for some funny effect?
+	var/eaten_text
 
-/obj/item/stack/ore/update_icon()
+/obj/item/stack/ore/update_overlays()
+	. = ..()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
 		return
 	else if(difference < 0 && LAZYLEN(stack_overlays))			//amount < stack_overlays, remove excess.
-		cut_overlays()
 		if (LAZYLEN(stack_overlays)-difference <= 0)
 			stack_overlays = null;
 		else
 			stack_overlays.len += difference
 	else if(difference > 0)			//amount > stack_overlays, add some.
-		cut_overlays()
 		for(var/i in 1 to difference)
 			var/mutable_appearance/newore = mutable_appearance(icon, icon_state)
 			newore.pixel_x = rand(-8,8)
 			newore.pixel_y = rand(-8,8)
 			LAZYADD(stack_overlays, newore)
 	if (stack_overlays)
-		add_overlay(stack_overlays)
+		. += stack_overlays
 
 /obj/item/stack/ore/welder_act(mob/living/user, obj/item/I)
 	if(!refined_type)
@@ -67,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(!edible || user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
 	
 	var/mob/living/carbon/human/H = user
@@ -76,18 +75,21 @@
 	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
 		return ..()
 
-	H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
+	if(!eaten(H))
+		return ..()
+
+	use(1)//only eat one at a time
+
+	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."))
+	if(eaten_text)
+		to_chat(H, span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 	
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
 		H.changeNext_move(CLICK_CD_MELEE * 0.5)
 
-	use(1)//only eat one at a time
-	eaten(H)
-	
-
-/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten
-	return
+/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten, return true for it to consume stacks
+	return FALSE
 
 /obj/item/stack/ore/uranium
 	name = "uranium ore"
@@ -97,6 +99,11 @@
 	points = 30
 	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
+	eaten_text = "The uranium ore tingles a bit as it goes down."
+
+/obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
+	radiation_pulse(H, 20)
+	return TRUE
 
 /obj/item/stack/ore/iron
 	name = "iron ore"
@@ -106,7 +113,7 @@
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/metal
-	edible = TRUE
+	eaten_text = "You take a bite of iron ore, minerals do a body good."
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
@@ -120,10 +127,16 @@
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
 	w_class = WEIGHT_CLASS_TINY
+	eaten_text = "The glass bits in the sand scratch your throat as you eat them."
 
 GLOBAL_LIST_INIT(sand_recipes, list(\
 		new /datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50)\
 		))
+
+/obj/item/stack/ore/glass/eaten(mob/living/carbon/human/H)
+	H.take_overall_damage(3)
+	H.heal_overall_damage(0, 1, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.sand_recipes
@@ -161,15 +174,15 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
-	edible = TRUE
+	eaten_text = "You take a bite of plasma ore, you feel energized."
 
 /obj/item/stack/ore/plasma/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(0, 2, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
 	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))
 	return TRUE
-
 
 /obj/item/stack/ore/silver
 	name = "silver ore"
@@ -206,6 +219,20 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 60
 	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/bananium
+
+/obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
+	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
+	H.emote("scream")
+	playsound(H, 'sound/effects/supermatter.ogg', 100)
+	var/petrified = H.petrify(5 MINUTES, TRUE)
+	if(petrified)
+		var/obj/structure/statue/petrified/statue = petrified
+		statue.name = "bananium plated [statue.name]"
+		statue.desc = "An incredibly lifelike bananium carving."
+		statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
+		statue.max_integrity = 9999
+		statue.obj_integrity = 9999
+	return TRUE
 
 /obj/item/stack/ore/titanium
 	name = "titanium ore"
@@ -620,7 +647,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/coinstack/examine(mob/user)
 	. = ..()
@@ -634,11 +661,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(antag > 1)
 		. += span_info("But they told me I could only have one at a time...")
 
-/obj/item/coinstack/update_icon()
-	cut_overlays()
+/obj/item/coinstack/update_overlays()
+	. = ..()
 	for(var/i in 1 to length(coins))
 		var/obj/item/coin/C = coins[i]
-		src.add_overlay(image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2))
+		. += image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2)
 
 /obj/item/coinstack/attack_hand(mob/user) ///take a coin off the top of the stack
 	remove_from_stack(user)
@@ -663,7 +690,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	C.pixel_y = 0
 	src.add_fingerprint(user)
 	to_chat(user,span_notice("You add [C] to the stack of coins."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/coinstack/proc/remove_from_stack(mob/living/user) //you can only remove the topmost coin from the stack
@@ -671,7 +698,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(top_coin)
 		coins -= top_coin
 		user.put_in_active_hand(top_coin)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(length(coins) <= 1) //one coin left, we're done here
 		var/obj/item/coin/lastCoin = coins[1]
 		coins -= coins[1]

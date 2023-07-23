@@ -107,7 +107,7 @@ Difficulty: Insanely Hard
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Found(atom/A)
 	if(isliving(A))
@@ -256,11 +256,12 @@ Difficulty: Insanely Hard
 	player.music_path = /datum/music/sourced/battle/king_goat_2
 	player.do_range_check(0)
 	stun_chance = 10
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon_state()
+	. = ..()
 	var/matrix/M = new
 	if(phase3)
 		icon_state = "king_goat3"
