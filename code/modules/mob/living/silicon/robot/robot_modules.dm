@@ -10,6 +10,8 @@
 
 	/// Sets the cyborg's armor values to these upon selecting their module.
 	var/list/module_armor = list()
+	/// Determines if the module will give '/datum/component/armor_plate' and how many times it can be done.
+	var/use_armorplates = 0
 
 	var/list/basic_modules = list() ///a list of paths, converted to a list of instances on New()
 	var/list/emag_modules = list() ///ditto
@@ -66,6 +68,7 @@
 	modules.Cut()
 	added_modules.Cut()
 	storages.Cut()
+
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
@@ -204,6 +207,13 @@
 	R.update_module_innate()
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
+	var/datum/component/armor_plate/C = R.GetComponent(/datum/component/armor_plate)
+	if(C) // Remove armor plating.
+		C.dropplates()
+		if(!RM.use_armorplates)
+			C.Destroy()
+	if(RM.use_armorplates > 0) // Add armor plating.
+		R.AddComponent(/datum/component/armor_plate, RM.use_armorplates)
 	R.armor = getArmor(arglist(RM.module_armor))
 
 	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
@@ -598,8 +608,9 @@
 	moduleselect_icon = "miner"
 	hat_offset = 0
 	module_armor = list(MELEE = 20)
+	use_armorplates = 3
 	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
-	
+
 /obj/item/robot_module/miner/rebuild_modules()
 	. = ..()
 	if(!mining_scanner)
