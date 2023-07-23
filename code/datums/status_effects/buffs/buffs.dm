@@ -691,7 +691,7 @@
 /datum/status_effect/titaniumskin/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-			H.physiology.brute_mod /= 0.75
-			H.physiology.pressure_mod /= 0.75
-			H.physiology.burn_mod /= 1.5
-			H.physiology.temp_mod /= 3
+		H.physiology.brute_mod /= 0.75
+		H.physiology.pressure_mod /= 0.75
+		H.physiology.burn_mod /= 1.5
+		H.physiology.temp_mod /= 3
