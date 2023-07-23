@@ -358,6 +358,7 @@
 	description = "Strange liquid that defies the laws of physics"
 	taste_description = "glass"
 	color = "#1f8016"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
 	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
@@ -366,16 +367,16 @@
 		M.adjustStaminaLoss(-10, FALSE)
 		M.adjustToxLoss(-2, FALSE)
 		M.adjustOxyLoss(-2, FALSE)
-		M.adjustBruteLoss(-2, FALSE)
-		M.adjustFireLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE, FALSE, BODYPART_ANY)
+		M.adjustFireLoss(-2, FALSE, FALSE, BODYPART_ANY)
 		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, FALSE)
-		M.adjustFireLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE, FALSE, BODYPART_ANY)
 		M.adjustOxyLoss(2, FALSE)
-		M.adjustBruteLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE, FALSE, BODYPART_ANY)
 	holder.remove_reagent(type, 1)
 	return TRUE
 
