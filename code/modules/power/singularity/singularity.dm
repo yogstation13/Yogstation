@@ -42,6 +42,7 @@
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
 	var/maxStage = 0 //The largest stage this singularity has been
 	var/does_targeting = TRUE
+	var/shockwave_pulsed = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -170,13 +171,21 @@
 	eat()
 	dissipate()
 	check_energy()
-
+	check_safe()
 	return
 
 
 /obj/singularity/attack_ai() //to prevent ais from gibbing themselves when they click on one.
 	return
 
+/obj/singularity/proc/check_safe()
+	if(shockwave_pulsed) // we are not safe.
+		return
+	var/safe = locate(/obj/machinery/field/containment) in urange(10, src, 1)
+	if(safe)
+		return
+	shockwave_pulsed = TRUE
+	shockwave() // hey did you guys feel that?
 
 /obj/singularity/proc/admin_investigate_setup()
 	var/turf/T = get_turf(src)
@@ -518,6 +527,33 @@
 			return 0
 	return 1
 
+/obj/singularity/proc/shockwave()
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(src))
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	kill_all_lights()
+	QDEL_IN(shockwave, 10.5 SECONDS)
+
+/obj/singularity/proc/kill_all_lights()
+	for(var/obj/machinery/light/light in GLOB.machines)
+		if(light.on && light.status == LIGHT_OK && z == light.z)
+			kill_this_light(light)
+			CHECK_TICK
+
+/obj/singularity/proc/kill_this_light(obj/machinery/light/this_light)
+	if(this_light.flickering)
+		return
+	this_light.flickering = TRUE
+	this_light.on = FALSE
+	this_light.update(FALSE)
+	addtimer(CALLBACK(src, PROC_REF(renew_this_light), this_light), 20 SECONDS)
+
+/obj/singularity/proc/renew_this_light(obj/machinery/light/this_light)
+	this_light.flickering = FALSE
+	this_light.on = (this_light.status == LIGHT_OK) && !this_light.forced_off
+	this_light.update(FALSE)
 
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/C in urange(20, src, 1))
