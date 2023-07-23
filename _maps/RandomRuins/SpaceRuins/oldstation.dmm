@@ -6389,7 +6389,7 @@
 "Fj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel,

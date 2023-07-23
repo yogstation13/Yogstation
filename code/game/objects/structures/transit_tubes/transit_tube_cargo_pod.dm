@@ -4,7 +4,8 @@
 	cargo = TRUE
 	name = "transit tube cargo pod"
 
-/obj/structure/transit_tube_pod/cargo/update_icon()
+/obj/structure/transit_tube_pod/cargo/update_icon_state()
+	. = ..()
 	if(contents.len)
 		icon_state = "pod_cargo_occupied"
 	else

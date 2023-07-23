@@ -177,11 +177,8 @@
 	var/static/list/charge_machines = typecacheof(list(/obj/machinery/cell_charger, /obj/machinery/recharger, /obj/machinery/recharge_station, /obj/machinery/mech_bay_recharge_port))
 	var/static/list/charge_items = typecacheof(list(/obj/item/stock_parts/cell, /obj/item/gun/energy))
 
-/obj/item/borg/charger/Initialize(mapload)
+/obj/item/borg/charger/update_icon_state()
 	. = ..()
-
-/obj/item/borg/charger/update_icon()
-	..()
 	icon_state = "charger_[mode]"
 
 /obj/item/borg/charger/attack_self(mob/user)
@@ -190,7 +187,7 @@
 	else
 		mode = "draw"
 	to_chat(user, span_notice("You toggle [src] to \"[mode]\" mode."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/borg/charger/afterattack(obj/item/target, mob/living/silicon/robot/user, proximity_flag)
 	. = ..()
@@ -253,7 +250,7 @@
 					break
 				if(!user.cell.give(draw))
 					break
-				target.update_icon()
+				target.update_appearance(UPDATE_ICON)
 
 			to_chat(user, span_notice("You stop charging yourself."))
 
@@ -291,7 +288,7 @@
 				break
 			if(!cell.give(draw))
 				break
-			target.update_icon()
+			target.update_appearance(UPDATE_ICON)
 
 		to_chat(user, span_notice("You stop charging [target]."))
 
@@ -608,10 +605,11 @@
 			to_chat(user, span_warning("[src]'s safety cutoff prevents you from activating it due to living beings being ontop of you!"))
 	else
 		deactivate_field()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	to_chat(user, span_boldnotice("You [active? "activate":"deactivate"] [src]."))
 
-/obj/item/borg/projectile_dampen/update_icon()
+/obj/item/borg/projectile_dampen/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][active]"
 
 /obj/item/borg/projectile_dampen/proc/activate_field()
@@ -782,7 +780,7 @@
 		if(!silent)
 			to_chat(usr, span_notice("You drop the [wrapped]."))
 		wrapped = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return FALSE
 
@@ -792,7 +790,7 @@
 		to_chat(usr, span_notice("You collect \the [item]."))
 	item.loc = src
 	wrapped = item
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
 	var/proximity = get_dist(user, target)
@@ -862,13 +860,13 @@
 	. = ..()
 
 /// Resets overlays and adds a overlay if there is a held item.
-/obj/item/gripper/update_icon(updates)
-	cut_overlays()
+/obj/item/gripper/update_overlays()
+	. = ..()
 	if(wrapped)
 		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
 		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
 		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
-		add_overlay(wrapped_appearance)
+		. += wrapped_appearance
 
 // Make it clear what we can do with it.
 /obj/item/gripper/examine(mob/user)

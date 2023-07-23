@@ -549,7 +549,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/obj/item/storage/box/fancy/egg_box{
+/obj/item/storage/fancy/egg_box{
 	pixel_y = 5
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -1269,7 +1269,7 @@
 "Sd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
 "Sg" = (

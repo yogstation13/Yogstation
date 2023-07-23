@@ -42,7 +42,7 @@
 /area/maintenance/aft)
 "Z" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
+/obj/item/storage/fancy/cigarettes/cigpack_uplift,
 /obj/item/cigbutt,
 /turf/open/floor/wood,
 /area/maintenance/aft)
