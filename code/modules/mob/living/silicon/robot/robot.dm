@@ -1112,6 +1112,7 @@
 		I.dropped()
 
 	upgrades.Cut()
+	armor = getArmor(arglist(initial(armor)))
 
 	speed = 0
 	ionpulse = FALSE

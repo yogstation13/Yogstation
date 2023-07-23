@@ -8,6 +8,9 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
 
+	/// Sets the cyborg's armor values to these upon selecting their module.
+	var/list/module_armor = list()
+
 	var/list/basic_modules = list() ///a list of paths, converted to a list of instances on New()
 	var/list/emag_modules = list() ///ditto
 	var/list/ratvar_modules = list() ///ditto ditto
@@ -42,6 +45,7 @@
 
 /obj/item/robot_module/Initialize(mapload)
 	. = ..()
+	//module_armor = getArmor(arglist(module_armor))
 	for(var/i in basic_modules)
 		var/obj/item/I = new i(src)
 		basic_modules += I
@@ -54,6 +58,7 @@
 		var/obj/item/I = new i(src)
 		ratvar_modules += I
 		ratvar_modules -= i
+	
 
 /obj/item/robot_module/Destroy()
 	basic_modules.Cut()
@@ -200,6 +205,7 @@
 	R.update_module_innate()
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
+	R.armor = getArmor(arglist(RM.module_armor))//RM.module_armor
 
 	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
 	qdel(src)
@@ -592,8 +598,9 @@
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
 	hat_offset = 0
+	module_armor = list(MELEE = 20)
 	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
-
+	
 /obj/item/robot_module/miner/rebuild_modules()
 	. = ..()
 	if(!mining_scanner)
