@@ -61,10 +61,14 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	switch(M.a_intent)
-		if (INTENT_HELP)
-			M.visible_message("[M] pets [src].", \
-							span_notice("You pet [src]."))
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		if(INTENT_HELP)
+			if(buckled_mobs)
+				for(var/mob/living/M in buckled_mobs)
+					unbuckle_mob(M)
+			else
+				M.visible_message("[M] pets [src].", \
+								span_notice("You pet [src]."))
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(INTENT_GRAB)
 			grabbedby(M)
 		else
