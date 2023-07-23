@@ -45,7 +45,6 @@
 
 /obj/item/robot_module/Initialize(mapload)
 	. = ..()
-	//module_armor = getArmor(arglist(module_armor))
 	for(var/i in basic_modules)
 		var/obj/item/I = new i(src)
 		basic_modules += I
@@ -205,7 +204,7 @@
 	R.update_module_innate()
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
-	R.armor = getArmor(arglist(RM.module_armor))//RM.module_armor
+	R.armor = getArmor(arglist(RM.module_armor))
 
 	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
 	qdel(src)
