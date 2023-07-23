@@ -31,10 +31,17 @@
 
 /mob/living/proc/update_move_intent_slowdown()
 	var/mod = 0
-	if(m_intent == MOVE_INTENT_WALK)
-		mod = CONFIG_GET(number/movedelay/walk_delay)
+	var/turf/T = get_turf(src)
+	if(T && is_mining_level(T.z) && mob_size <= MOB_SIZE_HUMAN)
+		if(m_intent == MOVE_INTENT_WALK)
+			mod = CONFIG_GET(number/movedelay/walk_delay) / 1.5 // 4
+		else
+			mod = CONFIG_GET(number/movedelay/run_delay) * 0.75 // 1.5
 	else
-		mod = CONFIG_GET(number/movedelay/run_delay)
+		if(m_intent == MOVE_INTENT_WALK)
+			mod = CONFIG_GET(number/movedelay/walk_delay)
+		else
+			mod = CONFIG_GET(number/movedelay/run_delay)
 	if(!isnum(mod))
 		mod = 1
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)

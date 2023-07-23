@@ -1340,9 +1340,12 @@
 		else
 			registered_z = null
 
-/mob/living/onTransitZ(old_z,new_z)
-	..()
+/mob/living/onTransitZ(old_z, new_z)
+	. = ..()
 	update_z(new_z)
+	if(is_mining_level(new_z) || is_mining_level(old_z))
+		update_move_intent_slowdown()
+		update_movespeed()
 
 /mob/living/MouseDrop_T(atom/pickable, atom/user)
 	var/mob/living/U = user
