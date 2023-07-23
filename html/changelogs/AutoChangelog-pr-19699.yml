@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Secure closets now properly inherit requiring \"one access\" from electronics when crafted"
