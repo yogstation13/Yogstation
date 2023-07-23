@@ -44,7 +44,7 @@
 		else
 			if(!C.force_drink_text(src, C, user))
 				return
-			if(!do_mob(user, M))
+			if(!do_after(user, 3 SECONDS, M))
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding

@@ -695,7 +695,7 @@
 	if(issilicon(living_target))
 		to_chat(user, span_danger("You realize that Silicon cannot be vassalized, therefore it is useless to buckle them."))
 		return
-	if(do_mob(user, living_target, 5 SECONDS))
+	if(do_after(user, 5 SECONDS, living_target))
 		attach_victim(living_target, user)
 
 /obj/structure/bloodsucker/vassalrack/proc/attach_victim(mob/living/target, mob/living/user)
@@ -1010,7 +1010,7 @@
 		to_chat(user, span_notice("Do you wish to rebuild this body? This will remove any restraints they might have, and will cost 150 Blood!"))
 		var/revive_response = tgui_alert(usr, "Would you like to revive [target]?", "Ghetto Medbay", list("Yes", "No"))
 		if(revive_response == "Yes")
-			if(!do_mob(user, src, 7 SECONDS))
+			if(!do_after(user, 7 SECONDS, src))
 				to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 				return
 			if(prob(70 - bloodsuckerdatum.bloodsucker_level * 7)) //calculation, stops going wrong at level 10
@@ -1047,7 +1047,7 @@
 		to_chat(user, span_notice("You decide to leave your Vassal just the way they are."))
 		return
 	to_chat(user, span_warning("You start mutating your Vassal into a [answer]..."))
-	if(!do_mob(user, src, 5 SECONDS))
+	if(!do_after(user, 5 SECONDS, src))
 		to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 		return
 	playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
@@ -1056,10 +1056,10 @@
 			if(HAS_TRAIT(target, TRAIT_HUSK))
 				to_chat(user, span_warning("[target] is already a Husk!"))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			to_chat(user, span_notice("You suck all the blood out of [target], turning them into a Living Husk!"))
 			to_chat(target, span_notice("Your master has mutated you into a Living Husk!"))
@@ -1079,7 +1079,7 @@
 			if(meat_points < meat_cost)
 				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh, leaving their body as a head and arm almalgam."))
@@ -1099,7 +1099,7 @@
 			if(meat_points < meat_cost)
 				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a boney and flesh amalgam."))
@@ -1118,10 +1118,10 @@
 			if(meat_points < meat_cost)
 				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a huge pile of flesh and organs."))
 			to_chat(target, span_notice("Your master has mutated you into a gargantuan monster!"))
@@ -1246,7 +1246,7 @@
 				switch(input("Do you wish to spend 50 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
 					if("Yes")
 						user.blood_volume -= 50
-						if(!do_mob(user, target, 20 SECONDS))
+						if(!do_after(user, 20 SECONDS, target))
 							to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 							return FALSE
 						remove_loyalties(target)
@@ -1270,7 +1270,7 @@
 		to_chat(user, span_warning("[target] doesn't have a mindshield for you to turn off!"))
 		return
 	/// Good to go - Buckle them!
-	if(do_mob(user, target, 5 SECONDS))
+	if(do_after(user, 5 SECONDS, target))
 		attach_mob(target, user)
 
 /obj/structure/bloodsucker/candelabrum/proc/attach_mob(mob/living/target, mob/living/user)

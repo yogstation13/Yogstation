@@ -60,7 +60,7 @@
 		caller.visible_message(span_danger("[caller] begins forming manacles around [L]'s wrists!"), \
 		"[span_neovgre_small("You begin shaping replicant alloy into manacles around [L]'s wrists...")]")
 		to_chat(L, span_userdanger("[caller] begins forming manacles around your wrists!"))
-		if(do_mob(caller, L, 30))
+		if(do_after(caller, 3 SECONDS, L))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
 				L.set_handcuffed(new /obj/item/restraints/handcuffs/clockwork(L))
 				L.update_handcuffed()

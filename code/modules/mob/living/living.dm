@@ -877,7 +877,7 @@
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
 	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
-	if(do_mob(src, who, what.strip_delay))
+	if(do_after(src, what.strip_delay, who))
 		if(what && Adjacent(who))
 			if(islist(where))
 				var/list/L = where
@@ -915,7 +915,7 @@
 			return
 
 		visible_message(span_notice("[src] tries to put [what] on [who]."))
-		if(do_mob(src, who, what.equip_delay_other))
+		if(do_after(src, what.equip_delay_other, who))
 			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
 					if(where_list)

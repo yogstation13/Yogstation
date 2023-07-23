@@ -50,7 +50,7 @@
 		user.visible_message(span_notice("[user] swallows some of contents of \the [src]."), span_notice("You swallow some of the contents of \the [src]."))
 	else
 		user.visible_message(span_warning("[user] attempts to feed [M] from [src]."))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return
 		if(!reagents || !reagents.total_volume)
 			return // The condiment might be empty after the delay.

@@ -253,7 +253,7 @@
 				return
 	to_chat(target, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
 	to_chat(user, span_notice("[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
-	if(do_mob(user, target, 40, TRUE)) // 4 seconds...
+	if(do_after(user, 4 SECONDS, target)) // 4 seconds...
 		if(get_dist(user, T) <= 3)
 			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
 			T.SetSleeping(300)
@@ -524,7 +524,7 @@
 			if(3)
 				to_chat(target, span_danger("The world blanks out, and you see a demo- no ange- demon- lil- glory- blessing... Lilith."))
 				to_chat(user, span_notice("Excitement builds up in you as [target] sees the blessing of Lilith."))
-		if(!do_mob(user, target, 70))
+		if(!do_after(user, 7 SECONDS, target))
 			to_chat(user, span_danger("The pact has failed! [target] has not became a vampire."))
 			to_chat(target, span_notice("The visions stop, and you relax."))
 			vamp.usable_blood += blood_used / 2	// Refund half the cost

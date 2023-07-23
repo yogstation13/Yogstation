@@ -295,7 +295,7 @@
 		else
 			return
 
-		if(do_mob(usr, src, POCKET_STRIP_DELAY/delay_denominator)) //placing an item into the pocket is 4 times faster
+		if(do_after(usr, POCKET_STRIP_DELAY/delay_denominator, src)) //placing an item into the pocket is 4 times faster
 			if(pocket_item)
 				if(pocket_item == (pocket_id == ITEM_SLOT_RPOCKET ? r_store : l_store)) //item still in the pocket we search
 					dropItemToGround(pocket_item)
@@ -637,7 +637,7 @@
 	if(C.cpr_time < world.time + 30)
 		visible_message(span_notice("[src] is trying to perform CPR on [C.name]!"), \
 						span_notice("You try to perform CPR on [C.name]... Hold still!"))
-		if(!do_mob(src, C))
+		if(!do_after(src, 3 SECONDS, C))
 			to_chat(src, span_warning("You fail to perform CPR on [C]!"))
 			return 0
 
