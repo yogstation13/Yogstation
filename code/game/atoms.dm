@@ -405,6 +405,10 @@
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
 
+/// Can this atom spill its reagents
+/atom/proc/is_spillable()
+	return reagents && (reagents.flags & SPILLABLE)
+
 /// Are you allowed to drop this atom
 /atom/proc/AllowDrop()
 	return FALSE
