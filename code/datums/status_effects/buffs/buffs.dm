@@ -675,7 +675,7 @@
 
 /atom/movable/screen/alert/status_effect/diamondskin
 	name = "Diamond skin"
-	desc = "The eaten diamonds have infused your skin making you more resistant to heat and pressure."
+	desc = "Your skin is infused with diamonds, making you more resistant to heat and pressure."
 	icon_state = "shadow_mend" //i'm a coder, not a spriter
 
 /datum/status_effect/diamondskin/on_apply()
