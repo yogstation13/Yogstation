@@ -224,9 +224,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 50
 	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
-
+	eaten_text = "The diamonds, while \"tasty\" leaves a weird sensation throughout your body."
+					
 /obj/item/stack/ore/diamond/eaten(mob/living/carbon/human/H)
-	return TRUE //what do you expect? it's an inert metal
+	H.apply_status_effect(STATUS_EFFECT_DIAMONDSKIN)	
+	return TRUE
 
 /obj/item/stack/ore/bananium
 	name = "bananium ore"
@@ -259,11 +261,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 50
 	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/titanium
-	eaten_text = "The titanium ore, while \"tasty\" leaves a weird sensation throughout your body."
-					
-/obj/item/stack/ore/titanium/eaten(mob/living/carbon/human/H)
-	H.apply_status_effect(STATUS_EFFECT_TITANIUMSKIN)	
-	return TRUE
 
 /obj/item/stack/ore/slag
 	name = "slag"

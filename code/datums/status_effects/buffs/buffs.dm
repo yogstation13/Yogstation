@@ -666,32 +666,28 @@
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
 	
-/datum/status_effect/titaniumskin
-	id = "titaniumskin"
-	duration = 15 SECONDS
+/datum/status_effect/diamondskin
+	id = "diamondskin"
+	duration = 20 SECONDS
 	tick_interval = 0
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /atom/movable/screen/alert/status_effect/titaniumskin
+	alert_type = /atom/movable/screen/alert/status_effect/diamondskin
 
-/atom/movable/screen/alert/status_effect/titaniumskin
-	name = "Titanium skin"
-	desc = "The eaten titanium has infused your skin making it more sturdy but absorb heat poorly."
+/atom/movable/screen/alert/status_effect/diamondskin
+	name = "Diamond skin"
+	desc = "The eaten diamonds have infused your skin making you more resistant to heat and pressure."
 	icon_state = "shadow_mend" //i'm a coder, not a spriter
 
-/datum/status_effect/titaniumskin/on_apply()
+/datum/status_effect/diamondskin/on_apply()
 	. = ..()
 	if(.)
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
-			H.physiology.brute_mod *= 0.75
-			H.physiology.pressure_mod *= 0.75
-			H.physiology.burn_mod *= 1.5
-			H.physiology.temp_mod *= 3 //doesn't change how well you handle getting the heat, but how quickly you get it
+			H.physiology.pressure_mod *= 0.5
+			H.physiology.heat_mod *= 0.5
 
-/datum/status_effect/titaniumskin/on_remove()
+/datum/status_effect/diamondskin/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.brute_mod /= 0.75
-		H.physiology.pressure_mod /= 0.75
-		H.physiology.burn_mod /= 1.5
-		H.physiology.temp_mod /= 3
+		H.physiology.pressure_mod /= 0.5
+		H.physiology.heat_mod /= 0.5
