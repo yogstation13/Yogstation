@@ -2501,7 +2501,6 @@
 "tk" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/structure/window/reinforced/spawner/north,
-/obj/structure/lattice/catwalk/over,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/human,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/human,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/human,
@@ -3041,10 +3040,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"xB" = (
-/obj/structure/lattice/catwalk/over,
-/turf/open/lava/plasma/ice_moon,
-/area/icemoon/surface/outdoors)
 "xD" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -3587,13 +3582,11 @@
 /area/ruin/syndicate_icemoon/command)
 "Bv" = (
 /obj/structure/window/reinforced/spawner/north,
-/obj/structure/lattice/catwalk/over,
 /obj/item/reagent_containers/food/snacks/meat/slab/human/human,
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
 "Bx" = (
 /obj/structure/window/reinforced/spawner/north,
-/obj/structure/lattice/catwalk/over,
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
 "Bz" = (
@@ -4442,7 +4435,6 @@
 	dir = 1;
 	name = "Carp Pen"
 	},
-/obj/structure/lattice/catwalk/over,
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
 "HA" = (
@@ -7850,10 +7842,10 @@ DV
 DV
 eP
 eM
-xB
-xB
-xB
-xB
+qK
+qK
+qK
+qK
 eM
 JL
 gE
@@ -9331,10 +9323,10 @@ Gt
 eM
 nH
 eM
-xB
-xB
-xB
-xB
+qK
+qK
+qK
+qK
 eM
 eM
 eM
@@ -10049,10 +10041,10 @@ kn
 qC
 kn
 qK
-xB
 qK
 qK
-xB
+qK
+qK
 qK
 qK
 qK
@@ -10123,10 +10115,10 @@ iT
 LM
 iT
 qK
-xB
 qK
 qK
-xB
+qK
+qK
 qK
 qK
 qK
@@ -10197,10 +10189,10 @@ Oy
 NQ
 EH
 qK
-xB
 qK
 qK
-xB
+qK
+qK
 qK
 qK
 qK
@@ -10271,10 +10263,10 @@ Oy
 NQ
 EH
 qK
-xB
 qK
 qK
-xB
+qK
+qK
 qK
 qK
 qK
@@ -10345,10 +10337,10 @@ Oy
 NQ
 EH
 qK
-xB
 qK
 qK
-xB
+qK
+qK
 qK
 qK
 qK
@@ -10737,12 +10729,12 @@ eM
 rk
 eM
 eM
-xB
-xB
-xB
-xB
-xB
-xB
+qK
+qK
+qK
+qK
+qK
+qK
 QJ
 eM
 eM
