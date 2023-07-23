@@ -677,3 +677,35 @@
 	id = /obj/item/card/id
 	implants = list(/obj/item/implant/teleporter/innkeeper) //stay at your inn please.
 	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel //emergency weapon, ice planets are dangerous, and customers can be too.
+
+// Syndicate Derelict Station spawns
+
+/obj/effect/mob_spawn/human/syndicate_derelict_engineer
+	name = "syndicate engineer sleeper"
+	short_desc = "You're an engineer working for the Syndicate, assigned to repair a derelict research station."
+	flavour_text = "During your briefing, you're told that an old syndicate research post has gone missing without notice. No theories have been brought to its fate, and it's unlikely to know the cause of its destruction. Your job will be to restore this post to optimal levels."
+	important_info = "Do not abandon the derelict or mess with the main station under any circumstances."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	outfit = /datum/outfit/syndicate_derelict_engi
+	random = TRUE
+	roundstart = FALSE
+	death = FALSE
+	assignedrole = "Syndicate Derelict Engineer"
+
+/datum/outfit/syndicate_derelict_engi
+	name = "Syndicate Derelict Engineer"
+	uniform = /obj/item/clothing/under/syndicate
+	head = /obj/item/clothing/head/helmet/space/syndicate/black/engie
+	back = /obj/item/storage/backpack/duffelbag/syndie
+	suit = /obj/item/clothing/suit/space/syndicate/black/engie
+	suit_store = /obj/item/tank/internals/oxygen/red
+	belt = /obj/item/storage/belt/utility/chief/full
+	mask = /obj/item/clothing/mask/gas/syndicate
+	shoes = /obj/item/clothing/shoes/magboots/syndie
+	gloves = /obj/item/clothing/gloves/combat
+	glasses = /obj/item/clothing/glasses/meson/engine
+	ears = /obj/item/radio/headset/syndicate
+	id = /obj/item/card/id/syndicate
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/kitchen/knife/combat/survival
