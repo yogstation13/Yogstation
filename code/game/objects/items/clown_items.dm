@@ -167,7 +167,7 @@
 		if(T) // this would be awkward if there wasn't a tongue here at this point
 			user.visible_message(span_alert("[user] shoves [src] inside of [T]!"))
 			T.honked = TRUE
-			T.update_icon()
+			T.update_appearance(UPDATE_ICON)
 			qdel(src)
 
 /obj/item/bikehorn/Initialize(mapload)

@@ -38,7 +38,7 @@
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(!pod.moving && !pod.cargo)
 				AM.forceMove(pod)
-				pod.update_icon()
+				pod.update_appearance(UPDATE_ICON)
 				return
 
 
@@ -152,7 +152,7 @@
 							continue
 						S.forceMove(pod)
 						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
-				pod.update_icon()
+				pod.update_appearance(UPDATE_ICON)
 			sleep(SleepTime)
 			if(open_status == STATION_TUBE_CLOSED && pod && pod.loc == loc)
 				pod.follow_tube()

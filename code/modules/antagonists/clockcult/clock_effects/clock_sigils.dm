@@ -181,7 +181,7 @@
 
 /obj/effect/clockwork/sigil/transmission/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/effect/clockwork/sigil/transmission/ex_act(severity)
 	if(severity == 3)
@@ -242,7 +242,8 @@
 		return FALSE
 	return TRUE
 
-/obj/effect/clockwork/sigil/transmission/update_icon()
+/obj/effect/clockwork/sigil/transmission/update_icon(updates=ALL)
+	. = ..()
 	var/power_charge = get_clockwork_power()
 	if(GLOB.ratvar_awakens)
 		alpha = 255

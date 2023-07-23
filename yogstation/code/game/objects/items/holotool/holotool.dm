@@ -68,7 +68,7 @@
 		if(!C || QDELETED(src))
 			return
 		current_color = C
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	action.build_all_button_icons()
 	user.regenerate_icons()
 
@@ -80,7 +80,7 @@
 	current_tool = mode
 	current_tool.on_set(src)
 	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.regenerate_icons()
 
 
@@ -101,7 +101,8 @@
 		else
 			qdel(M)
 
-/obj/item/holotool/update_icon()
+/obj/item/holotool/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(current_tool)
 		var/mutable_appearance/holo_item = mutable_appearance(icon, current_tool.name)
@@ -117,7 +118,7 @@
 		icon_state = "holotool"
 		set_light(0)
 
-	for(var/datum/action/A in actions)
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)
