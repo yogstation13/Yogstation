@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Emags now hold 5 charges that recharge 0.4 per second, bluespace emags hold twice the charges and recharge 5 times faster. Charges can be manually restored using uranium."
