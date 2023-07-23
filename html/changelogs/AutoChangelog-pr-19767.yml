@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "The CE's holosign creator now doesn't give you the raw path of the sign it is creating."

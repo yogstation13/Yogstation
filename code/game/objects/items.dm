@@ -701,6 +701,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if (callback) //call the original callback
 		. = callback.Invoke()
 	item_flags &= ~IN_INVENTORY
+	var/matrix/M = matrix(transform)
+	M.Turn(rand(-170, 170))
+	transform = M
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(-12, 12)
 
 /obj/item/proc/remove_item_from_storage(atom/newLoc) //please use this if you're going to snowflake an item out of a obj/item/storage
 	if(!newLoc)

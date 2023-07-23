@@ -68,7 +68,7 @@
 		/obj/item/construction/rcd,
 		/obj/item/pipe_dispenser,
 		/obj/item/inducer,
-		/obj/item/holosign_creator/multi/CE,
+		/obj/item/holosign_creator/multi/chief_engineer,
 		/obj/item/airlock_painter,
 		/obj/item/grenade/chem_grenade/smart_metal_foam,
 		/obj/item/grenade/chem_grenade/metalfoam,
@@ -78,8 +78,8 @@
 		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
 		/obj/item/barrier_taperoll/engineering,
 		/obj/item/storage/bag/sheetsnatcher,
-		/obj/item/holotool
-		))
+		/obj/item/holotool,
+	))
 
 /obj/item/storage/belt/utility/makeshift
 	name = "makeshift toolbelt"
@@ -109,7 +109,7 @@
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
-	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/CE, src)
+	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/chief/full/ert
@@ -124,7 +124,7 @@
 	to_preload += /obj/item/multitool/tricorder
 	to_preload += /obj/item/stack/cable_coil
 	to_preload += /obj/item/extinguisher/mini
-	to_preload += /obj/item/holosign_creator/multi/CE
+	to_preload += /obj/item/holosign_creator/multi/chief_engineer
 	return to_preload
 
 /obj/item/storage/belt/utility/chief/admin/full
@@ -140,7 +140,7 @@
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
-	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/CE, src)
+	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
 
 /obj/item/storage/belt/utility/full/PopulateContents()
 	SSwardrobe.provide_type(/obj/item/screwdriver, src)
@@ -619,7 +619,7 @@
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/holosign_creator/multi/CE(src)
+	new /obj/item/holosign_creator/multi/chief_engineer(src)
 	new /obj/item/restraints/handcuffs/alien(src)
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)

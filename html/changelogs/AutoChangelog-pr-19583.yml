@@ -1,0 +1,10 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Garden Warfare changes:"
+  - tweak: "Now grants an immediate aggressive grab (non-disarming)"
+  - tweak: "Second grab of strangle combo now immobilizes for 2 seconds instead of stunning for 1"
+  - tweak: "Final strangle deals half as much damage (10 -> 5) to account for how much easier it is to land"
+  - tweak: "Splinters hurt more to pull out but less to leave in place"
+  - tweak: "Splinter stab no longer does self-damage"
+  - tweak: "Vine mark is applied on all disarms rather than requiring a combo."
