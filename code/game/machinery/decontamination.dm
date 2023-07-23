@@ -82,7 +82,7 @@
 	else
 		target.visible_message(span_warning("[user] starts shoving [target] into [src]!"), span_userdanger("[user] starts shoving you into [src]!"))
 
-	if(do_mob(user, target, 30))
+	if(do_after(user, 3 SECONDS, target))
 		if(target == user)
 			user.visible_message(span_warning("[user] slips into [src] and closes the door behind [user.p_them()]!"), "<span class=notice'>You slip into [src]'s cramped space and shut its door.</span>")
 		else
