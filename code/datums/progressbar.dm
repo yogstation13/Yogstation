@@ -39,7 +39,7 @@
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = User
 
-	LAZYADDASSOC(user.progressbars, bar_loc, src) //TODO: LAZYADDASSOCLIST
+	LAZYADDASSOCLIST(user.progressbars, bar_loc, src)
 	var/list/bars = user.progressbars[bar_loc]
 	listindex = bars.len
 
