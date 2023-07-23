@@ -709,7 +709,7 @@
 /datum/chemical_reaction/baldium
 	name = /datum/reagent/baldium
 	id = /datum/reagent/baldium
-	results = list(/datum/reagent/baldium = 1)
+	results = list(/datum/reagent/baldium = 3)
 	required_reagents = list(/datum/reagent/uranium/radium = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/lye = 1)
 	required_temp = 374
 
