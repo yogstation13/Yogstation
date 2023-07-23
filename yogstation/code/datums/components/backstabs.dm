@@ -1,9 +1,12 @@
 /datum/component/backstabs
 	var/backstab_multiplier = 2 // 2x damage by default
 	var/stored_ap = 0
+	var/cooldown_time = 0 SECONDS
+	COOLDOWN_DECLARE(backstab_cooldown)
 
-/datum/component/backstabs/Initialize(mult)
+/datum/component/backstabs/Initialize(mult, cooldown)
 	backstab_multiplier = mult
+	cooldown_time = cooldown
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK, PROC_REF(pre_attack))
@@ -12,6 +15,8 @@
 /datum/component/backstabs/proc/can_backstab(obj/item/source, atom/target, mob/living/user)
 	if(!isliving(target))
 		return FALSE
+	if(!COOLDOWN_FINISHED(src, backstab_cooldown))
+		return
 	var/mob/living/living_target = target
 	// No bypassing pacifism nerd
 	if(source.force > 0 && HAS_TRAIT(user, TRAIT_PACIFISM) && (source.damtype != STAMINA))
@@ -44,3 +49,5 @@
 			var/datum/emote/living/scream/scream_emote = new
 			scream_emote.run_emote(scream_emote) // SPY AROUND HERE
 	source.armour_penetration = stored_ap
+	if(cooldown_time > 0)
+		COOLDOWN_START(src, backstab_cooldown, cooldown_time)

@@ -442,7 +442,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/switchblade/backstab/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/backstabs, 2) // 40 damage
+	AddComponent(/datum/component/backstabs, 2, 2 SECONDS) // 40 damage, 2s CD
 
 /obj/item/phone
 	name = "red phone"
