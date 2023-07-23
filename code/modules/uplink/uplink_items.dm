@@ -2607,6 +2607,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
 
+/datum/uplink_item/role_restricted/cmag
+	name = "Jestographic Sequencer"
+	desc = "The jestographic sequencer, also known as a cmag, is a small card that inverts the access on any door it's used on. Perfect for locking command out of their own departments. Honk!"
+	item = /obj/item/card/emag/cmag
+	cost = 4 // Not as destructive as the emag. In addition, currently does not have many features. Increase if cmag can do more impactful things.
+	restricted_roles = list("Clown")
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"

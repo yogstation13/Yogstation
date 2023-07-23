@@ -67,10 +67,16 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
-	var/max_charges = 5 // How many charges can the emag hold?
-	var/charges = 5 // How many charges does the emag start with?
-	var/recharge_rate = 0.4 // How fast charges are regained (per second)
-	var/prox_check = TRUE //If the emag requires you to be in range
+	/// How many charges can the emag hold?
+	var/max_charges = 5
+	/// How many charges does the emag start with?
+	var/charges = 5
+	/// How fast (in seconds) does charges increase by 1?
+	var/recharge_rate = 0.4
+	/// Does usage require you to be in range?
+	var/prox_check = TRUE
+	/// Is this the funny verison of the emag? Usage will cause different set of interactions (of the funny variety)!
+	var/clown_version = FALSE
 
 /obj/item/card/emag/Initialize(mapload)
 	. = ..()
@@ -108,9 +114,13 @@
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
-	log_combat(user, A, "attempted to emag")
+	log_combat(user, A, "attempted to [clown_version ? "cmag" : "emag"]")
 	charges--
-	A.emag_act(user)
+	// TODO: Consider refunding a charge if it fails/does nothing since it'll use up a charge regardless of success or failure.
+	if(clown_version)
+		A.cmag_act(user)
+	else
+		A.emag_act(user)
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
@@ -154,6 +164,16 @@
 			target.emag_act(user)
 		emagging = FALSE
 
+/obj/item/card/emag/cmag
+	desc = "It's a card coated in a slurry of electromagnetic bananium."
+	name = "jestographic sequencer"
+	color = rgb(255, 0, 85) // TODO: If there is a cool sprite for this funny emag, please add. Otherwise, it will be a recolored emag.
+	clown_version = TRUE
+
+/obj/item/card/emag/cmag/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP)// It wouldn't be funny if it couldn't slip!
+	
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
 	name = "cryptographic sequencer"
