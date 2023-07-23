@@ -791,6 +791,14 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT)
 
 /**
+  * Respond to a cmag being used on our atom
+  *
+  * Default behaviour is to send COMSIG_ATOM_CMAG_ACT and return
+  */
+/atom/proc/cmag_act()
+	SEND_SIGNAL(src, COMSIG_ATOM_CMAG_ACT)
+
+/**
   * Respond to a radioactive wave hitting this atom
   *
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return

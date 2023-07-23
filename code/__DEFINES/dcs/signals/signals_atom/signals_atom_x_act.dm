@@ -22,6 +22,8 @@
 #define COMSIG_ATOM_ACID_ACT "atom_acid_act"
 ///from base of atom/emag_act(): (/mob/user)
 #define COMSIG_ATOM_EMAG_ACT "atom_emag_act"
+///from base of atom/cmag_act(): (/mob/user)
+#define COMSIG_ATOM_CMAG_ACT "atom_cmag_act"
 ///! from base of atom/rad_act(intensity, collectable_radiation)
 #define COMSIG_ATOM_RAD_ACT "atom_rad_act"
 ///from base of atom/narsie_act(): ()
