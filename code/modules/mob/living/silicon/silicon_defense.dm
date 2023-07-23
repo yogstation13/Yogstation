@@ -63,8 +63,8 @@
 	switch(M.a_intent)
 		if(INTENT_HELP)
 			if(buckled_mobs)
-				for(var/mob/living/M in buckled_mobs)
-					unbuckle_mob(M)
+				for(var/mob/living/buckled_mob in buckled_mobs)
+					unbuckle_mob(buckled_mob)
 			else
 				M.visible_message("[M] pets [src].", \
 								span_notice("You pet [src]."))
