@@ -16,7 +16,7 @@
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 
-	// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
+	/// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
 	var/datum/armor/armor
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
