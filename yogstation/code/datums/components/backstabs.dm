@@ -34,7 +34,6 @@
 	// SIGNAL_HANDLER // screaming doesn't sleep!!
 	if(!can_backstab(source, target, user))
 		return
-	source.armour_penetration = stored_ap
 	var/multi = backstab_multiplier - 1
 	var/dmg = source.force * multi
 	if(dmg) // Truthy because backstabs can heal lol
@@ -44,3 +43,4 @@
 			// extra safe to ensure no sleeping
 			var/datum/emote/living/scream/scream_emote = new
 			scream_emote.run_emote(scream_emote) // SPY AROUND HERE
+	source.armour_penetration = stored_ap
