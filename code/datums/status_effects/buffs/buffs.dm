@@ -665,3 +665,33 @@
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
+	
+/datum/status_effect/titaniumskin
+	id = "titaniumskin"
+	duration = 15 SECONDS
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/titaniumskin
+
+/atom/movable/screen/alert/status_effect/titaniumskin
+	name = "Titanium skin"
+	desc = "The eaten titanium has infused your skin making it more sturdy but absorb heat poorly."
+	icon_state = "shadow_mend" //i'm a coder, not a spriter
+
+/datum/status_effect/titaniumskin/on_apply()
+	. = ..()
+	if(.)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.brute_mod *= 0.75
+			H.physiology.pressure_mod *= 0.75
+			H.physiology.burn_mod *= 1.5
+			H.physiology.temp_mod *= 3 //doesn't change how well you handle getting the heat, but how quickly you get it
+
+/datum/status_effect/titaniumskin/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+			H.physiology.brute_mod /= 0.75
+			H.physiology.pressure_mod /= 0.75
+			H.physiology.burn_mod /= 1.5
+			H.physiology.temp_mod /= 3

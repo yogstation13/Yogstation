@@ -66,6 +66,8 @@
 
 #define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken
 
+#define STATUS_EFFECT_TITANIUMSKIN /datum/status_effect/titaniumskin //Increased brute resistance, reduced burn resistance
+
 /////////////
 // DEBUFFS //
 /////////////
