@@ -162,6 +162,7 @@
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	area_flags = FLORA_ALLOWED
+	blob_allowed = FALSE
 
 /area/icemoon/surface
 	name = "Icemoon"

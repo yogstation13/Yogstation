@@ -495,7 +495,8 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/N = M
-		N.hair_style = "Spiky"
+		if(!HAS_TRAIT(M, TRAIT_BALD))
+			N.hair_style = "Spiky"
 		N.facial_hair_style = "Shaved"
 		N.facial_hair_color = "000"
 		N.hair_color = "000"
@@ -1840,7 +1841,7 @@
 
 /datum/reagent/barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
@@ -1857,7 +1858,7 @@
 
 /datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
@@ -2162,6 +2163,7 @@
 	var/healthcomp = (100 - M.health)	//DOES NOT ACCOUNT FOR ADMINBUS THINGS THAT MAKE YOU HAVE MORE THAN 200/210 HEALTH, OR SOMETHING OTHER THAN A HUMAN PROCESSING THIS.
 	if(M.getStaminaLoss() < (45 - healthcomp))	//At 50 health you would have 200 - 150 health meaning 50 compensation. 60 - 50 = 10, so would only do 10-19 stamina.)
 		M.adjustStaminaLoss(10)
+		M.clear_stamina_regen()
 	if(prob(30))
 		to_chat(M, "You should sit down and take a rest...")
 	..()

@@ -193,7 +193,7 @@ Class Procs:
 	density = FALSE
 	if(drop)
 		dropContents()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	updateUsrDialog()
 
 /obj/machinery/proc/dropContents(list/subset = null)
@@ -231,7 +231,7 @@ Class Procs:
 		occupant = target
 		target.forceMove(src)
 	updateUsrDialog()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
@@ -444,7 +444,7 @@ Class Procs:
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return FALSE
 
@@ -455,7 +455,7 @@ Class Procs:
 /obj/machinery/handle_atom_del(atom/A)
 	if(A == occupant)
 		occupant = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)

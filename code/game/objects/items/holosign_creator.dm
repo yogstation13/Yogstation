@@ -12,10 +12,12 @@
 	throw_speed = 3
 	throw_range = 7
 	item_flags = NOBLUDGEON
-	var/list/signs = list()
+	///List of all holosigns currently made.
+	var/list/obj/structure/holosign/signs = list()
+	///The type of holosign to make from this projector.
+	var/obj/structure/holosign/holosign_type = /obj/structure/holosign/wetsign
 	var/max_signs = 10
 	var/creation_time = 0 SECONDS //time to create a holosign in deciseconds.
-	var/holosign_type = /obj/structure/holosign/wetsign
 	var/holocreator_busy = FALSE //to prevent placing multiple holo barriers at once
 
 /obj/item/holosign_creator/afterattack(atom/target, mob/user, flag)
@@ -54,10 +56,15 @@
 	return
 
 /obj/item/holosign_creator/attack_self(mob/user)
-	if(signs.len)
-		for(var/H in signs)
-			qdel(H)
-		to_chat(user, span_notice("You clear all active hard light barriers."))
+	. = ..()
+	if(.)
+		return TRUE
+	if(!signs.len)
+		return FALSE
+	for(var/obj/item/holosign_creator as anything in signs)
+		qdel(holosign_creator)
+	to_chat(user, span_notice("You clear all active hard light barriers."))
+	return TRUE
 
 /obj/item/holosign_creator/janibarrier
 	name = "custodial holobarrier projector"
@@ -157,21 +164,23 @@
 			qdel(H)
 		to_chat(user, span_notice("You clear all active hard light barriers."))
 
+///Multi-barrier type that allows you to swap between several types of barriers.
+///You can only use one type at a time, you have to clear them to swap to the other.
 /obj/item/holosign_creator/multi
-	name = "multiple holosign projector"  //Fork from this to make multiple barriers
+	name = "multiple holosign projector"
+	///List of all designs that this can choose.
 	var/list/holodesigns = list()
 
 /obj/item/holosign_creator/multi/attack_self(mob/user)
-	if(signs.len)
-		for(var/H in signs)
-			qdel(H)
-		to_chat(user, span_notice("You clear all active hard light barriers."))
-	else
-		holosign_type = next_list_item(holosign_type, holodesigns)
-		to_chat(user, span_notice("You switch to [holosign_type]"))
+	. = ..()
+	if(.)
+		return TRUE
+	holosign_type = next_list_item(holosign_type, holodesigns)
+	to_chat(user, span_notice("You switch to [initial(holosign_type.name)]"))
+	return TRUE
 
-/obj/item/holosign_creator/multi/CE
-	name = "CE holofan projector"
+/obj/item/holosign_creator/multi/chief_engineer
+	name = "advanced holofan projector"
 	desc = "A holographic projector that creates hard light barriers that prevent changes in atmosphere conditions or engineering barriers."
 	icon_state = "signmaker_atmos"
 	holosign_type = /obj/structure/holosign/barrier/atmos

@@ -51,8 +51,9 @@
 	else
 		holder.icon_state = "hudgland_spent"
 
-/obj/item/organ/heart/gland/update_icon()
-	return // stop it from switching to the non existent heart_on sprite
+/obj/item/organ/heart/gland/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 	
 /obj/item/organ/heart/gland/proc/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
