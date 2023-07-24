@@ -11,10 +11,6 @@
 		if(A.attachable)
 			return TRUE
 
-/atom
-	var/datum/wires/wires = null
-	var/obj/effect/abstract/particle_holder/master_holder
-
 /atom/proc/attempt_wire_interaction(mob/user)
 	if(!wires)
 		return WIRE_INTERACTION_FAIL
