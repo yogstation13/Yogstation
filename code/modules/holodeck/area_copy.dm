@@ -1,5 +1,3 @@
-// DuplicateObject was renamed to duplicate_object and moved to code/__HELPERS/duplicating.dm
-
 /area/proc/copy_contents_to(area/A , platingRequired = 0, nerf_weapons = 0 )
 	//Takes: Area. Optional: If it should copy to areas that don't have plating
 	//Returns: Nothing.
