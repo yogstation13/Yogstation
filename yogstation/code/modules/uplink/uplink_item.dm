@@ -142,7 +142,7 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/race_restricted/garden_warfare
-	name = "Martial art scroll"
+	name = "Vegetable Parchment"
 	desc = "A special scroll with a martial art, that teaches phytosians of capabilities of their body."
 	cost = 13
 	item = /obj/item/book/granter/martial/garden_warfare
