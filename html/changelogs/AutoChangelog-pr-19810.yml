@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed hypospray vial swapping"
+  - bugfix: "fixed not being able to transfer reagents to and from vials"
