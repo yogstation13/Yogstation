@@ -27,12 +27,12 @@
 	var/active = FALSE
 	var/saber_color
 
-/obj/item/holo/esword/green/Initialize()
+/obj/item/holo/esword/green/Initialize(mapload)
 	. = ..()
 	saber_color = "green"
 
 
-/obj/item/holo/esword/red/Initialize()
+/obj/item/holo/esword/red/Initialize(mapload)
 	. = ..()
 	saber_color = "red"
 
@@ -44,7 +44,7 @@
 /obj/item/holo/esword/attack(target as mob, mob/user as mob)
 	..()
 
-/obj/item/holo/esword/Initialize()
+/obj/item/holo/esword/Initialize(mapload)
 	. = ..()
 	saber_color = pick("red","blue","green","purple")
 
@@ -187,7 +187,7 @@
 
 	ready = !ready
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	var/numbuttons = 0
 	var/numready = 0
@@ -199,7 +199,8 @@
 	if(numbuttons == numready)
 		begin_event()
 
-/obj/machinery/readybutton/update_icon()
+/obj/machinery/readybutton/update_icon_state()
+	. = ..()
 	if(ready)
 		icon_state = "auth_on"
 	else

@@ -19,11 +19,11 @@
 	///The time it takes to pry this open with a crowbar.
 	var/pry_lid_timer = 25 SECONDS
 
-/obj/structure/closet/crate/Initialize()
+/obj/structure/closet/crate/Initialize(mapload)
 	. = ..()
 	if(icon_state == "[initial(icon_state)]open")
 		opened = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -35,12 +35,14 @@
 			if(!locatedcrate.opened) //otherwise, if the located crate is closed, allow entering
 				return TRUE
 
-/obj/structure/closet/crate/update_icon()
+/obj/structure/closet/crate/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
 
-	cut_overlays()
+/obj/structure/closet/crate/update_overlays()
+	. = ..()
 	if(manifest)
-		add_overlay("manifest")
+		. += "manifest"
 
 /obj/structure/closet/crate/attack_hand(mob/user)
 	. = ..()
@@ -56,7 +58,7 @@
 		playsound(src, 'sound/items/poster_ripped.ogg', 75, 1)
 		manifest.forceMove(get_turf(src))
 		manifest = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/closet/crate/proc/tear_manifest(mob/user)
 	to_chat(user, span_notice("You tear the manifest off of [src]."))
@@ -66,7 +68,7 @@
 	if(ishuman(user))
 		user.put_in_hands(manifest)
 	manifest = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/closet/crate/coffin
 	name = "coffin"
@@ -112,7 +114,7 @@
 	recursive_organ_check(src)
 	return ..()
 
-/obj/structure/closet/crate/freezer/Initialize()
+/obj/structure/closet/crate/freezer/Initialize(mapload)
 	recursive_organ_check(src)
 	return ..()
 
@@ -294,7 +296,7 @@
 	name = "goat crate"
 	desc = "Contains a completly random goat from Goat Tech Industries that may or may not break the laws of science!"
 
-/obj/structure/closet/crate/critter/exoticgoats/Initialize()
+/obj/structure/closet/crate/critter/exoticgoats/Initialize(mapload)
 	. = ..()
 	var/loot = rand(1,40) //40 different goats!
 	switch(loot)

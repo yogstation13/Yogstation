@@ -5,7 +5,7 @@
 								/obj/item/computer_hardware/hard_drive/small,
 								/obj/item/computer_hardware/network_card)
 
-/obj/machinery/modular_computer/telescreen/preset/Initialize()
+/obj/machinery/modular_computer/telescreen/preset/Initialize(mapload)
 	. = ..()
 	cpu.enabled = TRUE
 

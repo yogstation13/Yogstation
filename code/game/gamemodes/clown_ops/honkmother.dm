@@ -22,7 +22,7 @@
 	movement_type = UNSTOPPABLE
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
-/obj/structure/destructible/honkmother/Initialize()
+/obj/structure/destructible/honkmother/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	send_to_playing_players(span_clown("HONK!"))

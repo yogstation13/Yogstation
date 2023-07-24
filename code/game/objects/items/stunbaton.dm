@@ -47,7 +47,7 @@
 	user.visible_message(span_suicide("[user] is putting the [name] in [user.p_their()] mouth! But forgot to turn the [name] on."))
 	return SHAME
 
-/obj/item/melee/baton/Initialize()
+/obj/item/melee/baton/Initialize(mapload)
 	. = ..()
 	status = FALSE
 	if(preload_cell_type)
@@ -56,7 +56,7 @@
 		else
 			cell = new preload_cell_type(src)
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, PROC_REF(throwbaton))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..())
@@ -77,7 +77,7 @@
 		status = FALSE
 		visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
 		addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		thrown = FALSE
 
@@ -97,12 +97,13 @@
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(loc, "sparks", 75, 1, -1)
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
 
 
-/obj/item/melee/baton/update_icon()
+/obj/item/melee/baton/update_icon_state()
+	. = ..()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)
@@ -137,16 +138,16 @@
 				return
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
-			cell.update_icon()
+			cell.update_appearance(UPDATE_ICON)
 			cell.forceMove(get_turf(src))
 			cell = null
 			to_chat(user, span_notice("You remove the cell from [src]."))
 			status = FALSE
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -169,7 +170,7 @@
 			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
 			to_chat(user, span_warning("[src] is out of charge."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
@@ -305,7 +306,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	var/obj/item/assembly/igniter/sparkler = 0
 
-/obj/item/melee/baton/cattleprod/Initialize()
+/obj/item/melee/baton/cattleprod/Initialize(mapload)
 	. = ..()
 	sparkler = new (src)
 

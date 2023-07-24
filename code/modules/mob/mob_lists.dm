@@ -1,4 +1,4 @@
-///Adds the mob reference to the list and directory of all mobs. Called on Initialize().
+///Adds the mob reference to the list and directory of all mobs. Called on Initialize(mapload).
 /mob/proc/add_to_mob_list()
 	GLOB.mob_list |= src
 	GLOB.mob_directory[tag] = src

@@ -18,10 +18,6 @@
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
 
-	// Used for something in preferences_savefile.dm
-	// NOTE: currently unused
-	var/department_flag = NONE
-
 	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
 	var/departments_bitflags = NONE
 
@@ -34,8 +30,6 @@
 	/// unless department_for_prefs is set.
 	/// TODO: Currently not used so will always be empty! Change this to department datums
 	var/list/departments_list = null
-
-	var/flag = NONE //Deprecated
 	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
@@ -215,7 +209,7 @@
 	dna.species.before_equip_job(equipping, src, visual_only)
 	equipOutfit(equipping.outfit, visual_only)
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
@@ -258,7 +252,6 @@
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
-	ipc_box = /obj/item/storage/box/ipc
 
 	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 
@@ -271,7 +264,7 @@
 	var/uniform_skirt = null
 
 	/// Which slot the PDA defaults to
-	var/pda_slot = SLOT_BELT
+	var/pda_slot = ITEM_SLOT_BELT
 
 	/// What shoes digitgrade crew should wear
 	var/digitigrade_shoes
@@ -298,8 +291,6 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-	if (isipc(H) && !(visualsOnly)) // IPCs get their own box with special internals in it
-		box = ipc_box
 
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
@@ -335,14 +326,14 @@
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
 		PDA.InsertID(C)
-		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		PDA.update_filters()
 		
 	else
-		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
 		for(var/obj/item/gps/G in H.get_all_contents())

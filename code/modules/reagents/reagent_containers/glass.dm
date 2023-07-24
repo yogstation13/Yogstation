@@ -117,41 +117,41 @@
 	item_state = "beaker"
 	materials = list(/datum/material/glass=500)
 
-/obj/item/reagent_containers/glass/beaker/Initialize()
+/obj/item/reagent_containers/glass/beaker/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/glass/beaker/get_part_rating()
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/beaker/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/glass/beaker/update_overlays()
+	. = ..()
+	if(!reagents.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
 
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[icon_state]-10"
+		if(10 to 24)
+			filling.icon_state = "[icon_state]10"
+		if(25 to 49)
+			filling.icon_state = "[icon_state]25"
+		if(50 to 74)
+			filling.icon_state = "[icon_state]50"
+		if(75 to 79)
+			filling.icon_state = "[icon_state]75"
+		if(80 to 90)
+			filling.icon_state = "[icon_state]80"
+		if(91 to INFINITY)
+			filling.icon_state = "[icon_state]100"
 
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
-			if(10 to 24)
-				filling.icon_state = "[icon_state]10"
-			if(25 to 49)
-				filling.icon_state = "[icon_state]25"
-			if(50 to 74)
-				filling.icon_state = "[icon_state]50"
-			if(75 to 79)
-				filling.icon_state = "[icon_state]75"
-			if(80 to 90)
-				filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)
-				filling.icon_state = "[icon_state]100"
-
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/item/reagent_containers/glass/beaker/jar
 	name = "honey jar"
@@ -177,9 +177,9 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
-/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
+/obj/item/reagent_containers/glass/beaker/plastic/update_icon_state()
 	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
-	..()
+	. = ..()
 	icon_state = "beakerwhite"
 
 /obj/item/reagent_containers/glass/beaker/meta
@@ -262,14 +262,14 @@
 	resistance_flags = NONE
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 75, ACID = 50) //Weak melee protection, because you can wear it on your head
 	slot_equipment_priority = list( \
-		SLOT_BACK, SLOT_WEAR_ID,\
-		SLOT_W_UNIFORM, SLOT_WEAR_SUIT,\
-		SLOT_WEAR_MASK, SLOT_HEAD, SLOT_NECK,\
-		SLOT_SHOES, SLOT_GLOVES,\
-		SLOT_EARS, SLOT_GLASSES,\
-		SLOT_BELT, SLOT_SUIT_STORE,\
-		SLOT_L_STORE, SLOT_R_STORE,\
-		SLOT_GENERC_DEXTROUS_STORAGE
+		ITEM_SLOT_BACK, ITEM_SLOT_ID,\
+		ITEM_SLOT_ICLOTHING, ITEM_SLOT_OCLOTHING,\
+		ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_NECK,\
+		ITEM_SLOT_FEET, ITEM_SLOT_GLOVES,\
+		ITEM_SLOT_EARS, ITEM_SLOT_EYES,\
+		ITEM_SLOT_BELT, ITEM_SLOT_SUITSTORE,\
+		ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET,\
+		ITEM_SLOT_DEX_STORAGE
 	)
 
 /obj/item/reagent_containers/glass/bucket/wooden
@@ -298,7 +298,7 @@
 
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
 	..()
-	if (slot == SLOT_HEAD)
+	if (slot == ITEM_SLOT_HEAD)
 		if(reagents.total_volume)
 			to_chat(user, span_userdanger("[src]'s contents spill all over you!"))
 			reagents.reaction(user, TOUCH)
@@ -309,12 +309,12 @@
 	. = ..()
 	reagents.flags = initial(reagent_flags)
 
-/obj/item/reagent_containers/glass/bucket/equip_to_best_slot(var/mob/M)
+/obj/item/reagent_containers/glass/bucket/equip_to_best_slot(mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head
-		var/index = slot_equipment_priority.Find(SLOT_HEAD)
-		slot_equipment_priority.Remove(SLOT_HEAD)
+		var/index = slot_equipment_priority.Find(ITEM_SLOT_HEAD)
+		slot_equipment_priority.Remove(ITEM_SLOT_HEAD)
 		. = ..()
-		slot_equipment_priority.Insert(index, SLOT_HEAD)
+		slot_equipment_priority.Insert(index, ITEM_SLOT_HEAD)
 		return
 	return ..()
 
@@ -422,29 +422,29 @@
 
 /obj/item/reagent_containers/glass/mixbowl/on_reagent_change(changetype)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/mixbowl/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/glass/mixbowl/update_overlays()
+	. = ..()
+	if(!reagents.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
 
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[icon_state]0"
+		if(10 to 24)
+			filling.icon_state = "[icon_state]10"
+		if(25 to 49)
+			filling.icon_state = "[icon_state]25"
+		if(50 to 74)
+			filling.icon_state = "[icon_state]50"
+		if(75 to INFINITY)
+			filling.icon_state = "[icon_state]75"
 
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]0"
-			if(10 to 24)
-				filling.icon_state = "[icon_state]10"
-			if(25 to 49)
-				filling.icon_state = "[icon_state]25"
-			if(50 to 74)
-				filling.icon_state = "[icon_state]50"
-			if(75 to INFINITY)
-				filling.icon_state = "[icon_state]75"
-
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/item/reagent_containers/glass/urn
 	name = "urn"

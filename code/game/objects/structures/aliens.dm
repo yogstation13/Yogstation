@@ -120,7 +120,7 @@
 	var/growth_cooldown_high = 200
 	var/static/list/blacklisted_turfs
 
-/obj/structure/alien/weeds/Initialize()
+/obj/structure/alien/weeds/Initialize(mapload)
 	pixel_x = -4
 	pixel_y = -4 //so the sprites line up right in the map editor
 	. = ..()
@@ -142,7 +142,7 @@
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
 
-/obj/structure/alien/weeds/Click(var/atom/A)
+/obj/structure/alien/weeds/Click(atom/A)
 	var/turf/T = loc
 	if(T)
 		if(istype(A, /mob/living/carbon))
@@ -181,7 +181,7 @@
 	var/lon_range = 4
 	var/node_range = NODERANGE
 
-/obj/structure/alien/weeds/node/Initialize()
+/obj/structure/alien/weeds/node/Initialize(mapload)
 	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
 	. = ..()
 	set_light(lon_range)
@@ -229,7 +229,7 @@
 
 /obj/structure/alien/egg/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(status == GROWING || status == GROWN)
 		child = new(src)
 	if(status == GROWING)
@@ -238,8 +238,8 @@
 	if(status == BURST)
 		obj_integrity = integrity_failure
 
-/obj/structure/alien/egg/update_icon()
-	..()
+/obj/structure/alien/egg/update_icon_state()
+	. = ..()
 	switch(status)
 		if(GROWING)
 			icon_state = "[base_icon]_growing"
@@ -279,7 +279,7 @@
 
 /obj/structure/alien/egg/proc/Grow()
 	status = GROWN
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	proximity_monitor.SetRange(1)
 
 //drops and kills the hugger if any is remaining
@@ -287,7 +287,7 @@
 	if(status == GROWN || status == GROWING)
 		proximity_monitor.SetRange(0)
 		status = BURST
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		flick("egg_opening", src)
 		addtimer(CALLBACK(src, PROC_REF(finish_bursting), kill), 15)
 

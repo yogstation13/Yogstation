@@ -461,7 +461,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, src))
+		if(do_after(src, 1 SECONDS, src, stayStill = FALSE))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -491,7 +491,7 @@
 	return ret
 
 // Living mobs use can_inject() to make sure that the mob is not syringe-proof in general.
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return TRUE
 
 /mob/living/is_injectable(mob/user, allowmobs = TRUE)
@@ -572,6 +572,14 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
+		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		if(B)
+			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
+				to_chat(src, span_danger("As life pours back through your body, you struggle to recall what last happened to you; every memory before your death is hazy. You feel like you've been dead for too long"))
+				to_chat(src, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+				src.visible_message(span_danger("[src] stares ahead blankly, blinking a few times, as if they are trying to remember something."))
+				log_combat(src, "was revived with memory loss")
+			B.decay_progress = 0
 		if(IS_BLOODSUCKER(src))
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.heal_vampire_organs()
@@ -684,7 +692,9 @@
 	if((newdir in GLOB.cardinals) && (prob(50)))
 		newdir = turn(get_dir(target_turf, start), 180)
 	if(!blood_exists)
-		new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+		var/obj/effect/decal/cleanable/trail_holder/TH = new(start, get_static_viruses())
+		if(isethereal(src))//ethereal blood glows
+			TH.Etherealify()
 
 	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
 		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
@@ -713,10 +723,14 @@
 	if(getBruteLoss() < 300)
 		if(ispolysmorph(src))
 			return pick("xltrails_1", "xltrails_2")
+		if(isethereal(src))
+			return pick("wltrails_1", "wltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
 		if(ispolysmorph(src))
 			return pick("xttrails_1", "xttrails_2")
+		if(isethereal(src))
+			return pick("wttrails_1", "wttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
@@ -967,8 +981,12 @@
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability_protection(list/target_zones)
-	return 0
+/mob/living/proc/get_permeability(def_zone, linear = FALSE)
+	return 1
+
+/// Returns the type of organs, reagents, and symptoms this mob is compatible with
+/mob/living/proc/get_process_flags()
+	return (MOB_ROBOTIC in mob_biotypes) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
@@ -1194,7 +1212,7 @@
 //Mobs on Fire end
 
 // used by secbot and monkeys Crossed
-/mob/living/proc/knockOver(var/mob/living/carbon/C)
+/mob/living/proc/knock_over(mob/living/carbon/C)
 	if(C.key) //save us from monkey hordes
 		C.visible_message("<span class='warning'>[pick( \
 						"[C] dives out of [src]'s way!", \
@@ -1205,8 +1223,8 @@
 						"[C] leaps out of [src]'s way!")]</span>")
 	C.Paralyze(40)
 
-/mob/living/can_be_pulled()
-	return ..() && !(buckled && buckled.buckle_prevents_pull)
+/mob/living/can_be_pulled(user, grab_state, force)
+	return ..() && !(buckled && buckled.buckle_prevents_pull) && (QDELETED(pulledby) || !HAS_TRAIT(pulledby, TRAIT_STRONG_GRIP) || pulledby == user)
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 //Robots, animals and brains have their own version so don't worry about them
@@ -1235,7 +1253,7 @@
 		if(buckled.buckle_lying != -1)
 			should_be_lying = buckled.buckle_lying
 
-	if(should_be_lying)
+	if(should_be_lying && !HAS_TRAIT(src, TRAIT_FORCED_STANDING))
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
 			if(buckled.buckle_lying != -1)
@@ -1251,7 +1269,7 @@
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
 
-
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, mobility_flags, .) //REMOVE THIS WHEN LAYING DOWN GETS PORTED
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)
@@ -1538,7 +1556,7 @@
 //	if(body_position == STANDING_UP) //force them on the ground
 //		set_lying_angle(pick(90, 270))
 //		set_body_position(LYING_DOWN)
-//		on_fall()
+	on_fall()
 	set_resting(TRUE)
 
 /// Proc to append behavior to the condition of being floored. Called when the condition ends.

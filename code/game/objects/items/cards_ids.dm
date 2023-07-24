@@ -36,17 +36,17 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	var/detail_color = COLOR_ASSEMBLY_ORANGE
 
-/obj/item/card/data/Initialize()
+/obj/item/card/data/Initialize(mapload)
 	.=..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/card/data/update_icon()
-	cut_overlays()
+/obj/item/card/data/update_overlays()
+	. = ..()
 	if(detail_color == COLOR_FLOORTILE_GRAY)
 		return
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/card.dmi', "[icon_state]-color")
 	detail_overlay.color = detail_color
-	add_overlay(detail_overlay)
+	. += detail_overlay
 
 /obj/item/card/data/full_color
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has the entire card colored."
@@ -67,24 +67,69 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
+	var/max_charges = 5 // How many charges can the emag hold?
+	var/charges = 5 // How many charges does the emag start with?
+	var/recharge_rate = 0.4 // How fast charges are regained (per second)
 	var/prox_check = TRUE //If the emag requires you to be in range
+
+/obj/item/card/emag/Initialize(mapload)
+	. = ..()
+	if(recharge_rate != 0)
+		START_PROCESSING(SSobj, src)
+
+/obj/item/card/emag/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/card/emag/process(delta_time)
+	charges = clamp(charges + (recharge_rate * delta_time), 0, max_charges)
+
+/obj/item/card/emag/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if (max_charges > charges)
+		if (istype(W, /obj/item/stack/sheet/mineral/uranium))
+			var/obj/item/stack/sheet/mineral/uranium/T = W
+			T.use(1)
+			charges = min(charges + 1, max_charges)
+			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
+
+/obj/item/card/emag/examine(mob/user)
+	. = ..()
+	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
+
+/obj/item/card/emag/attack()
+	return
+
+/obj/item/card/emag/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	var/atom/A = target
+	if(!proximity && prox_check)
+		return
+	if(charges < 1)
+		to_chat(user, span_danger("\The [src] is still recharging!"))
+		return
+	log_combat(user, A, "attempted to emag")
+	charges--
+	A.emag_act(user)
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
 	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
 	color = rgb(40, 130, 255)
+	max_charges = 10
+	charges = 10
+	recharge_rate = 2 // UNLIMITED POWER
 	prox_check = FALSE
 
 /obj/item/card/emag/improvised
 	name = "improvised cryptographic sequencer"
 	desc = "It's a card with some junk circuitry strapped to it. It doesn't look like it would be reliable or fast due to shoddy construction, and needs to be manually recharged with uranium sheets."
 	icon_state = "emag_shitty"
-	var/charges = 5 //how many times can we use the emag before needing to reload it?
-	var/max_charges = 5
+	recharge_rate = 0
 	var/emagging //are we currently emagging something
-	
-/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)	
-	if(charges > 0)
+
+/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)
+	if(charges >= 1)
 		if(emagging)
 			return
 		if(!proximity && prox_check) //left in for badmins
@@ -102,32 +147,12 @@
 				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
+			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
+				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+				emagging = FALSE
+				return
 			target.emag_act(user)
 		emagging = FALSE
-
-/obj/item/card/emag/improvised/attackby(obj/item/W, mob/user, params)
-	. = ..()
-	if (max_charges > charges)
-		if (istype(W, /obj/item/stack/sheet/mineral/uranium))
-			var/obj/item/stack/sheet/mineral/uranium/T = W
-			T.use(1)
-			charges++
-			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
-
-/obj/item/card/emag/improvised/examine(mob/user)
-	. = ..()
-	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
-
-/obj/item/card/emag/attack()
-	return
-
-/obj/item/card/emag/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	var/atom/A = target
-	if(!proximity && prox_check)
-		return
-	log_combat(user, A, "attempted to emag")
-	A.emag_act(user)
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
@@ -401,7 +426,7 @@ update_label("John Doe", "Clowny")
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
-/obj/item/card/id/syndicate/Initialize()
+/obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
 	var/datum/action/item_action/chameleon/change/chameleon_action = new(src)
 	chameleon_action.syndicate = TRUE
@@ -580,7 +605,7 @@ update_label("John Doe", "Clowny")
 	originalassignment = "Captain"
 	registered_age = null
 
-/obj/item/card/id/captains_spare/Initialize()
+/obj/item/card/id/captains_spare/Initialize(mapload)
 	var/datum/job/captain/J = new/datum/job/captain
 	access = J.get_access()
 	. = ..()
@@ -590,7 +615,7 @@ update_label("John Doe", "Clowny")
 	desc = "A temporary ID for access to secure areas in the event of an emergency"
 	resistance_flags = FLAMMABLE
 
-/obj/item/card/id/captains_spare/temporary/Initialize()
+/obj/item/card/id/captains_spare/temporary/Initialize(mapload)
 	. = ..()
 	access -= ACCESS_CHANGE_IDS
 	access -= ACCESS_HEADS
@@ -608,9 +633,9 @@ update_label("John Doe", "Clowny")
 		forceMove(holder.loc)
 		holder.spareid = null
 		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
-			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN) //we do a bit of trolling for being naughty
+			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
 		else
-			holder.update_icon() //update the icon anyway so it pops out
+			holder.update_appearance(UPDATE_ICON) //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
 	fire_act()
 	sleep(2 SECONDS)
@@ -618,7 +643,7 @@ update_label("John Doe", "Clowny")
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
-		holder.update_icon()
+		holder.update_appearance(UPDATE_ICON)
 	burn()
 
 //yogs: redd ports holopay but as paystands
@@ -680,7 +705,7 @@ update_label("John Doe", "Clowny")
 
 
 
-/obj/item/card/id/centcom/Initialize()
+/obj/item/card/id/centcom/Initialize(mapload)
 	access = get_all_centcom_access()
 	. = ..()
 
@@ -693,7 +718,7 @@ update_label("John Doe", "Clowny")
 	originalassignment = "Emergency Response Team Commander"
 	registered_age = null
 
-/obj/item/card/id/ert/debug/Initialize()
+/obj/item/card/id/ert/debug/Initialize(mapload)
 	. = ..()
 	access = get_debug_access()
 
@@ -709,11 +734,11 @@ update_label("John Doe", "Clowny")
 	assignment = "Occupying Officer"
 	originalassignment = "Occupying Officer"
 
-/obj/item/card/id/ert/occupying/Initialize()
+/obj/item/card/id/ert/occupying/Initialize(mapload)
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
     . = ..()
-    
-/obj/item/card/id/ert/Initialize()
+
+/obj/item/card/id/ert/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -722,7 +747,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Security Response Officer"
 	originalassignment = "Security Response Officer"
 
-/obj/item/card/id/ert/Security/Initialize()
+/obj/item/card/id/ert/Security/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -731,7 +756,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Engineer Response Officer"
 	originalassignment = "Engineer Response Officer"
 
-/obj/item/card/id/ert/Engineer/Initialize()
+/obj/item/card/id/ert/Engineer/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("eng")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -740,7 +765,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Medical Response Officer"
 	originalassignment = "Medical Response Officer"
 
-/obj/item/card/id/ert/Medical/Initialize()
+/obj/item/card/id/ert/Medical/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("med")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -749,7 +774,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Religious Response Officer"
 	originalassignment = "Religious Response Officer"
 
-/obj/item/card/id/ert/chaplain/Initialize()
+/obj/item/card/id/ert/chaplain/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -758,7 +783,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Janitorial Response Officer"
 	originalassignment = "Janitorial Response Officer"
 
-/obj/item/card/id/ert/Janitor/Initialize()
+/obj/item/card/id/ert/Janitor/Initialize(mapload)
 	access = get_all_accesses()
 	. = ..()
 
@@ -767,7 +792,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Clown ERT"
 	originalassignment = "Clown ERT"
 
-/obj/item/card/id/ert/clown/Initialize()
+/obj/item/card/id/ert/clown/Initialize(mapload)
 	access = get_all_accesses()
 	. = ..()
 
@@ -876,7 +901,7 @@ update_label("John Doe", "Clowny")
 	var/department_name = ACCOUNT_CIV_NAME
 	registered_age = null
 
-/obj/item/card/id/departmental_budget/Initialize()
+/obj/item/card/id/departmental_budget/Initialize(mapload)
 	. = ..()
 	var/datum/bank_account/B = SSeconomy.get_dep_account(department_ID)
 	if(B)

@@ -137,6 +137,7 @@
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
+#define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
 #define TRAIT_DEAF				"deaf"
@@ -226,6 +227,8 @@
 #define TRAIT_BOOZE_SLIDER      "booze-slider"
 #define TRAIT_QUICK_CARRY		"quick-carry"
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
+#define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_STRONG_GRIP		"strong-grip"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
@@ -268,6 +271,8 @@
 #define TRAIT_MAGICALLY_PHASED "magically_phased"
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
+/// BALD!!!
+#define TRAIT_BALD "bald"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
@@ -283,6 +288,10 @@
 // item traits
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+/// Properly wielded two handed item
+#define TRAIT_WIELDED "wielded"
+/// The items needs two hands to be carried
+#define TRAIT_NEEDS_TWO_HANDS "needstwohands"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 
@@ -347,6 +356,7 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 /// trait associated to being held in a chokehold
 #define CHOKEHOLD_TRAIT "chokehold"
+#define CRYO_TRAIT "cryo_trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -393,6 +403,8 @@
 #define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+/// Source trait for Monster Hunter-related traits
+#define HUNTER_TRAIT "monsterhunter_trait"
 /// Source trait during a Frenzy
 #define FRENZY_TRAIT "frenzy_trait"
 /// Source trait while Feeding
@@ -402,6 +414,8 @@
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
+#define WRIST_STRAP_TRAIT "wrist_strap"
+#define ECHOLOCATION_TRAIT "echolocation_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -411,7 +425,6 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
-#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"
 
 //important_recursive_contents traits
 /*

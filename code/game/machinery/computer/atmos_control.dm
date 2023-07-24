@@ -42,8 +42,9 @@
 	name = "incinerator chamber gas sensor"
 	id_tag = ATMOS_GAS_MONITOR_SENSOR_INCINERATOR
 
-/obj/machinery/air_sensor/update_icon()
-		icon_state = "gsensor[on]"
+/obj/machinery/air_sensor/update_icon_state()
+	. = ..()
+	icon_state = "gsensor[on]"
 
 /obj/machinery/air_sensor/process_atmos()
 	if(on)
@@ -71,7 +72,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/Initialize()
+/obj/machinery/air_sensor/Initialize(mapload)
 	. = ..()
 	SSair.atmos_machinery += src
 	set_frequency(frequency)
@@ -112,7 +113,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 
 	light_color = LIGHT_COLOR_CYAN
 
-/obj/machinery/computer/atmos_control/Initialize()
+/obj/machinery/computer/atmos_control/Initialize(mapload)
 	. = ..()
 	GLOB.atmos_air_controllers += src
 	set_frequency(frequency)

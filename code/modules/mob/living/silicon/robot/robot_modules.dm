@@ -40,7 +40,7 @@
 
 	var/obj/item/hat // Keeps track of the hat while transforming, to attempt to place back on the borg's head
 
-/obj/item/robot_module/Initialize()
+/obj/item/robot_module/Initialize(mapload)
 	. = ..()
 	for(var/i in basic_modules)
 		var/obj/item/I = new i(src)
@@ -82,7 +82,7 @@
 		if(!(m in R.held_items))
 			. += m
 
-/obj/item/robot_module/proc/get_or_create_estorage(var/storage_type)
+/obj/item/robot_module/proc/get_or_create_estorage(storage_type)
 	for(var/datum/robot_energy_storage/S in storages)
 		if(istype(S, storage_type))
 			return S
@@ -153,7 +153,7 @@
 			var/obj/item/assembly/flash/F = I
 			F.times_used = 0
 			F.burnt_out = FALSE
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 		else if(istype(I, /obj/item/melee/baton))
 			var/obj/item/melee/baton/B = I
 			if(B.cell)
@@ -292,7 +292,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/borghypo,
+		/obj/item/reagent_containers/borghypo/medical,
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
@@ -309,9 +309,9 @@
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/stack/medical/bone_gel/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+		/obj/item/borg_snack_dispenser/medical)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
-	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
 		/obj/item/clockwork/weapon/ratvarian_spear)
@@ -336,6 +336,7 @@
 		/obj/item/multitool/cyborg,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
+		/obj/item/gripper/engineering,
 		/obj/item/geiger_counter/cyborg,
 		/obj/item/assembly/signaler/cyborg,
 		/obj/item/areaeditor/blueprints/cyborg,
@@ -389,7 +390,7 @@
 		if(T.cell.charge < T.cell.maxcharge)
 			var/obj/item/ammo_casing/energy/S = T.ammo_type[T.select]
 			T.cell.give(S.e_cost * coeff)
-			T.update_icon()
+			T.update_appearance(UPDATE_ICON)
 		else
 			T.charge_timer = 0
 
@@ -397,7 +398,7 @@
 	name = "Peacekeeper"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
-		/obj/item/rsf/cookiesynth,
+		/obj/item/borg_snack_dispenser/peacekeeper,
 		/obj/item/harmalarm,
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
@@ -486,7 +487,7 @@
 		/obj/item/lipstick/purple,
 		/obj/item/holosign_creator/clown/cyborg, //Evil
 		/obj/item/borg/cyborghug/peacekeeper,
-		/obj/item/borg/lollipop/clown,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/reagent_containers/borghypo/clown,
 		/obj/item/extinguisher/mini)
@@ -520,7 +521,7 @@
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		/obj/item/reagent_containers/borghypo/borgshaker,
-		/obj/item/borg/lollipop,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/reagent_containers/glass/rag,
 		/obj/item/soap/infinite)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
@@ -637,7 +638,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/twohanded/shockpaddles/syndicate,
+		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
 		/obj/item/retractor,
 		/obj/item/hemostat,
@@ -677,6 +678,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/wirecutters/cyborg,
 		/obj/item/multitool/cyborg,
+		/obj/item/gripper/engineering,
 		/obj/item/stack/sheet/metal/cyborg,
 		/obj/item/stack/sheet/glass/cyborg,
 		/obj/item/stack/sheet/rglass/cyborg,
@@ -704,7 +706,7 @@
 	var/recharge_rate = 1000
 	var/energy
 
-/datum/robot_energy_storage/New(var/obj/item/robot_module/R = null)
+/datum/robot_energy_storage/New(obj/item/robot_module/R = null)
 	energy = max_energy
 	if(R)
 		R.storages |= src

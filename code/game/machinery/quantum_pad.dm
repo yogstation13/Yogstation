@@ -20,7 +20,7 @@
 	var/map_pad_id = "" as text //what's my name
 	var/map_pad_link_id = "" as text //who's my friend
 
-/obj/machinery/quantumpad/Initialize()
+/obj/machinery/quantumpad/Initialize(mapload)
 	. = ..()
 	if(map_pad_id)
 		mapped_quantum_pads[map_pad_id] = src
@@ -161,9 +161,9 @@
 			//target_pad.sparks()
 
 			flick("qpad-beam", src)
-			playsound(get_turf(src), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+			playsound(get_turf(src), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff_exponent = 5)
 			flick("qpad-beam", target_pad)
-			playsound(get_turf(target_pad), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+			playsound(get_turf(target_pad), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff_exponent = 5)
 			for(var/atom/movable/ROI in get_turf(src))
 				if(QDELETED(ROI))
 					continue //sleeps in CHECK_TICK

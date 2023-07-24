@@ -20,8 +20,8 @@
 	var/static/list/buyable_items = list()
 	var/list/tags = list()
 
-/obj/item/gangtool/Initialize()
-	update_icon()
+/obj/item/gangtool/Initialize(mapload)
+	update_appearance(UPDATE_ICON)
 	if(buyable_items.len)
 		return ..()
 	for(var/i in subtypesof(/datum/gang_item))
@@ -138,12 +138,12 @@
 		recall(usr)
 	attack_self(usr)
 
-/obj/item/gangtool/update_icon()
-	overlays.Cut()
+/obj/item/gangtool/update_overlays()
+	. = ..()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)
 		I.color = gang.color
-	overlays.Add(I)
+	. += I
 
 /obj/item/gangtool/proc/ping_gang(mob/user)
 	if(!can_use(user))
@@ -174,7 +174,7 @@
 	if(G)
 		gang = G.gang
 		gang.gangtools += src
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(!(user.mind in gang.leaders) && promotable)
 			G.promote()
 			free_pen = TRUE

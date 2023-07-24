@@ -18,7 +18,7 @@
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = COLOR_RED
 
-/mob/camera/aiEye/Initialize()
+/mob/camera/aiEye/Initialize(mapload)
 	. = ..()
 	GLOB.aiEyes += src
 	icon_state = "ai_camera[GLOB.ai_list.len % 3]" // Yogs -- multicoloured AI eyes

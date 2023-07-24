@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/completed = 0					//currently only used for custom objectives.
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
 
-/datum/objective/New(var/text)
+/datum/objective/New(text)
 	GLOB.objectives += src
 	if(text)
 		explanation_text = text
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
-			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
+			if(possible_target.antag_datums || !(guy.mind.quiet_round))
 				if (!(possible_target in blacklist))
 					possible_targets += possible_target//yogs indent
 			//yogs end
@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
 			var/mob/living/carbon/human/H = receiver.current
-			var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
+			var/list/slots = list("backpack" = ITEM_SLOT_BACKPACK)
 			for(var/eq_path in special_equipment)
 				var/obj/O = new eq_path
 				H.equip_in_one_of_slots(O, slots)
@@ -583,8 +583,11 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = "Free Objective."
 
 /datum/objective/escape/escape_with_identity/check_completion()
-	if(..())
+	. = ..()
+	if(completed)
 		return TRUE
+	if(!.)
+		return
 	if(!target || !target_real_name)
 		return TRUE
 	var/list/datum/mind/owners = get_owners()
@@ -681,7 +684,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(!is_unique_objective(possible_item.targetitem,dupe_search_range))
 				continue
 			for(var/datum/mind/M in owners)
-				if(M.current.mind.assigned_role in possible_item.excludefromjob)
+				if(M.assigned_role in possible_item.excludefromjob)
 					continue check_items
 			approved_targets += possible_item
 	return set_target(pick(approved_targets))

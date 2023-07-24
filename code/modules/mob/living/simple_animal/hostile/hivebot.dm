@@ -38,7 +38,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/hostile/hivebot/Initialize()
+/mob/living/simple_animal/hostile/hivebot/Initialize(mapload)
 	. = ..()
 	deathmessage = "[src] blows apart!"
 

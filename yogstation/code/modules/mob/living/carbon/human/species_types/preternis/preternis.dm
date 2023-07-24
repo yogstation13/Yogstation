@@ -14,7 +14,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
-	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
+	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
@@ -23,15 +23,14 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 0.9 //Have you ever punched a metal plate?
+	process_flags = ORGANIC | SYNTHETIC
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
-	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
+	stunmod = 1.2 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
-	punchdamagelow = 2 //if it hits you, it's always gonna hurt
 	punchdamagehigh = 8 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
@@ -78,6 +77,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
+	RegisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(attackslowdown))
+
 	if(ishuman(C))
 		maglock = new
 		maglock.Grant(C)
@@ -95,8 +96,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 		
+	UnregisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK)
+
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
-	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
+	if(empproof)
+		empproof.RemoveComponent()//remove emp proof if they stop being a preternis
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
@@ -168,9 +172,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.reagents.has_reagent(/datum/reagent/oil))
-		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
@@ -237,8 +238,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
+		H.clear_stamina_regen()
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.adjust_jitter(100 SECONDS)
+		H.set_jitter_if_lower(100 SECONDS)
 		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
@@ -272,7 +274,15 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
+/datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
+	if(!ispreternis(user) || !proximity_flag || !ishuman(target))
+		return	
+	var/mob/living/carbon/human/H = user
+	var/obj/item/weapon = H.get_active_held_item()
+	if(weapon && istype(weapon) && weapon.force)
+		H.next_move += 2 //adds 0.2 second delay to weapon combat
+
+/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
 	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
 		return	

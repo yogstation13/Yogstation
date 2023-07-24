@@ -46,6 +46,10 @@
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			. += "The panel is open."
 
+/obj/structure/particle_accelerator/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
+
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = PA_CONSTRUCTION_UNSECURED
 	if(master)
@@ -53,11 +57,6 @@
 		master.assembled = 0
 		master = null
 	return ..()
-
-/obj/structure/particle_accelerator/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
-
 
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
 	if(user.a_intent == INTENT_HARM)
@@ -107,7 +106,7 @@
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
 
 	update_state()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
@@ -122,7 +121,8 @@
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 
 
-/obj/structure/particle_accelerator/update_icon()
+/obj/structure/particle_accelerator/update_icon_state()
+	. = ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)
 			icon_state="[reference]"

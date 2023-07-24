@@ -31,7 +31,7 @@
 	movement_type = FLYING
 	var/time_to_next_roar = 0
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
 	alpha = 0
@@ -54,12 +54,12 @@
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
 	time_to_next_roar = world.time + 30 SECONDS
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Life()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(time_to_next_roar + 10 SECONDS <= world.time) //gives time to roar manually if you like want to do that
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
 	if(time_to_next_roar <= world.time)
 		roar()
@@ -71,7 +71,7 @@
 	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 50, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
-			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 25, FALSE, falloff = 5)
+			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 25, FALSE, falloff_exponent = 5)
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF

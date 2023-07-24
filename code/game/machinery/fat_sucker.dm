@@ -27,10 +27,10 @@
 	"Unsaturated fat, that is monounsaturated fats, polyunsaturated fats and omega-3 fatty acids, is found in plant foods and fish." \
 	)
 
-/obj/machinery/fat_sucker/Initialize()
+/obj/machinery/fat_sucker/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src),  FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/fat_sucker/RefreshParts()
 	..()
@@ -59,7 +59,7 @@
 			return
 		to_chat(occupant, span_notice("You enter [src]"))
 		addtimer(CALLBACK(src, PROC_REF(start_extracting)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/fat_sucker/open_machine(mob/user)
 	make_meat()
@@ -106,26 +106,26 @@
 	free_exit = !free_exit
 	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
 
-/obj/machinery/fat_sucker/update_icon()
-	overlays.Cut()
+/obj/machinery/fat_sucker/update_overlays()
+	. = ..()
 	if(!state_open)
 		if(processing)
-			overlays += "[icon_state]_door_on"
-			overlays += "[icon_state]_stack"
-			overlays += "[icon_state]_smoke"
-			overlays += "[icon_state]_green"
+			. += "[icon_state]_door_on"
+			. += "[icon_state]_stack"
+			. += "[icon_state]_smoke"
+			. += "[icon_state]_green"
 		else
-			overlays += "[icon_state]_door_off"
+			. += "[icon_state]_door_off"
 			if(occupant)
 				if(powered(AREA_USAGE_EQUIP))
-					overlays += "[icon_state]_stack"
-					overlays += "[icon_state]_yellow"
+					. += "[icon_state]_stack"
+					. += "[icon_state]_yellow"
 			else
-				overlays += "[icon_state]_red"
+				. += "[icon_state]_red"
 	else if(powered(AREA_USAGE_EQUIP))
-		overlays += "[icon_state]_red"
+		. += "[icon_state]_red"
 	if(panel_open)
-		overlays += "[icon_state]_panel"
+		. += "[icon_state]_panel"
 
 /obj/machinery/fat_sucker/process(delta_time)
 	if(!processing)
@@ -158,7 +158,7 @@
 		if(C.nutrition > start_at)
 			processing = TRUE
 			soundloop.start()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			set_light(2, 1, "#ff0000")
 		else
 			say("Subject not fat enough.")
@@ -195,7 +195,7 @@
 		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	return FALSE
 

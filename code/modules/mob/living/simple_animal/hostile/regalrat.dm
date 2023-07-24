@@ -30,7 +30,7 @@
 	var/opening_airlock = FALSE
 	///Number assigned to rats and mice, checked when determining infighting.
 
-/mob/living/simple_animal/hostile/regalrat/Initialize()
+/mob/living/simple_animal/hostile/regalrat/Initialize(mapload)
 	. = ..()
 	riot = new /datum/action/cooldown/riot
 	domain = new /datum/action/cooldown/domain
@@ -109,12 +109,9 @@
 //		/datum/pet_command/point_targetting/attack/glockroach
 //	)
 
-/datum/action/cooldown/riot/Trigger()
-	. = ..()
-	if(!.)
-		return
+/datum/action/cooldown/riot/Activate()
 	if(!isopenturf(owner.loc))
-		to_chat(owner,"<span class='warning'>You can't use raise soldiers while in an object!</span>")
+		to_chat(owner, span_warning("You can't use raise soldiers while in an object!"))
 		return
 	var/cap = CONFIG_GET(number/ratcap)
 	var/something_from_nothing = FALSE
@@ -171,7 +168,7 @@
 			new /obj/effect/decal/cleanable/dirt(T)
 	StartCooldown()
 
-/datum/action/cooldown/domain/Activate(atom/target)
+/datum/action/cooldown/domain/Activate()
 	StartCooldown(10 SECONDS)
 	domain()
 	StartCooldown()
@@ -276,7 +273,7 @@
 /mob/living/simple_animal/hostile/regalrat/controlled
 	name = "regal rat"
 
-/mob/living/simple_animal/hostile/regalrat/controlled/Initialize()
+/mob/living/simple_animal/hostile/regalrat/controlled/Initialize(mapload)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(get_player))
 

@@ -73,7 +73,7 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
+/obj/machinery/proc/powered(chan = -1) // defaults to power_channel
 	if(!loc)
 		return FALSE
 	if(!use_power)
@@ -113,6 +113,7 @@
   */
 /obj/machinery/proc/power_change()
 	if(stat & BROKEN)
+		update_appearance(UPDATE_ICON)
 		return
 	if(powered(power_channel))
 		if(stat & NOPOWER)
@@ -124,7 +125,7 @@
 			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
 			. = TRUE
 		stat |= NOPOWER
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/power/proc/connect_to_network()

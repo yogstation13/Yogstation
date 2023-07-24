@@ -16,7 +16,7 @@
 	var/arrowtype = "magic"
 	var/can_requiem = TRUE
 
-/obj/item/stand_arrow/Initialize()
+/obj/item/stand_arrow/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list += src
 

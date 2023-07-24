@@ -361,7 +361,7 @@
 		var/datum/data/record/S = new()
 		S.fields["id"]			= id
 		S.fields["name"]		= record_name
-		S.fields["criminal"]	= "None"
+		S.fields["criminal"]	= WANTED_NONE
 		S.fields["citation"]	= list()
 		S.fields["crimes"]		= list()
 		S.fields["comments"]	= list()

@@ -16,11 +16,6 @@
 	var/clawfootstep = null
 	var/heavyfootstep = null
 
-/turf/open/ComponentInitialize()
-	. = ..()
-	if(wet)
-		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
-
 //direction is direction of travel of A
 /turf/open/zPassIn(atom/movable/A, direction, turf/source)
 	return (direction == DOWN)
@@ -91,7 +86,7 @@
 	heavyfootstep = FOOTSTEP_LAVA
 	tiled_dirt = FALSE
 
-/turf/open/indestructible/necropolis/Initialize()
+/turf/open/indestructible/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -319,10 +314,10 @@
 	light_color = "#AAD84B"
 	color = "#53003f"
 
-/turf/open/floor/grass/fairy/Initialize()
+/turf/open/floor/grass/fairy/Initialize(mapload)
 	. = ..()
 	icon_state = "fairygrass[rand(1,4)]"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
@@ -448,7 +443,7 @@
 /turf/open/indestructible/brazil/necropolis
 	icon_state = "necro1"
 
-/turf/open/indestructible/brazil/necropolis/Initialize()
+/turf/open/indestructible/brazil/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"

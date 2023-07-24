@@ -10,7 +10,7 @@
 
 	gamemode_blacklist = list("nuclear","wizard","revolution","abduction","infiltration","gang","cult","clockcult","darkspawn","dynamic")
 
-/datum/round_event_control/infiltrators/canSpawnEvent(var/players_amt, var/gamemode)
+/datum/round_event_control/infiltrators/canSpawnEvent(players_amt, gamemode)
 	. = ..()
 	if(SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE) // Don't send infiltrators if the shuttle is coming!
 		return FALSE

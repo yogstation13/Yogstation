@@ -30,7 +30,7 @@
 	/// this text will show on the tgui menu when picking the nullrod form they want. should give a better idea of the nullrod's gimmick or quirks without giving away numbers 
 	var/additional_desc = "How are you seeing this? This is the default Nullrod bonus description. I makey a mistakey."
 
-/obj/item/nullrod/Initialize()
+/obj/item/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
@@ -212,7 +212,7 @@
 	menutab = MENU_WEAPON
 	additional_desc = "The cutting edge vibrates rapidly enabling it to cut cleanly through the unrighteous, no matter what armor or form they hide behind."
 
-/obj/item/nullrod/vibro/Initialize()
+/obj/item/nullrod/vibro/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 70, 110) //the harvest gives a high bonus chance
 
@@ -337,7 +337,7 @@
 	menutab = MENU_WEAPON
 	additional_desc = "A holy weapon, capable at meting out righteousness from a distance."
 	
-/obj/item/nullrod/whip/Initialize()
+/obj/item/nullrod/whip/Initialize(mapload)
 	. = ..()
 	weapon_stats[REACH] = 4 //closest to a ranged weapon chaplain should ever get (that or maybe a throwing weapon)
 
@@ -389,48 +389,33 @@
 /obj/item/nullrod/tribal_knife/process()
 	slowdown = rand(-2, 2)
 
-/obj/item/nullrod/hammer //this doesn't actually get used, it's more of a visual to select the actual nullrod
+/obj/item/nullrod/hammer
 	name = "relic war hammer"
 	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammer"
 	item_state = "hammer"
+	base_icon_state = "hammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
+	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
 	additional_desc = "Bonk the sinners."
 
-/obj/item/nullrod/hammer/equipped(mob/user, slot, initial) //can't do it on initialize because it initializes before getting put in hands
+/obj/item/nullrod/hammer/Initialize(mapload)
 	. = ..()
-	var/obj/item/twohanded/required/nullrod/hammah = new /obj/item/twohanded/required/nullrod(src)
-	user.drop_all_held_items()
-	user.put_in_active_hand(hammah)
-	qdel(src)//lemme just delete the nullrod you just selected
+	AddComponent(/datum/component/two_handed, \
+		require_twohands = TRUE, \
+	)
 
-/obj/item/twohanded/required/nullrod
-	name = "relic war hammer"
-	desc = "This war hammer cost the chaplain forty thousand space dollars."
-	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "hammer"
-	item_state = "hammer"
-	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	slot_flags = ITEM_SLOT_BACK
-	w_class = WEIGHT_CLASS_HUGE
-	force = 18 //it's not quite a baseball bat
-	attack_verb = list("smashed", "bashed", "hammered", "crunched", "clobbered")
-	sharpness = SHARP_NONE
-
-/obj/item/twohanded/required/nullrod/Initialize()
-	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE) //trust me, this is better than re-coding two-handed weapons
-
-/obj/item/twohanded/required/nullrod/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallsplat
+/obj/item/nullrod/hammer/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallsplat
 	. = ..()
 	if(M == user)
+		return
+	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		return
 	var/atom/throw_target = get_edge_target_turf(M, user.dir)
 	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
@@ -439,7 +424,7 @@
 		distance = 50 //hehe funny hallway launch
 	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), M))
 
-/obj/item/twohanded/required/nullrod/proc/afterimpact(mob/living/M)
+/obj/item/nullrod/hammer/proc/afterimpact(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
 
 /obj/item/nullrod/dualsword
@@ -497,7 +482,7 @@
 		user.balloon_alert(user, "you unsheathe \the [src].")
 		playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
 		swords = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/nullrod/dualsword/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -511,9 +496,9 @@
 
 		user.balloon_alert(user, "You sheathe \the [src].")
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		
-/obj/item/nullrod/dualsword/update_icon()
+/obj/item/nullrod/dualsword/update_icon_state()
 	. = ..()
 	item_state = swords ? "fulldual" : "emptydual"
 	icon_state = item_state
@@ -566,7 +551,7 @@
 			sheath.swordleft.forceMove(sheath)
 		if(!sheath.swords)
 			user.balloon_alert(user, "you sheathe \the [sheath].")
-			sheath.update_icon()
+			sheath.update_appearance(UPDATE_ICON)
 			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		sheath.swords = TRUE
 	
@@ -593,7 +578,7 @@
 	menutab = MENU_ARM
 	additional_desc = "Give up your hand to God and let it be the instrument of his will."
 
-/obj/item/nullrod/godhand/Initialize()
+/obj/item/nullrod/godhand/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
@@ -617,7 +602,7 @@
 	menutab = MENU_ARM
 	additional_desc = "Do you really need TWO arms? Consider one arm and a chainsaw arm."
 
-/obj/item/nullrod/chainsaw/Initialize()
+/obj/item/nullrod/chainsaw/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
@@ -640,7 +625,7 @@
 	menutab = MENU_ARM
 	additional_desc = "Channel all your sins into one arm and watch it twist and contort into an instrument of pure violence. Use it to protect the innocent as your penance."
 
-/obj/item/nullrod/armblade/Initialize()
+/obj/item/nullrod/armblade/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
@@ -711,7 +696,7 @@
 
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == SLOT_GLASSES)
+	if(hud_type && slot == ITEM_SLOT_EYES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.show_to(user)
 
@@ -739,7 +724,7 @@
 	
 /obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == SLOT_NECK)
+	if(hud_type && slot == ITEM_SLOT_NECK)
 		to_chat(user, "Sensory augmentation initiated")
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.show_to(user)
@@ -777,7 +762,7 @@
 
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
 	. = ..()
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 
 /obj/item/nullrod/hermes/dropped(mob/user, silent)
@@ -799,7 +784,7 @@
 	icon_state = "quantum_sparks"
 	duration = 6
 
-/obj/effect/temp_visual/flowers/Initialize()
+/obj/effect/temp_visual/flowers/Initialize(mapload)
 	. = ..()
 	animate(src, alpha = 0, time = duration - 1)
 
@@ -976,7 +961,7 @@
 	menutab = MENU_MISC
 	additional_desc = "This banana is comedically sharp."
 	
-/obj/item/nullrod/clown/Initialize()
+/obj/item/nullrod/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 40)
 
@@ -1187,7 +1172,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/obj/item/nullrod/talking/sword //the sword they're part of
 	var/datum/action/cooldown/spell/nullrod_drop/button //suicide button so they can return to being an item if need be
 
-/mob/living/simple_animal/nullrod/Initialize()
+/mob/living/simple_animal/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 	button = new(src)

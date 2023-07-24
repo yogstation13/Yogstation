@@ -17,7 +17,7 @@
 		var/obj/structure/blob/newB = B.expand(null, null, 0)
 		if(newB)
 			newB.obj_integrity = B.obj_integrity - damage
-			newB.update_icon()
+			newB.update_appearance(UPDATE_ICON)
 	return ..()
 
 
@@ -30,6 +30,6 @@
 	taste_description = "duplication"
 	color = "#7B5A57"
 
-/datum/reagent/blob/replicating_foam/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/O)
+/datum/reagent/blob/replicating_foam/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message, permeability, mob/camera/blob/O)
 	reac_volume = ..()
 	M.apply_damage(0.7*reac_volume, BRUTE, wound_bonus=CANT_WOUND)

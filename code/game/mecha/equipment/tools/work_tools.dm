@@ -1,3 +1,6 @@
+#define DECONSTRUCT 0
+#define WALL 1
+#define AIRLOCK 2
 
 //Hydraulic clamp, Kill clamp, Extinguisher, RCD, Cable layer.
 
@@ -188,7 +191,7 @@
 	energy_drain = 0
 	range = MECHA_MELEE|MECHA_RANGED
 
-/obj/item/mecha_parts/mecha_equipment/extinguisher/Initialize()
+/obj/item/mecha_parts/mecha_equipment/extinguisher/Initialize(mapload)
 	. = ..()
 	create_reagents(1000)
 	reagents.add_reagent(/datum/reagent/water, 1000)
@@ -255,10 +258,10 @@
 	energy_drain = 50
 	range = MECHA_MELEE|MECHA_RANGED
 	item_flags = NO_MAT_REDEMPTION
-	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
+	var/mode = DECONSTRUCT
 	var/play_sound = TRUE //so fancy mime RCD can be silent
 
-/obj/item/mecha_parts/mecha_equipment/rcd/Initialize()
+/obj/item/mecha_parts/mecha_equipment/rcd/Initialize(mapload)
 	. = ..()
 	GLOB.rcd_list += src
 
@@ -278,8 +281,11 @@
 		playsound(chassis, 'sound/machines/click.ogg', 50, 1)
 
 	switch(mode)
-		if(0)
+		if(DECONSTRUCT)
 			if(iswallturf(target))
+				if(istype(target, /turf/closed/wall/r_wall))
+					occupant_message("Wall reinforcements are too complex for deconstruction, must be deconstructed manually.")
+					return
 				energy_drain = 500
 				var/turf/closed/wall/W = target
 				occupant_message("Deconstructing [W]...")
@@ -291,6 +297,9 @@
 				if(target == /turf/closed/wall/r_wall)
 					energy_drain = 2000
 			else if(isfloorturf(target))
+				if(istype(target, /turf/open/floor/engine))
+					occupant_message("Floor reinforcements prevent deconstruction, remove before continuing.")
+					return
 				energy_drain = 100
 				var/turf/open/floor/F = target
 				occupant_message("Deconstructing [F]...")
@@ -300,6 +309,10 @@
 					if(play_sound)
 						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 			else if (istype(target, /obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/A = target
+				if(A.damage_deflection > 21)
+					occupant_message("Airlock too reinforced for deconstruction, remove reinforcements before continuing.")
+					return
 				energy_drain = 500
 				occupant_message("Deconstructing [target]...")
 				if(do_after_cooldown(target))
@@ -307,7 +320,7 @@
 					qdel(target)
 					if(play_sound)
 						playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
-		if(1)
+		if(WALL)
 			if(isspaceturf(target))
 				var/turf/open/space/S = target
 				occupant_message("Building Floor...")
@@ -325,7 +338,7 @@
 					if(play_sound)
 						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
-		if(2)
+		if(AIRLOCK)
 			if(isfloorturf(target))
 				energy_drain = 750
 				occupant_message("Building Airlock...")
@@ -339,7 +352,7 @@
 
 
 
-/obj/item/mecha_parts/mecha_equipment/rcd/do_after_cooldown(var/atom/target)
+/obj/item/mecha_parts/mecha_equipment/rcd/do_after_cooldown(atom/target)
 	. = ..()
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Topic(href,href_list)
@@ -378,7 +391,7 @@
 	var/obj/item/stack/cable_coil/cable
 	var/max_cable = 1000
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/Initialize()
+/obj/item/mecha_parts/mecha_equipment/cable_layer/Initialize(mapload)
 	. = ..()
 	cable = new(src, 0)
 
@@ -402,7 +415,7 @@
 		chassis.events.clearEvent("onMove",event)
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/action(var/obj/item/stack/cable_coil/target)
+/obj/item/mecha_parts/mecha_equipment/cable_layer/action(obj/item/stack/cable_coil/target)
 	if(!action_checks(target))
 		return
 	if(istype(target) && target.amount)
@@ -462,7 +475,7 @@
 /obj/item/mecha_parts/mecha_equipment/cable_layer/proc/reset()
 	last_piece = null
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/proc/dismantleFloor(var/turf/new_turf)
+/obj/item/mecha_parts/mecha_equipment/cable_layer/proc/dismantle_floor(turf/new_turf)
 	if(isfloorturf(new_turf))
 		var/turf/open/floor/T = new_turf
 		if(!isplatingturf(T))
@@ -471,8 +484,8 @@
 			T.make_plating()
 	return !new_turf.intact
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/proc/layCable(var/turf/new_turf)
-	if(equip_ready || !istype(new_turf) || !dismantleFloor(new_turf))
+/obj/item/mecha_parts/mecha_equipment/cable_layer/proc/layCable(turf/new_turf)
+	if(equip_ready || !istype(new_turf) || !dismantle_floor(new_turf))
 		return reset()
 	var/fdirn = turn(chassis.dir,180)
 	for(var/obj/structure/cable/LC in new_turf)		// check to make sure there's not a cable there already
@@ -483,13 +496,13 @@
 	var/obj/structure/cable/NC = new(new_turf, "red")
 	NC.d1 = 0
 	NC.d2 = fdirn
-	NC.update_icon()
+	NC.update_appearance(UPDATE_ICON)
 
 	var/datum/powernet/PN
 	if(last_piece && last_piece.d2 != chassis.dir)
 		last_piece.d1 = min(last_piece.d2, chassis.dir)
 		last_piece.d2 = max(last_piece.d2, chassis.dir)
-		last_piece.update_icon()
+		last_piece.update_appearance(UPDATE_ICON)
 		PN = last_piece.powernet
 
 	if(!PN)
@@ -561,3 +574,7 @@
 	qdel(M)
 	playsound(get_turf(N),'sound/items/ratchet.ogg',50,1)
 	return
+
+#undef DECONSTRUCT
+#undef WALL
+#undef AIRLOCK

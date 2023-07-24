@@ -18,7 +18,7 @@
 	var/recent_spin = 0
 	var/can_spin = TRUE
 
-/obj/item/gun/ballistic/revolver/Initialize()
+/obj/item/gun/ballistic/revolver/Initialize(mapload)
 	. = ..()
 	if(!can_spin)
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
@@ -181,8 +181,8 @@
 	..()
 	if(get_ammo(FALSE) > 0)
 		spin()
-	update_icon()
-	A.update_icon()
+	update_appearance(UPDATE_ICON)
+	A.update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/gun/ballistic/revolver/russian/attack_self(mob/user)

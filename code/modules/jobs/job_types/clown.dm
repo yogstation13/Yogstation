@@ -1,10 +1,8 @@
 /datum/job/clown
 	title = "Clown"
 	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
-	flag = CLOWN
 	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1

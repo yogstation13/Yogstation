@@ -38,7 +38,7 @@
 
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
-/obj/machinery/modular_computer/Initialize()
+/obj/machinery/modular_computer/Initialize(mapload)
 	. = ..()
 	cpu = new(src)
 	cpu.physical = src
@@ -75,8 +75,9 @@
 		return FALSE
 	return (cpu.emag_act(user))
 
-/obj/machinery/modular_computer/update_icon()
-	cpu.update_icon()
+/obj/machinery/modular_computer/update_icon(updates=ALL)
+	. = ..()
+	cpu.update_appearance(UPDATE_ICON)
 
 /obj/machinery/modular_computer/AltClick(mob/user)
 	if(cpu)
@@ -105,13 +106,13 @@
 		if(cpu)
 			cpu.shutdown_computer(0)
 	stat |= NOPOWER
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // Modular computers can have battery in them, we handle power in previous proc, so prevent this from messing it up for us.
 /obj/machinery/modular_computer/power_change()
 	if(cpu && cpu.use_power()) // If MC_CPU still has a power source, PC wouldn't go offline.
 		stat &= ~NOPOWER
-		update_icon()
+		update_appearance(UPDATE_ICON) //modPCs should be changed to use powered() instead.
 		return
 	. = ..()
 
@@ -119,7 +120,7 @@
 	if(cpu)
 		return cpu.screwdriver_act(user, tool)
 
-/obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
+/obj/machinery/modular_computer/attackby(obj/item/W as obj, mob/user)
 	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))
 		return cpu.attackby(W, user)
 	return ..()

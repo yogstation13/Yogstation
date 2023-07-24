@@ -26,7 +26,7 @@
 	can_send = FALSE
 	can_approve_requests = FALSE
 
-/obj/machinery/computer/cargo/Initialize()
+/obj/machinery/computer/cargo/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	contraband = board.contraband

@@ -60,9 +60,12 @@
 		target.mind.grab_ghost()
 	target.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
 	target.revive()
-	display_results(user, target, span_warning("You successfully reactivate [target]!"),
-		span_warning("[user] successfully reactivates [target]!"),
+	display_results(user, target, span_warning("You successfully reactivate [target]!"),\
+		span_warning("[user] successfully reactivates [target]!"),\
 		"[user] completes [target]'s reactivation.")
+	to_chat(target, span_danger("ERROR: Due to sudden system shutdown, this units Random Access Memory has been corrupted."))
+	to_chat(target, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+	log_combat(target, "was revived with memory loss")
 	return TRUE
 	
 /datum/surgery_step/revive_ipc/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)

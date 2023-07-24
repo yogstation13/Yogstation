@@ -162,7 +162,7 @@
 	if(user == resident)
 		if(welded)
 			welded = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		locked = FALSE
 		return TRUE
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
@@ -191,7 +191,7 @@
 			return
 		if(bloodsuckerdatum.my_clan.rank_up_type == BLOODSUCKER_RANK_UP_NORMAL)
 			bloodsuckerdatum.SpendRank()
-		/// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
+		// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
 		bloodsuckerdatum.check_begin_torpor()
 	return TRUE
 

@@ -37,7 +37,7 @@
 		L.ignite_mob()
 		arrow.flaming = FALSE
 
-	arrow.update_icon()
+	arrow.update_appearance(UPDATE_ICON)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(dropped || !ammo_type)
@@ -223,6 +223,8 @@
 	var/obj/item/embed_type = /obj/item/ammo_casing/reusable/arrow/energy
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
+	if(istype(target, /obj/structure/blob))
+		damage = damage / 2
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)

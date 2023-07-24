@@ -46,14 +46,15 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/flasher/update_icon()
-	if (powered())
-		if(bulb.burnt_out)
-			icon_state = "[base_state]1-p"
-		else
-			icon_state = "[base_state]1"
-	else
+/obj/machinery/flasher/update_icon_state()
+	. = ..()
+	if(!powered())
 		icon_state = "[base_state]1-p"
+		return
+	if(bulb.burnt_out)
+		icon_state = "[base_state]1-p"
+	else
+		icon_state = "[base_state]1"
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
@@ -162,7 +163,7 @@
 			new /obj/item/stack/sheet/metal (loc, 2)
 	qdel(src)
 
-/obj/machinery/flasher/portable/Initialize()
+/obj/machinery/flasher/portable/Initialize(mapload)
 	. = ..()
 	proximity_monitor = new(src, 0)
 
@@ -207,7 +208,7 @@
 	. = ..()
 	. += span_notice("Its channel ID is '[id]'.")
 
-/obj/item/wallframe/flasher/after_attach(var/obj/O)
+/obj/item/wallframe/flasher/after_attach(obj/O)
 	..()
 	var/obj/machinery/flasher/F = O
 	F.id = id

@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
 	to_chat(src, playstyle_string)
 
-/mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
+/mob/living/simple_animal/hostile/guardian/Life(seconds_per_tick = SSMOBS_DT, times_fired) //Dies if the summoner dies
 	. = ..()
 	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
 	med_hud_set_health()
@@ -506,7 +506,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		used = FALSE
 
 
-/obj/item/guardiancreator/proc/spawn_guardian(var/mob/living/user, var/key)
+/obj/item/guardiancreator/proc/spawn_guardian(mob/living/user, key)
 	var/guardiantype = "Standard"
 	if(random)
 		guardiantype = pick(possible_guardians)
@@ -636,8 +636,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
 "}
 
-/obj/item/paper/guides/antag/guardian/update_icon()
-	return
+/obj/item/paper/guides/antag/guardian/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/guides/antag/guardian/wizard
 	name = "Guardian Guide"

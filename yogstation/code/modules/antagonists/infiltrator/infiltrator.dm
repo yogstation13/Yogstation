@@ -37,7 +37,6 @@
 			H.fully_replace_character_name(H.real_name, new_name)
 			H.equipOutfit(/datum/outfit/infiltrator)
 	owner.store_memory("Do <B>NOT</B> kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!")
-	objectives |= infiltrator_team.objectives
 	. = ..()
 	if(send_to_spawnpoint)
 		move_to_spawnpoint()

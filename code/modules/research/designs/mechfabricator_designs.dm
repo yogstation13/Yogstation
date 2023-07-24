@@ -942,6 +942,15 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_snack_dispenser
+	name = "Cyborg Upgrade (Snack Dispenser)"
+	id = "borg_upgrade_snacks"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/snack_dispenser
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 2000)
+	construction_time = 40
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/boris_ai_controller
 	name = "B.O.R.I.S. AI-Cyborg Remote Control Module"
 	id = "borg_ai_control"
@@ -958,6 +967,15 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/rped
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_broomer
+	name = "Cyborg Upgrade (Experimental Push Broom)"
+	id = "borg_upgrade_broomer"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/broomer
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 500)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
@@ -1038,15 +1056,6 @@
 	construction_time = 100
 	category = list("IPC Components")
 
-/datum/design/ipc_lungs
-	name = "Cooling Radiator"
-	id = "ipc_lungs"
-	build_type = MECHFAB
-	build_path = /obj/item/organ/lungs/ipc
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
-	construction_time = 100
-	category = list("IPC Components")
-
 /datum/design/power_cord
 	name = "Recharging Electronics"
 	id = "power_cord"
@@ -1054,7 +1063,7 @@
 	build_path = /obj/item/organ/cyberimp/arm/power_cord
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
 	construction_time = 100
-	category = list("IPC Components") 
+	category = list("IPC Components")
 
 /datum/design/ipclimbs
 	build_type = MECHFAB

@@ -301,10 +301,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (prefs.unlock_content & DONOR_YOGS)
 		src.add_donator_verbs()
 	else
-		if(prefs.yogtoggles & QUIET_ROUND)
-			prefs.yogtoggles &= ~QUIET_ROUND
-			prefs.save_preferences()
-		
+		if(prefs.read_preference(/datum/preference/toggle/quiet_mode))
+			prefs.write_preference(/datum/preference/toggle/quiet_mode, FALSE)
+
 	. = ..()	//calls mob.Login()
 
 	if (byond_version >= 512)
@@ -331,7 +330,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
 
 	// Initialize tgui panel
-	tgui_panel.initialize()
+	tgui_panel.Initialize()
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 5 SECONDS)
 
@@ -437,7 +436,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 
-
+	update_ambience_pref()
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -508,6 +507,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+
+	SSambience.remove_ambience_client(src)
 
 	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
 	if(CL)
@@ -1038,7 +1039,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.read_preference(/datum/preference/toggle/auto_fit_viewport))
-		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS)) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(!void)
@@ -1081,7 +1082,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(statbrowser_ready)
 		return
 	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
-	tgui_panel.initialize()
+	tgui_panel.Initialize()
+
+/client/verb/reload_statpanel()
+	set name = "Reload Statpanel"
+	set category = "OOC"
+
+	usr << browse(file('html/statbrowser.html'), "window=statbrowser")
 
 /client/verb/stop_client_sounds()
 	set name = "Stop Sounds"
@@ -1090,3 +1097,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	SEND_SOUND(usr, sound(null))
 	tgui_panel?.stop_music()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds"))
+
+/client/proc/update_ambience_pref()
+	if(prefs.toggles & SOUND_AMBIENCE)
+		if(SSambience.ambience_listening_clients[src] > world.time)
+			return // If already properly set we don't want to reset the timer.
+		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
+	else
+		SSambience.ambience_listening_clients -= src

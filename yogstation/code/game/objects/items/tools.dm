@@ -9,7 +9,6 @@
 	item_state = "jawsoflife"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.7
@@ -67,7 +66,7 @@
 		to_chat(user,span_notice("Your servos whirr as the cutting head reconfigures into a prying head."))
 	else
 		to_chat(user, span_notice("You attach the pry jaws to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/jawsoflife/proc/transform_cutters(mob/user)
 	attack_verb = list("pinched", "nipped")
@@ -81,7 +80,7 @@
 		to_chat(user,span_notice("Your servos whirr as the prying head reconfigures into a cutting head."))
 	else
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //better handdrill
 /obj/item/handdrill
@@ -139,7 +138,7 @@
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into bolt mode."))
 	else
 		to_chat(user, span_notice("You attach the bolt driver bit to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/handdrill/proc/transform_screwdriver(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
@@ -151,7 +150,7 @@
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into screw mode."))
 	else
 		to_chat(user, span_notice("You attach the screw driver bit to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/jawsoflife/jimmy
 	name = "airlock jimmy"
@@ -162,6 +161,7 @@
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // Starting minimum value. Pump it up by using it up to the max
 	tool_behaviour = TOOL_CROWBAR
+	w_class = WEIGHT_CLASS_SMALL
 	var/pump_charge = 0
 	var/pump_max = 100
 	var/pump_min = 0

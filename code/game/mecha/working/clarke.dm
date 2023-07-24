@@ -21,7 +21,7 @@
 	var/obj/structure/ore_box/box
 	omnidirectional_attacks = TRUE
 
-/obj/mecha/working/clarke/Initialize()
+/obj/mecha/working/clarke/Initialize(mapload)
 	. = ..()
 	box = new /obj/structure/ore_box(src)
 	var/obj/item/mecha_parts/mecha_equipment/orebox_manager/ME = new(src)

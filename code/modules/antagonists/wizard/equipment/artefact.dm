@@ -22,7 +22,7 @@
 	var/rend_desc = "You should run now."
 	var/spawn_fast = 0 //if 1, ignores checking for mobs on loc before spawning
 
-/obj/item/veilrender/Initialize()
+/obj/item/veilrender/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80, 100)
 
@@ -45,7 +45,7 @@
 	var/spawn_amt_left = 20
 	var/spawn_fast = 0
 
-/obj/effect/rend/New(loc, var/spawn_type, var/spawn_amt, var/desc, var/spawn_fast)
+/obj/effect/rend/New(loc, spawn_type, spawn_amt, desc, spawn_fast)
 	src.spawn_path = spawn_type
 	src.spawn_amt_left = spawn_amt
 	src.desc = desc
@@ -267,12 +267,12 @@
 		H.dropItemToGround(I)
 
 	var/hat = pick(/obj/item/clothing/head/helmet/roman, /obj/item/clothing/head/helmet/roman/legionnaire)
-	H.equip_to_slot_or_del(new hat(H), SLOT_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/roman(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roman(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new hat(H), ITEM_SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/roman(H), ITEM_SLOT_ICLOTHING)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roman(H), ITEM_SLOT_FEET)
 	H.put_in_hands(new /obj/item/shield/riot/roman(H), TRUE)
 	H.put_in_hands(new /obj/item/claymore(H), TRUE)
-	H.equip_to_slot_or_del(new /obj/item/twohanded/spear(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/melee/spear(H), ITEM_SLOT_BACK)
 
 
 /obj/item/voodoo
@@ -471,6 +471,6 @@
 	duration = 40
 	pixel_x = 500
 
-/obj/effect/temp_visual/tornado/Initialize()
+/obj/effect/temp_visual/tornado/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_x = -500, time = 4 SECONDS)

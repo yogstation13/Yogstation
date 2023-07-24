@@ -23,6 +23,7 @@ GLOBAL_VAR(stormdamage)
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
+	var/can_end = FALSE //so it doesn't end during setup somehow
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
@@ -35,10 +36,9 @@ GLOBAL_VAR(stormdamage)
 		new /obj/structure/battle_bus(T)
 	else //please don't ever happen
 		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
-	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
-		if(!L.mind || !L.client)
-			if(isobserver(L) || !L.mind || !L.client)
-				continue
+	for(var/mob/L in GLOB.player_list)
+		if(!L.mind || !L.client || isobserver(L))
+			continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
 	return TRUE
@@ -55,6 +55,7 @@ GLOBAL_VAR(stormdamage)
 		if(!GLOB.thebattlebus) //Ruhoh.
 			virgin.current.forceMove(pick(GLOB.start_landmarks_list))
 			message_admins("There is no battle bus! Attempting to spawn players at random.")
+			log_game("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
@@ -66,20 +67,25 @@ GLOBAL_VAR(stormdamage)
     
 	if(!LAZYLEN(GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
+		log_game("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
 	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
 		W.req_access = list()
 		W.req_one_access = list()
 		W.locked = FALSE //no bolted either
+	addtimer(VARSET_CALLBACK(src, can_end, TRUE), 29 SECONDS) //let ending be possible
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
 	. = ..()
 	if(finished)
+		return
+	if(!can_end)
 		return
 	if(LAZYLEN(GLOB.player_list) <= 1) //It's a localhost testing
 		return
@@ -91,12 +97,17 @@ GLOBAL_VAR(stormdamage)
 	var/disqualified = 0 //keep track of everyone disqualified for log reasons
 
 	for(var/mob/living/player in GLOB.battleroyale_players)
+		if(QDELETED(player))
+			disqualified++
+			continue
 		if(player.stat == DEAD)
 			disqualified++
+			player.dust(TRUE, TRUE)
 			continue
 		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
 			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
+			player.dust(TRUE, TRUE)
 			continue
 		royalers += player //add everyone not disqualified for one reason or another to the new list
 
@@ -165,6 +176,13 @@ GLOBAL_VAR(stormdamage)
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
+/datum/game_mode/fortnite/proc/delete_armoury()
+	var/area/ai_monitored/security/armory/A = locate(/area/ai_monitored/security/armory) in GLOB.areas
+	for(var/obj/item/thing in A)
+		if(thing.anchored)//only target something that is possibly a weapon
+			continue
+		qdel(thing)
+
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
 	for(var/item in GLOB.battleroyale_armour)
 		GLOB.battleroyale_armour[item] ++
@@ -220,14 +238,18 @@ GLOBAL_VAR(stormdamage)
 		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_battleroyale(src))
-		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
-		gamer.gamer_life()
+/datum/antagonist/battleroyale/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your overwhelming swagness allows you to wield weapons!")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(gamer_life))
 
-/datum/antagonist/battleroyale/proc/gamer_life()
-	var/mob/living/carbon/human/tfue = owner.current
+/datum/antagonist/battleroyale/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/battleroyale/proc/gamer_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/human/tfue = source
 	if(tfue && isspaceturf(tfue.loc))
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
@@ -265,7 +287,7 @@ GLOBAL_VAR(stormdamage)
 		return
 	exit(user)
 
-/obj/structure/battle_bus/Initialize()
+/obj/structure/battle_bus/Initialize(mapload)
 	. = ..()
 	if(GLOB.thebattlebus)
 		qdel(src) //There can be ONLY ONE
@@ -282,7 +304,7 @@ GLOBAL_VAR(stormdamage)
 /obj/structure/battle_bus/relaymove(mob/living/user, direction)
 	exit(user)
 
-/obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
+/obj/structure/battle_bus/proc/exit(mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
 	Ltaker.update_sight()

@@ -29,10 +29,10 @@
 	user.set_suicide(TRUE)
 	user.suicide_log()
 
-/obj/item/assembly/signaler/Initialize()
+/obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
-
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)
@@ -44,10 +44,10 @@
 	signal()
 	return TRUE
 
-/obj/item/assembly/signaler/update_icon()
+/obj/item/assembly/signaler/update_icon(updates=ALL)
+	. = ..()
 	if(holder)
-		holder.update_icon()
-	return
+		holder.update_icon(updates)
 
 /obj/item/assembly/signaler/ui_status(mob/user)
 	if(is_secured(user))
@@ -104,9 +104,9 @@
 			else
 				idx++
 			label_color = label_colors[idx]
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/signaler/attackby(obj/item/W, mob/user, params)
 	if(issignaler(W))
@@ -116,7 +116,7 @@
 			set_frequency(signaler2.frequency)
 			// yogs start - signaller colors
 			label_color = signaler2.label_color
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			// yogs end
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()
@@ -240,3 +240,37 @@
 	if(ispAI(user))
 		return TRUE
 	. = ..()
+
+/**
+ * Button signaler
+ *
+ * Activated by attack_self instead of UI
+ *
+ * UI is instead opened by multitool
+ */
+/obj/item/assembly/signaler/button
+	name = "remote signaling button"
+	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Configured via multitool. Cannot receive signals."
+	icon = 'icons/obj/assemblies/new_assemblies.dmi'
+	icon_state = "radio"
+	item_state = "radio"
+
+/obj/item/assembly/signaler/button/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, span_notice("You can't use things!"))
+		return
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
+	if(!user)
+		return FALSE
+	activate()
+	pulse()
+	return TRUE
+
+/obj/item/assembly/signaler/button/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.set_machine(src)
+	interact(user)
+
+/obj/item/assembly/signaler/button/receive_signal(datum/signal/signal)
+	return

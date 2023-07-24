@@ -51,7 +51,7 @@
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/item/pda/aiPDA
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	GLOB.silicon_mobs += src
 	faction += "silicon"
@@ -59,6 +59,8 @@
 		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
+	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
+
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud

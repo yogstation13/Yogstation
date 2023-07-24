@@ -552,7 +552,7 @@
 	var/turf/drop = locate(coords_list[1], coords_list[2], coords_list[3])
 	setupView(RANGE_TURFS(3, drop))
 
-/datum/centcom_podlauncher/proc/setupView(var/list/visible_turfs)
+/datum/centcom_podlauncher/proc/setupView(list/visible_turfs)
 	var/list/bbox = get_bbox_of_atoms(visible_turfs)
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
@@ -714,7 +714,7 @@
 	if (isnull(target_turf))
 		return
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
-	toLaunch.update_icon()//we update_icon() here so that the door doesnt "flicker on" right after it lands
+	toLaunch.update_appearance(UPDATE_ICON)//we update_appearance(UPDATE_ICON) here so that the door doesnt "flicker on" right after it lands
 	var/shippingLane = GLOB.areas_by_type[/area/centcom/supplypod/podStorage]
 	toLaunch.forceMove(shippingLane)
 	if (launchClone) //We arent launching the actual items from the bay, rather we are creating clones and launching those
@@ -802,7 +802,7 @@
 		for (var/mob/living/M in whoDyin)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
 
-/datum/centcom_podlauncher/proc/loadData(var/list/dataToLoad)
+/datum/centcom_podlauncher/proc/loadData(list/dataToLoad)
 	bayNumber = dataToLoad["bayNumber"]
 	customDropoff = dataToLoad["customDropoff"]
 	renderLighting = dataToLoad["renderLighting"]

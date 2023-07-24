@@ -54,7 +54,7 @@
 	add_fingerprint(user)
 	if(opened && !wiresexposed && !issilicon(user))
 		if(cell)
-			cell.update_icon()
+			cell.update_appearance(UPDATE_ICON)
 			cell.add_fingerprint(user)
 			user.put_in_active_hand(cell)
 			to_chat(user, span_notice("You remove \the [cell]."))
@@ -193,7 +193,7 @@
 			if (stat != DEAD)
 				adjustBruteLoss(30)
 
-/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj, def_zone)
+/mob/living/silicon/robot/bullet_act(obj/item/projectile/Proj, def_zone)
 	. = ..()
 	updatehealth()
 	if(prob(75) && Proj.damage > 0)

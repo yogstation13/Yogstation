@@ -66,7 +66,7 @@
 	icon = 'icons/mob/easter.dmi'
 	icon_state = "basket"
 
-/obj/item/storage/bag/easterbasket/Initialize()
+/obj/item/storage/bag/easterbasket/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/egg, /obj/item/reagent_containers/food/snacks/chocolateegg, /obj/item/reagent_containers/food/snacks/boiledegg))
@@ -90,7 +90,7 @@
 	icon_state = "bunnyhead"
 	item_state = "bunnyhead"
 	desc = "Considerably more cute than 'Frank'."
-	slowdown = -1
+	slowdown = -0.3
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/suit/bunnysuit
@@ -98,7 +98,7 @@
 	desc = "Hop Hop Hop!"
 	icon_state = "bunnysuit"
 	item_state = "bunnysuit"
-	slowdown = -1
+	slowdown = -0.3
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
@@ -109,7 +109,7 @@
 /obj/item/reagent_containers/food/snacks/egg/loaded
 	containsPrize = TRUE
 
-/obj/item/reagent_containers/food/snacks/egg/loaded/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/loaded/Initialize(mapload)
 	. = ..()
 	var/eggcolor = pick("blue","green","mime","orange","purple","rainbow","red","yellow")
 	icon_state = "egg-[eggcolor]"
@@ -122,7 +122,7 @@
 	/obj/item/toy/balloon,
 	/obj/item/toy/gun,
 	/obj/item/toy/sword,
-	/obj/item/twohanded/vxtvulhammer/toy,
+	/obj/item/melee/vxtvulhammer/toy,
 	/obj/item/toy/foamblade,
 	/obj/item/toy/prize/ripley,
 	/obj/item/toy/prize/honk,

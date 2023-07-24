@@ -19,7 +19,7 @@
 		H.put_in_hands(new /obj/item/valentine)
 		var/obj/item/storage/backpack/b = locate() in H.contents
 		new /obj/item/reagent_containers/food/snacks/candyheart(b)
-		new /obj/item/storage/box/fancy/heart_box(b)
+		new /obj/item/storage/fancy/heart_box(b)
 
 	var/list/valentines = list()
 	for(var/mob/living/M in GLOB.player_list)
@@ -66,7 +66,7 @@
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/valentine/Initialize()
+/obj/item/valentine/Initialize(mapload)
 	. = ..()
 	message = pick(strings(VALENTINE_FILE, "valentines"))
 
@@ -106,7 +106,7 @@
 	list_reagents = list(/datum/reagent/consumable/sugar = 2)
 	junkiness = 5
 
-/obj/item/reagent_containers/food/snacks/candyheart/Initialize()
+/obj/item/reagent_containers/food/snacks/candyheart/Initialize(mapload)
 	. = ..()
 	desc = pick(strings(VALENTINE_FILE, "candyhearts"))
 	icon_state = pick("candyheart", "candyheart2", "candyheart3", "candyheart4")

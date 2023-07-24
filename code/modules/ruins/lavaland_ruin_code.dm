@@ -23,7 +23,7 @@
 	icon_state = "datadisk1"
 	max_blueprints = 1
 
-/obj/item/disk/design_disk/golem_shell/Initialize()
+/obj/item/disk/design_disk/golem_shell/Initialize(mapload)
 	. = ..()
 	var/datum/design/golem_shell/G = new
 	blueprints[1] = G
@@ -123,7 +123,7 @@
 
 /datum/outfit/lavaland_syndicate
 	name = "Lavaland Syndicate Agent"
-	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
+	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/combat
@@ -141,13 +141,13 @@
 	name = "Syndicate Comms Agent"
 	short_desc = "You are a syndicate comms agent, employed in a top secret research facility developing biological weapons."
 	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
-	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-syndicate personnel."
+	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/comms/space
 	short_desc = "You are a syndicate agent, assigned to a small listening post station situated near your hated enemy's top secret research facility: Space Station 13."
-	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
-	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-syndicate personnel."
+	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Collaborate with your partner to disrupt Nanotrasen operations and do not let the base fall into enemy hands!"
+	important_info = "DO NOT abandon the base, let it fall into enemy hands, or share your supplies with non-Syndicate personnel."
 
 
 /datum/outfit/lavaland_syndicate/comms
@@ -157,7 +157,7 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1)
 
-/obj/item/clothing/mask/chameleon/gps/Initialize()
+/obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
 	. = ..()
 	new /obj/item/gps/internal/lavaland_syndicate_base(src)
 

@@ -32,8 +32,6 @@
 	popup.set_content(return_text())
 	popup.open()
 
-/obj/machinery/embedded_controller/update_icon()
-
 /obj/machinery/embedded_controller/proc/return_text()
 
 /obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
@@ -58,7 +56,7 @@
 	if(program)
 		program.process(delta_time)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	src.updateDialog()
 
 /obj/machinery/embedded_controller/radio
@@ -69,7 +67,7 @@
 	SSradio.remove_object(src,frequency)
 	return ..()
 
-/obj/machinery/embedded_controller/radio/Initialize()
+/obj/machinery/embedded_controller/radio/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 

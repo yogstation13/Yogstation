@@ -89,7 +89,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if (opacity)
 		has_opaque_atom = TRUE
 
-	ComponentInitialize()
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL
@@ -188,7 +187,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	target.zImpact(A, levels)
 	return TRUE
 
-/turf/proc/handleRCL(obj/item/twohanded/rcl/C, mob/user)
+/turf/proc/handleRCL(obj/item/rcl/C, mob/user)
 	if(C.loaded)
 		for(var/obj/structure/cable/LC in src)
 			if(!LC.d1 || !LC.d2)
@@ -211,7 +210,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		coil.place_turf(src, user)
 		return TRUE
 
-	else if(istype(C, /obj/item/twohanded/rcl))
+	else if(istype(C, /obj/item/rcl))
 		handleRCL(C, user)
 
 	return FALSE
@@ -386,7 +385,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 //////////////////////////////
 
 //Distance associates with all directions movement
-/turf/proc/Distance(var/turf/T)
+/turf/proc/Distance(turf/T)
 	return get_dist(src,T)
 
 //  This Distance proc assumes that only cardinal movement is
@@ -502,9 +501,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/acid_melt()
 	return
 
-/turf/handle_fall(mob/faller, forced)
-	if(!forced)
-		return
+/turf/handle_fall(mob/faller)
 	if(has_gravity(src))
 		playsound(src, "bodyfall", 50, 1)
 	faller.drop_all_held_items()

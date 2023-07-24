@@ -63,7 +63,7 @@
 	state = EMITTER_WELDED
 	use_power = FALSE
 
-/obj/machinery/power/emitter/Initialize()
+/obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	RefreshParts()
 	wires = new /datum/wires/emitter(src)
@@ -73,10 +73,8 @@
 	sparks = new
 	sparks.attach(src)
 	sparks.set_up(5, TRUE, src)
-
-/obj/machinery/power/emitter/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
 
 /obj/machinery/power/emitter/RefreshParts()
 	var/max_reload = initial(maximum_reload_time) + 20
@@ -106,10 +104,6 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds, shooting [shots_before_reload] times before recharging. <br>Power consumption at <b>[active_power_usage]W</b>.<span>"
 
-/obj/machinery/power/emitter/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
-
 /obj/machinery/power/emitter/proc/can_be_rotated(mob/user,rotation_type)
 	if (anchored)
 		to_chat(user, span_warning("It is fastened to the floor!"))
@@ -126,7 +120,8 @@
 	QDEL_NULL(sparks)
 	return ..()
 
-/obj/machinery/power/emitter/update_icon()
+/obj/machinery/power/emitter/update_icon_state()
+	. = ..()
 	if(active && powernet)
 		icon_state = avail(active_power_usage) ? icon_state_on : icon_state_underpowered
 	else
@@ -152,7 +147,7 @@
 			log_game("Emitter turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
 			investigate_log("turned [active ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 			investigate_log("turned [active ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 		else
 			to_chat(user, span_warning("The controls are locked!"))
@@ -175,20 +170,20 @@
 		return
 	if(state != EMITTER_WELDED || (!powernet && active_power_usage))
 		active = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(active == TRUE)
 		if(!active_power_usage || surplus() >= active_power_usage)
 			add_load(active_power_usage)
 			if(!powered)
 				powered = TRUE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				investigate_log("regained power and turned <font color='green'>ON</font> at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 				investigate_log("regained power and turned <font color='green'>ON</font> at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 		else
 			if(powered)
 				powered = FALSE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				investigate_log("lost power and turned <font color='red'>OFF</font> at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 				investigate_log("lost power and turned <font color='red'>OFF</font> at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 				log_game("Emitter lost power in [AREACOORD(src)]")
@@ -494,7 +489,7 @@
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/delay = 0
 
-/obj/item/turret_control/Initialize()
+/obj/item/turret_control/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 

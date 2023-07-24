@@ -308,7 +308,7 @@
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(death)), 30 SECONDS)
 

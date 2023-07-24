@@ -16,18 +16,19 @@
 	tiled_dirt = FALSE
 
 
-/turf/open/floor/mineral/Initialize()
+/turf/open/floor/mineral/Initialize(mapload)
 	if(!broken_states)
 		broken_states = list("[initial(icon_state)]_dam")
 	. = ..()
 	icons = typelist("icons", icons)
 
 
-/turf/open/floor/mineral/update_icon()
-	if(!..())
-		return 0
+/turf/open/floor/mineral/update_icon_state()
+	. = ..()
+	if(!.)
+		return
 	if(!broken && !burnt)
-		if( !(icon_state in icons) )
+		if(!(icon_state in icons))
 			icon_state = initial(icon_state)
 
 //PLASMA
@@ -320,7 +321,7 @@
 	icons = list("alienpod1", "alienpod2", "alienpod3", "alienpod4", "alienpod5", "alienpod6", "alienpod7", "alienpod8", "alienpod9")
 	baseturfs = /turf/open/floor/plating/abductor2
 
-/turf/open/floor/mineral/abductor/Initialize()
+/turf/open/floor/mineral/abductor/Initialize(mapload)
 	. = ..()
 	icon_state = "alienpod[rand(1,9)]"
 

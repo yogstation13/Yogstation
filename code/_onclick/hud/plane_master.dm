@@ -78,7 +78,7 @@
 	blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/atom/movable/screen/plane_master/lighting/Initialize()
+/atom/movable/screen/plane_master/lighting/Initialize(mapload)
 	. = ..()
 	filters += filter(type="alpha", render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE)
 	filters += filter(type="alpha", render_source = EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags = MASK_INVERSE)
@@ -98,7 +98,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_target = EMISSIVE_RENDER_TARGET
 
-/atom/movable/screen/plane_master/emissive/Initialize()
+/atom/movable/screen/plane_master/emissive/Initialize(mapload)
 	. = ..()
 	filters += filter(type="alpha", render_source=EMISSIVE_BLOCKER_RENDER_TARGET, flags=MASK_INVERSE)
 	// Should be moved to the world render plate when render plates get ported in
@@ -137,8 +137,6 @@
 
 /atom/movable/screen/plane_master/parallax/Initialize(mapload)
 	. = ..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_STATION_ADRIFT))
-		SpinAnimation(15 MINUTES)
 	// Should be moved to the world render plate when render plates get ported in
 	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 

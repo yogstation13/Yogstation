@@ -21,7 +21,7 @@
 	///How many shit fits on the griddle?
 	var/max_items = 8
 
-/obj/machinery/griddle/Initialize()
+/obj/machinery/griddle/Initialize(mapload)
 	. = ..()
 	end_processing() //doesn't start on
 	grill_loop = new(list(src), FALSE)
@@ -32,7 +32,7 @@
 		return
 
 	if(!on && default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(griddled_objects.len >= max_items)
@@ -49,7 +49,7 @@
 			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/8), world.icon_size/4)
 		to_chat(user, "<span class='notice'>You place [I] on [src].</span>")
 		AddToGrill(I, user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -62,7 +62,7 @@
 		begin_processing()
 	else
 		end_processing()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	update_grill_audio()
 
 
@@ -106,7 +106,7 @@
 		if(prob(10))
 			visible_message("<span class='danger'>[griddled_item] doesn't seem to be doing too great on the [src]!</span>")
 
-/obj/machinery/griddle/update_icon()
+/obj/machinery/griddle/update_icon_state()
 	. = ..()
 	if(panel_open)
 		icon_state = "griddle[variant]_o"

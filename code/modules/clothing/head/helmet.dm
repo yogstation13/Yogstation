@@ -21,14 +21,11 @@
 	var/obj/item/flashlight/seclite/attached_light
 	var/datum/action/item_action/toggle_helmet_flashlight/alight
 
-/obj/item/clothing/head/helmet/Initialize()
+/obj/item/clothing/head/helmet/Initialize(mapload)
 	. = ..()
 	if(attached_light)
 		alight = new(src)
-
-/obj/item/clothing/head/helmet/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_HEAD))
 
 /obj/item/clothing/head/helmet/Destroy()
 	var/obj/item/flashlight/seclite/old_light = set_attached_light(null)
@@ -49,7 +46,7 @@
 	if(A == attached_light)
 		set_attached_light(null)
 		update_helmlight()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		QDEL_NULL(alight)
 		qdel(A)
 	return ..()
@@ -97,7 +94,7 @@
 	name = "occupying force helmet"
 	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
 
-/obj/item/clothing/head/helmet/sec/occupying/Initialize(mob/user)
+/obj/item/clothing/head/helmet/sec/occupying/Initialize(mapload, mob/user)
 	attached_light = new /obj/item/flashlight/seclite(null)
 	. = ..()
 
@@ -140,7 +137,7 @@
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	dog_fashion = null
 
-/obj/item/clothing/head/helmet/riot/raised/Initialize()
+/obj/item/clothing/head/helmet/riot/raised/Initialize(mapload)
 	. = ..()
 	up = !up
 	flags_1 ^= visor_flags
@@ -334,11 +331,11 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	heat_protection = HEAD
-	armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 5, RAD = 10, FIRE = 50, ACID = 50, WOUND = 5)
+	armor = list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
 
-/obj/item/clothing/head/helmet/kasa/Initialize()
+/obj/item/clothing/head/helmet/kasa/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5)) //maximum armor 65/35/35/25
+	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5)) //maximum armor 65/15/15/15/65
 
 /obj/item/clothing/head/helmet/durathread
 	name = "durathread helmet"
@@ -371,7 +368,8 @@
 
 //LightToggle
 
-/obj/item/clothing/head/helmet/update_icon()
+/obj/item/clothing/head/helmet/update_icon_state()
+	. = ..()
 	var/state = "[initial(icon_state)]"
 	if(attached_light)
 		if(attached_light.on)
@@ -399,7 +397,7 @@
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
 			set_attached_light(S)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			update_helmlight()
 			alight = new(src)
 			if(loc == user)
@@ -419,7 +417,7 @@
 		var/obj/item/flashlight/removed_light = set_attached_light(null)
 		update_helmlight()
 		removed_light.update_brightness(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		user.update_inv_head()
 		QDEL_NULL(alight)
 		return TRUE
@@ -444,7 +442,7 @@
 
 /obj/item/clothing/head/helmet/proc/update_helmlight()
 	if(attached_light)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -462,14 +460,7 @@
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	strip_delay = 60
 	flags_cover = HEADCOVERSEYES
-
-/obj/item/clothing/head/helmet/stormtrooper/equipped(mob/living/user)
-	ADD_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
-	..()
-
-/obj/item/clothing/head/helmet/stormtrooper/dropped(mob/living/user)
-	REMOVE_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
-	..()
+	clothing_traits = list(TRAIT_POOR_AIM)
 
 /obj/item/clothing/head/helmet/shaman
 	name = "ritual headdress"

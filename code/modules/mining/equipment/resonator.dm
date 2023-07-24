@@ -112,7 +112,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 0.4 SECONDS
 
-/obj/effect/temp_visual/resonance_crush/Initialize()
+/obj/effect/temp_visual/resonance_crush/Initialize(mapload)
 	. = ..()
 	transform = matrix()*1.5
 	animate(src, transform = matrix()*0.1, alpha = 50, time = 0.4 SECONDS)

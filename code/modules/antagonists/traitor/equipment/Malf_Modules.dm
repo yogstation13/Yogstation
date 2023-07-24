@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/detonation_timer
 	var/next_announce
 
-/obj/machinery/doomsday_device/Initialize()
+/obj/machinery/doomsday_device/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 
@@ -654,7 +654,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		if(!is_station_level(F.z))
 			continue
 		F.obj_flags |= EMAGGED
-		F.update_icon()
+		F.update_appearance(UPDATE_ICON)
 	to_chat(owner, span_notice("All thermal sensors on the station have been disabled. Fire alerts will no longer be recognized."))
 	owner.playsound_local(owner, 'sound/machines/terminal_off.ogg', 50, 0)
 

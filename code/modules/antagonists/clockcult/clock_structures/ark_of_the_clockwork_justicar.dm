@@ -38,14 +38,14 @@
 	var/next_spaghetti = 0
 	var/spaghetti_cooldown = 50
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
+/obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize(mapload)
 	. = ..()
 	glow = new(get_turf(src))
 	if(!GLOB.ark_of_the_clockwork_justiciar)
 		GLOB.ark_of_the_clockwork_justiciar = src
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.)
 		flick("clockwork_gateway_damaged", glow)
@@ -212,7 +212,7 @@
 	var/damage = max((obj_integrity * 0.7) / severity, 100) //requires multiple bombs to take down
 	take_damage(damage, BRUTE, BOMB, 0)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
+/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(deciseconds = TRUE)
 	if(seconds_until_activation)
 		. = seconds_until_activation
 	else if(grace_period)
@@ -296,7 +296,7 @@
 		if(!O.pulledby && !iseffect(O) && O.density)
 			if(!step_away(O, src, 2) || get_dist(O, src) < 2)
 				O.take_damage(50, BURN, BOMB)
-			O.update_icon()
+			O.update_appearance(UPDATE_ICON)
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		var/turf/T = get_turf(M)

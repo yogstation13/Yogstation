@@ -23,7 +23,7 @@
 	var/defer_change = FALSE
 	var/hardness = 1 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
 	
-/turf/closed/mineral/Initialize()
+/turf/closed/mineral/Initialize(mapload)
 	if (!canSmoothWith)
 		canSmoothWith = list(/turf/closed/mineral, /turf/closed/indestructible)
 	var/matrix/M = new
@@ -93,15 +93,16 @@
 	if(hardness <= 0)
 		gets_drilled(user,triggered_by_explosion)
 	else
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/turf/closed/mineral/proc/update_icon()
+/turf/closed/mineral/update_overlays()
+	. = ..()
 	if(hardness != initial(hardness))
 		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
 		var/matrix/M = new
 		M.Translate(4,4)
 		cracks.transform = M
-		add_overlay(cracks)
+		. += cracks
 
 
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)
@@ -163,7 +164,7 @@
 	var/mineralChance = 13
 	var/display_icon_state = "rock"
 
-/turf/closed/mineral/random/Initialize()
+/turf/closed/mineral/random/Initialize(mapload)
 
 	mineralSpawnChanceList = typelist("mineralSpawnChanceList", mineralSpawnChanceList)
 
@@ -750,7 +751,7 @@
 	var/activated_name = null
 	var/mutable_appearance/activated_overlay
 
-/turf/closed/mineral/gibtonite/Initialize()
+/turf/closed/mineral/gibtonite/Initialize(mapload)
 	scan_state = pick("rock_Uranium", "rock_Gold", "rock_Diamond", "rock_Silver", "rock_Plasma", "rock_BScrystal", "rock_Titanium", "rock_Iron", "rock_Gibtonite") //YOGS - stealth gibtonite, hides it as another mineral
 	det_time = rand(8,10) //So you don't know exactly when the hot potato will explode
 	. = ..()
@@ -774,7 +775,7 @@
 		name = "gibtonite deposit"
 		desc = "An active gibtonite reserve. Run!"
 		stage = GIBTONITE_ACTIVE
-		visible_message(span_danger("There was gibtonite inside! It's going to explode!"))
+		visible_message(span_danger("There was gibtonite inside! It's going to explode!"), blind_message = span_danger("You hear an evil hissing!")) 
 
 		var/notify_admins = 0
 		if(z != 5)
@@ -825,7 +826,7 @@
 		stage = GIBTONITE_DETONATE
 		explosion(bombturf,1,2,5, adminlog = 0)
 	if(stage == GIBTONITE_STABLE) //Gibtonite deposit is now benign and extractable. Depending on how close you were to it blowing up before defusing, you get better quality ore.
-		var/obj/item/twohanded/required/gibtonite/G = new (src)
+		var/obj/item/melee/gibtonite/G = new (src)
 		if(det_time <= 0)
 			G.quality = 3
 			G.icon_state = "Gibtonite ore 3"

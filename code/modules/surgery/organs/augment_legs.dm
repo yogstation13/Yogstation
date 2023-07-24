@@ -9,9 +9,9 @@
 	var/implant_type = "leg implant"
 	COOLDOWN_DECLARE(emp_notice)
 
-/obj/item/organ/cyberimp/leg/Initialize()
+/obj/item/organ/cyberimp/leg/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
@@ -59,7 +59,8 @@
 		else
 			CRASH("Invalid zone for [type]")
 
-/obj/item/organ/cyberimp/leg/update_icon()
+/obj/item/organ/cyberimp/leg/update_icon(updates=ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_LEG)
 		transform = null
 	else // Mirroring the icon
@@ -81,7 +82,7 @@
 		zone = BODY_ZONE_R_LEG
 	SetSlotFromZone()
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
@@ -134,7 +135,7 @@
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
 	name = "advanced antislip implant"
-	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	syndicate_implant = TRUE
 	implant_type = "noslipall"
 
@@ -159,7 +160,7 @@
 /obj/item/organ/cyberimp/leg/clownshoes/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/clownshoes/Initialize()
+/obj/item/organ/cyberimp/leg/clownshoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
 
@@ -189,7 +190,7 @@
 
 /obj/item/organ/cyberimp/leg/jumpboots/AddEffect()
 	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Jumpboot_implant")
-	implant_ability = new
+	implant_ability = new(src)
 	implant_ability.Grant(owner)
 
 /obj/item/organ/cyberimp/leg/jumpboots/RemoveEffect()
@@ -203,11 +204,10 @@
 	desc = "Dash forward."
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
-	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	cooldown_time = 6 SECONDS
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
-	var/mob/living/carbon/human/holder
 
 /datum/action/cooldown/boost/link_to(target)
 	..()
@@ -216,24 +216,18 @@
 		LAZYINITLIST(I.actions)
 		I.actions += src
 
-/datum/action/cooldown/boost/Grant(mob/user)
-	. = ..()
-	holder = user
+/datum/action/cooldown/boost/Activate()
+	var/mob/living/carbon/user = owner
+	var/atom/target = get_edge_target_turf(owner, owner.dir) //gets the user's direction
 
-/datum/action/cooldown/boost/Trigger()
-	. = ..()
-	if(!.)
+	if(!owner.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
 		return
 
-	var/atom/target = get_edge_target_turf(holder, holder.dir) //gets the user's direction
-
-	if (holder.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-		StartCooldown()
-		holder.Immobilize(0.1 SECONDS)
-		playsound(holder, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-		holder.visible_message(span_warning("[usr] dashes forward into the air!"))
-	else
-		to_chat(holder, span_warning("Something prevents you from dashing forward!"))
+	user.Immobilize(0.1 SECONDS)
+	playsound(owner, 'sound/effects/stealthoff.ogg', 50, TRUE, 1)
+	owner.visible_message(span_warning("[owner] dashes forward into the air!"))
+	StartCooldown()
 
 //------------wheelies implant
 /obj/item/organ/cyberimp/leg/wheelies

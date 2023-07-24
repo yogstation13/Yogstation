@@ -81,7 +81,7 @@
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Headset Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, var/operation)
+/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, operation)
 	set category = "Misc.Unused"
 	set name = "Modify Antagonist Reputation"
 
@@ -396,7 +396,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(tgui_alert("This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
+			if(tgui_alert(usr, "This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -1400,7 +1400,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	divine_wrath.preparePixelProjectile(target, source_turf)
 	divine_wrath.fire()
 
-/client/proc/punish_log(var/whom, var/punishment)
+/client/proc/punish_log(whom, punishment)
 	var/msg = "[key_name(usr)] punished [key_name_admin(whom)] with [punishment]." //yogs - Yog tickets
 	message_admins(msg)
 	admin_ticket_log(whom, msg)

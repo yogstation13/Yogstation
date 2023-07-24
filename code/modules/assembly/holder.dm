@@ -14,20 +14,16 @@
 	var/obj/item/assembly/a_left = null
 	var/obj/item/assembly/a_right = null
 
-/obj/item/assembly_holder/ComponentInitialize()
+/obj/item/assembly_holder/Initialize(mapload)
 	. = ..()
 	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
 	AddComponent(/datum/component/simple_rotation, rotation_flags)
-
-/obj/item/assembly_holder/IsAssemblyHolder()
-	return TRUE
-
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
 	attach(A,user)
 	attach(A2,user)
 	name = "[A.name]-[A2.name] assembly"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SSblackbox.record_feedback("tally", "assembly_made", 1, "[initial(A.name)]-[initial(A2.name)]")
 
 /obj/item/assembly_holder/proc/attach(obj/item/assembly/A, mob/user)
@@ -44,31 +40,31 @@
 		a_right = A
 	A.holder_movement()
 
-/obj/item/assembly_holder/update_icon()
-	cut_overlays()
+/obj/item/assembly_holder/update_overlays()
+	. = ..()
 	if(a_left)
-		add_overlay("[a_left.icon_state]_left")
+		. += "[a_left.icon_state]_left"
 		for(var/O in a_left.attached_overlays)
 			// yogs start - signaller colors
 			if(istext(O))
-				add_overlay("[O]_l")
+				. += "[O]_l"
 			else
 				var/mutable_appearance/A = new(O)
 				A.icon_state = "[A.icon_state]_l"
-				add_overlay(A)
+				. += A
 			// yogs end
 
 	if(a_right)
 		if(a_right.is_position_sensitive)
-			add_overlay("[a_right.icon_state]_right")
+			. += "[a_right.icon_state]_right"
 			for(var/O in a_right.attached_overlays)
 				// yogs start - signaller colors
 				if(istext(O))
-					add_overlay("[O]_r")
+					. += "[O]_r"
 				else
 					var/mutable_appearance/A = new(O)
 					A.icon_state = "[A.icon_state]_r"
-					add_overlay(A)
+					. += A
 				// yogs end
 		else
 			var/mutable_appearance/right = mutable_appearance(icon, "[a_right.icon_state]_left")
@@ -82,10 +78,10 @@
 					A.icon_state = "[A.icon_state]_l"
 					right.add_overlay(A)
 				// yogs end
-			add_overlay(right)
+			. += right
 
 	if(master)
-		master.update_icon()
+		master.update_appearance(UPDATE_ICON)
 
 /obj/item/assembly_holder/Crossed(atom/movable/AM as mob|obj)
 	. = ..()

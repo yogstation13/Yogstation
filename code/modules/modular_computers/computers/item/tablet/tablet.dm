@@ -24,7 +24,7 @@
 	var/obj/item/pen_type = /obj/item/pen
 	var/obj/item/inserted_item
 
-/obj/item/modular_computer/tablet/Initialize()
+/obj/item/modular_computer/tablet/Initialize(mapload)
 	. = ..()
 	inserted_item = new pen_type(src)
 
@@ -56,12 +56,12 @@
 				return
 			to_chat(user, span_notice("You slide \the [C] into \the [src]."))
 			inserted_item = C
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
-/obj/item/modular_computer/tablet/update_icon()
-	..()
+/obj/item/modular_computer/tablet/update_icon_state()
+	. = ..()
 	if (!isnull(variants))
 		if(!finish_color)
 			finish_color = pick(variants)

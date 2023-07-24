@@ -9,7 +9,7 @@
 	recursive_organ_check(src)
 	return ..()
 
-/obj/structure/closet/secure_closet/freezer/Initialize()
+/obj/structure/closet/secure_closet/freezer/Initialize(mapload)
 	recursive_organ_check(src)
 	return ..()
 
@@ -57,7 +57,7 @@
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 2, i++)
-		new /obj/item/storage/box/fancy/egg_box(src)
+		new /obj/item/storage/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
@@ -88,7 +88,7 @@
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 3, i++)
-		new /obj/item/storage/box/fancy/egg_box(src)
+		new /obj/item/storage/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge/open
 	req_access = null

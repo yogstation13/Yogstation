@@ -13,7 +13,7 @@
 					   /obj/item/gun/ballistic/automatic/pistol/ntusp)
 
 
-/obj/machinery/armaments_dispenser/Initialize()
+/obj/machinery/armaments_dispenser/Initialize(mapload)
 	. = ..()
 	inventory = contents.Copy()
 	for(var/obj/item/wep in inventory)
@@ -62,6 +62,10 @@
 					new mag(loc)
 			else
 				return FALSE
+			if(prob(0.1)) //Easteregg of the exploit that allowed you to buy an actual real ratvar mob
+				playsound(src, 'sound/magic/clockwork/ark_activation.ogg', 50, 0)
+				visible_message(message = "<span class='big_brass'>Ratvar has risen! ...from the vendor?</span>")
+				new /obj/item/toy/plush/plushvar(loc)
 			C.registered_account.sec_weapon_claimed = TRUE
 			return TRUE
 	return FALSE
@@ -82,7 +86,7 @@
 	var/list/items = list()
 	for(var/obj/item/wep in inventory)
 		var/obj/item/gun/weapon = wep
-		weapon.update_icon(TRUE)
+		weapon.update_appearance(UPDATE_ICON)
 		var/icon/gun_icon = getFlatIcon(wep)
 		
 		var/list/details = list()
