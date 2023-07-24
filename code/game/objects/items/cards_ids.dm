@@ -167,12 +167,12 @@
 /obj/item/card/emag/cmag
 	desc = "It's a card coated in a slurry of electromagnetic bananium."
 	name = "jestographic sequencer"
-	color = rgb(255, 0, 85) // TODO: If there is a cool sprite for this funny emag, please add. Otherwise, it will be a recolored emag.
+	icon_state = "cmag"
 	clown_version = TRUE
 
 /obj/item/card/emag/cmag/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP)// It wouldn't be funny if it couldn't slip!
+	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP) // It wouldn't be funny if it couldn't slip!
 	
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
