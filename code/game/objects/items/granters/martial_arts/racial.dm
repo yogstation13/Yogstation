@@ -23,27 +23,28 @@
 		name = "blank tablet"
 		icon_state = "stone_tablet_blank"
 
-/obj/item/book/granter/martial/preternis_stealth
-	martial = /datum/martial_art/stealth
+/obj/item/book/granter/martial/liquidator
+	martial = /datum/martial_art/liquidator
 	name = "strange electronic board"
-	martial_name = "Stealth"
+	martial_name = "Remnant Liquidator"
 	desc = "A strange electronic board, containing some sort of software."
-	greet = "<span class='sciradio'>You have uploaded some combat modules into yourself. Your combos will now have special effects on your enemies, and mostly are not obvious to other people. \
-	You can check what combos can you do, and their effect by using Refresh Data verb in Combat Modules tab.</span>"
+	greet = "<span class='sciradio'>You have uploaded covert combat tactics to your data banks. Your in-built combat tools have been enabled without authorization. \
+	You have become proficient in disposing malcontents without so much as a commotion. \
+	You can check what combos you have, and their effect by using Refresh Data verb in the Remnant Liquidator tab.</span>"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	remarks = list("Processing data...")
 
-/obj/item/book/granter/martial/preternis_stealth/can_learn(mob/user)
+/obj/item/book/granter/martial/liquidator/can_learn(mob/user)
 	if(!ispreternis(user))
 		to_chat(user, span_warning("You don't understand what to do with this strange electronic device."))
 		return FALSE
 	return ..()
 
-/obj/item/book/granter/martial/preternis_stealth/on_reading_finished(mob/living/carbon/user)
+/obj/item/book/granter/martial/liquidator/on_reading_finished(mob/living/carbon/user)
 	..()
 	if(!uses)
-		desc = "It looks like it doesn't contain any data no more."
+		desc = "It looks like the board has been damaged to erase the data."
 
 /obj/item/book/granter/martial/garden_warfare
 	martial = /datum/martial_art/gardern_warfare
