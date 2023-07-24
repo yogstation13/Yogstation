@@ -207,7 +207,7 @@
 	id = "gygax_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_torso
-	materials = list(/datum/material/iron=20000,/datum/material/glass=10000,/datum/material/diamond=2000)
+	materials = list(/datum/material/iron=20000,/datum/material/glass=10000,/datum/material/uranium=2000)
 	construction_time = 300
 	category = list("Gygax")
 	combat_design = TRUE
@@ -217,7 +217,7 @@
 	id = "gygax_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_head
-	materials = list(/datum/material/iron=10000,/datum/material/glass=5000, /datum/material/diamond=2000)
+	materials = list(/datum/material/iron=10000,/datum/material/glass=5000, /datum/material/uranium=2000)
 	construction_time = 200
 	category = list("Gygax")
 	combat_design = TRUE
@@ -227,7 +227,7 @@
 	id = "gygax_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_left_arm
-	materials = list(/datum/material/iron=15000, /datum/material/diamond=1000)
+	materials = list(/datum/material/iron=15000, /datum/material/uranium=1000)
 	construction_time = 200
 	category = list("Gygax")
 	combat_design = TRUE
@@ -237,7 +237,7 @@
 	id = "gygax_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_right_arm
-	materials = list(/datum/material/iron=15000, /datum/material/diamond=1000)
+	materials = list(/datum/material/iron=15000, /datum/material/uranium=1000)
 	construction_time = 200
 	category = list("Gygax")
 	combat_design = TRUE
@@ -247,7 +247,7 @@
 	id = "gygax_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_left_leg
-	materials = list(/datum/material/iron=15000, /datum/material/diamond=2000)
+	materials = list(/datum/material/iron=15000, /datum/material/uranium=2000)
 	construction_time = 200
 	category = list("Gygax")
 	combat_design = TRUE
@@ -257,7 +257,7 @@
 	id = "gygax_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_right_leg
-	materials = list(/datum/material/iron=15000, /datum/material/diamond=2000)
+	materials = list(/datum/material/iron=15000, /datum/material/uranium=2000)
 	construction_time = 200
 	category = list("Gygax")
 	combat_design = TRUE
@@ -267,7 +267,7 @@
 	id = "gygax_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_armor
-	materials = list(/datum/material/iron=15000,/datum/material/diamond=10000,/datum/material/titanium=10000)
+	materials = list(/datum/material/iron=15000,/datum/material/uranium=10000,/datum/material/titanium=10000)
 	construction_time = 600
 	category = list("Gygax")
 	combat_design = TRUE
@@ -288,7 +288,7 @@
 	id = "durand_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_torso
-	materials = list(/datum/material/iron=25000,/datum/material/glass=10000,/datum/material/silver=10000)
+	materials = list(/datum/material/iron=25000,/datum/material/glass=10000,/datum/material/diamond=10000)
 	construction_time = 300
 	category = list("Durand")
 	combat_design = TRUE
@@ -298,7 +298,7 @@
 	id = "durand_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_head
-	materials = list(/datum/material/iron=10000,/datum/material/glass=15000,/datum/material/silver=2000)
+	materials = list(/datum/material/iron=10000,/datum/material/glass=15000,/datum/material/diamond=2000)
 	construction_time = 200
 	category = list("Durand")
 	combat_design = TRUE
@@ -308,7 +308,7 @@
 	id = "durand_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_arm
-	materials = list(/datum/material/iron=10000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=10000,/datum/material/diamond=4000)
 	construction_time = 200
 	category = list("Durand")
 	combat_design = TRUE
@@ -318,7 +318,7 @@
 	id = "durand_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_arm
-	materials = list(/datum/material/iron=10000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=10000,/datum/material/diamond=4000)
 	construction_time = 200
 	category = list("Durand")
 	combat_design = TRUE
@@ -328,7 +328,7 @@
 	id = "durand_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_leg
-	materials = list(/datum/material/iron=15000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=15000,/datum/material/diamond=4000)
 	construction_time = 200
 	category = list("Durand")
 	combat_design = TRUE
@@ -338,7 +338,7 @@
 	id = "durand_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_leg
-	materials = list(/datum/material/iron=15000,/datum/material/silver=4000)
+	materials = list(/datum/material/iron=15000,/datum/material/diamond=4000)
 	construction_time = 200
 	category = list("Durand")
 	combat_design = TRUE
