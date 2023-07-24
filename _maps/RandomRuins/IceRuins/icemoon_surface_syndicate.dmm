@@ -150,14 +150,6 @@
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
 /obj/item/vending_refill/sovietsoda,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
@@ -374,6 +366,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "cV" = (
@@ -396,7 +389,7 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "dd" = (
@@ -414,8 +407,8 @@
 /obj/item/ammo_box/magazine/smgm45,
 /obj/item/ammo_box/magazine/smgm45,
 /obj/item/ammo_box/magazine/smgm45,
-/obj/item/twohanded/binoculars,
 /obj/item/kitchen/knife/combat,
+/obj/item/binoculars,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "dg" = (
@@ -2468,6 +2461,7 @@
 /area/ruin/syndicate_icemoon/dorms)
 "sT" = (
 /obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "sZ" = (
@@ -3663,8 +3657,8 @@
 	desc = "A black cap fit for a Syndicate engineer."
 	},
 /obj/item/storage/toolbox/syndicate,
-/obj/item/twohanded/binoculars,
 /obj/item/kitchen/knife/combat/survival,
+/obj/item/binoculars,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "BX" = (
@@ -4611,8 +4605,8 @@
 /obj/item/clothing/head/HoS/syndicate{
 	desc = "A black cap fit for a Syndicate medic."
 	},
-/obj/item/twohanded/binoculars,
 /obj/item/kitchen/knife/combat/survival,
+/obj/item/binoculars,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Jf" = (
@@ -4829,8 +4823,8 @@
 /obj/item/ammo_box/magazine/sniper_rounds,
 /obj/item/ammo_box/magazine/sniper_rounds,
 /obj/item/ammo_box/magazine/sniper_rounds/soporific,
-/obj/item/twohanded/binoculars,
 /obj/item/kitchen/knife/combat/survival,
+/obj/item/binoculars,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "KL" = (
@@ -5220,9 +5214,9 @@
 /area/ruin/syndicate_icemoon/hallway)
 "NB" = (
 /obj/structure/table/reinforced,
-/obj/item/twohanded/binoculars,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/shed)
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "NC" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/wood,
@@ -5244,6 +5238,7 @@
 	dir = 1
 	},
 /obj/item/megaphone/command,
+/obj/item/binoculars,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "NK" = (
@@ -7997,7 +7992,7 @@ qK
 eM
 JL
 rh
-NB
+JE
 JE
 JL
 eM
@@ -8119,7 +8114,7 @@ SK
 cZ
 Ok
 AC
-AC
+NB
 SB
 oF
 Ok
