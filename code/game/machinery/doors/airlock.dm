@@ -490,6 +490,8 @@
 		if(has_access)
 			open()
 		else
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
 			do_animate("deny")
 		return
 	. = ..()
