@@ -210,8 +210,7 @@
 	var/datum/component/armor_plate/C = R.GetComponent(/datum/component/armor_plate)
 	if(C) // Remove armor plating.
 		C.dropplates()
-		if(!RM.use_armorplates)
-			C.Destroy()
+		C.Destroy() // It is possible to switch over to a module that has a different 'use_armorplates' value, thus we remove in all cases.
 	if(RM.use_armorplates > 0) // Add armor plating.
 		R.AddComponent(/datum/component/armor_plate, RM.use_armorplates)
 	R.armor = getArmor(arglist(RM.module_armor))
