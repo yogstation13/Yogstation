@@ -382,7 +382,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "Ie" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "Ki" = (
@@ -539,7 +539,7 @@
 /area/shuttle/escape)
 "RU" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "SM" = (
@@ -573,7 +573,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "UJ" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 6
 	},

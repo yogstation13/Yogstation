@@ -142,6 +142,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/printed = FALSE
 
+	var/canMouseDown = FALSE
+	/// Does this item have syndicate only functionality via hud buttons? Needs to be in this scope to encompass all Chameleon items - Hopek
+	var/syndicate = FALSE
 	/// item hover FX
 	var/outline_filter
 
