@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Mining Cyborgs start with 20% melee armor."
+  - rscadd: "Mining Cyborgs can be upgraded with goliath hide plates up to 3 times. Each time increases melee armor by 10%."
