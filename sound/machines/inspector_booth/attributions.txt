@@ -6,3 +6,6 @@ stamp-down
 stamp-up
 paper-dragstart1
 paper-dragstop1
+/////////////////////////////////////////////////////////////////////
+
+REPLACES SOUNDS WITH CUSTOM. IGNORE SOURCE ABOVE 
