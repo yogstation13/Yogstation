@@ -309,7 +309,7 @@
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/stack/medical/bone_gel/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+		/obj/item/borg_snack_dispenser/medical)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
 	ratvar_modules = list(
@@ -398,7 +398,7 @@
 	name = "Peacekeeper"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
-		/obj/item/rsf/cookiesynth,
+		/obj/item/borg_snack_dispenser/peacekeeper,
 		/obj/item/harmalarm,
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
@@ -487,7 +487,7 @@
 		/obj/item/lipstick/purple,
 		/obj/item/holosign_creator/clown/cyborg, //Evil
 		/obj/item/borg/cyborghug/peacekeeper,
-		/obj/item/borg/lollipop/clown,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/reagent_containers/borghypo/clown,
 		/obj/item/extinguisher/mini)
@@ -521,7 +521,7 @@
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		/obj/item/reagent_containers/borghypo/borgshaker,
-		/obj/item/borg/lollipop,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/reagent_containers/glass/rag,
 		/obj/item/soap/infinite)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
