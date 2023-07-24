@@ -68,7 +68,7 @@
 	if(operating || !density)
 		return
 	if(!(ismob(AM)))
-		if(!ismecha(AM))
+		if(ismecha(AM))
 			var/obj/mecha/mecha = AM
 			var/has_access = (obj_flags & CMAGGED) ? !check_access_list(mecha.operation_req_access) : check_access_list(mecha.operation_req_access)
 			if(mecha.occupant) // If there is an occupant, check their access too.
