@@ -2611,7 +2611,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Jestographic Sequencer"
 	desc = "The jestographic sequencer, also known as a cmag, is a small card that inverts the access on any door it's used on. Perfect for locking command out of their own departments. Honk!"
 	item = /obj/item/card/emag/cmag
-	cost = 5 // Not as "destructive" as the emag. 5 TCs is likely not a fair pricing given: A) less features than normal emag, B) role-restricted, C) funny-themed.
+	cost = 4 // Not as "destructive" as the emag. In addition, less features than the normal emag. Increase price once more impact features are added.
 	restricted_roles = list("Clown")
 
 // Pointless
