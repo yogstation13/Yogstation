@@ -347,7 +347,7 @@
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shaker"
-	possible_transfer_amounts = list(5,10,20, 1) // Starts at 5 on purpose.
+	possible_transfer_amounts = list(5, 10, 20, 1) // Starts at 5 on purpose.
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 20
 	recharge_time = 3
@@ -419,11 +419,11 @@
 	default_reagent_types = HACKED_SERVICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/condiment_synthesizer // Solids! Condiments! The borger uprising!
-	name = "Condiment Synthesizer"
-	desc = "An advanced condiment synthesizer"
+	name = "condiment synthesizer"
+	desc = "An advanced condiment synthesizer."
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "flour"
-	possible_transfer_amounts = list(5,10,20,1)
+	possible_transfer_amounts = list(5, 10, 20, 1)
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 40 // Costs double the power of the borgshaker due to synthesizing solids.
 	recharge_time = 6 // Double the recharge time too, for the same reason.

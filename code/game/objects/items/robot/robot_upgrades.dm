@@ -536,7 +536,7 @@
 		to treat a wider range of conditions and problems."
 
 /obj/item/borg/upgrade/condiment_synthesizer
-	name = "Service Cyborg Condiment Synthesiser"
+	name = "service cyborg condiment synthesiser"
 	desc = "An upgrade to the service model cyborg, allowing it to produce solid condiments."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
@@ -932,7 +932,7 @@
 		R.module.remove_module(BR, TRUE)
 
 /obj/item/borg/upgrade/snack_dispenser
-	name = "Cyborg Upgrade (Snack Dispenser)"
+	name = "snack dispenser upgrade"
 	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, service, and clown cyborgs."
 
 /obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
