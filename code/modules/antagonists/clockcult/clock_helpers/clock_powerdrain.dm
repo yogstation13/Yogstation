@@ -21,7 +21,7 @@
 			shorted = 1
 			visible_message(span_warning("The [name]'s screen blurs with static."))
 		update()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/smes/power_drain(clockcult_user)
 	if(charge)
@@ -32,13 +32,13 @@
 			icon_state = "[initial(icon_state)]-o"
 			do_sparks(10, FALSE, src)
 			visible_message(span_warning("[src]'s panel flies open with a flurry of sparks!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/stock_parts/cell/power_drain(clockcult_user)
 	if(charge)
 		. = min(charge, MIN_CLOCKCULT_POWER*3)
 		charge = use(.)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/robot/power_drain(clockcult_user)
 	if((!clockcult_user || !is_servant_of_ratvar(src)) && cell && cell.charge)

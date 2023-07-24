@@ -57,7 +57,7 @@
 	. = ..()
 	if(blood_type != null)
 		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/blood/on_reagent_change(changetype)
 	if(reagents)
@@ -69,7 +69,7 @@
 		else
 			blood_type = null
 	update_pack_name()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/blood/proc/update_pack_name()
 	if(!labelled)
@@ -78,15 +78,15 @@
 		else
 			name = "blood pack"
 
-/obj/item/reagent_containers/blood/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/blood/update_overlays()
+	. = ..()
 
 	var/v = min(round(reagents.total_volume / volume * 10), 10)
 	if(v > 0)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "bloodpack1")
 		filling.icon_state = "bloodpack[v]"
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		. += filling
 
 /obj/item/reagent_containers/blood/random
 	icon_state = "random_bloodpack"

@@ -51,7 +51,7 @@
 	melee_damage_upper = 20
 	deathmessage = "collapses into a pile of bones, its gear falling to the floor!"
 	loot = list(/obj/effect/decal/remains/human,
-				/obj/item/twohanded/spear,
+				/obj/item/melee/spear,
 				/obj/item/clothing/shoes/winterboots,
 				/obj/item/clothing/suit/hooded/wintercoat)
 

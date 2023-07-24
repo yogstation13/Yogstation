@@ -191,6 +191,9 @@
 				if(!get_location_accessible(H, location))
 					to_chat(user, span_warning("The headgear is in the way!"))
 					return
+				if(HAS_TRAIT(H, TRAIT_BALD))
+					to_chat(user, span_warning("[H] is just way too bald. Like, really really bald."))
+					return
 				user.visible_message(span_notice("[user] tries to change [H]'s hairstyle using [src]."), span_notice("You try to change [H]'s hairstyle using [src]."))
 				if(new_style && do_after(user, 6 SECONDS, H))
 					user.visible_message(span_notice("[user] successfully changes [H]'s hairstyle using [src]."), span_notice("You successfully change [H]'s hairstyle using [src]."))
