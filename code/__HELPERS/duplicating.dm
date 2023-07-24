@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars, list(
 	"overlays_standing",
 	"parent",
 	"parent_type",
+	"part_overlays",
 	"power_supply",
 	"quirks",
 	"reagents",
