@@ -162,6 +162,45 @@ export const HypertorusWasteRemove = (props, context) => {
             <>
               <HoverHelp
                 content={
+                  'Remove fuel gases from Fusion,' +
+                  ' and any selected gases from the Fuel.'
+                }
+              />
+              Fuel remove:
+            </>
+          }>
+          <Button
+            icon={data.fuel_remove ? 'power-off' : 'times'}
+            content={data.fuel_remove ? 'On' : 'Off'}
+            selected={data.fuel_remove}
+            onClick={() => act('fuel_remove')}
+          />
+        </LabeledList.Item>
+        <LabeledList.Item
+          label={
+            <>
+              <HelpDummy />
+              Fuel filtering rate:
+            </>
+          }>
+          <NumberInput
+            animated
+            value={parseFloat(data.fl_filtering_rate)}
+            unit="mol/s"
+            minValue={5}
+            maxValue={200}
+            onDrag={(e, value) =>
+              act('fl_filtering_rate', {
+                fl_filtering_rate: value,
+              })
+            }
+          />
+        </LabeledList.Item>
+        <LabeledList.Item
+          label={
+            <>
+              <HoverHelp
+                content={
                   'Remove waste gases from Fusion,' +
                   ' and any selected gases from the Moderator.'
                 }
