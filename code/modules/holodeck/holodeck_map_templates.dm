@@ -196,5 +196,3 @@
 	description = "benis"
 	mappath = "_maps/templates/holodeck/holodeck_refuelingstation.dmm"
 	restricted = TRUE
-
-/datum/test/hi
