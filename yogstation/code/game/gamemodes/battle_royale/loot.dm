@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	desc = "Transforms you into a durable worker cyborg."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
-	martial = /datum/martial_art/stealth
+	martial = /datum/martial_art/liquidator
 	species = /datum/species/preternis
 	
 /obj/item/battleroyale/martial/phytosian
