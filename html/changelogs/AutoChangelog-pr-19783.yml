@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Worldbreaker grab effect now reads worldbreaker instead of buster arm"

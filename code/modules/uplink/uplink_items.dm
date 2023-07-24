@@ -476,7 +476,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/traitor/internal_affairs)
 	player_minimum = 25
 	restricted = TRUE
 	refundable = TRUE
@@ -1766,7 +1766,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/tactical_gloves
 	name = "Tactical Fingerless Gloves"
 	desc = "A pair of simple fabric gloves without fingertips that allow one to perform tasks faster and act quicker in unarmed manuevers. \
-			Also greatly assists with the carrying of bodies."
+			Also greatly assists with the carrying of bodies, while not letting anyone else take them from you!"
 	item = /obj/item/clothing/gloves/fingerless/bigboss
 	cost = 2
 
