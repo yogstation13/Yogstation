@@ -1,0 +1,9 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Borg Snack Dispenser has been added."
+  - rscadd: "A new cyborg upgrade can be printed to give Cyborgs with a Borg Snack Dispenser access to more snacks."
+  - rscdel: "The cyborg treat fabricator has been removed."
+  - tweak: "Peacekeeper Cyborgs starts with a Borg Snack Dispenser that gives only cookies."
+  - tweak: "Medical, Service, and Clowns Cyborgs starts with a Borg Snack Dispenser that gives lollipops, gumballs, and vanilla ice cream."
+  - bugfix: "The finalizing of a thrown item properly calls COMSIG_MOVABLE_THROW_LANDED signal."
