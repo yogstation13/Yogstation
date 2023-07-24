@@ -90,7 +90,6 @@
 		user.take_bodypart_damage(5,5)
 
 /// Security lethal melee weapon, stats inspired by combat knife and energy sword
-/// Legally distinct from /obj/item/twohanded/vibro_weapon
 /obj/item/melee/transforming/vib_blade
 	name = "vibration blade"
 	desc = "A blade with an edge that vibrates rapidly, enabling it to easily cut through armor and flesh alike."

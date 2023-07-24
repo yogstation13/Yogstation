@@ -266,14 +266,16 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else
 		..()
 
-/obj/machinery/vending/update_icon()
+/obj/machinery/vending/update_icon_state()
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+		return
+
+	if(powered())
+		icon_state = initial(icon_state)
 	else
-		if(powered())
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]-off"
 
 
 /obj/machinery/vending/obj_break(damage_flag)
@@ -974,7 +976,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		stat |= NOPOWER
 
-	update_icon()
+	return ..()
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /**

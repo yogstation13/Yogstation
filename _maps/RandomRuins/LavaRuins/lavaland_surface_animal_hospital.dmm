@@ -418,7 +418,7 @@
 /area/ruin/powered/animal_hospital)
 "bf" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/storage/box/matches,
 /turf/open/floor/plating,
 /area/ruin/powered/animal_hospital)
@@ -529,7 +529,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered/animal_hospital)
 "bt" = (
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/kirbyplants,
 /turf/open/floor/plasteel,
 /area/ruin/powered/animal_hospital)
 "bu" = (

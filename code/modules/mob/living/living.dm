@@ -461,7 +461,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, src))
+		if(do_after(src, 1 SECONDS, src, stayStill = FALSE))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -1223,8 +1223,8 @@
 						"[C] leaps out of [src]'s way!")]</span>")
 	C.Paralyze(40)
 
-/mob/living/can_be_pulled()
-	return ..() && !(buckled && buckled.buckle_prevents_pull)
+/mob/living/can_be_pulled(user, grab_state, force)
+	return ..() && !(buckled && buckled.buckle_prevents_pull) && (QDELETED(pulledby) || !HAS_TRAIT(pulledby, TRAIT_STRONG_GRIP) || pulledby == user)
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 //Robots, animals and brains have their own version so don't worry about them
@@ -1253,7 +1253,7 @@
 		if(buckled.buckle_lying != -1)
 			should_be_lying = buckled.buckle_lying
 
-	if(should_be_lying)
+	if(should_be_lying && !HAS_TRAIT(src, TRAIT_FORCED_STANDING))
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
 			if(buckled.buckle_lying != -1)

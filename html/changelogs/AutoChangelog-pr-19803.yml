@@ -1,0 +1,5 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscadd: "Added new things"
+  - bugfix: "battlemage armor can be purchased again"

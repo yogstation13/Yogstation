@@ -222,7 +222,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			return
 		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
 		intellicard.forceMove(get_turf(src))
-		intellicard.update_icon()
+		intellicard.update_appearance(UPDATE_ICON)
 		intellicard = null
 	stop_download(TRUE)
 
@@ -241,7 +241,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	intellicard.AI.control_disabled = FALSE
 	intellicard.AI.relocate(TRUE)
 	intellicard.AI = null
-	intellicard.update_icon()
+	intellicard.update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/ai_control_console/ui_act(action, params)
 	if(..())

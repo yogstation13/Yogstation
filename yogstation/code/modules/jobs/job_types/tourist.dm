@@ -19,7 +19,7 @@
 	mail_goodies = list(
 		/obj/effect/spawner/lootdrop/plushies = 15,
 		/obj/item/fakeartefact = 5,
-		/obj/item/twohanded/binoculars = 5,
+		/obj/item/binoculars = 5,
 		/obj/item/storage/photo_album = 4,
 		/obj/item/clothing/glasses/sunglasses = 1
   )
