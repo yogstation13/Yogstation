@@ -523,6 +523,12 @@
 /obj/item/storage/box/syndie_kit/imp_microbomb/PopulateContents()
 	new /obj/item/implanter/explosive(src)
 
+/obj/item/storage/box/syndie_kit/imp_microbomb_tot
+	real_name = "weak microbomb implant box"
+
+/obj/item/storage/box/syndie_kit/imp_microbomb_tot/PopulateContents()
+	new /obj/item/implanter/explosive/unstackable(src)
+
 /obj/item/storage/box/syndie_kit/imp_macrobomb
 	real_name = "macrobomb implant box"
 

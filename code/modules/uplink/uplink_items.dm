@@ -2062,6 +2062,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
 
+/// For traitors, microbomb that can't be stacked
+/datum/uplink_item/implants/traitor_microbomb
+	name = "Weak Microbomb Implant"
+	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
+			This implant, unlike its nuclear counterpart, cannot be stacked. \
+			This will permanently destroy your body, however."
+	item = /obj/item/storage/box/syndie_kit/imp_microbomb_tot
+	cost = 1
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+
 /datum/uplink_item/implants/macrobomb
 	name = "Macrobomb Implant"
 	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \

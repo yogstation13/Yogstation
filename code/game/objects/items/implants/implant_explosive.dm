@@ -83,6 +83,14 @@
 		imp_in.gib(1)
 	qdel(src)
 
+/// Unstackable microbomb - Can only fit the one.
+/obj/item/implant/explosive/unstackable/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	for(var/X in target.implants)
+		if(istype(X, type))
+			return FALSE
+
+	return ..()
+
 /obj/item/implant/explosive/macro
 	name = "macrobomb implant"
 	desc = "And boom goes the weasel. And everything else nearby."
@@ -118,6 +126,15 @@
 	name = "implant case - 'Explosive'"
 	desc = "A glass case containing an explosive implant."
 	imp_type = /obj/item/implant/explosive
+
+/obj/item/implanter/explosive/unstackable
+	name = "implanter (weak microbomb)"
+	imp_type = /obj/item/implant/explosive/unstackable
+
+/obj/item/implantcase/explosive/unstackable
+	name = "implant case - 'Weak Explosive'"
+	desc = "A glass case containing a weak explosive implant."
+	imp_type = /obj/item/implant/explosive/unstackable
 
 /obj/item/implanter/explosive_macro
 	name = "implanter (macrobomb)"
