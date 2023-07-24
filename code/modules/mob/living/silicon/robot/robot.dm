@@ -1109,7 +1109,7 @@
 		update_transform()
 	logevent("Chassis configuration has been reset.")
 	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
-	module.transform_to(/obj/item/robot_module)
+	module.transform_to(/obj/item/robot_module) // Will reset armor & armor_plates as well. 
 
 	// Remove upgrades.
 	for(var/obj/item/borg/upgrade/I in upgrades)
