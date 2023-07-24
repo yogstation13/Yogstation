@@ -1,3 +1,4 @@
+
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
@@ -95,7 +96,7 @@
 	/// Offset bounds. Same as parsed_bounds until load().
 	var/list/bounds
 
-	///any turf in this list is skipped inside of build_coordinate. Lazy assoc list
+	///any turf in this list is skipped inside of build_coordinate
 	var/list/turf_blacklist
 
 	// raw strings used to represent regexes more accurately

@@ -17,6 +17,9 @@ SUBSYSTEM_DEF(atoms)
 
 	var/list/BadInitializeCalls = list()
 
+	///initAtom() adds the atom its creating to this list iff InitializeAtoms() has been given a list to populate as an argument
+	var/list/created_atoms
+
 	var/init_start_time
 
 	/// Atoms that will be deleted once the subsystem is initialized
@@ -35,11 +38,14 @@ SUBSYSTEM_DEF(atoms)
 	
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms, list/atoms_to_return = null)
 	if(initialized == INITIALIZATION_INSSATOMS)
 		return
 
 	set_tracked_initalized(INITIALIZATION_INNEW_MAPLOAD)
+
+	if(atoms_to_return)
+		LAZYINITLIST(created_atoms)
 
 	// This may look a bit odd, but if the actual atom creation runtimes for some reason, we absolutely need to set initialized BACK
 	CreateAtoms(atoms)
@@ -54,6 +60,10 @@ SUBSYSTEM_DEF(atoms)
 			A.LateInitialize()
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
+	
+	if(created_atoms)
+		atoms_to_return += created_atoms
+		created_atoms = null
 	
 	for (var/queued_deletion in queued_deletions)
 		qdel(queued_deletion)
@@ -133,6 +143,9 @@ SUBSYSTEM_DEF(atoms)
 		qdeleted = TRUE
 	else if(!(A.flags_1 & INITIALIZED_1))
 		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
+	
+	if(created_atoms)
+		created_atoms += A
 
 	return qdeleted || QDELING(A)
 

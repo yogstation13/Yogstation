@@ -16,120 +16,6 @@
 "aad" = (
 /turf/open/space,
 /area/space)
-"aae" = (
-/obj/structure/foamedmetal,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aaf" = (
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aag" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/closed/indestructible/riveted,
-/area/space)
-"aah" = (
-/obj/structure/foamedmetal,
-/obj/structure/window{
-	dir = 8
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aai" = (
-/obj/structure/foamedmetal,
-/obj/structure/window{
-	dir = 4
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aaj" = (
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aak" = (
-/obj/structure/table,
-/obj/item/stack/medical/ointment{
-	heal_burn = 10
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aal" = (
-/obj/structure/weightmachine/weightlifter,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
-"aam" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aan" = (
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aao" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	layer = 3.3
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aap" = (
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/wildlife)
-"aaq" = (
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/offline)
-"aas" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aat" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aau" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
 "aav" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -145,212 +31,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aaw" = (
-/obj/structure/flora/bush,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aax" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/dropper,
-/obj/item/assembly/igniter,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aay" = (
-/obj/structure/table,
-/obj/machinery/recharger,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aaz" = (
-/obj/machinery/door/window/eastleft,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aaA" = (
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aaB" = (
-/obj/effect/holodeck_effect/mobspawner,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/wildlife)
-"aaC" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aaD" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aaE" = (
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aaF" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aaG" = (
-/obj/structure/flora/grass/brown,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aaH" = (
-/obj/structure/table,
-/obj/item/gun/energy/laser,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"aaI" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/pet_lounge)
-"aaJ" = (
-/obj/structure/table/wood/poker,
-/obj/item/clothing/mask/cigarette/pipe,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aaK" = (
-/obj/structure/table/wood/fancy,
-/obj/item/storage/book/bible,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aaL" = (
-/obj/machinery/washing_machine,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aaM" = (
-/obj/structure/statue/snow/snowman{
-	anchored = 1
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aaN" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"aaO" = (
-/obj/structure/window,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aaP" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aaQ" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aaR" = (
-/obj/item/clothing/under/shorts/red{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/under/shorts/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/under/shorts/green,
-/obj/item/clothing/under/shorts/grey{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/clothing/under/jabroni{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"aaS" = (
-/obj/item/cardboard_cutout/chess/white/king,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aaT" = (
 /obj/effect/turf_decal/caution/stand_clear{
 	dir = 1
@@ -359,61 +39,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aaU" = (
-/obj/structure/table/wood/fancy,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aaV" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aaW" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aaX" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"aaY" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_y = 4
-	},
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
-"aaZ" = (
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "aba" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
@@ -421,92 +46,10 @@
 /obj/structure/closet/syndicate/personal,
 /turf/open/floor/pod/light,
 /area/yogs/infiltrator_base)
-"abb" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
-"abc" = (
-/obj/structure/table,
-/obj/item/stack/medical/bruise_pack{
-	heal_brute = 10
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
-"abd" = (
-/obj/structure/table/wood,
-/obj/item/instrument/violin,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
-"abe" = (
-/obj/structure/chair/comfy/brown{
-	buildstackamount = 0;
-	dir = 1
-	},
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "abf" = (
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/yogs/infiltrator_base/outside)
-"abg" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"abh" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"abi" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/court)
-"abj" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/closed/indestructible/riveted,
-/area/space)
-"abk" = (
-/obj/effect/holodeck_effect/mobspawner/bee,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/anthophila)
-"abl" = (
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abm" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abn" = (
-/obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abo" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/wiki/barman_recipes,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "abp" = (
 /obj/machinery/vending/coffee,
 /obj/effect/decal/cleanable/dirt,
@@ -549,281 +92,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"abt" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abu" = (
-/obj/structure/holohoop{
-	layer = 3.9
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abv" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abw" = (
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
-"abx" = (
-/obj/structure/table,
-/obj/machinery/readybutton,
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"aby" = (
-/obj/structure/table,
-/obj/item/clothing/head/helmet/thunderdome,
-/obj/item/clothing/suit/armor/tdome/red,
-/obj/item/clothing/under/color/red,
-/obj/item/holo/esword/red,
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"abz" = (
-/obj/structure/table,
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"abA" = (
-/obj/machinery/readybutton,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"abB" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"abC" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"abD" = (
-/obj/effect/holodeck_effect/mobspawner/pet,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abE" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abF" = (
-/obj/effect/holodeck_effect/mobspawner/pet,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abG" = (
-/obj/structure/filingcabinet,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"abH" = (
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"abI" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abJ" = (
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abK" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abL" = (
-/obj/effect/overlay/palmtree_r,
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
-"abM" = (
-/obj/effect/overlay/palmtree_l,
-/obj/effect/overlay/coconut,
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
-"abN" = (
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"abO" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"abP" = (
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"abQ" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"abR" = (
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"abS" = (
-/obj/item/cardboard_cutout/chess/black/king,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
-"abT" = (
-/obj/item/trash/plate,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/pet_lounge)
-"abU" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"abV" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"abW" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
-"abX" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"abY" = (
-/obj/effect/holodeck_effect/mobspawner/monkey,
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
-"abZ" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"aca" = (
-/obj/structure/flora/ausbushes/palebush,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acb" = (
-/obj/effect/holodeck_effect/mobspawner/pet,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/pet_lounge)
-"acc" = (
-/obj/item/shovel/spade{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/pet_lounge)
 "acd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -831,11 +99,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"ace" = (
-/obj/effect/holodeck_effect/mobspawner/bee,
-/obj/item/clothing/head/beekeeper_head,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/anthophila)
 "acf" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -843,295 +106,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
-"acg" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"ach" = (
-/obj/structure/table/wood,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aci" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acj" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"ack" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acl" = (
-/obj/item/clothing/under/color/rainbow,
-/obj/item/clothing/glasses/sunglasses,
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
-"acm" = (
-/obj/structure/window,
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"acn" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"aco" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acp" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acq" = (
-/obj/effect/holodeck_effect/mobspawner/bee,
-/obj/effect/decal/remains/human,
-/obj/item/clothing/suit/beekeeper_suit,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/anthophila)
-"acr" = (
-/obj/effect/holodeck_effect/mobspawner/bee,
-/obj/item/melee/flyswatter,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/anthophila)
-"acs" = (
-/obj/structure/railing,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"act" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/armor/riot/knight/blue,
-/obj/item/clothing/head/helmet/knight/blue,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
-"acu" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
-"acv" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acw" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acx" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acy" = (
-/obj/item/toy/beach_ball,
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
-"acz" = (
-/obj/structure/window{
-	dir = 1
-	},
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"acA" = (
-/obj/structure/window,
-/obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acB" = (
-/obj/structure/window,
-/obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acC" = (
-/obj/structure/window,
-/obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acD" = (
-/obj/structure/sink/puddle,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acE" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acF" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acG" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/item/toy/katana,
-/obj/item/clothing/under/schoolgirl,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"acH" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acI" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acJ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acK" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acL" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/cultivator,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acM" = (
-/obj/machinery/hydroponics/soil,
-/obj/effect/holodeck_effect/mobspawner/pet,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acN" = (
-/obj/machinery/door/window{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	layer = 3
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"acO" = (
-/obj/item/cardboard_cutout/chess/black/pawn,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
-"acP" = (
-/obj/structure/window/reinforced,
-/obj/item/banner/blue,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
 "acQ" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -1139,93 +113,15 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/yogs/infiltrator_base)
-"acR" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"acS" = (
-/turf/open/floor/holofloor/beach/coast_t,
-/area/holodeck/rec_center/beach)
-"acT" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/holofloor/beach/coast_t,
-/area/holodeck/rec_center/beach)
-"acU" = (
-/obj/item/shovel/spade,
-/turf/open/floor/holofloor/beach/coast_t,
-/area/holodeck/rec_center/beach)
-"acV" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"acW" = (
-/obj/structure/flora/ausbushes/pointybush,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"acX" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"acY" = (
-/turf/open/floor/holofloor/beach/coast_b,
-/area/holodeck/rec_center/beach)
-"acZ" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "ada" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24;
-	req_access = list(150);
-	req_access_txt = "0"
+	req_access = list(150)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
-"adb" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/holodeck_effect/mobspawner/pet,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
-"adc" = (
-/obj/structure/table/glass,
-/obj/item/scalpel{
-	pixel_y = 10
-	},
-/obj/item/circular_saw,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "add" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1236,83 +132,6 @@
 /obj/structure/signpost/salvation,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"ade" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"adf" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
-"adg" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"adh" = (
-/turf/open/floor/holofloor/beach/water,
-/area/holodeck/rec_center/beach)
-"adi" = (
-/obj/structure/table,
-/obj/item/clothing/head/helmet/thunderdome,
-/obj/item/clothing/suit/armor/tdome/green,
-/obj/item/clothing/under/color/green,
-/obj/item/holo/esword/green,
-/turf/open/floor/holofloor/basalt,
-/area/holodeck/rec_center/thunderdome)
-"adj" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"adk" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"adl" = (
-/obj/machinery/readybutton,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/dodgeball)
-"adm" = (
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/refuel)
-"adn" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "8"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "ado" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -1322,38 +141,10 @@
 	},
 /turf/open/floor/plating,
 /area/yogs/infiltrator_base)
-"adp" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/armor/riot/knight/blue,
-/obj/item/clothing/head/helmet/knight/blue,
-/obj/item/claymore/weak,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
-"adq" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/head/crown/fancy{
-	pixel_y = 6
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
 "adr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"ads" = (
-/obj/structure/weightmachine/stacklifter,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "adt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -1402,27 +193,6 @@
 /obj/item/gun/energy/e_gun/mini,
 /turf/open/floor/pod/light,
 /area/yogs/infiltrator_base)
-"adx" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/item/storage/toolbox{
-	pixel_y = 4
-	},
-/obj/item/storage/toolbox,
-/obj/machinery/magnetic_controller{
-	autolink = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "adz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet{
@@ -1446,115 +216,6 @@
 /obj/item/clothing/under/syndicate/combat,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
-"adA" = (
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"adB" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"adC" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"adD" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"adE" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"adF" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"adG" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/refuel)
-"adH" = (
-/obj/machinery/door/window/westleft,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"adI" = (
-/obj/structure/table/glass,
-/obj/item/stack/medical/gauze,
-/obj/item/cautery,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"adJ" = (
-/obj/machinery/computer/operating{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"adK" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"adL" = (
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
 "adM" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt,
@@ -1565,56 +226,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"adN" = (
-/obj/structure/table/wood,
-/obj/item/melee/chainofcommand{
-	name = "chain whip"
-	},
-/obj/item/scythe,
-/obj/item/melee/spear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
-"adO" = (
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"adQ" = (
-/obj/machinery/door/window/eastleft,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "adR" = (
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/closed/indestructible/riveted,
 /area/yogs/infiltrator_base)
-"adS" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"adT" = (
-/turf/open/floor/holofloor{
-	dir = 4;
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"adU" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"adV" = (
-/turf/open/floor/holofloor{
-	dir = 1;
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "adW" = (
 /obj/machinery/door/airlock/external/glass{
 	name = "E.V.A. Foyer";
@@ -1623,100 +238,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"adX" = (
-/obj/structure/table/wood,
-/obj/item/folder,
-/obj/item/melee/classic_baton/telescopic,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"adY" = (
-/obj/structure/table/wood,
-/obj/item/toy/crayon/white,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"adZ" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/apple,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"aea" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	dir = 8;
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"aeb" = (
-/obj/structure/target_stake,
-/obj/machinery/magnetic_module,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"aec" = (
-/obj/item/cardboard_cutout/chess/white/queen,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aed" = (
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aee" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aef" = (
-/obj/machinery/door/window/westleft{
-	dir = 2;
-	icon_state = "right"
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
-"aeg" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
-"aeh" = (
-/obj/machinery/door/window/westleft{
-	dir = 2
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
-"aei" = (
-/obj/structure/flora/tree/pine{
-	pixel_y = -6
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aej" = (
-/obj/machinery/computer/operating{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aek" = (
-/obj/item/cardboard_cutout/chess/white/pawn,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "ael" = (
 /obj/structure/chair/stool,
 /obj/machinery/firealarm{
@@ -1730,63 +254,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aem" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/structure/holohoop{
-	dir = 1;
-	layer = 4.1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aen" = (
-/turf/open/floor/holofloor{
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aeo" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "h"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
-"aep" = (
-/turf/open/floor/holofloor{
-	dir = 8;
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aeq" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4;
-	layer = 2.9
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aer" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	dir = 10;
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"aes" = (
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
 "aet" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Cell 1";
@@ -1797,105 +264,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
-"aeu" = (
-/obj/item/weldingtool,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/refuel)
 "aev" = (
 /obj/structure/flora/tree/pine{
 	max_integrity = 100000
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/yogs/infiltrator_base/outside)
-"aew" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aex" = (
-/obj/machinery/door/window/westright,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"aey" = (
-/obj/structure/table/wood,
-/obj/item/melee/chainofcommand{
-	name = "chain whip"
-	},
-/obj/item/melee/spear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
-"aez" = (
-/obj/structure/table/wood,
-/obj/item/scythe,
-/obj/item/melee/spear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
-"aeA" = (
-/obj/structure/table/wood,
-/obj/item/tailclub,
-/obj/item/melee/spear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
-"aeB" = (
-/obj/structure/table/glass,
-/obj/item/clothing/gloves/color/latex/nitrile,
-/obj/item/clothing/suit/apron/surgical,
-/obj/item/clothing/mask/surgical,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/item/surgicaldrill,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aeC" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/item/clothing/under/schoolgirl,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"aeD" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/item/clothing/under/schoolgirl/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"aeE" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"aeF" = (
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aeG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
@@ -1906,9 +280,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aeH" = (
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
 "aeI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1924,25 +295,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aeJ" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aeK" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/stripes/line{
@@ -1955,78 +307,6 @@
 /obj/effect/turf_decal/stripes/white/corner,
 /turf/open/floor/pod/dark,
 /area/yogs/infiltrator_base)
-"aeM" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 1;
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aeN" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 4;
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aeO" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"aeP" = (
-/obj/item/cardboard_cutout/chess/white/rook,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
-"aeQ" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"aeR" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 8;
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aeS" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "chapel"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aeT" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/item/clothing/under/schoolgirl/orange,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"aeU" = (
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
-/obj/item/clothing/under/schoolgirl/red,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
-"aeV" = (
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/beach)
 "aeW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/bar,
@@ -2036,59 +316,12 @@
 /obj/machinery/vending/cigarette/syndicate,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aeX" = (
-/obj/structure/table/wood,
-/obj/item/kirbyplants/random{
-	pixel_y = 12
-	},
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
-"aeY" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
-"aeZ" = (
-/obj/machinery/door/window/westleft{
-	dir = 2
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
-"afa" = (
-/obj/item/toy/figure/chaplain,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"afb" = (
-/turf/open/floor/holofloor{
-	icon_state = "stairs-old"
-	},
-/area/holodeck/rec_center/thunderdome1218)
-"afc" = (
-/obj/effect/holodeck_effect/mobspawner/penguin,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "afd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
 /area/yogs/infiltrator_base)
-"afe" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "aff" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox/vegetable,
@@ -2099,44 +332,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"afg" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"afh" = (
-/obj/item/paper/guides/jobs/security/range,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "afi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"afj" = (
-/mob/living/simple_animal/crab{
-	name = "Jon"
-	},
-/turf/open/floor/holofloor/beach/coast_t,
-/area/holodeck/rec_center/beach)
-"afk" = (
-/obj/item/clothing/shoes/winterboots{
-	pixel_y = 12
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "afl" = (
 /obj/machinery/door/airlock{
 	name = "Cabin 3"
@@ -2149,10 +349,6 @@
 "afm" = (
 /turf/open/floor/carpet/black,
 /area/yogs/infiltrator_base)
-"afn" = (
-/obj/structure/flora/ausbushes/reedbush,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "afo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -2167,36 +363,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"afp" = (
-/obj/structure/flora/bush{
-	pixel_x = 5;
-	pixel_y = 7
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"afq" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"afr" = (
-/obj/machinery/door/window/westleft{
-	dir = 2
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "afs" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
@@ -2212,183 +378,6 @@
 /obj/structure/closet/syndicate/personal,
 /turf/open/floor/pod/light,
 /area/yogs/infiltrator_base)
-"afu" = (
-/obj/item/target,
-/obj/item/target/clown,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"afv" = (
-/obj/item/target,
-/obj/item/target/syndicate,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"afw" = (
-/obj/structure/rack,
-/obj/item/gun/energy/laser/practice,
-/obj/item/clothing/ears/earmuffs,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
-"afx" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/folder/blue,
-/obj/item/pen/red,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"afy" = (
-/obj/machinery/igniter/on,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afz" = (
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afA" = (
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afB" = (
-/obj/structure/rack,
-/obj/item/clothing/under/color/red,
-/obj/item/clothing/shoes/sneakers/brown,
-/obj/item/clothing/suit/armor/tdome/red,
-/obj/item/clothing/head/helmet/thunderdome,
-/obj/item/melee/baton/loaded,
-/obj/item/melee/transforming/energy/sword/saber/red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afC" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdomegen";
-	name = "General Supply"
-	},
-/turf/open/floor/plasteel/dark,
-/area/tdome/arena_source)
-"afD" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdome";
-	name = "Thunderdome Blast Door"
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afE" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afF" = (
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afG" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afH" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afI" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afJ" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afK" = (
-/obj/structure/rack,
-/obj/item/clothing/under/color/green,
-/obj/item/clothing/shoes/sneakers/brown,
-/obj/item/clothing/suit/armor/tdome/green,
-/obj/item/clothing/head/helmet/thunderdome,
-/obj/item/melee/baton/loaded,
-/obj/item/melee/transforming/energy/sword/saber/green,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afL" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afM" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afN" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afO" = (
-/turf/open/floor/circuit/green,
-/area/tdome/arena_source)
-"afP" = (
-/obj/machinery/flasher{
-	id = "tdomeflash";
-	name = "Thunderdome Flash"
-	},
-/turf/open/floor/circuit/green,
-/area/tdome/arena_source)
-"afQ" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
 "afR" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -2424,47 +413,6 @@
 /obj/item/clothing/suit/wizrobe/armor,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"afS" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afT" = (
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afU" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdomehea";
-	name = "Heavy Supply"
-	},
-/turf/open/floor/plasteel/dark,
-/area/tdome/arena_source)
-"afV" = (
-/obj/structure/rack,
-/obj/item/clothing/under/color/red,
-/obj/item/clothing/shoes/sneakers/brown,
-/obj/item/clothing/suit/armor/vest,
-/obj/item/clothing/head/helmet/swat,
-/obj/item/gun/energy/laser,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
-"afW" = (
-/obj/structure/rack,
-/obj/item/clothing/under/color/green,
-/obj/item/clothing/shoes/sneakers/brown,
-/obj/item/clothing/suit/armor/vest,
-/obj/item/clothing/head/helmet/swat,
-/obj/item/gun/energy/laser,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena_source)
 "afX" = (
 /turf/closed/indestructible/riveted,
 /area/start)
@@ -6899,7 +4847,6 @@
 "apA" = (
 /obj/machinery/turretid{
 	ailock = 1;
-	control_area = null;
 	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
 	icon_state = "control_stun";
 	name = "Security turret control";
@@ -7567,12 +5514,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
-"aqM" = (
-/obj/structure/railing/corner,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aqN" = (
 /obj/structure/urinal{
 	pixel_y = 28
@@ -8236,11 +6177,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"arZ" = (
-/obj/structure/table/wood,
-/obj/item/instrument/saxophone,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "asa" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
@@ -8251,16 +6187,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"asc" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "asd" = (
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
@@ -8726,33 +6652,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"asV" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/snacks/grown/poppy{
-	pixel_y = 2
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "asW" = (
 /obj/structure/showcase{
 	desc = "A strange machine supposedly from another world. The Wizard Federation has been meddling with it for years.";
@@ -8790,22 +6689,11 @@
 "ata" = (
 /turf/open/floor/carpet/blue,
 /area/centcom/evac)
-"atb" = (
-/obj/structure/closet/chesspieces/black,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "atc" = (
 /obj/structure/table/wood,
 /obj/item/storage/fancy/cigarettes/cigars/havana,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"atd" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "ate" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/pizzaslice/mushroom,
@@ -8831,13 +6719,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
-"atg" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "ath" = (
 /obj/structure/closet/cardboard,
 /obj/effect/turf_decal/stripes/corner,
@@ -8864,12 +6745,6 @@
 /obj/item/prisoncube,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"atk" = (
-/obj/item/cardboard_cutout/chess/white/knight,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "atl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -8886,16 +6761,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"atm" = (
-/obj/structure/window,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "atn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -8968,10 +6833,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"atw" = (
-/obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "atx" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
@@ -9239,23 +7100,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"aua" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aub" = (
 /obj/docking_port/stationary{
 	area_type = /area/yogs/infiltrator_base/outside;
@@ -9933,15 +7777,6 @@
 	},
 /turf/open/floor/carpet,
 /area/wizard_station)
-"avo" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "avp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -9954,10 +7789,6 @@
 /obj/item/clothing/glasses/prism_glasses,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"avr" = (
-/obj/structure/flora/tree/jungle/small,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "avs" = (
 /obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/tile/green{
@@ -10016,15 +7847,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base/jail)
-"avz" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "avA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/directions/engineering{
@@ -10389,10 +8211,6 @@
 /obj/item/clothing/neck/stripedbluescarf,
 /turf/open/floor/grass,
 /area/centcom/testchamber)
-"awi" = (
-/obj/structure/statue/diamond/captain,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/thunderdome1218)
 "awj" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien24";
@@ -10711,28 +8529,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"awU" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/stasis{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "awV" = (
 /obj/structure/table/wood,
 /obj/item/paicard,
@@ -10773,24 +8569,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
-"awZ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/item/toy/beach_ball/holoball,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"axa" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "axb" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -11034,16 +8812,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"axE" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "axG" = (
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership/control)
@@ -11492,23 +9260,6 @@
 /obj/item/stack/medical/ointment,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"ayE" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "ayF" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/wizrobe/magusblue,
@@ -11564,19 +9315,6 @@
 "ayN" = (
 /turf/closed/indestructible/riveted,
 /area/yogs/infiltrator_base/jail)
-"ayO" = (
-/obj/structure/closet/chesspieces/white,
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
-"ayP" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
 "ayQ" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -11742,19 +9480,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"azc" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/large,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "azd" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-22"
@@ -12129,24 +9854,11 @@
 	},
 /turf/open/floor/grass,
 /area/wizard_station)
-"azR" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "azS" = (
 /obj/structure/bed,
 /obj/item/bedsheet/nanotrasen,
 /turf/open/floor/carpet/blue,
 /area/centcom/evac)
-"azT" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "azU" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12199,17 +9911,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"azY" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
 "azZ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -12238,15 +9939,6 @@
 /obj/item/lighter,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
-"aAd" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aAe" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular,
@@ -12827,17 +10519,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"aBr" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aBs" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -12852,13 +10533,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aBu" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aBv" = (
 /obj/machinery/computer/card/centcom{
 	dir = 1
@@ -12940,12 +10614,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"aBB" = (
-/obj/structure/musician/piano{
-	icon_state = "piano"
-	},
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "aBC" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
@@ -13174,13 +10842,6 @@
 /obj/item/toy/figure/syndie,
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"aBZ" = (
-/obj/structure/flora/bush{
-	pixel_x = -2;
-	pixel_y = 3
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aCa" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -13307,11 +10968,6 @@
 /obj/item/hierophant_club,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aCl" = (
-/obj/structure/table/wood,
-/obj/item/instrument/guitar,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "aCm" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien7";
@@ -13632,14 +11288,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"aCK" = (
-/obj/structure/table,
-/obj/item/storage/box/cups,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "aCL" = (
 /obj/structure/table,
 /obj/item/paper/pamphlet/centcom/visitor_info,
@@ -13745,12 +11393,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"aCS" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "4"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aCT" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -13775,11 +11417,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aCW" = (
-/obj/structure/table/wood,
-/obj/item/melee/spear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
 "aCX" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/storage/belt/security/full,
@@ -13991,25 +11628,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
-"aDk" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/chaplainsuit/nun,
-/obj/item/clothing/head/nun_hood,
-/obj/item/clothing/suit/chaplainsuit/holidaypriest,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aDl" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -15136,12 +12754,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
-"aFB" = (
-/obj/item/cardboard_cutout/chess/white/bishop,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aFC" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -15515,12 +13127,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aGt" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "c"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aGu" = (
 /obj/machinery/door/airlock/silver{
 	name = "Shower"
@@ -15559,14 +13165,6 @@
 	},
 /turf/open/lava/airless,
 /area/wizard_station)
-"aGA" = (
-/obj/structure/foamedmetal,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/bookcase/random/fiction,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/bunker)
 "aGB" = (
 /obj/effect/turf_decal/stripes/white/corner{
 	dir = 1
@@ -16035,33 +13633,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aHk" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aHl" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/obj/item/healthanalyzer,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aHm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -16377,10 +13948,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
-"aHL" = (
-/obj/machinery/door/window/eastright,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "aHM" = (
 /obj/structure/chair,
 /obj/effect/landmark/thunderdome/observe,
@@ -16719,14 +14286,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/centcom/evac)
-"aIn" = (
-/obj/structure/table/wood/poker,
-/obj/effect/holodeck_effect/cards,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aIo" = (
 /obj/item/storage/box/matches{
 	pixel_x = -3;
@@ -16931,20 +14490,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
-"aIK" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -12;
-	pixel_y = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aIL" = (
 /obj/effect/landmark/thunderdome/one,
 /obj/effect/turf_decal/stripes/line{
@@ -17348,24 +14893,6 @@
 "aJI" = (
 /turf/closed/indestructible/fakeglass,
 /area/tdome/tdomeadmin)
-"aJJ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aJK" = (
-/obj/structure/flora/tree/pine{
-	pixel_x = -10
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aJL" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/green,
@@ -17573,19 +15100,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"aKd" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "aKe" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17962,12 +15476,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"aKz" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "2"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aKA" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -17994,17 +15502,6 @@
 /obj/machinery/status_display/ai,
 /turf/closed/indestructible/riveted,
 /area/tdome/tdomeadmin)
-"aKE" = (
-/obj/structure/window,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aKF" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -18037,15 +15534,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aKJ" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "aKK" = (
 /obj/structure/glowshroom/single,
 /obj/structure/table/wood,
@@ -18096,19 +15584,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"aKP" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aKQ" = (
 /turf/open/floor/plating,
 /area/centcom/evac)
@@ -18128,53 +15603,9 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aKU" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/structure/table/glass,
-/obj/item/storage/box/gloves{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aKV" = (
 /turf/open/floor/mineral/titanium,
 /area/centcom/evac)
-"aKW" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aKX" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
@@ -18207,14 +15638,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/airalarm{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 24;
 	req_access = 150
 	},
 /obj/machinery/turretid{
 	icon_state = "control_kill";
 	lethal = 1;
-	locked = 1;
 	pixel_y = 28;
 	req_access = 150
 	},
@@ -18248,19 +15677,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
 /area/yogs/infiltrator_base)
-"aLd" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aLe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -18297,14 +15713,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aLh" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aLi" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/secure_data/laptop{
@@ -18335,36 +15743,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
-"aLl" = (
-/obj/structure/chair,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aLm" = (
-/obj/structure/table/glass,
-/obj/item/surgical_drapes,
-/obj/item/razor,
-/obj/item/hemostat,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aLn" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck/uno,
-/obj/item/toy/turn_tracker,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aLo" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/evac)
@@ -18372,49 +15750,9 @@
 /obj/machinery/vending/cola/blue,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aLq" = (
-/obj/structure/table/wood,
-/obj/item/instrument/piano_synth/headphones,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
-"aLr" = (
-/turf/open/floor/holofloor{
-	icon_state = "stairs-l"
-	},
-/area/holodeck/rec_center/lounge)
-"aLs" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box,
-/obj/item/hand_labeler,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aLt" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/centcom/evac)
-"aLu" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/clothing/under/yogs/whitetuxedo,
-/obj/item/clothing/under/yogs/whitedress,
-/obj/item/clothing/shoes/laceup,
-/obj/item/clothing/shoes/laceup,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aLw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -18423,16 +15761,8 @@
 /area/yogs/infiltrator_base)
 "aLx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
-"aLy" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aLz" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/computer/camera_advanced/syndie{
@@ -18442,12 +15772,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base/jail)
-"aLA" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "1"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aLB" = (
 /obj/structure/rack{
 	icon = 'icons/obj/stationobjs.dmi';
@@ -18478,15 +15802,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
-"aLC" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "aLD" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -18498,59 +15813,6 @@
 /obj/item/radio/off,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aLF" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/firingrange)
-"aLG" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aLH" = (
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
-"aLI" = (
-/obj/item/clothing/suit/judgerobe,
-/obj/item/clothing/head/powdered_wig,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aLJ" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
 "aLK" = (
 /obj/machinery/abductor/experiment{
 	team_number = 2
@@ -18574,18 +15836,6 @@
 /obj/item/storage/lockbox,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aLO" = (
-/obj/structure/closet/wardrobe/white,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aLP" = (
 /obj/machinery/computer/shuttle{
 	dir = 1
@@ -18803,44 +16053,17 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aMo" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
 "aMp" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aMq" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "7"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
-"aMr" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aMs" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-10"
@@ -18867,13 +16090,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"aMv" = (
-/obj/item/clothing/head/collectable/tophat{
-	pixel_x = 9;
-	pixel_y = 7
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aMw" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -18945,22 +16161,6 @@
 "aMB" = (
 /turf/open/indestructible/binary,
 /area/fabric_of_reality)
-"aMC" = (
-/obj/structure/closet/crate/freezer/blood,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aMD" = (
 /obj/effect/light_emitter{
 	set_cap = 1;
@@ -19087,10 +16287,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aMQ" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "aMR" = (
 /obj/machinery/light{
 	dir = 4
@@ -19135,22 +16331,6 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aMY" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/item/storage/box/masks,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aMZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19183,37 +16363,6 @@
 /obj/item/card/id/centcom,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"aNb" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aNc" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/structure/window{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aNd" = (
 /turf/closed/indestructible{
 	icon = 'icons/turf/walls/wood_wall.dmi';
@@ -19240,10 +16389,6 @@
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/space/basic,
 /area/centcom/testchamber)
-"aNg" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
 "aNh" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses,
@@ -19259,11 +16404,6 @@
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aNj" = (
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aNk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome";
@@ -19321,16 +16461,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aNp" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "aNq" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19377,10 +16507,6 @@
 "aNt" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
-"aNu" = (
-/obj/item/clothing/gloves/color/brown,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aNv" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -19571,19 +16697,6 @@
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aNS" = (
-/obj/structure/window,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aNT" = (
 /obj/structure/window/paperframe{
 	CanAtmosPass = 0
@@ -19609,12 +16722,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aNW" = (
-/obj/item/cardboard_cutout/chess/black/bishop,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aNX" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19625,10 +16732,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aNY" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "aNZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -19802,7 +16905,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19831,47 +16934,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"aOr" = (
-/obj/structure/window{
-	dir = 8
-	},
-/obj/machinery/computer/crew{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aOs" = (
 /obj/machinery/portable_atmospherics/canister/nob,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aOt" = (
-/obj/machinery/iv_drip,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aOu" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
@@ -19923,16 +16989,6 @@
 /obj/item/encryptionkey/binary,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aOA" = (
-/obj/structure/table/optable,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aOB" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20028,9 +17084,7 @@
 /obj/item/storage/crayons,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aOK" = (
 /obj/machinery/door/airlock/external{
@@ -20174,28 +17228,6 @@
 	},
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aOY" = (
-/obj/structure/table,
-/obj/item/storage/box/cups,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aOZ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/folder/red,
-/obj/item/pen/red,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aPa" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
@@ -20221,23 +17253,6 @@
 /obj/item/assembly/flash/handheld,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aPe" = (
-/obj/structure/window{
-	dir = 8
-	},
-/obj/machinery/computer/med_data{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aPf" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 9
@@ -20296,13 +17311,6 @@
 /obj/item/dragons_blood,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aPk" = (
-/obj/item/reagent_containers/food/drinks/soda_cans/cola{
-	pixel_x = 8;
-	pixel_y = 1
-	},
-/turf/open/floor/holofloor/beach,
-/area/holodeck/rec_center/beach)
 "aPl" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -20324,17 +17332,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"aPp" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aPq" = (
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -20357,10 +17354,6 @@
 /obj/structure/closet/secure_closet/ertCom,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aPt" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "aPu" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -20395,12 +17388,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aPy" = (
-/obj/item/cardboard_cutout/chess/white/knight,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aPz" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/pamphlet/centcom/visitor_info,
@@ -20438,7 +17425,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20479,12 +17466,6 @@
 /obj/structure/closet/syndicate/personal,
 /turf/open/floor/pod/light,
 /area/yogs/infiltrator_base)
-"aPH" = (
-/obj/structure/chair{
-	pixel_y = -2
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/school)
 "aPI" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
@@ -20524,12 +17505,6 @@
 /obj/structure/closet/lasertag/blue,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aPN" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "6"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aPO" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -20581,19 +17556,6 @@
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
-"aPU" = (
-/obj/machinery/computer/pandemic,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aPV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -20645,12 +17607,6 @@
 /obj/item/rod_of_asclepius,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aQd" = (
-/obj/item/cardboard_cutout/chess/black/bishop,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aQe" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
@@ -20693,12 +17649,6 @@
 /mob/living/simple_animal/pet/gondola,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aQi" = (
-/obj/item/cardboard_cutout/chess/white/rook,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aQj" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
@@ -20719,21 +17669,6 @@
 /obj/singularity/wizard/mapped,
 /turf/open/indestructible/binary,
 /area/fabric_of_reality)
-"aQn" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/structure/bed/roller,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aQo" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20766,14 +17701,6 @@
 /obj/item/ammo_box/magazine/tommygunm45,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aQp" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aQq" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -20786,15 +17713,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/yogs/infiltrator_base/outside)
-"aQs" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "aQt" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/indestructible/riveted,
@@ -20806,46 +17724,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aQv" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aQw" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/iv_drip,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aQx" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aQy" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -20919,14 +17797,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aQD" = (
-/obj/structure/table/wood/poker,
-/obj/item/storage/pill_bottle/dice,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aQE" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/shreds,
@@ -21146,12 +18016,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
-"aQZ" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "5"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aRa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21187,14 +18051,6 @@
 /obj/item/antag_spawner/slaughter_demon/laughter,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aRc" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aRd" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/green{
@@ -21276,8 +18132,7 @@
 	},
 /obj/machinery/airalarm{
 	pixel_y = 24;
-	req_access = list(150);
-	req_access_txt = "0"
+	req_access = list(150)
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
@@ -21312,16 +18167,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aRq" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aRr" = (
 /obj/structure/rack{
 	icon = 'icons/obj/stationobjs.dmi';
@@ -21347,13 +18192,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
-"aRs" = (
-/obj/item/clothing/neck/stripedredscarf{
-	pixel_x = -3;
-	pixel_y = -5
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aRt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21382,12 +18220,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
-"aRv" = (
-/obj/item/cardboard_cutout/chess/black/knight,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aRw" = (
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/black,
@@ -21396,23 +18228,6 @@
 /obj/structure/flora/tree/pine,
 /turf/closed/indestructible/rock/snow,
 /area/yogs/infiltrator_base/outside)
-"aRy" = (
-/obj/item/clothing/suit/hooded/wintercoat,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aRz" = (
-/obj/structure/table/glass,
-/obj/item/retractor,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aRA" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /mob/living/simple_animal/hostile/retaliate/goat/king,
@@ -21444,23 +18259,6 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aRD" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/courtroom,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aRE" = (
-/obj/structure/table/wood,
-/obj/item/melee/spear/bonespear/chitinspear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
 "aRF" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21500,15 +18298,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aRJ" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aRK" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21545,17 +18334,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"aRN" = (
-/obj/structure/chair/stool/bar,
-/obj/structure/window/reinforced{
-	dir = 4;
-	layer = 2.9
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aRO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21625,16 +18403,6 @@
 /obj/machinery/portable_atmospherics/canister/freon,
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
-"aRQ" = (
-/obj/item/cardboard_cutout/chess/black/rook,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
-"aRR" = (
-/obj/structure/flora/tree/pine/xmas,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aRS" = (
 /obj/machinery/light{
 	dir = 8
@@ -21667,24 +18435,6 @@
 	dir = 6
 	},
 /area/yogs/infiltrator_base)
-"aRV" = (
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
-"aRW" = (
-/obj/structure/table,
-/obj/item/clothing/neck/stethoscope,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aRX" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21771,12 +18521,6 @@
 "aSi" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"aSj" = (
-/obj/item/cardboard_cutout/chess/white/bishop,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aSk" = (
 /obj/mecha/combat/marauder/seraph,
 /turf/open/floor/mech_bay_recharge_floor/dark,
@@ -21801,21 +18545,11 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aSn" = (
-/obj/effect/holodeck_effect/mobspawner/penguin_baby,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aSo" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/space/basic,
 /area/centcom/testchamber)
-"aSp" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "b"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aSq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -21890,16 +18624,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"aSx" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "aSy" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave{
@@ -21915,11 +18639,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aSz" = (
-/obj/effect/holodeck_effect/mobspawner/pet,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/pet_lounge)
 "aSA" = (
 /turf/closed/indestructible/riveted,
 /area/yogs/infiltrator_base)
@@ -21945,32 +18664,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
-"aSD" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aSE" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aSF" = (
-/obj/structure/window/reinforced,
-/obj/item/banner/red,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
 "aSG" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -21999,11 +18692,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aSK" = (
-/turf/open/floor/holofloor{
-	icon_state = "stairs-r"
-	},
-/area/holodeck/rec_center/lounge)
 "aSL" = (
 /obj/machinery/portable_atmospherics/canister/nitrium,
 /turf/open/floor/bluespace,
@@ -22029,12 +18717,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"aSP" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "d"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aSQ" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -22044,22 +18726,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aSR" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/machinery/stasis{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aSS" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -22113,7 +18779,6 @@
 	pixel_y = -2
 	},
 /obj/item/toy/cards/deck/syndicate{
-	icon_state = "deck_syndicate_full";
 	pixel_x = -6;
 	pixel_y = 6
 	},
@@ -22194,16 +18859,6 @@
 /obj/item/reagent_containers/glass/bottle/potion/flight,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aTe" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/item/bikehorn/airhorn,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aTf" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien4";
@@ -22334,16 +18989,6 @@
 /obj/structure/closet/chefcloset,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"aTs" = (
-/obj/item/grown/log/tree{
-	pixel_y = -5
-	},
-/obj/item/hatchet/wooden{
-	pixel_x = 7;
-	pixel_y = -8
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aTt" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -22422,18 +19067,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
-"aTA" = (
-/obj/structure/window{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aTB" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/cafeteria,
@@ -22442,12 +19075,6 @@
 /obj/machinery/door/window/eastright,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"aTD" = (
-/obj/item/cardboard_cutout/chess/black/queen,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aTE" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22543,20 +19170,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aTO" = (
-/obj/structure/chair/office/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aTP" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22584,16 +19197,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aTQ" = (
-/obj/machinery/door/window/westright,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aTR" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "e"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aTS" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -22609,40 +19212,9 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"aTU" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aTV" = (
-/obj/item/clothing/suit/chaplainsuit/bishoprobe,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -22671,16 +19243,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aUa" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	layer = 2.9
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aUb" = (
 /obj/item/kirbyplants/random,
 /obj/item/storage/pill_bottle/stimulant,
@@ -22696,15 +19258,6 @@
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aUe" = (
-/obj/structure/chair/wood{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aUf" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
@@ -22749,10 +19302,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aUk" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aUl" = (
 /obj/structure/closet/lasertag/blue,
 /turf/open/floor/wood,
@@ -22801,12 +19350,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"aUq" = (
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
 "aUr" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/mineral/titanium/blue,
@@ -22917,25 +19460,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aUC" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aUD" = (
 /obj/machinery/vending/toyliberationstation{
 	age_restrictions = 0;
@@ -22955,18 +19479,6 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"aUG" = (
-/obj/item/toy/snowball{
-	pixel_y = 6
-	},
-/obj/item/toy/snowball{
-	pixel_x = 5
-	},
-/obj/item/toy/snowball{
-	pixel_x = -4
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aUH" = (
 /obj/machinery/light{
 	dir = 8
@@ -23054,18 +19566,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"aUP" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "g"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
-"aUQ" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "f"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aUR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/bar,
@@ -23074,13 +19574,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aUS" = (
-/obj/structure/table/wood/poker,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aUT" = (
 /obj/structure/chair/wood/wings{
 	dir = 1
@@ -23097,18 +19590,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aUW" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "aUX" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23139,10 +19620,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
-"aUZ" = (
-/obj/structure/flora/grass/both,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aVa" = (
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
@@ -23160,12 +19637,6 @@
 	dir = 1
 	},
 /area/yogs/infiltrator_base)
-"aVd" = (
-/obj/item/cardboard_cutout/chess/white/pawn,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aVe" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -23215,13 +19686,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aVj" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/gym)
 "aVk" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -23378,9 +19842,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aVC" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -23428,48 +19890,6 @@
 /obj/structure/sign/warning/explosives,
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
-"aVH" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aVI" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aVJ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aVK" = (
-/obj/structure/table/wood,
-/obj/item/clothing/mask/cigarette/pipe,
-/obj/item/book/manual/random,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "aVL" = (
 /obj/machinery/light{
 	dir = 4
@@ -23479,14 +19899,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
-"aVM" = (
-/obj/structure/table/wood,
-/obj/item/lighter,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aVN" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -23531,13 +19943,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base/jail)
-"aVS" = (
-/obj/item/stack/sheet/mineral/coal{
-	pixel_x = -8;
-	pixel_y = -4
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aVT" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -23650,19 +20055,9 @@
 /obj/machinery/vending/liberationstation,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aWe" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aWf" = (
 /obj/machinery/airalarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -24;
 	req_access = list(150)
 	},
@@ -23781,24 +20176,6 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aWr" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/glass/beaker,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aWs" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage"
@@ -23828,18 +20205,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"aWw" = (
-/obj/machinery/chem_master,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aWx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -23879,35 +20244,6 @@
 /obj/item/clothing/gloves/sec_maga,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aWD" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/box/syringes,
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
-"aWE" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/luchador{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/mask/luchador/rudos,
-/obj/item/clothing/mask/luchador/tecnicos{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aWG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -24009,15 +20345,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
-"aWO" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aWP" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Cockpit";
@@ -24043,12 +20370,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
-"aWR" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "a"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aWS" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -24072,12 +20393,6 @@
 /obj/item/desynchronizer,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aWV" = (
-/obj/structure/table/wood,
-/obj/item/tailclub,
-/obj/item/melee/spear/bonespear/chitinspear,
-/turf/open/floor/holofloor/asteroid,
-/area/holodeck/rec_center/thunderdome1218)
 "aWW" = (
 /obj/machinery/vending/toyliberationstation{
 	age_restrictions = 0;
@@ -24150,12 +20465,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"aXb" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "3"
-	},
-/turf/open/floor/holofloor/plating,
-/area/holodeck/rec_center/spacechess)
 "aXc" = (
 /obj/structure/table/wood,
 /obj/item/adamantineshield,
@@ -24175,22 +20484,6 @@
 /obj/machinery/vending/autodrobe,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aXf" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aXg" = (
-/obj/structure/flora/grass/green,
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aXh" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
@@ -24250,12 +20543,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aXm" = (
-/obj/item/cardboard_cutout/chess/black/pawn,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aXn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -24353,12 +20640,6 @@
 /obj/item/orion_ship,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aXw" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "aXx" = (
 /obj/machinery/light{
 	dir = 4
@@ -24602,22 +20883,10 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"aXW" = (
-/obj/item/clothing/head/ushanka{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
 "aXX" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/plating,
 /area/tdome/tdomeadmin)
-"aXY" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/random,
-/turf/open/floor/holofloor/carpet,
-/area/holodeck/rec_center/lounge)
 "aXZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -24754,11 +21023,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aYl" = (
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/gym)
 "aYm" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/wood,
@@ -24806,23 +21070,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aYs" = (
-/obj/item/clothing/head/helmet/chaplain/witchunter_hat,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aYt" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -24859,11 +21106,6 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
-"aYy" = (
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aYz" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -24881,15 +21123,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"aYB" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aYC" = (
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
@@ -24931,17 +21164,6 @@
 /obj/item/gun/magic/rune/mutation_rune,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aYH" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "aYI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/beerkeg,
@@ -24979,20 +21201,6 @@
 /mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/centcom/holding)
-"aYO" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
-"aYP" = (
-/obj/structure/punching_bag,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aYQ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker,
@@ -25053,22 +21261,8 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aYW" = (
-/obj/item/gavelblock,
-/obj/item/gavelhammer,
-/obj/structure/table/wood,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aYX" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
+/obj/machinery/airalarm/directional/west,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -25080,21 +21274,6 @@
 /obj/item/reagent_containers/syringe/gluttony,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aYZ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/chapelcourt)
 "aZa" = (
 /obj/machinery/door/airlock/wood{
 	id_tag = "lmrestroom"
@@ -25126,25 +21305,6 @@
 /obj/item/gun/grenadelauncher,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aZe" = (
-/obj/item/clothing/gloves/boxing{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/clothing/gloves/boxing/blue{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/clothing/gloves/boxing/green,
-/obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/structure/rack,
-/turf/open/floor/holofloor{
-	icon_state = "darkfull"
-	},
-/area/holodeck/rec_center/gym)
 "aZf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -25164,32 +21324,15 @@
 /obj/effect/decal/cleanable/leaper_sludge,
 /turf/open/space/basic,
 /area/centcom/testchamber)
-"aZh" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aZi" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/door/airlock/centcom{
 	name = "Equipment Room";
-	opacity = 1;
 	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/pod/dark,
 /area/yogs/infiltrator_base)
-"aZj" = (
-/obj/item/cardboard_cutout/chess/black/knight,
-/turf/open/floor/holofloor{
-	icon_state = "whiteboard"
-	},
-/area/holodeck/rec_center/spacechess)
 "aZk" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -25206,26 +21349,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"aZl" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
-"aZm" = (
-/obj/structure/flora/tree/pine{
-	pixel_x = -21
-	},
-/turf/open/floor/holofloor/snow,
-/area/holodeck/rec_center/winterwonderland)
-"aZn" = (
-/obj/structure/chair/wood,
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aZo" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -25251,15 +21374,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aZq" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/firingrange)
 "aZr" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -25284,9 +21398,7 @@
 "aZt" = (
 /obj/machinery/washing_machine,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aZu" = (
 /obj/structure/chair/stool,
@@ -25451,12 +21563,6 @@
 /obj/item/reagent_containers/glass/beaker/noreact,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"aZI" = (
-/obj/item/cardboard_cutout/chess/black/rook,
-/turf/open/floor/holofloor{
-	icon_state = "reebe"
-	},
-/area/holodeck/rec_center/spacechess)
 "aZJ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -25470,10 +21576,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"aZK" = (
-/obj/structure/table,
-/turf/open/floor/holofloor,
-/area/holodeck/rec_center/basketball)
 "aZL" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Living Quarters"
@@ -25515,9 +21617,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
-"aZP" = (
-/turf/open/lava/smooth,
-/area/holodeck/rec_center/burn)
 "aZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -25538,15 +21637,6 @@
 /obj/item/gun/magic/staff/spellblade,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"aZS" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/holodeck/rec_center/lounge)
 "aZT" = (
 /mob/living/simple_animal/cow,
 /turf/open/floor/grass,
@@ -25857,18 +21947,6 @@
 /obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"fAk" = (
-/obj/structure/goalnet/goalpost/right{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
-"gbG" = (
-/obj/structure/goalnet{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "gcY" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -25895,9 +21973,7 @@
 /obj/structure/mirror{
 	pixel_x = 28
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "gCx" = (
 /obj/effect/light_emitter{
@@ -26197,7 +22273,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/machinery/recharge_station/fullupgrade,
@@ -26206,7 +22281,6 @@
 "ngw" = (
 /obj/machinery/computer/cryopod{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -28
 	},
 /turf/open/floor/wood,
@@ -26255,19 +22329,10 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"nYo" = (
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "nYX" = (
 /obj/machinery/vending/medical/syndicate_access,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"obi" = (
-/obj/structure/goalnet/goalpost/left{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "ofS" = (
 /obj/machinery/door/airlock/diamond,
 /turf/open/floor/plasteel/dark,
@@ -26428,7 +22493,6 @@
 	},
 /obj/machinery/door/airlock/centcom{
 	name = "Atmos Room";
-	opacity = 1;
 	req_access_txt = "150"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
@@ -26465,10 +22529,6 @@
 /obj/machinery/vending/magivend,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"rVP" = (
-/obj/item/soccerball,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "spc" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title9"
@@ -26495,10 +22555,6 @@
 /obj/machinery/vending/wallhypo,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"twc" = (
-/obj/structure/goalnet/goalpost/left,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "tBh" = (
 /obj/machinery/vending/cola/pwr_game,
 /turf/open/floor/plasteel/bluespace,
@@ -26535,9 +22591,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
@@ -26612,10 +22666,6 @@
 /obj/machinery/vending/wallmed,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"vpx" = (
-/obj/structure/goalnet/goalpost/right,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "vsA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -26690,10 +22740,6 @@
 	icon_state = "info30"
 	},
 /area/centcom/testchamber)
-"wnI" = (
-/obj/structure/goalnet,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "wxA" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/plasteel/bluespace,
@@ -26710,15 +22756,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"wDa" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/holodeck_effect/mobspawner{
-	mobtype = /mob/living/simple_animal/hostile/lizard
-	},
-/turf/open/floor/holofloor{
-	icon_state = "white"
-	},
-/area/holodeck/rec_center/medical)
 "wDH" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "96"
@@ -26778,7 +22815,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
+	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -26853,9 +22890,7 @@
 /obj/machinery/door/window{
 	name = "Shower Door"
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 
 (1,1,1) = {"
@@ -69007,18 +65042,18 @@ aaa
 aaa
 "}
 (165,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -69264,18 +65299,18 @@ aaa
 aaa
 "}
 (166,1,1) = {"
-abj
-aUW
-aLC
-asc
-aLH
-aLH
-aYP
-aLH
-aeQ
-aeQ
-aeQ
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -69521,18 +65556,18 @@ aaa
 aaa
 "}
 (167,1,1) = {"
-abj
-aQs
-aal
-atg
-aqM
-adQ
-aRc
-aRc
-aRc
-aRc
-axa
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -69778,18 +65813,18 @@ aaa
 aaa
 "}
 (168,1,1) = {"
-abj
-aQs
-aKd
-atg
-acs
-aYl
-ayP
-aYl
-aYl
-aYl
-aQp
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -70035,18 +66070,18 @@ aaa
 aaa
 "}
 (169,1,1) = {"
-abj
-aQs
-aal
-atg
-acs
-adf
-aLJ
-aYl
-aYl
-aYl
-aPp
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -70292,18 +66327,18 @@ aaa
 aaa
 "}
 (170,1,1) = {"
-abj
-aQs
-aKd
-atg
-acs
-aYl
-aYl
-aYl
-aYl
-aYl
-aTe
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -70549,18 +66584,18 @@ aaa
 aaa
 "}
 (171,1,1) = {"
-abj
-aQs
-ads
-atg
-acs
-aYl
-aYl
-aYl
-aUq
-aMo
-aPp
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -70806,18 +66841,18 @@ aaa
 aaa
 "}
 (172,1,1) = {"
-abj
-aQs
-aKd
-atg
-acs
-aYl
-aYl
-aYl
-azY
-aYl
-aQp
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -71063,18 +67098,18 @@ aaa
 aaa
 "}
 (173,1,1) = {"
-abj
-aQs
-ads
-atg
-abU
-aLh
-aLh
-aLh
-aLh
-aex
-aaN
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -71320,18 +67355,18 @@ aaa
 aaa
 "}
 (174,1,1) = {"
-abj
-aNp
-aVj
-abW
-aLH
-aLH
-aYP
-aLH
-aZe
-aaR
-aWE
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -71577,29 +67612,29 @@ aaa
 aaa
 "}
 (175,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -71834,29 +67869,29 @@ aaa
 aaa
 "}
 (176,1,1) = {"
-abj
-aXg
-aTs
-aaf
-aaf
-aaw
-aaf
-aaf
-aaf
-aaf
-aUZ
-abj
-abD
-abl
-abl
-abl
-abn
-abl
-abl
-abn
-abl
-afe
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -72091,29 +68126,29 @@ aaa
 aaa
 "}
 (177,1,1) = {"
-abj
-aaf
-aei
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-aZm
-aaf
-abj
-abl
-abn
-abl
-aca
-abD
-abl
-aca
-aSz
-abm
-abl
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -72348,29 +68383,29 @@ aaa
 aaa
 "}
 (178,1,1) = {"
-abj
-aaf
-aMv
-aUG
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-aBZ
-abj
-abm
-abD
-abR
-abl
-avr
-abE
-acD
-acK
-acK
-abl
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -72605,29 +68640,29 @@ aaa
 aaa
 "}
 (179,1,1) = {"
-abj
-aRs
-aaM
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-afc
-aaf
-abj
-abl
-abE
-abm
-abl
-abl
-aNY
-abR
-acL
-acM
-abl
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -72862,29 +68897,29 @@ aaa
 aaa
 "}
 (180,1,1) = {"
-abj
-aaw
-aVS
-aaf
-aaf
-aaf
-aRR
-aSn
-aaf
-aRy
-afk
-abj
-acW
-abF
-aaI
-acb
-afn
-abm
-acE
-acM
-acK
-abn
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73119,29 +69154,29 @@ aaa
 aaa
 "}
 (181,1,1) = {"
-abj
-aaf
-aaf
-afc
-aaf
-aaf
-aaf
-aaf
-aUG
-aNu
-aXW
-abj
-abl
-abl
-abT
-acc
-abl
-adb
-abl
-acK
-acK
-abl
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73376,29 +69411,29 @@ aaa
 aaa
 "}
 (182,1,1) = {"
-abj
-aaf
-aaf
-aUk
-afp
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-abj
-abl
-abm
-abD
-aca
-abl
-abn
-aPt
-acD
-abl
-aca
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73633,29 +69668,29 @@ aaa
 aaa
 "}
 (183,1,1) = {"
-abj
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-aaf
-aJK
-abj
-abn
-aPt
-abn
-abl
-acD
-abl
-abD
-abl
-atw
-abl
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73890,29 +69925,29 @@ aaa
 aaa
 "}
 (184,1,1) = {"
-abj
-aaf
-aUZ
-aaf
-aaf
-aaf
-aXg
-aaf
-aaf
-aaf
-aaG
-abj
-abl
-abl
-abl
-abl
-abl
-abR
-abl
-abl
-abl
-abl
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74147,29 +70182,29 @@ aaa
 aaa
 "}
 (185,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74404,29 +70439,29 @@ aaa
 aaa
 "}
 (186,1,1) = {"
-abj
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-abj
-adB
-aQx
-aee
-acX
-acg
-aew
-aaO
-aKW
-aVJ
-aOt
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74661,29 +70696,29 @@ aaa
 aaa
 "}
 (187,1,1) = {"
-abj
-aai
-aGA
-aai
-aai
-aai
-aai
-aai
-aai
-aai
-aai
-abj
-aLm
-abH
-aOA
-aQv
-adO
-acZ
-atm
-aUC
-abH
-aQw
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74918,29 +70953,29 @@ aaa
 aaa
 "}
 (188,1,1) = {"
-abj
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-abj
-adc
-abH
-aej
-aMY
-adO
-acZ
-atm
-aua
-abH
-aLd
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75175,29 +71210,29 @@ aaa
 aaa
 "}
 (189,1,1) = {"
-abj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-abj
-aRz
-abH
-adJ
-aHl
-adO
-acZ
-afr
-aeJ
-aSR
-awU
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75432,29 +71467,29 @@ aaa
 aaa
 "}
 (190,1,1) = {"
-abj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-abj
-adI
-abH
-aOA
-aKU
-adO
-acZ
-aKE
-aOr
-aPe
-aNc
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75689,29 +71724,29 @@ aaa
 aaa
 "}
 (191,1,1) = {"
-abj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-abj
-aMC
-aTA
-aeB
-aQn
-wDa
-acZ
-atm
-aBr
-aTO
-aaA
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75946,29 +71981,29 @@ aaa
 aaa
 "}
 (192,1,1) = {"
-abj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-abj
-aWr
-azc
-aWD
-aQv
-adO
-acZ
-afr
-aBr
-aBr
-aTU
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -76203,29 +72238,29 @@ aaa
 aaa
 "}
 (193,1,1) = {"
-abj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-abj
-aWw
-abH
-aRJ
-aYH
-adO
-acZ
-atm
-aLO
-aBr
-aRW
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -76460,29 +72495,29 @@ aaa
 aaa
 "}
 (194,1,1) = {"
-abj
-aak
-aay
-aaH
-aaj
-aaH
-aaH
-aaj
-aaH
-aay
-abc
-abj
-aax
-aHk
-aPU
-aNb
-aWO
-abV
-aNS
-aaL
-aBr
-abG
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -76717,29 +72752,29 @@ aaa
 aaa
 "}
 (195,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -76974,29 +73009,29 @@ aaa
 aaa
 "}
 (196,1,1) = {"
-abj
-aVM
-aan
-aan
-aan
-aan
-aan
-adU
-abo
-aSE
-ach
-abj
-aZK
-azR
-azR
-abJ
-azR
-azR
-abJ
-azR
-azR
-aZK
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -77231,29 +73266,29 @@ aaa
 aaa
 "}
 (197,1,1) = {"
-abj
-aao
-aan
-aan
-aan
-aan
-aan
-adU
-ach
-aan
-ach
-abj
-aCK
-aaP
-aaP
-aHL
-aaP
-aaP
-aaz
-aaP
-aaP
-aCK
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -77488,29 +73523,29 @@ aaa
 aaa
 "}
 (198,1,1) = {"
-abj
-aan
-aZS
-aZS
-aan
-aan
-aUa
-aRN
-aeq
-acN
-aIK
-abj
-abt
-abI
-abI
-abI
-aci
-acv
-acF
-acF
-acF
-ade
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -77745,29 +73780,29 @@ aaa
 aaa
 "}
 (199,1,1) = {"
-abj
-aZn
-aUS
-aQD
-aYB
-aaQ
-arZ
-aLq
-aBB
-aaZ
-abd
-abj
-aXf
-avo
-abX
-abJ
-acj
-acw
-abJ
-acR
-aVH
-aVI
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78002,29 +74037,29 @@ aaa
 aaa
 "}
 (200,1,1) = {"
-abj
-aZn
-aUS
-aLn
-aYB
-aan
-aLr
-aaZ
-aMQ
-aaZ
-aCl
-abj
-abu
-abJ
-abX
-abJ
-acj
-awZ
-abJ
-azT
-abJ
-aem
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78259,29 +74294,29 @@ aaa
 aaa
 "}
 (201,1,1) = {"
-abj
-aZn
-aIn
-aaJ
-aYB
-aan
-aSK
-aaZ
-aaZ
-aaZ
-abe
-abj
-abv
-abK
-abX
-abJ
-acj
-acw
-abJ
-azT
-acH
-adg
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78516,29 +74551,29 @@ aaa
 aaa
 "}
 (202,1,1) = {"
-abj
-aan
-aUe
-aUe
-aan
-aaQ
-aXY
-aaZ
-aaZ
-aaZ
-abe
-abj
-aSx
-aZl
-aZl
-aZl
-ack
-acx
-acH
-acH
-acH
-aSD
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78773,29 +74808,29 @@ aaa
 aaa
 "}
 (203,1,1) = {"
-abj
-aam
-aan
-aan
-aan
-aaQ
-aeX
-aaZ
-aaZ
-aaZ
-abe
-abj
-aOY
-aKJ
-aKJ
-adH
-aKJ
-aKJ
-aTQ
-aKJ
-aKJ
-aOY
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79030,29 +75065,29 @@ aaa
 aaa
 "}
 (204,1,1) = {"
-abj
-aYO
-aan
-aan
-aan
-aaQ
-aaY
-aaZ
-abb
-abb
-aVK
-abj
-aZK
-aXw
-aXw
-abJ
-aXw
-aXw
-abJ
-aXw
-aXw
-aZK
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79287,40 +75322,40 @@ aaa
 aaa
 "}
 (205,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79544,40 +75579,40 @@ aaa
 aaa
 "}
 (206,1,1) = {"
-abj
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-abj
-abw
-abw
-abw
-abw
-abw
-abw
-abw
-acS
-acY
-adh
-abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79801,40 +75836,40 @@ aaa
 aaa
 "}
 (207,1,1) = {"
-abj
-aap
-aaB
-aap
-aap
-aaB
-aaB
-aap
-aap
-aaB
-aap
-abj
-abw
-abw
-abw
-abL
-abw
-aPk
-abw
-afj
-acY
-adh
-abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80058,40 +76093,40 @@ aaa
 aaa
 "}
 (208,1,1) = {"
-abj
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-abj
-abL
-abY
-abw
-abw
-abw
-aeV
-aeV
-acS
-acY
-adh
-abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80315,40 +76350,40 @@ aaa
 aaa
 "}
 (209,1,1) = {"
-abj
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-abj
-abw
-abw
-abw
-abw
-acl
-aPk
-abw
-acS
-acY
-adh
-abj
-twc
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-fAk
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80572,40 +76607,40 @@ aaa
 aaa
 "}
 (210,1,1) = {"
-abj
-aap
-aap
-aap
-aaB
-aap
-aap
-aaB
-aap
-aap
-aap
-abj
-abw
-abw
-aNg
-abw
-abw
-aeV
-aeV
-acS
-acY
-adh
-abj
-wnI
-nYo
-nYo
-rVP
-nYo
-nYo
-nYo
-nYo
-nYo
-gbG
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80829,40 +76864,40 @@ aaa
 aaa
 "}
 (211,1,1) = {"
-abj
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-abj
-abw
-abw
-abw
-abw
-abL
-acy
-abw
-acT
-acY
-adh
-abj
-vpx
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-obi
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81086,40 +77121,40 @@ aaa
 aaa
 "}
 (212,1,1) = {"
-abj
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-abj
-abw
-abM
-abY
-abw
-abw
-abw
-abw
-acU
-acY
-adh
-abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81343,40 +77378,40 @@ aaa
 aaa
 "}
 (213,1,1) = {"
-abj
-aap
-aaB
-aap
-aap
-aaB
-aaB
-aap
-aap
-aaB
-aap
-abj
-aNg
-abw
-abw
-abw
-abY
-abw
-abw
-acS
-acY
-adh
-abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81600,40 +77635,40 @@ aaa
 aaa
 "}
 (214,1,1) = {"
-abj
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-aap
-abj
-abw
-abw
-abw
-abw
-abw
-abw
-abw
-acS
-acY
-adh
-abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81857,40 +77892,40 @@ aaa
 aaa
 "}
 (215,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82114,40 +78149,40 @@ aaa
 aaa
 "}
 (216,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-abx
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-abz
-abj
-awi
-aeg
-aCW
-aeH
-aeH
-aeH
-aeH
-acP
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82371,40 +78406,40 @@ aaa
 aaa
 "}
 (217,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-adL
-aeg
-aRE
-aeH
-aeH
-aeH
-aeH
-aeY
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82628,40 +78663,40 @@ aaa
 aaa
 "}
 (218,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-act
-aef
-afb
-aeH
-aeH
-aeH
-aeH
-aeY
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82885,40 +78920,40 @@ aaa
 aaa
 "}
 (219,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-adp
-aeg
-adN
-aeH
-aeH
-aeH
-aeH
-aeZ
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83142,40 +79177,40 @@ aaa
 aaa
 "}
 (220,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-adq
-aeg
-aez
-aeH
-aeH
-aeH
-aeH
-aeY
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83399,40 +79434,40 @@ aaa
 aaa
 "}
 (221,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-adp
-aeg
-aWV
-aeH
-aeH
-aeH
-aeH
-aeZ
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83656,40 +79691,40 @@ aaa
 aaa
 "}
 (222,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-act
-aeh
-afb
-aeH
-aeH
-aeH
-aeH
-aeY
-adL
-acu
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83913,48 +79948,48 @@ aaa
 aaa
 "}
 (223,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-aby
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-adi
-abj
-adL
-aeg
-aey
-aeH
-aeH
-aeH
-aeH
-aeY
-adL
-acu
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84170,48 +80205,48 @@ aaa
 aaa
 "}
 (224,1,1) = {"
-abj
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-aaq
-abj
-abz
-abN
-abN
-abN
-acm
-acz
-abN
-abN
-abN
-abx
-abj
-awi
-aeg
-aeA
-aeH
-aeH
-aeH
-aeH
-aSF
-adL
-acu
-abj
-aab
-afB
-afB
-afB
-afB
-afB
-afB
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84427,50 +80462,50 @@ aaa
 aaa
 "}
 (225,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aab
-afC
-afC
-afC
-afC
-afC
-afC
-aab
-aab
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84684,50 +80719,50 @@ aaa
 aaa
 "}
 (226,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abA
-abO
-abO
-abO
-acn
-acA
-acI
-acI
-acI
-adj
-abj
-adK
-adV
-aep
-adV
-aeR
-aeM
-aep
-aLG
-aLG
-aRD
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afV
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84941,50 +80976,50 @@ aaa
 aaa
 "}
 (227,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-afa
-adT
-aen
-adT
-aeS
-aeN
-aen
-aLG
-aLG
-aKP
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afV
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85198,50 +81233,50 @@ aaa
 aaa
 "}
 (228,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-aLI
-afq
-aaV
-adV
-aeR
-aeM
-aep
-aLG
-aLG
-aOZ
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afV
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85455,50 +81490,50 @@ aaa
 aaa
 "}
 (229,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-aDk
-aRV
-aMr
-adT
-aeS
-aeN
-aen
-aLG
-aLG
-afx
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afV
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85712,50 +81747,50 @@ aaa
 aaa
 "}
 (230,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-aaK
-aLl
-aYW
-aYZ
-aYZ
-aYZ
-aYZ
-aaC
-aaC
-asV
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afV
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85969,50 +82004,50 @@ aaa
 aaa
 "}
 (231,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-aaU
-aRV
-aMr
-adV
-aeR
-aeM
-aep
-aLG
-aLG
-ayE
-abj
-aab
-afD
-afD
-afD
-afD
-afD
-afD
-aab
-aab
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86226,49 +82261,49 @@ aaa
 aaa
 "}
 (232,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-aYs
-avz
-aJJ
-adT
-aeS
-aeN
-aen
-aLG
-aLG
-aLs
-abj
-afy
-afE
-afL
-afN
-afN
-afS
-afE
-afy
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86483,49 +82518,49 @@ aaa
 aaa
 "}
 (233,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abB
-abP
-abZ
-abP
-aco
-acB
-abP
-acV
-abP
-adk
-abj
-aTV
-adV
-aep
-adV
-aeR
-aeM
-aep
-aLG
-aLG
-aLu
-abj
-afz
-afz
-afz
-afz
-afz
-afz
-afz
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86740,49 +82775,49 @@ aaa
 aaa
 "}
 (234,1,1) = {"
-abj
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-aZP
-abj
-abC
-abQ
-abQ
-abQ
-acp
-acC
-acJ
-acJ
-acJ
-adl
-abj
-adK
-adT
-aen
-adT
-aeS
-aeN
-aen
-aLG
-aLG
-aRD
-abj
-afA
-afF
-afF
-afF
-afF
-afF
-afF
-afA
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86997,49 +83032,49 @@ aaa
 aaa
 "}
 (235,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-afz
-afG
-afG
-afG
-afG
-afG
-afG
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -87254,49 +83289,49 @@ aaa
 aaa
 "}
 (236,1,1) = {"
-abj
-aas
-aaD
-aaD
-aaD
-aaD
-aaW
-aaW
-aaW
-aaW
-abg
-abj
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-abj
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-abj
-afz
-afH
-afH
-afH
-afH
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -87511,49 +83546,49 @@ aaa
 aaa
 "}
 (237,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-abj
-adA
-adA
-adA
-aeD
-aeO
-acG
-aeO
-aeC
-aeO
-adA
-abj
-afz
-afH
-afH
-afH
-afH
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -87768,49 +83803,49 @@ aaa
 aaa
 "}
 (238,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-abj
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-abj
-afz
-afH
-afH
-afO
-afO
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -88025,49 +84060,49 @@ aaa
 aaa
 "}
 (239,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adG
-adG
-adm
-adG
-adG
-adm
-adG
-adG
-adm
-abj
-adA
-adX
-adA
-aeC
-aeO
-aeT
-aeO
-aeU
-aeO
-adA
-abj
-afz
-afH
-afH
-afP
-afO
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -88282,49 +84317,49 @@ aaa
 aaa
 "}
 (240,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adG
-adG
-aeu
-adG
-adG
-aeu
-adG
-adG
-adm
-abj
-aPH
-adY
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-abj
-afz
-afH
-afH
-afO
-afO
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -88539,49 +84574,49 @@ aaa
 aaa
 "}
 (241,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adG
-adG
-adm
-adG
-adG
-adm
-adG
-adG
-adm
-abj
-adA
-adZ
-adA
-aeD
-aeO
-aeU
-aeO
-aeC
-aeO
-adA
-abj
-afz
-afH
-afH
-afH
-afH
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -88796,49 +84831,49 @@ aaa
 aaa
 "}
 (242,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-abj
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-abj
-afz
-afH
-afH
-afH
-afH
-afH
-afH
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89053,49 +85088,49 @@ aaa
 aaa
 "}
 (243,1,1) = {"
-abj
-aat
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-abh
-abj
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-abj
-adA
-adA
-adA
-aeD
-aeO
-aeD
-aeO
-aeT
-aeO
-adA
-abj
-afz
-afI
-afI
-afI
-afI
-afI
-afI
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89310,49 +85345,49 @@ aaa
 aaa
 "}
 (244,1,1) = {"
-abj
-aau
-aaF
-aaF
-aaF
-aaF
-aaX
-aaX
-aaX
-aaX
-abi
-abj
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-adm
-abj
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-adA
-abj
-afA
-afF
-afF
-afF
-afF
-afF
-afF
-afA
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89567,49 +85602,49 @@ aaa
 aaa
 "}
 (245,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-afz
-afz
-afz
-afz
-afz
-afz
-afz
-afz
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89824,49 +85859,49 @@ aaa
 aaa
 "}
 (246,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-atb
-adn
-aMq
-aPN
-aQZ
-aCS
-aXb
-aKz
-aLA
-ayO
-abj
-aWe
-aWe
-aWe
-aWe
-aWe
-aWe
-aWe
-aWe
-aWe
-aZh
-abj
-afy
-afJ
-afM
-afQ
-afQ
-afT
-afJ
-afy
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90081,50 +86116,50 @@ aaa
 aaa
 "}
 (247,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-aWR
-aRQ
-acO
-aNj
-aYy
-aNj
-aYy
-aek
-aQi
-aWR
-abj
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-atd
-abj
-aab
-afD
-afD
-afD
-afD
-afD
-afD
-aab
-aab
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90338,50 +86373,50 @@ aaa
 aaa
 "}
 (248,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-aSp
-aRv
-aXm
-aYy
-aNj
-aYy
-aNj
-aVd
-aPy
-aSp
-abj
-aBu
-aBu
-aBu
-aBu
-aBu
-aBu
-aBu
-aBu
-aLy
-afu
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afW
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90595,50 +86630,50 @@ aaa
 aaa
 "}
 (249,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-aGt
-aQd
-acO
-aNj
-aYy
-aNj
-aYy
-aek
-aFB
-aGt
-abj
-adC
-aea
-aer
-aeE
-aeE
-aeE
-aeE
-afg
-aZq
-afw
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afW
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90852,50 +86887,50 @@ aaa
 aaa
 "}
 (250,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-ace
-acq
-abk
-abk
-abk
-abk
-abj
-aSP
-aTD
-aXm
-aYy
-aNj
-aYy
-aNj
-aVd
-aec
-aSP
-abj
-adD
-aeb
-aes
-aeF
-aeF
-aeF
-aeF
-afh
-aZq
-afw
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afW
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91109,50 +87144,50 @@ aaa
 aaa
 "}
 (251,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-acr
-abk
-abk
-abk
-abk
-abj
-aTR
-abS
-acO
-aNj
-aYy
-aNj
-aYy
-aek
-aaS
-aTR
-abj
-adE
-aLF
-aLF
-aRq
-aRq
-aRq
-aRq
-adx
-aZq
-afw
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afW
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91366,50 +87401,50 @@ aaa
 aaa
 "}
 (252,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-aUQ
-aNW
-aXm
-aYy
-aNj
-aYy
-aNj
-aVd
-aSj
-aUQ
-abj
-aAd
-aAd
-aAd
-aAd
-aAd
-aAd
-aAd
-aAd
-adS
-afv
-abj
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-afU
-afW
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91623,50 +87658,50 @@ aaa
 aaa
 "}
 (253,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-aUP
-aZj
-acO
-aNj
-aYy
-aNj
-aYy
-aek
-atk
-aUP
-abj
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-aeF
-atd
-abj
-aab
-afC
-afC
-afC
-afC
-afC
-afC
-aab
-aab
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91880,48 +87915,48 @@ aaa
 aaa
 "}
 (254,1,1) = {"
-abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abj
-aeo
-aZI
-aXm
-aYy
-aNj
-aYy
-aNj
-aVd
-aeP
-aeo
-abj
-adF
-adF
-adF
-adF
-adF
-adF
-adF
-adF
-adF
-axE
-abj
-aab
-afK
-afK
-afK
-afK
-afK
-afK
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -92137,48 +88172,48 @@ aaa
 aaa
 "}
 (255,1,1) = {"
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa

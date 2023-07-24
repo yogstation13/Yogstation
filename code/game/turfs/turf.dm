@@ -39,6 +39,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	var/tiled_dirt = FALSE // use smooth tiled dirt decal
 
+	///the holodeck can load onto this turf if TRUE
+	var/holodeck_compatible = FALSE
+
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
 	if(var_name in banned_edits)
@@ -575,3 +578,21 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(!ismopable(movable_content))
 			continue
 		movable_content.wash(clean_types)
+
+/// Replaces all instances of needle_type in baseturfs with replacement_type
+/turf/proc/replace_baseturf(needle_type, replacement_type)
+	if (islist(baseturfs))
+		var/list/new_baseturfs
+
+		while (TRUE)
+			var/found_index = baseturfs.Find(needle_type)
+			if (found_index == 0)
+				break
+
+			new_baseturfs ||= baseturfs.Copy()
+			new_baseturfs[found_index] = replacement_type
+
+		if (!isnull(new_baseturfs))
+			baseturfs = baseturfs_string_list(new_baseturfs, src)
+	else if (baseturfs == needle_type)
+		baseturfs = replacement_type
