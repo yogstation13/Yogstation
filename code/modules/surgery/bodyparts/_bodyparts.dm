@@ -392,7 +392,7 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
-	
+
 	// If we have an open surgery site here, wound more easily
 	for(var/datum/surgery/S in owner.surgeries)
 		if(S.operated_bodypart == src)
@@ -475,7 +475,7 @@
 
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
 			armor_ablation += H.physiology.armor.getRating(WOUND)
-		
+
 		var/list/clothing = H.clothingonpart(src)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
@@ -511,6 +511,7 @@
 	// yogs -- line below updated to allow for robotic body part healing override
 	if(!(required_status == BODYPART_ANY) && (required_status && status != required_status) ) //So we can only heal certain kinds of limbs, ie robotic vs organic.
 		return
+
 
 	if(brute)
 		set_brute_dam(round(max(brute_dam - brute, 0), DAMAGE_PRECISION))

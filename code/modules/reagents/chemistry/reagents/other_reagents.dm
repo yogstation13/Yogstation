@@ -213,9 +213,11 @@
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
+	GLOB.religious_sect.holy_water_start(L)
 	ADD_TRAIT(L, TRAIT_HOLY, type)
 
 /datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/L)
+	GLOB.religious_sect.holy_water_end(L)
 	REMOVE_TRAIT(L, TRAIT_HOLY, type)
 	..()
 

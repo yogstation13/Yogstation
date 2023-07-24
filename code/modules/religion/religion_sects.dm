@@ -19,6 +19,7 @@
 	var/altar_icon // Changes the Altar of Gods icon
 	var/altar_icon_state // Changes the Altar of Gods icon_state
 	var/list/active_rites // Currently Active (non-deleted) rites
+	var/chapel_buff_coeff = 2
 
 /datum/religion_sect/New()
 	. = ..()
@@ -98,6 +99,10 @@
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return FALSE
 
+/datum/religion_sect/proc/holy_water_start(mob/living/L)
+
+/datum/religion_sect/proc/holy_water_end(mob/living/L)
+
 /datum/religion_sect/puritanism
 	name = "Puritanism (Default)"
 	desc = "Nothing special."
@@ -164,7 +169,7 @@
 		playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
 	else
 		to_chat(user, span_warning("[GLOB.deity] scoffs at the idea of healing such fleshy matter!"))
-				
+
 	return TRUE
 
 /datum/religion_sect/technophile/on_sacrifice(obj/item/I, mob/living/L)
@@ -270,7 +275,7 @@
 			return 0
 
 	var/heal_amt = 40 //it only heals burn
-	
+
 	if(H.getFireLoss() > 0)
 		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
@@ -436,7 +441,7 @@
 /datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return FALSE
-	
+
 	if(!L.client)
 		return FALSE
 
@@ -461,3 +466,9 @@
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		return TRUE
 	return FALSE
+
+/datum/religion_sect/holylight/holy_water_start(mob/living/L)
+	L.apply_status_effect(STATUS_EFFECT_DIVINE_RECEPTION)
+
+/datum/religion_sect/holylight/holy_water_end(mob/living/L)
+	L.remove_status_effect(STATUS_EFFECT_DIVINE_RECEPTION)
