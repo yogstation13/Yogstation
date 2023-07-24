@@ -46,6 +46,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars, list(
 	"type",
 	"vars",
 	"verbs",
+	"vis_contents",
 	"x", "y", "z",
 ))
 GLOBAL_PROTECT(duplicate_forbidden_vars)
