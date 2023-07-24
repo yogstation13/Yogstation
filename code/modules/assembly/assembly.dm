@@ -11,7 +11,7 @@
 	throw_range = 7
 
 	var/is_position_sensitive = FALSE	//set to true if the device has different icons for each position.
-										//This will prevent things such as visible lasers from facing the incorrect direction when transformed by assembly_holder's update_icon()
+										//This will prevent things such as visible lasers from facing the incorrect direction when transformed by assembly_holder's update_appearance(UPDATE_ICON)
 	var/secured = TRUE
 	var/list/attached_overlays = null
 	var/obj/item/assembly_holder/holder = null
@@ -82,7 +82,7 @@
 
 /obj/item/assembly/proc/toggle_secure()
 	secured = !secured
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return secured
 
 
@@ -114,6 +114,11 @@
 
 
 /obj/item/assembly/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, span_notice("You can't use things!"))
+		return
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
 	if(!user)
 		return FALSE
 	user.set_machine(src)
@@ -121,6 +126,7 @@
 	return TRUE
 
 /obj/item/assembly/interact(mob/user)
+	add_fingerprint(user)
 	return ui_interact(user)
 
 /obj/item/assembly/ui_host(mob/user)

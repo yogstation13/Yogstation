@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - experiment: "Added the two-handed component. Fireaxes, Double-bladed Eswords, Pitchforks, Binoculars, Baseball bats, etc. should all work the same, but now have a better backend that allows us to do more stuff with it, like making the Chaplain's null rod not delete itself upon being picked up."

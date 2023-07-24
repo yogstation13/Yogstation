@@ -508,7 +508,6 @@
 	tastes = list("bread" = 1, "egg" = 1, "cheese" = 1)
 	foodtype = GRAIN | MEAT | DAIRY
 
-
 /obj/item/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
 	desc = "Just like your little sister used to make."
@@ -649,17 +648,46 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
 
+/obj/item/reagent_containers/food/snacks/raw_croissant
+	name = "raw croissant"
+	desc = "Folded dough ready to bake into a croissant."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "raw_croissant"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("raw dough" = 2, "butter" = 1)
+	foodtype = GRAIN | DAIRY | BREAKFAST | RAW
+
+/obj/item/reagent_containers/food/snacks/raw_croissant/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/croissant, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/croissant
+	name = "croissant"
+	desc = "A delicious, buttery croissant. The perfect start to the day."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "croissant"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("fluffy bread" = 2, "butter" = 1)
+	foodtype = GRAIN | DAIRY | BREAKFAST
+	burns_in_oven = TRUE
+
 /obj/item/reagent_containers/food/snacks/pancakes/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/food/snacks/pancakes/update_icon()
-	if(contents.len)
-		name = "stack of pancakes"
-	else
-		name = initial(name)
+/obj/item/reagent_containers/food/snacks/pancakes/update_name()
+	name = contents.len ? "stack of pancakes" : initial(name)
+	return ..()
+
+/obj/item/reagent_containers/food/snacks/pancakes/update_icon(updates = ALL)
+	if(!(updates & UPDATE_OVERLAYS))
+		return ..()
+
+	updates &= ~UPDATE_OVERLAYS
+	. = ..() // Don't update overlays. We're doing that here
+
 	if(contents.len < LAZYLEN(overlays))
-		overlays-=overlays[overlays.len]
+		overlays -= overlays[overlays.len]
+	. |= UPDATE_OVERLAYS
 
 /obj/item/reagent_containers/food/snacks/pancakes/examine(mob/user)
 	var/ingredients_listed = ""
@@ -687,7 +715,7 @@
 	bitecount = originalBites
 
 /obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes/))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes))
 		var/obj/item/reagent_containers/food/snacks/pancakes/P = I
 		if((contents.len >= PANCAKE_MAX_STACK) || ((P.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
 			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
@@ -712,18 +740,11 @@
 		return O.attackby(I, user, params)
 	..()
 
-/obj/item/reagent_containers/food/snacks/pancakes/update_overlays(obj/item/reagent_containers/food/snacks/P)
-	var/mutable_appearance/pancake = mutable_appearance(icon, "[P.item_state]_[rand(1,3)]")
-	pancake.pixel_x = rand(-1,1)
-	pancake.pixel_y = 3 * contents.len - 1
-	add_overlay(pancake)
-	update_icon()
-
 /obj/item/reagent_containers/food/snacks/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)
 		return ..()
 	var/obj/item/O = contents[contents.len]
 	. = O.attack(M, user, def_zone, FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 #undef PANCAKE_MAX_STACK

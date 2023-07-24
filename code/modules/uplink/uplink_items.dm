@@ -213,6 +213,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/bundles_TC/contract_kit/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(is_species(user, /datum/species/plasmaman))
+		spawn_path = /obj/item/storage/box/syndicate/contract_kit/plasmaman
+	..()
+
 /datum/uplink_item/bundles_TC/bundle_A
 	name = "Syndi-kit Tactical"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
@@ -407,7 +412,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Double-Bladed Energy Sword"
 	desc = "The double-bladed energy sword does slightly more damage than a standard energy sword and will deflect \
 			all energy projectiles, but requires two hands to wield."
-	item = /obj/item/twohanded/dualsaber
+	item = /obj/item/melee/dualsaber
 	player_minimum = 25
 	cost = 16
 	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
@@ -434,7 +439,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
-	item = /obj/item/twohanded/bostaff
+	item = /obj/item/melee/bostaff
 	cost = 8
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -468,7 +473,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/guardiancreator/tech
-	cost = 12
+	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration)
@@ -529,7 +534,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This weapon must be wielded in two hands to be used effectively, but possesses high armor penetration. \
 			In addition, the user can charge the hammer to enable a thunderous blow that will decimate construction in a single hit, \
 			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
-	item = /obj/item/twohanded/vxtvulhammer
+	item = /obj/item/melee/vxtvulhammer
 	cost = 8
 	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
 
@@ -544,7 +549,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
 	desc = "Ranged fury, Syndicate style. Guaranteed to cause shock and awe or your TC back!"
-	item = /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
+	item = /obj/item/gun/ballistic/rifle/sniper_rifle/syndicate
 	cost = 16
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear)
@@ -610,6 +615,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
 	cost = 6
+	player_minimum = 25
 	surplus = 25
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -617,7 +623,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Fire Axe"
 	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
 			Easier to store than a standard fire axe while inactive."
-	item = /obj/item/twohanded/fireaxe/energy
+	item = /obj/item/fireaxe/energy
 	cost = 10
 	include_modes = list(/datum/game_mode/nuclear)
 	surplus = 0
@@ -1744,11 +1750,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/toolbox
 	name = "Full Syndicate Toolbox"
-	desc = "A suspicious black and red syndicate toolbox. It comes loaded with a full tool set including a \
+	desc = "A suspicious black and red syndicate toolbox. It comes loaded with a full speedy tool set including a \
 			multitool and combat gloves that are resistant to shocks and heat. It is very compact and will \
 			fit in any standard Nanotrasen backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
+
+/datum/uplink_item/device_tools/toolboxreal
+	name = "Deluxe Syndicate Toolbox"
+	desc = "A syndicate toolbox that comes stocked with ultra-fast syndicate tools. Be careful, as \
+			these tools are more obviously marked and will be easily spotted by anyone observant."
+	item = /obj/item/storage/toolbox/syndicate/real
+	cost = 2
 
 /datum/uplink_item/device_tools/tactical_gloves
 	name = "Tactical Fingerless Gloves"
@@ -2377,7 +2390,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Singulonuts"
 	desc = "A box with six Waffle Co. brand Singulonuts. Banned in four sectors for their sheer calorie content. \
 			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
-	item = /obj/item/storage/box/fancy/donut_box/deadly
+	item = /obj/item/storage/fancy/donut_box/deadly
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Assistant", "Cook", "Clerk")
@@ -2466,7 +2479,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	Either a failed experiment or otherworldly monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove a useful ally. \
 	We take no responsibility for your newfound madness and accept no refunds."
 	item = /obj/item/horrorspawner
-	cost = 16
+	cost = 14
 	surplus = 0
 	restricted_roles = list("Curator")
 	player_minimum = 20
@@ -2590,7 +2603,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Fire Axe"
 	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
 			Easier to store than a standard fire axe while inactive."
-	item = /obj/item/twohanded/fireaxe/energy
+	item = /obj/item/fireaxe/energy
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
 
@@ -2669,7 +2682,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
 	desc = "Strong flavor, dense smoke, infused with omnizine."
-	item = /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate
+	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE

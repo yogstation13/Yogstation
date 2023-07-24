@@ -389,7 +389,7 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
-	process_flags = PROCESS_ORGANIC | PROCESS_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
 
 
@@ -495,7 +495,8 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/N = M
-		N.hair_style = "Spiky"
+		if(!HAS_TRAIT(M, TRAIT_BALD))
+			N.hair_style = "Spiky"
 		N.facial_hair_style = "Shaved"
 		N.facial_hair_color = "000"
 		N.hair_color = "000"
@@ -1086,6 +1087,31 @@
 
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
+
+//Gateway to traitor chemistry, want a drug to be traitor only? use this
+/datum/reagent/redspace
+	name = "Redspace Dust"
+	description = "A sinister looking dust composed of grinded Syndicate telecrystals, the red colouration a result of impurities within their manufacturing process."
+	reagent_state = SOLID
+	color = "#db0735"
+	taste_description = "bitter evil"
+	process_flags = ORGANIC | SYNTHETIC
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+	can_synth = FALSE
+
+//Teleport like normal telecrystals
+/datum/reagent/redspace/on_mob_metabolize(mob/living/L)
+	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+	if(!istype(destination))
+		return
+	new /obj/effect/particle_effect/sparks(L.loc)
+	playsound(L.loc, "sparks", 50, 1)
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+		return
+	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjust_disgust(15)
 
 /datum/reagent/aluminium
 	name = "Aluminium"
@@ -1815,7 +1841,7 @@
 
 /datum/reagent/barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
@@ -1832,7 +1858,7 @@
 
 /datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
@@ -2137,6 +2163,7 @@
 	var/healthcomp = (100 - M.health)	//DOES NOT ACCOUNT FOR ADMINBUS THINGS THAT MAKE YOU HAVE MORE THAN 200/210 HEALTH, OR SOMETHING OTHER THAN A HUMAN PROCESSING THIS.
 	if(M.getStaminaLoss() < (45 - healthcomp))	//At 50 health you would have 200 - 150 health meaning 50 compensation. 60 - 50 = 10, so would only do 10-19 stamina.)
 		M.adjustStaminaLoss(10)
+		M.clear_stamina_regen()
 	if(prob(30))
 		to_chat(M, "You should sit down and take a rest...")
 	..()

@@ -18,7 +18,7 @@
 
 /obj/item/gun/syringe/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	chambered = new /obj/item/ammo_casing/syringegun(src)
 
 /obj/item/gun/syringe/handle_atom_del(atom/A)
@@ -37,7 +37,7 @@
 /obj/item/gun/syringe/process_chamber()
 	if(chambered && !chambered.BB) //we just fired
 		recharge_newshot()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/syringe/examine(mob/user)
 	. = ..()
@@ -71,19 +71,19 @@
 			to_chat(user, span_notice("You load [A] into \the [src]."))
 			syringes += A
 			recharge_newshot()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
 
-/obj/item/gun/syringe/update_icon()
+/obj/item/gun/syringe/update_overlays()
 	. = ..()
 	if(!has_syringe_overlay)
 		return
 	var/syringe_count = syringes.len
-	add_overlay("[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]")
+	. += "[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]"
 
 /obj/item/gun/syringe/rapidsyringe
 	name = "rapid syringe gun"
@@ -124,7 +124,7 @@
 			to_chat(user, span_notice("You load \the [D] into \the [src]."))
 			syringes += D
 			recharge_newshot()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
@@ -133,16 +133,20 @@
 
 /obj/item/gun/syringe/blowgun
 	name = "blowgun"
-	desc = "Fire syringes at a short distance."
+	desc = "Fire syringes a short distance."
 	icon_state = "blowgun"
 	item_state = "blowgun"
 	fire_sound = 'sound/items/syringeproj.ogg'
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
 
+/obj/item/gun/syringe/blowgun/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_ICON)
+	chambered = new /obj/item/ammo_casing/blowgun(src)
+
+
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	visible_message(span_danger("[user] starts aiming with a blowgun!"))
-	if(do_after(user, 2.5 SECONDS, src))
-		user.adjustStaminaLoss(20)
-		user.adjustOxyLoss(20)
-		..()
+	user.adjustStaminaLoss(25)
+	user.adjustOxyLoss(25)
+	..()

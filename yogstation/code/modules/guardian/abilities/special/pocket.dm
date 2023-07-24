@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	unique = FALSE
 	requires_power = FALSE
 	show_on_sensors = FALSE
-	ambientsounds = SPACE
+	ambience_index = AMBIENCE_SPACE
 	parallax_movedir = EAST
 
 /obj/effect/landmark/pocket_dimension_corner

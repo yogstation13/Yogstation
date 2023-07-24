@@ -13,15 +13,15 @@
 	var/chargelevel = -1
 	var/charge_rate = 250
 
-/obj/machinery/cell_charger/update_icon()
-	cut_overlays()
+/obj/machinery/cell_charger/update_overlays()
+	. = ..()
 	if(charging)
-		add_overlay(image(charging.icon, charging.icon_state))
-		add_overlay("ccharger-on")
+		. += image(charging.icon, charging.icon_state)
+		. += "ccharger-on"
 		if(!(stat & (BROKEN|NOPOWER)))
 			var/newlevel = 	round(charging.percent() * 4 / 100)
 			chargelevel = newlevel
-			add_overlay("ccharger-o[newlevel]")
+			. += "ccharger-o[newlevel]"
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
@@ -61,7 +61,7 @@
 			charging = W
 			user.visible_message("[user] inserts a cell into [src].", span_notice("You insert a cell into [src]."))
 			chargelevel = -1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		if(!charging && default_deconstruction_screwdriver(user, icon_state, icon_state, W))
 			return
@@ -81,10 +81,10 @@
 	return ..()
 
 /obj/machinery/cell_charger/proc/removecell()
-	charging.update_icon()
+	charging.update_appearance(UPDATE_ICON)
 	charging = null
 	chargelevel = -1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	. = ..()
@@ -110,7 +110,17 @@
 	removecell()
 
 /obj/machinery/cell_charger/attack_ai(mob/user)
+	if(!charging)
+		return
+
+	charging.forceMove(loc)
+	to_chat(user, "<span class='notice'>You remotely disconnect the battery port and eject [charging] from [src].</span>")
+
+	removecell()
 	return
+
+/obj/machinery/cell_charger/attack_robot(mob/user)
+	attack_ai(user)
 
 /obj/machinery/cell_charger/emp_act(severity)
 	. = ..()
@@ -141,4 +151,4 @@
 	use_power(charge_rate * delta_time)
 	charging.give(charge_rate * delta_time)	//this is 2558, efficient batteries exist
 
-	update_icon()
+	update_appearance(UPDATE_ICON)

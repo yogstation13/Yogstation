@@ -452,13 +452,13 @@
 	else
 		to_chat(cyborg, span_notice("You deactivate the self-repair module."))
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/borg/upgrade/selfrepair/update_icon()
+/obj/item/borg/upgrade/selfrepair/update_icon_state()
+	. = ..()
 	if(cyborg)
 		icon_state = "selfrepair_[on ? "on" : "off"]"
-		for(var/X in actions)
-			var/datum/action/A = X
+		for(var/datum/action/A as anything in actions)
 			A.build_all_button_icons()
 	else
 		icon_state = "cyborg_upgrade5"
@@ -466,7 +466,7 @@
 /obj/item/borg/upgrade/selfrepair/proc/deactivate_sr()
 	STOP_PROCESSING(SSobj, src)
 	on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/borg/upgrade/selfrepair/process()
 	if(world.time < next_repair)
@@ -582,7 +582,7 @@
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
+		var/obj/item/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
 		if(S)
 			to_chat(user, span_warning("This unit is already equipped with a defibrillator module."))
 			return FALSE
@@ -594,7 +594,7 @@
 /obj/item/borg/upgrade/defib/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
+		for(var/obj/item/shockpaddles/cyborg/S in R.module.modules)
 			R.module.remove_module(S, TRUE)
 
 /obj/item/borg/upgrade/adv_analyzer
@@ -897,7 +897,7 @@
 /obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
 	if (!..())
 		return
-	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
 		to_chat(user, span_warning("This janiborg is already equipped with an experimental broom!"))
 		return FALSE
@@ -908,6 +908,6 @@
 /obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
 	if (!..())
 		return
-	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
 		R.module.remove_module(BR, TRUE)

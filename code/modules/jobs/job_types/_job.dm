@@ -252,7 +252,6 @@
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
-	ipc_box = /obj/item/storage/box/ipc
 
 	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 
@@ -292,8 +291,6 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-	if (isipc(H) && !(visualsOnly)) // IPCs get their own box with special internals in it
-		box = ipc_box
 
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
@@ -332,7 +329,7 @@
 		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		PDA.update_filters()
 		
 	else
