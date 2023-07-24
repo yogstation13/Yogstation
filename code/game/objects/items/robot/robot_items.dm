@@ -856,15 +856,3 @@
 		/obj/item/wallframe,
 		/obj/item/stock_parts
 	)
-
-/obj/item/gripper/service
-	name = "service gripper"
-	desc = "A simple grasping tool for interacting with a limited amount of service related items."
-	can_hold = list(
-		/obj/item/paper,
-		/obj/item/plate,
-		/obj/item/plate/oven_tray,
-		/obj/item/reagent_containers/food,
-		/obj/item/kitchen/knife,
-		/obj/item/kitchen/rollingpin
-	)
