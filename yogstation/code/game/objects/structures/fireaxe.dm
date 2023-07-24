@@ -100,7 +100,7 @@
 
 		src.add_fingerprint(user)
 		obj_flags |= EMAGGED
-		desc += "<BR>[span_warning("Its access panel is smoking slightly.")]"
+		desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
 
 		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
 		locked = 0
