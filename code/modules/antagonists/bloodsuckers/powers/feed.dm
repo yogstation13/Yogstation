@@ -41,7 +41,7 @@
 	if(user.is_mouth_covered() && !isplasmaman(user))
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
-	if(bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_PAINFUL && owner.grab_state <= GRAB_PASSIVE)
+	if(bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_PAINFUL && owner.grab_state <= GRAB_PASSIVE)
 		owner.balloon_alert(owner, "can't silent feed!")
 		return FALSE
 	//Find target, it will alert what the problem is, if any.

@@ -187,7 +187,6 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
@@ -296,10 +295,9 @@
 	loot = list(/obj/item/ectoplasm)
 	deathmessage = "withers away into nothing."
 
-/mob/living/simple_animal/hostile/bloodsucker/wraith/Life()
+/mob/living/simple_animal/hostile/bloodsucker/wraith/Initialize(mapload)
 	. = ..()
-	if(stat != DEAD) //Wraith loses 1 health every 2 seconds, which means it will disperse after 60 seconds if not damaged.
-		adjustHealth(1)
+	AddElement(/datum/element/life_draining)
 
 /mob/living/simple_animal/hostile/bloodsucker/wraith/death()
 	qdel(src) //Del on death for some reason doesn't work, might be due to previous code preventing it for /bloodsucker mobs.
