@@ -980,7 +980,7 @@
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/borg_upgrade_condiment_synthesizer
-	name = "Condiment Synthesizer"
+	name = "Cyborg Upgrade (Condiment Synthesizer)"
 	id = "borg_upgrade_condiment_synthesizer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/condiment_synthesizer
