@@ -53,6 +53,8 @@
 		. = ..()
 
 /obj/item/implant/dusting/iaa/activate(cause)
+	if(active)
+		return
 	. = ..()
 	var/turf/my_turf = get_turf(src)
 	var/obj/item/iaa_reward/drop = new(my_turf)

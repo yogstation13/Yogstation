@@ -314,6 +314,7 @@
 		playsound(user, 'sound/weapons/thudswoosh.ogg', 65, FALSE, -1) //play sound here incase some ungrabbable object was clicked
 		var/mob/living/victim = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
+		F.name = "worldbreaker"
 		victim.density = FALSE
 		victim.visible_message(span_warning("[user] grabs [victim] and lifts [victim.p_them()] off the ground!"))
 		to_chat(victim, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))

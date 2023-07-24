@@ -74,7 +74,7 @@
 	back = /obj/item/melee/baton/cattleprod/tactical
 	head = /obj/item/clothing/head/helmet/sec/occupying
 	l_pocket = /obj/item/reagent_containers/food/drinks/beer
-	r_pocket = /obj/item/storage/box/fancy/cigarettes
+	r_pocket = /obj/item/storage/fancy/cigarettes
 	id = /obj/item/card/id/ert/occupying
 	implants = list(/obj/item/implant/mindshield)
 	

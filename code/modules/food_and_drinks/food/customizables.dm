@@ -53,14 +53,14 @@
 			mix_filling_color(S)
 			S.reagents.trans_to(src,min(S.reagents.total_volume, 15), transfered_by = user) //limit of 15, we don't want our custom food to be completely filled by just one ingredient with large reagent volume.
 			foodtype |= S.foodtype
-			update_overlays(S)
 			to_chat(user, span_notice("You add the [I.name] to the [name]."))
-			update_name(S)
+			update_snack_overlays(S)
+			update_snack_name(S)
 	else
 		. = ..()
 
 
-/obj/item/reagent_containers/food/snacks/customizable/proc/update_name(obj/item/reagent_containers/food/snacks/S)
+/obj/item/reagent_containers/food/snacks/customizable/proc/update_snack_name(obj/item/reagent_containers/food/snacks/S)
 	for(var/obj/item/I in ingredients)
 		if(!istype(S, I.type))
 			customname = "custom"
@@ -102,7 +102,8 @@
 		rgbcolor[4] = (customcolor[4]+ingcolor[4])/2
 		filling_color = rgb(rgbcolor[1], rgbcolor[2], rgbcolor[3], rgbcolor[4])
 
-/obj/item/reagent_containers/food/snacks/customizable/update_overlays(obj/item/reagent_containers/food/snacks/S)
+/obj/item/reagent_containers/food/snacks/customizable/update_snack_overlays(obj/item/reagent_containers/food/snacks/S)
+	. = ..()
 	var/mutable_appearance/filling = mutable_appearance(icon, "[initial(icon_state)]_filling")
 	if(S.filling_color == "#FFFFFF")
 		filling.color = pick("#FF0000","#0000FF","#008000","#FFFF00")
@@ -138,12 +139,11 @@
 /obj/item/reagent_containers/food/snacks/customizable/initialize_slice(obj/item/reagent_containers/food/snacks/slice, reagents_per_slice)
 	..()
 	slice.filling_color = filling_color
-	slice.update_overlays(src)
+	slice.update_snack_overlays(src)
 
 
 /obj/item/reagent_containers/food/snacks/customizable/Destroy()
-	for(var/ingredient in ingredients)
-		qdel(ingredient)
+	QDEL_NULL(ingredients)
 	return ..()
 
 
@@ -347,15 +347,18 @@
 
 /obj/item/reagent_containers/glass/bowl/on_reagent_change(changetype)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/bowl/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/glass/bowl/update_overlays()
+	. = ..()
 	if(reagents && reagents.total_volume)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/food/soupsalad.dmi', "fullbowl")
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
-	else
+		. += filling
+
+/obj/item/reagent_containers/glass/bowl/update_icon_state()
+	. = ..()
+	if(!reagents || !reagents.total_volume)
 		icon_state = "bowl"
 
 #undef INGREDIENTS_FILL

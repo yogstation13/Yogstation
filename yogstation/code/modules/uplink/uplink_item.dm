@@ -149,10 +149,10 @@
 	restricted_species = list("pod")
 
 /datum/uplink_item/race_restricted/combat_modules
-	name = "Combat Modules Board"
-	desc = "An upgrade board, containing upgrades and programs for your melee attacks."
+	name = "Remnant liquidator information board"
+	desc = "A stolen Remnant information board, containing data pertaining to covert assassination techniques."
 	cost = 11
-	item = /obj/item/book/granter/martial/preternis_stealth
+	item = /obj/item/book/granter/martial/liquidator
 	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/worldbreaker
