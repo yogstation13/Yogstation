@@ -39,7 +39,7 @@
 						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
 						/obj/item/clothing/shoes/drip,
 						/obj/item/gun/energy/plasmacutter/adv/robocutter,
-						/obj/item/twohanded/bonespear/stalwartpike)
+						/obj/item/melee/spear/bonespear/stalwartpike)
 
 //Megafauna loot, except for stalwart, ash drakes, and legion
 
