@@ -1,0 +1,9 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Cyborg Hyposprays can cycle between injecting 2u and 5u with alt-click."
+  - rscdel: "Peacekeeper Cyborg's Hacked Hypospray no longer has Dizzy Solution and Tiring Solution."
+  - tweak: "Cyborg Hyposprays have been refactored and now have a TGUI."
+  - bugfix: "Cyborg Shaker can now properly cycle between pouring 5u, 10u, and 20u with alt-click."
+  - spellcheck: "synth-pax is now renamed to Synth-Pax."
+  - spellcheck: "Dizzying Solution's description now ends in a period."
