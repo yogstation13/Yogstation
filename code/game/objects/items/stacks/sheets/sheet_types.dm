@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
  */
 GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("apiary", /obj/structure/beebox, 40, time = 50),\
-	new/datum/stack_recipe("baseball bat", /obj/item/twohanded/required/baseball_bat, 10, time = 15),\
+	new/datum/stack_recipe("baseball bat", /obj/item/melee/baseball_bat, 10, time = 15),\
 	new/datum/stack_recipe("book case", /obj/structure/bookcase, 4, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/crate/coffin, 5, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("display case chassis", /obj/structure/displaycase_chassis, 5, one_per_turf = TRUE, on_floor = TRUE), \
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
  */
 
 GLOBAL_LIST_INIT(bamboo_recipes, list ( \
-	new/datum/stack_recipe("bamboo spear", /obj/item/twohanded/bamboospear, 25, time = 90), \
+	new/datum/stack_recipe("bamboo spear", /obj/item/melee/spear/bamboospear, 25, time = 90), \
 	new/datum/stack_recipe("blow gun", /obj/item/gun/syringe/blowgun, 10, time = 70), \
 	new/datum/stack_recipe("crude syringe", /obj/item/reagent_containers/syringe/crude, 5, time = 10), \
 	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \

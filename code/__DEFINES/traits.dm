@@ -287,6 +287,10 @@
 // item traits
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+/// Properly wielded two handed item
+#define TRAIT_WIELDED "wielded"
+/// The items needs two hands to be carried
+#define TRAIT_NEEDS_TWO_HANDS "needstwohands"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 

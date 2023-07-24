@@ -638,7 +638,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/twohanded/shockpaddles/syndicate,
+		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
 		/obj/item/retractor,
 		/obj/item/hemostat,

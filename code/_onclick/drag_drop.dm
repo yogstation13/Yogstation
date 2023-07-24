@@ -177,10 +177,6 @@
 /obj/item/proc/onMouseUp(object, location, params, mob)
 	return
 
-/obj/item
-	var/canMouseDown = FALSE
-	var/syndicate = FALSE // Does this item have syndicate only functionality via hud buttons? Needs to be in this scope to encompass all Chameleon items - Hopek
-
 /obj/item/gun/CanItemAutoclick(object, location, params)
 	. = automatic
 

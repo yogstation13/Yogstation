@@ -1368,7 +1368,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "hW" = (
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/kirbyplants,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "hX" = (
@@ -1949,7 +1949,7 @@
 "lv" = (
 /obj/structure/rack,
 /obj/item/restraints/legcuffs/beartrap,
-/obj/item/twohanded/fireaxe,
+/obj/item/fireaxe,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/thunderdome)
 "lw" = (
