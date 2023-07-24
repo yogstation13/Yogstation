@@ -30,25 +30,25 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	. = ..()
 	GLOB.announcement_systems += src
 	radio = new /obj/item/radio/headset/silicon/ai(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/announcement_system/update_icon()
-	cut_overlays()
+/obj/machinery/announcement_system/update_overlays()
+	. = ..()
 	if(is_operational())
 		var/mutable_appearance/on_app = mutable_appearance(icon, "AAS_on")
-		add_overlay(on_app)
+		. += on_app
 
 	if(arrivalToggle)
 		var/mutable_appearance/arriving = mutable_appearance(icon, greenlight)
-		add_overlay(arriving)
+		. += arriving
 
 	if(newheadToggle)
 		var/mutable_appearance/newhead = mutable_appearance(icon, pinklight)
-		add_overlay(newhead)
+		. += newhead
 
 	if(stat & BROKEN)
 		var/mutable_appearance/icecream = mutable_appearance(icon, errorlight)
-		add_overlay(icecream)
+		. += icecream
 
 /obj/machinery/announcement_system/Destroy()
 	QDEL_NULL(radio)
@@ -60,13 +60,13 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		P.play_tool_sound(src)
 		panel_open = !panel_open
 		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(default_deconstruction_crowbar(P))
 		return
 	else if(P.tool_behaviour == TOOL_MULTITOOL && panel_open && (stat & BROKEN))
 		to_chat(user, span_notice("You reset [src]'s firmware."))
 		stat &= ~BROKEN
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -141,10 +141,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 				log_game("The head announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadToggle")
 			newheadToggle = !newheadToggle
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if("ArrivalToggle")
 			arrivalToggle = !arrivalToggle
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	add_fingerprint(usr)
 
 /obj/machinery/announcement_system/attack_robot(mob/living/silicon/user)

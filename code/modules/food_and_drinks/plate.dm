@@ -31,7 +31,7 @@
 		I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -placement_offset, max_height_offset)
 		to_chat(user, span_notice("You place [I] on [src]."))
 		AddToPlate(I, user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

@@ -6,7 +6,7 @@
 // Weapons
 /datum/crafting_recipe/metal_baseball_bat
 	name = "Titanium Baseball Bat"
-	result = /obj/item/twohanded/required/baseball_bat/metal_bat
+	result = /obj/item/melee/baseball_bat/metal_bat
 	reqs = list(/obj/item/stack/sheet/mineral/titanium = 10
 				)
 	tools = list(TOOL_WELDER) //to weld the bat together
@@ -16,12 +16,12 @@
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
+	result = /obj/item/melee/spear
+	reqs = list(/obj/item/melee/spear = 1,
 				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive,
+	blacklist = list(/obj/item/melee/spear/explosive,
 					/obj/item/grenade/flashbang)
-	parts = list(/obj/item/twohanded/spear = 1,
+	parts = list(/obj/item/melee/spear = 1,
 				/obj/item/grenade = 1)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY

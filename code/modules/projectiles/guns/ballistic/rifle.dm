@@ -15,9 +15,9 @@
 	bolt_drop_sound = "sound/weapons/mosinboltin.ogg"
 	tac_reloads = FALSE
 
-obj/item/gun/ballistic/rifle/update_icon()
-	..()
-	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+obj/item/gun/ballistic/rifle/update_overlays()
+	. = ..()
+	. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
 
 obj/item/gun/ballistic/rifle/rack(mob/user = null)
 	if (bolt_locked == FALSE)
@@ -25,7 +25,7 @@ obj/item/gun/ballistic/rifle/rack(mob/user = null)
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		process_chamber(FALSE, FALSE, FALSE)
 		bolt_locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	drop_bolt(user)
 

@@ -27,7 +27,8 @@
 	QDEL_NULL(internal)
 	. = ..()
 
-/obj/structure/world_anvil/update_icon()
+/obj/structure/world_anvil/update_icon(updates=ALL)
+	. = ..()
 	icon_state = forge_charges > 0 ? "anvil_a" : "anvil"
 	if(forge_charges > 0)
 		set_light(4,1,LIGHT_COLOR_ORANGE)
@@ -39,12 +40,12 @@
 	. += "It currently has [forge_charges] forge[forge_charges != 1 ? "s" : ""] remaining."
 
 /obj/structure/world_anvil/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I,/obj/item/twohanded/required/gibtonite))
-		var/obj/item/twohanded/required/gibtonite/placed_ore = I
+	if(istype(I,/obj/item/melee/gibtonite))
+		var/obj/item/melee/gibtonite/placed_ore = I
 		forge_charges = forge_charges + placed_ore.quality
 		to_chat(user,"You place down the gibtonite on the World Anvil, and watch as the gibtonite melts into it. The World Anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
 		qdel(placed_ore)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(forge_charges <= 0)
 		to_chat(user,"The World Anvil is not hot enough to be usable!")
@@ -70,7 +71,7 @@
 	forge_charges--
 	if(forge_charges <= 0)
 		visible_message("The World Anvil cools down.")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		
 			
 
