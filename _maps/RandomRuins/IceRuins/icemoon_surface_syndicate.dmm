@@ -3066,6 +3066,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"xM" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "xR" = (
 /obj/machinery/light/small,
 /obj/structure/cable{
@@ -5213,10 +5218,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "NB" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/syndicate_icemoon/canteen)
+/obj/machinery/recharge_station/fullupgrade,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "NC" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/wood,
@@ -6428,6 +6432,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"XM" = (
+/obj/machinery/mecha_part_fabricator/ruin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "XR" = (
 /obj/machinery/light{
 	dir = 8
@@ -8114,7 +8122,7 @@ SK
 cZ
 Ok
 AC
-NB
+xM
 SB
 oF
 Ok
@@ -8864,10 +8872,10 @@ Hk
 hB
 uD
 Zy
-KL
+XM
 KL
 Iy
-KL
+NB
 Hk
 eP
 nH
