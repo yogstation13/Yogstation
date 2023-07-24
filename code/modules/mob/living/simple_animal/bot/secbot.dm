@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/bot/secbot/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/datum/job/detective/J = new/datum/job/detective
 	access_card.access += J.get_access()
 	prev_access = access_card.access
@@ -83,11 +83,10 @@
 	if(prob(5))
 		russian = TRUE // imported from Russia
 
-/mob/living/simple_animal/bot/secbot/update_icon()
+/mob/living/simple_animal/bot/secbot/update_icon_state()
+	. = ..()
 	if(mode == BOT_HUNT)
 		icon_state = "[initial(icon_state)]-c"
-		return
-	..()
 
 /mob/living/simple_animal/bot/secbot/turn_off()
 	..()
@@ -209,7 +208,7 @@ Auto Patrol: []"},
 			oldtarget_name = user.name
 		audible_message(span_danger("[src] buzzes oddly!"))
 		declare_arrests = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/secbot/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj , /obj/item/projectile/beam)||istype(Proj, /obj/item/projectile/bullet))

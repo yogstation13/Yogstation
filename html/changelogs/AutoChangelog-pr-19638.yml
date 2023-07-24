@@ -1,4 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - bugfix: "blob no longer gets a free win on icemeta"

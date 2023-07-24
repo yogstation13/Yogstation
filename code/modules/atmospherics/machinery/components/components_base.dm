@@ -24,7 +24,8 @@
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
 
-/obj/machinery/atmospherics/components/update_icon()
+/obj/machinery/atmospherics/components/update_icon(updates=ALL)
+	. = ..()
 	update_icon_nopipes()
 
 	underlays.Cut()
@@ -32,7 +33,7 @@
 	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
 
 	if(!showpipe)
-		return ..()
+		return
 
 	var/connected = 0 //Direction bitset
 
@@ -49,7 +50,6 @@
 
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
-	return ..()
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)

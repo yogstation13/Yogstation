@@ -616,38 +616,6 @@
 		var/msg = span_smallnotice("[src] makes eye contact with you.")
 		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), examined_mob, msg), 3)
 
-/**
-  * Point at an atom
-  *
-  * mob verbs are faster than object verbs. See
-  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
-  * for why this isn't atom/verb/pointed()
-  *
-  * note: ghosts can point, this is intended
-  *
-  * visible_message will handle invisibility properly
-  *
-  * overridden here and in /mob/dead/observer for different point span classes and sanity checks
-  */
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "Object"
-
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
-		return FALSE
-	if(istype(A, /obj/effect/temp_visual/point))
-		return FALSE
-
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return FALSE
-
-	var/turf/our_tile = get_turf(src)
-	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 0.17 SECONDS, easing = EASE_OUT)
-
-	return TRUE
-
 ///Can this mob resist (default FALSE)
 /mob/proc/can_resist()
 	return FALSE		//overridden in living.dm
@@ -676,13 +644,13 @@
 /mob/proc/update_pull_hud_icon()
 	if(hud_used)
 		if(hud_used.pull_icon)
-			hud_used.pull_icon.update_icon(src)
+			hud_used.pull_icon.update_appearance(UPDATE_ICON)
 
 ///Update the resting hud icon
 /mob/proc/update_rest_hud_icon()
 	if(hud_used)
 		if(hud_used.rest_icon)
-			hud_used.rest_icon.update_icon(src)
+			hud_used.rest_icon.update_appearance(UPDATE_ICON)
 
 /**
   * Verb to activate the object in your held hand
@@ -972,8 +940,24 @@
 /mob/proc/IsAdvancedToolUser()
 	return FALSE
 
-/mob/proc/swap_hand()
-	return
+/mob/proc/swap_hand(held_index)
+	SHOULD_NOT_OVERRIDE(TRUE) // Override perform_hand_swap instead
+
+	var/obj/item/held_item = get_active_held_item()
+	if(SEND_SIGNAL(src, COMSIG_MOB_SWAPPING_HANDS, held_item) & COMPONENT_BLOCK_SWAP)
+		to_chat(src, span_warning("Your other hand is too busy holding [held_item]."))
+		return FALSE
+
+	var/result = perform_hand_swap(held_index)
+	if (result)
+		SEND_SIGNAL(src, COMSIG_MOB_SWAP_HANDS)
+
+	return result
+
+/// Performs the actual ritual of swapping hands, such as setting the held index variables
+/mob/proc/perform_hand_swap(held_index)
+	PROTECTED_PROC(TRUE)
+	return TRUE
 
 /mob/proc/activate_hand(selhand)
 	return

@@ -1,0 +1,7 @@
+author: " @Moltijoe @solwashere for the lore accurate name"
+delete-after: true 
+changes: 
+  - tweak: "Renamed \"Stealth\" to \"Remnant Liquidator\""
+  - tweak: "fingergun combo paralyze is 1 second rather than scaling on punch damage to roughly equal 1 second"
+  - tweak: "lets you hide fingergun by trying to drop it"
+  - tweak: "makes fingergun instantly hide after shooting"
