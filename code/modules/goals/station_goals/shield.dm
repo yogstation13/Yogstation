@@ -116,9 +116,10 @@
 	else
 		animate(src, pixel_y = 0, time = 1 SECONDS)
 		anchored = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/satellite/update_icon()
+/obj/machinery/satellite/update_icon_state()
+	. = ..()
 	icon_state = active ? "sat_active" : "sat_inactive"
 
 /obj/machinery/satellite/multitool_act(mob/living/user, obj/item/I)

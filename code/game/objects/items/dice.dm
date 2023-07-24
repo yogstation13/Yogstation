@@ -52,7 +52,7 @@
 	. = ..()
 	if(!result)
 		result = roll(sides)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/dice/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -142,8 +142,9 @@
 	w_class = WEIGHT_CLASS_SMALL
 	sides = 100
 
-/obj/item/dice/d100/update_icon()
-	return
+/obj/item/dice/d100/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/dice/eightbd20
 	name = "strange d20"
@@ -152,8 +153,9 @@
 	sides = 20
 	special_faces = list("It is certain","It is decidedly so","Without a doubt","Yes, definitely","You may rely on it","As I see it, yes","Most likely","Outlook good","Yes","Signs point to yes","Reply hazy try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful")
 
-/obj/item/dice/eightbd20/update_icon()
-	return
+/obj/item/dice/eightbd20/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/dice/fourdd6
 	name = "4d d6"
@@ -162,8 +164,9 @@
 	sides = 48
 	special_faces = list("Cube-Side: 1-1","Cube-Side: 1-2","Cube-Side: 1-3","Cube-Side: 1-4","Cube-Side: 1-5","Cube-Side: 1-6","Cube-Side: 2-1","Cube-Side: 2-2","Cube-Side: 2-3","Cube-Side: 2-4","Cube-Side: 2-5","Cube-Side: 2-6","Cube-Side: 3-1","Cube-Side: 3-2","Cube-Side: 3-3","Cube-Side: 3-4","Cube-Side: 3-5","Cube-Side: 3-6","Cube-Side: 4-1","Cube-Side: 4-2","Cube-Side: 4-3","Cube-Side: 4-4","Cube-Side: 4-5","Cube-Side: 4-6","Cube-Side: 5-1","Cube-Side: 5-2","Cube-Side: 5-3","Cube-Side: 5-4","Cube-Side: 5-5","Cube-Side: 5-6","Cube-Side: 6-1","Cube-Side: 6-2","Cube-Side: 6-3","Cube-Side: 6-4","Cube-Side: 6-5","Cube-Side: 6-6","Cube-Side: 7-1","Cube-Side: 7-2","Cube-Side: 7-3","Cube-Side: 7-4","Cube-Side: 7-5","Cube-Side: 7-6","Cube-Side: 8-1","Cube-Side: 8-2","Cube-Side: 8-3","Cube-Side: 8-4","Cube-Side: 8-5","Cube-Side: 8-6")
 
-/obj/item/dice/fourdd6/update_icon()
-	return
+/obj/item/dice/fourdd6/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/dice/attack_self(mob/user)
 	diceroll(user)
@@ -188,7 +191,7 @@
 		comment = "NAT 20!"
 	else if(sides == 20 && result == 1)
 		comment = "Ouch, bad luck."
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(initial(icon_state) == "d00")
 		result = (result - 1)*10
 	if(special_faces.len == sides)
@@ -205,9 +208,9 @@
 	else if(!src.throwing) //Dice was thrown and is coming to rest
 		visible_message(span_notice("[src] rolls to a stop, landing on [result]. [comment]"))
 
-/obj/item/dice/update_icon()
-	cut_overlays()
-	add_overlay("[src.icon_state]-[src.result]")
+/obj/item/dice/update_overlays()
+	. = ..()
+	. += "[src.icon_state]-[src.result]"
 
 /obj/item/dice/microwave_act(obj/machinery/microwave/M)
 	if(microwave_riggable)

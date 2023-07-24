@@ -143,7 +143,7 @@
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
-	new /obj/item/twohanded/binoculars(src)
+	new /obj/item/binoculars(src)
 
 
 /obj/item/storage/belt/military/imperial/sergeant/Initialize(mapload) // Sergeant

@@ -51,7 +51,7 @@
 	*/
 
 	/// The zone this mob is currently targeting
-	var/zone_selected = null
+	var/zone_selected = BODY_ZONE_CHEST
 
 	var/computer_id = null
 	var/list/logging = list()
@@ -196,7 +196,7 @@
 	var/datum/click_intercept
 
 	///For storing what do_after's someone has, in case we want to restrict them to only one of a certain do_after at a time
-	var/list/do_afters	
+	var/list/do_afters
 
 	///THe z level this mob is currently registered in
 	var/registered_z = null

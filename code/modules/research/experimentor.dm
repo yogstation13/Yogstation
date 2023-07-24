@@ -563,13 +563,14 @@
 	addtimer(CALLBACK(src, PROC_REF(reset_exp)), resetTime)
 
 /obj/machinery/rnd/experimentor/proc/reset_exp()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	recentlyExperimented = FALSE
 	if(autoexperiment)
 		do_experiment()
 
-/obj/machinery/rnd/experimentor/update_icon()
-	icon_state = "h_lathe"
+/obj/machinery/rnd/experimentor/update_icon_state()
+	. = ..()
+	icon_state = initial(icon_state)
 
 /obj/machinery/rnd/experimentor/proc/warn_admins(user, ReactionName)
 	var/turf/T = get_turf(user)

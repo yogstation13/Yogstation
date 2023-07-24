@@ -57,6 +57,7 @@
 	var/turf/startpos = null
 
 /obj/item/gun/energy/chrono_gun/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHRONO_GUN_TRAIT)
 	if(istype(loc, /obj/item/chrono_eraser))
@@ -64,9 +65,6 @@
 	else //admin must have spawned it
 		TED = new(src.loc)
 		return INITIALIZE_HINT_QDEL
-
-/obj/item/gun/energy/chrono_gun/update_icon()
-	return
 
 /obj/item/gun/energy/chrono_gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(field)
@@ -192,7 +190,7 @@
 			cached_icon.Insert(mob_icon, "frame[i]")
 
 		mob_underlay = mutable_appearance(cached_icon, "frame1")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 		desc = initial(desc) + "<br>[span_info("It appears to contain [target.name].")]"
 	START_PROCESSING(SSobj, src)
@@ -203,7 +201,8 @@
 		gun.field_disconnect(src)
 	return ..()
 
-/obj/structure/chrono_field/update_icon()
+/obj/structure/chrono_field/update_icon(updates=ALL)
+	. = ..()
 	var/ttk_frame = 1 - (timetokill / initial(timetokill))
 	ttk_frame = clamp(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
 	if(ttk_frame != RPpos)
@@ -232,7 +231,7 @@
 			captured.Unconscious(80)
 			if(captured.loc != src)
 				captured.forceMove(src)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(gun)
 				if(gun.field_check(src))
 					timetokill -= delta_time

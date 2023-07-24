@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/talking/codex_gigas = 2,
 		/obj/item/clothing/under/syndicate/tacticool = 2,
 		/obj/item/toy/sword = 2,
-		/obj/item/twohanded/vxtvulhammer/toy = 2,
+		/obj/item/melee/vxtvulhammer/toy = 2,
 		/obj/item/toy/gun = 2,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 2,
 		/obj/item/storage/box/fakesyndiesuit = 2,
@@ -83,12 +83,12 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
-/obj/machinery/computer/arcade/update_icon()
+/obj/machinery/computer/arcade/update_icon_state()
+	. = ..()
 	if(dir == 2)
 		icon_screen = "invaders"
 	else
 		icon_screen = ""
-	. = ..()
 
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)
 	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			return
 		prizevend(user)
 		T.pay_tickets()
-		T.update_icon()
+		T.update_appearance(UPDATE_ICON)
 		O = T
 		to_chat(user, span_notice("You turn in 2 tickets to the [src] and claim a prize!"))
 		return

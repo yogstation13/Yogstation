@@ -316,7 +316,7 @@
 		return
 
 	icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/rankspent
 	switch(bloodsuckerdatum.clanprogress)
 		if(0)
@@ -395,15 +395,15 @@
 	. = ..()
 	anchored = FALSE
 
-/obj/structure/bloodsucker/moldingstone/update_icon()
-	cut_overlays()
+/obj/structure/bloodsucker/moldingstone/update_overlays()
+	. = ..()
 	switch(metal)
 		if(1 to 5)
-			add_overlay("metal")
+			. += "metal"
 		if(6 to 20)
-			add_overlay("metal_2")
+			. += "metal_2"
 		if(21 to 50)
-			add_overlay("metal_3")
+			. += "metal_3"
 
 /obj/structure/bloodsucker/moldingstone/attackby(obj/item/I, mob/user, params)
 	if(!anchored)
@@ -427,7 +427,7 @@
 		balloon_alert(user, "added [metal] metal")
 	if(istype(I, /obj/item/bloodsucker/chisel))
 		start_sculpiting(user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/moldingstone/proc/start_sculpiting(mob/living/artist)
 	if(metal < 10)
@@ -440,7 +440,7 @@
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")
 		metal -= rand(5, 10)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		
 		return
 	artist.balloon_alert(artist, "done, a masterpiece!")
@@ -464,7 +464,7 @@
 		new /obj/item/stack/sheet/metal(get_turf(user), count)
 	else
 		to_chat(user, span_warning("There's no metal to retrieve in [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 #undef METALLIMIT
 
 /obj/structure/bloodsucker/bloodstatue
@@ -710,7 +710,7 @@
 
 	playsound(loc, 'sound/effects/pop_expl.ogg', 25, 1)
 	density = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	// Set up Torture stuff now
 	convert_progress = 3
@@ -746,7 +746,7 @@
 	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
 	density = FALSE
 	buckled_mob.Paralyze(2 SECONDS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
@@ -807,20 +807,20 @@
 				smallmeat++
 		meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 		qdel(I)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 #undef MEATLIMIT
 
-/obj/structure/bloodsucker/vassalrack/update_icon()
-	cut_overlays()
+/obj/structure/bloodsucker/vassalrack/update_overlays()
+	. = ..()
 	if(bigmeat)
-		add_overlay("bigmeat_[bigmeat]")
+		. += "bigmeat_[bigmeat]"
 	if(intermeat)
-		add_overlay("mediummeat_[intermeat]")
-		add_overlay("smallmeat_[intermeat]")
+		. += "mediummeat_[intermeat]"
+		. += "smallmeat_[intermeat]"
 	if(mediummeat)
-		add_overlay("mediummeat_[mediummeat + intermeat]")
+		. += "mediummeat_[mediummeat + intermeat]"
 	if(smallmeat)
-		add_overlay("smallmeat_[smallmeat + intermeat]")
+		. += "smallmeat_[smallmeat + intermeat]"
 
 /obj/structure/bloodsucker/vassalrack/CtrlClick(mob/user)
 	if(!anchored)
@@ -849,7 +849,7 @@
 	else
 		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
  *	Step One: Tick Down Conversion from 3 to 0
@@ -1149,7 +1149,7 @@
 		if(bigmeat && meatlost == 4)
 			bigmeat--
 			meatlost -= 4
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1183,9 +1183,9 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/bloodsucker/candelabrum/update_icon()
+/obj/structure/bloodsucker/candelabrum/update_icon_state()
+	. = ..()
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
-	return ..()
 
 /obj/structure/bloodsucker/candelabrum/examine(mob/user)
 	. = ..()
@@ -1208,7 +1208,7 @@
 	else
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/candelabrum/process()
 	if(!lit)
@@ -1284,7 +1284,7 @@
 
 	if(!buckle_mob(target))
 		return
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/candelabrum/proc/remove_loyalties(mob/living/target, mob/living/user)
 	// Find Mindshield implant & destroy, takes a good while.
@@ -1296,7 +1296,7 @@
 /obj/structure/bloodsucker/candelabrum/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	. = ..()
 	src.visible_message(span_danger("[buckled_mob][buckled_mob.stat==DEAD?"'s corpse":""] slides off of the candelabrum."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
 /* broken currently

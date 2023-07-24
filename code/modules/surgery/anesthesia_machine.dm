@@ -20,16 +20,16 @@
 	if(is_roundstart)
 		var/obj/item/tank/T = new /obj/item/tank/internals/anesthetic(src)
 		attached_tank = T
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/anesthetic_machine/update_icon()
-	cut_overlays()
+/obj/machinery/anesthetic_machine/update_overlays()
+	. = ..()
 	if(mask_out)
-		add_overlay("mask_off")
+		. += "mask_off"
 	else
-		add_overlay("mask_on")
+		. += "mask_on"
 	if(attached_tank)
-		add_overlay("tank_on")
+		. += "tank_on"
 
 
 /obj/machinery/anesthetic_machine/attack_hand(mob/living/user)
@@ -44,7 +44,7 @@
 		I.forceMove(src) // Put new tank in, set it as attached tank
 		visible_message("<span class='warning'>[user] inserts [I] into [src].</span>")
 		attached_tank = I
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	. = ..()
 
@@ -54,7 +54,7 @@
 		attached_tank.forceMove(loc)
 		to_chat(user, "<span class='notice'>You remove the [attached_tank].</span>")
 		attached_tank = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(mask_out)
 			retract_mask()
 
@@ -67,7 +67,7 @@
 		else
 			attached_mask.forceMove(src)
 		mask_out = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return FALSE
 
@@ -87,7 +87,7 @@
 					target.open_internals(attached_tank, TRUE)
 					mask_out = TRUE
 					START_PROCESSING(SSmachines, src)
-					update_icon()
+					update_appearance(UPDATE_ICON)
 		else
 			to_chat(usr, "<span class='warning'>[mask_out ? "The machine is already in use!" : "The machine has no attached tank!"]</span>")
 
