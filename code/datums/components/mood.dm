@@ -31,8 +31,8 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	if(H.mind?.assigned_role in list("Research Director", "Scientist", "Roboticist"))
-		RegisterSignal(parent, COMSIG_ADD_MOOD_EVENT_RND, PROC_REF(add_event)) //Only for RnD members
+	if(H.mind?.assigned_role in list("Research Director", "Scientist", "Roboticist", "Geneticist")) // Geneticist is technically part of the science since they answer to the Research Director.
+		RegisterSignal(parent, COMSIG_ADD_MOOD_EVENT_RND, PROC_REF(add_event)) // Only for science and science-adjacent jobs.
 
 /datum/component/mood/Destroy()
 	STOP_PROCESSING(SSmood, src)
