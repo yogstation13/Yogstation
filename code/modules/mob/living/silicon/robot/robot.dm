@@ -837,41 +837,41 @@
 	qdel(src)
 
 /mob/living/silicon/robot/modules
-	var/set_module = null
+	var/set_model = null
 
 /mob/living/silicon/robot/modules/Initialize(mapload)
 	. = ..()
-	model.transform_to(set_module)
+	model.transform_to(set_model)
 
 /mob/living/silicon/robot/modules/standard
-	set_module = /obj/item/robot_model/standard
+	set_model = /obj/item/robot_model/standard
 
 /mob/living/silicon/robot/modules/medical
-	set_module = /obj/item/robot_model/medical
+	set_model = /obj/item/robot_model/medical
 	icon_state = "medical"
 
 /mob/living/silicon/robot/modules/engineering
-	set_module = /obj/item/robot_model/engineering
+	set_model = /obj/item/robot_model/engineering
 	icon_state = "engineer"
 
 /mob/living/silicon/robot/modules/security
-	set_module = /obj/item/robot_model/security
+	set_model = /obj/item/robot_model/security
 	icon_state = "sec"
 
 /mob/living/silicon/robot/modules/clown
-	set_module = /obj/item/robot_model/clown
+	set_model = /obj/item/robot_model/clown
 	icon_state = "clown"
 
 /mob/living/silicon/robot/modules/peacekeeper
-	set_module = /obj/item/robot_model/peacekeeper
+	set_model = /obj/item/robot_model/peacekeeper
 	icon_state = "peace"
 
 /mob/living/silicon/robot/modules/miner
-	set_module = /obj/item/robot_model/miner
+	set_model = /obj/item/robot_model/miner
 	icon_state = "miner"
 
 /mob/living/silicon/robot/modules/janitor
-	set_module = /obj/item/robot_model/janitor
+	set_model = /obj/item/robot_model/janitor
 	icon_state = "janitor"
 
 /mob/living/silicon/robot/modules/syndicate
@@ -888,7 +888,7 @@
 							<b>You are armed with powerful offensive tools to aid you in your mission: help the operatives secure the nuclear authentication disk. \
 							Your cyborg LMG will slowly produce ammunition from your power supply, and your operative pinpointer will find and locate fellow nuclear operatives. \
 							<i>Help the operatives secure the disk at all costs!</i></b>"
-	set_module = /obj/item/robot_model/syndicate
+	set_model = /obj/item/robot_model/syndicate
 
 /mob/living/silicon/robot/modules/syndicate/Initialize(mapload)
 	. = ..()
@@ -918,7 +918,7 @@
 						Your defibrillator paddles can revive operatives through their hardsuits, or can be used on harm intent to shock enemies! \
 						Your energy saw functions as a circular saw, but can be activated to deal more damage, and your operative pinpointer will find and locate fellow nuclear operatives. \
 						<i>Help the operatives secure the disk at all costs!</i></b>"
-	set_module = /obj/item/robot_model/syndicate_medical
+	set_model = /obj/item/robot_model/syndicate_medical
 
 /mob/living/silicon/robot/modules/syndicate/saboteur
 	icon_state = "synd_engi"
@@ -930,7 +930,7 @@
 						Your cyborg chameleon projector allows you to assume the appearance and registered name of a Nanotrasen engineering borg, and undertake covert actions on the station \
 						Be aware that almost any physical contact or incidental damage will break your camouflage \
 						<i>Help the operatives secure the disk at all costs!</i></b>"
-	set_module = /obj/item/robot_model/saboteur
+	set_model = /obj/item/robot_model/saboteur
 
 /mob/living/silicon/robot/proc/notify_ai(notifytype, oldname, newname)
 	if(!connected_ai)
@@ -1121,7 +1121,7 @@
 	
 	return TRUE
 
-/mob/living/silicon/robot/proc/has_module()
+/mob/living/silicon/robot/proc/has_model()
 	if(!model || model.type == /obj/item/robot_model)
 		. = FALSE
 	else

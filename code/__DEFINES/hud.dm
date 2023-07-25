@@ -71,7 +71,7 @@
 #define ui_inv1 "CENTER-2:16,SOUTH:5"				//borgs
 #define ui_inv2 "CENTER-1  :16,SOUTH:5"				//borgs
 #define ui_inv3 "CENTER  :16,SOUTH:5"				//borgs
-#define ui_borg_module "CENTER+1:16,SOUTH:5"		//borgs
+#define ui_borg_model "CENTER+1:16,SOUTH:5"		//borgs
 #define ui_borg_store "CENTER+2:16,SOUTH:5"			//borgs
 #define ui_borg_camera "CENTER+3:21,SOUTH:5"		//borgs
 #define ui_borg_tablet "CENTER+4:21,SOUTH:5"		//borgs

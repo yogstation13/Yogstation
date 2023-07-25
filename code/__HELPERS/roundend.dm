@@ -40,7 +40,7 @@
 						mob_data += list("module" = "pAI")
 					if(iscyborg(L))
 						var/mob/living/silicon/robot/R = L
-						mob_data += list("module" = R.model)
+						mob_data += list("module" = R.model.name)
 			else
 				category = "others"
 				mob_data += list("typepath" = m.type)

@@ -57,7 +57,7 @@
 		if(WIRE_LOCKDOWN)
 			R.SetLockdown(!R.lockcharge) // Toggle
 		if(WIRE_RESET_MODEL)
-			if(R.has_module())
+			if(R.has_model())
 				R.visible_message("[R]'s module servos twitch.", "Your module display flickers.")
 
 /datum/wires/robot/on_cut(wire, mend)
@@ -87,5 +87,5 @@
 			R.SetLockdown(!mend)
 			R.logevent("Motor Controller fault [mend?"cleared":"detected"]")
 		if(WIRE_RESET_MODEL)
-			if(R.has_module() && !mend)
+			if(R.has_model() && !mend)
 				R.ResetModel()

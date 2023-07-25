@@ -157,7 +157,7 @@
 
 //Installed Module
 	mymobR.hands = new /atom/movable/screen/robot/module(src)
-	mymobR.hands.screen_loc = ui_borg_module
+	mymobR.hands.screen_loc = ui_borg_model
 	static_inventory += mymobR.hands
 
 //Store
@@ -204,7 +204,7 @@
 		screenmob.client.screen += module_store_icon	//"store" icon
 
 		if(!R.model.modules)
-			to_chat(usr, span_danger("Selected module has no modules to select"))
+			to_chat(usr, span_danger("Selected model has no modules to select"))
 			return
 
 		if(!R.robot_models_background)

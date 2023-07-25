@@ -12,7 +12,7 @@
 	var/list/emag_modules = list() ///ditto
 	var/list/ratvar_modules = list() ///ditto ditto
 	var/list/modules = list() ///holds all the usable modules
-	var/list/added_modules = list() ///modules not inherient to the robot module, are kept when the module changes
+	var/list/added_modules = list() ///modules not inherient to the robot module, are kept when the model changes
 	var/list/storages = list()
 
 	var/list/radio_channels = list()
@@ -418,7 +418,7 @@
 /obj/item/robot_model/peacekeeper/do_transform_animation()
 	..()
 	to_chat(loc, "<span class='userdanger'>Under ASIMOV, you are an enforcer of the PEACE and preventer of HUMAN HARM. \
-	You are not a security module and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
+	You are not a security model and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
 
 /obj/item/robot_model/janitor
 	name = "Janitor"

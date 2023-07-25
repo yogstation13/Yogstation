@@ -249,7 +249,7 @@
 	var/modifier = 1 //For use in any mod kit that has numerical modifiers
 	var/minebot_upgrade = TRUE
 	var/minebot_exclusive = FALSE
-	model_flags = BORG_MODULE_MINER
+	model_flags = BORG_MODEL_MINER
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
 	. = ..()

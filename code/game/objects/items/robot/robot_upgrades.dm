@@ -13,7 +13,7 @@
 	var/require_module = 0
 	var/model_type = null
 	// if true, is not stored in the robot to be ejected
-	// if module is reset
+	// if model is reset
 	var/one_use = FALSE
 	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
 	var/list/model_flags = NONE
@@ -122,7 +122,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/security
-	model_flags = BORG_MODULE_SECURITY
+	model_flags = BORG_MODEL_SECURITY
 
 /obj/item/borg/upgrade/disablercooler/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -227,7 +227,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/miner
-	model_flags = BORG_MODULE_MINER
+	model_flags = BORG_MODEL_MINER
 
 /obj/item/borg/upgrade/ddrill/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -260,7 +260,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/miner
-	model_flags = BORG_MODULE_MINER
+	model_flags = BORG_MODEL_MINER
 
 /obj/item/borg/upgrade/soh/action(mob/living/silicon/robot/R , user = usr) //yogs single line
 	. = ..()
@@ -293,7 +293,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/janitor
-	model_flags = BORG_MODULE_JANITOR
+	model_flags = BORG_MODEL_JANITOR
 
 /obj/item/borg/upgrade/tboh/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
@@ -326,7 +326,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/janitor
-	model_flags = BORG_MODULE_JANITOR
+	model_flags = BORG_MODEL_JANITOR
 
 /obj/item/borg/upgrade/amop/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
@@ -383,7 +383,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	require_module = 1
 	model_type = /obj/item/robot_model/miner
-	model_flags = BORG_MODULE_MINER
+	model_flags = BORG_MODEL_MINER
 
 /obj/item/borg/upgrade/lavaproof/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -517,7 +517,7 @@
 	require_module = 1
 	model_type = /obj/item/robot_model/medical
 	var/list/additional_reagents = list()
-	model_flags = BORG_MODULE_MEDICAL
+	model_flags = BORG_MODEL_MEDICAL
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -570,7 +570,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/medical
-	model_flags = BORG_MODULE_MEDICAL
+	model_flags = BORG_MODEL_MEDICAL
 
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -598,7 +598,7 @@
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
 	model_type = /obj/item/robot_model/medical
-	model_flags = BORG_MODULE_MEDICAL
+	model_flags = BORG_MODEL_MEDICAL
 
 /obj/item/borg/upgrade/adv_analyzer/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -639,7 +639,7 @@
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
 	model_type = /obj/item/robot_model/medical
-	model_flags = BORG_MODULE_MEDICAL
+	model_flags = BORG_MODEL_MEDICAL
 
 /obj/item/borg/upgrade/surgerykit/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -798,7 +798,7 @@
 	icon_state = "borgrped"
 	require_module = TRUE
 	model_type = /obj/item/robot_model/engineering
-	model_flags = BORG_MODULE_ENGINEERING
+	model_flags = BORG_MODEL_ENGINEERING
 
 /obj/item/borg/upgrade/rped/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -826,7 +826,7 @@
 	icon_state = "adv_plasmacutter"
 	require_module = TRUE
 	model_type = /obj/item/robot_model/miner
-	model_flags = BORG_MODULE_MINER
+	model_flags = BORG_MODEL_MINER
 
 /obj/item/borg/upgrade/plasmacutter/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -848,27 +848,27 @@
 			R.model.remove_module(PC, TRUE)
 
 /obj/item/borg/upgrade/transform
-	name = "borg module picker (Standard)"
+	name = "borg model picker (Standard)"
 	desc = "Allows you to turn a cyborg into a standard cyborg."
 	icon_state = "cyborg_upgrade3"
-	var/obj/item/robot_model/new_module = /obj/item/robot_model/standard
+	var/obj/item/robot_model/new_model = /obj/item/robot_model/standard
 
 /obj/item/borg/upgrade/transform/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		R.model.transform_to(new_module)
+		R.model.transform_to(new_model)
 
 /obj/item/borg/upgrade/transform/clown
-	name = "borg module picker (Clown)"
+	name = "borg model picker (Clown)"
 	desc = "Allows you to turn a cyborg into a clown, honk."
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_model/clown
+	new_model = /obj/item/robot_model/clown
 
 /obj/item/borg/upgrade/transform/security
-	name = "borg module picker (Security)"
+	name = "borg model picker (Security)"
 	desc = "Allows you to turn a cyborg into a hunter, HALT!"
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_model/security
+	new_model = /obj/item/robot_model/security
 
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
@@ -885,7 +885,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	model_type = /obj/item/robot_model/janitor
-	model_flags = BORG_MODULE_JANITOR
+	model_flags = BORG_MODEL_JANITOR
 
 /obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
 	if (!..())
