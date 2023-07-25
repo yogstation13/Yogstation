@@ -1,22 +1,20 @@
 /datum/component/echolocation
-	///Default echo range
-	var/default_echo_range = 4
 	/// Current radius, will set itself to default
 	var/echo_range
 	/// Time between echolocations.
-	var/cooldown_time = 2 SECONDS
+	var/cooldown_time
 	/// Time for the image to start fading out.
-	var/image_expiry_time = 1.5 SECONDS
+	var/image_expiry_time
 	/// Time for the image to fade in.
-	var/fade_in_time = 0.5 SECONDS
+	var/fade_in_time
 	/// Time for the image to fade out and delete itself.
-	var/fade_out_time = 0.5 SECONDS
+	var/fade_out_time
 	/// Are images static? If yes, spawns them on the turf and makes them not change location. Otherwise they change location and pixel shift with the original.
-	var/images_are_static = TRUE
-	/// With mobs that have this echo group in their echolocation receiver trait, we share echo images, defaults to quirk
-	var/echo_group = null
-	/// Color applied over the client
-	var/client_color = null
+	var/images_are_static
+	/// With mobs that have this echo group in their echolocation receiver trait, we share echo images.
+	var/echo_group
+	/// Ref of the client color we give to the echolocator.
+	var/client_color
 	/// Associative list of world.time when created to a list of the images.
 	var/list/images = list()
 	/// Associative list of world.time when created to a list of receivers.
@@ -31,11 +29,19 @@
 	var/static/list/black_white_matrix = list(85, 85, 85, 0, 85, 85, 85, 0, 85, 85, 85, 0, 0, 0, 0, 1, -254, -254, -254, 0)
 	/// A matrix that turns everything into pure white.
 	var/static/list/white_matrix = list(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 1, 0, -0, 0, 0)
-
 	/// Cooldown for the echolocation.
 	COOLDOWN_DECLARE(cooldown_last)
 
-/datum/component/echolocation/Initialize(echo_range, cooldown_time, image_expiry_time, fade_in_time, fade_out_time, images_are_static, blocking_trait, echo_group, echo_icon, color_path)
+/datum/component/echolocation/Initialize(
+	echo_range = 4,
+	cooldown_time = 2 SECONDS,
+	image_expiry_time = 1.5 SECONDS,
+	fade_in_time = 0.5 SECONDS,
+	fade_out_time = 0.5 SECONDS,
+	images_are_static = TRUE,
+	echo_group = "default",
+	color_path = /datum/client_colour/echolocate,
+)
 	. = ..()
 	var/mob/living/echolocator = parent
 	if(!istype(echolocator))
@@ -45,7 +51,7 @@
 	if(!allowed_paths)
 		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living)) + danger_turfs - typecacheof(/obj/effect/decal)
 	if(!isnull(echo_range))
-		src.echo_range = default_echo_range
+		src.echo_range = echo_range
 	if(!isnull(cooldown_time))
 		src.cooldown_time = cooldown_time
 	if(!isnull(image_expiry_time))
@@ -58,21 +64,17 @@
 		src.images_are_static = images_are_static
 	if(ispath(color_path))
 		client_color = echolocator.add_client_colour(color_path)
-	else
-		client_color = echolocator.add_client_colour(/datum/client_colour/echolocate)
-
 	src.echo_group = echo_group || REF(src)
 	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), src.echo_group) //so they see all the tiles they echolocated, even if they are in the dark
 	echolocator.become_blind(ECHOLOCATION_TRAIT)
-	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	START_PROCESSING(SSfastprocess, src)
 
 /datum/component/echolocation/Destroy(force, silent)
 	STOP_PROCESSING(SSfastprocess, src)
 	var/mob/living/echolocator = parent
+	QDEL_NULL(client_color)
 	echolocator.remove_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), echo_group)
 	echolocator.cure_blind(ECHOLOCATION_TRAIT)
-	echolocator.clear_fullscreen("echo")
 	for(var/timeframe in images)
 		delete_images(timeframe)
 	return ..()
@@ -88,9 +90,9 @@
 		return
 	COOLDOWN_START(src, cooldown_last, cooldown_time)
 	var/mob/living/echolocator = parent
-	echo_range = echo_sound_environment(echolocator, default_echo_range)
+	var/real_echo_range = echo_sound_environment(echolocator, echo_range)
 	var/list/filtered = list()
-	var/list/seen = dview(echo_range, get_turf(echolocator.client?.eye || echolocator), invis_flags = echolocator.see_invisible)
+	var/list/seen = dview(real_echo_range, get_turf(echolocator.client?.eye || echolocator), invis_flags = echolocator.see_invisible)
 	for(var/atom/seen_atom as anything in seen)
 		if(!seen_atom.alpha)
 			continue
@@ -133,7 +135,7 @@
 		else
 			return range
 
-/datum/component/echolocation/proc/show_image(image/input_appearance, atom/input, current_time)
+/datum/component/echolocation/proc/show_image(mutable_appearance/input_appearance, atom/input, current_time)
 	var/image/final_image = image(input_appearance)
 	final_image.layer += EFFECTS_LAYER
 	final_image.plane = FULLSCREEN_PLANE

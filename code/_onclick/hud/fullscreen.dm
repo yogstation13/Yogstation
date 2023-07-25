@@ -226,8 +226,3 @@
 	icon_state = "blue_eye"
 	plane = FULLSCREEN_PLANE
 	layer = CURSE_LAYER
-
-/atom/movable/screen/fullscreen/echolocation
-	icon_state = "echo"
-	layer = CAMERA_STATIC_LAYER
-	plane = CAMERA_STATIC_PLANE

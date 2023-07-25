@@ -895,9 +895,9 @@
 	crate_name = "conveyor assembly crate"
 
 /datum/supply_pack/engineering/atmos/fire
-	name = "Advanced Atmos Firesuit Crate"
-	desc = "Contains 4 atmos firesuits"
-	cost = 2000
+	name = "Advanced Firefighting Crate"
+	desc = "Station is burning? Don't worry we got you. Introducing 4 atmos firesuits, gloves and advanced extinguishers!"
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/fire/atmos,
 					/obj/item/clothing/suit/fire/atmos,
 					/obj/item/clothing/suit/fire/atmos,
@@ -905,8 +905,16 @@
 					/obj/item/clothing/head/hardhat/atmos,
 					/obj/item/clothing/head/hardhat/atmos,
 					/obj/item/clothing/head/hardhat/atmos,
-					/obj/item/clothing/head/hardhat/atmos)
-	crate_name = "advanced atmos firesuit crate"
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/extinguisher/advanced,
+					/obj/item/extinguisher/advanced,
+					/obj/item/extinguisher/advanced,
+					/obj/item/extinguisher/advanced)
+	crate_name = "advanced firefighting crate"
 
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
