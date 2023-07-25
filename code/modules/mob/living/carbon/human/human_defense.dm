@@ -544,7 +544,6 @@
 	dna?.species.spec_emag_act(src, user)
 
 /mob/living/carbon/human/emp_act(severity)
-	dna?.species.spec_emp_act(src, severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
@@ -552,6 +551,7 @@
 		severity++
 		if(severity > EMP_LIGHT)
 			return
+	dna?.species.spec_emp_act(src, severity)
 	var/list/affected_parts = list()
 	for(var/obj/item/bodypart/BP in bodyparts)
 		if(istype(BP) && BP.status == BODYPART_ROBOTIC)
