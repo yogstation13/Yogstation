@@ -14,10 +14,10 @@
 #define SPILLABLE		(1<<7)  // Can be spilled or splashed onto an atom
 
 // Is an open container for all intents and purposes.
-#define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT | SPILLABLE)
+#define OPENCONTAINER 	(INJECTABLE | DRAWABLE | REFILLABLE | DRAINABLE | TRANSPARENT | SPILLABLE)
 
 // Is an open container for all intents and purposes, but can't spill for whatever reason.
-#define OPENCONTAINER_NOSPILL 	(REFILLABLE | DRAINABLE | TRANSPARENT)
+#define OPENCONTAINER_NOSPILL 	(INJECTABLE | DRAWABLE | REFILLABLE | DRAINABLE | TRANSPARENT)
 
 
 #define TOUCH			(1<<0)	// splashing, foam
