@@ -148,5 +148,5 @@
 	
 	bag.killing = !bag.killing
 	if(bag.deployed_bag)
-		bag.deployed_bag.update_icon()
+		bag.deployed_bag.update_appearance(UPDATE_ICON)
 	to_chat(user, span_notice("\The [bag] is now set to [bag.killing ? "LETHAL" : "NON-LETHAL"]."))

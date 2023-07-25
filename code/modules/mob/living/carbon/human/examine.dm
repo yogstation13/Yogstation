@@ -13,7 +13,7 @@
 	var/t_is = p_are()
 	var/obscure_name
 	var/robotic = FALSE //robotic mobs look different under certain circumstances
-	if(MOB_ROBOTIC in mob_biotypes)//please someone tell me this is stupid and i can do it all in one line
+	if(mob_biotypes & MOB_ROBOTIC)//please someone tell me this is stupid and i can do it all in one line
 		robotic = TRUE
 
 	if(isliving(user))

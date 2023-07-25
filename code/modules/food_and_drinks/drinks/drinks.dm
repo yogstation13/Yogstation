@@ -125,6 +125,12 @@
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
 	B.name = "broken [name]"
+	if(ranged)
+		var/matrix/M = matrix(B.transform)
+		M.Turn(rand(-170, 170))
+		B.transform = M
+		B.pixel_x = rand(-12, 12)
+		B.pixel_y = rand(-12, 12)
 	if(prob(33))
 		var/obj/item/shard/S = new(drop_location())
 		target.Bumped(S)
@@ -153,7 +159,6 @@
 	possible_transfer_amounts = list()
 	volume = 5
 	flags_1 = CONDUCT_1
-	spillable = TRUE
 	resistance_flags = FIRE_PROOF
 	isGlass = FALSE
 
@@ -201,7 +206,6 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
-	spillable = TRUE
 	resistance_flags = FREEZE_PROOF
 	isGlass = FALSE
 	foodtype = BREAKFAST
@@ -212,7 +216,6 @@
 	custom_price = 5
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/ice = 30)
-	spillable = TRUE
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/ice/prison
@@ -225,7 +228,6 @@
 	desc = "A drink served in a classy mug."
 	icon_state = "tea"
 	item_state = "coffee"
-	spillable = TRUE
 
 /obj/item/reagent_containers/food/drinks/mug/on_reagent_change(changetype)
 	if(reagents.total_volume)
@@ -285,7 +287,6 @@
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = list()
 	volume = 10
-	spillable = TRUE
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/sillycup/on_reagent_change(changetype)
@@ -313,6 +314,12 @@
 	B.force = 0
 	B.throwforce = 0
 	B.desc = "A carton with the bottom half burst open. Might give you a papercut."
+	if(ranged)
+		var/matrix/M = matrix(B.transform)
+		M.Turn(rand(-170, 170))
+		B.transform = M
+		B.pixel_x = rand(-12, 12)
+		B.pixel_y = rand(-12, 12)
 	transfer_fingerprints_to(B)
 	qdel(src)
 	target.Bumped(B)
@@ -402,7 +409,6 @@
 	desc = "A cup with the british flag emblazoned on it."
 	icon_state = "britcup"
 	volume = 30
-	spillable = TRUE
 
 //////////////////////////soda_cans//
 //These are in their own group to be used as IED's in /obj/item/grenade/ghettobomb.dm
@@ -412,7 +418,6 @@
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	reagent_flags = NONE
-	spillable = FALSE
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/soda_cans/suicide_act(mob/living/carbon/human/H)
@@ -449,7 +454,6 @@
 	to_chat(user, "You pull back the tab of \the [src] with a satisfying pop.") //Ahhhhhhhh
 	ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 	playsound(src, "can_open", 50, 1)
-	spillable = TRUE
 
 /obj/item/reagent_containers/food/drinks/soda_cans/attack_self(mob/user)
 	if(!is_drainable())

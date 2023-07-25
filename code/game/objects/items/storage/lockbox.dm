@@ -63,12 +63,12 @@
 /obj/item/storage/lockbox/Entered()
 	. = ..()
 	open = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/Exited()
 	. = ..()
 	open = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/AltClick(mob/user)
 	..()
@@ -138,7 +138,7 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
 			open = (open ? FALSE : TRUE)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		..()
 
 /obj/item/storage/lockbox/medal/PopulateContents()
@@ -154,7 +154,8 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/accessory/medal/conduct(src)
 
-/obj/item/storage/lockbox/medal/update_icon()
+/obj/item/storage/lockbox/medal/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(locked)
@@ -242,7 +243,8 @@
 	icon_closed = "vialbox"
 	icon_broken = "vialbox"
 
-/obj/item/storage/lockbox/vialbox/update_icon()
+/obj/item/storage/lockbox/vialbox/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	var/slot = 1
@@ -266,11 +268,10 @@
 	if(!broken)
 		var/mutable_appearance/led = mutable_appearance(icon, "led[locked]")
 		add_overlay(led)
-	..()
 
 /obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
@@ -283,11 +284,11 @@
 
 /obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/vialbox/AltClick(mob/user)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/vialbox/full/PopulateContents()
 	for(var/i in 1 to 6)

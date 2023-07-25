@@ -329,7 +329,7 @@
 		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		PDA.update_filters()
 		
 	else

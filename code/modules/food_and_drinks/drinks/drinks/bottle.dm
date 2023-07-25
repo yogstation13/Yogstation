@@ -23,10 +23,10 @@
 	age_restricted = TRUE
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/food/drinks/bottle/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/food/drinks/bottle/update_overlays()
+	. = ..()
 
 	if(reagents.total_volume)
 		var/fill_name = icon_state
@@ -40,9 +40,9 @@
 				filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		. += filling
 
-	add_overlay("[initial(icon_state)]shine")
+	. += "[initial(icon_state)]shine"
 
 /obj/item/reagent_containers/food/drinks/bottle/small
 	name = "small glass bottle"
@@ -58,6 +58,12 @@
 	var/obj/item/broken_bottle/B = new (loc)
 	if(!ranged && thrower)
 		thrower.put_in_hands(B)
+	else
+		var/matrix/M = matrix(B.transform)
+		M.Turn(rand(-170, 170))
+		B.transform = M
+		B.pixel_x = rand(-12, 12)
+		B.pixel_y = rand(-12, 12)
 	B.icon_state = icon_state
 
 	var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
