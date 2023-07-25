@@ -101,10 +101,7 @@
 
 	var/donuts = 0
 
-	for (var/_donut in contents)
-		var/obj/item/reagent_containers/food/snacks/donut/donut = _donut
-		if (!istype(donut))
-			continue
+	for (var/obj/item/reagent_containers/food/snacks/donut/donut in contents)
 
 		. += image(icon = initial(icon), icon_state = donut.in_box_sprite(), pixel_x = donuts * DONUT_INBOX_SPRITE_WIDTH)
 		donuts += 1
@@ -113,7 +110,6 @@
 
 /obj/item/storage/fancy/donut_box/deadly
 	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "donutbox_inner"
 	icon_type = "donut"
 	name = "donut box"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut/deadly
@@ -128,35 +124,6 @@
 /obj/item/storage/fancy/donut_box/deadly/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/food/snacks/donut/deadly(src)
-
-/obj/item/storage/fancy/donut_box/deadly/PopulateContents()
-	. = ..()
-	update_icon()
-
-/obj/item/storage/fancy/donut_box/deadly/update_icon_state()
-	. = ..()
-	if(fancy_open)
-		icon_state = "donutbox_inner"
-	else
-		icon_state = "donutbox"
-
-/obj/item/storage/fancy/donut_box/deadly/update_overlays()
-	. = ..()
-
-	if (!fancy_open)
-		return
-
-	var/donuts = 0
-
-	for (var/_donut in contents)
-		var/obj/item/reagent_containers/food/snacks/donut/donut = _donut
-		if (!istype(donut))
-			continue
-
-		. += image(icon = initial(icon), icon_state = donut.in_box_sprite(), pixel_x = donuts * DONUT_INBOX_SPRITE_WIDTH)
-		donuts += 1
-
-	. += image(icon = initial(icon), icon_state = "donutbox_top")
 
 #undef DONUT_INBOX_SPRITE_WIDTH
 /*
