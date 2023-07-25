@@ -986,7 +986,7 @@
 
 /// Returns the type of organs, reagents, and symptoms this mob is compatible with
 /mob/living/proc/get_process_flags()
-	return (MOB_ROBOTIC in mob_biotypes) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
+	return (mob_biotypes & MOB_ROBOTIC) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return

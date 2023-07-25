@@ -18,7 +18,7 @@
 	return ..()
 
 /datum/status_effect/hallucination/on_apply()
-	if((MOB_ROBOTIC in owner.mob_biotypes) || (MOB_SPIRIT in owner.mob_biotypes) || (MOB_EPIC in owner.mob_biotypes)) // NO_HALLUCINATION_BIOTYPES, but split up.
+	if(owner.mob_biotypes & NO_HALLUCINATION_BIOTYPES)
 		return FALSE
 
 	RegisterSignal(owner, COMSIG_LIVING_HEALTHSCAN,  PROC_REF(on_health_scan))
