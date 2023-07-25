@@ -31,7 +31,7 @@
 	var/atom/movable/screen/inv1 = null
 	var/atom/movable/screen/inv2 = null
 	var/atom/movable/screen/inv3 = null
-	var/atom/movable/screen/thruster_button = nullmodel ? "[R.model.name] Model" : "No Model Detected",
+	var/atom/movable/screen/thruster_button = null
 	var/atom/movable/screen/hands = null
 
 	var/shown_robot_modules = 0	///Used to determine whether they have the model menu shown or not
