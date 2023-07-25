@@ -87,8 +87,6 @@
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
-	var/base_icon_state // a base icon state which things that change their icon state can.. well.. base their icon state off of, hence the name
-
 	///Default pixel x shifting for the atom's icon.
 	var/base_pixel_x = 0
 	///Default pixel y shifting for the atom's icon.
