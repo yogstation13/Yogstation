@@ -1,15 +1,15 @@
 /atom/movable/screen/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
 
-/atom/movable/screen/robot/module
-	name = "cyborg module"
+/atom/movable/screen/robot/model
+	name = "cyborg model"
 	icon_state = "nomod"
 
 /atom/movable/screen/robot/Click()
 	if(isobserver(usr))
 		return 1
 
-/atom/movable/screen/robot/module/Click()
+/atom/movable/screen/robot/model/Click()
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
@@ -156,7 +156,7 @@
 	infodisplay += healths
 
 //Installed Model
-	mymobR.hands = new /atom/movable/screen/robot/module(src)
+	mymobR.hands = new /atom/movable/screen/robot/model(src)
 	mymobR.hands.screen_loc = ui_borg_model
 	static_inventory += mymobR.hands
 
