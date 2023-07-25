@@ -56,6 +56,9 @@
 	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
 
+	if(isobj(target) && target.loc == H) //no using abilities on your own items
+		return
+
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
 
@@ -68,14 +71,15 @@
 		if(get_turf(target) != get_turf(H))
 			throw_start(H, target)
 
-	if(!H.Adjacent(target) || H==target)
+	if(!H.Adjacent(target))
 		return
 
-	if(isobj(target) && target.loc == H) //no punching your own items
-		return
-
-	if(H.a_intent == INTENT_HARM)
+	if(H.a_intent == INTENT_HARM)//technically can punch yourself, but with how it works, you won't actually hurt yourself
 		pummel(H,target)
+
+	if(H == target)
+		return
+
 	if(H.a_intent == INTENT_GRAB && isliving(target))
 		grapple(H,target)
 
@@ -294,10 +298,13 @@
 			L.gib()
 	for(var/obj/item/I in range(range, user))
 		push_away(user, I)
-	for(var/obj/structure/S in range(range, user))
-		S.take_damage(5, sound_effect = FALSE)//reduced sound from hitting LOTS of things
-	for(var/obj/machinery/M in range(range, user))
-		M.take_damage(5, sound_effect = FALSE)
+	for(var/obj/obstruction in range(range, user))
+		if(!isstructure(obstruction) && !ismachinery(obstruction))
+			continue
+		var/damage = 5
+		if(obstruction.loc == user.loc)
+			damage *= 3
+		obstruction.take_damage(damage, sound_effect = prob(50)) //reduced sound from hitting LOTS of things
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -457,7 +464,7 @@
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
 	shockwave.alpha = 100 //slightly weaker looking
-	animate(shockwave, alpha = 0, transform = matrix().Scale(0.25), time = 3)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
 	QDEL_IN(shockwave, 4)
 
 	for(var/mob/living/L in range(1, get_turf(target)))
@@ -473,10 +480,15 @@
 		hurt(user, L, damage)
 	for(var/obj/item/I in range(1, get_turf(target)))
 		push_away(user, I)
-	for(var/obj/structure/S in range(1, get_turf(target)))
-		S.take_damage(30, sound_effect = FALSE) //reduced sound from hitting LOTS of things
-	for(var/obj/machinery/M in range(1, get_turf(target)))
-		M.take_damage(20, sound_effect = FALSE) //machinery is important so it does less
+	for(var/obj/obstruction in range(1, get_turf(target)))
+		if(!isstructure(obstruction) && !ismachinery(obstruction))
+			continue
+		var/damage = 10
+		if(isstructure(obstruction))
+			damage += 5
+		if(obstruction == target)
+			damage *= 3
+		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
 /*---------------------------------------------------------------
 	end of pummel section
@@ -549,10 +561,13 @@
 			L.gib()
 	for(var/obj/item/I in range(actual_range, owner))
 		linked_martial.push_away(owner, I, 2)
-	for(var/obj/structure/S in range(actual_range/2, owner))
-		S.take_damage(25 + (plates * 3))
-	for(var/obj/machinery/M in range(actual_range/2, owner))
-		M.take_damage(10) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
+	for(var/obj/obstruction in range(actual_range/2, owner))
+		if(!isstructure(obstruction) && !ismachinery(obstruction))
+			continue
+		var/damage = 10
+		if(isstructure(obstruction)) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
+			damage += 15 + (plates * 3)
+		obstruction.take_damage(damage)
 
 	if(get_turf(owner))//fuck that tile up
 		var/turf/open/floor/target = get_turf(owner)
