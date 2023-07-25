@@ -104,7 +104,7 @@
 	var/obj/item/healthanalyzer/advanced/adv = locate() in analyzerlocations
 	if(iscyborg(user) && !istype(adv))
 		var/mob/living/silicon/robot/R = user
-		adv = locate() in R.module.modules
+		adv = locate() in R.model.modules
 
 	if(istype(adv))
 		adv_surgeries |= adv.advanced_surgeries

@@ -50,7 +50,7 @@
 			locked_down = R.lockcharge,
 			status = R.stat,
 			charge = R.cell ? round(R.cell.percent()) : null,
-			module = R.module ? "[R.module.name] Module" : "No Module Detected",
+			module = R.model ? "[R.model.name] Module" : "No Module Detected",
 			synchronization = R.connected_ai,
 			emagged =  R.emagged,
 			ref = REF(R)

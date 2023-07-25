@@ -258,7 +258,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	. = ..()
 	if(!.)
 		return
-	update_robot_modules_display()
+	update_robot_models_display()
 
 /datum/hud/proc/hidden_inventory_update()
 	return

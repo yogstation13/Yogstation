@@ -584,7 +584,7 @@
 	dampening_field = make_field(/datum/proximity_monitor/advanced/peaceborg_dampener, list("current_range" = field_radius, "host" = src, "projector" = src))
 	var/mob/living/silicon/robot/owner = get_host()
 	if(owner)
-		owner.module.allow_riding = FALSE
+		owner.model.allow_riding = FALSE
 	active = TRUE
 
 /obj/item/borg/projectile_dampen/proc/deactivate_field()
@@ -596,7 +596,7 @@
 
 	var/mob/living/silicon/robot/owner = get_host()
 	if(owner)
-		owner.module.allow_riding = TRUE
+		owner.model.allow_riding = TRUE
 
 /obj/item/borg/projectile_dampen/proc/get_host()
 	if(istype(host))
@@ -784,7 +784,7 @@
 		return
 	else if(isitem(target))
 		var/obj/item/I = target
-		if(locate(target) in user.module.modules)//This prevents grabbing your own modules and grabbing similar items (if this is ever the case).
+		if(locate(target) in user.model.modules)//This prevents grabbing your own modules and grabbing similar items (if this is ever the case).
 			to_chat(user, span_danger("Your gripper cannot grab something that you already have."))
 			return
 		var/grab = 0

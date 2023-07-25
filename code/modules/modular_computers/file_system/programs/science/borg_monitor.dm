@@ -104,7 +104,7 @@
 			status = R.stat,
 			shell_discon = shell,
 			charge = R.cell ? round(R.cell.percent()) : null,
-			module = R.module ? "[R.module.name] Module" : "No Module Detected",
+			module = R.model ? "[R.model.name] Module" : "No Module Detected",
 			upgrades = upgrade,
 			ref = REF(R)
 		)

@@ -36,8 +36,8 @@
 			if(!weapon_type)
 				return
 
-			var/obj/item/weapon = new weapon_type (robot_user.module)
-			robot_user.module.ratvar_modules += weapon
-			robot_user.module.add_module(weapon, FALSE, TRUE)
+			var/obj/item/weapon = new weapon_type (robot_user.model)
+			robot_user.model.ratvar_modules += weapon
+			robot_user.model.add_module(weapon, FALSE, TRUE)
 			robot_user.activate_module(weapon)
 			qdel(src)

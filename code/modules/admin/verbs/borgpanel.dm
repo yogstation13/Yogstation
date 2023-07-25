@@ -48,7 +48,7 @@
 		"ref" = REF(borg),
 		"name" = "[borg]",
 		"emagged" = borg.emagged,
-		"active_module" = "[borg.module.type]",
+		"active_module" = "[borg.model.type]",
 		"lawupdate" = borg.lawupdate,
 		"lockdown" = borg.lockcharge,
 		"scrambledcodes" = borg.scrambledcodes
@@ -56,7 +56,7 @@
 	.["upgrades"] = list()
 	for (var/upgradetype in subtypesof(/obj/item/borg/upgrade)-/obj/item/borg/upgrade/hypospray) //hypospray is a dummy parent for hypospray upgrades
 		var/obj/item/borg/upgrade/upgrade = upgradetype
-		if (initial(upgrade.module_type) && !istype(borg.module, initial(upgrade.module_type))) // Upgrade requires a different module
+		if (initial(upgrade.model_type) && !istype(borg.model, initial(upgrade.model_type))) // Upgrade requires a different module
 			continue
 		var/installed = FALSE
 		if (locate(upgradetype) in borg)
@@ -70,8 +70,8 @@
 		.["channels"] += list(list("name" = k, "installed" = (k in borg.radio.channels)))
 	.["cell"] = borg.cell ? list("missing" = FALSE, "maxcharge" = borg.cell.maxcharge, "charge" = borg.cell.charge) : list("missing" = TRUE, "maxcharge" = 1, "charge" = 0)
 	.["modules"] = list()
-	for(var/moduletype in typesof(/obj/item/robot_module))
-		var/obj/item/robot_module/module = moduletype
+	for(var/moduletype in typesof(/obj/item/robot_model))
+		var/obj/item/robot_model/module = moduletype
 		.["modules"] += list(list(
 			"name" = initial(module.name),
 			"type" = "[module]"
@@ -193,7 +193,7 @@
 		if ("setmodule")
 			var/newmodulepath = text2path(params["module"])
 			if (ispath(newmodulepath))
-				borg.module.transform_to(newmodulepath)
+				borg.model.transform_to(newmodulepath)
 				message_admins("[key_name_admin(user)] changed the module of [ADMIN_LOOKUPFLW(borg)] to [newmodulepath].")
 				log_admin("[key_name(user)] changed the module of [key_name(borg)] to [newmodulepath].")
 		if ("slavetoai")

@@ -66,7 +66,7 @@
 	//Ability to move. FAULT if lockdown wire is cut, DISABLED if borg locked, ENABLED otherwise
 	data["locomotion"] = "[borgo.wires.is_cut(WIRE_LOCKDOWN)?"FAULT":"[borgo.lockcharge?"DISABLED":"ENABLED"]"]"
 	//Module wire. FAULT if cut, NOMINAL otherwise
-	data["wireModule"] = "[borgo.wires.is_cut(WIRE_RESET_MODULE)?"FAULT":"NOMINAL"]"
+	data["wireModule"] = "[borgo.wires.is_cut(WIRE_RESET_MODEL)?"FAULT":"NOMINAL"]"
 	//DEBUG -- Camera(net) wire. FAULT if cut (or no cameranet camera), DISABLED if pulse-disabled, NOMINAL otherwise
 	data["wireCamera"] = "[!borgo.builtInCamera || borgo.wires.is_cut(WIRE_CAMERA)?"FAULT":"[borgo.builtInCamera.can_use()?"NOMINAL":"DISABLED"]"]"
 	//AI wire. FAULT if wire is cut, CONNECTED if connected to AI, READY otherwise

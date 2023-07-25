@@ -11,18 +11,18 @@
 	var/locked = FALSE
 	var/installed = 0
 	var/require_module = 0
-	var/module_type = null
+	var/model_type = null
 	// if true, is not stored in the robot to be ejected
 	// if module is reset
 	var/one_use = FALSE
 	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
-	var/list/module_flags = NONE
+	var/list/model_flags = NONE
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/R, user = usr)
 	if(R.stat == DEAD)
 		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
 		return FALSE
-	if(module_type && !istype(R.module, module_type))
+	if(model_type && !istype(R.model, model_type))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
 		to_chat(user, "There's no mounting point for the module!")
 		return FALSE
@@ -121,13 +121,13 @@
 	desc = "It used to give unspeakable power to security modules. Now it rests; broken, abandoned."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/security
-	module_flags = BORG_MODULE_SECURITY
+	model_type = /obj/item/robot_model/security
+	model_flags = BORG_MODULE_SECURITY
 
 /obj/item/borg/upgrade/disablercooler/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
+		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, span_notice("There's no disabler in this unit!"))
 			return FALSE
@@ -141,7 +141,7 @@
 /obj/item/borg/upgrade/disablercooler/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
+		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		T.charge_delay = initial(T.charge_delay)
@@ -226,132 +226,132 @@
 	desc = "A diamond drill replacement for the mining module's standard drill."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/miner
-	module_flags = BORG_MODULE_MINER
+	model_type = /obj/item/robot_model/miner
+	model_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/ddrill/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/pickaxe/drill/cyborg/D in R.module)
-			R.module.remove_module(D, TRUE)
-		for(var/obj/item/shovel/S in R.module)
-			R.module.remove_module(S, TRUE)
+		for(var/obj/item/pickaxe/drill/cyborg/D in R.model)
+			R.model.remove_module(D, TRUE)
+		for(var/obj/item/shovel/S in R.model)
+			R.model.remove_module(S, TRUE)
 
-		var/obj/item/pickaxe/drill/cyborg/diamond/DD = new /obj/item/pickaxe/drill/cyborg/diamond(R.module)
-		R.module.basic_modules += DD
-		R.module.add_module(DD, FALSE, TRUE)
+		var/obj/item/pickaxe/drill/cyborg/diamond/DD = new /obj/item/pickaxe/drill/cyborg/diamond(R.model)
+		R.model.basic_modules += DD
+		R.model.add_module(DD, FALSE, TRUE)
 
 /obj/item/borg/upgrade/ddrill/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/pickaxe/drill/cyborg/diamond/DD in R.module)
-			R.module.remove_module(DD, TRUE)
+		for(var/obj/item/pickaxe/drill/cyborg/diamond/DD in R.model)
+			R.model.remove_module(DD, TRUE)
 
-		var/obj/item/pickaxe/drill/cyborg/D = new (R.module)
-		R.module.basic_modules += D
-		R.module.add_module(D, FALSE, TRUE)
-		var/obj/item/shovel/S = new (R.module)
-		R.module.basic_modules += S
-		R.module.add_module(S, FALSE, TRUE)
+		var/obj/item/pickaxe/drill/cyborg/D = new (R.model)
+		R.model.basic_modules += D
+		R.model.add_module(D, FALSE, TRUE)
+		var/obj/item/shovel/S = new (R.model)
+		R.model.basic_modules += S
+		R.model.add_module(S, FALSE, TRUE)
 
 /obj/item/borg/upgrade/soh
 	name = "mining cyborg satchel of holding"
 	desc = "A satchel of holding replacement for mining cyborg's ore satchel module."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/miner
-	module_flags = BORG_MODULE_MINER
+	model_type = /obj/item/robot_model/miner
+	model_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/soh/action(mob/living/silicon/robot/R , user = usr) //yogs single line
 	. = ..()
 	if(.)
-		for(var/obj/item/storage/bag/ore/cyborg/S in R.module)
-			R.module.remove_module(S, TRUE)
+		for(var/obj/item/storage/bag/ore/cyborg/S in R.model)
+			R.model.remove_module(S, TRUE)
 
-		var/obj/item/storage/bag/ore/holding/H = locate() in R.module.modules  //yogs start
+		var/obj/item/storage/bag/ore/holding/H = locate() in R.model.modules  //yogs start
 		if(H)
 			to_chat(user, span_warning("This unit is already equipped with a satchel of holding."))
 			return FALSE
 
-		H = new /obj/item/storage/bag/ore/holding(R.module)  //yogs end
-		R.module.basic_modules += H
-		R.module.add_module(H, FALSE, TRUE)
+		H = new /obj/item/storage/bag/ore/holding(R.model)  //yogs end
+		R.model.basic_modules += H
+		R.model.add_module(H, FALSE, TRUE)
 
 /obj/item/borg/upgrade/soh/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/storage/bag/ore/holding/H in R.module)
-			R.module.remove_module(H, TRUE)
+		for(var/obj/item/storage/bag/ore/holding/H in R.model)
+			R.model.remove_module(H, TRUE)
 
-		var/obj/item/storage/bag/ore/cyborg/S = new (R.module)
-		R.module.basic_modules += S
-		R.module.add_module(S, FALSE, TRUE)
+		var/obj/item/storage/bag/ore/cyborg/S = new (R.model)
+		R.model.basic_modules += S
+		R.model.add_module(S, FALSE, TRUE)
 
 /obj/item/borg/upgrade/tboh
 	name = "janitor cyborg trash bag of holding"
 	desc = "A trash bag of holding replacement for the janiborg's standard trash bag."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/janitor
-	module_flags = BORG_MODULE_JANITOR
+	model_type = /obj/item/robot_model/janitor
+	model_flags = BORG_MODULE_JANITOR
 
 /obj/item/borg/upgrade/tboh/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
 	if(.)
-		for(var/obj/item/storage/bag/trash/cyborg/TB in R.module.modules)
-			R.module.remove_module(TB, TRUE)
+		for(var/obj/item/storage/bag/trash/cyborg/TB in R.model.modules)
+			R.model.remove_module(TB, TRUE)
 
-		var/obj/item/storage/bag/trash/bluespace/cyborg/B = locate() in R.module.modules //yogs start
+		var/obj/item/storage/bag/trash/bluespace/cyborg/B = locate() in R.model.modules //yogs start
 		if(B)
 			to_chat(user, span_warning("This unit is already equipped with a trash bag of holding."))
 			return FALSE
 
-		B = new /obj/item/storage/bag/trash/bluespace/cyborg(R.module) //yogs end
-		R.module.basic_modules += B
-		R.module.add_module(B, FALSE, TRUE)
+		B = new /obj/item/storage/bag/trash/bluespace/cyborg(R.model) //yogs end
+		R.model.basic_modules += B
+		R.model.add_module(B, FALSE, TRUE)
 
 /obj/item/borg/upgrade/tboh/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/storage/bag/trash/bluespace/cyborg/B in R.module.modules)
-			R.module.remove_module(B, TRUE)
+		for(var/obj/item/storage/bag/trash/bluespace/cyborg/B in R.model.modules)
+			R.model.remove_module(B, TRUE)
 
-		var/obj/item/storage/bag/trash/cyborg/TB = new (R.module)
-		R.module.basic_modules += TB
-		R.module.add_module(TB, FALSE, TRUE)
+		var/obj/item/storage/bag/trash/cyborg/TB = new (R.model)
+		R.model.basic_modules += TB
+		R.model.add_module(TB, FALSE, TRUE)
 
 /obj/item/borg/upgrade/amop
 	name = "janitor cyborg advanced mop"
 	desc = "An advanced mop replacement for the janiborg's standard mop."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/janitor
-	module_flags = BORG_MODULE_JANITOR
+	model_type = /obj/item/robot_model/janitor
+	model_flags = BORG_MODULE_JANITOR
 
 /obj/item/borg/upgrade/amop/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
 	if(.)
-		for(var/obj/item/mop/cyborg/M in R.module.modules)
-			R.module.remove_module(M, TRUE)
+		for(var/obj/item/mop/cyborg/M in R.model.modules)
+			R.model.remove_module(M, TRUE)
 
-		var/obj/item/mop/advanced/cyborg/A = locate() in R.module.modules  //yogs start
+		var/obj/item/mop/advanced/cyborg/A = locate() in R.model.modules  //yogs start
 		if(A)
 			to_chat(user, span_warning("This unit is already equipped with a advanced mop module."))
 			return FALSE
 
-		A = new /obj/item/mop/advanced/cyborg(R.module)  //yogs end
-		R.module.basic_modules += A
-		R.module.add_module(A, FALSE, TRUE)
+		A = new /obj/item/mop/advanced/cyborg(R.model)  //yogs end
+		R.model.basic_modules += A
+		R.model.add_module(A, FALSE, TRUE)
 
 /obj/item/borg/upgrade/amop/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/mop/advanced/cyborg/A in R.module.modules)
-			R.module.remove_module(A, TRUE)
+		for(var/obj/item/mop/advanced/cyborg/A in R.model.modules)
+			R.model.remove_module(A, TRUE)
 
-		var/obj/item/mop/cyborg/M = new (R.module)
-		R.module.basic_modules += M
-		R.module.add_module(M, FALSE, TRUE)
+		var/obj/item/mop/cyborg/M = new (R.model)
+		R.model.basic_modules += M
+		R.model.add_module(M, FALSE, TRUE)
 
 /obj/item/borg/upgrade/syndicate
 	name = "illegal equipment module"
@@ -382,8 +382,8 @@
 	icon_state = "ash_plating"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	require_module = 1
-	module_type = /obj/item/robot_module/miner
-	module_flags = BORG_MODULE_MINER
+	model_type = /obj/item/robot_model/miner
+	model_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/lavaproof/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -515,20 +515,20 @@
 		to produce more advanced and complex medical reagents."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/medical
+	model_type = /obj/item/robot_model/medical
 	var/list/additional_reagents = list()
-	module_flags = BORG_MODULE_MEDICAL
+	model_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/reagent_containers/borghypo/medical/H in R.module.modules)
+		for(var/obj/item/reagent_containers/borghypo/medical/H in R.model.modules)
 			H.upgrade_hypo()
 
 /obj/item/borg/upgrade/hypospray/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/reagent_containers/borghypo/medical/H in R.module.modules)
+		for(var/obj/item/reagent_containers/borghypo/medical/H in R.model.modules)
 			H.remove_hypo_upgrade()
 
 /obj/item/borg/upgrade/hypospray/expanded
@@ -546,7 +546,7 @@
 	. = ..()
 	if(.)
 		var/found_hypo = FALSE
-		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
+		for(var/obj/item/reagent_containers/borghypo/H in R.model.modules)
 			if(H.bypass_protection == TRUE) //yogs start
 				to_chat(user, span_warning("This unit is already equipped with a piercing hypospray module."))
 				return FALSE  //yogs end
@@ -560,7 +560,7 @@
 /obj/item/borg/upgrade/piercing_hypospray/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
+		for(var/obj/item/reagent_containers/borghypo/H in R.model.modules)
 			H.bypass_protection = initial(H.bypass_protection)
 
 /obj/item/borg/upgrade/defib
@@ -569,26 +569,26 @@
 		defibrillator, for on the scene revival."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/medical
-	module_flags = BORG_MODULE_MEDICAL
+	model_type = /obj/item/robot_model/medical
+	model_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
+		var/obj/item/shockpaddles/cyborg/S = locate() in R.model.modules //yogs start
 		if(S)
 			to_chat(user, span_warning("This unit is already equipped with a defibrillator module."))
 			return FALSE
 
-		S = new(R.module) //yogs end
-		R.module.basic_modules += S
-		R.module.add_module(S, FALSE, TRUE)
+		S = new(R.model) //yogs end
+		R.model.basic_modules += S
+		R.model.add_module(S, FALSE, TRUE)
 
 /obj/item/borg/upgrade/defib/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/shockpaddles/cyborg/S in R.module.modules)
-			R.module.remove_module(S, TRUE)
+		for(var/obj/item/shockpaddles/cyborg/S in R.model.modules)
+			R.model.remove_module(S, TRUE)
 
 /obj/item/borg/upgrade/adv_analyzer
 	name = "medical cyborg advanced health analyzer"
@@ -597,39 +597,39 @@
 		replacing the old one."
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
-	module_type = /obj/item/robot_module/medical
-	module_flags = BORG_MODULE_MEDICAL
+	model_type = /obj/item/robot_model/medical
+	model_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/adv_analyzer/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		/// Removes old analyzer
-		for(var/obj/item/healthanalyzer/healthanalyzer in R.module.modules)
-			R.module.remove_module(healthanalyzer, TRUE)
+		for(var/obj/item/healthanalyzer/healthanalyzer in R.model.modules)
+			R.model.remove_module(healthanalyzer, TRUE)
 
-		var/obj/item/healthanalyzer/advanced/advancedanal = locate() in R.module.modules
+		var/obj/item/healthanalyzer/advanced/advancedanal = locate() in R.model.modules
 
 		if(advancedanal)
 			to_chat(user, span_warning("This unit is already equipped with an advanced health analyzer."))
 			return FALSE
 
 		/// Puts in new advanced analyzer
-		advancedanal = new(R.module)
-		R.module.basic_modules += advancedanal
-		R.module.add_module(advancedanal, FALSE, TRUE)
+		advancedanal = new(R.model)
+		R.model.basic_modules += advancedanal
+		R.model.add_module(advancedanal, FALSE, TRUE)
 
 /obj/item/borg/upgrade/adv_analyzer/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		/// Removes new advanced analyzer
-		for(var/obj/item/healthanalyzer/advanced/advancedanal in R.module.modules)
-			R.module.remove_module(advancedanal, TRUE)
+		for(var/obj/item/healthanalyzer/advanced/advancedanal in R.model.modules)
+			R.model.remove_module(advancedanal, TRUE)
 
 		/// Puts in old analyzer
-		var/obj/item/healthanalyzer/healthanalyzer = locate() in R.module.modules
-		healthanalyzer = new(R.module)
-		R.module.basic_modules += healthanalyzer
-		R.module.add_module(healthanalyzer, FALSE, TRUE)
+		var/obj/item/healthanalyzer/healthanalyzer = locate() in R.model.modules
+		healthanalyzer = new(R.model)
+		R.model.basic_modules += healthanalyzer
+		R.model.add_module(healthanalyzer, FALSE, TRUE)
 
 /obj/item/borg/upgrade/surgerykit
 	name = "medical cyborg advanced surgical kit"
@@ -638,94 +638,94 @@
 		replacing the old ones."
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
-	module_type = /obj/item/robot_module/medical
-	module_flags = BORG_MODULE_MEDICAL
+	model_type = /obj/item/robot_model/medical
+	model_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/surgerykit/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		/// Removes old surgery tools
-		for(var/obj/item/retractor/RT in R.module.modules) // the SC stands for shitcode
-			R.module.remove_module(RT, TRUE)
+		for(var/obj/item/retractor/RT in R.model.modules) // the SC stands for shitcode
+			R.model.remove_module(RT, TRUE)
 
-		for(var/obj/item/hemostat/HS in R.module.modules)
-			R.module.remove_module(HS, TRUE)
+		for(var/obj/item/hemostat/HS in R.model.modules)
+			R.model.remove_module(HS, TRUE)
 
-		for(var/obj/item/cautery/CT in R.module.modules)
-			R.module.remove_module(CT, TRUE)
+		for(var/obj/item/cautery/CT in R.model.modules)
+			R.model.remove_module(CT, TRUE)
 
-		for(var/obj/item/surgicaldrill/SD in R.module.modules)
-			R.module.remove_module(SD, TRUE)
+		for(var/obj/item/surgicaldrill/SD in R.model.modules)
+			R.model.remove_module(SD, TRUE)
 
-		for(var/obj/item/scalpel/SL in R.module.modules)
-			R.module.remove_module(SL, TRUE)
+		for(var/obj/item/scalpel/SL in R.model.modules)
+			R.model.remove_module(SL, TRUE)
 
-		for(var/obj/item/circular_saw/CS in R.module.modules)
-			R.module.remove_module(CS, TRUE)
+		for(var/obj/item/circular_saw/CS in R.model.modules)
+			R.model.remove_module(CS, TRUE)
 
-		var/obj/item/scalpel/advanced/LS = locate() in R.module.modules
-		var/obj/item/retractor/advanced/MP = locate() in R.module.modules
-		var/obj/item/cautery/advanced/ST = locate() in R.module.modules
+		var/obj/item/scalpel/advanced/LS = locate() in R.model.modules
+		var/obj/item/retractor/advanced/MP = locate() in R.model.modules
+		var/obj/item/cautery/advanced/ST = locate() in R.model.modules
 		if(LS || MP || ST)
 			to_chat(user, span_warning("This unit is already equipped with an advanced surgical kit."))
 			return FALSE
 
 		/// Puts in new surgery tools
-		LS = new(R.module)
-		R.module.basic_modules += LS
-		R.module.add_module(LS, FALSE, TRUE)
+		LS = new(R.model)
+		R.model.basic_modules += LS
+		R.model.add_module(LS, FALSE, TRUE)
 
-		MP = new(R.module)
-		R.module.basic_modules += MP
-		R.module.add_module(MP, FALSE, TRUE)
+		MP = new(R.model)
+		R.model.basic_modules += MP
+		R.model.add_module(MP, FALSE, TRUE)
 
-		ST = new(R.module)
-		R.module.basic_modules += ST
-		R.module.add_module(ST, FALSE, TRUE)
+		ST = new(R.model)
+		R.model.basic_modules += ST
+		R.model.add_module(ST, FALSE, TRUE)
 
 /obj/item/borg/upgrade/surgerykit/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 		/// Removes new surgery tools
-		for(var/obj/item/scalpel/advanced/SE in R.module.modules)
-			R.module.remove_module(SE, TRUE)
+		for(var/obj/item/scalpel/advanced/SE in R.model.modules)
+			R.model.remove_module(SE, TRUE)
 
-		for(var/obj/item/retractor/advanced/RE in R.module.modules)
-			R.module.remove_module(RE, TRUE)
+		for(var/obj/item/retractor/advanced/RE in R.model.modules)
+			R.model.remove_module(RE, TRUE)
 
-		for(var/obj/item/cautery/advanced/CE in R.module.modules)
-			R.module.remove_module(CE, TRUE)
+		for(var/obj/item/cautery/advanced/CE in R.model.modules)
+			R.model.remove_module(CE, TRUE)
 
 		/// Puts in old surgery tools
-		var/obj/item/retractor/RT = locate() in R.module.modules
-		RT = new(R.module)
-		R.module.basic_modules += RT
-		R.module.add_module(RT, FALSE, TRUE)
+		var/obj/item/retractor/RT = locate() in R.model.modules
+		RT = new(R.model)
+		R.model.basic_modules += RT
+		R.model.add_module(RT, FALSE, TRUE)
 
-		var/obj/item/hemostat/HS = locate() in R.module.modules
-		HS = new(R.module)
-		R.module.basic_modules += HS
-		R.module.add_module(HS, FALSE, TRUE)
+		var/obj/item/hemostat/HS = locate() in R.model.modules
+		HS = new(R.model)
+		R.model.basic_modules += HS
+		R.model.add_module(HS, FALSE, TRUE)
 
-		var/obj/item/cautery/CT = locate() in R.module.modules
-		CT = new(R.module)
-		R.module.basic_modules += CT
-		R.module.add_module(CT, FALSE, TRUE)
+		var/obj/item/cautery/CT = locate() in R.model.modules
+		CT = new(R.model)
+		R.model.basic_modules += CT
+		R.model.add_module(CT, FALSE, TRUE)
 
-		var/obj/item/surgicaldrill/SD = locate() in R.module.modules
-		SD = new(R.module)
-		R.module.basic_modules += SD
-		R.module.add_module(SD, FALSE, TRUE)
+		var/obj/item/surgicaldrill/SD = locate() in R.model.modules
+		SD = new(R.model)
+		R.model.basic_modules += SD
+		R.model.add_module(SD, FALSE, TRUE)
 
-		var/obj/item/scalpel/SL = locate() in R.module.modules
-		SL = new(R.module)
-		R.module.basic_modules += SL
-		R.module.add_module(SL, FALSE, TRUE)
+		var/obj/item/scalpel/SL = locate() in R.model.modules
+		SL = new(R.model)
+		R.model.basic_modules += SL
+		R.model.add_module(SL, FALSE, TRUE)
 
-		var/obj/item/circular_saw/CS = locate() in R.module.modules
-		CS = new(R.module)
-		R.module.basic_modules += CS
-		R.module.add_module(CS, FALSE, TRUE)
+		var/obj/item/circular_saw/CS = locate() in R.model.modules
+		CS = new(R.model)
+		R.model.basic_modules += CS
+		R.model.add_module(CS, FALSE, TRUE)
 
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"
@@ -797,27 +797,27 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "borgrped"
 	require_module = TRUE
-	module_type = /obj/item/robot_module/engineering
-	module_flags = BORG_MODULE_ENGINEERING
+	model_type = /obj/item/robot_model/engineering
+	model_flags = BORG_MODULE_ENGINEERING
 
 /obj/item/borg/upgrade/rped/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module.modules
+		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.model.modules
 		if(RPED)
 			to_chat(user, span_warning("This unit is already equipped with a RPED module."))
 			return FALSE
 
-		RPED = new(R.module)
-		R.module.basic_modules += RPED
-		R.module.add_module(RPED, FALSE, TRUE)
+		RPED = new(R.model)
+		R.model.basic_modules += RPED
+		R.model.add_module(RPED, FALSE, TRUE)
 
 /obj/item/borg/upgrade/rped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
-			R.module.remove_module(RPED, TRUE)
+		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.model.modules)
+			R.model.remove_module(RPED, TRUE)
 
 /obj/item/borg/upgrade/plasmacutter
 	name = "mining cyborg plasma cutter"
@@ -825,50 +825,50 @@
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "adv_plasmacutter"
 	require_module = TRUE
-	module_type = /obj/item/robot_module/miner
-	module_flags = BORG_MODULE_MINER
+	model_type = /obj/item/robot_model/miner
+	model_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/plasmacutter/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
 
-		var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC = locate() in R.module.modules
+		var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC = locate() in R.model.modules
 		if(PC)
 			to_chat(user, span_warning("This unit is already equipped with a plasma cutter module."))
 			return FALSE
 
-		PC = new(R.module)
-		R.module.basic_modules += PC
-		R.module.add_module(PC, FALSE, TRUE)
+		PC = new(R.model)
+		R.model.basic_modules += PC
+		R.model.add_module(PC, FALSE, TRUE)
 
 /obj/item/borg/upgrade/plasmacutter/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
-			R.module.remove_module(PC, TRUE)
+		for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.model.modules)
+			R.model.remove_module(PC, TRUE)
 
 /obj/item/borg/upgrade/transform
 	name = "borg module picker (Standard)"
 	desc = "Allows you to turn a cyborg into a standard cyborg."
 	icon_state = "cyborg_upgrade3"
-	var/obj/item/robot_module/new_module = /obj/item/robot_module/standard
+	var/obj/item/robot_model/new_module = /obj/item/robot_model/standard
 
 /obj/item/borg/upgrade/transform/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		R.module.transform_to(new_module)
+		R.model.transform_to(new_module)
 
 /obj/item/borg/upgrade/transform/clown
 	name = "borg module picker (Clown)"
 	desc = "Allows you to turn a cyborg into a clown, honk."
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_module/clown
+	new_module = /obj/item/robot_model/clown
 
 /obj/item/borg/upgrade/transform/security
 	name = "borg module picker (Security)"
 	desc = "Allows you to turn a cyborg into a hunter, HALT!"
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_module/security
+	new_module = /obj/item/robot_model/security
 
 /obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
@@ -884,26 +884,26 @@
 	desc = "An experimental push broom used for efficiently pushing refuse."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
-	module_type = /obj/item/robot_module/janitor
-	module_flags = BORG_MODULE_JANITOR
+	model_type = /obj/item/robot_model/janitor
+	model_flags = BORG_MODULE_JANITOR
 
 /obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
 	if (!..())
 		return
-	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
+	var/obj/item/broom/cyborg/BR = locate() in R.model.modules
 	if (BR)
 		to_chat(user, span_warning("This janiborg is already equipped with an experimental broom!"))
 		return FALSE
-	BR = new(R.module)
-	R.module.basic_modules += BR
-	R.module.add_module(BR, FALSE, TRUE)
+	BR = new(R.model)
+	R.model.basic_modules += BR
+	R.model.add_module(BR, FALSE, TRUE)
 
 /obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
 	if (!..())
 		return
-	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
+	var/obj/item/broom/cyborg/BR = locate() in R.model.modules
 	if (BR)
-		R.module.remove_module(BR, TRUE)
+		R.model.remove_module(BR, TRUE)
 
 /obj/item/borg/upgrade/snack_dispenser
 	name = "Cyborg Upgrade (Snack Dispenser)"
@@ -913,21 +913,21 @@
 	if(R.stat == DEAD)
 		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
 		return FALSE
-	// module_type doesn't support more than 1 module. Thus, this:
-	if(!istype(R.module, /obj/item/robot_module/medical) && !istype(R.module, /obj/item/robot_module/peacekeeper) && !istype(R.module, /obj/item/robot_module/butler) && !istype(R.module, /obj/item/robot_module/clown))
+	// model_type doesn't support more than 1 module. Thus, this:
+	if(!istype(R.model, /obj/item/robot_model/medical) && !istype(R.model, /obj/item/robot_model/peacekeeper) && !istype(R.model, /obj/item/robot_model/butler) && !istype(R.model, /obj/item/robot_model/clown))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
 		to_chat(user, "There's no mounting point for the module!")
 		return FALSE
 
-	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.module)
-	R.module.basic_modules += snack_dispenser
-	R.module.add_module(snack_dispenser, FALSE, TRUE)
+	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.model)
+	R.model.basic_modules += snack_dispenser
+	R.model.add_module(snack_dispenser, FALSE, TRUE)
 
-	for(var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth in R.module.modules) // the SC stands for shitcode
-		R.module.remove_module(cookiesynth, TRUE)
+	for(var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth in R.model.modules) // the SC stands for shitcode
+		R.model.remove_module(cookiesynth, TRUE)
 
-	for(var/obj/item/borg_snack_dispenser/medical/lollipopshooter in R.module.modules)
-		R.module.remove_module(lollipopshooter, TRUE)
+	for(var/obj/item/borg_snack_dispenser/medical/lollipopshooter in R.model.modules)
+		R.model.remove_module(lollipopshooter, TRUE)
 
 	return TRUE
 
@@ -936,14 +936,14 @@
 	if(!.)
 		return
 
-	for(var/obj/item/borg_snack_dispenser/snack_dispenser in R.module.modules)
-		R.module.remove_module(snack_dispenser, TRUE)
+	for(var/obj/item/borg_snack_dispenser/snack_dispenser in R.model.modules)
+		R.model.remove_module(snack_dispenser, TRUE)
 
-	if(istype(R.module, /obj/item/robot_module/peacekeeper))
-		var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth = new(R.module)
-		R.module.basic_modules += cookiesynth
-		R.module.add_module(cookiesynth, FALSE, TRUE)
+	if(istype(R.model, /obj/item/robot_model/peacekeeper))
+		var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth = new(R.model)
+		R.model.basic_modules += cookiesynth
+		R.model.add_module(cookiesynth, FALSE, TRUE)
 	else // Guess they're medical, service, or clown.
-		var/obj/item/borg_snack_dispenser/medical/lollipopshooter = new(R.module)
-		R.module.basic_modules += lollipopshooter
-		R.module.add_module(lollipopshooter, FALSE, TRUE)
+		var/obj/item/borg_snack_dispenser/medical/lollipopshooter = new(R.model)
+		R.model.basic_modules += lollipopshooter
+		R.model.add_module(lollipopshooter, FALSE, TRUE)

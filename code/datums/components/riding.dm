@@ -274,7 +274,7 @@
 		var/kick = TRUE
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/R = AM
-			if(R.module && R.module.ride_allow_incapacitated)
+			if(R.model && R.model.ride_allow_incapacitated)
 				kick = FALSE
 		if(kick)
 			to_chat(user, span_userdanger("You fall off of [AM]!"))
@@ -307,9 +307,9 @@
 			M.setDir(AM.dir)
 			if(iscyborg(AM))
 				var/mob/living/silicon/robot/R = AM
-				if(istype(R.module))
-					M.pixel_x = R.module.ride_offset_x[dir2text(AM.dir)]
-					M.pixel_y = R.module.ride_offset_y[dir2text(AM.dir)]
+				if(istype(R.model))
+					M.pixel_x = R.model.ride_offset_x[dir2text(AM.dir)]
+					M.pixel_y = R.model.ride_offset_y[dir2text(AM.dir)]
 			else
 				..()
 

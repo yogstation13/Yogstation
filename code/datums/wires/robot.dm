@@ -7,7 +7,7 @@
 	wires = list(
 		WIRE_AI, WIRE_CAMERA,
 		WIRE_LAWSYNC, WIRE_LOCKDOWN,
-		WIRE_RESET_MODULE
+		WIRE_RESET_MODEL
 	)
 	add_duds(2)
 	..()
@@ -24,7 +24,7 @@
 	status += "The intelligence link display shows [R.connected_ai ? R.connected_ai.name : "NULL"]."
 	status += "The camera light is [!isnull(R.builtInCamera) && R.builtInCamera.status ? "on" : "off"]."
 	status += "The lockdown indicator is [R.lockcharge ? "on" : "off"]."
-	status += "There is a star symbol above the [get_color_of_wire(WIRE_RESET_MODULE)] wire."
+	status += "There is a star symbol above the [get_color_of_wire(WIRE_RESET_MODEL)] wire."
 	return status
 
 /datum/wires/robot/on_pulse(wire, user)
@@ -56,7 +56,7 @@
 				R.show_laws()
 		if(WIRE_LOCKDOWN)
 			R.SetLockdown(!R.lockcharge) // Toggle
-		if(WIRE_RESET_MODULE)
+		if(WIRE_RESET_MODEL)
 			if(R.has_module())
 				R.visible_message("[R]'s module servos twitch.", "Your module display flickers.")
 
@@ -86,6 +86,6 @@
 		if(WIRE_LOCKDOWN) // Simple lockdown.
 			R.SetLockdown(!mend)
 			R.logevent("Motor Controller fault [mend?"cleared":"detected"]")
-		if(WIRE_RESET_MODULE)
+		if(WIRE_RESET_MODEL)
 			if(R.has_module() && !mend)
-				R.ResetModule()
+				R.ResetModel()

@@ -242,8 +242,8 @@
 					else if(iscyborg(M))
 						M_job = "Cyborg"
 						var/mob/living/silicon/robot/R = M
-						if(R.module)
-							M_job += " [R.module.name]"
+						if(R.model)
+							M_job += " [R.model.name]"
 					else
 						M_job = "Silicon-based"
 

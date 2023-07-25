@@ -97,7 +97,7 @@
 			var/mob/living/silicon/robot/R = S
 			if(!R.shell)
 				R.UnlinkSelf()
-			R.module.rebuild_modules()
+			R.model.rebuild_modules()
 		else if(isAI(S))
 			var/mob/living/silicon/ai/A = S
 			A.can_be_carded = FALSE
@@ -160,7 +160,7 @@
 	var/mob/living/temp_owner = current
 	if(iscyborg(temp_owner))
 		var/mob/living/silicon/robot/R = temp_owner
-		R.module.rebuild_modules()
+		R.model.rebuild_modules()
 	if(temp_owner)
 		temp_owner.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
 	temp_owner.cut_overlays()

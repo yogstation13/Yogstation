@@ -102,9 +102,9 @@
 	src.user = user
 	savedName = user.name
 	user.name = friendlyName
-	user.module.cyborg_base_icon = disguise
+	user.model.cyborg_base_icon = disguise
 	user.bubble_icon = "robot"
-	user.module.name = "Engineering"
+	user.model.name = "Engineering"
 	active = TRUE
 	user.update_icons()
 	
@@ -122,9 +122,9 @@
 		listeningTo = null
 	do_sparks(5, FALSE, user)
 	user.name = savedName
-	user.module.cyborg_base_icon = initial(user.module.cyborg_base_icon)
+	user.model.cyborg_base_icon = initial(user.model.cyborg_base_icon)
 	user.bubble_icon = initial(user.bubble_icon)
-	user.module.name = initial(user.module.name)
+	user.model.name = initial(user.model.name)
 	active = FALSE
 	user.update_icons()
 	src.user = user

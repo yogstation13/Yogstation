@@ -453,14 +453,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	attack_paw(A)
 
 /obj/item/attack_ai(mob/user)
-	if(istype(src.loc, /obj/item/robot_module))
+	if(istype(src.loc, /obj/item/robot_model))
 		//If the item is part of a cyborg module, equip it
 		if(!iscyborg(user))
 			return
 		var/mob/living/silicon/robot/R = user
 		if(!R.low_power_mode) //can't equip modules with an empty cell.
 			R.activate_module(src)
-			R.hud_used.update_robot_modules_display()
+			R.hud_used.update_robot_models_display()
 
 /obj/item/proc/GetDeconstructableContents()
 	return get_all_contents() - src

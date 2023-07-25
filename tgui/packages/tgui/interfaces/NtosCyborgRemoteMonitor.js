@@ -141,7 +141,7 @@ export const NtosCyborgRemoteMonitorContent = (props, context) => {
                             </Box>
                           </LabeledList.Item>
                           <LabeledList.Item label="Model">
-                            {cyborg.module}
+                            {cyborg.model}
                           </LabeledList.Item>
                           <LabeledList.Item label="Upgrades">
                             {cyborg.upgrades}

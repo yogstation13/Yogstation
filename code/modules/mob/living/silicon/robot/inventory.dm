@@ -21,7 +21,7 @@
 	return module_active
 
 /**
-  * Parent proc - triggers when an item/module is unequipped from a cyborg.
+  * Parent proc - triggers when an item/model is unequipped from a cyborg.
   */
 /obj/item/proc/cyborg_unequip(mob/user)
 	return
@@ -36,8 +36,8 @@
 	if(QDELETED(item_module))
 		CRASH("activate_module called with improper item_module")
 
-	if(!(item_module in module.modules))
-		CRASH("activate_module called with item_module not in module.modules")
+	if(!(item_module in model.modules))
+		CRASH("activate_module called with item_module not in model.modules")
 
 	if(activated(item_module))
 		to_chat(src, span_warning("That module is already activated."))
@@ -98,8 +98,8 @@
 	if(QDELETED(item_module))
 		CRASH("unequip_module_from_slot called with improper item_module")
 
-	if(!(item_module in module.modules))
-		CRASH("unequip_module_from_slot called with item_module not in module.modules")
+	if(!(item_module in model.modules))
+		CRASH("unequip_module_from_slot called with item_module not in model.modules")
 
 	item_module.mouse_opacity = MOUSE_OPACITY_OPAQUE
 
@@ -132,10 +132,10 @@
 
 	held_items[module_num] = null
 	item_module.cyborg_unequip(src)
-	item_module.forceMove(module) //Return item to module so it appears in its contents, so it can be taken out again.
+	item_module.forceMove(model) //Return item to model so it appears in its contents, so it can be taken out again.
 
 	observer_screen_update(item_module, FALSE)
-	hud_used.update_robot_modules_display()
+	hud_used.update_robot_models_display()
 	return TRUE
 
 /**

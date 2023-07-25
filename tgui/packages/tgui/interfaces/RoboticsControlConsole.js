@@ -111,7 +111,7 @@ const Cyborgs = (props, context) => {
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Module">
-            {cyborg.module}
+            {cyborg.model}
           </LabeledList.Item>
           <LabeledList.Item label="Master AI">
             <Box color={cyborg.synchronization ? 'default' : 'average'}>

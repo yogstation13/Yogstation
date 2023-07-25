@@ -242,14 +242,14 @@
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
 	require_module = 1
-	module_type = /obj/item/robot_module/miner
+	model_type = /obj/item/robot_model/miner
 	var/denied_type = null
 	var/maximum_of_type = 1
 	var/cost = 30
 	var/modifier = 1 //For use in any mod kit that has numerical modifiers
 	var/minebot_upgrade = TRUE
 	var/minebot_exclusive = FALSE
-	module_flags = BORG_MODULE_MINER
+	model_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
 	. = ..()
@@ -264,7 +264,7 @@
 /obj/item/borg/upgrade/modkit/action(mob/living/silicon/robot/R)
 	. = ..()
 	if (.)
-		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/H in R.module.modules)
+		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/H in R.model.modules)
 			return install(H, usr)
 
 /obj/item/borg/upgrade/modkit/proc/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
@@ -301,7 +301,7 @@
 /obj/item/borg/upgrade/modkit/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/KA in R.module.modules)
+		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/KA in R.model.modules)
 			uninstall(KA)
 
 /obj/item/borg/upgrade/modkit/proc/uninstall(obj/item/gun/energy/kinetic_accelerator/KA)
