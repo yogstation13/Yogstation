@@ -8,7 +8,7 @@ export const BorgPanel = (props, context) => {
   const cell = data.cell || {};
   const cellPercent = cell.charge / cell.maxcharge;
   const channels = data.channels || [];
-  const modules = data.models || [];
+  const models = data.models || [];
   const upgrades = data.upgrades || [];
   const ais = data.ais || [];
   const laws = data.laws || [];
@@ -82,17 +82,17 @@ export const BorgPanel = (props, context) => {
                   })} />
               ))}
             </LabeledList.Item>
-            <LabeledList.Item label="Module">
-              {modules.map(module => (
+            <LabeledList.Item label="Model">
+              {models.map(model => (
                 <Button
                   key={model.type}
-                  icon={borg.active_module === model.type
+                  icon={borg.active_model === model.type
                     ? 'check-square-o'
                     : 'square-o'}
-                  content={module.name}
-                  selected={borg.active_module === model.type}
-                  onClick={() => act('setmodule', {
-                    module: model.type,
+                  content={model.name}
+                  selected={borg.active_model === model.type}
+                  onClick={() => act('setmodel', {
+                    model: model.type,
                   })} />
               ))}
             </LabeledList.Item>

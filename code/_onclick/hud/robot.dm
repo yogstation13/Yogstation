@@ -14,9 +14,9 @@
 		return
 	var/mob/living/silicon/robot/R = usr
 	if(R.model.type != /obj/item/robot_model)
-		R.hud_used.toggle_show_robot_models()
+		R.hud_used.toggle_show_robot_modules()
 		return 1
-	R.pick_module()
+	R.pick_model()
 
 /atom/movable/screen/robot/module1
 	name = "module1"
@@ -176,7 +176,7 @@
 	static_inventory += zone_select
 
 
-/datum/hud/proc/toggle_show_robot_models()
+/datum/hud/proc/toggle_show_robot_modules()
 	if(!iscyborg(mymob))
 		return
 
@@ -207,12 +207,12 @@
 			to_chat(usr, span_danger("Selected model has no modules to select"))
 			return
 
-		if(!R.robot_models_background)
+		if(!R.robot_modules_background)
 			return
 
 		var/display_rows = CEILING(length(R.model.get_inactive_modules()) / 8, 1)
-		R.robot_models_background.screen_loc = "CENTER-4:16,SOUTH+1:7 to CENTER+3:16,SOUTH+[display_rows]:7"
-		screenmob.client.screen += R.robot_models_background
+		R.robot_modules_background.screen_loc = "CENTER-4:16,SOUTH+1:7 to CENTER+3:16,SOUTH+[display_rows]:7"
+		screenmob.client.screen += R.robot_modules_background
 
 		var/x = -4	//Start at CENTER-4,SOUTH+1
 		var/y = 1
@@ -240,7 +240,7 @@
 			//Module is not currently active
 			screenmob.client.screen -= A
 		R.shown_robot_modules = 0
-		screenmob.client.screen -= R.robot_models_background
+		screenmob.client.screen -= R.robot_modules_background
 
 /datum/hud/robot/persistent_inventory_update(mob/viewer)
 	if(!mymob)

@@ -10,12 +10,12 @@
 	icon_state = "cyborg_upgrade"
 	var/locked = FALSE
 	var/installed = 0
-	var/require_module = 0
+	var/require_model = 0
 	var/model_type = null
 	// if true, is not stored in the robot to be ejected
 	// if model is reset
 	var/one_use = FALSE
-	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
+	///	Bitflags listing model compatibility. Used in the exosuit fabricator for creating sub-categories.
 	var/list/model_flags = NONE
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/R, user = usr)
@@ -97,7 +97,7 @@
 	name = "cyborg VTEC module"
 	desc = "Used to kick in a cyborg's VTEC systems, increasing their speed."
 	icon_state = "cyborg_upgrade2"
-	require_module = 1
+	require_model = 1
 	var/vtecequip = 0
 
 /obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/R, user = usr)
@@ -120,7 +120,7 @@
 //	desc = "Used to cool a mounted disabler, increasing the potential current in it and thus its recharge rate."
 	desc = "It used to give unspeakable power to security modules. Now it rests; broken, abandoned."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/security
 	model_flags = BORG_MODEL_SECURITY
 
@@ -225,7 +225,7 @@
 	name = "mining cyborg diamond drill"
 	desc = "A diamond drill replacement for the mining module's standard drill."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/miner
 	model_flags = BORG_MODEL_MINER
 
@@ -258,7 +258,7 @@
 	name = "mining cyborg satchel of holding"
 	desc = "A satchel of holding replacement for mining cyborg's ore satchel module."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/miner
 	model_flags = BORG_MODEL_MINER
 
@@ -291,7 +291,7 @@
 	name = "janitor cyborg trash bag of holding"
 	desc = "A trash bag of holding replacement for the janiborg's standard trash bag."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/janitor
 	model_flags = BORG_MODEL_JANITOR
 
@@ -324,7 +324,7 @@
 	name = "janitor cyborg advanced mop"
 	desc = "An advanced mop replacement for the janiborg's standard mop."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/janitor
 	model_flags = BORG_MODEL_JANITOR
 
@@ -357,7 +357,7 @@
 	name = "illegal equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a cyborg."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 
 /obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -381,7 +381,7 @@
 	desc = "An upgrade kit to apply specialized coolant systems and insulation layers to mining cyborg tracks, enabling them to withstand exposure to molten rock."
 	icon_state = "ash_plating"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/miner
 	model_flags = BORG_MODEL_MINER
 
@@ -400,7 +400,7 @@
 	name = "self-repair module"
 	desc = "This module will repair the cyborg over time."
 	icon_state = "cyborg_upgrade5"
-	require_module = 1
+	require_model = 1
 	var/repair_amount = -1
 	/// world.time of next repair
 	var/next_repair = 0
@@ -514,7 +514,7 @@
 	desc = "An upgrade to the Medical module cyborg's hypospray, allowing it \
 		to produce more advanced and complex medical reagents."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/medical
 	var/list/additional_reagents = list()
 	model_flags = BORG_MODEL_MEDICAL
@@ -568,7 +568,7 @@
 	desc = "An upgrade to the Medical module, installing a built-in \
 		defibrillator, for on the scene revival."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/medical
 	model_flags = BORG_MODEL_MEDICAL
 
@@ -596,7 +596,7 @@
 		health analyzer into the holder's module, \
 		replacing the old one."
 	icon_state = "cyborg_upgrade5"
-	require_module = TRUE
+	require_model = TRUE
 	model_type = /obj/item/robot_model/medical
 	model_flags = BORG_MODEL_MEDICAL
 
@@ -637,7 +637,7 @@
 		array of surgical tools into the holder's module, \
 		replacing the old ones."
 	icon_state = "cyborg_upgrade5"
-	require_module = TRUE
+	require_model = TRUE
 	model_type = /obj/item/robot_model/medical
 	model_flags = BORG_MODEL_MEDICAL
 
@@ -796,7 +796,7 @@
 	desc = "A rapid part exchange device for the engineering cyborg."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "borgrped"
-	require_module = TRUE
+	require_model = TRUE
 	model_type = /obj/item/robot_model/engineering
 	model_flags = BORG_MODEL_ENGINEERING
 
@@ -824,7 +824,7 @@
 	desc = "A plasma cutter module for the mining cyborg."
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "adv_plasmacutter"
-	require_module = TRUE
+	require_model = TRUE
 	model_type = /obj/item/robot_model/miner
 	model_flags = BORG_MODEL_MINER
 
@@ -883,7 +883,7 @@
 	name = "experimental push broom"
 	desc = "An experimental push broom used for efficiently pushing refuse."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
+	require_model = 1
 	model_type = /obj/item/robot_model/janitor
 	model_flags = BORG_MODEL_JANITOR
 

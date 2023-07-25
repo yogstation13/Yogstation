@@ -58,7 +58,7 @@
 			R.SetLockdown(!R.lockcharge) // Toggle
 		if(WIRE_RESET_MODEL)
 			if(R.has_model())
-				R.visible_message("[R]'s module servos twitch.", "Your module display flickers.")
+				R.visible_message("[R]'s model servos twitch.", "Your model display flickers.")
 
 /datum/wires/robot/on_cut(wire, mend)
 	var/mob/living/silicon/robot/R = holder

@@ -30,7 +30,7 @@ export const NtosRobotactContent = (props, context) => {
     lampIntensity,
     cover,
     locomotion,
-    wireModule,
+    wireMode,
     wireCamera,
     wireAI,
     wireLaw,
@@ -299,8 +299,8 @@ export const NtosRobotactContent = (props, context) => {
                   </LabeledList.Item>
                   <LabeledList.Item
                     label="Module Controller"
-                    color={wireModule==="FAULT"?"red":"green"}>
-                    {wireModule}
+                    color={wireMode==="FAULT"?"red":"green"}>
+                    {wireMode}
                   </LabeledList.Item>
                   <LabeledList.Item
                     label="Motor Controller"

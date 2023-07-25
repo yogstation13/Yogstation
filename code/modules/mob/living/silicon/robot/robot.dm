@@ -31,11 +31,11 @@
 	var/atom/movable/screen/inv1 = null
 	var/atom/movable/screen/inv2 = null
 	var/atom/movable/screen/inv3 = null
-	var/atom/movable/screen/thruster_button = null
+	var/atom/movable/screen/thruster_button = nullmodel ? "[R.model.name] Model" : "No Model Detected",
 	var/atom/movable/screen/hands = null
 
 	var/shown_robot_modules = 0	///Used to determine whether they have the model menu shown or not
-	var/atom/movable/screen/robot_models_background
+	var/atom/movable/screen/robot_modules_background
 
 	//3 Modules can be activated at any one time.
 	var/obj/item/robot_model/model = null
@@ -125,10 +125,10 @@
 
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
-	robot_models_background = new()
-	robot_models_background.icon_state = "block"
-	robot_models_background.layer = HUD_LAYER	//Objects that appear on screen are on layer ABOVE_HUD_LAYER, UI should be just below it.
-	robot_models_background.plane = HUD_PLANE
+	robot_modules_background = new()
+	robot_modules_background.icon_state = "block"
+	robot_modules_background.layer = HUD_LAYER	//Objects that appear on screen are on layer ABOVE_HUD_LAYER, UI should be just below it.
+	robot_modules_background.plane = HUD_PLANE
 
 	ident = rand(1, 999)
 
@@ -223,7 +223,7 @@
 	cell = null
 	return ..()
 
-/mob/living/silicon/robot/proc/pick_module()
+/mob/living/silicon/robot/proc/pick_model()
 	if(model.type != /obj/item/robot_model)
 		return
 
@@ -557,7 +557,7 @@
 		var/obj/item/borg/upgrade/U = W
 		if(!opened)
 			to_chat(user, span_warning("You must access the borg's internals!"))
-		else if(!src.model && U.require_module)
+		else if(!src.model && U.require_model)
 			to_chat(user, span_warning("The borg must choose a model before it can be upgraded!"))
 		else if(U.locked)
 			to_chat(user, span_warning("The upgrade is locked and cannot be used yet!"))
