@@ -80,9 +80,8 @@
 
 	use(1)//only eat one at a time
 
-	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."))
 	if(eaten_text)
-		to_chat(H, span_notice(eaten_text))
+		H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."), span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 	
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
@@ -240,7 +239,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 
 /obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
-	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
+	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."), span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
 	H.emote("scream")
 	playsound(H, 'sound/effects/supermatter.ogg', 100)
 	var/petrified = H.petrify(5 MINUTES, TRUE)
