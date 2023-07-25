@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/New()
 	if(!limbs_id)	//if we havent set a limbs id to use, just use our own id
 		limbs_id = id
-	
+
 	if(!plural_form)
 		plural_form = "[name]\s"
 
@@ -1632,6 +1632,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return FALSE
 	if(user.loc == target.loc)
 		return FALSE
+	if(!QDELETED(target.pulledby) && HAS_TRAIT(target.pulledby, TRAIT_STRONG_GRIP) && target.pulledby != user)
+		return FALSE
 	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
 		return FALSE
 	else
@@ -1907,7 +1909,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				H.adjustStaminaLoss(damage * hit_percent * H.physiology.stamina_mod)
 		if(BRAIN)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage * hit_percent * H.physiology.brain_mod)
-	
+
 	if(H.stat == DEAD && (H.mobility_flags & MOBILITY_STAND))
 		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
 			var/obj/structure/sitter = H.buckled
@@ -2150,7 +2152,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			flyslip(H)
 		stop_wagging_tail(H)
 	return stunmod * H.physiology.stun_mod * amount
-	
+
 
 //////////////
 //Space Move//
@@ -2165,7 +2167,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.movement_type & FLYING)
 		return TRUE
 	return FALSE
-	
+
 /datum/species/proc/has_heavy_gravity(mob/living/carbon/human/H)
 	return FALSE
 
