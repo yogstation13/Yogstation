@@ -296,9 +296,10 @@
 		push_away(user, L)
 		if(L.loc == user.loc && isanimal(L) && L.stat == DEAD)
 			L.gib()
-	for(var/obj/item/I in range(range, user))
-		push_away(user, I)
 	for(var/obj/obstruction in range(range, user))
+		if(isitem(obstruction))
+			push_away(user, obstruction)
+			continue
 		if(!isstructure(obstruction) && !ismachinery(obstruction))
 			continue
 		var/damage = 5
@@ -478,9 +479,10 @@
 			L.anchored = FALSE
 		push_away(user, L)
 		hurt(user, L, damage)
-	for(var/obj/item/I in range(1, get_turf(target)))
-		push_away(user, I)
 	for(var/obj/obstruction in range(1, get_turf(target)))
+		if(isitem(obstruction))
+			push_away(user, obstruction)
+			continue
 		if(!isstructure(obstruction) && !ismachinery(obstruction))
 			continue
 		var/damage = 10
