@@ -71,6 +71,9 @@
 	if(!H.Adjacent(target) || H==target)
 		return
 
+	if(isobj(target) && target.loc == H) //no punching your own items
+		return
+
 	if(H.a_intent == INTENT_HARM)
 		pummel(H,target)
 	if(H.a_intent == INTENT_GRAB && isliving(target))
@@ -291,6 +294,10 @@
 			L.gib()
 	for(var/obj/item/I in range(range, user))
 		push_away(user, I)
+	for(var/obj/structure/S in range(range, user))
+		S.take_damage(5, sound_effect = FALSE)//reduced sound from hitting LOTS of things
+	for(var/obj/machinery/M in range(range, user))
+		M.take_damage(5, sound_effect = FALSE)
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -374,7 +381,7 @@
 
 	var/dir_to_target = get_dir(get_turf(tossed), target) //vars that let the thing be thrown while moving similar to things thrown normally
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
-	if(T.density) // crash into a wall and damage everything flying towards it before stopping 
+	if(T?.density) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
 			hurt(user, victim, THROW_SLAMDMG) 
 			victim.Knockdown(1 SECONDS)
@@ -450,7 +457,7 @@
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
 	shockwave.alpha = 100 //slightly weaker looking
-	animate(shockwave, alpha = 0, transform = matrix().Scale(0.2), time = 3)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.25), time = 3)
 	QDEL_IN(shockwave, 4)
 
 	for(var/mob/living/L in range(1, get_turf(target)))
@@ -467,9 +474,9 @@
 	for(var/obj/item/I in range(1, get_turf(target)))
 		push_away(user, I)
 	for(var/obj/structure/S in range(1, get_turf(target)))
-		S.take_damage(30)
+		S.take_damage(30, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 	for(var/obj/machinery/M in range(1, get_turf(target)))
-		M.take_damage(20) //machinery is still important so it does less
+		M.take_damage(20, sound_effect = FALSE) //machinery is important so it does less
 
 /*---------------------------------------------------------------
 	end of pummel section
