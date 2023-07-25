@@ -1,0 +1,9 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "mob biotypes are now bitflags"
+  - tweak: "replaced ROBOTIC_LIMBS species trait with checks for MOB_ROBOTIC biotype"
+  - tweak: "guardian spirits are now spirits"
+  - tweak: "legions are now undead"
+  - tweak: "nanites now check for robotic humanoids instead of IPCs specifically"
+  - bugfix: "fixed bloodletter knife, bloodsucker feeding, and bloodsucker conversion not working correctly"
