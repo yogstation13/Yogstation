@@ -5,7 +5,7 @@
 	r_pocket = /obj/item/kitchen/knife/carrotshiv
 	var/list/rhand_items = list(
 		/obj/item/storage/toolbox/mechanical,
-		/obj/item/twohanded/spear,
+		/obj/item/melee/spear,
 		/obj/item/gun/ballistic/automatic/surplus,
 		/obj/item/melee/baton/cattleprod
 		) //Prisoners get a random item from this list
