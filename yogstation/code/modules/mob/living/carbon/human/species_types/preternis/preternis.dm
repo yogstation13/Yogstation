@@ -245,6 +245,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
+		if(prob(50))
+			playsound(get_turf(H), "sparks", 30, 1)
+			new /obj/effect/particle_effect/sparks(get_turf(H))
 		soggy = TRUE
 		H.throw_alert("preternis_wet", /atom/movable/screen/alert/preternis_wet)
 	else if(soggy)
