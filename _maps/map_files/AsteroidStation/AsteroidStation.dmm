@@ -20332,6 +20332,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fRg" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "fRn" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -43943,15 +43948,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"nBL" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/holosign/surgery{
-	id = "surgery";
-	pixel_y = -20
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "nBN" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/starboard/aft)
@@ -106451,7 +106447,7 @@ dtC
 ylw
 kLx
 akC
-nBL
+fRg
 iLo
 ejV
 aSS
@@ -106708,7 +106704,7 @@ qNy
 aMd
 xKY
 akC
-nBL
+fRg
 iLo
 fJM
 neA
