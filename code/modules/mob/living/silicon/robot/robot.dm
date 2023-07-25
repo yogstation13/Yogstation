@@ -836,45 +836,45 @@
 			cell = null
 	qdel(src)
 
-/mob/living/silicon/robot/modules
+/mob/living/silicon/robot/model
 	var/set_model = null
 
-/mob/living/silicon/robot/modules/Initialize(mapload)
+/mob/living/silicon/robot/model/Initialize(mapload)
 	. = ..()
 	model.transform_to(set_model)
 
-/mob/living/silicon/robot/modules/standard
+/mob/living/silicon/robot/model/standard
 	set_model = /obj/item/robot_model/standard
 
-/mob/living/silicon/robot/modules/medical
+/mob/living/silicon/robot/model/medical
 	set_model = /obj/item/robot_model/medical
 	icon_state = "medical"
 
-/mob/living/silicon/robot/modules/engineering
+/mob/living/silicon/robot/model/engineering
 	set_model = /obj/item/robot_model/engineering
 	icon_state = "engineer"
 
-/mob/living/silicon/robot/modules/security
+/mob/living/silicon/robot/model/security
 	set_model = /obj/item/robot_model/security
 	icon_state = "sec"
 
-/mob/living/silicon/robot/modules/clown
+/mob/living/silicon/robot/model/clown
 	set_model = /obj/item/robot_model/clown
 	icon_state = "clown"
 
-/mob/living/silicon/robot/modules/peacekeeper
+/mob/living/silicon/robot/model/peacekeeper
 	set_model = /obj/item/robot_model/peacekeeper
 	icon_state = "peace"
 
-/mob/living/silicon/robot/modules/miner
+/mob/living/silicon/robot/model/miner
 	set_model = /obj/item/robot_model/miner
 	icon_state = "miner"
 
-/mob/living/silicon/robot/modules/janitor
+/mob/living/silicon/robot/model/janitor
 	set_model = /obj/item/robot_model/janitor
 	icon_state = "janitor"
 
-/mob/living/silicon/robot/modules/syndicate
+/mob/living/silicon/robot/model/syndicate
 	icon_state = "synd_sec"
 	faction = list(ROLE_SYNDICATE)
 	bubble_icon = "syndibot"
@@ -890,26 +890,26 @@
 							<i>Help the operatives secure the disk at all costs!</i></b>"
 	set_model = /obj/item/robot_model/syndicate
 
-/mob/living/silicon/robot/modules/syndicate/Initialize(mapload)
+/mob/living/silicon/robot/model/syndicate/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/stock_parts/cell/hyper(src, 25000)
 	radio = new /obj/item/radio/borg/syndicate(src)
 	laws = new /datum/ai_laws/syndicate_override()
 	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 5)
 
-/mob/living/silicon/robot/modules/syndicate/create_modularInterface()
+/mob/living/silicon/robot/model/syndicate/create_modularInterface()
 	if(!modularInterface)
 		modularInterface = new /obj/item/modular_computer/tablet/integrated/syndicate(src)
 	return ..()
 
-/mob/living/silicon/robot/modules/syndicate/proc/show_playstyle()
+/mob/living/silicon/robot/model/syndicate/proc/show_playstyle()
 	if(playstyle_string)
 		to_chat(src, playstyle_string)
 
-/mob/living/silicon/robot/modules/syndicate/ResetModel()
+/mob/living/silicon/robot/model/syndicate/ResetModel()
 	return
 
-/mob/living/silicon/robot/modules/syndicate/medical
+/mob/living/silicon/robot/model/syndicate/medical
 	icon_state = "synd_medical"
 	sensor_protection = FALSE	//Not a direct combat model like the assault borg (usually)
 	playstyle_string = "<span class='big bold'>You are a Syndicate medical cyborg!</span><br>\
@@ -920,7 +920,7 @@
 						<i>Help the operatives secure the disk at all costs!</i></b>"
 	set_model = /obj/item/robot_model/syndicate_medical
 
-/mob/living/silicon/robot/modules/syndicate/saboteur
+/mob/living/silicon/robot/model/syndicate/saboteur
 	icon_state = "synd_engi"
 	sensor_protection = FALSE	//DEFINITELY not a direct combat model
 	playstyle_string = "<span class='big bold'>You are a Syndicate saboteur cyborg!</span><br>\
