@@ -38,7 +38,7 @@
 	var/mob/living/silicon/robot/borgo = tablet.borgo
 
 	data["name"] = borgo.name
-	data["designation"] = borgo.designation //Borgo module type
+	data["designation"] = borgo.designation //Borgo model type
 	data["masterAI"] = borgo.connected_ai //Master AI
 
 	var/charge = 0
