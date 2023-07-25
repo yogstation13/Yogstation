@@ -139,7 +139,7 @@
 /area/lavaland/surface/outdoors)
 "G" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /mob/living/simple_animal/hostile/retaliate/goat,
 /turf/open/floor/wood,
 /area/ruin/powered/kinggoatlair)

@@ -410,5 +410,5 @@
 		if(slot_num > 4) // not >3 otherwise cycling with just one item on module 3 wouldn't work
 			slot_num = 1 //Wrap around.
 
-/mob/living/silicon/robot/swap_hand()
+/mob/living/silicon/robot/perform_hand_swap()
 	cycle_modules()

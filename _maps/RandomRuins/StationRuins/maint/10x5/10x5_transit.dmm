@@ -25,7 +25,7 @@
 /turf/closed/wall/r_wall,
 /area/template_noop)
 "n" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plating,
 /area/template_noop)
 "p" = (
@@ -60,7 +60,7 @@
 /area/template_noop)
 "z" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plating,
 /area/template_noop)
 "K" = (

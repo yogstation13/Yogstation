@@ -562,10 +562,10 @@
 		newheart.beating = initial(newheart.beating)
 	var/obj/item/organ/eyes/user_eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	if(user_eyes)
-		user_eyes.flash_protect += 1
-		user_eyes.sight_flags = 0
-		user_eyes.see_in_dark = 2
-		user_eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+		user_eyes.flash_protect = initial(user_eyes.flash_protect)
+		user_eyes.sight_flags = initial(user_eyes.sight_flags)
+		user_eyes.see_in_dark = initial(user_eyes.see_in_dark)
+		user_eyes.lighting_alpha = initial(user_eyes.lighting_alpha)
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()
