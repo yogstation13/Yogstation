@@ -305,7 +305,7 @@
 		var/damage = 5
 		if(obstruction.loc == user.loc)
 			damage *= 3
-		obstruction.take_damage(damage, sound_effect = prob(50)) //reduced sound from hitting LOTS of things
+		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -569,7 +569,7 @@
 		var/damage = 10
 		if(isstructure(obstruction)) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
 			damage += 15 + (plates * 3)
-		obstruction.take_damage(damage)
+		obstruction.take_damage(damage) //we WANT this one to be loud
 
 	if(get_turf(owner))//fuck that tile up
 		var/turf/open/floor/target = get_turf(owner)
