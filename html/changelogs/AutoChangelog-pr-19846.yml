@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - imageadd: "the fur coat no longer floats when facing the sides"
