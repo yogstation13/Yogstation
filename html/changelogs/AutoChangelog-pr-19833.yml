@@ -1,0 +1,6 @@
+author: "RG4ORDR"
+delete-after: true 
+changes: 
+  - tweak: "Durand and Gygax have had their core material costs swapped"
+  - tweak: "Durands now requires Diamonds, 28k diamond needed"
+  - tweak: "Gygaxes now require Uranium,  20k uranium needed"
