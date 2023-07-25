@@ -39,7 +39,7 @@
 	calc_mats()
 	if(!start_empty)
 		top_off(starting=TRUE)
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON|UPDATE_DESC)
 
 /**
   * top_off is used to refill the magazine to max, in case you want to increase the size of a magazine with VV then refill it at once
@@ -59,7 +59,7 @@
 
 	for(var/i = max(1, stored_ammo.len), i <= max_ammo, i++)
 		stored_ammo += new round_check(src)
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON|UPDATE_DESC)
 
 /obj/item/ammo_box/proc/calc_mats(force = FALSE)
 	if (force || !bullet_cost)
@@ -139,7 +139,7 @@
 			to_chat(user, span_notice("You load [num_loaded] round\s into \the [src]!"))
 			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 		A.update_appearance(UPDATE_ICON)
-		update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON|UPDATE_DESC)
 	return num_loaded
 
 /obj/item/ammo_box/attack_self(mob/user)
@@ -150,7 +150,7 @@
 			A.bounce_away(FALSE, NONE)
 		playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 		to_chat(user, span_notice("You remove a round from [src]!"))
-		update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON|UPDATE_DESC)
 
 /obj/item/ammo_box/AltClick(mob/user)
 	. = ..()
@@ -167,7 +167,7 @@
 				A.bounce_away(FALSE, NONE)
 			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 			to_chat(user, span_notice("You remove a round from [src]!"))
-			update_appearance(UPDATE_ICON)
+			update_appearance(UPDATE_ICON|UPDATE_DESC)
 
 /obj/item/ammo_box/update_icon(updates=ALL)
 	. = ..()
@@ -214,4 +214,4 @@
 
 /obj/item/ammo_box/magazine/handle_atom_del(atom/A)
 	stored_ammo -= A
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON|UPDATE_DESC)

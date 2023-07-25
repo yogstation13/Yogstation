@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added TRAIT_STRONG_GRIP which prevents mobs you are pulling from being grabbed or disarmed out of your grip"
-  - tweak: "Tactical fingerless gloves now give you TRAIT_STRONG_GRIP"
-  - tweak: "Contractor loadout now contains tactical fingerless gloves instead of a lighter"

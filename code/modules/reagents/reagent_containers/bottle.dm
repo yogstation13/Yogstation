@@ -466,7 +466,7 @@
 		"black vial" = "vial_black"
 	)
 	possible_transfer_amounts = list(5, 10, 15, 30)
-	spillable = FALSE
+	reagent_flags = OPENCONTAINER_NOSPILL
 	volume = 30
 	disease_amount = 30
 	/// Name that used as the base for pen renaming, so subtypes can have different names without having to worry about messing with it
