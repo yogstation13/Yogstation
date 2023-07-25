@@ -2,6 +2,6 @@
 	.=..()
 	icon_state = module.cyborg_base_icon
 
-/obj/item/robot_module/butler
+/obj/item/robot_module/service
 	cyborg_base_icon = "tophat"
  

@@ -503,7 +503,7 @@
 	cyborg_base_icon = "clown"
 	hat_offset = -2
 
-/obj/item/robot_module/butler
+/obj/item/robot_module/service
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
@@ -532,13 +532,13 @@
 	special_light_key = "service"
 	hat_offset = 0
 
-/obj/item/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
+/obj/item/robot_module/service/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
 	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
-/obj/item/robot_module/butler/be_transformed_to(obj/item/robot_module/old_module)
+/obj/item/robot_module/service/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/list/service_icons = sortList(list(
 		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
