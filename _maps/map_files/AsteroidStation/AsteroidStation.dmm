@@ -24254,21 +24254,6 @@
 	},
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
-"hgJ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/obj/machinery/holosign/surgery{
-	id = "surgery"
-	},
-/turf/open/floor/plating,
-/area/medical/surgery)
 "hgR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -32608,11 +32593,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"jOE" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "jOQ" = (
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
@@ -43963,6 +43943,15 @@
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"nBL" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/holosign/surgery{
+	id = "surgery";
+	pixel_y = -20
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "nBN" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/starboard/aft)
@@ -46300,21 +46289,6 @@
 /obj/effect/landmark/start/yogs/network_admin,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
-"oqq" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/holosign/surgery{
-	id = "surgery"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/surgery)
 "oqD" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -106477,8 +106451,8 @@ dtC
 ylw
 kLx
 akC
-jOE
-hgJ
+nBL
+iLo
 ejV
 aSS
 bWS
@@ -106734,8 +106708,8 @@ qNy
 aMd
 xKY
 akC
-jOE
-oqq
+nBL
+iLo
 fJM
 neA
 hgR
