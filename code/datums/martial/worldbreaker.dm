@@ -71,9 +71,9 @@
 	if(!H.Adjacent(target) || H==target)
 		return
 
-	if(H.a_intent == INTENT_HARM && isliving(target))
+	if(H.a_intent == INTENT_HARM)
 		pummel(H,target)
-	if(H.a_intent == INTENT_GRAB)
+	if(H.a_intent == INTENT_GRAB && isliving(target))
 		grapple(H,target)
 
 	
@@ -434,30 +434,41 @@
 /*---------------------------------------------------------------
 	start of pummel section
 ---------------------------------------------------------------*/
-/datum/martial_art/worldbreaker/proc/pummel(mob/living/user, mob/living/target)
+/datum/martial_art/worldbreaker/proc/pummel(mob/living/user, atom/target)
 	if(user == target)
 		return
 	if(!COOLDOWN_FINISHED(src, next_pummel))
 		return
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
-	for(var/mob/living/L in range(1, target))
+	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
+
+	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+	playsound(get_turf(target), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
+	playsound(get_turf(target), 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(target))
+	shockwave.transform *= 0.1 //basically invisible
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	shockwave.alpha = 100 //slightly weaker looking
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.2), time = 3)
+	QDEL_IN(shockwave, 4)
+
+	for(var/mob/living/L in range(1, get_turf(target)))
 		if(L == user)
 			continue
 		var/damage = 5
-		if(L == target)
-			damage *= 3 //the target takes more stamina and brute damage
+		if(get_turf(L) == get_turf(target))
+			damage *= 3 //anyone in the center takes more
 
 		if(L.anchored)
 			L.anchored = FALSE
 		push_away(user, L)
 		hurt(user, L, damage)
-	for(var/obj/item/I in range(1, target))
+	for(var/obj/item/I in range(1, get_turf(target)))
 		push_away(user, I)
-
-	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
-	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE, -1)
-	playsound(user, 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
-	
+	for(var/obj/structure/S in range(1, get_turf(target)))
+		S.take_damage(25)
+		
 /*---------------------------------------------------------------
 	end of pummel section
 ---------------------------------------------------------------*/
