@@ -61,12 +61,26 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, M) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	switch(M.a_intent)
-		if (INTENT_HELP)
+		if(INTENT_HELP)
 			M.visible_message("[M] pets [src].", \
 							span_notice("You pet [src]."))
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(INTENT_GRAB)
 			grabbedby(M)
+		if(INTENT_DISARM)
+			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+			var/shove_dir = get_dir(M, src)
+			if(!Move(get_step(src, shove_dir), shove_dir))
+				log_combat(M, src, "shoved", "failing to move it")
+				M.visible_message(span_danger("[M.name] shoves [src]!"),
+					span_danger("You shove [src]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
+				to_chat(src, span_userdanger("You're shoved by [M.name]!"))
+				return TRUE
+			log_combat(M, src, "shoved", "pushing it")
+			M.visible_message(span_danger("[M.name] shoves [src], pushing [p_them()]!"),
+				span_danger("You shove [src], pushing [p_them()]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
+			to_chat(src, span_userdanger("You're pushed by [name]!"))
 		else
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
