@@ -11,7 +11,6 @@
 	var/list/list_reagents = null
 	var/spawned_disease = null
 	var/disease_amount = 20
-	var/spillable = FALSE
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()
@@ -94,7 +93,7 @@
 		. = TRUE
 
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, thrown = FALSE)
-	if(!reagents || !reagents.total_volume || !spillable)
+	if(!reagents || !reagents.total_volume || !is_spillable())
 		return
 
 	if(ismob(target) && target.reagents)

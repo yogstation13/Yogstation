@@ -1146,7 +1146,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	icon = 'icons/mob/nonhuman-player/holy.dmi'
 	icon_state = "talking_sword"
 	icon_living = "talking_sword"
-	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
+	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
 	maxHealth = 20
 	health = 20
 	speed = 0
