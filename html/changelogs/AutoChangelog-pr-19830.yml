@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed ammo boxes never updating their ammo count in examine"
