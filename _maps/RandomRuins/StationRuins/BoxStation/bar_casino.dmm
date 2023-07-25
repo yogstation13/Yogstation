@@ -920,7 +920,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "JA" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "Kb" = (

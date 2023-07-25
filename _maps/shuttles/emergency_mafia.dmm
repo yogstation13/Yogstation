@@ -48,7 +48,7 @@
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
 "jA" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "jZ" = (

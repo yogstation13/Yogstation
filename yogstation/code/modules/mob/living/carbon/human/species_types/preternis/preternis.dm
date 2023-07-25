@@ -227,9 +227,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
-		H.adjustStaminaLoss(5 - (H.fire_stacks / 4))
-		H.adjustFireLoss(2 - (H.fire_stacks / 4))
-		H.adjust_jitter(100 SECONDS)
+		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
+		H.clear_stamina_regen()
+		H.adjustFireLoss(5 - (H.fire_stacks / 2))
+		H.set_jitter_if_lower(100 SECONDS)
 		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
