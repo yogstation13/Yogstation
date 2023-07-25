@@ -146,7 +146,7 @@
 		return
 
 	if(damagetype != BRUTE && damagetype != BURN)
-		damage /= 4 //brute and burn are most effective
+		damage /= 3 //brute and burn are most effective
 
 	currentplate += damage
 
