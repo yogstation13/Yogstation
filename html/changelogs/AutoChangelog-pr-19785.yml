@@ -1,0 +1,5 @@
+author: "Therandomhoboo"
+delete-after: true 
+changes: 
+  - rscadd: "Added shotgun darts back to hacked autolathes"
+  - rscdel: "Removed shotgun dart TC uplink"
