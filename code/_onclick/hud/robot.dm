@@ -155,7 +155,7 @@
 	healths = new /atom/movable/screen/healths/robot(src)
 	infodisplay += healths
 
-//Installed Module
+//Installed Model
 	mymobR.hands = new /atom/movable/screen/robot/module(src)
 	mymobR.hands.screen_loc = ui_borg_model
 	static_inventory += mymobR.hands
@@ -182,10 +182,10 @@
 
 	var/mob/living/silicon/robot/R = mymob
 
-	R.shown_robot_models = !R.shown_robot_models
-	update_robot_models_display()
+	R.shown_robot_modules = !R.shown_robot_modules
+	update_robot_modules_display()
 
-/datum/hud/proc/update_robot_models_display(mob/viewer)
+/datum/hud/proc/update_robot_modules_display(mob/viewer)
 	if(!iscyborg(mymob))
 		return
 
@@ -199,7 +199,7 @@
 	if(!R.client)
 		return
 
-	if(R.shown_robot_models && screenmob.hud_used.hud_shown)
+	if(R.shown_robot_modules && screenmob.hud_used.hud_shown)
 		//Modules display is shown
 		screenmob.client.screen += module_store_icon	//"store" icon
 
@@ -239,7 +239,7 @@
 		for(var/atom/A in R.model.get_inactive_modules())
 			//Module is not currently active
 			screenmob.client.screen -= A
-		R.shown_robot_models = 0
+		R.shown_robot_modules = 0
 		screenmob.client.screen -= R.robot_models_background
 
 /datum/hud/robot/persistent_inventory_update(mob/viewer)

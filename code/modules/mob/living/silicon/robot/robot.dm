@@ -34,7 +34,7 @@
 	var/atom/movable/screen/thruster_button = null
 	var/atom/movable/screen/hands = null
 
-	var/shown_robot_models = 0	///Used to determine whether they have the model menu shown or not
+	var/shown_robot_modules = 0	///Used to determine whether they have the model menu shown or not
 	var/atom/movable/screen/robot_models_background
 
 	//3 Modules can be activated at any one time.
@@ -1088,9 +1088,9 @@
 
 /mob/living/silicon/robot/proc/ResetModel()
 	uneq_all()
-	shown_robot_models = FALSE
+	shown_robot_modules = FALSE
 	if(hud_used)
-		hud_used.update_robot_models_display()
+		hud_used.update_robot_modules_display()
 
 	// Drops all items found in any storage bags on the Cyborg.
 	for(var/obj/item/storage/bag in model.contents)

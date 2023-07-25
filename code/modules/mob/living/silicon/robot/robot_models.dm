@@ -187,7 +187,7 @@
 	if(active_module)
 		R.select_module(held_modules.Find(active_module))
 	if(R.hud_used)
-		R.hud_used.update_robot_models_display()
+		R.hud_used.update_robot_modules_display()
 
 /obj/item/robot_model/proc/transform_to(new_model_type)
 	var/mob/living/silicon/robot/R = loc
@@ -245,7 +245,7 @@
 	R.update_icons()
 	R.notify_ai(NEW_MODEL)
 	if(R.hud_used)
-		R.hud_used.update_robot_models_display()
+		R.hud_used.update_robot_modules_display()
 	SSblackbox.record_feedback("tally", "cyborg_modules", 1, R.model)
 
    /*

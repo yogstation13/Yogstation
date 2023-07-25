@@ -460,7 +460,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/mob/living/silicon/robot/R = user
 		if(!R.low_power_mode) //can't equip modules with an empty cell.
 			R.activate_module(src)
-			R.hud_used.update_robot_models_display()
+			R.hud_used.update_robot_modules_display()
 
 /obj/item/proc/GetDeconstructableContents()
 	return get_all_contents() - src
