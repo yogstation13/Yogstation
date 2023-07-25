@@ -5,6 +5,7 @@
 	icon_state = "atv"
 	key_type = /obj/item/key
 	var/static/mutable_appearance/atvcover
+	resistance_flags = LAVA_PROOF
 
 /obj/vehicle/ridden/atv/Initialize(mapload)
 	. = ..()
