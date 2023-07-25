@@ -522,26 +522,19 @@
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
-			if(H.accepts_reagent_upgrades)
-				for(var/re in additional_reagents)
-					H.add_reagent(re)
+		for(var/obj/item/reagent_containers/borghypo/medical/H in R.module.modules)
+			H.upgrade_hypo()
 
 /obj/item/borg/upgrade/hypospray/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
-			if(H.accepts_reagent_upgrades)
-				for(var/re in additional_reagents)
-					H.del_reagent(re)
+		for(var/obj/item/reagent_containers/borghypo/medical/H in R.module.modules)
+			H.remove_hypo_upgrade()
 
 /obj/item/borg/upgrade/hypospray/expanded
 	name = "medical cyborg expanded hypospray"
 	desc = "An upgrade to the Medical module's hypospray, allowing it \
 		to treat a wider range of conditions and problems."
-	additional_reagents = list(/datum/reagent/medicine/mannitol, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate,
-		/datum/reagent/medicine/mutadone, /datum/reagent/medicine/haloperidol, /datum/reagent/medicine/oxandrolone, /datum/reagent/medicine/sal_acid, /datum/reagent/medicine/rezadone,
-		/datum/reagent/medicine/pen_acid)
 
 /obj/item/borg/upgrade/piercing_hypospray
 	name = "cyborg piercing hypospray"
@@ -582,7 +575,7 @@
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
+		var/obj/item/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
 		if(S)
 			to_chat(user, span_warning("This unit is already equipped with a defibrillator module."))
 			return FALSE
@@ -594,7 +587,7 @@
 /obj/item/borg/upgrade/defib/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
+		for(var/obj/item/shockpaddles/cyborg/S in R.module.modules)
 			R.module.remove_module(S, TRUE)
 
 /obj/item/borg/upgrade/adv_analyzer
@@ -897,7 +890,7 @@
 /obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
 	if (!..())
 		return
-	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
 		to_chat(user, span_warning("This janiborg is already equipped with an experimental broom!"))
 		return FALSE
@@ -908,6 +901,49 @@
 /obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
 	if (!..())
 		return
-	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
 		R.module.remove_module(BR, TRUE)
+
+/obj/item/borg/upgrade/snack_dispenser
+	name = "Cyborg Upgrade (Snack Dispenser)"
+	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, service, and clown cyborgs."
+
+/obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
+	if(R.stat == DEAD)
+		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
+		return FALSE
+	// module_type doesn't support more than 1 module. Thus, this:
+	if(!istype(R.module, /obj/item/robot_module/medical) && !istype(R.module, /obj/item/robot_module/peacekeeper) && !istype(R.module, /obj/item/robot_module/butler) && !istype(R.module, /obj/item/robot_module/clown))
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(user, "There's no mounting point for the module!")
+		return FALSE
+
+	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.module)
+	R.module.basic_modules += snack_dispenser
+	R.module.add_module(snack_dispenser, FALSE, TRUE)
+
+	for(var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth in R.module.modules) // the SC stands for shitcode
+		R.module.remove_module(cookiesynth, TRUE)
+
+	for(var/obj/item/borg_snack_dispenser/medical/lollipopshooter in R.module.modules)
+		R.module.remove_module(lollipopshooter, TRUE)
+
+	return TRUE
+
+/obj/item/borg/upgrade/snack_dispenser/deactivate(mob/living/silicon/robot/R, user)
+	. = ..()
+	if(!.)
+		return
+
+	for(var/obj/item/borg_snack_dispenser/snack_dispenser in R.module.modules)
+		R.module.remove_module(snack_dispenser, TRUE)
+
+	if(istype(R.module, /obj/item/robot_module/peacekeeper))
+		var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth = new(R.module)
+		R.module.basic_modules += cookiesynth
+		R.module.add_module(cookiesynth, FALSE, TRUE)
+	else // Guess they're medical, service, or clown.
+		var/obj/item/borg_snack_dispenser/medical/lollipopshooter = new(R.module)
+		R.module.basic_modules += lollipopshooter
+		R.module.add_module(lollipopshooter, FALSE, TRUE)

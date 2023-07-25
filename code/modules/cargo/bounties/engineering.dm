@@ -70,7 +70,7 @@
 	description = "Nanotrasen is requiring new axes to be made. Ship them some metallic hydrogen helmets."
 	reward = 7500
 	required_count = 3
-	wanted_types = list(/obj/item/twohanded/fireaxe/metal_h2_axe)
+	wanted_types = list(/obj/item/fireaxe/metal_h2_axe)
 
 /datum/bounty/item/supermatter_silver
 	name = "Supermatter Silvers"

@@ -40,8 +40,8 @@
 	. += "It currently has [forge_charges] forge[forge_charges != 1 ? "s" : ""] remaining."
 
 /obj/structure/world_anvil/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I,/obj/item/twohanded/required/gibtonite))
-		var/obj/item/twohanded/required/gibtonite/placed_ore = I
+	if(istype(I,/obj/item/melee/gibtonite))
+		var/obj/item/melee/gibtonite/placed_ore = I
 		forge_charges = forge_charges + placed_ore.quality
 		to_chat(user,"You place down the gibtonite on the World Anvil, and watch as the gibtonite melts into it. The World Anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
 		qdel(placed_ore)

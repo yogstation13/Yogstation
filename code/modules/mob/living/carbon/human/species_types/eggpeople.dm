@@ -10,7 +10,7 @@
 	say_mod = "blurbles"
 	fixed_mut_color = "FFE7C9"
 	offset_features = list(OFFSET_EARS = list(0,2), OFFSET_HEAD = list(0,2))
-	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	brutemod = EGG_MAXBRUTEMOD // not the toughest egg in the dozen (handled by the #defines above)
 	heatmod = 1.1 // weak to being boiled
 	default_features = list()
