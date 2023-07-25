@@ -467,8 +467,10 @@
 	for(var/obj/item/I in range(1, get_turf(target)))
 		push_away(user, I)
 	for(var/obj/structure/S in range(1, get_turf(target)))
-		S.take_damage(25)
-		
+		S.take_damage(30)
+	for(var/obj/machinery/M in range(1, get_turf(target)))
+		S.take_damage(20) //machinery is still important so it does less
+
 /*---------------------------------------------------------------
 	end of pummel section
 ---------------------------------------------------------------*/
@@ -542,6 +544,8 @@
 		linked_martial.push_away(owner, I, 2)
 	for(var/obj/structure/S in range(actual_range/2, owner))
 		S.take_damage(25 + (plates * 3))
+	for(var/obj/machinery/M in range(actual_range/2, owner))
+		S.take_damage(10) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
 
 	if(get_turf(owner))//fuck that tile up
 		var/turf/open/floor/target = get_turf(owner)
