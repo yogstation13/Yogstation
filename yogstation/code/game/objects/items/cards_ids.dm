@@ -50,6 +50,8 @@
 	)
 	if(job in idfluff)
 		has_fluff = TRUE
+	else if(job == null)
+		return
 	else
 		if(has_fluff)
 			return
