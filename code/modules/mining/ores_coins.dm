@@ -250,13 +250,13 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "slag"
 	singular_name = "slag chunk"
 
-/obj/item/twohanded/required/gibtonite
+/obj/item/melee/gibtonite
 	name = "gibtonite ore"
 	desc = "Extremely explosive if struck with mining equipment, Gibtonite is often used by miners to speed up their work by using it as a mining charge. This material is illegal to possess by unauthorized personnel under space law."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Gibtonite ore"
 	item_state = "Gibtonite ore"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_HUGE
 	throw_range = 0
 	var/primed = FALSE
 	var/det_time = 100
@@ -264,12 +264,16 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/attacher = "UNKNOWN"
 	var/det_timer
 
-/obj/item/twohanded/required/gibtonite/Destroy()
+/obj/item/melee/gibtonite/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+
+/obj/item/melee/gibtonite/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/item/twohanded/required/gibtonite/attackby(obj/item/I, mob/user, params)
+/obj/item/melee/gibtonite/attackby(obj/item/I, mob/user, params)
 	if(!wires && istype(I, /obj/item/assembly/igniter))
 		user.visible_message("[user] attaches [I] to [src].", span_notice("You attach [I] to [src]."))
 		wires = new /datum/wires/explosive/gibtonite(src)
@@ -305,20 +309,20 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			return
 	..()
 
-/obj/item/twohanded/required/gibtonite/attack_self(user)
+/obj/item/melee/gibtonite/attack_self(user)
 	if(wires)
 		wires.interact(user)
 	else
 		..()
 
-/obj/item/twohanded/required/gibtonite/bullet_act(obj/item/projectile/P)
+/obj/item/melee/gibtonite/bullet_act(obj/item/projectile/P)
 	GibtoniteReaction(P.firer)
 	. = ..()
 
-/obj/item/twohanded/required/gibtonite/ex_act()
+/obj/item/melee/gibtonite/ex_act()
 	GibtoniteReaction(null, 1)
 
-/obj/item/twohanded/required/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
+/obj/item/melee/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
 	if(!primed)
 		primed = TRUE
 		playsound(src,'sound/effects/hit_on_shattered_glass.ogg',50,1)
@@ -341,7 +345,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
 		det_timer = addtimer(CALLBACK(src, PROC_REF(detonate), notify_admins), det_time, TIMER_STOPPABLE)
 
-/obj/item/twohanded/required/gibtonite/proc/detonate(notify_admins)
+/obj/item/melee/gibtonite/proc/detonate(notify_admins)
 	if(primed)
 		switch(quality)
 			if(GIBTONITE_QUALITY_HIGH)
