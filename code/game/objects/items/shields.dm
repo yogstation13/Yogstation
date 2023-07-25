@@ -212,6 +212,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	icon_state = "eshield1" // So it can display without initializing
+	base_icon_state = "eshield"
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("shoved", "bashed")
 	throw_range = 5

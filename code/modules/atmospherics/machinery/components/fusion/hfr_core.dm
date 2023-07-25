@@ -51,6 +51,8 @@
 	var/list/moderator_scrubbing = list()
 	///Set the amount of moles per tick should be removed from the moderator by filtering
 	var/moderator_filtering_rate = 100
+	///Set the amount of moles per tick should be removed from the fuel by filtering
+	var/fuel_filtering_rate = 100
 	///Stores the current fuel mix that the user has selected
 	var/datum/hfr_fuel/selected_fuel
 
@@ -95,6 +97,8 @@
 
 	///Check if the user want to remove the waste gases
 	var/waste_remove = FALSE
+	///Check if the user want to remove the fuel gases
+	var/fuel_remove = FALSE
 	///User controlled variable to control the flow of the fusion by changing the contact of the material
 	var/heating_conductor = 100
 	///User controlled variable to control the flow of the fusion by changing the volume of the gasmix by controlling the power of the magnetic fields

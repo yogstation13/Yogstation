@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	density = FALSE
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroom" //replaced in New
+	base_icon_state = "glowshroom"
 	layer = ABOVE_NORMAL_TURF_LAYER
 	max_integrity = GLOWSHROOM_BASE_INTEGRITY
 	///Cooldown for when next to try to spread.
