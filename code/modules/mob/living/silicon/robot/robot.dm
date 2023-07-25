@@ -540,18 +540,7 @@
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
 	else if(W.GetID())			// trying to unlock the interface with an ID card
-		if(opened)
-			to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
-		else
-			if(allowed(usr))
-				locked = !locked
-				to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
-				to_chat(src, span_notice("[usr] [locked ? "locks" : "unlocks"] your cover."))
-				update_icons()
-				if(emagged)
-					to_chat(user, span_notice("The cover interface glitches out for a split second."))
-			else
-				to_chat(user, span_danger("Access denied."))
+		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
@@ -604,6 +593,23 @@
 			to_chat(user, span_notice("You replace the headlamp bulb.")) //yogs end
 	else
 		return ..()
+
+/mob/living/silicon/robot/proc/togglelock(mob/user)
+	if(opened)
+		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
+	else
+		if(allowed(user))
+			locked = !locked
+			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
+			to_chat(src, span_notice("[user] [locked ? "locks" : "unlocks"] your cover."))
+			update_icons()
+			if(emagged)
+				to_chat(user, span_notice("The cover interface glitches out for a split second."))
+		else
+			to_chat(user, span_danger("Access denied."))
+
+/mob/living/silicon/robot/AltClick(mob/user)
+	togglelock(user)
 
 /mob/living/silicon/robot/verb/unlock_own_cover()
 	set category = "Robot Commands"
@@ -1094,7 +1100,7 @@
 		update_transform()
 	logevent("Chassis configuration has been reset.")
 	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
-	module.transform_to(/obj/item/robot_module)
+	module.transform_to(/obj/item/robot_module) // Will reset armor & armor_plates as well. 
 
 	// Remove upgrades.
 	for(var/obj/item/borg/upgrade/I in upgrades)

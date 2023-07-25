@@ -20,7 +20,7 @@
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
-	var/edible = FALSE //can a preternis eat it for some funny effect?
+	var/eaten_text
 
 /obj/item/stack/ore/update_overlays()
 	. = ..()
@@ -66,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(!edible || user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
 	
 	var/mob/living/carbon/human/H = user
@@ -75,18 +75,21 @@
 	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
 		return ..()
 
-	H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
+	if(!eaten(H))
+		return ..()
+
+	use(1)//only eat one at a time
+
+	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."))
+	if(eaten_text)
+		to_chat(H, span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 	
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
 		H.changeNext_move(CLICK_CD_MELEE * 0.5)
 
-	use(1)//only eat one at a time
-	eaten(H)
-	
-
-/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten
-	return
+/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten, return true for it to consume stacks
+	return FALSE
 
 /obj/item/stack/ore/uranium
 	name = "uranium ore"
@@ -96,6 +99,11 @@
 	points = 30
 	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
+	eaten_text = "The uranium ore tingles a bit as it goes down."
+
+/obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
+	radiation_pulse(H, 20)
+	return TRUE
 
 /obj/item/stack/ore/iron
 	name = "iron ore"
@@ -105,7 +113,7 @@
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/metal
-	edible = TRUE
+	eaten_text = "You take a bite of iron ore, minerals do a body good."
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
@@ -119,10 +127,16 @@
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
 	w_class = WEIGHT_CLASS_TINY
+	eaten_text = "The glass bits in the sand scratch your throat as you eat them."
 
 GLOBAL_LIST_INIT(sand_recipes, list(\
 		new /datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50)\
 		))
+
+/obj/item/stack/ore/glass/eaten(mob/living/carbon/human/H)
+	H.take_overall_damage(3)
+	H.heal_overall_damage(0, 1, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.sand_recipes
@@ -160,15 +174,15 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
-	edible = TRUE
+	eaten_text = "You take a bite of plasma ore, you feel energized."
 
 /obj/item/stack/ore/plasma/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(0, 2, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
 	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))
 	return TRUE
-
 
 /obj/item/stack/ore/silver
 	name = "silver ore"
@@ -206,6 +220,20 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 
+/obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
+	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
+	H.emote("scream")
+	playsound(H, 'sound/effects/supermatter.ogg', 100)
+	var/petrified = H.petrify(5 MINUTES, TRUE)
+	if(petrified)
+		var/obj/structure/statue/petrified/statue = petrified
+		statue.name = "bananium plated [statue.name]"
+		statue.desc = "An incredibly lifelike bananium carving."
+		statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
+		statue.max_integrity = 9999
+		statue.obj_integrity = 9999
+	return TRUE
+
 /obj/item/stack/ore/titanium
 	name = "titanium ore"
 	icon_state = "Titanium ore"
@@ -222,13 +250,13 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "slag"
 	singular_name = "slag chunk"
 
-/obj/item/twohanded/required/gibtonite
+/obj/item/melee/gibtonite
 	name = "gibtonite ore"
 	desc = "Extremely explosive if struck with mining equipment, Gibtonite is often used by miners to speed up their work by using it as a mining charge. This material is illegal to possess by unauthorized personnel under space law."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Gibtonite ore"
 	item_state = "Gibtonite ore"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_HUGE
 	throw_range = 0
 	var/primed = FALSE
 	var/det_time = 100
@@ -236,12 +264,16 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/attacher = "UNKNOWN"
 	var/det_timer
 
-/obj/item/twohanded/required/gibtonite/Destroy()
+/obj/item/melee/gibtonite/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+
+/obj/item/melee/gibtonite/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/item/twohanded/required/gibtonite/attackby(obj/item/I, mob/user, params)
+/obj/item/melee/gibtonite/attackby(obj/item/I, mob/user, params)
 	if(!wires && istype(I, /obj/item/assembly/igniter))
 		user.visible_message("[user] attaches [I] to [src].", span_notice("You attach [I] to [src]."))
 		wires = new /datum/wires/explosive/gibtonite(src)
@@ -277,20 +309,20 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			return
 	..()
 
-/obj/item/twohanded/required/gibtonite/attack_self(user)
+/obj/item/melee/gibtonite/attack_self(user)
 	if(wires)
 		wires.interact(user)
 	else
 		..()
 
-/obj/item/twohanded/required/gibtonite/bullet_act(obj/item/projectile/P)
+/obj/item/melee/gibtonite/bullet_act(obj/item/projectile/P)
 	GibtoniteReaction(P.firer)
 	. = ..()
 
-/obj/item/twohanded/required/gibtonite/ex_act()
+/obj/item/melee/gibtonite/ex_act()
 	GibtoniteReaction(null, 1)
 
-/obj/item/twohanded/required/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
+/obj/item/melee/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
 	if(!primed)
 		primed = TRUE
 		playsound(src,'sound/effects/hit_on_shattered_glass.ogg',50,1)
@@ -313,7 +345,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
 		det_timer = addtimer(CALLBACK(src, PROC_REF(detonate), notify_admins), det_time, TIMER_STOPPABLE)
 
-/obj/item/twohanded/required/gibtonite/proc/detonate(notify_admins)
+/obj/item/melee/gibtonite/proc/detonate(notify_admins)
 	if(primed)
 		switch(quality)
 			if(GIBTONITE_QUALITY_HIGH)

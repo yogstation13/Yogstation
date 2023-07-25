@@ -23,38 +23,39 @@
 		name = "blank tablet"
 		icon_state = "stone_tablet_blank"
 
-/obj/item/book/granter/martial/preternis_stealth
-	martial = /datum/martial_art/stealth
+/obj/item/book/granter/martial/liquidator
+	martial = /datum/martial_art/liquidator
 	name = "strange electronic board"
-	martial_name = "Stealth"
+	martial_name = "Remnant Liquidator"
 	desc = "A strange electronic board, containing some sort of software."
-	greet = "<span class='sciradio'>You have uploaded some combat modules into yourself. Your combos will now have special effects on your enemies, and mostly are not obvious to other people. \
-	You can check what combos can you do, and their effect by using Refresh Data verb in Combat Modules tab.</span>"
+	greet = "<span class='sciradio'>You have uploaded covert combat tactics to your data banks. Your in-built combat tools have been enabled without authorization. \
+	You have become proficient in disposing malcontents without so much as a commotion. \
+	You can check what combos you have, and their effect by using Refresh Data verb in the Remnant Liquidator tab.</span>"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	remarks = list("Processing data...")
 
-/obj/item/book/granter/martial/preternis_stealth/can_learn(mob/user)
+/obj/item/book/granter/martial/liquidator/can_learn(mob/user)
 	if(!ispreternis(user))
 		to_chat(user, span_warning("You don't understand what to do with this strange electronic device."))
 		return FALSE
 	return ..()
 
-/obj/item/book/granter/martial/preternis_stealth/on_reading_finished(mob/living/carbon/user)
+/obj/item/book/granter/martial/liquidator/on_reading_finished(mob/living/carbon/user)
 	..()
 	if(!uses)
-		desc = "It looks like it doesn't contain any data no more."
+		desc = "It looks like the board has been damaged to erase the data."
 
 /obj/item/book/granter/martial/garden_warfare
 	martial = /datum/martial_art/gardern_warfare
-	name = "mysterious scroll"
+	name = "vegetable parchment"
 	martial_name = "Garden Warfare"
-	desc = "A scroll, filled with a tone of text. Looks like it says something about combat and... plants?"
+	desc = "A scroll, filled with a ton of text. Looks like it says something about combat and... plants?"
 	greet = "<span class='sciradio'>You know the martial art of Garden Warfare! Now you control your body better, then other phytosians do, allowing you to extend vines from your body and impale people with splinters. \
 	You can check what combos can you do, and their effect by using Remember the basics verb in Garden Warfare tab.</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
-	remarks = list("I didn't know that my body grows sprinklers...", "I am able to snatch people with vines? Interesting.", "Wow, strangling people is brutal.")   ///Kill me please for this cringe
+	remarks = list("I didn't know that my body grows sprinklers...", "I am able to snatch people with vines? Interesting.", "Wow, strangling people is brutal.")   ///Kill me please for this cringe // I hate you
 
 /obj/item/book/granter/martial/garden_warfare/can_learn(mob/user)
 	if(!ispodperson(user))
@@ -92,14 +93,17 @@
 
 /obj/item/book/granter/martial/ultra_violence
 	martial = /datum/martial_art/ultra_violence
-	name = "Version one upgrade module"
+	name = "version one upgrade module"
 	martial_name = "Ultra Violence"
 	desc = "A module full of forbidden techniques from a horrific event long since passed, or perhaps yet to come."
-	greet = span_sciradio("You have installed how to perform Ultra Violence! You are able to redirect electromagnetic pulses, \
+	greet = span_sciradio("You have installed Ultra Violence! You are able to redirect electromagnetic pulses with throwmode, \
 		blood heals you, and you CANNOT BE STOPPED. You can mentally practice by using Cyber Grind in the Ultra Violence tab.")
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	remarks = list("MANKIND IS DEAD.", "BLOOD IS FUEL.", "HELL IS FULL.")
+
+/obj/item/book/granter/martial/ultra_violence/on_reading_start(mob/user)
+	to_chat(user, span_notice("You plug \the [src] in and begin loading PRG$[martial_name]."))
 
 /obj/item/book/granter/martial/ultra_violence/can_learn(mob/user)
 	if(!isipc(user))
@@ -126,17 +130,20 @@
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "flaming_moe"
 	remarks = list(
-		"Is... it bubbling?", 
-		"What's that gross residue on the sides of the vial?", 
-		"Am I really considering drinking this?", 
-		"I'm pretty sure I just saw a dead fly dissolve in it.", 
-		"This is temporary, right?", 
+		"Is... it bubbling?",
+		"What's that gross residue on the sides of the vial?",
+		"Am I really considering drinking this?",
+		"I'm pretty sure I just saw a dead fly dissolve in it.",
+		"This is temporary, right?",
 		"I sure hope someone's tested this.")
 	book_sounds = list('sound/items/drink.ogg') //it's a drink, not a book
 
+/obj/item/book/granter/martial/worldbreaker/on_reading_start(mob/user)
+	to_chat(user, span_notice("You raise \the [src] to your lips and take a sip..."))
+
 /obj/item/book/granter/martial/worldbreaker/can_learn(mob/user)
 	if(!ispreternis(user))
-		to_chat(user, span_warning("There is no way in hell i'm drinking this."))
+		to_chat(user, span_warning("There is no way in hell I'm drinking this."))
 		return FALSE
 	return ..()
 

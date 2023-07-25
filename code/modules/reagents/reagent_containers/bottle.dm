@@ -453,23 +453,24 @@
 	name = "vial"
 	desc = "A vial for holding smaller amounts of reagents than a beaker."
 	icon_state = "viallarge"
+	base_icon_state = "viallarge"
 	item_state = "atoxinbottle"	
-	unique_reskin = list("vial" = "viallarge",
-						"white vial" = "viallarge_white",
-						"red vial" = "viallarge_red",
-						"blue vial" = "viallarge_blue",
-						"green vial" = "viallarge_green",
-						"orange vial" = "viallarge_orange",
-						"purple vial" = "viallarge_purple",
-						"black vial" = "viallarge_black"
-						)
+	unique_reskin = list(
+		"vial" = "vial",
+		"white vial" = "vial_white",
+		"red vial" = "vial_red",
+		"blue vial" = "vial_blue",
+		"green vial" = "vial_green",
+		"orange vial" = "vial_orange",
+		"purple vial" = "vial_purple",
+		"black vial" = "vial_black"
+	)
 	possible_transfer_amounts = list(5, 10, 15, 30)
-	spillable = FALSE
+	reagent_flags = OPENCONTAINER_NOSPILL
 	volume = 30
 	disease_amount = 30
 	/// Name that used as the base for pen renaming, so subtypes can have different names without having to worry about messing with it
 	var/base_name = "vial"
-	var/base_icon_state = "viallarge"
 	/// List of icon_states that require the stripe overlay to look good. Not a very good way of doing it, but its the best I can come up with right now.
 	var/list/striped_vial_skins = list("vial_white", "vial_red", "vial_blue", "vial_green", "vial_orange", "vial_purple", "vial_black", "viallarge_white", "viallarge_red", "viallarge_blue", "viallarge_green", "viallarge_orange", "viallarge_purple", "viallarge_black")
 

@@ -5,7 +5,6 @@
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "honeycomb"
 	possible_transfer_amounts = list()
-	spillable = FALSE
 	disease_amount = 0
 	volume = 10
 	amount_per_transfer_from_this = 0

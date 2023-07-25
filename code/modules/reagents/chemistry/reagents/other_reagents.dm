@@ -358,6 +358,7 @@
 	description = "Strange liquid that defies the laws of physics"
 	taste_description = "glass"
 	color = "#1f8016"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
 	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
@@ -366,16 +367,16 @@
 		M.adjustStaminaLoss(-10, FALSE)
 		M.adjustToxLoss(-2, FALSE)
 		M.adjustOxyLoss(-2, FALSE)
-		M.adjustBruteLoss(-2, FALSE)
-		M.adjustFireLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE, FALSE, BODYPART_ANY)
+		M.adjustFireLoss(-2, FALSE, FALSE, BODYPART_ANY)
 		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, FALSE)
-		M.adjustFireLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE, FALSE, BODYPART_ANY)
 		M.adjustOxyLoss(2, FALSE)
-		M.adjustBruteLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE, FALSE, BODYPART_ANY)
 	holder.remove_reagent(type, 1)
 	return TRUE
 
@@ -495,7 +496,8 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/N = M
-		N.hair_style = "Spiky"
+		if(!HAS_TRAIT(M, TRAIT_BALD))
+			N.hair_style = "Spiky"
 		N.facial_hair_style = "Shaved"
 		N.facial_hair_color = "000"
 		N.hair_color = "000"
@@ -1840,7 +1842,7 @@
 
 /datum/reagent/barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
@@ -1857,11 +1859,31 @@
 
 /datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
 			H.update_hair()
+
+/datum/reagent/baldium
+	name = "Baldium"
+	description = "A major cause of hair loss across the world."
+	reagent_state = LIQUID
+	color = "#ecb2cf"
+	taste_description = "bitterness"
+
+/datum/reagent/baldium/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	. = ..()
+	if(!(methods & (TOUCH|VAPOR)))
+		return
+	if(!permeability)
+		return
+	if(M && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		to_chat(H, span_danger("Your hair starts to fall out in clumps!"))
+		H.hair_style = "Bald"
+		H.facial_hair_style = "Shaved"
+		H.update_hair()
 
 /datum/reagent/saltpetre
 	name = "Saltpetre"
@@ -2135,13 +2157,13 @@
 	return ..()
 
 /datum/reagent/pax/peaceborg
-	name = "synth-pax"
+	name = "Synth-Pax"
 	description = "A colorless liquid that suppresses violence on the subjects. Cheaper to synthetize, but wears out faster than normal Pax."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/peaceborg/confuse
 	name = "Dizzying Solution"
-	description = "Makes the target off balance and dizzy"
+	description = "Makes the target off balance and dizzy."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "dizziness"
 
