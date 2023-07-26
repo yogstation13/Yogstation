@@ -50,7 +50,7 @@
 		return
 	priority_announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 	for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
-		T.emp_act(EMP_HEAVY)
+		T.emp_act(EMP_LIGHT)
 
 /datum/weather/rad_storm/end()
 	if(..())
