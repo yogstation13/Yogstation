@@ -372,7 +372,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/infiltration/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/infiltration) in mode.executed_rules)
-		return FALSE 
+		return FALSE
 	indice_pop = min(agents_cap.len, round(living_players.len/5)+1)
 	required_candidates = agents_cap[indice_pop]
 	return ..()
@@ -472,7 +472,7 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
 	required_candidates = 1
-	weight = 4
+	weight = 0 // 4
 	cost = 5
 	requirements = list(90,85,80,70,50,40,30,25,20,10)
 	repeatable = TRUE

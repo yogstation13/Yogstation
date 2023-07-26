@@ -853,7 +853,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 3
-	weight = 3
+	weight = 0 // 3
 	cost = 30
 	requirements = list(90,80,80,70,60,40,30,30,20,10)
 	flags = HIGH_IMPACT_RULESET
