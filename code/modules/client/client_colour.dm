@@ -15,8 +15,6 @@
 	var/colour = "" //Any client.color-valid value
 	var/priority = 1 //Since only one client.color can be rendered on screen, we take the one with the highest priority value:
 	//eg: "Bloody screen" > "goggles colour" as the former is much more important
-
-
 /mob
 	var/list/client_colours = list()
 
@@ -116,3 +114,8 @@
 /datum/client_colour/monochrome_infra
 	colour = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	priority = INFINITY //we can't see colors anyway!
+
+/datum/client_colour/echolocate
+	colour = "#25a5ea"
+	priority = 1
+

@@ -28,13 +28,12 @@
 			latches = "double_latch"
 			if(prob(1))
 				latches = "triple_latch"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/toolbox/update_icon()
-	..()
-	cut_overlays()
+/obj/item/storage/toolbox/update_overlays()
+	. = ..()
 	if(has_latches)
-		add_overlay(latches)
+		. += latches
 
 
 /obj/item/storage/toolbox/suicide_act(mob/user)
@@ -177,6 +176,12 @@
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5
 
+/obj/item/storage/toolbox/syndicate/real/PopulateContents()
+	. = ..()
+	for(var/obj/item/I in contents)
+		I.toolspeed = 0.33
+		I.name = "syndicate [I.name]"
+
 /obj/item/storage/toolbox/drone
 	name = "mechanical toolbox"
 	icon_state = "blue"
@@ -284,7 +289,8 @@
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
-							/obj/item/storage/toolbox/syndicate)
+							/obj/item/storage/toolbox/syndicate,
+							/obj/item/storage/toolbox/syndicate/real)
 
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		..()
@@ -308,8 +314,10 @@
 				B.toolbox_color = "g"
 			if(/obj/item/storage/toolbox/syndicate)
 				B.toolbox_color = "s"
+			if(/obj/item/storage/toolbox/syndicate/real)
+				B.toolbox_color = "s"
 		user.put_in_hands(B)
-		B.update_icon()
+		B.update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You add the tiles into the empty [name]. They protrude from the top."))
 		qdel(src)
 	else

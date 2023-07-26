@@ -9,7 +9,7 @@
 
 /obj/vehicle/ridden/janicart/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 7), TEXT_EAST = list(-12, 7), TEXT_WEST = list( 12, 7)))
 
@@ -42,7 +42,7 @@
 			return
 		to_chat(user, span_notice("You hook the trashbag onto [src]."))
 		mybag = I
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(istype(I, /obj/item/janiupgrade))
 		if(floorbuffer)
 			to_chat(user, span_warning("[src] already has a floor buffer!"))
@@ -51,16 +51,16 @@
 		qdel(I)
 		to_chat(user, span_notice("You upgrade [src] with the floor buffer."))
 		AddElement(/datum/element/cleaning)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
-/obj/vehicle/ridden/janicart/update_icon()
-	cut_overlays()
+/obj/vehicle/ridden/janicart/update_overlays()
+	. = ..()
 	if(mybag)
-		add_overlay("cart_garbage")
+		. += "cart_garbage"
 	if(floorbuffer)
-		add_overlay("cart_buffer")
+		. += "cart_buffer"
 
 /obj/vehicle/ridden/janicart/attack_hand(mob/user)
 	. = ..()
@@ -70,7 +70,7 @@
 		mybag.forceMove(get_turf(user))
 		user.put_in_hands(mybag)
 		mybag = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/vehicle/ridden/janicart/upgraded
 	floorbuffer = TRUE

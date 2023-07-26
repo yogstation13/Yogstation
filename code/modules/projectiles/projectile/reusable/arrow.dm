@@ -12,6 +12,10 @@
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
 	..()
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 16))
+
 	if(!isliving(target) || (blocked == 100))
 		return
 		
@@ -37,7 +41,7 @@
 		L.ignite_mob()
 		arrow.flaming = FALSE
 
-	arrow.update_icon()
+	arrow.update_appearance(UPDATE_ICON)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(dropped || !ammo_type)

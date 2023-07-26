@@ -29,7 +29,7 @@
 		if("recon") //28ish TC
 			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
 			new /obj/item/storage/briefcase/launchpad(src) //6 TC
-			new	/obj/item/twohanded/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
+			new	/obj/item/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/storage/box/syndie_kit/space(src) //4 TC
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //Minibomb with one less range on each part except for fire. 3-4 TC.
@@ -44,7 +44,7 @@
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
 			new /obj/item/switchblade/backstab(src) //3 TC
-			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
+			new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
 			new /obj/item/card/emag(src) //6 TC
@@ -91,13 +91,13 @@
 			new /obj/item/implanter/explosive(src) //2 TC, nukies only
 			new /obj/item/implanter/storage(src) //8 TC
 
-		if("hacker") //28 TC cost
+		if("hacker") //29 TC cost
 			new /obj/item/aiModule/syndicate(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
 			new /obj/item/aiModule/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
-			new /obj/item/storage/toolbox/syndicate(src) //1 TC
+			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/card/id/syndicate(src) //2 TC
 			new /obj/item/flashlight/emp(src) //2 TC
@@ -105,7 +105,7 @@
 			new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src) //RD glasses. 1 TC, if that
 			new /obj/item/pen/edagger(src) //2 TC
 
-		if("sabotage") //Maybe 29 TC?
+		if("sabotage") //Maybe 30 TC?
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/doorCharge(src) //2 TC
@@ -113,7 +113,7 @@
 			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/sbeacondrop/powersink(src) //8 TC
 			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
-			new /obj/item/storage/toolbox/syndicate(src) //1 TC
+			new /obj/item/storage/toolbox/syndicate/real(src) //2 TC
 			new /obj/item/pizzabox/bomb(src) //6 TC
 			new /obj/item/storage/box/syndie_kit/emp(src) //2 TC
 
@@ -149,7 +149,7 @@
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
 			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
 			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
-			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
+			new /obj/item/storage/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
 
 		if("oddjob") //Total TC value of 26ish TC
@@ -190,7 +190,7 @@
 			new /obj/item/storage/magspear_quiver(src)
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
-			new /obj/item/twohanded/pitchfork/trident(src)
+			new /obj/item/pitchfork/trident(src)
 			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
 			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
@@ -199,7 +199,7 @@
 			new /obj/item/carpcaller(src) //to spawn carps in space, making the place safer for you and dangerous for everyone else, you should get at least 20 carps per use so 60  carps
 			new /obj/item/toy/plush/carpplushie/dehy_carp //1 carp but guaranteed complete loyalty and cuddliness
 
-		if("mad_scientist") // ~21 tc
+		if("mad_scientist") // ~22 tc
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
 			new /obj/item/clothing/shoes/jackboots(src) // 0 tc
 			new /obj/item/megaphone(src) // 0 tc (because how else are they to know you're mad?)
@@ -211,7 +211,7 @@
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
-			new /obj/item/storage/toolbox/syndicate(src) // 1 tc
+			new /obj/item/storage/toolbox/syndicate/real(src) // 2 tc
 			new /obj/item/pen/edagger(src) // 2 tc
 			new /obj/item/gun/energy/wormhole_projector/upgraded(src) // ~2 tc
 			new /obj/item/gun/energy/decloner/unrestricted(src) // these shots do 9 damage. 1 tc
@@ -266,7 +266,7 @@
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
 			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
-			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
+			new /obj/item/storage/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
@@ -391,8 +391,8 @@
 	new /obj/item/clothing/under/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
-	new /obj/item/lighter(src)
+	new /obj/item/clothing/gloves/fingerless/bigboss(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 
 /obj/item/storage/box/syndicate/contract_kit/PopulateContents()
 	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
@@ -441,13 +441,13 @@
 	desc = "Supplied to Syndicate contractors."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
-	
+
 /obj/item/storage/box/syndicate/contract_kit/plasmaman/PopulateContents()
 	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
 	new /obj/item/storage/box/syndicate/contractor_loadout/plasmaman(src)
 	new /obj/item/melee/classic_baton/telescopic/contractor_baton(src)
 	new /obj/item/bodybag/environmental/prisoner/syndicate(src)
-	
+
 	var/list/item_list = list(
 		/obj/item/storage/backpack/duffelbag/syndie/x4,
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
@@ -469,7 +469,7 @@
 		/obj/item/storage/box/syndie_kit/imp_freedom,
 		/obj/item/storage/belt/chameleon/syndicate
 	)
-	
+
 	var/obj/item1 = pick_n_take(item_list)
 	var/obj/item2 = pick_n_take(item_list)
 	var/obj/item3 = pick_n_take(item_list)
@@ -485,14 +485,14 @@
 	desc = "Supplied to the Syndicate's plasmaman contractors, providing their specialised space suit and chameleon envirosuit."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
-	
+
 /obj/item/storage/box/syndicate/contractor_loadout/plasmaman/PopulateContents()
 	new /obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate(src)
 	new /obj/item/clothing/suit/space/syndicate/contract(src)
 	new /obj/item/clothing/under/plasmaman/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndie_kit

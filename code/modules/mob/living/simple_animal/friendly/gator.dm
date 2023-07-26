@@ -6,7 +6,7 @@
 	icon_state = "gator"
 	icon_living = "gator"
 	icon_dead ="gator_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	speak_emote = list("snaps")
 	emote_hear = list("snaps.","hisses.")
