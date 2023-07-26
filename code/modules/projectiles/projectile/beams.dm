@@ -270,3 +270,24 @@
 /obj/item/projectile/beam/laser/lasgun/hotshot
 	damage = 30
 	wound_bonus = -5
+
+/// BFG
+/obj/item/projectile/beam/bfg
+	name = "searing rod"
+	icon_state = "lava"
+	damage = 35
+	light_power = 2
+	light_color = "#ffff00"
+	speed = 1
+
+/obj/item/projectile/beam/bfg/Range()
+	. = ..()
+	for(var/atom/movable/passed in range(1, src))
+		if(passed == src)
+			continue
+		if(isliving(passed))
+			var/mob/living/m_passed = passed
+			m_passed.apply_damage(HEAT_DAMAGE_LEVEL_3, BURN)
+			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(m_passed))
+		else
+			passed.fire_act(460, 100)
