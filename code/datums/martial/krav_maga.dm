@@ -155,7 +155,7 @@
 							span_userdanger("[A] attempted to disarm [D]!"))
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	log_combat(A, D, "disarmed (Krav Maga)", "[I ? " removing \the [I]" : ""]")
-	return 1
+	return FALSE
 
 //Krav Maga Gloves
 

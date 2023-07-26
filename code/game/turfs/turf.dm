@@ -596,3 +596,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			baseturfs = baseturfs_string_list(new_baseturfs, src)
 	else if (baseturfs == needle_type)
 		baseturfs = replacement_type
+
+/// Called when attempting to set fire to a turf
+/turf/proc/IgniteTurf(power, fire_color="red")
+	return
