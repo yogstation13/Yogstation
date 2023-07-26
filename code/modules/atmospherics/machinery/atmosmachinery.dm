@@ -213,7 +213,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		to_chat(user, span_warning("As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?"))
 		unsafe_wrenching = TRUE //Oh dear oh dear
 
-	var/time_taken = empty_pipe ? 0 : 20
+	var/time_taken = empty_pipe ? 0 : 2 SECONDS
 	if(I.use_tool(src, user, time_taken, volume=50))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
