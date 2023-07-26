@@ -9,6 +9,7 @@
 	idle_power_usage = 50
 	circuit = /obj/item/circuitboard/machine/harvester
 	light_color = LIGHT_COLOR_BLUE
+	var/warming_up
 	var/interval = 20
 	var/harvesting = FALSE
 	var/list/operation_order = list() //Order of wich we harvest limbs.
@@ -27,7 +28,8 @@
 		max_time -= L.rating
 	interval = max(max_time,1)
 
-/obj/machinery/harvester/update_icon(warming_up)
+/obj/machinery/harvester/update_icon_state()
+	. = ..()
 	if(warming_up)
 		icon_state = initial(icon_state)+"-charging"
 		return
@@ -69,7 +71,7 @@
 				say("Subject may not have abiotic items on.")
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 				return
-	if(!(MOB_ORGANIC in C.mob_biotypes))
+	if(!(C.mob_biotypes & MOB_ORGANIC))
 		say("Subject is not organic.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		return
@@ -87,11 +89,13 @@
 	harvesting = TRUE
 	visible_message(span_notice("The [name] begins warming up!"))
 	say("Initializing harvest protocol.")
-	update_icon(TRUE)
+	warming_up = TRUE
+	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/harvest()
-	update_icon()
+	warming_up = FALSE
+	update_appearance(UPDATE_ICON)
 	if(!harvesting || state_open || !powered(AREA_USAGE_EQUIP) || !occupant || !iscarbon(occupant))
 		return
 	playsound(src, 'sound/machines/juicer.ogg', 20, 1)

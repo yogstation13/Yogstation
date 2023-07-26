@@ -93,15 +93,16 @@
 	if(hardness <= 0)
 		gets_drilled(user,triggered_by_explosion)
 	else
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/turf/closed/mineral/update_icon()
+/turf/closed/mineral/update_overlays()
+	. = ..()
 	if(hardness != initial(hardness))
 		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
 		var/matrix/M = new
 		M.Translate(4,4)
 		cracks.transform = M
-		add_overlay(cracks)
+		. += cracks
 
 
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)
@@ -774,7 +775,7 @@
 		name = "gibtonite deposit"
 		desc = "An active gibtonite reserve. Run!"
 		stage = GIBTONITE_ACTIVE
-		visible_message(span_danger("There was gibtonite inside! It's going to explode!"))
+		visible_message(span_danger("There was gibtonite inside! It's going to explode!"), blind_message = span_danger("You hear an evil hissing!")) 
 
 		var/notify_admins = 0
 		if(z != 5)
@@ -825,7 +826,7 @@
 		stage = GIBTONITE_DETONATE
 		explosion(bombturf,1,2,5, adminlog = 0)
 	if(stage == GIBTONITE_STABLE) //Gibtonite deposit is now benign and extractable. Depending on how close you were to it blowing up before defusing, you get better quality ore.
-		var/obj/item/twohanded/required/gibtonite/G = new (src)
+		var/obj/item/melee/gibtonite/G = new (src)
 		if(det_time <= 0)
 			G.quality = 3
 			G.icon_state = "Gibtonite ore 3"

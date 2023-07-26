@@ -142,7 +142,7 @@
 		to_chat(admin, span_danger("Repairing flash failed!"))
 	else
 		flash.burnt_out = FALSE
-		flash.update_icon()
+		flash.update_appearance(UPDATE_ICON)
 
 /datum/antagonist/rev/head/proc/admin_demote(datum/mind/target,mob/user)
 	message_admins("[key_name_admin(user)] has demoted [key_name_admin(owner)] from head revolutionary.")
@@ -458,5 +458,5 @@
 	uniform = /obj/item/clothing/under/yogs/soviet_dress_uniform
 	head = /obj/item/clothing/head/ushanka
 	gloves = /obj/item/clothing/gloves/color/black
-	l_hand = /obj/item/twohanded/spear
+	l_hand = /obj/item/melee/spear
 	r_hand = /obj/item/assembly/flash

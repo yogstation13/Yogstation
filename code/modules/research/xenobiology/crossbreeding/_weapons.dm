@@ -49,7 +49,7 @@ Slimecrossing Weapons
 	return ..()
 
 //Adamantine shield - Chilling Adamantine
-/obj/item/twohanded/required/adamantineshield
+/obj/item/adamantineshield
 	name = "adamantine shield"
 	desc = "A gigantic shield made of solid adamantium."
 	icon = 'icons/obj/slimecrossing.dmi'
@@ -65,6 +65,10 @@ Slimecrossing Weapons
 	force = 15 //Heavy, but hard to wield.
 	attack_verb = list("bashed","pounded","slammed")
 	item_flags = SLOWS_WHILE_IN_HAND
+
+/obj/item/adamantineshield/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
 //Bloodchiller - Chilling Green
 /obj/item/gun/magic/bloodchill

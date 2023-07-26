@@ -64,6 +64,9 @@
 			H.update_hair()
 			return TRUE
 		if(HEAD_HAIR)
+			if(HAS_TRAIT(H, TRAIT_BALD) && selection != "Bald")
+				to_chat(H, span_notice("If only growing back hair were that easy for you..."))
+				return TRUE
 			H.hair_style = selection
 			H.update_hair()
 			return TRUE
