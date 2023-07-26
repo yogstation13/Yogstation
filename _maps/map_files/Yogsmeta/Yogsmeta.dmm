@@ -14323,7 +14323,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aKx" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aKz" = (
@@ -40474,7 +40474,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "cqD" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/firealarm{
@@ -42081,12 +42081,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cvX" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "cvY" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/item/radio/intercom{
 	pixel_x = 29
 	},
@@ -64077,7 +64077,7 @@
 "mKO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "mLc" = (
@@ -69547,7 +69547,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "qkV" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)

@@ -214,7 +214,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "afw" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -29997,7 +29997,7 @@
 /area/medical/virology)
 "oOY" = (
 /obj/machinery/atmospherics/miner/toxins,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)
 "oPq" = (
@@ -31995,7 +31995,7 @@
 /area/security/brig)
 "pOz" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "pOB" = (

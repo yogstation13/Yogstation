@@ -681,7 +681,7 @@
 /area/engine/engineering)
 "yS" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "zs" = (
