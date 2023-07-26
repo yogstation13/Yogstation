@@ -80,11 +80,11 @@
 
 /obj/item/storage/fancy/donut_box/PopulateContents()
 	for(var/i in 1 to 6)
-		new /obj/item/reagent_containers/food/snacks/donut(src)
+		new spawn_type(src)
 
 /obj/item/storage/fancy/donut_box/PopulateContents()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/fancy/donut_box/update_icon_state()
 	. = ..()
@@ -109,21 +109,7 @@
 	. += image(icon = initial(icon), icon_state = "donutbox_top")
 
 /obj/item/storage/fancy/donut_box/deadly
-	icon = 'icons/obj/food/containers.dmi'
-	icon_type = "donut"
-	name = "donut box"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut/deadly
-	fancy_open = TRUE
-
-/obj/item/storage/fancy/donut_box/Initialize(mapload)
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
-	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donut))
-
-/obj/item/storage/fancy/donut_box/deadly/PopulateContents()
-	for(var/i in 1 to 6)
-		new /obj/item/reagent_containers/food/snacks/donut/deadly(src)
 
 #undef DONUT_INBOX_SPRITE_WIDTH
 /*
