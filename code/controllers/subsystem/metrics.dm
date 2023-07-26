@@ -86,12 +86,7 @@ SUBSYSTEM_DEF(metrics_publish)
 		last_profile_publish = REALTIMEOFDAY
 		var/data = world.Profile(PROFILE_REFRESH, "json")
 		world.Profile(PROFILE_CLEAR)
-		var/id = rustg_influxdb2_publish_profile(
-			data, 
-			CONFIG_GET(string/metrics_api_profile), 
-			CONFIG_GET(string/metrics_token_profile), 
-			GLOB.round_id
-		)
+		var/id = rustg_influxdb2_publish_profile(data, CONFIG_GET(string/metrics_api_profile), CONFIG_GET(string/metrics_token_profile), GLOB.round_id)
 		handle_response(id, "profiler")
 
 /datum/controller/subsystem/metrics_publish/proc/handle_response(id, metric_type)
