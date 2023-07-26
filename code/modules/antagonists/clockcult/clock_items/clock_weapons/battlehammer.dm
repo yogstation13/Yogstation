@@ -2,11 +2,16 @@
 	name = "brass battle-hammer"
 	desc = "A brass hammer glowing with energy."
 	icon_state = "ratvarian_hammer"
-	force = 15
-	throwforce = 15
+	force = 23
+	throwforce = 23
+	armour_penetration = -30
 	sharpness = SHARP_NONE
 	attack_verb = list("bashed", "smitted", "hammered", "attacked")
 	clockwork_desc = "A powerful hammer of Ratvarian making. Enemies hit with it would be flung back."
+
+/obj/item/clockwork/weapon/brass_battlehammer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 
 /obj/item/clockwork/weapon/brass_battlehammer/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
