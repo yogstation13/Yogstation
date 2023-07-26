@@ -8,7 +8,8 @@
 	icon_living = "base"
 	icon_dead = "base_dead"
 	icon_gib = "carp_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	health_doll_icon = "megacarp"
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/carpmeat = 2)

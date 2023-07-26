@@ -159,7 +159,7 @@
 
 /obj/item/ammo_casing/shotgun/dart/Initialize(mapload)
 	. = ..()
-	create_reagents(reagent_amount, OPENCONTAINER)
+	create_reagents(reagent_amount, OPENCONTAINER_NOSPILL)
 	if(no_react)
 		ENABLE_BITFIELD(reagents.flags, NO_REACT)
 

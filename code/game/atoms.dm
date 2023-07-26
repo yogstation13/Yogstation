@@ -95,6 +95,8 @@
 	var/greyscale_config
 	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
 	var/greyscale_colors
+	///the base icon state used for anything that changes their icon state.
+	var/base_icon_state
 
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
@@ -412,6 +414,10 @@
 /// Is this atom drainable of reagents
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
+
+/// Can this atom spill its reagents
+/atom/proc/is_spillable()
+	return reagents && (reagents.flags & SPILLABLE)
 
 /// Are you allowed to drop this atom
 /atom/proc/AllowDrop()

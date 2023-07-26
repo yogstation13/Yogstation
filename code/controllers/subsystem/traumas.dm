@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(traumas)
 												 /obj/item/trash/cheesie)),
 
 					  "greytide"  = typecacheof(list(/obj/item/clothing/under/color/grey, /obj/item/melee/baton/cattleprod,
-												 /obj/item/twohanded/spear, /obj/item/clothing/mask/gas)),
+												 /obj/item/melee/spear, /obj/item/clothing/mask/gas)),
 
 					  "lizards"   = typecacheof(list(/obj/item/toy/plush/lizardplushie, /obj/item/reagent_containers/food/snacks/kebab/tail,
 												 /obj/item/organ/tail/lizard, /obj/item/reagent_containers/food/drinks/bottle/lizardwine)),
@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(traumas)
 						/obj/item/card/id/captains_spare, /obj/item/card/id/centcom, /obj/machinery/door/airlock/command)),
 
 						"the supernatural"  = typecacheof(list(/obj/structure/destructible/cult, /obj/item/tome,
-						/obj/item/melee/cultblade, /obj/item/twohanded/required/cult_bastard, /obj/item/restraints/legcuffs/bola/cult,
+						/obj/item/melee/cultblade, /obj/item/melee/cult_bastard, /obj/item/restraints/legcuffs/bola/cult,
 						/obj/item/clothing/suit/cultrobes, /obj/item/clothing/suit/space/hardsuit/cult,
 						/obj/item/clothing/suit/hooded/cultrobes, /obj/item/clothing/head/hooded/cult_hoodie, /obj/effect/rune,
 						/obj/item/stack/sheet/runed_metal, /obj/machinery/door/airlock/cult, /obj/singularity/narsie,
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(traumas)
 
 					   "anime" = typecacheof(list(/obj/item/clothing/under/schoolgirl, /obj/item/katana, /obj/item/reagent_containers/food/snacks/sashimi, /obj/item/reagent_containers/food/snacks/chawanmushi,
 					   /obj/item/reagent_containers/food/drinks/bottle/sake, /obj/item/throwing_star, /obj/item/clothing/head/kitty/genuine, /obj/item/clothing/suit/space/space_ninja,
-					   /obj/item/clothing/mask/gas/space_ninja, /obj/item/clothing/shoes/space_ninja, /obj/item/clothing/gloves/space_ninja, /obj/item/twohanded/vibro_weapon, /obj/item/horrortentacle,
+					   /obj/item/clothing/mask/gas/space_ninja, /obj/item/clothing/shoes/space_ninja, /obj/item/clothing/gloves/space_ninja, /obj/item/vibro_weapon, /obj/item/horrortentacle,
 					   /obj/item/nullrod/vibro, /obj/item/energy_katana, /obj/item/toy/katana, /obj/item/nullrod/claymore/katana, /obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe))
 						)
 

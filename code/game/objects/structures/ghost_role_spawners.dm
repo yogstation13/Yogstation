@@ -99,7 +99,7 @@
 	uniform = /obj/item/clothing/under/tribal
 	head = /obj/item/clothing/head/helmet/skull
 	suit = /obj/item/clothing/suit/armor/bone/heavy
-	back = /obj/item/twohanded/bonespear
+	back = /obj/item/melee/spear/bonespear
 	gloves = /obj/item/clothing/gloves/bracer
 	belt = /obj/item/storage/belt/mining/primitive
 	shoes = /obj/item/clothing/shoes/xeno_wraps
@@ -111,7 +111,7 @@
 	uniform = /obj/item/clothing/under/ash_robe/chief
 	head = /obj/item/clothing/head/crown/resin
 	suit = /obj/item/clothing/suit/armor/bone
-	back = /obj/item/twohanded/bonespear/chitinspear
+	back = /obj/item/melee/spear/bonespear/chitinspear
 	gloves = /obj/item/clothing/gloves/color/black/goliath
 	shoes = /obj/item/clothing/shoes/xeno_wraps/goliath
 	neck = /obj/item/clothing/neck/cloak/tribalmantle

@@ -98,7 +98,7 @@
 		/obj/item/gun/ballistic/automatic/l6_saw/toy,
 		/obj/item/gun/ballistic/shotgun/toy,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow,
-		/obj/item/twohanded/dualsaber/toy,
+		/obj/item/melee/dualsaber/toy,
 		/obj/machinery/smoke_machine,
 		/obj/item/clothing/head/kitty,
 		/obj/item/coin/antagtoken,
