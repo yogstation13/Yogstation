@@ -300,10 +300,10 @@
 	status = !status
 	if(status)
 		to_chat(user, span_notice("You resecure [src] and close the fuel tank."))
-		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER_NOSPILL)
 	else
 		to_chat(user, span_notice("[src] can now be attached, modified, and refuelled."))
-		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER_NOSPILL)
 	add_fingerprint(user)
 
 /obj/item/weldingtool/proc/flamethrower_rods(obj/item/I, mob/user)

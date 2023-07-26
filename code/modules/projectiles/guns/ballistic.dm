@@ -582,7 +582,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	/obj/item/circular_saw,
 	/obj/item/gun/energy/plasmacutter,
 	/obj/item/melee/transforming/energy,
-	/obj/item/twohanded/required/chainsaw,
+	/obj/item/melee/chainsaw,
 	/obj/item/nullrod/claymore/chainsaw_sword,
 	/obj/item/nullrod/chainsaw,
 	/obj/item/mounted_chainsaw)))
