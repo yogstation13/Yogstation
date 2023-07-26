@@ -228,7 +228,7 @@
 	display_name = "Applied Bluespace Research"
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
-	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacevial", "bluespacesyringe", "phasic_scanning", "roastingstick", "ore_silo", "xenobioconsole")
+	design_ids = list("minerbag_holding", "bluespacebeaker", "bluespacevial", "bluespacesyringe", "phasic_scanning", "roastingstick", "ore_silo", "xenobioconsole")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 /datum/techweb_node/bluespace_power
