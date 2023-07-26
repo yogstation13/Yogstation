@@ -1,0 +1,8 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Metallic hydrogen production now requires ~1/2 as many mols to start"
+  - tweak: "Metallic hydrogen production hydrogen consumption is still about 70% of the total hydrogen required"
+  - tweak: "Metallic hydrogen production BZ consumption now consume about 70% of the total bz required"
+  - tweak: "Hydrogen min requirement is is reduced by 700 moles (Now the same as crystallizer recipe)"
+  - tweak: "No more rng to metal h2 generation"
