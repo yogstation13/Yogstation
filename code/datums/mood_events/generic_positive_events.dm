@@ -196,6 +196,7 @@
 	description = span_nicegreen("I just love my robotic friends!")
 	mood_change = 3
 	timeout = 5 MINUTES
+	required_job = list("Research Director", "Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
 
 /datum/mood_event/area
 	description = "" //Fill this out in the area
