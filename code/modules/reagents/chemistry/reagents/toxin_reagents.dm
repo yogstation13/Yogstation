@@ -58,6 +58,7 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
+	accelerant_quality = 10
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
@@ -309,6 +310,7 @@
 	color = "#9ACD32"
 	toxpwr = 0.5
 	taste_description = "burning"
+	accelerant_quality = 10
 
 /datum/reagent/toxin/spore_burning/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)

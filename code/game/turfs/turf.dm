@@ -575,3 +575,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(!ismopable(movable_content))
 			continue
 		movable_content.wash(clean_types)
+
+/// Called when attempting to set fire to a turf
+/turf/proc/IgniteTurf(power, fire_color="red")
+	return
