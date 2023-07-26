@@ -139,7 +139,7 @@
 		return
 	var/full_message = speech_args[SPEECH_MESSAGE]
 	for(var/lines in sechailer_voicelines)
-		if(findtext(full_message, lines, 1, 30))
+		if(findtext(full_message, lines))
 			playsound(source, sechailer_voicelines[lines], 50, FALSE)
 			return // only play the first.
 
