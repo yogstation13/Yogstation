@@ -25,9 +25,6 @@
 /mob/living/simple_animal/hostile/carp/ranged
 	name = "magicarp"
 	desc = "50% magic, 50% carp, 100% horrible."
-	icon_state = "magicarp"
-	icon_living = "magicarp"
-	icon_dead = "magicarp_dead"
 	icon_gib = "magicarp_gib"
 	ranged = 1
 	retreat_distance = 2
@@ -36,7 +33,8 @@
 	projectilesound = 'sound/weapons/emitter.ogg'
 	maxHealth = 50
 	health = 50
-	gold_core_spawnable = NO_SPAWN //yogs - fuck this shit
+	gold_core_spawnable = NO_SPAWN
+	greyscale_config = /datum/greyscale_config/carp_magic
 	random_color = FALSE
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
 	/obj/item/projectile/magic/death, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
@@ -44,7 +42,7 @@
 
 /mob/living/simple_animal/hostile/carp/ranged/Initialize(mapload)
 	projectiletype = pick(allowed_projectile_types)
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/carp/ranged/wizard
 	faction = list("wizard")

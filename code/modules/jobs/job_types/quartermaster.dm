@@ -41,7 +41,7 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo/quartermaster
 
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo

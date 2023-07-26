@@ -1,10 +1,6 @@
 /obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
 
-/obj/item/clothing/shoes/sneakers/mime
-	name = "mime shoes"
-	icon_state = "mime"
-
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
 	name = "combat boots"
 	desc = "High speed, low drag combat boots."
@@ -280,8 +276,12 @@
 /obj/item/clothing/shoes/wheelys
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either." //Thanks Fel
-	icon_state = "wheelys"
 	item_state = "wheelys"
+	icon_state = "sneakers"
+	greyscale_config = /datum/greyscale_config/sneakers_wheelys
+	greyscale_config_inhand_left = /datum/greyscale_config/sneakers_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/sneakers_inhand_right
+	greyscale_colors = "#545454#ffffff"
 	actions_types = list(/datum/action/item_action/wheelys)
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/wheelys/W

@@ -9,7 +9,27 @@
 /obj/item/modular_computer/tablet/pda/preset/basic
 	desc = "A standard issue PDA often given to station personnel."
 
-/obj/item/modular_computer/tablet/pda/preset/chem
+/obj/item/modular_computer/tablet/pda/preset/scientist
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#FAFAFA#000099#B347BC"
+
+/obj/item/modular_computer/tablet/pda/preset/geneticist
+	greyscale_config = /datum/greyscale_config/tablet/stripe_split
+	greyscale_colors = "#FAFAFA#000099#0097CA"
+
+/obj/item/modular_computer/tablet/pda/preset/medical
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#FAFAFA#000099#3F96CC"
+
+/obj/item/modular_computer/tablet/pda/preset/medical/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/crew_monitor
+	)	
+	. = ..()
+
+/obj/item/modular_computer/tablet/pda/preset/medical/chem
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#FAFAFA#355FAC#EA6400"
 	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
@@ -17,52 +37,36 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage
 								)
-/obj/item/modular_computer/tablet/pda/preset/chem/Initialize(mapload)
+/obj/item/modular_computer/tablet/pda/preset/medical/chem/Initialize()
 	starting_files |= list(
 		new /datum/computer_file/program/chemscan
 	)	
 	. = ..()
 
-/obj/item/modular_computer/tablet/pda/preset/medical
-/obj/item/modular_computer/tablet/pda/preset/medical/Initialize(mapload)
+/obj/item/modular_computer/tablet/pda/preset/medical/paramed/Initialize()
 	starting_files |= list(
-		new /datum/computer_file/program/crew_monitor
-	)	
-	. = ..()
-
-/obj/item/modular_computer/tablet/pda/preset/paramed
-/obj/item/modular_computer/tablet/pda/preset/paramed/Initialize(mapload)
-	starting_files |= list(
-		new /datum/computer_file/program/crew_monitor,
 		new /datum/computer_file/program/radar/lifeline
 	)	
 	. = ..()
 
-/obj/item/modular_computer/tablet/pda/preset/engineering
-/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize(mapload)
-	starting_files |= list(
-		new /datum/computer_file/program/alarm_monitor,
-		new /datum/computer_file/program/supermatter_monitor,
-		new /datum/computer_file/program/power_monitor
-	)	
-	. = ..()
-
-/obj/item/modular_computer/tablet/pda/preset/warden
-/obj/item/modular_computer/tablet/pda/preset/warden/Initialize(mapload)
-	starting_files |= list(
-		new /datum/computer_file/program/secureye,
-	)	
-	. = ..()
+/obj/item/modular_computer/tablet/pda/preset/medical/viro
+	greyscale_config = /datum/greyscale_config/tablet/stripe_split
+	greyscale_colors = "#FAFAFA#355FAC#57C451"
 
 /obj/item/modular_computer/tablet/pda/preset/robo
-/obj/item/modular_computer/tablet/pda/preset/robo/Initialize(mapload)
+	greyscale_config = /datum/greyscale_config/tablet/stripe_split
+	greyscale_colors = "#484848#0099CC#D94927"
+
+/obj/item/modular_computer/tablet/pda/preset/robo/Initialize()
 	starting_files |= list(
 		new /datum/computer_file/program/robocontrol,
 	)	
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/cargo
-/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize(mapload)
+	greyscale_colors = "#D6B328#6506CA"
+
+/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize()
 	starting_files |= list(
 		new /datum/computer_file/program/bounty_board,
 		new /datum/computer_file/program/budgetorders,
@@ -70,7 +74,29 @@
 	)	
 	. = ..()
 
-/obj/item/modular_computer/tablet/pda/preset/basic/atmos
+/obj/item/modular_computer/tablet/pda/preset/cargo/quartermaster
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#D6B328#6506CA#927444"
+
+/obj/item/modular_computer/tablet/pda/preset/shaft_miner
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#927444#D6B328#6C3BA1"
+
+/obj/item/modular_computer/tablet/pda/preset/engineering
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#D99A2E#69DBF3#E3DF3D"
+
+/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/alarm_monitor,
+		new /datum/computer_file/program/supermatter_monitor,
+		new /datum/computer_file/program/power_monitor
+	)	
+	. = ..()
+
+/obj/item/modular_computer/tablet/pda/preset/atmos
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#EEDC43#00E5DA#727272"
 	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
@@ -78,7 +104,7 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage)
 
-/obj/item/modular_computer/tablet/pda/preset/basic/atmos/Initialize(mapload)
+/obj/item/modular_computer/tablet/pda/preset/atmos/Initialize()
 	starting_files |= list(
 		new /datum/computer_file/program/atmosscan,
 		new /datum/computer_file/program/alarm_monitor,
@@ -86,27 +112,83 @@
 	)	
 	. = ..()
 
-/obj/item/modular_computer/tablet/pda/preset/basic/mime
-	pen_type = /obj/item/toy/crayon/mime
+/obj/item/modular_computer/tablet/pda/preset/network_admin
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#EEDC43#69DBF3#00CC00"
 
-/obj/item/modular_computer/tablet/pda/preset/basic/fountainpen // QM, Lawyer, Curator, Bartender
+/obj/item/modular_computer/tablet/pda/preset/janitor
+	greyscale_colors = "#933ea8#235AB2"
+
+/obj/item/modular_computer/tablet/pda/preset/chaplain
+	greyscale_config = /datum/greyscale_config/tablet/chaplain
+	greyscale_colors = "#333333#D11818"
+
+/obj/item/modular_computer/tablet/pda/preset/botanist
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#50E193#E26F41#71A7CA"
+
+/obj/item/modular_computer/tablet/pda/preset/cook
+	greyscale_colors = "#FAFAFA#A92323"
+
+/obj/item/modular_computer/tablet/pda/preset/artist
+	greyscale_colors = "#3E1111#112334"
+
+/obj/item/modular_computer/tablet/pda/preset/fountainpen //Lawyer, Curator, Bartender
 	pen_type = /obj/item/pen/fountain
 
+/obj/item/modular_computer/tablet/pda/preset/fountainpen/lawyer
+	greyscale_colors = "#4C76C8#FFE243"
+
+/obj/item/modular_computer/tablet/pda/preset/fountainpen/bartender
+	greyscale_colors = "#333333#C7C7C7"
+
+/obj/item/modular_computer/tablet/pda/preset/fountainpen/curator
+	desc = "A small experimental microcomputer."
+	icon_state = "pda-library"
+	greyscale_config = null
+	greyscale_colors = null
+
 // Honk
-/obj/item/modular_computer/tablet/pda/preset/basic/clown
+/obj/item/modular_computer/tablet/pda/preset/mime
+	pen_type = /obj/item/toy/crayon/mime
+	greyscale_config = /datum/greyscale_config/tablet/mime
+	greyscale_colors = "#FAFAFA#EA3232"
+	pen_type = /obj/item/toy/crayon/mime
+
+/obj/item/modular_computer/tablet/pda/preset/clown
 	desc = "A hilarious PDA often given to station pranksters."
-	finish_color = "pink"
+	icon_state = "pda-clown"
+	greyscale_config = null
+	greyscale_colors = null
 	pen_type = /obj/item/toy/crayon/rainbow
 
-/obj/item/modular_computer/tablet/pda/preset/basic/clown/Initialize(mapload)
+/obj/item/modular_computer/tablet/pda/preset/clown/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING)
 
-//for inside one of the nukie lockers
-/obj/item/modular_computer/tablet/pda/preset/basic/syndicate
-	desc = "A standard issue PDA often given to syndicate agents."
+/obj/item/modular_computer/tablet/pda/preset/security
+	greyscale_colors = "#EA3232#0000cc"
 
-/obj/item/modular_computer/tablet/pda/preset/basic/syndicate/Initialize(mapload)
+/obj/item/modular_computer/tablet/pda/preset/security/detective
+	greyscale_colors = "#805A2F#990202"
+
+/obj/item/modular_computer/tablet/pda/preset/security/warden
+	greyscale_config = /datum/greyscale_config/tablet/stripe_split
+	greyscale_colors = "#EA3232#0000CC#363636"
+
+/obj/item/modular_computer/tablet/pda/preset/warden/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/secureye,
+	)	
+	. = ..()
+
+//for inside one of the nukie lockers
+/obj/item/modular_computer/tablet/pda/preset/syndicate
+	desc = "A standard issue PDA often given to syndicate agents."
+	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
+	greyscale_colors = "#a80001#5C070F#000000"
+
+/obj/item/modular_computer/tablet/pda/preset/syndicate/Initialize()
 	. = ..()
 	obj_flags |= EMAGGED //starts emagged
 	starting_files |= list(

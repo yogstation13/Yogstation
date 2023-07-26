@@ -87,6 +87,7 @@
 #include "dragon_expiration.dm"
 #include "dynamic_ruleset_sanity.dm"
 #include "focus_only_tests.dm"
+#include "greyscale_config.dm"
 #include "map_landmarks.dm"
 #include "mapping.dm"
 #include "reagent_id_typos.dm"

@@ -174,6 +174,7 @@
 	desc = "An omni-technological interface."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool_alien"
+	belt_icon_state = "multitool_alien"
 	toolspeed = 0.1
 
 /obj/item/multitool/makeshift

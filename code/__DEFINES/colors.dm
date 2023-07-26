@@ -138,6 +138,15 @@
 #define COLOR_ASSEMBLY_BLUE    "#38559E"
 #define COLOR_ASSEMBLY_PURPLE  "#6F6192"
 
+///Colors for grayscale tools
+#define COLOR_TOOL_BLUE "#1861d5"
+#define COLOR_TOOL_RED "#951710"
+#define COLOR_TOOL_PINK "#d5188d"
+#define COLOR_TOOL_BROWN "#a05212"
+#define COLOR_TOOL_GREEN "#0e7f1b"
+#define COLOR_TOOL_CYAN "#18a2d5"
+#define COLOR_TOOL_YELLOW "#d58c18"
+
 /// The default color for admin say, used as a fallback when the preference is not enabled
 #define DEFAULT_ASAY_COLOR "#996600"
 
@@ -212,6 +221,16 @@
 /// Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 #define LIGHT_COLOR_HALOGEN    "#F0FAFA"
 
+//The GAGS greyscale_colors for each department's computer/machine circuits
+#define CIRCUIT_COLOR_GENERIC "#1A7A13"
+#define CIRCUIT_COLOR_COMMAND "#1B4594"
+#define CIRCUIT_COLOR_SECURITY "#9A151E"
+#define CIRCUIT_COLOR_SCIENCE "#BC4A9B"
+#define CIRCUIT_COLOR_SERVICE "#92DCBA"
+#define CIRCUIT_COLOR_MEDICAL "#00CCFF"
+#define CIRCUIT_COLOR_ENGINEERING "#F8D700"
+#define CIRCUIT_COLOR_SUPPLY "#C47749"
+
 #define CABLE_COLOR_BLUE 	"blue"
 	#define CABLE_HEX_COLOR_BLUE 	COLOR_STRONG_BLUE
 #define CABLE_COLOR_BROWN	 "brown"
@@ -230,6 +249,23 @@
 	#define CABLE_HEX_COLOR_WHITE 	COLOR_WHITE
 #define CABLE_COLOR_YELLOW 	"yellow"
 	#define CABLE_HEX_COLOR_YELLOW 	COLOR_YELLOW
+
+#define COLOR_CARP_PURPLE "#aba2ff"
+#define COLOR_CARP_PINK "#da77a8"
+#define COLOR_CARP_GREEN "#70ff25"
+#define COLOR_CARP_GRAPE "#df0afb"
+#define COLOR_CARP_SWAMP "#e5e75a"
+#define COLOR_CARP_TURQUOISE "#04e1ed"
+#define COLOR_CARP_BROWN "#ca805a"
+#define COLOR_CARP_TEAL "#20e28e"
+#define COLOR_CARP_LIGHT_BLUE "#4d88cc"
+#define COLOR_CARP_RUSTY "#dd5f34"
+#define COLOR_CARP_RED "#fd6767"
+#define COLOR_CARP_YELLOW "#f3ca4a"
+#define COLOR_CARP_BLUE "#09bae1"
+#define COLOR_CARP_PALE_GREEN "#7ef099"
+#define COLOR_CARP_SILVER "#fdfbf3"
+#define COLOR_CARP_DARK_BLUE "#3a384d"
 
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,

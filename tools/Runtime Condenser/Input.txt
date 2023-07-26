@@ -668,14 +668,14 @@ Borg module reset board (/obj/item/borg/upgrade/reset): action(Engineering Cybor
 Engineering Cyborg -133 (/mob/living/silicon/robot): attackby(Borg module reset board (/obj/item/borg/upgrade/reset), Michigan Slim (/mob/living/carbon/human))
 Engineering Cyborg -133 (/mob/living/silicon/robot): DblClick(the floor (95,85,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=18;left=1;scr...")
 Engineering Cyborg -133 (/mob/living/silicon/robot): Click(the floor (95,85,1) (/turf/simulated/floor), "mapwindow.map", "icon-x=14;icon-y=18;left=1;scr...")
-runtime error: undefined proc or verb /obj/machinery/portable_atmospherics/canister/toxins/attack().
+runtime error: undefined proc or verb /obj/machinery/portable_atmospherics/canister/plasma/attack().
 
 proc name: attackby (/mob/attackby)
   source file: items.dm,334
   usr: Watt Malker (/mob/living/carbon/human)
   src: Black Dick Bishop (/mob/living/carbon/human)
   call stack:
-Black Dick Bishop (/mob/living/carbon/human): attackby(Canister \[Toxin (Bio)] (OPEN ... (/obj/machinery/portable_atmospherics/canister/toxins), Watt Malker (/mob/living/carbon/human), "chest")
+Black Dick Bishop (/mob/living/carbon/human): attackby(Canister \[Toxin (Bio)] (OPEN ... (/obj/machinery/portable_atmospherics/canister/plasma), Watt Malker (/mob/living/carbon/human), "chest")
 runtime error: undefined variable /datum/preferences/var/fields
 proc name: Topic (/obj/machinery/computer/cloning/Topic)
   source file: cloning.dm,370

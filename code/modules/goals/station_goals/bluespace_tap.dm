@@ -44,7 +44,7 @@
 
 /obj/item/circuitboard/machine/bluespace_tap
 	name = "Bluespace Harvester"
-	icon_state = "command"
+	greyscale_colors = CIRCUIT_COLOR_COMMAND
 	build_path = /obj/machinery/power/bluespace_tap
 	req_components = list(
 							/obj/item/stock_parts/capacitor/quadratic = 5,//Probably okay, right?

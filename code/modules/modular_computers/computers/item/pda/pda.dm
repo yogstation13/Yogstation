@@ -1,10 +1,16 @@
 /obj/item/modular_computer/tablet/pda
 	name = "\improper PDA"
 	icon = 'icons/obj/modular_pda.dmi'
-	icon_state = "pda-red"
-	icon_state_base = "pda"
+	icon_state = "pda"
+	icon_state_base = "tablet"
 	icon_state_unpowered = "pda"
 	icon_state_powered = "pda"
+	icon_state_menu = "menu"
+	greyscale_config = /datum/greyscale_config/tablet
+	greyscale_colors = "#999875#a92323"
+
+	variants = null
+
 	hardware_flag = PROGRAM_PDA
 	max_hardware_size = WEIGHT_CLASS_TINY
 	w_class = WEIGHT_CLASS_SMALL

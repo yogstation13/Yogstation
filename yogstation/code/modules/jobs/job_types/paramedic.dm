@@ -37,7 +37,7 @@
 	name = "Paramedic"
 	jobtype = /datum/job/paramedic
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/paramed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical/paramed
 
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
 	ears = /obj/item/radio/headset/headset_med

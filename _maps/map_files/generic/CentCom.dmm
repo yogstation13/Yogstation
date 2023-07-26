@@ -19132,7 +19132,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aMY" = (
@@ -23620,7 +23620,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aWb" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aWc" = (
