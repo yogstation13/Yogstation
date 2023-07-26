@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - soundadd: "Syndicate Beacons (bombs) now use a phasing sound instead of a click"
