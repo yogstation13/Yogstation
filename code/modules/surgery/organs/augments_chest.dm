@@ -126,12 +126,12 @@
 	name = "coagulant implant"
 	desc = "This implant will periodically inject you with coagulant drugs if it detects bleeding."
 	icon_state = "chest_implant"
-	implant_color = "#AD0000"
+	implant_color = "#640000"
 	slot = ORGAN_SLOT_HEART_AID
 	COOLDOWN_DECLARE(inject_cooldown)
 	var/cooldown_duration = 1 MINUTES
 	var/chemical = /datum/reagent/medicine/coagulant
-	var/coagamount = 8
+	var/coagamount = 5
 
 /obj/item/organ/cyberimp/chest/coagulant/on_life()
 	if(!owner.stat)
@@ -142,20 +142,17 @@
 		return
 	if(owner.reagents?.has_reagent(chemical))//no overdose, normally
 		return
-	for(var/i in owner.all_wounds)
-		var/datum/wound/iter_wound = i
-		if(iter_wound.blood_flow)
-			inject()
-			COOLDOWN_START(src, inject_cooldown, cooldown_duration)
-			break
-	to_chat(owner, span_notice("Your [src] acts quickly in response to trauma."))
+	if(owner.is_bleeding())
+		activate()
+		COOLDOWN_START(src, inject_cooldown, cooldown_duration)
+		to_chat(owner, span_notice("Your [src] acts quickly in response to your bleeding."))
 
-/obj/item/organ/cyberimp/chest/coagulant/emp_act
-	inject()
-	inject()
+/obj/item/organ/cyberimp/chest/coagulant/emp_act()
+	activate()
+	activate()
 	to_chat(owner, span_danger("Your blood feels thicker running through your veins."))
 
-/obj/item/organ/cyberimp/chest/coagulant/proc/inject()
+/obj/item/organ/cyberimp/chest/coagulant/proc/activate()
 	owner.reagents.add_reagent(chemical, coagamount)
 
 /obj/item/organ/cyberimp/chest/thrusters
