@@ -15,20 +15,18 @@
 	"}
 	return dat
 
-/obj/item/implant/mindslave/implant(mob/source, mob/user)
+/obj/item/implant/mindslave/implant(mob/living/carbon/target, mob/user, silent = FALSE, force = FALSE)
 
-	if(!source.mind)
-		to_chat(user.mind, span_notice("[source] doesn't posses the mental capabilities to be a slave."))
+	if(!target.mind)
+		to_chat(user, span_notice("[target] doesn't posses the mental capabilities to be a slave."))
 		return FALSE
-
-	var/mob/living/carbon/target = source
 	mindmaster = user
 
 	if(target == mindmaster)
 		to_chat(mindmaster, span_notice("You can't implant yourself!"))
 		return FALSE
 
-	var/obj/item/implant/mindslave/imp = locate(src.type) in source
+	var/obj/item/implant/mindslave/imp = locate(src.type) in target
 	if(imp)
 		to_chat(mindmaster, span_warning("[target] is already a slave!"))
 		return FALSE
