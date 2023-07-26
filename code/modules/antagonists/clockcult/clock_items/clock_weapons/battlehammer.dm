@@ -7,7 +7,7 @@
 	armour_penetration = -30
 	sharpness = SHARP_NONE
 	attack_verb = list("bashed", "smitted", "hammered", "attacked")
-	clockwork_desc = "A powerful hammer of Ratvarian making. Enemies hit with it would be flung back."
+	clockwork_desc = "A powerful twohanded hammer of Ratvarian making. Enemies hit by it will be flung back."
 
 /obj/item/clockwork/weapon/brass_battlehammer/Initialize(mapload)
 	. = ..()
