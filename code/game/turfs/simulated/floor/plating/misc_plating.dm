@@ -182,6 +182,7 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	flammability = 0
 
 /turf/open/floor/plating/ice/Initialize(mapload)
 	. = ..()
