@@ -12,5 +12,5 @@
 
 /obj/emitter/sparks/flare/Initialize(mapload)
 	. = ..()
-	add_filter("bloom" , 1 , list(type="bloom", size=3, offset = 0.5, alpha = 220))
+	add_filter(name = "bloom" , priority = 1 , params = list(type="bloom", size=3, offset = 0.5, alpha = 220))
 

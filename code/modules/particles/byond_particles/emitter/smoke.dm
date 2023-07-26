@@ -4,7 +4,7 @@
 
 /obj/emitter/fire_smoke/Initialize(mapload)
 	. = ..()
-	add_filter("blur", 1, list(type="blur", size=3))
+	add_filter(name = "blur", priority = 1, params = list(type="blur", size=3))
 
 
 /obj/emitter/flare_smoke
@@ -13,7 +13,7 @@
 
 /obj/emitter/flare_smoke/Initialize(mapload, time, _color)
 	. = ..()
-	add_filter("blur", 1, list(type="blur", size=1.5))
+	add_filter(name = "blur", priority = 1, params = list(type="blur", size=1.5))
 	particles.position = list(8,-10,0)
 
 /particles/smoke
