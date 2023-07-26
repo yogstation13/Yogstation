@@ -143,14 +143,14 @@
 		if(4)
 			I.damtype = BURN
 			I.force += 2
-			I.light_power = 1.5
+			I.light_power = 1
 			I.light_range = 2
 			I.light_color = LIGHT_COLOR_FIRE
 			to_chat(user, "<span class='neovgre'>[I] begins to emit an intense heat!</span>")
 			return
 		if(5)
 			I.light_power = 3
-			I.light_range = 2
+			I.light_range = 3
 			I.light_color = LIGHT_COLOR_CLOCKWORK
 			I.block_chance += 15
 			to_chat(user, "<span class='neovgre'>[I] shines with a brilliant protecting light!</span>")
