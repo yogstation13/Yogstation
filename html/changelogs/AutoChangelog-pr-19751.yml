@@ -1,7 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added the BFG-90 \"Graze\" Radioactive Cannon mech weapon"
-  - tweak: "Moved around some weapons research nodes"
-  - tweak: "Exotic Ammo now requires Ballistic Weaponry research"
-  - tweak: "Experimental Ammo now only requires Exotic Ammo instead of Ballistic Weaponry and Exotic Ammo"

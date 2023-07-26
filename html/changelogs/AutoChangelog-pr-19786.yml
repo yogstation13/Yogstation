@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Remnant Liquidator injects sodium thiopental before the cyanide now"
-  - tweak: "Injection is now Disarm Grab Disarm instead of Disarm Harm Disarm"
