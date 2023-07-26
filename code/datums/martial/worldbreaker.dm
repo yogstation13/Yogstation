@@ -22,6 +22,7 @@
 #define THROW_TOSSDMG 10 //the damage dealt by the initial throw
 #define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
 #define THROW_OBJDMG 500 //Total amount of structure damage that can be done
+#define COOLDOWN_GRAB 0.8 SECONDS //basically just to prevent infinite stunlock spam
 
 /datum/martial_art/worldbreaker
 	name = "Worldbreaker"
@@ -31,6 +32,7 @@
 	var/recalibration = /mob/living/carbon/human/proc/worldbreaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
+	COOLDOWN_DECLARE(next_grab)
 	COOLDOWN_DECLARE(next_balloon)
 	COOLDOWN_DECLARE(next_pummel)
 	var/datum/action/cooldown/worldstomp/linked_stomp
@@ -339,6 +341,11 @@
 	target.add_fingerprint(user, FALSE)
 
 	if(isliving(target) && target != user)
+		if(!COOLDOWN_FINISHED(src, next_grab))
+			return
+		COOLDOWN_START(src, next_grab, COOLDOWN_GRAB)
+		user.changeNext_move(COOLDOWN_GRAB + 1)
+
 		playsound(user, 'sound/weapons/thudswoosh.ogg', 65, FALSE, -1) //play sound here incase some ungrabbable object was clicked
 		var/mob/living/victim = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
@@ -703,3 +710,4 @@
 #undef THROW_TOSSDMG
 #undef THROW_SLAMDMG
 #undef THROW_OBJDMG
+#undef COOLDOWN_GRAB
