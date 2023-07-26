@@ -441,3 +441,23 @@
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
 	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/actuators
+	name = "precision arm actuators"
+	desc = "Carefully calibrated actuators design to be implanted inside one's arms. Allows the host to perform tasks at a greater speed without risking mistakes."
+	actions_types = null //can't be toggled because it's a passive
+
+/obj/item/organ/cyberimp/arm/actuators/l
+	zone = BODY_ZONE_L_ARM
+
+/obj/item/organ/cyberimp/arm/actuators/Insert(mob/living/carbon/M, special, drop_if_replaced, special_zone)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/person = M
+		person.physiology.do_after_speed *= 0.9
+	
+/obj/item/organ/cyberimp/arm/actuators/Remove(mob/living/carbon/M, special)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/person = M
+		person.physiology.do_after_speed /= 0.9

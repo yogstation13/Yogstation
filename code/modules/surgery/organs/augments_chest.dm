@@ -122,6 +122,42 @@
 	syndicate_implant = TRUE
 	heal_amount = 2
 
+/obj/item/organ/cyberimp/chest/coagulant
+	name = "coagulant implant"
+	desc = "This implant will periodically inject you with coagulant drugs if it detects bleeding."
+	icon_state = "chest_implant"
+	implant_color = "#AD0000"
+	slot = ORGAN_SLOT_HEART_AID
+	COOLDOWN_DECLARE(inject_cooldown)
+	var/cooldown_duration = 1 MINUTES
+	var/chemical = /datum/reagent/medicine/coagulant
+	var/coagamount = 8
+
+/obj/item/organ/cyberimp/chest/coagulant/on_life()
+	if(!owner.stat)
+		return
+	if(!COOLDOWN_FINISHED(src, inject_cooldown))
+		return
+	if(!owner.all_wounds)
+		return
+	if(owner.reagents?.has_reagent(chemical))//no overdose, normally
+		return
+	for(var/i in owner.all_wounds)
+		var/datum/wound/iter_wound = i
+		if(iter_wound.blood_flow)
+			inject()
+			COOLDOWN_START(src, inject_cooldown, cooldown_duration)
+			break
+	to_chat(owner, span_notice("Your [src] acts quickly in response to trauma."))
+
+/obj/item/organ/cyberimp/chest/coagulant/emp_act
+	inject()
+	inject()
+	to_chat(owner, span_danger("Your blood feels thicker running through your veins."))
+
+/obj/item/organ/cyberimp/chest/coagulant/proc/inject()
+	owner.reagents.add_reagent(chemical, coagamount)
+
 /obj/item/organ/cyberimp/chest/thrusters
 	name = "implantable thrusters set"
 	desc = "An implantable set of thruster ports. They use the gas from environment or subject's internals for propulsion in zero-gravity areas. \
