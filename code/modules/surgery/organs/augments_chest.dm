@@ -138,8 +138,6 @@
 		return
 	if(!COOLDOWN_FINISHED(src, inject_cooldown))
 		return
-	if(!owner.all_wounds)
-		return
 	if(owner.reagents?.has_reagent(chemical))//no overdose, normally
 		return
 	if(owner.is_bleeding())
