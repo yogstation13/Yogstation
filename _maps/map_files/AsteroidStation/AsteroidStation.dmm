@@ -27745,6 +27745,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"imh" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "imi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -94634,7 +94643,7 @@ sni
 bzh
 sni
 sni
-sni
+imh
 rgQ
 sni
 sni
