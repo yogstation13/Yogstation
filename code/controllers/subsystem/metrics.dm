@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(metrics)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/metrics/fire(resumed)
-	var/timestamp = RUSTG_CALL(RUST_G, "unix_timestamp_int")();
+	var/timestamp = rustg_unix_timestamp_int();
 	for(var/datum/controller/subsystem/SS in Master.subsystems)
 		var/metrics = SS.get_metrics()
 		metrics["@timestamp"] = timestamp
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(metrics_publish)
 
 /datum/controller/subsystem/metrics_publish/proc/queue_publish()
 	if (length(SSmetrics.queue) > threshold)
-		var/id = RUSTG_CALL(RUST_G, "influxdb2_publish")(json_encode(SSmetrics.queue), CONFIG_GET(string/metrics_api), CONFIG_GET(string/metrics_token))
+		var/id = rustg_influxdb2_publish(json_encode(SSmetrics.queue), CONFIG_GET(string/metrics_api), CONFIG_GET(string/metrics_token))
 		SSmetrics.queue = list()
 		handle_response(id, "subsystem")
 
@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(metrics_publish)
 		last_profile_publish = REALTIMEOFDAY
 		var/data = world.Profile(PROFILE_REFRESH, "json")
 		world.Profile(PROFILE_CLEAR)
-		var/id = RUSTG_CALL(RUST_G, "influxdb2_publish_profile")(
+		var/id = rustg_influxdb2_publish_profile(
 			data, 
 			CONFIG_GET(string/metrics_api_profile), 
 			CONFIG_GET(string/metrics_token_profile), 
