@@ -278,7 +278,7 @@
 				addtimer(CALLBACK(src, PROC_REF(clear_event), null, category), the_event.timeout, TIMER_UNIQUE|TIMER_OVERRIDE)
 			return 0 //Don't have to update the event.
 	the_event = new type(src, param)
-	if(QDELETED(the_event)) // the mood event has been deleted for whatever reason (requires a job, etc)
+	if(QDELETED(the_event)) // The mood event has been deleted for whatever reason (requires a job, etc).
 		return
 
 	mood_events[category] = the_event
