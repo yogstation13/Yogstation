@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - soundadd: ".38 and .357 revolver sounds now have firing sounds ported from TGMC"
