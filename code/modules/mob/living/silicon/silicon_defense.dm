@@ -62,10 +62,14 @@
 		. = TRUE
 	switch(M.a_intent)
 		if(INTENT_HELP)
-			M.visible_message("[M] pets [src].", \
-							span_notice("You pet [src]."))
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT_RND, "pet_borg", /datum/mood_event/pet_borg)
+			if(buckled_mobs)
+				for(var/mob/living/buckled_mob in buckled_mobs)
+					unbuckle_mob(buckled_mob)
+			else
+				M.visible_message("[M] pets [src].", \
+								span_notice("You pet [src]."))
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+        SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT_RND, "pet_borg", /datum/mood_event/pet_borg)
 		if(INTENT_GRAB)
 			grabbedby(M)
 		if(INTENT_DISARM)

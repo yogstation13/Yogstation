@@ -295,7 +295,7 @@
 
 /obj/item/rcl/pre_loaded/Initialize(mapload) //Comes preloaded with cable, for testing stuff
 	. = ..()
-	loaded = new()
+	loaded = new(src)
 	loaded.max_amount = max_amount
 	loaded.amount = max_amount
 	update_appearance(UPDATE_ICON)
