@@ -201,8 +201,7 @@
 
 	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - min(plates, MAX_PLATES)
 	if(plate_change)
-		var/final = plate_change * PLATE_REDUCTION
-		user.physiology.armor = user.physiology.armor.modifyRating(final, final, final, final, final, 0, final, final, final, final, final)//literally everything EXCEPT for bio, because otherwise we become immune to water
+		user.physiology.armor = user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
 	plates = clamp(plates + amount, 0, PLATE_CAP)
 
