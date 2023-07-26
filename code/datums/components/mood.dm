@@ -29,7 +29,6 @@
 		var/datum/hud/hud = owner.hud_used
 		hud.show_hud(hud.hud_version)
 
-
 /datum/component/mood/Destroy()
 	STOP_PROCESSING(SSmood, src)
 	unmodify_hud()
