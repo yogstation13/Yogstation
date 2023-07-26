@@ -9,7 +9,7 @@
 	icon_dead = "base_dead"
 	icon_gib = "carp_gib"
 	health_doll_icon = "megacarp"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/carpmeat = 2)
@@ -23,7 +23,6 @@
 	health = 25
 	spacewalk = TRUE
 
-	harm_intent_damage = 8
 	obj_damage = 50
 	melee_damage_lower = 20
 	melee_damage_upper = 20
@@ -149,7 +148,7 @@
 
 	var/regen_cooldown = 0
 
-/mob/living/simple_animal/hostile/carp/megacarp/Initialize()
+/mob/living/simple_animal/hostile/carp/megacarp/Initialize(mapload)
 	. = ..()
 	name = "[pick(GLOB.megacarp_first_names)] [pick(GLOB.megacarp_last_names)]"
 	melee_damage_lower += rand(2, 10)
@@ -162,7 +161,7 @@
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
 
-/mob/living/simple_animal/hostile/carp/megacarp/Life()
+/mob/living/simple_animal/hostile/carp/megacarp/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(regen_cooldown < world.time)
 		heal_overall_damage(4)

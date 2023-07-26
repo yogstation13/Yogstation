@@ -363,7 +363,7 @@ GLOBAL_LIST_EMPTY(checkouts)
 	pass_flags = PASSTABLE
 	librarianconsole = TRUE
 
-/obj/machinery/computer/libraryconsole/bookmanagement/Initialize()
+/obj/machinery/computer/libraryconsole/bookmanagement/Initialize(mapload)
 	. = ..()
 	if(circuit)
 		circuit.name = "Book Inventory Management Console (Machine Board)"

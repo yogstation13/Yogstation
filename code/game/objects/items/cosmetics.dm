@@ -25,7 +25,7 @@
 	name = "lipstick"
 	icon_state = "random_lipstick"
 
-/obj/item/lipstick/random/Initialize()
+/obj/item/lipstick/random/Initialize(mapload)
 	. = ..()
 	icon_state = "lipstick"
 	colour = pick("red","purple","lime","black","green","blue","white")
@@ -190,6 +190,9 @@
 				var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in GLOB.hair_styles_list
 				if(!get_location_accessible(H, location))
 					to_chat(user, span_warning("The headgear is in the way!"))
+					return
+				if(HAS_TRAIT(H, TRAIT_BALD))
+					to_chat(user, span_warning("[H] is just way too bald. Like, really really bald."))
 					return
 				user.visible_message(span_notice("[user] tries to change [H]'s hairstyle using [src]."), span_notice("You try to change [H]'s hairstyle using [src]."))
 				if(new_style && do_after(user, 6 SECONDS, H))

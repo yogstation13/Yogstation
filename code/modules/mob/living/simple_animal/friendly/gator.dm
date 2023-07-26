@@ -6,7 +6,7 @@
 	icon_state = "gator"
 	icon_living = "gator"
 	icon_dead ="gator_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	speak_emote = list("snaps")
 	emote_hear = list("snaps.","hisses.")
@@ -28,7 +28,7 @@
 	maxHealth = 125
 	speed = 8
 
-/mob/living/simple_animal/hostile/retaliate/gator/Life()
+/mob/living/simple_animal/hostile/retaliate/gator/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(. && sentience_type != SENTIENCE_BOSS)
 		//stolen from goats so alligators can eat you without intervention

@@ -11,7 +11,7 @@
 	growthstages = 5
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy)
 	mutatelist = list(/obj/item/seeds/nettle/death)
-	reagents_add = list(/datum/reagent/toxin/acid = 0.5)
+	reagents_add = list(/datum/reagent/toxin/acid = 0.1)
 
 /obj/item/seeds/nettle/death
 	name = "pack of death-nettle seeds"
@@ -25,7 +25,7 @@
 	yield = 2
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/stinging)
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/acid = 0.5)
+	reagents_add = list(/datum/reagent/toxin/acid/fluacid = 0.1, /datum/reagent/toxin/acid = 0.1)
 	rarity = 20
 
 /obj/item/reagent_containers/food/snacks/grown/nettle // "snack"
@@ -93,7 +93,7 @@
 	desc = "The <span class='danger'>glowing</span> nettle incites <span class='boldannounce'>rage</span> in you just from looking at it!"
 	icon_state = "deathnettle"
 	force = 30
-	throwforce = 15
+	throwforce = 10
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/death/add_juice()
 	..()

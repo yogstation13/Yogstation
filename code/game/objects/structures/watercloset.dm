@@ -11,10 +11,10 @@
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
 
-/obj/structure/toilet/Initialize()
+/obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/toilet/attack_hand(mob/living/user)
@@ -67,12 +67,12 @@
 			w_items -= I.w_class
 	else
 		open = !open
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
-/obj/structure/toilet/update_icon()
+/obj/structure/toilet/update_icon_state()
+	. = ..()
 	icon_state = "toilet[open][cistern]"
-
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_CROWBAR)
@@ -81,7 +81,7 @@
 		if(I.use_tool(src, user, 30))
 			user.visible_message("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!", span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), span_italics("You hear grinding porcelain."))
 			cistern = !cistern
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(cistern)
 		if(user.a_intent != INTENT_HARM)
@@ -131,7 +131,7 @@
 	var/exposed = 0 // can you currently put an item inside
 	var/obj/item/hiddenitem = null // what's in the urinal
 
-/obj/structure/urinal/Initialize()
+/obj/structure/urinal/Initialize(mapload)
 	. = ..()
 	hiddenitem = new /obj/item/reagent_containers/food/snacks/urinalcake
 
@@ -256,7 +256,7 @@
 
 	if(washing_face)
 		SEND_SIGNAL(user, COMSIG_COMPONENT_CLEAN_FACE_ACT, CLEAN_WASH)
-		user.drowsyness = max(user.drowsyness - rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
+		user.adjust_drowsiness_up_to(-rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
 		user.wash_cream()
 	else if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -291,7 +291,7 @@
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
 				user.Paralyze(stunforce)
-				user.stuttering = stunforce/20
+				user.adjust_stutter(stunforce/(2 SECONDS))
 				B.deductcharge(B.hitcost)
 				user.visible_message(span_warning("[user] shocks [user.p_them()]self while attempting to wash the active [B.name]!"), \
 									span_userdanger("You unwisely attempt to wash [B] while it's still on."))
@@ -392,9 +392,10 @@
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/curtain/update_icon()
+/obj/structure/curtain/update_icon_state()
+	. = ..()
 	if(!open)
 		icon_state = "closed"
 		layer = WALL_OBJ_LAYER

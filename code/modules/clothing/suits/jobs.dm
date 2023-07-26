@@ -20,7 +20,7 @@
 	item_state = "bio_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
-	allowed = list(/obj/item/disk, /obj/item/stamp, /obj/item/reagent_containers/food/drinks/flask, /obj/item/melee, /obj/item/storage/lockbox/medal, /obj/item/assembly/flash/handheld, /obj/item/storage/box/matches, /obj/item/lighter, /obj/item/clothing/mask/cigarette, /obj/item/storage/box/fancy/cigarettes, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
+	allowed = list(/obj/item/disk, /obj/item/stamp, /obj/item/reagent_containers/food/drinks/flask, /obj/item/melee, /obj/item/storage/lockbox/medal, /obj/item/assembly/flash/handheld, /obj/item/storage/box/matches, /obj/item/lighter, /obj/item/clothing/mask/cigarette, /obj/item/storage/fancy/cigarettes, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 
 //Chef
 /obj/item/clothing/suit/toggle/chef
@@ -29,7 +29,7 @@
 	icon_state = "chef"
 	item_state = "chef"
 	gas_transfer_coefficient = 0.9
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 10, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = CHEST|GROIN|ARMS
 	allowed = list(/obj/item/kitchen)
 	togglename = "sleeves"
@@ -57,9 +57,30 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/suit/det_suit/Initialize()
+/obj/item/clothing/suit/det_suit/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
+
+/obj/item/clothing/suit/det_suit/civilian
+	desc = "All the class of a trenchcoat without the security fibers."
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+
+/obj/item/clothing/suit/det_suit/civilian/Initialize(mapload)
+	. = ..()
+	//Same permissions as the leather jacket/leather overcoat, because you know, trench coat
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/ballistic/revolver/detective, /obj/item/radio)
+
+/obj/item/clothing/suit/det_suit/civilian/grey
+	name = "grey trenchcoat"
+	desc = "A dark trenchcoat without any security weaving present."
+	icon_state = "greydet"
+	item_state = "greydet"
+
+/obj/item/clothing/suit/det_suit/civilian/tan
+	name = "tan trenchcoat"
+	desc = "A lighter, warmer trenchcoat. This one doesn't offer protection."
+	icon_state = "detective_tan"
+	item_state = "detective_tan"
 
 /obj/item/clothing/suit/det_suit/grey
 	name = "noir trenchcoat"
@@ -68,8 +89,8 @@
 	item_state = "greydet"
 
 /obj/item/clothing/suit/det_suit/grey/evil
-	name = "padded trenchcoat"
-	desc = "A grey trenchcoat that offers significantly more protection than your average duster."
+	name = "grey trenchcoat"
+	desc = "A dark trenchcoat that offers significantly more protection than your average duster."
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 
 /obj/item/clothing/suit/det_suit/tan
@@ -127,26 +148,23 @@
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 
 //Security
-/obj/item/clothing/suit/security/officer
+/obj/item/clothing/suit/armor/officerjacket
 	name = "security officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
 	icon_state = "officerbluejacket"
 	item_state = "officerbluejacket"
-	body_parts_covered = CHEST|ARMS
 
-/obj/item/clothing/suit/security/warden
+/obj/item/clothing/suit/armor/wardenjacket
 	name = "warden's jacket"
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "wardenbluejacket"
 	item_state = "wardenbluejacket"
-	body_parts_covered = CHEST|ARMS
 
-/obj/item/clothing/suit/security/hos
+/obj/item/clothing/suit/armor/hosjacket
 	name = "head of security's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 	item_state = "hosbluejacket"
-	body_parts_covered = CHEST|ARMS
 
 //Surgeon
 /obj/item/clothing/suit/apron/surgical
@@ -176,6 +194,7 @@
 	item_state = "techpriest"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/techpriest
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/head/hooded/techpriest
 	name = "techpriest's hood"

@@ -7,7 +7,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	mob_biotypes = list(MOB_ORGANIC)
+	mob_biotypes = MOB_ORGANIC
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/cheesewedge/parmesan = 2)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -24,12 +24,12 @@
 	var/mob/living/stored_mob
 	var/temporary = FALSE //permanent until made temporary
 
-/mob/living/simple_animal/cheese/Life()
+/mob/living/simple_animal/cheese/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stored_mob)
 		stored_mob.life_tickrate = 0
 	if(temporary)
-		addtimer(CALLBACK(src, .proc/uncheeseify, src), 1 MINUTES, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(uncheeseify), src), 1 MINUTES, TIMER_UNIQUE)
 	if(stat)
 		return
 	if(health < maxHealth)

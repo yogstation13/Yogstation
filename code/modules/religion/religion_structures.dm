@@ -16,10 +16,7 @@
 /obj/structure/altar_of_gods/Initialize(mapload)
 	. = ..()
 	reflect_sect_in_icons()
-
-/obj/structure/altar_of_gods/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, .proc/reflect_sect_in_icons))
+	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, PROC_REF(reflect_sect_in_icons)))
 
 /obj/structure/altar_of_gods/attack_hand(mob/living/user)
 	if(!Adjacent(user) || !user.pulling)
@@ -67,11 +64,12 @@
 	to_chat(user, span_notice("The liquid feels warm and soothing as you touch it. The fountain immediately dries up shortly afterwards."))
 	user.reagents.add_reagent(/datum/reagent/medicine/omnizine/godblood,10) //Hurts your brain and makes you go insane
 	user.reagents.add_reagent(/datum/reagent/toxin/mindbreaker,10) //However, it gives rather potent healing.
-	update_icon()
-	addtimer(CALLBACK(src, .proc/update_icon), time_between_uses)
+	update_appearance(UPDATE_ICON)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), time_between_uses)
 
 
-/obj/structure/holyfountain/update_icon()
+/obj/structure/holyfountain/update_icon_state()
+	. = ..()
 	if(last_process + time_between_uses > world.time)
 		icon_state = "fountain"
 	else

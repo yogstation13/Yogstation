@@ -8,61 +8,68 @@
 	var/unique_blood = null
 	var/labelled = 0
 
-/obj/item/reagent_containers/blood/attack(mob/target, mob/user, def_zone)
-	if(reagents.total_volume > 0)
-		if(target != user)
-			user.visible_message(
-				span_notice("[user] forces [target] to drink from the [src]."),
-				span_notice("You put the [src] up to [target]'s mouth."),
-			)
-			if(!do_mob(user, target, 5 SECONDS))
-				return
-		else
-			if(!do_mob(user, target, 1 SECONDS))
-				return
-			user.visible_message(
-				span_notice("[user] puts the [src] up to their mouth."),
-				span_notice("You take a sip from the [src]."),
-			)
-		// Safety: In case you spam clicked the blood bag on yourself, and it is now empty (below will divide by zero)
-		if(reagents.total_volume <= 0)
-			return
-		var/gulp_size = 5
-		if(is_vampire(target))
-			gulp_size = 10
-			var/datum/antagonist/vampire/V = is_vampire(target)
-			V.usable_blood += 5
-		
-		if(IS_BLOODSUCKER(target))
-			var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-			bloodsuckerdatum.AddBloodVolume(gulp_size)
-			var/mob/living/carbon/H = target
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, target, gulp_size), 5)
-			reagents.reaction(target, INGEST, 100*gulp_size)
-			if(H.blood_volume >= bloodsuckerdatum.max_blood_volume)
-				to_chat(target, span_notice("You are full, and can't consume more blood"))
-				return
-		else
-			reagents.reaction(target, INGEST, gulp_size)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, target, gulp_size), 5)
-		playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), 1)
-	return ..()
+#define BLOODBAG_GULP_SIZE 10
 
-/obj/item/reagent_containers/blood/Initialize()
+/obj/item/reagent_containers/blood/attack(mob/target, mob/user, def_zone)
+	if(!reagents.total_volume)
+		user.balloon_alert(user, "empty!")
+		return ..()
+
+	if(target != user)
+		if(!do_after(user, 5 SECONDS, target))
+			return
+		user.visible_message(
+			span_notice("[user] forces [target] to drink from the [src]."),
+			span_notice("You put the [src] up to [target]'s mouth."),
+		)
+		reagents.reaction(user, INGEST, BLOODBAG_GULP_SIZE)
+		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)
+		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
+		return TRUE
+
+	while(do_after(user, 1 SECONDS, stayStill = FALSE))
+		user.visible_message(
+			span_notice("[user] puts the [src] up to their mouth."),
+			span_notice("You take a sip from the [src]."),
+		)
+		var/datum/antagonist/vampire/V = is_vampire(user)
+		if(V)
+			V.usable_blood += 5
+		reagents.reaction(user, INGEST, BLOODBAG_GULP_SIZE)
+		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)
+		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
+	return TRUE
+
+#undef BLOODBAG_GULP_SIZE
+
+///Bloodbag of Bloodsucker blood (used by Vassals only)
+/obj/item/reagent_containers/blood/o_minus/bloodsucker
+	name = "blood pack"
+	unique_blood = /datum/reagent/blood/bloodsucker
+
+/obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
+	. = ..()
+	if(user.mind.has_antag_datum(/datum/antagonist/ex_vassal) || user.mind.has_antag_datum(/datum/antagonist/vassal/revenge))
+		. += span_notice("Seems to be just about the same color as your Master's...")
+
+
+/obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	if(blood_type != null)
 		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/blood/on_reagent_change(changetype)
 	if(reagents)
 		var/datum/reagent/blood/B = reagents.has_reagent(/datum/reagent/blood)
 		if(B && B.data && B.data["blood_type"])
 			blood_type = B.data["blood_type"]
+		else if(reagents.has_reagent(/datum/reagent/consumable/liquidelectricity))
+			blood_type = "LE"
 		else
 			blood_type = null
 	update_pack_name()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/blood/proc/update_pack_name()
 	if(!labelled)
@@ -71,20 +78,20 @@
 		else
 			name = "blood pack"
 
-/obj/item/reagent_containers/blood/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/blood/update_overlays()
+	. = ..()
 
 	var/v = min(round(reagents.total_volume / volume * 10), 10)
 	if(v > 0)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "bloodpack1")
 		filling.icon_state = "bloodpack[v]"
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		. += filling
 
 /obj/item/reagent_containers/blood/random
 	icon_state = "random_bloodpack"
 
-/obj/item/reagent_containers/blood/random/Initialize()
+/obj/item/reagent_containers/blood/random/Initialize(mapload)
 	icon_state = "bloodpack"
 	blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L")
 	return ..()

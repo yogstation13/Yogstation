@@ -10,7 +10,7 @@
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH, AGENDER)
-	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS)
+	inherent_traits = list(TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_GENELESS,TRAIT_NOHUNGER)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
 	mutanteyes = /obj/item/organ/eyes/night_vision
@@ -86,7 +86,7 @@
 	id = "nightmare"
 	limbs_id = "shadow"
 	burnmod = 1.5
-	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
@@ -121,23 +121,20 @@
 	name = "tumorous mass"
 	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
 	icon_state = "brain-x-d"
-	var/obj/effect/proc_holder/spell/targeted/shadowwalk/shadowwalk
+	var/datum/action/cooldown/spell/jaunt/shadow_walk/our_jaunt
 
-/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/M, special = 0)
+/obj/item/organ/brain/nightmare/Insert(mob/living/carbon/host, special = FALSE)
 	..()
-	if(M.dna.species.id != "nightmare")
-		M.set_species(/datum/species/shadow/nightmare)
-		visible_message(span_warning("[M] thrashes as [src] takes root in [M.p_their()] body!"))
-	var/obj/effect/proc_holder/spell/targeted/shadowwalk/SW = new
-	M.AddSpell(SW)
-	shadowwalk = SW
+	if(host.dna.species.id != "nightmare")
+		host.set_species(/datum/species/shadow/nightmare)
+		visible_message(span_warning("[host] thrashes as [src] takes root in [host.p_their()] body!"))
+	
+	our_jaunt = new(host)
+	our_jaunt.Grant(host)
 
-
-/obj/item/organ/brain/nightmare/Remove(mob/living/carbon/M, special = 0)
-	if(shadowwalk)
-		M.RemoveSpell(shadowwalk)
-	..()
-
+/obj/item/organ/brain/nightmare/Remove(mob/living/carbon/host, special = FALSE)
+	QDEL_NULL(our_jaunt)
+	return ..()
 
 /obj/item/organ/heart/nightmare
 	name = "heart of darkness"
@@ -150,6 +147,9 @@
 	var/obj/item/light_eater/blade
 	decay_factor = 0
 
+/obj/item/organ/heart/nightmare/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/organ/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
@@ -182,11 +182,8 @@
 /obj/item/organ/heart/nightmare/Stop()
 	return 0
 
-/obj/item/organ/heart/nightmare/update_icon()
-	return //always beating visually
-
 /obj/item/organ/heart/nightmare/process()
-	if(QDELETED(owner) || owner.stat != DEAD)
+	if(QDELETED(owner) || owner.stat != DEAD || !owner)
 		respawn_progress = 0
 		return
 	var/turf/T = get_turf(owner)
@@ -228,7 +225,7 @@
 	bare_wound_bonus = 20
 	resistance_flags = ACID_PROOF
 
-/obj/item/light_eater/Initialize()
+/obj/item/light_eater/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
@@ -249,7 +246,7 @@
 			if(borg.lamp_enabled)
 				borg.smash_headlamp()
 		else if(ishuman(AM))
-			for(var/obj/item/O in AM.GetAllContents())
+			for(var/obj/item/O in AM.get_all_contents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 		if(L.pulling && L.pulling.light_range && isitem(L.pulling))
@@ -264,7 +261,7 @@
 		var/obj/item/pda/PDA = O
 		PDA.set_light_on(FALSE)
 		PDA.set_light_range(0) //It won't be turning on again.
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
 		visible_message(span_danger("[O] is disintegrated by [src]!"))

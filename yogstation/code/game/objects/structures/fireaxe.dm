@@ -3,12 +3,13 @@
 	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
 /obj/structure/fireaxecabinet/bridge
-	req_access = list(ACCESS_CAPTAIN)
+	//bridge fireaxe has different access
+	req_one_access = list(ACCESS_CAPTAIN, ACCESS_CE)
 
-/obj/structure/fireaxecabinet/Initialize()//<-- mirrored/overwritten proc
+/obj/structure/fireaxecabinet/Initialize(mapload)//<-- mirrored/overwritten proc
 	. = ..()
 	fireaxe = new
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	//Sets up a spark system
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
@@ -85,7 +86,7 @@
 		audible_message("You hear an audible clunk as the [name]'s bolt [locked ? "retracts" : "locks into place"].")
 		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
 		locked = !locked
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/fireaxecabinet/emag_act(mob/user)
 	//this allows you to emag the fireaxe cabinet, unlocking it immediately.
@@ -104,5 +105,5 @@
 		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
 		locked = 0
 		audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		//Fireaxe Cabinet is now permanently unlocked.

@@ -42,14 +42,12 @@
 		"chat_ghostradio" = CHAT_GHOSTRADIO,
 		"chat_ghostsight" = CHAT_GHOSTSIGHT,
 		"chat_ghostwhisper" = CHAT_GHOSTWHISPER,
+		"chat_looc" = CHAT_LOOC,
 		"chat_ooc" = CHAT_OOC,
 		"chat_prayer" = CHAT_PRAYER,
 		"chat_pullr" = CHAT_PULLR,
-	)
-
-	var/static/list/legacy_yog_toggles = list(
-		"quiet_mode" = QUIET_ROUND,
-		"pref_mood" = PREF_MOOD,
+		"chat_typing_indicator" = CHAT_TYPING_INDICATOR,
+		"ghost_ckey" = GHOST_CKEY,
 	)
 
 /datum/preference_middleware/legacy_toggles/get_character_preferences(mob/user)
@@ -92,7 +90,6 @@
 
 	var/list/new_game_preferences = list()
 	var/is_admin = is_admin(user.client)
-	var/is_donor = is_donator(user.client)
 
 	for (var/toggle_name in legacy_toggles)
 		if (!is_admin && (toggle_name in admin_only_legacy_toggles))
@@ -117,12 +114,6 @@
 			continue
 
 		new_game_preferences[toggle_name] = (preferences.chat_toggles & legacy_chat_toggles[toggle_name]) != 0
-	
-	for (var/toggle_name in legacy_yog_toggles)
-		if (!is_donor && (toggle_name in donor_only_yog_toggles))
-			continue
-
-		new_game_preferences[toggle_name] = (preferences.yogtoggles & legacy_yog_toggles[toggle_name]) != 0
 
 	return list(
 		PREFERENCE_CATEGORY_GAME_PREFERENCES = new_game_preferences,
@@ -152,15 +143,6 @@
 			preferences.chat_toggles |= legacy_chat_flag
 		else
 			preferences.chat_toggles &= ~legacy_chat_flag
-
-		return TRUE
-	
-	var/legacy_yog_flag = legacy_yog_toggles[preference]
-	if (!isnull(legacy_yog_flag))
-		if (value)
-			preferences.yogtoggles |= legacy_yog_flag
-		else
-			preferences.yogtoggles &= ~legacy_yog_flag
 
 		return TRUE
 

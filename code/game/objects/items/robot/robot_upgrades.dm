@@ -435,7 +435,7 @@
 
 /obj/item/borg/upgrade/selfrepair/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_dropped), 1)
+	addtimer(CALLBACK(src, PROC_REF(check_dropped)), 1)
 
 /obj/item/borg/upgrade/selfrepair/proc/check_dropped()
 	if(loc != cyborg)
@@ -452,21 +452,21 @@
 	else
 		to_chat(cyborg, span_notice("You deactivate the self-repair module."))
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/borg/upgrade/selfrepair/update_icon()
+/obj/item/borg/upgrade/selfrepair/update_icon_state()
+	. = ..()
 	if(cyborg)
 		icon_state = "selfrepair_[on ? "on" : "off"]"
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.UpdateButtonIcon()
+		for(var/datum/action/A as anything in actions)
+			A.build_all_button_icons()
 	else
 		icon_state = "cyborg_upgrade5"
 
 /obj/item/borg/upgrade/selfrepair/proc/deactivate_sr()
 	STOP_PROCESSING(SSobj, src)
 	on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/borg/upgrade/selfrepair/process()
 	if(world.time < next_repair)
@@ -522,26 +522,19 @@
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
-			if(H.accepts_reagent_upgrades)
-				for(var/re in additional_reagents)
-					H.add_reagent(re)
+		for(var/obj/item/reagent_containers/borghypo/medical/H in R.module.modules)
+			H.upgrade_hypo()
 
 /obj/item/borg/upgrade/hypospray/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
-			if(H.accepts_reagent_upgrades)
-				for(var/re in additional_reagents)
-					H.del_reagent(re)
+		for(var/obj/item/reagent_containers/borghypo/medical/H in R.module.modules)
+			H.remove_hypo_upgrade()
 
 /obj/item/borg/upgrade/hypospray/expanded
 	name = "medical cyborg expanded hypospray"
 	desc = "An upgrade to the Medical module's hypospray, allowing it \
 		to treat a wider range of conditions and problems."
-	additional_reagents = list(/datum/reagent/medicine/mannitol, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate,
-		/datum/reagent/medicine/mutadone, /datum/reagent/medicine/haloperidol, /datum/reagent/medicine/oxandrolone, /datum/reagent/medicine/sal_acid, /datum/reagent/medicine/rezadone,
-		/datum/reagent/medicine/pen_acid)
 
 /obj/item/borg/upgrade/piercing_hypospray
 	name = "cyborg piercing hypospray"
@@ -582,7 +575,7 @@
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
+		var/obj/item/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
 		if(S)
 			to_chat(user, span_warning("This unit is already equipped with a defibrillator module."))
 			return FALSE
@@ -594,7 +587,7 @@
 /obj/item/borg/upgrade/defib/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
+		for(var/obj/item/shockpaddles/cyborg/S in R.module.modules)
 			R.module.remove_module(S, TRUE)
 
 /obj/item/borg/upgrade/adv_analyzer
@@ -776,8 +769,8 @@
 		R.SetLockdown(1)
 		R.anchored = TRUE
 		R.expansion_count++
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(1, R.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(1, location = R.loc)
 		smoke.start()
 		sleep(0.2 SECONDS)
 		for(var/i in 1 to 4)
@@ -885,3 +878,72 @@
 		to_chat(user, span_warning("Nanotrasen has disallowed this unit from becoming this type of module."))
 		return FALSE
 	return ..()
+
+/obj/item/borg/upgrade/broomer
+	name = "experimental push broom"
+	desc = "An experimental push broom used for efficiently pushing refuse."
+	icon_state = "cyborg_upgrade3"
+	require_module = 1
+	module_type = /obj/item/robot_module/janitor
+	module_flags = BORG_MODULE_JANITOR
+
+/obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
+	if (!..())
+		return
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		to_chat(user, span_warning("This janiborg is already equipped with an experimental broom!"))
+		return FALSE
+	BR = new(R.module)
+	R.module.basic_modules += BR
+	R.module.add_module(BR, FALSE, TRUE)
+
+/obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
+	if (!..())
+		return
+	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		R.module.remove_module(BR, TRUE)
+
+/obj/item/borg/upgrade/snack_dispenser
+	name = "Cyborg Upgrade (Snack Dispenser)"
+	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, service, and clown cyborgs."
+
+/obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
+	if(R.stat == DEAD)
+		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
+		return FALSE
+	// module_type doesn't support more than 1 module. Thus, this:
+	if(!istype(R.module, /obj/item/robot_module/medical) && !istype(R.module, /obj/item/robot_module/peacekeeper) && !istype(R.module, /obj/item/robot_module/butler) && !istype(R.module, /obj/item/robot_module/clown))
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(user, "There's no mounting point for the module!")
+		return FALSE
+
+	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.module)
+	R.module.basic_modules += snack_dispenser
+	R.module.add_module(snack_dispenser, FALSE, TRUE)
+
+	for(var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth in R.module.modules) // the SC stands for shitcode
+		R.module.remove_module(cookiesynth, TRUE)
+
+	for(var/obj/item/borg_snack_dispenser/medical/lollipopshooter in R.module.modules)
+		R.module.remove_module(lollipopshooter, TRUE)
+
+	return TRUE
+
+/obj/item/borg/upgrade/snack_dispenser/deactivate(mob/living/silicon/robot/R, user)
+	. = ..()
+	if(!.)
+		return
+
+	for(var/obj/item/borg_snack_dispenser/snack_dispenser in R.module.modules)
+		R.module.remove_module(snack_dispenser, TRUE)
+
+	if(istype(R.module, /obj/item/robot_module/peacekeeper))
+		var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth = new(R.module)
+		R.module.basic_modules += cookiesynth
+		R.module.add_module(cookiesynth, FALSE, TRUE)
+	else // Guess they're medical, service, or clown.
+		var/obj/item/borg_snack_dispenser/medical/lollipopshooter = new(R.module)
+		R.module.basic_modules += lollipopshooter
+		R.module.add_module(lollipopshooter, FALSE, TRUE)

@@ -1160,8 +1160,8 @@
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/observer = L
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_W_UNIFORM)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), SLOT_SHOES)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), ITEM_SLOT_ICLOTHING)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), ITEM_SLOT_FEET)
 		L.Unconscious(10 SECONDS)
 		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdomeobserve))
@@ -1457,7 +1457,7 @@
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		usr.client.jumptomob(M)
+		usr.client.jump_to_mob(M)
 
 	else if(href_list["getmob"])
 		if(!check_rights(R_ADMIN))
@@ -1571,7 +1571,7 @@
 	else if(href_list["dupe_marked_datum"])
 		if(!check_rights(R_SPAWN))
 			return
-		return DuplicateObject(marked_datum, perfectcopy=1, newloc=get_turf(usr))
+		return duplicate_object(marked_datum, spawning_location=get_turf(usr))
 
 	else if(href_list["object_list"])			//this is the laggiest thing ever
 		if(!check_rights(R_SPAWN))
@@ -2103,60 +2103,6 @@
 		popup.set_content(dat.Join())
 		popup.open(FALSE)
 
-	else if(href_list["vpnlookup"])
-		if(!check_rights(R_ADMIN))
-			return
-		
-		var/ip = href_list["vpnlookup"]
-
-		if(!ip)
-			return
-		
-		if(!CONFIG_GET(string/vpn_lookup_api) || !CONFIG_GET(string/vpn_lookup_key))
-			to_chat(usr, span_warning("VPN Lookup is disabled!"))
-			return
-		
-		var/datum/http_request/req = new()
-		req.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/vpn_lookup_api)]/[ip]?vpn=1&risk=1&asn=1&key=[CONFIG_GET(string/vpn_lookup_key)]")
-		req.begin_async()
-		UNTIL(req.is_complete())
-		var/datum/http_response/response = req.into_response()
-		var/list/body = json_decode(response.body)
-		var/list/dat = list()
-		dat += "<div align='center'>STATUS: [uppertext(body["status"])]</div>"
-		dat += "<br>"
-		if(body["status"] != "ok" && body["message"])
-			dat += "<div align='center'>[uppertext(body["message"])]</div>"
-			dat += "<br>"
-		if(body[ip] && islist(body[ip]))
-			if(body[ip]["proxy"])
-				dat += "<div align='center'><b>Proxy?: [body[ip]["proxy"]]</b></div>"
-				dat += "<br>"
-			if(body[ip]["type"])
-				dat += "<div align='center'><b>Type: [body[ip]["type"]]</b></div>"
-				dat += "<br>"
-			if(body[ip]["risk"])
-				dat += "<div align='center'><b>Risk Rating: [body[ip]["risk"]]/100</b></div>"
-				dat += "<br>"
-			if(body[ip]["operator"] && islist(body[ip]["operator"]) && body[ip]["operator"]["name"])
-				dat += "<div align='center'><b>"
-				dat += "Operator: [body[ip]["operator"]["name"]]"
-				if(body[ip]["operator"]["url"])
-					dat += " @ [body[ip]["operator"]["url"]]"
-				dat += "</b></div><br>"
-			dat += "Additional Info:"
-			dat += "<br>"
-			dat += "[ip]"
-			dat += "<br>"
-			for(var/P in body[ip])
-				if(P != "proxy" && P != "type" && P != "risk" && P != "operator")
-					dat += "[P]: [body[ip][P]]"
-					dat += "<br>"
-		
-		var/datum/browser/popup = new(usr, "vpnlookup-[ip]", "<div align='center'>VPN Lookup</div>", 700, 600)
-		popup.set_content(dat.Join())
-		popup.open(FALSE)
-
 	else if(href_list["modantagrep"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2347,7 +2293,7 @@
 
 	else if(href_list["CentcomFaxReply"])
 		var/obj/machinery/photocopier/faxmachine/F = locate(href_list["originfax"]) in GLOB.allfaxes
-		if(!istype(F)) 
+		if(!istype(F))
 			to_chat(src.owner, span_danger("Unable to locate fax!"))
 			return
 		owner.send_admin_fax(F)
@@ -2355,13 +2301,13 @@
 /client/proc/send_global_fax()
 	set category = "Admin.Round Interaction"
 	set name = "Send Global Fax"
-	if(!check_rights(R_ADMIN)) 
+	if(!check_rights(R_ADMIN))
 		return
 	send_admin_fax()
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
 	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from CentCom", "") as text|null
-	if(!inputsubject)	
+	if(!inputsubject)
 		return
 
 	var/inputmessage = input(src, "Please enter the message sent to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from CentCom", "") as message|null
@@ -2388,11 +2334,11 @@
 		minor_announce("Central Command has sent a fax message, it will be printed out at all fax machines.")
 
 	if(istype(F))
-		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
+		INVOKE_ASYNC(F, TYPE_PROC_REF(/obj/machinery/photocopier/faxmachine, recieve_admin_fax), customname, T)
 		return
-	
+
 	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
-		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
+		INVOKE_ASYNC(fax, TYPE_PROC_REF(/obj/machinery/photocopier/faxmachine, recieve_admin_fax), customname, T)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

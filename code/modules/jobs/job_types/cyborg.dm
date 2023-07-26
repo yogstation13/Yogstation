@@ -1,10 +1,8 @@
 /datum/job/cyborg
 	title = "Cyborg"
 	description = "Assist the crew, follow your laws, obey your AI."
-	flag = CYBORG
 	orbit_icon = "robot"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 2
@@ -21,15 +19,7 @@
 		/datum/job_department/silicon,
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	smells_like = "inorganic indifference"
-
-/datum/job/cyborg/proc/EclipseStationChanges()
-	spawn_positions = 3
-
-/datum/job/cyborg/proc/OmegaStationChanges()
-	spawn_positions = 1
 
 /datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	if(visualsOnly)
@@ -37,6 +27,7 @@
 	return H.Robotize(FALSE, latejoin)
 
 /datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
+	. = ..()
 	R.updatename(M.client)
 	R.gender = NEUTER
 

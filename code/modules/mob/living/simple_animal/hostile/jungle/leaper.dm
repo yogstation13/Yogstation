@@ -10,7 +10,7 @@
 	icon_state = "leaper"
 	icon_living = "leaper"
 	icon_dead = "leaper_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	maxHealth = 300
 	health = 300
 	ranged = TRUE
@@ -60,7 +60,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 3
 
-/obj/effect/temp_visual/leaper_projectile_impact/Initialize()
+/obj/effect/temp_visual/leaper_projectile_impact/Initialize(mapload)
 	. = ..()
 	new /obj/effect/decal/cleanable/leaper_sludge(get_turf(src))
 
@@ -78,7 +78,7 @@
 	max_integrity = 10
 	density = FALSE
 
-/obj/structure/leaper_bubble/Initialize()
+/obj/structure/leaper_bubble/Initialize(mapload)
 	. = ..()
 	float(on = TRUE)
 	QDEL_IN(src, 100)
@@ -126,7 +126,7 @@
 	pixel_y = -32
 	duration = 30
 
-/mob/living/simple_animal/hostile/jungle/leaper/Initialize()
+/mob/living/simple_animal/hostile/jungle/leaper/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 
@@ -165,7 +165,7 @@
 		if(!hopping)
 			Hop()
 
-/mob/living/simple_animal/hostile/jungle/leaper/Life()
+/mob/living/simple_animal/hostile/jungle/leaper/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	update_icons()
 
@@ -204,7 +204,7 @@
 	if(AIStatus == AI_ON && ranged_cooldown <= world.time)
 		projectile_ready = TRUE
 		update_icons()
-	throw_at(new_turf, max(3,get_dist(src,new_turf)), 1, src, FALSE, callback = CALLBACK(src, .proc/FinishHop))
+	throw_at(new_turf, max(3,get_dist(src,new_turf)), 1, src, FALSE, callback = CALLBACK(src, PROC_REF(FinishHop)))
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/FinishHop()
 	density = TRUE
@@ -214,18 +214,18 @@
 	playsound(src.loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 	if(target && AIStatus == AI_ON && projectile_ready && !ckey)
 		face_atom(target)
-		addtimer(CALLBACK(src, .proc/OpenFire, target), 5)
+		addtimer(CALLBACK(src, PROC_REF(OpenFire), target), 5)
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/BellyFlop()
 	var/turf/new_turf = get_turf(target)
 	hopping = TRUE
 	notransform = TRUE
 	new /obj/effect/temp_visual/leaper_crush(new_turf)
-	addtimer(CALLBACK(src, .proc/BellyFlopHop, new_turf), 30)
+	addtimer(CALLBACK(src, PROC_REF(BellyFlopHop), new_turf), 30)
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/BellyFlopHop(turf/T)
 	density = FALSE
-	throw_at(T, get_dist(src,T),1,src, FALSE, callback = CALLBACK(src, .proc/Crush))
+	throw_at(T, get_dist(src,T),1,src, FALSE, callback = CALLBACK(src, PROC_REF(Crush)))
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/Crush()
 	hopping = FALSE

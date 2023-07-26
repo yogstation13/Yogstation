@@ -64,7 +64,7 @@
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [AREACOORD(T)]")
 
 		playsound(src, 'sound/effects/phasein.ogg', 100, TRUE)
-		new /obj/effect/particle_effect/smoke(get_turf(src))
+		new /obj/effect/particle_effect/fluid/smoke(get_turf(src))
 		qdel(src)
 
 /obj/item/survivalcapsule/luxury
@@ -138,11 +138,10 @@
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "sleeper"
 
-/obj/machinery/sleeper/survival_pod/update_icon()
-	if(state_open)
-		cut_overlays()
-	else
-		add_overlay("sleeper_cover")
+/obj/machinery/sleeper/survival_pod/update_overlays()
+	. = ..()
+	if(!state_open)
+		. += "sleeper_cover"
 
 //Lifeform Stasis Unit
 /obj/machinery/stasis/survival_pod
@@ -154,8 +153,9 @@
 /obj/machinery/stasis/survival_pod/play_power_sound()
 	return
 
-/obj/machinery/stasis/survival_pod/update_icon()
-	return
+/obj/machinery/stasis/survival_pod/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 //Computer
 /obj/item/gps/computer
@@ -206,8 +206,9 @@
 	pitches = FALSE
 	var/empty = FALSE
 
-/obj/machinery/smartfridge/survival_pod/update_icon()
-	return
+/obj/machinery/smartfridge/survival_pod/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()
@@ -319,10 +320,9 @@
 						/obj/item/gun/magic/wand/fireball,
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
-						/obj/item/phylactery,
 						/obj/item/bikehorn)
 
-/obj/item/fakeartefact/Initialize()
+/obj/item/fakeartefact/Initialize(mapload)
 	. = ..()
 	var/obj/item/I = pick(possible)
 	name = initial(I.name)

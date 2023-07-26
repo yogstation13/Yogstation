@@ -18,6 +18,7 @@
 #define MOVE_INTENT_RUN  "run"
 
 //Blood volumes, in cL
+#define BLOOD_VOLUME_MAX_LETHAL		2150 // The lethal amount for a good semaritan, based off IRL data about vampires
 #define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
 #define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
 #define BLOOD_VOLUME_XENO			700 // Based off data from my asshole
@@ -67,16 +68,16 @@
 #define BLOODCRAWL_EAT 2
 
 //Mob bio-types
-#define MOB_ORGANIC 	"organic"
-#define MOB_INORGANIC 	"inorganic"
-#define MOB_ROBOTIC 	"robotic"
-#define MOB_UNDEAD		"undead"
-#define MOB_HUMANOID 	"humanoid"
-#define MOB_BUG 		"bug"
-#define MOB_BEAST		"beast"
-#define MOB_EPIC		"epic" //megafauna
-#define MOB_REPTILE		"reptile"
-#define MOB_SPIRIT		"spirit"
+#define MOB_ORGANIC 	(1<<0)
+#define MOB_INORGANIC 	(1<<1)
+#define MOB_ROBOTIC 	(1<<2)
+#define MOB_UNDEAD		(1<<3)
+#define MOB_HUMANOID 	(1<<4)
+#define MOB_BUG 		(1<<5)
+#define MOB_BEAST		(1<<6)
+#define MOB_EPIC		(1<<7) //megafauna
+#define MOB_REPTILE		(1<<8)
+#define MOB_SPIRIT		(1<<9)
 
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
@@ -100,13 +101,9 @@
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
-//Reagent Metabolization flags, defines the type of reagents that affect this mob
-#define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
-#define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
-
-// Reagent type flags, defines the types of mobs this reagent will affect
-#define ORGANIC 1
-#define SYNTHETIC 2
+// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
+#define ORGANIC (1<<0)
+#define SYNTHETIC (1<<1)
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3

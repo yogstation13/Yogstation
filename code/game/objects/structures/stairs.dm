@@ -34,12 +34,12 @@
 	update_surrounding()
 
 /obj/structure/stairs/proc/update_surrounding()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/i in GLOB.cardinals)
 		var/turf/T = get_step(get_turf(src), i)
 		var/obj/structure/stairs/S = locate() in T
 		if(S)
-			S.update_icon()
+			S.update_appearance(UPDATE_ICON)
 
 /obj/structure/stairs/Uncross(atom/movable/AM, atom/newloc)
 	if(!newloc || !AM)
@@ -54,7 +54,8 @@
 		return FALSE
 	return ..()
 
-/obj/structure/stairs/update_icon()
+/obj/structure/stairs/update_icon_state()
+	. = ..()
 	if(isTerminator())
 		icon_state = "stairs_t"
 	else
@@ -88,7 +89,7 @@
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_TURF_MULTIZ_NEW)
 	var/turf/open/openspace/T = get_step_multiz(get_turf(src), UP)
-	RegisterSignal(T, COMSIG_TURF_MULTIZ_NEW, .proc/on_multiz_new)
+	RegisterSignal(T, COMSIG_TURF_MULTIZ_NEW, PROC_REF(on_multiz_new))
 	listeningTo = T
 
 /obj/structure/stairs/proc/force_open_above()

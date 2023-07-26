@@ -27,7 +27,7 @@
 	var/combat_cooldown = 20
 	var/datum/icon_snapshot/disguise
 	var/stealth_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
-	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 90, ACID = 90)
+	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 60, RAD = 50, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/toggle_nodrop()
 	if(HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT))
@@ -53,10 +53,10 @@
 		H.update_inv_wear_suit()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/suit/armor/abductor/vest/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_WEAR_SUIT) //we only give the mob the ability to activate the vest if he's actually wearing it.
+	if(slot == ITEM_SLOT_OCLOTHING) //we only give the mob the ability to activate the vest if he's actually wearing it.
 		return TRUE
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/SetDisguise(datum/icon_snapshot/entry)
@@ -273,7 +273,7 @@
 		radio_off_mob(M)
 
 /obj/item/abductor/silencer/proc/radio_off_mob(mob/living/carbon/human/M)
-	var/list/all_items = M.GetAllContents()
+	var/list/all_items = M.get_all_contents()
 
 	for(var/obj/I in all_items)
 		if(istype(I, /obj/item/radio/))
@@ -405,8 +405,9 @@
 <br>
 Congratulations! You are now trained for invasive xenobiology research!"}
 
-/obj/item/paper/guides/antag/abductor/update_icon()
-	return
+/obj/item/paper/guides/antag/abductor/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/guides/antag/abductor/AltClick()
 	return //otherwise it would fold into a paperplane.
@@ -442,9 +443,10 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			txt = "probing"
 
 	to_chat(usr, span_notice("You switch the baton to [txt] mode."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/abductor/baton/update_icon()
+/obj/item/abductor/baton/update_icon_state()
+	. = ..()
 	switch(mode)
 		if(BATON_STUN)
 			icon_state = "wonderprodStun"
@@ -518,7 +520,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("The specimen's tinfoil protection is interfering with the sleep inducement!"))
 			L.visible_message(span_danger("[user] tried to induced sleep in [L] with [src], but [L.p_their()] tinfoil protection [L.p_them()]!"), \
 								span_userdanger("You feel a strange wave of heavy drowsiness wash over you, but your tinfoil protection deflects most of it!"))
-			L.drowsyness += 2
+			L.adjust_drowsiness(2 SECONDS)
 			return
 		L.visible_message(span_danger("[user] has induced sleep in [L] with [src]!"), \
 							span_userdanger("You suddenly feel very drowsy!"))
@@ -531,7 +533,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			L.visible_message(span_danger("[user] tried to induce sleep in [L] with [src], but [L.p_their()] tinfoil protection completely protected [L.p_them()]!"), \
 								span_userdanger("Any sense of drowsiness is quickly diminished as your tinfoil protection deflects the effects!"))
 			return
-		L.drowsyness += 1
+		L.adjust_drowsiness(1 SECONDS)
 		to_chat(user, span_warning("Sleep inducement works fully only on stunned specimens! "))
 		L.visible_message(span_danger("[user] tried to induce sleep in [L] with [src]!"), \
 							span_userdanger("You suddenly feel drowsy!"))
@@ -547,7 +549,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 									span_userdanger("[user] begins shaping an energy field around your hands!"))
 			if(do_mob(user, C, 30) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
 				if(!C.handcuffed)
-					C.handcuffed = new /obj/item/restraints/handcuffs/energy/used(C)
+					C.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used(C))
 					C.update_handcuffed()
 					to_chat(user, span_notice("You restrain [C]."))
 					log_combat(user, C, "handcuffed")
@@ -624,10 +626,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 /obj/item/radio/headset/abductor/Initialize(mapload)
 	. = ..()
 	make_syndie()
-
-/obj/item/radio/headset/abductor/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/abductor/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
@@ -647,7 +646,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	user.visible_message(span_notice("[user] places down [src] and activates it."), span_notice("You place down [src] and activate it."))
 	user.dropItemToGround(src)
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50)
-	addtimer(CALLBACK(src, .proc/try_spawn_machine), 30)
+	addtimer(CALLBACK(src, PROC_REF(try_spawn_machine)), 30)
 
 /obj/item/abductor_machine_beacon/proc/try_spawn_machine()
 	var/viable = FALSE

@@ -24,11 +24,9 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.atmos_machinery -= src
-
 	disconnect()
-	qdel(air_contents)
-	air_contents = null
+	QDEL_NULL(air_contents)
+	SSair.atmos_machinery -= src
 
 	return ..()
 
@@ -72,7 +70,7 @@
 	anchored = TRUE //Prevent movement
 	pixel_x = new_port.pixel_x
 	pixel_y = new_port.pixel_y
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/Move()
@@ -88,7 +86,7 @@
 	connected_port = null
 	pixel_x = 0
 	pixel_y = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/AltClick(mob/living/user)
@@ -113,7 +111,7 @@
 		holding = new_tank
 	else
 		holding = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user, params)
@@ -124,7 +122,7 @@
 				return
 			to_chat(user, span_notice("[holding ? "In one smooth motion you pop [holding] out of [src]'s connector and replace it with [T]" : "You insert [T] into [src]"]."))
 			replace_tank(user, FALSE, T)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		if(!(stat & BROKEN))
 			if(connected_port)
@@ -134,7 +132,7 @@
 					"[user] disconnects [src].", \
 					span_notice("You unfasten [src] from the port."), \
 					span_italics("You hear a ratchet."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				return
 			else
 				var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/components/unary/portables_connector) in loc
@@ -149,7 +147,7 @@
 					"[user] connects [src].", \
 					span_notice("You fasten [src] to the port."), \
 					span_italics("You hear a ratchet."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

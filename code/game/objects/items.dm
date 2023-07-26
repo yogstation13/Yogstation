@@ -4,8 +4,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
 // more... RPG-like.
 
-GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, ABOVE_LIGHTING_PLANE))
-
 /obj/item
 	name = "item"
 	icon = 'icons/obj/misc.dmi'
@@ -17,7 +15,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	///Icon file for right inhand overlays
 	var/righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
-	///Icon file for mob worn overlays. 
+	///Icon file for mob worn overlays.
 	///no var for state because it should *always* be the same as icon_state
 	var/icon/mob_overlay_icon
 	//Forced mob worn layer instead of the standard preferred ssize.
@@ -36,7 +34,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 	obj_flags = NONE
 	var/item_flags = NONE
-	
+
 	var/hitsound
 	var/usesound
 	///Used when yate into a mob
@@ -47,7 +45,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	var/pickup_sound
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound
-	
+
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
@@ -73,7 +71,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	var/body_parts_partial_covered = 0 //same bit flags as above, only applies half armor to these body parts
 
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/armour_penetration = 0 //percentage of armour effectiveness to remove
@@ -145,7 +142,13 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 	var/printed = FALSE
 
-/obj/item/Initialize()
+	var/canMouseDown = FALSE
+	/// Does this item have syndicate only functionality via hud buttons? Needs to be in this scope to encompass all Chameleon items - Hopek
+	var/syndicate = FALSE
+	/// item hover FX
+	var/outline_filter
+
+/obj/item/Initialize(mapload)
 
 	materials =	typelist("materials", materials)
 
@@ -161,8 +164,11 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		attack_verb = typelist("attack_verb", attack_verb)
 
 	. = ..()
+
+	// Handle adding item associated actions
 	for(var/path in actions_types)
-		new path(src)
+		add_item_action(path)
+
 	actions_types = null
 
 	if(GLOB.rpg_loot_items)
@@ -185,16 +191,62 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	else if (islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
 	else if (!istype(embedding, /datum/embedding_behavior))
-		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
+		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
 	if(ismob(loc))
 		var/mob/m = loc
 		m.temporarilyRemoveItemFromInventory(src, TRUE)
-	for(var/X in actions)
-		qdel(X)
+
+	// Handle cleaning up our actions list
+	for(var/datum/action/action as anything in actions)
+		remove_item_action(action)
+
 	return ..()
+
+/// Called when an action associated with our item is deleted
+/obj/item/proc/on_action_deleted(datum/source)
+	SIGNAL_HANDLER
+
+	if(!(source in actions))
+		CRASH("An action ([source.type]) was deleted that was associated with an item ([src]), but was not found in the item's actions list.")
+
+	LAZYREMOVE(actions, source)
+
+/// Adds an item action to our list of item actions.
+/// Item actions are actions linked to our item, that are granted to mobs who equip us.
+/// This also ensures that the actions are properly tracked in the actions list and removed if they're deleted.
+/// Can be be passed a typepath of an action or an instance of an action.
+/obj/item/proc/add_item_action(action_or_action_type)
+
+	var/datum/action/action
+	if(ispath(action_or_action_type, /datum/action))
+		action = new action_or_action_type(src)
+	else if(istype(action_or_action_type, /datum/action))
+		action = action_or_action_type
+	else
+		CRASH("item add_item_action got a type or instance of something that wasn't an action.")
+
+	LAZYADD(actions, action)
+	RegisterSignal(action, COMSIG_PARENT_QDELETING, PROC_REF(on_action_deleted))
+	if(ismob(loc))
+		// We're being held or are equipped by someone while adding an action?
+		// Then they should also probably be granted the action, given it's in a correct slot
+		var/mob/holder = loc
+		give_item_action(action, holder, holder.get_slot_by_item(src))
+
+	return action
+
+/// Removes an instance of an action from our list of item actions.
+/obj/item/proc/remove_item_action(datum/action/action)
+	if(!action)
+		return
+
+	UnregisterSignal(action, COMSIG_PARENT_QDELETING)
+	LAZYREMOVE(actions, action)
+	qdel(action)
+
 
 /obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
 	if(((src in target) && !target_self) || (!isturf(target.loc) && !isturf(target) && not_inside))
@@ -255,7 +307,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 			. += "[src] is made of cold-resistant materials."
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
-
+	if(taped)
+		. += "[src] seems to be covered in tape."
 	if(!user.research_scanner)
 		return
 
@@ -410,7 +463,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 			R.hud_used.update_robot_modules_display()
 
 /obj/item/proc/GetDeconstructableContents()
-	return GetAllContents() - src
+	return get_all_contents() - src
 
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
@@ -426,9 +479,11 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 /obj/item/proc/dropped(mob/user, silent = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.Remove(user)
+
+	// Remove any item actions we temporary gave out.
+	for(var/datum/action/action_item_has as anything in actions)
+		action_item_has.Remove(user)
+
 	if(item_flags & DROPDEL)
 		qdel(src)
 	item_flags &= ~IN_INVENTORY
@@ -455,20 +510,34 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 /obj/item/proc/equipped(mob/user, slot, initial = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
-	for(var/X in actions)
-		var/datum/action/A = X
-		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.
-			A.Grant(user)
+	SEND_SIGNAL(user, COMSIG_MOB_EQUIPPED_ITEM, src, slot)
+
+	// Give out actions our item has to people who equip it.
+	for(var/datum/action/action as anything in actions)
+		give_item_action(action, user, slot)
+
 	item_flags |= IN_INVENTORY
 	if(!initial)
-		if(equip_sound && !initial &&(slot_flags & slotdefine2slotbit(slot)))
+		if(equip_sound && !initial &&(slot_flags & slot))
 			playsound(src, equip_sound, EQUIP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
-		else if(slot == SLOT_HANDS)
+		else if(slot == ITEM_SLOT_HANDS)
 			playsound(src, pickup_sound, PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
 
-//sometimes we only want to grant the item's action if it's equipped in a specific slot.
+/// Gives one of our item actions to a mob, when equipped to a certain slot
+/obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)
+	// Some items only give their actions buttons when in a specific slot.
+	if(!item_action_slot_check(slot, to_who))
+		// There is a chance we still have our item action currently,
+		// and are moving it from a "valid slot" to an "invalid slot".
+		// So call Remove() here regardless, even if excessive.
+		action.Remove(to_who)
+		return
+
+	action.Grant(to_who)
+
+/// Sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_IN_BACKPACK || slot == SLOT_LEGCUFFED) //these aren't true slots, so avoid granting actions there
+	if(slot == ITEM_SLOT_BACKPACK || slot == ITEM_SLOT_LEGCUFFED) //these aren't true slots, so avoid granting actions there
 		return FALSE
 	return TRUE
 
@@ -498,6 +567,12 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 
+	if(issilicon(usr))
+		var/obj/item/gripper/gripper = usr.get_active_held_item(TRUE)
+		if(istype(gripper))
+			gripper.pre_attack(src, usr, get_dist(src, usr))
+		return
+
 	if(usr.get_active_held_item() == null) // Let me know if this has any problems -Yota
 		usr.UnarmedAttack(src)
 
@@ -507,7 +582,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 /obj/item/proc/ui_action_click(mob/user, actiontype)
 	attack_self(user)
 
-/obj/item/proc/IsReflect(var/def_zone) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
+/obj/item/proc/IsReflect(def_zone) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
 	return 0
 
 /obj/item/proc/eyestab(mob/living/carbon/M, mob/living/carbon/user)
@@ -597,7 +672,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
 		if(is_hot() && isliving(hit_atom))
 			var/mob/living/L = hit_atom
-			L.IgniteMob()
+			L.ignite_mob()
 		var/itempush = 1
 		if(w_class < 4)
 			itempush = 0 //too light to push anything
@@ -621,7 +696,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	thrownby = thrower
-	callback = CALLBACK(src, .proc/after_throw, callback) //replace their callback with our own
+	callback = CALLBACK(src, PROC_REF(after_throw), callback) //replace their callback with our own
 	. = ..(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart = quickstart)
 
 
@@ -692,7 +767,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(ismob(location))
 		var/mob/M = location
 		var/success = FALSE
-		if(src == M.get_item_by_slot(SLOT_WEAR_MASK))
+		if(src == M.get_item_by_slot(ITEM_SLOT_MASK) || (src in M.held_items))
 			success = TRUE
 		if(success)
 			location = get_turf(M)
@@ -750,8 +825,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 /obj/item/proc/on_mob_death(mob/living/L, gibbed)
 
-/obj/item/proc/on_mob_say(mob/living/L, message, message_range)
-
 /obj/item/proc/grind_requirements(obj/machinery/reagentgrinder/R) //Used to check for extra requirements for grinding an object
 	return TRUE
 
@@ -788,15 +861,55 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
-	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.read_preference(/datum/preference/toggle/enable_tooltips) && !QDELETED(src))
-		var/timedelay = usr.client.prefs.read_preference(/datum/preference/numeric/tooltip_delay) / 100
-		var/user = usr
-		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
+	. = ..()
+	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && !QDELETED(src))
+		var/mob/living/L = usr
+		if(usr.client.prefs.read_preference(/datum/preference/toggle/enable_tooltips))
+			var/timedelay = usr.client.prefs.read_preference(/datum/preference/numeric/tooltip_delay) / 100
+			tip_timer = addtimer(CALLBACK(src, PROC_REF(openTip), location, control, params, usr), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
+		if(usr.client.prefs.read_preference(/datum/preference/toggle/item_outlines))
+			if(istype(L) && L.incapacitated())
+				apply_outline(COLOR_RED_GRAY) //if they're dead or handcuffed, let's show the outline as red to indicate that they can't interact with that right now
+			else
+				apply_outline() //if the player's alive and well we send the command with no color set, so it uses the theme's color
+
+/obj/item/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	remove_filter(HOVER_OUTLINE_FILTER) //get rid of the hover effect in case the mouse exit isn't called if someone drags and drops an item and somthing goes wrong
 
 /obj/item/MouseExited()
-	deltimer(tip_timer)//delete any in-progress timer if the mouse is moved off the item before it finishes
+	deltimer(tip_timer) //delete any in-progress timer if the mouse is moved off the item before it finishes
 	closeToolTip(usr)
+	remove_filter(HOVER_OUTLINE_FILTER)
 
+/obj/item/proc/apply_outline(outline_color = null)
+	if(!(item_flags & IN_INVENTORY || item_flags & IN_STORAGE) || QDELETED(src) || isobserver(usr)) //cancel if the item isn't in an inventory, is being deleted, or if the person hovering is a ghost (so that people spectating you don't randomly make your items glow)
+		return
+	var/theme = lowertext(usr.client?.prefs?.read_preference(/datum/preference/choiced/ui_style))
+	if(!outline_color) //if we weren't provided with a color, take the theme's color
+		switch(theme) //yeah it kinda has to be this way
+			if("midnight")
+				outline_color = COLOR_THEME_MIDNIGHT
+			if("plasmafire")
+				outline_color = COLOR_THEME_PLASMAFIRE
+			if("retro")
+				outline_color = COLOR_THEME_RETRO //just as garish as the rest of this theme
+			if("slimecore")
+				outline_color = COLOR_THEME_SLIMECORE
+			if("operative")
+				outline_color = COLOR_THEME_OPERATIVE
+			if("clockwork")
+				outline_color = COLOR_THEME_CLOCKWORK //if you want free gbp go fix the fact that clockwork's tooltip css is glass'
+			if("glass")
+				outline_color = COLOR_THEME_GLASS
+			if("detective")
+				outline_color = COLOR_THEME_DETECTIVE
+			else //this should never happen, hopefully
+				outline_color = COLOR_WHITE
+	if(color)
+		outline_color = COLOR_WHITE //if the item is recolored then the outline will be too, let's make the outline white so it becomes the same color instead of some ugly mix of the theme and the tint
+
+	add_filter(HOVER_OUTLINE_FILTER, 1, list("type" = "outline", "size" = 1, "color" = outline_color))
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
@@ -807,15 +920,15 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		return
 	delay *= toolspeed
 
-	if((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
-		delay *= 0.8
+	if(((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && (tool_behaviour in MECHANICAL_TOOLS)) || (IS_MEDICAL(user) && (tool_behaviour in MEDICAL_TOOLS)))
+		delay *= 0.8 // engineers and doctors use their own tools faster
 
-	// Play tool sound at the beginning of tool usage.
-	play_tool_sound(target, volume)
+	if(volume) // Play tool sound at the beginning of tool usage.
+		play_tool_sound(target, volume)
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
-		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
 			if(!do_mob(user, target, delay, extra_checks=tool_check))
@@ -905,24 +1018,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
-	
-/**
-  *	Called when this object is first embedded into a carbon
-  */
-/obj/item/proc/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	return TRUE
-
-/**
-  *	Called when this object is no longer embedded into a carbon	
-  */
-/obj/item/proc/on_embed_removal(mob/living/carbon/human/embedde)
-	return TRUE
-
-/**
-  *	Called every life tick when the object is embedded in a carbon	
-  */
-/obj/item/proc/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	return
 
 /obj/item/proc/do_pickup_animation(atom/target)
 	if(!istype(loc, /turf))
@@ -930,7 +1025,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
 	pickup_animation.plane = GAME_PLANE
 	pickup_animation.transform.Scale(0.75)
-	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
 	var/turf/current_turf = get_turf(src)
 	var/direction = get_dir(current_turf, target)
@@ -1004,8 +1098,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 		// Scale the icon.
 		attack_image.transform *= 0.4
-		// The icon should not rotate.
-		attack_image.appearance_flags = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, attacked_atom)
@@ -1039,9 +1131,12 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 //specifically for "suture" type robotic healing items
 //amount is either the fuel of a welding tool, or the number of wires consumed
 //volume is how loud the sound of the item is
+
+#define ROBO_LIMB_HEAL_SELF 3 SECONDS
+#define ROBO_LIMB_HEAL_OTHER 1 SECONDS
+
 /obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
-	if(I.use_tool(H, user, 2 SECONDS, amount, volume))
+	if(I.use_tool(H, user, (H == user) ? ROBO_LIMB_HEAL_SELF : ROBO_LIMB_HEAL_OTHER, amount, volume, null, TRUE))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE
-	

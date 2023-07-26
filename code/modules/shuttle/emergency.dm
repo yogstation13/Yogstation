@@ -17,8 +17,10 @@
 	. = ..()
 
 /obj/machinery/computer/emergency_shuttle/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen))
-		SSshuttle.clearHostileEnvironment(user)
+	if(isalienqueen(user))
+		var/mob/living/carbon/alien/humanoid/royal/queen/queenuser = user
+		queenuser.kill_shuttle_timer()
+		balloon_alert(user, "shuttle ready to launch!")
 
 /obj/machinery/computer/emergency_shuttle/ui_state(mob/user)
 	return GLOB.human_adjacent_state
@@ -311,8 +313,9 @@
 			continue
 		if(shuttle_areas[get_area(player)])
 			//Non-xeno present. Can't hijack.
-			if(!istype(player, /mob/living/carbon/alien))
-				return FALSE
+			if(!isalien(player))
+				if(!HAS_TRAIT(player, TRAIT_XENO_HOST) && !player.getorganslot(ORGAN_SLOT_PARASITE_EGG)) //if they are hosts / egged skip them,
+					return FALSE																  //checks twice just incase cause the system is wacky
 			has_xenos = TRUE
 
 	return has_xenos
@@ -495,8 +498,9 @@
 	density = FALSE
 	clockwork = TRUE //it'd look weird
 
-/obj/machinery/computer/shuttle/pod/update_icon()
-	return
+/obj/machinery/computer/shuttle/pod/Initialize(mapload, obj/item/circuitboard/C)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -617,7 +621,7 @@
 	height = 8
 	dir = EAST
 
-/obj/docking_port/mobile/emergency/backup/Initialize()
+/obj/docking_port/mobile/emergency/backup/Initialize(mapload)
 	// We want to be a valid emergency shuttle
 	// but not be the main one, keep whatever's set
 	// valid.

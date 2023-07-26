@@ -19,6 +19,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	var/blocks_air = FALSE
 
+	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
+	var/directional_opacity = NONE
+
 	flags_1 = CAN_BE_DIRTY_1
 
 	var/list/image/blueprint_data //for the station blueprints, images of objects eg: pipes
@@ -86,7 +89,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if (opacity)
 		has_opaque_atom = TRUE
 
-	ComponentInitialize()
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL
@@ -120,6 +122,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	flags_1 &= ~INITIALIZED_1
 	requires_activation = FALSE
 	..()
+
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/clear_signal_refs()
+	return
 
 /turf/attack_hand(mob/user)
 	. = ..()
@@ -178,7 +187,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	target.zImpact(A, levels)
 	return TRUE
 
-/turf/proc/handleRCL(obj/item/twohanded/rcl/C, mob/user)
+/turf/proc/handleRCL(obj/item/rcl/C, mob/user)
 	if(C.loaded)
 		for(var/obj/structure/cable/LC in src)
 			if(!LC.d1 || !LC.d2)
@@ -201,7 +210,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		coil.place_turf(src, user)
 		return TRUE
 
-	else if(istype(C, /obj/item/twohanded/rcl))
+	else if(istype(C, /obj/item/rcl))
 		handleRCL(C, user)
 
 	return FALSE
@@ -365,7 +374,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
-	while (do_after(usr, 1 SECONDS, src, TRUE, FALSE, CALLBACK(src_object, /datum/component/storage.proc/mass_remove_from_storage, src, things, progress)))
+	while (do_after(usr, 1 SECONDS, src, TRUE, FALSE, CALLBACK(src_object, TYPE_PROC_REF(/datum/component/storage, mass_remove_from_storage), src, things, progress)))
 		stoplag(1)
 	qdel(progress)
 
@@ -376,7 +385,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 //////////////////////////////
 
 //Distance associates with all directions movement
-/turf/proc/Distance(var/turf/T)
+/turf/proc/Distance(turf/T)
 	return get_dist(src,T)
 
 //  This Distance proc assumes that only cardinal movement is
@@ -492,9 +501,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/acid_melt()
 	return
 
-/turf/handle_fall(mob/faller, forced)
-	if(!forced)
-		return
+/turf/handle_fall(mob/faller)
 	if(has_gravity(src))
 		playsound(src, "bodyfall", 50, 1)
 	faller.drop_all_held_items()
@@ -568,3 +575,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(!ismopable(movable_content))
 			continue
 		movable_content.wash(clean_types)
+
+/// Called when attempting to set fire to a turf
+/turf/proc/IgniteTurf(power, fire_color="red")
+	return

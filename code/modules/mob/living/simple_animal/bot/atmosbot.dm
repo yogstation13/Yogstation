@@ -51,11 +51,11 @@
 
 /mob/living/simple_animal/bot/atmosbot/turn_on()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/atmosbot/turn_off()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/atmosbot/set_custom_texts()
 	text_hack = "You corrupt [name]'s safety protocols."
@@ -82,7 +82,7 @@
 				if(last_barrier_tick + ATMOSBOT_HOLOBARRIER_COOLDOWN < world.time)
 					target = return_nearest_breach()
 					action = ATMOSBOT_DEPLOY_FOAM
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(!target)
 		if(auto_patrol)
@@ -124,7 +124,7 @@
 		explosion(src.loc,1,2,4,flame_range = 2)
 		qdel(src)
 	else
-		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/foam/metal/smart(get_turf(src)))
+		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/fluid/foam/metal/smart(get_turf(src)))
 		qdel(src)
 	return
 
@@ -194,9 +194,10 @@
 			return
 		breached_pressure = new_breach_pressure
 	update_controls()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/atmosbot/update_icon()
+/mob/living/simple_animal/bot/atmosbot/update_icon_state()
+	. = ..()
 	icon_state = "atmosbot[on][on?"_[action]":""]"
 
 /mob/living/simple_animal/bot/atmosbot/UnarmedAttack(atom/A, proximity)

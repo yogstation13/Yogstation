@@ -17,7 +17,7 @@
 	var/datum/effect_system/trail_follow/ion/ion_trail
 	var/jetspeed = -0.3 // Negative increases speed
 
-/obj/item/tank/jetpack/Initialize()
+/obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
 	ion_trail = new
 	ion_trail.set_up(src)
@@ -49,30 +49,33 @@
 		to_chat(user, span_notice("You turn the jetpack off."))
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	ion_trail.start()
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
-/obj/item/tank/jetpack/update_icon()
-	icon_state = initial(icon_state)
+/obj/item/tank/jetpack/update_icon_state()
+	. = ..()
 	if(!classic && on) //does the jetpack have its own on sprite?
 		icon_state = "[initial(icon_state)]-on"
-	else //or does it use the classic overlay
-		cut_overlays()
-		if(on)
-			add_overlay("on_overlay")
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/tank/jetpack/update_overlays()
+	. = ..()
+	if(classic && on)
+		. += "on_overlay"
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	on = FALSE
 	stabilizers = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	ion_trail.stop()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
@@ -200,7 +203,7 @@
 	var/obj/item/tank/internals/tank = null
 	var/mob/living/carbon/human/cur_user
 
-/obj/item/tank/jetpack/suit/Initialize()
+/obj/item/tank/jetpack/suit/Initialize(mapload)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 	temp_air_contents = air_contents

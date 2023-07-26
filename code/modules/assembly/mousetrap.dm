@@ -22,16 +22,20 @@
 				if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 					to_chat(user, span_warning("Your hand slips, setting off the trigger!"))
 					pulse(FALSE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
-/obj/item/assembly/mousetrap/update_icon()
+/obj/item/assembly/mousetrap/update_icon(updates=ALL)
+	. = ..()
+	if(holder)
+		holder.update_icon(updates)
+
+/obj/item/assembly/mousetrap/update_icon_state()
+	. = ..()
 	if(armed)
 		icon_state = "mousetraparmed"
 	else
 		icon_state = "mousetrap"
-	if(holder)
-		holder.update_icon()
 
 /obj/item/assembly/mousetrap/proc/triggered(mob/target, type = "feet")
 	if(!armed)
@@ -42,18 +46,24 @@
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 			armed = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			pulse(FALSE)
 			return FALSE
 		switch(type)
 			if("feet")
 				if(!H.shoes)
 					affecting = H.get_bodypart(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
-					H.Paralyze(60)
-			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
+					if(affecting?.status != BODYPART_ROBOTIC)
+						H.Paralyze(60)
+					else
+						affecting = null
+			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 				if(!H.gloves)
 					affecting = H.get_bodypart(type)
-					H.Stun(60)
+					if(affecting?.status != BODYPART_ROBOTIC)
+						H.Stun(60)
+					else
+						affecting = null
 		if(affecting)
 			if(affecting.receive_damage(1, 0))
 				H.update_damage_overlays()
@@ -63,7 +73,7 @@
 		M.splat()
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	armed = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	pulse(FALSE)
 
 
@@ -72,16 +82,16 @@
 		to_chat(user, span_notice("You arm [src]."))
 	else
 		if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-			var/which_hand = BODY_ZONE_PRECISE_L_HAND
+			var/which_hand = BODY_ZONE_L_ARM
 			if(!(user.active_hand_index % 2))
-				which_hand = BODY_ZONE_PRECISE_R_HAND
+				which_hand = BODY_ZONE_R_ARM
 			triggered(user, which_hand)
 			user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
 								 span_warning("You accidentally trigger [src]!"))
 			return
 		to_chat(user, span_notice("You disarm [src]."))
 	armed = !armed
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
 

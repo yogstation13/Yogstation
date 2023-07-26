@@ -22,7 +22,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_x = 32
 	},
@@ -50,8 +50,8 @@
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen,
-/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes/cigpack_carp,
+/obj/item/storage/fancy/cigarettes,
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "n" = (
@@ -72,20 +72,10 @@
 /area/template_noop)
 "t" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "greydet";
-	name = "trenchcoat"
-	},
-/obj/item/clothing/suit/jacket{
-	desc = "All the class of a trenchcoat without the security fibers.";
-	icon_state = "detective";
-	name = "trenchcoat"
-	},
+/obj/item/clothing/suit/det_suit/civilian/grey,
+/obj/item/clothing/suit/det_suit/civilian,
 /obj/item/clothing/head/fedora,
-/obj/item/clothing/head/fedora{
-	icon_state = "detective"
-	},
+/obj/item/clothing/head/fedora/brown,
 /turf/open/floor/plating,
 /area/template_noop)
 "x" = (

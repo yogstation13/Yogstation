@@ -36,5 +36,6 @@
 	SSshuttle.unload_preview()
 	SSshuttle.load_template(new_shuttle)
 	SSshuttle.existing_shuttle = SSshuttle.emergency
+	SSshuttle.emergency.name = new_shuttle.name
 	SSshuttle.action_load(new_shuttle)
 	log_game("Shuttle Catastrophe set a new shuttle, [new_shuttle.name].")

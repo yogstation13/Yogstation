@@ -7,6 +7,16 @@
  *		Emergency Oxygen
  */
 
+/// Allows carbon to toggle internals via AltClick of the equipped tank.
+/obj/item/tank/internals/AltClick(mob/user)
+	..()
+	if((loc == user) && user.canUseTopic(src, be_close = TRUE, no_dextery = TRUE, no_tk = TRUE))
+		toggle_internals(user)
+
+/obj/item/tank/internals/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click the tank to toggle the valve.")
+
 /*
  * Oxygen
  */
@@ -79,6 +89,7 @@
 	icon_state = "plasma"
 	flags_1 = CONDUCT_1
 	slot_flags = null	//they have no straps!
+	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
 	force = 8
 
 
@@ -94,7 +105,7 @@
 			return
 		src.master = F
 		F.ptank = src
-		F.update_icon()
+		F.update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

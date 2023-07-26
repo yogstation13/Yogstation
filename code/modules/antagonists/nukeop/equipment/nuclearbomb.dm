@@ -33,13 +33,13 @@
 	var/obj/effect/countdown/nuclearbomb/countdown
 
 
-/obj/machinery/nuclearbomb/Initialize()
+/obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 	GLOB.nuke_list += src
 	core = new /obj/item/nuke_core(src)
 	STOP_PROCESSING(SSobj, core)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	GLOB.poi_list |= src
 	previous_level = get_security_level()
 
@@ -111,7 +111,7 @@
 				if(I.use_tool(src, user, 60, volume=100))
 					deconstruction_state = NUKESTATE_UNSCREWED
 					to_chat(user, span_notice("You remove the screws from [src]'s front panel."))
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				return
 
 		if(NUKESTATE_PANEL_REMOVED)
@@ -122,7 +122,7 @@
 				if(I.use_tool(src, user, 80, volume=100, amount=1))
 					to_chat(user, span_notice("You cut [src]'s inner plate."))
 					deconstruction_state = NUKESTATE_WELDED
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				return
 		if(NUKESTATE_CORE_EXPOSED)
 			if(istype(I, /obj/item/nuke_core_container))
@@ -132,7 +132,7 @@
 					if(core_box.load(core, user))
 						to_chat(user, span_notice("You load the plutonium core into [core_box]."))
 						deconstruction_state = NUKESTATE_CORE_REMOVED
-						update_icon()
+						update_appearance(UPDATE_ICON)
 						core = null
 					else
 						to_chat(user, span_warning("You fail to load the plutonium core into [core_box]. [core_box] has already been used!"))
@@ -146,7 +146,7 @@
 					to_chat(user, span_notice("You repair [src]'s inner metal plate. The radiation is contained."))
 					deconstruction_state = NUKESTATE_PANEL_REMOVED
 					STOP_PROCESSING(SSobj, core)
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				return
 	. = ..()
 
@@ -158,14 +158,14 @@
 			if(tool.use_tool(src, user, 30, volume=100))
 				to_chat(user, span_notice("You remove [src]'s front panel."))
 				deconstruction_state = NUKESTATE_PANEL_REMOVED
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			return TRUE
 		if(NUKESTATE_WELDED)
 			to_chat(user, span_notice("You start prying off [src]'s inner plate..."))
 			if(tool.use_tool(src, user, 30, volume=100))
 				to_chat(user, span_notice("You pry off [src]'s inner plate. You can see the core's green glow!"))
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				START_PROCESSING(SSobj, core)
 			return TRUE
 
@@ -179,26 +179,28 @@
 	else
 		return NUKE_OFF_UNLOCKED
 
-/obj/machinery/nuclearbomb/update_icon()
-	if(deconstruction_state == NUKESTATE_INTACT)
-		switch(get_nuke_state())
-			if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
-				icon_state = "nuclearbomb_base"
-				update_icon_interior()
-				update_icon_lights()
-			if(NUKE_ON_TIMING)
-				cut_overlays()
-				icon_state = "nuclearbomb_timing"
-			if(NUKE_ON_EXPLODING)
-				cut_overlays()
-				icon_state = "nuclearbomb_exploding"
-	else
+/obj/machinery/nuclearbomb/update_icon_state()
+	if(deconstruction_state != NUKESTATE_INTACT)
 		icon_state = "nuclearbomb_base"
-		update_icon_interior()
-		update_icon_lights()
+		return ..()
 
-/obj/machinery/nuclearbomb/proc/update_icon_interior()
+	switch(get_nuke_state())
+		if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
+			icon_state = "nuclearbomb_base"
+		if(NUKE_ON_TIMING)
+			icon_state = "nuclearbomb_timing"
+		if(NUKE_ON_EXPLODING)
+			icon_state = "nuclearbomb_exploding"
+
+	return ..()
+
+/obj/machinery/nuclearbomb/update_overlays()
+	. = ..()
+
+	if(lights)
+		cut_overlay(lights)
 	cut_overlay(interior)
+
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
 			interior = "panel-unscrewed"
@@ -212,11 +214,7 @@
 			interior = "core-removed"
 		if(NUKESTATE_INTACT)
 			return
-	add_overlay(interior)
 
-/obj/machinery/nuclearbomb/proc/update_icon_lights()
-	if(lights)
-		cut_overlay(lights)
 	switch(get_nuke_state())
 		if(NUKE_OFF_LOCKED)
 			lights = ""
@@ -227,7 +225,9 @@
 			lights = "lights-timing"
 		if(NUKE_ON_EXPLODING)
 			lights = "lights-exploding"
+
 	add_overlay(lights)
+	add_overlay(interior)
 
 /obj/machinery/nuclearbomb/process()
 	if(timing && !exploding)
@@ -408,7 +408,7 @@
 		timing = FALSE
 		detonation_timer = null
 		countdown.stop()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/proc/set_active()
 	if(safety)
@@ -429,7 +429,7 @@
 			S.switch_mode_to(initial(S.mode))
 			S.alert = FALSE
 		countdown.stop()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/proc/get_time_left()
 	if(timing)
@@ -456,11 +456,11 @@
 	exploding = TRUE
 	yes_code = FALSE
 	safety = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	if(SSticker && SSticker.mode)
 		SSticker.roundend_check_paused = TRUE
-	addtimer(CALLBACK(src, .proc/actually_explode), 100)
+	addtimer(CALLBACK(src, PROC_REF(actually_explode)), 100)
 
 /obj/machinery/nuclearbomb/proc/actually_explode()
 	if(!core)
@@ -501,9 +501,9 @@
 	if(istype(A, /area/fabric_of_reality))
 		var/area/fabric_of_reality/fabric = A
 		var/turf/T = fabric.origin
-		INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, T.z)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), T.z)
 	else
-		INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, z)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), z)
 
 /obj/machinery/nuclearbomb/proc/get_cinematic_type(off_station)
 	if(off_station < 2)
@@ -517,7 +517,7 @@
 	proper_bomb = FALSE
 	var/obj/structure/reagent_dispensers/beerkeg/keg
 
-/obj/machinery/nuclearbomb/beer/Initialize()
+/obj/machinery/nuclearbomb/beer/Initialize(mapload)
 	. = ..()
 	keg = new(src)
 	QDEL_NULL(core)
@@ -546,13 +546,13 @@
 		disarm()
 		return
 	if(is_station_level(bomb_location.z))
-		var/datum/round_event_control/E = locate(/datum/round_event_control/vent_clog/beer) in SSevents.control
+		var/datum/round_event_control/E = locate(/datum/round_event_control/scrubber_overflow/beer) in SSevents.control
 		if(E)
 			E.runEvent()
-		addtimer(CALLBACK(src, .proc/really_actually_explode), 110)
+		addtimer(CALLBACK(src, PROC_REF(really_actually_explode)), 110)
 	else
 		visible_message(span_notice("[src] fizzes ominously."))
-		addtimer(CALLBACK(src, .proc/fizzbuzz), 110)
+		addtimer(CALLBACK(src, PROC_REF(fizzbuzz)), 110)
 
 /obj/machinery/nuclearbomb/beer/proc/disarm()
 	detonation_timer = null
@@ -563,15 +563,15 @@
 		S.switch_mode_to(initial(S.mode))
 		S.alert = FALSE
 	countdown.stop()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/beer/proc/fizzbuzz()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	R.my_atom = src
 	R.add_reagent(/datum/reagent/consumable/ethanol/beer, 100)
 
-	var/datum/effect_system/foam_spread/foam = new
-	foam.set_up(200, get_turf(src), R)
+	var/datum/effect_system/fluid_spread/foam/foam = new
+	foam.set_up(200, location = get_turf(src), carry = R)
 	foam.start()
 	disarm()
 
@@ -637,15 +637,12 @@ This is here to make the tiles around the station mininuke change when it's arme
 	var/turf/lastlocation
 	var/last_disk_move
 
-/obj/item/disk/nuclear/Initialize()
+/obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
 	if(!fake)
 		GLOB.poi_list |= src
 		last_disk_move = world.time
 		START_PROCESSING(SSobj, src)
-
-/obj/item/disk/nuclear/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/stationloving, !fake)
 
 /obj/item/disk/nuclear/process()
@@ -705,7 +702,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 	playsound(src, 'sound/machines/alarm.ogg', 50, -1, 1)
 	for(var/i in 1 to 100)
 		addtimer(CALLBACK(user, /atom/proc/add_atom_colour, (i % 2)? "#00FF00" : "#FF0000", ADMIN_COLOUR_PRIORITY), i)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), 101)
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 101)
 	return MANUAL_SUICIDE
 
 /obj/item/disk/nuclear/proc/manual_suicide(mob/living/user)

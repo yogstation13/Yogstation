@@ -83,6 +83,12 @@
 	difficulty = 3
 	excludefromjob = list("Head of Security", "Warden")
 
+/datum/objective_item/steal/aiupload
+	name = "an AI upload board."
+	targetitem = /obj/item/circuitboard/computer/aiupload
+	difficulty = 5
+	excludefromjob = list("Network Admin", "Chief Engineer", "Research Director") // CE has access. RD has authority. 
+
 /datum/objective_item/steal/reactive
 	name = "the Research Director's reactive teleport armor."
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
@@ -129,7 +135,7 @@
 		if(!isliving(M.current))
 			continue
 
-		var/list/all_items = M.current.GetAllContents()
+		var/list/all_items = M.current.get_all_contents()
 		for(var/o in all_items)
 			if(!istype(o, /obj/item/tank))
 				continue
@@ -138,7 +144,7 @@
 	if (istype(objective.team, /datum/team/infiltrator))
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/tank/T in A.GetAllContents()) //Check for items
+				for (var/obj/item/tank/T in A.get_all_contents()) //Check for items
 					found_amount += T.air_contents.get_moles(/datum/gas/plasma)
 					CHECK_TICK
 			CHECK_TICK

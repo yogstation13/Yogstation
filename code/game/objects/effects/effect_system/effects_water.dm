@@ -3,21 +3,20 @@
 /obj/effect/particle_effect/water
 	name = "water"
 	icon_state = "extinguish"
+	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER | PASSSTRUCTURE | PASSGRILLE | PASSBLOB
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
-/obj/effect/particle_effect/water/Initialize()
+/obj/effect/particle_effect/water/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 70)
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
 	if (--src.life < 1)
 		qdel(src)
-		return 0
-	if(newloc.density)
-		return 0
-	.=..()
+		return FALSE
+	return ..()
 
 /obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)
@@ -45,7 +44,7 @@ steam.start() -- spawns the effect
 	icon_state = "extinguish"
 	density = FALSE
 
-/obj/effect/particle_effect/steam/Initialize()
+/obj/effect/particle_effect/steam/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 20)
 

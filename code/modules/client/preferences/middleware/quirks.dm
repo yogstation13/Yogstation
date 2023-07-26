@@ -3,8 +3,8 @@
 	var/tainted = FALSE
 
 	action_delegations = list(
-		"give_quirk" = .proc/give_quirk,
-		"remove_quirk" = .proc/remove_quirk,
+		"give_quirk" = PROC_REF(give_quirk),
+		"remove_quirk" = PROC_REF(remove_quirk),
 	)
 
 /datum/preference_middleware/quirks/get_ui_static_data(mob/user)
@@ -17,8 +17,7 @@
 	data["locked_quirks"] = get_locked_quirks()
 
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
-	data["mood_enabled"] = ismoody
+	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 
@@ -31,8 +30,7 @@
 		data["locked_quirks"] = get_locked_quirks()
 	
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
-	data["mood_enabled"] = ismoody
+	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 

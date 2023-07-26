@@ -16,7 +16,7 @@
 	var/obj/item/noz
 	var/volume = 500
 
-/obj/item/watertank/Initialize()
+/obj/item/watertank/Initialize(mapload)
 	. = ..()
 	create_reagents(volume, OPENCONTAINER)
 	noz = make_noz()
@@ -58,7 +58,7 @@
 
 /obj/item/watertank/equipped(mob/user, slot)
 	..()
-	if(slot != SLOT_BACK)
+	if(slot != ITEM_SLOT_BACK)
 		remove_noz()
 
 /obj/item/watertank/proc/remove_noz()
@@ -117,7 +117,7 @@
 
 	var/obj/item/watertank/tank
 
-/obj/item/reagent_containers/spray/mister/Initialize()
+/obj/item/reagent_containers/spray/mister/Initialize(mapload)
 	. = ..()
 	tank = loc
 	if(!istype(tank))
@@ -147,7 +147,7 @@
 	item_state = "waterbackpackjani"
 	custom_price = 100
 
-/obj/item/watertank/janitor/Initialize()
+/obj/item/watertank/janitor/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/space_cleaner, 500)
 
@@ -165,7 +165,7 @@
 /obj/item/watertank/janitor/make_noz()
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)
 
-/obj/item/reagent_containers/spray/mister/janitor/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/mister/janitor/attack_self(mob/user)
 	amount_per_transfer_from_this = (amount_per_transfer_from_this == 10 ? 5 : 10)
 	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "fix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
@@ -183,7 +183,7 @@
 	volume = 300
 	slowdown = 0
 
-/obj/item/watertank/atmos/Initialize()
+/obj/item/watertank/atmos/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water, volume)
 
@@ -218,7 +218,7 @@
 	var/launcher_cost = 50
 	COOLDOWN_DECLARE(resin_cooldown)
 
-/obj/item/extinguisher/mini/nozzle/Initialize()
+/obj/item/extinguisher/mini/nozzle/Initialize(mapload)
 	. = ..()
 	tank = loc
 	if (!istype(tank))
@@ -254,45 +254,51 @@
 	return
 
 /obj/item/extinguisher/mini/nozzle/afterattack(atom/target, mob/user)
-	if(nozzle_mode == EXTINGUISHER)
-		..()
+	if(AttemptRefill(target, user))
 		return
+
+	if(nozzle_mode == EXTINGUISHER)
+		return ..()
+
 	var/Adj = user.Adjacent(target)
-	if(Adj)
-		AttemptRefill(target, user)
 	if(nozzle_mode == RESIN_LAUNCHER)
 		if(Adj)
 			return //Safety check so you don't blast yourself trying to refill your tank
+
 		var/datum/reagents/R = reagents
 		if(R.total_volume < launcher_cost)
 			to_chat(user, span_warning("You need at least [launcher_cost] units of water to use the resin launcher!"))
 			return
+
 		if(!COOLDOWN_FINISHED(src, resin_cooldown))
 			to_chat(user, span_warning("Resin launcher is still recharging..."))
 			return
-		resin_cooldown = TRUE
-		R.remove_any(launcher_cost)
-		var/obj/effect/resin_container/A = new (get_turf(src))
-		log_game("[key_name(user)] used Resin Launcher at [AREACOORD(user)].")
-		playsound(src,'sound/items/syringeproj.ogg',40,1)
-		for(var/a=0, a<5, a++)
-			step_towards(A, target)
-			sleep(0.2 SECONDS)
-		A.Smoke()
+
 		COOLDOWN_START(src, resin_cooldown, 5 SECONDS)
+		R.remove_any(launcher_cost)
+		var/obj/effect/resin_container/resin = new (get_turf(src))
+		log_game("[key_name(user)] used Resin Launcher at [AREACOORD(user)].")
+		playsound(src,'sound/items/syringeproj.ogg',40,TRUE)
+		for(var/a=0, a<5, a++)
+			step_towards(resin, target)
+			sleep(0.2 SECONDS)
+		resin.Smoke()
 		return
+
 	if(nozzle_mode == RESIN_FOAM)
-		if(!Adj|| !isturf(target))
+		if(!Adj || !isturf(target))
 			return
+
 		for(var/S in target)
-			if(istype(S, /obj/effect/particle_effect/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
+			if(istype(S, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
 				to_chat(user, span_warning("There's already resin here!"))
 				return
+
 		if(resin_charges)
-			var/obj/effect/particle_effect/foam/metal/resin/F = new (get_turf(target))
-			F.amount = 0
+			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(target))
+			foam.group.target_size = 0
 			resin_charges--
-			addtimer(CALLBACK(src, .proc/add_foam_charge), 5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(add_foam_charge)), 5 SECONDS)
 		else
 			to_chat(user, span_warning("Resin foam mix is still being synthesized..."))
 			return
@@ -313,14 +319,18 @@
 	anchored = TRUE
 
 /obj/effect/resin_container/proc/Smoke()
-	var/obj/effect/particle_effect/foam/metal/resin/S = new /obj/effect/particle_effect/foam/metal/resin(get_turf(loc))
-	S.amount = 4
-	playsound(src,'sound/effects/bamf.ogg',100,1)
+	var/datum/effect_system/fluid_spread/foam/metal/resin/foaming = new
+	foaming.set_up(4, holder = src, location = loc)
+	foaming.start()
+	playsound(src,'sound/effects/bamf.ogg',100,TRUE)
 	qdel(src)
 
 #undef EXTINGUISHER
 #undef RESIN_LAUNCHER
 #undef RESIN_FOAM
+
+/datum/action/item_action/activate_injector
+	name = "Activate Injector"
 
 /obj/item/reagent_containers/chemtank
 	name = "backpack chemical injector"
@@ -339,22 +349,21 @@
 	/// How much to inject per second
 	var/injection_amount = 0.5
 	amount_per_transfer_from_this = 5
-	reagent_flags = OPENCONTAINER
-	spillable = FALSE
+	reagent_flags = OPENCONTAINER_NOSPILL
 	possible_transfer_amounts = list(5,10,15)
 
 /obj/item/reagent_containers/chemtank/ui_action_click()
 	toggle_injection()
 
 /obj/item/reagent_containers/chemtank/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_BACK)
+	if(slot == ITEM_SLOT_BACK)
 		return 1
 
 /obj/item/reagent_containers/chemtank/proc/toggle_injection()
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user))
 		return
-	if (user.get_item_by_slot(SLOT_BACK) != src)
+	if (user.get_item_by_slot(ITEM_SLOT_BACK) != src)
 		to_chat(user, span_warning("The chemtank needs to be on your back before you can activate it!"))
 		return
 	if(on)
@@ -381,7 +390,7 @@
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)
 
-/obj/item/reagent_containers/chemtank/worn_overlays(var/isinhands = FALSE) //apply chemcolor and level
+/obj/item/reagent_containers/chemtank/worn_overlays(isinhands = FALSE) //apply chemcolor and level
 	. = list()
 	//inhands + reagent_filling
 	if(!isinhands && reagents.total_volume)
@@ -440,7 +449,7 @@
 	volume = 2000
 	slowdown = 0
 
-/obj/item/watertank/op/Initialize()
+/obj/item/watertank/op/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/toxin/mutagen,350)
 	reagents.add_reagent(/datum/reagent/napalm,125)

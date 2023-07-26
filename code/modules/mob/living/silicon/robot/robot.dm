@@ -51,7 +51,6 @@
 	var/obj/item/stock_parts/cell/cell = null
 
 	var/opened = FALSE
-	var/emagged = FALSE
 	var/emag_cooldown = 0
 	var/wiresexposed = FALSE
 
@@ -124,7 +123,7 @@
 	wires = new /datum/wires/robot(src)
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
-	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
@@ -171,7 +170,7 @@
 		mmi.brainmob.name = src.real_name
 		mmi.brainmob.real_name = src.real_name
 		mmi.brainmob.container = mmi
-		mmi.update_icon()
+		mmi.update_appearance(UPDATE_ICON)
 
 	updatename()
 
@@ -192,11 +191,11 @@
 			mmi.forceMove(T)
 		if(mmi.brainmob)
 			if(mmi.brainmob.stat == DEAD)
-				mmi.brainmob.stat = CONSCIOUS
+				mmi.brainmob.set_stat(CONSCIOUS)
 				mmi.brainmob.remove_from_dead_mob_list()
 				mmi.brainmob.add_to_alive_mob_list()
 			mind.transfer_to(mmi.brainmob)
-			mmi.update_icon()
+			mmi.update_appearance(UPDATE_ICON)
 			if(istype(mmi, /obj/item/mmi/posibrain))
 				ADD_TRAIT(mmi.brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
 		else
@@ -454,7 +453,7 @@
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
-	else if(W.tool_behaviour == TOOL_CROWBAR)	// crowbar means open or close the cover
+	else if(W.tool_behaviour == TOOL_CROWBAR && (user.a_intent != INTENT_HARM || user == src))	// crowbar means open or close the cover
 		if(opened)
 			to_chat(user, span_notice("You close the cover."))
 			opened = 0
@@ -541,18 +540,7 @@
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
 	else if(W.GetID())			// trying to unlock the interface with an ID card
-		if(opened)
-			to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
-		else
-			if(allowed(usr))
-				locked = !locked
-				to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
-				to_chat(src, span_notice("[usr] [locked ? "locks" : "unlocks"] your cover."))
-				update_icons()
-				if(emagged)
-					to_chat(user, span_notice("The cover interface glitches out for a split second."))
-			else
-				to_chat(user, span_danger("Access denied."))
+		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
@@ -605,6 +593,23 @@
 			to_chat(user, span_notice("You replace the headlamp bulb.")) //yogs end
 	else
 		return ..()
+
+/mob/living/silicon/robot/proc/togglelock(mob/user)
+	if(opened)
+		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
+	else
+		if(allowed(user))
+			locked = !locked
+			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
+			to_chat(src, span_notice("[user] [locked ? "locks" : "unlocks"] your cover."))
+			update_icons()
+			if(emagged)
+				to_chat(user, span_notice("The cover interface glitches out for a split second."))
+		else
+			to_chat(user, span_danger("Access denied."))
+
+/mob/living/silicon/robot/AltClick(mob/user)
+	togglelock(user)
 
 /mob/living/silicon/robot/verb/unlock_own_cover()
 	set category = "Robot Commands"
@@ -804,14 +809,14 @@
 			set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
 		set_light_on(FALSE)
 		lamp_enabled = FALSE
-		lampButton?.update_icon()
+		lampButton?.update_appearance(UPDATE_ICON)
 		update_icons()
 		return
 	set_light_range(lamp_intensity)
 	set_light_color(lamp_color)
 	set_light_on(TRUE)
 	lamp_enabled = TRUE
-	lampButton?.update_icon()
+	lampButton?.update_appearance(UPDATE_ICON)
 	update_icons()
 
 /mob/living/silicon/robot/proc/deconstruct()
@@ -840,7 +845,7 @@
 /mob/living/silicon/robot/modules
 	var/set_module = null
 
-/mob/living/silicon/robot/modules/Initialize()
+/mob/living/silicon/robot/modules/Initialize(mapload)
 	. = ..()
 	module.transform_to(set_module)
 
@@ -891,12 +896,12 @@
 							<i>Help the operatives secure the disk at all costs!</i></b>"
 	set_module = /obj/item/robot_module/syndicate
 
-/mob/living/silicon/robot/modules/syndicate/Initialize()
+/mob/living/silicon/robot/modules/syndicate/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/stock_parts/cell/hyper(src, 25000)
 	radio = new /obj/item/radio/borg/syndicate(src)
 	laws = new /datum/ai_laws/syndicate_override()
-	addtimer(CALLBACK(src, .proc/show_playstyle), 5)
+	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 5)
 
 /mob/living/silicon/robot/modules/syndicate/create_modularInterface()
 	if(!modularInterface)
@@ -1055,12 +1060,12 @@
 			return
 		if(IsUnconscious() || IsStun() || IsKnockdown() || IsParalyzed() || getOxyLoss() > maxHealth*0.5)
 			if(stat == CONSCIOUS)
-				stat = UNCONSCIOUS
+				set_stat(UNCONSCIOUS)
 				blind_eyes(1)
 				update_mobility()
 		else
 			if(stat == UNCONSCIOUS)
-				stat = CONSCIOUS
+				set_stat(CONSCIOUS)
 				adjust_blindness(-1)
 				update_mobility()
 	diag_hud_set_status()
@@ -1093,13 +1098,18 @@
 	if(hud_used)
 		hud_used.update_robot_modules_display()
 
+	// Drops all items found in any storage bags on the Cyborg.
+	for(var/obj/item/storage/bag in module.contents)
+		for(var/obj/item in bag)
+			item.forceMove(drop_location())
+			
 	while(expansion_count)
 		resize = 0.5
 		expansion_count--
 		update_transform()
 	logevent("Chassis configuration has been reset.")
 	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
-	module.transform_to(/obj/item/robot_module)
+	module.transform_to(/obj/item/robot_module) // Will reset armor & armor_plates as well. 
 
 	// Remove upgrades.
 	for(var/obj/item/borg/upgrade/I in upgrades)
@@ -1148,7 +1158,7 @@
 	new_hat.forceMove(src)
 	update_icons()
 
-/mob/living/silicon/robot/proc/make_shell(var/obj/item/borg/upgrade/ai/board)
+/mob/living/silicon/robot/proc/make_shell(obj/item/borg/upgrade/ai/board)
 	if(!board)
 		upgrades |= new /obj/item/borg/upgrade/ai(src)
 	shell = TRUE
@@ -1176,7 +1186,7 @@
 		builtInCamera.c_tag = real_name
 	diag_hud_set_aishell()
 
-/mob/living/silicon/robot/proc/deploy_init(var/mob/living/silicon/ai/AI)
+/mob/living/silicon/robot/proc/deploy_init(mob/living/silicon/ai/AI)
 	real_name = "[AI.real_name] shell [rand(100, 999)] - [designation]"	//Randomizing the name so it shows up separately in the shells list
 	name = real_name
 	if(!QDELETED(builtInCamera))
@@ -1203,7 +1213,7 @@
 /datum/action/innate/undeployment
 	name = "Disconnect from shell"
 	desc = "Stop controlling your shell and resume normal core operations."
-	icon_icon = 'icons/mob/actions/actions_AI.dmi'
+	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
 /datum/action/innate/undeployment/Trigger()
@@ -1345,7 +1355,7 @@
   * Arguments:
   * arg1: a string containing the message to log.
  */
-/mob/living/silicon/robot/proc/logevent(var/string = "")
+/mob/living/silicon/robot/proc/logevent(string = "")
 	if(!string)
 		return
 	if(stat == DEAD) //Dead borgs log no longer

@@ -22,14 +22,14 @@
 	user.say("AAAAAAAAAAAARGHHHHH", forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
 
-/obj/item/megaphone/Initialize()
+/obj/item/megaphone/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/megaphone/equipped(mob/M, slot)
 	. = ..()
-	if (slot == SLOT_HANDS)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	if (slot == ITEM_SLOT_HANDS)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
@@ -42,19 +42,18 @@
 	if(last_used > world.time)
 		return FALSE
 	last_used = world.time + recharge_time
-	update_icon()
-	addtimer(CALLBACK(src, .proc/update_icon), recharge_time)
+	update_appearance(UPDATE_ICON)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), recharge_time)
 	return TRUE
 
-/obj/item/megaphone/update_icon()
+/obj/item/megaphone/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/mutable_appearance/base_overlay
 	if(last_used > world.time)
 		base_overlay = mutable_appearance(icon, "megaphone_recharging")
 	else
 		base_overlay = mutable_appearance(icon, "megaphone_charged")
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, list/speech_args)
 	if (user.get_active_held_item() == src)

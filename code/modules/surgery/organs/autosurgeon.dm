@@ -17,7 +17,7 @@
 	if(starting_organ)
 		insert_organ(new starting_organ(src))
 
-/obj/item/autosurgeon/proc/insert_organ(var/obj/item/I)
+/obj/item/autosurgeon/proc/insert_organ(obj/item/I)
 	storedorgan = I
 	I.forceMove(src)
 	name = "[initial(name)] ([storedorgan.name])"
@@ -41,7 +41,7 @@
 			if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
 				bastard.zone = original_zone //MISSION ABORT
 				bastard.SetSlotFromZone()
-			bastard.update_icon()
+			bastard.update_appearance(UPDATE_ICON)
 	storedorgan.Insert(user)//insert stored organ into the user
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
@@ -91,7 +91,7 @@
 	return TRUE
 
 /obj/item/autosurgeon/cmo
-	desc = "A single use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	desc = "A single-use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/eyes/hud/medical
 
@@ -118,10 +118,13 @@
 	starting_organ = /obj/item/organ/eyes/robotic/xray/syndicate
 
 /obj/item/autosurgeon/anti_stun
-	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun
+	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun/syndicate
 
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
+
+/obj/item/autosurgeon/reviver/syndicate
+	starting_organ = /obj/item/organ/cyberimp/chest/reviver/syndicate
 
 /obj/item/autosurgeon/medibeam
 	uses = 1
@@ -145,7 +148,7 @@
 			implant.zone = BODY_ZONE_R_ARM
 			to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
 		implant.SetSlotFromZone()
-		implant.update_icon() //If for whatever reason, the implant is removed from the autosurgeon after it's switched
+		implant.update_appearance(UPDATE_ICON) //If for whatever reason, the implant is removed from the autosurgeon after it's switched
 
 /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 	uses = 1
@@ -160,6 +163,10 @@
 		to_chat(user, span_warning("The autosurgeon rejects your body!"))
 		return
 	..()
+
+/obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
 
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
@@ -176,6 +183,10 @@
 /obj/item/autosurgeon/syndicate/spinalspeed
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/chest/spinalspeed
+
+/obj/item/autosurgeon/suspicious
+	name = "syndicate autosurgeon"
+	icon_state = "autoimplanter_red"
 
 //Limb autosurgeons
 
@@ -283,7 +294,7 @@
 	for(var/organ in starting_organ)
 		insert_organ(new organ(src))
 
-/obj/item/multisurgeon/proc/insert_organ(var/obj/item/I)
+/obj/item/multisurgeon/proc/insert_organ(obj/item/I)
 	storedorgan |= I
 	I.forceMove(src)
 
@@ -314,7 +325,7 @@
 				if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
 					bastard.zone = original_zone //MISSION ABORT
 					bastard.SetSlotFromZone()
-				bastard.update_icon()
+				bastard.update_appearance(UPDATE_ICON)
 		toimplant.Insert(user)//insert stored organ into the user
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
@@ -325,11 +336,13 @@
 	if(!uses)
 		desc = "[initial(desc)] Looks like it's been used up."
 
-/obj/item/multisurgeon/jumpboots //for miners
-	starting_organ = list(/obj/item/organ/cyberimp/leg/jumpboots, /obj/item/organ/cyberimp/leg/jumpboots/l)
-
 /obj/item/multisurgeon/airshoes //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/airshoes, /obj/item/organ/cyberimp/leg/airshoes/l)
 
 /obj/item/multisurgeon/noslipall //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/noslip, /obj/item/organ/cyberimp/leg/noslip/l)
+
+/obj/item/multisurgeon/magboots //for ce
+	desc = "A single-use multisurgeon that contains magboot implants for each leg."
+	starting_organ = list(/obj/item/organ/cyberimp/leg/magboot, /obj/item/organ/cyberimp/leg/magboot/l)
+

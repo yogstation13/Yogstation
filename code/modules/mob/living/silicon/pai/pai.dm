@@ -98,7 +98,7 @@
 	GLOB.pai_list -= src
 	return ..()
 
-/mob/living/silicon/pai/Initialize()
+/mob/living/silicon/pai/Initialize(mapload)
 	var/obj/item/paicard/P = loc
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.pai_list += src
@@ -128,9 +128,9 @@
 	. = ..()
 
 	emittersemicd = TRUE
-	addtimer(CALLBACK(src, .proc/emittercool), 600)
+	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
-/mob/living/silicon/pai/Life()
+/mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(hacking)
 		process_hack()
 	return ..()
@@ -197,7 +197,7 @@
 
 /datum/action/innate/pai
 	name = "PAI Action"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	var/mob/living/silicon/pai/P
 
 /datum/action/innate/pai/Trigger()
@@ -209,6 +209,7 @@
 	name = "Software Interface"
 	button_icon_state = "pai"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/software/Trigger()
 	..()
@@ -218,6 +219,7 @@
 	name = "Toggle Holoform"
 	button_icon_state = "pai_holoform"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/shell/Trigger()
 	..()
@@ -230,6 +232,7 @@
 	name = "Holochassis Appearance Composite"
 	button_icon_state = "pai_chassis"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/chassis/Trigger()
 	..()
@@ -239,6 +242,7 @@
 	name = "Rest"
 	button_icon_state = "pai_rest"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/rest/Trigger()
 	..()
@@ -246,9 +250,10 @@
 
 /datum/action/innate/pai/light
 	name = "Toggle Integrated Lights"
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "emp"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/light/Trigger()
 	..()
@@ -266,7 +271,7 @@
 	. = ..()
 	. += "A personal AI in holochassis mode. Its master ID string seems to be [master]."
 
-/mob/living/silicon/pai/Life()
+/mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)
 		return
 	if(cable)

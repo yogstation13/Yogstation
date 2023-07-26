@@ -6,8 +6,7 @@
 /mob/living/carbon/human/canBeHandcuffed()
 	if(get_num_arms(FALSE) >= 2)
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -146,11 +145,9 @@
 		if(HAS_TRAIT(src, TRAIT_NOGUNS))
 			to_chat(src, span_warning("Your fingers don't fit in the trigger guard!"))
 			return FALSE
-	if(mind)
-		if(mind.martial_art && mind.martial_art.no_guns) //great dishonor to famiry
-			to_chat(src, span_warning("Use of ranged weaponry would bring dishonor to the clan."))
-			return FALSE
-
+	if(mind?.martial_art?.no_guns && !(G.type in mind?.martial_art?.gun_exceptions)) //great dishonor to famiry
+		to_chat(src, span_warning(mind.martial_art.no_gun_message))
+		return FALSE
 	return .
 
 /mob/living/carbon/human/proc/get_bank_account()

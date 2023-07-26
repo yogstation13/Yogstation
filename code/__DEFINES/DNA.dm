@@ -24,6 +24,7 @@
 #define BADSIGHT	/datum/mutation/human/nearsight
 #define LASEREYES	/datum/mutation/human/laser_eyes
 #define CHAMELEON	/datum/mutation/human/chameleon
+#define SUPER_CHAMELEON		/datum/mutation/human/chameleon/super
 #define WACKY		/datum/mutation/human/wacky
 #define MUT_MUTE	/datum/mutation/human/mute
 #define SMILE		/datum/mutation/human/smile
@@ -147,39 +148,39 @@
 #define HAS_BONE	24
 /// Can't be husked.
 #define NOHUSK			25
-/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
-#define ROBOTIC_LIMBS	26
 /// have no mouth to ingest/eat with
-#define NOMOUTH			27
+#define NOMOUTH			26
 /// has a tail
-#define HAS_TAIL		28
+#define HAS_TAIL		27
+#define NONANITES		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
-#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
-#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
-#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
-#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 #define ORGAN_SLOT_STOMACH "stomach"
-#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
-#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"
 #define ORGAN_SLOT_LUNGS "lungs"
 #define ORGAN_SLOT_HEART "heart"
 #define ORGAN_SLOT_ZOMBIE "zombie_infection"
-#define ORGAN_SLOT_THRUSTERS "thrusters"
-#define ORGAN_SLOT_HUD "eye_hud"
 #define ORGAN_SLOT_LIVER "liver"
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
-#define ORGAN_SLOT_HEART_AID "heartdrive"
-#define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
-#define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"
 #define ORGAN_SLOT_TAIL "tail"
 #define ORGAN_SLOT_PARASITE_EGG "parasite_egg"
+
+//implants
+#define ORGAN_SLOT_BRAIN_IMPLANT "brain_implant"
+#define ORGAN_SLOT_HUD "eye_hud"
+#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
+#define ORGAN_SLOT_TORSO_IMPLANT "torso_implant"
+#define ORGAN_SLOT_HEART_AID "heartdrive"
+#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
+#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
+#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 
 //organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100

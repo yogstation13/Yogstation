@@ -8,6 +8,7 @@
 	force = 15 //Extra damage is dealt to targets in attack()
 	throwforce = 25
 	armour_penetration = 10
+	wound_bonus = 10
 	sharpness = SHARP_POINTY
 	attack_verb = list("stabbed", "poked", "slashed")
 	hitsound = 'sound/weapons/bladeslice.ogg'

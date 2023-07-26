@@ -8,7 +8,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	item_flags = NOBLUDGEON
 	obj_flags = UNIQUE_RENAME
-	reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER_NOSPILL
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
@@ -109,7 +109,4 @@
 /obj/item/reagent_containers/medspray/sterilizine
 	name = "sterilizer spray"
 	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
-	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 100)
-	can_fill_from_container = FALSE
-	amount_per_transfer_from_this = 25
-	volume = 100
+	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 30)

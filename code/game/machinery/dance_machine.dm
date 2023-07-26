@@ -45,7 +45,7 @@
 	song_length = length
 	song_beat = beat
 
-/obj/machinery/jukebox/Initialize()
+/obj/machinery/jukebox/Initialize(mapload)
 	. = ..()
 	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")
 
@@ -80,7 +80,8 @@
 			return
 	return ..()
 
-/obj/machinery/jukebox/update_icon()
+/obj/machinery/jukebox/update_icon_state()
+	. = ..()
 	if(active)
 		icon_state = "[initial(icon_state)]-active"
 	else
@@ -174,7 +175,7 @@
 
 /obj/machinery/jukebox/proc/activate_music()
 	active = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	START_PROCESSING(SSobj, src)
 	var/sound/song_played = sound(selection.song_path)
 	var/list/close = range(10,src)
@@ -196,7 +197,8 @@
 
 /obj/machinery/jukebox/disco/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
+	var/turf/t
+	FOR_DVIEW(t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue
@@ -321,14 +323,14 @@
 						glow.set_light_color(LIGHT_COLOR_RED)
 			glow.even_cycle = !glow.even_cycle
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, .proc/hierofunk)
+			INVOKE_ASYNC(src, PROC_REF(hierofunk))
 		sleep(selection.song_beat)
 		if(QDELETED(src))
 			return
 
 #undef DISCO_INFENO_RANGE
 
-/obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
+/obj/machinery/jukebox/disco/proc/dance(mob/living/M) //Show your moves
 	set waitfor = FALSE
 	switch(rand(0,6))
 		if(0 to 1)
@@ -340,14 +342,14 @@
 
 /obj/machinery/jukebox/disco/proc/dance2(mob/living/M)
 	for(var/i in 0 to 9)
-		dance_rotate(M, CALLBACK(M, /mob.proc/dance_flip))
+		dance_rotate(M, CALLBACK(M, TYPE_PROC_REF(/mob, dance_flip)))
 		sleep(2 SECONDS)
 
 /mob/proc/dance_flip()
 	if(dir == WEST)
 		emote("flip")
 
-/obj/machinery/jukebox/disco/proc/dance3(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance3(mob/living/M)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 75)
 		if (!M)
@@ -394,7 +396,7 @@
 		sleep(0.1 SECONDS)
 	M.lying_fix()
 
-/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance4(mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)
@@ -464,7 +466,7 @@
 		STOP_PROCESSING(SSobj, src)
 		dance_over()
 		playsound(src,'sound/machines/terminal_off.ogg',50,TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		stop = world.time + 100
 
 /obj/machinery/jukebox/disco/process()

@@ -44,8 +44,8 @@
 	/// Avaliable categories
 	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Miscellaneous","Dinnerware","Imported", "Search")
 
-/obj/machinery/autolathe/Initialize()
-	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
+/obj/machinery/autolathe/Initialize(mapload)
+	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), 0, TRUE, null, null, CALLBACK(src, PROC_REF(AfterMaterialInsert)))
 	. = ..()
 
 	wires = new /datum/wires/autolathe(src)
@@ -177,7 +177,7 @@
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/autolathe/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -275,7 +275,8 @@
 	switch(wire)
 		if(WIRE_HACK)
 			if(!wires.is_cut(wire))
-				adjust_hacked(FALSE)
+				if(!(obj_flags & EMAGGED))
+					adjust_hacked(FALSE)
 		if(WIRE_SHOCK)
 			if(!wires.is_cut(wire))
 				shocked = FALSE
@@ -306,9 +307,18 @@
 			else
 				stored_research.remove_design(D)
 
-/obj/machinery/autolathe/hacked/Initialize()
+/obj/machinery/autolathe/hacked/Initialize(mapload)
 	. = ..()
 	adjust_hacked(TRUE)
+
+/obj/machinery/autolathe/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	if(!hacked)
+		adjust_hacked(TRUE)
+	playsound(src, "sparks", 75, TRUE, -1)
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes
@@ -362,7 +372,7 @@
 				A = location
 			if(is_stack) // If its a stack we need to define it as so
 				var/obj/item/stack/N = new D.build_path(A, multiplier)
-				N.update_icon()
+				N.update_appearance(UPDATE_ICON)
 				N.autolathe_crafted(src)
 			else
 				for(var/i=1, i<=multiplier, i++)

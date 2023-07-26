@@ -60,15 +60,15 @@
 	icon_state = "coloredcabinet_frame"
 	name = "colored cabinet"
 
-/obj/structure/filingcabinet/colored/update_icon()
-	cut_overlays()
+/obj/structure/filingcabinet/colored/update_overlays()
+	. = ..()
 	var/mutable_appearance/cab = mutable_appearance(icon, "coloredcabinet_trim")
 	cab.color = colour
-	add_overlay(cab)
+	. += cab
 
 /obj/structure/filingcabinet/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(mapload)
 		for(var/obj/item/I in loc)
 			if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
@@ -185,7 +185,7 @@
 			colour = colour_choice
 			name = "colored cabinet" // Having a cabinet called 'Purple Cabinet' while it's green colored would be weird
 			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
-			update_icon() // reset overlays
+			update_appearance(UPDATE_ICON) // reset overlays
 		return
 
 
@@ -265,49 +265,4 @@
 
 /obj/structure/filingcabinet/medical/attack_tk()
 	populate()
-	..()
-
-/*
- * Employment contract Cabinets
- */
-
-GLOBAL_LIST_EMPTY(employmentCabinets)
-
-/obj/structure/filingcabinet/employment
-	var/cooldown = 0
-	icon_state = "employmentcabinet"
-	var/virgin = 1
-
-/obj/structure/filingcabinet/employment/Initialize()
-	. = ..()
-	GLOB.employmentCabinets += src
-
-/obj/structure/filingcabinet/employment/Destroy()
-	GLOB.employmentCabinets -= src
-	return ..()
-
-/obj/structure/filingcabinet/employment/proc/fillCurrent()
-	//This proc fills the cabinet with the current crew.
-	for(var/record in GLOB.data_core.locked)
-		var/datum/data/record/G = record
-		if(!G)
-			continue
-		var/datum/mind/M = G.fields["mindref"]
-		if(M && ishuman(M.current))
-			addFile(M.current)
-
-
-/obj/structure/filingcabinet/employment/proc/addFile(mob/living/carbon/human/employee)
-	new /obj/item/paper/contract/employment(src, employee)
-
-/obj/structure/filingcabinet/employment/interact(mob/user)
-	if(!cooldown)
-		if(virgin)
-			fillCurrent()
-			virgin = 0
-		cooldown = 1
-		sleep(10 SECONDS) // prevents the devil from just instantly emptying the cabinet, ensuring an easy win.
-		cooldown = 0
-	else
-		to_chat(user, span_warning("[src] is jammed, give it a few seconds."))
 	..()

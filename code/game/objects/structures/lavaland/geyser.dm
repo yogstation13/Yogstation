@@ -40,7 +40,7 @@
 	activated = TRUE
 	create_reagents(max_volume, DRAINABLE)
 	reagents.add_reagent(reagent_id, start_volume)
-	START_PROCESSING(SSfluids, src) //It's main function is to be plumbed, so use SSfluids
+	START_PROCESSING(SSplumbing, src) //It's main function is to be plumbed, so use SSplumbing
 	if(erupting_state)
 		icon_state = erupting_state
 	else
@@ -121,7 +121,7 @@
 	true_name = "strange geyser"
 	discovery_message = "It's a strange geyser! How does any of this even work?" //it doesnt
 
-/obj/structure/geyser/random/Initialize()
+/obj/structure/geyser/random/Initialize(mapload)
 	. = ..()
 	reagent_id = get_random_reagent_id()
 

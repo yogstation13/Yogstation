@@ -13,7 +13,7 @@
 						/obj/item/melee/ghost_sword,
 						/obj/item/clothing/suit/space/hardsuit/cult,
 						/obj/item/voodoo,
-						/obj/item/grenade/clusterbuster/inferno,
+						/obj/item/grenade/clusterbuster/syndie/inferno,
 						/obj/item/clothing/neck/necklace/memento_mori,
 						/obj/item/organ/heart/cursed/wizard,
 						/obj/item/clothing/suit/hooded/cloak/drake,
@@ -39,7 +39,7 @@
 						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
 						/obj/item/clothing/shoes/drip,
 						/obj/item/gun/energy/plasmacutter/adv/robocutter,
-						/obj/item/twohanded/bonespear/stalwartpike)
+						/obj/item/melee/spear/bonespear/stalwartpike)
 
 //Megafauna loot, except for stalwart, ash drakes, and legion
 

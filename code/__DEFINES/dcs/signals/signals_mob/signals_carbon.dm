@@ -111,7 +111,7 @@
 ///Called when a monkey turns into a human, from /mob/living/carbon/proc/finish_humanize(species)
 #define COMSIG_MONKEY_HUMANIZE "monkey_humanize"
 
-///From mob/living/carbon/human/suicide()
+///From mob/living/carbon/human/handle_suicide(); on yog: mob/living/carbon/human/verb/suicide()
 #define COMSIG_HUMAN_SUICIDE_ACT "human_suicide_act"
 
 ///from base of /mob/living/carbon/regenerate_limbs(): (excluded_limbs)

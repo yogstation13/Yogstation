@@ -84,24 +84,24 @@
 	custom_price = 125
 	instrument_range = 1
 
-/obj/item/instrument/piano_synth/headphones/ComponentInitialize()
+/obj/item/instrument/piano_synth/headphones/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_SONG_START, .proc/start_playing)
-	RegisterSignal(src, COMSIG_SONG_END, .proc/stop_playing)
+	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
+	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
 
 /**
   * Called by a component signal when our song starts playing.
   */
 /obj/item/instrument/piano_synth/headphones/proc/start_playing()
 	icon_state = "[initial(icon_state)]_on"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Called by a component signal when our song stops playing.
   */
 /obj/item/instrument/piano_synth/headphones/proc/stop_playing()
 	icon_state = "[initial(icon_state)]"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/instrument/banjo
 	name = "banjo"
@@ -155,7 +155,7 @@
 	force = 0
 	attack_verb = list("play", "jazz", "trumpet", "mourn", "doot", "spook")
 
-/obj/item/instrument/trumpet/spectral/Initialize()
+/obj/item/instrument/trumpet/spectral/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spooky)
 
@@ -176,7 +176,7 @@
 	force = 0
 	attack_verb = list("played","jazzed","saxxed","mourned","dooted","spooked")
 
-/obj/item/instrument/saxophone/spectral/Initialize()
+/obj/item/instrument/saxophone/spectral/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spooky)
 
@@ -198,7 +198,7 @@
 	force = 0
 	attack_verb = list("played","jazzed","tromboned","mourned","dooted","spooked")
 
-/obj/item/instrument/trombone/spectral/Initialize()
+/obj/item/instrument/trombone/spectral/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spooky)
 
@@ -212,6 +212,17 @@
 	force = 5
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
+
+/datum/action/item_action/instrument
+	name = "Use Instrument"
+	desc = "Use the instrument specified."
+
+/datum/action/item_action/instrument/Trigger()
+	if(istype(target, /obj/item/instrument))
+		var/obj/item/instrument/I = target
+		I.interact(usr)
+		return
+	return ..()
 
 /obj/item/instrument/harmonica
 	name = "harmonica"
@@ -230,7 +241,7 @@
 
 /obj/item/instrument/harmonica/equipped(mob/M, slot)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /obj/item/instrument/harmonica/dropped(mob/M)
 	. = ..()

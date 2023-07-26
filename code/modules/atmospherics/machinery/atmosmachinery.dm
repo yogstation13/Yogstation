@@ -117,15 +117,15 @@ GLOBAL_LIST_EMPTY(pipeimages)
 			if(can_be_node(target, i))
 				nodes[i] = target
 				break
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/proc/setPipingLayer(new_layer)
 	piping_layer = (pipe_flags & PIPING_DEFAULT_LAYER_ONLY) ? PIPING_LAYER_DEFAULT : new_layer
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/atmospherics/update_icon()
+/obj/machinery/atmospherics/update_icon(updates=ALL)
+	. = ..()
 	layer = initial(layer) + piping_layer / 1000
-	return ..()
 
 /obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
 	return connection_check(target, piping_layer)
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		var/obj/machinery/atmospherics/pipe/P = reference
 		P.destroy_network()
 	nodes[nodes.Find(reference)] = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pipe)) //lets you autodrop
@@ -313,7 +313,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 				user.forceMove(target_move.loc) //handle entering and so on.
 				user.visible_message(span_notice("You hear something squeezing through the ducts..."), "<span class='notice'>You climb out the ventilation system.")
 			else
-				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
+				var/list/pipenetdiff = return_pipenets() ^ target_move.return_pipenets()
 				if(pipenetdiff.len)
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/proc/can_crawl_through()
 	return TRUE
 
-/obj/machinery/atmospherics/proc/returnPipenets()
+/obj/machinery/atmospherics/proc/return_pipenets()
 	return list()
 
 /obj/machinery/atmospherics/update_remote_sight(mob/user)

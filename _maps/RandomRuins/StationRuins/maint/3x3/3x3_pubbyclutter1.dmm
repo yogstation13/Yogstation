@@ -31,7 +31,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "A" = (
-/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
 /obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/template_noop)

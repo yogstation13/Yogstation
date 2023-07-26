@@ -4,13 +4,13 @@
 /obj/machinery/camera/emp_proof
 	start_active = TRUE
 
-/obj/machinery/camera/emp_proof/Initialize()
+/obj/machinery/camera/emp_proof/Initialize(mapload)
 	. = ..()
 	upgradeEmpProof()
 
 // EMP + Motion
 
-/obj/machinery/camera/emp_proof/motion/Initialize()
+/obj/machinery/camera/emp_proof/motion/Initialize(mapload)
 	. = ..()
 	upgradeMotion()
 
@@ -20,7 +20,7 @@
 	start_active = TRUE
 	icon_state = "xraycamera" //mapping icon - Thanks to Krutchen for the icons.
 
-/obj/machinery/camera/xray/Initialize()
+/obj/machinery/camera/xray/Initialize(mapload)
 	. = ..()
 	upgradeXRay()
 
@@ -29,7 +29,7 @@
 	start_active = TRUE
 	name = "motion-sensitive security camera"
 
-/obj/machinery/camera/motion/Initialize()
+/obj/machinery/camera/motion/Initialize(mapload)
 	. = ..()
 	upgradeMotion()
 
@@ -38,7 +38,7 @@
 	start_active = TRUE
 	icon_state = "xraycamera" //mapping icon.
 
-/obj/machinery/camera/all/Initialize()
+/obj/machinery/camera/all/Initialize(mapload)
 	. = ..()
 	upgradeEmpProof()
 	upgradeXRay()
@@ -50,7 +50,7 @@
 	var/number = 0 //camera number in area
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/Initialize()
+/obj/machinery/camera/autoname/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -113,12 +113,12 @@
 			assembly.malf_xray_firmware_active = FALSE //make it appear like it's just normally upgraded so the icons and examine texts are restored.
 
 	upgrades |= CAMERA_UPGRADE_XRAY
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/camera/proc/removeXRay(ignore_malf_upgrades)
 	if(!ignore_malf_upgrades) //don't downgrade it if malf software is forced onto it.
 		upgrades &= ~CAMERA_UPGRADE_XRAY
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 

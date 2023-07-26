@@ -7,7 +7,7 @@
 	anchored = TRUE
 	flags_1 = CONDUCT_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 0)
 	max_integrity = 50
 	integrity_failure = 20
 	appearance_flags = KEEP_TOGETHER
@@ -24,7 +24,7 @@
 		pipe_astar_cost = 1\
 	)
 
-/obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	var/ratio = obj_integrity / max_integrity
 	ratio = CEILING(ratio*4, 1) * 25
@@ -34,14 +34,15 @@
 
 	if(broken)
 		holes = (holes | 16) //16 is the biggest hole
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	holes = (holes | (1 << rand(0,3))) //add random holes between 1 and 8
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/grille/update_icon()
+/obj/structure/grille/update_icon(updates=ALL)
+	. = ..()
 	if(QDELETED(src))
 		return
 	for(var/i = 0; i < 5; i++)
@@ -66,7 +67,7 @@
 			return list("mode" = RCD_WINDOWGRILLE, "delay" = 20, "cost" = 8)
 	return FALSE
 
-/obj/structure/grille/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd, passed_mode)
+/obj/structure/grille/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
 			to_chat(user, span_notice("You deconstruct the grille."))
@@ -300,10 +301,10 @@
 	grille_type = /obj/structure/grille
 	broken_type = null
 
-/obj/structure/grille/broken/Initialize()
+/obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/grille/ratvar
 	icon = 'icons/obj/structures.dmi'
@@ -313,7 +314,7 @@
 	broken_type = /obj/structure/grille/ratvar/broken
 	smooth = SMOOTH_FALSE
 
-/obj/structure/grille/ratvar/Initialize()
+/obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
 	if(broken)
 		new /obj/effect/temp_visual/ratvar/grille/broken(get_turf(src))

@@ -8,7 +8,7 @@ GLOBAL_VAR_INIT(enable_memdump, 0)
 */
 
 /proc/extools_initialize()
-	return call(EXTOOLS, "core_initialize")() == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "core_initialize")() == EXTOOLS_SUCCESS
 
 /*
 	TFFI - Threaded FFI
@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(enable_memdump, 0)
 #if 0
 
 /proc/tffi_initialize()
-	return call(EXTOOLS, "tffi_initialize")() == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "tffi_initialize")() == EXTOOLS_SUCCESS
 
 GLOBAL_VAR_INIT(fallback_alerted, FALSE)
 GLOBAL_VAR_INIT(next_promise_id, 0)
@@ -73,7 +73,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 	var/list/arguments = args.Copy()
 	var/datum/promise/P = new
 	arguments.Insert(1, "\ref[P]")
-	call(EXTOOLS, "call_async")(arglist(arguments))
+	LIBCALL(EXTOOLS, "call_async")(arglist(arguments))
 	return P
 
 /proc/call_cb()
@@ -85,7 +85,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 	P.callback_context = context
 	P.callback_proc = callback
 	arguments.Insert(1, "\ref[P]")
-	call(EXTOOLS, "call_async")(arglist(arguments))
+	LIBCALL(EXTOOLS, "call_async")(arglist(arguments))
 	spawn(0)
 		P.__resolve_callback()
 
@@ -109,13 +109,13 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 */
 
 /proc/profiling_initialize()
-	return call(EXTOOLS, "extended_profiling_initialize")() == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "extended_profiling_initialize")() == EXTOOLS_SUCCESS
 
 /proc/start_profiling(procpath)
-	call(EXTOOLS, "enable_extended_profiling")("[procpath]")
+	LIBCALL(EXTOOLS, "enable_extended_profiling")("[procpath]")
 
 /proc/stop_profiling(procpath)
-	call(EXTOOLS, "disable_extended_profiling")("[procpath]")
+	LIBCALL(EXTOOLS, "disable_extended_profiling")("[procpath]")
 
 /*
 	Debug Server - High and low level debugging of DM code.
@@ -126,7 +126,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 */
 
 /proc/debugger_initialize(pause = FALSE)
-	return call(EXTOOLS, "debug_initialize")(pause ? "pause" : "") == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "debug_initialize")(pause ? "pause" : "") == EXTOOLS_SUCCESS
 
 /*
 	Misc
@@ -134,11 +134,11 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 
 //Programatically enable and disable the built-in byond profiler. Useful if you want to, for example, profile subsystem initializations.
 /proc/enable_profiling()
-	return call(EXTOOLS, "enable_profiling")() == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "enable_profiling")() == EXTOOLS_SUCCESS
 
 /proc/disable_profiling()
-	return call(EXTOOLS, "disable_profiling")() == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "disable_profiling")() == EXTOOLS_SUCCESS
 
 // Will dump the server's in-depth memory profile into the file specified.
 /proc/dump_memory_profile(file_name)
-	return call(EXTOOLS, "dump_memory_usage")(file_name) == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "dump_memory_usage")(file_name) == EXTOOLS_SUCCESS

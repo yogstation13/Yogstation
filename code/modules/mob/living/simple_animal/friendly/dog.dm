@@ -5,7 +5,7 @@
 	icon_state = "blackdog"
 	icon_living = "blackdog"
 	icon_dead = "blackdog_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
@@ -78,7 +78,7 @@
 	if(!emagged)
 		emagged = TRUE
 		visible_message(span_warning("[user] swipes a card through [src]."), span_notice("You overload [src]s internal reactor."))
-		addtimer(CALLBACK(src, .proc/explode), 1000)
+		addtimer(CALLBACK(src, PROC_REF(explode)), 1000)
 
 /mob/living/simple_animal/pet/dog/corgi/borgi/proc/explode()
 	visible_message(span_warning("[src] makes an odd whining noise."))
@@ -119,19 +119,18 @@
 	animal_species = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
 	nofur = TRUE
 
-/mob/living/simple_animal/pet/dog/Initialize()
+/mob/living/simple_animal/pet/dog/Initialize(mapload)
 	. = ..()
 	var/dog_area = get_area(src)
 	for(var/obj/structure/bed/dogbed/D in dog_area)
-		if(!D.owner)
-			D.update_owner(src)
+		if(D.update_owner(src)) //No muscling in on my turf you fucking parrot
 			break
 
-/mob/living/simple_animal/pet/dog/corgi/Initialize()
+/mob/living/simple_animal/pet/dog/corgi/Initialize(mapload)
 	. = ..()
 	regenerate_icons()
 
-/mob/living/simple_animal/pet/dog/corgi/exoticcorgi/Initialize()
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi/Initialize(mapload)
 		. = ..()
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
@@ -299,7 +298,7 @@
 /mob/living/simple_animal/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/user)
 
 	if(istype(item_to_add, /obj/item/grenade/plastic)) // last thing he ever wears, I guess
-		INVOKE_ASYNC(item_to_add, /obj/item.proc/afterattack, src, user, 1)
+		INVOKE_ASYNC(item_to_add, TYPE_PROC_REF(/obj/item, afterattack), src, user, 1)
 		return
 
 	if(inventory_head)
@@ -383,7 +382,7 @@
 	var/memory_saved = FALSE
 	var/saved_head //path
 
-/mob/living/simple_animal/pet/dog/corgi/Ian/Initialize()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Initialize(mapload)
 	. = ..()
 	//parent call must happen first to ensure IAN
 	//is not in nullspace when child puppies spawn
@@ -401,7 +400,7 @@
 		desc = "At a ripe old age of [record_age] Ian's not as spry as he used to be, but he'll always be the HoP's beloved corgi." //RIP
 		turns_per_move = 20
 
-/mob/living/simple_animal/pet/dog/corgi/Ian/Life()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
@@ -454,7 +453,7 @@
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
-/mob/living/simple_animal/pet/dog/corgi/Ian/Life()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	//Feeding, chasing food, FOOOOODDDD
@@ -529,7 +528,7 @@
 	nofur = TRUE
 	unique_pet = TRUE
 
-/mob/living/simple_animal/pet/dog/corgi/narsie/Life()
+/mob/living/simple_animal/pet/dog/corgi/narsie/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	for(var/mob/living/simple_animal/pet/P in range(1, src))
 		if(P != src && prob(5))
@@ -659,7 +658,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/pet/dog/corgi/Lisa/Life()
+/mob/living/simple_animal/pet/dog/corgi/Lisa/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	make_babies()
@@ -672,7 +671,7 @@
 					setDir(i)
 					sleep(0.1 SECONDS)
 
-/mob/living/simple_animal/pet/dog/pug/Life()
+/mob/living/simple_animal/pet/dog/pug/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	if(!stat && !resting && !buckled)

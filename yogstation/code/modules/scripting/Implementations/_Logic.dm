@@ -338,6 +338,7 @@
 		var/found = findtext(text, find, last_found, 0)
 		if(!found)
 			break
+		. += copytext(text, last_found, found)
 		. += replacement
 		last_found = found + find_len
 	return . + copytext(text,last_found)

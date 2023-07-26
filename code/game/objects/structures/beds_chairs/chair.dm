@@ -20,14 +20,11 @@
 	if(can_buckle && !has_buckled_mobs())
 		. += span_notice("Drag your sprite to sit in it.")
 
-/obj/structure/chair/Initialize()
+/obj/structure/chair/Initialize(mapload)
 	. = ..()
 	if(!anchored)	//why would you put these on the shuttle?
-		addtimer(CALLBACK(src, .proc/RemoveFromLatejoin), 0)
-
-/obj/structure/chair/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, .proc/can_user_rotate),CALLBACK(src, .proc/can_be_rotated),null)
+		addtimer(CALLBACK(src, PROC_REF(RemoveFromLatejoin)), 0)
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/structure/chair/proc/can_be_rotated(mob/user)
 	return TRUE
@@ -158,13 +155,13 @@
 	item_chair = null
 	var/mutable_appearance/armrest
 
-/obj/structure/chair/comfy/Initialize()
+/obj/structure/chair/comfy/Initialize(mapload)
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
 
 /obj/structure/chair/comfy/proc/GetArmrest()
-	return mutable_appearance('icons/obj/chairs.dmi', "comfychair_armrest")
+	return mutable_appearance(icon, "[icon_state]_armrest")
 
 /obj/structure/chair/comfy/Destroy()
 	QDEL_NULL(armrest)
@@ -523,13 +520,13 @@
 /obj/structure/chair/comfy/plastic/post_buckle_mob(mob/living/M)
 	. = ..()
 	music_time = world.time + 60 SECONDS
-	addtimer(CALLBACK(src, .proc/motivate, M), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(motivate), M), 60 SECONDS)
 
 /obj/structure/chair/comfy/plastic/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	if(world.time >= music_time)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation) //lets refresh the moodlet
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
 	music_time = 0
 
 /obj/structure/chair/comfy/plastic/proc/motivate(mob/living/M)
@@ -537,5 +534,5 @@
 		return
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation)
 	if(M.client && (M.client.prefs.toggles & SOUND_JUKEBOX))
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
-		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENCE)
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
+		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENT_EFFECTS)

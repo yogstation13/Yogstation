@@ -110,13 +110,25 @@
 	icon_state = "phaseout"
 
 /obj/effect/temp_visual/dir_setting/wraith
-	name = "blood"
-	icon = 'icons/mob/mob.dmi'
-	icon_state = "phase_shift2"
-	duration = 1.2 SECONDS
+	name = "shadow"
+	icon = 'icons/mob/nonhuman-player/cult.dmi'
+	icon_state = "phase_shift2_cult"
+	duration = 0.6 SECONDS
+
+/obj/effect/temp_visual/dir_setting/wraith/angelic
+	icon_state = "phase_shift2_holy"
+
+/obj/effect/temp_visual/dir_setting/wraith/mystic
+	icon_state = "phase_shift2_wizard"
 
 /obj/effect/temp_visual/dir_setting/wraith/out
-	icon_state = "phase_shift"
+	icon_state = "phase_shift_cult"
+
+/obj/effect/temp_visual/dir_setting/wraith/out/angelic
+	icon_state = "phase_shift_holy"
+
+/obj/effect/temp_visual/dir_setting/wraith/out/mystic
+	icon_state = "phase_shift_wizard"
 
 /obj/effect/temp_visual/dir_setting/tailsweep
 	icon_state = "tailsweep"
@@ -152,7 +164,7 @@
 
 /obj/effect/temp_visual/dir_setting/curse/hand/Initialize(mapload, set_dir, handedness)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/effect/temp_visual/bsa_splash
 	name = "\improper Bluespace energy wave"
@@ -171,7 +183,8 @@
 		if(EAST)
 			icon_state = "beam_splash_e"
 
-/obj/item/projectile/curse_hand/update_icon()
+/obj/item/projectile/curse_hand/update_icon_state()
+	. = ..()
 	icon_state = "[icon_state][handedness]"
 
 /obj/effect/temp_visual/wizard
@@ -224,11 +237,18 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration)
 
+/obj/effect/temp_visual/decoy/tensecond
+	desc = "It's a decoy!"
+	duration = 10 SECONDS
+
 /obj/effect/temp_visual/decoy/fading/threesecond
 	duration = 4 SECONDS
 
 /obj/effect/temp_visual/decoy/fading/fivesecond
 	duration = 5 SECONDS
+
+/obj/effect/temp_visual/decoy/fading/onesecond
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/decoy/fading/halfsecond
 	duration = 0.5 SECONDS
@@ -416,7 +436,7 @@
 /obj/effect/temp_visual/love_heart/invisible/Initialize(mapload, mob/seer)
 	. = ..()
 	var/image/I = image(icon = 'icons/effects/effects.dmi', icon_state = "heart", layer = ABOVE_MOB_LAYER, loc = src)
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/onePerson, "heart", I, seer)
+	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/one_person, "heart", I, seer)
 	I.alpha = 255
 	I.appearance_flags = RESET_ALPHA
 	animate(I, alpha = 0, time = duration)
@@ -511,13 +531,14 @@
 	status = rcd_status
 	delay = rcd_delay
 	if (status == RCD_DECONSTRUCT)
-		addtimer(CALLBACK(src, .proc/update_icon), 11)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 11)
 		delay -= 11
 		icon_state = "rcd_end_reverse"
 	else
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/effect/constructing_effect/update_icon()
+/obj/effect/constructing_effect/update_icon_state()
+	. = ..()
 	icon_state = "rcd"
 	if (delay < 10)
 		icon_state += "_shortest"
@@ -533,7 +554,7 @@
 		qdel(src)
 	else
 		icon_state = "rcd_end"
-		addtimer(CALLBACK(src, .proc/end), 15)
+		addtimer(CALLBACK(src, PROC_REF(end)), 15)
 
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)

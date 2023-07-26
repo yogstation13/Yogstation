@@ -18,7 +18,7 @@
 		"purple" = "#FF00FF"
 	)
 
-/obj/item/projectile/energy/nuclear_particle/Initialize()
+/obj/item/projectile/energy/nuclear_particle/Initialize(mapload)
 	. = ..()
 	//Random color time!
 	var/our_color = pick(particle_colors)

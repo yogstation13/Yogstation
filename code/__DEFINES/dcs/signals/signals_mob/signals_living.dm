@@ -38,7 +38,7 @@
 #define COMSIG_LIVING_SET_BODY_POSITION  "living_set_body_position"
 ///From post-can inject check of syringe after attack (mob/user)
 #define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"
-///From living/Life(). (deltatime, times_fired)
+///From living/Life(seconds_per_tick = SSMOBS_DT, times_fired). (deltatime, times_fired)
 #define COMSIG_LIVING_LIFE "living_life"
 ///From living/set_resting(): (new_resting, silent, instant)
 #define COMSIG_LIVING_RESTING "living_resting"
@@ -135,3 +135,6 @@
 #define COMSIG_LIVING_BEFRIENDED "living_befriended"
 /// From /mob/living/unfriend() : (mob/living/old_friend)
 #define COMSIG_LIVING_UNFRIENDED "living_unfriended"
+
+///from mind/transfer_to. Sent after the mind has been transferred: (mob/previous_body)
+#define COMSIG_MIND_TRANSFERRED "mind_transferred"

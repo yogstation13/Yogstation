@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/completed = 0					//currently only used for custom objectives.
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
 
-/datum/objective/New(var/text)
+/datum/objective/New(text)
 	GLOB.objectives += src
 	if(text)
 		explanation_text = text
@@ -63,8 +63,8 @@ GLOBAL_LIST_EMPTY(objectives)
 
 	update_explanation_text()
 
-/datum/objective/proc/considered_escaped(datum/mind/M)
-	if(!considered_alive(M))
+/datum/objective/proc/considered_escaped(datum/mind/M, needs_living = TRUE)
+	if((needs_living && !considered_alive(M)))
 		return FALSE
 	if(M.force_escaped)
 		return TRUE
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
-			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
+			if(possible_target.antag_datums || !(guy.mind.quiet_round))
 				if (!(possible_target in blacklist))
 					possible_targets += possible_target//yogs indent
 			//yogs end
@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
 			var/mob/living/carbon/human/H = receiver.current
-			var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
+			var/list/slots = list("backpack" = ITEM_SLOT_BACKPACK)
 			for(var/eq_path in special_equipment)
 				var/obj/O = new eq_path
 				H.equip_in_one_of_slots(O, slots)
@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && player.stat != DEAD && !(issilicon(player) || isipc(player)))
+		if(player.mind && player.stat != DEAD && ((player.mob_biotypes & MOB_ORGANIC) && !(player.mob_biotypes & MOB_ROBOTIC))) // kill everything that's not purely robotic
 			if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 				return FALSE
 	return TRUE
@@ -524,6 +524,23 @@ GLOBAL_LIST_EMPTY(objectives)
 			return FALSE
 	return TRUE
 
+/datum/objective/escape/onesurvivor
+	name = "escape team can die"
+	team_explanation_text = "Have all members of your team escape outside custody on a shuttle or pod, with at least one surviving member."
+
+/datum/objective/escape/onesurvivor/check_completion()
+	if(completed)
+		return TRUE
+	var/has_survivor = FALSE	//is there a surviving member of the team?
+	var/list/datum/mind/owners = get_owners()
+	for(var/O in owners)
+		var/datum/mind/M = O
+		if(!considered_escaped(M, FALSE)) //NO MAN LEFT BEHIND
+			return FALSE
+		if(considered_alive(M))
+			has_survivor = TRUE
+	return has_survivor
+
 /datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
@@ -532,8 +549,12 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(!M.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		var/datum/mind/T = possible_target
-		if(!istype(T) || isipc(T.current))
+		if(!istype(T)) // if you can't absorb them you shouldn't have an objective to do so
 			return FALSE
+		if(ishuman(T.current))
+			var/mob/living/carbon/human/H = T.current
+			if((NO_DNA_COPY in H.dna.species.species_traits) || (NOHUSK in H.dna.species.species_traits))
+				return FALSE
 	return TRUE
 
 /datum/objective/escape/escape_with_identity
@@ -562,8 +583,11 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = "Free Objective."
 
 /datum/objective/escape/escape_with_identity/check_completion()
-	if(..())
+	. = ..()
+	if(completed)
 		return TRUE
+	if(!.)
+		return
 	if(!target || !target_real_name)
 		return TRUE
 	var/list/datum/mind/owners = get_owners()
@@ -660,10 +684,10 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(!is_unique_objective(possible_item.targetitem,dupe_search_range))
 				continue
 			for(var/datum/mind/M in owners)
-				if(M.current.mind.assigned_role in possible_item.excludefromjob)
+				if(M.assigned_role in possible_item.excludefromjob)
 					continue check_items
 			approved_targets += possible_item
-	return set_target(safepick(approved_targets))
+	return set_target(pick(approved_targets))
 
 /datum/objective/steal/proc/set_target(datum/objective_item/item)
 	if(item)
@@ -712,7 +736,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 		if(!isliving(M.current))
 			continue
 
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
+		var/list/all_items = M.current.get_all_contents()	//this should get things in cheesewheels, books, etc.
 
 		for(var/obj/I in all_items) //Check for items
 			if(istype(I, steal_target))
@@ -727,7 +751,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if (istype(team, /datum/team/infiltrator))
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/I in A.GetAllContents()) //Check for items
+				for (var/obj/item/I in A.get_all_contents()) //Check for items
 					if (istype(I, steal_target))
 						if (!targetinfo)
 							return TRUE
@@ -816,13 +840,13 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 				if(H && (H.stat != DEAD) && istype(H.wear_suit, /obj/item/clothing/suit/space/space_ninja))
 					var/obj/item/clothing/suit/space/space_ninja/S = H.wear_suit
 					S.stored_research.copy_research_to(checking)
-			var/list/otherwise = M.GetAllContents()
+			var/list/otherwise = M.get_all_contents()
 			for(var/obj/item/disk/tech_disk/TD in otherwise)
 				TD.stored_research.copy_research_to(checking)
 	if (istype(team, /datum/team/infiltrator))
 		for (var/area/A in world)
 			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/disk/tech_disk/TD in A.GetAllContents()) //Check for items
+				for (var/obj/item/disk/tech_disk/TD in A.get_all_contents()) //Check for items
 					TD.stored_research.copy_research_to(checking)
 				CHECK_TICK
 			CHECK_TICK
@@ -1041,10 +1065,98 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/internal
 	var/stolen = FALSE 		//Have we already eliminated this target?
 
-/datum/objective/steal_five_of_type
+/datum/objective/steal_n_of_type
 	name = "steal five of"
-	explanation_text = "Steal at least five items!"
+	explanation_text = "Steal some items!"
+	//what types we want to steal
 	var/list/wanted_items = list()
+	//how many we want to steal
+	var/amount = 5
+
+/datum/objective/steal_n_of_type/New()
+	..()
+	wanted_items = typecacheof(wanted_items)
+
+/datum/objective/steal_n_of_type/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	var/stolen_count = 0
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+		var/list/all_items = M.current.get_all_contents() //this should get things in cheesewheels, books, etc.
+		for(var/obj/current_item in all_items) //Check for wanted items
+			if(is_type_in_typecache(current_item, wanted_items))
+				if(check_if_valid_item(current_item))
+					stolen_count++
+	return stolen_count >= amount
+
+/datum/objective/steal_n_of_type/proc/check_if_valid_item(obj/item/current_item)
+	return TRUE
+
+/datum/objective/steal_n_of_type/summon_guns
+	name = "steal guns"
+	explanation_text = "Steal at least five guns!"
+	wanted_items = list(/obj/item/gun)
+	amount = 5
+
+/datum/objective/steal_n_of_type/summon_guns/check_if_valid_item(obj/item/current_item)
+	var/obj/item/gun/gun = current_item
+//	return !(gun.gun_flags & NOT_A_REAL_GUN)
+	return istype(gun)
+
+/datum/objective/steal_n_of_type/summon_magic
+	name = "steal magic"
+	explanation_text = "Steal at least five magical artefacts!"
+	wanted_items = list()
+	amount = 5
+
+/datum/objective/steal_n_of_type/summon_magic/New()
+	wanted_items = GLOB.summoned_magic_objectives
+	..()
+
+/datum/objective/steal_n_of_type/summon_magic/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	var/stolen_count = 0
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+		var/list/all_items = M.current.get_all_contents() //this should get things in cheesewheels, books, etc.
+		for(var/obj/thing in all_items) //Check for wanted items
+			if(istype(thing, /obj/item/book/granter/action/spell))
+				var/obj/item/book/granter/action/spell/spellbook = thing
+				if(spellbook.uses > 0) //if the book still has powers...
+					stolen_count++ //it counts. nice.
+			else if(is_type_in_typecache(thing, wanted_items))
+				stolen_count++
+	return stolen_count >= amount
+
+/datum/objective/steal_n_of_type/organs
+	name = "steal organs"
+	explanation_text = "Steal at least 5 organic organs! They must be kept healthy."
+	wanted_items = list(/obj/item/organ)
+	amount = 5 //i want this to be higher, but the organs must be fresh at roundend
+
+/datum/objective/steal_n_of_type/organs/check_completion()
+	var/list/datum/mind/owners = get_owners()
+	var/stolen_count = 0
+	for(var/datum/mind/mind in owners)
+		if(!isliving(mind.current))
+			continue
+		var/list/all_items = mind.current.get_all_contents() //this should get things in cheesewheels, books, etc.
+		for(var/obj/item/stolen in all_items) //Check for wanted items
+			var/found = FALSE
+			for(var/wanted_type in wanted_items)
+				if(istype(stolen, wanted_type))
+					found = TRUE
+					break
+			if(!found)
+				continue
+			//this is an objective item
+			var/obj/item/organ/wanted = stolen
+			if(!(wanted.organ_flags & ORGAN_FAILING) && !(wanted.organ_flags & ORGAN_SYNTHETIC))
+				stolen_count++
+	return stolen_count >= amount
+
 
 //Created by admin tools
 /datum/objective/custom
@@ -1315,7 +1427,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/chosen_pet = rand(1, possible_pets.len)
 	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
 	name = "Kill [pet.name]]"
-	explanation_text = "Assasinate the important animal, [pet.name]"
+	explanation_text = "Assassinate the important animal, [pet.name]."
 	return pet
 
 /datum/objective/minor/pet/admin_edit(mob/admin)
@@ -1375,7 +1487,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/deadpics/check_completion()
 	if(..())
 		return TRUE
-	var/list/all_items = owner.current.GetAllContents()
+	var/list/all_items = owner.current.get_all_contents()
 	for(var/obj/item/photo/P in all_items)
 		for(var/mob/M in P.picture.dead_seen)
 			if(M.real_name == target.name)
@@ -1427,7 +1539,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/minor/staffpics/check_completion()
 	if(..())
 		return TRUE
-	var/list/all_items = owner.current.GetAllContents()
+	var/list/all_items = owner.current.get_all_contents()
 	for(var/obj/item/photo/P in all_items)
 		for(var/mob/M in P.picture.mobs_seen)
 			if(M.real_name == target.name)
@@ -1452,10 +1564,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/survive/bloodsucker,
 		/datum/objective/bloodsucker/protege,
 		/datum/objective/bloodsucker/heartthief,
+		/datum/objective/bloodsucker/vassalhim,
 		/datum/objective/bloodsucker/gourmand,
 		// MISC OBJECTIVES //
 		/datum/objective/bloodsucker/monsterhunter,
-		/datum/objective/bloodsucker/vassalhim,
 		/datum/objective/bloodsucker/frenzy,
 		// Fulp edit END
 		/datum/objective/destroy,

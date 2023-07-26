@@ -8,8 +8,8 @@
 /datum/preference/choiced/preternis_color/init_possible_values()
 	var/list/values = list()
 
-	var/icon/preternis_base = icon('icons/mob/human_parts_greyscale.dmi', "preternis_head_m")
-	preternis_base.Blend(icon('icons/mob/human_parts_greyscale.dmi', "preternis_chest_m"), ICON_OVERLAY)
+	var/icon/preternis_base = icon('icons/mob/human_parts_greyscale.dmi', "preternis_head")
+	preternis_base.Blend(icon('icons/mob/human_parts_greyscale.dmi', "preternis_chest"), ICON_OVERLAY)
 	preternis_base.Blend(icon('icons/mob/human_parts_greyscale.dmi', "preternis_l_arm"), ICON_OVERLAY)
 	preternis_base.Blend(icon('icons/mob/human_parts_greyscale.dmi', "preternis_r_arm"), ICON_OVERLAY)
 

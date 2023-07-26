@@ -59,7 +59,7 @@
 			var/mob/living/L = target
 			if(isethereal(target))
 				target.emp_act(EMP_LIGHT)
-			for(var/obj/item/O in target.GetAllContents())
+			for(var/obj/item/O in target.get_all_contents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 				if(L.pulling && L.pulling.light_range && isitem(L.pulling))
@@ -82,7 +82,7 @@
 	if(istype(O, /obj/item/pda))
 		var/obj/item/pda/PDA = O
 		PDA.set_light_on(FALSE)
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
 		visible_message(span_danger("[O] is disintegrated by [src]!"))
@@ -154,7 +154,7 @@
 				target.visible_message(span_warning("[firer]'s [name] slam into [target] and drag them across the ground!"), \
 				span_userdanger("You're suddenly dragged across the floor!"))
 				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
+				addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
 			R.toggle_headlamp(TRUE) //disable headlamps

@@ -4,6 +4,7 @@
 	set desc = "View/retrieve logfiles."
 	set category = "Server"
 
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Server Logs")
 	browseserverlogs()
 
 /client/proc/getcurrentlogs()
@@ -11,6 +12,7 @@
 	set desc = "View/retrieve logfiles for the current round."
 	set category = "Server"
 
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Get Current Logs")
 	browseserverlogs("[GLOB.log_directory]/")
 
 /client/proc/browseserverlogs(path = "data/logs/")

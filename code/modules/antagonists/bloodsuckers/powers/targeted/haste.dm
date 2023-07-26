@@ -3,11 +3,11 @@
  * Level 3: Stun People Passed
  */
 
-/datum/action/bloodsucker/targeted/haste
+/datum/action/cooldown/bloodsucker/targeted/haste
 	name = "Immortal Haste"
 	desc = "Dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
 	button_icon_state = "power_speed"
-	power_explanation = "<b>Immortal Haste</b>:\n\
+	power_explanation = "Immortal Haste:\n\
 		Click anywhere to immediately dash towards that location.\n\
 		The Power will not work if you are lying down, in no gravity, or are aggressively grabbed.\n\
 		Anyone in your way during your Haste will be knocked down and Payalyzed, moreso if they are using Flow.\n\
@@ -16,14 +16,16 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 6
-	cooldown = 12 SECONDS
+	cooldown_time = 12 SECONDS
 	target_range = 15
 	power_activates_immediately = TRUE
-	var/list/hit //current hit, set while power is in use as we can't pass the list as an extra calling argument in registersignal.
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/haste/shadow
+	/// Current hit, set while power is in use as we can't pass the list as an extra calling argument in registersignal.
+	var/list/hit = list()
 	/// If set, uses this speed in deciseconds instead of world.tick_lag
 	var/speed_override
 
-/datum/action/bloodsucker/targeted/haste/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/targeted/haste/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -40,17 +42,17 @@
 	return TRUE
 
 /// Anything will do, if it's not me or my square
-/datum/action/bloodsucker/targeted/haste/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/haste/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return target_atom.loc != owner.loc
 
 /// This is a non-async proc to make sure the power is "locked" until this finishes.
-/datum/action/bloodsucker/targeted/haste/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/haste/FireTargetedPower(atom/target_atom)
 	. = ..()
 	hit = list()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/on_move)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/mob/living/user = owner
 	var/turf/targeted_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
 	// Pulled? Not anymore.
@@ -80,7 +82,7 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	hit = null
 
-/datum/action/bloodsucker/targeted/haste/proc/on_move()
+/datum/action/cooldown/bloodsucker/targeted/haste/proc/on_move()
 	for(var/mob/living/all_targets in dview(1, get_turf(owner)))
 		if(!hit[all_targets] && (all_targets != owner))
 			hit[all_targets] = TRUE
@@ -90,25 +92,26 @@
 			all_targets.spin(10, 1)
 			if(IS_MONSTERHUNTER(all_targets) && HAS_TRAIT(all_targets, TRAIT_STUNIMMUNE))
 				to_chat(all_targets, "Knocked down!")
-				for(var/datum/action/bloodsucker/power in all_targets.actions)
+				for(var/datum/action/cooldown/bloodsucker/power in all_targets.actions)
 					if(power.active)
 						power.DeactivatePower()
-				all_targets.Jitter(20)
-				all_targets.confused = max(8, all_targets.confused)
-				all_targets.stuttering = max(8, all_targets.stuttering)
+				all_targets.set_timed_status_effect(8 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
+				all_targets.set_timed_status_effect(8 SECONDS, /datum/status_effect/confusion, only_if_higher = TRUE)
+				all_targets.adjust_timed_status_effect(8 SECONDS, /datum/status_effect/speech/stutter)
 				all_targets.Knockdown(10 + level_current * 5) // Re-knock them down, the first one didn't work due to stunimmunity
 
-/datum/action/bloodsucker/targeted/haste/shadow
+/datum/action/cooldown/bloodsucker/targeted/haste/shadow
 	name = "Blow"
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	active_background_icon_state = "lasombra_power_on"
+	base_background_icon_state = "lasombra_power_off"
 	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
-	background_icon_state_on = "lasombra_power_on"
-	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_bomb"
 	additional_text = "Additionally disables lightframes in range and confuses nearby mortals."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
-/datum/action/bloodsucker/targeted/haste/shadow/on_move()
+/datum/action/cooldown/bloodsucker/targeted/haste/shadow/on_move()
 	. = ..()
 	var/mob/living/carbon/human/user = owner
 	for(var/obj/machinery/light/L in range(5, user))
@@ -123,5 +126,5 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/M = target
 			to_chat(M, span_danger("<b>As a figure passes by, you feel your head spike up!</b>"))
-			M.confused += 4
+			M.adjust_confusion(4 SECONDS)
 			M.adjustEarDamage(0, 15)

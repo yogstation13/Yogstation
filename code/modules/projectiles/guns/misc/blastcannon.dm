@@ -26,7 +26,7 @@
 	debug_power = 80
 	bombcheck = FALSE
 
-/obj/item/gun/blastcannon/Initialize()
+/obj/item/gun/blastcannon/Initialize(mapload)
 	. = ..()
 	if(!pin)
 		pin = new
@@ -41,10 +41,11 @@
 		user.put_in_hands(bomb)
 		user.visible_message(span_warning("[user] detaches [bomb] from [src]."))
 		bomb = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()
 
-/obj/item/gun/blastcannon/update_icon()
+/obj/item/gun/blastcannon/update_icon(updates=ALL)
+	. = ..()
 	if(bomb)
 		icon_state = icon_state_loaded
 		name = "blast cannon"
@@ -65,7 +66,7 @@
 			return FALSE
 		user.visible_message(span_warning("[user] attaches [T] to [src]!"))
 		bomb = T
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return ..()
 
@@ -94,7 +95,7 @@
 	var/power = bomb? calculate_bomb() : debug_power
 	power = min(power, max_power)
 	QDEL_NULL(bomb)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/heavy = power * 0.25
 	var/medium = power * 0.5
 	var/light = power

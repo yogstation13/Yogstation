@@ -22,6 +22,8 @@
 	var/last_battery_percent = 0
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
+	///A pAI currently loaded into the modular computer.
+	var/obj/item/paicard/inserted_pai
 
 	/// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_active_power_usage = 50
@@ -87,7 +89,7 @@
 	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
 
 
-/obj/item/modular_computer/Initialize()
+/obj/item/modular_computer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(!physical)
@@ -97,7 +99,7 @@
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
@@ -113,7 +115,7 @@
 	if(active_program?.tap(A, user, params))
 		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
+		addtimer(CALLBACK(src, PROC_REF(play_ping)), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
 		return
 	return ..()
 
@@ -260,7 +262,8 @@
 
 	. += get_modular_computer_parts_examine(user)
 
-/obj/item/modular_computer/update_icon()
+/obj/item/modular_computer/update_icon(updates=ALL)
+	. = ..()
 	if(!physical)
 		return
 
@@ -291,11 +294,11 @@
 
 /obj/item/modular_computer/equipped()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/modular_computer/dropped()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/modular_computer/proc/update_label()
@@ -336,7 +339,7 @@
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
@@ -478,7 +481,7 @@
 	var/mob/user = usr
 	if(user && istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
@@ -502,7 +505,7 @@
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
 
 /**
@@ -515,7 +518,7 @@
 	if(!has_light)
 		return FALSE
 	set_light_on(!light_on)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /**

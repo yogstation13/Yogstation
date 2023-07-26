@@ -188,7 +188,7 @@
 	amount = 25
 	},
 /obj/item/coin/antagtoken,
-/obj/item/book/granter/spell/summonitem{
+/obj/item/book/granter/action/spell/summonitem{
 	name = "an extremely flamboyant book"
 	},
 /turf/open/floor/engine/cult{
@@ -516,7 +516,7 @@
 	},
 /area/awaymission/caves/BMP_asteroid/level_three)
 "by" = (
-/obj/item/twohanded/mjollnir,
+/obj/item/mjolnir,
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse,
 /turf/open/floor/plating/asteroid/basalt{
 	initial_gas_mix = "n2=23;o2=14"

@@ -10,6 +10,7 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	flammability = 0 // nope
 
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
@@ -23,6 +24,9 @@
 
 /turf/open/floor/engine/burn_tile()
 	return //unburnable
+
+/turf/open/floor/engine/temperature_expose()
+	return //still unburnable
 
 /turf/open/floor/engine/Melt()
 	to_be_destroyed = FALSE
@@ -135,10 +139,11 @@
 	desc = "The air smells strangely over this sinister flooring."
 	icon_state = "plating"
 	floor_tile = null
+	CanAtmosPass = ATMOS_PASS_NO // cant be spaced or flooded that easily
 	var/obj/effect/clockwork/overlay/floor/bloodcult/realappearance
 
 
-/turf/open/floor/engine/cult/Initialize()
+/turf/open/floor/engine/cult/Initialize(mapload)
 	. = ..()
 	new /obj/effect/temp_visual/cult/turf/floor(src)
 	realappearance = new /obj/effect/clockwork/overlay/floor/bloodcult(src)
@@ -167,6 +172,7 @@
 
 /turf/open/floor/engine/cult/airless
 	initial_gas_mix = AIRLESS_ATMOS
+	CanAtmosPass = ATMOS_PASS_PROC // same as /turf/open/floor/engine
 
 /turf/open/floor/engine/vacuum
 	name = "vacuum floor"

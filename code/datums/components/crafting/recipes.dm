@@ -147,7 +147,7 @@
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/motorized
@@ -227,6 +227,12 @@
 	name = "Toy Sword"
 	reqs = list(/obj/item/light/bulb = 1, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
 	result = /obj/item/toy/sword
+	category = CAT_MISC
+
+/datum/crafting_recipe/toysword
+	name = "Toy Sledgehammer"
+	reqs = list(/obj/item/light/bulb = 2, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
+	result = /obj/item/melee/vxtvulhammer/toy/pirate // not authentic!!!!
 	category = CAT_MISC
 
 /datum/crafting_recipe/toybat
@@ -355,31 +361,31 @@
 /datum/crafting_recipe/headpike
 	name = "Spike Head (Glass Spear)"
 	time = 6.5 SECONDS
-	reqs = list(/obj/item/twohanded/spear = 1,
+	reqs = list(/obj/item/melee/spear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
-			/obj/item/twohanded/spear = 1)
-	blacklist = list(/obj/item/twohanded/bonespear, /obj/item/twohanded/bamboospear)
+			/obj/item/melee/spear = 1)
+	blacklist = list(/obj/item/melee/spear/bonespear, /obj/item/melee/spear/bamboospear)
 	result = /obj/structure/headpike/glass
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/headpikebone
 	name = "Spike Head (Bone Spear)"
 	time = 6.5 SECONDS
-	reqs = list(/obj/item/twohanded/bonespear = 1,
+	reqs = list(/obj/item/melee/spear/bonespear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
-			/obj/item/twohanded/bonespear = 1)
+			/obj/item/melee/spear/bonespear = 1)
 	result = /obj/structure/headpike/bone
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/headpikebamboo
 	name = "Spike Head (Bamboo Spear)"
 	time = 6.5 SECONDS
-	reqs = list(/obj/item/twohanded/bamboospear = 1,
+	reqs = list(/obj/item/melee/spear/bamboospear = 1,
 				/obj/item/bodypart/head = 1)
 	parts = list(/obj/item/bodypart/head = 1,
-			/obj/item/twohanded/bamboospear = 1)
+			/obj/item/melee/spear/bamboospear = 1)
 	result = /obj/structure/headpike/bamboo
 	category = CAT_PRIMAL
 
@@ -403,7 +409,7 @@
 
 /datum/crafting_recipe/rcl
 	name = "Makeshift Rapid Cable Layer"
-	result = /obj/item/twohanded/rcl/ghetto
+	result = /obj/item/rcl/ghetto
 	time = 4 SECONDS
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	reqs = list(/obj/item/stack/sheet/metal = 15)
@@ -620,7 +626,7 @@
 	name = "Refill Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine = 1,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_MEDICAL
 
@@ -628,7 +634,7 @@
 	name = "Refill Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1,
 				/datum/reagent/drug/pumpup = 15)
 	category = CAT_MEDICAL
 
@@ -677,17 +683,18 @@
 /datum/crafting_recipe/ointment
 	name = "Ointment"
 	result = /obj/item/stack/medical/ointment
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
-				/datum/reagent/ash = 10,
-				/datum/reagent/medicine/c2/lenturi = 15)
+	reqs = list(/datum/reagent/water = 10,
+				/datum/reagent/ash = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/antisepticointment
 	name = "Antiseptic Ointment"
 	result = /obj/item/stack/medical/ointment/antiseptic
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
+	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10,
-				/datum/reagent/space_cleaner/sterilizine = 15)
+				/datum/reagent/silver = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh

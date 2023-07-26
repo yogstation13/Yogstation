@@ -71,6 +71,9 @@
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
+			// initTemplateBounds explicitly ignores the shuttle's docking port, to ensure that it calculates the bounds of the shuttle correctly
+			// so we need to manually initialize it here
+			SSatoms.InitializeAtoms(list(port))
 			if(register)
 				port.register()
 			if(isnull(port_x_offset))
@@ -357,6 +360,32 @@
 	an engine room stocked with various supplies, and a crew capacity of 80+ to top it all off. Live large, live Cere."
 	admin_notes = "Seriously big, even larger than the Delta shuttle."
 	credit_cost = 10000
+
+/datum/map_template/shuttle/emergency/octa
+	suffix = "octa"
+	name = "Octa Prototype Emergency Shuttle"
+	description = "Nanotrasen's experimental shuttle utilizing a unique shape to manipulate reality for a percieved larger shuttle in a smaller package. \
+		While experimental, it offers great views of outside and decently stocked emergency and medical supplies."
+	admin_notes = "Doughnut yummy."
+	credit_cost = 9500 //experimental = expensive
+
+/datum/map_template/shuttle/emergency/cargo
+	suffix = "cargo"
+	name = "O.C.K. Emergency Shuttle"
+	description = "The Overnight Cargo-transport K-Class is an OSHA compliant shuttle complete with rails and warning lines to protect her crew from the cargo they are transporting. \
+		Seats and a brig space have been retrofitted to help on its current mission of saving you from the station. \
+		The higher ups complain this shuttle is very \"\ meta\"\ and \"\ increases greytide levels\"\ whatever that means."
+	admin_notes = "Has a chance to have (traitor) maint loot, you can always delete it when its at CC"
+	credit_cost = 7000
+
+/datum/map_template/shuttle/emergency/mafia
+	suffix = "mafia"
+	name = "Droni Fedora"
+	description = "I'm gonna make you an offer you can't refuse, the drone mafia has offered their 'services' to shuttle the crew. \
+		Just be careful, if you don't show class they might heckle you. Canoli not incuded."
+	admin_notes = "has 5 mafia drones that are pacified. By drone law they should only stun people if provoked. Has a pair of sentient barstaff also."
+	emag_buy = TRUE
+	credit_cost = 100000//service fee
 
 /datum/map_template/shuttle/emergency/supermatter
 	suffix = "supermatter"

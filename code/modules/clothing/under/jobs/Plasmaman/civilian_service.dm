@@ -16,6 +16,14 @@
 	icon_state = "explorer_envirosuit"
 	item_state = "explorer_envirosuit"
 
+/obj/item/clothing/under/plasmaman/hop
+	name = "head of personnel's envirosuit"
+	desc = "A navy-blue envirosuit with gold trimmings worn by plasmamen heads of personnel."
+	icon_state = "hop_envirosuit"
+	item_state = "hop_envirosuit"
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
+
 
 /obj/item/clothing/under/plasmaman/chef
 	name = "chef's envirosuit"
@@ -76,7 +84,11 @@
 				return
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
-			H.visible_message(span_warning("[H]'s suit spews out a tonne of space lube!"),span_warning("Your suit spews out a tonne of space lube!"))
-			H.ExtinguishMob()
-			new /obj/effect/particle_effect/foam(loc) //Truely terrifying.
+			H.visible_message(span_warning("[H]'s suit spews out a tonne of space lube!"), span_warning("Your suit spews out a tonne of space lube!"))
+			H.extinguish_mob()
+			var/datum/effect_system/fluid_spread/foam/foam = new
+			var/datum/reagents/foamreagent = new /datum/reagents(15)
+			foamreagent.add_reagent(/datum/reagent/lube, 15)
+			foam.set_up(4, holder = src, location = loc, carry = foamreagent)
+			foam.start() //Truly terrifying.
 	return 0

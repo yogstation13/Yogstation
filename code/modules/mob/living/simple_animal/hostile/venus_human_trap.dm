@@ -24,7 +24,7 @@
 	/// The countdown ghosts see to when the plant will hatch
 	var/obj/effect/countdown/flower_bud/countdown
 
-/obj/structure/alien/resin/flower_bud_enemy/Initialize()
+/obj/structure/alien/resin/flower_bud_enemy/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 	var/list/anchors = list()
@@ -37,7 +37,7 @@
 		var/datum/beam/B = Beam(T, "vine", time=INFINITY, maxdistance=5, beam_type=/obj/effect/ebeam/vine)
 		B.sleep_time = 10 //these shouldn't move, so let's slow down updates to 1 second (any slower and the deletion of the vines would be too slow)
 	finish_time = world.time + growth_time
-	addtimer(CALLBACK(src, .proc/bear_fruit), growth_time)
+	addtimer(CALLBACK(src, PROC_REF(bear_fruit)), growth_time)
 	countdown.start()
 
 /**
@@ -107,7 +107,7 @@
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = TRUE
 
-/mob/living/simple_animal/hostile/venus_human_trap/Life()
+/mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	pull_vines()
 	if(!kudzu_need())
@@ -141,7 +141,7 @@
 				return
 	
 	var/datum/beam/newVine = Beam(the_target, "vine", time=INFINITY, maxdistance = vine_grab_distance, beam_type=/obj/effect/ebeam/vine)
-	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, .proc/remove_vine, newVine)
+	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, PROC_REF(remove_vine), newVine)
 	listclearnulls(vines)
 	vines += newVine
 	if(isliving(the_target))
@@ -224,8 +224,8 @@
 
 /mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
 	for(var/contents in src.loc)
-		if(istype(contents, /obj/effect/particle_effect/smoke/chem))
-			var/obj/effect/particle_effect/smoke/chem/gas = contents
+		if(istype(contents, /obj/effect/particle_effect/fluid/smoke/chem))
+			var/obj/effect/particle_effect/fluid/smoke/chem/gas = contents
 			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
 				return TRUE
 	return FALSE

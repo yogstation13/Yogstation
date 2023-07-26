@@ -2,7 +2,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/medical
 	mech_flags = EXOSUIT_MODULE_MEDICAL
-/obj/item/mecha_parts/mecha_equipment/medical/Initialize()
+/obj/item/mecha_parts/mecha_equipment/medical/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -260,7 +260,7 @@
 	range = MECHA_MELEE|MECHA_RANGED
 	equip_cooldown = 10
 
-/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/Initialize()
+/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, NO_REACT)
 	syringes = new
@@ -323,7 +323,7 @@
 				var/list/mobs = new
 				for(var/mob/living/carbon/M in mechsyringe.loc)
 					mobs += M
-				var/mob/living/carbon/M = safepick(mobs)
+				var/mob/living/carbon/M = pick(mobs)
 				if(M)
 					var/R
 					mechsyringe.visible_message(span_attack(" [M] was hit by the syringe!"))
@@ -341,12 +341,12 @@
 				else if(mechsyringe.loc == trg)
 					mechsyringe.icon_state = initial(mechsyringe.icon_state)
 					mechsyringe.icon = initial(mechsyringe.icon)
-					mechsyringe.update_icon()
+					mechsyringe.update_appearance(UPDATE_ICON)
 					break
 			else
 				mechsyringe.icon_state = initial(mechsyringe.icon_state)
 				mechsyringe.icon = initial(mechsyringe.icon)
-				mechsyringe.update_icon()
+				mechsyringe.update_appearance(UPDATE_ICON)
 				break
 			sleep(0.1 SECONDS)
 	return 1
@@ -531,10 +531,14 @@
 	var/obj/item/gun/medbeam/mech/medigun
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 8000, /datum/material/plasma = 3000, /datum/material/gold = 8000, /datum/material/diamond = 2000)
 
-/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/Initialize()
+/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/Initialize(mapload)
 	. = ..()
 	medigun = new(src)
 
+/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/can_attach(obj/mecha/M)
+	. = ..()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam) in M.equipment)
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/Destroy()
 	qdel(medigun)

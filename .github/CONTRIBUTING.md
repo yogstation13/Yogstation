@@ -64,7 +64,7 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 **We allow users to create draft Pull Requests in order to have time to work on features and solicit feedback on those features**; however, there will be a limit of 2 draft Pull Requests per person, as we want people to finish their projects before moving onto others as soon as possible.
 
-**In regards to Revert Pull Requests**, these should only be opened if there is a reason for the reversion ie. the feature is broken or is not as expected when it was merged. Otherwise please wait at least 48 hours before reversing a change.
+**In regards to Revert Pull Requests**, these should only be opened if there is a reason for the reversion ie. the feature is broken or is not as expected when it was merged. Otherwise please wait at least 48 hours before reversing a change. These rules do not apply to corrections made by a HD for a Pull request merged by a maintainer incorrectly or if they disagree it should have been merged in the first place.
 
 ### Maintainers
 
@@ -72,11 +72,11 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 **All maintainers should follow set standards for handling Pull Requests.** These standards include waiting 24 hours before merging or closing a Pull Request, as well as merging only Pull Requests that fall under your area of expertise (i.e. an Art Maintainer should not merge code, and a Code Maintainer should not merge art.) Lastly, revert Pull Requests should only be merged by a Head Developer. The above limitations do not apply to round-breaking or repo-breaking changes; however, please notify any head developers if this occurs.
 
-**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close draft Pull Requests if:
-* A contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
-* A contributor has opened a draft Pull Request that has no changes present in it after the initial 24 hours.
-* A contributor has not contributed to their draft Pull Request in a week’s time.
-* The Pull Request was opened with inadequate rationale or is lacking naming or following existing guidelines.
+**All maintainers should encourage discourse and collaboration.** As such, maintainers should only close Pull Requests if:
+* It is a draft Pull Request and the contributor has more than 2 draft Pull Requests open, in which the oldest draft Pull Request should be closed until the author closes another.
+* It is a Pull Request in which the contributor has not implemented any changes in the first 24 hours since it was opened. 
+* It is a Pull Request in which the author has not contributed to in a week’s time.
+* It is a Pull Request that was opened with inadequate rationale or is lacking proper naming or violates existing guidelines in some way.
 
 
 **If a Maintainer/Director gets banned from the server/Discord, there will be an automatic review process triggered.** During this time access to GitHub merging and in-game ranks will be removed until the review is complete. After this review, roles and permissions may be returned depending on the result.

@@ -82,7 +82,7 @@
 
 	for(var/gasID in using)
 		loaded_tank.air_contents.adjust_moles(gasID, -gasdrained)
-	
+
 	for(var/gasID in giving)
 		loaded_tank.air_contents.adjust_moles(gasID, giving[gasID]*gasdrained)
 
@@ -159,7 +159,7 @@
 		if(!user.transferItemToLoc(W, src))
 			return
 		loaded_tank = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(W.GetID())
 		if(togglelock(user))
 			return TRUE
@@ -294,21 +294,21 @@
 	if(active)
 		toggle_power()
 	else
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/machinery/power/rad_collector/rad_act(pulse_strength)
+/obj/machinery/power/rad_collector/rad_act(pulse_strength, collectable_radiation)
 	. = ..()
-	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
+	if(loaded_tank && active && collectable_radiation && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
 		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
-/obj/machinery/power/rad_collector/update_icon()
-	cut_overlays()
+/obj/machinery/power/rad_collector/update_overlays()
+	. = ..()
 	if(loaded_tank)
-		add_overlay("ptank")
+		. += "ptank"
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		add_overlay("on")
+		. += "on"
 
 //honestly this should be balanced
 /obj/machinery/power/rad_collector/RefreshParts()
@@ -327,7 +327,7 @@
 	else
 		icon_state = "ca"
 		flick("ca_deactive", src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))

@@ -332,7 +332,7 @@
 
 
 /mob/proc/has_dna()
-	return
+	return FALSE
 
 /mob/living/carbon/has_dna()
 	return dna
@@ -406,7 +406,10 @@
 	skin_tone = GLOB.skin_tones[deconstruct_block(getblock(structure, DNA_SKIN_TONE_BLOCK), GLOB.skin_tones.len)]
 	eye_color = sanitize_hexcolor(getblock(structure, DNA_EYE_COLOR_BLOCK))
 	facial_hair_style = GLOB.facial_hair_styles_list[deconstruct_block(getblock(structure, DNA_FACIAL_HAIR_STYLE_BLOCK), GLOB.facial_hair_styles_list.len)]
-	hair_style = GLOB.hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
+	if(HAS_TRAIT(src, TRAIT_BALD))
+		hair_style = "Bald"
+	else
+		hair_style = GLOB.hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
 	if(icon_update)
 		update_body()
 		update_hair()
@@ -655,12 +658,12 @@
 				spawn_gibs()
 				set_species(/datum/species/skeleton)
 				if(prob(90))
-					addtimer(CALLBACK(src, .proc/death), 30)
+					addtimer(CALLBACK(src, PROC_REF(death)), 30)
 					if(mind)
 						mind.hasSoul = FALSE
 			if(5)
 				to_chat(src, span_phobia("LOOK UP!"))
-				addtimer(CALLBACK(src, .proc/something_horrible_mindmelt), 30)
+				addtimer(CALLBACK(src, PROC_REF(something_horrible_mindmelt)), 30)
 
 
 /mob/living/carbon/human/proc/something_horrible_mindmelt()
@@ -671,4 +674,4 @@
 		eyes.Remove(src)
 		qdel(eyes)
 		visible_message(span_notice("[src] looks up and their eyes melt away!"), "<span class>='userdanger'>I understand now.</span>")
-		addtimer(CALLBACK(src, .proc/adjustOrganLoss, ORGAN_SLOT_BRAIN, 200), 20)
+		addtimer(CALLBACK(src, PROC_REF(adjustOrganLoss), ORGAN_SLOT_BRAIN, 200), 20)

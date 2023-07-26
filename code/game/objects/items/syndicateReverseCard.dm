@@ -8,17 +8,16 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE //has this been used before? If not, give no hints about it's nature
 
-/obj/item/syndicateReverseCard/Initialize()
+/obj/item/syndicateReverseCard/Initialize(mapload)
 	..()
 	var/cardColor = pick ("Red", "Green", "Yellow", "Blue") //this randomizes which color reverse you get!
 	name = "[cardColor] Reverse"
 	icon_state = "sc_[cardColor] Reverse_uno"
 
-/obj/item/syndicateReverseCard/update_icon()
-	..()
-	if (used)
-		cut_overlays()
-		add_overlay(image('icons/obj/toy.dmi', icon_state = "reverse_overlay"))
+/obj/item/syndicateReverseCard/update_overlays()
+	. = ..()
+	if(used)
+		. += image('icons/obj/toy.dmi', icon_state = "reverse_overlay")
 
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))
@@ -45,7 +44,7 @@
 	user.put_in_hands(target_gun)
 	firer.put_in_hands(src)
 	used = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/syndicateReverseCard/examine(mob/user)
 	. = ..()

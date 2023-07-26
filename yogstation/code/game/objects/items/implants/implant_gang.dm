@@ -1,10 +1,9 @@
 /obj/item/implant/gang
 	name = "gang implant"
 	desc = "Makes you a gangster."
-	activated = FALSE
 	var/datum/team/gang/gang
 
-/obj/item/implant/gang/Initialize(loc, setgang)
+/obj/item/implant/gang/Initialize(mapload, setgang)
 	.=..()
 	gang = setgang
 
@@ -23,7 +22,7 @@
 				<b>Integrity:</b> Implant's EMP function will destroy itself in the process."}
 	return dat
 
-/obj/item/implant/gang/implant(mob/living/target, mob/user, silent = 0)
+/obj/item/implant/gang/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	if(!target || !target.mind || target.stat == DEAD)
 		return FALSE
 	var/datum/antagonist/gang/G = target.mind.has_antag_datum(/datum/antagonist/gang)
@@ -39,10 +38,10 @@
 					target.mind.remove_antag_datum(/datum/antagonist/gang)
 			else
 				success = TRUE
-			
+
 			if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 				success = FALSE
-			
+
 			if(!success)
 				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel the influence of your enemies try to invade your mind!"))
 				return FALSE
@@ -54,7 +53,7 @@
 /obj/item/implanter/gang
 	name = "implanter (gang)"
 
-/obj/item/implanter/gang/Initialize(loc, gang)
+/obj/item/implanter/gang/Initialize(mapload, gang)
 	if(!gang)
 		return INITIALIZE_HINT_QDEL
 	imp = new /obj/item/implant/gang(src,gang)

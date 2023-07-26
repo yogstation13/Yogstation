@@ -1,8 +1,8 @@
 /obj/item/projectile/bullet/shotgun/slug
 	name = "12g shotgun slug"
 	speed = 0.5 //Shotgun = slower
-	var/tile_dropoff = 3
-	var/tile_dropoff_s = 2.25
+	var/tile_dropoff = 1.5
+	var/tile_dropoff_s = 1
 	damage = 46 //About 2/3's the damage of buckshot but doesn't suffer from spread or negative AP
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
@@ -10,6 +10,7 @@
 /obj/item/projectile/bullet/shotgun/slug/syndie
 	name = "12g syndicate shotgun slug"
 	damage = 60
+	tile_dropoff = 0.5
 
 /obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"
@@ -24,7 +25,7 @@
 
 /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
 	name = "dragonsbreath pellet"
-	damage = 5
+	damage = 7
 
 /obj/item/projectile/bullet/shotgun/slug/stun
 	name = "stunslug"
@@ -41,7 +42,7 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
 	damage = 20
-	paralyze = 80
+	paralyze = 8 SECONDS
 	wound_bonus = 0
 	sharpness = SHARP_NONE
 	hitsound = 'sound/effects/meteorimpact.ogg'
@@ -53,7 +54,7 @@
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 3, 2, force = MOVE_FORCE_OVERPOWERING)
 
-/obj/item/projectile/bullet/shotgun/slug/meteor/Initialize()
+/obj/item/projectile/bullet/shotgun/slug/meteor/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
 
@@ -100,7 +101,7 @@
 	damage = 14.5 //3.5 more damage so it sucks less?
 	wound_bonus = 2
 	bare_wound_bonus = 2
-	wound_falloff_tile = -2.5
+	armour_penetration = 0 //So it doesn't suffer against armor (it's for nukies only)
 
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
@@ -108,7 +109,7 @@
 	damage = 12
 	wound_bonus = 4
 	bare_wound_bonus = 4
-	armour_penetration = 40 //You're the exception of pellets not sucking against armor because ??
+	armour_penetration = 40
 	tile_dropoff = 0.35 //Ranged pellet because I guess?
 	wound_falloff_tile = -1
 
@@ -183,4 +184,12 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
-	
+
+/obj/item/projectile/bullet/pellet/hardlight
+	name = "scattered hardlight beam"
+	icon_state = "disabler_bullet"
+	damage = 10 // Less damage than buckshot or rubbershot
+	flag = ENERGY
+	damage_type = STAMINA // Doesn't do "real" damage
+	sharpness = SHARP_NONE
+	armour_penetration = -40 // Energy armor is usually very low so uhh

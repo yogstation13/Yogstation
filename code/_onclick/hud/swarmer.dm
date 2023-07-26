@@ -21,7 +21,7 @@
 /atom/movable/screen/swarmer/barricade
 	icon_state = "ui_barricade"
 	name = "Create Barricade (Costs 4 Resources)"
-	desc = "Creates a destructible barricade that will stop any non-swarmer from passing it. Also allows disabler beams to pass through."
+	desc = "Creates a destructible barricade that will stop any non-swarmer from passing it while allowing disabler beams to pass through."
 
 /atom/movable/screen/swarmer/barricade/Click()
 	if(isswarmer(usr))
@@ -31,7 +31,7 @@
 /atom/movable/screen/swarmer/replicate
 	icon_state = "ui_replicate"
 	name = "Replicate (Costs 20 Resources)"
-	desc = "Creates an autonomous melee drone that will follow you and attack all non-swamers entities in sight. They can be ordered to move to a target location by a middle-click."
+	desc = "Creates an autonomous melee drone that will follow you and attack all non-swarmers entities in sight. They can be ordered to move to a target location by a middle-click."
 
 /atom/movable/screen/swarmer/replicate/Click()
 	if(isswarmer(usr))
@@ -72,32 +72,26 @@
 	. = ..()
 	var/atom/movable/screen/using
 
-	using = new /atom/movable/screen/swarmer/fabricate_trap()
+	using = new /atom/movable/screen/swarmer/fabricate_trap(src)
 	using.screen_loc = ui_hand_position(2)
-	using.hud = src
 	static_inventory += using
 
-	using = new /atom/movable/screen/swarmer/barricade()
+	using = new /atom/movable/screen/swarmer/barricade(src)
 	using.screen_loc = ui_hand_position(1)
-	using.hud = src
 	static_inventory += using
 
-	using = new /atom/movable/screen/swarmer/replicate()
+	using = new /atom/movable/screen/swarmer/replicate(src)
 	using.screen_loc = ui_zonesel
-	using.hud = src
 	static_inventory += using
 
-	using = new /atom/movable/screen/swarmer/repair_self()
+	using = new /atom/movable/screen/swarmer/repair_self(src)
 	using.screen_loc = ui_storage1
-	using.hud = src
 	static_inventory += using
 
-	using = new /atom/movable/screen/swarmer/toggle_light()
+	using = new /atom/movable/screen/swarmer/toggle_light(src)
 	using.screen_loc = ui_back
-	using.hud = src
 	static_inventory += using
 
-	using = new /atom/movable/screen/swarmer/contact_swarmers()
+	using = new /atom/movable/screen/swarmer/contact_swarmers(src)
 	using.screen_loc = ui_inventory
-	using.hud = src
 	static_inventory += using

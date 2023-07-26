@@ -18,7 +18,7 @@
 	light_on = FALSE
 	var/on = FALSE
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 	if(icon_state == "[initial(icon_state)]-on")
 		on = TRUE
@@ -39,7 +39,7 @@
 	playsound(user, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, 1)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 	return 1
 
 /obj/item/flashlight/suicide_act(mob/living/carbon/human/user)
@@ -92,10 +92,13 @@
 										 span_danger("You direct [src] to [M]'s eyes."))
 					if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_BLIND)) || !M.flash_act(visual = 1)) //mob is dead or fully blind
 						to_chat(user, span_warning("[M]'s pupils don't react to the light!"))
-					else if(M.dna && M.dna.check_mutation(XRAY))	//mob has X-ray vision
-						to_chat(user, span_danger("[M]'s pupils give an eerie glow!"))
-					else //they're okay!
-						to_chat(user, span_notice("[M]'s pupils narrow."))
+					else
+						for(var/datum/brain_trauma/trauma in M.get_traumas())
+							trauma.on_shine_light(user, M, src)
+						if(M.dna && M.dna.check_mutation(XRAY))	//mob has X-ray vision
+							to_chat(user, span_danger("[M]'s pupils give an eerie glow!"))
+						else //they're okay!
+							to_chat(user, span_notice("[M]'s pupils narrow."))
 
 			if(BODY_ZONE_PRECISE_MOUTH)
 
@@ -198,6 +201,19 @@
 	/// How much sanitization to apply to the burn wound
 	var/uv_power = 1
 
+/obj/item/flashlight/pen/paramedic/advanced
+	name = "advanced penlight"
+	desc = "A stronger version of the UV penlight that paramedics and doctors recieve, it is capable of cauterizing bleeding as well as sterilizing burns."
+	icon_state = "penlight_cmo"
+	light_range = 4
+	uv_power = 2
+	toolspeed = 0.5
+	tool_behaviour = TOOL_CAUTERY
+
+/obj/item/flashlight/pen/paramedic/advanced/ignition_effect(atom/A, mob/user)
+	. = ..()
+	return "[user] holds [src] against [A] until it ignites."
+
 /obj/effect/temp_visual/medical_holosign
 	name = "medical holosign"
 	desc = "A small holographic glow that indicates a medic is coming to treat a patient."
@@ -282,7 +298,7 @@
 	light_color = LIGHT_COLOR_FLARE
 	grind_results = list(/datum/reagent/sulphur = 15)
 
-/obj/item/flashlight/flare/Initialize()
+/obj/item/flashlight/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(frng_min, frng_max)
 
@@ -499,7 +515,7 @@
 	grind_results = list(/datum/reagent/phenol = 15, /datum/reagent/hydrogen = 10, /datum/reagent/oxygen = 5) //Meth-in-a-stick
 	var/fuel = 0
 
-/obj/item/flashlight/glowstick/Initialize()
+/obj/item/flashlight/glowstick/Initialize(mapload)
 	fuel = rand(1600, 2000)
 	light_color = color
 
@@ -514,28 +530,35 @@
 	if(fuel <=  0)
 		turn_off()
 		STOP_PROCESSING(SSobj, src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/flashlight/glowstick/proc/turn_off()
 	on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/flashlight/glowstick/update_icon()
-	item_state = "glowstick"
-	cut_overlays()
+/obj/item/flashlight/glowstick/update_icon(updates=ALL)
+	. = ..()
 	if(fuel <= 0)
-		icon_state = "glowstick-empty"
-		cut_overlays()
 		set_light_on(FALSE)
 	else if(on)
+		set_light_on(TRUE)
+
+/obj/item/flashlight/glowstick/update_overlays()
+	. = ..()
+	if(on)
 		var/mutable_appearance/glowstick_overlay = mutable_appearance(icon, "glowstick-glow")
 		glowstick_overlay.color = color
-		add_overlay(glowstick_overlay)
-		item_state = "glowstick-on"
-		set_light_on(TRUE)
+		. += glowstick_overlay
+
+/obj/item/flashlight/glowstick/update_icon_state()
+	. = ..()
+	item_state = "glowstick" //item state
+	if(fuel <= 0)
+		icon_state = "glowstick-empty"
+	else if(on)
+		item_state = "glowstick-on" //item state
 	else
 		icon_state = "glowstick"
-		cut_overlays()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	if(fuel <= 0)
@@ -591,7 +614,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "random_glowstick"
 
-/obj/effect/spawner/lootdrop/glowstick/Initialize()
+/obj/effect/spawner/lootdrop/glowstick/Initialize(mapload)
 	loot = typesof(/obj/item/flashlight/glowstick)
 	. = ..()
 

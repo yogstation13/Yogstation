@@ -26,9 +26,9 @@
 	var/list/spotlights = list()
 	var/list/sparkles = list()
 
-/obj/structure/discoball/Initialize()
+/obj/structure/discoball/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/discoball/attack_hand(mob/living/carbon/human/user)
 	. = ..()
@@ -51,7 +51,7 @@
 	TurnedOn = FALSE
 	set_light(0)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(TimerID)
 		deltimer(TimerID)
 	over()
@@ -69,15 +69,15 @@
 	current_color = random_color()
 	set_light_color(current_color)
 	add_atom_colour("#[current_color]", FIXED_COLOUR_PRIORITY)
-	update_icon()
-	TimerID = addtimer(CALLBACK(src, .proc/DiscoFever), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
+	update_appearance(UPDATE_ICON)
+	TimerID = addtimer(CALLBACK(src, PROC_REF(DiscoFever)), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
 
-/obj/structure/discoball/update_icon()
-	cut_overlays()
+/obj/structure/discoball/update_overlays()
+	. = ..()
 	icon_state = "disco_[TurnedOn]"
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "ethdisco_base")
 	base_overlay.appearance_flags = RESET_COLOR
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/structure/discoball/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -98,7 +98,8 @@
 
 /obj/structure/discoball/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
+	var/turf/t
+	FOR_DVIEW(t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue
@@ -185,7 +186,7 @@
 				glow.set_light_range_power_color(glow.light_range * DISCO_INFENO_RANGE, glow.light_power * 0.68, LIGHT_COLOR_RED)
 				continue
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, .proc/hierofunk)
+			INVOKE_ASYNC(src, PROC_REF(hierofunk))
 		sleep(0.5 SECONDS)
 
 #undef DISCO_INFENO_RANGE

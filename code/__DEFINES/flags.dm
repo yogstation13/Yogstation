@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define HOLOGRAM_1					(1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
 #define TESLA_IGNORE_1				(1<<11)
-///Whether /atom/Initialize() has already run for the object
+///Whether /atom/Initialize(mapload) has already run for the object
 #define INITIALIZED_1				(1<<12)
 /// was this spawned by an admin? used for stat tracking stuff.
 #define ADMIN_SPAWNED_1			    (1<<13)
@@ -70,6 +70,23 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// If megafauna can be spawned by natural random generation
 #define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
 /// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
+#define NOTELEPORT (1<<6)
+
+// Update flags for [/atom/proc/update_appearance]
+/// Update the atom's name
+#define UPDATE_NAME (1<<0)
+/// Update the atom's desc
+#define UPDATE_DESC (1<<1)
+/// Update the atom's icon state
+#define UPDATE_ICON_STATE (1<<2)
+/// Update the atom's overlays
+#define UPDATE_OVERLAYS (1<<3)
+/// Update the atom's greyscaling
+#define UPDATE_GREYSCALE (1<<4)
+/// Update the atom's smoothing. (More accurately, queue it for an update)
+#define UPDATE_SMOOTHING (1<<5)
+/// Update the atom's icon
+#define UPDATE_ICON (UPDATE_ICON_STATE|UPDATE_OVERLAYS)
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
@@ -85,6 +102,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define LETPASSTHROW	(1<<6)
 #define PASSMACHINES	(1<<7)
 #define PASSCOMPUTER	(1<<8)
+#define PASSSTRUCTURE	(1<<9)
 
 //Movement Types
 #define GROUND			(1<<0)
@@ -152,7 +170,19 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RELIGION_TOOL_SACRIFICE 	(1<<1)
 #define RELIGION_TOOL_SECTSELECT 	(1<<2)
 
+//dir macros
+///Returns true if the dir is diagonal, false otherwise
+#define ISDIAGONALDIR(d) (d&(d-1))
+///True if the dir is north or south, false therwise
 #define NSCOMPONENT(d)   (d&(NORTH|SOUTH))
+///True if the dir is east/west, false otherwise
+#define EWCOMPONENT(d)   (d&(EAST|WEST))
+///Flips the dir for north/south directions
+#define NSDIRFLIP(d)     (d^(NORTH|SOUTH))
+///Flips the dir for east/west directions
+#define EWDIRFLIP(d)     (d^(EAST|WEST))
+///Turns the dir by 180 degrees
+#define DIRFLIP(d)       turn(d, 180)
 
 /// 33554431 (2^24 - 1) is the maximum value our bitflags can reach.
 #define MAX_BITFLAG_DIGITS 8

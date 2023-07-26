@@ -53,7 +53,6 @@
 /obj/structure/closet/jcloset/PopulateContents()
 	..()
 	new /obj/item/clothing/under/rank/janitor(src)
-	new /obj/item/cartridge/janitor(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/paint/paint_remover(src)
@@ -105,8 +104,8 @@
 	new /obj/item/clothing/head/nun_hood(src)
 	new /obj/item/clothing/suit/chaplainsuit/holidaypriest(src)
 	new /obj/item/storage/backpack/cultpack(src)
-	new /obj/item/storage/box/fancy/candle_box(src)
-	new /obj/item/storage/box/fancy/candle_box(src)
+	new /obj/item/storage/fancy/candle_box(src)
+	new /obj/item/storage/fancy/candle_box(src)
 	return
 
 /obj/structure/closet/wardrobe/red

@@ -38,14 +38,14 @@
 	var/next_spaghetti = 0
 	var/spaghetti_cooldown = 50
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
+/obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize(mapload)
 	. = ..()
 	glow = new(get_turf(src))
 	if(!GLOB.ark_of_the_clockwork_justiciar)
 		GLOB.ark_of_the_clockwork_justiciar = src
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.)
 		flick("clockwork_gateway_damaged", glow)
@@ -84,7 +84,7 @@
 		var/turf/T = get_turf(M)
 		if(is_servant_of_ratvar(M) || isobserver(M) || (T && T.z == z))
 			M.playsound_local(M, 'sound/magic/clockwork/ark_activation_sequence.ogg', 30, FALSE, pressure_affected = FALSE)
-	addtimer(CALLBACK(src, .proc/let_slip_the_dogs), 300)
+	addtimer(CALLBACK(src, PROC_REF(let_slip_the_dogs)), 300)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/let_slip_the_dogs()
 	spawn_animation()
@@ -132,7 +132,7 @@
 	recalling = TRUE
 	sound_to_playing_players('sound/machines/clockcult/ark_recall.ogg', 75, FALSE)
 	hierophant_message("<span class='bold large_brass'>The Eminence has initiated a mass recall! You are being transported to the Ark!</span>")
-	addtimer(CALLBACK(src, .proc/mass_recall), 100)
+	addtimer(CALLBACK(src, PROC_REF(mass_recall)), 100)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/mass_recall()
 	for(var/V in SSticker.mode.servants_of_ratvar)
@@ -212,7 +212,7 @@
 	var/damage = max((obj_integrity * 0.7) / severity, 100) //requires multiple bombs to take down
 	take_damage(damage, BRUTE, BOMB, 0)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
+/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(deciseconds = TRUE)
 	if(seconds_until_activation)
 		. = seconds_until_activation
 	else if(grace_period)
@@ -296,7 +296,7 @@
 		if(!O.pulledby && !iseffect(O) && O.density)
 			if(!step_away(O, src, 2) || get_dist(O, src) < 2)
 				O.take_damage(50, BURN, BOMB)
-			O.update_icon()
+			O.update_appearance(UPDATE_ICON)
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		var/turf/T = get_turf(M)
@@ -312,7 +312,7 @@
 		if(-INFINITY to GATEWAY_REEBE_FOUND)
 			if(!second_sound_played)
 				for(var/V in GLOB.generic_event_spawns)
-					addtimer(CALLBACK(src, .proc/open_portal, get_turf(V)), rand(100, 600))
+					addtimer(CALLBACK(src, PROC_REF(open_portal), get_turf(V)), rand(100, 600))
 				sound_to_playing_players('sound/magic/clockwork/invoke_general.ogg', 30, FALSE)
 				sound_to_playing_players(volume = 15, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
 				second_sound_played = TRUE

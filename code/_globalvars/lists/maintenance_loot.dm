@@ -24,6 +24,12 @@
 //maintcentral:			2  items,  2 spots 0 extra (08/08/2014)
 //port:					5  items,  5 spots 0 extra (08/08/2014)
 
+
+//************************************************************
+// AS OF ROUGHLY 2023/03/20, THIS FILE IS REDUNDANT
+// MAINT LOOT IS NOW HANDELED AT
+// yogstation/code/_globalvars/lists/maintenance_loot.dm
+//************************************************************
 GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/bodybag = 1,
 	/obj/item/clothing/glasses/meson = 2,
@@ -47,6 +53,8 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/radio/off = 2,
 	/obj/item/t_scanner = 5,
 	/obj/item/airlock_painter = 1,
+	/obj/item/airlock_painter/decal = 1,
+	/obj/item/airlock_painter/decal/tile = 1,
 	/obj/item/stack/cable_coil/random = 4,
 	/obj/item/stack/cable_coil/random/five = 6,
 	/obj/item/stack/tape = 1,
@@ -86,7 +94,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/box/donkpockets/donkpockethonk = 1,
 	/obj/item/storage/box/lights/mixed = 3,
 	/obj/item/storage/box/hug/medical = 1,
-	/obj/item/storage/box/fancy/cigarettes/dromedaryco = 1,
+	/obj/item/storage/fancy/cigarettes/dromedaryco = 1,
 	/obj/item/storage/toolbox/mechanical = 1,
 	/obj/item/screwdriver = 3,
 	/obj/item/tank/internals/emergency_oxygen = 2,

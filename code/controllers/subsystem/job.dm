@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(job)
 
 		name_occupations_all[job.title] = job
 
-		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
+		if(SEND_SIGNAL(job, SSmapping.config.internal_name != "" ? SSmapping.config.internal_name : SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config")
 			continue
 
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(job)
 			JobDebug("FOC incompatible with antagonist role, Player: [player]")
 			continue
 		// yogs start - Donor features, quiet round
-		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.yogtoggles & QUIET_ROUND))
+		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.read_preference(/datum/preference/toggle/quiet_mode)))
 			JobDebug("FOC quiet check failed, Player: [player]")
 			continue
 		// yogs end
@@ -549,7 +549,7 @@ SUBSYSTEM_DEF(job)
 		if(S)
 			S.JoinPlayerHere(living_mob, FALSE)
 		if(!S && !spawning_handled) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
-			log_world("Couldn't find a round start spawn point for [rank]")
+			log_mapping("Job [job.title] ([job.type]) couldn't find a round start spawn point.")
 			SendToLateJoin(living_mob)
 
 	var/alt_title = null
@@ -595,7 +595,7 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.GetAllContents()
+	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.get_all_contents()
 	if(istype(RPDA))
 		RPDA.device_theme = GLOB.pda_themes[M.client?.prefs.read_preference(/datum/preference/choiced/pda_theme)]
 		var/obj/item/computer_hardware/hard_drive/hard_drive = RPDA.all_components[MC_HDD]
@@ -612,7 +612,7 @@ SUBSYSTEM_DEF(job)
 	return living_mob
 
 /datum/controller/subsystem/job/proc/irish_override()
-	var/datum/map_template/template = SSmapping.station_room_templates["St. Patrick's Day"]
+	var/datum/map_template/template = SSmapping.station_room_templates["Bar Irish"]
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
@@ -792,7 +792,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(2 SECONDS)
 	for (var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
 	var/datum/job/newjob = GetJob(J.title)

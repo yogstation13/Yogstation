@@ -1,7 +1,7 @@
 /datum/action/changeling/chameleon_skin
 	name = "Chameleon Skin"
 	desc = "Our skin pigmentation rapidly changes to suit our current environment. Costs 25 chemicals."
-	helptext = "Allows us to become invisible after a few seconds of standing still. Can be toggled on and off."
+	helptext = "Allows us to become invisible after a few seconds of standing still. Can be toggled on and off. Better than the mutation."
 	button_icon_state = "chameleon_skin"
 	dna_cost = 2
 	chemical_cost = 25
@@ -12,14 +12,14 @@
 	if(!istype(H)) // req_human could be done in can_sting stuff.
 		return
 	..()
-	if(H.dna.get_mutation(CHAMELEON))
-		H.dna.remove_mutation(CHAMELEON)
+	if(H.dna.get_mutation(SUPER_CHAMELEON))
+		H.dna.remove_mutation(SUPER_CHAMELEON)
 	else
-		H.dna.add_mutation(CHAMELEON)
+		H.dna.add_mutation(SUPER_CHAMELEON)
 	return TRUE
 
 /datum/action/changeling/chameleon_skin/Remove(mob/user)
 	if(user.has_dna())
 		var/mob/living/carbon/C = user
-		C.dna.remove_mutation(CHAMELEON)
+		C.dna.remove_mutation(SUPER_CHAMELEON)
 	..()

@@ -26,7 +26,7 @@
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
 	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
 
-/mob/living/carbon/alien/Initialize()
+/mob/living/carbon/alien/Initialize(mapload)
 	add_verb(src, /mob/living/proc/mob_sleep)
 	add_verb(src, /mob/living/proc/lay_down)
 
@@ -133,8 +133,10 @@ Des: Removes all infected images from the alien.
 	return initial(pixel_y)
 
 /mob/living/carbon/alien/proc/alien_evolve(mob/living/carbon/alien/new_xeno)
-	to_chat(src, span_noticealien("You begin to evolve!"))
-	visible_message(span_alertalien("[src] begins to twist and contort!"))
+	visible_message(
+		span_alertalien("[src] begins to twist and contort!"),
+		span_noticealien("You begin to evolve!"),
+	)
 	new_xeno.setDir(dir)
 	if(!alien_name_regex.Find(name))
 		new_xeno.name = name

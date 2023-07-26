@@ -11,16 +11,20 @@
 #define TRANSPARENT		(1<<4)	// Used on containers which you want to be able to see the reagents off.
 #define AMOUNT_VISIBLE	(1<<5)	// For non-transparent containers that still have the general amount of reagents in them visible.
 #define NO_REACT        (1<<6)  // Applied to a reagent holder, the contents will not react with each other.
+#define SPILLABLE		(1<<7)  // Can be spilled or splashed onto an atom
 
 // Is an open container for all intents and purposes.
-#define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT)
+#define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT | SPILLABLE)
+
+// Is an open container for all intents and purposes, but can't spill for whatever reason.
+#define OPENCONTAINER_NOSPILL 	(REFILLABLE | DRAINABLE | TRANSPARENT)
 
 
-#define TOUCH			1	// splashing
-#define INGEST			2	// ingestion
-#define VAPOR			3	// foam, spray, blob attack
-#define PATCH			4	// patches
-#define INJECT			5	// injection
+#define TOUCH			(1<<0)	// splashing, foam
+#define INGEST			(1<<1)	// ingestion
+#define VAPOR			(1<<2)	// spray, blob attack
+#define PATCH			(1<<3)	// patches
+#define INJECT			(1<<4)	// injection
 
 
 //defines passed through to the on_reagent_change proc

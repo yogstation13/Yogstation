@@ -126,7 +126,7 @@
 	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
 	r_pocket = /obj/item/bikehorn
 	id = /obj/item/card/id
-	r_hand = /obj/item/twohanded/fireaxe
+	r_hand = /obj/item/fireaxe
 
 /datum/outfit/tunnel_clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -152,7 +152,7 @@
 	suit = /obj/item/clothing/suit/apron
 	l_pocket = /obj/item/kitchen/knife
 	r_pocket = /obj/item/scalpel
-	r_hand = /obj/item/twohanded/fireaxe
+	r_hand = /obj/item/fireaxe
 
 /datum/outfit/psycho/post_equip(mob/living/carbon/human/H)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
@@ -189,7 +189,7 @@
 		SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/stack/spacecash/c1000, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/gun/energy/kinetic_accelerator/crossbow, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/gun/ballistic/revolver/mateba, null, TRUE, TRUE)
-	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/ammo_box/a357, null, TRUE, TRUE)
+	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/ammo_box/m44, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/grenade/plastic/x4, null, TRUE, TRUE)
 
 	var/obj/item/pda/heads/pda = H.belt
@@ -251,28 +251,32 @@
 
 	uniform = /obj/item/clothing/under/color/lightpurple
 	suit = /obj/item/clothing/suit/wizrobe
-	shoes = /obj/item/clothing/shoes/sandal/magic
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/spellbook = 1,
+	)
+	box = /obj/item/storage/box/survival
 	ears = /obj/item/radio/headset
 	head = /obj/item/clothing/head/wizard
+	shoes = /obj/item/clothing/shoes/sandal/magic
 	r_pocket = /obj/item/teleportation_scroll
-	r_hand = /obj/item/spellbook
 	l_hand = /obj/item/staff
-	back = /obj/item/storage/backpack
-	backpack_contents = list(/obj/item/storage/box/survival=1)
 
-/datum/outfit/wizard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/wizard/post_equip(mob/living/carbon/human/wizard, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
-	var/obj/item/spellbook/S = locate() in H.held_items
-	if(S)
-		S.owner = H
+	var/obj/item/spellbook/new_spellbook = locate() in wizard.back
+	if(new_spellbook)
+		new_spellbook.owner = wizard.mind
 
 /datum/outfit/wizard/apprentice
 	name = "Wizard Apprentice"
+
+	r_pocket = /obj/item/teleportation_scroll/apprentice
 	r_hand = null
 	l_hand = null
-	r_pocket = /obj/item/teleportation_scroll/apprentice
+	backpack_contents = list()
 
 /datum/outfit/wizard/red
 	name = "Red Wizard"
@@ -368,7 +372,7 @@
 	implants = list(/obj/item/implant/mindshield)
 
 	backpack_contents = list(/obj/item/storage/box=1,\
-		/obj/item/ammo_box/a357=1,\
+		/obj/item/ammo_box/m44=1,\
 		/obj/item/storage/firstaid/regular=1,\
 		/obj/item/storage/box/flashbangs=1,\
 		/obj/item/flashlight=1,\

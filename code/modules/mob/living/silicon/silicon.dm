@@ -11,10 +11,13 @@
 	bubble_icon = "machine"
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+
+	/// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
+	var/datum/armor/armor
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -43,21 +46,29 @@
 	var/law_change_counter = 0
 	var/obj/machinery/camera/builtInCamera = null
 	var/updating = FALSE //portable camera camerachunk update
-
+	///Whether we have been emagged
+	var/emagged = FALSE
 	var/hack_software = FALSE //Will be able to use hacking actions
 	var/interaction_range = 7			//wireless control range
 	///The reference to the built-in tablet that borgs carry.
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/item/pda/aiPDA
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	GLOB.silicon_mobs += src
 	faction += "silicon"
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
+	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
+	if (islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor()
+	else if (!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud
@@ -376,17 +387,17 @@
 	var/datum/atom_hud/secsensor = GLOB.huds[sec_hud]
 	var/datum/atom_hud/medsensor = GLOB.huds[med_hud]
 	var/datum/atom_hud/diagsensor = GLOB.huds[d_hud]
-	secsensor.remove_hud_from(src)
-	medsensor.remove_hud_from(src)
-	diagsensor.remove_hud_from(src)
+	secsensor.hide_from(src)
+	medsensor.hide_from(src)
+	diagsensor.hide_from(src)
 
 /mob/living/silicon/proc/add_sensors()
 	var/datum/atom_hud/secsensor = GLOB.huds[sec_hud]
 	var/datum/atom_hud/medsensor = GLOB.huds[med_hud]
 	var/datum/atom_hud/diagsensor = GLOB.huds[d_hud]
-	secsensor.add_hud_to(src)
-	medsensor.add_hud_to(src)
-	diagsensor.add_hud_to(src)
+	secsensor.show_to(src)
+	medsensor.show_to(src)
+	diagsensor.show_to(src)
 
 /mob/living/silicon/proc/toggle_sensors(silent = FALSE)
 	if(incapacitated())
@@ -478,7 +489,7 @@
 			mega.UnregisterSignal(L, COMSIG_MOB_SAY)
 		else
 			mega.accent_name = aksent
-			mega.RegisterSignal(L, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech, TRUE)
+			mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
 
 /mob/living/silicon/proc/create_modularInterface()
 	if(!modularInterface)
@@ -505,3 +516,29 @@
 			else
 				jobname = "Silicon"
 			msgr.username = "[newname] ([jobname])"
+
+/// Returns damage value after processing various factors like the silicon's armor and armor penetration.
+/mob/living/silicon/proc/run_armor(damage_amount, damage_type, damage_flag = 0, armor_penetration = 0)
+	if(damage_type != BRUTE && damage_type != BURN)
+		return 0
+	var/armor_protection = 0
+	if(damage_flag)
+		armor_protection = armor.getRating(damage_flag)
+	if(armor_protection) // Armour penetration only matters if the silicon has armour.
+		armor_protection = clamp(armor_protection - armor_penetration, min(armor_protection, 0), 100) // Reduce 'armor_protection' down by 'armor_penetration' to minimum of 0.
+	return clamp(damage_amount * (1 - armor_protection/100), 1, damage_amount) // Minimum of 1 damage.
+
+/// Copy of '/mob/living/attacked_by', except it sets damage to what is returned by 'proc/run_armor'.
+/mob/living/silicon/attacked_by(obj/item/I, mob/living/user)
+	send_item_attack_message(I, user)
+	if(I.force)
+		var/damage = run_armor(I.force, I.damtype, MELEE)
+		apply_damage(damage, I.damtype)
+		if(I.damtype == BRUTE)
+			if(prob(33))
+				I.add_mob_blood(src)
+				var/turf/location = get_turf(src)
+				add_splatter_floor(location)
+				if(get_dist(user, src) <= 1)
+					user.add_mob_blood(src)
+		return TRUE

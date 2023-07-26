@@ -4,8 +4,8 @@
 
 #define NUM_E 2.71828183
 
-#define PI						3.1416
-#define INFINITY				1e31	//closer then enough
+#define PI 3.1416
+#define INFINITY 1e31 //closer then enough
 
 #define SHORT_REAL_LIMIT 16777216
 
@@ -35,6 +35,9 @@
 
 // Similar to clamp but the bottom rolls around to the top and vice versa. min is inclusive, max is exclusive
 #define WRAP(val, min, max) ( min == max ? min : (val) - (round(((val) - (min))/((max) - (min))) * ((max) - (min))) )
+
+/// Increments a value and wraps it if it exceeds some value. Can be used to circularly iterate through a list through `idx = WRAP_UP(idx, length_of_list)`.
+#define WRAP_UP(val, max) (((val) % (max)) + 1)
 
 // Real modulus that handles decimals
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
@@ -110,6 +113,10 @@
 
 #define TORADIANS(degrees) ((degrees) * 0.0174532925)
 
+/// Gets shift x that would be required the bitflag (1<<x)
+/// We need the round because log has floating-point inaccuracy, and if we undershoot at all on list indexing we'll get the wrong index.
+#define TOBITSHIFT(bit) ( round(log(2, bit), 1) )
+
 // Will filter out extra rotations and negative rotations
 // E.g: 540 becomes 180. -180 becomes 180.
 #define SIMPLIFY_DEGREES(degrees) (MODULUS((degrees), 360))
@@ -162,7 +169,7 @@
 	return (mean + stddev * R1)
 #undef ACCURACY
 
-/proc/get_turf_in_angle(angle, turf/starting, increments)
+/proc/get_turf_in_angle(angle, turf/starting, increments = 1)
 	var/pixel_x = 0
 	var/pixel_y = 0
 	for(var/i in 1 to increments)
@@ -220,3 +227,6 @@
 /// Like DT_PROB_RATE but easier to use, simply put `if(DT_PROB(10, 5))`
 #define DT_PROB(prob_per_second_percent, delta_time) (prob(100*DT_PROB_RATE(prob_per_second_percent/100, delta_time)))
 // )
+
+/// The number of cells in a taxicab circle (rasterized diamond) of radius X.
+#define DIAMOND_AREA(X) (1 + 2*(X)*((X)+1))

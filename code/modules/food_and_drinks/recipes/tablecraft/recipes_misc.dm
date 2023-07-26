@@ -1,55 +1,7 @@
 
 // see code/module/crafting/table.dm
 
-////////////////////////////////////////////////TOAST////////////////////////////////////////////////
-
-/datum/crafting_recipe/food/butteredtoast
-	name = "Buttered Toast"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/butteredtoast
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/jelliedyoast
-	name = "Jellied Toast"
-	reqs = list(
-		/datum/reagent/consumable/cherryjelly = 5,
-		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/slimetoast
-	name = "Slime Toast"
-	reqs = list(
-		/datum/reagent/toxin/slimejelly = 5,
-		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/jelliedtoast/slime
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/twobread
-	name = "Two Bread"
-	reqs = list(
-		/datum/reagent/consumable/ethanol/wine = 5,
-		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/twobread
-	subcategory = CAT_MISCFOOD
-
 ////////////////////////////////////////////////MISC//////////////////////////////////////////////////
-
-/datum/crafting_recipe/food/baguette
-	name = "Baguette"
-	time = 4 SECONDS
-	reqs = list(/datum/reagent/consumable/sodiumchloride = 1,
-				/datum/reagent/consumable/blackpepper = 1,
-				/obj/item/reagent_containers/food/snacks/pastrybase = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/baguette
-	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/beans
 	name = "Beans"

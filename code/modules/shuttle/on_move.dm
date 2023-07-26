@@ -186,7 +186,7 @@ All ShuttleMove procs go here
 	for(var/obj/machinery/door/airlock/A in range(1, src))  // includes src
 		A.shuttledocked = FALSE
 		A.air_tight = TRUE
-		INVOKE_ASYNC(A, /obj/machinery/door/.proc/close)
+		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/machinery/door, close))
 
 /obj/machinery/door/airlock/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -258,8 +258,8 @@ All ShuttleMove procs go here
 				A.addMember(src)
 		SSair.add_to_rebuild_queue(src)
 	else
-		// atmosinit() calls update_icon(), so we don't need to call it
-		update_icon()
+		// atmosinit() calls update_appearance(UPDATE_ICON), so we don't need to call it
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/pipe/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()

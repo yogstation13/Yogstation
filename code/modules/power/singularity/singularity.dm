@@ -3,6 +3,14 @@
 #define SINGULARITY_INTEREST_OBJECT 7.5
 #define SINGULARITY_INTEREST_NONSPACE 2
 
+/atom/movable/gravity_lens
+	plane = SINGULARITY_EFFECT_PLANE
+	//plane = GHOST_LAYER
+	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
+	icon = 'icons/effects/512x512.dmi'
+	icon_state = "gravitational_lensing"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 /obj/singularity
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -34,8 +42,11 @@
 	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
 	var/maxStage = 0 //The largest stage this singularity has been
 	var/does_targeting = TRUE
+	var/shockwave_pulsed = FALSE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
+
+	var/atom/movable/gravity_lens/grav_lens
 
 /obj/singularity/Initialize(mapload, starting_energy = 50)
 	//CARN: admin-alert for chuckle-fuckery.
@@ -57,6 +68,9 @@
 		var/shardstage = text2path("/obj/item/singularity_shard/stage[maxStage]")
 		var/turf/T = get_turf(src)
 		new shardstage(T, src)
+	if(grav_lens)
+		vis_contents -= grav_lens
+		QDEL_NULL(grav_lens)
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
@@ -157,13 +171,21 @@
 	eat()
 	dissipate()
 	check_energy()
-
+	check_safe()
 	return
 
 
 /obj/singularity/attack_ai() //to prevent ais from gibbing themselves when they click on one.
 	return
 
+/obj/singularity/proc/check_safe()
+	if(shockwave_pulsed) // we are not safe.
+		return
+	var/safe = locate(/obj/machinery/field/containment) in urange(10, src, 1)
+	if(safe)
+		return
+	shockwave_pulsed = TRUE
+	shockwave() // hey did you guys feel that?
 
 /obj/singularity/proc/admin_investigate_setup()
 	var/turf/T = get_turf(src)
@@ -203,6 +225,10 @@
 			dissipate_strength = 1
 			if(maxStage < 1)
 				maxStage = 1
+			if(grav_lens)
+				animate(grav_lens, transform = matrix().Scale(0.5), time = 10)
+				grav_lens.pixel_x = -240
+				grav_lens.pixel_y = -240
 		if(STAGE_TWO)
 			if(check_cardinals_range(1, TRUE))
 				current_size = STAGE_TWO
@@ -217,6 +243,11 @@
 				dissipate_strength = 5
 				if(maxStage < 2)
 					maxStage = 2
+				if(grav_lens)
+					animate(grav_lens, transform = matrix().Scale(0.75), time = 10)
+					grav_lens.pixel_x = -208
+					grav_lens.pixel_y = -208
+					grav_lens.filters = list()
 		if(STAGE_THREE)
 			if(check_cardinals_range(2, TRUE))
 				current_size = STAGE_THREE
@@ -231,6 +262,10 @@
 				dissipate_strength = 20
 				if(maxStage < 3)
 					maxStage = 3
+				if(grav_lens)
+					animate(grav_lens, transform = matrix().Scale(1), time = 10)
+					grav_lens.pixel_x = -176
+					grav_lens.pixel_y = -176
 		if(STAGE_FOUR)
 			if(check_cardinals_range(3, TRUE))
 				current_size = STAGE_FOUR
@@ -245,6 +280,10 @@
 				dissipate_strength = 10
 				if(maxStage < 4)
 					maxStage = 4
+				if(grav_lens)
+					animate(grav_lens, transform = matrix().Scale(1.25), time = 10)
+					grav_lens.pixel_x = -144
+					grav_lens.pixel_y = -144
 		if(STAGE_FIVE)//this one also lacks a check for gens because it eats everything
 			current_size = STAGE_FIVE
 			icon = 'icons/effects/288x288.dmi'
@@ -256,6 +295,10 @@
 			dissipate = 0 //It cant go smaller due to e loss
 			if(maxStage < 5)
 				maxStage = 5
+			if(grav_lens)
+				animate(grav_lens, transform = matrix().Scale(1.5), time = 10)
+				grav_lens.pixel_x = -112
+				grav_lens.pixel_y = -112
 		if(STAGE_SIX) //This only happens if a stage 5 singulo consumes a supermatter shard.
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
@@ -267,6 +310,10 @@
 			dissipate = 0
 			if(maxStage < 6)
 				maxStage = 6
+			if(grav_lens)
+				animate(grav_lens, transform = matrix().Scale(1.75), time = 10)
+				grav_lens.pixel_x = -80
+				grav_lens.pixel_y = -80
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>", INVESTIGATE_SINGULO)
 		return 1
@@ -480,13 +527,40 @@
 			return 0
 	return 1
 
+/obj/singularity/proc/shockwave()
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(src))
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	kill_all_lights()
+	QDEL_IN(shockwave, 10.5 SECONDS)
+
+/obj/singularity/proc/kill_all_lights()
+	for(var/obj/machinery/light/light in GLOB.machines)
+		if(light.on && light.status == LIGHT_OK && z == light.z)
+			kill_this_light(light)
+			CHECK_TICK
+
+/obj/singularity/proc/kill_this_light(obj/machinery/light/this_light)
+	if(this_light.flickering)
+		return
+	this_light.flickering = TRUE
+	this_light.on = FALSE
+	this_light.update(FALSE)
+	addtimer(CALLBACK(src, PROC_REF(renew_this_light), this_light), 20 SECONDS)
+
+/obj/singularity/proc/renew_this_light(obj/machinery/light/this_light)
+	this_light.flickering = FALSE
+	this_light.on = (this_light.status == LIGHT_OK) && !this_light.forced_off
+	this_light.update(FALSE)
 
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/C in urange(20, src, 1))
 		C.visible_message(span_warning("[C]'s skin bursts into flame!"), \
 						  span_userdanger("You feel an inner fire as your skin bursts into flames!"))
 		C.adjust_fire_stacks(5)
-		C.IgniteMob()
+		C.ignite_mob()
 	return
 
 
@@ -519,6 +593,25 @@
 	qdel(src)
 	return(gain)
 
+/obj/singularity/gravitational
+	name = "gravitational singularity"
+	desc = "A gravitational singularity."
+	icon = 'icons/obj/singularity.dmi'
+	icon_state = "singularity_s1"
+
+/obj/singularity/gravitational/Initialize(mapload, starting_energy)
+	. = ..()
+	if (!grav_lens)
+		grav_lens = new(src)
+		grav_lens.transform = matrix().Scale(0.5)
+		grav_lens.pixel_x = -240
+		grav_lens.pixel_y = -240
+		// Radioactive green glow messes with the displacement map
+		/*var/datum/component/radioactive/c = grav_lens.GetComponent(/datum/component/radioactive)
+		if(c)
+			c.RemoveComponent()*/
+		vis_contents += grav_lens
+
 /obj/item/singularity_shard
 	name = "singularity shard"
 	desc = "THIS SHOULDN'T EXIST. TELL A CODER HOW YOU GOT THIS."
@@ -528,8 +621,8 @@
 
 /obj/item/singularity_shard/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is trying to break open the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	addtimer(CALLBACK(user, /mob/.proc/gib), 99)
-	addtimer(CALLBACK(src, .proc/spawnsing), 100)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob, gib)), 99)
+	addtimer(CALLBACK(src, PROC_REF(spawnsing)), 100)
 	return MANUAL_SUICIDE
 
 /obj/item/singularity_shard/proc/spawnsing()

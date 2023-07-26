@@ -30,7 +30,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
-	var/yogtoggles = YOGTOGGLES_DEFAULT
 	var/ghost_form = "ghost"
 
 	var/list/player_alt_titles = list()
@@ -79,6 +78,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// If set to TRUE, will update character_profiles on the next ui_data tick.
 	var/tainted_character_profiles = FALSE
+
+
+	///removed, kept here for migration in 'legacy_mood_migration.dm'
+	///DO NOT USE THIS!
+	var/yogtoggles
 
 /datum/preferences/Destroy(force, ...)
 	QDEL_NULL(character_preview_view)
@@ -567,6 +571,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 	// remove existing entry
 	if(player_alt_titles.Find(job.title))
 		player_alt_titles -= job.title
+
 	// add one if it's not default
 	if(job.title != new_title)
 		player_alt_titles[job.title] = new_title

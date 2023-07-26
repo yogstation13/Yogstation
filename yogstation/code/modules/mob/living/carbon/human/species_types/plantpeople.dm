@@ -5,7 +5,7 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
+	species_traits = list(MUTCOLORS, EYECOLOR, HAS_FLESH, HAS_BONE)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
 	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
@@ -19,7 +19,7 @@
 	speedmod = 0.33
 	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
-	punchstunthreshold = 9 
+	punchstunthreshold = 9
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
@@ -28,6 +28,8 @@
 	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
+	wings_icon = "Plant"
+	wings_detail = "Plantdetails"
 
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
@@ -39,11 +41,11 @@
 	smells_like = "bloody grass"
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
-	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race."))
-	to_chat(H, span_info("Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe."))
-	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match."))
-	to_chat(H, span_info("For more information on your race, see https://wiki.yogstation.net/wiki/Phytosian"))
+	to_chat(H, span_info("<b>You are a Phytosian.</b> You are born from the enigmatic plant lazarupela vitalis, better known as replica pods."))
+	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive while affording you regeneration unmatched by any other species."))
+	to_chat(H, span_info("Darkness is your greatest foe. While the cold expanse of space is lit by neighboring stars, shadowy recesses within the station's corridors will spell your demise."))
+	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match; take care to avoid environmental hazards."))
+	to_chat(H, span_info("For more information on your species, see https://wiki.yogstation.net/wiki/Phytosian"))
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -97,14 +99,14 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
-					//just enough to function			
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)
+					//just enough to function
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
 				light_level = 4
 				if(H.nutrition < NUTRITION_LEVEL_FED)
-					H.nutrition += light_amount * 1.75				
+					H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
@@ -241,22 +243,23 @@
 		dark_damage_multiplier = 3
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		//removal is handled in /datum/reagent/sugar/on_mob_delete() //so that was a lie
-		
+
 		//if there's none left after the removal, the light multiplier needs to go back to the default
-		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
+		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar))
 			light_heal_multiplier = initial(light_heal_multiplier)
 			dark_damage_multiplier = initial(dark_damage_multiplier)
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
 		var/datum/reagent/consumable/ethanol/ethanol = chem
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
-		H.confused = max(H.confused, 1)
-		if(ethanol.boozepwr > 80 && chem.volume > 30)
-			if(chem.current_cycle > 50)
-				H.IsSleeping(3)
-			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
+		if(ethanol.boozepwr > 0)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
+			H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
+			H.set_confusion_if_lower(1 SECONDS)
+			if(ethanol.boozepwr > 80 && chem.volume > 30)
+				if(chem.current_cycle > 50)
+					H.IsSleeping(3)
+				H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
@@ -288,11 +291,48 @@
 	return pod_name(gender)
 
 /datum/species/pod/get_species_description()
-	return ""//"TODO: This is plant description"
+	return "Birthed by the alien plant known as lazarupela vitalis (or podseeds), phytosians are beings reincarnated by the plant using \
+		their blood. Isolationist and xenophobic, they are encountered in SIC space only under exceptional circumstance."
 
 /datum/species/pod/get_species_lore()
 	return list(
-		""//"TODO: This is plant lore"
+		"From the very beginning, phytosian history was one drenched in blood. Originating from the planet of Muldova, \
+		the first phytosians were created from the blood spilled by predators on the leaves of lazarupela vitalis. \
+		Those first made, revived with the hazy and violent memories of their death, used their second chance at life \
+		to take revenge on their predators or simply lash out at other beings, including their own kin. The first \
+		phytosians killed and were killed during the day, then reborn anew the following morning via podseeds. \
+		Eventually forming communities and a civilization, phytosians were nearly wiped out around the year 2005 \
+		when the phytosian leader Grei of Banylid went mad after one of his countless resurrections and set to \
+		incinerate all that existed to link the divine and mortal world. The ensuing worldwide war was dubbed \
+		the Razing and resulted in the permanent death of more than 99% of the population at the hands of all \
+		sorts of incendiary weapons. All podseeds that could bring them back were burnt too except for those grown \
+		on a divine monument known as the Mother Tree. The main continent was wiped barren of life save the Tree, \
+		until jars of blood crashed into it and spawned the few victors. The survivors formed the Gukdem Confederacy: \
+		a government tasked with preventing such an event from happening again through strict authoritarian policies. \
+		They quickly butchered almost all remaining non-phytosians lifeforms on Muldova in order to to assimilate them, \
+		enclosing the rest to ensure a steady supply of population.",
+
+		"In the year 2511, drones of Sano-Waltfield Industries landing on Muldova alerted phytosians of the existence \
+		of other life elsewhere. They immediately desired to correct this situation, and shot the drones down. \
+		Noticing the incident, SIC investigators went to scan the planet, expecting illegal human colonists. Instead, \
+		they found a planet dominated by a highly armed and technologically advanced civilization. Both sides were \
+		extremely cautious during their first contact, and a wideband radio communication was established in 2513. \
+		After those initial interactions and both sides realizing that their interlocutors possessed a similar intelligence to them, \
+		limited trade agreements were made between the SIC and the Confederacy, the latter enthusiastically trading lazarapela vitalis.",
+
+		"Families do not exist among phytosians, and each individual is expected to be autonomous. Society is organized by disciplined, \
+		constant work with few celebrations. Phytosians give no value to their lives, as death is seen as a minor inconvenience \
+		at worst; it is a rather unremarkable event, since they'll be back soon. Violent, often lethal sports are not uncommon and \
+		still remain popular among them today. Most notable is the phytosian's obsession with fire. Fire is both revered and \
+		feared, as incineration is one of the only ways for a phytosian to truly die; it destroysthe podseeds under them and \
+		evaporates blood.  It is a divine power, a destructive force, and an escape from the endless cycle of rebirth.",
+
+		"Today, few embassies exist on Muldova, and anything shown to SIC denizens and representative is carefully \
+		chosen and controlled. Cooperation and exchanges between the SIC and the Confederacy are almost inexistent. \
+		The only phytosians seen in SIC space are generally political opponents to the Confederacy or have come to \
+		observe the galaxy outside their system, intending on coming back to provide a full report. Phytosians \
+		deciding to settle outside of Muldova willingly are a rarity, most of them being from other species that \
+		were reincarnated by the podseeds and chose to keep a bond with their old civilization.",
 	)
 
 /datum/species/pod/create_pref_unique_perks()

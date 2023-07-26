@@ -36,6 +36,13 @@
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
 
+/obj/machinery/stasis/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/surgery_bed, \
+		success_chance = 1, \
+		op_computer_linkable = TRUE, \
+	)
+
 /obj/machinery/stasis/RefreshParts()
 	stasis_amount = initial(stasis_amount)
 	stasis_cooldown = initial(stasis_cooldown)
@@ -58,10 +65,6 @@
 	if(occupant)
 		thaw_them(occupant)
 		chill_out(occupant)
-	
-
-/obj/machinery/stasis/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
@@ -94,7 +97,7 @@
 		stasis_can_toggle = world.time + stasis_cooldown
 		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 		play_power_sound()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
@@ -106,7 +109,17 @@
 /obj/machinery/stasis/proc/stasis_running()
 	return stasis_enabled && is_operational()
 
-/obj/machinery/stasis/update_icon()
+/obj/machinery/stasis/update_icon_state()
+	. = ..()
+	if(stat & BROKEN)
+		icon_state = "stasis_broken"
+		return
+	if(panel_open || stat & MAINT)
+		icon_state = "stasis_maintenance"
+		return
+	icon_state = "stasis"
+
+/obj/machinery/stasis/update_overlays()
 	. = ..()
 	var/_running = stasis_running()
 	var/list/overlays_to_remove = managed_vis_overlays
@@ -124,14 +137,6 @@
 
 	SSvis_overlays.remove_vis_overlay(src, overlays_to_remove)
 
-	if(stat & BROKEN)
-		icon_state = "stasis_broken"
-		return
-	if(panel_open || stat & MAINT)
-		icon_state = "stasis_maintenance"
-		return
-	icon_state = "stasis"
-
 /obj/machinery/stasis/obj_break(damage_flag)
 	. = ..()
 	if(.)
@@ -147,7 +152,7 @@
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
 	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, stasis_amount)
-	target.ExtinguishMob()
+	target.extinguish_mob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
 		to_chat(target, span_warning("Your limbs start to feel numb..."))
@@ -163,13 +168,13 @@
 	occupant = L
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
 	if(L == occupant)
 		occupant = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )
@@ -186,7 +191,7 @@
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/wrench_act(mob/living/user, obj/item/I)
 	if(default_change_direction_wrench(user, I))

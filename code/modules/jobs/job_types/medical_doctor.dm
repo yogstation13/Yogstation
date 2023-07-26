@@ -2,10 +2,8 @@
 	title = "Medical Doctor"
 	description = "Save lives, run around the station looking for victims, \
 		scan everyone in sight"
-	flag = DOCTOR
 	orbit_icon = "staff-snake"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
@@ -29,31 +27,15 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	mail_goodies = list(
 		/obj/item/healthanalyzer/advanced = 15,
-		/obj/item/scalpel/advanced = 6,
-		/obj/item/retractor/advanced = 6,
-		/obj/item/cautery/advanced = 6,
+		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 6,
 		/obj/item/reagent_containers/autoinjector/medipen = 6,
-		/obj/effect/spawner/lootdrop/organ_spawner = 5
-		///obj/effect/spawner/random/medical/memeorgans = 1
+		/obj/effect/spawner/lootdrop/organ_spawner = 5,
+		/obj/effect/spawner/lootdrop/memeorgans = 1
 	)
 
 	smells_like = "a hospital"
-
-/datum/job/doctor/proc/EclipseStationChanges()
-	total_positions = 6
-	spawn_positions = 5
-
-/datum/job/doctor/proc/OmegaStationChanges()
-	selection_color = "#ffffff"
-	total_positions = 3
-	spawn_positions = 3
-	added_access = list()
-	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
-	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/doctor
 	name = "Medical Doctor"

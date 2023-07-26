@@ -6,7 +6,7 @@
 // Weapons
 /datum/crafting_recipe/metal_baseball_bat
 	name = "Titanium Baseball Bat"
-	result = /obj/item/twohanded/required/baseball_bat/metal_bat
+	result = /obj/item/melee/baseball_bat/metal_bat
 	reqs = list(/obj/item/stack/sheet/mineral/titanium = 10
 				)
 	tools = list(TOOL_WELDER) //to weld the bat together
@@ -16,12 +16,12 @@
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
-	result = /obj/item/twohanded/spear
-	reqs = list(/obj/item/twohanded/spear = 1,
+	result = /obj/item/melee/spear
+	reqs = list(/obj/item/melee/spear = 1,
 				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive,
+	blacklist = list(/obj/item/melee/spear/explosive,
 					/obj/item/grenade/flashbang)
-	parts = list(/obj/item/twohanded/spear = 1,
+	parts = list(/obj/item/melee/spear = 1,
 				/obj/item/grenade = 1)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
@@ -104,39 +104,77 @@
 	always_available = FALSE
 
 /datum/crafting_recipe/bola_arrow
-	name = "Bola arrow"
-	result = /obj/item/ammo_casing/caseless/arrow/bola
-	time = 3 SECONDS
-	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
-				/obj/item/stack/sheet/silk = 1,
+	name = "Bola Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow
+	time = 1.5 SECONDS
+	reqs = list(/obj/item/ammo_casing/reusable/arrow = 1,
+				/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/restraints/legcuffs/bola = 1)
-	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/restraints/legcuffs/bola = 1)
+	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
+	parts = list(/obj/item/ammo_casing/reusable/arrow = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/restraints/legcuffs/bola = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 	always_available = FALSE
 
-/*
 /datum/crafting_recipe/explosive_arrow
-	name = "Explosive arrow"
-	result = /obj/item/ammo_casing/caseless/arrow/explosive
-	time = 3 SECONDS
-	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
-				/obj/item/stack/sheet/silk = 1,
+	name = "Explosive Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow
+	time = 1.5 SECONDS
+	reqs = list(/obj/item/ammo_casing/reusable/arrow = 1,
+				/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/grenade = 1)
-	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/grenade = 1)
+	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
+	parts = list(/obj/item/ammo_casing/reusable/arrow = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/grenade = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_available = FALSE
+
+/datum/crafting_recipe/flaming_arrow
+	name = "Fire Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow
+	time = 1.5 SECONDS
+	reqs = list(/obj/item/ammo_casing/reusable/arrow = 1,
+				/obj/item/stack/sheet/cloth = 1,
+				/datum/reagent/fuel = 10)
+	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
+	parts = list(/obj/item/ammo_casing/reusable/arrow = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_available = FALSE
+
+/datum/crafting_recipe/syringe_arrow
+	name = "Syringe Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow
+	time = 1.5 SECONDS
+	reqs = list(/obj/item/ammo_casing/reusable/arrow = 1,
+				/obj/item/restraints/handcuffs/cable = 1,
+				/obj/item/reagent_containers/syringe = 1)
+	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
+	parts = list(/obj/item/ammo_casing/reusable/arrow = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/reagent_containers/syringe = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_available = FALSE
+/*
+/datum/crafting_recipe/supermatter_sliver_arrow
+	name = "Supermatter Sliver Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow/supermatter/sliver
+	time = 5 SECONDS // Need to be very careful
+	reqs = list(/obj/item/nuke_core/supermatter_sliver = 1,
+				/obj/item/scalpel/supermatter = 1,	// Needed so the sliver doesn't destroy the rod and so atmos techs can't mass produce instant dust arrows
+				/obj/item/stack/rods = 1)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_available = FALSE
+
+/datum/crafting_recipe/singularity_shard_arrow
+	name = "Singularity Shard Arrow"
+	result = /obj/item/ammo_casing/reusable/arrow/singulo
+	time = 5 SECONDS
+	reqs = list(/obj/item/singularity_shard = 1,
+				/obj/item/stack/rods = 1, 
+				/obj/item/stack/cable_coil = 3)
+	parts = list(/obj/item/singularity_shard = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 	always_available = FALSE
 */
-
-/datum/crafting_recipe/flaming_arrow
-	name = "Flaming arrow"
-	result = /obj/item/ammo_casing/caseless/arrow/flaming
-	time = 3 SECONDS
-	reqs = list(/obj/item/ammo_casing/caseless/arrow = 1,
-				/obj/item/stack/sheet/cloth = 1,
-				/datum/reagent/fuel = 10)
-	parts = list(/obj/item/ammo_casing/caseless/arrow = 1)
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
-	always_available = FALSE

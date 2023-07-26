@@ -122,8 +122,8 @@
 	user.dropItemToGround(user.head)
 	user.dropItemToGround(user.wear_suit)
 
-	user.equip_to_slot_if_possible(new suit_type(user), SLOT_WEAR_SUIT, 1, 1, 1)
-	user.equip_to_slot_if_possible(new helmet_type(user), SLOT_HEAD, 1, 1, 1)
+	user.equip_to_slot_if_possible(new suit_type(user), ITEM_SLOT_OCLOTHING, 1, 1, 1)
+	user.equip_to_slot_if_possible(new helmet_type(user), ITEM_SLOT_HEAD, 1, 1, 1)
 
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chem_recharge_slowdown += recharge_slowdown
@@ -138,7 +138,7 @@
 	name = "Arm Blade"
 	desc = "We reform one of our arms into a deadly blade. Costs 20 chemicals."
 	helptext = "We may retract our armblade in the same manner as we form it. Cannot be used while in lesser form."
-//	button_icon = 'icons/obj/changeling.dmi'
+//	background_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "armblade"
 	chemical_cost = 20
 	dna_cost = 2
@@ -197,15 +197,19 @@
 
 		if((!A.requiresID() || A.allowed(user)) && A.hasPower()) //This is to prevent stupid shit like hitting a door with an arm blade, the door opening because you have acces and still getting a "the airlocks motors resist our efforts to force it" message, power requirement is so this doesn't stop unpowered doors from being pried open if you have access
 			return
+
 		if(A.locked)
 			to_chat(user, span_warning("The airlock's bolts prevent it from being forced!"))
+			return
+		if(A.welded)
+			to_chat(user, span_warning("The airlock is welded shut, it won't budge!"))
 			return
 
 		if(A.hasPower())
 			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-			if(!do_after(user, 10 SECONDS, A))
+			if(!do_after(user, 6 SECONDS, A))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
 		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
@@ -289,7 +293,7 @@
 	firing_effect_type = null
 	var/obj/item/gun/magic/tentacle/gun //the item that shot it
 
-/obj/item/ammo_casing/magic/tentacle/Initialize()
+/obj/item/ammo_casing/magic/tentacle/Initialize(mapload)
 	gun = loc
 	. = ..()
 
@@ -308,7 +312,7 @@
 	var/chain
 	var/obj/item/ammo_casing/magic/tentacle/source //the item that shot it
 
-/obj/item/projectile/tentacle/Initialize()
+/obj/item/projectile/tentacle/Initialize(mapload)
 	source = loc
 	. = ..()
 
@@ -327,8 +331,9 @@
 			H.swap_hand()
 		if(H.get_active_held_item())
 			return
-		C.grabbedby(H)
-		C.grippedby(H, instant = TRUE) //instant aggro grab
+		if((H.mobility_flags & MOBILITY_STAND))
+			C.grabbedby(H)
+			C.grippedby(H, instant = TRUE) //instant aggro grab
 
 /obj/item/projectile/tentacle/proc/tentacle_stab(mob/living/carbon/human/H, mob/living/carbon/C)
 	if(H.Adjacent(C))
@@ -385,12 +390,12 @@
 					if(INTENT_GRAB)
 						C.visible_message(span_danger("[L] is grabbed by [H]'s tentacle!"),span_userdanger("A tentacle grabs you and pulls you towards [H]!"))
 						C.Immobilize(2) //0.2 seconds of immobilize so the effect probably actually does something
-						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, .proc/tentacle_grab, H, C))
+						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, PROC_REF(tentacle_grab), H, C))
 						return BULLET_ACT_HIT
 
 					if(INTENT_HARM)
 						C.visible_message(span_danger("[L] is thrown towards [H] by a tentacle!"),span_userdanger("A tentacle grabs you and throws you towards [H]!"))
-						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, .proc/tentacle_stab, H, C))
+						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, PROC_REF(tentacle_stab), H, C))
 						return BULLET_ACT_HIT
 			else
 				L.visible_message(span_danger("[L] is pulled by [H]'s tentacle!"),span_userdanger("A tentacle grabs you and pulls you towards [H]!"))
@@ -439,7 +444,7 @@
 
 	var/remaining_uses //Set by the changeling ability.
 
-/obj/item/shield/changeling/Initialize()
+/obj/item/shield/changeling/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
@@ -485,7 +490,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 90) //No armor at all.
 
-/obj/item/clothing/suit/space/changeling/Initialize()
+/obj/item/clothing/suit/space/changeling/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
@@ -502,11 +507,11 @@
 	icon_state = "lingspacehelmet"
 	desc = "A covering of pressure and temperature-resistant organic tissue with a glass-like chitin front."
 	item_flags = DROPDEL
-	clothing_flags = STOPSPRESSUREDAMAGE
+	clothing_flags = STOPSPRESSUREDAMAGE | HEADINTERNALS
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 90)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
-/obj/item/clothing/head/helmet/space/changeling/Initialize()
+/obj/item/clothing/head/helmet/space/changeling/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
@@ -541,7 +546,7 @@
 	heat_protection = 0
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant) // allows ling armor to carry the usual space suit tanks.
 
-/obj/item/clothing/suit/armor/changeling/Initialize()
+/obj/item/clothing/suit/armor/changeling/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 	if(ismob(loc))
@@ -555,7 +560,7 @@
 	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 20, BOMB = 10, BIO = 4, RAD = 0, FIRE = 90, ACID = 90)
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEEYES|HIDEFACIALHAIR|HIDEFACE
 
-/obj/item/clothing/head/helmet/changeling/Initialize()
+/obj/item/clothing/head/helmet/changeling/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
 
@@ -566,7 +571,7 @@
 	name = "Flesh Maul"
 	desc = "We reform one of our arms into a dense mass of flesh and bone. Costs 20 chemicals."
 	helptext = "We may reabsorb the mass in the same way it was formed. It is too heavy to be used in our lesser form."
-//	button_icon = 'icons/obj/changeling.dmi'
+//	background_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "flesh_maul"
 	chemical_cost = 20
 	dna_cost = 3
@@ -615,7 +620,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		C.add_movespeed_modifier("flesh maul", update=TRUE, priority=101, multiplicative_slowdown=1)						//Slows the target because big whack
-		addtimer(CALLBACK(C, /mob.proc/remove_movespeed_modifier, "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
 		to_chat(target, span_danger("You are staggered from the blow!"))
 
 	else if(iscyborg(target))
@@ -638,6 +643,6 @@
 			T.deconstruct(FALSE)
 			return
 		if(!isnull(target))
-			S.take_damage(structure_damage, BRUTE, "melee", 0)
+			S.take_damage(structure_damage, BRUTE, "melee", 0, null, armour_penetration)
 		if(make_sound)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)

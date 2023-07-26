@@ -14,8 +14,7 @@ const VendingRow = (props, context) => {
     !data.onstation
     || product.price === 0
     || (
-      !product.premium
-      && !product.extended
+      !product.extended
       && data.department
       && data.user
       && data.department === data.user.department
@@ -24,12 +23,24 @@ const VendingRow = (props, context) => {
     || data.ignores_capitalism
     // yogs end
   );
+
+  const customFree = (
+    !data.onstation
+    || (
+      data.user
+      && data.department
+      && data.department === data.user.department
+    )
+    || data.ignores_capitalism
+  );
+
   return (
     <Table.Row>
       <Table.Cell collapsing>
         {product.base64 ? (
           <img
             src={`data:image/jpeg;base64,${product.img}`}
+            className="icon"
             style={{
               'vertical-align': 'middle',
               'horizontal-align': 'middle',
@@ -51,8 +62,7 @@ const VendingRow = (props, context) => {
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box
-          color={custom
-            ? 'good'
+          color={custom ? (productStock > 0 ? 'good' : 'bad')
             : productStock <= 0
               ? 'bad'
               : productStock <= (product.max_amount / 2)
@@ -65,8 +75,13 @@ const VendingRow = (props, context) => {
         {custom && (
           <Button
             fluid
-            content={data.access ? 'FREE' : product.price + ' cr'}
-            onClick={() => act('dispense', {
+            disabled={(
+              productStock === 0
+              || !data.user
+              || (!free && product.price > data.user.cash)
+            )}
+            content={customFree ? 'FREE' : product.price + ' cr'}
+            onClick={() => act('vend_custom', {
               'item': product.name,
             })} />
         ) || (
@@ -93,13 +108,10 @@ export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     product_ad,
+    chef,
   } = data;
   let inventory;
-  let custom = false;
-  if (data.vending_machine_input) {
-    inventory = data.vending_machine_input;
-    custom = true;
-  } else if (data.extended_inventory) {
+  if (data.extended_inventory) {
     inventory = [
       ...data.product_records,
       ...data.coin_records,
@@ -111,6 +123,17 @@ export const Vending = (props, context) => {
       ...data.coin_records,
     ];
   }
+
+  const customInventory = Object.keys(data.custom_stock).map(itemName => ({
+    product: {
+      name: itemName,
+      price: chef.price,
+      base64: true,
+      img: data.custom_stock[itemName].img,
+    },
+    productStock: data.custom_stock[itemName].amount,
+  }));
+
   return (
     <Window
       title="Vending Machine"
@@ -140,12 +163,24 @@ export const Vending = (props, context) => {
             )}
           </Section>
         )}
+        {!!customInventory.length &&
+        <Section title={chef.title} >
+          <Table>
+            {customInventory.map(customItem => (
+              <VendingRow
+                key={customItem.product.name}
+                custom
+                product={customItem.product}
+                productStock={customItem.productStock}
+              />
+            ))}
+          </Table>
+        </Section>}
         <Section title="Products" >
           <Table>
             {inventory.map(product => (
               <VendingRow
                 key={product.name}
-                custom={custom}
                 product={product}
                 productStock={data.stock[product.name]} />
             ))}

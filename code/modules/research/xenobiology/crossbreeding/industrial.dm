@@ -19,7 +19,7 @@ Industrial extracts:
 /obj/item/slimecross/industrial/proc/do_after_spawn(obj/item/spawned)
 	return
 
-/obj/item/slimecross/industrial/Initialize()
+/obj/item/slimecross/industrial/Initialize(mapload)
 	. = ..()
 	create_reagents(100, INJECTABLE | DRAWABLE)
 	START_PROCESSING(SSobj,src)
@@ -180,13 +180,13 @@ Industrial extracts:
 	colour = "black"
 	effect_desc = "Produces slime brand regenerative cigarettes."
 	plasmarequired = 6
-	itempath = /obj/item/storage/box/fancy/cigarettes/cigpack_xeno
+	itempath = /obj/item/storage/fancy/cigarettes/cigpack_xeno
 
 /obj/item/slimecross/industrial/lightpink
 	colour = "light pink"
 	effect_desc = "Produces heart shaped boxes that have candies in them."
 	plasmarequired = 3
-	itempath = /obj/item/storage/box/fancy/heart_box
+	itempath = /obj/item/storage/fancy/heart_box
 
 /obj/item/slimecross/industrial/adamantine
 	colour = "adamantine"

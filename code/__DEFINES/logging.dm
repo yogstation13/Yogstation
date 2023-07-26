@@ -2,6 +2,7 @@
 #define INVESTIGATE_ATMOS			"atmos"
 #define INVESTIGATE_BOTANY			"botany"
 #define INVESTIGATE_CARGO			"cargo"
+#define INVESTIGATE_DEATHS "deaths"
 #define INVESTIGATE_EXPERIMENTOR	"experimentor"
 #define INVESTIGATE_GRAVITY			"gravity"
 #define INVESTIGATE_RECORDS			"records"
@@ -18,6 +19,7 @@
 #define INVESTIGATE_CIRCUIT			"circuit"
 #define INVESTIGATE_PRESENTS		"presents"
 #define INVESTIGATE_VIROLOGY		"viro" // yogs - Adds Investigate Virology
+#define INVESTIGATE_HYPERTORUS		"hypertorus"
 
 // Logging types for log_message()
 #define LOG_ATTACK			(1 << 0)

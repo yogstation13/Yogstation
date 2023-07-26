@@ -11,6 +11,8 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
+#define MECHA_MAX_COOLDOWN 30 // Prevents long cooldown equipment from messing up combat
+
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -83,6 +85,7 @@
 
 	var/stepsound = 'sound/mecha/mechstep.ogg'
 	var/turnsound = 'sound/mecha/mechturn.ogg'
+	var/meleesound = TRUE //does it play a sound when melee attacking (so mime mech can turn it off)
 
 	var/melee_cooldown = 10
 	var/melee_can_hit = TRUE
@@ -108,7 +111,7 @@
 	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
 	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
 	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
-	var/datum/effect_system/smoke_spread/smoke_system = new //not an action, but trigged by one
+	var/datum/effect_system/fluid_spread/smoke/smoke_system = new //not an action, but trigged by one
 	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
 	var/datum/action/innate/mecha/mech_zoom/zoom_action = new
 	var/datum/action/innate/mecha/mech_switch_damtype/switch_damtype_action = new
@@ -132,6 +135,7 @@
 	var/canstrafe = TRUE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
+	var/ejection_distance = 0 //violently ejects the pilot when destroyed
 
 	var/occupant_sight_flags = 0 //sight flags to give to the occupant (e.g. mech mining scanner gives meson-like vision)
 	var/mouse_pointer
@@ -140,7 +144,7 @@
 
 /obj/item/radio/mech //this has to go somewhere
 
-/obj/mecha/Initialize()
+/obj/mecha/Initialize(mapload)
 	. = ..()
 	events = new
 	icon_state += "-open"
@@ -150,7 +154,7 @@
 		add_airtank()
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
-	smoke_system.set_up(3, src)
+	smoke_system.set_up(3, location = src)
 	smoke_system.attach(src)
 	add_cell()
 	add_scanmod()
@@ -161,22 +165,23 @@
 	GLOB.mechas_list += src //global mech list
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
 
-/obj/mecha/update_icon()
+/obj/mecha/update_icon_state()
+	. = ..()
 	if (silicon_pilot && silicon_icon_state)
 		icon_state = silicon_icon_state
-	. = ..()
 
 /obj/mecha/get_cell()
 	return cell
 
 /obj/mecha/Destroy()
-	if(occupant)
-		occupant.SetSleeping(destruction_sleep_duration)
+	var/mob/living/carbon/C = occupant
+	if(C && !ejection_distance)
+		C.SetSleeping(destruction_sleep_duration)
 	go_out()
 	var/mob/living/silicon/ai/AI
 	for(var/mob/M in src) //Let's just be ultra sure
@@ -185,6 +190,9 @@
 			AI = M //AIs are loaded into the mech computer itself. When the mech dies, so does the AI. They can be recovered with an AI card from the wreck.
 		else
 			M.forceMove(loc)
+	if(C && ejection_distance)
+		var/turf/target = get_edge_target_turf(C, dir)
+		C.throw_at(target, 10, 1)
 	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 		E.detach(loc)
 		qdel(E)
@@ -251,7 +259,7 @@
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	return internal_tank
 
-/obj/mecha/proc/add_cell(var/obj/item/stock_parts/cell/C=null) ///Adds a cell, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
+/obj/mecha/proc/add_cell(obj/item/stock_parts/cell/C=null) ///Adds a cell, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
 	QDEL_NULL(cell)
 	if(C)
 		C.forceMove(src)
@@ -259,7 +267,7 @@
 		return
 	cell = new /obj/item/stock_parts/cell/high/plus(src)
 
-/obj/mecha/proc/add_scanmod(var/obj/item/stock_parts/scanning_module/sm=null) ///Adds a scanning module, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
+/obj/mecha/proc/add_scanmod(obj/item/stock_parts/scanning_module/sm=null) ///Adds a scanning module, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
 	QDEL_NULL(scanmod)
 	if(sm)
 		sm.forceMove(src)
@@ -267,7 +275,7 @@
 		return
 	scanmod = new /obj/item/stock_parts/scanning_module(src)
 
-/obj/mecha/proc/add_capacitor(var/obj/item/stock_parts/capacitor/cap=null) ///Adds a capacitor, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
+/obj/mecha/proc/add_capacitor(obj/item/stock_parts/capacitor/cap=null) ///Adds a capacitor, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
 	QDEL_NULL(capacitor)
 	if(cap)
 		cap.forceMove(src)
@@ -511,7 +519,7 @@
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
 			occupant.adjust_fire_stacks(1)
-		occupant.IgniteMob()
+		occupant.ignite_mob()
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
@@ -558,13 +566,13 @@
 	if(!omnidirectional_attacks && dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		target = safepick(view(3,target))
+		target = pick(view(3,target))
 		if(!target)
 			return
 
 	// No shotgun swapping
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/W in equipment)
-		if(!W.equip_ready)
+		if(!W.equip_ready && (W.equip_cooldown < MECHA_MAX_COOLDOWN))
 			return
 
 	var/mob/living/L = user
@@ -573,11 +581,17 @@
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, span_warning("You don't want to harm other living beings!"))
 				return
+			if(HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS) && !selected.harmful)
+				to_chat(user, span_warning("You cannot use non-lethal weapons!"))
+				return
 			if(selected.action(target,params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
 		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, span_warning("You don't want to harm other living beings!"))
+			return
+		if(isliving(target) && !selected.harmful && HAS_TRAIT(L, TRAIT_NO_STUN_WEAPONS))
+			to_chat(user, span_warning("You cannot use non-lethal weapons!"))
 			return
 		if(istype(selected, /obj/item/mecha_parts/mecha_equipment/melee_weapon))		//Need to make a special check for melee weapons with cleave attacks
 			var/obj/item/mecha_parts/mecha_equipment/melee_weapon/W = selected
@@ -588,7 +602,7 @@
 			selected.start_cooldown()
 	else
 		if(internal_damage & MECHA_INT_CONTROL_LOST)
-			target = safepick(oview(1,src))
+			target = pick(oview(1,src))
 		if(!melee_can_hit || !istype(target, /atom))
 			return
 		if(equipment_disabled)
@@ -615,7 +629,7 @@
 		occupant_message(span_warning("Air port connection teared off!"))
 		log_message("Lost connection to gas port.", LOG_MECHA)
 
-/obj/mecha/Process_Spacemove(var/movement_dir = 0)
+/obj/mecha/Process_Spacemove(movement_dir = 0)
 	. = ..()
 	if(.)
 		return TRUE
@@ -718,7 +732,7 @@
 		playsound(src,stepsound,40,1)
 	return result
 
-/obj/mecha/Bump(var/atom/obstacle)
+/obj/mecha/Bump(atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
 
@@ -767,19 +781,19 @@
 ///////////////////////////////////
 
 /obj/mecha/proc/check_for_internal_damage(list/possible_int_damage,ignore_threshold=null)
-	if(!islist(possible_int_damage) || isemptylist(possible_int_damage))
+	if(!islist(possible_int_damage) || !length(possible_int_damage))
 		return
 	if(prob(20))
 		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
-			var/int_dam_flag = safepick(possible_int_damage)
+			var/int_dam_flag = pick(possible_int_damage)
 			if(int_dam_flag)
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
 		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
-			var/obj/item/mecha_parts/mecha_equipment/ME = safepick(equipment)
+			var/obj/item/mecha_parts/mecha_equipment/ME = pick(equipment)
 			if(ME)
 				qdel(ME)
 	return
@@ -900,7 +914,7 @@
 	occupant = AI
 	silicon_pilot = TRUE
 	icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
@@ -1083,7 +1097,7 @@
 	brainmob.update_mobility()
 	brainmob.update_mouse_pointer()
 	icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	setDir(dir_in)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
@@ -1176,7 +1190,7 @@
 				L.forceMove(mmi)
 				L.reset_perspective()
 			mmi.mecha = null
-			mmi.update_icon()
+			mmi.update_appearance(UPDATE_ICON)
 			L.mobility_flags = NONE
 		icon_state = initial(icon_state)+"-open"
 		setDir(dir_in)
@@ -1255,7 +1269,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 ////// Ammo stuff /////
 ///////////////////////
 
-/obj/mecha/proc/ammo_resupply(var/obj/item/mecha_ammo/A, mob/user,var/fail_chat_override = FALSE)
+/obj/mecha/proc/ammo_resupply(obj/item/mecha_ammo/A, mob/user, fail_chat_override = FALSE)
 	if(!A.rounds)
 		if(!fail_chat_override)
 			to_chat(user, span_warning("This box of ammo is empty!"))
@@ -1281,7 +1295,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					playsound(get_turf(user),A.load_audio,50,1)
 					to_chat(user, span_notice("You add [ammo_needed] [A.round_term][ammo_needed > 1?"s":""] to the [gun.name]"))
 					A.rounds = A.rounds - ammo_needed
-					A.update_name()
+					A.update_appearance(UPDATE_NAME)
 					return TRUE
 
 				else
@@ -1292,7 +1306,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					playsound(get_turf(user),A.load_audio,50,1)
 					to_chat(user, span_notice("You add [A.rounds] [A.round_term][A.rounds > 1?"s":""] to the [gun.name]"))
 					A.rounds = 0
-					A.update_name()
+					A.update_appearance(UPDATE_NAME)
 					return TRUE
 	if(!fail_chat_override)
 		if(found_gun)
@@ -1310,7 +1324,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(skill)
 			evaNum *= skill.piloting_speed
 
-		var/obj/item/clothing/under/clothes = H.get_item_by_slot(SLOT_W_UNIFORM) //if the jumpsuit directly assists the pilot
+		var/obj/item/clothing/under/clothes = H.get_item_by_slot(ITEM_SLOT_ICLOTHING) //if the jumpsuit directly assists the pilot
 		if(clothes)
 			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
 			if(MP)

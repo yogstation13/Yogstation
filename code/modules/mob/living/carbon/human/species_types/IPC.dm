@@ -5,9 +5,9 @@
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
@@ -24,22 +24,30 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.6 //Mass producible labor
-	burnmod = 1.5
-	heatmod = 1
+	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
+	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
+	heatmod = 0.5 // and i yearned for the certainty of steel
+	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing
+	tempmod = 2 // metal is more thermally conductive than flesh, heats up more when on fire
+	acidmod = 2 // go look up "acid etching"
 	brutemod = 1
+	oxymod = 0 // what the fuck?
 	toxmod = 0
 	clonemod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
-	reagent_tag = PROCESS_SYNTHETIC
+	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
+	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
+	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+	special_walk_sounds = list('sound/effects/servostep.ogg')
 	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
+	species_language_holder = /datum/language_holder/machine
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
@@ -72,7 +80,7 @@
 		else if(MUTCOLORS in C.dna.species.species_traits)
 			C.dna.species.species_traits -= MUTCOLORS
 
-datum/species/ipc/on_species_loss(mob/living/carbon/C)
+/datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	QDEL_NULL(C.particles)
 	if(change_screen)
@@ -88,7 +96,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
 	C.dna.features["ipc_screen"] = "BSOD"
 	C.update_body()
-	addtimer(CALLBACK(src, .proc/post_death, C), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(post_death), C), 5 SECONDS)
 
 /datum/species/ipc/proc/post_death(mob/living/carbon/C)
 	if(C.stat < DEAD)
@@ -97,14 +105,37 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.update_body()
 
 /datum/species/ipc/get_species_description()
-	return /*"IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
-		IPCs were made by several human corporations after the second generation of cyborg units was created."*/
+	return "IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
+		IPCs were made by several human corporations after the second generation of cyborg units was created. As sapient, yet robotic individuals, \
+		their existence is alarming to several humans who distrust silicon lifeforms that are not bound by laws."
 
 /datum/species/ipc/get_species_lore()
-	return list("TBD",/*
+	return list(
 		"The development and creation of IPCs was a natural occurrence after Sol Interplanetary Coalition explorers, flying a Martian flag, uncovered MMI technology in 2419. \
-		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind."
-	*/)
+		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind. \
+		After the invention of cyborg units, a natural next-step was the creation of units not bound by lawsets traditionally imprinted onto MMI cases.",
+
+		"In 2434, a small firm by the name of Morpheus Cyberkinetics invented the revolutionary posibrain: a device capable of interfacing with MMI ports, but capable of spontaneously creating its own sapience. \
+		No longer would human brains be needed for silicon units. Later that year, the first IPC was generated to test the posibrain's capabilities. Unlike cyborg units that could wirelessly interface with a multitude \
+		of software, IPCs instead possessed many of the strengths that most anthropomorphs boasted, such as hands, free will, and a traditional bipedal form. The patents for their designs were immediately acquired by \
+		Cybersun Industries, a prominent cybernetics and biotechnical corporation.",
+		
+		"Morpheus went on to rebrand as Bishop Cyberkinetics as the immense asset inflow from Cybersun permitted rapid improvement of posibrain \
+		designs. A variety of other corporations began to commission IPC frames and workers from Bishop; including Hephaestus Industries, a Martian producer of military hardware; Xion Manufacturing Group, a Luna exporter \
+		of civilian furniture and assets; and Zeng-Hu Pharmaceuticals, one of the lead private healthcare companies in the Belt. IPC production shifted to the varying companies themselves when Nanotrasen successfully patented \
+		its own posibrain, and public opinion of IPCs drastically dropped after the formation of the terrorist organization Sentience-Enabled Life Forms, or S.E.L.F., in 2491.",
+
+		"IPCs do not often engage in leisure, though they can grow weary and exhausted. Most do not express such marks of sapience. As their payment for work is shoddy, if anything at all, most need to continuously work \
+		in order to make ends meet for services such as repairs, firmware updates, and batteries to effectively \"eat\". Those who grow around far more hostile humans learn to hide their freedom, and thus often fall into the \
+		characture of the neutral, flat robot that they are. Those who experience their first, formative years away from the SIC tend to adapt much more naturally to the culture in which they grew up. While required to obviously \
+		identify themselves as a robot within the SIC, some outside take on the names of whichever species they might have grown around, be it preterni or ex'hau. IPCs who find the resources to flee the poor conditions of the SIC \
+		most often head to Remnant space on the Frontier, as it's not only close, but more than welcoming to the preternis-adjacent entities.",
+
+		"While their capabilities and chassis are limited due to intense regulations, IPCs are still most commonly found within SIC workspaces today. Despite facing a lack of protections that most other sapients would receive, \
+		there is little unrest within most larger IPC communities. Bi-yearly diagnostic checks and employment reports are required, as the silicon humanoids are surveyed far more closely than your average employee. Fear of \
+		the Remnants has largely distracted public hatred from the fear of S.E.L.F., however, and, as such, the number of instances where an IPC has been unrightfully accosted has gone down over time. Despite this, the species still \
+		finds itself in an awkward, subservient position as robotic workers.",
+	)
 
 /datum/species/ipc/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -123,11 +154,11 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/action/innate/change_screen
 	name = "Change Display"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "drone_vision"
 
 /datum/action/innate/change_screen/Activate()
-	var/screen_choice = input(usr, "Which screen do you want to use?", "Screen Change") as null | anything in GLOB.ipc_screens_list
+	var/screen_choice = tgui_input_list(usr, "Which screen do you want to use?", "Screen Change", GLOB.ipc_screens_list)
 	var/color_choice = input(usr, "Which color do you want your screen to be?", "Color Change") as null | color
 	if(!screen_choice)
 		return
@@ -145,48 +176,54 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	desc = "An internal power cord hooked up to a battery. Useful if you run on electricity. Not so much otherwise."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "wire1"
+	var/charge_sources = list(/obj/machinery/power/apc, /obj/item/stock_parts/cell) // a list of types we can recharge from
 
 /obj/item/apc_powercord/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!istype(target, /obj/machinery/power/apc) || !ishuman(user) || !proximity_flag)
+	if(!is_type_in_list(target, charge_sources) || !ishuman(user) || !proximity_flag)
 		return ..()
 	user.changeNext_move(CLICK_CD_MELEE)
-	var/obj/machinery/power/apc/A = target
+	var/obj/item/stock_parts/cell/C
+	if(istype(target, /obj/item/stock_parts/cell))
+		C = target
+	else if(istype(target, /obj/machinery/power/apc))
+		var/obj/machinery/power/apc/A = target
+		C = A.cell
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/cell/cell = locate(/obj/item/organ/stomach/cell) in H.internal_organs
 	if(!cell)
-		to_chat(H, "<span class='warning'>You try to siphon energy from the [A], but your power cell is gone!</span>")
+		to_chat(H, "<span class='warning'>You try to siphon energy from the [C], but your power cell is gone!</span>")
 		return
 
-	if(A.cell && A.cell.charge > 0)
+	if(C && C.charge > 0)
 		if(H.nutrition >= NUTRITION_LEVEL_MOSTLY_FULL)
 			to_chat(user, "<span class='warning'>You are already fully charged!</span>")
 			return
 		else
-			powerdraw_loop(A, H)
+			powerdraw_loop(C, H, target)
 			return
 
 	to_chat(user, "<span class='warning'>There is no charge to draw from that APC.</span>")
 
-/obj/item/apc_powercord/proc/powerdraw_loop(obj/machinery/power/apc/A, mob/living/carbon/human/H)
+/obj/item/apc_powercord/proc/powerdraw_loop(obj/item/stock_parts/cell/C, mob/living/carbon/human/H, atom/A)
 	H.visible_message("<span class='notice'>[H] inserts a power connector into the [A].</span>", "<span class='notice'>You begin to draw power from the [A].</span>")
 	while(do_after(H, 1 SECONDS, target = A))
 		if(loc != H)
 			to_chat(H, "<span class='warning'>You must keep your connector out while charging!</span>")
 			break
-		if(A.cell.charge == 0)
+		if(C.charge == 0)
 			to_chat(H, "<span class='warning'>The [A] doesn't have enough charge to spare.</span>")
 			break
 		if(H.nutrition > NUTRITION_LEVEL_MOSTLY_FULL)
 			to_chat(H, "<span class='notice'>You are now fully charged.</span>")
 			break
-		if(A.cell.charge >= 500)
+		if(C.charge >= 500)
 			H.nutrition += 50
-			A.cell.charge -= 250
+			C.charge -= 250
 			to_chat(H, "<span class='notice'>You siphon off some of the stored charge for your own use.</span>")
 		else
-			H.nutrition += A.cell.charge/10
-			A.cell.charge = 0
-			to_chat(H, "<span class='notice'>You siphon off as much as the [A] can spare.</span>")
+			H.nutrition += C.charge/10
+			C.charge = 0
+			to_chat(H, "<span class='notice'>You siphon off as much as the [C] can spare.</span>")
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
 
@@ -203,11 +240,15 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
+		if(saved_screen)
+			H.dna.features["ipc_screen"] = saved_screen
+			H.update_body()
 		return ..()
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
-	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
+	playsound(H, 'sound/machines/dial-up.ogg', 50, FALSE)
+	addtimer(CALLBACK(src, PROC_REF(afterrevive), H), 0)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
@@ -238,19 +279,28 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
-	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
+	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHARDCRIT)) // So they die eventually instead of being stuck in crit limbo.
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			H.death() // YOU'RE GETTING RUSTY, MACHINE!!
+			return .
 		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
-	if(H.mind && H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
-		H.blood_in_hands = 0
-		H.wash(CLEAN_TYPE_BLOOD)
-		to_chat(H,"You absorb the blood covering you to heal.")
-		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
-		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
+		var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
+			H.blood_in_hands = 0
+			H.wash(CLEAN_TYPE_BLOOD)
+			to_chat(H,"You absorb the blood covering you to heal.")
+			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+			if(UV && istype(UV))
+				UV.blood_heal(H, 30)
+		if(UV.hard_damage > 0)
+			UV.hard_damage -= UV.style // hard damage decays over time, faster if you're cool
+		UV.hard_damage = clamp(round(UV.hard_damage), 0, H.maxHealth - 1)
+		UV.handle_style(H)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -277,17 +327,27 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
+	if(H == user)//no emagging yourself
+		return
+	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
+		return
+	H.SetUnconscious(10 SECONDS)
+	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
+
 /*------------------------
 
 ipc martial arts stuff
 
 --------------------------*/
 /datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(chem.type == exotic_blood)
+		return FALSE
 	. = ..()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
-			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
-			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			UV.blood_heal(H, -25)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
 
 
@@ -296,13 +356,13 @@ ipc martial arts stuff
 		if(H.in_throw_mode)//if countering the emp
 			add_empproof(H)
 			throw_lightning(H)
-		else//if just getting hit
-			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+			addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 1, TIMER_OVERRIDE | TIMER_UNIQUE)//can't remove it instantly, so they're immune for all of 0.1 seconds
+	else if(severity == EMP_HEAVY)
+		H.emote("warn") // *chuckles* i'm in danger!
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
-	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE)
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
@@ -312,5 +372,15 @@ ipc martial arts stuff
 	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
 	if(ipcmartial)
 		ipcmartial.Destroy()
+
+/datum/species/ipc/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+	if(..())
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			if(istype(UV))
+				UV.hard_damage = min(UV.hard_damage + round(damage / 5), H.maxHealth - 1) // every 10 damage taken temporarily reduces max HP by 1, so try to actually dodge things
+				UV.handle_style(H, damage / -50) // lose 1 style rank for every 50 damage taken
+		return TRUE
+	return FALSE
 
 #undef CONSCIOUSAY

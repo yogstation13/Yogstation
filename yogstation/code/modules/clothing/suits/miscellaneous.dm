@@ -3,7 +3,7 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "network admin's winter coat"
 	icon_state = "coatsignaltech"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/assembly/signaler/button, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
@@ -173,21 +173,21 @@
 	desc = "Aviators not included. Now in dark blue!"
 	icon_state = "navymiljacket"
 	item_state = "navymiljacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/desertmiljacket
 	name = "desert military jacket"
 	desc = "Aviators not included. Now in dark brown!"
 	icon_state = "desertmiljacket"
 	item_state = "desertmiljacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/denimjacket
 	name = "denim jacket"
 	desc = "A bit scratchy but pretty cool looking."
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
@@ -250,7 +250,7 @@
 	item_state = "gold_item"
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
-/obj/item/clothing/suit/yogs/golddetective/Initialize()
+/obj/item/clothing/suit/yogs/golddetective/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
@@ -279,7 +279,7 @@
 	item_state = "detective_item"
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
-/obj/item/clothing/suit/yogs/detectivecoat/Initialize()
+/obj/item/clothing/suit/yogs/detectivecoat/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
@@ -309,7 +309,7 @@
 	item_state = "blue_item"
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
-/obj/item/clothing/suit/yogs/bluedetective/Initialize()
+/obj/item/clothing/suit/yogs/bluedetective/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
@@ -335,6 +335,12 @@
 	icon_state = "biker"
 	item_state = "biker"
 
+/obj/item/clothing/suit/yogs/battlejacket
+	name = "battle jacket"
+	desc = "Smells like stale beer and cigarettes. Must have been a good show!"
+	icon_state = "battlejacket"
+	item_state = "battlejacket"
+
 /obj/item/clothing/suit/yogs/varsity
 	name = "varsity jacket"
 	desc = "Go Space Carps!"
@@ -358,3 +364,16 @@
 	desc = "My Moon My Man."
 	icon_state = "punk"
 	item_state = "punk"
+
+/obj/item/clothing/suit/hooded/wintercoat/northern
+	name = "nothern coat"
+	desc = "A heavy jacket designed for weathering cold terran planets."
+	icon_state = "northern"
+	item_state = "northern"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/northern
+
+/obj/item/clothing/head/hooded/winterhood/northern
+	name = "northern hat"
+	desc = "only this, and nothing more."
+	icon_state = "northern"
+	item_state = "northern"

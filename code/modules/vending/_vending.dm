@@ -38,6 +38,26 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/list/returned_products
 
 /**
+ * # User-inserted custom product
+ * A datum that represents a custom product that is vendable
+ */
+/datum/data/vending_custom_product
+	///Name of the stored item
+	name = "generic"
+	///Unstripped name of the item, includes article
+	var/full_name = ""
+	///Icon of the item
+	var/asset = null
+	///How many are stored currently
+	var/amount = 0
+
+/datum/data/vending_custom_product/New(obj/item/I)
+	name = format_text(I.name)
+	full_name = I.name
+	var/icon/icon = icon(I.icon, I.icon_state, SOUTH, 1)
+	asset = icon2base64(icon) // costly? probably. less costly than sending the entire spritesheet? also probably
+
+/**
   * # vending machines
   *
   * Captalism in the year 2525, everything in a vending machine, even love
@@ -56,6 +76,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	integrity_failure = 100
 	armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	circuit = /obj/item/circuitboard/machine/vendor
+	clicksound = 'sound/machines/pda_button1.ogg'
 	payment_department = ACCOUNT_SRV
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -136,6 +157,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/obj/item/coin/coin
 	///Bills we accept?
 	var/obj/item/stack/spacecash/bill
+	///Custom item price
 	var/chef_price = 10
 	///Default price of items if not overridden
 	var/default_price = 25
@@ -152,6 +174,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	///ID's that can load this vending machine wtih refills
 	var/list/canload_access_list
 
+	///Custom item stock
 	var/list/vending_machine_input = list()
 	///Display header on the input view
 	var/input_display_header = "Custom Compartment"
@@ -243,14 +266,16 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else
 		..()
 
-/obj/machinery/vending/update_icon()
+/obj/machinery/vending/update_icon_state()
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+		return
+
+	if(powered())
+		icon_state = initial(icon_state)
 	else
-		if(powered())
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]-off"
 
 
 /obj/machinery/vending/obj_break(damage_flag)
@@ -551,7 +576,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				C.apply_damage(max(0, squish_damage - crit_rebate))
-				C.AddComponent(/datum/element/squish, 18 SECONDS)
+				C.AddElement(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
@@ -601,10 +626,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 			LAZYADD(product_datum.returned_products, I)
 			return
 
-	if(vending_machine_input[format_text(I.name)])
-		vending_machine_input[format_text(I.name)]++
-	else
-		vending_machine_input[format_text(I.name)] = 1
+	var/name = format_text(I.name)
+	if(!vending_machine_input[name])
+		vending_machine_input[name] = new /datum/data/vending_custom_product(I)
+
+	var/datum/data/vending_custom_product/P = vending_machine_input[name]
+	P.amount++
 	loaded_items++
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
@@ -666,6 +693,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = list()
 	.["onstation"] = onstation
 	.["department"] = payment_department
+	.["chef"] = list() // "chef compartment" i.e. player-added stock
+	.["chef"]["title"] = input_display_header
+	.["chef"]["price"] = chef_price
 	.["product_records"] = list()
 	for (var/datum/data/vending_product/R in product_records)
 		var/list/data = list(
@@ -730,6 +760,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
 	.["extended_inventory"] = extended_inventory
+	// extra items that have been placed in custom stock
+	.["custom_stock"] = list()
+	for (var/name in vending_machine_input)
+		var/datum/data/vending_custom_product/P = vending_machine_input[name]
+		.["custom_stock"][P.name] = list(amount = P.amount, img = P.asset)
 
 /obj/machinery/vending/ui_act(action, params)
 	. = ..()
@@ -767,25 +802,28 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_deny,src)
 				vend_ready = TRUE
 				return
-			var/mob/living/L
-			if(isliving(usr))
-				L = usr
 
-			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
+			var/is_premium = FALSE  // premium products always charge
+			if(coin_records.Find(R) || hidden_records.Find(R))
+				price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+				is_premium = TRUE
+
+			if(LAZYLEN(R.returned_products))
+				price_to_use = 0 //returned items are free
+
+			if(!charge_user(price_to_use, R.name, is_premium))
+				vend_ready = TRUE
+				return
+
+			if(onstation && ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/C = H.get_idcard(TRUE)
-
+				// this should really be caught by charge_user above, just extra safety
 				if(!C)
-					say("No card found.")
-					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
-				else if (!C.registered_account)
-					say("No account found.")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
+
+				if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
 					say("You are not of legal age to purchase [R.name].")
 					if(!(usr in GLOB.narcd_underages))
 						alertradio.set_frequency(FREQ_SECURITY)
@@ -794,29 +832,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
-				var/datum/bank_account/account = C.registered_account
-				if(account.account_job && account.account_job.paycheck_department == payment_department)
-					price_to_use = 0
-				if(coin_records.Find(R) || hidden_records.Find(R))
-					price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
-				if(LAZYLEN(R.returned_products))
-					price_to_use = 0 //returned items are free
-				if(price_to_use && !account.adjust_money(-price_to_use))
-					say("You do not possess the funds to purchase [R.name].")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
-				if(D)
-					D.adjust_money(price_to_use)
-			if(last_shopper != usr || purchase_message_cooldown < world.time)
-				say("Thank you for shopping with [src]!")
-				purchase_message_cooldown = world.time + 5 SECONDS
-				last_shopper = usr
-			use_power(5)
-			if(icon_vend) //Show the vending animation if needed
-				flick(icon_vend,src)
-			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
+
+			thank_user("Thank you for shopping with [src]!")
+			finish_vend()
+
 			var/obj/item/vended_item
 			if(!LAZYLEN(R.returned_products)) //always give out free returned stuff first, e.g. to avoid walling a traitor objective in a bag behind paid items
 				vended_item = new R.product_path(get_turf(src))
@@ -827,6 +846,88 @@ GLOBAL_LIST_EMPTY(vending_products)
 			R.amount--
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
+		if("vend_custom")
+			. = TRUE
+			if(!vend_ready)
+				return
+			if(panel_open)
+				to_chat(usr, span_warning("The vending machine cannot dispense products while its service panel is open!"))
+				return
+			var/N = params["item"]
+			var/datum/data/vending_custom_product/P = vending_machine_input[N]
+			if(!P || P.amount <= 0) // don't dispense none item with left beef
+				return
+			vend_ready = FALSE //One thing at a time!!
+
+			// Charge the user
+			if (!charge_user(chef_price, P.full_name, FALSE))
+				vend_ready = TRUE
+				return
+
+			thank_user("Thank you for shopping local and buying \the [P.full_name]!")
+			finish_vend()
+
+			P.amount = max(P.amount - 1, 0)
+			for(var/obj/item/I in contents)
+				if(format_text(I.name) == N)
+					I.forceMove(get_turf(src))
+					break
+			if(P.amount <= 0) // If there's no more left, clear it from the records
+				vending_machine_input.Remove(N)
+				qdel(P)
+			vend_ready = TRUE
+
+/**
+ * Charge the user during a vend
+ * Returns false if the user could not buy this item
+ */
+/obj/machinery/vending/proc/charge_user(price, item_name, always_charge)
+	var/mob/living/L
+	if(isliving(usr))
+		L = usr
+
+	if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
+		var/mob/living/carbon/human/H = usr
+		var/obj/item/card/id/C = H.get_idcard(TRUE)
+
+		if(!C)
+			say("No card found.")
+			flick(icon_deny,src)
+			return FALSE
+		else if (!C.registered_account)
+			say("No account found.")
+			flick(icon_deny,src)
+			return FALSE
+		var/datum/bank_account/account = C.registered_account
+		if(!always_charge && account.account_job && account.account_job.paycheck_department == payment_department)
+			price = 0
+		if(price && !account.adjust_money(-price))
+			say("You do not possess the funds to purchase \the [item_name].")
+			flick(icon_deny,src)
+			return FALSE
+		var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
+		if(D)
+			D.adjust_money(price)
+
+	return TRUE
+
+/**
+ * Thank the user for the purchase
+ */
+/obj/machinery/vending/proc/thank_user(message)
+	if(last_shopper != usr || purchase_message_cooldown < world.time)
+		say(message)
+		purchase_message_cooldown = world.time + 5 SECONDS
+		last_shopper = usr
+
+/**
+ * Finish a vend by consuming power, playing animations & playing sounds
+ */
+/obj/machinery/vending/proc/finish_vend()
+	use_power(5)
+	if(icon_vend) //Show the vending animation if needed
+		flick(icon_vend,src)
+	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 
 /obj/machinery/vending/process(delta_time)
 	if(stat & (BROKEN|NOPOWER))
@@ -875,7 +976,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		stat |= NOPOWER
 
-	update_icon()
+	return ..()
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /**
@@ -962,21 +1063,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!canload_access_list)
 		return TRUE
 	else
-		var/do_you_have_access = FALSE
-		var/req_access_txt_holder = req_access_txt
-		for(var/i in canload_access_list)
-			req_access_txt = i
-			if(!allowed(user) && !(obj_flags & EMAGGED) && scan_id)
-				continue
-			else
-				do_you_have_access = TRUE
-				break //you passed don't bother looping anymore
-		req_access_txt = req_access_txt_holder // revert to normal (before the proc ran)
-		if(do_you_have_access)
+		if((obj_flags & EMAGGED) || !scan_id)
 			return TRUE
-		else
-			to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
-			return FALSE
+
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/card/id/C = H.get_idcard(TRUE)
+			if(!C)
+				to_chat(user, span_warning("[src]'s input compartment blinks red: No card found."))
+				return FALSE
+
+			var/A = C.GetAccess()
+			// This is checking like `req_one_access` does (need any in list)
+			// The only thing that uses this is the chef compartment which only has one access in the list anyway
+			// If you add another, you may need to alter this behaviour
+			for(var/req in canload_access_list)
+				if(req in A)
+					return TRUE
+
+		to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
+		return FALSE
 
 /obj/machinery/vending/onTransitZ()
 	return

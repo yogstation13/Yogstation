@@ -75,6 +75,7 @@
 					/obj/item/staff/broom = 1,
 					/obj/item/clothing/suit/wizrobe/fake = 1,
 					/obj/item/clothing/head/wizard/fake = 1,
+					/obj/item/clothing/head/wizard/fake/brown = 1,
 					/obj/item/staff = 3,
 					/obj/item/toy/dummy = 2,
 					/obj/item/clothing/mask/gas/sexyclown = 1,
@@ -208,7 +209,8 @@
 					  /obj/item/gun/magic/wand = 2,
 					  /obj/item/clothing/glasses/sunglasses/garb = 2,
 					  /obj/item/clothing/glasses/blindfold = 1,
-					  /obj/item/clothing/mask/muzzle = 2)
+					  /obj/item/clothing/mask/muzzle = 2,
+					  /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy = 1)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 				   /obj/item/clothing/head/pirate/captain = 2,
 				   /obj/item/clothing/under/rank/rainbowclown = 1,

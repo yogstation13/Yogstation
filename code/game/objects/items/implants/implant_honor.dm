@@ -1,7 +1,6 @@
 /obj/item/implant/honor
 	name = "honor implant"
 	desc = "For the honorable."
-	activated = 0
 
 /obj/item/implant/honor/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE) //Copied and adjusted from mindshields
 	if(..())
