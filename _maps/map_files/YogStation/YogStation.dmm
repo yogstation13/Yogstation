@@ -17008,6 +17008,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"diu" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "diw" = (
 /obj/machinery/modular_computer/console/preset/command{
 	dir = 8
@@ -96713,7 +96718,7 @@ kZF
 apd
 mej
 mMW
-pby
+diu
 uiW
 qSt
 dqo
