@@ -122,7 +122,7 @@
 	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 10 SECONDS)
 	return TRUE
 
-/obj/machinery/door/window/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/structure/sign/barsign/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(QDELETED(src))
 		return
 	chosen_sign = set_sign(new /datum/barsign/hiddensigns/syndibarsign)
