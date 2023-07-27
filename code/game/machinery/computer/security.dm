@@ -849,6 +849,8 @@
 /obj/machinery/computer/secure_data/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
 		return FALSE
+	if(logged_in) // What was the point then?
+		return FALSE
 	var/name
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -859,8 +861,6 @@
 			name = "Unknown"
 	if(issilicon(user))
 		name = "[user.name]"
-	if(logged_in)
-		return FALSE // What was the point then?
 	logged_in = TRUE
 	to_chat(user, span_warning("You override [src]'s ID lock."))
 	trigger_alarm()
