@@ -60,7 +60,7 @@
 	if(botEmagChance)
 		for(var/mob/living/simple_animal/bot/bot in GLOB.alive_mob_list)
 			if(prob(botEmagChance))
-				bot.emag_act(null, null)
+				bot.emag_act()
 
 /*/proc/generate_ion_law() //yogs - start mirrored in the yogs folder
 	//Threats are generally bad things, silly or otherwise. Plural.

@@ -80,7 +80,7 @@
 /obj/item/storage/lockbox/emp_act(severity)
 	switch(severity)
 		if(EMP_HEAVY)
-			emag_act(null, null)
+			emag_act()
 		if(EMP_LIGHT)
 			if(prob(60))
 				var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
