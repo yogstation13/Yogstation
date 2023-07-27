@@ -14,6 +14,16 @@
 	var/max_spawned = 8
 	var/segment_chance = 35
 
+/obj/item/grenade/clusterbuster/examine(mob/user)
+	. = ..()
+	if(payload)
+		. += span_info("It has a payload. You can look again to take a closer look...")
+
+/obj/item/grenade/clusterbuster/examine_more(mob/user)
+	. = ..()
+	if(payload)
+		return list(span_info("\The [src] contains [initial(payload.name)]s."))
+
 /obj/item/grenade/clusterbuster/prime()
 	update_mob()
 	var/numspawned = rand(min_spawned,max_spawned)
@@ -191,6 +201,7 @@
 	name = "Blorble Blorble"
 	icon_state = "slimebang"
 	base_state = "slimebang"
+	payload = null
 	payload_spawner = /obj/effect/payload_spawner/random_slime
 	prime_sound = 'sound/effects/bubbles.ogg'
 
