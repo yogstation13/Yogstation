@@ -928,6 +928,11 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"gM" = (
+/obj/structure/table/reinforced,
+/obj/item/binoculars,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/shed)
 "gS" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plasteel/dark,
@@ -8001,7 +8006,7 @@ eM
 JL
 rh
 JE
-JE
+gM
 JL
 eM
 eM
