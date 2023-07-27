@@ -7,7 +7,7 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang"
 	var/base_state = "clusterbang"
-	var/payload = /obj/item/grenade/flashbang/cluster
+	var/atom/payload = /obj/item/grenade/flashbang/cluster
 	var/payload_spawner = /obj/effect/payload_spawner
 	var/prime_sound = 'sound/weapons/armbomb.ogg'
 	var/min_spawned = 4
