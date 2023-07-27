@@ -217,7 +217,6 @@
 		I.actions += src
 
 /datum/action/cooldown/boost/Activate()
-	var/mob/living/carbon/user = owner
 	var/atom/target = get_edge_target_turf(owner, owner.dir) //gets the user's direction
 
 	if(!owner.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = CALLBACK(src, PROC_REF(unstun), owner)))
