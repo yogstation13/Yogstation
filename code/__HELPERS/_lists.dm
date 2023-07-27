@@ -22,6 +22,8 @@
 #define LAZYNULL(L) L = null
 ///Accesses an associative list, returns null if nothing is found
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 ///Qdel every item in the list before setting the list to null
 #define QDEL_LAZYLIST(L) for(var/I in L) qdel(I); L = null;
 //These methods don't null the list
