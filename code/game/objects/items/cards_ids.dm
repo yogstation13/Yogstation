@@ -116,7 +116,7 @@
 		return
 	log_combat(user, A, "attempted to emag")
 	charges--
-	if(!A.emag_act(user, src) && ((charges + 1) > maxcharges)) // This is here because some emag_act use sleep and that could mess things up.
+	if(!A.emag_act(user, src) && ((charges + 1) > max_charges)) // This is here because some emag_act use sleep and that could mess things up.
 		charges++ // No charge usage if they fail (likely because either no interaction or already emagged).
 
 /obj/item/card/emag/bluespace
@@ -154,7 +154,7 @@
 				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if(!target.emag_act(user, src) && !((charges + 1) > maxcharges))
+			if(!target.emag_act(user, src) && !((charges + 1) > max_charges))
 				charges++
 		emagging = FALSE
 
