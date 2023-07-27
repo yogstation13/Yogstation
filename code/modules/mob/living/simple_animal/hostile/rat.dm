@@ -22,7 +22,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC,MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	faction = list("rat")
 	var/body_color
 

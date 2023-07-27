@@ -14,7 +14,7 @@ Difficulty: Extremely Hard
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
 	attacktext = "pummels"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
-	mob_biotypes = list(MOB_ORGANIC,MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = "#E4C7C5"
 	movement_type = GROUND
 	weather_immunities = list(WEATHER_SNOW)
