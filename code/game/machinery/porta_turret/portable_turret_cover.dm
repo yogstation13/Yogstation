@@ -101,4 +101,3 @@
 	if(QDELETED(parent_turret))
 		return
 	parent_turret.on = 1
-	return TRUE
