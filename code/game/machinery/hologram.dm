@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	layer = LOW_OBJ_LAYER
 	plane = FLOOR_PLANE
 	flags_1 = HEAR_1
-	req_access = list(ACCESS_KEYCARD_AUTH) //Used to allow for forced connecting to other (not secure) holopads. Anyone can make a call, though.
+	req_access = list(ACCESS_CAPTAIN) //Used to allow for forced connecting to other (not secure) holopads. Anyone can make a call, though.
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -388,11 +388,9 @@ obj/machinery/holopad/secure/Initialize(mapload)
 			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
 				HC.Answer(src)
 				break
-			if(HC.head_call && secure)
+			if(HC.head_call) //captain is calling: ACCEPT | ACCEPT
 				HC.Answer(src)
 				break
-			if(!secure)
-				HC.Answer(src)
 			if(outgoing_call)
 				HC.Disconnect(src)//can't answer calls while calling
 			else
