@@ -1,0 +1,6 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - mapping: "asteroid trims overhaul"
+  - mapping: "additional medbay fixes by @maxion12345"
+  - mapping: "additional hallway fixes by @ToasterBiome"
