@@ -31,11 +31,12 @@
 	if(COOLDOWN_FINISHED(src, ion_cooldown))
 		. += "It is ready to fire."
 	else
-		var/time_seconds = COOLDOWN_TIMELEFT(src, ion_cooldown)/10
-		if(time_seconds > 60)
-			. += "It will be ready to fire in [round(time_seconds/60, 0.1)] minutes." // A bit ugly to see: "846.2 seconds".
+		var/seconds_left = COOLDOWN_TIMELEFT(src, ion_cooldown)/10
+		var/minutes_left_rounded = round(seconds_left/60, 0.1) // Don't want to deal with "1 minutes".
+		if(minutes_left_rounded > 1)
+			. += "It will be ready to fire in [minutes_left_rounded] minutes."
 		else
-			. += "It will be ready to fire in [time_seconds] seconds."
+			. += "It will be ready to fire in [seconds_left] seconds."
 	
 /obj/item/device/loic_remote/attack_self(mob/user)
 	if(!COOLDOWN_FINISHED(src, ion_cooldown))
