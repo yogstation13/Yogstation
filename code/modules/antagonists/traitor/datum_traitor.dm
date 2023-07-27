@@ -216,8 +216,13 @@
 			steal_objective.owner = owner
 			steal_objective.find_target()
 			add_objective(steal_objective)
-		else // Objectives that involve destroying items in areas
-			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+		else
+			var/datum/objective/break_machinery/break_objective = new
+			break_objective.owner = owner
+			if(break_objective.finalize())
+				add_objective(break_objective)
+			else
+				forge_single_human_objective()
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1

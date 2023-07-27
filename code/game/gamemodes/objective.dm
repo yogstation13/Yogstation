@@ -1626,12 +1626,12 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/area/target_areas
 
 /datum/objective/break_machinery/finalize()
+	target_areas = list()
 	var/station_z = SSmapping.levels_by_trait(ZTRAIT_STATION)[1]
 	if(!target_obj_type) // Select our target machine if there is none pre-set
 		potential_target_types = list(
 			// SCIENCE
 			/obj/machinery/rnd/server,
-			/obj/machinery/mecha_part_fabricator,
 			// ENGINEERING
 			/obj/machinery/power/smes,
 			/obj/machinery/power/supermatter_crystal,
@@ -1639,7 +1639,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			// MEDICAL
 			/obj/machinery/stasis,
 			/obj/machinery/sleeper,
-			/obj/machinery/atmospherics/components/unary/cryo_cell,
 			/obj/machinery/clonepod,
 			// OTHER
 			/obj/machinery/autolathe,
