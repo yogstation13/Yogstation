@@ -211,11 +211,13 @@
 			download_objective.owner = owner
 			download_objective.gen_amount_goal()
 			add_objective(download_objective)
-		else
+		else if(prob(50))
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = owner
 			steal_objective.find_target()
 			add_objective(steal_objective)
+		else // Objectives that involve destroying items in areas
+			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1
