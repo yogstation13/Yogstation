@@ -132,6 +132,11 @@
 	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
 	icon_state = "fake_door"
 
+/turf/closed/indestructible/fakedoor/poddoor
+	name = "blast door"
+	icon = 'icons/obj/doors/blastdoor.dmi'
+	icon_state = "closed"
+
 /turf/closed/indestructible/rock
 	name = "dense rock"
 	desc = "An extremely densely-packed rock, most mining tools or explosives would never get through this."
