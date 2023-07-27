@@ -34,17 +34,21 @@
 		if(istype(changeling, /datum/antagonist/changeling/xenobio) && !xenoling_available)
 			continue //yogs end - removing combat abilities from xenolings
 
-		var/list/AL = list()
-		AL["name"] = initial(ability.name)
-		AL["desc"] = initial(ability.desc)
-		AL["helptext"] = initial(ability.helptext)
-		AL["owned"] = changeling.has_sting(ability)
+		var/list/abilitydata = list()
+		abilitydata["name"] = initial(ability.name)
+		abilitydata["desc"] = initial(ability.desc)
+		abilitydata["helptext"] = initial(ability.helptext)
+		abilitydata["owned"] = changeling.has_sting(ability)
 		var/req_dna = initial(ability.req_dna)
 		var/req_absorbs = initial(ability.req_absorbs)
-		AL["dna_cost"] = dna_cost
-		AL["can_purchase"] = ((req_absorbs <= true_absorbs) && (req_dna <= absorbed_dna_count) && (dna_cost <= genetic_points_remaining))
-
-		abilities += list(AL)
+		abilitydata["dna_cost"] = dna_cost
+		abilitydata["can_purchase"] = ((req_absorbs <= true_absorbs) && (req_dna <= absorbed_dna_count) && (dna_cost <= genetic_points_remaining))
+		abilitydata["conflicting_powers"] = list()
+		for(var/conflicts in ability.conflicts) 
+			var/datum/action/changeling/conflcting_ability = conflicts
+			abilitydata["conflicting_powers"] += initial(conflcting_ability.name)
+		
+		abilities += list(abilitydata)
 
 	data["abilities"] = abilities
 
