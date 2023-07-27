@@ -111,7 +111,7 @@
 		if(EMP_HEAVY)
 			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
 
-/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user)
+/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(emageffect)
 		return
 	emageffect = TRUE
