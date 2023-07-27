@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "ion carbines now ACTUALLY shoot weaker bullets like was intended in a PR 6 months ago"
