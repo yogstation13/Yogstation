@@ -72,6 +72,12 @@
 	icon_state = "craft"
 	screen_loc = ui_crafting
 
+/atom/movable/screen/cook
+	name = "cooking menu"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "cook"
+	screen_loc = ui_cooking
+
 /atom/movable/screen/area_creator
 	name = "create new area"
 	icon = 'icons/mob/screen_midnight.dmi'

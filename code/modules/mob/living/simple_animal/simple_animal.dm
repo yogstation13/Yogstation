@@ -123,6 +123,7 @@
 	update_simplemob_varspeed()
 	if(dextrous)
 		AddComponent(/datum/component/personal_crafting)
+		AddComponent(/datum/component/cooking)
 	if(music_component && music_path)
 		AddComponent(music_component, music_path)
 

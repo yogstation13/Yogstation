@@ -560,6 +560,7 @@
 #include "code\datums\components\wearertargeting.dm"
 #include "code\datums\components\wet_floor.dm"
 #include "code\datums\components\crafting\antag.dm"
+#include "code\datums\components\crafting\cooking.dm"
 #include "code\datums\components\crafting\crafting.dm"
 #include "code\datums\components\crafting\guncrafting.dm"
 #include "code\datums\components\crafting\makeshift.dm"
