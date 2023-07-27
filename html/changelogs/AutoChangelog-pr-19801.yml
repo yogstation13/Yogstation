@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Mood events can be restricted to jobs."
+  - rscadd: "Petting a Cyborg is now a positive mood event for all science members (and the geneticist too)."
