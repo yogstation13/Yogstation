@@ -94,10 +94,10 @@
 	visible_message("[parent_turret] hums oddly...")
 	parent_turret.obj_flags |= EMAGGED
 	parent_turret.on = 0
-	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 4 SECONDS) // 4 seconds to get away.
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 4 SECONDS) // 4 seconds to get away.
 	return TRUE
 
-/obj/machinery/porta_turret_cover/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/machinery/porta_turret_cover/proc/finish_emag_act()
 	if(QDELETED(parent_turret))
 		return
 	parent_turret.on = 1
