@@ -1533,10 +1533,10 @@
 		return FALSE
 	operating = TRUE
 	update_icon(state = AIRLOCK_EMAG, override = TRUE)
-	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 0.6 SECONDS)
 	return TRUE
 
-/obj/machinery/door/airlock/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/machinery/door/airlock/proc/finish_emag_act()
 	if(QDELETED(src))
 		return
 	operating = FALSE

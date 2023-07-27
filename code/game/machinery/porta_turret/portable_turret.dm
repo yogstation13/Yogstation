@@ -285,10 +285,10 @@
 	controllock = TRUE
 	on = FALSE //turns off the turret temporarily
 	update_appearance(UPDATE_ICON)
-	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 6 SECONDS) // 6 seconds to get away.
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 6 SECONDS) // 6 seconds to get away.
 	return TRUE
 
-/obj/machinery/porta_turret/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/machinery/porta_turret/proc/finish_emag_act()
 	if(QDELETED(src))
 		return
 	on = TRUE // Turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here.

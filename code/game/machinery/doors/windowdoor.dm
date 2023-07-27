@@ -233,7 +233,7 @@
 	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
 	return TRUE
 
-/obj/machinery/door/window/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/machinery/door/window/proc/finish_emag_act()
 	if(QDELETED(src))
 		return
 	operating = FALSE

@@ -119,10 +119,10 @@
 		to_chat(user, span_warning("Nothing interesting happens!"))
 		return FALSE
 	to_chat(user, span_notice("You load an illegal barsign into the memory buffer..."))
-	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 10 SECONDS)
 	return TRUE
 
-/obj/structure/sign/barsign/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/structure/sign/barsign/proc/finish_emag_act()
 	if(QDELETED(src))
 		return
 	chosen_sign = set_sign(new /datum/barsign/hiddensigns/syndibarsign)

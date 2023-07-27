@@ -287,7 +287,7 @@
  * @param {living/carbon} attacker - The user performing the action.
  * @returns {boolean} - TRUE if successful, FALSE if not.
  */
-/mob/living/silicon/pai/proc/handle_emag(mob/living/carbon/attacker)
+/mob/living/silicon/pai/proc/handle_emag(mob/living/carbon/attacker, obj/item/card/emag/emag_card)
 	if(!isliving(attacker))
 		return FALSE
 	balloon_alert(attacker, "directive override complete")
