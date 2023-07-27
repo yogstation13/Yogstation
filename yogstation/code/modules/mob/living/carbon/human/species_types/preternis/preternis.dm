@@ -11,8 +11,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
-	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
+	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
 	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
@@ -238,8 +238,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
+		H.clear_stamina_regen()
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.adjust_jitter(100 SECONDS)
+		H.set_jitter_if_lower(100 SECONDS)
 		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")

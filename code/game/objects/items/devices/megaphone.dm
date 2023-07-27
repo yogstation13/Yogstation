@@ -24,7 +24,7 @@
 
 /obj/item/megaphone/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/megaphone/equipped(mob/M, slot)
 	. = ..()
@@ -42,19 +42,18 @@
 	if(last_used > world.time)
 		return FALSE
 	last_used = world.time + recharge_time
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), recharge_time)
 	return TRUE
 
-/obj/item/megaphone/update_icon()
+/obj/item/megaphone/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/mutable_appearance/base_overlay
 	if(last_used > world.time)
 		base_overlay = mutable_appearance(icon, "megaphone_recharging")
 	else
 		base_overlay = mutable_appearance(icon, "megaphone_charged")
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, list/speech_args)
 	if (user.get_active_held_item() == src)

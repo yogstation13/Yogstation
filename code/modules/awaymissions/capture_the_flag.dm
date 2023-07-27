@@ -9,7 +9,7 @@
 
 
 
-/obj/item/twohanded/ctf
+/obj/item/ctf_flag
 	name = "banner"
 	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
@@ -31,16 +31,16 @@
 	var/obj/effect/ctf/flag_reset/reset
 	var/reset_path = /obj/effect/ctf/flag_reset
 
-/obj/item/twohanded/ctf/Destroy()
+/obj/item/ctf_flag/Destroy()
 	QDEL_NULL(reset)
 	return ..()
 
-/obj/item/twohanded/ctf/Initialize(mapload)
+/obj/item/ctf_flag/Initialize(mapload)
 	. = ..()
 	if(!reset)
 		reset = new reset_path(get_turf(src))
 
-/obj/item/twohanded/ctf/process()
+/obj/item/ctf_flag/process()
 	if(is_ctf_target(loc)) //don't reset from someone's hands.
 		return PROCESS_KILL
 	if(world.time > reset_cooldown)
@@ -52,7 +52,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/twohanded/ctf/attack_hand(mob/living/user)
+/obj/item/ctf_flag/attack_hand(mob/living/user)
 	if(!is_ctf_target(user) && !anyonecanpickup)
 		to_chat(user, "Non players shouldn't be moving the flag!")
 		return
@@ -76,7 +76,7 @@
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/twohanded/ctf/dropped(mob/user)
+/obj/item/ctf_flag/dropped(mob/user)
 	..()
 	user.anchored = FALSE
 	user.status_flags |= CANPUSH
@@ -89,7 +89,7 @@
 	anchored = TRUE
 
 
-/obj/item/twohanded/ctf/red
+/obj/item/ctf_flag/red
 	name = "red flag"
 	icon_state = "banner-red"
 	item_state = "banner-red"
@@ -98,7 +98,7 @@
 	reset_path = /obj/effect/ctf/flag_reset/red
 
 
-/obj/item/twohanded/ctf/blue
+/obj/item/ctf_flag/blue
 	name = "blue flag"
 	icon_state = "banner-blue"
 	item_state = "banner-blue"
@@ -279,8 +279,8 @@
 			attack_ghost(ghost)
 
 /obj/machinery/capture_the_flag/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/twohanded/ctf))
-		var/obj/item/twohanded/ctf/flag = I
+	if(istype(I, /obj/item/ctf_flag))
+		var/obj/item/ctf_flag/flag = I
 		if(flag.team != src.team)
 			user.transferItemToLoc(flag, get_turf(flag.reset), TRUE)
 			points++
@@ -297,7 +297,7 @@
 		if(istype(mob_area, /area/ctf))
 			to_chat(M, "<span class='narsie [team_span]'>[team] team wins!</span>")
 			to_chat(M, span_userdanger("Teams have been cleared. Click on the machines to vote to begin another round."))
-			for(var/obj/item/twohanded/ctf/W in M)
+			for(var/obj/item/ctf_flag/W in M)
 				M.dropItemToGround(W)
 			M.dust()
 	for(var/obj/machinery/control_point/control in GLOB.machines)
@@ -338,7 +338,7 @@
 	var/list/ctf_object_typecache = typecacheof(list(
 				/obj/machinery,
 				/obj/effect/ctf,
-				/obj/item/twohanded/ctf
+				/obj/item/ctf_flag
 			))
 	for(var/atm in A)
 		if (isturf(A) || ismob(A) || isarea(A))

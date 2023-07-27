@@ -36,6 +36,7 @@
 	color = "#FFC8C8"
 	metabolization_rate = 4
 	taste_description = "burning"
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
@@ -137,6 +138,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
@@ -160,6 +162,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)

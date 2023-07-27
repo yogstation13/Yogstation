@@ -28,27 +28,27 @@
 /mob/living/carbon/initialize_footstep()
 	AddComponent(/datum/component/footstep, 1, 2)
 
-/mob/living/carbon/swap_hand(held_index)
+/mob/living/carbon/perform_hand_swap(held_index)
+	. = ..()
+	if(!.)
+		return
+
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
+	
+	if(!isnum(held_index))
+		CRASH("You passed [held_index] into swap_hand instead of a number. WTF man")
 
-	var/obj/item/item_in_hand = src.get_active_held_item()
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/twohanded/TH = item_in_hand
-		if(istype(TH))
-			if(TH.wielded == 1)
-				to_chat(usr, span_warning("Your other hand is too busy holding [TH]."))
-				return
 	var/oindex = active_hand_index
 	active_hand_index = held_index
 	if(hud_used)
 		var/atom/movable/screen/inventory/hand/H
 		H = hud_used.hand_slots["[oindex]"]
 		if(H)
-			H.update_icon()
+			H.update_appearance(UPDATE_ICON)
 		H = hud_used.hand_slots["[held_index]"]
 		if(H)
-			H.update_icon()
+			H.update_appearance(UPDATE_ICON)
 
 
 /mob/living/carbon/activate_hand(selhand) //l/r OR 1-held_items.len
@@ -586,7 +586,7 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
-	
+
 	for(var/image/I in infra_images)
 		if(client)
 			client.images.Remove(I)
@@ -1118,7 +1118,7 @@
 /mob/living/carbon/proc/hypnosis_vulnerable()
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		return FALSE
-	if(hallucinating())
+	if(has_status_effect(/datum/status_effect/hallucination))
 		return TRUE
 	if(IsSleeping())
 		return TRUE
@@ -1282,3 +1282,12 @@
 	our_splatter.blood_dna_info = get_blood_dna_list()
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
 	INVOKE_ASYNC(our_splatter, TYPE_PROC_REF(/obj/effect/decal/cleanable/blood/hitsplatter, fly_towards), targ, splatter_strength)
+
+/**
+ * Clears dynamic stamina regeneration on all limbs, typically used for continuous buildup like chems.
+ *
+ * Make sure it's used AFTER stamina damage is applied.
+ */
+/mob/living/carbon/clear_stamina_regen()
+	for(var/obj/item/bodypart/B in bodyparts)
+		B.stamina_cache = list()

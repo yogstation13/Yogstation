@@ -169,7 +169,7 @@
 	stage4	= list(span_danger("Your skin feels very loose."), span_danger("You can feel... something...inside you."))
 	stage5	= list(span_danger("Your skin feels as if it's about to burst off!"))
 	new_form = /mob/living/silicon/robot
-	infectable_biotypes = list(MOB_ORGANIC, MOB_UNDEAD, MOB_ROBOTIC)
+	infectable_biotypes = MOB_ORGANIC|MOB_UNDEAD|MOB_ROBOTIC
 	bantype = "Cyborg"
 
 /datum/disease/transformation/robot/stage_act()
@@ -285,7 +285,7 @@
 	stage4	= list(span_danger("You're ravenous."))
 	stage5	= list(span_danger("You have become a morph."))
 	new_form = /mob/living/simple_animal/hostile/morph
-	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
+	infectable_biotypes = MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD //magic!
 
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"
@@ -302,7 +302,7 @@
 	stage4	= list(span_danger("your organs seems to suddenly disappear."))
 	stage5	= list(span_danger("You have become a ghost."))
 	new_form = /mob/living/simple_animal/hostile/retaliate/ghost
-	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
+	infectable_biotypes = MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD //magic!
 
 /datum/disease/transformation/gondola
 	name = "Gondola Transformation"

@@ -287,7 +287,7 @@
 
 	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = ui_style
-	pull_icon.update_icon()
+	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_above_intent
 	static_inventory += pull_icon
 
@@ -296,13 +296,13 @@
 
 	zone_select =  new /atom/movable/screen/zone_sel(src)
 	zone_select.icon = ui_style
-	zone_select.update_icon()
+	zone_select.update_appearance(UPDATE_ICON)
 	static_inventory += zone_select
 
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
 			inv_slots[TOBITSHIFT(inv.slot_id) + 1] = inv
-			inv.update_icon()
+			inv.update_appearance(UPDATE_ICON)
 
 	update_locked_slots()
 
