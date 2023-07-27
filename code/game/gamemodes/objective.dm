@@ -1661,7 +1661,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	var/machine_name = initial(target_obj_type.name)
 	name = "Destroy [machine_name][machine_name[length(machine_name)] == "s" ? "es" : "s"]"
-	// Find and store areas
+	// Find and shuffle machines for random area selection
+	var/list/eligible_machines = list()
 	for(var/obj/machinery/machine as anything in GLOB.machines)
 		if(!istype(machine, target_obj_type))
 			continue
@@ -1669,6 +1670,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		if(!istype(get_area(machine), /area))
 			continue
+		eligible_machines |= machine
+
+	eligible_machines = shuffle(eligible_machines)
+	// Store areas
+	for(var/obj/machinery/machine as anything in eligible_machines)
 		target_areas |= get_area(machine)
 		if(target_areas.len >= 4)
 			break
