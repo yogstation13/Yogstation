@@ -403,6 +403,12 @@
 	icon_state = "brasswelder"
 	item_state = "brasswelder"
 
+/obj/item/weldingtool/experimental/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
+	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "exp_welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
+	target.add_overlay(sparks)
+	. = ..()
+	target.cut_overlay(sparks)
+
 
 /obj/item/weldingtool/experimental/process()
 	..()
