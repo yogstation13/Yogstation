@@ -157,13 +157,12 @@
 		open_machine()
 
 /obj/machinery/harvester/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
 	allow_living = TRUE
 	to_chat(user, span_warning("You overload [src]'s lifesign scanners."))
+	return TRUE
 
 /obj/machinery/harvester/container_resist(mob/living/user)
 	if(!harvesting)

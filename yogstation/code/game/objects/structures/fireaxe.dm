@@ -89,23 +89,21 @@
 		update_appearance(UPDATE_ICON)
 
 /obj/structure/fireaxecabinet/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	//this allows you to emag the fireaxe cabinet, unlocking it immediately.
-	if(obj_flags & EMAGGED)
-		return
-	if(!open && locked)
-		user.visible_message(span_warning("Sparks fly out of the [src]'s locking modules!"), \
-							 span_caution("You short out the [name]'s locking modules."), \
-							 span_italics("You hear electricity arcing."))
-		spark_system.start()
-
-		src.add_fingerprint(user)
-		obj_flags |= EMAGGED
-		desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
-
-		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
-		locked = 0
-		audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
-		update_appearance(UPDATE_ICON)
-		//Fireaxe Cabinet is now permanently unlocked.
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
+	if(open || !locked) // You won't need the emag to get what you want. Just open it normally!
+		return FALSE
+	// This allows you to emag the fireaxe cabinet, unlocking it immediately.
+	user.visible_message(span_warning("Sparks fly out of the [src]'s locking modules!"), \
+							span_caution("You short out the [name]'s locking modules."), \
+							span_italics("You hear electricity arcing."))
+	spark_system.start()
+	src.add_fingerprint(user)
+	obj_flags |= EMAGGED
+	desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
+	playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
+	locked = 0
+	audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
+	update_appearance(UPDATE_ICON)
+	// The fireaxe cabinet is now permanently unlocked.
+	return TRUE

@@ -64,14 +64,13 @@
 			speech_args[SPEECH_SPANS] |= voicespan
 
 /obj/item/megaphone/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
-
+	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
+	return TRUE
+	
 /obj/item/megaphone/sec
 	name = "security megaphone"
 	icon_state = "megaphone-sec"

@@ -43,10 +43,8 @@
 		. |= EXPORT_EMAG
 
 /obj/machinery/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),
 	span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
 
@@ -58,6 +56,7 @@
 	board.contraband = TRUE
 	board.obj_flags |= EMAGGED
 	update_static_data(user)
+	return TRUE
 
 /obj/machinery/computer/cargo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

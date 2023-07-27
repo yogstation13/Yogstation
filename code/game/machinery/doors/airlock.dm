@@ -1530,17 +1530,22 @@
 
 /obj/machinery/door/airlock/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(operating || !density || !hasPower() || (obj_flags & EMAGGED))
-		return
+		return FALSE
 	operating = TRUE
 	update_icon(state = AIRLOCK_EMAG, override = TRUE)
-	sleep(0.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
+	return TRUE
+
+/obj/machinery/door/airlock/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(QDELETED(src))
 		return
 	operating = FALSE
-	if(istype(emag_card, /obj/item/card/emag/cmag))
+
+	if(istype(emag_card, /obj/item/card/emag/cmag)) // Clown behavior.
 		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
 		obj_flags |= CMAGGED
-		return
+		return TRUE
+
 	if(!open()) // Something prevented it from being opened. For example, bolted/welded shut.
 		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
 	obj_flags |= EMAGGED

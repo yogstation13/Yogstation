@@ -24,12 +24,11 @@
 	return ..()
 
 /obj/machinery/gulag_item_reclaimer/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED) // emagging lets anyone reclaim all the items
-		return
-	req_access = list()
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
+	req_access = list() // Emagging lets anyone reclaim all the items.
+	return TRUE
 
 /obj/machinery/gulag_item_reclaimer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id/prisoner))

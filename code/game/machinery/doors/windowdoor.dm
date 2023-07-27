@@ -218,19 +218,22 @@
 
 /obj/machinery/door/window/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(operating || !density || (obj_flags & CMAGGED))
-		return
+		return FALSE
 	if(istype(emag_card, /obj/item/card/emag/cmag))
 		obj_flags |= CMAGGED
 		operating = TRUE
 		flick("[base_state]spark", src)
 		playsound(src, "sparks", 75, 1)
 		operating = FALSE
-		return
+		return TRUE
 	obj_flags |= EMAGGED
 	operating = TRUE
 	flick("[base_state]spark", src)
 	playsound(src, "sparks", 75, 1)
-	sleep(0.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
+	return TRUE
+
+/obj/machinery/door/window/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(QDELETED(src))
 		return
 	operating = FALSE

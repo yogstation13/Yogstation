@@ -150,7 +150,7 @@
 	return ..()
 
 /mob/living/silicon/pai/emag_act(mob/user, obj/item/card/emag/emag_card)
-	handle_emag(user, emag_card)
+	return handle_emag(user, emag_card)
 
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()

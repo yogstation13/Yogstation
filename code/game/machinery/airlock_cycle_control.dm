@@ -787,13 +787,12 @@
 	update_cycle_icon()
 
 /obj/machinery/advanced_airlock_controller/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
 	visible_message(span_warning("Sparks fly out of [src]!"), span_notice("You emag [src], disabling its safeties."))
 	playsound(src, "sparks", 50, 1)
+	return TRUE
 
 /obj/machinery/advanced_airlock_controller/obj_break(damage_flag)
 	..()

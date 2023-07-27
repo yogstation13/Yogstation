@@ -114,10 +114,9 @@
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
-	log_combat(user, A, "attempted to [clown_version ? "cmag" : "emag"]")
-	charges--
-	// TODO: Consider refunding a charge if it fails/does nothing since it'll use up a charge regardless of success or failure.
-	A.emag_act(user, src)
+	log_combat(user, A, "attempted to emag")
+	if(A.emag_act(user, src))
+		charges--
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
@@ -144,21 +143,18 @@
 		emagging = TRUE
 		if(do_after(user, rand(5, 10) SECONDS, target))
 			charges--
-			if (prob(40))
+			if(prob(40))
 				to_chat(user, span_notice("[src] emits a puff of smoke, but nothing happens."))
 				emagging = FALSE
 				return
-			if (prob(5))
+			if(prob(5))
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
 				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
-				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
-				emagging = FALSE
-				return
-			target.emag_act(user, src)
+			if(!target.emag_act(user, src))
+				charges++ // No charge usage if they fail (likely because either no interaction or already emagged).
 		emagging = FALSE
 
 /obj/item/card/emag/cmag

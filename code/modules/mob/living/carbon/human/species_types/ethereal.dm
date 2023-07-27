@@ -113,13 +113,13 @@
 
 /datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(emageffect)
-		return
+		return FALSE
 	emageffect = TRUE
 	to_chat(user, span_notice("You tap [H] on the back with your card."))
 	H.visible_message(span_danger("[H] starts flickering in an array of colors!"))
 	handle_emag(H)
 	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
-
+	return TRUE
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()

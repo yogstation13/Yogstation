@@ -200,7 +200,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	visible_message(span_notice("Sparks fly out of the [src]!"))
 	traffic += 50
+	return TRUE

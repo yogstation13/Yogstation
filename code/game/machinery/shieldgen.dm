@@ -196,14 +196,15 @@
 
 /obj/machinery/shieldgen/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("The access controller is damaged!"))
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
+	return TRUE
 
 /obj/machinery/shieldgen/update_icon_state()
 	. = ..()
@@ -391,14 +392,15 @@
 
 /obj/machinery/shieldwallgen/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("The access controller is damaged!"))
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
+	return TRUE
 
 //////////////Containment Field START
 /obj/machinery/shieldwall

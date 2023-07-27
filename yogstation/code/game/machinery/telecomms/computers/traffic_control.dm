@@ -291,12 +291,11 @@
 		..()
 
 /obj/machinery/computer/telecomms/traffic/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(!emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = TRUE
-		to_chat(user, span_notice("You you disable the security protocols."))
+	if(istype(emag_card, /obj/item/card/emag/cmag) || emagged)
+		return FALSE
+	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+	emagged = TRUE
+	to_chat(user, span_notice("You you disable the security protocols."))
 
 /obj/machinery/computer/telecomms/traffic/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))

@@ -179,17 +179,14 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/geiger_counter/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	if(scanning)
 		to_chat(user, span_warning("Turn off [src] before you perform this action!"))
-		return 0
-	to_chat(user, span_warning("You override [src]'s radiation storing protocols. It will now generate small doses of radiation, and stored rads are now projected into creatures you scan."))
+		return FALSE
 	obj_flags |= EMAGGED
-
-
+	to_chat(user, span_warning("You override [src]'s radiation storing protocols. It will now generate small doses of radiation, and stored rads are now projected into creatures you scan."))
+	return TRUE
 
 /obj/item/geiger_counter/cyborg
 	var/mob/listeningTo

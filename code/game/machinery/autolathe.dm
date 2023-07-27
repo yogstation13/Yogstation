@@ -312,15 +312,15 @@
 	adjust_hacked(TRUE)
 
 /obj/machinery/autolathe/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED) )
+		return FALSE
 	obj_flags |= EMAGGED
 	if(!hacked)
 		adjust_hacked(TRUE)
 	playsound(src, "sparks", 75, TRUE, -1)
-	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
+	if(user)
+		to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
+	return TRUE
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes

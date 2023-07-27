@@ -204,11 +204,10 @@
 		return TRUE
 
 /obj/machinery/fat_sucker/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
+	obj_flags |= EMAGGED
 	start_at = 100
 	stop_at = 0
 	to_chat(user, span_notice("You remove the access restrictions and lower the automatic ejection threshold!"))
-	obj_flags |= EMAGGED
+	return TRUE

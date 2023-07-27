@@ -408,15 +408,14 @@
 
 //emaging provides slightly more points but at much greater risk
 /obj/machinery/power/bluespace_tap/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(emagged)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || emagged)
+		return FALSE
 	emagged = TRUE
 	do_sparks(5, FALSE, src)
 	if(user)
 		user.visible_message("<span class='warning'>[user] overrides the safety protocols of [src].</span>", "<span class='warning'>You override the safety protocols.</span>")
-
+	return TRUE
+	
 /obj/structure/spawner/nether/bluespace_tap
 	spawn_time = 30 SECONDS
 	max_mobs = 5		//Dont' want them overrunning the station

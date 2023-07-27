@@ -155,10 +155,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	. = ..()
 	if(emag_lvl == 2)
-		return
+		return FALSE
 	emag_lvl = min(emag_lvl + 1,2)
 	playsound(H.loc, 'sound/machines/warning-buzzer.ogg', 50, 1, 1)
 	H.Paralyze(60)
@@ -170,7 +170,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			H.overlay_fullscreen("preternis_emag", /atom/movable/screen/fullscreen/high)
 			H.throw_alert("preternis_emag", /atom/movable/screen/alert/high/preternis)
 			to_chat(H,span_danger("ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED."))
-
+	return TRUE
+	
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 

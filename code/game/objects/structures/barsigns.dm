@@ -114,14 +114,18 @@
 
 /obj/structure/sign/barsign/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	if(broken)
 		to_chat(user, span_warning("Nothing interesting happens!"))
-		return
+		return FALSE
 	to_chat(user, span_notice("You load an illegal barsign into the memory buffer..."))
-	sleep(10 SECONDS)
-	chosen_sign = set_sign(new /datum/barsign/hiddensigns/syndibarsign)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 10 SECONDS)
+	return TRUE
 
+/obj/machinery/door/window/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(QDELETED(src))
+		return
+	chosen_sign = set_sign(new /datum/barsign/hiddensigns/syndibarsign)
 
 /obj/structure/sign/barsign/proc/pick_sign(mob/user)
 	var/picked_name = input(user, "Available Signage", "Bar Sign", name) as null|anything in get_bar_names()

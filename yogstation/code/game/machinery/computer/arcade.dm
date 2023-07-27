@@ -147,10 +147,8 @@
 			return TRUE
 
 /obj/machinery/computer/arcade/minesweeper/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
 	do_sparks(5, 1, src)
 	obj_flags |= EMAGGED
@@ -161,3 +159,4 @@
 		to_chat(user, span_warning("The machine buzzes and sparks... the game has been reset!"))
 		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff_exponent = 10)	//Loud buzz
 		board.game_status = MINESWEEPER_IDLE
+	return TRUE

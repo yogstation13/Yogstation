@@ -130,12 +130,12 @@
 		adjustmask(user)
 
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
+	if(istype(emag_card, /obj/item/card/emag/cmag) || obj_flags & EMAGGED)
 		return
-	if(obj_flags & EMAGGED)
-		obj_flags |= EMAGGED
-		to_chat(user, span_warning("You silently fry [src]'s vocal circuit with the cryptographic sequencer."))
-
+	obj_flags |= EMAGGED
+	to_chat(user, span_warning("You silently fry [src]'s vocal circuit with the cryptographic sequencer."))
+	return TRUE
+	
 /obj/item/clothing/mask/gas/sechailer/handle_speech(datum/source, mob/speech_args)
 	if(!voicetoggled)
 		return

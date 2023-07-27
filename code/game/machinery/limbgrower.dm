@@ -303,10 +303,8 @@
 
 /// Emagging a limbgrower allows you to build synthetic armblades.
 /obj/machinery/limbgrower/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	for(var/design_id in SSresearch.techweb_designs)
 		var/datum/design/found_design = SSresearch.techweb_design_by_id(design_id)
 		if((found_design.build_type & LIMBGROWER) && ("emagged" in found_design.category))
@@ -314,3 +312,4 @@
 	to_chat(user, span_warning("A warning flashes onto the screen, stating that safety overrides have been deactivated!"))
 	obj_flags |= EMAGGED
 	update_static_data(user)
+	return TRUE

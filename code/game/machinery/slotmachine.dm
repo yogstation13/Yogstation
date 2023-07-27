@@ -120,15 +120,14 @@
 		return ..()
 
 /obj/machinery/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(4, 0, src.loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
+	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_interact(mob/living/user)
 	. = ..()

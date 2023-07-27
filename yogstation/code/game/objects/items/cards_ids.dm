@@ -70,23 +70,23 @@
 
 /obj/item/card/emag/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	var/otherEmag = user.get_active_held_item()
-	if(!otherEmag)
-		return
-	if(istype(otherEmag, /obj/item/card/emag/improvised))
-		return
+		return FALSE
+	if(!emag_card)
+		return FALSE
+	if(istype(emag_card, /obj/item/card/emag/improvised))
+		return FALSE
 	if(prob(7))
 		to_chat(user, span_notice("By some ungodly miracle, the emag gains new functionality instead of being destroyed."))
 		playsound(src.loc, "sparks", 50, 1)
-		qdel(otherEmag)
+		qdel(emag_card)
 		color = rgb(40, 130, 255)
 		prox_check = FALSE
-		return
+		return TRUE
 	to_chat(user, span_notice("The cyptographic sequencers attempt to override each other before destroying themselves."))
 	playsound(src.loc, "sparks", 50, 1)
-	qdel(otherEmag)
+	qdel(emag_card)
 	qdel(src)
+	return TRUE
 
 /obj/item/card/id/gasclerk
 	name = "Clerk"

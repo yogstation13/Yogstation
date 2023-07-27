@@ -139,14 +139,12 @@
 			switch_tool(user, new_tool)
 
 /obj/item/holotool/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	to_chat(user, span_danger("ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!"))
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
-
+	return TRUE
 
 // Spawn in RD closet
 /obj/structure/closet/secure_closet/RD/PopulateContents()

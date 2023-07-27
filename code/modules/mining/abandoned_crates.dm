@@ -225,10 +225,10 @@
 	return ..()
 
 /obj/structure/closet/crate/secure/loot/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(locked)
-		boom(user)
+	if(istype(emag_card, /obj/item/card/emag/cmag) || !locked)
+		return FALSE
+	boom(user) // Did you expect the "anti-tamper system" to not work?
+	return TRUE
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user)
 	if(locked)

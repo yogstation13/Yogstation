@@ -62,17 +62,16 @@
 	return ..()
 
 /obj/machinery/recycler/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || obj_flags & EMAGGED)
+		return FALSE
 	obj_flags |= EMAGGED
 	if(safety_mode)
 		safety_mode = FALSE
 		update_appearance(UPDATE_ICON)
 	playsound(src, "sparks", 75, TRUE, -1)
 	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
-
+	return TRUE
+	
 /obj/machinery/recycler/update_icon_state()
 	. = ..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))

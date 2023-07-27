@@ -105,16 +105,15 @@
 		alarm()
 
 /obj/machinery/firealarm/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
 	update_appearance(UPDATE_ICON)
 	if(user)
 		user.visible_message(span_warning("Sparks fly out of [src]!"),
 							span_notice("You emag [src], disabling its thermal sensors."))
 	playsound(src, "sparks", 50, 1)
+	return TRUE
 
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	var/turf/open/T = get_turf(src)

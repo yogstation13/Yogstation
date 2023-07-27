@@ -289,13 +289,11 @@
 			toggle_lock(user)
 
 /obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	trigger_alarm()
-
+	return TRUE
 
 /obj/structure/fireaxecabinet/fishingrod
 	name = "fishing cabinet"

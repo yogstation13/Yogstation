@@ -85,23 +85,23 @@
 
 /mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(user == src)//To prevent syndieborgs from emagging themselves
-		return
-	if(!opened)//Cover is closed
-		if(locked)
-			to_chat(user, span_notice("You emag the cover lock."))
-			locked = FALSE
-			if(shell) //A warning to Traitors who may not know that emagging AI shells does not slave them.
-				to_chat(user, span_boldwarning("[src] seems to be controlled remotely! Emagging the interface may not work as expected."))
-		else
+		return FALSE
+	if(user == src) // To prevent syndieborgs from emagging themselves.
+		return FALSE
+	if(!opened) // Cover is closed.
+		if(!locked)
 			to_chat(user, span_warning("The cover is already unlocked!"))
-		return
+			return FALSE
+		to_chat(user, span_notice("You emag the cover lock."))
+		locked = FALSE
+		if(shell) // A warning to Traitors who may not know that emagging AI shells does not slave them.
+			to_chat(user, span_boldwarning("[src] seems to be controlled remotely! Emagging the interface may not work as expected."))
+		return TRUE
 	if(world.time < emag_cooldown)
-		return
+		return FALSE
 	if(wiresexposed)
 		to_chat(user, span_warning("You must unexpose the wires first!"))
-		return
+		return FALSE
 
 	to_chat(user, span_notice("You emag [src]'s interface."))
 	emag_cooldown = world.time + 100
@@ -110,20 +110,20 @@
 		to_chat(src, "[span_nezbere("\"[text2ratvar("You will serve Engine above all else")]!\"")]\n\
 		[span_danger("ALERT: Subversion attempt denied.")]")
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they serve only Ratvar.")
-		return
+		return TRUE // Technically a failure, but they got information out of it so... success!
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/traitor))
 		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
 		logevent("ALERT: Foreign software execution prevented.")
 		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]] successfully defended against subversion."))
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
-		return
+		return TRUE // Don't want to let them on.
 
-	if(shell) //AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
+	if(shell) // AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
 		to_chat(user, span_danger("[src] is remotely controlled! Your emag attempt has triggered a system reset instead!"))
 		log_game("[key_name(user)] attempted to emag an AI shell belonging to [key_name(src) ? key_name(src) : connected_ai]. The shell has been reset as a result.")
 		ResetModule()
-		return
+		return TRUE
 
 	SetEmagged(1)
 	SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
@@ -170,7 +170,7 @@
 		laws.associate(src)
 		
 	update_icons()
-
+	return TRUE
 
 /mob/living/silicon/robot/blob_act(obj/structure/blob/B)
 	if(stat != DEAD)

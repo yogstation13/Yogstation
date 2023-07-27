@@ -38,16 +38,15 @@
 			to_chat(user, span_warning("Access denied."))
 
 /obj/item/nanite_remote/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	to_chat(user, span_warning("You override [src]'s ID lock."))
 	obj_flags |= EMAGGED
 	if(locked)
 		locked = FALSE
 		update_appearance(UPDATE_ICON)
-
+	return TRUE
+	
 /obj/item/nanite_remote/update_overlays()
 	. = ..()
 	if(obj_flags & EMAGGED)

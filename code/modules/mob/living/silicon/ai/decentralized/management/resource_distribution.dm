@@ -15,13 +15,12 @@
 
 
 /obj/machinery/computer/ai_resource_distribution/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, span_warning("You bypass the access restrictions"))
-	authenticated = TRUE
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	obj_flags |= EMAGGED
+	authenticated = TRUE
+	to_chat(user, span_warning("You bypass the access restrictions."))
+	return TRUE
 
 /obj/machinery/computer/ai_resource_distribution/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

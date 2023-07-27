@@ -88,12 +88,17 @@
 	. = 0
 
 /obj/machinery/porta_turret_cover/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (parent_turret.obj_flags & EMAGGED))
+		return FALSE
+	to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
+	visible_message("[parent_turret] hums oddly...")
+	parent_turret.obj_flags |= EMAGGED
+	parent_turret.on = 0
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 4 SECONDS) // 4 seconds to get away.
+	return TRUE
+
+/obj/machinery/porta_turret_cover/proc/finish_emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(QDELETED(parent_turret))
 		return
-	if(!(parent_turret.obj_flags & EMAGGED))
-		to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
-		visible_message("[parent_turret] hums oddly...")
-		parent_turret.obj_flags |= EMAGGED
-		parent_turret.on = 0
-		spawn(40)
-			parent_turret.on = 1
+	parent_turret.on = 1
+	return TRUE

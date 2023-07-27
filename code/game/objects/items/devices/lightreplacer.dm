@@ -143,11 +143,13 @@
 		to_chat(user, span_notice("You fill \the [src] with lights from \the [S]. " + status_string() + ""))
 
 /obj/item/lightreplacer/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
-	Emag()
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
+	obj_flags |= EMAGGED
+	name = "shortcircuited [initial(name)]"
+	playsound(src.loc, "sparks", 100, 1)
+	update_appearance(UPDATE_ICON)
+	return TRUE
 
 /obj/item/lightreplacer/attack_self(mob/user)
 	for(var/obj/machinery/light/target in user.loc)
@@ -220,15 +222,6 @@
 	else
 		to_chat(U, span_warning("There is a working [target.fitting] already inserted!"))
 		return
-
-/obj/item/lightreplacer/proc/Emag()
-	obj_flags ^= EMAGGED
-	playsound(src.loc, "sparks", 100, 1)
-	if(obj_flags & EMAGGED)
-		name = "shortcircuited [initial(name)]"
-	else
-		name = initial(name)
-	update_appearance(UPDATE_ICON)
 
 /obj/item/lightreplacer/proc/CanUse(mob/living/user)
 	src.add_fingerprint(user)

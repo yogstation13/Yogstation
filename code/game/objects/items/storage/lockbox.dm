@@ -51,16 +51,15 @@
 		return
 
 /obj/item/storage/lockbox/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(!broken)
-		broken = TRUE
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
-		desc += "It appears to be broken."
-		icon_state = src.icon_broken
-		if(user)
-			visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
-			return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || broken)
+		return FALSE
+	broken = TRUE
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
+	desc += "It appears to be broken."
+	icon_state = src.icon_broken
+	if(user)
+		visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
+	return TRUE
 
 /obj/item/storage/lockbox/Entered()
 	. = ..()
@@ -81,7 +80,7 @@
 /obj/item/storage/lockbox/emp_act(severity)
 	switch(severity)
 		if(EMP_HEAVY)
-			emag_act()
+			emag_act(null, null)
 		if(EMP_LIGHT)
 			if(prob(60))
 				var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)

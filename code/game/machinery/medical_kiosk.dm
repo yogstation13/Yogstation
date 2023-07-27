@@ -136,11 +136,8 @@
 	return ..()
 
 /obj/machinery/medical_kiosk/emag_act(mob/user, obj/item/card/emag/emag_card)
-	..() // Why?
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 	if(user)
 		user.visible_message("<span class='warning'>[user] waves a suspicious card by the [src]'s biometric scanner!</span>",
 	"<span class='notice'>You overload the sensory electronics, the diagnostic readouts start jittering across the screen..</span>")
@@ -148,6 +145,7 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.obj_flags |= EMAGGED //Mirrors emag status onto the board as well.
 	pandemonium = TRUE
+	return TRUE
 
 /obj/machinery/medical_kiosk/examine(mob/user)
 	. = ..()

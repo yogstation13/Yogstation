@@ -20,11 +20,10 @@
 		playsound(src, pick(meows), 100)
 
 /mob/living/simple_animal/pet/cat/clown/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(emagged == FALSE)
-		emagged = TRUE
-		do_sparks(8, FALSE, loc)
+	if(istype(emag_card, /obj/item/card/emag/cmag) || emagged)
+		return FALSE
+	emagged = TRUE
+	do_sparks(8, FALSE, loc)
 
 /mob/living/simple_animal/pet/cat/clown/Move(atom/newloc, direct)
 	..()

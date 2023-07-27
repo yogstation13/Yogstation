@@ -41,14 +41,13 @@
 	return TRUE
 
 /obj/machinery/power/validhunter_engine/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
 
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("You overload the syndicate chip."))
-
+	return TRUE
+	
 /obj/machinery/power/validhunter_engine/attack_hand(mob/user)
 	. = ..()
 	if(.)

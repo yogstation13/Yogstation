@@ -436,15 +436,14 @@ GLOBAL_VAR_INIT(clones, 0)
 		return ..()
 
 /obj/machinery/clonepod/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(!occupant)
-		return
+	if(istype(emag_card, /obj/item/card/emag/cmag) || !occupant)
+		return FALSE
 	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()
 	add_fingerprint(user)
 	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
 	log_combat(user, src, "emagged", null, occupant ? "[occupant] inside, killing them via malfunction." : null)
+	return TRUE
 
 //Put messages in the connected computer's temp var for display.
 /obj/machinery/clonepod/proc/connected_message(message)

@@ -202,23 +202,24 @@
 
 /mob/living/simple_animal/bot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(locked) //First emag application unlocks the bot's interface. Apply a screwdriver to use the emag again.
+		return FALSE
+	if(locked) // First emag application unlocks the bot's interface. Apply a screwdriver to use the emag again.
 		locked = FALSE
 		emagged = 1
 		to_chat(user, span_notice("You bypass [src]'s controls."))
-		return
-	if(!locked && open) //Bot panel is unlocked by ID or emag, and the panel is screwed open. Ready for emagging.
+		return TRUE
+	if(open) // Bot panel is unlocked by ID or emag, and the panel is screwed open. Ready for emagging.
 		emagged = 2
-		remote_disabled = 1 //Manually emagging the bot locks out the AI built in panel.
-		locked = TRUE //Access denied forever!
+		remote_disabled = 1 // Manually emagging the bot locks out the AI built in panel.
+		locked = TRUE // Access denied forever!
 		bot_reset()
-		turn_on() //The bot automatically turns on when emagged, unless recently hit with EMP.
+		turn_on() // The bot automatically turns on when emagged, unless recently hit with EMP.
 		to_chat(src, span_userdanger("(#$*#$^^( OVERRIDE DETECTED"))
 		log_combat(user, src, "emagged")
-		return
-	else //Bot is unlocked, but the maint panel has not been opened with a screwdriver yet.
-		to_chat(user, span_warning("You need to open maintenance panel first!"))
+		return TRUE
+	// Bot is unlocked, but the maint panel has not been opened with a screwdriver yet.
+	to_chat(user, span_warning("You need to open maintenance panel first!"))
+	return FALSE
 
 /mob/living/simple_animal/bot/examine(mob/user)
 	. = ..()

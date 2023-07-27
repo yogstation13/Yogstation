@@ -48,23 +48,22 @@
 		return ..()
 
 /obj/machinery/computer/message_monitor/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
-	if(obj_flags & EMAGGED)
-		return
-	if(!isnull(linkedServer))
-		obj_flags |= EMAGGED
-		screen = MSG_MON_SCREEN_HACKED
-		spark_system.set_up(5, 0, src)
-		spark_system.start()
-		var/obj/item/paper/monitorkey/MK = new(loc, linkedServer)
-		// Will help make emagging the console not so easy to get away with.
-		MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
-		var/time = 100 * length(linkedServer.decryptkey)
-		addtimer(CALLBACK(src, PROC_REF(UnmagConsole)), time)
-		message = rebootmsg
-	else
+	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+		return FALSE
+	if(isnull(linkedServer))
 		to_chat(user, span_notice("A no server error appears on the screen."))
+		return FALSE
+	obj_flags |= EMAGGED
+	screen = MSG_MON_SCREEN_HACKED
+	spark_system.set_up(5, 0, src)
+	spark_system.start()
+	var/obj/item/paper/monitorkey/MK = new(loc, linkedServer)
+	// Will help make emagging the console not so easy to get away with.
+	MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
+	var/time = 100 * length(linkedServer.decryptkey)
+	addtimer(CALLBACK(src, PROC_REF(UnmagConsole)), time)
+	message = rebootmsg
+	return TRUE
 
 /obj/machinery/computer/message_monitor/New()
 	..()

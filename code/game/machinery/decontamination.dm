@@ -171,19 +171,20 @@
 
 /obj/machinery/decontamination_unit/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	if(!state_open)
 		if(!panel_open)
 			to_chat(user, span_warning("Open the panel first."))
-			return
+			return FALSE
 	else
-		return
+		return FALSE
 	to_chat(user, span_warning("You short out [src]'s safeties."))
 	uv_emagged = TRUE
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/decontamination_unit/relaymove(mob/user)
 	if(locked)

@@ -112,20 +112,19 @@
 
 /mob/living/simple_animal/spiderbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	if(emagged)
 		to_chat(user, span_warning("[src] is already overloaded - better run."))
-		return
-	else
-		emagged = 1
-		to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
-		spawn(100)
-			to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
-		spawn(200)
-			to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
-		spawn(300)
-			explode()
-		return
+		return FALSE
+	emagged = 1
+	to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
+	spawn(100)
+		to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
+	spawn(200)
+		to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
+	spawn(300)
+		explode()
+	return TRUE
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	visible_message(span_warning("[src] makes an odd warbling noise, fizzles, and explodes."))

@@ -848,7 +848,7 @@
 
 /obj/machinery/computer/secure_data/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return
+		return FALSE
 	var/name
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -857,18 +857,18 @@
 			name = "[ID.registered_name]"
 		else
 			name = "Unknown"
-
 	if(issilicon(user))
 		name = "[user.name]"
-
-	if(!logged_in)
-		logged_in = TRUE
-		to_chat(user, span_warning("You override [src]'s ID lock."))
-		trigger_alarm()
-		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
-		var/area/A = get_area(loc)
-		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
-		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
+	if(logged_in)
+		return FALSE // What was the point then?
+	logged_in = TRUE
+	to_chat(user, span_warning("You override [src]'s ID lock."))
+	trigger_alarm()
+	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
+	var/area/A = get_area(loc)
+	radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
+	radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
+	return TRUE
 
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
