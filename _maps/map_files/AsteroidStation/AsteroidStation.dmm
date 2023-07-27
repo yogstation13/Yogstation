@@ -25004,21 +25004,6 @@
 	},
 /turf/open/floor/eighties,
 /area/maintenance/starboard/fore)
-"hgJ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/obj/machinery/holosign/surgery{
-	id = "surgery"
-	},
-/turf/open/floor/plating,
-/area/medical/surgery)
 "hgR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -32684,6 +32669,15 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"jAu" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "jBb" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 5
@@ -47535,21 +47529,6 @@
 /obj/effect/landmark/start/yogs/network_admin,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
-"oqq" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/holosign/surgery{
-	id = "surgery"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/surgery)
 "oqD" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -47989,15 +47968,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"oxh" = (
-/obj/structure/sign/poster/official/enlist{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "oxt" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -48804,6 +48774,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"oJL" = (
+/obj/structure/sign/poster/official/enlist{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "oJN" = (
 /obj/structure/table,
 /obj/item/multitool,
@@ -97290,7 +97269,7 @@ qtL
 rVV
 qtL
 qtL
-qtL
+jAu
 suz
 qtL
 qtL
@@ -108270,7 +108249,7 @@ aHC
 gMW
 aHC
 aHC
-oxh
+oJL
 eHc
 qQt
 ydt
@@ -109134,7 +109113,7 @@ sQg
 kLx
 akC
 uvW
-hgJ
+iLo
 xfb
 aSS
 bWS
@@ -109391,7 +109370,7 @@ mhv
 xKY
 akC
 uvW
-oqq
+iLo
 tCo
 neA
 hgR
