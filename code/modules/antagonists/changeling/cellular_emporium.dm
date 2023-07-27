@@ -24,9 +24,9 @@
 	var/list/abilities = list()
 
 	for(var/path in changeling.all_powers)
-		var/datum/action/changeling/ability = path
+		var/datum/action/changeling/ability = new path
 
-		var/dna_cost = initial(ability.dna_cost)
+		var/dna_cost = ability.dna_cost
 		if(dna_cost <= 0)
 			continue
 
@@ -35,18 +35,18 @@
 			continue //yogs end - removing combat abilities from xenolings
 
 		var/list/abilitydata = list()
-		abilitydata["name"] = initial(ability.name)
-		abilitydata["desc"] = initial(ability.desc)
-		abilitydata["helptext"] = initial(ability.helptext)
+		abilitydata["name"] = ability.name
+		abilitydata["desc"] = ability.desc
+		abilitydata["helptext"] = ability.helptext
 		abilitydata["owned"] = changeling.has_sting(ability)
-		var/req_dna = initial(ability.req_dna)
-		var/req_absorbs = initial(ability.req_absorbs)
+		var/req_dna = ability.req_dna
+		var/req_absorbs = ability.req_absorbs
 		abilitydata["dna_cost"] = dna_cost
 		abilitydata["can_purchase"] = ((req_absorbs <= true_absorbs) && (req_dna <= absorbed_dna_count) && (dna_cost <= genetic_points_remaining))
 		abilitydata["conflicting_powers"] = list()
-		for(var/conflicts in ability.conflicts) 
-			var/datum/action/changeling/conflcting_ability = conflicts
-			abilitydata["conflicting_powers"] += initial(conflcting_ability.name)
+		for(var/conflict in ability.conflicts)
+			var/datum/action/changeling/conflcting_ability = new conflict
+			abilitydata["conflicting_powers"] += conflcting_ability.name
 		
 		abilities += list(abilitydata)
 
