@@ -33,7 +33,7 @@
 			var/mob/living/L = A
 			L.update_mobility()
 		if(power_cell)
-			power_cell.update_icon()
+			power_cell.update_appearance(UPDATE_ICON)
 	refresh_parts()
 
 /obj/vehicle/ridden/wheelchair/motorized/obj_destruction(damage_flag)
@@ -75,7 +75,7 @@
 
 /obj/vehicle/ridden/wheelchair/motorized/attack_hand(mob/living/user)
 	if(power_cell && panel_open)
-		power_cell.update_icon()
+		power_cell.update_appearance(UPDATE_ICON)
 		user.put_in_hands(power_cell)
 		to_chat(user, span_notice("You remove the [power_cell] from [src]."))
 		power_cell = null

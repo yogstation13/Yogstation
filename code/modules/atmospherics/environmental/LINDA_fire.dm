@@ -1,9 +1,14 @@
-
+#define IGNITE_TURF_CHANCE 30
+#define IGNITE_TURF_LOW_POWER 8
+#define IGNITE_TURF_HIGH_POWER 22
 
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
-
+/turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(prob(IGNITE_TURF_CHANCE))
+		IgniteTurf(rand(IGNITE_TURF_LOW_POWER,IGNITE_TURF_HIGH_POWER))
+	return ..()
 
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	return
@@ -245,3 +250,6 @@
 	light_range = LIGHT_RANGE_FIRE
 
 #undef INSUFFICIENT
+#undef IGNITE_TURF_CHANCE
+#undef IGNITE_TURF_LOW_POWER
+#undef IGNITE_TURF_HIGH_POWER

@@ -126,7 +126,7 @@
 	if(!iscyborg(user))
 		reagents.maximum_volume = 0 //Makes them useless afterwards
 		reagents.flags = NONE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(cyborg_recharge), user), 80)
 
 /obj/item/reagent_containers/autoinjector/medipen/proc/cyborg_recharge(mob/living/silicon/robot/user)
@@ -134,9 +134,10 @@
 		var/mob/living/silicon/robot/R = user
 		if(R.cell.use(100))
 			reagents.add_reagent_list(list_reagents)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/autoinjector/medipen/update_icon()
+/obj/item/reagent_containers/autoinjector/medipen/update_icon_state()
+	. = ..()
 	if(reagents.total_volume > 0)
 		icon_state = initial(icon_state)
 	else
@@ -304,33 +305,35 @@
 	if(ispath(container))
 		container = new container
 	antispam = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/hypospray/update_icon()
-	..()
-	cut_overlays()
+/obj/item/hypospray/update_icon(updates=ALL)
+	. = ..()
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_hands()
-	if(container?.reagents?.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-10")
 
-		var/percent = round((container.reagents.total_volume / container.volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
-			if(10 to 29)
-				filling.icon_state = "[icon_state]25"
-			if(30 to 49)
-				filling.icon_state = "[icon_state]50"
-			if(50 to 69)
-				filling.icon_state = "[icon_state]75"
-			if(70 to INFINITY)
-				filling.icon_state = "[icon_state]100"
+/obj/item/hypospray/update_overlays()
+	. = ..()
+	if(!container?.reagents?.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-10")
 
-		filling.color = mix_color_from_reagents(container.reagents.reagent_list)
-		add_overlay(filling)
-	return
+	var/percent = round((container.reagents.total_volume / container.volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[icon_state]-10"
+		if(10 to 29)
+			filling.icon_state = "[icon_state]25"
+		if(30 to 49)
+			filling.icon_state = "[icon_state]50"
+		if(50 to 69)
+			filling.icon_state = "[icon_state]75"
+		if(70 to INFINITY)
+			filling.icon_state = "[icon_state]100"
+
+	filling.color = mix_color_from_reagents(container.reagents.reagent_list)
+	. += filling
 
 /obj/item/hypospray/examine(mob/user)
 	. = ..()
@@ -352,16 +355,13 @@
 		user.put_in_hands(container)
 		to_chat(user, span_notice("You remove [container] from [src]."))
 		container = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(loc, pick(eject_sound), 50, 1)
 	else
 		to_chat(user, span_notice("This hypo isn't loaded!"))
 		return
 
 /obj/item/hypospray/attackby(obj/item/I, mob/living/user)
-	var/quickloading = FALSE
-	if((istype(I, /obj/item/reagent_containers/glass/bottle/vial) && container != null))
-		unload_hypo(user)
 	if(I.w_class <= max_container_size)
 		var/obj/item/reagent_containers/glass/bottle/vial/V = I
 		if(!is_type_in_list(V, allowed_containers))
@@ -369,11 +369,11 @@
 			return FALSE
 		if(!user.transferItemToLoc(V,src))
 			return FALSE
-		if(quickloading)
+		if(container)
 			unload_hypo(user)
 		container = V
 		user.visible_message(span_notice("[user] has loaded [container] into [src]."),span_notice("You have loaded [container] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(loc, pick(load_sound), 35, 1)
 		return TRUE
 	else
@@ -430,7 +430,7 @@
 		if(HYPO_DRAW)
 			draw(target, user)
 	antispam = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/hypospray/proc/inject(mob/living/carbon/target, mob/user)
 	//Initial Checks/Logging

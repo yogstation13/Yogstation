@@ -241,7 +241,7 @@
 		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
 		I.head_piece.initial_state = initial(helmet.icon_state)
 		update_item(helmet, I.head_piece)
-		I.head_piece.update_icon()
+		I.head_piece.update_appearance(UPDATE_ICON)
 		qdel(helmet)
 		//YOGS END
 	target.icon = initial(picked_item.icon)

@@ -27,7 +27,6 @@
 	var/amount = 30
 	var/recharge_amount = 10
 	var/recharge_counter = 0
-	var/mutable_appearance/beaker_overlay
 	var/working_state = "dispenser_working"
 	var/nopower_state = "dispenser_nopower"
 	var/has_panel_overlay = TRUE
@@ -107,7 +106,7 @@
 		t4_upgrade_reagents = sortList(t4_upgrade_reagents, /proc/cmp_reagents_asc)
 		display_reagents |= t4_upgrade_reagents
 	//we don't sort display_reagents again after adding these because they will fuck up the order
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/chem_dispenser/Destroy()
 	QDEL_NULL(beaker)
@@ -136,26 +135,26 @@
 	recharge_counter += delta_time
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
-	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	var/mutable_appearance/b_o = mutable_appearance(icon, "disp_beaker")
 	b_o.pixel_y = -4
 	b_o.pixel_x = -7
 	return b_o
 
 /obj/machinery/chem_dispenser/proc/work_animation()
 	if(working_state)
-		flick(working_state,src)
+		flick(working_state, src)
 
-/obj/machinery/chem_dispenser/update_icon()
-	cut_overlays()
+/obj/machinery/chem_dispenser/update_icon_state()
+	. = ..()
 	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
+
+/obj/machinery/chem_dispenser/update_overlays()
+	. = ..()
 	if(has_panel_overlay && panel_open)
-		add_overlay(mutable_appearance(icon, "[initial(icon_state)]_panel-o"))
-
+		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 	if(beaker)
-		beaker_overlay = display_beaker()
-		add_overlay(beaker_overlay)
-
-
+		var/mutable_appearance/beaker_overlay = display_beaker()
+		. += beaker_overlay
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -201,7 +200,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemDispenser", name)
-		if(user.hallucinating())
+		if(user.has_status_effect(/datum/status_effect/hallucination))
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
 
@@ -232,7 +231,7 @@
 	var/chemicals[0]
 	var/recipes[0]
 	var/is_hallucinating = FALSE
-	if(user.hallucinating())
+	if(user.has_status_effect(/datum/status_effect/hallucination))
 		is_hallucinating = TRUE
 	for(var/re in display_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
@@ -347,7 +346,7 @@
 	if(default_unfasten_wrench(user, I))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -375,7 +374,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(user.a_intent != INTENT_HARM && !istype(I, /obj/item/card/emag))
 		to_chat(user, span_warning("You can't load [I] into [src]!"))
 		return ..()
@@ -434,7 +433,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/chem_dispenser/on_deconstruction()
@@ -479,10 +478,10 @@
 	var/old = dir
 	. = ..()
 	if(dir != old)
-		update_icon()  // the beaker needs to be re-positioned if we rotate
+		update_appearance(UPDATE_ICON)  // the beaker needs to be re-positioned if we rotate
 
 /obj/machinery/chem_dispenser/drinks/display_beaker()
-	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	var/mutable_appearance/b_o = mutable_appearance(icon, "disp_beaker")
 	switch(dir)
 		if(NORTH)
 			b_o.pixel_y = 7
@@ -493,7 +492,7 @@
 		if(WEST)
 			b_o.pixel_x = -5
 			b_o.pixel_y = rand(-5, 7)
-		else//SOUTH
+		if(SOUTH)
 			b_o.pixel_y = -7
 			b_o.pixel_x = rand(-9, 9)
 	return b_o

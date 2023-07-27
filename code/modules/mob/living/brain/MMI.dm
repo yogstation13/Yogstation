@@ -24,7 +24,8 @@
 	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
 	Being placed in a mech does not slave you to any laws.</b>"
 
-/obj/item/mmi/update_icon()
+/obj/item/mmi/update_icon_state()
+	. = ..()
 	if(!brain)
 		icon_state = "mmi_off"
 		return
@@ -34,10 +35,17 @@
 	else
 		icon_state = "mmi_brain"
 		braintype = "Cyborg"
+
+/obj/item/mmi/update_overlays()
+	. = ..()
+	. += add_mmi_overlay()
+
+/obj/item/mmi/proc/add_mmi_overlay()
 	if(brainmob && brainmob.stat != DEAD)
-		add_overlay("mmi_alive")
-	else
-		add_overlay("mmi_dead")
+		. += "mmi_alive"
+		return
+	if(brain)
+		. += "mmi_dead"
 
 /obj/item/mmi/Initialize(mapload)
 	. = ..()
@@ -83,7 +91,7 @@
 		brain = newbrain
 
 		name = "[initial(name)]: [brainmob.real_name]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 		SSblackbox.record_feedback("amount", "mmis_filled", 1)
 
@@ -110,7 +118,7 @@
 			if(!brainmob) return
 			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
 			eject_brain(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			name = initial(name)
 			user.visible_message(span_notice("[user] rips the brain out of [src]"), span_danger("You successfully remove the brain from the [src][rebooting ? ", interrupting the reboot process" : ""]"))
 			if(rebooting)
@@ -159,7 +167,7 @@
 
 	name = "[initial(name)]: [brainmob.real_name]"
 	to_chat(brainmob, welcome_message)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/mmi/proc/replacement_ai_name()

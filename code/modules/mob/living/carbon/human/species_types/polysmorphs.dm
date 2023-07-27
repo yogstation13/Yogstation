@@ -4,7 +4,7 @@
 	id = "polysmorph"
 	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE ,HAS_TAIL)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
-	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	liked_food = GROSS | MEAT | MICE

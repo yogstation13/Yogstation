@@ -26,7 +26,7 @@
 	bodcam.network = list("ss13")
 	bodcam.internal_light = FALSE
 	bodcam.status = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/neck/bodycam/attack_self(mob/user)
 	if(!setup)
@@ -39,7 +39,7 @@
 		bodcam.status = TRUE
 		to_chat(user, span_notice("You turn on the body camera."))
 		getMobhook(user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/neck/bodycam/AltClick(mob/user)
 	if(preset)
@@ -52,10 +52,10 @@
 		bodcam.network[1] = temp
 		setup = TRUE
 		bodcam.status = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/neck/bodycam/update_icon()
-	..()
+/obj/item/clothing/neck/bodycam/update_icon_state()
+	. = ..()
 	var/suffix = "off"
 	if(bodcam.status)
 		suffix = "on"
@@ -92,7 +92,7 @@
 		Disconnect()
 		bodcam.c_tag = null
 		bodcam.network[1] = null //requires a reset
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/neck/bodycam/Destroy()
 	Disconnect()
