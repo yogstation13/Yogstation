@@ -846,7 +846,9 @@
 			//Cancel silicon alert after 1 minute
 			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,alarmed), 600)
 
-/obj/machinery/computer/secure_data/emag_act(mob/user)
+/obj/machinery/computer/secure_data/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	var/name
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user

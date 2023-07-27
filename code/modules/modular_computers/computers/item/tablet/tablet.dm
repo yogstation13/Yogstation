@@ -90,7 +90,9 @@
 	light_color = COLOR_RED
 	
 
-/obj/item/modular_computer/tablet/nukeops/emag_act(mob/user)
+/obj/item/modular_computer/tablet/nukeops/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(!enabled)
 		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
 		return FALSE

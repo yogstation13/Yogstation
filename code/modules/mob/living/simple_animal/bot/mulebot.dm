@@ -115,7 +115,9 @@
 	update_appearance(UPDATE_ICON)
 	return
 
-/mob/living/simple_animal/bot/mulebot/emag_act(mob/user)
+/mob/living/simple_animal/bot/mulebot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(emagged < 1)
 		emagged = TRUE
 	if(!open)

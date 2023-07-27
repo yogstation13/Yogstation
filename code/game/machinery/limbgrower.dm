@@ -302,7 +302,9 @@
 	return TRUE
 
 /// Emagging a limbgrower allows you to build synthetic armblades.
-/obj/machinery/limbgrower/emag_act(mob/user)
+/obj/machinery/limbgrower/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	for(var/design_id in SSresearch.techweb_designs)

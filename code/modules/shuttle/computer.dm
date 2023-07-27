@@ -127,7 +127,9 @@
 			to_chat(GLOB.permissions.admins, "<b>FERRY: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='?_src_=holder;[HrefToken()];secrets=moveferry'>Move Ferry</a>)</b> is requesting to move the transport ferry to CentCom.</font>")
 			return TRUE
 
-/obj/machinery/computer/shuttle/emag_act(mob/user)
+/obj/machinery/computer/shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	req_access = list()

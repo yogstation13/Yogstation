@@ -1528,7 +1528,7 @@
 //Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
 	return !density || (check_access(ID) && !locked && hasPower())
 
-/obj/machinery/door/airlock/emag_act(mob/user)
+/obj/machinery/door/airlock/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(operating || !density || !hasPower() || (obj_flags & EMAGGED))
 		return
 	operating = TRUE
@@ -1537,6 +1537,10 @@
 	if(QDELETED(src))
 		return
 	operating = FALSE
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
+		obj_flags |= CMAGGED
+		return
 	if(!open()) // Something prevented it from being opened. For example, bolted/welded shut.
 		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
 	obj_flags |= EMAGGED
@@ -1544,18 +1548,6 @@
 	locked = TRUE
 	loseMainPower()
 	loseBackupPower()
-
-/obj/machinery/door/airlock/cmag_act(mob/user)
-	if(operating || !density || !hasPower() || (obj_flags & CMAGGED))
-		return
-	operating = TRUE
-	update_icon(state = AIRLOCK_EMAG, override = TRUE)
-	sleep(0.6 SECONDS)
-	if(QDELETED(src))
-		return
-	operating = FALSE
-	update_icon(state = AIRLOCK_CLOSED, override = TRUE)
-	obj_flags |= CMAGGED
 
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/alien/humanoid/user)
 	add_fingerprint(user)

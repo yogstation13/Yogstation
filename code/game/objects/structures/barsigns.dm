@@ -112,7 +112,9 @@
 	set_sign(new /datum/barsign/hiddensigns/empbarsign)
 	broken = TRUE
 
-/obj/structure/sign/barsign/emag_act(mob/user)
+/obj/structure/sign/barsign/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(broken)
 		to_chat(user, span_warning("Nothing interesting happens!"))
 		return

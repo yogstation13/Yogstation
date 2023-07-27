@@ -37,7 +37,9 @@
 		else
 			to_chat(user, span_warning("Access denied."))
 
-/obj/item/nanite_remote/emag_act(mob/user)
+/obj/item/nanite_remote/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_warning("You override [src]'s ID lock."))

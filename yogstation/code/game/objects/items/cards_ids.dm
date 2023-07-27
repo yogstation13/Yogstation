@@ -68,7 +68,9 @@
 /obj/item/card/id/captains_spare
 	icon_state = "id_gold"
 
-/obj/item/card/emag/emag_act(mob/user)
+/obj/item/card/emag/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return

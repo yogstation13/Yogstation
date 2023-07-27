@@ -117,10 +117,7 @@
 	log_combat(user, A, "attempted to [clown_version ? "cmag" : "emag"]")
 	charges--
 	// TODO: Consider refunding a charge if it fails/does nothing since it'll use up a charge regardless of success or failure.
-	if(clown_version)
-		A.cmag_act(user)
-	else
-		A.emag_act(user)
+	A.emag_act(user, src)
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
@@ -161,14 +158,13 @@
 				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
 				emagging = FALSE
 				return
-			target.emag_act(user)
+			target.emag_act(user, src)
 		emagging = FALSE
 
 /obj/item/card/emag/cmag
 	desc = "It's a card coated in a slurry of electromagnetic bananium."
 	name = "jestographic sequencer"
 	icon_state = "cmag"
-	clown_version = TRUE
 
 /obj/item/card/emag/cmag/Initialize(mapload)
 	. = ..()

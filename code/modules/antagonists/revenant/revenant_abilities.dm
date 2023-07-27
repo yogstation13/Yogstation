@@ -315,7 +315,7 @@
 			new /obj/effect/temp_visual/revenant(bot.loc)
 			bot.locked = FALSE
 			bot.open = TRUE
-			bot.emag_act(caster)
+			bot.emag_act(caster, null)
 	for(var/mob/living/carbon/human/human in victim)
 		if(human == caster)
 			continue
@@ -331,7 +331,7 @@
 		if(prob(20))
 			if(prob(50))
 				new /obj/effect/temp_visual/revenant(thing.loc)
-				thing.emag_act(caster)
+				thing.emag_act(caster, null)
 	// Only works on cyborgs, not AI!
 	for(var/mob/living/silicon/robot/cyborg in victim)
 		playsound(cyborg, 'sound/machines/warning-buzzer.ogg', 50, TRUE)

@@ -74,7 +74,9 @@
 	animal_species = /mob/living/simple_animal/pet/dog/corgi/borgi
 	nofur = TRUE
 
-/mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(user as mob)
+/mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(!emagged)
 		emagged = TRUE
 		visible_message(span_warning("[user] swipes a card through [src]."), span_notice("You overload [src]s internal reactor."))

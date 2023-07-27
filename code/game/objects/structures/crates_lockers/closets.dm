@@ -523,7 +523,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(secure && broken)
 		to_chat(user, span_warning("\The [src] is broken!"))
 
-/obj/structure/closet/emag_act(mob/user)
+/obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(secure && !broken)
 		user.visible_message(span_warning("Sparks fly from [src]!"),
 						span_warning("You scramble [src]'s lock, breaking it open!"),

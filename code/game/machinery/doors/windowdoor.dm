@@ -216,8 +216,15 @@
 		take_damage(round(exposed_volume / 200), BURN, 0, 0)
 	..()
 
-/obj/machinery/door/window/emag_act(mob/user)
+/obj/machinery/door/window/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(operating || !density || (obj_flags & CMAGGED))
+		return
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		obj_flags |= CMAGGED
+		operating = TRUE
+		flick("[base_state]spark", src)
+		playsound(src, "sparks", 75, 1)
+		operating = FALSE
 		return
 	obj_flags |= EMAGGED
 	operating = TRUE
@@ -228,15 +235,6 @@
 		return
 	operating = FALSE
 	open(2)
-
-/obj/machinery/door/window/cmag_act(mob/user)
-	if(operating || !density || (obj_flags & CMAGGED))
-		return
-	obj_flags |= CMAGGED
-	operating = TRUE
-	flick("[base_state]spark", src)
-	playsound(src, "sparks", 75, 1)
-	operating = FALSE
 
 /obj/machinery/door/window/examine(mob/user)
 	. = ..()

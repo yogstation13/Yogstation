@@ -135,8 +135,10 @@
 	qdel(scanner_wand)
 	return ..()
 
-/obj/machinery/medical_kiosk/emag_act(mob/user)
-	..()
+/obj/machinery/medical_kiosk/emag_act(mob/user, obj/item/card/emag/emag_card)
+	..() // Why?
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	if(user)

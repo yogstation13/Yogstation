@@ -120,7 +120,9 @@
 	if(is_operational() && occupant)
 		open_machine()
 
-/obj/machinery/sleeper/emag_act(mob/user)
+/obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))

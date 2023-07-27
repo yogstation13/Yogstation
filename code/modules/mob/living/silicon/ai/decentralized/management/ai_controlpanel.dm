@@ -89,7 +89,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	return ..()
 
-/obj/machinery/computer/ai_control_console/emag_act(mob/user)
+/obj/machinery/computer/ai_control_console/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_warning("You bypass the access restrictions"))

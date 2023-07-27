@@ -43,9 +43,11 @@
 		QDEL_NULL(pai)
 	return ..()
 
-/obj/item/pai_card/emag_act(mob/user)
+/obj/item/pai_card/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(pai)
-		pai.handle_emag(user)
+		pai.handle_emag(user, emag_card)
 
 /obj/item/pai_card/emp_act(severity)
 	. = ..()

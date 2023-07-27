@@ -110,8 +110,10 @@
 	M.forceMove(src)
 	job = "Spider Bot"
 
-/mob/living/simple_animal/spiderbot/emag_act(mob/user)
-	if (emagged)
+/mob/living/simple_animal/spiderbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
+	if(emagged)
 		to_chat(user, span_warning("[src] is already overloaded - better run."))
 		return
 	else

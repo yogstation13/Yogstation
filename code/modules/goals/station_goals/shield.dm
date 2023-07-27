@@ -170,7 +170,9 @@
 	if(active && (obj_flags & EMAGGED))
 		change_meteor_chance(0.5)
 
-/obj/machinery/satellite/meteor_shield/emag_act(mob/user)
+/obj/machinery/satellite/meteor_shield/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED

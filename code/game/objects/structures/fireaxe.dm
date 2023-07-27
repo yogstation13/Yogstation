@@ -288,7 +288,9 @@
 				trigger_alarm() //already checks for alert var
 			toggle_lock(user)
 
-/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user)
+/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	. = ..()
 	if(!.)
 		return

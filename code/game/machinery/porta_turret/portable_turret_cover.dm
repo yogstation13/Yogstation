@@ -87,7 +87,9 @@
 /obj/machinery/porta_turret_cover/can_be_overridden()
 	. = 0
 
-/obj/machinery/porta_turret_cover/emag_act(mob/user)
+/obj/machinery/porta_turret_cover/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(!(parent_turret.obj_flags & EMAGGED))
 		to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
 		visible_message("[parent_turret] hums oddly...")

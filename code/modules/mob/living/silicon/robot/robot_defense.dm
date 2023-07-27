@@ -83,7 +83,9 @@
 			Stun(60)
 
 
-/mob/living/silicon/robot/emag_act(mob/user)
+/mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(user == src)//To prevent syndieborgs from emagging themselves
 		return
 	if(!opened)//Cover is closed

@@ -487,7 +487,9 @@
 	else
 		to_chat(user, span_notice("The spectrum chip is unresponsive."))
 
-/obj/item/circuitboard/computer/cargo/emag_act(mob/living/user)
+/obj/item/circuitboard/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(!(obj_flags & EMAGGED))
 		contraband = TRUE
 		obj_flags |= EMAGGED
@@ -504,9 +506,11 @@
 		to_chat(user, span_notice("You reset the routing protocols to: \"factory defaults\"."))
 		obj_flags &= ~EMAGGED
 
-/obj/item/circuitboard/computer/cargo/express/emag_act(mob/living/user)
-		to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
-		obj_flags |= EMAGGED
+/obj/item/circuitboard/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
+	to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
+	obj_flags |= EMAGGED
 
 /obj/item/circuitboard/computer/cargo/request
 	name = "Supply Request Console (Computer Board)"

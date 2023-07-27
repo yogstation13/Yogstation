@@ -297,7 +297,9 @@ GLOBAL_LIST_EMPTY(checkouts)
 				
 			cooldown = world.time + PRINTER_COOLDOWN
 
-/obj/machinery/computer/libraryconsole/emag_act(mob/user)
+/obj/machinery/computer/libraryconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")

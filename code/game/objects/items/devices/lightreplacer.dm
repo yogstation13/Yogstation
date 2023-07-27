@@ -142,7 +142,9 @@
 
 		to_chat(user, span_notice("You fill \the [src] with lights from \the [S]. " + status_string() + ""))
 
-/obj/item/lightreplacer/emag_act()
+/obj/item/lightreplacer/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	Emag()

@@ -201,7 +201,9 @@
 	. = ..()
 	src.updateUsrDialog()
 
-/obj/machinery/computer/rdservercontrol/emag_act(mob/user)
+/obj/machinery/computer/rdservercontrol/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	playsound(src, "sparks", 75, 1)

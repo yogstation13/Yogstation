@@ -182,7 +182,9 @@ RSF
 /obj/item/rsf/cookiesynth/attackby()
 	return
 
-/obj/item/rsf/cookiesynth/emag_act(mob/user)
+/obj/item/rsf/cookiesynth/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("You short out [src]'s reagent safety checker!"))

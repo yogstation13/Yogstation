@@ -53,7 +53,9 @@
 			to_chat(user, span_notice("[src] is already linked to [sb]."))
 	..()
 
-/obj/machinery/computer/cargo/express/emag_act(mob/living/user)
+/obj/machinery/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),

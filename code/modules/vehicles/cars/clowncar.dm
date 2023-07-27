@@ -81,7 +81,9 @@
 		DumpMobs(TRUE)
 		log_combat(src, A, "crashed into", null, "dumping all passengers")
 
-/obj/vehicle/sealed/car/clowncar/emag_act(mob/user)
+/obj/vehicle/sealed/car/clowncar/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED

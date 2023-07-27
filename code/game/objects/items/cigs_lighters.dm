@@ -864,7 +864,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			..()
 
 
-/obj/item/clothing/mask/vape/emag_act(mob/user)// I WON'T REGRET WRITTING THIS, SURLY.
+/obj/item/clothing/mask/vape/emag_act(mob/user, obj/item/card/emag/emag_card)// I WON'T REGRET WRITTING THIS, SURLY.
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(screw)
 		if(!(obj_flags & EMAGGED))
 			cut_overlays()

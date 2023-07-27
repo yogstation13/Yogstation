@@ -47,7 +47,9 @@
 	else
 		return ..()
 
-/obj/machinery/computer/message_monitor/emag_act(mob/user)
+/obj/machinery/computer/message_monitor/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	if(!isnull(linkedServer))

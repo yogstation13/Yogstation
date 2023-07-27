@@ -178,7 +178,9 @@
 	to_chat(usr, span_notice("You flush [src]'s radiation counts, resetting it to normal."))
 	update_appearance(UPDATE_ICON)
 
-/obj/item/geiger_counter/emag_act(mob/user)
+/obj/item/geiger_counter/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	if(scanning)

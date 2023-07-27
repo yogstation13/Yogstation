@@ -31,7 +31,9 @@
 		<ul><li>Reward: [B.reward_string()]</li>
 		<li>Completed: [B.completion_string()]</li></ul>"}
 
-/obj/machinery/computer/bounty/emag_act(mob/user)
+/obj/machinery/computer/bounty/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_warning("You adjust the antenna on \The [src], tuning it to a syndicate frequency."))

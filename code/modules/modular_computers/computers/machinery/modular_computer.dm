@@ -69,11 +69,13 @@
 	if(cpu)
 		cpu.attack_ghost(user)
 
-/obj/machinery/modular_computer/emag_act(mob/user)
+/obj/machinery/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(!cpu)
 		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
 		return FALSE
-	return (cpu.emag_act(user))
+	return (cpu.emag_act(user, emag_card))
 
 /obj/machinery/modular_computer/update_icon(updates=ALL)
 	. = ..()

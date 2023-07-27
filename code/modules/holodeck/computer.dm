@@ -163,7 +163,9 @@
 
 	active_power_usage = 50 + spawned.len * 3 + effects.len * 5
 
-/obj/machinery/computer/holodeck/emag_act(mob/user)
+/obj/machinery/computer/holodeck/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	if(!LAZYLEN(emag_programs))

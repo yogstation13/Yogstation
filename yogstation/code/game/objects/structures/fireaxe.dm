@@ -88,7 +88,9 @@
 		locked = !locked
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/fireaxecabinet/emag_act(mob/user)
+/obj/structure/fireaxecabinet/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	//this allows you to emag the fireaxe cabinet, unlocking it immediately.
 	if(obj_flags & EMAGGED)
 		return

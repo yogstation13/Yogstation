@@ -42,7 +42,9 @@
 	target = null
 	visible_message(span_notice("[src] looks disinterested."))
 
-/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user)
+/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if (obj_flags&EMAGGED)
 		visible_message(span_notice("[src] already looks angry enough, you shouldn't anger it more."))
 		return

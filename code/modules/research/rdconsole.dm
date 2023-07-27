@@ -201,7 +201,9 @@ Nothing else in the console has ID requirements.
 		linked_imprinter = null
 	..()
 
-/obj/machinery/computer/rdconsole/emag_act(mob/user)
+/obj/machinery/computer/rdconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(!(obj_flags & EMAGGED))
 		to_chat(user, span_notice("You disable the security protocols[locked? " and unlock the console":""]."))
 		playsound(src, "sparks", 75, 1)

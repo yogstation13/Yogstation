@@ -146,7 +146,9 @@
 				to_chat(user, span_notice("You don't have any stored tickets!"))
 			return TRUE
 
-/obj/machinery/computer/arcade/minesweeper/emag_act(mob/user)
+/obj/machinery/computer/arcade/minesweeper/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"

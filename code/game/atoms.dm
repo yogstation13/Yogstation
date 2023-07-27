@@ -91,9 +91,6 @@
 	var/base_pixel_x = 0
 	///Default pixel y shifting for the atom's icon.
 	var/base_pixel_y = 0
-	///the base icon state used for anything that changes their icon state.
-	var/base_icon_state
-
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
@@ -407,10 +404,6 @@
 /// Is this atom drainable of reagents
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
-
-/// Can this atom spill its reagents
-/atom/proc/is_spillable()
-	return reagents && (reagents.flags & SPILLABLE)
 
 /// Are you allowed to drop this atom
 /atom/proc/AllowDrop()
@@ -792,18 +785,15 @@
 /**
   * Respond to an emag being used on our atom
   *
-  * Default behaviour is to send COMSIG_ATOM_EMAG_ACT and return
-  */
-/atom/proc/emag_act()
-	SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT)
-
-/**
-  * Respond to a cmag being used on our atom
+  * Args:
+  * * mob/user: The mob that used the emag. Nullable.
+  * * obj/item/card/emag/emag_card: The emag that was used. Nullable.
   *
-  * Default behaviour is to send COMSIG_ATOM_CMAG_ACT and return
+  * Returns:
+  * TRUE if the emag had any effect, falsey otherwise.
   */
-/atom/proc/cmag_act()
-	SEND_SIGNAL(src, COMSIG_ATOM_CMAG_ACT)
+/atom/proc/emag_act(mob/user, obj/item/card/emag/emag_card)
+	return (SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT, user, emag_card))
 
 /**
   * Respond to a radioactive wave hitting this atom

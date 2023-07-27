@@ -79,7 +79,9 @@
 
 	addtimer(CALLBACK(src, PROC_REF(process_sound_queue)), sound_delay)
 
-/obj/item/clothing/suit/armor/nerd/emag_act(mob/user)
+/obj/item/clothing/suit/armor/nerd/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(istype(emag_card, /obj/item/card/emag/cmag))
+		return
 	if(obj_flags & EMAGGED)
 		return
 	if(owner)
