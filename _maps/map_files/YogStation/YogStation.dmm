@@ -22938,14 +22938,6 @@
 /obj/item/hfr_box/corner,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"frB" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "frD" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -31597,16 +31589,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"iDS" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "iDY" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -33853,6 +33835,10 @@
 	},
 /turf/closed/wall,
 /area/engine/atmos/distro)
+"juH" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "juN" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -121411,9 +121397,9 @@ cOe
 cNW
 cOe
 cNW
-iDS
-iDS
-iDS
+juH
+juH
+juH
 cNW
 aaf
 aaf
@@ -121667,7 +121653,7 @@ fXS
 cOe
 gpq
 cOe
-frB
+juH
 iKq
 iKq
 cCG
@@ -121924,7 +121910,7 @@ fXS
 cOe
 gpq
 cOe
-frB
+juH
 iKq
 iKq
 iKq
@@ -122181,7 +122167,7 @@ fXS
 chH
 cNW
 cOe
-frB
+juH
 iKq
 iKq
 iKq
