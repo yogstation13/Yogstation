@@ -34,7 +34,7 @@
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
 		to_chat(user, "<span class='velvet bold'>Functions:<span>")
-		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
+		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 5 Psi."))
 		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
 		to_chat(user, span_velvet("<b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
 		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
@@ -99,7 +99,7 @@
 	to_chat(user, span_velvet("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.throw_at(target, 5, 3)
-	darkspawn.use_psi(10)
+	darkspawn.use_psi(5)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
 	if(isliving(target) && target.lying)
