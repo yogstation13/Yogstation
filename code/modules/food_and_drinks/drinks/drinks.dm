@@ -6,6 +6,7 @@
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = null
+	icon_state_preview = "godlyblend" // Not a great preview icon, but it works.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	reagent_flags = OPENCONTAINER
@@ -415,6 +416,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans
 	name = "soda can"
+
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	reagent_flags = NONE
