@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Big spoons now have proper icons."
-  - bugfix: "Toy deswords don't deal damage anymore."
