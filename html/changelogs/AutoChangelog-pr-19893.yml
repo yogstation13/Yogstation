@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed turf fires being able to spread on snow/ice turfs"
+  - bugfix: "fixed firefighting foam not stopping turf fires"
