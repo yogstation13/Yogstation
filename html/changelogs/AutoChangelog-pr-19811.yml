@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "preternis reduce incoming EMP strength by one level instead of being fully immune"
-  - tweak: "reduced preternis water damage by half and slowdown from 4 to 1"
-  - tweak: "all preternis limbs have 35 health instead of 40 or 30"
-  - tweak: "removed preternis attack slowdown"
