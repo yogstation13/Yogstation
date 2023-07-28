@@ -66,7 +66,7 @@
 		"https://www.youtube.com/watch?v=z01VlftkqY8",						// PilotRedSun - The Grinch's Ultimatum
 		"https://www.youtube.com/watch?v=rcmQefeyPBs",						// Nightmargin - IT'S TIME TO FIGHT CRIME
 		"https://www.youtube.com/watch?v=OGcMPp7TNo4",						// Bear McCreary - Wander My Friends
-		"https://soundcloud.com/lemmino/firecracker",						// LEMMiNO - Cipher - CC BY-SA 4.0
+		"https://soundcloud.com/lemmino/firecracker",						// LEMMiNO - Firecracker - CC BY-SA 4.0
 		)
 	selected_lobby_music = pick(songs)
 
