@@ -70,7 +70,6 @@ type Recipe = {
   steps: string[];
   tool_paths: Ingredient[];
   catalysts: Ingredient[];
-  machinery: Ingredient[];
 };
 
 type Diet = {
@@ -404,8 +403,6 @@ const RecipeContentCompact = ({ item, craftable, busy }, context) => {
                       .join(', ')}
                 {item.tool_paths &&
                   ' | ' + item.tool_paths.map((item) => item.name).join(', ')}
-                {item.machinery &&
-                  ' | ' + item.machinery.map((item) => item.name).join(', ')}
               </Box>
             </Stack.Item>
             <Stack.Item>
@@ -523,22 +520,6 @@ const RecipeContent = ({ item, diet, craftable, busy }, context) => {
                       </Stack.Item>
                     </Stack>
                     {item.tool_paths.map((item) => (
-                      <AtomContent key={item.path} item={item} />
-                    ))}
-                  </Box>
-                )}
-                {item.machinery && (
-                  <Box>
-                    <Stack my={1}>
-                      <Stack.Item grow>
-                        <Divider />
-                      </Stack.Item>
-                      <Stack.Item color={'gray'}>Machinery</Stack.Item>
-                      <Stack.Item grow>
-                        <Divider />
-                      </Stack.Item>
-                    </Stack>
-                    {item.machinery.map((item) => (
                       <AtomContent key={item.path} item={item} />
                     ))}
                   </Box>

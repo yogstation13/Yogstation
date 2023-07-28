@@ -38,9 +38,6 @@
 	var/display_craftable_only = FALSE
 	var/display_compact = TRUE
 
-
-
-
 /*	This is what procs do:
 	get_environment - gets a list of things accessable for crafting by user
 	get_surroundings - takes a list of things and makes a list of key-types to values-amounts of said type in the list
@@ -50,12 +47,8 @@
 	del_reqs - takes recipe and a user, loops over the recipes reqs var and tries to find everything in the list make by get_environment and delete it/add to parts list, then returns the said list
 */
 
-
-
-
 /datum/component/personal_crafting/proc/check_contents(mob/user, datum/crafting_recipe/R, list/contents)
 	var/list/item_instances = contents["instances"]
-	var/list/machines = contents["machinery"]
 	contents = contents["other"]
 
 	var/list/requirements_list = list()
@@ -87,10 +80,7 @@
 	for(var/requirement_path in R.chem_catalysts)
 		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
 			return FALSE
-	
-	for(var/machinery_path in R.machinery)
-		if(!machines[machinery_path])//We don't care for volume with machines, just if one is there or not
-			return FALSE
+
 	return R.check_requirements(user, requirements_list)
 
 /datum/component/personal_crafting/proc/get_environment(mob/user)
@@ -114,28 +104,23 @@
 	.["tool_behaviour"] = list()
 	.["other"] = list()
 	.["instances"] = list()
-	.["machinery"] = list()
-	for(var/obj/object in get_environment(a, blacklist))
-		if(isitem(object))
-			var/obj/item/item = object
-			if(object.status_traits && HAS_TRAIT(object,TRAIT_NODROP) || object.flags_1 & HOLOGRAM_1)
-				continue
-			LAZYADDASSOCLIST(.["instances"], item.type, item)
-			if(istype(item, /obj/item/stack))
-				var/obj/item/stack/stack = item
-				.["other"][item.type] += stack.amount
-			else if(item.tool_behaviour)
-				.["tool_behaviour"] += item.tool_behaviour
-				.["other"][item.type] += 1
-			else
-				if(is_reagent_container(item))
-					var/obj/item/reagent_containers/container = item
-					if(container.is_drainable())
-						for(var/datum/reagent/reagent in container.reagents.reagent_list)
-							.["other"][reagent.type] += reagent.volume
-				.["other"][item.type] += 1
-		else if (ismachinery(object))
-			LAZYADDASSOCLIST(.["machinery"], object.type, object)
+	for(var/obj/item/item in get_environment(a, blacklist))
+		if(item.status_traits && HAS_TRAIT(item, TRAIT_NODROP) || item.flags_1 & HOLOGRAM_1)
+			continue
+		LAZYADDASSOCLIST(.["instances"], item.type, item)
+		if(isstack(item))
+			var/obj/item/stack/stack = item
+			.["other"][item.type] += stack.amount
+		else if(item.tool_behaviour)
+			.["tool_behaviour"] += item.tool_behaviour
+			.["other"][item.type] += 1
+		else
+			if(is_reagent_container(item))
+				var/obj/item/reagent_containers/container = item
+				if(container.is_drainable())
+					for(var/datum/reagent/reagent in container.reagents.reagent_list)
+						.["other"][reagent.type] += reagent.volume
+			.["other"][item.type] += 1
 
 /datum/component/personal_crafting/proc/check_tools(atom/source, datum/crafting_recipe/recipe, list/surroundings)
 	if(!length(recipe.tool_behaviors) && !length(recipe.tool_paths))

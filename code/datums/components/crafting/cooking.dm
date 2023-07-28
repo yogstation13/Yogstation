@@ -18,7 +18,6 @@
 
 /datum/component/cooking/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
 	var/list/item_instances = contents["instances"]
-	var/list/machines = contents["machinery"]
 	contents = contents["other"]
 
 	var/list/requirements_list = list()
@@ -51,10 +50,6 @@
 		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
 			return FALSE
 
-	for(var/machinery_path in R.machinery)
-		if(!machines[machinery_path])//We don't care for volume with machines, just if one is there or not
-			return FALSE
-
 	return R.check_requirements(a, requirements_list)
 
 /datum/component/cooking/proc/get_environment(atom/a, list/blacklist = null, radius_range = 1)
@@ -73,26 +68,23 @@
 	.["tool_behaviour"] = list()
 	.["other"] = list()
 	.["instances"] = list()
-	.["machinery"] = list()
-	for(var/obj/object in get_environment(a, blacklist))
-		if(isitem(object))
-			var/obj/item/item = object
-			LAZYADDASSOCLIST(.["instances"], item.type, item)
-			if(isstack(item))
-				var/obj/item/stack/stack = item
-				.["other"][item.type] += stack.amount
-			else if(item.tool_behaviour)
-				.["tool_behaviour"] += item.tool_behaviour
-				.["other"][item.type] += 1
-			else
-				if(is_reagent_container(item))
-					var/obj/item/reagent_containers/container = item
-					if(container.is_drainable())
-						for(var/datum/reagent/reagent in container.reagents.reagent_list)
-							.["other"][reagent.type] += reagent.volume
-				.["other"][item.type] += 1
-		else if(ismachinery(object))
-			LAZYADDASSOCLIST(.["machinery"], object.type, object)
+	for(var/obj/item/item in get_environment(a, blacklist))
+		if(item.status_traits && HAS_TRAIT(item, TRAIT_NODROP) || item.flags_1 & HOLOGRAM_1)
+			continue
+		LAZYADDASSOCLIST(.["instances"], item.type, item)
+		if(isstack(item))
+			var/obj/item/stack/stack = item
+			.["other"][item.type] += stack.amount
+		else if(item.tool_behaviour)
+			.["tool_behaviour"] += item.tool_behaviour
+			.["other"][item.type] += 1
+		else
+			if(is_reagent_container(item))
+				var/obj/item/reagent_containers/container = item
+				if(container.is_drainable())
+					for(var/datum/reagent/reagent in container.reagents.reagent_list)
+						.["other"][reagent.type] += reagent.volume
+			.["other"][item.type] += 1
 
 /// Returns a boolean on whether the tool requirements of the input recipe are satisfied by the input source and surroundings.
 /datum/component/cooking/proc/check_tools(atom/source, datum/crafting_recipe/recipe, list/surroundings)
@@ -202,12 +194,10 @@
 	var/list/requirements = list()
 	if(R.reqs)
 		requirements += R.reqs
-	if(R.machinery)
-		requirements += R.machinery
 	main_loop:
 		for(var/path_key in requirements)
-			amt = R.reqs[path_key] || R.machinery[path_key]
-			if(!amt)//since machinery can have 0 aka CRAFTING_MACHINERY_USE - i.e. use it, don't consume it!
+			amt = R.reqs[path_key]
+			if(!amt)
 				continue main_loop
 			surroundings = get_environment(a, R.blacklist)
 			surroundings -= Deletion
@@ -445,13 +435,6 @@
 		data["steps"] = recipe.steps
 
 	// Tools
-	for(var/atom/req_atom as anything in recipe.machinery)
-		data["machinery"] += list(list(
-			"path" = req_atom,
-			"name" = initial(req_atom.name)
-		))
-
-	// Machinery
 	for(var/atom/req_atom as anything in recipe.tool_paths)
 		data["tool_paths"] += list(list(
 			"path" = req_atom,
