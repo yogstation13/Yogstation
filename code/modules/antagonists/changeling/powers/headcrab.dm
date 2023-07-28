@@ -9,7 +9,7 @@
 	ignores_fakedeath = TRUE
 	req_stat = DEAD
 
-/datum/action/changeling/headcrab/sting_action(mob/user)
+/datum/action/changeling/headcrab/sting_action(mob/living/user)
 	set waitfor = FALSE
 	if(ismob(user.pulledby) && is_changeling(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
 		to_chat(user, span_warning("Our abilities are being dampened! We cannot use [src]!"))

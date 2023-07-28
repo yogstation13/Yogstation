@@ -305,7 +305,7 @@
 			r_arm.dismember()
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, TRUE, -1)
 
-/obj/item/reagent_containers/food/snacks/proc/i_kill_you(obj/item/I, mob/user)
+/obj/item/reagent_containers/food/snacks/proc/i_kill_you(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/pineappleslice))
 		to_chat(user, "<font color='red' size='7'>If you want something crazy like pineapple, I kill you.</font>")
 		user.gib() //if you want something crazy like pineapple, i kill you

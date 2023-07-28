@@ -2575,7 +2575,6 @@
 #include "code\modules\mining\lavaland\seismicarm.dm"
 #include "code\modules\mining\lavaland\world_anvil.dm"
 #include "code\modules\mining\lavaland\ruins\gym.dm"
-#include "code\modules\mob\death.dm"
 #include "code\modules\mob\emote.dm"
 #include "code\modules\mob\inventory.dm"
 #include "code\modules\mob\login.dm"
