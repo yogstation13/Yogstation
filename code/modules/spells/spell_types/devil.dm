@@ -8,15 +8,15 @@
 	school = SCHOOL_CONJURATION
 	invocation_type = INVOCATION_NONE
 
-	item_type = /obj/item/twohanded/pitchfork/demonic
+	item_type = /obj/item/pitchfork/demonic
 	cooldown_time = 15 SECONDS
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/conjure_item/summon_pitchfork/greater
-	item_type = /obj/item/twohanded/pitchfork/demonic/greater
+	item_type = /obj/item/pitchfork/demonic/greater
 
 /datum/action/cooldown/spell/conjure_item/summon_pitchfork/ascended
-	item_type = /obj/item/twohanded/pitchfork/demonic/ascended
+	item_type = /obj/item/pitchfork/demonic/ascended
 
 /datum/action/cooldown/spell/conjure_item/violin
 	name = "Summon golden violin"

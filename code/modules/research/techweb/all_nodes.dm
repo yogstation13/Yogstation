@@ -335,7 +335,7 @@
 	display_name = "Cyborg Upgrades: Utility"
 	description = "Utility upgrades for cyborgs."
 	prereq_ids = list("engineering")
-	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language", "borg_upgrade_broomer")
+	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language", "borg_upgrade_broomer", "borg_upgrade_snacks")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 
 /datum/techweb_node/cyborg_upg_med
@@ -733,7 +733,7 @@
 	id = "exotic_ammo"
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
-	prereq_ids = list("adv_weaponry")
+	prereq_ids = list("adv_weaponry", "ballistic_weapons")
 	design_ids = list("mag_v38_frost", "mag_v38_talon")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
@@ -749,7 +749,7 @@
 	id = "experimental_ammo"
 	display_name = "Experimental Ammunition"
 	description = "We're hitting levels of power that shouldn't be possible."
-	prereq_ids = list("exotic_ammo","ballistic_weapons")
+	prereq_ids = list("exotic_ammo")
 	design_ids = list("techshotshell", "mag_v38_bluespace", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
@@ -861,6 +861,14 @@
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("electronic_weapons", "adv_power")
 	design_ids = list("mech_tesla")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_bfg
+	id = "mech_bfg"
+	display_name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_beam_weapons")
+	design_ids = list("mech_bfg", "mech_bfg_ammo")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/mech_laser

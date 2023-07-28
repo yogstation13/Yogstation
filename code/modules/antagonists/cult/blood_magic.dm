@@ -525,7 +525,7 @@
 		if(QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !actual_selected_rune || !proximity)
 			return
 		var/turf/dest = get_turf(actual_selected_rune)
-		if(is_blocked_turf(dest, TRUE))
+		if(dest.is_blocked_turf(TRUE))
 			to_chat(user, span_warning("The target rune is blocked. You cannot teleport there."))
 			return
 		uses--
@@ -792,7 +792,7 @@
 					var/turf/T = get_turf(user)
 					qdel(src)
 					var/datum/action/innate/cult/spear/S = new(user)
-					var/obj/item/twohanded/cult_spear/rite = new(T)
+					var/obj/item/cult_spear/rite = new(T)
 					S.Grant(user, rite)
 					rite.spear_act = S
 					if(user.put_in_hands(rite))

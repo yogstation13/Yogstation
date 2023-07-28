@@ -7,7 +7,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	item_flags = NOBLUDGEON
-	reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER_NOSPILL
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL

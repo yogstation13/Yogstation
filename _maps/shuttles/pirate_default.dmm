@@ -1257,7 +1257,7 @@
 	pixel_x = 13;
 	pixel_y = 6
 	},
-/obj/item/twohanded/vxtvulhammer/pirate,
+/obj/item/melee/vxtvulhammer/pirate,
 /turf/open/floor/pod/light,
 /area/shuttle/pirate)
 "Yj" = (

@@ -37,8 +37,8 @@
 
 /obj/item/projectile/magic/death/on_hit(target)
 	. = ..()
-	if(ismob(target))
-		var/mob/M = target
+	if(isliving(target))
+		var/mob/living/M = target
 		M.death(0)
 
 /obj/item/projectile/magic/spellcard

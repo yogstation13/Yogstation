@@ -41,9 +41,11 @@
 	toolspeed = 1
 	wound_bonus = 10
 	bare_wound_bonus = 15
+	var/mutable_appearance/sparks
 
 /obj/item/weldingtool/Initialize(mapload)
 	. = ..()
+	sparks =  mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
 	update_appearance(UPDATE_ICON)
@@ -166,7 +168,6 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
-	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 	target.add_overlay(sparks)
 	. = ..()
 	target.cut_overlay(sparks)
@@ -300,10 +301,10 @@
 	status = !status
 	if(status)
 		to_chat(user, span_notice("You resecure [src] and close the fuel tank."))
-		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER_NOSPILL)
 	else
 		to_chat(user, span_notice("[src] can now be attached, modified, and refuelled."))
-		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER_NOSPILL)
 	add_fingerprint(user)
 
 /obj/item/weldingtool/proc/flamethrower_rods(obj/item/I, mob/user)
@@ -402,6 +403,10 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "brasswelder"
 	item_state = "brasswelder"
+
+/obj/item/weldingtool/experimental/Initialize(mapload)
+	. = ..()
+	sparks = mutable_appearance('icons/effects/welding_effect.dmi', "exp_welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 
 
 /obj/item/weldingtool/experimental/process()

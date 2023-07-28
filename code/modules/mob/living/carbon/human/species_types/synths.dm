@@ -5,7 +5,7 @@
 	sexes = FALSE
 	species_traits = list(NO_DNA_COPY, NOTRANSSTING, AGENDER) //all of these + whatever we inherit from the real species
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_RADIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	meat = null
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
