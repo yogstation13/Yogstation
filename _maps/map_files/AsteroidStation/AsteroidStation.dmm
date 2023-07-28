@@ -18931,15 +18931,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"fgM" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/smes/engineering{
-	charge = 6e+007
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "fgP" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "barshutters";
@@ -38839,6 +38830,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"lIj" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "lIp" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -63484,6 +63482,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"tgV" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "tgW" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -78176,15 +78181,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"xWo" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/smes/engineering{
-	charge = 6e+007
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "xWp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -125540,9 +125536,9 @@ fcv
 aYa
 aAy
 rWB
-xWo
+lIj
 bDY
-xWo
+lIj
 nYv
 aAy
 aVM
@@ -126054,9 +126050,9 @@ coR
 kej
 aAy
 lSj
-fgM
+tgV
 atj
-fgM
+tgV
 eRU
 aAy
 xfS
