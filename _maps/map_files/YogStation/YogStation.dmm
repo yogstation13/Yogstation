@@ -31480,14 +31480,6 @@
 /obj/effect/landmark/stationroom/box/bar,
 /turf/template_noop,
 /area/template_noop)
-"iyz" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "iyO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -40994,6 +40986,13 @@
 /obj/structure/lattice,
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"mkC" = (
+/obj/structure/table/wood,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "mkD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -41862,6 +41861,13 @@
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos/distro)
+"mBs" = (
+/obj/item/kirbyplants/random,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "mBu" = (
 /obj/structure/sign/departments/minsky/supply/janitorial{
 	pixel_y = -32
@@ -45398,6 +45404,16 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"nVf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "nVj" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
@@ -48265,10 +48281,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
-"pby" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "pbD" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -51703,10 +51715,6 @@
 /obj/effect/spawner/lootdrop/randomdrink,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"qnM" = (
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "qnN" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -95950,7 +95958,7 @@ sCJ
 kOV
 xMG
 guz
-iyz
+nVf
 fql
 ell
 aLE
@@ -96207,7 +96215,7 @@ mGY
 elt
 vog
 vog
-qnM
+mBs
 apd
 dbT
 ehE
@@ -96464,7 +96472,7 @@ det
 cpL
 pbR
 mYX
-pby
+mkC
 apd
 kjN
 aLE
