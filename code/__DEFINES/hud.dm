@@ -100,13 +100,12 @@
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,SOUTH:5"	//alternative intent switcher for when the interface is hidden (F12)
 #define ui_crafting	"EAST-4:22,SOUTH:5"
-#define ui_cooking "EAST-4:22,SOUTH+1:5"
 #define ui_building "EAST-4:22,SOUTH:21"
 #define ui_borg_pull "EAST-2:26,SOUTH+1:7"
 #define ui_borg_radio "EAST-1:28,SOUTH+1:7"
 #define ui_borg_intents "EAST-2:26,SOUTH:5"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
-
+#define ui_cooking "EAST-4:6,SOUTH:5"
 
 //Upper-middle right (alerts)
 #define ui_alert1 "EAST-1:28,CENTER+5:27"
