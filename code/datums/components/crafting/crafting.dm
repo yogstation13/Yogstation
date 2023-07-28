@@ -25,23 +25,6 @@
 				CAT_MISC = CAT_NONE,
 				CAT_PRIMAL = CAT_NONE,
 				CAT_STRUCTURES = CAT_NONE,
-				CAT_FOOD = list(
-					CAT_BREAD,
-					CAT_BURGER,
-					CAT_CAKE,
-					CAT_EGG,
-					CAT_BAIT, //this is alphabetical in game
-					CAT_MEAT,
-					CAT_MISCFOOD,
-					CAT_PASTRY,
-					CAT_PIE,
-					CAT_PIZZA,
-					CAT_SALAD,
-					CAT_SANDWICH,
-					CAT_SOUP,
-					CAT_SPAGHETTI,
-					CAT_SEAFOOD,
-				),
 				CAT_DRINK = CAT_NONE,
 				CAT_APPAREL = list(
 					CAT_CLOTHING,
