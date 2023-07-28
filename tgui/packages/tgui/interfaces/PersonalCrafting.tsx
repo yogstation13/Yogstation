@@ -101,7 +101,7 @@ type Material = {
 
 type Recipe = {
   ref: string;
-  result: number;
+  icon: string;
   name: string;
   desc: string;
   category: string;
@@ -552,6 +552,23 @@ const MaterialContent = (props, context) => {
 
 const FoodtypeContent = (props) => {
   const { type, diet, craftableCount } = props;
+  let iconName = '',
+    iconColor = '';
+
+  // We use iconName in the return to see if this went through.
+  if (type !== 'Can Make' && diet) {
+    if (diet.liked_food.includes(type)) {
+      iconName = 'face-laugh-beam';
+      iconColor = 'good';
+    } else if (diet.disliked_food.includes(type)) {
+      iconName = 'face-tired';
+      iconColor = 'average';
+    } else if (diet.toxic_food.includes(type)) {
+      iconName = 'skull-crossbones';
+      iconColor = 'bad';
+    }
+  }
+
   return (
     <Stack>
       <Stack.Item width="14px" textAlign="center">
@@ -561,17 +578,9 @@ const FoodtypeContent = (props) => {
         {type.toLowerCase()}
       </Stack.Item>
       <Stack.Item>
-        {type === 'Can Make' ? (
-          craftableCount
-        ) : diet.liked_food.includes(type) ? (
-          <Icon name="face-laugh-beam" color={'good'} />
-        ) : diet.disliked_food.includes(type) ? (
-          <Icon name="face-tired" color={'average'} />
-        ) : (
-          diet.toxic_food.includes(type) && (
-            <Icon name="skull-crossbones" color={'bad'} />
-          )
-        )}
+        {type === 'Can Make'
+          ? craftableCount
+          : iconName && <Icon name={iconName} color={iconColor} />}
       </Stack.Item>
     </Stack>
   );
@@ -583,12 +592,7 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }, context) => {
     <Section>
       <Stack my={-0.75}>
         <Stack.Item>
-          <Box
-            className={classes([
-              mode ? 'cooking32x32' : 'crafting32x32',
-              'a' + item.result,
-            ])}
-          />
+          <Box className={item.icon} />
         </Stack.Item>
         <Stack.Item grow>
           <Stack>
@@ -610,7 +614,6 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }, context) => {
                         : name;
                   })
                 ).join(', ')}
-
                 {item.tool_paths &&
                   ', ' +
                     item.tool_paths
@@ -663,16 +666,11 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }, context) => {
         <Stack.Item>
           <Box width={'64px'} height={'64px'} mr={1}>
             <Box
-              width={'32px'}
-              height={'32px'}
               style={{
-                'transform': 'scale(2)',
+                'transform': 'scale(1.5)',
               }}
               m={'16px'}
-              className={classes([
-                mode ? 'cooking32x32' : 'crafting32x32',
-                'a' + item.result,
-              ])}
+              className={item.icon}
             />
           </Box>
         </Stack.Item>
@@ -794,7 +792,7 @@ const ToolContent = ({ tool }) => {
         inline
         my={-1}
         mr={0.5}
-        className={classes(['crafting32x32', tool])}
+        className={classes(['crafting32x32', tool.replace(/ /g, '')])}
       />
       <Box inline verticalAlign="middle">
         {tool}

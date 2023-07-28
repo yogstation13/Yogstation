@@ -5,7 +5,9 @@
 
 /datum/crafting_recipe
 	/// In-game display name.
-	var/name = "" //in-game display name
+	var/name = ""
+	// Unused.
+	var/desc = ""
 	/// Type paths of items consumed associated with how many are needed.
 	var/reqs[] = list() 
 	/// Type paths of items explicitly not allowed as an ingredient.
