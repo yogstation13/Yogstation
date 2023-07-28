@@ -7,7 +7,7 @@
 				/obj/item/stack/sheet/leather = 4)
 	time = 5 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/durathread_helmet
 	name = "Durathread Helmet"
@@ -16,7 +16,7 @@
 				/obj/item/stack/sheet/leather = 5)
 	time = 4 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/durathread_jumpsuit
 	name = "Durathread Jumpsuit"
@@ -24,7 +24,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth/durathread = 4)
 	time = 4 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_beret
 	name = "Durathread Beret"
@@ -32,7 +32,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth/durathread = 2)
 	time = 4 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_beanie
 	name = "Durathread Beanie"
@@ -40,7 +40,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth/durathread = 2)
 	time = 4 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/durathread_bandana
 	name = "Durathread Bandana"
@@ -48,7 +48,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth/durathread = 1)
 	time = 2.5 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/ghostsheet
 	name = "Ghost Sheet"
@@ -57,7 +57,7 @@
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/bedsheet = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/cowboyboots
 	name = "Cowboy Boots"
@@ -65,7 +65,7 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2)
 	time = 4.5 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/lizardboots
 	name = "Lizard Skin Boots"
@@ -73,7 +73,7 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/lizard = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/lizardhat
 	name = "Lizard Cloche Hat"
@@ -81,7 +81,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/organ/tail/lizard = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/lizardhat_alternate
 	name = "Lizard Cloche Hat"
@@ -89,7 +89,7 @@
 	time = 1 SECONDS
 	reqs = list(/obj/item/stack/sheet/animalhide/lizard = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/kittyears
 	name = "Kitty Ears"
@@ -98,7 +98,7 @@
 	reqs = list(/obj/item/organ/tail/cat = 1,
 				/obj/item/organ/ears/cat = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/footwrapsgoliath
 	name = "Goliath Hide Footwraps"
@@ -106,7 +106,7 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/footwrapsdragon
 	name = "Ash Drake Hide Footwraps"
@@ -114,7 +114,7 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/ashdrake = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/footwrapscarpdragon
 	name = "Carp Dragon Hide Footwraps"
@@ -122,7 +122,7 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/carpdragon = 1, /obj/item/stack/sheet/leather = 1)
 	time = 6 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/mummy
 	name = "Mummification Bandages (Mask)"
@@ -131,7 +131,7 @@
 	tool_paths = list(/obj/item/nullrod/egyptian)
 	reqs = list(/obj/item/stack/sheet/cloth = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/mummy/body
 	name = "Mummification Bandages (Body)"
@@ -144,7 +144,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/raider_leather
 	name = "Scavenged Rags"
@@ -154,7 +154,7 @@
 				/obj/item/stack/rods = 2, 
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 /datum/crafting_recipe/tribal_wraps
@@ -164,7 +164,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 /datum/crafting_recipe/ash_robe
@@ -173,7 +173,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/cloth = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 /datum/crafting_recipe/ash_robe/young
@@ -209,7 +209,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 1, 
 				/obj/item/stack/sheet/bone = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 /datum/crafting_recipe/tribalmantle
@@ -219,7 +219,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 2,
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 /datum/crafting_recipe/leathercape
@@ -228,7 +228,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 5)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 /datum/crafting_recipe/hidemantle
@@ -238,7 +238,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 2,
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_CLOTHING
+	category = CAT_CLOTHING
 	always_available = FALSE
 
 
@@ -250,7 +250,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 6)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/heavybonearmor
 	name = "Heavy Bone Armor"
@@ -259,7 +259,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 8,
 				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/tribalcoat
 	name = "Tribal Coat"
@@ -268,7 +268,7 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 			/obj/item/stack/sheet/bone = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/bracers
 	name = "Bone Bracers"
@@ -277,7 +277,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/skullhelm
 	name = "Skull Helmet"
@@ -285,7 +285,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/shamanhat
 	name = "Shaman Headdress"
@@ -293,7 +293,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 4)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/resincrown
 	name = "Resin Crown"
@@ -302,7 +302,7 @@
 	reqs = list(/obj/item/stack/sheet/ashresin = 2,
 		/obj/item/stack/sheet/mineral/mythril = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/goliathcloak
 	name = "Goliath Cloak"
@@ -312,7 +312,7 @@
 				/obj/item/stack/sheet/sinew = 1,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2) //it takes 4 goliaths to make 1 cloak if the plates are skinned
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/pathkasa
 	name = "Pathfinder Kasa"
@@ -322,7 +322,7 @@
 				/obj/item/stack/sheet/sinew = 4,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 10) //3 spiders assuming you get leather from one
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/pathcloak
 	name = "Pathfinder Cloak"
@@ -332,7 +332,7 @@
 				/obj/item/stack/sheet/animalhide/goliath_hide = 2, //2 plates for the cloak plus 2 here plus 3 for plating the armor = 7 total
 				/obj/item/stack/sheet/sinew = 6)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/pathtreads
 	name = "Pathfinder Treads"
@@ -341,7 +341,7 @@
 	reqs = list(/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/drakecloak
 	name = "Ash Drake Armour"
@@ -351,7 +351,7 @@
 				/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/ashdrake = 5)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/carpsuit
 	name = "Space Dragon Armour"
@@ -361,7 +361,7 @@
 				/obj/item/stack/sheet/sinew = 2,
 				/obj/item/stack/sheet/animalhide/carpdragon = 5)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 /datum/crafting_recipe/hydrogen_hardsuit
 	name = "Metallic Hydrogen Elder Atmosian Hardsuit"
@@ -374,7 +374,7 @@
 			/obj/item/stack/sheet/mineral/diamond = 5,
 			/obj/item/stack/sheet/mineral/metal_hydrogen = 10)
 	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
+	category = CAT_ARMOR
 
 // Equipment //
 
@@ -385,7 +385,7 @@
 				/obj/item/stack/sheet/leather = 1)
 	time = 2 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/ghettojetpack
 	name = "Improvised Jetpack"
@@ -393,7 +393,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
 /datum/crafting_recipe/sunprescription
@@ -405,7 +405,7 @@
 				  /obj/item/clothing/glasses/sunglasses = 1)
 	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsunmeson
 	name = "Meson Sunglasses"
@@ -417,7 +417,7 @@
 				  /obj/item/stack/cable_coil = 5)
 	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsunmesonremoval
 	name = "Meson HUD removal"
@@ -426,7 +426,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/meson/sunglasses = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsunsec
 	name = "Security HUDsunglasses"
@@ -438,7 +438,7 @@
 				  /obj/item/stack/cable_coil = 5)
 	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsunsecremoval
 	name = "Security HUD removal"
@@ -447,7 +447,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/security/sunglasses = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsunmed
 	name = "Medical HUDsunglasses"
@@ -459,7 +459,7 @@
 				  /obj/item/stack/cable_coil = 5)
 	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsunmedremoval
 	name = "Medical HUD removal"
@@ -468,7 +468,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/health/sunglasses = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsundiag
 	name = "Diagnostic HUDsunglasses"
@@ -481,7 +481,7 @@
 	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/hudsundiagremoval
 	name = "Diagnostic HUD removal"
@@ -490,7 +490,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/hud/diagnostic/sunglasses = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/beergoggles
 	name = "Beer Goggles"
@@ -502,7 +502,7 @@
 				  /obj/item/stack/cable_coil = 5)
 	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/beergogglesremoval
 	name = "Beer Goggles removal"
@@ -511,7 +511,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/sunglasses/reagent = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/bonetalisman
 	name = "Bone Talisman"
@@ -520,7 +520,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/bonecodpiece
 	name = "Skull Codpiece"
@@ -529,7 +529,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/skilt
 	name = "Sinew Kilt"
@@ -538,7 +538,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				 /obj/item/stack/sheet/sinew = 2)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/resinband
 	name = "Resin Armband"
@@ -546,7 +546,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/ashresin = 3)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/sinewbelt
 	name = "Sinew Belt"
@@ -554,7 +554,7 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/sinew = 4)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/medpouchcloth
 	name = "Cloth Medicinal Pouch"
@@ -562,7 +562,7 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/cloth = 3)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/medpouchleather //whatever material tickles your fancy.
 	name = "Leather Medicinal Pouch"
@@ -570,7 +570,7 @@
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/quiver
 	name = "Leather Quiver"
@@ -578,7 +578,7 @@
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 4)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/chitinquiver
 	name = "Chitin Quiver"
@@ -586,7 +586,7 @@
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/animalhide/weaver_chitin = 4) //Just one spider!
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/goliathgloves
 	name = "Goliath Gloves"
@@ -595,7 +595,7 @@
 	reqs = list(/obj/item/stack/sheet/leather = 2,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/chitingloves
 	name = "Weaver Chitin Gloves"
@@ -604,4 +604,4 @@
 	reqs = list(/obj/item/stack/sheet/leather = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 3) //Also just one spider!
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT

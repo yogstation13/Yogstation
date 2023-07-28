@@ -1,4 +1,5 @@
 // Representative icons for the contents of each cooking recipe
+/*
 /datum/asset/spritesheet/cooking
 	name = "cooking"
 	var/list/id_list = list()
@@ -52,3 +53,4 @@
 		return
 	id_list += id
 	Insert(id, I)
+*/

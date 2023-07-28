@@ -67,7 +67,7 @@
 	result = /obj/item/storage/belt/utility/makeshift
 	time = 20 SECONDS
 	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_EQUIPMENT
 
 /datum/crafting_recipe/makeshiftknife
 	name = "Makeshift Knife"

@@ -11,7 +11,7 @@
 				)
 	tool_behaviors = list(TOOL_WELDER) //to weld the bat together
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	always_available = FALSE
 
 /datum/crafting_recipe/lance
@@ -25,7 +25,7 @@
 				/obj/item/grenade = 1)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	always_available = FALSE
 
 /datum/crafting_recipe/knifeboxing
@@ -35,7 +35,7 @@
 				/obj/item/kitchen/knife = 2)
 	time = 10 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	always_available = FALSE
 
 /datum/crafting_recipe/pipebomb
@@ -49,7 +49,7 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	always_available = FALSE 	//This was such a bad idea
 
 /datum/crafting_recipe/flamethrower
@@ -63,7 +63,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	//always_available = FALSE
 
 /datum/crafting_recipe/makeshiftpistol
@@ -76,7 +76,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	always_available = FALSE
 
 /datum/crafting_recipe/makeshiftsuppressor
@@ -88,7 +88,7 @@
            		/obj/item/stack/tape = 1)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 	always_available = FALSE
 
 // Ammo
@@ -100,7 +100,7 @@
         		/obj/item/stack/tape = 2)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 
 /datum/crafting_recipe/bola_arrow
@@ -113,7 +113,7 @@
 	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
 	parts = list(/obj/item/ammo_casing/reusable/arrow = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/restraints/legcuffs/bola = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 
 /datum/crafting_recipe/explosive_arrow
@@ -126,7 +126,7 @@
 	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
 	parts = list(/obj/item/ammo_casing/reusable/arrow = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/grenade = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 
 /datum/crafting_recipe/flaming_arrow
@@ -139,7 +139,7 @@
 	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
 	parts = list(/obj/item/ammo_casing/reusable/arrow = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 
 /datum/crafting_recipe/syringe_arrow
@@ -152,7 +152,7 @@
 	blacklist = list(/obj/item/ammo_casing/reusable/arrow/toy)
 	parts = list(/obj/item/ammo_casing/reusable/arrow = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/reagent_containers/syringe = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 /*
 /datum/crafting_recipe/supermatter_sliver_arrow
@@ -163,7 +163,7 @@
 				/obj/item/scalpel/supermatter = 1,	// Needed so the sliver doesn't destroy the rod and so atmos techs can't mass produce instant dust arrows
 				/obj/item/stack/rods = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 
 /datum/crafting_recipe/singularity_shard_arrow
@@ -175,6 +175,6 @@
 				/obj/item/stack/cable_coil = 3)
 	parts = list(/obj/item/singularity_shard = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 	always_available = FALSE
 */

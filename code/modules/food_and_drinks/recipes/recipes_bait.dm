@@ -8,7 +8,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/corn = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/apprentice
-	subcategory = CAT_BAIT
+	category = CAT_BAIT
 
 /datum/crafting_recipe/food/bait/journeyman
 	name = "Journeyman Bait"
@@ -17,7 +17,7 @@
 		/datum/reagent/blood = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/journeyman
-	subcategory = CAT_BAIT
+	category = CAT_BAIT
 
 /datum/crafting_recipe/food/bait/master
 	name = "Master Bait"
@@ -27,7 +27,7 @@
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/master
-	subcategory = CAT_BAIT
+	category = CAT_BAIT
 
 /datum/crafting_recipe/food/bait/wild
 	name = "Wild Bait"
@@ -36,5 +36,5 @@
 		/obj/item/stack/medical/gauze/improvised = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/wild
-	subcategory = CAT_BAIT
+	category = CAT_BAIT
 

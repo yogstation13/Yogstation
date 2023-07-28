@@ -8,7 +8,7 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/IED
 	name = "IED"
@@ -20,7 +20,7 @@
 	parts = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
@@ -31,7 +31,7 @@
 	blacklist = list(/obj/item/shield/riot/buckler, /obj/item/shield/riot/tele)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/molotov
 	name = "Molotov"
@@ -41,7 +41,7 @@
 	parts = list(/obj/item/reagent_containers/food/drinks/bottle = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/stunprod
 	name = "Stunprod"
@@ -51,7 +51,7 @@
 				/obj/item/assembly/igniter = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
@@ -62,7 +62,7 @@
 				/obj/item/stack/ore/bluespace_crystal = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bola
 	name = "Bola"
@@ -71,7 +71,7 @@
 				/obj/item/stack/sheet/metal = 6)
 	time = 2 SECONDS //15 faster than crafting them by hand!
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/watcherbola
 	name = "Watcher Bola"
@@ -80,7 +80,7 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 2,
 				/obj/item/restraints/handcuffs/cable/sinew = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/gonbola
 	name = "Gonbola"
@@ -90,7 +90,7 @@
 				/obj/item/stack/sheet/animalhide/gondola = 1)
 	time = 4 SECONDS
 	category= CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/tailclub
 	name = "Tail Club"
@@ -100,7 +100,7 @@
 	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/tailwhip
 	name = "Liz O' Nine Tails"
@@ -110,7 +110,7 @@
 	blacklist = list(/obj/item/organ/tail/lizard/fake)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/catwhip
 	name = "Cat O' Nine Tails"
@@ -119,7 +119,7 @@
 	            /obj/item/stack/cable_coil = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/greatruinousknife
 	name = "Great Ruinous Knife"
@@ -128,7 +128,7 @@
 	            /obj/item/stack/sheet/ruinous_metal = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bloodyruinousknife
 	name = "Blood Soaked Ruinous Knife"
@@ -137,7 +137,7 @@
 	            /obj/item/stack/sheet/runed_metal = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/pipebow
 	name = "Pipe Bow"
@@ -147,7 +147,7 @@
 				/obj/item/weaponcrafting/silkstring = 1)
 	time = 9 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/maint
 	name = "Makeshift Bow"
@@ -157,7 +157,7 @@
 				/obj/item/stack/cable_coil = 10)
 	time = 10 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/woodenbow
 	name = "Wooden Bow"
@@ -167,7 +167,7 @@
 				/obj/item/weaponcrafting/silkstring = 1)
 	time = 7 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/woodencrossbow
 	name = "Wooden Crossbow"
@@ -180,7 +180,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
@@ -192,7 +192,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 10 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/gauss
 	name = "Makeshift gauss rifle"
@@ -206,7 +206,7 @@
 	result = /obj/item/gun/ballistic/gauss
 	time = 12
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
@@ -217,7 +217,7 @@
 	tool_behaviors = list(TOOL_WELDER)
 	time = 5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/spear
 	name = "Spear"
@@ -228,14 +228,14 @@
 	parts = list(/obj/item/shard = 1)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/extendohand
 	name = "Extendo-Hand"
 	reqs = list(/obj/item/bodypart/r_arm/robot = 1, /obj/item/clothing/gloves/boxing = 1)
 	result = /obj/item/extendohand
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/chemical_payload
 	name = "Chemical Payload (C4)"
@@ -248,7 +248,7 @@
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
 	time = 3 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/chemical_payload2
 	name = "Chemical Payload (Gibtonite)"
@@ -261,7 +261,7 @@
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
 	time = 5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/goliathshield
 	name = "Goliath Shield"
@@ -270,7 +270,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4,
 				/obj/item/stack/sheet/animalhide/goliath_hide = 3)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bonesword
 	name = "Bone Sword"
@@ -279,7 +279,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 3,
 				/obj/item/stack/sheet/sinew = 2)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bone_bow
 	name = "Bone Bow"
@@ -288,7 +288,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 8,
 				/obj/item/stack/sheet/sinew = 4)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bone_crossbow
 	name = "Bone Crossbow"
@@ -298,7 +298,7 @@
 				/obj/item/claymore/bone = 1,
 				/obj/item/stack/sheet/sinew = 3)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bonedagger
 	name = "Bone Dagger"
@@ -306,7 +306,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/bonespear
 	name = "Bone Spear"
@@ -315,7 +315,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 4,
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/boneaxe
 	name = "Bone Axe"
@@ -324,7 +324,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 6,
 				 /obj/item/stack/sheet/sinew = 3)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/chitinspear
 	name = "Chitin Spear"
@@ -335,7 +335,7 @@
 				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 6)
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
@@ -346,7 +346,7 @@
 				/obj/item/pipe = 2)
 	time = 5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 // Shank - Makeshift weapon that can embed on throw
 /datum/crafting_recipe/shank
@@ -357,7 +357,7 @@
 	result = /obj/item/kitchen/knife/shank
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_WEAPON
 
 
 // Ammo
@@ -371,7 +371,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/dragonsbreath
 	name = "Dragonsbreath Shell"
@@ -380,7 +380,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/ionslug
 	name = "Ion Scatter Shell"
@@ -391,7 +391,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/improvisedslug
 	name = "Improvised Shotgun Shell"
@@ -402,7 +402,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/frag12
 	name = "FRAG-12 Shell"
@@ -413,7 +413,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 5
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/laserbuckshot
 	name = "Laser Buckshot Shell"
@@ -424,7 +424,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/thundershot
 	name = "Thundershot Shell"
@@ -435,7 +435,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/depleteduraniumslug
 	name = "Depleted Uranium Slug Shell"
@@ -447,7 +447,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/cryoshot
 	name = "Cryoshot Shell"
@@ -457,7 +457,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/laserslug
 	name = "Bolts"
@@ -466,7 +466,7 @@
 	tool_behaviors = list(TOOL_WIRECUTTER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/wood_arrow
 	name = "Wood Arrow"
@@ -476,7 +476,7 @@
 				/obj/item/stack/sheet/cloth = 1,
 				/obj/item/stack/rods = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/ashen_arrow
 	name = "Ashen Arrow"
@@ -485,7 +485,7 @@
 	time = 1.5 SECONDS
 	reqs = list(/obj/item/ammo_casing/reusable/arrow/wood = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/bone_tipped_arrow
 	name = "Bone-Tipped Arrow"
@@ -495,7 +495,7 @@
 				/obj/item/stack/sheet/bone = 1,
 				/obj/item/stack/sheet/sinew = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/bone_arrow
 	name = "Bone Arrow"
@@ -504,7 +504,7 @@
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				/obj/item/stack/sheet/sinew = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/chitin_arrow
 	name = "Chitin Arrow"
@@ -515,7 +515,7 @@
 				/obj/item/stack/sheet/ashresin = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/bamboo_arrow
 	name = "Bamboo Arrow"
@@ -523,7 +523,7 @@
 	time = 1.5 SECONDS
 	reqs = list(/obj/item/stack/sheet/mineral/bamboo = 2)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/bronze_arrow
 	name = "Bronze Arrow"
@@ -533,7 +533,7 @@
 				/obj/item/stack/sheet/cloth = 1,
 				/obj/item/stack/tile/bronze = 1)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/glass_arrow
 	name = "Glass Arrow"
@@ -543,7 +543,7 @@
 				/obj/item/stack/rods = 1, 
 				/obj/item/stack/cable_coil = 3)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/plasma_glass_arrow
 	name = "Plasmaglass Arrow"
@@ -553,4 +553,4 @@
 				/obj/item/stack/rods = 1, 
 				/obj/item/stack/cable_coil = 3)
 	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
