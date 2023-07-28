@@ -6,7 +6,7 @@
 	var/id = 1
 	for(var/atom in GLOB.crafting_recipes_atoms)
 		add_atom_icon(atom, id++)
-	add_tool_icons()
+	//add_tool_icons() // NOTE: This was causing the ALL/MOST icons to not work. TODO: Need to fix.
 
 /datum/asset/spritesheet/crafting/cooking
 	name = "cooking"
@@ -17,15 +17,17 @@
 		add_atom_icon(atom, id++)
 
 /datum/asset/spritesheet/crafting/proc/add_atom_icon(ingredient_typepath, id)
-	var/icon_file
-	var/icon_state
-	var/obj/preview_item = ingredient_typepath
+	var/obj/item = ingredient_typepath
 	if(ispath(ingredient_typepath, /datum/reagent))
 		var/datum/reagent/reagent = ingredient_typepath
-		preview_item = initial(reagent.default_container)
+		item = initial(reagent.default_container)
 
-	icon_file ||= initial(preview_item.icon_preview) || initial(preview_item.icon)
-	icon_state ||= initial(preview_item.icon_state_preview) || initial(preview_item.icon_state)
+	var/icon_file = initial(item.icon)
+	var/icon_state = initial(item.icon_state)
+	if(initial(item.icon_preview))
+		icon_file = initial(item.icon_preview)
+	if(initial(item.icon_state_preview))
+		icon_state = initial(item.icon_state_preview)
 
 	#ifdef UNIT_TESTS
 	if(!icon_exists(icon_file, icon_state, scream = TRUE))

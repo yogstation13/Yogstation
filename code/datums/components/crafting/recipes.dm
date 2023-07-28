@@ -1,31 +1,26 @@
-/// If the machine is used/deleted in the crafting process
-#define CRAFTING_MACHINERY_CONSUME 1
-/// If the machine is only "used" i.e. it checks to see if it's nearby and allows crafting, but doesn't delete it
-#define CRAFTING_MACHINERY_USE 0
-
-// TODO: re-add all things "chem_catalysts" to fix cook recipes w/ chems
-
 /datum/crafting_recipe
 	/// In-game display name.
 	var/name = ""
 	// Unused.
 	var/desc = ""
 	/// Type paths of items consumed associated with how many are needed.
-	var/reqs[] = list() 
+	var/list/reqs = list() 
 	/// Type paths of items explicitly not allowed as an ingredient.
-	var/blacklist[] = list()
+	var/list/blacklist[] = list()
 	/// Type path of item resulting from this craft.
 	var/result
 	/// String defines of items needed but not consumed.
 	var/list/tool_behaviors
 	/// Type paths of items needed but not consumed.
 	var/list/tool_paths
+	/// Type paths of chemicals needed but not consumed.
+	var/list/chem_catalysts = list()
 	/// Time in seconds.
 	var/time = 3 SECONDS
 	/// Type paths of items that will be placed in the result.
-	var/parts[] = list()
+	var/list/parts = list()
 	/// Where it shows up in the crafting UI.
-	var/category = CAT_NONE
+	var/category
 	/// Set to FALSE if it needs to be learned fast.
 	var/always_available = TRUE
 	/// Should only one object exist on the same turf?
@@ -34,6 +29,23 @@
 /datum/crafting_recipe/New()
 	if(!(result in reqs))
 		blacklist += result
+	// These should be excluded from all crafting recipes:
+	blacklist += list(
+		// From surgical toolset implant:
+		/obj/item/cautery/augment,
+		/obj/item/circular_saw/augment,
+		/obj/item/hemostat/augment,
+		/obj/item/retractor/augment,
+		/obj/item/scalpel/augment,
+		/obj/item/surgicaldrill/augment,
+		// From integrated toolset implant:
+		/obj/item/crowbar/cyborg,
+		/obj/item/multitool/cyborg,
+		/obj/item/screwdriver/cyborg,
+		/obj/item/weldingtool/largetank/cyborg,
+		/obj/item/wirecutters/cyborg,
+		/obj/item/wrench/cyborg,
+	)
 
 /**
   * Run custom pre-craft checks for this recipe

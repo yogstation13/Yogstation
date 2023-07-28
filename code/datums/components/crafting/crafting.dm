@@ -51,13 +51,17 @@
 		if(needed_amount > 0)
 			return FALSE
 
-		// Store the instances of what we will use for R.check_requirements() for requirement_path
+		// Store the instances of what we will use for R.check_requirements() for requirement_path.
 		var/list/instances_list = list()
 		for(var/instance_path in item_instances)
 			if(ispath(instance_path in item_instances))
 				instances_list += item_instances[instance_path]
 
 		requirements_list[requirement_path] = instances_list
+
+	for(var/requirement_path in R.chem_catalysts)
+		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
+			return FALSE
 
 	return R.check_requirements(a, requirements_list)
 
@@ -99,7 +103,7 @@
 	var/list/present_qualities = list()
 
 	for(var/obj/item/contained_item in source.contents)
-		// We don't have `atom_storage`. Thus:
+		// We don't use/have `atom_storage`. Thus:
 		if(istype(contained_item, /obj/item/organ/cyberimp/arm/toolset))
 			var/obj/item/organ/cyberimp/arm/toolset/toolset = contained_item
 			if(toolset.owner == source)
@@ -154,7 +158,7 @@
 			R.time *= 0.75
 	if(!do_after(a, R.time, a))
 		return "."
-	contents = get_surroundings(a, R.blacklist)
+	contents = get_surroundings(a, R.blacklist) // Double checking since items could no longer be there after the do_after().
 	if(!check_contents(a, R, contents))
 		return ", missing component."
 	if(!check_tools(a, R, contents))
@@ -387,8 +391,8 @@
 			busy = TRUE
 			ui_interact(user)
 			var/atom/movable/result = construct_item(user, crafting_recipe)
-			if(!istext(result)) //We made an item and didn't get a fail message
-				if(ismob(user) && isitem(result)) //In case the user is actually possessing a non mob like a machine
+			if(!istext(result)) // We made an item and didn't get a fail message.
+				if(ismob(user) && isitem(result)) // In case the user is actually possessing a non-mob like a machine.
 					user.put_in_hands(result)
 				else
 					if(!istype(result, /obj/effect/spawner))
@@ -464,6 +468,13 @@
 			var/id = atoms.Find(req_atom)
 			data["reqs"]["[id]"] = recipe.reqs[req_atom]
 
+	// Catalysts
+	if(recipe.chem_catalysts.len)
+		data["chem_catalysts"] = list()
+		for(var/req_atom in recipe.chem_catalysts)
+			var/id = atoms.Find(req_atom)
+			data["chem_catalysts"]["[id]"] = recipe.chem_catalysts[req_atom]
+			
 	return data
 
 #undef COOKING

@@ -96,7 +96,6 @@
 		/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 		/obj/item/reagent_containers/syringe = 1
 	)
-	category = CAT_APPAREL
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/poppy2
@@ -107,7 +106,6 @@
 		/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 		/obj/item/stack/rods = 1
 	)
-	category = CAT_APPAREL
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/ashtray
