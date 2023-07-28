@@ -422,7 +422,7 @@
 	log_smes()
 
 /obj/machinery/power/smes/engineering
-	charge = 5e7 // Engineering starts with some charge for singulo
+	charge = 1e8 // Engineering starts with some charge for singulo
 
 /obj/machinery/power/smes/fullycharged
 	charge = 5e8 // A fully charged SMES
