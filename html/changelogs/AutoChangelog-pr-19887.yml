@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added a new sabotage-focused objective that has the traitor destroy and prevent the reconstruction of machines in certain areas. (i.e. sleepers or SMES)"
