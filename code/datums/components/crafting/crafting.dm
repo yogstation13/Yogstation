@@ -137,42 +137,52 @@
 		else if (ismachinery(object))
 			LAZYADDASSOCLIST(.["machinery"], object.type, object)
 
-/datum/component/personal_crafting/proc/check_tools(mob/user, datum/crafting_recipe/R, list/contents)
-	if(!R.tools.len)
+/datum/component/personal_crafting/proc/check_tools(atom/source, datum/crafting_recipe/recipe, list/surroundings)
+	if(!length(recipe.tool_behaviors) && !length(recipe.tool_paths))
 		return TRUE
-	var/list/possible_tools = list()
+	var/list/available_tools = list()
 	var/list/present_qualities = list()
-	present_qualities |= contents["tool_behaviour"]
-	for(var/obj/item/I in user.contents)
-		if(istype(I, /obj/item/organ/cyberimp/arm/toolset))
-			var/obj/item/organ/cyberimp/arm/toolset/T = I
-			if(T.owner == user)
-				for(var/obj/item/implant_item in I.contents)
-					possible_tools += implant_item.type
+
+	for(var/obj/item/contained_item in source.contents)
+		if(istype(contained_item, /obj/item/organ/cyberimp/arm/toolset))
+			var/obj/item/organ/cyberimp/arm/toolset/toolset = contained_item
+			if(toolset.owner == source)
+				for(var/obj/item/implant_item in contained_item.contents)
+					available_tools += implant_item.type
 					if(implant_item.tool_behaviour)
-						present_qualities.Add(implant_item.tool_behaviour)
-		if(istype(I, /obj/item/storage))
-			for(var/obj/item/SI in I.contents)
-				possible_tools += SI.type
-				if(SI.tool_behaviour)
-					present_qualities.Add(SI.tool_behaviour)
+						present_qualities[implant_item.tool_behaviour] = TRUE
+		if(istype(contained_item, /obj/item/storage))
+			for(var/obj/item/subcontained_item in contained_item.contents)
+				available_tools += subcontained_item.type
+				if(subcontained_item.tool_behaviour)
+					present_qualities[subcontained_item.tool_behaviour] = TRUE
 
-		possible_tools += I.type
+		available_tools[contained_item.type] = TRUE
+		if(contained_item.tool_behaviour)
+			available_tools[contained_item.tool_behaviour] = TRUE
 
-		if(I.tool_behaviour)
-			present_qualities.Add(I.tool_behaviour)
+	for(var/quality in surroundings["tool_behaviour"])
+		present_qualities[quality] = TRUE
 
-	possible_tools |= contents["other"]
+	for(var/path in surroundings["other"])
+		available_tools[path] = TRUE
 
-	main_loop:
-		for(var/A in R.tools)
-			if(A in present_qualities)
+	for(var/required_quality in recipe.tool_behaviors)
+		if(present_qualities[required_quality])
+			continue
+		return FALSE
+
+	for(var/required_path in recipe.tool_paths)
+		var/found_this_tool = FALSE
+		for(var/tool_path in available_tools)
+			if(!ispath(required_path, tool_path))
 				continue
-			else
-				for(var/I in possible_tools)
-					if(ispath(I, A))
-						continue main_loop
-			return FALSE
+			found_this_tool = TRUE
+			break
+		if(found_this_tool)
+			continue
+		return FALSE
+
 	return TRUE
 
 /datum/component/personal_crafting/proc/construct_item(mob/user, datum/crafting_recipe/R)

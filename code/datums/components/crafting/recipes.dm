@@ -61,7 +61,7 @@
 				/obj/item/gun/energy/e_gun/dragnet = 1,
 				/obj/item/stock_parts/cell = 1,
 				/obj/item/assembly/prox_sensor = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	time = 6 SECONDS
 	category = CAT_ROBOT
 
@@ -73,7 +73,7 @@
 				/obj/item/melee/baton = 1,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
-	tools = list(TOOL_WELDER)
+	tool_behaviors = list(TOOL_WELDER)
 	time = 6 SECONDS
 	category = CAT_ROBOT
 
@@ -179,7 +179,7 @@
 		/obj/item/stock_parts/capacitor = 1)
 	parts = list(/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/capacitor = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	time = 20 SECONDS
 	category = CAT_MISC
 
@@ -190,7 +190,7 @@
 				/obj/item/stack/cable_coil = 3,
 				/obj/item/weaponcrafting/receiver = 1, //it recieves the blood
 				/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1)
-	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
+	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_WELDER)
 	time = 15 SECONDS
 	category = CAT_MISC
 
@@ -199,7 +199,7 @@
 	result = /obj/item/organ/lungs/ghetto
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 2,
 				/obj/item/weaponcrafting/receiver = 1) //it recieves the oxygen
-	tools = list(TOOL_WELDER)
+	tool_behaviors = list(TOOL_WELDER)
 	time = 15 SECONDS
 	category = CAT_MISC
 
@@ -240,7 +240,7 @@
 	name = "Hand-Pressed Paper"
 	time = 3 SECONDS
 	reqs = list(/datum/reagent/water = 50, /obj/item/stack/sheet/mineral/wood = 1)
-	tools = list(/obj/item/hatchet)
+	tool_paths = list(/obj/item/hatchet)
 	result = /obj/item/paper_bin/bundlenatural
 	category = CAT_MISC
 
@@ -315,7 +315,7 @@
 /datum/crafting_recipe/shutters
 	name = "Mechanical Shutter"
 	reqs = list(/obj/item/stack/sheet/plasteel = 10, /obj/item/stack/cable_coil = 5, /obj/item/electronics/airlock = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 10 SECONDS
 	result = /obj/machinery/door/poddoor/shutters/preopen
 	category = CAT_STRUCTURES
@@ -323,7 +323,7 @@
 /datum/crafting_recipe/blastdoor
 	name = "Blastdoor"
 	reqs = list(/obj/item/stack/sheet/plasteel = 20, /obj/item/stack/cable_coil = 10, /obj/item/electronics/airlock = 1)
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 20 SECONDS
 	result = /obj/machinery/door/poddoor/preopen
 	category = CAT_STRUCTURES
@@ -432,7 +432,7 @@
 	name = "Makeshift Rapid Cable Layer"
 	result = /obj/item/rcl/ghetto
 	time = 4 SECONDS
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
+	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH)
 	reqs = list(/obj/item/stack/sheet/metal = 15)
 	category = CAT_TOOLS
 
@@ -443,14 +443,14 @@
 	reqs = list(/obj/item/stack/sheet/plasteel = 3,
 		        /obj/item/stack/sheet/mineral/wood = 20,
 		        /obj/item/stack/cable_coil = 10)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
 	category = CAT_STRUCTURES
 
 /datum/crafting_recipe/aitater
 	name = "intelliTater"
 	result = /obj/item/aicard/aitater
 	time = 3 SECONDS
-	tools = list(TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/aicard = 1,
 					/obj/item/reagent_containers/food/snacks/grown/potato = 1,
 					/obj/item/stack/cable_coil = 5)
@@ -460,7 +460,7 @@
 	name = "intelliLantern"
 	result = /obj/item/aicard/aispook
 	time = 3 SECONDS
-	tools = list(TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/aicard = 1,
 					/obj/item/reagent_containers/food/snacks/grown/pumpkin = 1,
 					/obj/item/stack/cable_coil = 5)
@@ -479,7 +479,7 @@
 				/datum/reagent/water = 5,
 				/datum/reagent/consumable/milk = 5,
 				/obj/item/reagent_containers/glass/bucket = 1)
-	tools = list(TOOL_CROWBAR)
+	tool_behaviors = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 3 SECONDS
 
@@ -490,7 +490,7 @@
 				/datum/reagent/water = 5,
 				/datum/reagent/consumable/milk = 5,
 				/obj/item/reagent_containers/glass/bucket = 1)
-	tools = list(TOOL_CROWBAR)
+	tool_behaviors = list(TOOL_CROWBAR)
 	category = CAT_MISC
 	time = 3 SECONDS
 
@@ -608,7 +608,7 @@
 /datum/crafting_recipe/epinephrine_medipen
 	name = "Epinephrine Medipen"
 	result = /obj/item/reagent_containers/autoinjector/medipen
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 2 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
@@ -618,7 +618,7 @@
 /datum/crafting_recipe/atropine_medipen
 	name = "Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 4 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
@@ -628,7 +628,7 @@
 /datum/crafting_recipe/maint_pumpup
 	name = "Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 4 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
@@ -706,7 +706,7 @@
 	result = /obj/item/stack/medical/ointment
 	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10)
-	tools = list(/obj/item/weldingtool)
+	tool_paths = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/antisepticointment
@@ -715,7 +715,7 @@
 	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10,
 				/datum/reagent/silver = 10)
-	tools = list(/obj/item/weldingtool)
+	tool_paths = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh
@@ -750,7 +750,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/rightprostheticarm
@@ -760,7 +760,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/leftprostheticleg
@@ -770,7 +770,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/rightprostheticleg
@@ -780,5 +780,5 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 10)
-	tools = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
+	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL

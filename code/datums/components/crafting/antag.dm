@@ -9,7 +9,7 @@
 	result = /obj/item/melee/baseball_bat/metal_bat
 	reqs = list(/obj/item/stack/sheet/mineral/titanium = 10
 				)
-	tools = list(TOOL_WELDER) //to weld the bat together
+	tool_behaviors = list(TOOL_WELDER) //to weld the bat together
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_available = FALSE
@@ -46,7 +46,7 @@
 				/obj/item/assembly/igniter = 1,
 				/obj/item/pipe = 1,
 				/obj/item/assembly/mousetrap = 1)
-	tools = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -60,7 +60,7 @@
 				/obj/item/stack/rods = 1)
 	parts = list(/obj/item/assembly/igniter = 1,
 				/obj/item/weldingtool = 1)
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -73,7 +73,7 @@
 				/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/rods = 2,
            		/obj/item/stack/tape = 3)
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
