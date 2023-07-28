@@ -151,6 +151,7 @@
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
 	digResult = /obj/item/stack/sheet/mineral/snow
+	flammability = -5
 
 /turf/open/floor/plating/asteroid/snow/getDug()
 	..()

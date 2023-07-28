@@ -22,6 +22,17 @@ SUBSYSTEM_DEF(area_contents)
 	msg = "A:[length(currentrun)] MR:[length(marked_for_clearing)] TC:[total_to_clear] CF:[total_clearing_from]"
 	return ..()
 
+/datum/controller/subsystem/area_contents/get_metrics()
+	. = ..()
+	var/total_clearing_from = 0
+	var/total_to_clear = 0
+	for(var/area/to_clear as anything in marked_for_clearing)
+		total_to_clear += length(to_clear.turfs_to_uncontain)
+		total_clearing_from += length(to_clear.contained_turfs)
+	.["areas"] = length(currentrun)
+	.["marked_for_clearing"] = length(marked_for_clearing)
+	.["total_to_clear"] = total_to_clear
+	.["total_clearing_from"] = total_clearing_from
 
 /datum/controller/subsystem/area_contents/fire(resumed)
 	if(!resumed)
