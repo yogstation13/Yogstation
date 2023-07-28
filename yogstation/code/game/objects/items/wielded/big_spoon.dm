@@ -26,7 +26,6 @@
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 2, \
 		force_wielded = 16, \
-		icon_wielded = "[base_icon_state]1", \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
@@ -37,6 +36,6 @@
 /obj/item/bigspoon/proc/on_unwield(atom/source, mob/living/user)
 	hitsound = initial(hitsound)
 
-/obj/item/bigspoon/update_icon_state()
+/obj/item/bigspoon/update_icon_state() //i don't know why it's item_state rather than icon_state like every other wielded weapon //because you're changing in-hand icons not the inventory icon
 	. = ..()
-	item_state = "[base_icon_state]0" //i don't know why it's item_state rather than icon_state like every other wielded weapon //because you're changing in-hand icons not the inventory icon
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
