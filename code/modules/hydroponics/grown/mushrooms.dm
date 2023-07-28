@@ -1,5 +1,6 @@
 /obj/item/reagent_containers/food/snacks/grown/mushroom
 	name = "mushroom"
+	icon_state = "reishi" // Not an accurate icon_state, but needed for crafting menu.
 	bitesize_mod = 2
 	foodtype = VEGETABLES
 	wine_power = 40

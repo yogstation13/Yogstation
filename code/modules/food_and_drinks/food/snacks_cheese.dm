@@ -12,7 +12,7 @@
 /obj/item/reagent_containers/food/snacks/cheesewedge
 	name = "cheese wedge or slice"
 	icon = 'icons/obj/food/cheese.dmi'
-	icon_state = "cheesewheel_slice"
+	icon_state = "cheesewheel_slice" // Not an accurate icon_state, but needed for crafting menu.
 	desc = "A wedge or slice of cheese."
 	foodtype = DAIRY
 
