@@ -95,7 +95,7 @@
 
 	var/speed_mod = 1
 	if(user == target)
-		speed_mod *= 3 // harder to do on yourself
+		speed_mod *= 1.5 // harder to do on yourself, but not "wait 15 seconds for a single step" hard
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE

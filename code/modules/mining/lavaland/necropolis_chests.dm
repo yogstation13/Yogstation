@@ -1730,18 +1730,17 @@ GLOBAL_LIST_EMPTY(aide_list)
 	selfcharge = 1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike
+/obj/item/melee/spear/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "stalwart_spear0"
+	base_icon_state = "stalwart_spear"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "ancient control rod"
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
 	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
-	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	w_class = WEIGHT_CLASS_SMALL
-	var/w_class_on = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BELT
 	force = 0
 	throwforce = 0
@@ -1749,41 +1748,43 @@ GLOBAL_LIST_EMPTY(aide_list)
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	sharpness = SHARP_NONE
 	block_chance = 0
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	var/w_class_on = WEIGHT_CLASS_HUGE
 	var/fauna_damage_bonus = 0
 	var/fauna_damage_type = BRUTE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike/update_icon_state()
+/obj/item/melee/spear/bonespear/stalwartpike/Initialize(mapload)
 	. = ..()
-	if(wielded)
-		icon_state = "stalwart_spear1"
-	else
-		icon_state = "stalwart_spear0"
+	AddComponent(/datum/component/two_handed, \
+		icon_wielded = "[base_icon_state]1", \
+		wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/melee/spear/bonespear/stalwartpike/update_icon_state()
+	. = ..()
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
-/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
-	. = ..()
-	if(wielded)
-		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
-		sharpness = SHARP_POINTY
-		w_class = w_class_on
-		block_chance = 25
-		force = 8
-		fauna_damage_bonus = 52
+/obj/item/melee/spear/bonespear/stalwartpike/proc/on_wield(atom/source, mob/living/carbon/M)
+	playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
+	sharpness = SHARP_POINTY
+	w_class = w_class_on
+	block_chance = 25
+	force = 8
+	fauna_damage_bonus = 52
 
-/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
-	if(wielded)
-		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
-		sharpness = initial(sharpness)
-		w_class = initial(w_class)
-		force = initial(force)
-		block_chance = initial(block_chance)
-		fauna_damage_bonus = initial(fauna_damage_bonus)
-	. = ..()
+/obj/item/melee/spear/bonespear/stalwartpike/proc/on_unwield(atom/source, mob/living/carbon/M)
+	playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
+	sharpness = initial(sharpness)
+	w_class = initial(w_class)
+	force = initial(force)
+	block_chance = initial(block_chance)
+	fauna_damage_bonus = initial(fauna_damage_bonus)
 
-/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+/obj/item/melee/spear/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!proximity || !wielded)
+	if(!proximity || !HAS_TRAIT(src, TRAIT_WIELDED))
 		return
 	if(isliving(target))
 		var/mob/living/L = target
@@ -1802,7 +1803,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
-			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/melee/spear/bonespear/stalwartpike(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff

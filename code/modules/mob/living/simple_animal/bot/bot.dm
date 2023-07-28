@@ -3,7 +3,7 @@
 	icon = 'icons/mob/aibots.dmi'
 	layer = MOB_LAYER
 	gender = NEUTER
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	wander = 0
 	healable = 0
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
@@ -298,16 +298,7 @@
 		else
 			to_chat(user, span_warning("The maintenance panel is locked."))
 	else if(W.GetID())
-		if(bot_core.allowed(user) && !open && !emagged)
-			locked = !locked
-			to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
-		else
-			if(emagged)
-				to_chat(user, span_danger("ERROR"))
-			if(open)
-				to_chat(user, span_warning("Please close the access panel before locking it."))
-			else
-				to_chat(user, span_warning("Access denied."))
+		togglelock(user)
 	else if(istype(W, /obj/item/paicard))
 		insertpai(user, W)
 	else if(istype(W, /obj/item/hemostat) && paicard)
@@ -336,6 +327,21 @@
 			if(W.force) //if force is non-zero
 				do_sparks(5, TRUE, src)
 			..()
+
+/mob/living/simple_animal/bot/proc/togglelock(mob/user)
+	if(bot_core.allowed(user) && !open && !emagged)
+		locked = !locked
+		to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
+	else
+		if(emagged)
+			to_chat(user, span_danger("ERROR"))
+		if(open)
+			to_chat(user, span_warning("Please close the access panel before locking it."))
+		else
+			to_chat(user, span_warning("Access denied."))
+
+/mob/living/simple_animal/bot/AltClick(mob/user)
+	togglelock(user)
 
 /mob/living/simple_animal/bot/bullet_act(obj/item/projectile/Proj)
 	if(Proj && (Proj.damage_type == BRUTE || Proj.damage_type == BURN))

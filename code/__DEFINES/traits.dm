@@ -228,6 +228,7 @@
 #define TRAIT_QUICK_CARRY		"quick-carry"
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
 #define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_STRONG_GRIP		"strong-grip"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
@@ -272,6 +273,8 @@
 #define TRAIT_NOVEHICLE	"no_vehicle"
 /// BALD!!!
 #define TRAIT_BALD "bald"
+/// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
+#define TRAIT_FARADAYCAGE "faraday_cage"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
@@ -287,6 +290,10 @@
 // item traits
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+/// Properly wielded two handed item
+#define TRAIT_WIELDED "wielded"
+/// The items needs two hands to be carried
+#define TRAIT_NEEDS_TWO_HANDS "needstwohands"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 

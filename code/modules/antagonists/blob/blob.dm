@@ -83,7 +83,7 @@
 		to_chat(owner, "<span class='big'><font color=\"#EE4000\">You will automatically pop and place your blob core in [DisplayTimeText(autoplace_time)].</font></span>")
 
 /datum/action/innate/blobpop/Activate(timer_activated = FALSE)
-	var/mob/old_body = owner
+	var/mob/living/old_body = owner
 	if(!owner)
 		return
 	var/datum/antagonist/blob/blobtag = owner.mind.has_antag_datum(/datum/antagonist/blob)

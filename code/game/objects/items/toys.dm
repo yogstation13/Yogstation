@@ -129,7 +129,7 @@
 
 /obj/item/toy/mballoon
 	name = "toy mballoon"
-	desc = "A blue baloon, it looks.. mentory?"
+	desc = "A blue balloon, it looks.. mentory?"
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -289,7 +289,7 @@
 			return
 		else
 			to_chat(user, span_notice("You attach the ends of the two plastic swords, making a single double-bladed toy! You're fake-cool."))
-			var/obj/item/twohanded/dualsaber/toy/newSaber = new /obj/item/twohanded/dualsaber/toy(user.loc)
+			var/obj/item/melee/dualsaber/toy/newSaber = new /obj/item/melee/dualsaber/toy(user.loc)
 			if(hacked) // That's right, we'll only check the "original" "sword".
 				newSaber.hacked = TRUE
 				newSaber.saber_color = "rainbow"
@@ -369,7 +369,7 @@
 /*
  * Subtype of Double-Bladed Energy Swords
  */
-/obj/item/twohanded/dualsaber/toy
+/obj/item/melee/dualsaber/toy
 	name = "double-bladed toy sword"
 	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
 	force = 0
@@ -379,45 +379,43 @@
 	throw_range = 5
 	attack_verb = list("attacked", "struck", "hit")
 
-/obj/item/twohanded/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
-/obj/item/twohanded/dualsaber/toy/IsReflect()//Stops Toy Dualsabers from reflecting energy projectiles
+/obj/item/melee/dualsaber/toy/IsReflect() //Stops Toy Dualsabers from reflecting energy projectiles
 	return 0
 
 /*
  * Subtype of Vxtvul Hammer
  */
-/obj/item/twohanded/vxtvulhammer/toy
+/obj/item/melee/vxtvulhammer/toy
 	name = "toy sledgehammer"
 	desc = "A Donksoft motorized hammer with realistic flashing lights and speakers."
-	force = 0
-	force_wielded = 0 // after recreating the dozen procs this thing has I decided it should be a subtype
+	base_icon_state = "vxtvul_hammer"
 	throwforce = 0
 	resistance_flags = NONE
 	armour_penetration = 0
 	block_chance = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	toy = TRUE
+
+	force = 0
+	force_wielded = 0
+
 	var/pirated = FALSE // knockoff brand!
 
-/obj/item/twohanded/vxtvulhammer/toy/Initialize(mapload)
+/obj/item/melee/vxtvulhammer/toy/Initialize(mapload)
 	. = ..()
 	if(pirated || prob(10)) // man i got scammed!
 		pirated = TRUE
 		name = "toy pirate sledgehammer"
 		desc += " This one looks different from the ones you see on commercials..."
-		icon_state = "vxtvul_hammer_pirate0-0"
+		base_icon_state = "vxtvul_hammer_pirate"
+		icon_state = "[base_icon_state]0-0"
 		update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/vxtvulhammer/toy/update_icon_state()
-	. = ..()
-	if(!pirated)
-		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
-	else
-		icon_state = "vxtvul_hammer[wielded]-[supercharged]"
-
-/obj/item/twohanded/vxtvulhammer/toy/pirate
+/obj/item/melee/vxtvulhammer/toy/pirate
+	base_icon_state = "vxtvul_hammer_pirate"
 	pirated = TRUE
 
 /obj/item/toy/katana

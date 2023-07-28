@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	desc = "A mysterious being that stands by its charge, ever vigilant."
 	speak_emote = list("hisses")
 	gender = NEUTER
-	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
+	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
 	bubble_icon = "guardian"
 	response_help  = "passes through"
 	response_disarm = "flails at"

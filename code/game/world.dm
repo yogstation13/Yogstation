@@ -24,6 +24,8 @@ GLOBAL_VAR(restart_counter)
 	world.Profile(PROFILE_START)
 #endif
 
+	SSmetrics.world_init_time = REALTIMEOFDAY
+
 	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl

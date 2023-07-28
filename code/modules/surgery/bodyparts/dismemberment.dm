@@ -364,7 +364,7 @@
 		LAZYADD(C.all_scars, thing)
 
 	update_bodypart_damage_state()
-	if(C.dna && C.dna.species && (ROBOTIC_LIMBS in C.dna.species.species_traits) && src.status == BODYPART_ROBOTIC)
+	if(C.dna && C.dna.species && (C.mob_biotypes & MOB_ROBOTIC) && src.status == BODYPART_ROBOTIC)
 		src.render_like_organic = TRUE
 
 	C.updatehealth()
@@ -444,7 +444,7 @@
 
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
-			if(H.dna && H.dna.species && (ROBOTIC_LIMBS in H.dna.species.species_traits))
+			if(H.dna && H.dna.species && (H.mob_biotypes & MOB_ROBOTIC))
 				L.change_bodypart_status(BODYPART_ROBOTIC)
 				L.render_like_organic = TRUE
 			if(limb_zone == "head" && H.dna && H.dna.species && (NOMOUTH in H.dna.species.species_traits))
