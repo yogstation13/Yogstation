@@ -37,7 +37,7 @@
 	var/atom/item = initial(path)
 	if(ispath(path, /datum/reagent))
 		var/datum/reagent/reagent = path
-		item = /obj/item/reagent_containers/food/condiment/flour //TODO:initial(reagent.default_container)
+		item = initial(reagent.default_container)
 
 	var/icon_file = initial(item.icon)
 	var/icon_state = initial(item.icon_state)
