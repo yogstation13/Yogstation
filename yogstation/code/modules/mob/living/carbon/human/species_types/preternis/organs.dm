@@ -116,6 +116,6 @@
 		owner.reagents.remove_reagent(/datum/reagent/consumable/nutriment, 1) //worse for actually eating (not that it matters for preterni)
 
 /obj/item/organ/stomach/preternis/emp_act(severity)
-	owner.vomit()
+	owner.vomit(stun=FALSE) // fuck that
 	owner.adjust_disgust(20)
 	to_chat(owner, "<span class='warning'>You feel violently ill as the EMP causes your stomach to kick into high gear.</span>")
