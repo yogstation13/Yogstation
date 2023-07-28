@@ -367,6 +367,9 @@
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
 
+		if(ispath(R.type, /datum/crafting_recipe/food/))
+			continue
+					
 		if((R.category != cur_category) || (R.subcategory != cur_subcategory))
 			continue
 		craftability["[REF(R)]"] = check_contents(user, R, surroundings)
@@ -385,6 +388,9 @@
 			continue
 
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+			continue
+
+		if(ispath(R.type, /datum/crafting_recipe/food/))
 			continue
 
 		if(isnull(crafting_recipes[R.category]))
@@ -450,12 +456,10 @@
 	catalyst_text = replacetext(catalyst_text,",","",-1)
 	data["catalyst_text"] = catalyst_text
 
-	for(var/a in R.tools)
-		if(ispath(a, /obj/item))
-			var/obj/item/b = a
-			tool_text += " [initial(b.name)],"
-		else
-			tool_text += " [a],"
+	for(var/behavior in R.tool_behaviors)
+		tool_text += " [behavior],"
+	for(var/obj/item/tool in R.tool_paths)
+		tool_text += " [initial(tool.name)],"
 	tool_text = replacetext(tool_text,",","",-1)
 	data["tool_text"] = tool_text
 

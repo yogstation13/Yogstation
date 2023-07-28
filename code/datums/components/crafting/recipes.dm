@@ -11,7 +11,6 @@
 	/// String defines of items needed but not consumed.
 	var/list/tool_behaviors
 	/// Type paths of items needed but not consumed.
-	var/list/tools
 	var/list/tool_paths //type paths of items needed but not consumed
 	var/time = 3 SECONDS //time in seconds
 	var/parts[] = list() //type paths of items that will be placed in the result
