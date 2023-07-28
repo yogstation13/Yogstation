@@ -9,6 +9,7 @@
 	glass_name = "glass of tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
+	default_container = /obj/item/reagent_containers/blood
 
 /datum/reagent/blood/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(L) //bloodsucker start
@@ -129,6 +130,7 @@
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
 	process_flags = ORGANIC | SYNTHETIC
+	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
 
 /*
  *	Water reaction to turf
@@ -210,7 +212,8 @@
 	glass_name = "glass of holy water"
 	glass_desc = "A glass of holy water."
 	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
-
+	default_container = /obj/item/reagent_containers/food/drinks/bottle/holywater
+	
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_HOLY, type)

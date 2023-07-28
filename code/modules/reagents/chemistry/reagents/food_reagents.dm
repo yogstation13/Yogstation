@@ -179,6 +179,7 @@
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 100 // Hyperglycaemic shock
 	taste_description = "sweetness"
+	default_container = /obj/item/reagent_containers/food/condiment/sugar
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
 	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
@@ -203,14 +204,15 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
-
+	default_container = /obj/item/reagent_containers/food/condiment/soysauce
+	
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "ketchup"
-
+	default_container = /obj/item/reagent_containers/food/condiment/pack/ketchup
 
 /datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
@@ -218,6 +220,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "hot peppers"
 	taste_mult = 1.5
+	default_container = /obj/item/reagent_containers/glass/bottle/capsaicin
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M)
 	var/heating = 0
@@ -248,6 +251,7 @@
 	description = "A special oil that noticably chills the body. Extracted from Icepeppers and slimes."
 	color = "#8BA6E9" // rgb: 139, 166, 233
 	taste_description = "mint"
+	default_container = /obj/item/reagent_containers/glass/bottle/frostoil
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/carbon/M)
 	var/cooling = 0
@@ -352,6 +356,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	taste_description = "salt"
+	default_container = /obj/item/reagent_containers/food/condiment/saltshaker
 
 /datum/reagent/consumable/sodiumchloride/reaction_turf(turf/T, reac_volume) //Creates an umbra-blocking salt pile
 	if(!istype(T))
@@ -366,6 +371,7 @@
 	reagent_state = SOLID
 	// no color (ie, black)
 	taste_description = "pepper"
+	default_container = /obj/item/reagent_containers/food/condiment/peppermill
 
 /datum/reagent/consumable/coco
 	name = "Coco Powder"
@@ -476,6 +482,7 @@
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "sweetness"
+	default_container = /obj/item/reagent_containers/food/condiment/enzyme
 
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
@@ -512,6 +519,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "chalky wheat"
+	default_container = /obj/item/reagent_containers/food/condiment/flour
 
 /datum/reagent/consumable/flour/reaction_turf(turf/T, reac_volume)
 	if(!isspaceturf(T))
@@ -545,6 +553,7 @@
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "rice"
+	default_container = /obj/item/reagent_containers/food/condiment/rice
 
 /datum/reagent/consumable/vanilla
 	name = "Vanilla Powder"
@@ -585,7 +594,7 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	taste_description = "sweetness"
-
+	
 /datum/reagent/consumable/honey/on_mob_life(mob/living/carbon/M)
 	M.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
 	if(prob(55))
@@ -608,7 +617,8 @@
 	description = "An white and oily mixture of mixed egg yolks."
 	color = "#DFDFDF"
 	taste_description = "mayonnaise"
-
+	default_container = /obj/item/reagent_containers/food/condiment/mayonnaise
+	
 /datum/reagent/consumable/tearjuice
 	name = "Tear Juice"
 	description = "A blinding substance extracted from certain onions."
