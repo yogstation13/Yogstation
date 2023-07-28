@@ -59,10 +59,6 @@
 
 		requirements_list[requirement_path] = instances_list
 
-	for(var/requirement_path in R.chem_catalysts)
-		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
-			return FALSE
-
 	return R.check_requirements(user, requirements_list)
 
 /datum/component/personal_crafting/proc/get_environment(atom/a, list/blacklist = null, radius_range = 1)
@@ -368,11 +364,6 @@
 				material_occurences[req] = 1
 			else
 				material_occurences[req] += 1
-		for(var/req in recipe.chem_catalysts)
-			if(!(req in material_occurences))
-				material_occurences[req] = 1
-			else
-				material_occurences[req] += 1
 
 		data["recipes"] += list(build_crafting_data(recipe))
 
@@ -430,31 +421,6 @@
 			var/mob/user = usr
 			update_static_data(user)
 			. = TRUE
-	/*	if(..())
-		return
-	switch(action)
-		if("make")
-			var/datum/crafting_recipe/TR = locate(params["recipe"]) in GLOB.crafting_recipes
-			busy = TRUE
-			ui_interact(usr)
-			var/fail_msg = construct_item(usr, TR)
-			if(!fail_msg)
-				to_chat(usr, span_notice("[TR.name] constructed."))
-			else
-				to_chat(usr, span_warning("Construction failed[fail_msg]"))
-			busy = FALSE
-		if("toggle_recipes")
-			display_craftable_only = !display_craftable_only
-			. = TRUE
-		if("toggle_compact")
-			display_compact = !display_compact
-			. = TRUE
-
-		if("set_category")
-			cur_category = params["category"]
-			cur_category = params["subcategory"] || ""
-			. = TRUE
-	*/
 
 /datum/component/personal_crafting/ui_assets(mob/user)
 	return list(
@@ -490,28 +456,6 @@
 	if(recipe.name) // Override if recipe has a name
 		data["name"] = recipe.name
 
-	/*
-	if(ispath(recipe.result, /datum/reagent))
-		var/datum/reagent/reagent = recipe.result
-		if(recipe.result_amount > 1)
-			data["name"] = "[data["name"]] [recipe.result_amount]u"
-		data["desc"] = initial(reagent.description)
-	else if(ispath(recipe.result, /obj/item/pipe))
-		var/obj/item/pipe/pipe_obj = recipe.result
-		var/obj/pipe_real = initial(pipe_obj.pipe_type)
-		data["desc"] = initial(pipe_real.desc)
-	else
-		if(ispath(recipe.result, /obj/item/stack) && recipe.result_amount > 1)
-			data["name"] = "[data["name"]] [recipe.result_amount]x"
-		data["desc"] = initial(atom.desc)
-	*/
-
-	// Crafting
-	if(recipe.non_craftable)
-		data["non_craftable"] = recipe.non_craftable
-	if(recipe.steps)
-		data["steps"] = recipe.steps
-
 	// Tools
 	if(recipe.tool_behaviors)
 		data["tool_behaviors"] = recipe.tool_behaviors
@@ -520,41 +464,12 @@
 		for(var/req_atom as anything in recipe.tool_paths)
 			data["tool_paths"] += atoms.Find(req_atom)
 
-	// Machinery
-	if(recipe.machinery)
-		data["machinery"] = list()
-		for(var/req_atom as anything in recipe.machinery)
-			data["machinery"] += atoms.Find(req_atom)
-
 	// Ingredients / Materials
 	if(recipe.reqs.len)
 		data["reqs"] = list()
 		for(var/req_atom as anything in recipe.reqs)
 			var/id = atoms.Find(req_atom)
 			data["reqs"]["[id]"] = recipe.reqs[req_atom]
-
-	// Catalysts
-	if(recipe.chem_catalysts.len)
-		data["chem_catalysts"] = list()
-		for(var/req_atom as anything in recipe.chem_catalysts)
-			var/id = atoms.Find(req_atom)
-			data["chem_catalysts"]["[id]"] = recipe.chem_catalysts[req_atom]
-
-	// Reaction data
-	if(recipe.reaction)
-		data["is_reaction"] = TRUE
-		var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list[recipe.reaction]
-		if(!data["steps"])
-			data["steps"] = list()
-		if(!reaction.required_container && (recipe.reqs.len > 1 || reaction.required_catalysts.len))
-			data["steps"] += "Mix all ingredients together"
-		if(reaction.required_temp > T20C)
-			data["steps"] += "Heat up to [reaction.required_temp]K"
-		if(reaction.required_container)
-			var/atom/req_atom = reaction.required_container
-			var/id = atoms.Find(req_atom)
-			data["reqs"]["[id]"] = 1
-			data["steps"] += "Add all ingredients into the [initial(req_atom.name)]"
 
 	return data
 

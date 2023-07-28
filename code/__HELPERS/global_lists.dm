@@ -72,7 +72,7 @@
 	init_crafting_recipes()
 	init_crafting_recipes_atoms()
 
-/// Inits crafting recipe lists
+/// Inits crafting recipe lists.
 /proc/init_crafting_recipes(list/crafting_recipes)
 	for(var/path in subtypesof(/datum/crafting_recipe))
 		var/is_cooking = ispath(path, /datum/crafting_recipe/food/)
@@ -84,7 +84,7 @@
 			else
 				GLOB.crafting_recipes += recipe
 
-/// Inits atoms used in crafting recipes
+/// Inits atoms used in crafting recipes.
 /proc/init_crafting_recipes_atoms()
 	var/list/recipe_lists = list(
 		GLOB.crafting_recipes,
@@ -105,21 +105,8 @@
 			for(var/atom/req_atom as anything in recipe.reqs)
 				if(!(req_atom in atom_lists[list_index]))
 					atom_lists[list_index] += req_atom
-			// Catalysts
-			for(var/atom/req_atom as anything in recipe.chem_catalysts)
-				if(!(req_atom in atom_lists[list_index]))
-					atom_lists[list_index] += req_atom
-			// Reaction data - required container
-			if(recipe.reaction)
-				var/required_container = initial(recipe.reaction.required_container)
-				if(required_container && !(required_container in atom_lists[list_index]))
-					atom_lists[list_index] += required_container
 			// Tools
 			for(var/atom/req_atom as anything in recipe.tool_paths)
-				if(!(req_atom in atom_lists[list_index]))
-					atom_lists[list_index] += req_atom
-			// Machinery
-			for(var/atom/req_atom as anything in recipe.machinery)
 				if(!(req_atom in atom_lists[list_index]))
 					atom_lists[list_index] += req_atom
 

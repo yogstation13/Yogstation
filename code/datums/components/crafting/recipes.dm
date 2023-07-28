@@ -1,32 +1,31 @@
-///If the machine is used/deleted in the crafting process
+/// If the machine is used/deleted in the crafting process
 #define CRAFTING_MACHINERY_CONSUME 1
-///If the machine is only "used" i.e. it checks to see if it's nearby and allows crafting, but doesn't delete it
+/// If the machine is only "used" i.e. it checks to see if it's nearby and allows crafting, but doesn't delete it
 #define CRAFTING_MACHINERY_USE 0
 
 /datum/crafting_recipe
+	/// In-game display name.
 	var/name = "" //in-game display name
-	var/reqs[] = list() //type paths of items consumed associated with how many are needed
-	var/blacklist[] = list() //type paths of items explicitly not allowed as an ingredient
-	var/result //type path of item resulting from this craft
+	/// Type paths of items consumed associated with how many are needed.
+	var/reqs[] = list() 
+	/// Type paths of items explicitly not allowed as an ingredient.
+	var/blacklist[] = list()
+	/// Type path of item resulting from this craft.
+	var/result
 	/// String defines of items needed but not consumed.
 	var/list/tool_behaviors
 	/// Type paths of items needed but not consumed.
-	var/list/tool_paths //type paths of items needed but not consumed
-	var/time = 3 SECONDS //time in seconds
-	var/parts[] = list() //type paths of items that will be placed in the result
-	var/chem_catalysts[] = list() //like tools but for reagents
-	var/category = CAT_NONE //where it shows up in the crafting UI
-	var/always_available = TRUE //Set to FALSE if it needs to be learned first.
-	///Required machines for the craft, set the assigned value of the typepath to CRAFTING_MACHINERY_CONSUME or CRAFTING_MACHINERY_USE. Lazy associative list: type_path key -> flag value.
-	var/list/machinery
-	///Should only one object exist on the same turf?
+	var/list/tool_paths
+	/// Time in seconds.
+	var/time = 3 SECONDS
+	/// Type paths of items that will be placed in the result.
+	var/parts[] = list()
+	/// Where it shows up in the crafting UI.
+	var/category = CAT_NONE
+	/// Set to FALSE if it needs to be learned fast.
+	var/always_available = TRUE
+	/// Should only one object exist on the same turf?
 	var/one_per_turf = FALSE
-	/// Steps needed to achieve the result
-	var/list/steps
-/// Whether the result can be crafted with a crafting menu button
-	var/non_craftable
-	/// Chemical reaction described in the recipe
-	var/datum/chemical_reaction/reaction
 
 /datum/crafting_recipe/New()
 	if(!(result in reqs))

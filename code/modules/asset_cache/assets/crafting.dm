@@ -16,15 +16,19 @@
 	for(var/atom in GLOB.cooking_recipes_atoms)
 		add_atom_icon(atom, id++)
 
-/// Adds the atom icon to the spritesheet with given ID.
-/datum/asset/spritesheet/crafting/proc/add_atom_icon(atom, id)
-	var/obj/obj = initial(atom)
-	var/icon_file = initial(obj.icon_preview) || initial(obj.icon)
-	var/icon_state = initial(obj.icon_state_preview) || initial(obj.icon_state)
-	
+/datum/asset/spritesheet/crafting/proc/add_atom_icon(ingredient_typepath, id)
+	var/icon_file
+	var/icon_state
+	var/obj/preview_item = ingredient_typepath
+	if(ispath(ingredient_typepath, /datum/reagent))
+		var/datum/reagent/reagent = ingredient_typepath
+		preview_item = initial(reagent.default_container)
+
+	icon_file ||= initial(preview_item.icon_preview) || initial(preview_item.icon)
+	icon_state ||= initial(preview_item.icon_state_preview) || initial(preview_item.icon_state)
+
 	#ifdef UNIT_TESTS
-	if(!(icon_state in icon_states(icon_file)))
-		stack_trace("Atom [atom] with icon '[icon_file]' missing state '[icon_state]'")
+	if(!icon_exists(icon_file, icon_state, scream = TRUE))
 		return
 	#endif
 

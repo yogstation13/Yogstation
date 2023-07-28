@@ -105,14 +105,9 @@ type Recipe = {
   name: string;
   desc: string;
   category: string;
-  non_craftable: BooleanLike;
-  is_reaction: BooleanLike;
   reqs: Atoms;
-  chem_catalysts: Atoms;
   tool_behaviors: string[];
   tool_paths: string[];
-  machinery: string[];
-  steps: string[];
   foodtypes: string[];
 };
 
@@ -479,9 +474,7 @@ export const PersonalCrafting = (props, context) => {
                       <RecipeContentCompact
                         key={item.ref}
                         item={item}
-                        craftable={
-                          !item.non_craftable && Boolean(craftability[item.ref])
-                        }
+                        craftable={Boolean(craftability[item.ref])}
                         busy={busy}
                         mode={mode}
                       />
@@ -489,9 +482,7 @@ export const PersonalCrafting = (props, context) => {
                       <RecipeContent
                         key={item.ref}
                         item={item}
-                        craftable={
-                          !item.non_craftable && Boolean(craftability[item.ref])
-                        }
+                        craftable={Boolean(craftability[item.ref])}
                         busy={busy}
                         mode={mode}
                         diet={diet}
@@ -620,76 +611,42 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }, context) => {
                   })
                 ).join(', ')}
 
-                {item.chem_catalysts &&
-                  ', ' +
-                    Object.keys(item.chem_catalysts)
-                      .map((atom_id) => {
-                        const name = data.atom_data[(atom_id as any) - 1]?.name;
-                        const is_reagent =
-                          data.atom_data[(atom_id as any) - 1]?.is_reagent;
-                        const amount = item.chem_catalysts[atom_id];
-                        return is_reagent
-                          ? `${name}\xa0${amount}u`
-                          : amount > 1
-                            ? `${name}\xa0${amount}x`
-                            : name;
-                      })
-                      .join(', ')}
-
                 {item.tool_paths &&
                   ', ' +
                     item.tool_paths
                       .map((item) => data.atom_data[(item as any) - 1]?.name)
                       .join(', ')}
-                {item.machinery &&
-                  ', ' +
-                    item.machinery
-                      .map((item) => data.atom_data[(item as any) - 1]?.name)
-                      .join(', ')}
               </Box>
             </Stack.Item>
             <Stack.Item>
-              {!item.non_craftable ? (
-                <Box>
-                  {!!item.tool_behaviors && (
-                    <Tooltip
-                      content={'Tools: ' + item.tool_behaviors.join(', ')}>
-                      <Icon p={1} name="screwdriver-wrench" />
-                    </Tooltip>
-                  )}
-                  <Button
-                    my={0.3}
-                    lineHeight={2.5}
-                    align="center"
-                    content="Make"
-                    disabled={!craftable || busy}
-                    icon={
-                      busy
-                        ? 'circle-notch'
-                        : mode === MODE.cooking
-                          ? 'utensils'
-                          : 'hammer'
-                    }
-                    iconSpin={busy ? 1 : 0}
-                    onClick={() =>
-                      act('make', {
-                        recipe: item.ref,
-                      })
-                    }
-                  />
-                </Box>
-              ) : (
-                item.steps && (
+              <Box>
+                {!!item.tool_behaviors && (
                   <Tooltip
-                    content={item.steps.map((step) => (
-                      <Box key={step}>{step}</Box>
-                    ))}>
-                    <Box fontSize={1.5} p={1}>
-                      <Icon name="circle-question-o" />
-                    </Box>
+                    content={'Tools: ' + item.tool_behaviors.join(', ')}>
+                    <Icon p={1} name="screwdriver-wrench" />
                   </Tooltip>
-                )
-              )}
+                )}
+                <Button
+                  my={0.3}
+                  lineHeight={2.5}
+                  align="center"
+                  content="Make"
+                  disabled={!craftable || busy}
+                  icon={
+                    busy
+                      ? 'circle-notch'
+                      : mode === MODE.cooking
+                        ? 'utensils'
+                        : 'hammer'
+                  }
+                  iconSpin={busy ? 1 : 0}
+                  onClick={() =>
+                    act('make', {
+                      recipe: item.ref,
+                    })
+                  }
+                />
+              </Box>
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -743,18 +700,6 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }, context) => {
                     ))}
                   </Box>
                 )}
-                {item.chem_catalysts && (
-                  <Box>
-                    <GroupTitle title="Catalysts" />
-                    {Object.keys(item.chem_catalysts).map((atom_id) => (
-                      <AtomContent
-                        key={atom_id}
-                        atom_id={atom_id}
-                        amount={item.chem_catalysts[atom_id]}
-                      />
-                    ))}
-                  </Box>
-                )}
                 {(item.tool_paths || item.tool_behaviors) && (
                   <Box>
                     <GroupTitle title="Tools" />
@@ -768,49 +713,29 @@ const RecipeContent = ({ item, craftable, busy, mode, diet }, context) => {
                       ))}
                   </Box>
                 )}
-                {item.machinery && (
-                  <Box>
-                    <GroupTitle title="Machinery" />
-                    {item.machinery.map((atom_id) => (
-                      <AtomContent key={atom_id} atom_id={atom_id} amount={1} />
-                    ))}
-                  </Box>
-                )}
               </Box>
-              {!!item.steps?.length && (
-                <Box>
-                  <GroupTitle title="Steps" />
-                  <ul style={{ 'padding-left': '20px' }}>
-                    {item.steps.map((step) => (
-                      <li key={step}>{step}</li>
-                    ))}
-                  </ul>
-                </Box>
-              )}
             </Stack.Item>
             <Stack.Item pl={1}>
-              {!item.non_craftable && (
-                <Button
-                  width="104px"
-                  lineHeight={2.5}
-                  align="center"
-                  content="Make"
-                  disabled={!craftable || busy}
-                  icon={
-                    busy
-                      ? 'circle-notch'
-                      : mode === MODE.cooking
-                        ? 'utensils'
-                        : 'hammer'
-                  }
-                  iconSpin={busy ? 1 : 0}
-                  onClick={() =>
-                    act('make', {
-                      recipe: item.ref,
-                    })
-                  }
-                />
-              )}
+              <Button
+                width="104px"
+                lineHeight={2.5}
+                align="center"
+                content="Make"
+                disabled={!craftable || busy}
+                icon={
+                  busy
+                    ? 'circle-notch'
+                    : mode === MODE.cooking
+                      ? 'utensils'
+                      : 'hammer'
+                }
+                iconSpin={busy ? 1 : 0}
+                onClick={() =>
+                  act('make', {
+                    recipe: item.ref,
+                  })
+                }
+              />
               {item.nutriments > 0 && (
                 <Box color={'gray'} width={'104px'} lineHeight={1.5} mt={1}>
                   Nutrition: {item.nutriments}
