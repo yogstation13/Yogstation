@@ -1471,6 +1471,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(isobj(target) && target.loc == user)//don't attack if we're clicking on our inventory
+		return
 	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, span_warning("The club fizzles weakly, it seem its power doesn't reach this area.") )
 		return
