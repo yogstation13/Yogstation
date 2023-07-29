@@ -145,7 +145,8 @@
 	for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 		if(!is_station_level(A.z))
 			continue
-		A.overload_lighting()
+		if(prob(75))
+			A.overload_lighting()
 		A.emp_act(EMP_HEAVY) // stationwide blackout
 		if(prob(25)) // chance of some fun effects
 			if(prob(20))

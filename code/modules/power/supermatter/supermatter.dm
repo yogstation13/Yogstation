@@ -160,6 +160,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/antinoblium_attached = FALSE	// The thing that makes it explode more
 	var/corruptor_attached = FALSE		// The thing that reduces support integrity
 	var/resonance_cascading = FALSE		// IT'S NOT SHUTTING DOWN!!!!!!!
+	var/noblium_suppressed = FALSE		// or is it?
 
 	// Radio related variables
 	var/obj/item/radio/radio
@@ -588,10 +589,20 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				if(prob(80))
 					src.fire_nuclear_particle()	// Spawn more radballs at 80% chance each
 
-		if(antinobliumcomp >= 0.5 && antinobmol > 100 && !antinoblium_attached) // don't put this stuff in the SM
+		if(antinobliumcomp >= 0.5 && antinobmol > 100 && nobliumcomp < 0.5 && !antinoblium_attached) // don't put this stuff in the SM
 			investigate_log("[src] has reached criticial antinoblium concentration and started a resonance cascade.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has reached criticial antinoblium concentration and started a resonance cascade.")
 			antinoblium_attached = TRUE // oh god oh fuck
+
+		// adding enough hypernoblium can save it, but only if it hasn't gotten too bad and it wasn't corrupted using the traitor kit
+		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 10 && damage <= damage_archived)
+			support_integrity += 2
+			if(support_integrity >= 100)
+				support_integrity = 100
+				antinoblium_attached = FALSE
+			noblium_suppressed = TRUE
+		else
+			noblium_suppressed = FALSE
 
 		var/device_energy = power * REACTION_POWER_MODIFIER
 
@@ -706,16 +717,21 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				log_game("The supermatter crystal: Warning: Critical coolant mass reached.") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: Warning: Critical coolant mass reached.", INVESTIGATE_SUPERMATTER) // yogs end
 			
-			if(antinoblium_attached && support_integrity <= 0)
-				radio.talk_into(src, "DANGER: RESONANCE CASCADE IMMINENT.", engineering_channel)
-				log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
-				investigate_log("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.", INVESTIGATE_SUPERMATTER) // yogs end
+			if(antinoblium_attached)
+				if(support_integrity <= 10)
+					radio.talk_into(src, "DANGER: RESONANCE CASCADE IMMINENT.", engineering_channel)
+					log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
+					investigate_log("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.", INVESTIGATE_SUPERMATTER) // yogs end
+				else if(noblium_suppressed)
+					radio.talk_into(src, "Paranoblium interface returning to safe operating parameters.", engineering_channel)
+					log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
+					investigate_log("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.", INVESTIGATE_SUPERMATTER) // yogs end
 
 		if(damage > explosion_point)
 			countdown()
 
 	//emagged SM go BRRRRRRR here
-	if(antinoblium_attached)
+	if(antinoblium_attached && !noblium_suppressed)
 		if(prob(10+round(damage/(explosion_point/20),1)*3) & support_integrity>0)//radio chatter to make people panic
 			switch(support_integrity)
 				if(100)
@@ -723,7 +739,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				if(90)
 					radio.talk_into(src, "CHARGE SEQUESTRATION SYSTEM FAILING, ENERGY LEVELS INCREASING!", engineering_channel)
 				if(80)
-					radio.talk_into(src, "COMPLETE FAILURE OF CHARGE SQEQUESTRATION IMMINENT, ACTIVATING EMERGENCY CHARGE DISPERSION SYSTEM!", engineering_channel)
+					radio.talk_into(src, "COMPLETE FAILURE OF CHARGE SEQUESTRATION IMMINENT, ACTIVATING EMERGENCY CHARGE DISPERSION SYSTEM!", engineering_channel)
 				if(70)
 					radio.talk_into(src, "CHARGE DISPERSION SYSTEM ACTIVE. CORRUPTION OF PARANOBLIUM INTERFACE SYSTEM DETECTED, MATTER EMISSION LEVELS RISING", engineering_channel)
 				if(60)
