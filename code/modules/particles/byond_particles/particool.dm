@@ -198,7 +198,6 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 		log_world(nodeName + ":" + elem + ":" + text("[]", elem))
 
 
-
 /datum/particle_editor/ui_act(action, list/params)
 	. = ..()
 	if(.)
@@ -214,20 +213,19 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 			target.remove_particle()
 			. = TRUE
 		if("modify_particle_value")
-			target.modify_particle_value(params["new_data"]["name"], translate_value(params["new_data"]))
-			. = TRUE
+			if(params["new_data"] && params["new_data"]["name"] && translate_value(params["new_data"]))
+				target.modify_particle_value(params["new_data"]["name"], translate_value(params["new_data"]))
+				. = TRUE
 		if("modify_color_value")
 			var/new_color = sanitize_color(input(usr, "Pick new particle color", "Particool Colors!") as color|null)
 			if(new_color)
-				target.modify_particle_value("color",new_color)
+				target.modify_particle_value("color", new_color)
 				. = TRUE
 		if("modify_icon_value")
 			var/icon/new_icon = input("Pick icon:", "Icon") as null|icon
 			if(new_icon && target.particles)
 				target.modify_particle_value("icon", new_icon)
 				. = TRUE
-
-
 
 //movable procs n stuff
 
