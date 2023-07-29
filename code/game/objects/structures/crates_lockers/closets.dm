@@ -209,7 +209,6 @@ GLOBAL_LIST_EMPTY(lockers)
 	opened = TRUE
 	if(!dense_when_open)
 		density = FALSE
-	climb_time *= 0.5 //it's faster to climb onto an open thing
 	dump_contents()
 	animate_door(FALSE)
 	update_appearance(UPDATE_ICON)
@@ -262,7 +261,6 @@ GLOBAL_LIST_EMPTY(lockers)
 		return FALSE
 	take_contents()
 	playsound(loc, close_sound, 15, 1, -3)
-	climb_time = initial(climb_time)
 	opened = FALSE
 	density = TRUE
 	animate_door(TRUE)

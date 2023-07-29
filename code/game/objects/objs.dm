@@ -294,7 +294,9 @@
 /obj/examine(mob/user)
 	. = ..()
 	if(obj_flags & UNIQUE_RENAME)
-		. += span_notice("Use a pen on it to rename it or change its description.")
+		. += span_notice("Use a pen on it to rename it [obj_flags & UNIQUE_REDESC ? "or change its description" : ""].")
+	else if(obj_flags & UNIQUE_REDESC)
+		. += span_notice("Use a pen on it to change its description.")
 	if(unique_reskin && !current_skin)
 		. += span_notice("Alt-click it to reskin it.")
 

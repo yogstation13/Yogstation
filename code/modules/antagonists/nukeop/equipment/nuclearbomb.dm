@@ -588,7 +588,7 @@
 /proc/KillEveryoneOnZLevel(z)
 	if(!z)
 		return
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/living/M in GLOB.mob_list)
 		var/turf/t = get_turf(M)
 		if(M.stat != DEAD && t.z == z && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))
 			M.gib()

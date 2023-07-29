@@ -27,7 +27,7 @@
 	name = "data card"
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has a stripe running down the middle."
 	icon_state = "data_1"
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	var/function = "storage"
 	var/data = "null"
 	var/special = null
