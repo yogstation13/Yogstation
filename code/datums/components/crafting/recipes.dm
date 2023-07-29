@@ -1,6 +1,5 @@
 // TODO LIST:
 /*
-	Cooking recipes can't be crafted for some reason.
 	/datum/asset/spritesheet/crafting/proc/add_tool_icons() needs to be fixed. Using it breaks all icons, but we still want it for icons for TOOL_BEHAVIOR.
 */
 /datum/crafting_recipe
