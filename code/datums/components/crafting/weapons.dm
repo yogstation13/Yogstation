@@ -7,7 +7,7 @@
 	parts = list(/obj/item/gun = 1)
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 5 SECONDS
-	category = CAT_WEAPON_RANGED
+	category = CAT_MISC
 
 /datum/crafting_recipe/IED
 	name = "IED"

@@ -220,7 +220,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "hot peppers"
 	taste_mult = 1.5
-	default_container = /obj/item/reagent_containers/glass/bottle/capsaicin
+	default_container = /obj/item/reagent_containers/food/condiment/pack/hotsauce
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M)
 	var/heating = 0
@@ -251,7 +251,6 @@
 	description = "A special oil that noticably chills the body. Extracted from Icepeppers and slimes."
 	color = "#8BA6E9" // rgb: 139, 166, 233
 	taste_description = "mint"
-	default_container = /obj/item/reagent_containers/glass/bottle/frostoil
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/carbon/M)
 	var/cooling = 0
@@ -482,7 +481,6 @@
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "sweetness"
-	default_container = /obj/item/reagent_containers/food/condiment/enzyme
 
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
@@ -553,7 +551,6 @@
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "rice"
-	default_container = /obj/item/reagent_containers/food/condiment/rice
 
 /datum/reagent/consumable/vanilla
 	name = "Vanilla Powder"
@@ -594,7 +591,7 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	taste_description = "sweetness"
-	
+
 /datum/reagent/consumable/honey/on_mob_life(mob/living/carbon/M)
 	M.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
 	if(prob(55))
@@ -617,8 +614,7 @@
 	description = "An white and oily mixture of mixed egg yolks."
 	color = "#DFDFDF"
 	taste_description = "mayonnaise"
-	default_container = /obj/item/reagent_containers/food/condiment/mayonnaise
-	
+
 /datum/reagent/consumable/tearjuice
 	name = "Tear Juice"
 	description = "A blinding substance extracted from certain onions."
