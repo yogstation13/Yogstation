@@ -221,12 +221,12 @@
 	else
 		new_spawn.mind.assigned_role = "Free Golem"
 
-/obj/effect/mob_spawn/human/golem/attack_hand(mob/user)
+/obj/effect/mob_spawn/human/golem/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(isgolem(user) && can_transfer)
-		var/transfer_choice = tgui_alert(usr, "Transfer your soul to [src]? (Warning, your old body will die!)",,list("Yes","No"))
+		var/transfer_choice = tgui_alert(user, "Transfer your soul to [src]? (Warning, your old body will die!)", "Swag to Mad transformation", list("Yes","No"))
 		if(transfer_choice != "Yes")
 			return
 		if(QDELETED(src) || uses <= 0)
@@ -446,8 +446,8 @@
 		id.registered_name = L.real_name
 		id.update_label()
 	else
-		to_chat(L, span_userdanger("Your owner is already dead!  You will soon perish."))
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, dust), 150)) //Give em a few seconds as a mercy.
+		to_chat(L, span_userdanger("Your owner is already dead! You will soon perish."))
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, dust), 15 SECONDS)) //Give em a few seconds as a mercy.
 
 /datum/outfit/demonic_friend
 	name = "Demonic Friend"

@@ -181,11 +181,15 @@
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
 	M.AdjustSleeping(600, FALSE)
 	. = 1
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	M.AdjustSleeping(40, FALSE)
 	..()
 	. = 1
