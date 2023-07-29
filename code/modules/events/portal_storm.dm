@@ -135,7 +135,7 @@
 		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 12
 	)
 	hostile_types = list(
-		/mob/living/simple_animal/hostile/asteroid/hivelord/legion = 24,
+		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril = 24,
 		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher = 24,
 	)
 	endWhen = INFINITY // keep going until it's done
