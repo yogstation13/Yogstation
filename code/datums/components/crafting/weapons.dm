@@ -224,7 +224,7 @@
 	)
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
 	time = 3 SECONDS
-	category = CAT_WEAPON_RANGED
+	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload2
 	name = "Chemical Payload (Gibtonite)"
@@ -236,7 +236,7 @@
 	)
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
 	time = 5 SECONDS
-	category = CAT_WEAPON_RANGED
+	category = CAT_MISC
 
 /datum/crafting_recipe/goliathshield
 	name = "Goliath Shield"

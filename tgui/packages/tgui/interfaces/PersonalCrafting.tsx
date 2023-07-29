@@ -57,7 +57,7 @@ const CATEGORY_ICONS_COOKING = {
   'Misc. Food': 'shapes',
   'Pastries': 'cookie',
   'Pies': 'chart-pie',
-  'Drinks': 'glass martini',
+  'Drinks': 'glass-martini',
   'Pizzas': 'pizza-slice',
   'Salads': 'leaf',
   'Sandwiches': 'hotdog',

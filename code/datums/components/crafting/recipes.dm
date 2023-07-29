@@ -1,20 +1,23 @@
+// TODO LIST:
+/*
+	Cooking recipes can't be crafted for some reason.
+	/datum/asset/spritesheet/crafting/proc/add_tool_icons() needs to be fixed. Using it breaks all icons, but we still want it for icons for TOOL_BEHAVIOR.
+*/
 /datum/crafting_recipe
 	/// In-game display name.
 	var/name = ""
 	// Unused.
 	var/desc = ""
 	/// Type paths of items consumed associated with how many are needed.
-	var/list/reqs = list() 
+	var/list/reqs = list()
 	/// Type paths of items explicitly not allowed as an ingredient.
-	var/list/blacklist[] = list()
+	var/list/blacklist = list()
 	/// Type path of item resulting from this craft.
 	var/result
 	/// String defines of items needed but not consumed.
 	var/list/tool_behaviors
 	/// Type paths of items needed but not consumed.
 	var/list/tool_paths
-	/// Type paths of chemicals needed but not consumed.
-	var/list/chem_catalysts = list()
 	/// Time in seconds.
 	var/time = 3 SECONDS
 	/// Type paths of items that will be placed in the result.
@@ -235,7 +238,6 @@
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_MISC
 
-
 /datum/crafting_recipe/flashlight_eyes
 	name = "Flashlight Eyes"
 	result = /obj/item/organ/eyes/robotic/flashlight
@@ -244,7 +246,7 @@
 		/obj/item/flashlight = 2,
 		/obj/item/restraints/handcuffs/cable = 1
 	)
-	category = CAT_ROBOT
+	category = CAT_MISC
 
 /datum/crafting_recipe/paperframes
 	name = "Paper Frames"

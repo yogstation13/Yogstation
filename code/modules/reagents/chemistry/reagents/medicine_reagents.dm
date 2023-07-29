@@ -736,6 +736,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	overdose_threshold = 30
 	addiction_threshold = 25
+	default_container = /obj/item/reagent_containers/glass/bottle/morphine
 
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()

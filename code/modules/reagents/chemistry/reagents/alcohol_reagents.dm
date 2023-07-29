@@ -2116,7 +2116,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Champagne"
 	glass_desc = "The flute clearly displays the slowly rising bubbles."
 
-
 /datum/reagent/consumable/ethanol/wizz_fizz
 	name = "Wizz Fizz"
 	description = "A magical potion, fizzy and wild! However the taste, you will find, is quite mild."

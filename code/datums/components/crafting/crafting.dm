@@ -29,7 +29,7 @@
 	del_reqs - takes recipe and a user, loops over the recipes reqs var and tries to find everything in the list make by get_environment and delete it/add to parts list, then returns the said list
 */
 
-/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
+/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents, print = FALSE)
 	var/list/item_instances = contents["instances"]
 	contents = contents["other"]
 
@@ -41,15 +41,20 @@
 		var/needed_amount = R.reqs[requirement_path]
 		for(var/content_item_path in contents)
 			// Right path and not blacklisted
+			if(print)
+				to_chat(world, "[requirement_path]: [content_item_path]" )
+
 			if(!ispath(content_item_path, requirement_path) || R.blacklist.Find(content_item_path))
 				continue
 
 			needed_amount -= contents[content_item_path]
 			if(needed_amount <= 0)
 				break
-
+		
 		if(needed_amount > 0)
+			to_chat("[requirement_path] has FAILED")
 			return FALSE
+		to_chat("[requirement_path] has PASSED")
 
 		// Store the instances of what we will use for R.check_requirements() for requirement_path.
 		var/list/instances_list = list()
@@ -58,10 +63,6 @@
 				instances_list += item_instances[instance_path]
 
 		requirements_list[requirement_path] = instances_list
-
-	for(var/requirement_path in R.chem_catalysts)
-		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
-			return FALSE
 
 	return R.check_requirements(a, requirements_list)
 
@@ -86,15 +87,24 @@
 		if(isstack(item))
 			var/obj/item/stack/stack = item
 			.["other"][item.type] += stack.amount
-		else if(is_reagent_container(item))
+			continue
+		if(is_reagent_container(item))
 			var/obj/item/reagent_containers/container = item
-			if(container.is_drainable())
-				for(var/datum/reagent/reagent in container.reagents.reagent_list)
-					.["other"][reagent.type] += reagent.volume
-		else 
-			if(item.tool_behaviour)
-				.["tool_behaviour"] += item.tool_behaviour
-			.["other"][item.type] += 1
+			if(!istype(container, /obj/item/reagent_containers/food))
+				if(container.is_drainable() && length(container.reagents.reagent_list)) 
+					for(var/datum/reagent/reagent in container.reagents.reagent_list)
+						.["other"][reagent.type] += reagent.volume
+					continue
+			// Food items are reagent containers and some of them still should be included (condiments & drinks).
+			var/food_beakers = istype(container, /obj/item/reagent_containers/food/condiment/) || istype(container, /obj/item/reagent_containers/food/drinks/)
+			if(food_beakers)
+				if(container.is_drainable() && length(container.reagents.reagent_list)) 
+					for(var/datum/reagent/reagent in container.reagents.reagent_list)
+						.["other"][reagent.type] += reagent.volume
+					continue
+		if(item.tool_behaviour)
+			.["tool_behaviour"] += item.tool_behaviour
+		.["other"][item.type] += 1
 
 /datum/component/personal_crafting/proc/check_tools(atom/source, datum/crafting_recipe/recipe, list/surroundings)
 	if(!length(recipe.tool_behaviors) && !length(recipe.tool_paths))
@@ -145,10 +155,10 @@
 
 	return TRUE
 
-/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
+/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R, print = FALSE)
 	var/list/contents = get_surroundings(a, R.blacklist)
 	var/send_feedback = 1
-	if(!check_contents(a, R, contents))
+	if(!check_contents(a, R, contents, print))
 		return ", missing component."
 	if(!check_tools(a, R, contents))
 		return ", missing tool."
@@ -330,6 +340,8 @@
 			continue
 		if(check_contents(user, recipe, surroundings) && check_tools(user, recipe, surroundings))
 			craftability["[REF(recipe)]"] = TRUE
+		if(display_craftable_only) // for debugging only
+			craftability["[REF(recipe)]"] = TRUE
 
 	data["craftability"] = craftability
 	return data
@@ -390,7 +402,7 @@
 			var/datum/crafting_recipe/crafting_recipe = locate(params["recipe"]) in (mode ? GLOB.cooking_recipes : GLOB.crafting_recipes)
 			busy = TRUE
 			ui_interact(user)
-			var/atom/movable/result = construct_item(user, crafting_recipe)
+			var/atom/movable/result = construct_item(user, crafting_recipe, TRUE)
 			if(!istext(result)) // We made an item and didn't get a fail message.
 				if(ismob(user) && isitem(result)) // In case the user is actually possessing a non-mob like a machine.
 					user.put_in_hands(result)
@@ -468,13 +480,6 @@
 			var/id = atoms.Find(req_atom)
 			data["reqs"]["[id]"] = recipe.reqs[req_atom]
 
-	// Catalysts
-	if(recipe.chem_catalysts.len)
-		data["chem_catalysts"] = list()
-		for(var/req_atom in recipe.chem_catalysts)
-			var/id = atoms.Find(req_atom)
-			data["chem_catalysts"]["[id]"] = recipe.chem_catalysts[req_atom]
-			
 	return data
 
 #undef COOKING

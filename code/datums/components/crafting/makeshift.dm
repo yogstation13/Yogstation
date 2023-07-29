@@ -66,7 +66,7 @@
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/storage/belt/utility/makeshift
 	time = 20 SECONDS
-	category = CAT_CLOTHING
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/makeshiftknife
 	name = "Makeshift Knife"

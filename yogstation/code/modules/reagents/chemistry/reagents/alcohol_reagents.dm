@@ -68,6 +68,7 @@
 	taste_description = "pancake syrup"
 	glass_name = "glass of candy corn liquor"
 	glass_desc = "Good for your Imagination."
+	default_container = /obj/item/reagent_containers/food/drinks/bottle/candycornliquor
 	var/hal_amt = 4 SECONDS
 
 /datum/reagent/consumable/ethanol/whiskey/candycorn/on_mob_life(mob/living/carbon/M)
