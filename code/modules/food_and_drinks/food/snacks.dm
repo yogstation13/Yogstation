@@ -81,71 +81,83 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user)
 	return
 
+#define FOOD_FAST_EATING (1 SECONDS)
 
-/obj/item/reagent_containers/food/snacks/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/reagent_containers/food/snacks/attack(mob/living/carbon/eater, mob/living/user, def_zone)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
+	
+	if(!iscarbon(eater))
+		return ..()
+
 	if(!eatverb)
 		eatverb = pick("bite","chew","nibble","gnaw","gobble","chomp")
-	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
-		to_chat(user, span_notice("None of [src] left, oh no!"))
-		qdel(src)
-		return FALSE
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(!canconsume(M, user))
+
+	var/eating_fast = FALSE
+
+	do
+		if(!reagents.total_volume) //Shouldn't be needed but it checks to see if it has anything left in it.
+			to_chat(user, span_notice("None of [src] left, oh no!"))
+			qdel(src)
 			return FALSE
 
-		var/fullness = M.nutrition + 10
-		for(var/datum/reagent/consumable/con in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
+		if (DOING_INTERACTION_WITH_TARGET(eater, src))
+			return FALSE
+		
+		if(!canconsume(eater, user))
+			return FALSE
+		
+		var/fullness = eater.nutrition + 10
+		for(var/datum/reagent/consumable/con in eater.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
 			fullness += con.nutriment_factor * con.volume / con.metabolization_rate
 
-		if(M == user)								//If you're eating it yourself.
-			if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
-				to_chat(M, span_notice("You don't feel like eating any more junk food at the moment."))
+		var/time_to_eat = 3 SECONDS
+		if(user == eater)
+			if(eating_fast)
+				time_to_eat = FOOD_FAST_EATING
+			if(HAS_TRAIT(eater, TRAIT_VORACIOUS))
+				time_to_eat /= 2
+			else if(junkiness && eater.satiety < -150 && eater.nutrition > NUTRITION_LEVEL_STARVING + 50)
+				to_chat(eater, span_notice("You don't feel like eating any more junk food at the moment."))
 				return FALSE
-
-			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
-				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 		else
-			if(!isbrain(M))		//If you're feeding it to someone else.
-				if(!C.force_eat_text(fullness, src, C, user))
-					return
-				if(!do_after(user, 3 SECONDS, M))
-					return
-				log_combat(user, M, "fed", reagents.log_list())
-			else
-				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))
+			if(!eater.force_eat_text(fullness, src, eater, user))
 				return
+			time_to_eat = 3 SECONDS
 
-		if(!C.eat_text(fullness, eatverb, src, C, user))
+		if (!do_after(user, delay = time_to_eat, target = eater))
+			return FALSE
+		
+		log_combat(user, eater, "fed", reagents.log_list())
+		if(!eater.eat_text(fullness, eatverb, src, eater, user))
 			return
 
 		if(!junkiness)
 			var/ate_without_table = TRUE
-			for(var/obj/structure/table/table in range(1, M))
+			for(var/obj/structure/table/table in range(1, eater))
 				ate_without_table = FALSE
 				break
 			if(ate_without_table)
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "no_table", /datum/mood_event/ate_without_table)
+				SEND_SIGNAL(eater, COMSIG_ADD_MOOD_EVENT, "no_table", /datum/mood_event/ate_without_table)
 			else
-				SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "no_table")
+				SEND_SIGNAL(eater, COMSIG_CLEAR_MOOD_EVENT, "no_table")
 
-		if(reagents)								//Handle ingestion of the reagent.
-			if(M.satiety > -200)
-				M.satiety -= junkiness
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+		if(reagents) //Handle ingestion of the reagent.
+			if(eater.satiety > -200)
+				eater.satiety -= junkiness
+			playsound(eater.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
 			if(reagents.total_volume)
-				SEND_SIGNAL(src, COMSIG_FOOD_EATEN, M, user)
+				SEND_SIGNAL(src, COMSIG_FOOD_EATEN, eater, user)
 				var/fraction = min(bitesize / reagents.total_volume, 1)
-				reagents.reaction(M, INGEST, fraction)
-				reagents.trans_to(M, bitesize, transfered_by = user)
+				reagents.reaction(eater, INGEST, fraction)
+				reagents.trans_to(eater, bitesize, transfered_by = user)
 				bitecount++
-				On_Consume(M)
-				checkLiked(fraction, M)
-				return TRUE
+				On_Consume(eater)
+				checkLiked(fraction, eater)
 
-	return 0
+		eating_fast = TRUE
+	while (eating_fast)
+	return TRUE
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
