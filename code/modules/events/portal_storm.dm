@@ -1,3 +1,17 @@
+/datum/round_event/portal_storm
+	startWhen = 7
+	endWhen = 999
+	announceWhen = 1
+
+	var/list/boss_spawn = list()
+	var/list/boss_types = list() //only configure this if you have hostiles
+	var/number_of_bosses
+	var/next_boss_spawn
+	var/list/hostiles_spawn = list()
+	var/list/hostile_types = list()
+	var/number_of_hostiles
+	var/mutable_appearance/storm
+
 /datum/round_event_control/portal_storm_syndicate
 	name = "Portal Storm: Syndicate Shocktroops"
 	typepath = /datum/round_event/portal_storm/syndicate_shocktroop
@@ -20,20 +34,6 @@
 	boss_types = list(/mob/living/simple_animal/hostile/construct/builder = 6)
 	hostile_types = list(/mob/living/simple_animal/hostile/construct/armored/hostile = 8,\
 						/mob/living/simple_animal/hostile/construct/wraith/hostile = 6)
-
-/datum/round_event/portal_storm
-	startWhen = 7
-	endWhen = 999
-	announceWhen = 1
-
-	var/list/boss_spawn = list()
-	var/list/boss_types = list() //only configure this if you have hostiles
-	var/number_of_bosses
-	var/next_boss_spawn
-	var/list/hostiles_spawn = list()
-	var/list/hostile_types = list()
-	var/number_of_hostiles
-	var/mutable_appearance/storm
 
 /datum/round_event/portal_storm/setup()
 	storm = mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "energy_ball_fast", FLY_LAYER)
@@ -64,30 +64,31 @@
 	sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
 
 /datum/round_event/portal_storm/tick()
-	spawn_effects(get_random_station_turf())
+	var/turf/T = get_safe_random_station_turf()
 
 	if(spawn_hostile())
 		var/type = pick(hostile_types)
 		hostile_types[type] = hostile_types[type] - 1
-		spawn_mob(type, hostiles_spawn)
+		spawn_mob(T, type, hostiles_spawn)
 		if(!hostile_types[type])
 			hostile_types -= type
 
 	if(spawn_boss())
 		var/type = pick(boss_types)
 		boss_types[type] = boss_types[type] - 1
-		spawn_mob(type, boss_spawn)
+		spawn_mob(T, type, boss_spawn)
 		if(!boss_types[type])
 			boss_types -= type
 
 	time_to_end()
 
-/datum/round_event/portal_storm/proc/spawn_mob(type, spawn_list)
+/datum/round_event/portal_storm/proc/spawn_mob(turf/T, type, spawn_list)
 	if(!type)
-		return
-	var/turf/T = pick_n_take(spawn_list)
+		log_game("Portal Storm failed to spawn mob due to an invalid mob type.")
+		CRASH("Cannot spawn null type!")
 	if(!T)
-		return
+		log_game("Portal Storm failed to spawn mob due to an invalid location.")
+		CRASH("Cannot spawn mobs on null turf!")
 	new type(T)
 	spawn_effects(T)
 
@@ -118,3 +119,64 @@
 
 	if(!number_of_hostiles && number_of_bosses)
 		endWhen = activeFor
+
+// Resonance cascade event, happens after an antinoblium delamination. Better call the deathsquad.
+/datum/round_event_control/resonance_cascade
+	name = "Resonance Cascade"
+	typepath = /datum/round_event/portal_storm/resonance_cascade
+	weight = 0
+	max_occurrences = 0
+	random = FALSE // No.
+	max_alert = SEC_LEVEL_DELTA
+
+/datum/round_event/portal_storm/resonance_cascade
+	boss_types = list(
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast = 12,
+		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 12
+	)
+	hostile_types = list(
+		/mob/living/simple_animal/hostile/asteroid/hivelord/legion = 24,
+		/mob/living/simple_animal/hostile/asteroid/basilisk/watcher = 24,
+	)
+	endWhen = INFINITY // keep going until it's done
+
+/datum/round_event/portal_storm/resonance_cascade/start()
+	. = ..()
+	for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
+		if(!is_station_level(A.z))
+			continue
+		A.overload_lighting()
+		A.emp_act(EMP_HEAVY) // stationwide blackout
+		if(prob(25)) // chance of some fun effects
+			if(prob(20))
+				A.visible_message(span_userdanger("[A] overloads and blows up!"))
+				A.obj_break()
+				explosion(A, 0, 0, 2, flame_range=3)
+			else
+				A.visible_message(span_userdanger("[A] overloads and makes a huge arc!"))
+				tesla_zap(A, 5, 10000) // woe
+	SSshuttle.emergency.request(null) // can't call the shuttle if all the APCs blew up, so give the crew some help
+
+/datum/round_event/portal_storm/resonance_cascade/announce(fake)
+	if(fake) // no point in trying to fake it, has much more impact if it's only the real thing
+		return
+	priority_announce(readable_corrupted_text("Massive energy surge detected on [station_name()]. Immediate evacuation is recommended."), sound='sound/misc/airraid.ogg')
+
+/datum/round_event/portal_storm/resonance_cascade/tick()
+	var/turf/T = get_safe_random_station_turf()
+
+	if(spawn_hostile())
+		var/type = pick(hostile_types)
+		hostile_types[type] = hostile_types[type] - 1
+		spawn_mob(T, type, hostiles_spawn)
+		if(!hostile_types[type])
+			hostile_types -= type
+
+	if(spawn_boss())
+		var/type = pick(boss_types)
+		boss_types[type] = boss_types[type] - 1
+		spawn_mob(T, type, boss_spawn)
+		if(!boss_types[type])
+			boss_types -= type
+
+	time_to_end()
