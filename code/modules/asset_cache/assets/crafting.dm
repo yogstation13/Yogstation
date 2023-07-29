@@ -6,7 +6,7 @@
 	var/id = 1
 	for(var/atom in GLOB.crafting_recipes_atoms)
 		add_atom_icon(atom, id++)
-	add_tool_icons() /// NOTE: This was causing the ALL/MOST icons to not work. TODO: Need to fix.
+	add_tool_icons()
 
 /datum/asset/spritesheet/crafting/cooking
 	name = "cooking"
