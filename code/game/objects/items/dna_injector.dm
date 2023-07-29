@@ -358,6 +358,15 @@
 /obj/item/dnainjector/antiradioactive
 	name = "\improper DNA injector (Anti-Radioactive)"
 	remove_mutations = list(RADIOACTIVE)
+
+/obj/item/dnainjector/radproof
+	name = "\improper DNA injector (Radproof)"
+	add_mutations = list(RADPROOF)
+
+/obj/item/dnainjector/antiradproof
+	name = "\improper DNA injector (Anti-Radproof)"
+	remove_mutations = list(RADPROOF)
+
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
 	add_mutations = list(OLFACTION)
