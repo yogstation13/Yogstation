@@ -49,11 +49,6 @@
 		/obj/item/wrench/cyborg,
 	)
 
-	if(tool_behaviors)
-		tool_behaviors = string_list(tool_behaviors)
-	if(tool_paths)
-		tool_paths = string_list(tool_paths)
-
 /**
   * Run custom pre-craft checks for this recipe
   *
