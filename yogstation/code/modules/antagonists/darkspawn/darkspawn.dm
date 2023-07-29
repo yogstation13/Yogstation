@@ -15,7 +15,7 @@
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
 	var/psi_cap = 150 //Max Psi by default
-	var/psi_regen = 25 //How much Psi will regenerate after using an ability
+	var/psi_regen = 20 //How much Psi will regenerate after using an ability
 	var/psi_regen_delay = 5 //How many ticks need to pass before Psi regenerates
 	var/psi_regen_ticks = 0 //When this hits 0, regenerate Psi and return to psi_regen_delay
 	var/psi_used_since_regen = 0 //How much Psi has been used since we last regenerated
