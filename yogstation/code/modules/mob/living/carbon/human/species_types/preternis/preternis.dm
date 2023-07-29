@@ -224,6 +224,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
@@ -252,17 +253,18 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		chargemod *= 3 //hunger rate tripled
 	charge = clamp(charge - (power_drain * chargemod),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 
-	if(charge == PRETERNIS_LEVEL_NONE)
-		to_chat(H,span_danger("Warning! System power criti-$#@$"))
-		H.death()
-	else if(charge < PRETERNIS_LEVEL_STARVING)
-		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
-	else if(charge < PRETERNIS_LEVEL_HUNGRY)
-		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
-	else if(charge < PRETERNIS_LEVEL_FED)
-		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
-	else
-		H.clear_alert("preternis_charge")
+	switch(charge)
+		if(PRETERNIS_LEVEL_NONE)
+			to_chat(H,span_danger("Warning! System power criti-$#@$"))
+			H.death()
+		if(PRETERNIS_LEVEL_NONE to PRETERNIS_LEVEL_STARVING)
+			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
+		if(PRETERNIS_LEVEL_STARVING to PRETERNIS_LEVEL_HUNGRY)
+			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
+		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
+			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
+		else
+			H.clear_alert("preternis_charge")
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
