@@ -252,6 +252,8 @@
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
 	icon = null
+	///Stores the shoes associated with the vehicle
+	var/obj/item/clothing/shoes/wheelys/shoes = null
 
 /obj/vehicle/ridden/scooter/wheelys/Initialize(mapload)
 	. = ..()
@@ -266,11 +268,17 @@
 	if(!has_buckled_mobs())
 		to_chat(M, span_notice("You pop the Wheely-Heels' wheels back into place."))
 		moveToNullspace()
+		shoes.toggle_wheels(FALSE)
 	return ..()
 
 /obj/vehicle/ridden/scooter/wheelys/post_buckle_mob(mob/living/M)
 	to_chat(M, span_notice("You pop out the Wheely-Heels' wheels."))
+	shoes.toggle_wheels(TRUE)
 	return ..()
+
+///Sets the shoes that the vehicle is associated with, called when the shoes are initialized
+/obj/vehicle/ridden/scooter/wheelys/proc/link_shoes(newshoes)
+	shoes = newshoes
 
 /obj/vehicle/ridden/scooter/wheelys/Bump(atom/A)
 	. = ..()
@@ -316,7 +324,8 @@
 /obj/vehicle/ridden/scooter/airshoes/Destroy()
 	if(sparks)
 		QDEL_NULL(sparks)
-	. = ..()
+	return ..()
+
 /obj/vehicle/ridden/scooter/airshoes/relaymove()
 	if (grinding || world.time < next_crash)
 		return FALSE

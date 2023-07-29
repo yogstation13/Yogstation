@@ -84,6 +84,7 @@
 	armor = list(MELEE = -15, BULLET = -10, LASER = -10, ENERGY = -5, BOMB = -5, BIO = -2, RAD = 0, FIRE = 0, ACID = 0)
 	slowdown = -0.1 //very statistically significant
 	flags_inv = null //doesn't actually visibly hide anything
+	clothing_flags = LARGE_WORN_ICON
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	dynamic_hair_suffix = ""

@@ -281,7 +281,7 @@
 	desc = "A bag for letters, envelopes, and other postage."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bookbag"
-	//worn_icon_state = "bookbag"
+	worn_icon_state = "bookbag"
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/mail/Initialize(mapload)

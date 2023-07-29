@@ -335,7 +335,11 @@
 			prof.name_list[slot] = I.name
 			prof.appearance_list[slot] = I.appearance
 			prof.flags_cover_list[slot] = I.flags_cover
-			prof.item_state_list[slot] = I.item_state
+			prof.inhand_icon_state_list[slot] = I.item_state
+			prof.lefthand_file_list[slot] = I.lefthand_file
+			prof.righthand_file_list[slot] = I.righthand_file
+			prof.worn_icon_list[slot] = I.mob_overlay_icon
+			prof.worn_icon_state_list[slot] = I.worn_icon_state
 			prof.exists_list[slot] = 1
 		else
 			continue
@@ -625,12 +629,24 @@
 	var/protected = 0
 
 	var/datum/dna/dna = null
-	var/list/name_list = list() //associative list of slotname = itemname
+	/// Assoc list of item slot to item name - stores the name of every item of this profile.
+	var/list/name_list = list()
+	/// Assoc list of item slot to apperance - stores the appearance of every item of this profile.
 	var/list/appearance_list = list()
+	/// Assoc list of item slot to flag - stores the flags_cover of every item of this profile.
 	var/list/flags_cover_list = list()
+	/// Assoc list of item slot to boolean - stores whether an item in that slot exists
 	var/list/exists_list = list()
-	var/list/item_color_list = list()
-	var/list/item_state_list = list()
+	/// Assoc list of item slot to file - stores the lefthand file of the item in that slot
+	var/list/lefthand_file_list = list()
+	/// Assoc list of item slot to file - stores the righthand file of the item in that slot
+	var/list/righthand_file_list = list()
+	/// Assoc list of item slot to file - stores the inhand file of the item in that slot
+	var/list/inhand_icon_state_list = list()
+	/// Assoc list of item slot to file - stores the worn icon file of the item in that slot
+	var/list/worn_icon_list = list()
+	/// Assoc list of item slot to string - stores the worn icon state of the item in that slot
+	var/list/worn_icon_state_list = list()
 
 	var/underwear
 	var/undershirt
@@ -644,23 +660,24 @@
 	LAZYCLEARLIST(stored_scars)
 	. = ..()
 
-/datum/changelingprofile/proc/copy_profile(datum/changelingprofile/newprofile)
-	newprofile.name = name
-	newprofile.protected = protected
-	newprofile.dna = new dna.type
-	dna.copy_dna(newprofile.dna)
-	newprofile.name_list = name_list.Copy()
-	newprofile.appearance_list = appearance_list.Copy()
-	newprofile.flags_cover_list = flags_cover_list.Copy()
-	newprofile.exists_list = exists_list.Copy()
-	newprofile.item_color_list = item_color_list.Copy()
-	newprofile.item_state_list = item_state_list.Copy()
-	newprofile.underwear = underwear
-	newprofile.undershirt = undershirt
-	newprofile.socks = socks
-	newprofile.accent = accent
-	newprofile.stored_scars = stored_scars.Copy()
-
+/datum/changelingprofile/proc/copy_profile(datum/changelingprofile/new_profile)
+	new_profile.name = name
+	new_profile.protected = protected
+	new_profile.dna = new dna.type()
+	dna.copy_dna(new_profile.dna)
+	new_profile.name_list = name_list.Copy()
+	new_profile.appearance_list = appearance_list.Copy()
+	new_profile.flags_cover_list = flags_cover_list.Copy()
+	new_profile.exists_list = exists_list.Copy()
+	new_profile.lefthand_file_list = lefthand_file_list.Copy()
+	new_profile.righthand_file_list = righthand_file_list.Copy()
+	new_profile.inhand_icon_state_list = inhand_icon_state_list.Copy()
+	new_profile.underwear = underwear
+	new_profile.undershirt = undershirt
+	new_profile.socks = socks
+	new_profile.worn_icon_list = worn_icon_list.Copy()
+	new_profile.worn_icon_state_list = worn_icon_state_list.Copy()
+	new_profile.stored_scars = stored_scars.Copy()
 
 /datum/antagonist/changeling/xenobio
 	name = "Xenobio Changeling"

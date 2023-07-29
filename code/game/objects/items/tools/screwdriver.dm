@@ -50,31 +50,6 @@
 	if(prob(75))
 		pixel_y = rand(0, 16)
 
-/obj/item/screwdriver/update_overlays()
-	. = ..()
-	if(!random_color) //icon override
-		return
-	var/mutable_appearance/base_overlay = mutable_appearance(icon, "screwdriver_screwybits")
-	base_overlay.appearance_flags = RESET_COLOR
-	. += base_overlay
-
-/obj/item/screwdriver/worn_overlays(isinhands = FALSE, icon_file)
-	. = list()
-	if(isinhands && random_color)
-		var/mutable_appearance/M = mutable_appearance(icon_file, "screwdriver_head")
-		M.appearance_flags = RESET_COLOR
-		. += M
-
-/obj/item/screwdriver/get_belt_overlay()
-	if(random_color)
-		var/mutable_appearance/body = mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver")
-		var/mutable_appearance/head = mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_head")
-		body.color = color
-		head.add_overlay(body)
-		return head
-	else
-		return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', icon_state)
-
 /obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
 		return

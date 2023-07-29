@@ -3,7 +3,7 @@
 	desc = "A book with a peculiar lock on it, there's no keyhole."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "book"
-	//worn_icon_state = "book"
+	worn_icon_state = "book"
 	w_class = WEIGHT_CLASS_SMALL
 	///Last person that touched this
 	var/mob/living/last_user

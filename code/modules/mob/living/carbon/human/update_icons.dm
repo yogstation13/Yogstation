@@ -550,33 +550,26 @@ generate/load female uniform sprites matching all previously decided variables
 
 
 */
-/obj/item/proc/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null)
+/obj/item/proc/build_worn_icon(
+	default_layer = 0, 
+	default_icon_file = null, 
+	isinhands = FALSE, 
+	femaleuniform = NO_FEMALE_UNIFORM, 
+	override_state = null,
+)
 
 	var/t_state
 	if(override_state)
 		t_state = override_state
 	else
-		if(isinhands && item_state)
-			t_state = item_state
-		else
-			t_state = icon_state
-	var/t_icon = mob_overlay_icon
-	if(!t_icon)
-		t_icon = default_icon_file
+		t_state = !isinhands ? (worn_icon_state ? worn_icon_state : icon_state) : (item_state ? item_state : icon_state)
 
 	//Find a valid icon file from variables+arguments
 	var/file2use
-	if(!isinhands && mob_overlay_icon)
-		file2use = mob_overlay_icon
-	if(!file2use)
-		file2use = default_icon_file
+	file2use = !isinhands ? (mob_overlay_icon ? mob_overlay_icon : default_icon_file) : default_icon_file
 
 	//Find a valid layer from variables+arguments
-	var/layer2use
-	if(alternate_worn_layer)
-		layer2use = alternate_worn_layer
-	if(!layer2use)
-		layer2use = default_layer
+	var/layer2use = alternate_worn_layer ? alternate_worn_layer : default_layer
 
 	var/mob/living/carbon/human/H = loc
 	var/mutable_appearance/standing

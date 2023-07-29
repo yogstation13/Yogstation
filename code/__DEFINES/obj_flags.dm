@@ -42,20 +42,36 @@
 
 // Flags for the clothing_flags var on /obj/item/clothing
 
+/// SUIT and HEAD items which stop lava from hurting the wearer
 #define LAVAPROTECT (1<<0)
-#define STOPSPRESSUREDAMAGE		(1<<1)	//SUIT and HEAD items which stop pressure damage. To stop you taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCK_GAS_SMOKE_EFFECT	(1<<2)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
-#define MASKINTERNALS				    (1<<3)		// mask allows internals
-#define NOSLIP                  (1<<4)   //prevents from slipping on wet floors, in space etc
-#define NOSLIP_ICE				(1<<5)	 //prevents from slipping on frozen floors
-#define THICKMATERIAL				(1<<6)	//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define VOICEBOX_TOGGLABLE (1<<7) // The voicebox in this clothing can be toggled.
-#define VOICEBOX_DISABLED (1<<8) // The voicebox is currently turned off.
-#define SHOWEROKAY				(1<<9)	//prevents you from being stupid if you shower in them
-#define SCAN_REAGENTS (1<<10) // Allows helmets and glasses to scan reagents.
-#define MASKEXTENDRANGE			(1<<12) //! For masks, allows you to breathe from internals on adjecent tiles
+/// SUIT and HEAD items which stop pressure damage.
+/// To stop you taking all pressure damage you must have both a suit and head item with this flag.
+#define STOPSPRESSUREDAMAGE	(1<<1)
+/// Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
+#define BLOCK_GAS_SMOKE_EFFECT (1<<2)
+/// Mask allows internals
+#define MASKINTERNALS (1<<3)
+/// Prevents from slipping on wet floors, in space etc
+#define NOSLIP (1<<4) 
+/// Prevents from slipping on frozen floors
+#define NOSLIP_ICE (1<<5)
+/// Prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag.
+/// Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define THICKMATERIAL (1<<6)
+/// The voicebox in this clothing can be toggled.
+#define VOICEBOX_TOGGLABLE (1<<7)
+/// The voicebox is currently turned off.
+#define VOICEBOX_DISABLED (1<<8) 
+/// Prevents you from feeling sad if you shower in them
+#define SHOWEROKAY (1<<9)
+/// Allows helmets and glasses to scan reagents.
+#define SCAN_REAGENTS (1<<10)
+//! For masks, allows you to breathe from internals on adjecent tiles
+#define MASKEXTENDRANGE	(1<<12)
 /// Headgear/helmet allows internals
 #define HEADINTERNALS (1<<13)
+/// Clothes that use large icons, for applying the proper overlays like blood
+#define LARGE_WORN_ICON (1<<14)
 
 /// Flags for the organ_flags var on /obj/item/organ
 
