@@ -1,3 +1,4 @@
+#define RESOLVE_ICON_STATE(worn_item) (worn_item.worn_icon_state || worn_item.icon_state)
 	///////////////////////
 	//UPDATE_ICONS SYSTEM//
 	///////////////////////
@@ -149,7 +150,7 @@ There are several things that need to be remembered:
 		if(wear_suit && (wear_suit.flags_inv & HIDEJUMPSUIT))
 			return
 
-		var/target_overlay = U.icon_state
+		var/target_overlay = RESOLVE_ICON_STATE(U)
 		if(U.adjusted == ALT_STYLE)
 			target_overlay = "[target_overlay]_d"
 		else if(U.adjusted == DIGITIGRADE_STYLE)
@@ -320,7 +321,7 @@ There are several things that need to be remembered:
 		inv.update_appearance(UPDATE_ICON)
 
 	if(shoes)
-		var/target_overlay = shoes.worn_icon_state || shoes.icon_state
+		var/target_overlay = RESOLVE_ICON_STATE(shoes)
 		if(istype(shoes, /obj/item/clothing/shoes))
 			var/obj/item/clothing/shoes/S = shoes
 			if(S.adjusted == DIGITIGRADE_STYLE)
@@ -330,7 +331,7 @@ There are several things that need to be remembered:
 			if(hud_used.inventory_shown)            //if the inventory is open
 				client.screen += shoes                    //add it to client's screen
 		update_observer_view(shoes,1)
-		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(default_layer = SHOES_LAYER, default_icon_file = 'icons/mob/clothing/feet/feet.dmi')
+		overlays_standing[SHOES_LAYER] = shoes.build_worn_icon(default_layer = SHOES_LAYER, default_icon_file = 'icons/mob/clothing/feet/feet.dmi', override_state = target_overlay)
 		var/mutable_appearance/shoes_overlay = overlays_standing[SHOES_LAYER]
 		if(OFFSET_SHOES in dna.species.offset_features)
 			shoes_overlay.pixel_x += dna.species.offset_features[OFFSET_SHOES][1]
@@ -412,7 +413,7 @@ There are several things that need to be remembered:
 	if(istype(wear_suit, /obj/item))
 		wear_suit.screen_loc = ui_oclothing
 		var/obj/item/clothing/suit/S = wear_suit
-		var/worn_suit_icon = S.icon_state
+		var/worn_suit_icon = RESOLVE_ICON_STATE(S)
 		if(S.adjusted == DIGITIGRADE_STYLE)
 			worn_suit_icon = "[wear_suit.icon_state]_l" // Checks for digitgrade version of a suit and forces the alternate if it does
 		if(client && hud_used && hud_used.hud_shown)
@@ -464,7 +465,7 @@ There are several things that need to be remembered:
 		inv.update_appearance(UPDATE_ICON)
 
 	if(wear_mask)
-		var/target_overlay = wear_mask.icon_state
+		var/target_overlay = RESOLVE_ICON_STATE(wear_mask)
 		if("snout" in dna.species.mutant_bodyparts) //checks for snout and uses lizard mask variant
 			if(wear_mask.mutantrace_variation == MUTANTRACE_VARIATION && !wear_mask.mask_adjusted)
 				target_overlay = "[target_overlay]_l"
@@ -754,3 +755,5 @@ generate/load female uniform sprites matching all previously decided variables
 
 	update_inv_head()
 	update_inv_wear_mask()
+
+#undef RESOLVE_ICON_STATE

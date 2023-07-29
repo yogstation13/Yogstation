@@ -21,11 +21,11 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#3F96CC"
 
-/obj/item/modular_computer/tablet/pda/preset/medical/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/medical/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/crew_monitor
 	)	
-	. = ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/medical/chem
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
@@ -37,17 +37,17 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage
 								)
-/obj/item/modular_computer/tablet/pda/preset/medical/chem/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/medical/chem/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/chemscan
 	)	
-	. = ..()
+	return ..()
 
-/obj/item/modular_computer/tablet/pda/preset/medical/paramed/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/medical/paramed/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/radar/lifeline
 	)	
-	. = ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/medical/viro
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split
@@ -57,22 +57,22 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split
 	greyscale_colors = "#484848#0099CC#D94927"
 
-/obj/item/modular_computer/tablet/pda/preset/robo/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/robo/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/robocontrol,
 	)	
-	. = ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/cargo
 	greyscale_colors = "#D6B328#6506CA"
 
-/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/bounty_board,
 		new /datum/computer_file/program/budgetorders,
 		new /datum/computer_file/program/cargobounty
 	)	
-	. = ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/cargo/quartermaster
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
@@ -86,13 +86,13 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#D99A2E#69DBF3#E3DF3D"
 
-/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/alarm_monitor,
 		new /datum/computer_file/program/supermatter_monitor,
 		new /datum/computer_file/program/power_monitor
 	)	
-	. = ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/atmos
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
@@ -104,13 +104,13 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage)
 
-/obj/item/modular_computer/tablet/pda/preset/atmos/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/atmos/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/atmosscan,
 		new /datum/computer_file/program/alarm_monitor,
 		new /datum/computer_file/program/supermatter_monitor
 	)	
-	. = ..()
+	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/network_admin
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
@@ -162,7 +162,7 @@
 	greyscale_colors = null
 	pen_type = /obj/item/toy/crayon/rainbow
 
-/obj/item/modular_computer/tablet/pda/preset/clown/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING)
 
@@ -176,11 +176,11 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split
 	greyscale_colors = "#EA3232#0000CC#363636"
 
-/obj/item/modular_computer/tablet/pda/preset/warden/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/warden/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/secureye,
 	)	
-	. = ..()
+	return ..()
 
 //for inside one of the nukie lockers
 /obj/item/modular_computer/tablet/pda/preset/syndicate
@@ -188,7 +188,7 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#a80001#5C070F#000000"
 
-/obj/item/modular_computer/tablet/pda/preset/syndicate/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/syndicate/Initialize(mapload)
 	. = ..()
 	obj_flags |= EMAGGED //starts emagged
 	starting_files |= list(
