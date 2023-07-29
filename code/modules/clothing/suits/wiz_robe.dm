@@ -199,7 +199,7 @@
 	armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 20, RAD = 20, FIRE = 100, ACID = 100)
 	slowdown = 0
 	clothing_flags = THICKMATERIAL
-	resistance_flags = FIRE_PROOF | ACID_PROOF
+	resistance_flags = FIRE_PROOF | ACID_PROOF | THICKMATERIAL
 	w_class = WEIGHT_CLASS_BULKY
 	flags_inv = HIDEJUMPSUIT
 	mutantrace_variation = NO_MUTANTRACE_VARIATION

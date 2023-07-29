@@ -18,7 +18,7 @@
 	return ..()
 
 /datum/status_effect/hallucination/on_apply()
-	if(owner.mob_biotypes == NO_HALLUCINATION_BIOTYPES)
+	if(owner.mob_biotypes & NO_HALLUCINATION_BIOTYPES)
 		return FALSE
 
 	RegisterSignal(owner, COMSIG_LIVING_HEALTHSCAN,  PROC_REF(on_health_scan))

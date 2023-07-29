@@ -314,6 +314,7 @@
 		playsound(user, 'sound/weapons/thudswoosh.ogg', 65, FALSE, -1) //play sound here incase some ungrabbable object was clicked
 		var/mob/living/victim = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
+		F.name = "worldbreaker"
 		victim.density = FALSE
 		victim.visible_message(span_warning("[user] grabs [victim] and lifts [victim.p_them()] off the ground!"))
 		to_chat(victim, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
@@ -489,19 +490,29 @@
 	var/actual_range = STOMP_RADIUS + plates
 	for(var/mob/living/L in range(actual_range, owner))
 		if(L == owner)
+			shake_camera(L, 1 SECONDS, 0.5)
 			continue
 		var/damage = 0
 		var/throwdistance = 1
-		if(L in range(actual_range/2, owner))//more damage and CC if closer
+		var/shake_duration = 1 SECONDS
+		var/distance = get_dist(get_turf(L), owner)
+		var/shake_strength = clamp(sqrt(actual_range - distance) * 0.5, 0, 5)
+
+		if(L in range(actual_range/2, owner))//damage and CC if closer
+			shake_duration += 1 SECONDS
 			damage = heavy ? 20 : 10
 			throwdistance = 2
 			L.Knockdown(30)
+
 		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
+			shake_duration += 1 SECONDS
 			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
 			damage *= 4
 			L.Stun(5 SECONDS)
+
 		linked_martial.hurt(owner, L, damage)
 		linked_martial.push_away(owner, L, throwdistance)
+		shake_camera(L, shake_duration, shake_strength)
 		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
 			L.gib()
 	for(var/obj/item/I in range(actual_range, owner))

@@ -3,7 +3,7 @@
 	desc = "A suspicious revolver. Uses .357 magnum ammo." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
-	fire_sound = 'sound/weapons/revolver357shot.ogg'
+	fire_sound = 'sound/weapons/revolver357tgmc.ogg' // See attributions.txt
 	load_sound = 'sound/weapons/revolverload.ogg'
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
@@ -74,7 +74,7 @@
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
 	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 special rounds."
-	fire_sound = 'sound/weapons/revolver38shot.ogg'
+	fire_sound = 'sound/weapons/revolver38tgmc.ogg' // See attributions.txt
 	icon_state = "detective"
 	fire_delay = 0
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
@@ -106,7 +106,7 @@
 				return TRUE
 			magazine.caliber = "357"
 			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder. Plus, if you perfectly slam fire with the .38 and hit all your shots, you (should) do more lethal damage than using .357 at this fire_delay
-			fire_sound = 'sound/weapons/revolver357shot.ogg'
+			fire_sound = 'sound/weapons/revolver357tgmc.ogg' // See attributions.txt
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
 	else
@@ -122,7 +122,7 @@
 			magazine.caliber = "38"
 			fire_delay = 0 //Blessed mag dump
 			spread = 0
-			fire_sound = 'sound/weapons/revolver38shot.ogg'
+			fire_sound = 'sound/weapons/revolver38tgmc.ogg' // See attributions.txt
 			desc = initial(desc)
 			to_chat(user, span_notice("You remove the modifications on [src]. Now it will fire .38 rounds."))
 	return TRUE
@@ -158,7 +158,7 @@
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
 	fire_delay = 5 //Mild trigger pull, the gun was known for it
-	fire_sound = 'sound/weapons/revolver38shot.ogg' //Lower caliber = lesser smack
+	fire_sound = 'sound/weapons/revolver38tgmc.ogg' // See attributions.txt //Lower caliber = lesser smack
 	can_suppress = TRUE
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
@@ -181,8 +181,8 @@
 	..()
 	if(get_ammo(FALSE) > 0)
 		spin()
-	update_icon()
-	A.update_icon()
+	update_appearance(UPDATE_ICON)
+	A.update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/gun/ballistic/revolver/russian/attack_self(mob/user)

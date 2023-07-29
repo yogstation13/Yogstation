@@ -35,7 +35,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	return ..()
 
 /datum/controller/global_vars/can_vv_get(var_name)
-	if(var_name == "gvars_datum_protected_varlist")
+	if(var_name == NAMEOF(src, gvars_datum_protected_varlist))
 		return FALSE
 	return ..()
 

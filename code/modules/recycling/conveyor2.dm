@@ -121,7 +121,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		movedir = backwards
 	update()
 
-/obj/machinery/conveyor/update_icon()
+/obj/machinery/conveyor/update_icon_state()
+	. = ..()
 	if(!operating)
 		icon_state = "conveyor[inverted ? "-0" : "0"]"
 	else
@@ -132,7 +133,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(stat & NOPOWER)
 		operating = FALSE
 		. = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	// machine process
 	// move items to the target location
@@ -197,7 +198,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		inverted = !inverted
 		update_move_direction()
 		to_chat(user, span_notice("You set [src]'s direction [inverted ? "backwards" : "back to default"]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(I.tool_behaviour == TOOL_MULTITOOL)
 		switch(conveytime)
@@ -253,7 +254,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	if (newid)
 		id = newid
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	LAZYADD(GLOB.conveyors_by_id[id], src)
 
 /obj/machinery/conveyor_switch/Destroy()
@@ -271,13 +272,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 // update the icon depending on the position
 
-/obj/machinery/conveyor_switch/update_icon()
-	if(position<0)
+/obj/machinery/conveyor_switch/update_icon_state()
+	. = ..()
+	if(position < 0)
 		if(invert_icon)
 			icon_state = "switch-fwd"
 		else
 			icon_state = "switch-rev"
-	else if(position>0)
+	else if(position > 0)
 		if(invert_icon)
 			icon_state = "switch-rev"
 		else
@@ -297,7 +299,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	for(var/obj/machinery/conveyor/C in GLOB.conveyors_by_id[id])
 		C.operating = position
 		C.update_move_direction()
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 		CHECK_TICK
 
 // attack with hand, switch position
@@ -319,13 +321,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		position = 0
 
 	operated = 1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/machinery/conveyor_switch/S in GLOB.conveyors_by_id[id])
 		S.invert_icon = invert_icon
 		S.position = position
-		S.update_icon()
+		S.update_appearance(UPDATE_ICON)
 		CHECK_TICK
 
 /obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)

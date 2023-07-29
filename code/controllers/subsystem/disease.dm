@@ -23,6 +23,10 @@ SUBSYSTEM_DEF(disease)
 	msg = "P:[length(active_diseases)]"
 	return ..()
 
+/datum/controller/subsystem/disease/get_metrics()
+	. = ..()
+	.["active_diseases"] = length(active_diseases)
+
 /datum/controller/subsystem/disease/proc/get_disease_name(id)
 	var/datum/disease/advance/A = archive_diseases[id]
 	if(A.name)
