@@ -67,7 +67,7 @@
 			A.reagents.trans_to(src, 10, transfered_by = user)
 			to_chat(user, span_notice("You fill the balloon with the contents of [A]."))
 			desc = "A translucent balloon with some form of liquid sloshing around in it."
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/glass))
@@ -80,7 +80,7 @@
 				desc = "A translucent balloon with some form of liquid sloshing around in it."
 				to_chat(user, span_notice("You fill the balloon with the contents of [I]."))
 				I.reagents.trans_to(src, 10, transfered_by = user)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else if(I.is_sharp())
 		balloon_burst()
 	else
@@ -104,7 +104,8 @@
 		icon_state = "burst"
 		qdel(src)
 
-/obj/item/toy/balloon/update_icon()
+/obj/item/toy/balloon/update_icon_state()
+	. = ..()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -128,7 +129,7 @@
 
 /obj/item/toy/mballoon
 	name = "toy mballoon"
-	desc = "A blue baloon, it looks.. mentory?"
+	desc = "A blue balloon, it looks.. mentory?"
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -207,7 +208,7 @@
 			to_chat(user, span_notice("You reload [7 - src.bullets] cap\s."))
 			A.amount_left -= 7 - src.bullets
 			src.bullets = 7
-		A.update_icon()
+		A.update_appearance(UPDATE_ICON)
 		return 1
 	else
 		return ..()
@@ -239,8 +240,9 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	var/amount_left = 7
 
-/obj/item/toy/ammo/gun/update_icon()
-	src.icon_state = text("357OLD-[]", src.amount_left)
+/obj/item/toy/ammo/gun/update_icon_state()
+	. = ..()
+	icon_state = text("357OLD-[]", amount_left)
 
 /obj/item/toy/ammo/gun/examine(mob/user)
 	. = ..()
@@ -287,7 +289,7 @@
 			return
 		else
 			to_chat(user, span_notice("You attach the ends of the two plastic swords, making a single double-bladed toy! You're fake-cool."))
-			var/obj/item/twohanded/dualsaber/toy/newSaber = new /obj/item/twohanded/dualsaber/toy(user.loc)
+			var/obj/item/melee/dualsaber/toy/newSaber = new /obj/item/melee/dualsaber/toy(user.loc)
 			if(hacked) // That's right, we'll only check the "original" "sword".
 				newSaber.hacked = TRUE
 				newSaber.saber_color = "rainbow"
@@ -367,7 +369,7 @@
 /*
  * Subtype of Double-Bladed Energy Swords
  */
-/obj/item/twohanded/dualsaber/toy
+/obj/item/melee/dualsaber/toy
 	name = "double-bladed toy sword"
 	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
 	force = 0
@@ -377,44 +379,43 @@
 	throw_range = 5
 	attack_verb = list("attacked", "struck", "hit")
 
-/obj/item/twohanded/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
-/obj/item/twohanded/dualsaber/toy/IsReflect()//Stops Toy Dualsabers from reflecting energy projectiles
+/obj/item/melee/dualsaber/toy/IsReflect() //Stops Toy Dualsabers from reflecting energy projectiles
 	return 0
 
 /*
  * Subtype of Vxtvul Hammer
  */
-/obj/item/twohanded/vxtvulhammer/toy
+/obj/item/melee/vxtvulhammer/toy
 	name = "toy sledgehammer"
 	desc = "A Donksoft motorized hammer with realistic flashing lights and speakers."
-	force = 0
-	force_wielded = 0 // after recreating the dozen procs this thing has I decided it should be a subtype
+	base_icon_state = "vxtvul_hammer"
 	throwforce = 0
 	resistance_flags = NONE
 	armour_penetration = 0
 	block_chance = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	toy = TRUE
+
+	force = 0
+	force_wielded = 0
+
 	var/pirated = FALSE // knockoff brand!
 
-/obj/item/twohanded/vxtvulhammer/toy/Initialize(mapload)
+/obj/item/melee/vxtvulhammer/toy/Initialize(mapload)
 	. = ..()
 	if(pirated || prob(10)) // man i got scammed!
 		pirated = TRUE
 		name = "toy pirate sledgehammer"
 		desc += " This one looks different from the ones you see on commercials..."
-		icon_state = "vxtvul_hammer_pirate0-0"
-		update_icon()
+		base_icon_state = "vxtvul_hammer_pirate"
+		icon_state = "[base_icon_state]0-0"
+		update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/vxtvulhammer/toy/update_icon()
-	if(!pirated)
-		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
-	else
-		icon_state = "vxtvul_hammer[wielded]-[supercharged]"
-
-/obj/item/twohanded/vxtvulhammer/toy/pirate
+/obj/item/melee/vxtvulhammer/toy/pirate
+	base_icon_state = "vxtvul_hammer_pirate"
 	pirated = TRUE
 
 /obj/item/toy/katana
@@ -777,7 +778,7 @@
 		C.deckstyle = deckstyle
 		cards.Cut(1,2)
 		user.put_in_hands(C)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		C.interact(user)
 	else //if more than one card is drawn
 		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.drop_location())
@@ -791,9 +792,9 @@
 		H.deckstyle=deckstyle
 		src.cards.Cut(1,drawnumber+1)
 		user.put_in_hands(H)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		H.interact(user)
-		H.update_icon()
+		H.update_appearance(UPDATE_ICON)
 
 /obj/item/toy/cards/deck/AltClick(mob/living/L)
 	if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -806,7 +807,8 @@
 		drawsize=clamp(drawsize,1,min(cards.len,10))
 		draw_card(L,drawsize)
 
-/obj/item/toy/cards/deck/update_icon()
+/obj/item/toy/cards/deck/update_icon_state()
+	. = ..()
 	if(cards.len > 26)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 10)
@@ -840,7 +842,7 @@
 			qdel(SC)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(istype(I, /obj/item/toy/cards/cardhand))
 		var/obj/item/toy/cards/cardhand/CH = I
 		if(CH.parentdeck == src)
@@ -852,7 +854,7 @@
 			qdel(CH)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -912,7 +914,7 @@
 	cardUser.visible_message(span_notice("[cardUser] draws a card from [cardUser.p_their()] hand."), span_notice("You take the [C.cardname] from your hand."))
 
 	interact(cardUser)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(length(currenthand) == 1)
 		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
 		N.parentdeck = parentdeck
@@ -929,7 +931,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", span_notice("You add the [C.cardname] to your hand."))
 			qdel(C)
 			interact(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -944,7 +946,7 @@
 			user.visible_message("[user] adds the cards from [user.p_their()] hand to another, consolidating them.", span_notice("You add the cards from one hand to another."))
 			qdel(C)
 			interact(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -978,19 +980,21 @@
 	. = ..()
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
 
-/obj/item/toy/cards/cardhand/update_icon()
-	if(src.currenthand.len > 4)
-		src.icon_state = "[deckstyle]_hand5"
+/obj/item/toy/cards/cardhand/update_icon_state()
+	. = ..()
+	if(currenthand.len > 4)
+		icon_state = "[deckstyle]_hand5"
 	else
-		src.icon_state = "[deckstyle]_hand[currenthand.len]"
-	//radial menu stuff
-	cut_overlays()
+		icon_state = "[deckstyle]_hand[currenthand.len]"
+
+/obj/item/toy/cards/cardhand/update_overlays()
+	. = ..()
 	var/overlay_cards = currenthand.len
 
 	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
 	for(var/i = k; i <= overlay_cards; i++)
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
-		add_overlay(card_overlay)
+		. += card_overlay
 
 /obj/item/toy/cards/singlecard
 	name = "card"
@@ -1055,7 +1059,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", span_notice("You add the [cardname] to your hand."))
 			qdel(src)
 			H.interact(user)
-			H.update_icon()
+			H.update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -1142,7 +1146,8 @@
 		cards += "Wildcard"
 		cards += "Wild Draw Four"
 
-/obj/item/toy/cards/deck/uno/update_icon()
+/obj/item/toy/cards/deck/uno/update_icon_state()
+	. = ..()
 	if(cards.len > 54)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 25)
@@ -1680,9 +1685,10 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/eldritch_book/attack_self(mob/user)
 	book_open = !book_open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/toy/eldritch_book/update_icon()
+/obj/item/toy/eldritch_book/update_icon_state()
+	. = ..()
 	icon_state = book_open ? "book_open" : "book"
 
 /*

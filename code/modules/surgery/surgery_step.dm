@@ -95,7 +95,7 @@
 
 	var/speed_mod = 1
 	if(user == target)
-		speed_mod *= 3 // harder to do on yourself
+		speed_mod *= 1.5 // harder to do on yourself, but not "wait 15 seconds for a single step" hard
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
@@ -170,7 +170,7 @@
 		sound_file_use = preop_sound
 	if(!sound_file_use)
 		return
-	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff_exponent = 2)
 
 /datum/surgery_step/proc/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You succeed."),
@@ -191,7 +191,7 @@
 		sound_file_use = success_sound
 	if(!sound_file_use)
 		return
-	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff_exponent = 2)
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You screw up!"),
@@ -212,7 +212,7 @@
 		sound_file_use = failure_sound
 	if(!sound_file_use)
 		return
-	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff_exponent = 2)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return TRUE

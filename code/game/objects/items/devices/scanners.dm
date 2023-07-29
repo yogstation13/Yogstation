@@ -221,7 +221,7 @@ GENE SCANNER
 		if(advanced)
 			combined_msg += "\t[span_info("Radiation Level: [M.radiation]%.")]"
 
-	if(advanced && M.hallucinating())
+	if(advanced && M.has_status_effect(/datum/status_effect/hallucination))
 		combined_msg += "\t[span_info("Subject is hallucinating.")]"
 
 	//Eyes and ears
@@ -882,6 +882,7 @@ GENE SCANNER
 	if (!HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
 		user.visible_message(span_notice("[user] has analyzed [M]'s genetic sequence."))
 		gene_scan(M, user)
+		playsound(src, 'sound/effects/fastbeep.ogg', 20)
 
 	else
 		user.visible_message(span_notice("[user] failed to analyse [M]'s genetic sequence."), span_warning("[M] has no readable genetic sequence!"))

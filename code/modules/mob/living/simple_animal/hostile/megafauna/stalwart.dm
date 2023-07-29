@@ -11,7 +11,7 @@
 	friendly = "scans"
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	speak_emote = list("screeches")
-	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC, MOB_EPIC)
+	mob_biotypes = MOB_INORGANIC|MOB_ROBOTIC|MOB_EPIC
 	armour_penetration = 40
 	melee_damage_lower = 35
 	melee_damage_upper = 35
@@ -301,7 +301,7 @@
 	attacktext = "rends"
 	melee_damage_lower = 6
 	melee_damage_upper = 10
-	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC)
+	mob_biotypes = MOB_INORGANIC|MOB_ROBOTIC
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attack_sound = 'sound/weapons/pierce_slow.ogg'
 	speak_emote = list("buzzes")

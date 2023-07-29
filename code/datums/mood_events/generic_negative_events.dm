@@ -212,6 +212,10 @@
 	description = "<span class='warning'>They're gone... my fashion is ruined. I can feel my self esteem decaying... </span>\n"
 	mood_change = -10
 
+/datum/mood_event/bald
+	description = "I need something to cover my head..."
+	mood_change = -3
+  
 /datum/mood_event/type_bait
 	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
 	mood_change = -1

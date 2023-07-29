@@ -40,21 +40,20 @@
 	if(LAZYLEN(new_parts))
 		CheckParts(new_parts)
 
-/obj/item/ammo_casing/reusable/arrow/update_icon(force_update)
+/obj/item/ammo_casing/reusable/arrow/update_overlays()
 	..()
-	cut_overlays()
 	if(istype(explosive))
-		add_overlay(mutable_appearance(icon, "arrow_explosive[explosive.active ? "_active" : ""]"), TRUE)
+		. += mutable_appearance(icon, "arrow_explosive[explosive.active ? "_active" : ""]")
 	if(istype(bola))
-		add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
+		. += mutable_appearance(icon, "arrow_bola")
 	if(istype(syringe))
-		add_overlay(mutable_appearance(icon, "arrow_syringe"), TRUE)
+		. += mutable_appearance(icon, "arrow_syringe")
 		if(syringe.reagents && syringe.reagents.total_volume)
 			var/image/filling_overlay = mutable_appearance(icon, "arrow_syringe[clamp(round((syringe.reagents.total_volume / syringe.volume * 15),5), 1, 15)]")
 			filling_overlay.color = mix_color_from_reagents(syringe.reagents.reagent_list)
-			add_overlay(filling_overlay)
+			. += filling_overlay
 	if(flaming)
-		add_overlay(mutable_appearance(icon, "arrow_fire"), TRUE)
+		. += mutable_appearance(icon, "arrow_fire")
 
 /obj/item/ammo_casing/reusable/arrow/examine(mob/user)
 	. = ..()
@@ -76,7 +75,7 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_off()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/item/ammo_casing/reusable/arrow/wirecutter_act(mob/living/user, obj/item/I)
@@ -131,23 +130,23 @@
 	if(istype(new_explosive))
 		explosive = new_explosive
 		LAZYADD(attached_parts, new_explosive)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/ammo_casing/reusable/arrow/proc/add_bola(obj/item/restraints/legcuffs/bola/new_bola)
 	if(istype(new_bola))
 		bola = new_bola
 		LAZYADD(attached_parts, new_bola)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/ammo_casing/reusable/arrow/proc/add_syringe(obj/item/reagent_containers/syringe/new_syringe)
 	if(istype(new_syringe))
 		syringe = new_syringe
 		LAZYADD(attached_parts, new_syringe)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/ammo_casing/reusable/arrow/proc/add_flame()
 	flaming = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	
 /obj/item/ammo_casing/reusable/arrow/proc/on_embed(target, mob/living/carbon/embedde)
 	if(syringe)
@@ -366,8 +365,8 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/supermatter
 
 /obj/item/ammo_casing/reusable/arrow/supermatter/proc/disintigrate(atom/dusting)
-	if(ismob(dusting))
-		var/mob/ded = dusting
+	if(isliving(dusting))
+		var/mob/living/ded = dusting
 		if(ded.status_flags & GODMODE)
 			return FALSE
 		dusting.visible_message(span_danger("As [ded] is impacted by [src], [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
@@ -439,13 +438,13 @@
 		// Otherwise, move it to the arrow and make it the new shard
 		new_shard.forceMove(src)
 		shard = new_shard
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	..()
 
-/obj/item/ammo_casing/reusable/arrow/singulo/update_icon(force_update)
-	..()
+/obj/item/ammo_casing/reusable/arrow/singulo/update_overlays()
+	. = ..()
 	if(istype(shard))
-		add_overlay(mutable_appearance(icon, "[icon_state]_[shard.icon_state]"), TRUE)
+		. += mutable_appearance(icon, "[icon_state]_[shard.icon_state]")
 
 /// Handles the special effect of the singulo arrow, called by the projectile on hit
 /obj/item/ammo_casing/reusable/arrow/singulo/proc/shard_effect()

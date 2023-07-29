@@ -4,6 +4,7 @@
 #define BLOOD_BURST "HH"
 #define MAX_DASH_DIST 4
 #define DASH_SPEED 2
+
 #define STYLE_REVOLVER "revolver"
 #define STYLE_SHOTGUN "shotgun"
 #define STYLE_PUNCH "punch"
@@ -84,7 +85,7 @@
 
 /*---------------------------------------------------------------
 
-	start of blood burst section 
+	start of blood burst section
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -109,25 +110,25 @@
 	var/heal_amt = clamp(amount, 0, H.getBruteLoss() + H.getFireLoss() - hard_damage) //now introducing hard damage, a reason to actually dodge and parry things
 	H.heal_ordered_damage(heal_amt / 2, list(BRUTE, BURN), BODYPART_ANY) // splits the damage between brute and burn as evenly as possible
 	H.heal_ordered_damage(heal_amt / 2, list(BURN, BRUTE), BODYPART_ANY)
-	H.adjust_nutrition(amount / 2) // BLOOD IS FUEL
+	H.set_nutrition(min(H.nutrition + (amount / 2), NUTRITION_LEVEL_ALMOST_FULL)) // BLOOD IS FUEL
 
 /*---------------------------------------------------------------
 
-	end of blood burst section 
+	end of blood burst section
 
 ---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 
-	start of pocket pistol section 
+	start of pocket pistol section
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
 	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = new /obj/item/gun/ballistic/revolver/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You whip out your revolver."))	
+	to_chat(A, span_notice("You whip out your revolver."))
 	streak = ""
-	
+
 /obj/item/gun/ballistic/revolver/ipcmartial
 	desc = "Your trusty revolver."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
@@ -135,6 +136,7 @@
 	var/mob/gun_owner
 	spread = 0
 	semi_auto_spread = 0
+	slot_flags = 0 // so it doesn't get stuck on your belt
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
@@ -143,18 +145,20 @@
 	max_ammo = 3
 
 /obj/item/ammo_casing/ipcmartial
-	name = ".357 piercer bullet casing"
-	desc = "A .357 piercer bullet casing."
+	name = ".357 sharpshooter bullet casing"
+	desc = "A .357 sharpshooter bullet casing."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
 /obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
-	name = ".357 piercer bullet"
-	damage = 40
+	name = ".357 sharpshooter bullet"
+	damage = 30 // can't 3-shot against sec armor
 	armour_penetration = 15
 	wound_bonus = -45
 	wound_falloff_tile = -2.5
+	ricochets_max = 1 // so you can't use it in a small room to obliterate everyone inside
+	ricochet_chance = INFINITY // ALWAYS ricochet
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
@@ -171,13 +175,26 @@
 			if(ricochets) // the most powerful weapon: coins
 				UV.handle_style(H, 1)
 				H.balloon_alert(H, "+RICOSHOT")
-			UV.handle_style(H, 0.2 * damage / initial(damage), STYLE_REVOLVER)
-
-/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
-	. = ..()
+			UV.handle_style(H, 0.1 * damage / initial(damage), STYLE_REVOLVER)
 	if(ishuman(target) && !blocked)
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
+	ricochets = ricochets_max // so you can't shoot through someone to ricochet and hit them twice for 70 damage in one shot
+	damage -= 20
+	if(damage <= 0)
+		qdel(src)
+
+/obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
+	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
+	speed *= 0.5 // faster so it can hit more reliably
+	penetrating = FALSE
+	return ..()
+
+/obj/item/projectile/bullet/ipcmartial/check_ricochet()
+	return TRUE
+
+/obj/item/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
+	return !ismob(A) // don't ricochet off of mobs, that would be weird
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()
@@ -190,13 +207,13 @@
 		qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
-	to_chat(A, span_notice("You stash your revolver away."))	
+	to_chat(A, span_notice("You stash your revolver away."))
 	qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/proc/on_drop()//to let people drop it early with Q rather than attack self
 	var/mob/living/carbon/human/holder = src.loc
 	if(istype(holder))
-		to_chat(holder, span_notice("You relax your gun hand."))	
+		to_chat(holder, span_notice("You relax your gun hand."))
 	qdel(src)
 
 /*---------------------------------------------------------------
@@ -369,11 +386,10 @@
 	to_chat(usr, span_notice("This module has made you a hell-bound killing machine."))
 	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
 	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, releases the energy into anyone nearby."))
-	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
 	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
 	to_chat(usr, span_warning("Your grab has been replaced with the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you, but taking too much damage will build up \"hard damage\" which cannot be healed and decays over time.</b>"))
-	
+
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
 	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
@@ -414,7 +430,7 @@
 	..()
 	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
 	H.dna.species.punchdamagelow -= 4
-	H.dna.species.punchdamagehigh -= 4 
+	H.dna.species.punchdamagehigh -= 4
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
