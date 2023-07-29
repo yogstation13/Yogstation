@@ -19,7 +19,7 @@
 
 /mob/living/carbon/gib(no_brain, no_organs, no_bodyparts)
 	var/atom/Tsec = drop_location()
-	for(var/mob/M in src)
+	for(var/mob/living/M in src)
 		//yogs start -- Yogs vorecode
 		if(M in stomach_contents)
 			stomach_contents.Remove(M)

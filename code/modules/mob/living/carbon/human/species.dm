@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// generic traits tied to having the species
 	var/list/inherent_traits = list()
 	///biotypes, used for viruses and the like
-	var/list/inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	var/list/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	/// punch-specific attack verb
 	var/attack_verb = "punch"
 	///the melee attack sound
@@ -432,7 +432,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 				C.put_in_hands(new mutanthands())
 
-	if(ROBOTIC_LIMBS in species_traits)
+	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ROBOTIC) // Makes all Bodyparts robotic.
 			B.render_like_organic = TRUE
@@ -462,7 +462,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.dna.blood_type = random_blood_type()
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(TRUE)
-	if(ROBOTIC_LIMBS in species_traits)
+	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
 			B.render_like_organic = FALSE
@@ -2705,6 +2705,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are completely unaffected by radiation. However, this doesn't mean they can't be irradiated.",
 		))
 
+	if(TRAIT_FARADAYCAGE in inherent_traits)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "[plural_form] have a unique physiology that shields them from weak EMPs.",
+		))
+
 	if(TRAIT_LIMBATTACHMENT in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -2738,16 +2746,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "Toxins damage dealt to [plural_form] are reversed - healing toxins will instead cause harm, and \
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
-
-	if(ROBOTIC_LIMBS in species_traits)//species traits is basically inherent traits
-		to_add += list(list(
-			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "fa-solid fa-gear",
-			SPECIES_PERK_NAME = "Robotic limbs",
-			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
-				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
-		))
-
+		
 	return to_add
 
 /**
@@ -2758,13 +2757,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/create_pref_biotypes_perks()
 	var/list/to_add = list()
 
-	if(MOB_UNDEAD in inherent_biotypes)
+	if(inherent_biotypes & MOB_UNDEAD)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
 			SPECIES_PERK_NAME = "Undead",
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
+		))
+	
+	if(inherent_biotypes & MOB_ROBOTIC)//species traits is basically inherent traits
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "fa-solid fa-gear",
+			SPECIES_PERK_NAME = "Robotic",
+			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
+				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
 		))
 
 	return to_add

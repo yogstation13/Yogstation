@@ -343,6 +343,7 @@
 	name = "Hell Water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
@@ -358,6 +359,7 @@
 	description = "Strange liquid that defies the laws of physics"
 	taste_description = "glass"
 	color = "#1f8016"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
 	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
@@ -366,16 +368,16 @@
 		M.adjustStaminaLoss(-10, FALSE)
 		M.adjustToxLoss(-2, FALSE)
 		M.adjustOxyLoss(-2, FALSE)
-		M.adjustBruteLoss(-2, FALSE)
-		M.adjustFireLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE, FALSE, BODYPART_ANY)
+		M.adjustFireLoss(-2, FALSE, FALSE, BODYPART_ANY)
 		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, FALSE)
-		M.adjustFireLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE, FALSE, BODYPART_ANY)
 		M.adjustOxyLoss(2, FALSE)
-		M.adjustBruteLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE, FALSE, BODYPART_ANY)
 	holder.remove_reagent(type, 1)
 	return TRUE
 
@@ -735,7 +737,7 @@
 	..()
 	if(!istype(H))
 		return
-	if(!H.dna || !H.dna.species || !(MOB_ORGANIC in H.mob_biotypes))
+	if(!H.dna || !H.dna.species || !(H.mob_biotypes & MOB_ORGANIC))
 		return
 
 	if(isjellyperson(H))
@@ -1135,6 +1137,7 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
+	accelerant_quality = 10
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -1144,7 +1147,7 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(MOB_ROBOTIC in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_ROBOTIC)
 		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
 	else
 		M.adjustToxLoss(1*REM, 0)
@@ -1863,6 +1866,26 @@
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
 			H.update_hair()
+
+/datum/reagent/baldium
+	name = "Baldium"
+	description = "A major cause of hair loss across the world."
+	reagent_state = LIQUID
+	color = "#ecb2cf"
+	taste_description = "bitterness"
+
+/datum/reagent/baldium/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	. = ..()
+	if(!(methods & (TOUCH|VAPOR)))
+		return
+	if(!permeability)
+		return
+	if(M && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		to_chat(H, span_danger("Your hair starts to fall out in clumps!"))
+		H.hair_style = "Bald"
+		H.facial_hair_style = "Shaved"
+		H.update_hair()
 
 /datum/reagent/saltpetre
 	name = "Saltpetre"

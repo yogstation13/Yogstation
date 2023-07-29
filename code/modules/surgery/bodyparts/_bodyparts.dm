@@ -140,7 +140,7 @@
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user
-					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+					if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
 						if(H == user)
 							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
 						else
