@@ -34,7 +34,7 @@
 
 /obj/item/stack/antinoblium_crystal
 	name = "Antinoblium Crystal"
-	desc = "Crystalized antinoblium, nitrium, and zauker. An incredibly volatile material."
+	desc = "Crystalized antinoblium, bz, and nitrogen. An incredibly volatile material."
 	icon_state = "antinoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
 	grind_results = list(/datum/reagent/antinoblium = 20)
