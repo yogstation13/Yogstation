@@ -4,6 +4,7 @@
 /obj/item/melee/dualsaber
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "dualsaber0"
+	base_icon_state = "dualsaber"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "double-bladed energy sword"
@@ -49,7 +50,7 @@
 		set_light_color(new_color)
 
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 3, \
+		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state][saber_color]1", \
 		wieldsound = 'sound/weapons/saberon.ogg', \

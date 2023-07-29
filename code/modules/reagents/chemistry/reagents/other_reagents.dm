@@ -343,6 +343,7 @@
 	name = "Hell Water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
@@ -736,7 +737,7 @@
 	..()
 	if(!istype(H))
 		return
-	if(!H.dna || !H.dna.species || !(MOB_ORGANIC in H.mob_biotypes))
+	if(!H.dna || !H.dna.species || !(H.mob_biotypes & MOB_ORGANIC))
 		return
 
 	if(isjellyperson(H))
@@ -1136,6 +1137,7 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
+	accelerant_quality = 10
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -1145,7 +1147,7 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(MOB_ROBOTIC in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_ROBOTIC)
 		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
 	else
 		M.adjustToxLoss(1*REM, 0)

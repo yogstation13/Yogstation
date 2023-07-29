@@ -112,8 +112,10 @@
 	if(mode == HEATER_MODE_COOL)
 		deltaTemperature *= -1
 	if(deltaTemperature)
-		env.set_temperature(env.return_temperature() + deltaTemperature)
-		air_update_turf()
+		for (var/turf/open/turf in ((L.atmos_adjacent_turfs || list()) + L))
+			var/datum/gas_mixture/turf_gasmix = turf.return_air()
+			turf_gasmix.set_temperature(turf_gasmix.return_temperature() + deltaTemperature)
+			air_update_turf(FALSE, FALSE)
 
 	var/working = TRUE
 
