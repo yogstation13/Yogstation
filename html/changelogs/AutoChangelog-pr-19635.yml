@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds moodlet for preternis water damage"
+  - rscadd: "Adds moodlet for preternis hunger"
