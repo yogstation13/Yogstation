@@ -39,4 +39,4 @@ GLOBAL_VAR(string_filename_current_key)
 	if(fexists("[directory]/[filename]"))
 		GLOB.string_cache[filename] = json_load("[directory]/[filename]")
 	else
-		CRASH("file not found: [directory]/[filename]")
+			CRASH("file not found: [directory]/[filename]")
