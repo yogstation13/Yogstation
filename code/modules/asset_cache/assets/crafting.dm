@@ -6,7 +6,7 @@
 	var/id = 1
 	for(var/atom in GLOB.crafting_recipes_atoms)
 		add_atom_icon(atom, id++)
-	//add_tool_icons() // NOTE: This was causing the ALL/MOST icons to not work. TODO: Need to fix.
+	add_tool_icons() /// NOTE: This was causing the ALL/MOST icons to not work. TODO: Need to fix.
 
 /datum/asset/spritesheet/crafting/cooking
 	name = "cooking"
@@ -45,16 +45,6 @@
 		TOOL_WIRECUTTER = icon('icons/obj/tools.dmi', "cutters_map"),
 		TOOL_WRENCH = icon('icons/obj/tools.dmi', "wrench"),
 		TOOL_WELDER = icon('icons/obj/tools.dmi', "welder"),
-		TOOL_ANALYZER = icon('icons/obj/device.dmi', "analyzer"),
-		TOOL_MINING = icon('icons/obj/mining.dmi', "minipick"),
-		TOOL_SHOVEL = icon('icons/obj/mining.dmi', "spade"),
-		TOOL_RETRACTOR = icon('icons/obj/surgery.dmi', "retractor"),
-		TOOL_HEMOSTAT = icon('icons/obj/surgery.dmi', "hemostat"),
-		TOOL_CAUTERY = icon('icons/obj/surgery.dmi', "cautery"),
-		TOOL_DRILL = icon('icons/obj/surgery.dmi', "drill"),
-		TOOL_SCALPEL = icon('icons/obj/surgery.dmi', "scalpel"),
-		TOOL_SAW = icon('icons/obj/surgery.dmi', "saw"),
-		TOOL_BONESET = icon('icons/obj/surgery.dmi', "bonesetter"),
 	)
 
 	for(var/tool in tool_icons)

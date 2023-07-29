@@ -29,7 +29,7 @@
 	del_reqs - takes recipe and a user, loops over the recipes reqs var and tries to find everything in the list make by get_environment and delete it/add to parts list, then returns the said list
 */
 
-/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents, print = FALSE)
+/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
 	var/list/item_instances = contents["instances"]
 	contents = contents["other"]
 
@@ -41,9 +41,6 @@
 		var/needed_amount = R.reqs[requirement_path]
 		for(var/content_item_path in contents)
 			// Right path and not blacklisted
-			if(print)
-				to_chat(world, "[requirement_path]: [content_item_path]" )
-
 			if(!ispath(content_item_path, requirement_path) || R.blacklist.Find(content_item_path))
 				continue
 
@@ -52,9 +49,7 @@
 				break
 		
 		if(needed_amount > 0)
-			to_chat("[requirement_path] has FAILED")
 			return FALSE
-		to_chat("[requirement_path] has PASSED")
 
 		// Store the instances of what we will use for R.check_requirements() for requirement_path.
 		var/list/instances_list = list()
@@ -155,10 +150,10 @@
 
 	return TRUE
 
-/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R, print = FALSE)
+/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(a, R.blacklist)
 	var/send_feedback = 1
-	if(!check_contents(a, R, contents, print))
+	if(!check_contents(a, R, contents))
 		return ", missing component."
 	if(!check_tools(a, R, contents))
 		return ", missing tool."
@@ -402,7 +397,7 @@
 			var/datum/crafting_recipe/crafting_recipe = locate(params["recipe"]) in (mode ? GLOB.cooking_recipes : GLOB.crafting_recipes)
 			busy = TRUE
 			ui_interact(user)
-			var/atom/movable/result = construct_item(user, crafting_recipe, TRUE)
+			var/atom/movable/result = construct_item(user, crafting_recipe)
 			if(!istext(result)) // We made an item and didn't get a fail message.
 				if(ismob(user) && isitem(result)) // In case the user is actually possessing a non-mob like a machine.
 					user.put_in_hands(result)
