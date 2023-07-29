@@ -6,6 +6,7 @@
 GLOBAL_LIST(string_cache)
 GLOBAL_VAR(string_filename_current_key)
 
+
 /proc/strings_replacement(filename, key, directory = "strings")
 	load_strings_file(filename, directory)
 
