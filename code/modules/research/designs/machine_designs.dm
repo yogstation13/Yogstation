@@ -641,7 +641,7 @@
 	id = "inspector_booth"
 	build_path = /obj/item/circuitboard/machine/inspector_booth
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/stacking_unit_console
 	name = "Machine Design (Stacking Machine Console)"
