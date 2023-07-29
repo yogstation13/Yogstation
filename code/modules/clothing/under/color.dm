@@ -10,6 +10,7 @@
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "jumpsuit"
 	item_state = "jumpsuit"
+	worn_icon_state = "jumpsuit"
 	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -26,6 +27,7 @@
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "jumpskirt"
 	item_state = "jumpsuit"
+	worn_icon_state = "jumpsuit"
 	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'	
 
 /obj/item/clothing/under/color/random

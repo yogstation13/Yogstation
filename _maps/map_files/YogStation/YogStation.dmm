@@ -10858,7 +10858,7 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bEo" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -25495,7 +25495,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "gon" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)
@@ -57041,7 +57041,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
 "soW" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -65025,7 +65025,7 @@
 	dir = 4;
 	name = "Fuel Port"
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "vuH" = (
