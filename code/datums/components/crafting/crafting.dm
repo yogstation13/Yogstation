@@ -352,7 +352,7 @@
 
 	data["recipes"] = list()
 	data["categories"] = list()
-	data["foodtypes"] = list()
+	data["foodtypes"] = FOOD_FLAGS
 
 	if(user.has_dna())
 		var/mob/living/carbon/carbon = user

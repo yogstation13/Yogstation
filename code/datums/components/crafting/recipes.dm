@@ -801,3 +801,41 @@
 				/obj/item/stack/rods = 10)
 	tool_paths = list(/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver)
 	category = CAT_MEDICAL
+
+/datum/crafting_recipe/apprentice_bait
+	name = "Apprentice Bait"
+	reqs = list(
+		/datum/reagent/water = 2,
+		/datum/reagent/consumable/flour = 5,
+		/obj/item/reagent_containers/food/snacks/grown/corn = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/apprentice
+	category = CAT_BAIT
+
+/datum/crafting_recipe/journeyman_bait
+	name = "Journeyman Bait"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bait/apprentice = 2,
+		/datum/reagent/blood = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/journeyman
+	category = CAT_BAIT
+
+/datum/crafting_recipe/master_bait
+	name = "Master Bait"
+	reqs = list(
+		/datum/reagent/toxin/plasma = 5,
+		/obj/item/reagent_containers/food/snacks/bait/journeyman = 2,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/master
+	category = CAT_BAIT
+
+/datum/crafting_recipe/wild_bait
+	name = "Wild Bait"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bait/worm = 1,
+		/obj/item/stack/medical/gauze/improvised = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/bait/wild
+	category = CAT_BAIT

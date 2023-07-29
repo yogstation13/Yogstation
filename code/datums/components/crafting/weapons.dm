@@ -63,8 +63,8 @@
 	result = /obj/item/restraints/legcuffs/bola
 	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/stack/sheet/metal = 6)
-	time = 2 SECONDS //15 faster than crafting them by hand!
-	category = CAT_WEAPON_MELEE
+	time = 2 SECONDS // 15 faster than crafting them by hand!
+	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/watcherbola
 	name = "Watcher Bola"
@@ -72,7 +72,7 @@
 	time = 3 SECONDS
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 2,
 				/obj/item/restraints/handcuffs/cable/sinew = 1)
-	category = CAT_WEAPON_MELEE
+	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/gonbola
 	name = "Gonbola"

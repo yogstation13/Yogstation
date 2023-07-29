@@ -9,7 +9,6 @@
 	glass_name = "glass of tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
-	default_container = /obj/item/reagent_containers/blood
 
 /datum/reagent/blood/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(L) //bloodsucker start
