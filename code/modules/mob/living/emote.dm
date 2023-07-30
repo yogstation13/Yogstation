@@ -29,17 +29,32 @@
 	emote_type = EMOTE_AUDIBLE
 	stat_allowed = SOFT_CRIT
 
-/datum/emote/living/cross
-	key = "cross"
-	key_third_person = "crosses"
-	message = "crosses their arms."
-	hands_use_check = TRUE
-
 /datum/emote/living/chuckle
 	key = "chuckle"
 	key_third_person = "chuckles"
 	message = "chuckles."
 	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/circle
+	key = "circle"
+	key_third_person = "circles"
+	hands_use_check = TRUE
+
+/datum/emote/living/circle/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	var/obj/item/circlegame/N = new(user)
+	if(user.put_in_hands(N))
+		to_chat(user, span_notice("You make a circle with your hand."))
+	else
+		qdel(N)
+		to_chat(user, span_warning("You don't have any free hands to make a circle with."))
+
+/datum/emote/living/clueless
+	key = "clueless"
+	key_third_person = "cluelesses"
+	message = "looks clueless."
+	message_param = "looks cluelessly at %t"
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/collapse
 	key = "collapse"
@@ -63,6 +78,12 @@
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_SOOTHED_THROAT))
 		return FALSE
+
+/datum/emote/living/cross
+	key = "cross"
+	key_third_person = "crosses"
+	message = "crosses their arms."
+	hands_use_check = TRUE
 
 /datum/emote/living/dance
 	key = "dance"
@@ -292,6 +313,7 @@
 	message = "pouts."
 	emote_type = EMOTE_VISIBLE
 
+
 /datum/emote/living/scream
 	key = "scream"
 	key_third_person = "screams"
@@ -332,6 +354,21 @@
 	key_third_person = "sits"
 	message = "sits down."
 
+/datum/emote/living/slap
+	key = "slap"
+	key_third_person = "slaps"
+	hands_use_check = TRUE
+
+/datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/slapper/N = new(user)
+	if(user.put_in_hands(N))
+		to_chat(user, span_notice("You ready your slapping hand."))
+	else
+		to_chat(user, span_warning("You're incapable of slapping in your current state."))
+
 /datum/emote/living/smile
 	key = "smile"
 	key_third_person = "smiles"
@@ -347,6 +384,18 @@
 	key = "smug"
 	key_third_person = "smugs"
 	message = "grins smugly."
+
+/datum/emote/living/snap
+	key = "snap"
+	key_third_person = "snaps"
+	message = "snaps their fingers."
+	message_param = "snaps their fingers at %t."
+	emote_type = EMOTE_AUDIBLE
+	mob_type_allowed_typecache = list(/mob/living/carbon/human)
+	hands_use_check = TRUE
+
+/datum/emote/living/snap/get_sound(mob/living/user)
+	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
 
 /datum/emote/living/sniff
 	key = "sniff"
@@ -394,6 +443,13 @@
 	key = "sway"
 	key_third_person = "sways"
 	message = "sways around dizzily."
+
+/datum/emote/living/thumbsup
+	key = "thumbsup"
+	key_third_person = "thumbs"
+	message = "gives a thumbs up."
+	message_param = "gives a thumbs up to %t."
+	hands_use_check = TRUE
 
 /datum/emote/living/tremble
 	key = "tremble"
@@ -520,55 +576,3 @@
 	message = jointext(message, "")
 
 	to_chat(user, message)
-
-/datum/emote/beep
-	key = "beep"
-	key_third_person = "beeps"
-	message = "beeps."
-	message_param = "beeps at %t."
-	sound = 'sound/machines/twobeep.ogg'
-	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/silicon)
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/living/circle
-	key = "circle"
-	key_third_person = "circles"
-	hands_use_check = TRUE
-
-/datum/emote/living/circle/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	var/obj/item/circlegame/N = new(user)
-	if(user.put_in_hands(N))
-		to_chat(user, span_notice("You make a circle with your hand."))
-	else
-		qdel(N)
-		to_chat(user, span_warning("You don't have any free hands to make a circle with."))
-
-/datum/emote/living/slap
-	key = "slap"
-	key_third_person = "slaps"
-	hands_use_check = TRUE
-
-/datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
-	. = ..()
-	if(!.)
-		return
-	var/obj/item/slapper/N = new(user)
-	if(user.put_in_hands(N))
-		to_chat(user, span_notice("You ready your slapping hand."))
-	else
-		to_chat(user, span_warning("You're incapable of slapping in your current state."))
-
-/datum/emote/living/thumbsup
-	key = "thumbsup"
-	key_third_person = "thumbs"
-	message = "gives a thumbs up."
-	message_param = "gives a thumbs up to %t."
-	hands_use_check = TRUE
-
-/datum/emote/living/clueless
-	key = "clueless"
-	key_third_person = "cluelesses"
-	message = "looks clueless."
-	message_param = "looks cluelessly at %t"
-	stat_allowed = SOFT_CRIT
