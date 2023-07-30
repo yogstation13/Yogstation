@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Cable coils now properly show themselves as being pieces or coils depending on amount."
