@@ -170,10 +170,13 @@
 		H.dna.species.stop_wagging_tail(H)
 
 /datum/emote/living/carbon/human/wag/can_run_emote(mob/user, status_check = TRUE , intentional)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/human/H = user
-	if(!istype(H)) // Here to prevent a runtime when a silicon does *help.
-		return
-	return H.dna?.species?.can_wag_tail(user) && ..()
+	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(user) ) // Here to prevent a runtime when a silicon does *help.
+		return FALSE
+	return TRUE
 
 /datum/emote/living/carbon/human/wag/select_message_type(mob/user, intentional)
 	. = ..()
@@ -320,14 +323,13 @@
 
 // Emotes only for clowns who use a robotic tongue. Honk!
 /datum/emote/living/carbon/human/robot_tongue/clown/can_run_emote(mob/user, status_check = TRUE, intentional)
-	to_chat("Trying to can_run_emote for the robot tongue! (1)")
 	. = ..()
 	if(!.)
-		return
-	
-	to_chat("Trying to can_run_emote for the robot tongue! (2)")
+		return FALSE
+
 	if(!user || !user.mind || !user.mind.assigned_role || user.mind.assigned_role != "Clown")
-		return
+		return FALSE
+	return TRUE
 
 /datum/emote/living/carbon/human/robot_tongue/clown/honk
 	key = "honk"
