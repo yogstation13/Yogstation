@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(695 modules,
-    1875/8876 macros, 21.1%)</aside></h3>
+<aside>(697 modules,
+    1875/8879 macros, 21.1%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -156,6 +156,7 @@ General Public License version 3.
     <li><a href="code/__HELPERS/_lists.html" title="code&#x2F;__HELPERS&#x2F;_lists">_lists</a></li>
     <li><a href="code/__HELPERS/_logging.html" title="code&#x2F;__HELPERS&#x2F;_logging">_logging</a></li>
     <li><a href="code/__HELPERS/areas.html" title="code&#x2F;__HELPERS&#x2F;areas">areas</a></li>
+    <li><a href="code/__HELPERS/cmp.html" title="code&#x2F;__HELPERS&#x2F;cmp">cmp</a></li>
     <li><a href="code/__HELPERS/colors.html" title="code&#x2F;__HELPERS&#x2F;colors">colors</a></li>
     <li><a href="code/__HELPERS/duplicating.html" title="code&#x2F;__HELPERS&#x2F;duplicating">duplicating</a></li>
     <li><a href="code/__HELPERS/files.html" title="code&#x2F;__HELPERS&#x2F;files">files</a></li>
@@ -524,6 +525,7 @@ SPDX-License-Identifier: MIT</li>
     <li class="has-children"><a href="code/modules/asset_cache.html" title="code&#x2F;modules&#x2F;asset_cache">Asset cache system</a><ul class="index-tree">
     <li><a href="code/modules/asset_cache/asset_cache_item.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_item">asset_cache_item</a></li>
     <li><a href="code/modules/asset_cache/asset_list.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_list">asset_list</a></li>
+    <li><span class="no-substance">assets&#x2F;</span><a href="code/modules/asset_cache/assets/crafting.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;assets&#x2F;crafting">crafting</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;asset_cache&#x2F;transports">transports</span><ul class="index-tree">
     <li><a href="code/modules/asset_cache/transports/asset_transport.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;transports&#x2F;asset_transport">asset_transport</a></li>
     <li><a href="code/modules/asset_cache/transports/webroot_transport.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;transports&#x2F;webroot_transport">webroot_transport</a></li>
@@ -1025,7 +1027,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(877 detailed/1679 documented/28046 total, 6%)</aside></h3>
+<aside>(879 detailed/1681 documented/28052 total, 6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1345,6 +1347,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     <li class="has-children"><a href="datum/asset/spritesheet.html" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet">spritesheet</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;antagonists">antagonists</span> - Sprites generated for the antagonists panel</li>
+    <li><a href="datum/asset/spritesheet/crafting.html" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;crafting">crafting</a> - Representative icons for the contents of each crafting recipe.</li>
     <li><a href="datum/asset/spritesheet/decals.html" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;decals">floor_decals</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;preferences">preferences</span> - Assets generated from <code>/datum/preference</code> icons</li>
     </ul></li>
@@ -1512,7 +1515,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/crafting_recipe/blackcoffin.html" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;blackcoffin">Black Coffin</a> - From recipes.dm</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;bloodaltar">Blood Altar</span> - Structures</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;chisel">Chisel</span> - Tools</li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food">food</span><ul class="index-tree">
+    <li class="has-children"><a href="datum/crafting_recipe/food.html" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food">food</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;aesirsalad">Aesir Salad</span> - SALADS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;amanitajelly">Amanita Jelly</span> - SOUP</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;amanitapie">Amanita Pie</span> - PIES</li>
@@ -3342,7 +3345,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/fc023351b64bd2126e94e33e0a390f4643e9e159">fc02335</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/5f5d50aa087a83c83857a6e94209a27a132f3283">5f5d50a</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
