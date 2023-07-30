@@ -174,9 +174,9 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/human/H = user
-	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(user) ) // Here to prevent a runtime when a silicon does *help.
+	if(!istype(H) || !H.dna || !H.dna.species) // Here to prevent a runtime when a silicon does *help.
 		return FALSE
-	return TRUE
+	return H.dna.species.can_wag_tail(user)
 
 /datum/emote/living/carbon/human/wag/select_message_type(mob/user, intentional)
 	. = ..()
@@ -213,9 +213,9 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/human/H = user
-	if(!istype(H) || !H.dna || !H.dna.species || H.dna.species["wings"] == "None" ) // Here to prevent a runtime when a silicon does *help.
+	if(!istype(H) || !H.dna || !H.dna.species) // Here to prevent a runtime when a silicon does *help.
 		return FALSE
-	return TRUE
+	return (H.dna.species["wings"] != "None")
 
 /mob/living/carbon/human/proc/OpenWings()
 	if(!dna || !dna.species)
