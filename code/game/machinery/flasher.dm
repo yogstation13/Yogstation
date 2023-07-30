@@ -125,7 +125,7 @@
 
 		if(L.flash_act(affect_silicon = 1))
 			if(iscarbon(L))
-				bulb.flash_carbon(L, src, 5, TRUE)
+				bulb.flash_carbon(L, src, strength / 10, TRUE)
 			else if(iscyborg(L) && bulb.borgstun)
 				bulb.flash_borg(L, src)
 			flashed = TRUE
