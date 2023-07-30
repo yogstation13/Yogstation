@@ -1129,7 +1129,7 @@
 
 /datum/techweb_node/syndicate_basic
 	id = "syndicate_basic"
-	display_name = "Illegal Technology"
+	display_name = "Foreign Technology"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
 	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "donksofttoyvendor", "donksoft_refill", "thermal_goggles")
