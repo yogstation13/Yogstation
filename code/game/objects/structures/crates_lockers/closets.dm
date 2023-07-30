@@ -656,4 +656,4 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/can_be_pulled(user)
 	. = ..()
 	if(user in contents)
-		return FALSE 
+		return FALSE
