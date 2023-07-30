@@ -129,7 +129,7 @@
 
 /obj/structure/holosign/barrier/atmos/Initialize(mapload)
 	. = ..()
-	air_update_turf(TRUE)
+	air_update_turf()
 
 /obj/structure/holosign/barrier/cyborg
 	name = "Energy Field"

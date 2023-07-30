@@ -3,7 +3,6 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../../backend';
 import { Box, Button, LabeledList, NumberInput, ProgressBar, Section } from '../../components';
-import { getGasColor, getGasLabel } from '../../constants';
 import { HelpDummy, HoverHelp } from './helpers';
 
 /*
@@ -101,11 +100,10 @@ const GasList = (props, context) => {
             label={
               <>
                 {labelPrefix}
-                {getGasLabel(gas.id)}:
+                {gas.id}:
               </>
             }>
             <ProgressBar
-              color={getGasColor(gas.id)}
               value={gas.amount}
               minValue={0}
               maxValue={minimumScale}>

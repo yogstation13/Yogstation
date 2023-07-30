@@ -18,26 +18,27 @@
         ),\
     )
 
-/obj/machinery/atmospherics/pipe/New()
+/obj/machinery/atmospherics/pipe/Initialize(mapload)
+	. = ..()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 	volume = 35 * device_type
-	..()
 
-/obj/machinery/atmospherics/pipe/nullifyNode(i)
-	var/obj/machinery/atmospherics/oldN = nodes[i]
-	..()
-	if(oldN)
-		SSair.add_to_rebuild_queue(oldN)
+/obj/machinery/atmospherics/pipe/nullify_node(i)
+	var/obj/machinery/atmospherics/old_node = nodes[i]
+	. = ..()
+	if(old_node)
+		SSair.add_to_rebuild_queue(old_node)
 
 /obj/machinery/atmospherics/pipe/destroy_network()
 	QDEL_NULL(parent)
 
-/obj/machinery/atmospherics/pipe/build_network()
-	if(QDELETED(parent))
-		parent = new
-		parent.build_pipeline(src)
+/obj/machinery/atmospherics/pipe/get_rebuild_targets()
+	if(!QDELETED(parent))
+		return
+	parent = new
+	return list(parent)
 
-/obj/machinery/atmospherics/pipe/atmosinit()
+/obj/machinery/atmospherics/pipe/atmos_init()
 	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	..()
@@ -51,19 +52,26 @@
 	if(air_temporary)
 		var/turf/T = loc
 		T.assume_air(air_temporary)
-		air_update_turf()
 
 /obj/machinery/atmospherics/pipe/return_air()
-	if(parent)
-		return parent.air
+	if(air_temporary)
+		return air_temporary
+	return parent.air
 
 /obj/machinery/atmospherics/pipe/return_analyzable_air()
-	if(parent)
-		return parent.air
+	if(air_temporary)
+		return air_temporary
+	return parent.air
 
 /obj/machinery/atmospherics/pipe/remove_air(amount)
-	if(parent)
-		return parent.air.remove(amount)
+	if(air_temporary)
+		return air_temporary.remove(amount)
+	return parent.air.remove(amount)
+
+/obj/machinery/atmospherics/pipe/remove_air_ratio(ratio)
+	if(air_temporary)
+		return air_temporary.remove_ratio(ratio)
+	return parent.air.remove_ratio(ratio)
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pipe_meter))
@@ -78,10 +86,10 @@
 		analyzer_act(user, src)
 	return ..()
 
-/obj/machinery/atmospherics/pipe/returnPipenet()
+/obj/machinery/atmospherics/pipe/return_pipenet()
 	return parent
 
-/obj/machinery/atmospherics/pipe/setPipenet(datum/pipeline/P)
+/obj/machinery/atmospherics/pipe/set_pipenet(datum/pipeline/P)
 	parent = P
 
 /obj/machinery/atmospherics/pipe/Destroy()

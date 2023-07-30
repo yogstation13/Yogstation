@@ -173,13 +173,13 @@
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/update_temperature_status(delta_time)
 	fusion_temperature_archived = fusion_temperature
-	fusion_temperature = internal_fusion.return_temperature()
+	fusion_temperature = internal_fusion.total_moles() == 0 ? 0 : internal_fusion.return_temperature()
 	moderator_temperature_archived = moderator_temperature
-	moderator_temperature = moderator_internal.return_temperature()
+	moderator_temperature = moderator_internal.total_moles() == 0 ? 0 : moderator_internal.return_temperature()
 	coolant_temperature_archived = coolant_temperature
-	coolant_temperature = airs[1].return_temperature()
+	coolant_temperature = airs[1].total_moles() == 0 ? 0 : airs[1].return_temperature()
 	output_temperature_archived = output_temperature
-	output_temperature = linked_output.airs[1].return_temperature()
+	output_temperature = linked_output.airs[1].total_moles() == 0 ? 0 : linked_output.airs[1].return_temperature()
 	temperature_period = delta_time
 
 	//Set the power level of the fusion process

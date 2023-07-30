@@ -1,5 +1,4 @@
 import { Box, Button, Icon, Table, Tooltip } from '../../components';
-import { getGasColor, getGasLabel } from '../../constants';
 
 /*
  * Recipe selection interface
@@ -101,9 +100,8 @@ const MemoRow = (props) => {
   const { active, children, key, ...rest } = props;
   return (
     <Table.Row
-      className={`hypertorus-recipes__row${
-        active ? ' hypertorus-recipes__activerow' : ''
-      }`}
+      className={`hypertorus-recipes__row${active ? ' hypertorus-recipes__activerow' : ''
+        }`}
       {...rest}>
       {children}
     </Table.Row>
@@ -115,8 +113,8 @@ MemoRow.defaultHooks = activeChange;
 const GasCellItem = (props) => {
   const { gasid, ...rest } = props;
   return (
-    <Table.Cell key={gasid} label={getGasLabel(gasid)} {...rest}>
-      <Box color={getGasColor(gasid)}>{getGasLabel(gasid)}</Box>
+    <Table.Cell key={gasid} label={gasid} {...rest}>
+      <Box>{gasid}</Box>
     </Table.Cell>
   );
 };

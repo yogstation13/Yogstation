@@ -1,6 +1,5 @@
 import { useBackend } from '../backend';
 import { Button, LabeledList, NumberInput, Section } from '../components';
-import { getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 export const AtmosFilter = (props, context) => {
@@ -45,7 +44,7 @@ export const AtmosFilter = (props, context) => {
                 <Button
                   key={filter.id}
                   icon={filter.enabled ? 'check-square-o' : 'square-o'}
-                  content={getGasLabel(filter.gas_id, filter.gas_name)}
+                  content={filter.name}
                   selected={filter.enabled}
                   onClick={() => act('toggle_filter', {
                     val: filter.gas_id,

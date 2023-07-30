@@ -256,28 +256,29 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
 				beaker.reagents.reaction(occupant, VAPOR)
-				if(air1.get_moles(/datum/gas/pluoxium) > 5 )//Use pluoxium over oxygen
-					air1.adjust_moles(/datum/gas/pluoxium, -max(0,air1.get_moles(/datum/gas/pluoxium) - 0.5 / efficiency))
-				else
-					air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
+				if(air1.get_moles(GAS_PLUOXIUM) > 5 )//Use pluoxium over oxygen
+					air1.adjust_moles(GAS_PLUOXIUM, -max(0,air1.get_moles(GAS_PLUOXIUM) - 0.5 / efficiency))
+				else 
+					air1.adjust_moles(GAS_O2, -max(0,air1.get_moles(GAS_O2) - 2 / efficiency)) //Let's use gas for this
 				if(occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 100) //prevent cryoxadone overdose
 					occupant.reagents.del_reagent(/datum/reagent/medicine/cryoxadone)
 					occupant.reagents.add_reagent(/datum/reagent/medicine/cryoxadone, 99)
 			reagent_transfer += 0.5 * delta_time
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
-
+		if(air1.get_moles(GAS_HEALIUM) > 1) //healium check, if theres enough we get some extra healing from our favorite pink gas.
+			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
+			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1 - existing)
+			air1.set_moles(GAS_HEALIUM, -max(0, air1.get_moles(GAS_HEALIUM) - 0.1 / efficiency))
 	return 1
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos(delta_time)
-	..()
-
+/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
 	if(!on)
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]
 
-	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
+	if(!nodes[1] || !airs[1] || (air1.get_moles(GAS_O2) < 5 && air1.get_moles(GAS_PLUOXIUM) < 5)) // Turn off if the machine won't work.
 		set_on(FALSE)
 		return
 
@@ -298,10 +299,10 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 			air1.set_temperature(max(air1.return_temperature() - heat / air_heat_capacity, TCMB))
 			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
 
-		if(air1.get_moles(/datum/gas/pluoxium) > 5) //use pluoxium over oxygen
-			air1.set_moles(/datum/gas/pluoxium, max(0,air1.get_moles(/datum/gas/pluoxium) - 0.125 / efficiency))
-		else
-			air1.set_moles(/datum/gas/oxygen, max(0,air1.get_moles(/datum/gas/oxygen) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
+		if(air1.get_moles(GAS_PLUOXIUM) > 5) //use pluoxium over oxygen
+			air1.set_moles(GAS_PLUOXIUM, max(0,air1.get_moles(GAS_PLUOXIUM) - 0.125 / efficiency))
+		else 
+			air1.set_moles(GAS_O2, max(0,air1.get_moles(GAS_O2) - 0.5 / efficiency)) // Magically consume gas? Why not, we run on cryo magic.
 
 		if(air1.return_temperature() > 2000)
 			take_damage(clamp((air1.return_temperature())/200, 10, 20), BURN)
@@ -511,17 +512,18 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 /obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/wrench/W)
 	. = ..()
 	if(.)
-		SetInitDirections()
+		set_init_directions()
 		var/obj/machinery/atmospherics/node = nodes[1]
 		if(node)
 			node.disconnect(src)
 			nodes[1] = null
-		nullifyPipenet(parents[1])
-		atmosinit()
+			if(parents[1])
+				nullify_pipenet(parents[1])
+		atmos_init()
 		node = nodes[1]
 		if(node)
-			node.atmosinit()
-			node.addMember(src)
+			node.atmos_init()
+			node.add_member(src)
 		SSair.add_to_rebuild_queue(src)
 
 #undef MAX_TEMPERATURE

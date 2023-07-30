@@ -1404,7 +1404,7 @@
 	sleep(0.1 SECONDS)
 	density = FALSE
 	sleep(0.3 SECONDS)
-	air_update_turf(1)
+	air_update_turf()
 	sleep(0.1 SECONDS)
 	layer = OPEN_DOOR_LAYER
 	update_icon(state = AIRLOCK_OPEN, override = TRUE)
@@ -1446,11 +1446,11 @@
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		density = TRUE
-		air_update_turf(1)
+		air_update_turf()
 	sleep(0.1 SECONDS)
 	density = TRUE
 	if(!air_tight)
-		air_update_turf(1)
+		air_update_turf()
 	sleep(0.4 SECONDS)
 	if(!safe)
 		crush()

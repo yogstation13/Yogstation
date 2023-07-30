@@ -34,7 +34,7 @@
 				var/moles = environment.get_moles(id)
 				var/gas_level = moles/total_moles
 				if(gas_level > 0)
-					airlist += list(list("name" = "[GLOB.meta_gas_info[id][META_GAS_NAME]]", "percentage" = round(gas_level*100, 0.01)))
+					airlist += list(list("name" = "[GLOB.gas_data.names[id]]", "percentage" = round(gas_level*100, 0.01)))
 		data["AirData"] = airlist
 	else
 		data["AirPressure"] = 0

@@ -58,18 +58,18 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/default_change_direction_wrench(mob/user, obj/item/I)
 	. = ..()
 	if(.)
-		SetInitDirections()
+		set_init_directions()
 		var/obj/machinery/atmospherics/node = nodes[1]
 		if(node)
 			node.disconnect(src)
 			nodes[1] = null
 			if(parents[1])
-				nullifyPipenet(parents[1])
-		atmosinit()
+				nullify_pipenet(parents[1])
+		atmos_init()
 		node = nodes[1]
 		if(node)
-			node.atmosinit()
-			node.addMember(src)
+			node.atmos_init()
+			node.add_member(src)
 		SSair.add_to_rebuild_queue(src)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/update_icon_state()
@@ -202,15 +202,6 @@
 	else
 		to_chat(user, span_notice("Activate the machine first by using a multitool on the interface."))
 
-/obj/machinery/hypertorus/interface/proc/gas_list_to_gasid_list(list/gas_list)
-	var/list/gasid_list = list()
-	for(var/gas_type in gas_list)
-		var/datum/gas/gas = gas_type
-		gasid_list += initial(gas.id)
-	return gasid_list
-
-
-
 /obj/machinery/hypertorus/interface/ui_static_data()
 	var/data = list()
 	data["base_max_temperature"] = FUSION_MAXIMUM_TEMPERATURE
@@ -221,9 +212,9 @@
 		data["selectable_fuel"] += list(list(
 			"name" = recipe.name,
 			"id" = recipe.id,
-			"requirements" = gas_list_to_gasid_list(recipe.requirements),
-			"fusion_byproducts" = gas_list_to_gasid_list(recipe.primary_products),
-			"product_gases" = gas_list_to_gasid_list(recipe.secondary_products),
+			"requirements" = recipe.requirements,
+			"fusion_byproducts" = recipe.primary_products,
+			"product_gases" = recipe.secondary_products,
 			"recipe_cooling_multiplier" = recipe.negative_temperature_multiplier,
 			"recipe_heating_multiplier" = recipe.positive_temperature_multiplier,
 			"energy_loss_multiplier" = recipe.energy_concentration_multiplier,
@@ -244,35 +235,31 @@
 	//Internal Fusion gases
 	var/list/fusion_gasdata = list()
 	if(connected_core.internal_fusion.total_moles())
-		for(var/gas_type in connected_core.internal_fusion.get_gases())
-			var/datum/gas/gas = gas_type
+		for(var/gas_id in connected_core.internal_fusion.get_gases())
 			fusion_gasdata.Add(list(list(
-			"id"= initial(gas.id),
-			"amount" = round(connected_core.internal_fusion.get_moles(gas), 0.01),
+				"id"= initial(gas_id),
+				"amount" = round(connected_core.internal_fusion.get_moles(gas_id), 0.01),
 			)))
 	else
-		for(var/gas_type in connected_core.internal_fusion.get_gases())
-			var/datum/gas/gas = gas_type
+		for(var/gas_id in connected_core.internal_fusion.get_gases())
 			fusion_gasdata.Add(list(list(
-				"id"= initial(gas.id),
+				"id"= initial(gas_id),
 				"amount" = 0,
-				)))
+			)))
 	//Moderator gases
 	var/list/moderator_gasdata = list()
 	if(connected_core.moderator_internal.total_moles())
-		for(var/gas_type in connected_core.moderator_internal.get_gases())
-			var/datum/gas/gas = gas_type
+		for(var/gas_id in connected_core.moderator_internal.get_gases())
 			moderator_gasdata.Add(list(list(
-			"id"= initial(gas.id),
-			"amount" = round(connected_core.moderator_internal.get_moles(gas), 0.01),
+				"id"= initial(gas_id),
+				"amount" = round(connected_core.moderator_internal.get_moles(gas_id), 0.01),
 			)))
 	else
-		for(var/gas_type in connected_core.moderator_internal.get_gases())
-			var/datum/gas/gas = gas_type
+		for(var/gas_id in connected_core.moderator_internal.get_gases())
 			moderator_gasdata.Add(list(list(
-				"id"= initial(gas.id),
+				"id"= initial(gas_id),
 				"amount" = 0,
-				)))
+			)))
 
 	data["fusion_gases"] = fusion_gasdata
 	data["moderator_gases"] = moderator_gasdata
@@ -314,9 +301,8 @@
 	data["waste_remove"] = connected_core.waste_remove
 	data["fuel_remove"] = connected_core.fuel_remove
 	data["filter_types"] = list()
-	for(var/path in GLOB.meta_gas_info)
-		var/list/gas = GLOB.meta_gas_info[path]
-		data["filter_types"] += list(list("gas_id" = gas[META_GAS_ID], "gas_name" = gas[META_GAS_NAME], "enabled" = (path in connected_core.moderator_scrubbing)))
+	for(var/id in GLOB.gas_data.ids)
+		data["filter_types"] += list(list("gas_id" = id, "gas_name" = GLOB.gas_data.names[id], "enabled" = (id in connected_core.moderator_scrubbing)))
 
 	data["cooling_volume"] = connected_core.airs[1].return_volume()
 	data["mod_filtering_rate"] = connected_core.moderator_filtering_rate
@@ -374,7 +360,9 @@
 			connected_core.fuel_remove = !connected_core.fuel_remove
 			. = TRUE
 		if("filter")
-			connected_core.moderator_scrubbing ^= gas_id2path(params["mode"])
+			var/gas = params["mode"]
+			if(gas in GLOB.gas_data.names)
+				connected_core.moderator_scrubbing ^= gas
 			. = TRUE
 		if("mod_filtering_rate")
 			var/mod_filtering_rate = text2num(params["mod_filtering_rate"])

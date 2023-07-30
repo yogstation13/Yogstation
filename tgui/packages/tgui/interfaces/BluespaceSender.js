@@ -3,7 +3,6 @@ import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useBackend } from '../backend';
 import { Button, Divider, LabeledList, NumberInput, ProgressBar, Section, Stack, Box, AnimatedNumber } from '../components';
-import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 const mappedTopMargin = "2%";
@@ -79,7 +78,7 @@ export const BluespaceSender = (props, context) => {
               <>
                 <Stack key={gas.name}>
                   <Stack.Item color="label" basis={10} ml={1}>
-                    {getGasLabel(gas.name) + " prices: "}
+                    {gas.name + " prices: "}
                     <br />
                     <Box mt={0.25}>
                       <NumberInput
@@ -97,7 +96,6 @@ export const BluespaceSender = (props, context) => {
                   </Stack.Item>
                   <Stack.Item grow mt={mappedTopMargin} mr={1}>
                     <ProgressBar
-                      color={getGasColor(gas.name)}
                       value={gas.amount}
                       minValue={0}
                       maxValue={gasMax}>

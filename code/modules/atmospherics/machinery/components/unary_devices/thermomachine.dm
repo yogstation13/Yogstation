@@ -82,7 +82,7 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_overlays()
 	. = ..()
-	. += getpipeimage(icon, "pipe", dir, , piping_layer)
+	. += get_pipe_image(icon, "pipe", dir, , piping_layer)
 
 /obj/machinery/atmospherics/components/unary/thermomachine/AltClick(mob/living/user)
 	if(!can_interact(user))
@@ -99,7 +99,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon_nopipes()
 	cut_overlays()
 	if(showpipe)
-		add_overlay(getpipeimage(icon, "scrub_cap", initialize_directions))
+		add_overlay(get_pipe_image(icon, "scrub_cap", initialize_directions))
 
 /obj/machinery/atmospherics/components/unary/thermomachine/examine(mob/user)
 	. = ..()
@@ -116,7 +116,6 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/process_atmos()
-	..()
 	if(!on || !nodes[1])
 		return
 	var/datum/gas_mixture/air_contents = airs[1]
@@ -140,6 +139,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/attackby(obj/item/I, mob/user, params)
 	if(!on)
 		if(default_deconstruction_screwdriver(user, icon_state_open, icon_state_off, I))
+			change_pipe_connection(panel_open)
 			return
 	if(default_change_direction_wrench(user, I))
 		return
@@ -150,21 +150,8 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
 		return FALSE
-	SetInitDirections()
-	var/obj/machinery/atmospherics/node = nodes[1]
-	if(node)
-		if(src in node.nodes) //Only if it's actually connected. On-pipe version would is one-sided.
-			node.disconnect(src)
-		nodes[1] = null
-	if(parents[1])
-		nullifyPipenet(parents[1])
-
-	atmosinit()
-	node = nodes[1]
-	if(node)
-		node.atmosinit()
-		node.addMember(src)
-	SSair.add_to_rebuild_queue(src)
+	set_init_directions()
+	update_icon()
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/thermomachine/ui_status(mob/user)

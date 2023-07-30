@@ -9,11 +9,12 @@
 	CanAtmosPass = ATMOS_PASS_NO
 
 /obj/structure/spacepoddoor/Initialize(mapload)
-	air_update_turf(1)
+	air_update_turf()
 	return ..()
 
 /obj/structure/spacepoddoor/Destroy()
-	air_update_turf(1)
+	CanAtmosPass = ATMOS_PASS_YES
+	air_update_turf()
 	return ..()
 
 /obj/structure/spacepoddoor/CanAllowThrough(atom/movable/A)

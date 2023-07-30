@@ -63,7 +63,7 @@
 	if(panel_open)
 		. += "electrolyzer-open"
 
-/obj/machinery/electrolyzer/process(delta_time)
+/obj/machinery/electrolyzer/process_atmos()
 	if((stat & (BROKEN|MAINT)) && on)
 		on = FALSE
 	if(!on)
@@ -76,8 +76,7 @@
 		update_appearance(UPDATE_ICON)
 		return FALSE
 
-	var/turf/L = loc
-	if(!istype(L))
+	if(!isopenturf(get_turf(src)))
 		if(mode != ELECTROLYZER_MODE_STANDBY)
 			mode = ELECTROLYZER_MODE_STANDBY
 			update_appearance(UPDATE_ICON)
@@ -92,24 +91,23 @@
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
 
-	var/datum/gas_mixture/env = L.return_air() //get air from the turf
+	var/datum/gas_mixture/env = return_air() //get air from the turf
 	var/datum/gas_mixture/removed = env.remove(0.1 * env.total_moles())
 
 	if(!removed)
 		return
 
 	var/proportion = 0
-	if(removed.get_moles(/datum/gas/water_vapor))
-		proportion = min(removed.get_moles(/datum/gas/water_vapor), (3 * delta_time * workingPower)) //Works to max 12 moles at a time.
-		removed.adjust_moles(/datum/gas/water_vapor, -proportion)
-		removed.adjust_moles(/datum/gas/oxygen, proportion / 2)
-		removed.adjust_moles(/datum/gas/hydrogen, proportion)
-	if(removed.get_moles(/datum/gas/hypernoblium))
-		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 4 moles at a time
-		removed.adjust_moles(/datum/gas/hypernoblium, -proportion)
-		removed.adjust_moles(/datum/gas/antinoblium, proportion)
+	if(removed.get_moles(GAS_H2O))
+		proportion = min(removed.get_moles(GAS_H2O), (3 * workingPower)) //Works to max 12 moles at a time.
+		removed.adjust_moles(GAS_H2O, -proportion)
+		removed.adjust_moles(GAS_O2, proportion / 2)
+		removed.adjust_moles(GAS_H2, proportion)
+	if(removed.get_moles(GAS_HYPERNOB))
+		proportion = min(removed.get_moles(GAS_HYPERNOB), workingPower) // up to 4 moles at a time
+		removed.adjust_moles(GAS_HYPERNOB, -proportion)
+		removed.adjust_moles(GAS_ANTINOB, proportion)
 	env.merge(removed) //put back the new gases in the turf
-	air_update_turf()
 
 	var/working = TRUE
 
@@ -205,7 +203,7 @@
 			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
 			update_appearance(UPDATE_ICON)
 			if (on)
-				START_PROCESSING(SSmachines, src)
+				SSair.start_processing_machine(src)
 			. = TRUE
 		if("eject")
 			if(panel_open && cell)

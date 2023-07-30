@@ -66,7 +66,7 @@
 	if(panel_open)
 		. += "sheater-open"
 
-/obj/machinery/space_heater/process(delta_time)
+/obj/machinery/space_heater/process_atmos()
 	if(!on || stat & (BROKEN|MAINT))
 		if (on) // If it's broken, turn it off too
 			on = FALSE
@@ -103,7 +103,7 @@
 
 	var/heat_capacity = env.heat_capacity()
 	var/requiredEnergy = abs(env.return_temperature() - targetTemperature) * heat_capacity
-	requiredEnergy = min(requiredEnergy, heatingPower * delta_time)
+	requiredEnergy = min(requiredEnergy, heatingPower)
 
 	if(requiredEnergy < 1)
 		return
@@ -115,7 +115,6 @@
 		for (var/turf/open/turf in ((L.atmos_adjacent_turfs || list()) + L))
 			var/datum/gas_mixture/turf_gasmix = turf.return_air()
 			turf_gasmix.set_temperature(turf_gasmix.return_temperature() + deltaTemperature)
-			air_update_turf(FALSE, FALSE)
 
 	var/working = TRUE
 
@@ -213,13 +212,10 @@
 	data["minTemp"] = max(settableTemperatureMedian - settableTemperatureRange - T0C, TCMB)
 	data["maxTemp"] = settableTemperatureMedian + settableTemperatureRange - T0C
 
-	var/turf/L = get_turf(loc)
 	var/curTemp
-	if(istype(L))
-		var/datum/gas_mixture/env = L.return_air()
-		curTemp = env.return_temperature()
-	else if(isturf(L))
-		curTemp = L.return_temperature()
+	if(isopenturf(get_turf(src)))
+		var/datum/gas_mixture/env = return_air()
+		curTemp = env?.return_temperature()
 	if(isnull(curTemp))
 		data["currentTemp"] = "N/A"
 	else
@@ -268,7 +264,7 @@
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", span_notice("You switch [on ? "on" : "off"] \the [src]."))
 	update_appearance(UPDATE_ICON)
 	if (on)
-		START_PROCESSING(SSmachines, src)
+		SSair.start_processing_machine(src)
 
 /obj/machinery/space_heater/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))

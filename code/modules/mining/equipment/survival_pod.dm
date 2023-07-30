@@ -270,7 +270,7 @@
 
 /obj/structure/fans/Initialize(mapload)
 	. = ..()
-	air_update_turf(1)
+	air_update_turf()
 
 //Inivisible, indestructible fans
 /obj/structure/fans/tiny/invisible

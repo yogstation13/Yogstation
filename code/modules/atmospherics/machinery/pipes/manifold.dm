@@ -26,12 +26,12 @@
  * in the mapping subsystem init before Initialize(mapload) is called in the atoms subsystem init.
  * This is true for the other manifolds (the 4 ways and the heat exchanges) too.
  */
-/obj/machinery/atmospherics/pipe/manifold/New()
+/obj/machinery/atmospherics/pipe/manifold/Initialize(mapload)
+	. = ..()
 	icon_state = ""
 	center = mutable_appearance(icon, "manifold_center")
-	return ..()
 
-/obj/machinery/atmospherics/pipe/manifold/SetInitDirections()
+/obj/machinery/atmospherics/pipe/manifold/set_init_directions()
 	initialize_directions = NORTH|SOUTH|EAST|WEST
 	initialize_directions &= ~dir
 
@@ -45,7 +45,7 @@
 	//Add non-broken pieces
 	for(var/i in 1 to device_type)
 		if(nodes[i])
-			. += getpipeimage(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
+			. += get_pipe_image(icon, "pipe-[piping_layer]", get_dir(src, nodes[i]))
 
 	update_layer()
 	update_alpha()

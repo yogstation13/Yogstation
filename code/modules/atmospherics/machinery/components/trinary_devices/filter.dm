@@ -49,13 +49,13 @@
 	for(var/direction in GLOB.cardinals)
 		if(!(direction & initialize_directions))
 			continue
-		var/obj/machinery/atmospherics/node = findConnecting(direction)
+		var/obj/machinery/atmospherics/node = find_connecting(direction)
 
 		var/image/cap
 		if(node)
-			cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer, trinary = TRUE)
+			cap = get_pipe_image(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer, trinary = TRUE)
 		else
-			cap = getpipeimage(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
+			cap = get_pipe_image(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
 
 		. += cap
 
@@ -64,7 +64,6 @@
 	icon_state = "filter_[on_state ? "on" : "off"]-[set_overlay_offset(piping_layer)][flipped ? "_f" : ""]"
 
 /obj/machinery/atmospherics/components/trinary/filter/process_atmos()
-	..()
 	if(!on || !(nodes[1] && nodes[2] && nodes[3]) || !is_operational())
 		return
 
@@ -128,7 +127,7 @@
 
 	update_parents()
 
-/obj/machinery/atmospherics/components/trinary/filter/atmosinit()
+/obj/machinery/atmospherics/components/trinary/filter/atmos_init()
 	set_frequency(frequency)
 	return ..()
 
@@ -145,9 +144,8 @@
 	data["max_rate"] = round(MAX_TRANSFER_RATE)
 
 	data["filter_types"] = list()
-	for(var/path in GLOB.meta_gas_info)
-		var/list/gas = GLOB.meta_gas_info[path]
-		data["filter_types"] += list(list("name" = gas[META_GAS_NAME], "gas_id" = gas[META_GAS_ID], "enabled" = (path in filter_type)))
+	for(var/id in GLOB.gas_data.ids)
+		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "gas_id" = id, "enabled" = (id in filter_type)))
 
 	return data
 
@@ -179,16 +177,15 @@
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		if("toggle_filter")
-			if(!gas_id2path(params["val"]))
-				return TRUE
-			filter_type ^= gas_id2path(params["val"])
+			var/gas = params["val"]
+			if(gas in GLOB.gas_data.names)
+				filter_type ^= gas
 			var/change
-			if(gas_id2path(params["val"]) in filter_type)
+			if(gas in filter_type)
 				change = "added"
 			else
 				change = "removed"
-			var/gas_name = GLOB.meta_gas_info[gas_id2path(params["val"])][META_GAS_NAME]
-			var/msg = "[key_name(usr)] [change] [gas_name] from the filter type."
+			var/msg = "[key_name(usr)] [change] [gas] from the filter type."
 			investigate_log(msg, INVESTIGATE_ATMOS)
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
@@ -247,38 +244,38 @@
 	icon_state = "filter_on-0"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2
 	name = "Nitrogen filter (N2)"
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list(GAS_N2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2
 	name = "Oxygen filter (O2)"
-	filter_type = list(/datum/gas/oxygen)
+	filter_type = list(GAS_O2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2
 	name = "Carbon dioxide filter (CO2)"
-	filter_type = list(/datum/gas/carbon_dioxide)
+	filter_type = list(GAS_CO2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2o
 	name = "Nitrous oxide filter (N2O)"
-	filter_type = list(/datum/gas/nitrous_oxide)
+	filter_type = list(GAS_NITROUS)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma
 	name = "Plasma filter"
-	filter_type = list(/datum/gas/plasma)
+	filter_type = list(GAS_PLASMA)
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped //This feels wrong, I know
 	icon_state = "filter_on-0_f"
 	flipped = TRUE
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2
 	name = "Nitrogen filter (N2)"
-	filter_type = list(/datum/gas/nitrogen)
+	filter_type = list(GAS_N2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2
 	name = "Oxygen filter (O2)"
-	filter_type = list(/datum/gas/oxygen)
+	filter_type = list(GAS_O2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2
 	name = "Carbon dioxide filter (CO2)"
-	filter_type = list(/datum/gas/carbon_dioxide)
+	filter_type = list(GAS_CO2)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o
 	name = "Nitrous oxide filter (N2O)"
-	filter_type = list(/datum/gas/nitrous_oxide)
+	filter_type = list(GAS_NITROUS)
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma
 	name = "Plasma filter"
-	filter_type = list(/datum/gas/plasma)
+	filter_type = list(GAS_PLASMA)
 
 // These two filter types have critical_machine flagged to on and thus causes the area they are in to be exempt from the Grid Check event.
 

@@ -8,30 +8,36 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	density = TRUE
+	var/core_temp = 193.15
 
 /obj/machinery/ai/Initialize(mapload)
 	. = ..()
-	
-	SSair.atmos_machinery += src 
+	START_PROCESSING(SSmachines, src)
+	SSair.start_processing_machine(src)
+
+//Cooling happens here
+/obj/machinery/ai/process_atmos()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	if(isspaceturf(T))
+		return
+	var/datum/gas_mixture/env = T.return_air()
+	if(!env)
+		return
+	var/new_temp = env.temperature_share(AI_HEATSINK_COEFF, core_temp, AI_HEATSINK_CAPACITY)
+	core_temp = new_temp
 	
 /obj/machinery/ai/Destroy()
 	. = ..()
 	
-	SSair.atmos_machinery -= src 
+	SSair.stop_processing_machine(src)
+	STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/ai/proc/valid_holder()
 	if(stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return FALSE
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return FALSE
-	
-	if(env.return_temperature() > GLOB.ai_os.get_temp_limit() || !env.heat_capacity())
+	if(core_temp > GLOB.ai_os.get_temp_limit())
 		return FALSE
 	return TRUE
 
@@ -41,15 +47,6 @@
 /obj/machinery/ai/proc/get_holder_status()
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
-	
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/env = T.return_air()
-	if(!env)
-		return AI_MACHINE_NO_MOLES
-	var/total_moles = env.total_moles()
-	if(istype(T, /turf/open/space) || total_moles < 10)
-		return AI_MACHINE_NO_MOLES
-	
-	if(env.return_temperature() > GLOB.ai_os.get_temp_limit() || !env.heat_capacity())
+	if(core_temp > GLOB.ai_os.get_temp_limit())
 		return AI_MACHINE_TOO_HOT
 	
