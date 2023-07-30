@@ -51,6 +51,7 @@
 	name = "makeshift pistol magazine (10mm)"
 	desc = "A hastily made 10mm gun magazine that can only store 4 bullets."
 	icon_state = "9x19pM"
+	icon_state_preview = "9x19pM-0"
 	max_ammo = 4
 	start_empty = TRUE
 

@@ -80,20 +80,40 @@
 //maximum amount of cable in a coil
 #define MAXCOIL 40
 
-//tablecrafting defines
-#define CAT_NONE	""
-#define CAT_WEAPONRY	"Weaponry"
-#define CAT_WEAPON	"Weapons"
-#define CAT_AMMO	"Ammunition"
-#define CAT_TOOLS	"Tools"
-#define CAT_ROBOT	"Robots"
-#define CAT_MISC	"Misc"
-#define CAT_PRIMAL  "Tribal"
+// Crafting defines.
+// When adding new defines, please make sure to also add them to the encompassing list.
+#define CAT_WEAPON_RANGED "Weapons: Ranged"
+#define CAT_WEAPON_MELEE "Weapons: Melee"
+#define CAT_WEAPON_AMMO "Weapon Ammo"
+#define CAT_TOOLS "Tools"
+#define CAT_ROBOT "Robotics"
+#define CAT_CLOTHING "Clothing"
+#define CAT_ARMOR "Armor"
+#define CAT_EQUIPMENT "Equipment"
 #define CAT_STRUCTURES "Structures"
-#define CAT_APPAREL	"Apparel"
-#define CAT_CLOTHING	"Clothing"
-#define CAT_ARMOR	"Armor"
-#define CAT_EQUIPMENT	"Equipment"
+#define CAT_PRIMAL "Tribal"
+#define CAT_BAIT "Fishing Bait"
+#define CAT_MEDICAL "Medical"
+#define CAT_MISC "Misc"
+
+GLOBAL_LIST_INIT(crafting_category, list(
+	CAT_WEAPON_RANGED,
+	CAT_WEAPON_MELEE,
+	CAT_WEAPON_AMMO,
+	CAT_TOOLS,
+	CAT_ROBOT,
+	CAT_CLOTHING,
+	CAT_ARMOR,
+	CAT_STRUCTURES,
+	CAT_EQUIPMENT,
+	CAT_PRIMAL,
+	CAT_BAIT,
+	CAT_MEDICAL,
+	CAT_MISC
+))
+
+// Food/Drink crafting defines.
+// When adding new defines, please make sure to also add them to the encompassing list.
 #define CAT_FOOD	"Foods"
 #define CAT_BREAD	"Breads"
 #define CAT_BURGER	"Burgers"
@@ -110,9 +130,27 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_ICE	"Frozen"
 #define CAT_DRINK   "Drinks"
-#define CAT_BAIT   "Fishing Bait"
 #define CAT_SEAFOOD   "Seafood"
-#define CAT_MEDICAL   "Medical"
+
+GLOBAL_LIST_INIT(crafting_category_food, list(
+	CAT_FOOD,
+	CAT_BREAD,
+	CAT_BURGER,
+	CAT_CAKE,
+	CAT_EGG,
+	CAT_MEAT,
+	CAT_SEAFOOD,
+	CAT_MISCFOOD,
+	CAT_PASTRY,
+	CAT_PIE,
+	CAT_PIZZA,
+	CAT_SALAD,
+	CAT_SANDWICH,
+	CAT_SOUP,
+	CAT_SPAGHETTI,
+	CAT_ICE,
+	CAT_DRINK,
+))
 
 #define RCD_FLOORWALL (1<<0)
 #define RCD_AIRLOCK (1<<1)
