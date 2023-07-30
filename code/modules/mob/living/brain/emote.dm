@@ -13,7 +13,6 @@
 	message = "sounds an alarm."
 	emote_type = EMOTE_AUDIBLE
 
-
 /datum/emote/brain/alert
 	key = "alert"
 	message = "lets out a distressed noise."
