@@ -951,6 +951,16 @@
 	construction_time = 40
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_protocrusher
+	name = "Cyborg Upgrade (Proto-kinetic Crusher)"
+	id = "borg_upgrade_protocrusher"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/crusher
+	// The iron and glass price here is 3x of the deconstruction materials for a crusher. The extra materials are the standard modkit price.
+	materials = list(/datum/material/iron = 6000, /datum/material/glass = 6000, /datum/material/gold = 1500, /datum/material/uranium = 1000)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/boris_ai_controller
 	name = "B.O.R.I.S. AI-Cyborg Remote Control Module"
 	id = "borg_ai_control"

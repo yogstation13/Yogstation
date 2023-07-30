@@ -947,3 +947,33 @@
 		var/obj/item/borg_snack_dispenser/medical/lollipopshooter = new(R.module)
 		R.module.basic_modules += lollipopshooter
 		R.module.add_module(lollipopshooter, FALSE, TRUE)
+
+/obj/item/borg/upgrade/crusher
+	name = "cyborg proto-kinetic crusher"
+	desc = "A proto-kinetic crusher adapted to be mounted on mining cyborgs. "
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "mining_hammer0"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
+
+/obj/item/borg/upgrade/crusher/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/item/kinetic_crusher/crusher = locate() in R.module.modules
+	if(crusher)
+		to_chat(user, span_warning("This cyborg is already equipped with a proto-kinetic crusher!"))
+		return FALSE
+	crusher = new(R.module)
+	R.module.basic_modules += crusher
+	R.module.add_module(crusher, FALSE, TRUE)
+
+/obj/item/borg/upgrade/crusher/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/obj/item/kinetic_crusher/crusher = locate() in R.module.modules
+	if(crusher)
+		R.module.remove_module(crusher, TRUE)
