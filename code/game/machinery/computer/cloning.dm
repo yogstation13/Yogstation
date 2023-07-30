@@ -627,6 +627,9 @@
 	if(!istype(dna))
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		return FALSE
+	if(TRAIT_NOCLONE in dna.species?.inherent_traits) // YOU CAN'T ESCAPE
+		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+		return FALSE
 	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		return FALSE
