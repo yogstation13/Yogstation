@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Kirbyplants' overlays are no longer permanent if you already have something in your off hand."
