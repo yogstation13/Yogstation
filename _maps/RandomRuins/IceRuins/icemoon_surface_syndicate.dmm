@@ -188,6 +188,21 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"bw" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "bD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
@@ -221,6 +236,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"bV" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "bW" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
@@ -325,7 +346,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "cJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -376,6 +400,9 @@
 /turf/open/floor/engine/vacuum,
 /area/ruin/syndicate_icemoon/engine)
 "cZ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 10
+	},
 /turf/open/floor/engine/o2,
 /area/ruin/syndicate_icemoon/engine)
 "dc" = (
@@ -390,6 +417,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/donut_box,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "dd" = (
@@ -420,6 +450,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -455,6 +488,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"dp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "dq" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south{
@@ -503,6 +542,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
+"dL" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "dN" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 5
@@ -538,8 +581,17 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 5
+	},
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_icemoon/engine)
+"dW" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "dY" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -592,6 +644,9 @@
 "eC" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /obj/machinery/light/small,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
+	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/engine)
 "eJ" = (
@@ -701,6 +756,9 @@
 "fq" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 9
 	},
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_icemoon/engine)
@@ -847,11 +905,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "gw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -994,6 +1058,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "hy" = (
@@ -1124,6 +1189,7 @@
 	pixel_y = -26;
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "iE" = (
@@ -1185,6 +1251,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"jk" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "jr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
@@ -1497,6 +1569,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "lI" = (
@@ -1505,6 +1578,9 @@
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
@@ -1520,6 +1596,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "lQ" = (
@@ -1545,11 +1624,14 @@
 /area/ruin/syndicate_icemoon/medical)
 "lR" = (
 /obj/structure/bookcase/random/fiction,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "lS" = (
 /obj/machinery/atmospherics/miner/oxygen,
 /obj/machinery/light/small,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 6
+	},
 /turf/open/floor/engine/o2,
 /area/ruin/syndicate_icemoon/engine)
 "lU" = (
@@ -1837,6 +1919,9 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "nM" = (
@@ -2206,6 +2291,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "qP" = (
@@ -2316,6 +2402,12 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
+"ry" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "rH" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/structure/window/reinforced/spawner,
@@ -2462,6 +2554,7 @@
 /area/ruin/syndicate_icemoon/hallway)
 "sO" = (
 /obj/machinery/light,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "sT" = (
@@ -2513,6 +2606,15 @@
 	},
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
+"tu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "tv" = (
 /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon{
 	dir = 1
@@ -2538,6 +2640,12 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"tB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "tC" = (
 /obj/structure/table/reinforced,
 /obj/item/stock_parts/cell/high/plus,
@@ -2552,6 +2660,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -2754,12 +2865,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"vv" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "vx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
@@ -2977,11 +3097,17 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "xf" = (
 /obj/machinery/atmospherics/miner/toxins,
 /obj/machinery/light/small,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 6
+	},
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_icemoon/engine)
 "xh" = (
@@ -3025,11 +3151,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "xy" = (
 /obj/machinery/libraryscanner,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "xA" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -3043,6 +3172,9 @@
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -3243,7 +3375,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/hatch{
-	req_access_txt = "150"
+	req_access_txt = "150";
+	name = "Electric Chair"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -3311,6 +3444,9 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
@@ -3549,11 +3685,21 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"Bl" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "Bp" = (
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -3799,7 +3945,10 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "CH" = (
 /obj/structure/fans/tiny,
@@ -3826,6 +3975,21 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
+"CP" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "CQ" = (
 /obj/structure/showcase/mecha/marauder/mauler,
 /obj/machinery/door/firedoor/border_only,
@@ -3929,11 +4093,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "Do" = (
 /obj/machinery/photocopier,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Dq" = (
 /obj/structure/table/reinforced,
@@ -3979,6 +4146,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
@@ -4041,7 +4211,7 @@
 /area/ruin/syndicate_icemoon/dorms)
 "DX" = (
 /obj/structure/bookcase/random/reference,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "El" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -4175,6 +4345,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "FF" = (
@@ -4343,6 +4514,7 @@
 "Gr" = (
 /obj/structure/table/wood,
 /obj/item/storage/crayons,
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "Gt" = (
@@ -4355,8 +4527,24 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"GD" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "GP" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/glasses/science,
@@ -4370,7 +4558,7 @@
 "GS" = (
 /obj/structure/table/wood,
 /obj/structure/bedsheetbin,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "GU" = (
 /turf/template_noop,
@@ -4466,6 +4654,9 @@
 	desc = "An old, heavy-duty, Syndicate-issue prison bedsheet. You try not to think about where those stains came from..."
 	},
 /obj/structure/bed,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "HL" = (
@@ -4487,6 +4678,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
+"HU" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "HV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -4582,6 +4777,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "IS" = (
@@ -4601,6 +4799,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "Jc" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 10
+	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/engine)
 "Je" = (
@@ -4755,6 +4956,9 @@
 "Kj" = (
 /obj/structure/easel,
 /obj/item/canvas/twentythreeXtwentythree,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "Km" = (
@@ -4771,7 +4975,7 @@
 /area/icemoon/surface/outdoors)
 "Ko" = (
 /obj/structure/bookcase/random/nonfiction,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Kp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -4816,6 +5020,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "KB" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 10
+	},
 /turf/open/floor/engine/plasma,
 /area/ruin/syndicate_icemoon/engine)
 "KI" = (
@@ -4861,6 +5068,9 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "KT" = (
@@ -4874,6 +5084,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -4949,6 +5162,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"LF" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "LG" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -5015,6 +5234,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"LS" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "LV" = (
 /obj/machinery/button/door{
 	id = "syndie_icemoon_vent";
@@ -5102,6 +5327,9 @@
 "Mz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "MB" = (
@@ -5125,6 +5353,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "MH" = (
@@ -5137,6 +5366,12 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/xenobio)
+"MO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "MX" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -5183,6 +5418,7 @@
 	pixel_y = -24;
 	req_access_txt = "150"
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "Ns" = (
@@ -5228,7 +5464,7 @@
 /area/ruin/syndicate_icemoon/research)
 "NC" = (
 /obj/machinery/bookbinder,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "NH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -5268,6 +5504,9 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
@@ -5327,6 +5566,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
@@ -5459,6 +5701,12 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/engine)
+"PC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "PE" = (
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel/dark,
@@ -5517,6 +5765,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "PY" = (
@@ -5524,6 +5775,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -5554,6 +5808,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
@@ -5589,12 +5846,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "QF" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/turf_decal/box/white,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
+"QG" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "QJ" = (
@@ -5824,7 +6090,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "SF" = (
 /obj/structure/cable/yellow{
@@ -5835,6 +6101,9 @@
 "SK" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 9
 	},
 /turf/open/floor/engine/o2,
 /area/ruin/syndicate_icemoon/engine)
@@ -5922,6 +6191,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "Ty" = (
@@ -6070,6 +6342,7 @@
 	pixel_y = -26;
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "Ux" = (
@@ -6092,7 +6365,7 @@
 /area/ruin/syndicate_icemoon/dorms)
 "Uz" = (
 /obj/structure/bookcase/random/religion,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "UA" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -6147,10 +6420,16 @@
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
 	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "Vg" = (
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -6158,6 +6437,9 @@
 "Vh" = (
 /obj/structure/sign/painting{
 	pixel_x = -32
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
@@ -6233,6 +6515,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
+"VS" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/syndicate_icemoon/dorms)
 "Wg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -6257,6 +6554,9 @@
 "Wk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/engine)
@@ -6329,6 +6629,9 @@
 "WO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 5
 	},
 /turf/open/floor/engine/o2,
 /area/ruin/syndicate_icemoon/engine)
@@ -6413,7 +6716,7 @@
 "XE" = (
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /obj/structure/table/wood,
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "XF" = (
 /obj/structure/window/reinforced/spawner/west,
@@ -6430,6 +6733,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "XJ" = (
@@ -6588,6 +6892,9 @@
 	name = "Cell Lockdown";
 	pixel_x = 24
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "YB" = (
@@ -6627,6 +6934,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "YY" = (
@@ -6654,6 +6962,9 @@
 "Zk" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -6702,6 +7013,9 @@
 "Zz" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/engine)
@@ -7473,7 +7787,7 @@ IF
 QT
 DV
 KT
-Mz
+tB
 TQ
 cw
 XU
@@ -7695,7 +8009,7 @@ ZV
 WK
 Cl
 xe
-Mz
+tB
 YZ
 nB
 Vx
@@ -7916,8 +8230,8 @@ Ok
 Ko
 Ko
 lR
-an
-qi
+bw
+dp
 Vh
 lI
 DV
@@ -7988,9 +8302,9 @@ rM
 JZ
 Ok
 SC
-qi
-qi
-an
+Bl
+dp
+GD
 qi
 qi
 Nk
@@ -8062,7 +8376,7 @@ ja
 mc
 Ok
 Do
-qi
+PC
 qi
 Uy
 Fr
@@ -8136,11 +8450,11 @@ Ok
 Ok
 Ok
 XE
-qi
+PC
 qi
 an
-qi
-qi
+dL
+LF
 Kj
 zv
 eM
@@ -8210,10 +8524,10 @@ pE
 EV
 Ok
 xy
-qi
+PC
 qi
 an
-qi
+HU
 tk
 EX
 zv
@@ -8284,10 +8598,10 @@ cL
 EV
 Ok
 GS
-qi
+PC
 Ck
 zz
-qi
+HU
 Bx
 IO
 zv
@@ -8358,10 +8672,10 @@ YY
 EV
 Ok
 NC
-qi
-qi
-an
-qi
+MO
+LF
+VS
+HU
 Bv
 Ip
 DV
@@ -8434,8 +8748,8 @@ Ok
 DX
 DX
 Uz
-an
-qi
+CP
+HU
 Hz
 ro
 DV
@@ -8583,8 +8897,8 @@ Il
 XR
 xD
 dg
-tX
-Il
+tu
+ry
 XR
 Il
 Il
@@ -8868,8 +9182,8 @@ zP
 YC
 zL
 eJ
-KL
-KL
+LS
+jk
 tG
 gw
 Bp
@@ -9016,7 +9330,7 @@ eJ
 qo
 eJ
 DA
-KL
+vv
 KL
 cU
 Ly
@@ -9164,11 +9478,11 @@ BB
 JQ
 fT
 eJ
-KL
+QG
 Vg
-KL
-KL
-KL
+dW
+dW
+bV
 Hk
 rq
 ny
