@@ -2,10 +2,8 @@
 	title = "Quartermaster"
 	description = "Coordinate cargo technicians and shaft miners, assist with \
 		economical purchasing."
-	flag = QUARTERMASTER
 	orbit_icon = "sack-dollar"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1

@@ -526,7 +526,7 @@
 	. = ..()
 	if(world.time >= music_time)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation) //lets refresh the moodlet
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
 	music_time = 0
 
 /obj/structure/chair/comfy/plastic/proc/motivate(mob/living/M)
@@ -534,5 +534,5 @@
 		return
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation)
 	if(M.client && (M.client.prefs.toggles & SOUND_JUKEBOX))
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
-		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENCE)
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
+		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENT_EFFECTS)

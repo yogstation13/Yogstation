@@ -213,7 +213,7 @@
 		return
 	for(var/obj/item/I in user.held_items)
 		user.drop_all_held_items(I, TRUE)
-	var/obj/item/twohanded/required/raisedhands/L = new(user)
+	var/obj/item/raisedhands/L = new(user)
 	user.put_in_hands(L)
 
 /datum/emote/living/jump

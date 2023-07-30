@@ -221,7 +221,7 @@ GENE SCANNER
 		if(advanced)
 			combined_msg += "\t[span_info("Radiation Level: [M.radiation]%.")]"
 
-	if(advanced && M.hallucinating())
+	if(advanced && M.has_status_effect(/datum/status_effect/hallucination))
 		combined_msg += "\t[span_info("Subject is hallucinating.")]"
 
 	//Eyes and ears
@@ -608,28 +608,6 @@ GENE SCANNER
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
 
-/obj/item/analyzer/ranged
-	desc = "A hand-held long-range environmental scanner which reports current gas levels."
-	name = "Long-range gas analyzer"
-	icon_state = "analyzerranged"
-	item_state = "analyzerranged"
-	w_class = WEIGHT_CLASS_SMALL
-	materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
-	grind_results = list(/datum/reagent/mercury = 5, /datum/reagent/iron = 5, /datum/reagent/silicon = 5, /datum/reagent/bluespace = 10, /datum/reagent/gold = 10)
-
-/obj/item/analyzer/ranged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	add_fingerprint(user)
-	if(istype(target, /turf))
-		var/turf/U = get_turf(target)
-		atmosanalyzer_scan(user, U)
-	else if(istype(target, /obj/effect/anomaly))
-		var/obj/effect/anomaly/A = target
-		A.analyzer_act(user, src)
-		to_chat(user, span_notice("Analyzing... [A]'s unstable field is fluctuating along frequency [format_frequency(A.aSignal.frequency)], code [A.aSignal.code]."))
-	else
-		target.analyzer_act(user, src)
-
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()
 	//yogs stop
@@ -904,6 +882,7 @@ GENE SCANNER
 	if (!HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
 		user.visible_message(span_notice("[user] has analyzed [M]'s genetic sequence."))
 		gene_scan(M, user)
+		playsound(src, 'sound/effects/fastbeep.ogg', 20)
 
 	else
 		user.visible_message(span_notice("[user] failed to analyse [M]'s genetic sequence."), span_warning("[M] has no readable genetic sequence!"))

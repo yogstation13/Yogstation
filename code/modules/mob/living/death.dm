@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(permadeath, FALSE)
 
-/mob/living/gib(no_brain, no_organs, no_bodyparts)
+/mob/living/proc/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying
 	if(stat != DEAD)
 		death(TRUE)
@@ -14,6 +14,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 		spread_bodyparts(no_brain, no_organs)
 
 	spawn_gibs(no_bodyparts)
+	SEND_SIGNAL(src, COMSIG_LIVING_GIBBED, no_brain, no_organs, no_bodyparts)
 	qdel(src)
 
 /mob/living/proc/gib_animation()
@@ -28,7 +29,16 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 /mob/living/proc/spread_bodyparts()
 	return
 
-/mob/living/dust(just_ash, drop_items, force)
+/**
+ * This is the proc for turning a mob into ash.
+ * Dusting robots does not eject the MMI, so it's a bit more powerful than gib()
+ *
+ * Arguments:
+ * * just_ash - If TRUE, ash will spawn where the mob was, as opposed to remains
+ * * drop_items - Should the mob drop their items before dusting?
+ * * force - Should this mob be FORCABLY dusted?
+*/
+/mob/living/proc/dust(just_ash, drop_items, force)
 	death(TRUE)
 
 	if(drop_items)
@@ -48,7 +58,10 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	new /obj/effect/decal/cleanable/ash(loc)
 
 
-/mob/living/death(gibbed)
+/mob/living/proc/death(gibbed)
+	if(stat == DEAD)
+		return FALSE
+
 	set_stat(DEAD)
 	unset_machine()
 	timeofdeath = world.time
@@ -80,7 +93,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	stop_pulling()
 
 	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed)
-	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src, gibbed)
 
 	if (client)
 		client.move_delay = initial(client.move_delay)

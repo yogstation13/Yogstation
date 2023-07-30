@@ -11,9 +11,6 @@
 		if(A.attachable)
 			return TRUE
 
-/atom
-	var/datum/wires/wires = null
-
 /atom/proc/attempt_wire_interaction(mob/user)
 	if(!wires)
 		return WIRE_INTERACTION_FAIL
@@ -254,8 +251,13 @@
 		reveal_wires = TRUE
 
 	// Station blueprints do that too, but only if the wires are not randomized.
-	else if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints) && !randomize)
-		reveal_wires = TRUE
+	else if(!randomize)
+		if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints))
+			reveal_wires = TRUE
+		else if(user.is_holding_item_of_type(/obj/item/photo))
+			var/obj/item/photo/P = user.is_holding_item_of_type(/obj/item/photo)
+			if(P.picture.has_blueprints)	//if the blueprints are in frame
+				reveal_wires = TRUE
 
 	for(var/color in colors)
 		payload.Add(list(list(

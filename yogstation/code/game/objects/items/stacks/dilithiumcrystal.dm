@@ -10,6 +10,7 @@
 	points = 50
 	refined_type = /obj/item/stack/sheet/dilithium_crystal
 	grind_results = list(/datum/reagent/dilithium = 20)
+	eaten_text = "The sparks created by eating a dilithium crystal ignite your innards."
 
 /obj/item/stack/ore/dilithium_crystal/refined
 	name = "refined dilithium crystal"
@@ -25,6 +26,10 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	use(1)
+
+/obj/item/stack/ore/dilithium_crystal/eaten(mob/living/carbon/human/H)
+	H.ignite_mob()
+	return TRUE
 
 /obj/item/stack/sheet/dilithium_crystal
 	name = "dilithium polycrystal"

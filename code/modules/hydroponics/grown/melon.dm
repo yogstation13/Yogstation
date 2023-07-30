@@ -14,7 +14,7 @@
 	mutatelist = list(/obj/item/seeds/watermelon/holy)
 	reagents_add = list(/datum/reagent/water = 0.2, /datum/reagent/consumable/nutriment = 0.2)
 
-/obj/item/seeds/watermelon/suicide_act(mob/user)
+/obj/item/seeds/watermelon/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is swallowing [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.gib()
 	new product(drop_location())
@@ -57,6 +57,8 @@
 	filling_color = "#FFD700"
 	dried_type = null
 	w_class = WEIGHT_CLASS_NORMAL
+	foodtype = FRUIT
+	juice_results = list(/datum/reagent/water/holywater = 0)
 	wine_power = 70 //Water to wine, baby.
 	wine_flavor = "divinity"
 

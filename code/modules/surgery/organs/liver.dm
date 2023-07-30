@@ -46,8 +46,8 @@
 			if(provide_pain_message && damage > 10 && prob(damage/3))//the higher the damage the higher the probability
 				to_chat(C, span_warning("You feel a dull pain in your abdomen."))
 		else	//for when our liver's failing
-			reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
-			reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
+			C.reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
+			C.reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
 			if(HAS_TRAIT(C, TRAIT_STABLELIVER))
 				return
 			C.adjustToxLoss(4, TRUE,  TRUE)
@@ -129,6 +129,7 @@
 	toxTolerance = -1
 	toxLethality = 0
 	status = ORGAN_ROBOTIC
+	process_flags = SYNTHETIC
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc/emp_act(severity)
 	if(prob(10))

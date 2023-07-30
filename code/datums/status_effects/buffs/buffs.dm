@@ -464,6 +464,8 @@
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
 			if(ispath(rod_type, /obj/item/rod_of_asclepius/white)) //Used for adjusting the Holy Light Sect Favor from white rod healing.
+				if(L.stat == DEAD)
+					continue
 				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
 				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
 			if(L.health < L.maxHealth)
@@ -515,8 +517,8 @@
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
-	owner.adjustBruteLoss(-25)
-	owner.adjustFireLoss(-25)
+	owner.adjustBruteLoss(-25, TRUE, FALSE, BODYPART_ANY)
+	owner.adjustFireLoss(-25, TRUE, FALSE, BODYPART_ANY)
 	owner.remove_CC()
 	owner.bodytemperature = BODYTEMP_NORMAL
 	return TRUE
@@ -636,3 +638,30 @@
 		H.physiology.clone_mod /= 0.75
 		H.physiology.stamina_mod /= 0.75
 	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end
+
+//adrenaline rush from combat damage
+/atom/movable/screen/alert/status_effect/adrenaline
+	name = "Adrenaline rush"
+	desc = "The sudden injuries you've recieved have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	icon_state = "default"
+
+/datum/status_effect/adrenaline
+	id = "adrenaline"
+	alert_type = /atom/movable/screen/alert/status_effect/adrenaline
+	duration = 30 SECONDS
+
+/datum/status_effect/adrenaline/on_apply()
+	. = ..()
+	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
+	if(isipc(owner))
+		printout = "<b>Chassis damage exceeded acceptable levels. Auxiliary leg actuator power supply activated.</b>"
+	to_chat(owner, span_notice(printout))
+	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+
+/datum/status_effect/adrenaline/on_remove()
+	var/printout = "<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"
+	if(isipc(owner))
+		printout = "<b>Auxiliary leg actuator power supply depleted. Movement returning to nominal levels.</b>"
+	to_chat(owner, span_warning(printout))
+	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	return ..()

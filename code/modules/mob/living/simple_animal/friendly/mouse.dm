@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	can_be_held = TRUE //mouse gaming
 	worn_slot_flags = ITEM_SLOT_HEAD
@@ -267,7 +267,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
 		evolve()
 	if(istype(F, /obj/item/grown/bananapeel/bluespace))
-		var/obj/item/grown/bananapeel/bluespace/B
+		var/obj/item/grown/bananapeel/bluespace/B = F
 		var/teleport_radius = max(round(B.seed.potency / 10), 1)
 		var/turf/T = get_turf(src)
 		do_teleport(src, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)

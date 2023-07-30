@@ -7,8 +7,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	item_flags = NOBLUDGEON
-	obj_flags = UNIQUE_RENAME
-	reagent_flags = OPENCONTAINER
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
+	reagent_flags = OPENCONTAINER_NOSPILL
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL

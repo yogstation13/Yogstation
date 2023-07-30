@@ -188,6 +188,16 @@
 	mood_change = 10
 	timeout = 4 MINUTES
 
+/datum/mood_event/confident_mane
+	description = "I'm feeling confident with a head full of hair."
+	mood_change = 2
+
+/datum/mood_event/pet_borg
+	description = span_nicegreen("I just love my robotic friends!")
+	mood_change = 3
+	timeout = 5 MINUTES
+	required_job = list("Research Director", "Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0

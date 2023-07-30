@@ -683,13 +683,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
 	list_reagents = list(/datum/reagent/flightpotion = 5)
 
-/obj/item/reagent_containers/glass/bottle/potion/update_icon()
+/obj/item/reagent_containers/glass/bottle/potion/update_desc(updates=ALL)
+	. = ..()
 	if(reagents.total_volume)
-		icon_state = initial(icon_state)
 		desc = initial(desc)
 	else
-		icon_state = "[initial(icon_state)]_empty"
 		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
+
+/obj/item/reagent_containers/glass/bottle/potion/update_icon_state()
+	. = ..()
+	if(reagents.total_volume)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_empty"
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
@@ -698,7 +704,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	process_flags = ORGANIC | SYNTHETIC
 	color = "#FFEBEB"
 
-/datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
@@ -706,7 +712,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
 			return ..()
 		if(!valid_species)
-			if(method == INGEST && show_message)
+			if((methods & INGEST) && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
 
@@ -795,6 +801,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(M.faction == user.faction)
 		to_chat(user, span_warning("[M] is already on your side!"))
+		return
+	if(!M.magic_tameable)
+		to_chat(user, span_warning("[M] cannot be tamed!"))
 		return
 	if(M.sentience_type == SENTIENCE_BOSS)
 		if(!G)
@@ -888,7 +897,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/mob/living/carbon/carbon_target = target
 			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
 			var/datum/wound/slash/moderate/crit_wound = new
-			user.visible_message(span_boldwarning("[user] cleaves [target] delivering a viscious wound!"))
+			user.visible_message(span_boldwarning("[user] cleaves [target], delivering a vicious wound!"))
 			crit_wound.apply_wound(bodypart)
 
 /obj/item/melee/transforming/cleaving_saw/nemesis_effects(mob/living/user, mob/living/target)
@@ -902,7 +911,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		B.add_bleed(B.bleed_buildup)
 
 	if(B.needs_to_bleed)
-		to_chat(user, span_notice("You drink the blood spilled from [target] healing your wounds!"))
+		to_chat(user, span_notice("You drink the blood spilled from [target], healing your wounds!"))
 		user.adjustBruteLoss(-10)
 		user.adjustFireLoss(-10)
 		user.adjustToxLoss(-10)
@@ -1288,10 +1297,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
-#define COOLDOWN 150
-#define COOLDOWN_HUMAN 100
-#define COOLDOWN_ANIMAL 60
-#define COOLDOWN_SPLASH 100
+#define COOLDOWN_ATTACK_HUMAN (10 SECONDS)
+#define COOLDOWN_ATTACK_ANIMAL (6 SECONDS)
+#define COOLDOWN_SPLASH (10 SECONDS)
+#define COOLDOWN_REACH (15 SECONDS)
 
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
@@ -1316,9 +1325,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	item_state = "knuckles"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
-	var/next_reach = 0
-	var/next_splash = 0
-	var/next_knuckle = 0
+	COOLDOWN_DECLARE(next_reach)
+	COOLDOWN_DECLARE(next_splash)
+	COOLDOWN_DECLARE(next_knuckle)
 	var/splash_range = 9
 	var/fauna_damage_bonus = 32
 	var/fauna_damage_type = BRUTE
@@ -1326,66 +1335,65 @@ GLOBAL_LIST_EMPTY(aide_list)
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
-	var/mob/living/L = target
-	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
-		L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+	if(!istype(target))
+		return
+	if(ismegafauna(target) || isfauna(target))
+		target.apply_damage(fauna_damage_bonus, fauna_damage_type)
 	if(proximity)
-		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
-			L.apply_status_effect(/datum/status_effect/roots)
+		if(target.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			target.apply_status_effect(/datum/status_effect/roots)
 			return
-		if(next_knuckle > world.time)
+		if(!COOLDOWN_FINISHED(src, next_knuckle))
 			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
 			return
 		else
-			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
-			if(ishuman(L))
-				next_knuckle = world.time + COOLDOWN_HUMAN
-				return
-			next_knuckle = world.time + COOLDOWN_ANIMAL
+			target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			COOLDOWN_START(src, next_knuckle, (ishuman(target) ? COOLDOWN_ATTACK_HUMAN : COOLDOWN_ATTACK_ANIMAL))
 
 /obj/item/melee/knuckles/attack_self(mob/user)
-	var/turf/T = get_turf(user)
-	if(next_splash > world.time)
+	var/turf/user_turf = get_turf(user)
+	if(!COOLDOWN_FINISHED(src, next_splash))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	user.visible_message(span_warning("[user] splashes blood from [user.p_their()] knuckles!"))
-	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	playsound(user_turf, 'sound/effects/splat.ogg', 80, TRUE, -1)
 	for(var/i = 0 to splash_range)
-		if(T)
-			new /obj/effect/decal/cleanable/blood(T)
-		T = get_step(T,user.dir)
-	next_splash = world.time + COOLDOWN_SPLASH
+		if(user_turf)
+			new /obj/effect/decal/cleanable/blood(user_turf)
+		user_turf = get_step(user_turf, user.dir)
+	COOLDOWN_START(src, next_splash, COOLDOWN_SPLASH)
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
-	var/mob/living/U = user
 	if(istype(action, /datum/action/item_action/reach))
-		if(next_reach > world.time)
-			to_chat(U, span_warning("You can't do that yet!"))
+		if(!COOLDOWN_FINISHED(src, next_reach))
+			to_chat(user, span_warning("You can't do that yet!"))
 			return
 		var/valid_reaching = FALSE
-		for(var/mob/living/L in view(7, U))
-			if(L == U)
+		for(var/mob/living/target in view(7, user))
+			if(target == user)
 				continue
-			for(var/obj/effect/decal/cleanable/B in range(0,L))
-				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+			for(var/obj/effect/decal/cleanable/decal in range(0, target))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
 					valid_reaching = TRUE
-					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)
-			to_chat(U, span_warning("There's nobody to use this on!"))
+			to_chat(user, span_warning("There's nobody to use this on!"))
 			return
-		next_reach = world.time + COOLDOWN
-	else if(istype(action, /datum/action/item_action/visegrip))
+		COOLDOWN_START(src, next_reach, COOLDOWN_REACH)
+	if(istype(action, /datum/action/item_action/visegrip))
 		var/valid_casting = FALSE
-		for(var/mob/living/L in view(8, U))
-			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+		for(var/mob/living/target in view(8, user))
+			if(target.has_status_effect(STATUS_EFFECT_KNUCKLED))
 				valid_casting = TRUE
-				L.apply_status_effect(/datum/status_effect/roots)
+				target.apply_status_effect(/datum/status_effect/roots)
 		if(!valid_casting)
-			to_chat(U, span_warning("There's nobody to use this on!"))
+			to_chat(user, span_warning("There's nobody to use this on!"))
 			return
-		#undef COOLDOWN
-		#undef COOLDOWN_HUMAN
-		#undef COOLDOWN_ANIMAL
+
+#undef COOLDOWN_ATTACK_HUMAN
+#undef COOLDOWN_ATTACK_ANIMAL
+#undef COOLDOWN_SPLASH
+#undef COOLDOWN_REACH
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
@@ -1504,7 +1512,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 		chaser_speed = max(chaser_speed + health_percent, 0.5) //one tenth of a second faster for each missing 10% of health
 		blast_range -= round(health_percent * 10) //one additional range for each missing 10% of health
 
-/obj/item/hierophant_club/update_icon()
+/obj/item/hierophant_club/update_icon_state()
+	. = ..()
 	icon_state = "hierophant_club[timer <= world.time ? "_ready":""][(beacon && !QDELETED(beacon)) ? "":"_beacon"]"
 	item_state = icon_state
 	if(ismob(loc))
@@ -1513,9 +1522,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		M.update_inv_back()
 
 /obj/item/hierophant_club/proc/prepare_icon_update()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	sleep(timer - world.time)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/hierophant_club/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_unfriendly_fire)) //toggle friendly fire...
@@ -1551,7 +1560,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(get_dist(user, beacon) <= 2) //beacon too close abort
 		to_chat(user, span_warning("You are too close to the beacon to teleport to it!"))
 		return
-	if(is_blocked_turf(get_turf(beacon), TRUE))
+	var/turf/beacon_turf = get_turf(beacon)
+	if(beacon_turf.is_blocked_turf(TRUE))
 		to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 		return
 	if(!isturf(user.loc))
@@ -1568,7 +1578,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(do_after(user, 4 SECONDS, user) && user && beacon)
 		var/turf/T = get_turf(beacon)
 		var/turf/source = get_turf(user)
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1589,7 +1599,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1624,7 +1634,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
-	if(!turf_to_teleport_to || is_blocked_turf(turf_to_teleport_to, TRUE))
+	if(!turf_to_teleport_to || turf_to_teleport_to.is_blocked_turf_ignore_climbable())
 		return
 	animate(M, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
 	sleep(0.1 SECONDS)
@@ -1720,18 +1730,17 @@ GLOBAL_LIST_EMPTY(aide_list)
 	selfcharge = 1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike
+/obj/item/melee/spear/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "stalwart_spear0"
+	base_icon_state = "stalwart_spear"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "ancient control rod"
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
 	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
-	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	w_class = WEIGHT_CLASS_SMALL
-	var/w_class_on = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BELT
 	force = 0
 	throwforce = 0
@@ -1739,41 +1748,43 @@ GLOBAL_LIST_EMPTY(aide_list)
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	sharpness = SHARP_NONE
 	block_chance = 0
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	var/w_class_on = WEIGHT_CLASS_HUGE
 	var/fauna_damage_bonus = 0
 	var/fauna_damage_type = BRUTE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike/update_icon()
+/obj/item/melee/spear/bonespear/stalwartpike/Initialize(mapload)
 	. = ..()
-	if(wielded)
-		icon_state = "stalwart_spear1"
-	else
-		icon_state = "stalwart_spear0"
+	AddComponent(/datum/component/two_handed, \
+		icon_wielded = "[base_icon_state]1", \
+		wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/melee/spear/bonespear/stalwartpike/update_icon_state()
+	. = ..()
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
-/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
-	. = ..()
-	if(wielded)
-		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
-		sharpness = SHARP_POINTY
-		w_class = w_class_on
-		block_chance = 25
-		force = 8
-		fauna_damage_bonus = 52
+/obj/item/melee/spear/bonespear/stalwartpike/proc/on_wield(atom/source, mob/living/carbon/M)
+	playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
+	sharpness = SHARP_POINTY
+	w_class = w_class_on
+	block_chance = 25
+	force = 8
+	fauna_damage_bonus = 52
 
-/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
-	if(wielded)
-		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
-		sharpness = initial(sharpness)
-		w_class = initial(w_class)
-		force = initial(force)
-		block_chance = initial(block_chance)
-		fauna_damage_bonus = initial(fauna_damage_bonus)
-	. = ..()
+/obj/item/melee/spear/bonespear/stalwartpike/proc/on_unwield(atom/source, mob/living/carbon/M)
+	playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
+	sharpness = initial(sharpness)
+	w_class = initial(w_class)
+	force = initial(force)
+	block_chance = initial(block_chance)
+	fauna_damage_bonus = initial(fauna_damage_bonus)
 
-/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+/obj/item/melee/spear/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!proximity || !wielded)
+	if(!proximity || !HAS_TRAIT(src, TRAIT_WIELDED))
 		return
 	if(isliving(target))
 		var/mob/living/L = target
@@ -1792,7 +1803,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
-			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/melee/spear/bonespear/stalwartpike(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff

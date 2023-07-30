@@ -7,6 +7,7 @@
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
+	process_flags = ORGANIC | SYNTHETIC // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
 	var/tail_type = "None"
 
 /obj/item/organ/tail/Remove(mob/living/carbon/human/H, special = 0)

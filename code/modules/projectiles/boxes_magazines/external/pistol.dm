@@ -64,8 +64,8 @@
 	caliber = ".45"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/m45/update_icon()
-	..()
+/obj/item/ammo_box/magazine/m45/update_icon_state()
+	. = ..()
 	if (ammo_count() >= 8)
 		icon_state = "45-8"
 	else
@@ -81,8 +81,8 @@
 	caliber = "9mm"
 	max_ammo = 15
 
-/obj/item/ammo_box/magazine/pistolm9mm/update_icon()
-	..()
+/obj/item/ammo_box/magazine/pistolm9mm/update_icon_state()
+	. = ..()
 	icon_state = "9x19p-[ammo_count() ? "10" : "0"]"
 
 //Desert Eagle
@@ -95,7 +95,7 @@
 	caliber = ".50ae"
 	max_ammo = 7
 
-/obj/item/ammo_box/magazine/m50/update_icon()
+/obj/item/ammo_box/magazine/m50/update_icon_state()
 	. = ..()
 	if (ammo_count() >= 7)
 		icon_state = "50ae-7"
@@ -106,14 +106,14 @@
 
 /obj/item/ammo_box/magazine/v38
 	name = "handgun magazine (.38 special)"
-	desc = "A 8-round .38 special magazine designed for the Vatra M38 pistol. Not great against armor."
+	desc = "A 8-round .38 special magazine designed for the Vatra M38 pistol."
 	icon_state = "v38-8"
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = "38"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/v38/update_icon()
-	..()
+/obj/item/ammo_box/magazine/v38/update_icon_state()
+	. = ..()
 	if (ammo_count() >= 8)
 		icon_state = "v38[sprite_designation]-8"
 	else
@@ -153,7 +153,7 @@
 	icon_state = "v38B-8"
 	ammo_type = /obj/item/ammo_casing/c38/bluespace
 	sprite_designation = "B"
-	
+
 // Bolt Pistol
 
 /obj/item/ammo_box/magazine/boltpistol

@@ -1,3 +1,4 @@
+#define STAMINA_REGENERATION_COEFFICIENT 0.65 // How effective stamina regeneration is, with 1 being 100%
 
 /obj/item/bodypart
 	name = "limb"
@@ -39,6 +40,8 @@
 	var/stamina_dam = 0
 	var/max_stamina_damage = 0
 	var/max_damage = 0
+
+	var/stamina_cache = list() // Lists the times that we should clear stamina damage and for how much
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
@@ -137,7 +140,7 @@
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user
-					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+					if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
 						if(H == user)
 							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
 						else
@@ -201,9 +204,17 @@
 	return bodypart_organs
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life(stam_regen)
-	if(stamina_dam > DAMAGE_PRECISION && stam_regen)					//DO NOT update health here, it'll be done in the carbon's life.
-		heal_damage(0, 0, INFINITY, null, FALSE)
-		. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
+		if(stam_regen)
+			heal_damage(0, 0, INFINITY, null, FALSE)
+			stamina_cache = list()
+			. |= BODYPART_LIFE_UPDATE_HEALTH
+		else
+			for(var/dam_instance in stamina_cache)
+				if(world.time > dam_instance["expiration"])
+					heal_damage(0, 0, dam_instance["amount"] * STAMINA_REGENERATION_COEFFICIENT, null, FALSE)
+					stamina_cache -= list(dam_instance)
+					. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -291,15 +302,25 @@
 	*/
 
 	//back to our regularly scheduled program, we now actually apply damage if there's room below limb damage cap
-	var/can_inflict = max_damage - get_damage()
+	var/can_inflict = max(max_damage - get_damage(), 0)
 	var/total_damage = brute + burn
+	var/surplus_damage = total_damage - can_inflict
+
+	// If the limb is at its maximum damage, apply some of the surplus damage to the chest
+	if(owner && surplus_damage > 0)
+		var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
+		chest.receive_damage(surplus_damage * DAMAGE_TRANSFER_COEFFICIENT) // the chest should always be there unless something fucked up
+
+	// End early if the limb is at its maximum damage
+	if(can_inflict <= 0)
+		return FALSE
+
+	// Set the damage applied to as much as the limb can handle
 	if(total_damage > can_inflict && total_damage > 0) // TODO: the second part of this check should be removed once disabling is all done
 		brute = round(brute * (can_inflict / total_damage),DAMAGE_PRECISION)
 		burn = round(burn * (can_inflict / total_damage),DAMAGE_PRECISION)
 
-	if(can_inflict <= 0)
-		return FALSE
-
+	// And finally, apply that damage to the limb
 	if(brute)
 		set_brute_dam(brute_dam + brute)
 	if(burn)
@@ -316,6 +337,8 @@
 			owner.updatehealth()
 			if(stamina > DAMAGE_PRECISION)
 				owner.update_stamina()
+				if(!HAS_TRAIT_FROM(owner, TRAIT_INCAPACITATED, STAMINA))
+					stamina_cache += list(list("expiration" = world.time + STAMINA_REGEN_BLOCK_TIME, "amount" = stamina))
 				owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 				. = TRUE
 	return update_bodypart_damage_state() || .
@@ -382,7 +405,7 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
-	
+
 	// If we have an open surgery site here, wound more easily
 	for(var/datum/surgery/S in owner.surgeries)
 		if(S.operated_bodypart == src)
@@ -465,7 +488,7 @@
 
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
 			armor_ablation += H.physiology.armor.getRating(WOUND)
-		
+
 		var/list/clothing = H.clothingonpart(src)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c

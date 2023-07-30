@@ -9,6 +9,7 @@
 	name = "Syndicate Internal Affairs Agent"
 	special_role = "internal affairs agent" //Doesn't have it listed but employer should still be syndicate
 	antagpanel_category = "IAA"
+	job_rank = ROLE_INTERNAL_AFFAIRS
 	var/marauder = FALSE
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
@@ -34,7 +35,7 @@
 
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
-		var/obj/item/implant/dusting/E = new/obj/item/implant/dusting(H)
+		var/obj/item/implant/dusting/iaa/E = new(H)
 		E.implant(H)
 
 	company = pick(subtypesof(/datum/corporation/traitor))
@@ -42,7 +43,11 @@
 	.=..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
+	for(var/obj/item/implant/dusting/iaa/iaa_implant in owner?.current?.implants)
+		iaa_implant.defused = TRUE
+		qdel(iaa_implant)
 	.=..()
+
 /datum/antagonist/traitor/internal_affairs/process()
 	iaa_process()
 
@@ -246,7 +251,7 @@
 			owner.special_role = TRAITOR_AGENT_ROLE
 			special_role = TRAITOR_AGENT_SROLE
 			marauder = TRUE
-			forge_single_objective()
+			forge_single_human_objective()
 			greentext_achieve = /datum/achievement/greentext/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()

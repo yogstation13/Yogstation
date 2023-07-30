@@ -687,6 +687,7 @@
 	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
+	new /obj/item/clothing/suit/armor/vest/hop_formal(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
 
@@ -723,7 +724,7 @@
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/hardhat/weldhat/white(src)
 	new /obj/item/clothing/head/welding(src)
-	new /obj/item/clothing/gloves/atmos/ce(src)
+	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/ceturtleneck(src)

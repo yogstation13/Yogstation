@@ -19,7 +19,7 @@
 /obj/item/clothing/mask/muzzle/tape
 	name = "tape muzzle"
 	icon_state = "tape"
-	
+
 /obj/item/clothing/mask/muzzle/tape/attack_self(mob/user)
 	..()
 	user.visible_message(span_notice("You take apart [src]."), span_notice("[user] takes apart [src]."))
@@ -37,6 +37,7 @@
 	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
+	mutantrace_variation = MUTANTRACE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 
@@ -284,7 +285,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 			var/currentHandIndex = user.get_held_index_of_item(src)
 			user.transferItemToLoc(src, null)
 			user.put_in_hand(nk, currentHandIndex)
-			user.visible_message(span_notice("You tie [src] up like a neckerchief."), span_notice("[user] ties [src] up like a neckerchief."))
+			user.visible_message(span_notice("[user] ties [src] up like a neckerchief."), span_notice("You tie [src] up like a neckerchief."))
 			qdel(src)
 		else
 			to_chat(user, span_warning("You must be holding [src] in order to tie it!"))
