@@ -103,8 +103,8 @@
 /obj/item/pickaxe/makeshift
 	name = "makeshift pickaxe"
 	desc = "A pickaxe made with a knife and crowbar taped together, how does it not break?"
-	icon_state = "pickaxe_makeshift"
-	item_state = "pickaxe_makeshift"
+	icon_state = "minipick" // TODO: Add a replacement sprite that suits this item more; "pickaxe_makeshift" doesn't exist.
+	item_state = "minipick"
 	force = 10
 	throwforce = 7
 	toolspeed = 3 //3 times slower than a normal pickaxe

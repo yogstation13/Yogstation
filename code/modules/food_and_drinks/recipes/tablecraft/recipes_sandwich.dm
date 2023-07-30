@@ -11,7 +11,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/grilledcheese
-	subcategory = CAT_SANDWICH
+	category = CAT_SANDWICH
 
 /datum/crafting_recipe/food/slimesandwich
 	name = "Jelly Sandwich"
@@ -20,7 +20,7 @@
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/jellysandwich/slime
-	subcategory = CAT_SANDWICH
+	category = CAT_SANDWICH
 
 /datum/crafting_recipe/food/cherrysandwich
 	name = "Jelly Sandwich"
@@ -29,7 +29,7 @@
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/jellysandwich/cherry
-	subcategory = CAT_SANDWICH
+	category = CAT_SANDWICH
 
 /datum/crafting_recipe/food/notasandwich
 	name = "Not a Sandwich"
@@ -38,7 +38,7 @@
 		/obj/item/clothing/mask/fakemoustache = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/notasandwich
-	subcategory = CAT_SANDWICH
+	category = CAT_SANDWICH
 
 /datum/crafting_recipe/food/sandwich
 	name = "Sandwich"
@@ -48,4 +48,4 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/sandwich
-	subcategory = CAT_SANDWICH
+	category = CAT_SANDWICH
