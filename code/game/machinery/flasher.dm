@@ -124,7 +124,6 @@
 			continue
 
 		if(L.flash_act(affect_silicon = 1))
-			L.Paralyze(strength)
 			flashed = TRUE
 
 	if(flashed)
