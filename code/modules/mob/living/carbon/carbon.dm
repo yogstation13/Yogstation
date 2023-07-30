@@ -263,7 +263,7 @@
 		if(ITEM && istype(ITEM, /obj/item/tank) && wear_mask && (wear_mask.clothing_flags & MASKINTERNALS))
 			visible_message(span_danger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."), \
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
-			if(do_after(usr, POCKET_STRIP_DELAY, src))
+			if(do_after(usr, POCKET_STRIP_DELAY, src, interaction_key = REF(ITEM)))
 				if(internal)
 					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))

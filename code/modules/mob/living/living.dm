@@ -877,7 +877,7 @@
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
 	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
-	if(do_after(src, what.strip_delay, who))
+	if(do_after(src, what.strip_delay, who, interaction_key = REF(what)))
 		if(what && Adjacent(who))
 			if(islist(where))
 				var/list/L = where
