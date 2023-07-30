@@ -12,12 +12,13 @@
 	if(user.mind.has_martialart(initial(martial.id)))
 		to_chat(user, span_warning("You already know [martial_name]!"))
 		return FALSE
+	if(SSticker.current_state == GAME_STATE_FINISHED)//instant after the round ends
+		on_reading_finished(user)
+		return FALSE
 	return TRUE
 
 /obj/item/book/granter/martial/on_reading_start(mob/user)
 	to_chat(user, span_notice("You start reading about [martial_name]..."))
-	if(SSticker.current_state == GAME_STATE_FINISHED)//faster after the round ends
-		pages_to_mastery = 0
 
 /obj/item/book/granter/martial/on_reading_finished(mob/user)
 	to_chat(user, "[greet]")
