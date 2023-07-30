@@ -1473,7 +1473,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isitem(target))//don't attack if we're clicking on our inventory
 		var/obj/item/thing = target
-		if(target.item_flags & IN_INVENTORY)
+		if(thing.item_flags & IN_INVENTORY)
 			return
 	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, span_warning("The club fizzles weakly, it seem its power doesn't reach this area.") )
