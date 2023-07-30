@@ -58,8 +58,10 @@
 	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
 
-	if(isobj(target) && target.loc == H) //no using abilities on your own items
-		return
+	if(isitem(target))//don't attack if we're clicking on our inventory
+		var/obj/item/thing = target
+		if(target.item_flags & IN_INVENTORY)
+			return
 
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
