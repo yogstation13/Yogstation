@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Ballistic guns no longer get error sprites after shooting them too many times. They also don't have the cocked back overlay when they aren't."
