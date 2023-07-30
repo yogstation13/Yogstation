@@ -577,7 +577,7 @@
 
 	R.fields["bank_account"] = has_bank_account
 	R.fields["mindref"] = "[REF(mob_occupant.mind)]"
-	R.fields["last_death"] = mob_occupant.stat == DEAD ? mob_occupant.mind.last_death : -1
+	R.fields["last_death"] = mob_occupant.stat == DEAD ? mob_occupant.mind?.last_death : -1
 	R.fields["body_only"] = body_only
 
 	if(!body_only)
@@ -625,9 +625,6 @@
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		return FALSE
 	if(!istype(dna))
-		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
-		return FALSE
-	if(TRAIT_NOCLONE in dna.species?.inherent_traits) // YOU CAN'T ESCAPE
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		return FALSE
 	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
