@@ -264,24 +264,6 @@
 /// Icon filter that creates gaussian blur
 #define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
-/*
- * Antag Specific Colors
-*/
-
-#define COLOR_CHANGELING_CHEMICALS "#DD66DD"
-#define COLOR_DARKSPAWN_PSI "#7264FF"
-
-///Main colors for UI themes
-#define COLOR_THEME_MIDNIGHT "#6086A0"
-#define COLOR_THEME_PLASMAFIRE "#FFB200"
-#define COLOR_THEME_RETRO "#24CA00"
-#define COLOR_THEME_SLIMECORE "#4FB259"
-#define COLOR_THEME_OPERATIVE "#b01232"
-#define COLOR_THEME_GLASS "#75A4C4"
-#define COLOR_THEME_CLOCKWORK "#CFBA47"
-#define COLOR_THEME_TRASENKNOX "#3ce375"
-#define COLOR_THEME_DETECTIVE "#c7b08b"
-
 #define CABLE_COLOR_BLUE "blue"
 	#define CABLE_HEX_COLOR_BLUE COLOR_STRONG_BLUE
 #define CABLE_COLOR_BROWN "brown"
