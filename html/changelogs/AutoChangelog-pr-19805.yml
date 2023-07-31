@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Iron ore gets consumed when a preternis eats it"
+  - bugfix: "Dilithium eating can now actually light the eater on fire"
+  - tweak: "Uranium eating is now slightly more radioactive"
