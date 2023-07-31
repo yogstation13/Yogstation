@@ -16,6 +16,9 @@
 #define COLOR_DARKMODE_DARKBACKGROUND "#171717"
 #define COLOR_DARKMODE_TEXT "#a4bad6"
 
+#define COLOR_INPUT_DISABLED "#F0F0F0"
+#define COLOR_INPUT_ENABLED "#D3B5B5"
+
 #define COLOR_WHITE "#FFFFFF"
 #define COLOR_OFF_WHITE "#FFF5ED"
 #define COLOR_VERY_LIGHT_GRAY "#EEEEEE"
@@ -255,6 +258,14 @@
 
 /// The default color for admin say, used as a fallback when the preference is not enabled
 #define DEFAULT_ASAY_COLOR "#996600"
+
+#define DEFAULT_HEX_COLOR_LEN 6
+
+// Color filters
+/// Icon filter that creates ambient occlusion
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
+/// Icon filter that creates gaussian blur
+#define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
 /*
  * Antag Specific Colors

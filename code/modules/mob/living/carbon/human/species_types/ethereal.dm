@@ -95,6 +95,7 @@
 	if(ethereal.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(ethereal.health, 0) / 100
 		var/light_range = 1 + (4 * healthpercent)
+		var/light_power = 1 + healthpercent
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
 		ethereal.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay

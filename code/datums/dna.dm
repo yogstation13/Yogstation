@@ -582,7 +582,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(HAS_TRAIT(src, TRAIT_BALD))
 		hair_style = "Bald"	
 	else
-		hair_style = GLOB.hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
+		hair_style = GLOB.hair_styles_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
 	var/features = dna.unique_features
 	if(dna.features["mcolor"])
 		dna.features["mcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_BLOCK))
