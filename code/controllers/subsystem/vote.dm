@@ -190,6 +190,18 @@ SUBSYSTEM_DEF(vote)
 				if(!lower_admin && SSmapping.map_voted)
 					to_chat(usr, span_warning("The next map has already been selected."))
 					return FALSE
+				var/list/previous_maps = list()
+				if(SSdbcore.Connect())
+					var/datum/DBQuery/query_previous_maps = SSdbcore.NewQuery({"
+						SELECT map_name FROM [format_table_name("round")] WHERE id BETWEEN lower = :lower AND upper = :upper
+					"}, list("lower" = GLOB.round_id - 9, "upper" = GLOB.round_id))
+					if(!query_previous_maps.Execute())
+						qdel(query_previous_maps)
+					while(query_previous_maps.NextRow())
+						previous_maps[query_previous_maps.item[1]] += 1
+					qdel(query_previous_maps)
+
+
 				// Randomizes the list so it isn't always METASTATION
 				var/list/maps = list()
 				for(var/map in global.config.maplist)
@@ -199,6 +211,8 @@ SUBSYSTEM_DEF(vote)
 					if(VM.config_min_users > 0 && GLOB.clients.len < VM.config_min_users)
 						continue
 					if(VM.config_max_users > 0 && GLOB.clients.len > VM.config_max_users)
+						continue
+					if(previous_maps && previous_maps[VM.map_name] > 7)
 						continue
 					maps += VM.map_name
 					shuffle_inplace(maps)

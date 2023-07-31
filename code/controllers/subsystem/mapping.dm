@@ -375,6 +375,17 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	else
 		for(var/M in global.config.maplist)
 			mapvotes[M] = 1
+			
+	var/list/previous_maps = list()
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_previous_maps = SSdbcore.NewQuery({"
+			SELECT map_name FROM [format_table_name("round")] WHERE id BETWEEN lower = :lower AND upper = :upper
+		"}, list("lower" = GLOB.round_id - 9, "upper" = GLOB.round_id))
+		if(!query_previous_maps.Execute())
+			qdel(query_previous_maps)
+		while(query_previous_maps.NextRow())
+			previous_maps[query_previous_maps.item[1]] += 1
+		qdel(query_previous_maps)
 
 	//filter votes
 	for (var/map in mapvotes)
@@ -394,6 +405,9 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			mapvotes.Remove(map)
 			continue
 		if (VM.config_max_users > 0 && players > VM.config_max_users)
+			mapvotes.Remove(map)
+			continue
+		if(previous_maps && previous_maps[VM.map_name] > 7)
 			mapvotes.Remove(map)
 			continue
 
