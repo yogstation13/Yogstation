@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a runtime error when activating/deactivating flamethrowers"
