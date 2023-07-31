@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborg RCDs can set their airlock electronic access again."

@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Stops heirophant club from attacking if you click an item in your inventory"
