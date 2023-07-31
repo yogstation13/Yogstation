@@ -988,10 +988,12 @@
 		return FALSE
 
 	JL = new(R.module)
+	JL.toolspeed = 0.5 // Same toolspeed as the cyborg crowbar/cutters.
 	R.module.basic_modules += JL
 	R.module.add_module(JL, FALSE, TRUE)
 
 	HD = new(R.module)
+	HD.toolspeed = 0.5 // Same toolspeed as the cyborg screwdriver/wrench.
 	R.module.basic_modules += HD
 	R.module.add_module(HD, FALSE, TRUE)
 
