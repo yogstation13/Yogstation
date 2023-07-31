@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "The bluespace RPED now requires its user to be in view range of the target object, as intended"
