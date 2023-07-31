@@ -347,7 +347,7 @@
 		return ..()
 	var/mob/living/carbon/human/loc_human = loc
 	if(!colored_before)
-		add_atom_colour("#[loc_human.eye_color]", FIXED_COLOUR_PRIORITY)
+		add_atom_colour(loc_human.eye_color, FIXED_COLOUR_PRIORITY)
 		colored_before = TRUE
 	return ..()
 

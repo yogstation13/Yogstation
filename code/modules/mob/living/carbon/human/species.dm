@@ -359,6 +359,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
 					new_lizard_tail.spines = C.dna.features["spines"]
 
+	// if(tail && (!should_have_tail || replace_current))
+	// 	tail.Remove(C,1)
+	// 	QDEL_NULL(tail)
+	// if(should_have_tail && !tail)
+	// 	tail = new mutanttail
+	// 	if(iscatperson(C))
+	// 		tail.tail_type = C.dna.features["tail_human"]
+	// 	if(ispolysmorph(C))
+	// 		tail.tail_type = C.dna.features["tail_polysmorph"]
+	// 	if(islizard(C))
+	// 		var/obj/item/organ/tail/lizard/T = tail
+	// 		T.tail_type = C.dna.features["tail_lizard"]
+	// 		T.spines = C.dna.features["spines"]
+	// 	tail.Insert(C)
 			used_neworgan = TRUE
 			neworgan.Insert(C, TRUE, FALSE)
 
