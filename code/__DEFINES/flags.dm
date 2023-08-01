@@ -57,6 +57,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
 #define NO_RUINS_1					(1<<10)
+/// Prevents most radiation on this turf from leaving it
+#define RAD_CONTAIN_CONTENTS		(1<<17)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.

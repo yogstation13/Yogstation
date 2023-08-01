@@ -2559,6 +2559,35 @@
 	crate_name = "axolotl crate"
 
 //////////////////////////////////////////////////////////////////////////////
+/////////////////////////// Reactor Fuel Rods ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+/datum/supply_pack/fuel_rod_basic
+	name = "Uranium-235 Fuel Rods Crate"
+	desc = "Contains 3 Enriched Uranium Control Rods"
+	cost = 5000
+	contains = list(/obj/item/fuel_rod)
+	crate_name = "Uranium-235 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/radiation
+
+/datum/supply_pack/fuel_rod_plutonium
+	name = "Plutonium-239 Fuel Rods Crate"
+	desc = "Contains 3 Plutonium-239 Control Rods"
+	cost = 15000
+	contains = list(/obj/item/fuel_rod/plutonium)
+	crate_name = "Plutonium-239 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/radiation
+
+/datum/supply_pack/fuel_rod_bananium
+	name = "Bananium Fuel Rods Crate"
+	desc = "Contains 3 Bananium Control Rods"
+	cost = 15000
+	contraband = TRUE
+	contains = list(/obj/item/fuel_rod/material/bananium)
+	crate_name = "Bananium Fuel Rods"
+	crate_type = /obj/structure/closet/crate/radiation
+
+//////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
