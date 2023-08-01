@@ -12660,7 +12660,7 @@
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "dkx" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "dkB" = (
@@ -18991,7 +18991,7 @@
 	pixel_x = 24
 	},
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
@@ -32213,7 +32213,7 @@
 /area/science/mixing/chamber)
 "jCY" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "jCZ" = (
@@ -58246,7 +58246,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
