@@ -1,0 +1,11 @@
+author: " @Y0SH1M4S73R, @Ghommie, Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "The DNA console can now edit the nonhuman features of its occupants, as well as allowing injectors to apply those features. Look for the \"Features\" tab in the DNA console."
+  - rscadd: "everyone has a whole new dna block called unique_features that holds things like mutant color and alien bits settings. unique features can be altered and copied onto other people through genetics. this only works on people of the same species"
+  - wip: "this is probably going to need a lot of ongoing work"
+  - tweak: "hexcolors are handled differently"
+  - bugfix: "glowy color works"
+  - bugfix: "extendo arm color matches your mcolor"
+  - tweak: "removes color_legacy prefs and changes sanitize_hexcolor()'s default to 6 characters"
+  - experiment: "Whole lotta DNA and color code reworking"
