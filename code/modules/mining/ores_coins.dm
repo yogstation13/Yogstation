@@ -102,7 +102,7 @@
 	eaten_text = "The uranium ore tingles a bit as it goes down."
 
 /obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
-	radiation_pulse(H, 20)
+	radiation_pulse(H, 100)
 	return TRUE
 
 /obj/item/stack/ore/iron
@@ -117,6 +117,7 @@
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass
 	name = "sand pile"

@@ -16,6 +16,9 @@ SUBSYSTEM_DEF(throwing)
 	msg = "P:[length(processing)]"
 	return ..()
 
+/datum/controller/subsystem/throwing/get_metrics()
+	. = ..()
+	.["queued"] = length(processing)
 
 /datum/controller/subsystem/throwing/fire(resumed = 0)
 	if (!resumed)

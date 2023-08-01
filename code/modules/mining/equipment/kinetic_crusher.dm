@@ -10,7 +10,7 @@
 	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna."
 	force = 0 //Can't be used if not wielded
 	w_class = WEIGHT_CLASS_BULKY
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	slot_flags = ITEM_SLOT_BACK
 	throwforce = 5
 	throw_speed = 4
@@ -67,7 +67,7 @@
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
-		return	
+		return
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	if(!C)
 		C = target.apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)

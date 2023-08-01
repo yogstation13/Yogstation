@@ -154,7 +154,7 @@
 	if(!ishuman(loc))
 		return
 	var/mob/living/carbon/human/loc_human = loc
-	add_atom_colour("#[loc_human.hair_color]", FIXED_COLOUR_PRIORITY)
+	add_atom_colour(loc_human.hair_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/kitty/genuine
 	desc = "A pair of kitty ears. A tag on the inside says \"Hand made from real cats.\""
@@ -271,7 +271,7 @@
 /obj/item/clothing/head/wig/natural/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
-		hair_color = "#[user.hair_color]"
+		hair_color = user.hair_color
 		update_appearance(UPDATE_ICON)
 		user.update_inv_head()
 

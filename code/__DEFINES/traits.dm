@@ -275,6 +275,8 @@
 #define TRAIT_NOVEHICLE	"no_vehicle"
 /// BALD!!!
 #define TRAIT_BALD "bald"
+/// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
+#define TRAIT_FARADAYCAGE "faraday_cage"
 
 ///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
 #define TRAIT_KEEP_TOGETHER "keep-together"
@@ -362,6 +364,8 @@
 /// trait associated to being held in a chokehold
 #define CHOKEHOLD_TRAIT "chokehold"
 #define CRYO_TRAIT "cryo_trait"
+/// Trait applied by element
+#define ELEMENT_TRAIT(source) "element_trait_[source]"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -441,6 +445,9 @@
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
 ///every object that is currently the active storage of some client mob has this trait
 #define TRAIT_ACTIVE_STORAGE "active_storage"
+
+/// Climbable trait, given and taken by the climbable element when added or removed. Exists to be easily checked via HAS_TRAIT().
+#define TRAIT_CLIMBABLE "trait_climbable"
 
 ///Organ traits
 #define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"
