@@ -2002,6 +2002,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/mechpiloting
 	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
 
+/datum/uplink_item/device_tools/mech_drop
+	name = "Orbital Mech Drop Fulton"
+	desc = "A heavy-duty transport pack that can be used to summon and store mecha at a nearby facility."
+	item = /obj/item/extraction_pack/mech_drop
+	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+
 // Implants
 /datum/uplink_item/implants
 	category = "Implants"
