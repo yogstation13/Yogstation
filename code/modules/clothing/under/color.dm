@@ -27,14 +27,14 @@
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "jumpskirt"
 	item_state = "jumpsuit"
-	worn_icon_state = "jumpsuit"
+	worn_icon_state = "jumpskirt"
 	mob_overlay_icon = 'icons/mob/clothing/uniform/color.dmi'	
 
 /obj/item/clothing/under/color/random
 	icon_state = "random_jumpsuit"
 
 /obj/item/clothing/under/color/random/Initialize(mapload)
-	..()
+	. = ..()
 	var/obj/item/clothing/under/color/C = pick(subtypesof(/obj/item/clothing/under/color) - subtypesof(/obj/item/clothing/under/skirt/color) - /obj/item/clothing/under/color/random - /obj/item/clothing/under/color/grey/glorf - /obj/item/clothing/under/color/black/ghost)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
@@ -47,7 +47,7 @@
 	icon_state = "random_jumpsuit"		//Skirt variant needed
 
 /obj/item/clothing/under/skirt/color/random/Initialize(mapload)
-	..()
+	. = ..()
 	var/obj/item/clothing/under/skirt/color/C = pick(subtypesof(/obj/item/clothing/under/skirt/color) - /obj/item/clothing/under/skirt/color/random)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
@@ -85,6 +85,7 @@
 	desc = "A terribly ragged and frayed grey jumpsuit. It looks like it hasn't been washed in over a decade."
 	icon_state = "grey_ancient"
 	item_state = "gy_suit"
+	worn_icon_state = "grey_ancient"
 	greyscale_config = null
 	greyscale_config_inhand_left = null
 	greyscale_config_inhand_right = null

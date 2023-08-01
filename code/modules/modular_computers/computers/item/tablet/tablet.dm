@@ -6,6 +6,7 @@
 	icon_state_unpowered = "tablet"
 	icon_state_powered = "tablet"
 	icon_state_menu = "menu"
+	icon_state_screensaver = null
 	id_rename = TRUE
 	hardware_flag = PROGRAM_TABLET
 	max_hardware_size = WEIGHT_CLASS_SMALL

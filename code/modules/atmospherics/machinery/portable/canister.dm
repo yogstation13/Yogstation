@@ -153,7 +153,7 @@
 	name = "Water vapor canister"
 	desc = "Water vapor. We get it, you vape."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#4c4e4d#f7d5d3"
+	greyscale_colors = "#2ee5e9#f7d5d3"
 	gas_type = /datum/gas/water_vapor
 	filled = 1
 
@@ -313,11 +313,11 @@
 	if(stat & BROKEN)
 		return
 	if(valve_open)
-		. += "can-open"
+		. += mutable_appearance(canister_overlay_file, "can-open")
 	if(holding)
-		. += "can-tank"
+		. += mutable_appearance(canister_overlay_file, "can-tank")
 	if(connected_port)
-		. += "can-connector"
+		. += mutable_appearance(canister_overlay_file, "can-connector")
 
 	var/light_state = get_pressure_state(air_contents?.return_pressure())
 	if(light_state) //happens when pressure is below 10kpa which means no light

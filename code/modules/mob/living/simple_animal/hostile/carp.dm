@@ -80,6 +80,7 @@
 /mob/living/simple_animal/hostile/carp/holocarp
 	icon_state = "holocarp"
 	icon_living = "holocarp"
+	greyscale_config = null //no current config for holocarps :(
 	maxbodytemp = INFINITY
 	gold_core_spawnable = NO_SPAWN
 	del_on_death = 1

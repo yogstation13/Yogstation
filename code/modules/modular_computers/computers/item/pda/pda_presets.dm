@@ -96,7 +96,7 @@
 
 /obj/item/modular_computer/tablet/pda/preset/atmos
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
-	greyscale_colors = "#EEDC43#00E5DA#727272"
+	greyscale_colors = "#EEDC43#727272#00E5DA"
 	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
@@ -145,12 +145,14 @@
 /obj/item/modular_computer/tablet/pda/preset/fountainpen/curator
 	desc = "A small experimental microcomputer."
 	icon_state = "pda-library"
+	icon_state_unpowered = "pda-library"
+	icon_state_powered = "pda-library"
 	greyscale_config = null
 	greyscale_colors = null
 
 // Honk
+
 /obj/item/modular_computer/tablet/pda/preset/mime
-	pen_type = /obj/item/toy/crayon/mime
 	greyscale_config = /datum/greyscale_config/tablet/mime
 	greyscale_colors = "#FAFAFA#EA3232"
 	pen_type = /obj/item/toy/crayon/mime
@@ -158,13 +160,17 @@
 /obj/item/modular_computer/tablet/pda/preset/clown
 	desc = "A hilarious PDA often given to station pranksters."
 	icon_state = "pda-clown"
-	greyscale_config = null
-	greyscale_colors = null
+	icon_state_unpowered = "pda-clown"
+	icon_state_powered = "pda-clown"
+	greyscale_config = /datum/greyscale_config/tablet/clown //config doesn't actually do anything but -
+	greyscale_colors = null //- hey if you want to set up some cool shit go ahead
 	pen_type = /obj/item/toy/crayon/rainbow
 
 /obj/item/modular_computer/tablet/pda/preset/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING)
+
+// Honk end
 
 /obj/item/modular_computer/tablet/pda/preset/security
 	greyscale_colors = "#EA3232#0000cc"
@@ -176,7 +182,7 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split
 	greyscale_colors = "#EA3232#0000CC#363636"
 
-/obj/item/modular_computer/tablet/pda/preset/warden/Initialize(mapload)
+/obj/item/modular_computer/tablet/pda/preset/security/warden/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/secureye,
 	)	

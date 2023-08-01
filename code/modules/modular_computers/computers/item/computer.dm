@@ -50,7 +50,7 @@
 	var/max_hardware_size = 0
 	/// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/steel_sheet_cost = 5
-	/// What set of icons should be used for program overlays.
+	/// What set of icons should be used for program overlays. curently unused
 	var/overlay_skin = null
 
 	integrity_failure = 50
@@ -169,7 +169,10 @@
 /obj/item/modular_computer/RemoveID()
 	var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	return (card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+	if(card_slot2?.try_eject() || card_slot?.try_eject()) //Try the secondary one first.
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	return FALSE
 
 /obj/item/modular_computer/InsertID(obj/item/inserting_item)
 	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
@@ -183,6 +186,7 @@
 		return FALSE
 
 	if((card_slot?.try_insert(inserting_id)) || (card_slot2?.try_insert(inserting_id)))
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	//to_chat(user, "<span class='warning'>This computer doesn't have an open card slot.</span>")
 	return FALSE
@@ -263,34 +267,31 @@
 	. += get_modular_computer_parts_examine(user)
 
 /obj/item/modular_computer/update_icon(updates=ALL)
-	. = ..()
 	if(!physical)
 		return
+	return ..()
 
-	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
-	var/program_overlay = ""
-	var/is_broken = obj_integrity <= integrity_failure
-	if(overlay_skin)
-		program_overlay = "[overlay_skin]-"
-	if(!enabled)
-		if(use_power() && !isnull(icon_state_screensaver))
-			program_overlay += icon_state_screensaver
-		else
-			icon_state = icon_state_unpowered
-	else
-		icon_state = icon_state_powered
-		if(is_broken)
-			program_overlay += "bsod"
-		else
-			if(active_program)
-				program_overlay += active_program.program_icon_state ? "[active_program.program_icon_state]" : "[icon_state_menu]"
-			else
-				program_overlay += icon_state_menu
+/obj/item/modular_computer/update_icon_state()
+	if(!icon_state_powered || !icon_state_unpowered) //no valid icon, don't update.
+		return ..()
+	icon_state = enabled ? icon_state_powered : icon_state_unpowered
+	return ..()
 
-	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, physical.plane, physical.dir)
-	SSvis_overlays.add_vis_overlay(physical, physical.icon, program_overlay, physical.layer, EMISSIVE_PLANE, physical.dir)
-	if(is_broken)
-		SSvis_overlays.add_vis_overlay(physical, physical.icon, "broken", physical.layer, physical.plane, physical.dir)
+/obj/item/modular_computer/update_overlays()
+	. = ..()
+	var/init_icon = initial(icon)
+	if(!init_icon)
+		return
+
+//	if(overlay_skin)
+//		program_overlay = "[overlay_skin]-"
+	if(!enabled && use_power() && !isnull(icon_state_screensaver))
+		. += mutable_appearance(init_icon, icon_state_screensaver)
+	if(enabled)
+		. += active_program ? mutable_appearance(init_icon, active_program.program_icon_state) : mutable_appearance(init_icon, icon_state_menu)
+	if(obj_integrity <= integrity_failure)
+		. += mutable_appearance(init_icon, "bsod")
+		. += mutable_appearance(init_icon, "broken")
 
 /obj/item/modular_computer/equipped()
 	. = ..()

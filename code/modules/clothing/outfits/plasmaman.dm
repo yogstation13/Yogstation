@@ -168,7 +168,7 @@
 	
 	jobtype = /datum/job/cargo_tech
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/security/warden
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
