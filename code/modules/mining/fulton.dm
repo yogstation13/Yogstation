@@ -268,5 +268,4 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/extraction_pack/mech_drop/post_extract(atom/movable/A)
 	if(!istype(A, /obj/mecha))
 		return
-	LAZYOR(stored_mecha, A)
 	stored_mecha |= A
