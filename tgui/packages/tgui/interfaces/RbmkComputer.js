@@ -2,14 +2,15 @@ import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { Box, Button, Chart, Flex, ProgressBar, Section, Tabs, Slider } from '../components';
 import { FlexItem } from '../components/Flex';
+import { formatSiUnit } from '../format';
 
 export const RbmkComputer = (props, context) => {
   const [tabIndex, setTabIndex] = useLocalState(context, "tab-index", 1);
   return (
     <Window
       resizable
-      width={350}
-      height={500}>
+      width={360}
+      height={540}>
       <Window.Content fitted>
         <Tabs>
           <Tabs.Tab
@@ -39,46 +40,56 @@ export const RbmkComputer = (props, context) => {
 export const RbmkStatsSection = (props, context) => {
   const { act, data } = useBackend(context);
   const powerData = data.powerData.map((value, i) => [i, value]);
-  const psiData = data.psiData.map((value, i) => [i, value]);
+  const kpaData = data.kpaData.map((value, i) => [i, value]);
+  const tempCoreData = data.tempCoreData.map((value, i) => [i, value]);
   const tempInputData = data.tempInputData.map((value, i) => [i, value]);
-  const tempOutputdata = data.tempOutputdata.map((value, i) => [i, value]);
+  const tempOutputData = data.tempOutputData.map((value, i) => [i, value]);
   return (
     <Box height="100%">
       <Section title="Legend:">
-        Reactor Power (%):
+        Reactor Power:
         <ProgressBar
           value={data.power}
           minValue={0}
-          maxValue={100}
-          color="yellow" />
-        <br />
-        Reactor Pressure (PSI):
-        <ProgressBar
-          value={data.psi}
-          minValue={0}
-          maxValue={2000}
-          color="white" >
-          {data.psi} PSI
+          maxValue={10000000}
+          color="yellow">
+          {formatSiUnit(data.power, 0, "W")}
         </ProgressBar>
-        Coolant temperature (°C):
+        Reactor Pressure:
+        <ProgressBar
+          value={data.kpa}
+          minValue={0}
+          maxValue={10000}
+          color="white" >
+          {formatSiUnit(data.kpa*1000, 1, "Pa")}
+        </ProgressBar>
+        Core temperature:
+        <ProgressBar
+          value={data.coreTemp}
+          minValue={0}
+          maxValue={1500}
+          color="orange">
+          {data.coreTemp} K
+        </ProgressBar>
+        Coolant temperature:
         <ProgressBar
           value={data.coolantInput}
-          minValue={-273.15}
-          maxValue={1227}
+          minValue={0}
+          maxValue={1500}
           color="blue">
-          {data.coolantInput} °C
+          {data.coolantInput} K
         </ProgressBar>
-        Outlet temperature (°C):
+        Outlet temperature:
         <ProgressBar
           value={data.coolantOutput}
-          minValue={-273.15}
-          maxValue={1227}
+          minValue={0}
+          maxValue={1500}
           color="bad">
-          {data.coolantOutput} °C
+          {data.coolantOutput} K
         </ProgressBar>
         Neutrons per generation (K):
         <ProgressBar
-          value={(data.k / 5 * 100) * 0.01}
+          value={data.k / 5}
           ranges={{
             good: [-Infinity, 0.4],
             average: [0.4, 0.6],
@@ -92,28 +103,35 @@ export const RbmkStatsSection = (props, context) => {
           fillPositionedParent
           data={powerData}
           rangeX={[0, powerData.length - 1]}
-          rangeY={[0, 1700]}
+          rangeY={[0, Math.max(15000000, ...data.powerData)]}
           strokeColor="rgba(255, 215,0, 1)"
           fillColor="rgba(255, 215, 0, 0.1)" />
         <Chart.Line
           fillPositionedParent
-          data={psiData}
-          rangeX={[0, psiData.length - 1]}
-          rangeY={[0, 1700]}
+          data={kpaData}
+          rangeX={[0, kpaData.length - 1]}
+          rangeY={[0, Math.max(10000, ...data.kpaData)]}
           strokeColor="rgba(255,250,250, 1)"
           fillColor="rgba(255,250,250, 0.1)" />
         <Chart.Line
           fillPositionedParent
+          data={tempCoreData}
+          rangeX={[0, tempCoreData.length - 1]}
+          rangeY={[0, Math.max(1800, ...data.tempCoreData)]}
+          strokeColor="rgba(255, 129, 25 , 1)"
+          fillColor="rgba(255, 129, 25 , 0.1)" />
+        <Chart.Line
+          fillPositionedParent
           data={tempInputData}
           rangeX={[0, tempInputData.length - 1]}
-          rangeY={[-273.15, 1700]}
+          rangeY={[0, Math.max(1800, ...data.tempInputData)]}
           strokeColor="rgba(127, 179, 255 , 1)"
           fillColor="rgba(127, 179, 255 , 0.1)" />
         <Chart.Line
           fillPositionedParent
-          data={tempOutputdata}
-          rangeX={[0, tempOutputdata.length - 1]}
-          rangeY={[-273.15, 1700]}
+          data={tempOutputData}
+          rangeX={[0, tempOutputData.length - 1]}
+          rangeY={[0, Math.max(1800, ...data.tempOutputData)]}
           strokeColor="rgba(255, 0, 0 , 1)"
           fillColor="rgba(255, 0, 0 , 0.1)" />
       </Section>

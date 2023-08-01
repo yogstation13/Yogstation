@@ -156,6 +156,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Meta TEG"
+		if(5)
+			return . // Don't have an RBMK map for meta yet, so just pick a random one
 
 
 /obj/effect/landmark/stationroom/maint/
