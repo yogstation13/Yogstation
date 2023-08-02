@@ -16,7 +16,7 @@
 <h1>/<a href="datum.html">datum</a>/<a href="datum/status_effect.html">status_effect</a>/<a href="datum/status_effect/shapechange_mob.html">shapechange_mob</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L4">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L4">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 4"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -37,25 +37,25 @@ if kill_caster_after is TRUE, the caster will have death() called on them after 
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L14">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L14">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 14"/></a></h3>
         <p>Whether we're currently undoing the change</p><h3 id="var/caster_mob"><aside class="declaration">var </aside>caster_mob
             <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L12">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L12">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 12"/></a></h3>
         <p>The caster's mob. Who has transformed into us
 This reference is handled in [/proc/restore_caster], which is always called if we delete</p><h2 id="proc">Proc Details</h2><h3 id="proc/after_unchange"><aside class="declaration">proc </aside>after_unchange<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L95">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L95">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 95"/></a></aside>
         </h3>
         <p>Effects done after the casting mob has reverted to their human form.</p><h3 id="proc/on_caster_death"><aside class="declaration">proc </aside>on_caster_death<aside>(/<a href="datum.html">datum</a>/source, gibbed) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L113">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L113">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 113"/></a></aside>
         </h3>
         <p>Signal proc for <a href="code/__DEFINES/dcs/signals/signals_mob/signals_living.html#define/COMSIG_LIVING_DEATH" title="COMSIG_LIVING_DEATH">COMSIG_LIVING_DEATH</a> from our caster.
@@ -63,33 +63,33 @@ If our internal caster is killed, kill our owner, too (which causes the above si
 This should very rarely end up being called but you never know</p><h3 id="proc/on_caster_deleted"><aside class="declaration">proc </aside>on_caster_deleted<aside>(/<a href="datum.html">datum</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L125">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L125">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 125"/></a></aside>
         </h3>
         <p>Signal proc for <a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_PARENT_QDELETING" title="COMSIG_PARENT_QDELETING">COMSIG_PARENT_QDELETING</a> from our caster, delete us / our owner if we get deleted</p><h3 id="proc/on_shape_death"><aside class="declaration">proc </aside>on_shape_death<aside>(/<a href="datum.html">datum</a>/source, gibbed) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L101">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L101">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 101"/></a></aside>
         </h3>
         <p>Signal proc for <a href="code/__DEFINES/dcs/signals/signals_mob/signals_living.html#define/COMSIG_LIVING_DEATH" title="COMSIG_LIVING_DEATH">COMSIG_LIVING_DEATH</a> from our owner.
 If our owner mob is killed, we should revert back to normal.</p><h3 id="proc/on_wabbajacked"><aside class="declaration">proc </aside>on_wabbajacked<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, randomized) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L57">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L57">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 57"/></a></aside>
         </h3>
         <p>Signal proc for <a href="code/__DEFINES/dcs/signals/signals_mob/signals_living.html#define/COMSIG_LIVING_PRE_WABBAJACKED" title="COMSIG_LIVING_PRE_WABBAJACKED">COMSIG_LIVING_PRE_WABBAJACKED</a> to prevent us from being Wabbajacked and messed up.</p><h3 id="proc/restore_caster"><aside class="declaration">proc </aside>restore_caster<aside>(kill_caster_after) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L68">
+            <a href="https://github.com/yogstation13/Yogstation/blob/2d15d6910c740f656916a9eaa916b70917a3a736/code/modules/spells/spell_types/shapeshift/_shape_status.dm#L68">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;shapeshift&#x2F;_shape_status.dm 68"/></a></aside>
         </h3>
         <p>Restores the caster back to their human form.
 if kill_caster_after is TRUE, the caster will have death() called on them after restoring.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/41d2b7f50ba34cb09355fff72bdb5e3fc5a74147">41d2b7f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/2d15d6910c740f656916a9eaa916b70917a3a736">2d15d69</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
