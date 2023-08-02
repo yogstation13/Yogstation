@@ -284,8 +284,7 @@
 	var/spray_self = 1 SECONDS
 
 	//  Misc Vars  //
-	var/penetrates = FALSE
-	var/speedup = FALSE
+	var/upgrade_flags = NONE
 	var/can_remove_container = TRUE
 
 	//	Sound Vars	//
@@ -339,9 +338,9 @@
 	. = ..()
 	if(!initial(antispam))
 		. += span_notice("[src] has a rapispray needle, allowing for spraying multiple patients at once.")
-	if(penetrates)
+	if(upgrade_flags & PIERCING)
 		. += span_notice("[src] has a diamond tipped needle, allowing it to pierce thick clothing.")
-	if(speedup)
+	if(upgrade_flags & SPEED_UP)
 		. += span_notice("[src] has a springloaded mechanism, allowing it to inject with reduced delay.")
 	if(container)
 		. += span_notice("[container] has [container.reagents.total_volume]u remaining.")
@@ -439,7 +438,7 @@
 		return
 
 	var/mob/living/carbon/C = target
-	if(istype(C) && C.can_inject(user, 1, user.zone_selected, penetrates))
+	if(istype(C) && C.can_inject(user, 1, user.zone_selected, (upgrade_flags & PIERCING)))
 		if(ishuman(C))
 			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
 			if(!affecting)
@@ -458,7 +457,7 @@
 		//Checks
 		if(!do_mob(user, C, (C == user) ? inject_self : inject_wait))
 			return
-		if((!penetrates && !C.can_inject(user, 1)) || !container?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
+		if((!(upgrade_flags & PIERCING) && !C.can_inject(user, 1)) || !container?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
 			return
 
 		//Post Messages/sounds
@@ -600,7 +599,7 @@
 	desc = "A highly advanced hypospray that uses bluespace magic to instantly inject people with reagents."
 	allowed_containers = list(/obj/item/reagent_containers)
 	container = /obj/item/reagent_containers/glass/bottle/adminordrazine
-	penetrates = TRUE
+	upgrade_flags = PIERCING
 	possible_transfer_amounts = list(0.1, 1, 5, 10, 15, 20, 30, 50, 100)
 	spray_wait = 0 SECONDS
 	spray_self = 0 SECONDS
@@ -615,13 +614,13 @@
 	inject_self = 0 SECONDS
 	spray_wait = 0 SECONDS
 	spray_self = 0 SECONDS
-	penetrates = TRUE
+	upgrade_flags = PIERCING
 
 /obj/item/hypospray/qmc
 	name = "QMC hypospray"
 	desc = "A modified, well used quick-mix capital combat hypospray designed to treat those on the field with hardsuits."
 	icon_state = "hypo_qmc"
-	penetrates = TRUE
+	upgrade_flags = PIERCING
 
 /obj/item/hypospray/syringe
 	name = "autosyringe"
@@ -649,12 +648,16 @@
 	else
 		..()
 
+
+//------------HYPOSPRAY UPGRADES-------------------------
 /obj/item/hypospray_upgrade
 	name = "hypospray modification kit"
 	desc = "An upgrade for hyposprays."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
+	var/upgrade_flag
+	var/mechanism_name = "non-existant"
 
 /obj/item/hypospray_upgrade/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/hypospray) && !issilicon(user))
@@ -666,33 +669,31 @@
 		..()
 
 /obj/item/hypospray_upgrade/proc/install(obj/item/hypospray/hypo, mob/user)
-	to_chat(user, span_notice("The modkit you're trying to install is not meant to exist."))
-	return FALSE
+	if(!upgrade_flag)
+		to_chat(user, span_notice("The modkit you're trying to install is not meant to exist."))
+		return FALSE
+	if(hypo.upgrade_flags & upgrade_flag)
+		to_chat(user, span_notice("[hypo] already has a [mechanism_name] mechanism!"))
+		return FALSE
+	hypo.upgrade_flags |= upgrade_flag
+	return TRUE
 
 /obj/item/hypospray_upgrade/piercing
 	name = "hypospray piercing upgrade"
 	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
-
-/obj/item/hypospray_upgrade/piercing/install(obj/item/hypospray/hypo, mob/user)
-	if(hypo.penetrates)
-		to_chat(user, span_notice("[hypo] already has a piercing mechanism!"))
-		return FALSE
-	else
-		hypo.penetrates = TRUE
-		return TRUE
+	upgrade_flag = PIERCING
+	mechanism_name = "piercing"
 
 /obj/item/hypospray_upgrade/speed
 	name = "hypospray speed upgrade"
 	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+	upgrade_flag = SPEED_UP
+	mechanism_name = "speed"
 
 /obj/item/hypospray_upgrade/speed/install(obj/item/hypospray/hypo, mob/user)
-	if(hypo.speedup)
-		to_chat(user, span_notice("[hypo] already has a speed mechanism!"))
-		return FALSE
-	else
+	if(..())
 		hypo.inject_wait = clamp(hypo.inject_wait, 0, hypo.inject_wait - 0.5 SECONDS)
 		hypo.inject_self = 0 SECONDS
-		hypo.speedup = TRUE
 		return TRUE
 
 #undef HYPO_INJECT

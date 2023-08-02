@@ -1,15 +1,27 @@
+/// The base temperature used when calling hotspot_expose()
 #define TURF_FIRE_TEMP_BASE (T0C+650)
+/// The amount of power loss from low temperatures, scales with how far the temperature FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 #define TURF_FIRE_POWER_LOSS_ON_LOW_TEMP 7
+/// The increase of temperature used in hotspot_expose() for each fire_power the turf fire has
 #define TURF_FIRE_TEMP_INCREMENT_PER_POWER 3
+/// The volume of the hotspot exposure, in liters
 #define TURF_FIRE_VOLUME 150
+/// Maximum fire power the turf fire can have
 #define TURF_FIRE_MAX_POWER 50
-#define TURF_FIRE_SPREAD_RATE 0.5
+/// Multiplier for the probability of spreading to adjacent tiles and how much power the new fires have
+#define TURF_FIRE_SPREAD_RATE 0.3
 
+/// Joules of energy added to the air for each oxygen molecule consumed
 #define TURF_FIRE_ENERGY_PER_BURNED_OXY_MOL 12000
+/// The base burn rate, increases with fire power
 #define TURF_FIRE_BURN_RATE_BASE 0.15
+/// Increase in burn rate for each fire power
 #define TURF_FIRE_BURN_RATE_PER_POWER 0.03
+/// The oxygen to CO2 conversion rate
 #define TURF_FIRE_BURN_CARBON_DIOXIDE_MULTIPLIER 0.75
+/// Minimum moles of oxygen required to burn
 #define TURF_FIRE_BURN_MINIMUM_OXYGEN_REQUIRED 1
+/// Percent chance of playing a sound effect
 #define TURF_FIRE_BURN_PLAY_SOUND_EFFECT_CHANCE 6
 
 #define TURF_FIRE_STATE_SMALL 1
@@ -30,7 +42,7 @@
 	var/turf/open/open_turf
 	/// How much power have we got. This is treated like fuel, be it flamethrower fuel or any random thing you could come up with
 	var/fire_power = 20
-	/// Is it magical, if it is then it wont interact with atmos, and it will not loose power by itself. Mainly for adminbus events or mapping
+	/// Is it magical, if it is then it wont interact with atmos, and it will not lose power by itself. Mainly for adminbus events or mapping
 	var/magical = FALSE
 	/// Visual state of the fire. Kept track to not do too many updates.
 	var/current_fire_state
@@ -85,6 +97,7 @@
 		base_icon_state = "greyscale"
 	UpdateFireState()
 	alpha = 160 // be slightly transparent
+	//process() // process once instantly, helps prevent weird fire behavior
 
 /obj/effect/abstract/turf_fire/Destroy()
 	open_turf.turf_fire = null
@@ -121,7 +134,7 @@
 		fire_power -= TURF_FIRE_POWER_LOSS_ON_LOW_TEMP
 
 /obj/effect/abstract/turf_fire/process()
-	if(open_turf.active_hotspot) //If we have an active hotspot, let it do the damage instead and lets not loose power
+	if(open_turf.active_hotspot) //If we have an active hotspot, let it do the damage instead and lets not lose power
 		return
 	var/obj/structure/window = locate() in loc
 	if(window in loc)	
@@ -146,7 +159,7 @@
 	for(var/atom/movable/burning_atom as anything in open_turf)
 		burning_atom.temperature_expose(open_turf.air, fire_temp, TURF_FIRE_VOLUME)
 		burning_atom.fire_act(fire_temp, TURF_FIRE_VOLUME)
-	var/list/turfs_to_spread = open_turf.GetAtmosAdjacentTurfs()
+	var/list/turfs_to_spread = open_turf.atmos_adjacent_turfs
 	for(var/turf/open/T in turfs_to_spread)
 		if(prob(T.flammability * fire_power * TURF_FIRE_SPREAD_RATE))
 			T.IgniteTurf(fire_power * TURF_FIRE_SPREAD_RATE)
@@ -155,7 +168,7 @@
 			open_turf.burn_tile()
 		if(prob(TURF_FIRE_BURN_PLAY_SOUND_EFFECT_CHANCE))
 			playsound(open_turf, 'sound/effects/comfyfire.ogg', 40, TRUE)
-		UpdateFireState()
+	UpdateFireState()
 
 /obj/effect/abstract/turf_fire/proc/on_entered(datum/source, atom/movable/AM)
 	if(open_turf.active_hotspot) //If we have an active hotspot, let it do the damage instead 

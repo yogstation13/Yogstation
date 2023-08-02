@@ -1078,6 +1078,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 	switch(random)
 		if(1)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
+			H.eye_color = "fee5a3"
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.updateappearance()
+		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(2)
@@ -1471,6 +1478,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(isitem(target))//don't attack if we're clicking on our inventory
+		var/obj/item/thing = target
+		if(thing.item_flags & IN_INVENTORY)
+			return
 	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, span_warning("The club fizzles weakly, it seem its power doesn't reach this area.") )
 		return
@@ -1560,7 +1571,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(get_dist(user, beacon) <= 2) //beacon too close abort
 		to_chat(user, span_warning("You are too close to the beacon to teleport to it!"))
 		return
-	if(is_blocked_turf(get_turf(beacon), TRUE))
+	var/turf/beacon_turf = get_turf(beacon)
+	if(beacon_turf.is_blocked_turf(TRUE))
 		to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 		return
 	if(!isturf(user.loc))
@@ -1577,7 +1589,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(do_after(user, 4 SECONDS, user) && user && beacon)
 		var/turf/T = get_turf(beacon)
 		var/turf/source = get_turf(user)
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1598,7 +1610,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1633,7 +1645,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
-	if(!turf_to_teleport_to || is_blocked_turf(turf_to_teleport_to, TRUE))
+	if(!turf_to_teleport_to || turf_to_teleport_to.is_blocked_turf_ignore_climbable())
 		return
 	animate(M, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
 	sleep(0.1 SECONDS)

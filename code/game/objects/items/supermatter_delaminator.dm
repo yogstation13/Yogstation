@@ -54,13 +54,12 @@
 	..()
 	if(!iscarbon(user))
 		return FALSE
-	var/mob/ded = user
-	user.visible_message(span_danger("[ded] reaches out and tries to pick up [src]. [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
-			span_userdanger("You reach for [src] with your hands. That was dumb."),\
-			span_italics("Everything suddenly goes silent."))
+	user.visible_message(span_danger("[user] reaches out and tries to pick up [src]. [user.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
+		span_userdanger("You reach for [src] with your hands. That was dumb."),\
+		span_italics("Everything suddenly goes silent."))
 	radiation_pulse(user, 500, 2)
 	playsound(get_turf(user), 'sound/effects/supermatter.ogg', 50, 1)
-	ded.dust()
+	user.dust()
 
 /obj/item/antinoblium_container
 	name = "antinoblium bin"
@@ -183,9 +182,9 @@
 		update_appearance(UPDATE_ICON)
 	..()
 
-/obj/item/hemostat/antinoblium/proc/Consume(atom/movable/AM, mob/user)
-	if(ismob(AM))
-		var/mob/victim = AM
+/obj/item/hemostat/antinoblium/proc/Consume(atom/movable/AM, mob/living/user)
+	if(isliving(AM))
+		var/mob/living/victim = AM
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
 		message_admins("[ADMIN_LOOKUPFLW(user)] has used an antinoblium shard to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
