@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds particle emitters and nuclear particle collision"
