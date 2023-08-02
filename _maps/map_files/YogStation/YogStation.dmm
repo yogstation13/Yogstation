@@ -47722,9 +47722,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
-"oPx" = (
-/turf/open/floor/plating,
-/area/security/prison)
 "oQe" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -98991,7 +98988,7 @@ oNh
 acd
 fSk
 xry
-oPx
+cyX
 cyX
 acd
 cBo
