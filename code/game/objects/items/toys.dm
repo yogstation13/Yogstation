@@ -129,7 +129,7 @@
 
 /obj/item/toy/mballoon
 	name = "toy mballoon"
-	desc = "A blue baloon, it looks.. mentory?"
+	desc = "A blue balloon, it looks.. mentory?"
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
