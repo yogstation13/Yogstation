@@ -644,6 +644,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			var/next_map = query_previous_maps.NextRow()
 			if(!next_map)
 				continue
-			previous_maps[next_map.item[1]] += 1 / (11 - i) //this lessens the influence of rounds that were longer ago
+			previous_maps[next_map[1]] += 1 / (11 - i) //this lessens the influence of rounds that were longer ago
 		qdel(query_previous_maps)
 	return previous_maps
