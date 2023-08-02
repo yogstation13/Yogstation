@@ -153,6 +153,13 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"gX" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/asteroid/nearstation)
 "hw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -396,6 +403,28 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"oQ" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "reactorcore";
+	name = "Reactor Core Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "oT" = (
 /obj/machinery/atmospherics/components/trinary/mixer/t_mixer,
@@ -650,17 +679,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"vH" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	name = "Reactor Core Shutters";
-	id = "reactorcore"
-	},
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "vP" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -897,7 +915,9 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Tank to Cooling"
 	},
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "CT" = (
@@ -928,23 +948,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"FG" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	name = "Reactor Core Shutters";
-	id = "reactorcore"
-	},
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "FM" = (
 /obj/effect/turf_decal/stripes/line,
@@ -1078,7 +1081,9 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "IH" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Jb" = (
@@ -1218,6 +1223,19 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Mt" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "reactorcore";
+	name = "Reactor Core Shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ME" = (
 /obj/machinery/air_sensor/atmos/toxin_tank{
 	frequency = 1445
@@ -1263,8 +1281,8 @@
 /area/engine/engineering)
 "NO" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Moderators to Reactor";
-	dir = 4
+	dir = 4;
+	name = "Moderators to Reactor"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -1390,6 +1408,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Rt" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "reactorcore";
+	name = "Reactor Core Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "RI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1450,13 +1484,6 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"SX" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 4;
-	name = "Waste Ejector"
-	},
-/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "Tn" = (
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset{
@@ -1520,14 +1547,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"VG" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	name = "Reactor Core Shutters";
-	id = "reactorcore"
-	},
-/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Wm" = (
@@ -1883,7 +1902,7 @@ CA
 Ng
 Ng
 Ng
-SX
+gX
 Ng
 Ng
 Ng
@@ -2245,9 +2264,9 @@ dH
 dH
 dH
 ej
-vH
-FG
-VG
+Rt
+oQ
+Mt
 Or
 dH
 dH

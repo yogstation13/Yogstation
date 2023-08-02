@@ -215,7 +215,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	for(var/obj/item/fuel_rod/FR in fuel_rods)
 		FR.depletion = 100
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/Initialize()
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/Initialize(mapload)
 	. = ..()
 	icon_state = "reactor_off"
 	gas_absorption_effectiveness = rand(5, 6)/10 //All reactors are slightly different. This will result in you having to figure out what the balance is for K.
@@ -324,14 +324,14 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	//Then, hit as much of that goal with our cooling per tick as we possibly can.
 	difference = clamp(difference, 0, control_rod_effectiveness) //And we can't instantly zap the K to what we want, so let's zap as much of it as we can manage....
 	if(difference > fuel_power && desired_k > K)
-		investigate_log("Reactor does not enough fuel to get [difference]. We have fuel [fuel_power]", INVESTIGATE_SINGULO)
+		investigate_log("Reactor does not enough fuel to get [difference]. We have [fuel_power] fuel power.", INVESTIGATE_SINGULO)
 		difference = fuel_power //Again, to stop you being able to run off of 1 fuel rod.
 	if(K != desired_k)
 		if(desired_k > K)
 			K += difference
 		else if(desired_k < K)
 			K -= difference
-		if(K == desired_k && last_user && current_desired_k != desired_k)
+		if(last_user && current_desired_k != desired_k)
 			current_desired_k = desired_k
 			message_admins("Reactor desired criticality set to [desired_k] by [ADMIN_LOOKUPFLW(last_user)] in [ADMIN_VERBOSEJMP(src)]")
 			investigate_log("reactor desired criticality set to [desired_k] by [key_name(last_user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
@@ -559,10 +559,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	desired_k = 0
 	power = 0
 	update_icon()
-
-/obj/item/fuel_rod/Initialize()
-	.=..()
-	AddComponent(/datum/component/radioactive, 350 , src)
 
 //Controlling the reactor.
 
@@ -892,7 +888,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	light_color = LIGHT_COLOR_GREEN
 	color = "#ff9eff"
 
-/obj/effect/decal/nuclear_waste/Initialize()
+/obj/effect/decal/nuclear_waste/Initialize(mapload)
 	. = ..()
 	for(var/obj/A in get_turf(src))
 		if(istype(A, /obj/structure))
@@ -918,7 +914,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			new /obj/effect/decal/nuclear_waste (floor)
 	qdel(src)
 
-/obj/effect/decal/nuclear_waste/epicenter/Initialize()
+/obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)
 	. = ..()
 
 /obj/effect/decal/nuclear_waste/Crossed(atom/movable/AM)

@@ -1,5 +1,5 @@
 /obj/item/fuel_rod
-	name = "Uranium-235 Fuel Rod"
+	name = "uranium-235 fuel rod"
 	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder inside, and a breeding blanket of uranium-238 around it, used to kick off a fission reaction and breed plutonium fuel respectivly."
 	icon = 'icons/obj/control_rod.dmi'
 	icon_state = "irradiated"
@@ -18,7 +18,7 @@
 	var/depleted_final = FALSE // depletion_final should run only once
 	var/depletion_conversion_type = "plutonium"
 
-/obj/item/fuel_rod/Initialize()
+/obj/item/fuel_rod/Initialize(mapload)
 	. = ..()
 	time_created = world.time
 	AddComponent(/datum/component/radioactive, rad_strength, src) // This should be temporary for it won't make rads go lower than 350
@@ -70,7 +70,7 @@
 
 /obj/item/fuel_rod/plutonium
 	fuel_power = 0.20
-	name = "Plutonium-239 Fuel Rod"
+	name = "plutonium-239 fuel rod"
 	desc = "A highly energetic titanium sheathed rod containing a sizeable measure of weapons grade plutonium, it's highly efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
 	icon_state = "inferior"
 	rad_strength = 1500
@@ -83,8 +83,8 @@
 
 /obj/item/fuel_rod/depleted
 	fuel_power = 0.05
-	name = "Depleted Fuel Rod"
-	desc = "A highly radioactive fuel rod which has expended most of it's useful energy."
+	name = "depleted fuel rod"
+	desc = "A highly radioactive fuel rod which has expended most of its useful energy."
 	icon_state = "normal"
 	rad_strength = 6000 // smelly
 	depletion_conversion_type = null // It means that it won't turn into anything
@@ -195,7 +195,7 @@
 		. += "<span class='disarm'>This rod is ready for material breeding</span>"
 
 /obj/item/fuel_rod/material/telecrystal
-	name = "Telecrystal Fuel Rod"
+	name = "telecrystal fuel rod"
 	desc = "A disguised titanium sheathed rod containing several small slots infused with uranium dioxide. Permits the insertion of telecrystals to grow more. Fissiles much faster than its standard counterpart"
 	icon_state = "telecrystal"
 	fuel_power = 0.30 // twice as powerful as a normal rod, you're going to need some engineering autism if you plan to mass produce TC
@@ -212,13 +212,13 @@
 	if(result_rod)
 		return
 	fuel_power = 0.60 // thrice as powerful as plutonium, you'll want to get this one out quick!
-	name = "Exhausted Telecrystal Fuel Rod"
+	name = "exhausted telecrystal fuel rod"
 	desc = "A highly energetic, disguised titanium sheathed rod containing a number of slots filled with greatly expanded telecrystals which can be removed by hand. It's extremely efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
 	icon_state = "telecrystal_used"
 	AddComponent(/datum/component/radioactive, 3000, src)
 
 /obj/item/fuel_rod/material/bananium
-	name = "Bananium Fuel Rod"
+	name = "bananium fuel rod"
 	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than its cowardly counterparts. However, its cutting-edge cosmic clown technology allows rooms for extraordinarily exhilarating extraterrestrial element called bananium to menacingly multiply."
 	icon_state = "bananium"
 	fuel_power = 0.15
@@ -240,7 +240,7 @@
 	if(result_rod)
 		return
 	fuel_power = 0.3 // Be warned
-	name = "Fully Grown Bananium Fuel Rod"
+	name = "fully grown bananium fuel rod"
 	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing growth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
 	icon_state = "bananium_used"
 	AddComponent(/datum/component/radioactive, 1250, src)
