@@ -102,7 +102,9 @@
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds, shooting [shots_before_reload] times before recharging. <br>Power consumption at <b>[active_power_usage]W</b>.<span>"
+		. += "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds, shooting [shots_before_reload] times before recharging."
+		if(active_power_usage)
+			. += "<br>Power consumption at <b>[active_power_usage]W</b>.<span>"
 
 /obj/machinery/power/emitter/proc/can_be_rotated(mob/user,rotation_type)
 	if (anchored)
@@ -130,7 +132,7 @@
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(state == EMITTER_WELDED)
-		if(!powernet)
+		if(!powernet && active_power_usage)
 			to_chat(user, span_warning("\The [src] isn't connected to a wire!"))
 			return TRUE
 		if(!locked && allow_switch_interact)
@@ -309,7 +311,7 @@
 /obj/machinery/power/emitter/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	default_deconstruction_screwdriver(user, "emitter_open", "emitter", I)
+	default_deconstruction_screwdriver(user, "[initial(icon_state)]_open", initial(icon_state), I)
 	return TRUE
 
 
@@ -389,6 +391,7 @@
 	active_power_usage *= 5
 	projectile_type = /obj/item/projectile/beam/emitter/pulse
 	projectile_sound = 'sound/weapons/pulse.ogg'
+	return TRUE
 
 
 /obj/machinery/power/emitter/prototype
@@ -401,6 +404,71 @@
 	buckle_lying = FALSE
 	var/view_range = 4.5
 	var/datum/action/innate/protoemitter/firing/auto
+
+/obj/machinery/power/emitter/particle
+	name = "particle emitter"
+	desc = "A machine that generates nuclear particles, often used in particle colliders for physics research. Requires a tank with tritium in it to run instead of electricity."
+	icon_state = "sci-emitter"
+	icon_state_on = "sci-emitter_+a"
+	icon_state_underpowered = "sci-emitter_+u"
+	projectile_type = /obj/item/projectile/energy/nuclear_particle
+	idle_power_usage = 0 // powered by tritium gas (and scientists don't have insulated gloves for wiring things)
+	active_power_usage = 0
+	var/obj/item/tank/tank
+	var/fuel_consumption = FUSION_TRITIUM_MOLES_USED
+
+/obj/machinery/power/emitter/particle/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tank))
+		if(!user.transferItemToLoc(I, src))
+			return ..()
+		tank = I
+		return
+	return ..()
+
+/obj/machinery/power/emitter/particle/crowbar_act(mob/living/user, obj/item/I)
+	if(panel_open && tank)
+		user.put_in_hands(tank)
+		tank = null
+		playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+		return TRUE
+	return ..()
+
+/obj/machinery/power/emitter/particle/fire_beam(mob/user)
+	if(!tank || !tank.air_contents)
+		return
+	var/datum/gas_mixture/fuel = tank.air_contents
+	if(fuel.get_moles(/datum/gas/tritium) < fuel_consumption)
+		return
+	fuel.adjust_moles(/datum/gas/tritium, -fuel_consumption)
+	fuel.adjust_moles(/datum/gas/hydrogen, fuel_consumption)
+	if(obj_flags & EMAGGED) // radioactive if emagged
+		radiation_pulse(get_turf(src), fuel_consumption * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	return ..()
+
+/obj/machinery/power/emitter/particle/RefreshParts()
+	fuel_consumption = initial(fuel_consumption)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		fuel_consumption -= (M.rating - 1) / 3 // use about 1/6 less tritium for each upgrade tier above t1, up to 1/2
+	idle_power_usage = 0
+	active_power_usage = 0
+	if(obj_flags & EMAGGED)
+		fuel_consumption *= 2
+
+/obj/machinery/power/emitter/emag_act(mob/user)
+	if(..()) // stronger particles
+		projectile_type = /obj/item/projectile/energy/nuclear_particle/strong
+
+/obj/machinery/power/emitter/particle/update_icon_state()
+	. = ..()
+	if(active)
+		icon_state = (tank?.air_contents?.get_moles(/datum/gas/tritium) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/power/emitter/particle/examine(mob/user)
+	. = ..()
+	if(in_range(user, src) || isobserver(user))
+		. += "<br>Tritium consumption at <b>[fuel_consumption]W</b>.<span>"
 
 //BUCKLE HOOKS
 
