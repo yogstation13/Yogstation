@@ -78,7 +78,7 @@
 	name = "Nitrogen canister"
 	desc = "Nitrogen gas. Reportedly useful for something."
 	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#d41010"
+	greyscale_colors = "#3fcd40"
 	gas_type = /datum/gas/nitrogen
 
 /obj/machinery/portable_atmospherics/canister/oxygen
@@ -106,14 +106,14 @@
 	name = "\improper BZ canister"
 	desc = "BZ, a powerful hallucinogenic nerve agent."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#9b5d7f#d0d2a0"
+	greyscale_colors = "#f62800#d0d2a0"
 	gas_type = /datum/gas/bz
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "Nitrous oxide canister"
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#c63e3b#f7d5d3"
+	greyscale_colors = "#3fcd40#f7d5d3"
 	gas_type = /datum/gas/nitrous_oxide
 
 /obj/machinery/portable_atmospherics/canister/air
@@ -126,7 +126,7 @@
 	name = "Tritium canister"
 	desc = "Tritium. Inhalation might cause irradiation."
 	greyscale_config = /datum/greyscale_config/canister/hazard
-	greyscale_colors = "#3fcd40#000000"
+	greyscale_colors = "#d41010#000000"
 	gas_type = /datum/gas/tritium
 
 /obj/machinery/portable_atmospherics/canister/nob
@@ -145,8 +145,8 @@
 /obj/machinery/portable_atmospherics/canister/pluoxium
 	name = "Pluoxium canister"
 	desc = "Pluoxium. Like oxygen, but more bang for your buck."
-	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#2786e5"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#2786e5#000000"
 	gas_type = /datum/gas/pluoxium
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
@@ -160,8 +160,8 @@
 /obj/machinery/portable_atmospherics/canister/miasma
 	name = "Miasma canister"
 	desc = "Foul miasma. Even the canister reeks of fetid refuse."
-	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#009823#f7d5d3"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#d35ecb#943233"
 	gas_type = /datum/gas/miasma
 	filled = 1
 
@@ -175,8 +175,8 @@
 /obj/machinery/portable_atmospherics/canister/freon
 	name = "Freon canister"
 	desc = "Freon. Can absorb heat"
-	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#6696ee#fefb30"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#68d7ef#ffffff"
 	gas_type = /datum/gas/freon
 	filled = 1
 
@@ -184,7 +184,7 @@
 	name = "Hydrogen canister"
 	desc = "Hydrogen, highly flammable"
 	greyscale_config = /datum/greyscale_config/canister/stripe
-	greyscale_colors = "#bdc2c0#ffffff"
+	greyscale_colors = "#d41010#ffffff"
 	gas_type = /datum/gas/hydrogen
 	filled = 1
 
@@ -231,8 +231,8 @@
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
 	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
-	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#9b5d7f#368bff"
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#000000#790000"
 	gas_type = /datum/gas/antinoblium
 	filled = 1
 

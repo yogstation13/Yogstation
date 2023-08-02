@@ -156,9 +156,6 @@
 #define COLOR_TOOL_CYAN "#18a2d5"
 #define COLOR_TOOL_YELLOW "#d58c18"
 
-/// The default color for admin say, used as a fallback when the preference is not enabled
-#define DEFAULT_ASAY_COLOR "#996600"
-
 ///Colors for xenobiology vatgrowing
 #define COLOR_SAMPLE_YELLOW "#c0b823"
 #define COLOR_SAMPLE_PURPLE "#342941"
@@ -294,25 +291,6 @@
 #define COLOR_CHANGELING_CHEMICALS "#DD66DD"
 #define COLOR_DARKSPAWN_PSI "#7264FF"
 
-#define CABLE_COLOR_BLUE "blue"
-	#define CABLE_HEX_COLOR_BLUE COLOR_STRONG_BLUE
-#define CABLE_COLOR_BROWN "brown"
-	#define CABLE_HEX_COLOR_BROWN COLOR_ORANGE_BROWN
-#define CABLE_COLOR_CYAN "cyan"
-	#define CABLE_HEX_COLOR_CYAN COLOR_CYAN
-#define CABLE_COLOR_GREEN "green"
-	#define CABLE_HEX_COLOR_GREEN COLOR_DARK_LIME
-#define CABLE_COLOR_ORANGE "orange"
-	#define CABLE_HEX_COLOR_ORANGE COLOR_MOSTLY_PURE_ORANGE
-#define CABLE_COLOR_PINK "pink"
-	#define CABLE_HEX_COLOR_PINK COLOR_LIGHT_PINK
-#define CABLE_COLOR_RED "red"
-	#define CABLE_HEX_COLOR_RED COLOR_RED
-#define CABLE_COLOR_WHITE "white"
-	#define CABLE_HEX_COLOR_WHITE COLOR_WHITE
-#define CABLE_COLOR_YELLOW "yellow"
-	#define CABLE_HEX_COLOR_YELLOW COLOR_YELLOW
-
 #define COLOR_CARP_PURPLE "#aba2ff"
 #define COLOR_CARP_PINK "#da77a8"
 #define COLOR_CARP_GREEN "#70ff25"
@@ -349,23 +327,6 @@
 
 #define SOFA_BROWN "#a75400"
 #define SOFA_MAROON "#830000"
-
-#define COLOR_CARP_PURPLE "#aba2ff"
-#define COLOR_CARP_PINK "#da77a8"
-#define COLOR_CARP_GREEN "#70ff25"
-#define COLOR_CARP_GRAPE "#df0afb"
-#define COLOR_CARP_SWAMP "#e5e75a"
-#define COLOR_CARP_TURQUOISE "#04e1ed"
-#define COLOR_CARP_BROWN "#ca805a"
-#define COLOR_CARP_TEAL "#20e28e"
-#define COLOR_CARP_LIGHT_BLUE "#4d88cc"
-#define COLOR_CARP_RUSTY "#dd5f34"
-#define COLOR_CARP_RED "#fd6767"
-#define COLOR_CARP_YELLOW "#f3ca4a"
-#define COLOR_CARP_BLUE "#09bae1"
-#define COLOR_CARP_PALE_GREEN "#7ef099"
-#define COLOR_CARP_SILVER "#fdfbf3"
-#define COLOR_CARP_DARK_BLUE "#3a384d"
 
 GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_BLUE = CABLE_HEX_COLOR_BLUE,
