@@ -76,7 +76,7 @@
 	name = "luxury elite bar capsule"
 	desc = "A luxury bar in a capsule. Bartender required and not included."
 	template_id = "shelter_charlie"
-	
+
 //Pod objects
 
 //Window
@@ -142,6 +142,8 @@
 	. = ..()
 	if(!state_open)
 		. += "sleeper_cover"
+	else
+		icon_state = initial(icon_state)
 
 //Lifeform Stasis Unit
 /obj/machinery/stasis/survival_pod
