@@ -206,27 +206,27 @@
 	var/datum/gas_mixture/fuel_mix = ptank.air_contents.remove_ratio(ratio_removed)
 
 	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
-	if(fuel_mix.get_moles(/datum/gas/plasma) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(/datum/gas/nitrium) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(/datum/gas/pluoxium) >= NITRO_BALL_MOLES_REQUIRED)
-		var/balls_shot = round(min(fuel_mix.get_moles(/datum/gas/nitrium), fuel_mix.get_moles(/datum/gas/pluoxium), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED))
+	if(fuel_mix.get_moles(GAS_PLASMA) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(GAS_NITRIUM) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(GAS_PLUOXIUM) >= NITRO_BALL_MOLES_REQUIRED)
+		var/balls_shot = round(min(fuel_mix.get_moles(GAS_NITRIUM), fuel_mix.get_moles(GAS_PLUOXIUM), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED))
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
 			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
-		fuel_mix.adjust_moles(/datum/gas/plasma, -balls_shot * NITRO_BALL_MOLES_REQUIRED) // No free extra damage for you, conservation of mass go brrrrr
+		fuel_mix.adjust_moles(GAS_PLASMA, -balls_shot * NITRO_BALL_MOLES_REQUIRED) // No free extra damage for you, conservation of mass go brrrrr
 
 	// Funny rad flamethrower go brrr
-	if(fuel_mix.get_moles(/datum/gas/tritium)) // Tritium fires cause a bit of radiation
-		radiation_pulse(target, min(fuel_mix.get_moles(/datum/gas/tritium), fuel_mix.get_moles(/datum/gas/oxygen)/2) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+	if(fuel_mix.get_moles(GAS_TRITIUM)) // Tritium fires cause a bit of radiation
+		radiation_pulse(target, min(fuel_mix.get_moles(GAS_TRITIUM), fuel_mix.get_moles(GAS_O2)/2) * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 
 	// 8 damage at 0.5 mole transfer or ~17 kPa release pressure
 	// 16 damage at 1 mole transfer or ~35 kPa release pressure
-	var/damage = fuel_mix.get_moles(/datum/gas/plasma) * 16
+	var/damage = fuel_mix.get_moles(GAS_PLASMA) * 16
 	// harder to achieve than plasma
-	damage += fuel_mix.get_moles(/datum/gas/tritium) * 24 // Lower damage than hydrogen, causes minor radiation
-	damage += fuel_mix.get_moles(/datum/gas/hydrogen) * 32
+	damage += fuel_mix.get_moles(GAS_TRITIUM) * 24 // Lower damage than hydrogen, causes minor radiation
+	damage += fuel_mix.get_moles(GAS_H2) * 32
 	// Maximum damage restricted by the available oxygen, with a hard cap at 16
 	var/datum/gas_mixture/turf_air = target.return_air()
-	damage = min(damage, turf_air.get_moles(/datum/gas/oxygen) + fuel_mix.get_moles(/datum/gas/oxygen), max_damage) // capped by combined oxygen in the fuel mix and enviroment
+	damage = min(damage, turf_air.get_moles(GAS_O2) + fuel_mix.get_moles(GAS_O2), max_damage) // capped by combined oxygen in the fuel mix and enviroment
 
 	// If there's not enough fuel and/or oxygen to do more than 1 damage, shut itself off
 	if(damage < 1)

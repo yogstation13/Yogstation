@@ -108,7 +108,7 @@
 /obj/effect/abstract/turf_fire/proc/process_waste()
 	if(open_turf.planetary_atmos)
 		return TRUE
-	var/oxy = open_turf.air.get_moles(/datum/gas/oxygen)
+	var/oxy = open_turf.air.get_moles(GAS_O2)
 	if (oxy < TURF_FIRE_BURN_MINIMUM_OXYGEN_REQUIRED)
 		return FALSE
 	var/thermal_energy = open_turf.air.return_temperature() * open_turf.air.heat_capacity()
@@ -116,8 +116,8 @@
 	if(burn_rate > oxy)
 		burn_rate = oxy
 
-	open_turf.air.adjust_moles(/datum/gas/oxygen, -burn_rate)
-	open_turf.air.adjust_moles(/datum/gas/carbon_dioxide, burn_rate * TURF_FIRE_BURN_CARBON_DIOXIDE_MULTIPLIER)
+	open_turf.air.adjust_moles(GAS_O2, -burn_rate)
+	open_turf.air.adjust_moles(GAS_CO2, burn_rate * TURF_FIRE_BURN_CARBON_DIOXIDE_MULTIPLIER)
 
 	open_turf.air.set_temperature((thermal_energy + (burn_rate * TURF_FIRE_ENERGY_PER_BURNED_OXY_MOL)) / open_turf.air.heat_capacity())
 	open_turf.air_update_turf(TRUE)

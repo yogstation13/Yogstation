@@ -596,7 +596,7 @@
 		air.adjust_moles(GAS_TRITIUM, pulse_strength * 0.001)
 
 /turf/open/IgniteTurf(power, fire_color="red")
-	if(air.get_moles(/datum/gas/oxygen) < 1)
+	if(air.get_moles(GAS_O2) < 1)
 		return
 	if(turf_fire)
 		turf_fire.AddPower(power)
