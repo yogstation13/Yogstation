@@ -42,7 +42,7 @@ BZ: Increases your reactor's ability to transfer its heat to the coolant, thus l
 Water Vapour: More efficient permeability modifier
 Hyper Noblium: Extremely efficient permeability increase. (10x as efficient as bz)
 Depletion type:
-Nitryl: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of sabotage.
+Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of sabotage.
 Sabotage:
 Meltdown:
 Flood reactor moderator with plasma, they won't be able to mitigate the reaction with control rods.
@@ -288,7 +288,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/tritium) / 5 //Chernobyl 2.
 			var/turf/T = get_turf(src)
 			if(power >= 20)
-				coolant_output.adjust_moles(/datum/gas/nitrium, total_fuel_moles/20) //Shove out nitrium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.adjust_moles(/datum/gas/pluonium, total_fuel_moles/20) //Shove out pluonium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			var/obj/structure/cable/C = T.get_cable_node()
 			if(!C?.powernet)
 				return
@@ -304,7 +304,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if(total_permeability_moles >= minimum_coolant_level)
 			var/permeability_bonus = total_permeability_moles / 500
 			gas_absorption_effectiveness = gas_absorption_constant + permeability_bonus
-		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/nitrium) //Because it's quite hard to get.
+		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/pluonium) //Because it's quite hard to get.
 		if(total_degradation_moles >= minimum_coolant_level*0.5) //I'll be nice.
 			depletion_modifier += total_degradation_moles / 15 //Oops! All depletion. This causes your fuel rods to get SPICY.
 			playsound(src, pick('sound/machines/sm/accent/normal/1.ogg','sound/machines/sm/accent/normal/2.ogg','sound/machines/sm/accent/normal/3.ogg','sound/machines/sm/accent/normal/4.ogg','sound/machines/sm/accent/normal/5.ogg'), 100, TRUE)
