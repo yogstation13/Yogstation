@@ -1,6 +1,7 @@
 /datum/mind
 	var/quiet_round = FALSE //Won't be picked as target in most cases
 	var/accent_name = null // The name of the accent this guy has. NULL implies no accent
+	var/rawmessage = null //For the raw message prior to modification by accents/tongues/whathaveyou
 
 
 /datum/mind/proc/vampire_hook()
@@ -56,6 +57,7 @@
 		return
 	
 	var/message = speech_args[SPEECH_MESSAGE]
+	rawmessage = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		var/list/phrase2replace = GLOB.accents_name2regexes[accent_name][1] // key is regex, value is replacement
 		var/list/word2replace = GLOB.accents_name2regexes[accent_name][2] // key is plaintext word, value is replacement
@@ -86,3 +88,7 @@
 				replace = pick(replace)
 			message = R.Replace(message,replace)
 	speech_args[SPEECH_MESSAGE] = message
+
+/datum/mind/proc/returnRawMessage()
+	return rawmessage
+

@@ -134,15 +134,18 @@
 		obj_flags |= EMAGGED
 		to_chat(user, span_warning("You silently fry [src]'s vocal circuit with the cryptographic sequencer."))
 
+/obj/item/clothing/mask/gas/sechailer/proc/getRawMessage()
+	var/datum/mind/M = usr.mind
+	var/full_message = M.returnRawMessage() //Store what was just said as a variable
+	return full_message
 /obj/item/clothing/mask/gas/sechailer/handle_speech(datum/source, mob/speech_args)
-	if(!voicetoggled)
+	if(!voicetoggled) //voice toggle off? Don't go any further and return now
 		return
-	var/full_message = speech_args[SPEECH_MESSAGE]
+	var/full_message = getRawMessage() //Store what was just said as a variable
 	to_chat(usr, full_message)
-	to_chat(usr, length(full_message))
-	for(var/lines in sechailer_voicelines)
-		if(findtext(full_message, lines, 1, (length(lines)+1)))
-			playsound(source, sechailer_voicelines[lines], 50, FALSE)
+	for(var/lines in sechailer_voicelines) //Loop through each phrase in the voicelines list
+		if(findtext(full_message, lines, 1, (length(lines)+1))) //Check the message for a matching phrase, from the 1st index to the length of the phrase. This ensures it only triggers if you type it first and only if its first.
+			playsound(usr, sechailer_voicelines[lines], 50, FALSE)
 			return // only play the first.
 
 /obj/item/clothing/mask/gas/sechailer/on_mob_death()
