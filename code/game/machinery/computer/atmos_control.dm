@@ -74,11 +74,11 @@
 
 /obj/machinery/air_sensor/Initialize(mapload)
 	. = ..()
-	SSair.start_processing_machine(src)
+	SSair_machinery.start_processing_machine(src)
 	set_frequency(frequency)
 
 /obj/machinery/air_sensor/Destroy()
-	SSair.stop_processing_machine(src)
+	SSair_machinery.stop_processing_machine(src)
 	SSradio.remove_object(src, frequency)
 	return ..()
 

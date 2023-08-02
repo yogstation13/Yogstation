@@ -16,13 +16,13 @@
 
 /obj/machinery/portable_atmospherics/Initialize(mapload)
 	. = ..()
-	SSair.start_processing_machine(src)
+	SSair_machinery.start_processing_machine(src)
 
 	air_contents = new(volume)
 	air_contents.set_temperature(T20C)
 
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.stop_processing_machine(src)
+	SSair_machinery.stop_processing_machine(src)
 	disconnect()
 	QDEL_NULL(air_contents)
 	return ..()

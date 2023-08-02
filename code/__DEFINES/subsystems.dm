@@ -150,7 +150,8 @@
 #define INIT_ORDER_CIRCUIT			15
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
-#define INIT_ORDER_AIR				-1
+#define INIT_ORDER_AIR_MACHINERY	-0.5
+#define INIT_ORDER_AIR				-2
 #define INIT_ORDER_PERSISTENCE 		-2
 #define INIT_ORDER_PERSISTENT_PAINTINGS -3 // Assets relies on this
 #define INIT_ORDER_ASSETS			-4

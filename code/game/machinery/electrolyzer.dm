@@ -203,7 +203,9 @@
 			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
 			update_appearance(UPDATE_ICON)
 			if (on)
-				SSair.start_processing_machine(src)
+				SSair_machinery.start_processing_machine(src)
+			else
+				SSair_machinery.stop_processing_machine(src)
 			. = TRUE
 		if("eject")
 			if(panel_open && cell)

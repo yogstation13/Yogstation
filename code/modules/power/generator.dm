@@ -21,7 +21,7 @@
 	. = ..()
 	find_circs()
 	connect_to_network()
-	SSair.start_processing_machine(src)
+	SSair_machinery.start_processing_machine(src)
 	START_PROCESSING(SSmachines, src)
 	update_appearance(UPDATE_ICON)
 	component_parts = list(new /obj/item/circuitboard/machine/generator)
@@ -29,7 +29,7 @@
 
 /obj/machinery/power/generator/Destroy()
 	kill_circs()
-	SSair.stop_processing_machine(src)
+	SSair_machinery.stop_processing_machine(src)
 	STOP_PROCESSING(SSmachines, src)
 	return ..()
 

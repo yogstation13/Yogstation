@@ -264,7 +264,9 @@
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", span_notice("You switch [on ? "on" : "off"] \the [src]."))
 	update_appearance(UPDATE_ICON)
 	if (on)
-		SSair.start_processing_machine(src)
+		SSair_machinery.start_processing_machine(src)
+	else
+		SSair_machinery.stop_processing_machine(src)
 
 /obj/machinery/space_heater/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
