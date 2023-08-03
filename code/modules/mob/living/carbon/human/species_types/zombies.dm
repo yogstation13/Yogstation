@@ -150,9 +150,9 @@
 	. = ..()
 	mob_changing_species.faction |= "bloodhungry"
 
-/datum/species/zombie/hecata/on_species_loss(mob/living/carbon/C)
+/datum/species/zombie/hecata/on_species_loss(mob/living/carbon/mob_changing_species)
 	. = ..()
-	C.faction -= "bloodhungry"
+	mob_changing_species.faction -= "bloodhungry"
 
 //The special zombie you get turned into in the zombie gamemode
 /datum/species/zombie/infectious/gamemode
