@@ -121,6 +121,7 @@
 				continue
 			move_mode = moving_atom.beforeShuttleMove(newT, rotation, move_mode, src)						//atoms
 
+		oldT.beforeShuttleMove(newT)
 		move_mode = oldT.fromShuttleMove(newT, move_mode)													//turfs
 		move_mode = newT.toShuttleMove(oldT, move_mode, src)												//turfs
 

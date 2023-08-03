@@ -48,6 +48,9 @@
 			conductivity_blocked_directions |= dir
 			T.conductivity_blocked_directions |= opp
 
+/turf/proc/block_all_conductivity()
+	conductivity_blocked_directions |= NORTH | SOUTH | EAST | WEST | UP | DOWN
+
 //dir of this obj to the other turf
 /atom/movable/proc/BlockThermalConductivity(dir) // Objects that don't let heat through.
 	return FALSE
@@ -90,6 +93,21 @@
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
 	__update_auxtools_turf_adjacency_info(isspaceturf(get_z_base_turf()))
+
+/turf/proc/clear_adjacencies()
+	block_all_conductivity()
+	for(var/direction in GLOB.cardinals_multiz)
+		var/turf/T = get_step_multiz(src, direction)
+		if (atmos_adjacent_turfs)
+			atmos_adjacent_turfs -= T
+		if (T.atmos_adjacent_turfs)
+			T.atmos_adjacent_turfs -= src
+		UNSETEMPTY(T.atmos_adjacent_turfs)
+
+		T.__update_auxtools_turf_adjacency_info(isspaceturf(T.get_z_base_turf()))
+	LAZYNULL(atmos_adjacent_turfs)
+	__update_auxtools_turf_adjacency_info(isspaceturf(get_z_base_turf()))
+
 
 //Only gets a list of adjacencies, does NOT update
 /turf/proc/get_adjacent_atmos_turfs()

@@ -4,6 +4,10 @@ All ShuttleMove procs go here
 
 /************************************Base procs************************************/
 
+/turf/proc/beforeShuttleMove(turf/newT)
+	clear_adjacencies()
+	newT.clear_adjacencies()
+
 // Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
 // returns the new move_mode (based on the old)
 /turf/proc/fromShuttleMove(turf/newT, move_mode)
