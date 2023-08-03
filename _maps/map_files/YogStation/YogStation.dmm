@@ -19207,6 +19207,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"dXX" = (
+/obj/machinery/computer/rdconsole/production{
+	dir = 8;
+	req_access = list(32)
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "dYn" = (
 /obj/machinery/light,
 /obj/machinery/power/apc{
@@ -32390,10 +32404,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"iOV" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "iPc" = (
 /obj/item/kirbyplants/random,
 /obj/effect/mapping_helpers/teleport_anchor,
@@ -66819,16 +66829,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"vVs" = (
-/obj/machinery/computer/rdconsole/production{
-	dir = 8;
-	req_access = list(32)
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "vVA" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -69021,6 +69021,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"wPp" = (
+/obj/machinery/light,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "wPt" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -104707,7 +104715,7 @@ peI
 iFX
 vpm
 tKR
-iOV
+wPp
 cfb
 rVs
 rVs
@@ -104955,7 +104963,7 @@ dKw
 kHt
 cnG
 akB
-vVs
+dXX
 osD
 fpn
 raI
