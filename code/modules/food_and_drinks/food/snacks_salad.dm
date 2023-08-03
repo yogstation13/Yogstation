@@ -115,7 +115,7 @@
 	icon_state = "eggbowl"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("rice" = 1, "egg" = 1)
-	foodtype = GRAIN | MEAT | EGG // rip NinjaNomnom
+	foodtype = GRAIN | EGG // rip NinjaNomnom
 
 /obj/item/reagent_containers/food/snacks/salad/edensalad
 	name = "\improper Salad of Eden"
