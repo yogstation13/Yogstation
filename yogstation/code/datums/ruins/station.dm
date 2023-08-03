@@ -93,7 +93,7 @@
 /datum/map_template/ruin/station/box/engine/rbmk
 	id = "engine_rbmk"
 	suffix = "engine_rbmk.dmm"
-	name = "Engine RBMK"
+	name = "Engine AGCNR"
 
 /datum/map_template/ruin/station/box/testingsite/bunker
 	id = "testing_site_1"
