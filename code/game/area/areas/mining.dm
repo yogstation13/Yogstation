@@ -191,6 +191,28 @@
 	name = "Icemoon Labor Camp"
 	area_flags = NONE
 
+/area/icemoon/top_layer
+	name = "Icemoon Caves"
+	outdoors = TRUE
+	always_unpowered = TRUE
+	requires_power = TRUE
+	poweralm = FALSE
+	power_environ = FALSE
+	power_equip = FALSE
+	power_light = FALSE
+	ambience_index = AMBIENCE_MINING
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
+/area/icemoon/top_layer/unexplored
+	name = "Icemoon Surface"
+	icon state = "unexplored"
+	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	cave_generator = /datum/map_generator/cave_generator/icemoon/surface
+
+/area/icemoon/top_layer/explored
+	name = "Icemoon Surface"
+	area_flags = NONE
+
 /area/icemoon/underground
 	name = "Icemoon Caves"
 	outdoors = TRUE
