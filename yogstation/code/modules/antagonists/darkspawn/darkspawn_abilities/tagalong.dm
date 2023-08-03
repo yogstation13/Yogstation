@@ -6,7 +6,6 @@
 	button_icon_state = "tagalong"
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 30
-	psi_addendum = ", but is free to cancel"
 	lucidity_price = 2
 	var/datum/status_effect/tagalong/tagalong
 

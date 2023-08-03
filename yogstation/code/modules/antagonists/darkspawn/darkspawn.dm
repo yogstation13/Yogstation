@@ -24,12 +24,12 @@
 	//Lucidity variables
 	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
 	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
+	var/lucidity_needed = 20 //how much lucidity is needed to win
 
-	//Ability and upgrade variables
-	var/list/abilities = list() //An associative list ("id" = ability datum) containing the abilities the darkspawn has
+	//upgrade variables
 	var/list/upgrades = list() //An associative list ("id" = null or TRUE) containing the passive upgrades the darkspawn has
-	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
-	var/datum/action/innate/darkspawn/psi_web/psi_web_action //Used to link the menu with our antag datum
+	var/datum/antag_menu/shadow_store/shadow_store //Antag menu used for opening the UI
+	var/datum/action/innate/darkspawn/shadow_Store/shadow_store_action //Used to link the menu with our antag datum
 
 	var/specialization = NONE
 
@@ -40,7 +40,9 @@
 	owner.special_role = "darkspawn"
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
-	add_ability("divulge")
+	var/datum/action/innate/darkspawn/divulge/action = new()
+	action.Grant(owner.current)
+	action.darkspawn = src
 	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
@@ -91,93 +93,12 @@
 //Admin panel stuff
 
 /datum/antagonist/darkspawn/antag_panel_data()
-	. = "<b>Abilities:</b><br>"
-	for(var/V in abilities)
-		var/datum/action/innate/darkspawn/D = has_ability(V)
-		if(D && istype(D))
-			. += "[D.name] ([D.id])<br>"
-	. += "<br><b>Upgrades:</b><br>"
+	. = "<b>Upgrades:</b><br>"
 	for(var/V in upgrades)
 		. += "[V]<br>"
 
-/datum/antagonist/darkspawn/get_admin_commands()
-	. = ..()
-	.["Give Ability"] = CALLBACK(src, PROC_REF(admin_give_ability))
-	.["Take Ability"] = CALLBACK(src, PROC_REF(admin_take_ability))
-	if(darkspawn_state == MUNDANE)
-		.["Divulge"] = CALLBACK(src, PROC_REF(divulge))
-		.["Force-Divulge (Obvious)"] = CALLBACK(src, PROC_REF(force_divulge))
-	else if(darkspawn_state == DIVULGED)
-		.["Give Upgrade"] = CALLBACK(src, PROC_REF(admin_give_upgrade))
-		.["[psi]/[psi_cap] Psi"] = CALLBACK(src, PROC_REF(admin_edit_psi))
-		.["[lucidity] Lucidity"] = CALLBACK(src, PROC_REF(admin_edit_lucidity))
-		.["[lucidity_drained] / [SSticker.mode.required_succs] Unique Lucidity"] = CALLBACK(src, PROC_REF(admin_edit_lucidity_drained))
-		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, PROC_REF(sacrament))
-
-/datum/antagonist/darkspawn/proc/admin_give_ability(mob/admin)
-	var/id = stripped_input(admin, "Enter an ability ID, for \"all\" to give all of them.", "Give Ability")
-	if(!id)
-		return
-	if(has_ability(id))
-		to_chat(admin, span_warning("[owner.current] already has this ability!"))
-		return
-	if(id != "all")
-		add_ability(id)
-		to_chat(admin, span_notice("Gave [owner.current] the ability \"[id]\"."))
-	else
-		for(var/V in subtypesof(/datum/action/innate/darkspawn))
-			var/datum/action/innate/darkspawn/D = V
-			if(!has_ability(initial(D.id)) && !initial(D.blacklisted))
-				add_ability(initial(D.id))
-		to_chat(admin, span_notice("Gave [owner.current] all abilities."))
-
-/datum/antagonist/darkspawn/proc/admin_take_ability(mob/admin)
-	var/id = stripped_input(admin, "Enter an ability ID.", "Take Ability")
-	if(!id)
-		return
-	if(!has_ability(id))
-		to_chat(admin, span_warning("[owner.current] does not have this ability!"))
-		return
-	remove_ability(id)
-	to_chat(admin, span_danger("Took from [owner.current] the ability \"[id]\"."))
-
-/datum/antagonist/darkspawn/proc/admin_give_upgrade(mob/admin)
-	var/id = stripped_input(admin, "Enter an upgrade ID, for \"all\" to give all of them.", "Give Upgrade")
-	if(!id)
-		return
-	if(has_upgrade(id))
-		to_chat(admin, span_warning("[owner.current] already has this upgrade!"))
-		return
-	if(id != "all")
-		add_upgrade(id)
-		to_chat(admin, span_notice("Gave [owner.current] the upgrade \"[id]\"."))
-	else
-		for(var/V in subtypesof(/datum/darkspawn_upgrade))
-			var/datum/darkspawn_upgrade/D = V
-			if(!has_upgrade(initial(D.id)))
-				add_upgrade(initial(D.id))
-		to_chat(admin, span_notice("Gave [owner.current] all upgrades."))
-
-/datum/antagonist/darkspawn/proc/admin_edit_psi(mob/admin)
-	var/new_psi = input(admin, "Enter a new psi amount. (Current: [psi]/[psi_cap])", "Change Psi", psi) as null|num
-	if(!new_psi)
-		return
-	new_psi = clamp(new_psi, 0, psi_cap)
-	psi = new_psi
-
-/datum/antagonist/darkspawn/proc/admin_edit_lucidity(mob/admin)
-	var/newcidity = input(admin, "Enter a new lucidity amount. (Current: [lucidity])", "Change Lucidity", lucidity) as null|num
-	if(!newcidity)
-		return
-	newcidity = max(0, newcidity)
-	lucidity = newcidity
-
-/datum/antagonist/darkspawn/proc/admin_edit_lucidity_drained(mob/admin)
-	var/newcidity = input(admin, "Enter a new lucidity amount. (Current: [lucidity_drained])", "Change Lucidity Drained", lucidity_drained) as null|num
-	if(!newcidity)
-		return
-	newcidity = max(0, newcidity)
-	lucidity_drained = newcidity
+//i have deleted all admin procs because i don't want to have to worry about those while reworking it, they can be added in a later PR
+//i'm making this rework for the players (and for me) not the admins
 
 /datum/antagonist/darkspawn/greet()
 	to_chat(owner.current, "<span class='velvet bold big'>You are a darkspawn!</span>")
@@ -245,61 +166,27 @@
 	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = ANTAG_MAPTEXT(psi, COLOR_DARKSPAWN_PSI)
 
-/datum/antagonist/darkspawn/proc/regain_abilities()
-	for(var/A in abilities)
-		var/datum/action/innate/darkspawn/ability = abilities[A]
-		if(ability)
-			ability.Remove(ability.owner)
-			ability.Grant(owner.current)
-
-/datum/antagonist/darkspawn/proc/has_ability(id)
-	if(isnull(abilities[id]))
-		return
-	return abilities[id]
-
-/datum/antagonist/darkspawn/proc/add_ability(id, silent, no_cost)
-	if(has_ability(id))
-		return
-	for(var/V in subtypesof(/datum/action/innate/darkspawn))
-		var/datum/action/innate/darkspawn/D = V
-		if(initial(D.id) == id)
-			var/datum/action/innate/darkspawn/action = new D
-			action.Grant(owner.current)
-			action.darkspawn = src
-			abilities[id] = action
-			if(!silent)
-				to_chat(owner.current, span_velvet("You have learned the <b>[action.name]</b> ability."))
-			if(!no_cost)
-				lucidity = max(0, lucidity - action.lucidity_price)
-			return TRUE
-
-/datum/antagonist/darkspawn/proc/remove_ability(id, silent)
-	if(!has_ability(id))
-		return
-	var/datum/action/innate/darkspawn/D = abilities[id]
-	if(!silent)
-		to_chat(owner.current, span_velvet("You have lost the <b>[D.name]</b> ability."))
-	D.Remove(owner.current)
-	abilities -= D
-	QDEL_NULL(D)
-	return TRUE
+/datum/antagonist/darkspawn/proc/regain_upgrades()
+	for(var/A in upgrades)
+		var/datum/shadow_store/upgrade = upgrades[A]
+		if(upgrade)
+			upgrade.remove(owner.current)
+			upgrade.activate(owner.current)
 
 /datum/antagonist/darkspawn/proc/has_upgrade(id)
 	return upgrades[id]
 
-/datum/antagonist/darkspawn/proc/add_upgrade(id, silent, no_cost)
-	if(has_upgrade(id))
-		return
-	for(var/V in subtypesof(/datum/darkspawn_upgrade))
-		var/datum/darkspawn_upgrade/_U = V
-		if(initial(_U.id) == id)
-			var/datum/darkspawn_upgrade/U = new _U(src)
-			upgrades[id] = TRUE
-			if(!silent)
-				to_chat(owner.current, "<span class='velvet bold'>You have adapted the \"[U.name]\" upgrade.</span>")
-			if(!no_cost)
-				lucidity = max(0, lucidity - initial(U.lucidity_price))
-			U.unlock()
+/datum/antagonist/darkspawn/proc/add_upgrade(id)
+	if(has_ability(id))
+		return FALSE
+	upgrades[id] = id
+	return TRUE
+
+/datum/antagonist/darkspawn/proc/remove_upgrade(id)
+	if(!has_ability(id))
+		return FALSE
+	upgrades -= id
+	return TRUE
 
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
 	if(darkspawn_state != MUNDANE)
@@ -340,15 +227,10 @@
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
 	show_to_ghosts = TRUE
-	//Handles psi_web granting, has to be different to fulfill everything
-	psi_web = new(src)
-	psi_web_action = new(psi_web)
-	psi_web_action.Grant(owner.current)
-	psi_web_action.darkspawn = src
-	abilities[psi_web_action.id] = psi_web_action
-	add_ability("sacrament", TRUE)
-	add_ability("devour_will", TRUE)
-	add_ability("pass", TRUE)
+	shadow_store = new(src)
+	shadow_store_action = new(shadow_store)
+	shadow_store_action.Grant(owner.current)
+	shadow_store_action.darkspawn = src
 	remove_ability("divulge", TRUE)
 	darkspawn_state = DIVULGED
 
