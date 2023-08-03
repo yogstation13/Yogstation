@@ -1130,9 +1130,11 @@
 		return
 	if(scanmod && scanmod == M)
 		scanmod = null
+		update_part_values()
 		return
 	if(capacitor && capacitor == M)
 		capacitor = null
+		update_part_values()
 		return
 
 /obj/mecha/proc/go_out(forced, atom/newloc = loc)
