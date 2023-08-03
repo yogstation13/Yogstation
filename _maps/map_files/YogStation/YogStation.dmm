@@ -67202,6 +67202,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"whZ" = (
+/obj/structure/table/wood,
+/obj/item/taperecorder,
+/obj/item/camera/detective,
+/turf/open/floor/plasteel/dark,
+/area/security/detectives_office)
 "wif" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -68862,10 +68868,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"wRt" = (
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/dark,
-/area/security/detectives_office)
 "wRI" = (
 /obj/machinery/status_display/evac,
 /obj/effect/spawner/structure/window/reinforced,
@@ -96208,7 +96210,7 @@ sKq
 apd
 fDO
 cZJ
-wRt
+whZ
 apd
 gAB
 mGY
