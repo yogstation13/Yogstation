@@ -283,9 +283,8 @@
 	if(sm)
 		sm.forceMove(src)
 		scanmod = sm
-		update_part_values()
-		return
-	scanmod = new /obj/item/stock_parts/scanning_module(src)
+	else
+		scanmod = new /obj/item/stock_parts/scanning_module(src)
 	update_part_values()
 
 /obj/mecha/proc/add_capacitor(obj/item/stock_parts/capacitor/cap=null) ///Adds a capacitor, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
@@ -293,11 +292,10 @@
 	if(cap)
 		cap.forceMove(src)
 		capacitor = cap
-		update_part_values()
-		return
-	capacitor = new /obj/item/stock_parts/capacitor(src)
+	else
+		capacitor = new /obj/item/stock_parts/capacitor(src)
 	update_part_values()
-	
+
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
 	cabin_air.set_temperature(T20C)
