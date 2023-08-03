@@ -170,7 +170,7 @@
 	cast_effect() // POOF
 	DeactivatePower()
 	
-/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summon_Wraiths(list/targets, mob/living/user)
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summon_wraiths(list/targets, mob/living/user)
 	for(var/T in targets)
 		new /mob/living/simple_animal/hostile/bloodsucker/wraith(T)
 
