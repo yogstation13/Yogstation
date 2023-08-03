@@ -224,6 +224,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"iG" = (
+/obj/structure/grille,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/space/nearstation)
 "iV" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	name = "Waste To Storage"
@@ -490,6 +495,10 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"qF" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "qH" = (
 /obj/machinery/light{
 	dir = 1
@@ -886,9 +895,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Cu" = (
-/turf/closed/wall/r_wall,
-/area/space/nearstation)
 "Cx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
@@ -1254,12 +1260,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Ne" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
+"Nh" = (
+/turf/closed/wall/r_wall,
 /area/space/nearstation)
 "Nm" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -1357,10 +1359,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Pv" = (
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/space/nearstation)
 "PP" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "reactorcore";
@@ -1613,11 +1611,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"WZ" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
 "Xk" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1674,6 +1667,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Zu" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "ZI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -1784,22 +1784,22 @@ Sr
 Sr
 Sr
 yw
-WZ
-WZ
-WZ
+iG
+iG
+iG
 yw
-rK
+Sr
 yw
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
-rK
-rK
-WZ
-WZ
+iG
+iG
+iG
+iG
+iG
+iG
+Sr
+Sr
+iG
+iG
 Sr
 "}
 (5,1,1) = {"
@@ -1812,23 +1812,23 @@ Sr
 Sr
 Sr
 Sr
-WZ
-Cu
-WZ
-rK
-rK
-rK
-WZ
-Cu
-Cu
-Cu
-Cu
-WZ
+iG
+Nh
+iG
+Sr
+Sr
+Sr
+iG
+Nh
+Nh
+Nh
+Nh
+iG
 yw
 yw
-Cu
-WZ
-WZ
+Nh
+iG
+iG
 "}
 (6,1,1) = {"
 Sr
@@ -1840,23 +1840,23 @@ Sr
 Sr
 Sr
 yw
-WZ
-WZ
-WZ
+iG
+iG
+iG
 yw
-rK
+Sr
 yw
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+iG
+iG
+iG
+iG
+iG
+iG
 yw
-rK
+Sr
 yw
-Cu
-WZ
+Nh
+iG
 "}
 (7,1,1) = {"
 Sr
@@ -1875,16 +1875,16 @@ yw
 yw
 yw
 yw
-rK
-rK
-rK
-rK
+Sr
+Sr
+Sr
+Sr
 yw
-rK
-rK
-rK
+Sr
+Sr
+Sr
 yw
-rK
+Sr
 "}
 (8,1,1) = {"
 Sr
@@ -1894,14 +1894,14 @@ pZ
 qV
 nf
 dH
-rK
-rK
+Sr
+Sr
 yw
-rK
+Sr
 yw
-rK
-rK
-rK
+Sr
+Sr
+Sr
 ez
 bB
 bB
@@ -1909,10 +1909,10 @@ bB
 bB
 bB
 jY
-rK
+Sr
 yw
 yw
-rK
+Sr
 "}
 (9,1,1) = {"
 Sr
@@ -1922,13 +1922,13 @@ cz
 iB
 Wp
 CA
-rK
+Sr
 yw
 yw
-Ne
+Zu
 yw
 yw
-rK
+Sr
 yw
 Li
 zS
@@ -1938,9 +1938,9 @@ Lc
 Lc
 Hi
 yw
-WZ
-WZ
-WZ
+iG
+iG
+iG
 "}
 (10,1,1) = {"
 Sr
@@ -1965,10 +1965,10 @@ bB
 bB
 bB
 jY
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (11,1,1) = {"
 ws
@@ -1993,10 +1993,10 @@ Lc
 Lc
 Lc
 Hi
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (12,1,1) = {"
 dH
@@ -2021,10 +2021,10 @@ bB
 bB
 bB
 jY
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (13,1,1) = {"
 dH
@@ -2049,10 +2049,10 @@ yw
 yw
 yw
 zY
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (14,1,1) = {"
 dH
@@ -2077,10 +2077,10 @@ bB
 bB
 bB
 Kt
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (15,1,1) = {"
 dH
@@ -2105,10 +2105,10 @@ Lc
 Lc
 Lc
 vl
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (16,1,1) = {"
 ws
@@ -2133,10 +2133,10 @@ bB
 bB
 bB
 Kt
-rK
-WZ
-Cu
-WZ
+Sr
+iG
+Nh
+iG
 "}
 (17,1,1) = {"
 ws
@@ -2162,9 +2162,9 @@ Lc
 Lc
 vl
 yw
-WZ
-WZ
-WZ
+iG
+iG
+iG
 "}
 (18,1,1) = {"
 ws
@@ -2189,10 +2189,10 @@ bB
 bB
 bB
 Kt
-rK
+Sr
 yw
 yw
-rK
+Sr
 "}
 (19,1,1) = {"
 ws
@@ -2211,16 +2211,16 @@ zj
 kq
 dH
 yw
-rK
-rK
-rK
-rK
+Sr
+Sr
+Sr
+Sr
 yw
-rK
-rK
-rK
+Sr
+Sr
+Sr
 yw
-rK
+Sr
 "}
 (20,1,1) = {"
 ws
@@ -2238,17 +2238,17 @@ KS
 Lu
 kq
 dH
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+iG
+iG
+iG
+iG
+iG
+iG
 yw
-rK
+Sr
 yw
-Cu
-WZ
+Nh
+iG
 "}
 (21,1,1) = {"
 dH
@@ -2266,17 +2266,17 @@ Rd
 cA
 Uc
 dH
-Cu
-Cu
-Cu
-Cu
-Cu
-WZ
+Nh
+Nh
+Nh
+Nh
+Nh
+iG
 yw
 yw
-Cu
-WZ
-WZ
+Nh
+iG
+iG
 "}
 (22,1,1) = {"
 dH
@@ -2294,16 +2294,16 @@ Or
 dH
 dH
 dH
-WZ
-WZ
-WZ
-WZ
-WZ
-WZ
+iG
+iG
+iG
+iG
+iG
+iG
 rK
 rK
-WZ
-WZ
+iG
+iG
 Sr
 "}
 (23,1,1) = {"
@@ -2322,7 +2322,7 @@ pk
 vP
 Xk
 dH
-rK
+Sr
 Sr
 Sr
 Sr
@@ -2378,7 +2378,7 @@ ZS
 UX
 Xk
 WU
-Pv
+qF
 Sr
 Sr
 Sr
@@ -2406,7 +2406,7 @@ xA
 Xk
 Xk
 WU
-Pv
+qF
 Sr
 Sr
 Sr
@@ -2462,7 +2462,7 @@ Qt
 Xk
 Xk
 dH
-rK
+Sr
 Sr
 Sr
 Sr
