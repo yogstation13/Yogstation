@@ -31,6 +31,7 @@
 	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
 	var/datum/action/innate/darkspawn/psi_web/psi_web_action //Used to link the menu with our antag datum
 
+	var/specialization = NONE
 
 // Antagonist datum things like assignment //
 

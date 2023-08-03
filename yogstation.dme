@@ -3823,6 +3823,8 @@
 #include "yogstation\code\game\gamemodes\clown_ops\bananium_bomb.dm"
 #include "yogstation\code\game\gamemodes\darkspawn\darkspawn.dm"
 #include "yogstation\code\game\gamemodes\darkspawn\darkspawn_hud.dm"
+#include "yogstation\code\game\gamemodes\darkspawn\shadow_step.dm"
+#include "yogstation\code\game\gamemodes\darkspawn\shadow_store.dm"
 #include "yogstation\code\game\gamemodes\darkspawn\veil.dm"
 #include "yogstation\code\game\gamemodes\gangs\dominator.dm"
 #include "yogstation\code\game\gamemodes\gangs\gang_items.dm"
