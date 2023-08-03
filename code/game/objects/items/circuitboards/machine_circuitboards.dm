@@ -235,6 +235,10 @@
 		/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/emitter/particle
+	name = "Particle Emitter (Machine Board)"
+	build_path = /obj/machinery/power/emitter/particle
+
 /obj/item/circuitboard/machine/generator
 	name = "Thermo-Electric Generator (Machine Board)"
 	icon_state = "engineering"

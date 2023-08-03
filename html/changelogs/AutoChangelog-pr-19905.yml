@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscdel: "roundstart teg templates and all the code for it"

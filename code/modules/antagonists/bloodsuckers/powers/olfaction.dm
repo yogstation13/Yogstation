@@ -67,7 +67,7 @@
 			possible |= C
 		if(IS_BLOODSUCKER(C)) // Bloodsuckers have no scent, and finding their lair with this during Sol would be OP
 			continue
-		if(scents[md5(C.dna.uni_identity)] && !possible.Find(C))
+		if(scents[md5(C.dna.unique_identity)] && !possible.Find(C))
 			var/datum/job/J = SSjob.GetJob(C.job)
 			if(!J)
 				J = new()
