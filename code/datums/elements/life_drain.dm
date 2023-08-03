@@ -14,7 +14,7 @@
 	datum/callback/check_damage_callback,
 )
 	. = ..()
-	if(!isliving(target))\
+	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 	src.damage_overtime = damage_overtime
 	src.check_damage_callback = check_damage_callback
