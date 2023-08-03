@@ -195,19 +195,7 @@
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
-				var/obj/item/card/id/id_card
-				if(isidcard(W))
-					id_card = W
-				else if(istype(W, /obj/item/pda))
-					var/obj/item/pda/pda = W
-					id_card = pda.id
-				else if(istype(W, /obj/item/modular_computer/tablet/pda))
-					var/obj/item/modular_computer/tablet/pda/tablet_pda = W
-					id_card = tablet_pda.GetID()
-				else // In the case in which the ID can't be found:
-					to_chat(user, span_notice("The interface doesn't seem to be up-to-date with how you're handling your ID. Try a different way."))
-					return
-				output_maintenance_dialog(id_card, user)
+				output_maintenance_dialog(W.GetID(), user)
 				return
 			else
 				to_chat(user, span_warning("Invalid ID: Access denied."))
