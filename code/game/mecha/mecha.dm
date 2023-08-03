@@ -244,7 +244,7 @@
 /// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
 /obj/mecha/proc/update_part_values()
 	if(scanmod)
-		// Starting at 20 energy per step (tier 0), each tier reduces this value down by 5 until it reaches 0.
+		// Starting at 20 energy per step (at tier 0), each tier reduces this value down by 5 until it reaches 0.
 		normal_step_energy_drain = max(20 - (5 * scanmod.rating), 0)
 		if(!leg_overload_mode)
 			step_energy_drain = normal_step_energy_drain
