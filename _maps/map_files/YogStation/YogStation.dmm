@@ -50305,6 +50305,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
+"pOr" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 29;
+	pixel_y = 3
+	},
+/turf/closed/wall,
+/area/security/checkpoint/supply)
 "pOw" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/port)
@@ -52258,30 +52266,6 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/aisat_interior)
-"qAt" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen/red,
-/obj/item/stamp/denied{
-	pixel_x = 4;
-	pixel_y = -2
-	},
-/obj/item/stamp{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clipboard{
-	pixel_x = 5;
-	pixel_y = -3
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "qAF" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -57490,6 +57474,26 @@
 "sAV" = (
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
+"sBm" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen/red,
+/obj/item/stamp{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clipboard{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "sBp" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = -30
@@ -95716,7 +95720,7 @@ kNE
 fUQ
 vZm
 bjj
-qAt
+sBm
 bbR
 pfK
 pPs
@@ -97264,7 +97268,7 @@ vpX
 ilc
 rpC
 wem
-bwe
+pOr
 cdM
 bRh
 ygy
