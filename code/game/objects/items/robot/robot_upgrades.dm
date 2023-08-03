@@ -980,20 +980,18 @@
 	for(var/obj/item/analyzer/AL in R.module.modules) 
 		R.module.remove_module(AL, TRUE)
 
-	var/obj/item/jawsoflife/JL = locate() in R.module.modules
-	var/obj/item/handdrill/HD = locate() in R.module.modules
-	var/obj/item/multitool/tricorder/TC = locate() in R.module.modules
+	var/obj/item/jawsoflife/cyborg/JL = locate() in R.module.modules // Carries over the toolspeed (0.5) instead of using 0.7.
+	var/obj/item/handdrill/cyborg/HD = locate() in R.module.modules // Carries over the toolspeed (0.5) instead of using 0.7.
+	var/obj/item/multitool/tricorder/TC = locate() in R.module.modules // Toolspeed improvement (0.2) from 0.5.
 	if(JL || HD || TC)
 		to_chat(user, span_warning("This cyborg is already equipped with an advanced engineering tool kit."))
 		return FALSE
 
 	JL = new(R.module)
-	JL.toolspeed = 0.5 // Same toolspeed as the cyborg crowbar/cutters.
 	R.module.basic_modules += JL
 	R.module.add_module(JL, FALSE, TRUE)
 
 	HD = new(R.module)
-	HD.toolspeed = 0.5 // Same toolspeed as the cyborg screwdriver/wrench.
 	R.module.basic_modules += HD
 	R.module.add_module(HD, FALSE, TRUE)
 
@@ -1006,10 +1004,10 @@
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/jawsoflife/JL in R.module.modules)
+	for(var/obj/item/jawsoflife/cyborg/JL in R.module.modules)
 		R.module.remove_module(JL, TRUE)
 
-	for(var/obj/item/handdrill/HD in R.module.modules)
+	for(var/obj/item/handdrill/cyborg/HD in R.module.modules)
 		R.module.remove_module(HD, TRUE)
 
 	for(var/obj/item/multitool/tricorder/TC in R.module.modules)
