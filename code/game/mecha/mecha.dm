@@ -296,7 +296,6 @@
 		update_part_values()
 		return
 	capacitor = new /obj/item/stock_parts/capacitor(src)
-	
 
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
