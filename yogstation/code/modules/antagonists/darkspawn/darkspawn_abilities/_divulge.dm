@@ -5,7 +5,6 @@
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	blacklisted = TRUE
 
 /datum/action/innate/darkspawn/divulge/Activate()
 	set waitfor = FALSE

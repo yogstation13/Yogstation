@@ -8,9 +8,7 @@
 	buttontooltipstyle = "alien"
 
 	var/psi_cost = 0 //How much psi the ability costs to use
-	var/psi_addendum = "" //If applicable, descriptive text shown after the cost
 	var/lucidity_price = 0 //How much lucidity the ability costs to buy; if this is 0, it isn't listed on the catalog
-	var/blacklisted = FALSE //If the ability can't be gained from the psi web
 	var/in_use = FALSE //For channeled/cast-time abilities
 	var/datum/antagonist/darkspawn/darkspawn //Linked antag datum for drawing lucidity and psi
 

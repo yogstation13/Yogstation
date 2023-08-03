@@ -7,7 +7,6 @@
 	button_icon_state = "devour_will"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	psi_cost = 5
-	blacklisted = TRUE
 	var/list/victims //A list of people we've used the bead on recently; we can't drain them again so soon
 	var/last_victim
 

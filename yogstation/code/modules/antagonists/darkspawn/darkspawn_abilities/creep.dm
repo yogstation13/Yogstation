@@ -6,7 +6,6 @@
 	button_icon_state = "creep"
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 5
-	psi_addendum = " to activate and per second"
 	lucidity_price = 2
 
 /datum/action/innate/darkspawn/creep/IsAvailable(feedback = FALSE)

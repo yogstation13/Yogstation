@@ -121,7 +121,6 @@
 	id = "end_shadows"
 	desc = "Reverts you to your humanoid form."
 	button_icon_state = "crawling_shadows"
-	blacklisted = TRUE
 
 /datum/action/innate/darkspawn/end_shadows/Activate()
 	qdel(owner) //edgi
