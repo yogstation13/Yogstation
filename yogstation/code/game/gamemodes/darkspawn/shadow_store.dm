@@ -41,3 +41,38 @@
 
 ///If the purchase goes through, this gets called
 /datum/shadow_store/proc/activate(mob/user)
+	return
+
+
+/*
+	Purchases to select spec
+*/
+/datum/shadow_store/scout
+	name = "shadow step"
+	desc = "shadow step"
+
+/datum/shadow_store/scout/activate(mob/user)
+	user.LoadComponent(/datum/component/walk/shadow)
+	user.AddComponent(/datum/component/shadow_step)
+	var/datum/antagonist/darkspawn/edgy = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(edgy)//there's NO way they get here without it
+		edgy.specialization = SCOUT
+
+
+/datum/shadow_store/fighter
+	name = "shadow step"
+	desc = "shadow step"
+
+/datum/shadow_store/fighter/activate(mob/user)
+	var/datum/antagonist/darkspawn/edgy = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(edgy)//there's NO way they get here without it
+		edgy.specialization = FIGHTER
+
+/datum/shadow_store/warlock
+	name = "shadow step"
+	desc = "shadow step"
+
+/datum/shadow_store/warlock/activate(mob/user)
+	var/datum/antagonist/darkspawn/edgy = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(edgy)//there's NO way they get here without it ... right?
+		edgy.specialization = WARLOCK
