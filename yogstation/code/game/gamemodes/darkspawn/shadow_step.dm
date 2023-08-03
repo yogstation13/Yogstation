@@ -1,6 +1,4 @@
 /datum/component/shadow_step
-	dupe_mode = COMPONENT_DUPE_ALLOWED
-
 	var/speedboost = -1
 
 /datum/component/shadow_step/Initialize()
