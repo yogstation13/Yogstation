@@ -146,9 +146,9 @@
 	TRAIT_EASYDISMEMBER,TRAIT_EASILY_WOUNDED,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH, TRAIT_NOGUNS, TRAIT_NOSOFTCRIT) //no guns or soft crit
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 
-/datum/species/zombie/hecata/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+/datum/species/zombie/hecata/on_species_gain(mob/living/carbon/mob_changing_species, datum/species/old_species)
 	. = ..()
-	C.faction |= "bloodhungry"
+	mob_changing_species.faction |= "bloodhungry"
 
 /datum/species/zombie/hecata/on_species_loss(mob/living/carbon/C)
 	. = ..()
