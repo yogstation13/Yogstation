@@ -166,7 +166,7 @@
 	// pad with player location
 	for(var/i = locs.len + 1 to num_spirits)
 		locs += user.loc
-	summon_Wraiths(locs, user = owner)
+	summon_wraiths(locs, user = owner)
 	cast_effect() // POOF
 	DeactivatePower()
 	
