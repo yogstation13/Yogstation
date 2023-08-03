@@ -145,8 +145,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"fE" = (
-/obj/structure/grille,
+"fz" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
 "fO" = (
@@ -484,6 +483,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"qe" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "qk" = (
 /obj/machinery/shower{
 	dir = 4
@@ -784,6 +790,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"yh" = (
+/obj/structure/grille,
+/turf/template_noop,
+/area/space/nearstation)
 "yn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -929,6 +939,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"CU" = (
+/obj/structure/grille,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/space/nearstation)
 "CV" = (
 /obj/item/reagent_containers/food/snacks/pizzaslice/meat,
 /obj/structure/table,
@@ -1237,13 +1252,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"LG" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/asteroid/nearstation)
 "Mc" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
@@ -1262,9 +1270,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Ng" = (
-/turf/template_noop,
-/area/asteroid/nearstation)
 "Nm" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -1616,6 +1621,10 @@
 "Xk" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
+"XF" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "XN" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -1675,10 +1684,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ZM" = (
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/asteroid/nearstation)
 "ZS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -1688,10 +1693,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ZT" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/asteroid/nearstation)
 
 (1,1,1) = {"
 Sr
@@ -1702,17 +1703,17 @@ Sr
 Sr
 Sr
 Sr
+yw
+Sr
+Sr
+yw
+Sr
+Sr
+yw
 Sr
 Sr
 Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+yw
 Sr
 Sr
 Sr
@@ -1730,17 +1731,17 @@ Sr
 Sr
 Sr
 Sr
+yw
+Sr
+Sr
+yw
+Sr
+Sr
+yw
 Sr
 Sr
 Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+yw
 Sr
 Sr
 Sr
@@ -1757,19 +1758,19 @@ Sr
 Sr
 Sr
 Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
 Sr
 Sr
 Sr
@@ -1786,23 +1787,23 @@ Sr
 Sr
 Sr
 Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+yw
+CU
+CU
+CU
+yw
+rK
+yw
+CU
+CU
+CU
+CU
+CU
+CU
+rK
+rK
+CU
+CU
 Sr
 "}
 (5,1,1) = {"
@@ -1815,23 +1816,23 @@ Sr
 Sr
 Sr
 Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+CU
+fz
+CU
+rK
+rK
+rK
+CU
+fz
+fz
+fz
+fz
+CU
+yw
+yw
+fz
+CU
+CU
 "}
 (6,1,1) = {"
 Sr
@@ -1842,24 +1843,24 @@ Sr
 Sr
 Sr
 Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+yw
+CU
+CU
+CU
+yw
+rK
+yw
+CU
+CU
+CU
+CU
+CU
+CU
+yw
+rK
+yw
+fz
+CU
 "}
 (7,1,1) = {"
 Sr
@@ -1869,25 +1870,25 @@ Sr
 qV
 qV
 dH
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+yw
+rK
+rK
+rK
+rK
+yw
+rK
+rK
+rK
+yw
+rK
 "}
 (8,1,1) = {"
 Sr
@@ -1897,25 +1898,25 @@ pZ
 qV
 nf
 dH
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-Sr
-fE
-fE
-fE
-fE
-fE
-fE
-Sr
-Sr
-Sr
-Sr
-Sr
+rK
+rK
+yw
+rK
+yw
+rK
+rK
+rK
+ez
+bB
+bB
+bB
+bB
+bB
+jY
+rK
+yw
+yw
+rK
 "}
 (9,1,1) = {"
 Sr
@@ -1925,25 +1926,25 @@ cz
 iB
 Wp
 CA
-Ng
-Ng
-Ng
-LG
-Ng
-Ng
-Ng
-Ng
-yw
-rK
-rK
-rK
 rK
 yw
+yw
+qe
+yw
+yw
 rK
-Sr
-Sr
-Sr
-Sr
+yw
+Li
+zS
+Lc
+Lc
+Lc
+Lc
+Hi
+yw
+CU
+CU
+CU
 "}
 (10,1,1) = {"
 Sr
@@ -1961,17 +1962,17 @@ ws
 dH
 dH
 dH
-ez
-bB
+Li
+AK
 bB
 bB
 bB
 bB
 jY
 rK
-Sr
-Sr
-Sr
+CU
+fz
+CU
 "}
 (11,1,1) = {"
 ws
@@ -1996,10 +1997,10 @@ Lc
 Lc
 Lc
 Hi
-yw
-fE
-Sr
-Sr
+rK
+CU
+fz
+CU
 "}
 (12,1,1) = {"
 dH
@@ -2025,9 +2026,9 @@ bB
 bB
 jY
 rK
-fE
-Sr
-Sr
+CU
+fz
+CU
 "}
 (13,1,1) = {"
 dH
@@ -2046,16 +2047,16 @@ yC
 Ue
 dH
 Li
-zS
-Lc
-Lc
-Lc
-Lc
-Hi
+yw
+yw
+yw
+yw
+yw
+zY
 rK
-fE
-Sr
-Sr
+CU
+fz
+CU
 "}
 (14,1,1) = {"
 dH
@@ -2074,16 +2075,16 @@ cd
 qY
 Mc
 Kt
-AK
+ez
 bB
 bB
 bB
 bB
-jY
+Kt
 rK
-fE
-Sr
-Sr
+CU
+fz
+CU
 "}
 (15,1,1) = {"
 dH
@@ -2102,16 +2103,16 @@ Ue
 eT
 ws
 yw
-yw
-yw
-yw
-yw
-yw
-zY
+jb
+Lc
+Lc
+Lc
+Lc
+vl
 rK
-fE
-Sr
-Sr
+CU
+fz
+CU
 "}
 (16,1,1) = {"
 ws
@@ -2137,9 +2138,9 @@ bB
 bB
 Kt
 rK
-fE
-Sr
-Sr
+CU
+fz
+CU
 "}
 (17,1,1) = {"
 ws
@@ -2157,17 +2158,17 @@ Jj
 ug
 jz
 dH
-Li
+OI
 jb
 Lc
 Lc
 Lc
 Lc
 vl
-rK
-fE
-Sr
-Sr
+yw
+CU
+CU
+CU
 "}
 (18,1,1) = {"
 ws
@@ -2185,17 +2186,17 @@ KS
 Lu
 kq
 dH
-Li
-ez
+AK
+bB
 bB
 bB
 bB
 bB
 Kt
 rK
-fE
-Sr
-Sr
+yw
+yw
+rK
 "}
 (19,1,1) = {"
 ws
@@ -2213,17 +2214,17 @@ KS
 zj
 kq
 dH
-OI
-jb
-Lc
-Lc
-Lc
-Lc
-vl
 yw
-fE
-Sr
-Sr
+rK
+rK
+rK
+rK
+yw
+rK
+rK
+rK
+yw
+rK
 "}
 (20,1,1) = {"
 ws
@@ -2241,17 +2242,17 @@ KS
 Lu
 kq
 dH
-AK
-bB
-bB
-bB
-bB
-bB
-Kt
+CU
+CU
+CU
+CU
+CU
+CU
+yw
 rK
-Sr
-Sr
-Sr
+yw
+fz
+yh
 "}
 (21,1,1) = {"
 dH
@@ -2269,17 +2270,17 @@ Rd
 cA
 Uc
 dH
+fz
+fz
+fz
+fz
+fz
+CU
 yw
-rK
-rK
-rK
-rK
 yw
-rK
-Sr
-Sr
-Sr
-Sr
+fz
+yh
+yh
 "}
 (22,1,1) = {"
 dH
@@ -2297,16 +2298,16 @@ Or
 dH
 dH
 dH
-fE
-fE
-fE
-fE
-fE
-fE
-Sr
-Sr
-Sr
-Sr
+CU
+CU
+CU
+CU
+CU
+CU
+rK
+rK
+yh
+yh
 Sr
 "}
 (23,1,1) = {"
@@ -2325,7 +2326,7 @@ pk
 vP
 Xk
 dH
-Ng
+rK
 Sr
 Sr
 Sr
@@ -2353,7 +2354,7 @@ et
 Bh
 sb
 dH
-ZT
+yw
 Sr
 Sr
 Sr
@@ -2381,7 +2382,7 @@ ZS
 UX
 Xk
 WU
-ZM
+XF
 Sr
 Sr
 Sr
@@ -2409,7 +2410,7 @@ xA
 Xk
 Xk
 WU
-ZM
+XF
 Sr
 Sr
 Sr
@@ -2437,7 +2438,7 @@ Uv
 Xk
 sb
 dH
-ZT
+yw
 Sr
 Sr
 Sr
@@ -2465,7 +2466,7 @@ Qt
 Xk
 Xk
 dH
-Ng
+rK
 Sr
 Sr
 Sr
