@@ -203,7 +203,7 @@
 	ambience_index = AMBIENCE_MINING
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
-/area/icemoon/top_layer/outdoors/
+/area/icemoon/top_layer/outdoors
 	name = "Icemoon Surface"
 	outdoors = TRUE
 
