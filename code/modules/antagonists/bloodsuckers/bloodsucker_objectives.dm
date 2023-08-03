@@ -395,7 +395,7 @@
 
 /datum/objective/bloodsucker/necromance/update_explanation_text()
 	. = ..()
-	explanation_text = "Using Necromancy, revive people [target_amount] times."
+	explanation_text = "Using Necromancy, revive [target_amount] people."
 
 /datum/objective/bloodsucker/necromance/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
