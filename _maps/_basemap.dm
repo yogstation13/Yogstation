@@ -12,6 +12,7 @@
 		#include "map_files\YogsMeta\YogsMeta.dmm"
 		#include "map_files\GaxStation\GaxStation.dmm"
 		#include "map_files\AsteroidStation\AsteroidStation.dmm"
+		#include "map_fules\DonutStation\DonutStation.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif
