@@ -89,24 +89,26 @@
 				T.atmos_adjacent_turfs -= src
 			UNSETEMPTY(T.atmos_adjacent_turfs)
 
-		T.__update_auxtools_turf_adjacency_info(isspaceturf(T.get_z_base_turf()))
+		T.__update_auxtools_turf_adjacency_info()
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
-	__update_auxtools_turf_adjacency_info(isspaceturf(get_z_base_turf()))
+	__update_auxtools_turf_adjacency_info()
 
 /turf/proc/clear_adjacencies()
 	block_all_conductivity()
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
+		if(!T)
+			continue
 		if (atmos_adjacent_turfs)
 			atmos_adjacent_turfs -= T
 		if (T.atmos_adjacent_turfs)
 			T.atmos_adjacent_turfs -= src
 		UNSETEMPTY(T.atmos_adjacent_turfs)
 
-		T.__update_auxtools_turf_adjacency_info(isspaceturf(T.get_z_base_turf()))
+		T.__update_auxtools_turf_adjacency_info()
 	LAZYNULL(atmos_adjacent_turfs)
-	__update_auxtools_turf_adjacency_info(isspaceturf(get_z_base_turf()))
+	__update_auxtools_turf_adjacency_info()
 
 
 //Only gets a list of adjacencies, does NOT update
