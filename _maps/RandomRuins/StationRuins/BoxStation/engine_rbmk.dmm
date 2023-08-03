@@ -53,6 +53,12 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/engine/engineering)
+"cd" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped{
+	filter_type = list(/datum/gas/pluonium)
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "cp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -88,6 +94,12 @@
 /area/engine/engineering)
 "dH" = (
 /turf/closed/wall/r_wall,
+/area/engine/engineering)
+"dL" = (
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "dV" = (
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
@@ -137,6 +149,12 @@
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
+"fO" = (
+/obj/machinery/atmospherics/pipe/manifold/brown/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "gB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -153,13 +171,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"gX" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/asteroid/nearstation)
 "hw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -280,6 +291,10 @@
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
 /area/space/nearstation)
+"kg" = (
+/obj/machinery/atmospherics/components/binary/pump,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "kq" = (
 /obj/item/fuel_rod,
 /turf/open/indestructible/sound/pool{
@@ -297,11 +312,25 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"kZ" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"lR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "md" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -403,32 +432,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"oQ" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "reactorcore";
-	name = "Reactor Core Shutters"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"oT" = (
-/obj/machinery/atmospherics/components/trinary/mixer/t_mixer,
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "pd" = (
 /obj/structure/cable/yellow{
@@ -556,6 +559,12 @@
 "rW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"rZ" = (
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	name = "Input Gas Connector Port"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -825,24 +834,9 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
-"Ah" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "Az" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
-/area/engine/engineering)
-"AH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "AK" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -895,6 +889,15 @@
 "Ck" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
+/area/engine/engineering)
+"Cx" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "CA" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -1080,12 +1083,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"IH" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Jb" = (
 /obj/machinery/modular_computer/console/preset/engineering,
 /obj/effect/turf_decal/stripes/line{
@@ -1137,6 +1134,28 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"JS" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "reactorcore";
+	name = "Reactor Core Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1218,23 +1237,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"LG" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/asteroid/nearstation)
 "Mc" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
 /turf/open/floor/plating,
-/area/engine/engineering)
-"Mt" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "reactorcore";
-	name = "Reactor Core Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "ME" = (
 /obj/machinery/air_sensor/atmos/toxin_tank{
@@ -1348,6 +1361,22 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"PP" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "reactorcore";
+	name = "Reactor Core Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "PR" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -1407,22 +1436,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"Rt" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "reactorcore";
-	name = "Reactor Core Shutters"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "RI" = (
 /obj/structure/cable/yellow{
@@ -1510,6 +1523,19 @@
 /area/engine/engineering)
 "Ue" = (
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"Ug" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "reactorcore";
+	name = "Reactor Core Shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Um" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -1902,7 +1928,7 @@ CA
 Ng
 Ng
 Ng
-gX
+LG
 Ng
 Ng
 Ng
@@ -1984,7 +2010,7 @@ dH
 dH
 dH
 dH
-oT
+dL
 pU
 UF
 iV
@@ -2044,7 +2070,7 @@ HV
 NO
 wo
 ul
-ul
+cd
 qY
 Mc
 Kt
@@ -2149,9 +2175,9 @@ Sa
 bZ
 wV
 tc
-Ah
+kZ
 vm
-vm
+fO
 Hd
 Om
 le
@@ -2177,9 +2203,9 @@ yt
 GY
 ql
 ws
-Ue
-Ue
-wo
+rZ
+kg
+Cx
 Um
 HQ
 Im
@@ -2203,7 +2229,7 @@ Sr
 ws
 Jb
 nR
-AH
+lR
 ws
 CV
 Ue
@@ -2264,9 +2290,9 @@ dH
 dH
 dH
 ej
-Rt
-oQ
-Mt
+PP
+JS
+Ug
 Or
 dH
 dH
@@ -2290,7 +2316,7 @@ HI
 qk
 dH
 Xk
-IH
+Xk
 Wm
 SG
 NL
@@ -2467,7 +2493,7 @@ dH
 dH
 dH
 dH
-Ng
+dH
 Sr
 Sr
 Sr

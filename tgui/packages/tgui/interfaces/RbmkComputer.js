@@ -63,14 +63,6 @@ export const RbmkStatsSection = (props, context) => {
           color="white" >
           {formatSiUnit(data.kpa*1000, 1, "Pa")}
         </ProgressBar>
-        Core temperature:
-        <ProgressBar
-          value={data.coreTemp}
-          minValue={0}
-          maxValue={1500}
-          color="orange">
-          {data.coreTemp} K
-        </ProgressBar>
         Coolant temperature:
         <ProgressBar
           value={data.coolantInput}
@@ -84,8 +76,16 @@ export const RbmkStatsSection = (props, context) => {
           value={data.coolantOutput}
           minValue={0}
           maxValue={1500}
-          color="bad">
+          color="orange">
           {data.coolantOutput} K
+        </ProgressBar>
+        Core temperature:
+        <ProgressBar
+          value={data.coreTemp}
+          minValue={0}
+          maxValue={1500}
+          color="bad">
+          {data.coreTemp} K
         </ProgressBar>
         Neutrons per generation (K):
         <ProgressBar
@@ -144,50 +144,69 @@ export const RbmkControlRodControl = (props, context) => {
   const control_rods = data.control_rods;
   const k = data.k;
   const desiredK = data.desiredK;
+  const fuel_rods = data.rods.length;
+  const shutdown_temp = data.shutdownTemp;
   return (
-    <Section title="Control Rod Management:" height="100%">
-      Control Rod Insertion:
-      <ProgressBar
-        value={(control_rods / 100 * 100) * 0.01}
-        ranges={{
-          good: [0.7, Infinity],
-          average: [0.4, 0.7],
-          bad: [-Infinity, 0.4],
-        }} />
-      <br />
-      Neutrons per generation (K):
-      <br />
-      <ProgressBar
-        value={(k / 5 * 100) * 0.01}
-        ranges={{
-          good: [-Infinity, 0.4],
-          average: [0.4, 0.6],
-          bad: [0.6, Infinity],
-        }}>
-        {k}
-      </ProgressBar>
-      <br />
-      Target criticality:
-      <br />
-      <Slider
-        value={Math.round(desiredK*10)/10}
-        fillValue={Math.round(k*10)/10}
-        minValue={0}
-        maxValue={5}
-        step={0.1}
-        stepPixelSize={5}
-        onDrag={(e, value) => act('input', {
-          target: value,
-        })} />
-    </Section>
+    <Box height="100%">
+      <Section fill title="Power Management:" height="96px">
+        {'Reactor Power: '}
+        <Button
+          disabled={
+            (data.coreTemp > shutdown_temp && data.active) ||
+            (fuel_rods <= 0 && !data.active) ||
+            k > 0
+          }
+          icon={data.active ? 'power-off' : 'times'}
+          content={data.active ? 'On' : 'Off'}
+          selected={data.active}
+          onClick={() => act('power')}
+        />
+      </Section>
+      <Section fill title="Control Rod Management:" height="100%">
+        Control Rod Insertion:
+        <ProgressBar
+          value={(control_rods / 100 * 100) * 0.01}
+          ranges={{
+            good: [0.7, Infinity],
+            average: [0.4, 0.7],
+            bad: [-Infinity, 0.4],
+          }} />
+        <br />
+        Neutrons per generation (K):
+        <br />
+        <ProgressBar
+          value={(k / 5 * 100) * 0.01}
+          ranges={{
+            good: [-Infinity, 0.4],
+            average: [0.4, 0.6],
+            bad: [0.6, Infinity],
+          }}>
+          {k}
+        </ProgressBar>
+        <br />
+        Target criticality:
+        <br />
+        <Slider
+          value={Math.round(desiredK*10)/10}
+          fillValue={Math.round(k*10)/10}
+          minValue={0}
+          maxValue={5}
+          step={0.1}
+          stepPixelSize={5}
+          onDrag={(e, value) => act('input', {
+            target: value,
+          })} />
+      </Section>
+    </Box>
   );
 };
 
 export const RbmkFuelControl = (props, context) => {
   const { act, data } = useBackend(context);
+  const shutdown_temp = data.shutdownTemp;
   return (
     <Section title="Fuel Rod Management" height="100%">
-      {!data.rods.length ? (
+      {data.rods.length > 0 ? (
         <Box>
           <Flex direction="column">
             {Object.keys(data.rods).map(rod => (
@@ -199,7 +218,7 @@ export const RbmkFuelControl = (props, context) => {
                   inline
                   icon={'times'}
                   content={'Eject'}
-                  disabled={data.power >= 20}
+                  disabled={data.coreTemp > shutdown_temp}
                   onClick={() => act('eject', {
                     rodRef: rod,
                   })} />
@@ -219,7 +238,7 @@ export const RbmkFuelControl = (props, context) => {
         </Box>
       ) : (
         <Box fontSize={3}>
-          No Rods Found
+          No rods found.
         </Box>
       )}
     </Section>
