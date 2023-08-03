@@ -29,7 +29,7 @@
 	//upgrade variables
 	var/list/upgrades = list() //An associative list ("id" = null or TRUE) containing the passive upgrades the darkspawn has
 	var/datum/antag_menu/shadow_store/shadow_store //Antag menu used for opening the UI
-	var/datum/action/innate/darkspawn/shadow_Store/shadow_store_action //Used to link the menu with our antag datum
+	var/datum/action/innate/darkspawn/shadow_store/shadow_store_action //Used to link the menu with our antag datum
 
 	var/specialization = NONE
 
@@ -43,6 +43,7 @@
 	var/datum/action/innate/darkspawn/divulge/action = new()
 	action.Grant(owner.current)
 	action.darkspawn = src
+	upgrades += action
 	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
@@ -177,13 +178,13 @@
 	return upgrades[id]
 
 /datum/antagonist/darkspawn/proc/add_upgrade(id)
-	if(has_ability(id))
+	if(has_upgrade(id))
 		return FALSE
 	upgrades[id] = id
 	return TRUE
 
 /datum/antagonist/darkspawn/proc/remove_upgrade(id)
-	if(!has_ability(id))
+	if(!has_upgrade(id))
 		return FALSE
 	upgrades -= id
 	return TRUE
@@ -231,7 +232,8 @@
 	shadow_store_action = new(shadow_store)
 	shadow_store_action.Grant(owner.current)
 	shadow_store_action.darkspawn = src
-	remove_ability("divulge", TRUE)
+	if(/datum/action/innate/darkspawn/divulge in upgrades)
+		upgrades[/datum/action/innate/darkspawn/divulge].remove
 	darkspawn_state = DIVULGED
 
 /datum/antagonist/darkspawn/proc/sacrament()
@@ -239,8 +241,10 @@
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
-	for(var/V in abilities)
-		remove_ability(abilities[V], TRUE)
+	for(var/A in upgrades)
+		var/datum/shadow_store/upgrade = upgrades[A]
+		if(upgrade)
+			upgrade.remove(owner.current)
 	for(var/datum/action/innate/darkspawn/leftover_ability in user.actions)
 		leftover_ability.Remove(user)
 		QDEL_NULL(leftover_ability)
