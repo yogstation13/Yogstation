@@ -75,8 +75,6 @@
 	var/recharge_rate = 0.4
 	/// Does usage require you to be in range?
 	var/prox_check = TRUE
-	/// Is this the funny verison of the emag? Usage will cause different set of interactions (of the funny variety)!
-	var/clown_version = FALSE
 
 /obj/item/card/emag/Initialize(mapload)
 	. = ..()
