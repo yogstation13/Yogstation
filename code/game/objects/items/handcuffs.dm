@@ -355,6 +355,7 @@
 	name = "bola"
 	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
 	icon_state = "bola"
+	icon_state_preview = "bola_preview"
 	item_state = "bola"
 	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/thrown_righthand.dmi'
@@ -404,6 +405,7 @@
 	name = "watcher Bola"
 	desc = "A Bola made from the stretchy sinew of fallen watchers."
 	icon_state = "bola_watcher"
+	icon_state_preview = "bola_watcher_preview"
 	item_state = "bola_watcher"
 	breakouttime = 45
 
@@ -428,6 +430,7 @@
 	name = "gonbola"
 	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
 	icon_state = "gonbola"
+	icon_state_preview = "gonbola_preview"
 	item_state = "bola_r"
 	breakouttime = 300
 	slowdown = 0

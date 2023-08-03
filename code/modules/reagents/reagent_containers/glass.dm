@@ -444,7 +444,7 @@
 /obj/item/reagent_containers/glass/urn
 	name = "urn"
 	desc = "A tall vase used for storing cremated remains."
-	obj_flags = UNIQUE_RENAME // Rename it to whoever you cremated
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC // Rename it to whoever you cremated
 	icon_state = "urn_open"
 	w_class = WEIGHT_CLASS_NORMAL // This is important! Don't just keep it in your box or something!
 	resistance_flags = NONE // Shatters easily

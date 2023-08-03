@@ -319,8 +319,9 @@
 
 /obj/item/kirbyplants/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	AddComponent(/datum/component/tactical)
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	AddComponent(/datum/component/storage/concrete/kirbyplants)
 
 /obj/item/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -357,10 +358,6 @@
 	icon_state = "plant-09"
 	light_color = "#2cb2e8"
 	light_range = 3
-
-/obj/item/kirbyplants/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/storage/concrete/kirbyplants)
 
 /datum/component/storage/concrete/kirbyplants
 	max_items = 1

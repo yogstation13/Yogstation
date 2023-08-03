@@ -20,7 +20,7 @@
 	// Internal data
 	var/item_ids = 0
 	var/item_list = list()
-	var/list/stamp_upgrades = list("stamp-ok", "stamp-deny")
+	var/list/stamp_upgrades = list()
 	var/list/concurrent_users = list()
 
 	// Reference data

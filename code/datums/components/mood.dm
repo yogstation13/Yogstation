@@ -339,6 +339,8 @@
 		var/mob/living/carbon/human/H = L
 		if(isethereal(H))
 			HandleCharge(H)
+		if(ispreternis(H))
+			HandleBattery(H)
 		if(HAS_TRAIT(H, TRAIT_NOHUNGER))
 			return FALSE //no mood events for nutrition
 	switch(L.nutrition)
@@ -373,6 +375,18 @@
 			add_event(null, "charge", /datum/mood_event/overcharged)
 		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
 			add_event(null, "charge", /datum/mood_event/supercharged)
+
+/datum/component/mood/proc/HandleBattery(mob/living/carbon/human/H)
+	var/datum/species/preternis/P = H.dna?.species
+	switch(P.charge)
+		if(PRETERNIS_LEVEL_NONE to PRETERNIS_LEVEL_STARVING)
+			add_event(null, "charge", /datum/mood_event/decharged)
+		if(PRETERNIS_LEVEL_STARVING to PRETERNIS_LEVEL_HUNGRY)
+			add_event(null, "charge", /datum/mood_event/lowpower)
+		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
+			clear_event(null, "charge")
+		if(PRETERNIS_LEVEL_FED to INFINITY)
+			add_event(null, "charge", /datum/mood_event/charged)
 
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)

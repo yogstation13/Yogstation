@@ -125,8 +125,15 @@
 /obj/item/pen/afterattack(obj/O, mob/living/user, proximity)
 	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
-	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
-		var/penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")
+	if(isobj(O) && proximity && ((O.obj_flags & UNIQUE_RENAME) || (O.obj_flags & UNIQUE_REDESC)))
+		var/penchoice
+		if((O.obj_flags & UNIQUE_RENAME) && (O.obj_flags & UNIQUE_REDESC))
+			penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")
+		else if(O.obj_flags & UNIQUE_RENAME)
+			penchoice = "Rename"
+		else
+			penchoice = "Change description"
+
 		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
 		if(penchoice == "Rename")
@@ -162,13 +169,13 @@
 		return
 	if(!reagents.total_volume || !M.reagents)
 		return
-		
+
 	to_chat(user, span_warning("You begin to inject [src]'s contents into [M]"))
 	if(!do_after(user, 0.5 SECONDS, M))
 		return
 	reagents.reaction(M, INJECT, reagents.total_volume)
 	reagents.trans_to(M, reagents.total_volume, transfered_by = user)
-				
+
 
 
 /obj/item/pen/sleepy/Initialize(mapload)

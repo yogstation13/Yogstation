@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed being able to clone mobs with TRAIT_NOCLONE (like IPCs) by just cloning their brain"
+  - bugfix: "fixed runtime error when cloning someone that never died"
