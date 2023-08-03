@@ -296,7 +296,8 @@
 		update_part_values()
 		return
 	capacitor = new /obj/item/stock_parts/capacitor(src)
-
+	update_part_values()
+	
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
 	cabin_air.set_temperature(T20C)
