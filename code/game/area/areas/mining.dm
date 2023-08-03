@@ -192,8 +192,8 @@
 	area_flags = NONE
 
 /area/icemoon/top_layer
-	name = "Icemoon Caves"
-	outdoors = TRUE
+	name = "Icemoon Surface"
+	icon_state = "explored"
 	always_unpowered = TRUE
 	requires_power = TRUE
 	poweralm = FALSE
@@ -203,14 +203,17 @@
 	ambience_index = AMBIENCE_MINING
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
-/area/icemoon/top_layer/unexplored
+/area/icemoon/top_layer/outdoors/
 	name = "Icemoon Surface"
-	icon state = "unexplored"
-	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
-	cave_generator = /datum/map_generator/cave_generator/icemoon/surface
+	outdoors = TRUE
 
-/area/icemoon/top_layer/explored
-	name = "Icemoon Surface"
+/area/icemoon/top_layer/outdoors/unexplored
+	icon_state = "unexplored"
+	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	map_generator = /datum/map_generator/cave_generator/icemoon/surface
+
+/area/icemoon/top_layer/outdoors/explored
+	icon_state = "explored"
 	area_flags = NONE
 
 /area/icemoon/underground
