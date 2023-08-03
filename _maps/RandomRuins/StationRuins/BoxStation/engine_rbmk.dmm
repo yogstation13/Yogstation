@@ -1333,14 +1333,6 @@
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"OI" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
 "OM" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
@@ -2151,7 +2143,7 @@ Jj
 ug
 jz
 dH
-OI
+Li
 jb
 Lc
 Lc
