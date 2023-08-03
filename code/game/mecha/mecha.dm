@@ -140,6 +140,9 @@
 	var/occupant_sight_flags = 0 //sight flags to give to the occupant (e.g. mech mining scanner gives meson-like vision)
 	var/mouse_pointer
 
+	/// The energy armor value given by the last known capacitor (if any). Used to determine if energy armor should be given/removed and how much more.
+	var/last_cap_energy_armor = 0
+
 	hud_possible = list (DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_TRACK_HUD)
 
 /obj/item/radio/mech //this has to go somewhere
@@ -241,15 +244,23 @@
 	capacitor = locate(/obj/item/stock_parts/capacitor) in contents
 	update_part_values()
 
-/obj/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/obj/mecha/proc/update_part_values()
 	if(scanmod)
-		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
+		// Starting at 20 energy per drain (tier 0), each tier reduces this value down by 5 until it reaches 0.
+		normal_step_energy_drain = max(20 - (5 * scanmod.rating), 0)
 		if(!leg_overload_mode)
 			step_energy_drain = normal_step_energy_drain
 	else
-		normal_step_energy_drain = 500
+		normal_step_energy_drain = 500 // If they somehow move, a massive energy drain per step.
 		step_energy_drain = normal_step_energy_drain
 
+	// Capacitors:
+	var/new_armor = capacitor ? capacitor.rating*5 : 0 // Each rating increases energy armor by 5.
+	var/difference_armor = new_armor - last_cap_energy_armor
+	if(difference_armor != 0)
+		armor = armor.modifyRating(energy = difference_armor)
+	last_cap_energy_armor = new_armor
 
 ////////////////////////
 ////// Helpers /////////
@@ -272,16 +283,20 @@
 	if(sm)
 		sm.forceMove(src)
 		scanmod = sm
+		update_part_values()
 		return
 	scanmod = new /obj/item/stock_parts/scanning_module(src)
+	update_part_values()
 
 /obj/mecha/proc/add_capacitor(obj/item/stock_parts/capacitor/cap=null) ///Adds a capacitor, for use in Map-spawned mechs, Nuke Ops mechs, and admin-spawned mechs. Mechs built by hand will replace this.
 	QDEL_NULL(capacitor)
 	if(cap)
 		cap.forceMove(src)
 		capacitor = cap
+		update_part_values()
 		return
 	capacitor = new /obj/item/stock_parts/capacitor(src)
+	
 
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
@@ -1132,7 +1147,6 @@
 		update_part_values()
 		return
 	if(capacitor && capacitor == M)
-		armor = armor.modifyRating(energy = (capacitor.rating * -5)) //lose the energy armor if we lose this cap
 		capacitor = null
 		update_part_values()
 		return
