@@ -6,7 +6,7 @@
 	name = "clockwork marauder"
 	desc = "The stalwart apparition of a soldier, blazing with crimson flames. It's armed with a gladius and shield."
 	icon_state = "clockwork_marauder"
-	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_INORGANIC|MOB_HUMANOID
 	health = 150
 	maxHealth = 150
 	force_threshold = 8

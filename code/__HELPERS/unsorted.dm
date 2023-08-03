@@ -502,15 +502,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 	return 1
 
-/proc/is_blocked_turf(turf/T, exclude_mobs)
-	if(T.density)
-		return 1
-	for(var/i in T)
-		var/atom/A = i
-		if(A.density && (!exclude_mobs || !ismob(A)))
-			return 1
-	return 0
-
 /proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
 	if(T.density)
 		return 1
@@ -524,7 +515,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/base_dir = get_dir(ref, get_step_towards(ref,trg))
 	var/turf/temp = get_step_towards(ref,trg)
 
-	if(is_blocked_turf(temp))
+	if(temp.is_blocked_turf())
 		var/dir_alt1 = turn(base_dir, 90)
 		var/dir_alt2 = turn(base_dir, -90)
 		var/turf/turf_last1 = temp
@@ -533,10 +524,10 @@ Turf and target are separate in case you want to teleport some distance from a t
 		var/breakpoint = 0
 
 		while(!free_tile && breakpoint < 10)
-			if(!is_blocked_turf(turf_last1))
+			if(!turf_last1.is_blocked_turf())
 				free_tile = turf_last1
 				break
-			if(!is_blocked_turf(turf_last2))
+			if(!turf_last2.is_blocked_turf())
 				free_tile = turf_last2
 				break
 			turf_last1 = get_step(turf_last1,dir_alt1)

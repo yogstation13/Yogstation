@@ -12,6 +12,10 @@
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
 	..()
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 16))
+
 	if(!isliving(target) || (blocked == 100))
 		return
 		
@@ -298,6 +302,6 @@
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
-	damage = 18
+	damage = 20
 	wound_bonus = 5
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/clockbolt

@@ -367,8 +367,7 @@
 	/// How much to inject per second
 	var/injection_amount = 0.5
 	amount_per_transfer_from_this = 5
-	reagent_flags = OPENCONTAINER
-	spillable = FALSE
+	reagent_flags = OPENCONTAINER_NOSPILL
 	possible_transfer_amounts = list(5,10,15)
 
 /obj/item/reagent_containers/chemtank/ui_action_click()

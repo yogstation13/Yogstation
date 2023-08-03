@@ -535,6 +535,10 @@
 	. = ..()
 	medigun = new(src)
 
+/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/can_attach(obj/mecha/M)
+	. = ..()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam) in M.equipment)
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/Destroy()
 	qdel(medigun)

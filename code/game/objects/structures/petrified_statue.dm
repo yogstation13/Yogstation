@@ -16,7 +16,7 @@
 		if(L.buckled)
 			L.buckled.unbuckle_mob(L,force=1)
 		//yogs start -- pan
-		if(pan == TRUE)
+		if(pan)
 			L.visible_message(span_warning("[L]'s skin rapidly turns to bananium!"), "<span_class='ratvar'>BONK!</span>")
 		else
 			L.visible_message(span_warning("[L]'s skin rapidly turns to marble!"), span_userdanger("Your body freezes up! Can't... move... can't...  think..."))
@@ -80,10 +80,10 @@
 
 /mob/proc/petrify(statue_timer)
 
-/mob/living/carbon/human/petrify(statue_timer)
+/mob/living/carbon/human/petrify(statue_timer, bananium = FALSE)
 	if(!isturf(loc))
 		return FALSE
-	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
+	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer, bananium)
 	S.name = "statue of [name]"
 	bleedsuppress = 1
 	S.copy_overlays(src)

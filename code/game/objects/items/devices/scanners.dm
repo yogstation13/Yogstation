@@ -221,7 +221,7 @@ GENE SCANNER
 		if(advanced)
 			combined_msg += "\t[span_info("Radiation Level: [M.radiation]%.")]"
 
-	if(advanced && M.hallucinating())
+	if(advanced && M.has_status_effect(/datum/status_effect/hallucination))
 		combined_msg += "\t[span_info("Subject is hallucinating.")]"
 
 	//Eyes and ears

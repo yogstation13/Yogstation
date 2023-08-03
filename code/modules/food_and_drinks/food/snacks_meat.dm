@@ -374,6 +374,7 @@
 
 /obj/item/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
+	icon_state = "nugget_lump" // Not an accurate icon_state, but needed for crafting menu.
 	filling_color = "#B22222"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)

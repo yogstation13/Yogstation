@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	can_be_held = TRUE //mouse gaming
 	worn_slot_flags = ITEM_SLOT_HEAD

@@ -29,16 +29,16 @@
 
 /datum/surgery_step/revive
 	name = "shock brain"
-	implements = list(/obj/item/twohanded/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100, /obj/item/rod_of_asclepius = 100)
+	implements = list(/obj/item/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60, /obj/item/melee/touch_attack/shock = 100, /obj/item/rod_of_asclepius = 100)
 	time = 12 SECONDS
 	success_sound = 'sound/magic/lightningbolt.ogg'
 	failure_sound = 'sound/machines/defib_zap.ogg'
 
 /datum/surgery_step/revive/tool_check(mob/user, obj/item/tool)
 	. = TRUE
-	if(istype(tool, /obj/item/twohanded/shockpaddles))
-		var/obj/item/twohanded/shockpaddles/S = tool
-		if((S.req_defib && !S.defib.powered) || !S.wielded || S.cooldown || S.busy)
+	if(istype(tool, /obj/item/shockpaddles))
+		var/obj/item/shockpaddles/S = tool
+		if((S.req_defib && !S.defib.powered) || !HAS_TRAIT(S, TRAIT_WIELDED) || S.cooldown || S.busy)
 			to_chat(user, span_warning("You need to wield both paddles, and [S.defib] must be powered!"))
 			return FALSE
 	if(istype(tool, /obj/item/melee/baton))
@@ -61,7 +61,7 @@
 	target.notify_ghost_cloning("Someone is trying to zap your brain.", source = target)
 
 /datum/surgery_step/revive/play_preop_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(istype(tool, /obj/item/twohanded/shockpaddles))
+	if(istype(tool, /obj/item/shockpaddles))
 		playsound(tool, 'sound/machines/defib_charge.ogg', 75, 0)
 	else
 		..()

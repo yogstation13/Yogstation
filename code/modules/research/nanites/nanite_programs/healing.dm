@@ -123,7 +123,7 @@
 		if(!parts.len)
 			return FALSE
 	else
-		if(!(MOB_ROBOTIC in host_mob.mob_biotypes))
+		if(!(host_mob.mob_biotypes & MOB_ROBOTIC))
 			return FALSE
 	return ..()
 

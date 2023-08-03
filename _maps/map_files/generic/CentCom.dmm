@@ -1571,7 +1571,7 @@
 	name = "chain whip"
 	},
 /obj/item/scythe,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "adO" = (
@@ -1832,19 +1832,19 @@
 /obj/item/melee/chainofcommand{
 	name = "chain whip"
 	},
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aez" = (
 /obj/structure/table/wood,
 /obj/item/scythe,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aeA" = (
 /obj/structure/table/wood,
 /obj/item/tailclub,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aeB" = (
@@ -2038,7 +2038,7 @@
 /area/yogs/infiltrator_base)
 "aeX" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/kirbyplants/random{
+/obj/item/kirbyplants/random{
 	pixel_y = 12
 	},
 /turf/open/floor/holofloor/carpet,
@@ -2998,11 +2998,11 @@
 /turf/open/floor/circuit/green/anim,
 /area/ctf)
 "ahE" = (
-/obj/item/twohanded/ctf/blue,
+/obj/item/ctf_flag/blue,
 /turf/open/floor/circuit/green/anim,
 /area/ctf)
 "ahF" = (
-/obj/item/twohanded/ctf/red,
+/obj/item/ctf_flag/red,
 /turf/open/floor/circuit/green/anim,
 /area/ctf)
 "ahG" = (
@@ -4030,7 +4030,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "ake" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -4134,7 +4134,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/supply)
 "akk" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -4247,7 +4247,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/centcom/control)
 "akB" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/firealarm{
@@ -4270,7 +4270,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/plasteel/grimy,
@@ -4279,7 +4279,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/plasteel/grimy,
@@ -4320,13 +4320,13 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/control)
 "akJ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/airalarm{
@@ -4786,7 +4786,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "alQ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/firealarm{
@@ -5226,7 +5226,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "amL" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -5238,7 +5238,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "amM" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
@@ -6028,7 +6028,7 @@
 /obj/machinery/status_display/ai{
 	pixel_y = 32
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-15";
 	pixel_x = -6;
 	pixel_y = 12
@@ -6242,7 +6242,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aoy" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
@@ -6605,7 +6605,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "aph" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/light{
@@ -6839,7 +6839,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "apw" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/structure/extinguisher_cabinet{
@@ -7207,13 +7207,13 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aqd" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/wood,
 /area/centcom/ferry)
 "aqe" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/light_switch{
@@ -7527,7 +7527,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/reagent_containers/pill/adminordrazine,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
@@ -7869,7 +7869,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "art" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/newscaster{
@@ -7891,7 +7891,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/wood,
@@ -8069,7 +8069,7 @@
 /turf/open/floor/grass,
 /area/centcom/control)
 "arL" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/structure/extinguisher_cabinet{
@@ -9126,7 +9126,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "atJ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -9165,7 +9165,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "atO" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -9188,7 +9188,7 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/evac)
 "atS" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -9300,7 +9300,7 @@
 /area/centcom/testchamber)
 "aug" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/pitchfork/demonic/ascended,
+/obj/item/pitchfork/demonic/ascended,
 /obj/item/melee/powerfist,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -9621,7 +9621,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/storage/pill_bottle/zoom,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -9731,7 +9731,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "auT" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -9761,7 +9761,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "auV" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -10849,7 +10849,7 @@
 /turf/open/floor/plating,
 /area/centcom/ferry)
 "axi" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/delivery,
@@ -10919,7 +10919,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "axp" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -10931,7 +10931,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "axq" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green,
@@ -10950,7 +10950,7 @@
 /turf/open/floor/plating,
 /area/centcom/evac)
 "axs" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -11619,7 +11619,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/reagent_containers/pill/adminordrazine,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -11756,7 +11756,7 @@
 	},
 /area/holodeck/rec_center/medical)
 "azd" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/light{
@@ -12341,7 +12341,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aAm" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/red{
@@ -12362,7 +12362,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aAp" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -13423,7 +13423,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aCw" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/power/apc{
@@ -13460,7 +13460,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aCy" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/light,
@@ -13481,7 +13481,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "aCz" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/structure/extinguisher_cabinet{
@@ -13772,7 +13772,7 @@
 /area/centcom/holding)
 "aCW" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/spear,
+/obj/item/melee/spear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aCX" = (
@@ -13903,7 +13903,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "aDf" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/structure/extinguisher_cabinet{
@@ -14411,7 +14411,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "aDV" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -14420,7 +14420,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aDW" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/green,
@@ -15055,7 +15055,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aFs" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -15069,7 +15069,7 @@
 	},
 /area/tdome/tdomeobserve)
 "aFu" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green,
@@ -15171,7 +15171,7 @@
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
 "aFG" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/red,
@@ -15251,7 +15251,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aFQ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -15391,7 +15391,7 @@
 	},
 /area/tdome/tdomeobserve)
 "aGg" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -15405,7 +15405,7 @@
 	},
 /area/tdome/tdomeobserve)
 "aGh" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/red{
@@ -15414,7 +15414,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aGi" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/red{
@@ -15427,7 +15427,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aGj" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/red,
@@ -15456,7 +15456,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aGn" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/tile/green,
@@ -15466,7 +15466,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aGo" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green,
@@ -15479,7 +15479,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aGp" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/green{
@@ -16558,7 +16558,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aHZ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/neutral,
@@ -16631,7 +16631,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "aIg" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -17521,7 +17521,7 @@
 	},
 /area/bluespace_locker)
 "aJZ" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/firealarm{
@@ -17553,7 +17553,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
 "aKc" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -17995,7 +17995,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -18837,7 +18837,7 @@
 	},
 /area/holodeck/rec_center/chapelcourt)
 "aMs" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /turf/open/floor/wood,
@@ -18933,7 +18933,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/throwing_star/ninja,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19242,10 +19242,10 @@
 /area/centcom/supplypod)
 "aNi" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/cult_bastard{
+/obj/item/melee/cult_bastard{
 	pixel_y = 3
 	},
-/obj/item/twohanded/cult_spear,
+/obj/item/cult_spear,
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -19656,7 +19656,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/reagent_containers/autoinjector/medipen/stimpack/large,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19715,7 +19715,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/storage/pill_bottle/stimulant,
 /obj/item/encryptionkey/syndicate,
 /turf/open/floor/plasteel,
@@ -19747,7 +19747,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aOk" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/hot_potato/syndicate,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19767,16 +19767,16 @@
 "aOm" = (
 /obj/structure/table/wood,
 /obj/item/veilrender/honkrender/honkhulkrender,
-/obj/item/twohanded/required/baseball_bat/homerun,
+/obj/item/melee/baseball_bat/homerun,
 /obj/item/melee/singularity_sword,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "aOn" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/mjollnir{
+/obj/item/mjolnir{
 	pixel_y = 3
 	},
-/obj/item/twohanded/singularityhammer,
+/obj/item/singularityhammer,
 /obj/item/melee/transforming/cleaving_saw,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -19902,7 +19902,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/throwing_star/ninja,
 /obj/item/throwing_star/ninja,
 /obj/item/encryptionkey/binary,
@@ -19985,7 +19985,7 @@
 /area/centcom/holding)
 "aOH" = (
 /obj/effect/turf_decal/tile/neutral,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/storage/pill_bottle/aranesp,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -20238,14 +20238,14 @@
 /area/yogs/infiltrator_base)
 "aPg" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/dualsaber/purple{
+/obj/item/melee/dualsaber/purple{
 	pixel_y = 3
 	},
-/obj/item/twohanded/dualsaber/green{
+/obj/item/melee/dualsaber/green{
 	pixel_y = 6
 	},
-/obj/item/twohanded/dualsaber/blue,
-/obj/item/twohanded/dualsaber/red{
+/obj/item/melee/dualsaber/blue,
+/obj/item/melee/dualsaber/red{
 	pixel_y = 9
 	},
 /obj/item/melee/transforming/energy/blade,
@@ -20433,7 +20433,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/switchblade,
 /obj/item/reagent_containers/pill/adminordrazine,
 /turf/open/floor/plasteel,
@@ -20530,7 +20530,7 @@
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
 "aPP" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aPQ" = (
@@ -20796,7 +20796,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -21185,7 +21185,7 @@
 "aRf" = (
 /obj/structure/glowshroom/glowcap,
 /obj/structure/table/wood,
-/obj/item/twohanded/required/chainsaw/doomslayer,
+/obj/item/melee/chainsaw/doomslayer,
 /obj/item/melee/fryingpan/bananium,
 /obj/item/kitchen/knife/rainbowknife,
 /turf/open/floor/wood,
@@ -21427,7 +21427,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aRE" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/bonespear/chitinspear,
+/obj/item/melee/spear/bonespear/chitinspear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aRF" = (
@@ -22641,7 +22641,7 @@
 	},
 /area/holodeck/rec_center/lounge)
 "aUb" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/storage/pill_bottle/stimulant,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -23679,7 +23679,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/switchblade,
 /obj/item/reagent_containers/pill/adminordrazine,
 /turf/open/floor/plasteel,
@@ -23688,7 +23688,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/storage/pill_bottle/stimulant,
 /obj/item/reagent_containers/pill/adminordrazine,
 /turf/open/floor/plasteel,
@@ -23721,7 +23721,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
 "aWo" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/reagent_containers/pill/adminordrazine,
 /obj/item/malf_upgrade,
 /turf/open/floor/plasteel,
@@ -23895,7 +23895,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/pneumatic_cannon/pie/selfcharge,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -24034,7 +24034,7 @@
 "aWV" = (
 /obj/structure/table/wood,
 /obj/item/tailclub,
-/obj/item/twohanded/bonespear/chitinspear,
+/obj/item/melee/spear/bonespear/chitinspear,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/thunderdome1218)
 "aWW" = (
@@ -24117,7 +24117,7 @@
 /area/holodeck/rec_center/spacechess)
 "aXc" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/adamantineshield,
+/obj/item/adamantineshield,
 /obj/item/shield/mirror,
 /obj/item/shield/energy/bananium,
 /obj/item/shield/energy,
@@ -24347,7 +24347,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/switchblade,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -24762,7 +24762,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aYs" = (
@@ -25228,7 +25228,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aZs" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
@@ -25485,7 +25485,7 @@
 "aZR" = (
 /obj/structure/table/wood,
 /obj/item/rune_scimmy,
-/obj/item/twohanded/vibro_weapon,
+/obj/item/vibro_weapon,
 /obj/item/melee/ghost_sword,
 /obj/item/katana,
 /obj/item/energy_katana,
@@ -25836,7 +25836,7 @@
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
 "gkW" = (
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/obj/item/kirbyplants/photosynthetic,
 /turf/open/floor/wood,
 /area/centcom/holding)
 "gxx" = (

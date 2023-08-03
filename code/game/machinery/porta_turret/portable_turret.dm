@@ -8,6 +8,7 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
+	base_icon_state = "standard"
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER	//the turret is invisible if it's inside its cover
 	density = TRUE
@@ -18,7 +19,6 @@
 	req_access = list(ACCESS_SEC_DOORS)
 	power_channel = AREA_USAGE_EQUIP	//drains power from the EQUIPMENT channel
 
-	var/base_icon_state = "standard"
 	var/scan_range = 7
 	var/atom/base = null //for turrets inside other objects
 
@@ -529,13 +529,13 @@
 	if(T.density)
 		if(wall_turret_direction)
 			var/turf/closer = get_step(T,wall_turret_direction)
-			if(istype(closer) && !is_blocked_turf(closer) && T.Adjacent(closer))
+			if(istype(closer) && !closer.is_blocked_turf() && T.Adjacent(closer))
 				T = closer
 		else
 			var/target_dir = get_dir(T,target)
 			for(var/d in list(0,-45,45))
 				var/turf/closer = get_step(T,turn(target_dir,d))
-				if(istype(closer) && !is_blocked_turf(closer) && T.Adjacent(closer))
+				if(istype(closer) && !closer.is_blocked_turf() && T.Adjacent(closer))
 					T = closer
 					break
 

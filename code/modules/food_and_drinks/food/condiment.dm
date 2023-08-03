@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'yogstation/icons/obj/food/containers.dmi' //yogs changed icon path
 	icon_state = "emptycondiment"
-	reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER_NOSPILL
 	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)
 	volume = 50
 	//Possible_states has the reagent type as key and a list of, in order, the icon_state, the name and the desc as values. Used in the on_reagent_change(changetype) to change names, descs and sprites.

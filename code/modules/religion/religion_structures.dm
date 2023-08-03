@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	pass_flags_self = PASSSTRUCTURE | PASSTABLE | LETPASSTHROW
 	can_buckle = TRUE
 	buckle_lying = 90 //we turn to you!
@@ -16,6 +15,7 @@
 /obj/structure/altar_of_gods/Initialize(mapload)
 	. = ..()
 	reflect_sect_in_icons()
+	AddElement(/datum/element/climbable)
 	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, PROC_REF(reflect_sect_in_icons)))
 
 /obj/structure/altar_of_gods/attack_hand(mob/living/user)

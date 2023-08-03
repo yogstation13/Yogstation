@@ -68,7 +68,7 @@
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
-	
+
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/S = H.get_organ_slot(ORGAN_SLOT_STOMACH)
 
@@ -84,7 +84,7 @@
 	if(eaten_text)
 		to_chat(H, span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
-	
+
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
 		H.changeNext_move(CLICK_CD_MELEE * 0.5)
 
@@ -102,7 +102,7 @@
 	eaten_text = "The uranium ore tingles a bit as it goes down."
 
 /obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
-	radiation_pulse(H, 20)
+	radiation_pulse(H, 100)
 	return TRUE
 
 /obj/item/stack/ore/iron
@@ -117,6 +117,7 @@
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
@@ -250,13 +251,13 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "slag"
 	singular_name = "slag chunk"
 
-/obj/item/twohanded/required/gibtonite
+/obj/item/melee/gibtonite
 	name = "gibtonite ore"
 	desc = "Extremely explosive if struck with mining equipment, Gibtonite is often used by miners to speed up their work by using it as a mining charge. This material is illegal to possess by unauthorized personnel under space law."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Gibtonite ore"
 	item_state = "Gibtonite ore"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_HUGE
 	throw_range = 0
 	var/primed = FALSE
 	var/det_time = 100
@@ -264,12 +265,16 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/attacher = "UNKNOWN"
 	var/det_timer
 
-/obj/item/twohanded/required/gibtonite/Destroy()
+/obj/item/melee/gibtonite/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+
+/obj/item/melee/gibtonite/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/item/twohanded/required/gibtonite/attackby(obj/item/I, mob/user, params)
+/obj/item/melee/gibtonite/attackby(obj/item/I, mob/user, params)
 	if(!wires && istype(I, /obj/item/assembly/igniter))
 		user.visible_message("[user] attaches [I] to [src].", span_notice("You attach [I] to [src]."))
 		wires = new /datum/wires/explosive/gibtonite(src)
@@ -305,20 +310,20 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			return
 	..()
 
-/obj/item/twohanded/required/gibtonite/attack_self(user)
+/obj/item/melee/gibtonite/attack_self(user)
 	if(wires)
 		wires.interact(user)
 	else
 		..()
 
-/obj/item/twohanded/required/gibtonite/bullet_act(obj/item/projectile/P)
+/obj/item/melee/gibtonite/bullet_act(obj/item/projectile/P)
 	GibtoniteReaction(P.firer)
 	. = ..()
 
-/obj/item/twohanded/required/gibtonite/ex_act()
+/obj/item/melee/gibtonite/ex_act()
 	GibtoniteReaction(null, 1)
 
-/obj/item/twohanded/required/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
+/obj/item/melee/gibtonite/proc/GibtoniteReaction(mob/user, triggered_by = 0)
 	if(!primed)
 		primed = TRUE
 		playsound(src,'sound/effects/hit_on_shattered_glass.ogg',50,1)
@@ -341,7 +346,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
 		det_timer = addtimer(CALLBACK(src, PROC_REF(detonate), notify_admins), det_time, TIMER_STOPPABLE)
 
-/obj/item/twohanded/required/gibtonite/proc/detonate(notify_admins)
+/obj/item/melee/gibtonite/proc/detonate(notify_admins)
 	if(primed)
 		switch(quality)
 			if(GIBTONITE_QUALITY_HIGH)
@@ -593,7 +598,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/bullet_act(obj/item/projectile/P)
 	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
-		
+
 	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
 		for(var/mob/living/T in viewers(5, src))
@@ -616,7 +621,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			P.fire(get_angle(P, target))
 			targets -= target
 			if(targets.len)
-				P = DuplicateObject(P, sameloc=1) //split into another projectile
+				P = duplicate_object(P, sameloc=1) //split into another projectile
 				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
 				P.last_process = initial(P.last_process)
 				P.last_projectile_move = initial(P.last_projectile_move)
@@ -628,7 +633,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		if(cooldown < world.time)
 			INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //flip the coin if it isn't already doing that
 		return BULLET_ACT_FORCE_PIERCE
-			
+
 	//we instead flip the coin
 	INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF

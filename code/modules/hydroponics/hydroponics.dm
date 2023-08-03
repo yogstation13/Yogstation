@@ -5,7 +5,7 @@
 	density = TRUE
 	pass_flags_self = PASSMACHINE | LETPASSTHROW
 	pixel_z = 8
-	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
+	obj_flags = CAN_BE_HIT | UNIQUE_RENAME | UNIQUE_REDESC
 	circuit = /obj/item/circuitboard/machine/hydroponics
 	var/waterlevel = 100	//The amount of water in the tray (max 100)
 	var/maxwater = 100		//The maximum amount of water in the tray
@@ -658,7 +658,7 @@
 	// FEED ME SEYMOUR
 	if(S.has_reagent(/datum/reagent/medicine/strange_reagent, 1))
 		spawnplant()
-	
+
 	// Honey, Pests are dieing of sugar, so is the plant
 	if(S.has_reagent(/datum/reagent/consumable/honey, 1))
 		adjustPests(-rand(2,5))
@@ -799,7 +799,7 @@
 		var/list/combined_msg = list()
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
-			combined_msg += "*** <B>[myseed.plantname]</B> ***" 
+			combined_msg += "*** <B>[myseed.plantname]</B> ***"
 			combined_msg += "- Plant Age: [span_notice("[age]")]"
 			var/list/text_string = myseed.get_analyzer_text()
 			if(text_string)

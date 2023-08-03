@@ -97,9 +97,7 @@
 	icon_state = "bloodaltar"
 	density = TRUE
 	anchored = FALSE
-	climbable = TRUE
 	pass_flags_self = LETPASSTHROW
-	can_buckle = FALSE
 	var/sacrifices = 0
 	var/sacrificialtask = FALSE
 	var/organ_name = ""
@@ -115,6 +113,10 @@
 	Hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
 		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
 		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
+
+/obj/structure/bloodsucker/bloodaltar/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/bloodsucker/bloodaltar/bolt()
 	. = ..()

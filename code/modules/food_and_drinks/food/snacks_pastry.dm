@@ -31,6 +31,10 @@
 	filling_color = "#FF69B4"
 	return TRUE
 
+//Returns the sprite of the donut while in a donut box
+/obj/item/reagent_containers/food/snacks/donut/proc/in_box_sprite()
+	return "[icon_state]_inbox"
+
 /obj/item/reagent_containers/food/snacks/donut/checkLiked(fraction, mob/M)	//Sec officers always love donuts
 	if(last_check_time + 50 < world.time)
 		if(ishuman(M) && M.mind)
@@ -423,6 +427,18 @@
 	foodtype = GRAIN | MEAT
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
+
+/obj/item/reagent_containers/food/snacks/cookie/bacon
+	name = "strip of bacon"
+	desc = "BACON!!!"
+	icon_state = "bacon_strip"
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/cookie/cloth
+	name = "odd cookie"
+	desc = "A cookie that appears to be made out of... some form of cloth?"
+	icon_state = "cookie_cloth"
+	foodtype = CLOTH
 
 /obj/item/reagent_containers/food/snacks/cookie/sleepy
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)

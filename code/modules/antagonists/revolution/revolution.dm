@@ -458,5 +458,5 @@
 	uniform = /obj/item/clothing/under/yogs/soviet_dress_uniform
 	head = /obj/item/clothing/head/ushanka
 	gloves = /obj/item/clothing/gloves/color/black
-	l_hand = /obj/item/twohanded/spear
+	l_hand = /obj/item/melee/spear
 	r_hand = /obj/item/assembly/flash

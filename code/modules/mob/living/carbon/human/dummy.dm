@@ -77,7 +77,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.initialize_dna(skip_index = TRUE)
 	target.dna.features["body_markings"] = "None"
 	target.dna.features["ears"] = "None"
-	target.dna.features["ethcolor"] = "EEEEEE" // white-ish
+	target.dna.features["ethcolor"] = COLOR_VERY_LIGHT_GRAY
 	target.dna.features["frills"] = "None"
 	target.dna.features["horns"] = "None"
 	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME

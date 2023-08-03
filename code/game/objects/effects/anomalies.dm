@@ -271,27 +271,27 @@
 	var/ticks = 0
 	/// How many seconds between each gas release
 	var/releasedelay = 10
+	var/fire_power = 30
 
 /obj/effect/anomaly/pyro/anomalyEffect(delta_time)
 	..()
-	ticks += delta_time
-	if(ticks < releasedelay)
-		return
-	else
-		ticks -= releasedelay
-	var/turf/open/T = get_turf(src)
-	if(istype(T))
-		T.atmos_spawn_air("o2=5;plasma=5;TEMP=1000")
+	var/turf/center = get_turf(src)
+	center.IgniteTurf(delta_time * fire_power)
+	for(var/turf/open/T in center.GetAtmosAdjacentTurfs())
+		if(prob(5 * delta_time))
+			T.IgniteTurf(delta_time)
 
 /obj/effect/anomaly/pyro/detonate()
 	INVOKE_ASYNC(src, PROC_REF(makepyroslime))
 
 /obj/effect/anomaly/pyro/proc/makepyroslime()
-	var/turf/open/T = get_turf(src)
-	if(istype(T))
-		T.atmos_spawn_air("o2=500;plasma=500;TEMP=1000") //Make it hot and burny for the new slime
+	var/turf/center = get_turf(src)
+	for(var/turf/open/T in spiral_range_turfs(5, center))
+		if(prob(get_dist(center, T) * 15))
+			continue
+		T.IgniteTurf(fire_power * 10) //Make it hot and burny for the new slime
 	var/new_colour = pick("red", "orange")
-	var/mob/living/simple_animal/slime/S = new(T, new_colour)
+	var/mob/living/simple_animal/slime/S = new(center, new_colour)
 	S.rabid = TRUE
 	S.amount_grown = SLIME_EVOLUTION_THRESHOLD
 	S.Evolve()
@@ -300,7 +300,7 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/chosen = pick(candidates)
 		S.key = chosen.key
-		log_game("[key_name(S.key)] was made into a slime by pyroclastic anomaly at [AREACOORD(T)].")
+		log_game("[key_name(S.key)] was made into a slime by pyroclastic anomaly at [AREACOORD(center)].")
 
 /////////////////////
 

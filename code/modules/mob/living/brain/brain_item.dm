@@ -107,6 +107,8 @@
 		C.dna.copy_dna(brainmob.stored_dna)
 		if(HAS_TRAIT(L, TRAIT_BADDNA))
 			brainmob.status_traits[TRAIT_BADDNA] = L.status_traits[TRAIT_BADDNA]
+		if(HAS_TRAIT(L, TRAIT_NOCLONE)) // YOU CAN'T ESCAPE
+			brainmob.status_traits[TRAIT_NOCLONE] = L.status_traits[TRAIT_NOCLONE]
 		var/obj/item/organ/zombie_infection/ZI = L.get_organ_slot(ORGAN_SLOT_ZOMBIE)
 		if(ZI)
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
