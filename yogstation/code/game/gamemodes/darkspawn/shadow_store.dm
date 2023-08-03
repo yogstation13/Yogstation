@@ -30,8 +30,8 @@
 		AL["name"] = initial(selection.name)
 		AL["desc"] = initial(selection.desc)
 		AL["psi_cost"] = initial(selection.psi_cost)
-		AL["lucidity_cost"] = initial(ability.lucidity_price)
-		AL["can_purchase"] = darkspawn.lucidity >= initial(ability.lucidity_price)
+		AL["lucidity_cost"] = initial(selection.lucidity_price)
+		AL["can_purchase"] = darkspawn.lucidity >= initial(selection.lucidity_price)
 
 		upgrades += list(AL)
 
@@ -57,24 +57,24 @@
 	button_icon_state = "psi_web"
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 0
-	var/datum/antag_menu/psi_web/psi_web
+	var/datum/antag_menu/shadow_store/shadow_store
 
 /datum/action/innate/darkspawn/shadow_store/New(our_target)
 	. = ..()
-	if(istype(our_target, /datum/antag_menu/psi_web))
-		psi_web = our_target
+	if(istype(our_target, /datum/antag_menu/shadow_store))
+		shadow_store = our_target
 	else
 		CRASH("psi_web action created with non web.")
 
 /datum/action/innate/darkspawn/shadow_store/Destroy()
-	psi_web = null
+	shadow_store = null
 	return ..()
 
 /datum/action/innate/darkspawn/shadow_store/Activate()
 	if(!darkspawn)
 		return
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
-	psi_web.ui_interact(usr)
+	shadow_store.ui_interact(usr)
 	return TRUE
 
 
@@ -116,13 +116,12 @@
 		return FALSE
 	if(!(edgy.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
 		return FALSE
-	if(edgy.lucidity < cost)
+	if(edgy.lucidity < lucidity_cost)
 		return FALSE
 
 	if(learn_text)
 		to_chat(user, span_velvet(learn_text))
-	edgy.add_upgrade(name)
-	edgy.lucidity -= cost
+	edgy.lucidity -= lucidity_cost
 	activate(user)
 	return TRUE
 
@@ -131,6 +130,7 @@
 	var/datum/antagonist/darkspawn/edgy= user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!edgy)
 		return
+	edgy.add_upgrade(src)
 	if(learned_ability)
 		var/datum/action/innate/darkspawn/action = new learned_ability
 		action.Grant(user)
@@ -140,7 +140,7 @@
 	var/datum/antagonist/darkspawn/edgy= user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!edgy)
 		return
-	edgy.remove_upgrade(name)
+	edgy.remove_upgrade(src)
 	if(learned_ability)
 		var/datum/action/innate/darkspawn/action = new learned_ability
 		action.Remove(user)
