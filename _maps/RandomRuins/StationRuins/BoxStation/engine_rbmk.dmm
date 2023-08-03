@@ -59,6 +59,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cg" = (
+/turf/closed/wall/r_wall,
+/area/space/nearstation)
 "cp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -224,11 +227,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"iG" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
 "iV" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	name = "Waste To Storage"
@@ -495,10 +493,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"qF" = (
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/space/nearstation)
 "qH" = (
 /obj/machinery/light{
 	dir = 1
@@ -534,6 +528,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ri" = (
+/obj/structure/grille,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/space/nearstation)
 "rm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -551,9 +550,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"rK" = (
-/turf/template_noop,
-/area/space/nearstation)
 "rN" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -951,6 +947,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Fp" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "FF" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
@@ -1260,9 +1263,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Nh" = (
-/turf/closed/wall/r_wall,
-/area/space/nearstation)
 "Nm" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -1450,6 +1450,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"RU" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/space/nearstation)
 "Sa" = (
 /obj/structure/table,
 /obj/effect/turf_decal/stripes/line{
@@ -1667,13 +1671,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Zu" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/space/nearstation)
 "ZI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -1784,22 +1781,22 @@ Sr
 Sr
 Sr
 yw
-iG
-iG
-iG
+ri
+ri
+ri
 yw
 Sr
 yw
-iG
-iG
-iG
-iG
-iG
-iG
+ri
+ri
+ri
+ri
+ri
+ri
 Sr
 Sr
-iG
-iG
+ri
+ri
 Sr
 "}
 (5,1,1) = {"
@@ -1812,23 +1809,23 @@ Sr
 Sr
 Sr
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 Sr
 Sr
 Sr
-iG
-Nh
-Nh
-Nh
-Nh
-iG
+ri
+cg
+cg
+cg
+cg
+ri
 yw
 yw
-Nh
-iG
-iG
+cg
+ri
+ri
 "}
 (6,1,1) = {"
 Sr
@@ -1840,23 +1837,23 @@ Sr
 Sr
 Sr
 yw
-iG
-iG
-iG
+ri
+ri
+ri
 yw
 Sr
 yw
-iG
-iG
-iG
-iG
-iG
-iG
+ri
+ri
+ri
+ri
+ri
+ri
 yw
 Sr
 yw
-Nh
-iG
+cg
+ri
 "}
 (7,1,1) = {"
 Sr
@@ -1925,7 +1922,7 @@ CA
 Sr
 yw
 yw
-Zu
+Fp
 yw
 yw
 Sr
@@ -1938,9 +1935,9 @@ Lc
 Lc
 Hi
 yw
-iG
-iG
-iG
+ri
+ri
+ri
 "}
 (10,1,1) = {"
 Sr
@@ -1966,9 +1963,9 @@ bB
 bB
 jY
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (11,1,1) = {"
 ws
@@ -1994,9 +1991,9 @@ Lc
 Lc
 Hi
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (12,1,1) = {"
 dH
@@ -2022,9 +2019,9 @@ bB
 bB
 jY
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (13,1,1) = {"
 dH
@@ -2050,9 +2047,9 @@ yw
 yw
 zY
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (14,1,1) = {"
 dH
@@ -2078,9 +2075,9 @@ bB
 bB
 Kt
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (15,1,1) = {"
 dH
@@ -2106,9 +2103,9 @@ Lc
 Lc
 vl
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (16,1,1) = {"
 ws
@@ -2134,9 +2131,9 @@ bB
 bB
 Kt
 Sr
-iG
-Nh
-iG
+ri
+cg
+ri
 "}
 (17,1,1) = {"
 ws
@@ -2162,9 +2159,9 @@ Lc
 Lc
 vl
 yw
-iG
-iG
-iG
+ri
+ri
+ri
 "}
 (18,1,1) = {"
 ws
@@ -2238,17 +2235,17 @@ KS
 Lu
 kq
 dH
-iG
-iG
-iG
-iG
-iG
-iG
+ri
+ri
+ri
+ri
+ri
+ri
 yw
 Sr
 yw
-Nh
-iG
+cg
+ri
 "}
 (21,1,1) = {"
 dH
@@ -2266,17 +2263,17 @@ Rd
 cA
 Uc
 dH
-Nh
-Nh
-Nh
-Nh
-Nh
-iG
+cg
+cg
+cg
+cg
+cg
+ri
 yw
 yw
-Nh
-iG
-iG
+cg
+ri
+ri
 "}
 (22,1,1) = {"
 dH
@@ -2294,16 +2291,16 @@ Or
 dH
 dH
 dH
-iG
-iG
-iG
-iG
-iG
-iG
-rK
-rK
-iG
-iG
+ri
+ri
+ri
+ri
+ri
+ri
+Sr
+Sr
+ri
+ri
 Sr
 "}
 (23,1,1) = {"
@@ -2378,7 +2375,7 @@ ZS
 UX
 Xk
 WU
-qF
+RU
 Sr
 Sr
 Sr
@@ -2406,7 +2403,7 @@ xA
 Xk
 Xk
 WU
-qF
+RU
 Sr
 Sr
 Sr
