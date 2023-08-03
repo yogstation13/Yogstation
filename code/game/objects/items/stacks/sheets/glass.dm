@@ -355,3 +355,16 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	icon_state = "plasmalarge"
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"
+
+/obj/item/shard/plasma/welder_act(mob/living/user, obj/item/I)
+	if(I.use_tool(src, user, 0, volume=50))
+		var/obj/item/stack/sheet/plasmaglass/NG = new (user.loc)
+		for(var/obj/item/stack/sheet/plasmaglass/G in user.loc)
+			if(G == NG)
+				continue
+			if(G.amount >= G.max_amount)
+				continue
+			G.attackby(NG, user)
+		to_chat(user, span_notice("You add the newly-formed glass to the stack. It now contains [NG.amount] sheet\s."))
+		qdel(src)
+	return TRUE
