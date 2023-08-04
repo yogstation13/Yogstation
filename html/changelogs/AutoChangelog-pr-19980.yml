@@ -1,0 +1,4 @@
+author: " MCterra10, Ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "Plasma glass shards weld into plasma glass, instead of normal glass."
