@@ -104,7 +104,7 @@
 
 /datum/design/dartsyringe
 	name = "Reagent Dart"
-	desc = "A specialized syringe that quickly inject reagent. It can hold up to 15 units."
+	desc = "A specialized syringe that quickly injects reagents. It can hold up to 15 units."
 	id = "dartsyringe"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2500)
@@ -280,7 +280,7 @@
 	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-	
+
 /datum/design/hyposprayspeedupg
 	name = "Hypospray Speed Upgrade"
 	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
@@ -396,7 +396,7 @@
 
 /datum/design/cyberimp_meson
 	name = "Meson Eyes"
-	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!."
+	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!"
 	id = "ci-meson"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -525,7 +525,7 @@
 	build_path = /obj/item/organ/cyberimp/leg/magboot
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-		
+
 /////////////////////////////////////////
 ////////////Regular Implants/////////////
 /////////////////////////////////////////
@@ -650,7 +650,7 @@
 
 /datum/design/cybernetic_ears
 	name = "Cybernetic Ears"
-	desc = "A pair of cybernetic ears"
+	desc = "A pair of cybernetic ears."
 	id = "cybernetic_ears"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -661,7 +661,7 @@
 
 /datum/design/cybernetic_stomach
 	name = "Cybernetic Stomach"
-	desc = "A cybernetic stomach"
+	desc = "A cybernetic stomach."
 	id = "cybernetic_stomach"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -672,7 +672,7 @@
 
 /datum/design/cybernetic_stomach_u
 	name = "Upgraded Cybernetic Stomach"
-	desc = "An upgraded cybernetic stomach"
+	desc = "An upgraded cybernetic stomach."
 	id = "cybernetic_stomach_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -683,7 +683,7 @@
 
 /datum/design/cybernetic_appendix
 	name = "Cybernetic Appendix"
-	desc = "A replacement for those who lost a part of themselfs."
+	desc = "A replacement for those who lost a part of themselves."
 	id = "cybernetic_appendix"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -694,7 +694,7 @@
 
 /datum/design/synthetic_plasmavessel
 	name = "Synthetic Plasma Vessel"
-	desc = "A complex synthetic construct meant to replicate the effects of a plasma vessel"
+	desc = "A complex synthetic construct meant to replicate the effects of a plasma vessel."
 	id = "synthetic_plasmavessel"
 	build_type = PROTOLATHE
 	construction_time = 50
