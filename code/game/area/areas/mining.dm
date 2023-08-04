@@ -181,7 +181,7 @@
 	outdoors = TRUE
 
 /area/icemoon/top_layer/outdoors/unexplored
-	icon_state "unexplored"
+	icon_state = "unexplored"
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
 	map_generator = /datum/map_generator/cave_generator/icemoon/surface
 	
