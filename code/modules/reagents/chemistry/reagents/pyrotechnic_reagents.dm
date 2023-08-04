@@ -36,6 +36,7 @@
 	color = "#FFC8C8"
 	metabolization_rate = 4
 	taste_description = "burning"
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
@@ -137,6 +138,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
@@ -160,6 +162,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
@@ -277,13 +280,18 @@
 		else if(istype(foam))
 			foam.lifetime = initial(foam.lifetime) //reduce object churn a little bit when using smoke by keeping existing foam alive a bit longer
 
-	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
-	if(hotspot && !isspaceturf(exposed_turf) && exposed_turf.air)
+	// If there's a hotspot or turf fire, get rid of them and make the air colder
+	var/obj/effect/hotspot/hotspot = exposed_turf.active_hotspot
+	var/obj/effect/abstract/turf_fire/turf_fire = exposed_turf.turf_fire
+	if((hotspot || turf_fire) && !isspaceturf(exposed_turf) && exposed_turf.air)
 		var/datum/gas_mixture/air = exposed_turf.air
 		if(air.return_temperature() > T20C)
 			air.set_temperature(max(air.return_temperature()/2, T20C))
 		air.react(src)
-		qdel(hotspot)
+		if(hotspot)
+			qdel(hotspot)
+		if(turf_fire)
+			qdel(turf_fire)
 
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()

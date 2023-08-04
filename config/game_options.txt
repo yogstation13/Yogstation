@@ -332,7 +332,7 @@ ALLOW_AI_MULTICAM
 
 ## Secborg ###
 ## Uncomment to prevent the security cyborg module from being chosen
-#DISABLE_SECBORG
+DISABLE_SECBORG
 
 ## Peacekeeper Borg ###
 ## Uncomment to prevent the peacekeeper cyborg module from being chosen
@@ -688,5 +688,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any.
 ENGINE_TYPE 3

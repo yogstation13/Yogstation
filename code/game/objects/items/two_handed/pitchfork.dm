@@ -27,6 +27,10 @@
 		icon_wielded = "[base_icon_state]1", \
 	)
 
+/obj/item/pitchfork/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state]0"
+
 /obj/item/pitchfork/trident
 	icon_state = "trident"
 	name = "trident"

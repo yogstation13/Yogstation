@@ -154,7 +154,7 @@
 		/datum/reagent/consumable/sugar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotcrossbun
-	subcategory = CAT_BREAD
+	category = CAT_BREAD
 
 
 /obj/item/reagent_containers/food/snacks/store/cake/brioche
@@ -178,7 +178,7 @@
 		/datum/reagent/consumable/sugar = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/cake/brioche
-	subcategory = CAT_CAKE
+	category = CAT_CAKE
 
 /obj/item/reagent_containers/food/snacks/scotchegg
 	name = "scotch egg"
@@ -198,7 +198,7 @@
 		/obj/item/reagent_containers/food/snacks/meatball = 1  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/scotchegg
-	subcategory = CAT_EGG
+	category = CAT_EGG
 
 /obj/item/reagent_containers/food/snacks/soup/mammi
 	name = "Mammi"
@@ -215,7 +215,7 @@
 		/datum/reagent/consumable/milk = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/soup/mammi
-	subcategory = CAT_SOUP
+	category = CAT_SOUP
 
 /obj/item/reagent_containers/food/snacks/chocolatebunny
 	name = "chocolate bunny"
@@ -232,4 +232,4 @@
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocolatebunny
-	subcategory = CAT_MISCFOOD
+	category = CAT_MISCFOOD

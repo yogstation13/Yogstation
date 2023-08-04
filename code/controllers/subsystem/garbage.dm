@@ -80,6 +80,17 @@ SUBSYSTEM_DEF(garbage)
 	msg += "|F:[fail_counts.Join(",")]"
 	return ..()
 
+/datum/controller/subsystem/garbage/get_metrics()
+	. = ..()
+	for(var/i in 1 to GC_QUEUE_COUNT)
+		.["queue_items_[i]"] = length(queues[i])
+		.["queue_passed_[i]"] = pass_counts[i]
+		.["queue_failed_[i]"] = fail_counts[i]
+	.["delslasttick"] = delslasttick
+	.["gcedlasttick"] = gcedlasttick
+	.["totaldels"] = totaldels
+	.["totalgcs"] = totalgcs
+
 /datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
 	var/list/dellog = list()

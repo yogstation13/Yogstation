@@ -198,6 +198,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/atmos_thermal
+	name = "Atmospheric thermal imaging goggles"
+	desc = "Used by Atmospheric Technician to determine the temperature of the air"
+	id = "atmos_thermal"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/plasma = 100)
+	build_path = /obj/item/clothing/glasses/meson/engine/atmos_imaging
+	category = list("Equipment")
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design/nvgmesons
 	name = "Night Vision Optical Meson Scanners"
 	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the HUD display."
