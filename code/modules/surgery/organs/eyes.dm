@@ -98,7 +98,7 @@
 	var/list/overlays = list(eye_overlay)
 
 	if((EYECOLOR in parent.dna.species.species_traits))
-		eye_overlay.color = "#" + eye_color
+		eye_overlay.color = eye_color
 
 	// Cry emote overlay
 	if (HAS_TRAIT(parent, TRAIT_CRYING)) // Caused by the *cry emote

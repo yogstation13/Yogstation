@@ -72,6 +72,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/metabolizing = FALSE
 	/// is it bad for you? Currently only used for borghypo. C2s and Toxins have it TRUE by default.
 	var/harmful = FALSE
+	/// The default reagent container for the reagent. Currently only used for crafting icon/displays.
+	var/obj/item/reagent_containers/default_container = /obj/item/reagent_containers/glass/bottle
+
 	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references

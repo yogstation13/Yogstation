@@ -81,7 +81,7 @@
 	var/list/compiled_list = list()
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-		if(fingerprints[md5(H.dna.uni_identity)])
+		if(fingerprints[md5(H.dna.unique_identity)])
 			compiled_list |= H
 
 	if(compiled_list.len == 0)
