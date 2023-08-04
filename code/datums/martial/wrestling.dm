@@ -331,7 +331,7 @@
 		A.visible_message("<span class = 'danger'><b>[A] headbutts [D]!</b></span>")
 		D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
 		playsound(A.loc, "swing_hit", 50, 1)
-		D.adjust_confusion_up_to(2 SECONDS)
+		D.adjust_confusion_up_to(2 SECONDS, 2 SECONDS)
 		D.Knockdown(2 SECONDS)
 	log_combat(A, D, "headbutted")
 
