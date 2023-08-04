@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "A new tech node called \"Cyborg Upgrades: Advanced Utility\" costing 5000 points."
+  - rscadd: "A new cyborg upgrade is available for engineering cyborgs to replace most of their basic tools with an advanced version of them."
+  - rscadd: "A new cyborg upgrade is available for engineering cyborgs to gain an ATMOS holofan projector."
