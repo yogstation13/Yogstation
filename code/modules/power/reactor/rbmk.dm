@@ -11,7 +11,7 @@
 
 #define RBMK_HEAT_CAPACITY 200000 //How much thermal energy it takes to cool the reactor
 #define RBMK_ROD_HEAT_CAPACITY 40000 //How much thermal energy it takes to cool each reactor rod
-#define RBMK_HEAT_FACTOR (10 * (NUM_E - 1) / (NUM_E**2)) //How much heat from K
+#define RBMK_HEAT_FACTOR (10 / (NUM_E**2)) //How much heat from K
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 
@@ -443,7 +443,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(prob(power * K))
 		fire_nuclear_particle()
 	if(active && has_fuel())
-		temperature += RBMK_HEAT_FACTOR * delta_time * has_fuel() * ((NUM_E**K) - 1) / (NUM_E - 1) // heating from K has to be exponential to make higher K more dangerous
+		temperature += RBMK_HEAT_FACTOR * delta_time * has_fuel() * ((NUM_E**K) - 1) // heating from K has to be exponential to make higher K more dangerous
 
 	// Cooling time!
 	var/input_moles = coolant_input.total_moles() //Firstly. Do we have enough moles of coolant?
