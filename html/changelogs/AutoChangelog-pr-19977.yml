@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Modular PDAs now can be properly used for accessing a mech's panel (keycodes/maint/etc)."
