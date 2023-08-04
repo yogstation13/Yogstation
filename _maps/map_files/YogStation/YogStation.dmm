@@ -50305,14 +50305,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
-"pOr" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 29;
-	pixel_y = 3
-	},
-/turf/closed/wall,
-/area/security/checkpoint/supply)
 "pOw" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/port)
@@ -51661,6 +51653,14 @@
 /obj/effect/turf_decal/tile,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"qmG" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 29;
+	pixel_y = 3
+	},
+/turf/closed/wall,
+/area/security/checkpoint/supply)
 "qnm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -51871,6 +51871,26 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"qqb" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen/red,
+/obj/item/stamp{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clipboard{
+	pixel_x = 5;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "qqh" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -57474,26 +57494,6 @@
 "sAV" = (
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
-"sBm" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen/red,
-/obj/item/stamp{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clipboard{
-	pixel_x = 5;
-	pixel_y = -3
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "sBp" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = -30
@@ -95720,7 +95720,7 @@ kNE
 fUQ
 vZm
 bjj
-sBm
+qqb
 bbR
 pfK
 pPs
@@ -97268,7 +97268,7 @@ vpX
 ilc
 rpC
 wem
-pOr
+qmG
 cdM
 bRh
 ygy
