@@ -174,7 +174,6 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambience_index = AMBIENCE_MINING
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/icemoon/top_layer/outdoors
 	name = "Icemoon Wastes"
@@ -183,7 +182,7 @@
 /area/icemoon/top_layer/outdoors/unexplored
 	icon_state = "unexplored"
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
-	map_generator = /datum/map_generator/cave_generator/icemoon/surface
+	map_generator = /datum/map_generator/cave_generator/icemoon/top_layer
 	
 /area/icemoon/top_layer/outdoors/unexplored/danger
 	icon_state = "danger"	

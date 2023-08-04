@@ -211,6 +211,8 @@
 /turf/open/floor/plating/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
+/turf/open/floor/plating/ice/icemoon/top_layer
+	light_range = 2
 
 /turf/open/floor/plating/snowed
 	name = "snowed-over plating"

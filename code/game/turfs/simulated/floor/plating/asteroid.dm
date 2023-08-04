@@ -170,6 +170,9 @@
 	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer
+	light_range = 2
+
 /turf/open/lava/plasma/ice_moon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	baseturfs = /turf/open/lava/plasma/ice_moon
@@ -203,6 +206,9 @@
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
+
+/turf/open/floor/plating/asteroid/snow/ice/icemoon/top_layer
+	light_range = 2
 
 /turf/open/floor/plating/asteroid/snow/ice/burn_tile()
 	return FALSE
