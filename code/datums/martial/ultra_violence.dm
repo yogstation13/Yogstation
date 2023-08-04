@@ -125,10 +125,10 @@
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
 	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = locate() in A // check if they already had one
-	if(gun && style < 8) // can't dual wield unless you're at the max style level
+	if(gun)
 		to_chat(A, span_notice("You reload your revolver."))
 		gun.magazine.top_off()
-	else
+	if(style >= 8 || !gun) // can dual wield at the max style level
 		gun = new(A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 		to_chat(A, span_notice("You whip out your revolver."))
 		gun.gun_owner = A
