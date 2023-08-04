@@ -237,3 +237,6 @@
 /area/icemoon/underground/explored
 	name = "Icemoon Underground"
 	area_flags = NONE
+
+/area/icemoon/underground/laborcamp
+	name = "Icemoon Labor Camp"
