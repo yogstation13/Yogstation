@@ -894,7 +894,7 @@
 	dir = 1;
 	pixel_y = 1
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "aoP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1578,7 +1578,7 @@
 "azn" = (
 /obj/structure/grille/broken,
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "azD" = (
 /obj/machinery/holopad,
@@ -2238,7 +2238,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "aKa" = (
 /obj/effect/turf_decal/stripes/line{
@@ -3052,7 +3052,7 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "aUQ" = (
 /obj/structure/table,
@@ -4158,7 +4158,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/atmos/distro)
 "bkq" = (
 /obj/structure/cable{
@@ -5372,7 +5372,7 @@
 /obj/structure/grille,
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "bFI" = (
 /obj/structure/sign/poster/official/random{
@@ -6465,7 +6465,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "bWS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -8320,7 +8320,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "cAv" = (
 /obj/structure/sign/poster/official/random{
@@ -10313,7 +10313,7 @@
 /area/maintenance/starboard)
 "dfv" = (
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/science/mixing/chamber)
 "dfy" = (
 /turf/open/floor/plasteel,
@@ -11342,7 +11342,7 @@
 /area/science/research)
 "dvs" = (
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/aisat)
 "dvB" = (
 /obj/machinery/door/airlock/security{
@@ -11629,7 +11629,7 @@
 	layer = 2.9
 	},
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "dyA" = (
 /obj/effect/turf_decal/bot_white/right,
@@ -12428,7 +12428,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "dLH" = (
 /obj/structure/sign/warning/pods{
@@ -13271,7 +13271,7 @@
 "eao" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/structure/lattice/catwalk,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "ear" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -14557,7 +14557,7 @@
 	dir = 1;
 	pixel_y = 1
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "euT" = (
 /obj/structure/table,
@@ -14609,7 +14609,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "evQ" = (
 /obj/machinery/door/airlock/glass{
@@ -14996,7 +14996,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "eCt" = (
 /obj/item/flashlight{
@@ -15650,9 +15650,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"eNg" = (
-/turf/open/openspace/icemoon,
-/area/icemoon/top_layer/outdoors)
 "eNl" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
@@ -16986,7 +16983,7 @@
 	network = list("turbine");
 	use_power = 0
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "flO" = (
 /obj/item/reagent_containers/dropper,
@@ -17376,7 +17373,7 @@
 	dir = 8
 	},
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "fra" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -19566,7 +19563,7 @@
 /area/mine/maintenance)
 "fWS" = (
 /obj/item/reagent_containers/food/snacks/egg/yellow,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "fXe" = (
 /obj/machinery/airalarm{
@@ -21164,7 +21161,7 @@
 /obj/structure/transit_tube/curved{
 	dir = 8
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "gvW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -21958,7 +21955,7 @@
 	name = "port bay 2";
 	width = 5
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "gGO" = (
 /obj/structure/closet/secure_closet/atmospherics,
@@ -23348,7 +23345,7 @@
 	dir = 1;
 	layer = 2.9
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "gXr" = (
 /obj/structure/cable{
@@ -24051,7 +24048,7 @@
 	dir = 1;
 	name = "toxins space injector"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/science/mixing/chamber)
 "hjh" = (
 /obj/effect/turf_decal/stripes/line{
@@ -24352,7 +24349,7 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 9
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "hoF" = (
 /obj/structure/lattice/catwalk,
@@ -24363,7 +24360,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "hoH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -25870,7 +25867,7 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "hKZ" = (
 /obj/structure/disposalpipe/segment,
@@ -26032,7 +26029,7 @@
 /obj/structure/transit_tube/curved{
 	dir = 4
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "hNU" = (
 /obj/structure/sign/warning/biohazard,
@@ -27009,7 +27006,7 @@
 	name = "SS13: Auxiliary Dock, Station-Port";
 	width = 35
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "ihd" = (
 /obj/machinery/door/poddoor/incinerator_atmos_main,
@@ -27406,7 +27403,7 @@
 "iny" = (
 /obj/structure/lattice,
 /obj/structure/girder/reinforced,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "inz" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -27904,7 +27901,7 @@
 	name = "Cargo Bay";
 	width = 12
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "iuj" = (
 /obj/structure/bodycontainer/morgue,
@@ -29100,6 +29097,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"iJR" = (
+/turf/open/openspace/icemoon,
+/area/icemoon/surface/outdoors)
 "iJT" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -30934,7 +30934,7 @@
 	name = "MetaStation emergency evac bay";
 	width = 29
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "jka" = (
 /obj/machinery/computer/card/minor/hos{
@@ -31119,7 +31119,7 @@
 	dir = 1;
 	pixel_y = 1
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "jnX" = (
 /obj/structure/disposalpipe/segment{
@@ -31796,7 +31796,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
 	width = 3
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "jwm" = (
 /obj/machinery/camera{
@@ -32140,7 +32140,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
 	width = 3
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "jCp" = (
 /obj/effect/turf_decal/stripes/line{
@@ -32382,7 +32382,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "jGf" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -33765,7 +33765,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "kaC" = (
 /obj/item/stack/rods/fifty,
@@ -34215,7 +34215,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod;
 	width = 3
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "kgJ" = (
 /obj/item/book/manual/wiki/infections{
@@ -35252,7 +35252,7 @@
 "kwD" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "kxo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -36477,7 +36477,7 @@
 	dir = 1;
 	layer = 2.9
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "kRm" = (
 /obj/machinery/camera{
@@ -36780,7 +36780,7 @@
 /area/storage/primary)
 "kXp" = (
 /obj/structure/transit_tube/diagonal/topleft,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "kXA" = (
 /obj/structure/cable/yellow{
@@ -37048,7 +37048,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lcZ" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -38053,7 +38053,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lrd" = (
 /obj/structure/cable{
@@ -38180,7 +38180,7 @@
 	c_tag = "Armory - External";
 	dir = 1
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lue" = (
 /obj/effect/turf_decal/stripes/line{
@@ -38428,7 +38428,7 @@
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lwZ" = (
 /obj/machinery/camera{
@@ -38741,7 +38741,7 @@
 /area/maintenance/starboard/aft)
 "lCL" = (
 /obj/structure/grille/broken,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lCR" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
@@ -38987,7 +38987,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
 	width = 3
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lHg" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
@@ -39588,7 +39588,7 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "lPs" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
@@ -41182,7 +41182,7 @@
 /area/hallway/primary/central)
 "mkm" = (
 /obj/structure/window/reinforced,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "mkr" = (
 /obj/effect/turf_decal/stripes/line{
@@ -42283,7 +42283,7 @@
 "mBK" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "mBY" = (
 /obj/structure/window/reinforced{
@@ -43383,7 +43383,7 @@
 /obj/structure/transit_tube/curved/flipped{
 	dir = 8
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "mQy" = (
 /obj/effect/turf_decal/stripes/end,
@@ -43878,7 +43878,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "mWs" = (
 /obj/structure/table/wood,
@@ -44199,7 +44199,7 @@
 "naz" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube/crossing/horizontal,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "naM" = (
 /obj/structure/table,
@@ -44265,7 +44265,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "nbf" = (
 /obj/structure/table,
@@ -47920,7 +47920,7 @@
 "ofi" = (
 /obj/structure/window/reinforced,
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "ofm" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
@@ -48727,6 +48727,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"orI" = (
+/turf/open/openspace/icemoon,
+/area/icemoon/top_layer/outdoors)
 "orP" = (
 /obj/machinery/flasher{
 	id = "PCell 3";
@@ -49230,7 +49233,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "ozK" = (
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "ozS" = (
 /obj/structure/window/reinforced{
@@ -49336,7 +49339,7 @@
 	id = "pod_lavaland1";
 	name = "lavaland"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "oAO" = (
 /obj/structure/extinguisher_cabinet{
@@ -49564,7 +49567,7 @@
 	pixel_y = 1
 	},
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "oFf" = (
 /obj/structure/cable/yellow{
@@ -51138,7 +51141,7 @@
 	id = "pod_lavaland2";
 	name = "lavaland"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "phE" = (
 /obj/structure/cable/yellow{
@@ -51593,7 +51596,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "pnl" = (
 /obj/structure/cable/yellow{
@@ -51673,7 +51676,7 @@
 /area/engine/atmos/hfr)
 "pnX" = (
 /obj/structure/lattice/catwalk,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "pof" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -51902,7 +51905,7 @@
 	id = "atmos";
 	name = "atmos blast door"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "prJ" = (
 /obj/structure/disposalpipe/segment{
@@ -52604,7 +52607,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "pBI" = (
 /obj/structure/table/wood,
@@ -52928,7 +52931,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/atmos/distro)
 "pHB" = (
 /obj/structure/window/reinforced{
@@ -55047,7 +55050,7 @@
 /area/bridge/showroom/corporate)
 "qpW" = (
 /obj/structure/transit_tube/diagonal,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "qpZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -55515,7 +55518,7 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "qwd" = (
 /obj/item/stack/sheet/cardboard,
@@ -55751,7 +55754,7 @@
 "qzF" = (
 /obj/structure/lattice/catwalk,
 /obj/item/wrench,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "qzL" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
@@ -57067,7 +57070,7 @@
 	id = "pod_lavaland4";
 	name = "lavaland"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "qSZ" = (
 /obj/item/stack/packageWrap,
@@ -57301,7 +57304,7 @@
 "qWq" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "qWv" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
@@ -58548,7 +58551,7 @@
 "rtS" = (
 /obj/structure/grille,
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "rtT" = (
 /obj/effect/turf_decal/stripes/line,
@@ -60074,7 +60077,7 @@
 /area/science/lab)
 "rRU" = (
 /obj/effect/landmark/stationroom/box/testingsite,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "rSe" = (
 /obj/structure/cable/yellow{
@@ -60729,7 +60732,7 @@
 /obj/structure/sign/warning/biohazard{
 	pixel_x = -32
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "saS" = (
 /obj/machinery/power/smes/fullycharged,
@@ -61829,7 +61832,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "stM" = (
 /obj/structure/extinguisher_cabinet{
@@ -63497,7 +63500,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "sRs" = (
 /obj/machinery/door/airlock/maintenance{
@@ -64335,7 +64338,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "tdn" = (
 /obj/machinery/requests_console{
@@ -65151,7 +65154,7 @@
 	},
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "tqy" = (
 /obj/effect/turf_decal/stripes/line{
@@ -65845,7 +65848,7 @@
 	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "tCs" = (
 /obj/effect/spawner/lootdrop/tanks/fuelonly/midchance,
@@ -67669,7 +67672,7 @@
 /area/crew_quarters/toilet/restrooms)
 "ueX" = (
 /obj/structure/lattice,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "ufb" = (
 /obj/structure/disposalpipe/segment{
@@ -68354,7 +68357,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "unV" = (
 /obj/structure/cable/yellow{
@@ -68584,9 +68587,6 @@
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"uqN" = (
-/turf/open/openspace/icemoon,
-/area/icemoon/surface/outdoors)
 "uqT" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -69073,7 +69073,7 @@
 "uyn" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/aisat)
 "uyo" = (
 /obj/machinery/door/morgue{
@@ -70225,7 +70225,7 @@
 "uOd" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "uOh" = (
 /obj/structure/cable/yellow{
@@ -70481,7 +70481,7 @@
 "uRF" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "uRV" = (
 /obj/structure/cable/yellow{
@@ -70593,7 +70593,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/science/xenobiology)
 "uTS" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -71586,7 +71586,7 @@
 "vkq" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "vkw" = (
 /obj/machinery/firealarm{
@@ -71791,7 +71791,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "vnE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -74362,7 +74362,7 @@
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "vZr" = (
 /obj/structure/disposalpipe/segment{
@@ -74439,7 +74439,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/atmos/distro)
 "waM" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -74836,7 +74836,7 @@
 "wgw" = (
 /obj/structure/grille,
 /obj/structure/grille,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "wgB" = (
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -75457,7 +75457,7 @@
 /area/engine/foyer)
 "wot" = (
 /obj/structure/fans/tiny/invisible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "woy" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -75550,7 +75550,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "wpY" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
@@ -75936,7 +75936,7 @@
 /area/security/warden)
 "wtU" = (
 /obj/structure/grille,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "wtY" = (
 /obj/structure/table/wood,
@@ -78279,7 +78279,7 @@
 	dir = 8
 	},
 /obj/structure/lattice/catwalk,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "xdQ" = (
 /obj/structure/window/reinforced{
@@ -78892,7 +78892,7 @@
 	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "xmI" = (
 /obj/structure/sign/departments/examroom{
@@ -79616,7 +79616,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/atmos/distro)
 "xwk" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -79948,7 +79948,7 @@
 	id = "pod_lavaland3";
 	name = "lavaland"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "xzq" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -80080,7 +80080,7 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "xAM" = (
 /obj/structure/cable/yellow{
@@ -80147,7 +80147,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/top_layer/outdoors)
 "xBE" = (
 /obj/docking_port/stationary{
@@ -80176,7 +80176,7 @@
 	id = "atmos";
 	name = "atmos blast door"
 	},
-/turf/open/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/atmos/distro)
 "xBT" = (
 /obj/structure/cable/yellow{
@@ -99171,7 +99171,7 @@ tRhtRhtRh
 tRhtRhtRh
 tRhtRhtRh
 tRhtRhtRh
-eNgtRhtRh
+orItRhtRh
 tRhtRhtRh
 tRhtRhtRh
 tRhtRhtRh
@@ -109614,7 +109614,7 @@ oVpoVpoVp
 oVpoVpoVp
 wMiwMiwMi
 wMiwMiwMi
-wMiuqNwMi
+wMiiJRwMi
 wMiwMiwMi
 wMiwMiwMi
 wMiwMiwMi
