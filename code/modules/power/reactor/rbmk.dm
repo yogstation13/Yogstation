@@ -30,6 +30,8 @@
 #define RBMK_CONTROL_FACTOR 250 // How effective control-type moderators are
 
 
+/// Moderator effects, must be added to the moderator input for them to do anything
+
 // Fuel types: increases power, at the cost of making K harder to control
 #define PLASMA_FUEL_POWER 1 // baseline fuel
 #define TRITIUM_FUEL_POWER 10 // woah there
@@ -56,39 +58,6 @@
 #define TRITIUM_RAD_MOD 0.2 // fuck that's a lot
 #define ANTINOBLIUM_RAD_MOD 10 // AAAAAAAAAAAAAAAAAAAA
 
-//Reference: Heaters go up to 500K.
-//Hot plasmaburn: 14164.95 C.
-
-/**
-What is this?
-Moderators list (Not gonna keep this accurate forever):
-Fuel Type:
-Oxygen: Power production multiplier. Allows you to run a low plasma, high oxy mix, and still get a lot of power.
-Plasma: Power production gas. More plasma -> more power, but it enriches your fuel and makes the reactor much, much harder to control.
-Tritium: Extremely efficient power production gas. Will cause chernobyl if used improperly.
-Moderation Type:
-N2: Helps you regain control of the reaction by increasing control rod effectiveness, will massively boost the rad production of the reactor.
-CO2: Super effective shutdown gas for runaway reactions. MASSIVE RADIATION PENALTY!
-Pluoxium: Same as N2, but no cancer-rads!
-Permeability Type:
-BZ: Increases your reactor's ability to transfer its heat to the coolant, thus letting you cool it down faster (but your output will get hotter)
-Water Vapour: More efficient permeability modifier
-Hyper Noblium: Extremely efficient permeability increase. (10x as efficient as bz)
-Depletion type:
-Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of sabotage.
-Sabotage:
-Meltdown:
-Flood reactor moderator with plasma, they won't be able to mitigate the reaction with control rods.
-Shut off coolant entirely. Raise control rods.
-Swap all fuel out with spent fuel, as it's way stronger.
-Blowout:
-Shut off exit valve for quick overpressure.
-Cause a pipefire in the coolant line (LETHAL).
-Tack heater onto coolant line (can also cause straight meltdown)
-Tips:
-Be careful to not exhaust your plasma supply. I recommend you DON'T max out the moderator input when youre running plasma + o2, or you're at a tangible risk of running out of those gasses from atmos.
-The reactor CHEWS through moderator. It does not do this slowly. Be very careful with that!
-*/
 
 //Remember kids. If the reactor itself is not physically powered by an APC, it cannot shove coolant in!
 
@@ -516,7 +485,26 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //Method to handle sound effects, reactor warnings, all that jazz.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/handle_alerts(delta_time)
 	var/alert = FALSE //If we have an alert condition, we'd best let people know.
-	//First alert condition: Overheat
+	//First alert condition: Overpressurized (the more lethal one), has to be checked first so meltdown doesn't override it
+	if(pressure >= RBMK_PRESSURE_CRITICAL)
+		alert = TRUE
+		if(!has_hit_emergency)
+			has_hit_emergency = TRUE
+			radio.talk_into(src, "WARNING!! REACTOR CORE OVERPRESSURIZED!! BLOWOUT IMMINENT!!", RADIO_CHANNEL_ENGINEERING)
+			playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
+			investigate_log("Reactor reaching critical pressure at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
+			message_admins("Reactor reaching critical pressure at [ADMIN_VERBOSEJMP(src)]")
+		shake_animation(0.5)
+		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
+		var/turf/T = get_turf(src)
+		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
+		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/60) * delta_time	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
+		vessel_integrity -= pressure_damage
+		if(vessel_integrity <= pressure_damage) //It wouldn't be able to tank another hit.
+			investigate_log("Reactor blowout at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
+			blowout()
+			return
+	//Second alert condition: Overheat
 	if(temperature >= RBMK_TEMPERATURE_CRITICAL)
 		alert = TRUE
 		if(!has_hit_emergency)
@@ -540,25 +528,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		color = COLOR_CYAN
 	else
 		color = null
-	//Second alert condition: Overpressurized (the more lethal one)
-	if(pressure >= RBMK_PRESSURE_CRITICAL)
-		alert = TRUE
-		if(!has_hit_emergency)
-			has_hit_emergency = TRUE
-			radio.talk_into(src, "WARNING!! REACTOR CORE OVERPRESSURIZED!! BLOWOUT IMMINENT!!", RADIO_CHANNEL_ENGINEERING)
-			playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
-			investigate_log("Reactor reaching critical pressure at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
-			message_admins("Reactor reaching critical pressure at [ADMIN_VERBOSEJMP(src)]")
-		shake_animation(0.5)
-		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
-		var/turf/T = get_turf(src)
-		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
-		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/60) * delta_time	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
-		vessel_integrity -= pressure_damage
-		if(vessel_integrity <= pressure_damage) //It wouldn't be able to tank another hit.
-			investigate_log("Reactor blowout at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
-			blowout()
-			return
 	if(warning)
 		if(!alert) //Congrats! You stopped the meltdown / blowout.
 			stop_relay(CHANNEL_REACTOR_ALERT)
@@ -632,6 +601,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
 			if(is_station_level(WS.z)) //Begin the SLUDGING
+				WS.range *= 3
 				WS.fire()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon(updates=ALL)
