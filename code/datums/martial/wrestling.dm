@@ -192,7 +192,7 @@
 		if (T && isturf(T))
 			if (!D.stat)
 				D.emote("scream")
-			D.throw_at(T, 10, 4, A, TRUE, TRUE, callback = CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, Paralyze), 20))
+			D.throw_at(T, 10, 4, A, TRUE, TRUE, callback = CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, Knockdown), 2 SECONDS))
 	log_combat(A, D, "has thrown with wrestling")
 	return 0
 
@@ -289,7 +289,7 @@
 		var/bodyslam_damage = A.get_punchdamagehigh() * 1.5 + 5 //base damage of the slam, 20
 		if (!D.stat)
 			D.emote("scream")
-			D.Paralyze(40)
+			D.Knockdown(4 SECONDS)
 
 			switch(rand(1,3))
 				if (2)
@@ -331,7 +331,8 @@
 		A.visible_message("<span class = 'danger'><b>[A] headbutts [D]!</b></span>")
 		D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
 		playsound(A.loc, "swing_hit", 50, 1)
-		D.Unconscious(20)
+		D.adjust_confusion_up_to(2 SECONDS)
+		D.Knockdown(2 SECONDS)
 	log_combat(A, D, "headbutted")
 
 /datum/martial_art/wrestling/proc/kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -347,7 +348,7 @@
 
 	var/turf/T = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 	if (T && isturf(T))
-		D.Paralyze(20)
+		D.Knockdown(2 SECONDS)
 		D.throw_at(T, 3, 2)
 	log_combat(A, D, "roundhouse-kicked")
 
@@ -386,7 +387,7 @@
 			if (falling == 1)
 				A.visible_message("<span class = 'danger'><B>...and dives head-first into the ground, ouch!</b></span>")
 				A.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
-				A.Paralyze(60)
+				A.Knockdown(6 SECONDS)
 			to_chat(A, "[D] is too far away!")
 			return 0
 
@@ -416,7 +417,7 @@
 		else
 			D.adjustBruteLoss(legdrop_damage)
 
-		D.Paralyze(40)
+		D.Knockdown(4 SECONDS)
 
 		A.pixel_y = 0
 
