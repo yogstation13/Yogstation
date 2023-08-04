@@ -11,7 +11,7 @@
 
 #define RBMK_HEAT_CAPACITY 200000 //How much thermal energy it takes to cool the reactor
 #define RBMK_ROD_HEAT_CAPACITY 40000 //How much thermal energy it takes to cool each reactor rod
-#define RBMK_HEAT_FACTOR 5 //How much heat from K
+#define RBMK_HEAT_FACTOR (10 * (NUM_E - 1) / (NUM_E**2)) //How much heat from K
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 
@@ -21,7 +21,7 @@
 #define RBMK_PRESSURE_CRITICAL 10000
 
 #define RBMK_MAX_CRITICALITY 5 //No more criticality than N for now.
-#define RBMK_CRITICALITY_POWER_FACTOR 1000 // affects criticality from high power
+#define RBMK_CRITICALITY_POWER_FACTOR 3000 // affects criticality from high power
 
 #define RBMK_MAX_FUEL_RODS 5 //Maximum number of fuel rods that can fit in the reactor
 
@@ -241,17 +241,17 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/welder_act(mob/living/user, obj/item/I)
 	if(slagged)
 		to_chat(user, span_notice("The reactor has been critically damaged"))
-		return FALSE
+		return TRUE
 	if(temperature > RBMK_TEMPERATURE_MINIMUM)
 		to_chat(user, span_notice("You can't repair [src] while it is running at above [RBMK_TEMPERATURE_MINIMUM] kelvin."))
-		return FALSE
+		return TRUE
 	if(vessel_integrity > 0.5 * initial(vessel_integrity))
 		to_chat(user, span_notice("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
-		return FALSE
+		return TRUE
 	if(I.use_tool(src, user, 0, volume=40))
 		if(vessel_integrity > 0.5 * initial(vessel_integrity))
 			to_chat(user, span_notice("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
-			return FALSE
+			return TRUE
 		vessel_integrity += 20
 		to_chat(user, span_notice("You weld together some of [src]'s cracks. This'll do for now."))
 	return TRUE
@@ -442,8 +442,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	K = clamp(K, 0, RBMK_MAX_CRITICALITY)
 	if(prob(power * K))
 		fire_nuclear_particle()
-	if(has_fuel())
-		temperature += RBMK_HEAT_FACTOR  * K * delta_time * has_fuel()
+	if(active && has_fuel())
+		temperature += RBMK_HEAT_FACTOR * delta_time * has_fuel() * ((NUM_E**K) - 1) / (NUM_E - 1) // heating from K has to be exponential to make higher K more dangerous
 
 	// Cooling time!
 	var/input_moles = coolant_input.total_moles() //Firstly. Do we have enough moles of coolant?
@@ -749,7 +749,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if("input")
 			var/input = text2num(params["target"])
 			reactor.last_user = usr
-			reactor.desired_k = clamp(input, 0, RBMK_MAX_CRITICALITY)
+			reactor.desired_k = reactor.active ? clamp(input, 0, RBMK_MAX_CRITICALITY) : 0
 		if("eject")
 			if(reactor?.temperature > RBMK_TEMPERATURE_MINIMUM)
 				return

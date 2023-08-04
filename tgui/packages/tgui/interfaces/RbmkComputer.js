@@ -118,8 +118,8 @@ export const RbmkStatsSection = (props, context) => {
           data={tempCoreData}
           rangeX={[0, tempCoreData.length - 1]}
           rangeY={[0, Math.max(1800, ...data.tempCoreData)]}
-          strokeColor="rgba(255, 129, 25 , 1)"
-          fillColor="rgba(255, 129, 25 , 0.1)" />
+          strokeColor="rgba(255, 0, 0 , 1)"
+          fillColor="rgba(255, 0, 0 , 0.1)" />
         <Chart.Line
           fillPositionedParent
           data={tempInputData}
@@ -132,8 +132,8 @@ export const RbmkStatsSection = (props, context) => {
           data={tempOutputData}
           rangeX={[0, tempOutputData.length - 1]}
           rangeY={[0, Math.max(1800, ...data.tempOutputData)]}
-          strokeColor="rgba(255, 0, 0 , 1)"
-          fillColor="rgba(255, 0, 0 , 0.1)" />
+          strokeColor="rgba(255, 129, 25 , 1)"
+          fillColor="rgba(255, 129, 25 , 0.1)" />
       </Section>
     </Box>
   );
