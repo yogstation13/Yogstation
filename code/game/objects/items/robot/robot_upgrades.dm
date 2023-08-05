@@ -539,7 +539,7 @@
 	deactivate_sr()
 
 /obj/item/borg/upgrade/selfrepair/ui_action_click()
-	if(on)
+	if(!on)
 		to_chat(toggle_action.owner, span_notice("You activate the self-repair module."))
 		activate_sr()
 	else
@@ -574,7 +574,7 @@
 		to_chat(cyborg, span_warning("Self-repair module deactivated. Please, insert the power cell."))
 		deactivate_sr()
 		return
-	if(cyborg.cell.charge < powercost * 2)
+	if(cyborg.cell.charge < powercost * 5)
 		to_chat(cyborg, span_warning("Self-repair module deactivated. Please recharge."))
 		deactivate_sr()
 		return
