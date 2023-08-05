@@ -552,6 +552,8 @@
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
+// The reason why spawning a `silicon/robot/modules/service` or forcing a cyborg into ..
+// .. Service doesn't work as it prompts the cyborg into selecting their initial skin first:
 /obj/item/robot_module/service/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/list/service_icons = sortList(list(

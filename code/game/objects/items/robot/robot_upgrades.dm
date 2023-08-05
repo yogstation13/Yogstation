@@ -220,9 +220,9 @@
 	if(!.)
 		return FALSE
 
-	R.ionpulse = FALSE
+	R.ionpulse = initial(R.ionpulse)
 
-/// The base upgrade for the language upgrades. Make/use the children upgrades instead.
+/// The base upgrade for the language upgrades. Use the children upgrades instead.
 /obj/item/borg/upgrade/language
 	name = "cyborg language translator upgrade" // Shouldn't ever see this anyways.
 	desc = "Gives the cyborg the ability to hear and speak a set of languages."
@@ -522,9 +522,8 @@
 // Gives the cyborg the ability to repair themselves over time.
 /obj/item/borg/upgrade/selfrepair/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	if(!.)
+	if(!. || toggle_action)
 		return FALSE
-
 	icon_state = "selfrepair_off"
 	toggle_action = new /datum/action/item_action/toggle(src)
 	toggle_action.Grant(R)
@@ -909,7 +908,7 @@
 	if(!.)
 		return FALSE
 	if(R.expansion_count >= EXPANDER_MAXIMUM_STACK)
-		to_chat(usr, span_notice("This unit has already expanded as much as it can!"))
+		to_chat(usr, span_notice("This cyborg has already expanded as much as it can!"))
 		return FALSE
 
 	R.notransform = TRUE
@@ -958,7 +957,7 @@
 
 	var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module.modules
 	if(RPED)
-		to_chat(user, span_warning("This unit is already equipped with a RPED module."))
+		to_chat(user, span_warning("This cyborg is already equipped with a RPED module."))
 		return FALSE
 
 	RPED = new(R.module)
@@ -990,7 +989,7 @@
 
 	var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC = locate() in R.module.modules
 	if(PC)
-		to_chat(user, span_warning("This unit is already equipped with a plasma cutter module."))
+		to_chat(user, span_warning("This cyborg is already equipped with a plasma cutter module."))
 		return FALSE
 
 	PC = new(R.module)
@@ -1035,7 +1034,7 @@
 		to_chat(user, span_warning("Nanotrasen policy disallows the use of weapons of mass destruction."))
 		return FALSE
 	if(is_banned_from(R.ckey, "Security Officer"))
-		to_chat(user, span_warning("Nanotrasen has disallowed this unit from becoming this type of module."))
+		to_chat(user, span_warning("Nanotrasen has disallowed this cyborg from becoming this type of module."))
 		return FALSE
 	return ..()
 
@@ -1054,7 +1053,7 @@
 		return FALSE
 	var/obj/item/broom/cyborg/BR = locate() in R.module.modules
 	if(BR)
-		to_chat(user, span_warning("This unit is already equipped with an experimental broom!"))
+		to_chat(user, span_warning("This cyborg is already equipped with an experimental broom!"))
 		return FALSE
 
 	BR = new(R.module)
@@ -1217,7 +1216,7 @@
 
 	var/obj/item/holosign_creator/atmos/holofan = locate() in R.module.modules
 	if(holofan)
-		to_chat(user, span_warning("This unit is already equipped with a holofan module."))
+		to_chat(user, span_warning("This cyborg is already equipped with a holofan module."))
 		return FALSE
 
 	holofan = new(R.module)
