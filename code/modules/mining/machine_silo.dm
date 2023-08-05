@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(user.a_intent == INTENT_HARM) //so we can hit the machine
 		return ..()
 	
-	if(default_deconstruction_screwdriver(user, "icon_state", "icon_state", W))
+	if(default_deconstruction_screwdriver(user, initial(icon_state) + "_open", initial(icon_state), W))
 		return TRUE
 
 	if(default_deconstruction_crowbar(W))
