@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// generic traits tied to having the species
 	var/list/inherent_traits = list()
 	///biotypes, used for viruses and the like
-	var/list/inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	var/list/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	/// punch-specific attack verb
 	var/attack_verb = "punch"
 	///the melee attack sound
@@ -359,6 +359,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
 					new_lizard_tail.spines = C.dna.features["spines"]
 
+	// if(tail && (!should_have_tail || replace_current))
+	// 	tail.Remove(C,1)
+	// 	QDEL_NULL(tail)
+	// if(should_have_tail && !tail)
+	// 	tail = new mutanttail
+	// 	if(iscatperson(C))
+	// 		tail.tail_type = C.dna.features["tail_human"]
+	// 	if(ispolysmorph(C))
+	// 		tail.tail_type = C.dna.features["tail_polysmorph"]
+	// 	if(islizard(C))
+	// 		var/obj/item/organ/tail/lizard/T = tail
+	// 		T.tail_type = C.dna.features["tail_lizard"]
+	// 		T.spines = C.dna.features["spines"]
+	// 	tail.Insert(C)
 			used_neworgan = TRUE
 			neworgan.Insert(C, TRUE, FALSE)
 
@@ -432,7 +446,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 				C.put_in_hands(new mutanthands())
 
-	if(ROBOTIC_LIMBS in species_traits)
+	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ROBOTIC) // Makes all Bodyparts robotic.
 			B.render_like_organic = TRUE
@@ -462,7 +476,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.dna.blood_type = random_blood_type()
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(TRUE)
-	if(ROBOTIC_LIMBS in species_traits)
+	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
 			B.render_like_organic = FALSE
@@ -562,13 +576,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(!forced_colour)
 				if(hair_color)
 					if(hair_color == "mutcolor")
-						facial_overlay.color = "#" + H.dna.features["mcolor"]
+						facial_overlay.color =  H.dna.features["mcolor"]
 					else if(hair_color == "fixedmutcolor")
-						facial_overlay.color = "#[fixed_mut_color]"
+						facial_overlay.color = fixed_mut_color
 					else
-						facial_overlay.color = "#" + hair_color
+						facial_overlay.color = hair_color
 				else
-					facial_overlay.color = "#" + H.facial_hair_color
+					facial_overlay.color = H.facial_hair_color
 			else
 				facial_overlay.color = forced_colour
 
@@ -625,13 +639,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color =  H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 
 					//Gradients
 					grad_style = H.grad_style
@@ -642,7 +656,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 						var/icon/temp_hair = icon(hair_file, hair_state)
 						temp.Blend(temp_hair, ICON_ADD)
 						gradient_overlay.icon = temp
-						gradient_overlay.color = "#" + grad_color
+						gradient_overlay.color = grad_color
 
 				else
 					hair_overlay.color = forced_colour
@@ -664,7 +678,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		//if you're working with sprite code i hope this helps because i wish i was dead now.
 			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
 			if(S)
-				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#7F7F7F")[3])
+				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#777777")[3])
 					H.hair_color = H.dna.species.default_color
 				var/hair_state = S.icon_state
 				var/hair_file = S.icon
@@ -673,13 +687,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color = H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 				hair_overlay.alpha = hair_alpha
 				standing+=hair_overlay
 				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
@@ -693,13 +707,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					if(!forced_colour)
 						if(hair_color)
 							if(hair_color == "mutcolor")
-								flower_overlay.color = "#" + H.dna.features["mcolor"]
+								flower_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								flower_overlay.color = "#[fixed_mut_color]"
+								flower_overlay.color = fixed_mut_color
 							else
-								flower_overlay.color = "#" + hair_color
-						else
-							flower_overlay.color = "#" + H.facial_hair_color
+								flower_overlay.color = hair_color
+						else		
+							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
 	if(standing.len)
@@ -1018,20 +1032,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else																		//Then snowflake color
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 						if(HAIR)
 							if(hair_color == "mutcolor")
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else
-								accessory_overlay.color = "#[H.hair_color]"
+								accessory_overlay.color = H.hair_color
 						if(FACEHAIR)
-							accessory_overlay.color = "#[H.facial_hair_color]"
+							accessory_overlay.color = H.facial_hair_color
 						if(EYECOLOR)
-							accessory_overlay.color = "#[H.eye_color]"
+							accessory_overlay.color = H.eye_color
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
@@ -1414,7 +1428,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(radiation > RAD_MOB_MUTATE)
 		if(prob(1))
 			to_chat(H, span_danger("You mutate!"))
-			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			H.emote("gasp")
 			H.domutcheck()
 
@@ -2705,6 +2719,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are completely unaffected by radiation. However, this doesn't mean they can't be irradiated.",
 		))
 
+	if(TRAIT_FARADAYCAGE in inherent_traits)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "[plural_form] have a unique physiology that shields them from weak EMPs.",
+		))
+
 	if(TRAIT_LIMBATTACHMENT in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -2738,16 +2760,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "Toxins damage dealt to [plural_form] are reversed - healing toxins will instead cause harm, and \
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
-
-	if(ROBOTIC_LIMBS in species_traits)//species traits is basically inherent traits
-		to_add += list(list(
-			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "fa-solid fa-gear",
-			SPECIES_PERK_NAME = "Robotic limbs",
-			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
-				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
-		))
-
+		
 	return to_add
 
 /**
@@ -2758,13 +2771,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/create_pref_biotypes_perks()
 	var/list/to_add = list()
 
-	if(MOB_UNDEAD in inherent_biotypes)
+	if(inherent_biotypes & MOB_UNDEAD)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
 			SPECIES_PERK_NAME = "Undead",
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
+		))
+	
+	if(inherent_biotypes & MOB_ROBOTIC)//species traits is basically inherent traits
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "fa-solid fa-gear",
+			SPECIES_PERK_NAME = "Robotic",
+			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
+				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
 		))
 
 	return to_add

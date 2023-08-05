@@ -2,7 +2,7 @@
 	name = "\improper chocobo"
 	desc = "Where the hell does this come from?"
 	gender = MALE
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	icon = 'yogstation/icons/mob/chocobo.dmi'
 	icon_state = "chocobo"
 	icon_living = "chocobo"

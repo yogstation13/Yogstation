@@ -540,18 +540,7 @@
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
 	else if(W.GetID())			// trying to unlock the interface with an ID card
-		if(opened)
-			to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
-		else
-			if(allowed(usr))
-				locked = !locked
-				to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
-				to_chat(src, span_notice("[usr] [locked ? "locks" : "unlocks"] your cover."))
-				update_icons()
-				if(emagged)
-					to_chat(user, span_notice("The cover interface glitches out for a split second."))
-			else
-				to_chat(user, span_danger("Access denied."))
+		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
@@ -601,44 +590,22 @@
 	else
 		return ..()
 
-/// Use this to add upgrades to robots. It'll register signals for when the upgrade is moved or deleted, if not single use.
-/mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade, mob/user)
-	if(new_upgrade in upgrades)
-		return FALSE
-	if(!user.temporarilyRemoveItemFromInventory(new_upgrade)) // Calling the upgrade's dropped() proc /before/ we add action buttons.
-		return FALSE
-	if(!new_upgrade.action(src, user))
-		to_chat(user, span_danger("Upgrade error."))
-		new_upgrade.forceMove(drop_location()) // Gets lost otherwise.
-		return FALSE
-	to_chat(user, span_notice("You apply the upgrade to [src]."))
-	to_chat(src, "----------------\nNew hardware detected... Identified as: \"<b>[new_upgrade]</b>\" ...Setup complete.\n----------------")
-	if(new_upgrade.one_use)
-		logevent("Firmware [new_upgrade] run successfully.")
-		qdel(new_upgrade)
-		return FALSE
-	upgrades += new_upgrade
-	new_upgrade.forceMove(src)
-	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, PROC_REF(remove_from_upgrades))
-	RegisterSignal(new_upgrade, COMSIG_PARENT_QDELETING, PROC_REF(on_upgrade_deleted))
-	logevent("Hardware [new_upgrade] installed successfully.")
+/mob/living/silicon/robot/proc/togglelock(mob/user)
+	if(opened)
+		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
+	else
+		if(allowed(user))
+			locked = !locked
+			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
+			to_chat(src, span_notice("[user] [locked ? "locks" : "unlocks"] your cover."))
+			update_icons()
+			if(emagged)
+				to_chat(user, span_notice("The cover interface glitches out for a split second."))
+		else
+			to_chat(user, span_danger("Access denied."))
 
-/// Called when an upgrade is moved outside the robot. So don't call this directly, use forceMove etc.
-/mob/living/silicon/robot/proc/remove_from_upgrades(obj/item/borg/upgrade/old_upgrade)
-	SIGNAL_HANDLER
-	if(loc == src)
-		return
-	old_upgrade.deactivate(src)
-	upgrades -= old_upgrade
-	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
-
-/// Called when an applied upgrade is deleted.
-/mob/living/silicon/robot/proc/on_upgrade_deleted(obj/item/borg/upgrade/old_upgrade)
-	SIGNAL_HANDLER
-	if(!QDELETED(src))
-		old_upgrade.deactivate(src)
-	upgrades -= old_upgrade
-	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+/mob/living/silicon/robot/AltClick(mob/user)
+	togglelock(user)
 
 /mob/living/silicon/robot/verb/unlock_own_cover()
 	set category = "Robot Commands"
@@ -1142,7 +1109,7 @@
 		update_transform()
 	logevent("Chassis configuration has been reset.")
 	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
-	module.transform_to(/obj/item/robot_module)
+	module.transform_to(/obj/item/robot_module) // Will reset armor & armor_plates as well. 
 
 	// Remove upgrades.
 	for(var/obj/item/borg/upgrade/I in upgrades)

@@ -263,7 +263,7 @@ datum/action/innate/aux_base/install_turret/Activate()
 
 	var/turf/turret_turf = get_turf(remote_eye)
 
-	if(is_blocked_turf(turret_turf))
+	if(turret_turf.is_blocked_turf())
 		to_chat(owner, span_warning("Location is obstructed by something. Please clear the location and try again."))
 		return
 

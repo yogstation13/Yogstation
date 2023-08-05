@@ -482,7 +482,7 @@
 /obj/structure/bed/surgical_mat/Initialize(mapload)
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
-	SB.success_chance = 0.8
+	SB.success_chance = 0.95
 
 /obj/structure/bed/surgical_mat/MouseDrop(over_object, src_location, over_location)
 	. = ..()
@@ -541,7 +541,7 @@
 /obj/structure/bed/surgical_mat/goliath/Initialize(mapload)
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
-	SB.success_chance = 0.85
+	SB.success_chance = 0.97
 
 /obj/item/surgical_mat/goliath
 	name = "goliath hide surgical mat"

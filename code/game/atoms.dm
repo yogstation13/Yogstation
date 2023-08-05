@@ -42,6 +42,7 @@
 	var/list/atom_colours
 
 	var/datum/wires/wires = null
+	var/obj/effect/abstract/particle_holder/master_holder
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
@@ -407,6 +408,10 @@
 /// Is this atom drainable of reagents
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
+
+/// Can this atom spill its reagents
+/atom/proc/is_spillable()
+	return reagents && (reagents.flags & SPILLABLE)
 
 /// Are you allowed to drop this atom
 /atom/proc/AllowDrop()

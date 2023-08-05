@@ -578,7 +578,7 @@
 				to_chat(src, span_danger("As life pours back through your body, you struggle to recall what last happened to you; every memory before your death is hazy. You feel like you've been dead for too long"))
 				to_chat(src, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 				src.visible_message(span_danger("[src] stares ahead blankly, blinking a few times, as if they are trying to remember something."))
-				log_combat(src, "was revived with memory loss")
+				log_combat(src, src, "was revived with memory loss")
 			B.decay_progress = 0
 		if(IS_BLOODSUCKER(src))
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -980,13 +980,65 @@
 
 	return 1
 
+/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
+	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
+		return TRUE
+
+	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
+		return TRUE
+
+	if(!has_mouth())
+		return TRUE
+
+	if(nutrition < 100 && !blood)
+		if(message)
+			visible_message(span_warning("[src] dry heaves!"), \
+							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
+		if(stun)
+			Paralyze(200)
+		return TRUE
+
+	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
+		if(message)
+			visible_message(span_danger("[src] throws up all over [p_them()]self!"), \
+							span_userdanger("You throw up all over yourself!"))
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomitself)
+		distance = 0
+	else
+		if(message)
+			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
+			if(!isflyperson(src))
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomit)
+
+	if(stun)
+		Paralyze(80)
+
+	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+	var/turf/T = get_turf(src)
+	if(!blood)
+		adjust_nutrition(-lost_nutrition)
+		adjustToxLoss(-3)
+	for(var/i=0 to distance)
+		if(blood)
+			if(T)
+				add_splatter_floor(T)
+			if(stun)
+				adjustBruteLoss(3)
+		else
+			if(T)
+				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
+		T = get_step(T, dir)
+		if (T.is_blocked_turf())
+			break
+	return TRUE
+
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
 
 /// Returns the type of organs, reagents, and symptoms this mob is compatible with
 /mob/living/proc/get_process_flags()
-	return (MOB_ROBOTIC in mob_biotypes) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
+	return (mob_biotypes & MOB_ROBOTIC) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
