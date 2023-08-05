@@ -99,7 +99,7 @@
 	uniform = /obj/item/clothing/under/tribal
 	head = /obj/item/clothing/head/helmet/skull
 	suit = /obj/item/clothing/suit/armor/bone/heavy
-	back = /obj/item/twohanded/bonespear
+	back = /obj/item/melee/spear/bonespear
 	gloves = /obj/item/clothing/gloves/bracer
 	belt = /obj/item/storage/belt/mining/primitive
 	shoes = /obj/item/clothing/shoes/xeno_wraps
@@ -111,7 +111,7 @@
 	uniform = /obj/item/clothing/under/ash_robe/chief
 	head = /obj/item/clothing/head/crown/resin
 	suit = /obj/item/clothing/suit/armor/bone
-	back = /obj/item/twohanded/bonespear/chitinspear
+	back = /obj/item/melee/spear/bonespear/chitinspear
 	gloves = /obj/item/clothing/gloves/color/black/goliath
 	shoes = /obj/item/clothing/shoes/xeno_wraps/goliath
 	neck = /obj/item/clothing/neck/cloak/tribalmantle
@@ -221,12 +221,12 @@
 	else
 		new_spawn.mind.assigned_role = "Free Golem"
 
-/obj/effect/mob_spawn/human/golem/attack_hand(mob/user)
+/obj/effect/mob_spawn/human/golem/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(isgolem(user) && can_transfer)
-		var/transfer_choice = tgui_alert(usr, "Transfer your soul to [src]? (Warning, your old body will die!)",,list("Yes","No"))
+		var/transfer_choice = tgui_alert(user, "Transfer your soul to [src]? (Warning, your old body will die!)", "Swag to Mad transformation", list("Yes","No"))
 		if(transfer_choice != "Yes")
 			return
 		if(QDELETED(src) || uses <= 0)
@@ -446,8 +446,8 @@
 		id.registered_name = L.real_name
 		id.update_label()
 	else
-		to_chat(L, span_userdanger("Your owner is already dead!  You will soon perish."))
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, dust), 150)) //Give em a few seconds as a mercy.
+		to_chat(L, span_userdanger("Your owner is already dead! You will soon perish."))
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, dust), 15 SECONDS)) //Give em a few seconds as a mercy.
 
 /datum/outfit/demonic_friend
 	name = "Demonic Friend"
@@ -677,3 +677,35 @@
 	id = /obj/item/card/id
 	implants = list(/obj/item/implant/teleporter/innkeeper) //stay at your inn please.
 	suit_store = /obj/item/gun/ballistic/shotgun/doublebarrel //emergency weapon, ice planets are dangerous, and customers can be too.
+
+// Syndicate Derelict Station spawns
+
+/obj/effect/mob_spawn/human/syndicate_derelict_engineer
+	name = "syndicate engineer sleeper"
+	short_desc = "You're an engineer working for the Syndicate, assigned to repair a derelict research station."
+	flavour_text = "During your briefing, you're told that an old syndicate research post has gone missing without notice. No theories have been brought to its fate, and it's unlikely to know the cause of its destruction. Your job will be to restore this post to optimal levels."
+	important_info = "Do not abandon the derelict or mess with the main station under any circumstances."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	outfit = /datum/outfit/syndicate_derelict_engi
+	random = TRUE
+	roundstart = FALSE
+	death = FALSE
+	assignedrole = "Syndicate Derelict Engineer"
+
+/datum/outfit/syndicate_derelict_engi
+	name = "Syndicate Derelict Engineer"
+	uniform = /obj/item/clothing/under/syndicate
+	head = /obj/item/clothing/head/helmet/space/syndicate/black/engie
+	back = /obj/item/storage/backpack/duffelbag/syndie
+	suit = /obj/item/clothing/suit/space/syndicate/black/engie
+	suit_store = /obj/item/tank/internals/oxygen/red
+	belt = /obj/item/storage/belt/utility/chief/full
+	mask = /obj/item/clothing/mask/gas/syndicate
+	shoes = /obj/item/clothing/shoes/magboots/syndie
+	gloves = /obj/item/clothing/gloves/combat
+	glasses = /obj/item/clothing/glasses/meson/engine
+	ears = /obj/item/radio/headset/syndicate
+	id = /obj/item/card/id/syndicate
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/kitchen/knife/combat/survival

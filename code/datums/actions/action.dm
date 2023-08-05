@@ -55,7 +55,7 @@
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
 	if(isatom(target))
-		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(update_status_on_signal))
+		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
 
 	if(istype(target, /datum/mind))
 		RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_target_mind_swapped))
@@ -364,14 +364,14 @@
 
 	var/update_flag = ALL
 	var/forced = TRUE
-//	if(updates & UPDATE_ICON_STATE)
-//		update_flag |= UPDATE_BUTTON_ICON
-//		forced = TRUE
-//	if(updates & UPDATE_OVERLAYS)
-//		update_flag |= UPDATE_BUTTON_OVERLAY
-//		forced = TRUE
-//	if(updates & (UPDATE_NAME|UPDATE_DESC))
-//		update_flag |= UPDATE_BUTTON_NAME
+	if(updates & UPDATE_ICON_STATE)
+		update_flag |= UPDATE_BUTTON_ICON
+		forced = TRUE
+	if(updates & UPDATE_OVERLAYS)
+		update_flag |= UPDATE_BUTTON_OVERLAY
+		forced = TRUE
+	if(updates & (UPDATE_NAME|UPDATE_DESC))
+		update_flag |= UPDATE_BUTTON_NAME
 	// Status is not relevant, and background is not relevant. Neither will change
 
 	// Force the update if an icon state or overlay change was done

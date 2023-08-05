@@ -300,9 +300,6 @@ Difficulty: Very Hard
 	var/list/stored_items = list()
 	var/list/blacklist = list()
 
-/obj/machinery/smartfridge/black_box/update_icon()
-	return
-
 /obj/machinery/smartfridge/black_box/accept_check(obj/item/O)
 	if(!istype(O))
 		return FALSE
@@ -311,7 +308,8 @@ Difficulty: Very Hard
 		return FALSE
 	return TRUE
 
-/obj/machinery/smartfridge/black_box/Initialize()
+/obj/machinery/smartfridge/black_box/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	var/static/obj/machinery/smartfridge/black_box/current
 	if(current && current != src)
@@ -503,7 +501,7 @@ Difficulty: Very Hard
 	var/list/NewFlora = list()
 	var/florachance = 8
 
-/obj/machinery/anomalous_crystal/theme_warp/Initialize()
+/obj/machinery/anomalous_crystal/theme_warp/Initialize(mapload)
 	. = ..()
 	terrain_theme = pick("lavaland","winter","jungle","ayy lmao")
 	observer_desc = "This crystal changes the area around it to match the theme of \"[terrain_theme]\"."
@@ -543,7 +541,7 @@ Difficulty: Very Hard
 					var/turf/T = Stuff
 					if((isspaceturf(T) || isfloorturf(T)) && NewTerrainFloors)
 						var/turf/open/O = T.ChangeTurf(NewTerrainFloors, flags = CHANGETURF_INHERIT_AIR)
-						if(prob(florachance) && NewFlora.len && !is_blocked_turf(O, TRUE))
+						if(prob(florachance) && NewFlora.len && !O.is_blocked_turf(TRUE))
 							var/atom/Picked = pick(NewFlora)
 							new Picked(O)
 						continue
@@ -567,7 +565,7 @@ Difficulty: Very Hard
 	cooldown_add = 50
 	var/obj/item/projectile/generated_projectile = /obj/item/projectile/beam/emitter
 
-/obj/machinery/anomalous_crystal/emitter/Initialize()
+/obj/machinery/anomalous_crystal/emitter/Initialize(mapload)
 	. = ..()
 	generated_projectile = pick(/obj/item/projectile/colossus)
 
@@ -686,7 +684,7 @@ Difficulty: Very Hard
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
 
-/mob/living/simple_animal/hostile/lightgeist/healing/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	remove_verb(src, /mob/verb/me_verb)
@@ -724,16 +722,20 @@ Difficulty: Very Hard
 	heal_power = 3
 	heal_color = "#5bf563"
 
-/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize(mapload)
 	. = ..()
 	var/datum/action/cooldown/spell/conjure/plants/terrarium = new(src)
 	terrarium.Grant(src)
 
-/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can heal non plant stuff, but its incredibly low healing
 	var/mob/living/L = target
-	if(!("vines" in L.faction) && !("plants" in L.faction))
-		return FALSE
-	. = ..()
+	if(L.stat != DEAD)
+		if(!("vines" in L.faction) && !("plants" in L.faction))
+			L.heal_overall_damage(heal_power/6, heal_power/6)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+		else
+			L.heal_overall_damage(heal_power, heal_power)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
 
 /datum/action/cooldown/spell/conjure/plants
 	name = "Seed Plants"
@@ -768,9 +770,9 @@ Difficulty: Very Hard
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
-	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor."
+	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor. Healing non plantlike creatures is possible, but far slower."
 
-/obj/effect/mob_spawn/photogeist/Initialize()
+/obj/effect/mob_spawn/photogeist/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
@@ -779,7 +781,7 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
-/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MUTE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_EMOTEMUTE, INNATE_TRAIT)
@@ -857,18 +859,22 @@ Difficulty: Very Hard
 		escape.Grant(holder_animal)
 		remove_verb(holder_animal, /mob/living/verb/pulled)
 
-/obj/structure/closet/stasis/dump_contents(var/kill = 1)
+/obj/structure/closet/stasis/dump_contents(kill = TRUE)
 	STOP_PROCESSING(SSobj, src)
-	for(var/mob/living/L in src)
-		REMOVE_TRAIT(L, TRAIT_MUTE, STASIS_MUTE)
-		L.status_flags &= ~GODMODE
-		L.notransform = 0
-		if(holder_animal)
-			holder_animal.mind.transfer_to(L)
-			holder_animal.gib()
+	for(var/mob/living/possessor in src)
+		REMOVE_TRAIT(possessor, TRAIT_MUTE, STASIS_MUTE)
+		possessor.status_flags &= ~GODMODE
+		possessor.notransform = FALSE
 		if(kill || !isanimal(loc))
-			L.death(0)
-	..()
+			possessor.investigate_log("has died from [src].", INVESTIGATE_DEATHS)
+			possessor.death(FALSE)
+		if(holder_animal)
+			possessor.forceMove(get_turf(holder_animal))
+			holder_animal.mind.transfer_to(possessor)
+			possessor.mind.grab_ghost(force = TRUE)
+			holder_animal.gib()
+			return ..()
+	return ..()
 
 /obj/structure/closet/stasis/emp_act()
 	return

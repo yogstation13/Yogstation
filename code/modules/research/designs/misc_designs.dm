@@ -73,6 +73,17 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/thermal_goggles
+	name = "Thermal Goggles"
+	desc = "These high-tech goggles are like the ones you see in magazines, except they actually work."
+	id = "thermal_goggles"
+	build_type = PROTOLATHE
+	construction_time = 60
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/clothing/glasses/thermal
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/security_hud_night
 	name = "Night Vision Security HUD"
 	desc = "A heads-up display which provides ID data and vision in complete darkness."
@@ -136,7 +147,7 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
-	
+
 /datum/design/clownshot
 	name = "Clownshot Shell"
 	desc = "A tactical round used by the clown planet's finest soldiers."
@@ -186,6 +197,16 @@
 	build_path = /obj/item/clothing/glasses/meson/engine/tray
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/atmos_thermal
+	name = "Atmospheric thermal imaging goggles"
+	desc = "Used by Atmospheric Technician to determine the temperature of the air"
+	id = "atmos_thermal"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/plasma = 100)
+	build_path = /obj/item/clothing/glasses/meson/engine/atmos_imaging
+	category = list("Equipment")
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/nvgmesons
 	name = "Night Vision Optical Meson Scanners"
@@ -345,7 +366,7 @@
 	build_path = /obj/item/ticket_machine_remote
 	category = list ("Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_MEDICAL
-	
+
 /datum/design/wallframe/flasher
 	name = "Mounted Flash Frame"
 	id =  "wallframe/flasher"
@@ -414,22 +435,12 @@
 /////////////////////////////////////////
 
 /datum/design/holosign
-	name = "Holographic Sign Projector"
-	desc = "A holograpic projector used to project various warning signs."
-	id = "holosign"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500)
-	build_path = /obj/item/holosign_creator
-	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
-
-/datum/design/holobarrier_jani
 	name = "Custodial Holobarrier Projector"
 	desc = "A holograpic projector used to project hard light wet floor barriers."
-	id = "holobarrier_jani"
+	id = "holosign"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/plastic = 500)
-	build_path = /obj/structure/holosign/barrier/wetsign
+	build_path = /obj/item/holosign_creator/janibarrier
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 

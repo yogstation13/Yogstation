@@ -12,6 +12,10 @@
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
 	..()
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 16))
+
 	if(!isliving(target) || (blocked == 100))
 		return
 		
@@ -37,7 +41,7 @@
 		L.ignite_mob()
 		arrow.flaming = FALSE
 
-	arrow.update_icon()
+	arrow.update_appearance(UPDATE_ICON)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(dropped || !ammo_type)
@@ -223,6 +227,8 @@
 	var/obj/item/embed_type = /obj/item/ammo_casing/reusable/arrow/energy
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
+	if(istype(target, /obj/structure/blob))
+		damage = damage / 2
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
@@ -296,6 +302,6 @@
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
-	damage = 18
+	damage = 20
 	wound_bonus = 5
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/clockbolt

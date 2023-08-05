@@ -113,7 +113,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/vialbox
-	name = "vial box"
+	name = "Vial Box"
 	desc = "A small box that can hold up to six vials in a sealed enviroment."
 	id = "vialbox"
 	build_type = PROTOLATHE
@@ -416,17 +416,6 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cyberimp_thermals
-	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you Thermal vision. Vertical slit pupil included."
-	id = "ci-thermals"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
-	build_path = /obj/item/organ/eyes/robotic/thermals
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/cyberimp_antidrop
 	name = "Anti-Drop Implant"
 	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ears to toggle."
@@ -505,7 +494,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cymberimp_jumpboots
-	name = "Jumpboots implant"
+	name = "Jumpboots Implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
 	id = "ci-jumpboots"
 	build_type = PROTOLATHE | MECHFAB
@@ -516,7 +505,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cymberimp_wheelies
-	name = "Wheelies implant"
+	name = "Wheelies Implant"
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
 	id = "ci-wheelies"
 	build_type = PROTOLATHE | MECHFAB
@@ -527,7 +516,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cymberimp_magboot
-	name = "Magboot implant"
+	name = "Magboot Implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
 	id = "ci-magboots"
 	build_type = PROTOLATHE | MECHFAB
@@ -671,7 +660,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_stomach
-	name = "Cybernetic stomach"
+	name = "Cybernetic Stomach"
 	desc = "A cybernetic stomach"
 	id = "cybernetic_stomach"
 	build_type = PROTOLATHE | MECHFAB

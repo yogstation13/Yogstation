@@ -56,8 +56,8 @@
 	if(!owner.current || silent)
 		return
 	owner.current.visible_message("[span_heavy_brass("[owner.current]'s eyes glow a blazing yellow!")]", null, null, 7, owner.current) //don't show the owner this message
-	to_chat(owner.current, "<span class='heavy_brass'>Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
-	Justiciar above all else. Perform his every whim without hesitation.</span>")
+	to_chat(owner.current, "<span class='heavy_brass'>A sharp light flashes through your mind, and you finally gain understanding of the cause. Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
+	Justiciar above all else. Perform his every whim without hesitation. Show the unenlightened Ratvars Light, as others have shown you, and defend the Ark until his arrival.</span>")
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/clockcult/on_gain()
@@ -168,6 +168,8 @@
 
 /datum/antagonist/clockcult/on_removal()
 	SSticker.mode.servants_of_ratvar -= owner
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
+		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
@@ -175,7 +177,7 @@
 	owner.special_role = null
 	if(iscyborg(owner.current))
 		to_chat(owner.current, span_warning("Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking."))
-	. = ..()
+	return ..()
 
 
 /datum/antagonist/clockcult/admin_add(datum/mind/new_owner,mob/admin)
@@ -224,6 +226,7 @@
 
 	if(check_clockwork_victory())
 		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
+		parts += "<span class='heavy_brass'>The Servants of Ratvar find themselves once more on the station, filled with a sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars, each waiting to be a part of Ratvars empire; their battle had just begun.</span>"
 		for(var/mind in SSticker.mode.servants_of_ratvar)
 			var/datum/mind/M = mind
 			if(M.current?.client)

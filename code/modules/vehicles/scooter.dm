@@ -5,7 +5,7 @@
 	are_legs_exposed = TRUE
 	fall_off_if_missing_arms = TRUE
 
-/obj/vehicle/ridden/scooter/Initialize()
+/obj/vehicle/ridden/scooter/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0), TEXT_SOUTH = list(-2), TEXT_EAST = list(0), TEXT_WEST = list( 2)))
@@ -55,7 +55,7 @@
 	var/board_item_type = /obj/item/melee/skateboard	///The handheld item counterpart for the board
 	var/instability = 10	///Stamina drain multiplier
 
-/obj/vehicle/ridden/scooter/skateboard/Initialize()
+/obj/vehicle/ridden/scooter/skateboard/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 0.65 ///Change this value to change how fast the skateboard goes. Lower = Faster
@@ -100,7 +100,7 @@
 			var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 			unbuckle_mob(H)
 			H.throw_at(throw_target, 3, 2)
-			var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+			var/head_slot = H.get_item_by_slot(ITEM_SLOT_HEAD)
 			if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 				H.updatehealth()
@@ -253,7 +253,7 @@
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
 	icon = null
 
-/obj/vehicle/ridden/scooter/wheelys/Initialize()
+/obj/vehicle/ridden/scooter/wheelys/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 0
@@ -281,7 +281,7 @@
 		H.throw_at(throw_target, 4, 3)
 		H.Paralyze(30)
 		H.adjustStaminaLoss(10)
-		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+		var/head_slot = H.get_item_by_slot(ITEM_SLOT_HEAD)
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 			H.updatehealth()
@@ -301,7 +301,7 @@
 	var/datum/effect_system/spark_spread/sparks
 	icon_state = "airshoes"
 		
-/obj/vehicle/ridden/scooter/airshoes/Initialize()
+/obj/vehicle/ridden/scooter/airshoes/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 0.25
@@ -348,7 +348,7 @@
 			var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 			unbuckle_mob(H)
 			H.throw_at(throw_target, 3, 2)
-			var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+			var/head_slot = H.get_item_by_slot(ITEM_SLOT_HEAD)
 			if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 				H.updatehealth()

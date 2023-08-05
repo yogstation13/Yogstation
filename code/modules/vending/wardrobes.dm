@@ -50,7 +50,12 @@
 					/obj/item/clothing/under/rank/security/grey = 3,
 					/obj/item/clothing/under/yogs/shitcurity = 3,
 					/obj/item/clothing/under/pants/khaki = 3,
-					/obj/item/clothing/under/rank/security/blueshirt = 3)
+					/obj/item/clothing/under/rank/security/blueshirt = 3,
+					/obj/item/clothing/under/rank/security/secconuniform = 3,
+					/obj/item/clothing/head/helmet/secconhelm = 3,
+					/obj/item/clothing/suit/armor/secconcoat = 3,
+					/obj/item/clothing/head/beret/sec/secconhat = 3,
+					/obj/item/clothing/suit/armor/secconvest = 3)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 3,
 					/obj/item/clothing/suit/armor/officerjacket = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
@@ -142,11 +147,11 @@
 	machine_name = "AtmosDrobe"
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
-	name = "SigDrobe"
+	name = "NetDrobe"
 	desc = "A rarely used vending machine that provides clothing for Network Admins."
 	icon_state = "sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
-	vend_reply = "Thank you for using the SigDrobe!"
+	vend_reply = "Thank you for using the NetDrobe!"
 	products = list(/obj/item/storage/backpack/duffelbag/engineering = 1,
 					/obj/item/storage/backpack/industrial = 1,
 					/obj/item/storage/backpack/satchel/eng = 1,
@@ -157,7 +162,7 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/sig_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/sig_wardrobe
-	machine_name = "SigDrobe"
+	machine_name = "NetDrobe"
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	name = "CargoDrobe"
@@ -326,10 +331,10 @@
 					/obj/item/storage/box/mousetraps = 2,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/suit/toggle/chef = 1,
-					/obj/item/clothing/under/rank/chef = 1,
+					/obj/item/clothing/under/rank/chef = 2,
 					/obj/item/clothing/under/rank/chef/skirt = 2,
 					/obj/item/clothing/head/chefhat = 1,
-					/obj/item/reagent_containers/glass/rag = 1,
+					/obj/item/reagent_containers/glass/rag = 2,
 					/obj/item/clothing/suit/hooded/wintercoat = 2,
 					/obj/item/clothing/accessory/armband/service = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/chef_wardrobe
@@ -351,6 +356,7 @@
 					/obj/item/clothing/under/janimaid = 2,
 					/obj/item/clothing/gloves/color/black = 2,
 					/obj/item/clothing/head/soft/purple = 2,
+					/obj/item/broom = 2,
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
 					/obj/item/flashlight = 2,
@@ -421,7 +427,7 @@
 					/obj/item/clothing/suit/hooded/caretakercloak = 1,
 					/obj/item/clothing/suit/yogs/monkrobes = 1,
 					/obj/item/clothing/suit/hooded/amech = 2,
-					/obj/item/storage/box/fancy/candle_box = 2,
+					/obj/item/storage/fancy/candle_box = 2,
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,

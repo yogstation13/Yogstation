@@ -134,12 +134,12 @@
 		self_penalty_mult = 0.5
 
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
-	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
+	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 	
-	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
+	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult * I.toolspeed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
+	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
 	user.visible_message(span_green("[user] cauterizes some of the bleeding on [victim]."), span_green("You cauterize some of the bleeding on [victim]."))
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)
 	if(prob(30))

@@ -12,7 +12,7 @@
 	movedelay = 4
 	var/move_sound = 'sound/effects/roll.ogg'
 
-/obj/vehicle/ridden/wheelchair/Initialize()
+/obj/vehicle/ridden/wheelchair/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 0
@@ -20,9 +20,6 @@
 	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
-
-/obj/vehicle/ridden/wheelchair/ComponentInitialize()	//Since it's technically a chair I want it to have chair properties
-	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/vehicle/ridden/wheelchair/obj_destruction(damage_flag)
@@ -55,7 +52,7 @@
 	var/datum/component/riding/D = GetComponent(/datum/component/riding)
 	//1.5 (movespeed as of this change) multiplied by 6.7 gets ABOUT 10 (rounded), the old constant for the wheelchair that gets divided by how many arms they have
 	//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
-	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / min(user.get_num_arms(), 2)
+	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / clamp(user.get_num_arms(), 0.25, 2) // div by zero :x
 
 /obj/vehicle/ridden/wheelchair/Moved()
 	. = ..()
@@ -148,11 +145,11 @@
 	usr.visible_message(span_notice("[usr] collapses [src]."), span_notice("You collapse [src]."))
 	var/obj/item/wheelchair/wheelchair_folded = new /obj/item/wheelchair(get_turf(src))
 	forceMove(wheelchair_folded)
-	wheelchair_folded.desc = "A collapsed [name] that can be carried around." 
+	wheelchair_folded.desc = "A collapsed [name] that can be carried around."
 	wheelchair_folded.name = name
 	wheelchair_folded.wheelchair = src
 	usr.put_in_hands(wheelchair_folded)
-	
+
 /obj/item/wheelchair/attack_self(mob/user)  //Deploys wheelchair on in-hand use
 	deploy_wheelchair(user, user.loc)
 
@@ -211,7 +208,7 @@
 	usr.visible_message(span_notice("[usr] collapses [src]."), span_notice("You collapse [src]."))
 	var/obj/item/wheelchair/wheelchair_folded = new /obj/item/wheelchair/explosive(get_turf(src))
 	forceMove(wheelchair_folded)
-	wheelchair_folded.desc = "A collapsed [name] that can be carried around." 
+	wheelchair_folded.desc = "A collapsed [name] that can be carried around."
 	wheelchair_folded.name = name
 	wheelchair_folded.wheelchair = src
 	usr.put_in_hands(wheelchair_folded)

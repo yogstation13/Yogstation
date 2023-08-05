@@ -1,10 +1,8 @@
 /datum/job/network_admin
 	title = "Network Admin"
 	description = "Maintain and upgrade the AI, try not to break radio communications."
-	flag = NETWORKADMIN
 	orbit_icon = "satellite-dish"
 	department_head = list("Chief Engineer", "Research Director")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -55,4 +53,4 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

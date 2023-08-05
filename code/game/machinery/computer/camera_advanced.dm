@@ -17,7 +17,7 @@
 
 	light_color = LIGHT_COLOR_RED
 
-/obj/machinery/computer/camera_advanced/Initialize()
+/obj/machinery/computer/camera_advanced/Initialize(mapload)
 	. = ..()
 	for(var/i in networks)
 		networks -= i
@@ -287,7 +287,7 @@
 	networks = list("ss13", "minisat") //:eye:
 	var/datum/action/innate/servant_warp/warp_action
 
-/obj/machinery/computer/camera_advanced/ratvar/Initialize()
+/obj/machinery/computer/camera_advanced/ratvar/Initialize(mapload)
 	. = ..()
 	warp_action = new(src)
 	ratvar_act()
@@ -332,6 +332,7 @@
 	if(QDELETED(target) || !(ishuman(owner) || iscyborg(owner)) || !owner.canUseTopic(target))
 		return
 	if(!GLOB.servants_active) //No leaving unless there's servants from the get-go
+		to_chat(owner, "[span_sevtug_small("The Ark doesn't let you leave!")]")
 		return
 	if(warping)
 		cancel = TRUE

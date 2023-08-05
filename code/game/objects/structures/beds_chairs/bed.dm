@@ -22,8 +22,11 @@
 	var/buildstackamount = 2
 	var/bolts = TRUE
 
-/obj/structure/bed/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.8)
+/obj/structure/bed/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/surgery_bed, \
+		success_chance = 0.85, \
+	)
 
 /obj/structure/bed/examine(mob/user)
 	. = ..()
@@ -148,7 +151,7 @@
 	desc = "A collapsed roller bed that can be ejected for emergency use. Must be collected or replaced after use."
 	var/obj/structure/bed/roller/loaded = null
 
-/obj/item/roller/robo/Initialize()
+/obj/item/roller/robo/Initialize(mapload)
 	. = ..()
 	loaded = new(src)
 
@@ -225,7 +228,7 @@
 	can_buckle = TRUE
 	density = FALSE
 
-/obj/structure/bed/grip/Initialize()
+/obj/structure/bed/grip/Initialize(mapload)
 	. = ..()
 
 /obj/structure/bed/grip/post_unbuckle_mob(mob/living/M)

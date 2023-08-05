@@ -2,11 +2,9 @@
 	title = "Detective"
 	description = "Investigate crimes, gather evidence, perform interrogations, \
 		look badass, smoke cigarettes."
-	flag = DETECTIVE
 	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -18,7 +16,7 @@
 
 	outfit = /datum/outfit/job/detective
 
-	alt_titles = list("Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector")
+	alt_titles = list("Forensic Analyst", "Private Eye")
 
 	added_access = list()
 	base_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
@@ -43,6 +41,21 @@
 	)
 
 	smells_like = "whisky-soaked despair"
+
+/datum/job/detective/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/obj/item/badge/security/badge
+		switch(M.client.prefs.exp[title] / 60)
+			if(200 to INFINITY)
+				badge = new /obj/item/badge/security/det3
+			if(50 to 200)
+				badge = new /obj/item/badge/security/det2
+			else
+				badge = new /obj/item/badge/security/det1
+		badge.owner_string = H.real_name
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(badge)
 
 /datum/outfit/job/detective
 	name = "Detective"

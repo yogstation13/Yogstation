@@ -2,10 +2,8 @@
 	title = "Chaplain"
 	description = "Hold services and funerals, cremate people, preach your \
 		religion, protect the crew against cults."
-	flag = CHAPLAIN
 	orbit_icon = "cross"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -54,7 +52,7 @@
 		B.icon_state = GLOB.bible_icon_state
 		B.item_state = GLOB.bible_item_state
 		to_chat(H, "There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the Chaplain.")
-		H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
+		H.equip_to_slot_or_del(B, ITEM_SLOT_BACKPACK)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/N = new nrt(H)
 		if(GLOB.holy_weapon_type)
@@ -163,7 +161,7 @@
 	GLOB.bible_name = B.name
 	GLOB.deity = B.deity_name
 
-	H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(B, ITEM_SLOT_BACKPACK)
 
 	SSblackbox.record_feedback("text", "religion_name", 1, "[new_religion]", 1)
 	SSblackbox.record_feedback("text", "religion_deity", 1, "[new_deity]", 1)

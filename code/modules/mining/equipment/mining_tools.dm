@@ -75,7 +75,7 @@
 	desc = "An integrated electric mining drill."
 	flags_1 = NONE
 
-/obj/item/pickaxe/drill/cyborg/Initialize()
+/obj/item/pickaxe/drill/cyborg/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
@@ -103,8 +103,8 @@
 /obj/item/pickaxe/makeshift
 	name = "makeshift pickaxe"
 	desc = "A pickaxe made with a knife and crowbar taped together, how does it not break?"
-	icon_state = "pickaxe_makeshift"
-	item_state = "pickaxe_makeshift"
+	icon_state = "minipick" // TODO: Add a replacement sprite that suits this item more; "pickaxe_makeshift" doesn't exist.
+	item_state = "minipick"
 	force = 10
 	throwforce = 7
 	toolspeed = 3 //3 times slower than a normal pickaxe
@@ -132,7 +132,7 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharpness = SHARP_EDGED
 
-/obj/item/shovel/Initialize()
+/obj/item/shovel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 150, 40) //it's sharp, so it works, but barely.
 

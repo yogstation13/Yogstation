@@ -53,10 +53,11 @@
 	var/revive_cost = 0
 	var/reviving = 0
 	var/cooldown = 0
+	var/heal_amount = 1
 
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
-		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
+		if(owner.stat)
 			addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
@@ -66,7 +67,7 @@
 
 	if(cooldown > world.time)
 		return
-	if(owner.stat != UNCONSCIOUS)
+	if(!owner.stat)
 		return
 	if(owner.suiciding)
 		return
@@ -77,16 +78,16 @@
 
 /obj/item/organ/cyberimp/chest/reviver/proc/heal()
 	if(owner.getOxyLoss())
-		owner.adjustOxyLoss(-5)
+		owner.adjustOxyLoss(-heal_amount * 5)
 		revive_cost += 0.5 SECONDS
 	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-2)
+		owner.adjustBruteLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getFireLoss())
-		owner.adjustFireLoss(-2)
+		owner.adjustFireLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getToxLoss())
-		owner.adjustToxLoss(-1)
+		owner.adjustToxLoss(-heal_amount)
 		revive_cost += 4 SECONDS
 
 /obj/item/organ/cyberimp/chest/reviver/emp_act(severity)
@@ -99,7 +100,7 @@
 	else
 		cooldown += 20 SECONDS
 
-	if(ishuman(owner))
+	if(ishuman(owner) && !syndicate_implant)
 		var/mob/living/carbon/human/H = owner
 		if(H.stat != DEAD && prob(50 / severity) && H.can_heartattack())
 			H.set_heartattack(TRUE)
@@ -114,12 +115,18 @@
 	if(H.stat == CONSCIOUS)
 		to_chat(H, span_notice("You feel your heart beating again!"))
 
+/obj/item/organ/cyberimp/chest/reviver/syndicate
+	name = "syndicate reviver implant"
+	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. For the faint of heart!"
+	implant_color = "#600000"
+	syndicate_implant = TRUE
+	heal_amount = 2
 
 /obj/item/organ/cyberimp/chest/thrusters
 	name = "implantable thrusters set"
 	desc = "An implantable set of thruster ports. They use the gas from environment or subject's internals for propulsion in zero-gravity areas. \
 	Unlike regular jetpacks, this device has no stabilization system."
-	slot = ORGAN_SLOT_THRUSTERS
+	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_jetpack"
 	implant_overlay = null
 	implant_color = null
@@ -162,15 +169,15 @@
 		if(!silent)
 			to_chat(owner, span_notice("You turn your thrusters set off."))
 		on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/thrusters/update_icon()
+/obj/item/organ/cyberimp/chest/thrusters/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "imp_jetpack-on"
 	else
 		icon_state = "imp_jetpack"
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
@@ -220,8 +227,8 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed
 	name = "neural overclocker implant"
-	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
-	slot = ORGAN_SLOT_THRUSTERS
+	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
+	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_spinal"
 	implant_overlay = null
 	implant_color = null
@@ -251,30 +258,32 @@
 		if(COOLDOWN_FINISHED(src, startsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
 			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
-		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		owner.next_move_modifier *= 0.7
-		owner?.dna?.species?.action_speed_coefficient *= 0.7
+		if(syndicate_implant)//the toy doesn't do anything aside from the trail and the sound
+			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
+			owner.next_move_modifier *= 0.7
+			owner?.dna?.species?.action_speed_coefficient *= 0.7
 		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
 			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
-		owner.next_move_modifier /= 0.7
-		owner?.dna?.species?.action_speed_coefficient /= 0.7
-		owner.remove_movespeed_modifier("spinalimplant")
+		if(syndicate_implant)
+			owner.next_move_modifier /= 0.7
+			owner?.dna?.species?.action_speed_coefficient /= 0.7
+			owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	on = !on
 	if(!silent)
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/spinalspeed/update_icon()
+/obj/item/organ/cyberimp/chest/spinalspeed/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "imp_spinal-on"
 	else
 		icon_state = "imp_spinal"
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
@@ -306,6 +315,9 @@
 	F.color = usedcolor	//gotta add the flair
 
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
+	if(!syndicate_implant)//the toy doesn't have a drawback
+		return
+
 	if(on)
 		if(owner.stat == UNCONSCIOUS || owner.stat == DEAD)
 			toggle(silent = TRUE)
@@ -338,6 +350,11 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
 	. = ..()
+	if(!syndicate_implant)//the toy has a different emp act
+		owner.adjust_dizzy(10 SECONDS / severity)
+		to_chat(owner, span_warning("Your spinal implant makes you feel queasy!"))
+		return
+
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
 			owner.set_drugginess(40)
@@ -355,6 +372,11 @@
 			time_on += 5
 			owner.adjustFireLoss(5)
 			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
+
+/obj/item/organ/cyberimp/chest/spinalspeed/toy
+	name = "glowy after-image trail implant"
+	desc = "Donk Co's first forray into the world of entertainment implants. Projects a series of after-images as you move, perfect for starting a dance party all on your own."
+	syndicate_implant = FALSE
 
 /obj/item/organ/cyberimp/chest/cooling_intake
 	name = "cooling intake"

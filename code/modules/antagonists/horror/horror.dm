@@ -117,7 +117,7 @@
 			return
 		Infect(C)
 		return
-	..()
+	return ..()
 
 /mob/living/simple_animal/horror/proc/has_chemicals(amt)
 	return chemicals >= amt
@@ -291,7 +291,7 @@
 			to_chat(M, "[link] [rendered]")
 	to_chat(src, span_changeling("<i>[B.real_name] says:</i> [input]"))
 
-/mob/living/simple_animal/horror/Life()
+/mob/living/simple_animal/horror/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(has_upgrade("regen"))
 		heal_overall_damage(5)
@@ -317,7 +317,7 @@
 		if(stat != DEAD && victim.stat != DEAD)
 			heal_overall_damage(1)
 
-/mob/living/simple_animal/horror/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/horror/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(victim)
 		to_chat(src, span_warning("You cannot speak out loud while inside a host!"))
 		return

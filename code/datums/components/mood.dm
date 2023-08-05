@@ -68,7 +68,7 @@
 		if(7)
 			msg += "[span_nicegreen("I feel pretty good.")]\n"
 		if(8)
-			msg += "[span_nicegreen("II feel amazing!")]\n"
+			msg += "[span_nicegreen("I feel amazing!")]\n"
 		if(9)
 			msg += "[span_nicegreen("I love life!")]\n"
 
@@ -278,6 +278,8 @@
 				addtimer(CALLBACK(src, PROC_REF(clear_event), null, category), the_event.timeout, TIMER_UNIQUE|TIMER_OVERRIDE)
 			return 0 //Don't have to update the event.
 	the_event = new type(src, param)
+	if(QDELETED(the_event)) // The mood event has been deleted for whatever reason (requires a job, etc).
+		return
 
 	mood_events[category] = the_event
 	the_event.category = category
@@ -295,7 +297,7 @@
 	qdel(event)
 	update_mood()
 
-/datum/component/mood/proc/remove_temp_moods(var/admin) //Removes all temp moods
+/datum/component/mood/proc/remove_temp_moods(admin) //Removes all temp moods
 	for(var/i in mood_events)
 		var/datum/mood_event/moodlet = mood_events[i]
 		if(!moodlet || !moodlet.timeout)
@@ -337,6 +339,8 @@
 		var/mob/living/carbon/human/H = L
 		if(isethereal(H))
 			HandleCharge(H)
+		if(ispreternis(H))
+			HandleBattery(H)
 		if(HAS_TRAIT(H, TRAIT_NOHUNGER))
 			return FALSE //no mood events for nutrition
 	switch(L.nutrition)
@@ -371,6 +375,18 @@
 			add_event(null, "charge", /datum/mood_event/overcharged)
 		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
 			add_event(null, "charge", /datum/mood_event/supercharged)
+
+/datum/component/mood/proc/HandleBattery(mob/living/carbon/human/H)
+	var/datum/species/preternis/P = H.dna?.species
+	switch(P.charge)
+		if(PRETERNIS_LEVEL_NONE to PRETERNIS_LEVEL_STARVING)
+			add_event(null, "charge", /datum/mood_event/decharged)
+		if(PRETERNIS_LEVEL_STARVING to PRETERNIS_LEVEL_HUNGRY)
+			add_event(null, "charge", /datum/mood_event/lowpower)
+		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
+			clear_event(null, "charge")
+		if(PRETERNIS_LEVEL_FED to INFINITY)
+			add_event(null, "charge", /datum/mood_event/charged)
 
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
 	if(A.mood_bonus)

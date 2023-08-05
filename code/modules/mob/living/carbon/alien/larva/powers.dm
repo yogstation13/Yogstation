@@ -13,6 +13,8 @@
 			span_notice("[owner] slowly peeks up from the ground..."),
 			span_noticealien("You stop hiding."),
 		)
+
+	else
 		owner.layer = hide_layer
 		owner.visible_message(
 			span_name("[owner] scurries to the ground!"),

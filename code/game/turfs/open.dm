@@ -15,11 +15,10 @@
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
-
-/turf/open/ComponentInitialize()
-	. = ..()
-	if(wet)
-		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
+	/// How much fuel this open turf provides to turf fires, and how easily they can be ignited in the first place. Can be negative to make fires die out faster.
+	var/flammability = 0.3
+	var/obj/effect/abstract/turf_fire/turf_fire
+	var/obj/effect/hotspot/hotspot
 
 //direction is direction of travel of A
 /turf/open/zPassIn(atom/movable/A, direction, turf/source)
@@ -91,7 +90,7 @@
 	heavyfootstep = FOOTSTEP_LAVA
 	tiled_dirt = FALSE
 
-/turf/open/indestructible/necropolis/Initialize()
+/turf/open/indestructible/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -319,10 +318,10 @@
 	light_color = "#AAD84B"
 	color = "#53003f"
 
-/turf/open/floor/grass/fairy/Initialize()
+/turf/open/floor/grass/fairy/Initialize(mapload)
 	. = ..()
 	icon_state = "fairygrass[rand(1,4)]"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
@@ -448,7 +447,7 @@
 /turf/open/indestructible/brazil/necropolis
 	icon_state = "necro1"
 
-/turf/open/indestructible/brazil/necropolis/Initialize()
+/turf/open/indestructible/brazil/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -604,3 +603,18 @@
 		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
 		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)
 		air_update_turf()
+
+/turf/open/IgniteTurf(power, fire_color="red")
+	if(air.get_moles(/datum/gas/oxygen) < 1)
+		return
+	if(turf_fire)
+		turf_fire.AddPower(power)
+		return
+	if(!isgroundlessturf(src))
+		new /obj/effect/abstract/turf_fire(src, power, fire_color)
+
+/turf/open/proc/set_flammability(new_flammability)
+	if(isnull(new_flammability))
+		flammability = initial(flammability)
+		return
+	flammability = new_flammability

@@ -14,6 +14,31 @@
 			C.bloodiness += bloodiness
 	return ..()
 
+/obj/effect/decal/cleanable/whiteblood
+	name = "\"blood\""
+	desc = "It's an unsettling colour. Maybe it's the chef's cooking?"
+	icon = 'icons/effects/blood.dmi'
+	icon_state = "genericsplatter1"
+	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
+
+/obj/effect/decal/cleanable/whiteblood/ethereal
+	name = "glowing \"blood\""
+	desc = "It has a fading glow. Surely it's just the chef's cooking?"
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+
+/obj/effect/decal/cleanable/whiteblood/ethereal/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/whiteblood/ethereal/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
+
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."
@@ -52,6 +77,21 @@
 
 /obj/effect/decal/cleanable/trail_holder/can_bloodcrawl_in()
 	return TRUE
+
+/obj/effect/decal/cleanable/trail_holder/proc/Etherealify()
+	name = "glowing \"blood\""
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+	update_light()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/trail_holder/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
@@ -170,7 +210,7 @@
 			shoe_types |= S.type
 			if (!(entered_dirs & H.dir))
 				entered_dirs |= H.dir
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 /obj/effect/decal/cleanable/blood/footprints/Uncrossed(atom/movable/O)
 	..()
@@ -182,25 +222,25 @@
 			shoe_types  |= S.type
 			if (!(exited_dirs & H.dir))
 				exited_dirs |= H.dir
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 
-/obj/effect/decal/cleanable/blood/footprints/update_icon()
-	cut_overlays()
+/obj/effect/decal/cleanable/blood/footprints/update_overlays()
+	. = ..()
 
 	for(var/Ddir in GLOB.cardinals)
 		if(entered_dirs & Ddir)
 			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
 				GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]1", dir = Ddir)
-			add_overlay(bloodstep_overlay)
+			. += bloodstep_overlay
 		if(exited_dirs & Ddir)
 			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
 				GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]2", dir = Ddir)
-			add_overlay(bloodstep_overlay)
+			. += bloodstep_overlay
 
-	alpha = BLOODY_FOOTPRINT_BASE_ALPHA+bloodiness
+	alpha = BLOODY_FOOTPRINT_BASE_ALPHA + bloodiness
 
 
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)

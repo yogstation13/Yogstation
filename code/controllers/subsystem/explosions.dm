@@ -66,9 +66,24 @@ SUBSYSTEM_DEF(explosions)
 	msg += "} "
 	return ..()
 
-
-#define SSEX_TURF "turf"
-#define SSEX_OBJ "obj"
+/datum/controller/subsystem/explosions/get_metrics()
+	. = ..()
+	.["cost_lowturf"] = cost_lowturf
+	.["cost_medturf"] = cost_medturf
+	.["cost_highturf"] = cost_highturf
+	.["cost_flameturf"] = cost_flameturf
+	.["cost_low_mov_atom"] = cost_low_mov_atom
+	.["cost_med_mov_atom"] = cost_med_mov_atom
+	.["cost_high_mov_atom"] = cost_high_mov_atom
+	.["cost_throwturf"] = cost_throwturf
+	.["lowturfs"] = lowturf.len
+	.["medturfs"] = medturf.len
+	.["highturfs"] = highturf.len
+	.["flameturfs"] = flameturf.len
+	.["low_mov_atom"] = low_mov_atom.len
+	.["med_mov_atom"] = med_mov_atom.len
+	.["high_mov_atom"] = high_mov_atom.len
+	.["throwturf"] = throwturf.len
 
 /datum/controller/subsystem/explosions/proc/is_exploding()
 	return (lowturf.len || medturf.len || highturf.len || flameturf.len || throwturf.len || low_mov_atom.len || med_mov_atom.len || high_mov_atom.len)

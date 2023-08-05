@@ -48,7 +48,7 @@
 	var/break_message = "lets out a tinny alarm before falling dark."
 	var/break_sound = 'sound/machines/warning-buzzer.ogg'
 
-/obj/machinery/droneDispenser/Initialize()
+/obj/machinery/droneDispenser/Initialize(mapload)
 	. = ..()
 	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, /obj/item/stack)
 	materials.insert_amount_mat(starting_amount)
@@ -135,7 +135,7 @@
 				playsound(src, work_sound, 50, 1)
 			mode = DRONE_PRODUCTION
 			timer = world.time + production_time
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 		if(DRONE_PRODUCTION)
 			materials.use_materials(using_materials)
@@ -152,7 +152,7 @@
 
 			mode = DRONE_RECHARGING
 			timer = world.time + cooldownTime
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 		if(DRONE_RECHARGING)
 			if(recharge_sound)
@@ -161,7 +161,7 @@
 				visible_message(span_notice("[src] [recharge_message]"))
 
 			mode = DRONE_READY
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/machinery/droneDispenser/proc/count_shells()
 	. = 0
@@ -169,7 +169,8 @@
 		if(istype(a, dispense_type))
 			.++
 
-/obj/machinery/droneDispenser/update_icon()
+/obj/machinery/droneDispenser/update_icon_state()
+	. = ..()
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = icon_off
 	else if(mode == DRONE_RECHARGING)
@@ -207,7 +208,7 @@
 
 		stat &= ~BROKEN
 		obj_integrity = max_integrity
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

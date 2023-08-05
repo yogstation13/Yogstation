@@ -60,6 +60,7 @@
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
+#define UF_CHANGED "uf changed"
 
 #define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 255
 #define CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY 30
@@ -81,6 +82,8 @@
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
 
+#define DNA_BLOCK_SIZE_COLOR DEFAULT_HEX_COLOR_LEN
+
 #define DNA_UNI_IDENTITY_BLOCKS		7
 #define DNA_HAIR_COLOR_BLOCK		1
 #define DNA_FACIAL_HAIR_COLOR_BLOCK	2
@@ -89,6 +92,30 @@
 #define DNA_GENDER_BLOCK			5
 #define DNA_FACIAL_HAIR_STYLE_BLOCK	6
 #define DNA_HAIR_STYLE_BLOCK		7
+
+/// This number needs to equal the total number of DNA blocks
+#define DNA_FEATURE_BLOCKS 19
+
+#define DNA_MUTANT_COLOR_BLOCK 1
+#define DNA_ETHEREAL_COLOR_BLOCK 2
+#define DNA_LIZARD_MARKINGS_BLOCK 3
+#define DNA_LIZARD_TAIL_BLOCK 4
+#define DNA_SNOUT_BLOCK 5
+#define DNA_HORNS_BLOCK 6
+#define DNA_FRILLS_BLOCK 7
+#define DNA_SPINES_BLOCK 8
+#define DNA_HUMAN_TAIL_BLOCK 9
+#define DNA_EARS_BLOCK 10
+#define DNA_MOTH_WINGS_BLOCK 11
+#define DNA_MUSHROOM_CAPS_BLOCK 12
+#define DNA_POD_HAIR_BLOCK 13
+//Yog specific DNA Blocks
+#define DNA_POD_FLOWER_BLOCK 14
+#define DNA_POLY_TAIL_BLOCK 15
+#define DNA_POLY_TEETH_BLOCK 16
+#define DNA_POLY_DOME_BLOCK 17
+#define DNA_POLY_DORSAL_BLOCK 18
+#define DNA_ETHEREAL_MARK_BLOCK 19
 
 #define DNA_SEQUENCE_LENGTH			4
 #define DNA_MUTATION_BLOCKS			8
@@ -148,40 +175,39 @@
 #define HAS_BONE	24
 /// Can't be husked.
 #define NOHUSK			25
-/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
-#define ROBOTIC_LIMBS	26
 /// have no mouth to ingest/eat with
-#define NOMOUTH			27
+#define NOMOUTH			26
 /// has a tail
-#define HAS_TAIL		28
-#define NONANITES		29
+#define HAS_TAIL		27
+#define NONANITES		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
-#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
-#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
-#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
-#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 #define ORGAN_SLOT_STOMACH "stomach"
-#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
-#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"
 #define ORGAN_SLOT_LUNGS "lungs"
 #define ORGAN_SLOT_HEART "heart"
 #define ORGAN_SLOT_ZOMBIE "zombie_infection"
-#define ORGAN_SLOT_THRUSTERS "thrusters"
-#define ORGAN_SLOT_HUD "eye_hud"
 #define ORGAN_SLOT_LIVER "liver"
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
-#define ORGAN_SLOT_HEART_AID "heartdrive"
-#define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
-#define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"
 #define ORGAN_SLOT_TAIL "tail"
 #define ORGAN_SLOT_PARASITE_EGG "parasite_egg"
+
+//implants
+#define ORGAN_SLOT_BRAIN_IMPLANT "brain_implant"
+#define ORGAN_SLOT_HUD "eye_hud"
+#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
+#define ORGAN_SLOT_TORSO_IMPLANT "torso_implant"
+#define ORGAN_SLOT_HEART_AID "heartdrive"
+#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
+#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
+#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 
 //organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100

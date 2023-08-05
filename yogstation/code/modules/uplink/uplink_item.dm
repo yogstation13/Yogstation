@@ -142,30 +142,30 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/race_restricted/garden_warfare
-	name = "Martial art scroll"
+	name = "Vegetable Parchment"
 	desc = "A special scroll with a martial art, that teaches phytosians of capabilities of their body."
 	cost = 13
 	item = /obj/item/book/granter/martial/garden_warfare
 	restricted_species = list("pod")
 
 /datum/uplink_item/race_restricted/combat_modules
-	name = "Combat Modules Board"
-	desc = "An upgrade board, containing upgrades and programs for your melee attacks."
+	name = "Remnant liquidator information board"
+	desc = "A stolen Remnant information board, containing data pertaining to covert assassination techniques."
 	cost = 11
-	item = /obj/item/book/granter/martial/preternis_stealth
+	item = /obj/item/book/granter/martial/liquidator
 	restricted_species = list("preternis")
 
-/datum/uplink_item/race_restricted/worldshaker
-	name = "Prototype worldshaker compound"
+/datum/uplink_item/race_restricted/worldbreaker
+	name = "Prototype worldbreaker compound"
 	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost.\
 	Said to cause rapid muscle and plate growth in any Preternis that consumes it. It's believed to have been used by Vxtrin to transform their workers into highly effective commando units.\
 	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
 	cost = 20
 	player_minimum = 25 //basically a fuckin megafauna
-	item = /obj/item/book/granter/martial/worldshaker
+	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
-	
+
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
 	desc = "An ancient scroll, containing a guide to an ancient plasmamen martial art."

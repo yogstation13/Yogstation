@@ -28,7 +28,7 @@
 	idle_power_usage = 150
 	active_power_usage = 2000
 
-/obj/machinery/atmospherics/miner/Initialize()
+/obj/machinery/atmospherics/miner/Initialize(mapload)
 	. = ..()
 	set_active(active)				//Force overlay update.
 
@@ -71,12 +71,12 @@
 /obj/machinery/atmospherics/miner/proc/set_active(setting)
 	if(active != setting)
 		active = setting
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/miner/proc/set_broken(setting)
 	if(broken != setting)
 		broken = setting
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/miner/proc/update_power()
 	if(!active)
@@ -108,14 +108,14 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/atmospherics/miner/update_icon()
-	cut_overlays()
+/obj/machinery/atmospherics/miner/update_overlays()
+	. = ..()
 	if(broken)
-		add_overlay("broken")
+		. += "broken"
 	else if(active)
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "on")
 		on_overlay.color = overlay_color
-		add_overlay(on_overlay)
+		. += on_overlay
 
 /obj/machinery/atmospherics/miner/process(delta_time)
 	update_power()

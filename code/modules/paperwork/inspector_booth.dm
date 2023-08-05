@@ -20,7 +20,7 @@
 	// Internal data
 	var/item_ids = 0
 	var/item_list = list()
-	var/list/stamp_upgrades = list("stamp-ok", "stamp-deny")
+	var/list/stamp_upgrades = list()
 	var/list/concurrent_users = list()
 
 	// Reference data
@@ -36,6 +36,9 @@
 		"stamp-ce" = "stamp_ce.png",
 		"stamp-law" = "stamp_law.png",
 		"stamp-clown" = "stamp_clown.png",
+		"stamp-syndi" = "stamp_syndi.png",
+		"stamp-cent" = "stamp_cent.png",
+		"stamp-syndiround" = "stamp_syndiround.png",
 	)
 	var/sfx = list(
 		"speaker" = 'sound/machines/inspector_booth/speech-announce.wav',
@@ -50,11 +53,12 @@
 	)
 
 
-/obj/machinery/inspector_booth/Initialize()
+/obj/machinery/inspector_booth/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/inspector_booth/update_icon()
+/obj/machinery/inspector_booth/update_icon_state()
+	. = ..()
 	if (stat & NOPOWER)
 		icon_state = "booth_off"
 	else if (panel_open || stat & MAINT)

@@ -12,11 +12,15 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/rust
 	user.put_in_hands(realknife)
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
-/datum/eldritch_knowledge/base_rust/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(user.a_intent == INTENT_HARM)
-		. = TRUE
+/datum/eldritch_knowledge/base_rust/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/base_rust/proc/on_mansus_grasp(mob/living/source, atom/target)
+	SIGNAL_HANDLER
+
+	if(source.a_intent == INTENT_HARM)
 		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/base_rust/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
@@ -72,9 +76,17 @@
 	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_RUST
 	tier = TIER_MARK
-
-/datum/eldritch_knowledge/rust_mark/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
+	
+/datum/eldritch_knowledge/rust_mark/on_gain(mob/user)
 	. = ..()
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/rust_mark/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/rust_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
 	if(isliving(target))
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/rust)

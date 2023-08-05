@@ -199,7 +199,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
 "cH" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_y = 3
 	},
@@ -290,7 +290,7 @@
 /area/ruin/space/has_grav/monastery)
 "dF" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
@@ -310,7 +310,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
 "eg" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/firealarm{
@@ -557,7 +557,7 @@
 /area/ruin/space/has_grav/monastery)
 "hb" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22";
 	pixel_y = 8
 	},
@@ -1055,7 +1055,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
 "nI" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1165,7 +1165,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
 "ph" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/structure/cable{
@@ -1459,7 +1459,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery/maint)
 "sM" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/item/radio/intercom{
@@ -1627,7 +1627,7 @@
 /area/ruin/space/has_grav/monastery)
 "uP" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
 "uX" = (
@@ -1669,7 +1669,7 @@
 /area/hydroponics/garden/monastery)
 "vs" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
@@ -1922,7 +1922,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
 "yj" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/plasteel/dark,
@@ -2153,7 +2153,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2776,7 +2776,7 @@
 /obj/structure/sign/plaques/deempisi{
 	pixel_y = 28
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_y = 3
 	},
@@ -2979,7 +2979,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
 "LV" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3029,7 +3029,7 @@
 /turf/open/space/basic,
 /area/ruin/unpowered/no_grav)
 "Mn" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-08"
 	},
 /turf/open/floor/plasteel/dark,
@@ -4298,7 +4298,7 @@
 /area/ruin/space/has_grav/monastery/library)
 "Zn" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-05";
 	pixel_y = 10
 	},
@@ -4368,7 +4368,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{

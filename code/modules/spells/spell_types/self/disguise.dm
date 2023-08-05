@@ -42,7 +42,7 @@
 
 	return TRUE
 
-/datum/action/cooldown/spell/disguise/proc/cloak(var/mob/living/carbon/human/C, var/mob/living/carbon/human/target, mob/user) //Code shortcut to enable the disguise.
+/datum/action/cooldown/spell/disguise/proc/cloak(mob/living/carbon/human/C, mob/living/carbon/human/target, mob/user) //Code shortcut to enable the disguise.
 	if(is_disguised)
 		message_admins("[ADMIN_LOOKUPFLW(C)] just tried to disguise while disguised! That shouldn't happen!") 
 		return
@@ -58,7 +58,7 @@
 	is_disguised = TRUE
 	addtimer(CALLBACK(src, PROC_REF(undocloak), C), (40 SECONDS + (spell_level * 3))) //Sets it up so this is unchanged on default level, and goes up per level invested.
 		
-/datum/action/cooldown/spell/disguise/proc/undocloak(var/mob/living/carbon/human/C) //Code shortcut to disable the disguise.
+/datum/action/cooldown/spell/disguise/proc/undocloak(mob/living/carbon/human/C) //Code shortcut to disable the disguise.
 	if((ishuman(C) && (C.mind)) || wasbeast == TRUE) //Shapeshift spell takes out your mind, buckles you to a body, and then puts your mind in a summoned animal. We need this bullshit to both check that this is not happening, and then override it when we have to fix the bullshit.
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(C), C.dir) //Makes an animation for disguising.
 		C.name_override = null

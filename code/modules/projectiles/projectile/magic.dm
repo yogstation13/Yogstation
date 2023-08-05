@@ -14,12 +14,12 @@
 	var/antimagic_charge_cost = 1
 
 /obj/item/projectile/magic/prehit(atom/target)
-	. = ..()
 	if(isliving(target))
 		var/mob/living/victim = target
 		if(victim.can_block_magic(antimagic_flags, antimagic_charge_cost))
 			visible_message(span_warning("[src] fizzles on contact with [victim]!"))
-			return BULLET_ACT_BLOCK
+			qdel(src)
+			return FALSE
 
 	if(istype(target, /obj/machinery/hydroponics)) // even plants can block antimagic
 		var/obj/machinery/hydroponics/plant_tray = target
@@ -27,7 +27,9 @@
 			return
 		if(LAZYFIND(plant_tray.myseed.reagents_add, /datum/reagent/water/holywater))
 			visible_message(span_warning("[src] fizzles on contact with [plant_tray]!"))
-			return BULLET_ACT_BLOCK
+			qdel(src)
+			return FALSE
+	return ..()
 
 /obj/item/projectile/magic/death
 	name = "bolt of death"
@@ -35,8 +37,8 @@
 
 /obj/item/projectile/magic/death/on_hit(target)
 	. = ..()
-	if(ismob(target))
-		var/mob/M = target
+	if(isliving(target))
+		var/mob/living/M = target
 		M.death(0)
 
 /obj/item/projectile/magic/spellcard
@@ -126,7 +128,7 @@
 /obj/item/projectile/magic/door/on_hit(atom/target)
 	. = ..()
 	if(istype(target, /obj/machinery/door))
-		OpenDoor(target)
+		open_door(target)
 	else
 		var/turf/T = get_turf(target)
 		if(isclosedturf(T) && !isindestructiblewall(T))
@@ -138,7 +140,7 @@
 	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
 
-/obj/item/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
+/obj/item/projectile/magic/door/proc/open_door(obj/machinery/door/D)
 	if(istype(D, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/A = D
 		A.locked = FALSE
@@ -353,7 +355,7 @@
 	target.animate_atom_living(firer)
 	..()
 
-/atom/proc/animate_atom_living(var/mob/living/owner = null)
+/atom/proc/animate_atom_living(mob/living/owner = null)
 	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
 		if(istype(src, /obj/structure/statue/petrified))
 			var/obj/structure/statue/petrified/P = src
@@ -448,7 +450,7 @@
 		for(var/atom/movable/AM in contents)
 			C.insert(AM)
 		C.welded = weld
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 	created = TRUE
 	return ..()
 
@@ -465,7 +467,7 @@
 	var/weakened_icon = "decursed"
 	var/auto_destroy = TRUE
 
-/obj/structure/closet/decay/Initialize()
+/obj/structure/closet/decay/Initialize(mapload)
 	. = ..()
 	if(auto_destroy)
 		addtimer(CALLBACK(src, PROC_REF(bust_open)), 5 MINUTES)
@@ -475,7 +477,7 @@
 	if(!welded)
 		return
 	icon_state = magic_icon
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/closet/decay/after_weld(weld_state)
 	if(weld_state)
@@ -495,7 +497,7 @@
 
 /obj/structure/closet/decay/proc/unmagify()
 	icon_state = weakened_icon
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 	icon_welded = "welded"
 
@@ -1003,11 +1005,10 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.randmuti()
 		if(prob(66))
-			X.easy_randmut(NEGATIVE)
+			X.easy_random_mutate(NEGATIVE)
 		else
-			X.easy_randmut(MINOR_NEGATIVE)
+			X.easy_random_mutate(MINOR_NEGATIVE)
 
 
 /obj/item/projectile/magic/runic_resizement

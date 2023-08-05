@@ -148,13 +148,13 @@
 	current_zoom_x = 0
 	current_zoom_y = 0
 
-/obj/item/gun/energy/beam_rifle/update_icon()
-	cut_overlays()
+/obj/item/gun/energy/beam_rifle/update_overlays()
+	. = ..()
 	var/obj/item/ammo_casing/energy/primary_ammo = ammo_type[1]
 	if(!QDELETED(cell) && (cell.charge >= primary_ammo.e_cost))
-		add_overlay(charged_overlay)
+		. += charged_overlay
 	else
-		add_overlay(drained_overlay)
+		. += drained_overlay
 
 /obj/item/gun/energy/beam_rifle/attack_self(mob/user)
 	projectile_setting_pierce = !projectile_setting_pierce
@@ -167,7 +167,7 @@
 	else
 		slowdown = initial(slowdown)
 
-/obj/item/gun/energy/beam_rifle/Initialize()
+/obj/item/gun/energy/beam_rifle/Initialize(mapload)
 	. = ..()
 	fire_delay = delay
 	START_PROCESSING(SSfastprocess, src)

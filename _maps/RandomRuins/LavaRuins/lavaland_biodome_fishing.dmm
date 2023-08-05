@@ -146,8 +146,8 @@
 /area/ruin/powered/fishing/shop)
 "dV" = (
 /obj/structure/rack,
-/obj/item/twohanded/fishingrod,
-/obj/item/twohanded/fishingrod,
+/obj/item/fishingrod,
+/obj/item/fishingrod,
 /obj/item/storage/toolbox/mechanical/insulateds{
 	pixel_x = 1;
 	pixel_y = -1
@@ -1537,7 +1537,7 @@
 /obj/machinery/vending/fishing{
 	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 6);
 	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 10);
-	products = list(/obj/item/twohanded/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
+	products = list(/obj/item/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)

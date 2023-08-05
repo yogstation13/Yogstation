@@ -22,7 +22,7 @@
 	var/useramount = 30 // Last used amount
 	var/list/pillStyles = null
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	create_reagents(100)
 
 	. = ..()
@@ -65,14 +65,17 @@
 	if(A == beaker)
 		beaker = null
 		reagents.clear_reagents()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(A == bottle)
 		bottle = null
 
-/obj/machinery/chem_master/update_icon()
-	cut_overlays()
+/obj/machinery/chem_master/update_overlays()
+	. = ..()
 	if (stat & BROKEN)
-		add_overlay("waitlight")
+		. += "waitlight"
+
+/obj/machinery/chem_master/update_icon_state()
+	. = ..()
 	if(beaker)
 		icon_state = "mixer1"
 	else
@@ -103,7 +106,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(!condi && istype(I, /obj/item/storage/pill_bottle))
 		if(bottle)
 			to_chat(user, span_warning("A pill bottle is already loaded into [src]!"))
@@ -131,7 +134,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/chem_master/on_deconstruction()

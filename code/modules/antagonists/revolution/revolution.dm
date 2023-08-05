@@ -31,26 +31,25 @@
 				return FALSE
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	M.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	M.throw_alert("revolution", /atom/movable/screen/alert/revolution)
 	add_team_hud(M, /datum/antagonist/rev)
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	M.remove_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	M.clear_alert("revolution")
+	return ..()
 
 /datum/antagonist/rev/proc/equip_rev()
 	return
 
 /datum/antagonist/rev/on_gain()
 	. = ..()
-	create_objectives()
 	equip_rev()
 	owner.current.log_message("has been converted to the revolution!", LOG_ATTACK, color="red")
-
-/datum/antagonist/rev/on_removal()
-	remove_objectives()
-	. = ..()
 
 /datum/antagonist/rev/greet()
 	to_chat(owner, span_userdanger("You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!"))
@@ -75,12 +74,6 @@
 
 /datum/antagonist/rev/get_team()
 	return rev_team
-
-/datum/antagonist/rev/proc/create_objectives()
-	objectives |= rev_team.objectives
-
-/datum/antagonist/rev/proc/remove_objectives()
-	objectives -= rev_team.objectives
 
 //Bump up to head_rev
 /datum/antagonist/rev/proc/promote()
@@ -149,7 +142,7 @@
 		to_chat(admin, span_danger("Repairing flash failed!"))
 	else
 		flash.burnt_out = FALSE
-		flash.update_icon()
+		flash.update_appearance(UPDATE_ICON)
 
 /datum/antagonist/rev/head/proc/admin_demote(datum/mind/target,mob/user)
 	message_admins("[key_name_admin(user)] has demoted [key_name_admin(owner)] from head revolutionary.")
@@ -465,5 +458,5 @@
 	uniform = /obj/item/clothing/under/yogs/soviet_dress_uniform
 	head = /obj/item/clothing/head/ushanka
 	gloves = /obj/item/clothing/gloves/color/black
-	l_hand = /obj/item/twohanded/spear
+	l_hand = /obj/item/melee/spear
 	r_hand = /obj/item/assembly/flash

@@ -17,6 +17,7 @@
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
+	clicksound = 'sound/machines/pda_button1.ogg'
 
 	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
@@ -48,10 +49,10 @@
 	///what are we putting in the tgui
 	var/sedate_button_text = "Sedate"
 
-/obj/machinery/sleeper/Initialize()
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E
@@ -69,7 +70,8 @@
 		available_treatments |= treatments[i]
 	stasis = (I >= 4)
 
-/obj/machinery/sleeper/update_icon()
+/obj/machinery/sleeper/update_icon_state()
+	. = ..()
 	if(state_open)
 		icon_state = "[initial(icon_state)]-open"
 	else
@@ -288,6 +290,7 @@
 /obj/machinery/sleeper/ui_act(action, params)
 	if(..())
 		return
+	playsound(src, pick('sound/items/hypospray.ogg','sound/items/hypospray2.ogg'), 50, TRUE, 2)
 	var/mob/living/mob_occupant = occupant
 	check_nap_violations()
 	switch(action)
@@ -320,7 +323,7 @@
 	icon_state = "sleeper_s"
 	controls_inside = TRUE
 
-/obj/machinery/sleeper/syndie/fullupgrade/Initialize()
+/obj/machinery/sleeper/syndie/fullupgrade/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)

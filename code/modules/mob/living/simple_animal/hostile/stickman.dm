@@ -5,7 +5,7 @@
 	icon_living = "stickman"
 	icon_dead = "stickman_dead"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_INORGANIC|MOB_HUMANOID
 	gender = MALE
 	speak_chance = 0
 	turns_per_move = 5
@@ -50,9 +50,9 @@
 	icon_state = "stickdog"
 	icon_living = "stickdog"
 	icon_dead = "stickdog_dead"
-	mob_biotypes = list(MOB_INORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_INORGANIC|MOB_BEAST
 
-/mob/living/simple_animal/hostile/stickman/Initialize(mapload, var/wizard_summoned)
+/mob/living/simple_animal/hostile/stickman/Initialize(mapload, wizard_summoned)
 	. = ..()
 	new /obj/effect/temp_visual/paper_scatter(src)
 	summoned_by_wizard = wizard_summoned

@@ -4,6 +4,10 @@
 	speech_span = SPAN_ROBOT
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
+	
+	/// Icon to use as a 32x32 preview in crafting menus and such
+	var/icon_preview
+	var/icon_state_preview
 
 	var/damtype = BRUTE
 	var/force = 0
@@ -50,14 +54,14 @@
 				return FALSE
 	return ..()
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
 		armor = getArmor()
 	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
@@ -178,9 +182,6 @@
 /obj/proc/container_resist(mob/living/user)
 	return
 
-/obj/proc/update_icon()
-	return
-
 /mob/proc/unset_machine()
 	if(machine)
 		machine.on_unset_machine(src)
@@ -297,7 +298,9 @@
 /obj/examine(mob/user)
 	. = ..()
 	if(obj_flags & UNIQUE_RENAME)
-		. += span_notice("Use a pen on it to rename it or change its description.")
+		. += span_notice("Use a pen on it to rename it [obj_flags & UNIQUE_REDESC ? "or change its description" : ""].")
+	else if(obj_flags & UNIQUE_REDESC)
+		. += span_notice("Use a pen on it to change its description.")
 	if(unique_reskin && !current_skin)
 		. += span_notice("Alt-click it to reskin it.")
 

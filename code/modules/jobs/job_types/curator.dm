@@ -2,10 +2,8 @@
 	title = "Curator"
 	description = "Read and write books and hand them to people, stock \
 		bookshelves, report on station news."
-	flag = CURATOR
 	orbit_icon = "book"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1

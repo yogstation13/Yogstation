@@ -328,6 +328,7 @@
 				if(mophead != user) 
 					user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 					mopped |= mophead // Add them to the list of things we are mopping
+					mophead.Immobilize(0.1 SECONDS) //also to prevent clipping through the user
 					mophead.add_fingerprint(user, FALSE)
 					var/turf/Q = get_step(get_turf(user), user.dir) // get the turf behind the thing we're attacking
 					to_chat(mophead, span_userdanger("[user] grinds you against the ground!"))
@@ -508,14 +509,14 @@
 	..()
 	var/datum/species/S = H.dna?.species
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
-	S.add_no_equip_slot(H, SLOT_GLOVES)
+	S.add_no_equip_slot(H, ITEM_SLOT_GLOVES)
 	add_verb(H, recalibration)
 	usr.click_intercept = src 
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
-	S.remove_no_equip_slot(H, SLOT_GLOVES)
+	S.remove_no_equip_slot(H, ITEM_SLOT_GLOVES)
 	remove_verb(H, recalibration)
 	usr.click_intercept = null 
 	..()

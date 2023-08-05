@@ -1,7 +1,0 @@
-author: "Kaithyl"
-delete-after: true 
-changes: 
-  - rscadd: "Added Inspector Booth machine"
-  - tweak: "Added Inspector Booth to list of circuit boards and corresponding research (Basic Research Technology)"
-  - soundadd: "Added several sfx for UI interaction (sound\\machines\\inspector_booth)"
-  - imageadd: "Added several UI icons and sprites (icons\\UI_Icons\\tgui\\inspector_booth and icons\\obj\\machines\\inspector_booth.dmi)"

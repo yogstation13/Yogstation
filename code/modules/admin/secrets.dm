@@ -248,7 +248,7 @@
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
-					dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"
+					dat += "<tr><td>[H]</td><td>[md5(H.dna.unique_identity)]</td></tr>"
 			dat += "</table></BODY></HTML>"
 			mob_user << browse(dat, "window=fingerprints;size=440x410")
 
@@ -409,7 +409,7 @@
 					var/obj/item/clothing/under/schoolgirl/I = new seifuku
 					var/olduniform = H.w_uniform
 					H.temporarilyRemoveItemFromInventory(H.w_uniform, TRUE, FALSE)
-					H.equip_to_slot_or_del(I, SLOT_W_UNIFORM)
+					H.equip_to_slot_or_del(I, ITEM_SLOT_ICLOTHING)
 					qdel(olduniform)
 					if(droptype == "Yes")
 						ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)

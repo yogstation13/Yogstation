@@ -37,7 +37,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer
 
 
-/obj/machinery/gulag_processor/Initialize()
+/obj/machinery/gulag_processor/Initialize(mapload)
 	. = ..()
 	locate_reclaimer()
 
@@ -60,10 +60,6 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 		id = null
 	..()
 
-/obj/machinery/gulag_processor/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/gulag_processor/interact(mob/user)
 	. = ..()
 	toggle_open()
@@ -73,7 +69,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 
 /obj/machinery/gulag_processor/attackby(obj/item/I, mob/user)
 	if(!occupant && default_deconstruction_screwdriver(user, "[icon_state]", "[icon_state]",I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(default_deconstruction_crowbar(I))
@@ -94,7 +90,8 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 
 	return ..()
 
-/obj/machinery/gulag_processor/update_icon()
+/obj/machinery/gulag_processor/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state) + (state_open ? "_open" : "")
 	//no power or maintenance
 	if(stat & (NOPOWER|BROKEN))
@@ -178,7 +175,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 		for(var/r in GLOB.data_core.security)
 			var/datum/data/record/R = r
 			if(R.fields["name"] == prisoner.real_name)
-				R.fields["criminal"] = "Incarcerated"
+				R.fields["criminal"] = WANTED_PRISONER
 
 	open_machine()
 	prisoner.Paralyze(stun_duration)

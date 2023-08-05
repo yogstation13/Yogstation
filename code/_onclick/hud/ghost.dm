@@ -4,13 +4,13 @@
 /atom/movable/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-/atom/movable/screen/ghost/jumptomob
+/atom/movable/screen/ghost/jump_to_mob
 	name = "Jump to mob"
-	icon_state = "jumptomob"
+	icon_state = "jump_to_mob"
 
-/atom/movable/screen/ghost/jumptomob/Click()
+/atom/movable/screen/ghost/jump_to_mob/Click()
 	var/mob/dead/observer/G = usr
-	G.jumptomob()
+	G.jump_to_mob()
 
 /atom/movable/screen/ghost/orbit
 	name = "Orbit"
@@ -48,47 +48,47 @@
 	..()
 	var/atom/movable/screen/using
 
-	using = new /atom/movable/screen/ghost/jumptomob()
-	using.screen_loc = ui_ghost_jumptomob
+	using = new /atom/movable/screen/ghost/jump_to_mob(src)
+	using.screen_loc = ui_ghost_jump_to_mob
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/orbit()
+	using = new /atom/movable/screen/ghost/orbit(src)
 	using.screen_loc = ui_ghost_orbit
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/reenter_corpse()
+	using = new /atom/movable/screen/ghost/reenter_corpse(src)
 	using.screen_loc = ui_ghost_reenter_corpse
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/teleport()
+	using = new /atom/movable/screen/ghost/teleport(src)
 	using.screen_loc = ui_ghost_teleport
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/spawners()
+	using = new /atom/movable/screen/ghost/spawners(src)
 	using.screen_loc = ui_ghost_spawners
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/med_scan()
+	using = new /atom/movable/screen/ghost/med_scan(src)
 	using.screen_loc = ui_ghost_med
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/chem_scan()
+	using = new /atom/movable/screen/ghost/chem_scan(src)
 	using.screen_loc = ui_ghost_chem
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/nanite_scan()
+	using = new /atom/movable/screen/ghost/nanite_scan(src)
 	using.screen_loc = ui_ghost_nanite
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/wound_scan()
+	using = new /atom/movable/screen/ghost/wound_scan(src)
 	using.screen_loc = ui_ghost_wound
 	static_inventory += using
 
-	using = new /atom/movable/screen/ghost/pai()
+	using = new /atom/movable/screen/ghost/pai(src)
 	using.screen_loc = ui_ghost_pai
 	static_inventory += using
 
-	using = new /atom/movable/screen/language_menu/ghost
+	using = new /atom/movable/screen/language_menu/ghost(src)
 	using.icon = ui_style
 	static_inventory += using
 

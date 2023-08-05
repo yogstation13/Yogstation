@@ -106,7 +106,6 @@
 #define ui_borg_intents "EAST-2:26,SOUTH:5"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
 
-
 //Upper-middle right (alerts)
 #define ui_alert1 "EAST-1:28,CENTER+5:27"
 #define ui_alert2 "EAST-1:28,CENTER+4:25"
@@ -124,8 +123,8 @@
 //Middle right (status indicators)
 #define ui_healthdoll "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
-#define ui_internal "EAST-1:28,CENTER:17"
-#define ui_mood "EAST-1:28,CENTER-4:10"
+#define ui_internal "EAST-1:28,CENTER+1:17"
+#define ui_mood "EAST-1:28,CENTER:17"
 #define ui_stamina "EAST-1:28,CENTER-3:10"
 
 //living
@@ -208,7 +207,7 @@
 
 //Ghosts
 
-#define ui_ghost_jumptomob "SOUTH:6,CENTER-3:24"
+#define ui_ghost_jump_to_mob "SOUTH:6,CENTER-3:24"
 #define ui_ghost_orbit "SOUTH:6,CENTER-2:24"
 #define ui_ghost_reenter_corpse "SOUTH:6,CENTER-1:24"
 #define ui_ghost_teleport "SOUTH:6,CENTER:24"
@@ -232,3 +231,5 @@
 #define SCRN_OBJ_IN_PALETTE "palette"
 ///Inserted first in the list
 #define SCRN_OBJ_INSERT_FIRST "first"
+/// The filter name for the hover outline
+#define HOVER_OUTLINE_FILTER "hover_outline"

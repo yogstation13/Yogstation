@@ -20,30 +20,32 @@
 /************************Hivelord core*******************/
 /obj/item/organ/regenerative_core
 	name = "regenerative core"
-	desc = "All that remains of a hivelord. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
+	desc = "All that remains of a hivelord. \
+			It can be used to heal quickly, but it will rapidly decay into uselessness. \
+			Radiation found in active space installments will slow its healing effects."
 	icon_state = "hivelord_core"
 	var/icon_state_inert = "hivelord_core_decayed"
 	var/icon_state_preserved = "hivelord_core"
 	visual = FALSE
 	item_flags = NOBLUDGEON
+	process_flags = ORGANIC | SYNTHETIC
 	slot = "hivecore"
 	force = 0
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/inert = FALSE
 	var/preserved = FALSE
 
-/obj/item/organ/regenerative_core/update_icon()
-	if(inert)
-		icon_state = icon_state_inert
-	if(preserved)
-		icon_state = icon_state_preserved
-	if(!inert && !preserved)
-		icon_state = initial(icon_state)
+/obj/item/organ/regenerative_core/update_icon_state()
+	if (inert)
+		icon_state = icon_state_inert ? icon_state_inert : initial(icon_state)
+		return ..()
+	if (preserved)
+		icon_state = icon_state_preserved ? icon_state_preserved : initial(icon_state)
+		return ..()
+	icon_state = initial(icon_state)
+	return ..()
 
-	for(var/datum/action/A as anything in actions)
-		A.build_all_button_icons()
-
-/obj/item/organ/regenerative_core/Initialize()
+/obj/item/organ/regenerative_core/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(inert_check)), 4 MINUTES)
 
@@ -54,7 +56,7 @@
 /obj/item/organ/regenerative_core/proc/preserved(implanted = 0)
 	inert = FALSE
 	preserved = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	name = "preserved regenerative core"
 	desc = "All that remains of a hivelord. It is preserved, allowing you to use it to heal completely without danger of decay."
 	if(implanted)
@@ -67,7 +69,7 @@
 	name = "decayed regenerative core"
 	desc = "All that remains of a hivelord. It has decayed, and is completely useless."
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "inert"))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/regenerative_core/ui_action_click()
 	if(inert)
@@ -147,9 +149,9 @@
 	icon_state_inert = "legion_core_decayed"
 	icon_state_preserved = "legion_core_stable"
 
-/obj/item/organ/regenerative_core/legion/Initialize()
+/obj/item/organ/regenerative_core/legion/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()

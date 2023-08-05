@@ -12,12 +12,6 @@
 		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
-/datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
-	for(var/datum/objective/sacrifice/sac_objective in objectives)
-		if(mind == sac_objective.target)
-			return TRUE
-	return FALSE
-
 /proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
 	if(!istype(M))
 		return FALSE
@@ -107,13 +101,16 @@
 
 	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
 
-	. = ..()
+	return ..()
 
 /datum/game_mode/cult/check_finished(force_ending)
-	if (..())
+	if(!SSticker.setup_done || !gamemode_ready)
+		return FALSE
+	. = ..()
+	if (.)
 		return TRUE
 
-	return 1 - main_cult.check_sacrifice_status()
+	return !main_cult.check_sacrifice_status() //we should remove this any time soon
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
@@ -138,13 +135,9 @@
 			cult_mind.current.Unconscious(100)
 		return TRUE
 
-/datum/game_mode/cult/proc/check_cult_victory()
-	return main_cult.check_cult_victory()
-
-
 /datum/game_mode/cult/set_round_result()
 	..()
-	if(check_cult_victory())
+	if(main_cult.check_cult_victory())
 		SSticker.mode_result = "win - cult win"
 		SSticker.news_report = CULT_SUMMON
 	else
@@ -196,7 +189,7 @@
 			return //We're done here
 		else
 			B.current_fullness++
-		B.update_icon()
+		B.update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
 
 /datum/game_mode/proc/create_anchor_bloodstone()

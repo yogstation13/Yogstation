@@ -97,7 +97,6 @@
 	icon_state = "bloodaltar"
 	density = TRUE
 	anchored = FALSE
-	climbable = TRUE
 	pass_flags = LETPASSTHROW
 	can_buckle = FALSE
 	var/sacrifices = 0
@@ -116,6 +115,10 @@
 		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
 		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
 
+/obj/structure/bloodsucker/bloodaltar/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/structure/bloodsucker/bloodaltar/bolt()
 	. = ..()
 	anchored = TRUE
@@ -132,13 +135,13 @@
 		to_chat(user, span_warning("You can't figure out how this works."))
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.has_task && !check_completion(user)) //not done but has a task? put them on their way
+		to_chat(user, span_warning("You already have a rank up task!"))
+		return
 	if(bloodsuckerdatum.altar_uses >= ALTAR_RANKS_PER_DAY) //used the altar already
 		to_chat(user, span_notice("You have done all tasks for the night, come back tomorrow for more."))
 		return
-	if(!check_completion(user) && bloodsuckerdatum.current_task) //not done but has a task? put them on their way
-		to_chat(user, span_warning("You already have a rank up task!"))
-		return
-	var/want_rank = tgui_alert("Do you want to gain a task? This will cost 50 Blood.", "Task Manager", list("Yes", "No"))
+	var/want_rank = tgui_alert(user, "Do you want to gain a task? This will cost 50 Blood.", "Task Manager", list("Yes", "No"))
 	if(want_rank != "Yes" || QDELETED(src))
 		return
 	generate_task(user) //generate
@@ -163,7 +166,7 @@
 	if(crewmate.blood_volume < 50)
 		to_chat(user, span_danger("You don't have enough blood to gain a task!"))
 		return
-	crewmate.blood_volume -= 50
+	bloodsuckerdatum.AddBloodVolume(-50)
 	switch(rand(1, 3))
 		if(1,2)
 			bloodsuckerdatum.task_blood_required = suckamount
@@ -173,15 +176,15 @@
 			task = "Sacrifice [heartamount] hearts by using them on the altar."
 			sacrificialtask = TRUE
 	bloodsuckerdatum.task_memory += "<B>Current Rank Up Task</B>: [task]<br>"
-	bloodsuckerdatum.current_task = TRUE
+	bloodsuckerdatum.has_task = TRUE
 	to_chat(user, span_boldnotice("You have gained a new Task! [task] Remember to collect it by using the blood altar!"))
 
 /obj/structure/bloodsucker/bloodaltar/proc/check_completion(mob/living/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.task_blood_drank < suckamount || sacrifices < heartamount)
+	if(bloodsuckerdatum.task_blood_drank < bloodsuckerdatum.task_blood_required || sacrifices < bloodsuckerdatum.task_heart_required)
 		return FALSE
 	bloodsuckerdatum.task_memory = null
-	bloodsuckerdatum.current_task = FALSE
+	bloodsuckerdatum.has_task = FALSE
 	bloodsuckerdatum.bloodsucker_level_unspent++
 	bloodsuckerdatum.altar_uses++
 	bloodsuckerdatum.task_blood_drank = 0
@@ -251,7 +254,7 @@
 		else
 			to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
 		return
-	. = ..()
+	return ..()
 
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
 	if(!IS_BLOODSUCKER(user)) //only bloodsucker will attack this with their hand
@@ -271,87 +274,83 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!IS_BLOODSUCKER(user))
 		return ..()
+
 	if(!anchored)
 		return ..()
+
 	if(LAZYLEN(buckled_mobs))
 		do_sacrifice(buckled_mobs, user)
-	if(bloodsuckerdatum.my_clan?.control_type == BLOODSUCKER_CONTROL_SHADOWS)
-		if(bloodsuckerdatum.clanpoints)
-			var/list/upgradablepowers = list()
-			var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/masquerade, /datum/action/cooldown/bloodsucker/veil)
-			for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.powers)
-				if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
-					upgradablepowers += power
-				if(is_type_in_list(power, unupgradablepowers))
-					upgradablepowers -= power
-			var/choice = tgui_input_list(usr, "What Power do you wish to ascend? This resets the powers level.", "Darkness Manager", upgradablepowers)
-			if(!choice)
-				return
-			if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
-				return
-			var/datum/action/cooldown/bloodsucker/granted = null
-			switch(choice)
-				if(/datum/action/cooldown/bloodsucker/targeted/brawn)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
-				if(/datum/action/cooldown/bloodsucker/targeted/haste)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/haste/shadow
-				if(/datum/action/cooldown/bloodsucker/fortitude)
-					granted = new /datum/action/cooldown/bloodsucker/fortitude/shadow // i hate this
-				if(/datum/action/cooldown/bloodsucker/targeted/mesmerize)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
-				if(/datum/action/cooldown/bloodsucker/targeted/trespass)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/trespass/shadow
-				if(/datum/action/cooldown/bloodsucker/targeted/lunge)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/lunge/shadow
-				if(/datum/action/cooldown/bloodsucker/cloak/)
-					granted = new /datum/action/cooldown/bloodsucker/cloak/shadow
-			bloodsuckerdatum.BuyPower(granted)
-			var/datum/action/cooldown/bloodsucker/now_level_it_up = LAZYFIND(bloodsuckerdatum.powers, granted)
-			now_level_it_up.level_current = rand(3, 4)
-			qdel(choice)
-			to_chat(user, span_boldnotice("You have ascended [choice]!"))
-			bloodsuckerdatum.clanpoints--
+		return
+
+	if(bloodsuckerdatum.my_clan?.control_type != BLOODSUCKER_CONTROL_SHADOWS)
+		return ..()
+
+	if(bloodsuckerdatum.bloodsucker_level < 4)
+		to_chat(user, span_warning("Uncontent with your age, the resting place blocks its secrets. (You need to be rank 4)"))
+		return ..()
+
+	if(bloodsuckerdatum.clanpoints)
+		var/list/upgradablepowers = list()
+		var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/masquerade, /datum/action/cooldown/bloodsucker/veil)
+		for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.powers)
+			if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
+				upgradablepowers += power
+			if(is_type_in_list(power, unupgradablepowers))
+				upgradablepowers -= power
+			if(initial(power.ascended_power) == null)
+				upgradablepowers -= power
+
+		var/datum/action/cooldown/bloodsucker/choice = tgui_input_list(user, "What Power do you wish to ascend?", "Darkness Manager", upgradablepowers)
+		if(!choice)
 			return
-		if(bloodsuckerdatum.bloodsucker_level >= 4)
-			if(!awoken) //don't want this to affect power upgrading if you make another one
-				to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
-				return
-			icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
-			update_icon()
-			var/rankspent
-			switch(bloodsuckerdatum.clanprogress)
-				if(0)
-					bloodsuckerdatum.clanprogress++
-					bloodsuckerdatum.clanpoints++
-					to_chat(user, span_notice("As you touch the [src] you feel the a slight abyssal pulse flow through you... You have gained a point!"))
-					return
-				if(1 to 3)
-					rankspent = 1
-				if(4 to 6)
-					rankspent = 2
-				if(7)
-					rankspent = 3
-				if(8 to INFINITY)
-					to_chat(user, span_notice("You have evolved all abilities possible."))
-					return
-			var/want_clantask = tgui_alert("Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", list("Yes", "No"))
-			if(want_clantask == "No" || QDELETED(src))
-				return
-			if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
-				var/another_shot = tgui_alert("It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", list("Yes", "No"))
-				if(another_shot == "No" || QDELETED(src))
-					return
-				var/mob/living/carbon/C = user
-				if(C.blood_volume < 550)
-					to_chat(user, span_danger("You don't have enough blood to gain a shadowpoint!"))
-					return
-				C.blood_volume -= 550
-			else
-				bloodsuckerdatum.bloodsucker_level_unspent -= rankspent
-			bloodsuckerdatum.clanpoints++
+		if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
+			return
+		var/datum/action/cooldown/bloodsucker/granted = new choice.ascended_power
+		bloodsuckerdatum.BuyPower(granted)
+		granted.level_current = rand(3, 4)
+		granted.UpdateDesc()
+		qdel(choice)
+		to_chat(user, span_boldnotice("You have ascended [choice]!"))
+		bloodsuckerdatum.clanpoints--
+		return
+
+	if(!awoken) //don't want this to affect power upgrading if you make another one
+		to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+		return
+
+	icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
+	update_appearance(UPDATE_ICON)
+	var/rankspent
+	switch(bloodsuckerdatum.clanprogress)
+		if(0)
 			bloodsuckerdatum.clanprogress++
+			bloodsuckerdatum.clanpoints++
+			to_chat(user, span_notice("As you touch the [src] you feel a slight pulse flow through you... You have gained a point!"))
 			return
-	return ..()
+		if(1 to 3)
+			rankspent = 1
+		if(4 to 6)
+			rankspent = 2
+		if(7)
+			rankspent = 3
+		if(8 to INFINITY)
+			to_chat(user, span_notice("You have evolved all abilities possible."))
+			return
+	var/want_clantask = tgui_alert(user, "Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", list("Yes", "No"))
+	if(want_clantask == "No" || QDELETED(src))
+		return
+	if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
+		var/another_shot = tgui_alert(user, "It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", list("Yes", "No"))
+		if(another_shot == "No" || QDELETED(src))
+			return
+		if(bloodsuckerdatum.bloodsucker_blood_volume < 550)
+			to_chat(user, span_danger("You don't have enough blood to gain a shadowpoint!"))
+			return
+		bloodsuckerdatum.AddBloodVolume(-550)
+	else
+		bloodsuckerdatum.bloodsucker_level_unspent -= rankspent
+	bloodsuckerdatum.clanpoints++
+	bloodsuckerdatum.clanprogress++
 
 /obj/structure/bloodsucker/bloodaltar/restingplace/proc/do_sacrifice(list/pig, mob/living/carbon/user)
 	var/mob/living/carbon/sacrifice = pick(pig)
@@ -367,7 +366,7 @@
 		return
 	playsound(get_turf(sacrifice), 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	sacrifice.adjustBruteLoss(200)
-	balloon_alert(user, "sucess!")
+	balloon_alert(user, "success!")
 	new /obj/item/bloodsucker/abyssal_essence(get_turf(src))
 
 #define METALLIMIT 50
@@ -399,15 +398,15 @@
 	. = ..()
 	anchored = FALSE
 
-/obj/structure/bloodsucker/moldingstone/update_icon()
-	cut_overlays()
+/obj/structure/bloodsucker/moldingstone/update_overlays()
+	. = ..()
 	switch(metal)
 		if(1 to 5)
-			add_overlay("metal")
+			. += "metal"
 		if(6 to 20)
-			add_overlay("metal_2")
+			. += "metal_2"
 		if(21 to 50)
-			add_overlay("metal_3")
+			. += "metal_3"
 
 /obj/structure/bloodsucker/moldingstone/attackby(obj/item/I, mob/user, params)
 	if(!anchored)
@@ -431,7 +430,7 @@
 		balloon_alert(user, "added [metal] metal")
 	if(istype(I, /obj/item/bloodsucker/chisel))
 		start_sculpiting(user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/moldingstone/proc/start_sculpiting(mob/living/artist)
 	if(metal < 10)
@@ -444,7 +443,7 @@
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")
 		metal -= rand(5, 10)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		
 		return
 	artist.balloon_alert(artist, "done, a masterpiece!")
@@ -468,7 +467,7 @@
 		new /obj/item/stack/sheet/metal(get_turf(user), count)
 	else
 		to_chat(user, span_warning("There's no metal to retrieve in [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 #undef METALLIMIT
 
 /obj/structure/bloodsucker/bloodstatue
@@ -476,7 +475,7 @@
 	desc = "It looks upsettingly familiar..."
 	icon_state = "statue"
 
-/obj/structure/bloodsucker/bloodstatue/ComponentInitialize()
+/obj/structure/bloodsucker/bloodstatue/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/art, 30)
 
@@ -714,7 +713,7 @@
 
 	playsound(loc, 'sound/effects/pop_expl.ogg', 25, 1)
 	density = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	// Set up Torture stuff now
 	convert_progress = 3
@@ -750,7 +749,7 @@
 	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
 	density = FALSE
 	buckled_mob.Paralyze(2 SECONDS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
@@ -782,7 +781,7 @@
 		do_ritual(user, buckled_carbons)
 		return
 	if(vassaldatum && (vassaldatum in bloodsuckerdatum.vassals))
-		SEND_SIGNAL(src, BLOODSUCKER_PRE_MAKE_FAVORITE, bloodsuckerdatum, vassaldatum)
+		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_PRE_MAKE_FAVORITE, vassaldatum)
 		return
 
 	// Not our Vassal, but Alive & We're a Bloodsucker, good to torture!
@@ -811,20 +810,20 @@
 				smallmeat++
 		meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 		qdel(I)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 #undef MEATLIMIT
 
-/obj/structure/bloodsucker/vassalrack/update_icon()
-	cut_overlays()
+/obj/structure/bloodsucker/vassalrack/update_overlays()
+	. = ..()
 	if(bigmeat)
-		add_overlay("bigmeat_[bigmeat]")
+		. += "bigmeat_[bigmeat]"
 	if(intermeat)
-		add_overlay("mediummeat_[intermeat]")
-		add_overlay("smallmeat_[intermeat]")
+		. += "mediummeat_[intermeat]"
+		. += "smallmeat_[intermeat]"
 	if(mediummeat)
-		add_overlay("mediummeat_[mediummeat + intermeat]")
+		. += "mediummeat_[mediummeat + intermeat]"
 	if(smallmeat)
-		add_overlay("smallmeat_[smallmeat + intermeat]")
+		. += "smallmeat_[smallmeat + intermeat]"
 
 /obj/structure/bloodsucker/vassalrack/CtrlClick(mob/user)
 	if(!anchored)
@@ -853,7 +852,7 @@
 	else
 		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
  *	Step One: Tick Down Conversion from 3 to 0
@@ -918,7 +917,7 @@
 	// Convert to Vassal!
 	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
-		SEND_SIGNAL(src, BLOODSUCKER_MADE_VASSAL, user, target)
+		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, user, target)
 
 /obj/structure/bloodsucker/vassalrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
 	// Fifteen seconds if you aren't using anything. Shorter with weapons and such.
@@ -1153,7 +1152,7 @@
 		if(bigmeat && meatlost == 4)
 			bigmeat--
 			meatlost -= 4
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1187,9 +1186,9 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/bloodsucker/candelabrum/update_icon()
+/obj/structure/bloodsucker/candelabrum/update_icon_state()
+	. = ..()
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
-	return ..()
 
 /obj/structure/bloodsucker/candelabrum/examine(mob/user)
 	. = ..()
@@ -1212,7 +1211,7 @@
 	else
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/candelabrum/process()
 	if(!lit)
@@ -1288,7 +1287,7 @@
 
 	if(!buckle_mob(target))
 		return
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/candelabrum/proc/remove_loyalties(mob/living/target, mob/living/user)
 	// Find Mindshield implant & destroy, takes a good while.
@@ -1300,7 +1299,7 @@
 /obj/structure/bloodsucker/candelabrum/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	. = ..()
 	src.visible_message(span_danger("[buckled_mob][buckled_mob.stat==DEAD?"'s corpse":""] slides off of the candelabrum."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
 /* broken currently
@@ -1321,7 +1320,7 @@
 	var/mutable_appearance/armrest
 
 // Add rotating and armrest
-/obj/structure/bloodsucker/bloodthrone/Initialize()
+/obj/structure/bloodsucker/bloodthrone/Initialize(mapload)
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER

@@ -90,7 +90,7 @@
 						"Command Blue" = "pen-fountain-cb"
 						)
 
-/obj/item/pen/fountain/captain/Initialize()
+/obj/item/pen/fountain/captain/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 200, 115) //the pen is mightier than the sword
 
@@ -125,8 +125,15 @@
 /obj/item/pen/afterattack(obj/O, mob/living/user, proximity)
 	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
-	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
-		var/penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")
+	if(isobj(O) && proximity && ((O.obj_flags & UNIQUE_RENAME) || (O.obj_flags & UNIQUE_REDESC)))
+		var/penchoice
+		if((O.obj_flags & UNIQUE_RENAME) && (O.obj_flags & UNIQUE_REDESC))
+			penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")
+		else if(O.obj_flags & UNIQUE_RENAME)
+			penchoice = "Rename"
+		else
+			penchoice = "Change description"
+
 		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
 		if(penchoice == "Rename")
@@ -162,16 +169,16 @@
 		return
 	if(!reagents.total_volume || !M.reagents)
 		return
-		
+
 	to_chat(user, span_warning("You begin to inject [src]'s contents into [M]"))
 	if(!do_after(user, 0.5 SECONDS, M))
 		return
 	reagents.reaction(M, INJECT, reagents.total_volume)
 	reagents.trans_to(M, reagents.total_volume, transfered_by = user)
-				
 
 
-/obj/item/pen/sleepy/Initialize()
+
+/obj/item/pen/sleepy/Initialize(mapload)
 	. = ..()
 	create_reagents(75)
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
@@ -187,7 +194,7 @@
 	sharpness = SHARP_EDGED
 	var/on = FALSE
 
-/obj/item/pen/edagger/Initialize()
+/obj/item/pen/edagger/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
 
@@ -227,9 +234,10 @@
 		to_chat(user, span_warning("[src] is now active."))
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = on
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/pen/edagger/update_icon()
+/obj/item/pen/edagger/update_icon(updates=ALL)
+	. = ..()
 	if(on)
 		icon_state = "edagger"
 		item_state = "edagger"

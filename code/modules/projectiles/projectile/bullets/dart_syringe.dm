@@ -4,7 +4,7 @@
 	damage = 6
 	var/piercing = FALSE
 
-/obj/item/projectile/bullet/reusable/dart/Initialize()
+/obj/item/projectile/bullet/reusable/dart/Initialize(mapload)
 	. = ..()
 
 /obj/item/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart, syrpierce)
@@ -28,6 +28,11 @@
 /obj/item/projectile/bullet/reusable/dart/syringe
 	name = "syringe"
 	icon_state = "syringeproj"
+
+/obj/item/projectile/bullet/reusable/dart/syringe/blowgun
+	name = "syringe"
+	icon_state = "syringeproj"
+	range = 2
 
 /obj/item/projectile/bullet/reusable/dart/hidden
 	name = "beanbag slug"

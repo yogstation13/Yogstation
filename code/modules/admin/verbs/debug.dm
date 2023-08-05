@@ -103,34 +103,34 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
-/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
-	if(target != GLOBAL_PROC && procname == "Del")
-		to_chat(usr, span_warning("Calling Del() is not allowed"), confidential=TRUE)
-		return
 
+/// Wrapper for proccalls where the datum is flagged as vareditted
+/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
+	SIGNAL_HANDLER
+	if(target && procname == "Del")
+		to_chat(usr, "Calling Del() is not allowed", confidential = TRUE)
+		return
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
 		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!", confidential=TRUE)
 		return
+
 	var/current_caller = GLOB.AdminProcCaller
-	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
-	if(!ckey)
+	var/user_identifier = usr ? usr.client?.ckey : GLOB.AdminProcCaller
+	if(!user_identifier)
 		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
-	if(current_caller && current_caller != ckey)
-		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, span_adminnotice("Another set of admin called procs are still running, your proc will be run after theirs finish."), confidential=TRUE)
-			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
-			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, span_adminnotice("Running your proc"), confidential=TRUE)
-			GLOB.AdminProcCallSpamPrevention -= ckey
-		else
-			UNTIL(!GLOB.AdminProcCaller)
+	if(current_caller && current_caller != user_identifier)
+		to_chat(usr, span_adminnotice("Another set of admin called procs are still running. Try again later."), confidential = TRUE)
+		return
+
 	GLOB.LastAdminCalledProc = procname
 	if(target != GLOBAL_PROC)
-		GLOB.LastAdminCalledTargetRef = "[REF(target)]"
-	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
+		GLOB.LastAdminCalledTargetRef = REF(target)
+
+	GLOB.AdminProcCaller = user_identifier //if this runtimes, too bad for you
 	++GLOB.AdminProcCallCount
 	. = world.WrapAdminProcCall(target, procname, arguments)
-	if(--GLOB.AdminProcCallCount == 0)
+	GLOB.AdminProcCallCount--
+	if(GLOB.AdminProcCallCount == 0)
 		GLOB.AdminProcCaller = null
 
 //adv proc call this, ya nerds
@@ -331,7 +331,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	else
 		alert("Invalid mob")
 
-/proc/make_types_fancy(var/list/types)
+/proc/make_types_fancy(list/types)
 	if (ispath(types))
 		types = list(types)
 	. = list()
@@ -457,9 +457,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					var/obj/item/storage/wallet/W = worn
 					W.front_id = id
 					id.forceMove(W)
-					W.update_icon()
+					W.update_appearance(UPDATE_ICON)
 			else
-				H.equip_to_slot(id,SLOT_WEAR_ID)
+				H.equip_to_slot(id,ITEM_SLOT_ID)
 	else if(isanimal(M))
 		var/mob/living/simple_animal/SA = M
 		SA.access_card = new /obj/item/card/id/ert/debug
@@ -848,7 +848,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			F.anchored = TRUE
 			F.warming_up = 3
 			F.start_fields()
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	spawn(30)
 		for(var/obj/machinery/the_singularitygen/G in GLOB.machines)
@@ -943,8 +943,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/cmd_display_init_log()
 	set category = "Misc.Server Debug"
-	set name = "Display Initialize() Log"
-	set desc = "Displays a list of things that didn't handle Initialize() properly"
+	set name = "Display Initialize(mapload) Log"
+	set desc = "Displays a list of things that didn't handle Initialize(mapload) properly"
 
 	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 

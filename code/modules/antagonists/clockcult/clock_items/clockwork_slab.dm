@@ -83,7 +83,7 @@
 	if(!GLOB.ratvar_awakens)
 		SStgui.close_uis(src)
 
-/obj/item/clockwork/slab/Initialize()
+/obj/item/clockwork/slab/Initialize(mapload)
 	. = ..()
 	update_slab_info(src)
 	START_PROCESSING(SSobj, src)
@@ -98,13 +98,13 @@
 	slab_ability = null
 	return ..()
 
-/obj/item/clockwork/slab/dropped(mob/user)
+/obj/item/clockwork/slab/dropped(mob/user, slot)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
+	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user, slot), 0.1 SECONDS) //dropped is called before the item is out of the slot, so we need to check slightly later
 
-/obj/item/clockwork/slab/equipped(mob/user)
+/obj/item/clockwork/slab/equipped(mob/user, slot)
 	. = ..()
-	update_quickbind()
+	update_quickbind(user)
 
 /obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
@@ -112,10 +112,13 @@
 		var/mutable_appearance/M = mutable_appearance(icon_file, "slab_[inhand_overlay]")
 		. += M
 
-/obj/item/clockwork/slab/proc/check_on_mob(mob/user)
-	if(user && !(src in user.held_items) && slab_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
+/obj/item/clockwork/slab/proc/check_on_mob(mob/user, slot)
+	if(!user)
+		CRASH("No user on dropped slab.")
+	if(slab_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
 		slab_ability.unset_ranged_ability(user)
-	update_quickbind(user, TRUE)
+	if(!LAZYFIND(user.held_items, src))
+		update_quickbind(user, TRUE)
 
 //Power generation
 /obj/item/clockwork/slab/process()

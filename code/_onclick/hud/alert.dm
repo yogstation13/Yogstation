@@ -350,7 +350,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/angle = 0
 	var/mob/living/simple_animal/hostile/construct/Cviewer = null
 
-/atom/movable/screen/alert/bloodsense/Initialize()
+/atom/movable/screen/alert/bloodsense/Initialize(mapload)
 	. = ..()
 	narnar = new('icons/mob/screen_alert.dmi', "mini_nar")
 	START_PROCESSING(SSprocessing, src)
@@ -516,6 +516,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"
 
+/atom/movable/screen/alert/style
+	name = "Style"
+	desc = "This is how stylish you are."
+	icon_state = "style"
+
 //SILICONS
 
 /atom/movable/screen/alert/nocell
@@ -662,6 +667,24 @@ so as to remain in compliance with the most up-to-date laws."
 	L.changeNext_move(CLICK_CD_RESIST)
 	if(L.last_special <= world.time)
 		return L.resist_buckle()
+
+/atom/movable/screen/alert/revolution
+	name = "Revolution"
+	desc = "VIVA! VIVA! VIVA! You shouldn't be seeing this!"
+	icon_state = "revolution"
+
+/atom/movable/screen/alert/revolution/MouseEntered(location,control,params)
+	if(!istype(SSticker.mode, /datum/game_mode/revolution))
+		return
+	var/datum/game_mode/revolution/R = SSticker.mode
+	if(!R.loud && R.go_fucking_loud_time)
+		var/time_left = R.go_fucking_loud_time - world.time
+		desc = "Soon the revolution will boil over. If need be, rally yourselves and make preparations for fighting.<br>\
+			We will be discovered in [time_left / (1 MINUTES)] minutes if we sit idly.<br>\
+			If we eliminate all of the Command personnel, we will also be detected."
+	else if(R.loud)
+		desc = "The revolution has boiled over. Fight for your life and the life of your allies."
+	..()
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 

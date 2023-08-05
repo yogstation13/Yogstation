@@ -19,7 +19,7 @@
 /obj/item/clothing/mask/muzzle/tape
 	name = "tape muzzle"
 	icon_state = "tape"
-	
+
 /obj/item/clothing/mask/muzzle/tape/attack_self(mob/user)
 	..()
 	user.visible_message(span_notice("You take apart [src]."), span_notice("[user] takes apart [src]."))
@@ -37,8 +37,8 @@
 	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
-	permeability_coefficient = 0.01
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 25, RAD = 0, FIRE = 0, ACID = 0)
+	mutantrace_variation = MUTANTRACE_VARIATION
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 
 /obj/item/clothing/mask/surgical/attack_self(mob/user)
@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
-/obj/item/clothing/mask/pig/cursed/Initialize()
+/obj/item/clothing/mask/pig/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
 	playsound(get_turf(src), 'sound/magic/pighead_curse.ogg', 50, 1)
@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 /obj/item/clothing/mask/frog/cursed
 	clothing_flags = NONE
 
-/obj/item/clothing/mask/frog/cursed/Initialize()
+/obj/item/clothing/mask/frog/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
 
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
-/obj/item/clothing/mask/cowmask/cursed/Initialize()
+/obj/item/clothing/mask/cowmask/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
 	playsound(get_turf(src), 'sound/magic/cowhead_curse.ogg', 50, 1)
@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	clothing_flags = NONE
 	flags_inv = HIDEFACIALHAIR
 
-/obj/item/clothing/mask/horsehead/cursed/Initialize()
+/obj/item/clothing/mask/horsehead/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
 	playsound(get_turf(src), 'sound/magic/horsehead_curse.ogg', 50, 1)
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	. = ..()
 	if(iscarbon(user) && !bypass)
 		var/mob/living/carbon/C = user
-		if((C.get_item_by_slot(SLOT_HEAD == src)) || (C.get_item_by_slot(SLOT_WEAR_MASK) == src))
+		if((C.get_item_by_slot(ITEM_SLOT_HEAD == src)) || (C.get_item_by_slot(ITEM_SLOT_MASK) == src))
 			to_chat(user, span_warning("You can't tie [src] while wearing it!"))
 			return
 	if(slot_flags & ITEM_SLOT_HEAD && !bypass)
@@ -285,7 +285,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 			var/currentHandIndex = user.get_held_index_of_item(src)
 			user.transferItemToLoc(src, null)
 			user.put_in_hand(nk, currentHandIndex)
-			user.visible_message(span_notice("You tie [src] up like a neckerchief."), span_notice("[user] ties [src] up like a neckerchief."))
+			user.visible_message(span_notice("[user] ties [src] up like a neckerchief."), span_notice("You tie [src] up like a neckerchief."))
 			qdel(src)
 		else
 			to_chat(user, span_warning("You must be holding [src] in order to tie it!"))
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	icon_state = "banddurathread"
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/mask/bandana/durathread/tied/Initialize()
+/obj/item/clothing/mask/bandana/durathread/tied/Initialize(mapload)
 	. = ..()
 	AltClick(bypass = TRUE)
 

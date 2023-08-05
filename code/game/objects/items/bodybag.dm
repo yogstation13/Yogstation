@@ -45,7 +45,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NO_MAT_REDEMPTION
 
-/obj/item/bodybag/bluespace/Initialize()
+/obj/item/bodybag/bluespace/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ATOM_CANREACH, PROC_REF(CanReachReact))
 
@@ -148,5 +148,5 @@
 	
 	bag.killing = !bag.killing
 	if(bag.deployed_bag)
-		bag.deployed_bag.update_icon()
+		bag.deployed_bag.update_appearance(UPDATE_ICON)
 	to_chat(user, span_notice("\The [bag] is now set to [bag.killing ? "LETHAL" : "NON-LETHAL"]."))

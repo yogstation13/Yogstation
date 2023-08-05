@@ -857,6 +857,14 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"zt" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ax" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -880,14 +888,6 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"Dp" = (
-/obj/machinery/smartfridge/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -920,7 +920,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "JA" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "Kb" = (
@@ -930,7 +930,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -1327,7 +1327,7 @@ bq
 cm
 bh
 cm
-Dp
+zt
 ap
 db
 ac

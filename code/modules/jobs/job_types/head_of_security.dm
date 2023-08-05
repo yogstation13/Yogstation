@@ -2,11 +2,9 @@
 	title = "Head of Security"
 	description = "Coordinate security personnel, ensure they are not corrupt, \
 		make sure every department is protected."
-	flag = HOS
 	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
-	department_flag = ENGSEC
 	head_announce = list(RADIO_CHANNEL_SECURITY)
 	faction = "Station"
 	total_positions = 1
@@ -15,7 +13,7 @@
 	selection_color = "#ffdddd"
 	req_admin_notify = 1
 	minimal_player_age = 14
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	alt_titles = list("Security Commander", "Security Chief", "Chief Security Officer")
@@ -52,6 +50,21 @@
 
 	smells_like = "deadly authority"
 
+/datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/obj/item/badge/security/badge
+		switch(M.client.prefs.exp[title] / 60)
+			if(200 to INFINITY)
+				badge = new /obj/item/badge/security/hos3
+			if(50 to 200)
+				badge = new /obj/item/badge/security/hos2
+			else
+				badge = new /obj/item/badge/security/hos1
+		badge.owner_string = H.real_name
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(badge)
+
 /datum/job/hos/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 
@@ -83,7 +96,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun/hos, /obj/item/stamp/hos)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/hos/hardsuit
 	name = "Head of Security (Hardsuit)"

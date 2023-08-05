@@ -7,9 +7,9 @@
 	closingLayer = ABOVE_WINDOW_LAYER
 	resistance_flags = ACID_PROOF
 	var/base_state = "left"
-	max_integrity = 200 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
+	max_integrity = 150 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
-	armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
+	armor = list(MELEE = 60, BULLET = -40, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = 0
@@ -24,6 +24,7 @@
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+	AddComponent(/datum/component/ntnet_interface)
 	if(set_dir)
 		setDir(set_dir)
 	if(req_access && req_access.len)
@@ -36,10 +37,6 @@
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
 
-/obj/machinery/door/window/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
-
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	QDEL_LIST(debris)
@@ -48,7 +45,8 @@
 	electronics = null
 	return ..()
 
-/obj/machinery/door/window/update_icon()
+/obj/machinery/door/window/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = base_state
 	else
@@ -264,7 +262,7 @@
 						WA.state= "02"
 						WA.setDir(dir)
 						WA.ini_dir = dir
-						WA.update_icon()
+						WA.update_appearance(UPDATE_ICON)
 						WA.created_name = name
 
 						if(obj_flags & EMAGGED)
@@ -365,7 +363,7 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	var/id = null
-	max_integrity = 350 //Stronger doors for prison (regular window door health is 200)
+	max_integrity = 250 //Stronger doors for prison (regular window door health is 200)
 	reinf = 1
 	explosion_block = 1
 

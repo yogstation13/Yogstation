@@ -15,7 +15,7 @@
 	var/obj/machinery/teleport/station/power_station
 	var/calibrated //Calibration prevents mutation
 
-/obj/machinery/teleport/hub/Initialize()
+/obj/machinery/teleport/hub/Initialize(mapload)
 	. = ..()
 	link_power_station()
 
@@ -58,7 +58,7 @@
 	if(default_deconstruction_screwdriver(user, "tele-o", "tele0", W))
 		if(power_station && power_station.engaged)
 			power_station.engaged = 0 //hub with panel open is off, so the station must be informed.
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		return
 	if(default_deconstruction_crowbar(W))
 		return
@@ -87,7 +87,8 @@
 			calibrated = 0
 	return
 
-/obj/machinery/teleport/hub/update_icon()
+/obj/machinery/teleport/hub/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "tele-o"
 	else if(is_ready())
@@ -98,7 +99,7 @@
 /obj/machinery/teleport/hub/proc/is_ready()
 	. = !panel_open && !(stat & (BROKEN|NOPOWER)) && power_station && power_station.engaged && !(power_station.stat & (BROKEN|NOPOWER))
 
-/obj/machinery/teleport/hub/syndicate/Initialize()
+/obj/machinery/teleport/hub/syndicate/Initialize(mapload)
 	. = ..()
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	RefreshParts()
@@ -118,7 +119,7 @@
 	var/list/linked_stations = list()
 	var/efficiency = 0
 
-/obj/machinery/teleport/station/Initialize()
+/obj/machinery/teleport/station/Initialize(mapload)
 	. = ..()
 	link_console_and_hub()
 
@@ -154,7 +155,7 @@
 /obj/machinery/teleport/station/Destroy()
 	if(teleporter_hub)
 		teleporter_hub.power_station = null
-		teleporter_hub.update_icon()
+		teleporter_hub.update_appearance(UPDATE_ICON)
 		teleporter_hub = null
 	if (teleporter_console)
 		teleporter_console.power_station = null
@@ -179,7 +180,7 @@
 					to_chat(user, span_alert("This station can't hold more information, try to use better parts."))
 		return
 	else if(default_deconstruction_screwdriver(user, "controller-o", "controller", W))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	else if(default_deconstruction_crowbar(W))
@@ -209,15 +210,16 @@
 	else
 		to_chat(user, span_alert("No target detected."))
 		engaged = FALSE
-	teleporter_hub.update_icon()
+	teleporter_hub.update_appearance(UPDATE_ICON)
 	add_fingerprint(user)
 
 /obj/machinery/teleport/station/power_change()
 	. = ..()
 	if(teleporter_hub)
-		teleporter_hub.update_icon()
+		teleporter_hub.update_appearance(UPDATE_ICON)
 
-/obj/machinery/teleport/station/update_icon()
+/obj/machinery/teleport/station/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "controller-o"
 	else if(stat & (BROKEN|NOPOWER))

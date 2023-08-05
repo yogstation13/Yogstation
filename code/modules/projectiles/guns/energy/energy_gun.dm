@@ -2,9 +2,9 @@
 	name = "energy gun"
 	desc = "A basic hybrid energy gun with two settings: disable and kill."
 	icon_state = "energy"
-	item_state = null	//so the human update icon uses the icon_state instead.
+	item_state = null //so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
-	modifystate = 1
+	modifystate = TRUE
 	can_flashlight = TRUE
 	ammo_x_offset = 3
 	flight_x_offset = 15
@@ -25,15 +25,14 @@
 	ammo_x_offset = 2
 	charge_sections = 3
 	can_flashlight = FALSE // Can't attach or detach the flashlight, and override it's icon update
+	gunlight_state = "mini-light"
+	flight_x_offset = 19
+	flight_y_offset = 13
 
-/obj/item/gun/energy/e_gun/mini/Initialize()
-	set_gun_light(new /obj/item/flashlight/seclite(src))
-	return ..()
-
-/obj/item/gun/energy/e_gun/mini/update_icon()
-	..()
-	if(gun_light && gun_light.on)
-		add_overlay("mini-light")
+/obj/item/gun/energy/e_gun/mini/Initialize(mapload)
+	. = ..()
+	var/obj/item/flashlight/seclite/new_seclite = new()
+	set_gun_light(new_seclite)
 
 /obj/item/gun/energy/e_gun/stun
 	name = "tactical energy gun"
@@ -143,7 +142,6 @@
 	pin = null
 	can_charge = FALSE
 	ammo_x_offset = 1
-	old_ratio = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/xray, /obj/item/ammo_casing/energy/anoxia) //a lot of firemodes so it's really an ADVANCED egun
 	dead_cell = TRUE //Fuel not included, you will have to get irradiated to shoot this gun
 
@@ -163,7 +161,7 @@
 			I.use(1)
 			cell.give(250*charge_multiplier)
 			user.radiation += (75*charge_multiplier) //You are putting you hand into a nuclear reactor to put more uranium in it
-			update_icon(TRUE)
+			update_appearance(UPDATE_ICON)
 		else
 			if(!(previous_loc == user.loc))
 				to_chat(user, span_boldwarning("You move, bumping your hand on [src]'s nulear reactor's core!")) //when I said devoid of ANY safety measures I meant it

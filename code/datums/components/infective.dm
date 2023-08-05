@@ -64,22 +64,22 @@
 	try_infect(user, BODY_ZONE_L_ARM)
 
 /datum/component/infective/proc/try_infect_equipped(datum/source, mob/living/L, slot)
-	var/old_permeability
+	var/old_bio_armor
 	if(isitem(parent))
-		//if you are putting an infective item on, it obviously will not protect you, so set its permeability high enough that it will never block ContactContractDisease()
+		//if you are putting an infective item on, it obviously will not protect you from itself, so set its bio protection low enough that it will never block ContactContractDisease()
 		var/obj/item/I = parent
-		old_permeability = I.permeability_coefficient
-		I.permeability_coefficient = 1.01
+		old_bio_armor = I.armor.getRating(BIO)
+		I.armor.setRating(bio = 0)
 
 	try_infect(L, slot2body_zone(slot))
 
 	if(isitem(parent))
 		var/obj/item/I = parent
-		I.permeability_coefficient = old_permeability
+		I.armor.setRating(bio = old_bio_armor)
 
 /datum/component/infective/proc/try_infect_crossed(datum/source, atom/movable/M)
 	if(isliving(M))
-		try_infect(M, BODY_ZONE_PRECISE_L_FOOT)
+		try_infect(M, pick(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
 
 /datum/component/infective/proc/try_infect_streak(datum/source, list/directions, list/output_diseases)
 	output_diseases |= diseases

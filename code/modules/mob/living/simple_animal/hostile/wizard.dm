@@ -5,7 +5,7 @@
 	icon_state = "wizard"
 	icon_living = "wizard"
 	icon_dead = "wizard_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 0
 	turns_per_move = 3
 	response_help = "pokes"
@@ -42,7 +42,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/hostile/wizard/Initialize()
+/mob/living/simple_animal/hostile/wizard/Initialize(mapload)
 	. = ..()
 	var/obj/item/implant/exile/exiled = new /obj/item/implant/exile(src)
 	exiled.implant(src)
@@ -92,7 +92,7 @@
 	icon_state = "wizard"
 	icon_living = "wizard"
 	icon_dead = "wizard_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 0
 	turns_per_move = 3
 	response_help = "pokes"
@@ -148,7 +148,7 @@
 	/obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door,
 	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
 
-/mob/living/simple_animal/hostile/academywizard/chaos/Initialize()
+/mob/living/simple_animal/hostile/academywizard/chaos/Initialize(mapload)
 	projectiletype = pick(allowed_projectile_types)
 	. = ..()
 

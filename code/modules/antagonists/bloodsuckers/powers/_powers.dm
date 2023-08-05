@@ -40,6 +40,8 @@
 	var/constant_bloodcost = 0
 	///If the Power has any additional descriptions coming from either 3rd partys or the power itself
 	var/additional_text = ""
+	///Path to the ascended version of the power. For Lasombra bloodsucker powers
+	var/ascended_power = null
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
@@ -141,7 +143,13 @@
 		to_chat(user, span_warning("Not while you're incapacitated!"))
 		return FALSE
 	// Constant Cost (out of blood)
-	if(constant_bloodcost && bloodsuckerdatum_power?.bloodsucker_blood_volume <= 0)
+	if(!bloodsuckerdatum_power)
+		var/mob/living/living_owner = owner
+		if(living_owner.blood_volume < bloodcost)
+			to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
+			return FALSE
+		return TRUE
+	if(constant_bloodcost && bloodsuckerdatum_power.bloodsucker_blood_volume <= 0)
 		to_chat(user, span_warning("You don't have the blood to upkeep [src]."))
 		return FALSE
 	return TRUE
@@ -215,7 +223,11 @@
 /datum/action/cooldown/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
 	if(!user)
 		return FALSE
-	if(!constant_bloodcost > 0 || bloodsuckerdatum_power.bloodsucker_blood_volume)
+	if(!constant_bloodcost > 0)
+		return TRUE
+	if(bloodsuckerdatum_power?.bloodsucker_blood_volume)
+		return TRUE
+	if(user.blood_volume)
 		return TRUE
 
 /// Used to unlearn Single-Use Powers

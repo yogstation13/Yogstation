@@ -121,12 +121,10 @@
 
 	var/datum/hud/ling_hud = owner.current.hud_used
 
-	lingchemdisplay = new
-	lingchemdisplay.hud = ling_hud
+	lingchemdisplay = new(ling_hud)
 	ling_hud.infodisplay += lingchemdisplay
 
-	lingstingdisplay = new
-	lingstingdisplay.hud = ling_hud
+	lingstingdisplay = new(ling_hud)
 	ling_hud.infodisplay += lingstingdisplay
 
 	INVOKE_ASYNC(ling_hud, TYPE_PROC_REF(/datum/hud/, show_hud),ling_hud.hud_version)
@@ -269,7 +267,7 @@
 			return TRUE
 	return FALSE
 
-/datum/antagonist/changeling/proc/can_absorb_dna(mob/living/carbon/human/target, var/verbose=1)
+/datum/antagonist/changeling/proc/can_absorb_dna(mob/living/carbon/human/target, verbose=1)
 	var/mob/living/carbon/user = owner.current
 	if(!istype(user))
 		return
@@ -397,7 +395,7 @@
 	if(!isliving(mob_to_tweak))
 		return
 	handle_clown_mutation(mob_to_tweak, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
-	RegisterSignal(mob_to_tweak, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
+	RegisterSignal(mob_to_tweak, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignals(mob_to_tweak, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
 	//Brains optional.
 	var/obj/item/organ/brain/our_ling_brain = mob_to_tweak.getorganslot(ORGAN_SLOT_BRAIN)
@@ -407,12 +405,10 @@
 
 	if(mob_to_tweak.hud_used)
 		var/datum/hud/hud_used = mob_to_tweak.hud_used
-		lingchemdisplay = new /atom/movable/screen/ling/chems()
-		lingchemdisplay.hud = hud_used
+		lingchemdisplay = new /atom/movable/screen/ling/chems(hud_used)
 		hud_used.infodisplay += lingchemdisplay
 
-		lingstingdisplay = new /atom/movable/screen/ling/sting()
-		lingstingdisplay.hud = hud_used
+		lingstingdisplay = new /atom/movable/screen/ling/sting(hud_used)
 		hud_used.infodisplay += lingstingdisplay
 
 		hud_used.show_hud(hud_used.hud_version)
@@ -446,7 +442,7 @@
 	to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
 
 /**
- * Signal proc for [COMSIG_LIVING_BIOLOGICAL_LIFE].
+ * Signal proc for [COMSIG_LIVING_LIFE].
  * Handles regenerating chemicals on life ticks.
  */
 /datum/antagonist/changeling/proc/on_life(datum/source, delta_time, times_fired)

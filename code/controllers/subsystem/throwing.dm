@@ -16,6 +16,9 @@ SUBSYSTEM_DEF(throwing)
 	msg = "P:[length(processing)]"
 	return ..()
 
+/datum/controller/subsystem/throwing/get_metrics()
+	. = ..()
+	.["queued"] = length(processing)
 
 /datum/controller/subsystem/throwing/fire(resumed = 0)
 	if (!resumed)
@@ -149,6 +152,9 @@ SUBSYSTEM_DEF(throwing)
 	if (callback)
 		callback.Invoke()
 
+	if(thrownthing)
+		SEND_SIGNAL(thrownthing, COMSIG_MOVABLE_THROW_LANDED, src)
+		
 	qdel(src)
 
 /datum/thrownthing/proc/hit_atom(atom/A)

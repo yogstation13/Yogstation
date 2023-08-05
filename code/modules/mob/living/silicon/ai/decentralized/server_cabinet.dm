@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	roundstart = mapload
 	installed_racks = list()
 	GLOB.server_cabinets += src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	RefreshParts()
 
 /obj/machinery/ai/server_cabinet/Destroy()
@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		
 		valid_ticks++
 		if(!was_valid_holder)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		was_valid_holder = TRUE
 
 		if(!hardware_synced)
@@ -96,26 +96,26 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			GLOB.ai_os.update_hardware()
 
 
-/obj/machinery/ai/server_cabinet/update_icon()
-	cut_overlays()
+/obj/machinery/ai/server_cabinet/update_overlays()
+	. = ..()
 
 	if(installed_racks.len > 0) 
 		var/mutable_appearance/top_overlay = mutable_appearance(icon, "expansion_bus_top")
-		add_overlay(top_overlay)
+		. += top_overlay
 	if(installed_racks.len > 1) 
 		var/mutable_appearance/bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom")
-		add_overlay(bottom_overlay)
+		. += bottom_overlay
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
-		add_overlay(on_overlay)
+		. += on_overlay
 		if(!valid_ticks)
 			return
 		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
-			add_overlay(on_top_overlay)
+			. += on_top_overlay
 		if(installed_racks.len > 1)
 			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
-			add_overlay(on_bottom_overlay)
+			. += on_bottom_overlay
 
 /obj/machinery/ai/server_cabinet/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/server_rack))
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		cached_power_usage += rack.get_power_usage()
 		GLOB.ai_os.update_hardware()
 		use_power = ACTIVE_POWER_USE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_racks.len)
@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the racks from [src]"))
 			use_power = IDLE_POWER_USE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return FALSE
 		else
 			if(default_deconstruction_crowbar(W))
@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	. += span_notice("Use a crowbar to remove all currently inserted racks.")
 
 
-/obj/machinery/ai/server_cabinet/prefilled/Initialize()
+/obj/machinery/ai/server_cabinet/prefilled/Initialize(mapload)
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()
 	total_ram += rack.get_ram()
