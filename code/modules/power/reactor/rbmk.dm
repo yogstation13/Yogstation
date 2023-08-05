@@ -9,9 +9,9 @@
 #define RBMK_TEMPERATURE_CRITICAL 1000 //At this point the entire station is alerted to a meltdown. This may need altering
 #define RBMK_TEMPERATURE_MELTDOWN 1200
 
-#define RBMK_HEAT_CAPACITY 200000 //How much thermal energy it takes to cool the reactor
-#define RBMK_ROD_HEAT_CAPACITY 40000 //How much thermal energy it takes to cool each reactor rod
-#define RBMK_HEAT_FACTOR (10 / (NUM_E**2)) //How much heat from K
+#define RBMK_HEAT_CAPACITY 6000 //How much thermal energy it takes to cool the reactor
+#define RBMK_ROD_HEAT_CAPACITY 400 //How much thermal energy it takes to cool each reactor rod
+#define RBMK_HEAT_FACTOR (12 / (NUM_E**2)) //How much heat from K
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 
@@ -371,7 +371,7 @@
 			playsound(src, pick('sound/machines/sm/accent/normal/1.ogg','sound/machines/sm/accent/normal/2.ogg','sound/machines/sm/accent/normal/3.ogg','sound/machines/sm/accent/normal/4.ogg','sound/machines/sm/accent/normal/5.ogg'), 100, TRUE)
 
 		//From this point onwards, we clear out the remaining gasses.
-		moderator_input.remove_ratio(RBMK_MODERATOR_DECAY_RATE) //Remove about 20% of the gases
+		moderator_input.remove_ratio(RBMK_MODERATOR_DECAY_RATE) //Remove about 10% of the gases
 		K += total_fuel_moles / 1000
 	else // if there's not enough to do anything, just clear it
 		moderator_input.clear()
@@ -409,7 +409,11 @@
 
 	// Now, clamp K and heat up the reactor based on it.
 	K = clamp(K, 0, RBMK_MAX_CRITICALITY)
-	if(prob(power * K))
+	var/particle_chance = power * K
+	while(particle_chance >= 100)
+		fire_nuclear_particle()
+		particle_chance -= 100
+	if(prob(particle_chance))
 		fire_nuclear_particle()
 	if(active && has_fuel())
 		temperature += RBMK_HEAT_FACTOR * delta_time * has_fuel() * ((NUM_E**K) - 1) // heating from K has to be exponential to make higher K more dangerous
@@ -420,7 +424,7 @@
 		last_coolant_temperature = coolant_input.return_temperature()
 		//Important thing to remember, once you slot in the fuel rods, this thing will not stop making heat, at least, not unless you can live to be thousands of years old which is when the spent fuel finally depletes fully.
 		var/heat_delta = (last_coolant_temperature - temperature) * gas_absorption_effectiveness //Take in the gas as a cooled input, cool the reactor a bit. The optimum, 100% balanced reaction sits at K=1, coolant input temp of 200K / -73 celsius.
-		var/coolant_heat_factor = coolant_input.total_moles() * coolant_input.heat_capacity() / ((coolant_input.total_moles() * coolant_input.heat_capacity()) + RBMK_HEAT_CAPACITY + (RBMK_ROD_HEAT_CAPACITY * has_fuel())) //What percent of the total heat capacity is in the coolant
+		var/coolant_heat_factor = coolant_input.heat_capacity() / (coolant_input.heat_capacity() + RBMK_HEAT_CAPACITY + (RBMK_ROD_HEAT_CAPACITY * has_fuel())) //What percent of the total heat capacity is in the coolant
 		last_heat_delta = heat_delta
 		temperature += heat_delta * coolant_heat_factor
 		coolant_input.set_temperature(last_coolant_temperature - (heat_delta * (1 - coolant_heat_factor))) //Heat the coolant output gas that we just had pass through us.
@@ -440,7 +444,7 @@
 	// And finally, set our pressure.
 	last_output_temperature = coolant_output.return_temperature()
 	pressure = coolant_output.return_pressure()
-	power = ((temperature / RBMK_TEMPERATURE_CRITICAL)**2) * 100
+	power = ((temperature / RBMK_TEMPERATURE_CRITICAL)**3) * 100
 
 	// Make some power!
 	if(power_produced > 0)
