@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "More ores can be eaten by preterni"
+  - tweak: "eating sand only does damage to the head now"
