@@ -6,7 +6,7 @@
 
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
-	desc = "Protected by FRM."
+	desc = "Protected by FRM." // FRM stands for Firmware Rights Management.
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	/// Prevents the upgrade from being used.
