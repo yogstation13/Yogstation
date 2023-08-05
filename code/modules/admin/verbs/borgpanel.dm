@@ -54,12 +54,29 @@
 		"scrambledcodes" = borg.scrambledcodes
 	)
 	.["upgrades"] = list()
-	for(var/upgradetype in subtypesof(/obj/item/borg/upgrade)-/obj/item/borg/upgrade/hypospray) // Hypospray is a dummy parent for hypospray upgrades.
-		var/obj/item/borg/upgrade/upgrade = upgradetype
-		if(upgrade.module_types && !is_type_in_list(borg.module, upgrade.module_types)) // Only show upgrades that can be given. This doesn't use initial() because initial() doesn't work on lists.
-			continue
+	var/list/excluded_upgrades = list(/obj/item/borg/upgrade/hypospray, // Parent/base upgrades.
+		/obj/item/borg/upgrade/language,
+		/obj/item/borg/upgrade/transform,
+		/obj/item/borg/upgrade/modkit,
+		/obj/item/borg/upgrade/modkit/aoe,
+		/obj/item/borg/upgrade/modkit/minebot_passthrough, // Non-proper upgrades (not rated for cyborgs, useless, or don't work properly here).
+		/obj/item/borg/upgrade/modkit/cooldown/minebot,
+		/obj/item/borg/upgrade/modkit/trigger_guard,
+		/obj/item/borg/upgrade/rename,
+		/obj/item/borg/upgrade/restart)
+	for(var/upgradetype in subtypesof(/obj/item/borg/upgrade)-excluded_upgrades)
+		var/obj/item/borg/upgrade/upgrade = new upgradetype() // Probably a bad idea to new(), but it makes things work!
+		if(upgrade.module_types) // Only show upgrades that can be given. Cannot initial() lists either.
+			// is_type_in_list() doesn't work, so this:
+			var/has_req_module = FALSE
+			for(var/req_module_type in upgrade.module_types)
+				if(borg.module.type == req_module_type)
+					has_req_module = TRUE
+					break
+			if(!has_req_module)
+				continue
 		var/installed = FALSE
-		if(locate(upgradetype) in borg)
+		if(locate(upgradetype) in borg.upgrades)
 			installed = TRUE
 		.["upgrades"] += list(list("name" = initial(upgrade.name), "installed" = installed, "type" = upgradetype))
 	.["laws"] = borg.laws ? borg.laws.get_law_list(include_zeroth = TRUE) : list()
@@ -149,21 +166,20 @@
 			borg.fully_replace_character_name(borg.real_name,new_name)
 		if ("toggle_upgrade")
 			var/upgradepath = text2path(params["upgrade"])
-			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg
-			if (installedupgrade)
-				var/success = installedupgrade.deactivate(borg, user)
-				if(success)
-					borg.upgrades -= installedupgrade
-					message_admins("[key_name_admin(user)] removed [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
-					log_admin("[key_name(user)] removed [installedupgrade] upgrade from [key_name(borg)].")
-					qdel(installedupgrade)
+			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg.upgrades
+			if(installedupgrade)
+				message_admins("[key_name_admin(user)] removed [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
+				log_admin("[key_name(user)] removed [installedupgrade] upgrade from [key_name(borg)].")
+				installedupgrade.forceMove(get_turf(borg)) // For the deactivate signals, etc.
+				qdel(installedupgrade)
 			else
 				var/obj/item/borg/upgrade/upgrade = new upgradepath(borg)
-				var/success = upgrade.action(borg, user)
+				var/success = borg.add_to_upgrades(upgrade, user, TRUE)
 				if(success)
-					borg.upgrades += upgrade
 					message_admins("[key_name_admin(user)] added [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
 					log_admin("[key_name(user)] added [upgrade] borg upgrade to [key_name(borg)].")
+				else
+					qdel(upgrade) // Otherwise the upgrade will be on the floor (which is bad).
 		if ("toggle_radio")
 			var/channel = params["channel"]
 			if (channel in borg.radio.channels) // We're removing a channel

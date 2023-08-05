@@ -40,7 +40,7 @@
 		to_chat(user, span_notice("You pry the modifications out."))
 		I.play_tool_sound(src, 100)
 		for(var/obj/item/borg/upgrade/modkit/M in modkits)
-			M.uninstall(src)
+			M.forceMove(drop_location()) // Uninstallation handled in Exited(), or /mob/living/silicon/robot/remove_from_upgrades() for Cyborgs.
 	else
 		to_chat(user, span_notice("There are no modifications currently installed."))
 
@@ -65,7 +65,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/proc/modify_projectile(obj/item/projectile/kinetic/K)
 	K.kinetic_gun = src //do something special on-hit, easy!
-	for(var/A in get_modkits())
+	for(var/A in modkits)
 		var/obj/item/borg/upgrade/modkit/M = A
 		M.modify_projectile(K)
 
@@ -100,6 +100,12 @@
 		// Put it on a delay because moving item from slot to hand
 		// calls dropped().
 		addtimer(CALLBACK(src, PROC_REF(empty_if_not_held)), 2)
+
+/obj/item/gun/energy/kinetic_accelerator/Exited(atom/movable/gone, direction)
+	..()
+	if(gone in get_modkits())
+		var/obj/item/borg/upgrade/modkit/MK = gone
+		MK.uninstall(MK)
 
 /obj/item/gun/energy/kinetic_accelerator/proc/empty_if_not_held()
 	if(!ismob(loc))
@@ -264,9 +270,10 @@
 
 /obj/item/borg/upgrade/modkit/action(mob/living/silicon/robot/R)
 	. = ..()
-	if (.)
-		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/H in R.module.modules)
-			return install(H, usr)
+	if(!.)
+		return FALSE
+	for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/H in R.module.modules)
+		return install(H, usr)
 
 /obj/item/borg/upgrade/modkit/proc/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	. = TRUE
@@ -301,15 +308,14 @@
 
 /obj/item/borg/upgrade/modkit/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	if (.)
-		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/KA in R.module.modules)
-			uninstall(KA)
+	if(!.)
+		return FALSE
+
+	for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/KA in R.module.modules)
+		uninstall(KA)
 
 /obj/item/borg/upgrade/modkit/proc/uninstall(obj/item/gun/energy/kinetic_accelerator/KA)
-	forceMove(get_turf(KA))
 	KA.modkits -= src
-
-
 
 /obj/item/borg/upgrade/modkit/proc/modify_projectile(obj/item/projectile/kinetic/K)
 

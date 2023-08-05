@@ -17,7 +17,7 @@
 	var/list/module_types = null
 	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
 	var/list/module_flags = NONE
-	/// Does this upgrade require the cyborg's cover to be opened? 
+	/// Does this upgrade require access to the cyborg's internals?
 	var/requires_open_cover = TRUE
 	/// Should this upgrade be consumed/deleted on use? This also means this upgrade will not be in the cyborg's `upgrades` list (most of the time).
 	var/one_use = FALSE
@@ -44,12 +44,12 @@
 				to_chat(user, "This upgrade was already applied to this cyborg!")
 				return FALSE
 	if(prerequisite_upgrades && prerequisite_upgrades.len > 0)
-		for(var/upgrade_type in prerequisite_upgrades)
+		for(var/upgrade_type in prerequisite_upgrades) // Janky, only because is_type_in_list() doesn't work.
 			for(var/obj/item/borg/upgrade/installed_upgrade in R.upgrades)
 				if(upgrade_type == installed_upgrade.type)
 					var/obj/item/borg/upgrade/temp_upgrade = new upgrade_type()
 					to_chat(R, "Upgrade error! Upgrade requires [initial(temp_upgrade.name)] first!")
-					to_chat(user, "This upgrade requires the prequistite upgrade, [initial(temp_upgrade.name)]!")
+					to_chat(user, "This upgrade requires the prerequisite upgrade, [initial(temp_upgrade.name)]!")
 					return FALSE
 	if(blacklisted_upgrades && blacklisted_upgrades.len > 0)
 		for(var/upgrade_type in blacklisted_upgrades)
@@ -222,24 +222,14 @@
 
 	R.ionpulse = FALSE
 
-/// Contains common languages.
+/// The base upgrade for the language upgrades. Make/use the children upgrades instead.
 /obj/item/borg/upgrade/language
-	name = "translation matrix upgrade"
-	desc = "Increases the translation matrix to include all xeno languages."
-	blacklisted_upgrades = list(/obj/item/borg/upgrade/language/expanded, /obj/item/borg/upgrade/language/omni)
+	name = "cyborg language translator upgrade" // Shouldn't ever see this anyways.
+	desc = "Gives the cyborg the ability to hear and speak a set of languages."
+	blacklisted_upgrades = list(/obj/item/borg/upgrade/language/normal, /obj/item/borg/upgrade/language/expanded, /obj/item/borg/upgrade/language/omni)
 	icon_state = "cyborg_upgrade2"
 	/// What languages should be given? They will be able to speak and hear these.
-	var/list/languages = list(
-		/datum/language/bonespeak,
-		/datum/language/draconic,
-		/datum/language/english,
-		/datum/language/etherean,
-		/datum/language/felinid,
-		/datum/language/mothian,
-		/datum/language/polysmorph,
-		/datum/language/sylvan
-	)
-	var/language_source = LANGUAGE_SOFTWARE // This is here because we don't want languages to be removed due to overlapping sources.
+	var/list/languages = list()
 
 /// Gives the cyborg the ability to speak and understand the listed languages.
 /obj/item/borg/upgrade/language/action(mob/living/silicon/robot/R, user = usr)
@@ -249,13 +239,29 @@
 	for(var/obj/item/borg/upgrade/language/other_lang_upgrade in R.upgrades) // Drop all other language upgrades.
 		other_lang_upgrade.forceMove(get_turf(R))
 	for(var/datum/language/lang as anything in languages)
-		R.grant_language(lang, TRUE, TRUE, language_source)
+		R.grant_language(lang, TRUE, TRUE, LANGUAGE_SOFTWARE)
 
 /obj/item/borg/upgrade/language/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
-	R.remove_all_languages(language_source)
+	R.remove_all_languages(LANGUAGE_SOFTWARE)
+
+/// Contains common languages.
+/obj/item/borg/upgrade/language/normal
+	name = "translation matrix upgrade"
+	desc = "Increases the translation matrix to include all xeno languages."
+	blacklisted_upgrades = list(/obj/item/borg/upgrade/language/expanded, /obj/item/borg/upgrade/language/omni)
+	languages = list(
+		/datum/language/bonespeak,
+		/datum/language/draconic,
+		/datum/language/english,
+		/datum/language/etherean,
+		/datum/language/felinid,
+		/datum/language/mothian,
+		/datum/language/polysmorph,
+		/datum/language/sylvan
+	)
 
 /// Contains both common and rarer languages.
 /obj/item/borg/upgrade/language/expanded
@@ -279,14 +285,13 @@
 		/datum/language/mushroom,
 		/datum/language/slime
 	)
-	language_source = LANGUAGE_SOFTWARE_ADV
 
 /// Contains every language.
 /obj/item/borg/upgrade/language/omni
 	name = "universal translation matrix upgrade"
 	desc = "Allow the translation matrix to handle any language."
+	blacklisted_upgrades = list()
 	languages = list()
-	language_source = LANGUAGE_SOFTWARE_OMNI
 
 /obj/item/borg/upgrade/language/omni/Initialize(mapload)
 	. = ..()
@@ -310,7 +315,7 @@
 	for(var/obj/item/shovel/S in R.module.modules)
 		R.module.remove_module(S, TRUE)
 	var/obj/item/pickaxe/drill/cyborg/diamond/DD = locate() in R.module.modules
-	if(!DD)
+	if(DD)
 		to_chat(user, span_notice("This cyborg already has a diamond drill built into them!"))
 		return FALSE
 		
@@ -353,7 +358,7 @@
 		S.emptyStorage()
 		R.module.remove_module(S, TRUE)
 	var/obj/item/storage/bag/ore/holding/H = locate() in R.module.modules
-	if(!H)
+	if(H)
 		to_chat(user, span_notice("This cyborg already has a satchel of holding built in them!"))
 		return FALSE
 
@@ -392,7 +397,7 @@
 		TB.emptyStorage()
 		R.module.remove_module(TB, TRUE)
 	var/obj/item/storage/bag/trash/bluespace/cyborg/BTB = locate() in R.module.modules
-	if(!BTB)
+	if(BTB)
 		to_chat(user, span_notice("This cyborg already has a trash bag of holding built in them!"))
 		return FALSE
 
@@ -430,7 +435,7 @@
 	for(var/obj/item/mop/cyborg/M in R.module.modules)
 		R.module.remove_module(M, TRUE)
 	var/obj/item/mop/advanced/cyborg/AM = locate() in R.module.modules
-	if(!AM)
+	if(AM)
 		to_chat(user, span_notice("This cyborg already has an advanced mop built in them!"))
 		return FALSE
 
@@ -735,7 +740,7 @@
 	desc = "An upgrade to  medical cyborg which replaces their normal health analyzer with its advanced version."
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
-	module_types = list(/obj/item/robot_module/medical)
+	module_types = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical)
 	module_flags = BORG_MODULE_MEDICAL
 
 /// Replaces the cyborg's health analyzer with an advanced health analyzer.
@@ -931,7 +936,7 @@
 	if(!.)
 		return FALSE
 
-	while(R.expansion_count)
+	if(R.expansion_count > 0)
 		R.resize = 0.5
 		R.expansion_count--
 		R.update_transform()
@@ -942,7 +947,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "borgrped"
 	require_module = TRUE
-	module_types = list(/obj/item/robot_module/engineering)
+	module_types = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur)
 	module_flags = BORG_MODULE_ENGINEERING
 
 /// Gives the cyborg a rapid part exchange device (RPED).
@@ -1202,7 +1207,7 @@
 	desc = "An upgrade that gives engineering cyborgs their own ATMOS holofan projector."
 	icon_state = "cyborg_upgrade2"
 	require_module = TRUE
-	module_types = list(/obj/item/robot_module/engineering)
+	module_types = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur)
 	module_flags = BORG_MODULE_ENGINEERING
 
 /obj/item/borg/upgrade/holofan/action(mob/living/silicon/robot/R, user = usr)
