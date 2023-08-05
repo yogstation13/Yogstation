@@ -654,8 +654,13 @@
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
-	design_ids = list("borg_transform_security", "platingmkii", "platingmkiv", "holo_sight")
+	design_ids = list("platingmkii", "platingmkiv", "holo_sight")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+
+/datum/techweb_node/adv_weaponry/New()
+	. = ..()
+	if(!CONFIG_GET(flag/disable_secborg)) // Only show this design if it is enabled; no point in printing something that can't be used.
+		design_ids += "borg_transform_security"
 
 /datum/techweb_node/advmine
 	id = "adv_mines"
