@@ -54,12 +54,12 @@
 		"scrambledcodes" = borg.scrambledcodes
 	)
 	.["upgrades"] = list()
-	for (var/upgradetype in subtypesof(/obj/item/borg/upgrade)-/obj/item/borg/upgrade/hypospray) //hypospray is a dummy parent for hypospray upgrades
+	for(var/upgradetype in subtypesof(/obj/item/borg/upgrade)-/obj/item/borg/upgrade/hypospray) // Hypospray is a dummy parent for hypospray upgrades.
 		var/obj/item/borg/upgrade/upgrade = upgradetype
-		if (initial(upgrade.module_type) && !istype(borg.module, initial(upgrade.module_type))) // Upgrade requires a different module
+		if(upgrade.module_types && !is_type_in_list(borg.module, upgrade.module_types)) // Only show upgrades that can be given. This doesn't use initial() because initial() doesn't work on lists.
 			continue
 		var/installed = FALSE
-		if (locate(upgradetype) in borg)
+		if(locate(upgradetype) in borg)
 			installed = TRUE
 		.["upgrades"] += list(list("name" = initial(upgrade.name), "installed" = installed, "type" = upgradetype))
 	.["laws"] = borg.laws ? borg.laws.get_law_list(include_zeroth = TRUE) : list()
@@ -151,17 +151,19 @@
 			var/upgradepath = text2path(params["upgrade"])
 			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg
 			if (installedupgrade)
-				installedupgrade.deactivate(borg, user)
-				borg.upgrades -= installedupgrade
-				message_admins("[key_name_admin(user)] removed [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
-				log_admin("[key_name(user)] removed [installedupgrade] upgrade from [key_name(borg)].")
-				qdel(installedupgrade)
+				var/success = installedupgrade.deactivate(borg, user)
+				if(success)
+					borg.upgrades -= installedupgrade
+					message_admins("[key_name_admin(user)] removed [installedupgrade] upgrade from [ADMIN_LOOKUPFLW(borg)].")
+					log_admin("[key_name(user)] removed [installedupgrade] upgrade from [key_name(borg)].")
+					qdel(installedupgrade)
 			else
 				var/obj/item/borg/upgrade/upgrade = new upgradepath(borg)
-				upgrade.action(borg, user)
-				borg.upgrades += upgrade
-				message_admins("[key_name_admin(user)] added [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
-				log_admin("[key_name(user)] added [upgrade] borg upgrade to [key_name(borg)].")
+				var/success = upgrade.action(borg, user)
+				if(success)
+					borg.upgrades += upgrade
+					message_admins("[key_name_admin(user)] added [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
+					log_admin("[key_name(user)] added [upgrade] borg upgrade to [key_name(borg)].")
 		if ("toggle_radio")
 			var/channel = params["channel"]
 			if (channel in borg.radio.channels) // We're removing a channel

@@ -20,6 +20,8 @@
 #define LANGUAGE_MASTER			"master"
 #define LANGUAGE_MIME			"mime"
 #define LANGUAGE_SOFTWARE		"software"
+#define LANGUAGE_SOFTWARE_ADV	"software_adv"
+#define LANGUAGE_SOFTWARE_OMNI	"software_omni"
 #define LANGUAGE_STONER			"stoner"
 #define LANGUAGE_VOICECHANGE	"voicechange"
 #define LANGUAGE_REVOLUTIONARY	"revolutionary"

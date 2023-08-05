@@ -241,15 +241,16 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
-	require_module = 1
-	module_type = /obj/item/robot_module/miner
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/miner)
+	module_flags = BORG_MODULE_MINER
+	repeatable = TRUE
 	var/denied_type = null
 	var/maximum_of_type = 1
 	var/cost = 30
 	var/modifier = 1 //For use in any mod kit that has numerical modifiers
 	var/minebot_upgrade = TRUE
 	var/minebot_exclusive = FALSE
-	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
 	. = ..()
@@ -295,7 +296,7 @@
 		else
 			to_chat(user, span_notice("The modkit you're trying to install would conflict with an already installed modkit. Use a crowbar to remove existing modkits."))
 	else
-		to_chat(user, span_notice("You don't have room(<b>[KA.get_remaining_mod_capacity()]%</b> remaining, [cost]% needed) to install this modkit. Use a crowbar to remove existing modkits."))
+		to_chat(user, span_notice("You don't have room (<b>[KA.get_remaining_mod_capacity()]%</b> remaining, [cost]% needed) to install this modkit. Use a crowbar to remove existing modkits."))
 		. = FALSE
 
 /obj/item/borg/upgrade/modkit/deactivate(mob/living/silicon/robot/R, user = usr)

@@ -588,7 +588,7 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/shovel,
+		/obj/item/shovel, // This is here for: the ability to butcher & tool behavior of TOOL_SHOVEL. In all other cases, the cyborg drill is better.
 		/obj/item/crowbar/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,
