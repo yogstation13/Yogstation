@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(700 modules,
-    1894/8964 macros, 21.1%)</aside></h3>
+<aside>(703 modules,
+    1895/8971 macros, 21.1%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -788,6 +788,11 @@ transformations and other events that cause new languages to become available.</
     <li><span class="no-substance">music&#x2F;</span><a href="code/modules/music/music.html" title="code&#x2F;modules&#x2F;music&#x2F;music">music</a></li>
     <li><span class="no-substance">ninja&#x2F;</span><a href="code/modules/ninja/energy_katana.html" title="code&#x2F;modules&#x2F;ninja&#x2F;energy_katana">energy_katana</a></li>
     <li><span class="no-substance">paperwork&#x2F;</span><a href="code/modules/paperwork/paper_premade.html" title="code&#x2F;modules&#x2F;paperwork&#x2F;paper_premade">paper_premade</a></li>
+    <li class="has-children"><span class="no-substance">particles&#x2F;</span><span title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles">byond_particles</span><ul class="index-tree">
+    <li><span class="no-substance">particle&#x2F;</span><a href="code/modules/particles/byond_particles/particle/fire.html" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle&#x2F;fire">fire</a></li>
+    <li><a href="code/modules/particles/byond_particles/particle_holder.html" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder">particle_holder</a></li>
+    <li><a href="code/modules/particles/byond_particles/particool.html" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particool">particool</a></li>
+    </ul></li>
     <li><span class="no-substance">pool&#x2F;</span><a href="code/modules/pool/pool.html" title="code&#x2F;modules&#x2F;pool&#x2F;pool">pool</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;power">power</span><ul class="index-tree">
     <li><a href="code/modules/power/apc.html" title="code&#x2F;modules&#x2F;power&#x2F;apc">apc</a></li>
@@ -1030,7 +1035,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(881 detailed/1682 documented/28057 total, 6%)</aside></h3>
+<aside>(884 detailed/1686 documented/28101 total, 6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1563,6 +1568,8 @@ for scheduling different subsystems for different stages of the round</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;board&#x2F;subspace_receiver">Machine Design (Subspace Receiver)</span> - Subspace Telecomms</li>
     </ul></li>
     <li><a href="datum/design/borg_upgrade_analyzer.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_analyzer">Cyborg Upgrade (Advanced Analyzer)</a></li>
+    <li><a href="datum/design/borg_upgrade_engi_advancedtools.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_engi_advancedtools">Cyborg Upgrade (Advanced Engineering Tools)</a></li>
+    <li><a href="datum/design/borg_upgrade_holosign.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_holosign">Cyborg Upgrade (ATMOS Holofan Projector)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_rename">Cyborg Upgrade (Rename Board)</span> - Borg Upgrades</li>
     <li><a href="datum/design/borg_upgrade_surgerykit.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgerykit">Cyborg Upgrade (Advanced Surgical Kit)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;c38_sec">Speed Loader (.38 rubber)</span> - Weapons</li>
@@ -2375,6 +2382,8 @@ Will yield a &quot;?&quot;</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;abstract">abstract</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;abstract&#x2F;chasm_storage">chasm depths</span> - An abstract object which is basically just a bag that the chasm puts people inside</li>
     <li><a href="obj/effect/abstract/info.html" title="&#x2F;obj&#x2F;effect&#x2F;abstract&#x2F;info">info</a> - An info button that, when clicked, puts some text in the user's chat</li>
+    <li><a href="obj/effect/abstract/particle_holder.html" title="&#x2F;obj&#x2F;effect&#x2F;abstract&#x2F;particle_holder">particle_holder</a> - objects can only have one particle on them at a time, so we use these abstract effects to hold and display the effects. You know, so multiple particle effects can exist at once.
+also because some objects do not display particles due to how their visuals are built</li>
     <li class="has-children"><a href="obj/effect/abstract/turf_fire.html" title="&#x2F;obj&#x2F;effect&#x2F;abstract&#x2F;turf_fire">turf_fire</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;abstract&#x2F;turf_fire&#x2F;magical">magical</span> - All the subtypes are for adminbussery and or mapping</li>
     </ul></li>
@@ -3317,6 +3326,7 @@ uranium</li>
     </ul></li>
     <li><span class="no-substance">vehicle&#x2F;ridden&#x2F;scooter&#x2F;</span><a href="obj/vehicle/ridden/scooter/skateboard.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard">improvised skateboard</a></li>
     </ul></li>
+    <li><span class="no-substance">particles&#x2F;</span><span class="no-substance" title="&#x2F;particles&#x2F;fire">fire</span> - GENERIC FIRE EFEFCT</li>
     <li><a href="procpath.html" title="&#x2F;procpath">procpath</a> - Represents a proc or verb path.</li>
     <li><span class="no-substance" title="&#x2F;sound">sound</span> - Default override for echo</li>
     <li class="has-children"><a href="turf.html" title="&#x2F;turf">turf</a><ul class="index-tree">
@@ -3348,7 +3358,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/233002812c3f585f154df490e041e5b8e41d65d0">2330028</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f8d86827328bee63e01f541b36acfab6f1a824df">f8d8682</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
