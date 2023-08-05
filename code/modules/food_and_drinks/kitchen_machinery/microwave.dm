@@ -163,11 +163,11 @@
 #undef MICROWAVE_INGREDIENT_OVERLAY_SIZE
 
 /obj/machinery/microwave/update_icon_state()
-	if (broken)
+	if(broken)
 		icon_state = "mwb"
-	else if (dirty_anim_playing)
+	else if(dirty_anim_playing)
 		icon_state = "mwbloody1"
-	else if (dirty == 100)
+	else if(dirty == 100)
 		icon_state = open ? "mwbloodyo" : "mwbloody"
 	else if(operating)
 		icon_state = "back_on"
@@ -263,6 +263,7 @@
 
 		ingredients += O
 		user.visible_message("[user] has added \a [O] to \the [src].", span_notice("You add [O] to \the [src]."))
+		update_appearance()
 		return
 
 	..()
