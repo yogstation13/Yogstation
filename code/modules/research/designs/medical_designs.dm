@@ -113,7 +113,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/vialbox
-	name = "vial box"
+	name = "Vial Box"
 	desc = "A small box that can hold up to six vials in a sealed enviroment."
 	id = "vialbox"
 	build_type = PROTOLATHE
@@ -494,7 +494,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_jumpboots
-	name = "Jumpboots implant"
+	name = "Jumpboots Implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
 	id = "ci-jumpboots"
 	build_type = MECHFAB
@@ -505,7 +505,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_wheelies
-	name = "Wheelies implant"
+	name = "Wheelies Implant"
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
 	id = "ci-wheelies"
 	build_type = MECHFAB
@@ -516,7 +516,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_magboot
-	name = "Magboot implant"
+	name = "Magboot Implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
 	id = "ci-magboots"
 	build_type = MECHFAB
@@ -660,7 +660,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_stomach
-	name = "Cybernetic stomach"
+	name = "Cybernetic Stomach"
 	desc = "A cybernetic stomach"
 	id = "cybernetic_stomach"
 	build_type = PROTOLATHE | MECHFAB
