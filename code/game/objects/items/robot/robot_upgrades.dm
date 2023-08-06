@@ -736,7 +736,7 @@
 
 /obj/item/borg/upgrade/adv_analyzer
 	name = "medical cyborg advanced health analyzer"
-	desc = "An upgrade to  medical cyborg which replaces their normal health analyzer with its advanced version."
+	desc = "An upgrade to medical cyborg which replaces their normal health analyzer with its advanced version."
 	icon_state = "cyborg_upgrade5"
 	require_module = TRUE
 	module_types = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical)
@@ -998,9 +998,11 @@
 
 /obj/item/borg/upgrade/plasmacutter/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	if(.)
-		for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
-			R.module.remove_module(PC, TRUE)
+	if(!.)
+		return FALSE
+	
+	for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
+		R.module.remove_module(PC, TRUE)
 
 /obj/item/borg/upgrade/transform
 	name = "borg module picker (Standard)"

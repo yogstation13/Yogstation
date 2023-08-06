@@ -1137,8 +1137,6 @@
 	// Drops all items found in any storage bags on the Cyborg.
 	for(var/obj/item/storage/bag in module.contents)
 		bag.emptyStorage()
-		//for(var/obj/item in bag)
-		//	item.forceMove(drop_location())
 			
 	while(expansion_count)
 		resize = 0.5

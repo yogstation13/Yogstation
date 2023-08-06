@@ -142,12 +142,21 @@
 	return I
 
 /obj/item/robot_module/proc/remove_module(obj/item/I, delete_after)
+	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+	
+	// Keeping these to reset their module slots to what they were previously.
+	var/list/held_modules = R.held_items.Copy()
+	var/active_module_num = R.get_selected_module()
+	R.uneq_all() // Must be done before module removed; otherwise, will CRASH().
+
 	basic_modules -= I
 	modules -= I
 	emag_modules -= I
 	ratvar_modules -= I
 	added_modules -= I
-	rebuild_modules()
+	rebuild_modules(held_modules, active_module_num)
 	if(delete_after)
 		qdel(I)
 
@@ -172,10 +181,13 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules() ///builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules(var/list/last_held_modules = null, var/last_active_module_num = null) ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
-	var/list/held_modules = R.held_items.Copy()
-	var/active_module = R.module_active
+	if(!istype(R))
+		return
+
+	var/list/held_modules = last_held_modules ? last_held_modules : R.held_items.Copy()
+	var/active_module_num = last_active_module_num ? last_active_module_num : R.get_selected_module()
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -189,10 +201,11 @@
 	for(var/obj/item/I in added_modules)
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
-		if(i)
-			R.equip_module_to_slot(i, held_modules.Find(i))
-	if(active_module)
-		R.select_module(held_modules.Find(active_module))
+		if(i && i in modules)
+			var/slot = held_modules.Find(i)
+			R.equip_module_to_slot(i, slot)
+			if(slot == active_module_num)
+				R.select_module(slot)
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 
