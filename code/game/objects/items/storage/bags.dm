@@ -249,6 +249,9 @@
 		user.visible_message(span_notice("[user] scoops up the gems beneath [user.p_them()]."), \
 		span_notice("You scoop up the gems beneath you with your [name]."))
 	spam_protection = FALSE
+
+/obj/item/storage/bag/gem/cyborg
+	name = "cyborg gem satchel"
 // -----------------------------
 //          Plant bag
 // -----------------------------
