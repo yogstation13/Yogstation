@@ -587,7 +587,6 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
-		/obj/item/storage/bag/gem/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
 		/obj/item/shovel,
 		/obj/item/crowbar/cyborg,
