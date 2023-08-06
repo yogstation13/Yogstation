@@ -11,7 +11,8 @@
 
 #define RBMK_HEAT_CAPACITY 6000 //How much thermal energy it takes to cool the reactor
 #define RBMK_ROD_HEAT_CAPACITY 400 //How much thermal energy it takes to cool each reactor rod
-#define RBMK_HEAT_FACTOR (12 / (NUM_E**2)) //How much heat from K
+#define RBMK_HEAT_EXPONENT 1.5 // The exponent used for the function for K heating
+#define RBMK_HEAT_FACTOR (20 / (RBMK_HEAT_EXPONENT**2)) //How much heat from K
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 
@@ -409,14 +410,14 @@
 
 	// Now, clamp K and heat up the reactor based on it.
 	K = clamp(K, 0, RBMK_MAX_CRITICALITY)
-	var/particle_chance = power * K
+	var/particle_chance = min(power * K, 1000)
 	while(particle_chance >= 100)
 		fire_nuclear_particle()
 		particle_chance -= 100
 	if(prob(particle_chance))
 		fire_nuclear_particle()
 	if(active && has_fuel())
-		temperature += RBMK_HEAT_FACTOR * delta_time * has_fuel() * ((NUM_E**K) - 1) // heating from K has to be exponential to make higher K more dangerous
+		temperature += RBMK_HEAT_FACTOR * delta_time * has_fuel() * ((RBMK_HEAT_EXPONENT**K) - 1) // heating from K has to be exponential to make higher K more dangerous
 
 	// Cooling time!
 	var/input_moles = coolant_input.total_moles() //Firstly. Do we have enough moles of coolant?
