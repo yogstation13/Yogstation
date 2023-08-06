@@ -1084,7 +1084,7 @@
 	module_type = /obj/item/robot_module/miner
 	module_flags = BORG_MODULE_MINER
 
-/obj/item/borg/upgrade/gemsatchel/action(mob/living/silicon/robot/R , user = usr) //yogs single line
+/obj/item/borg/upgrade/gemsatchel/action(mob/living/silicon/robot/R , user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
