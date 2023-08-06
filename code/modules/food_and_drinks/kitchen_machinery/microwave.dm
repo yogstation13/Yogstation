@@ -142,7 +142,7 @@
 		border_icon_state = "mwo"
 	else if (operating)
 		door_icon_state = "door_on"
-		border_icon_state = "mw1"
+		border_icon_state = "mw"
 	else
 		door_icon_state = "door_off"
 		border_icon_state = "mw"
