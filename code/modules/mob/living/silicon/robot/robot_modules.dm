@@ -181,13 +181,18 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules(var/list/last_held_modules = null, var/last_active_module_num = null) ///builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules(list/last_held_modules = null, last_active_module_num = null) ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
 	if(!istype(R))
 		return
 
-	var/list/held_modules = last_held_modules ? last_held_modules : R.held_items.Copy()
-	var/active_module_num = last_active_module_num ? last_active_module_num : R.get_selected_module()
+	var/list/held_modules = R.held_items.Copy()
+	if(last_held_modules) 
+		held_modules = last_held_modules
+	var/active_module_num = R.get_selected_module()
+	if(last_active_module_num)
+		active_module_num = last_active_module_num
+
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -201,7 +206,7 @@
 	for(var/obj/item/I in added_modules)
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
-		if(i && i in modules)
+		if(i && (i in modules))
 			var/slot = held_modules.Find(i)
 			R.equip_module_to_slot(i, slot)
 			if(slot == active_module_num)
@@ -211,6 +216,7 @@
 
 /obj/item/robot_module/proc/transform_to(new_module_type)
 	var/mob/living/silicon/robot/R = loc
+	R.uneq_all()
 	var/obj/item/robot_module/RM = new new_module_type(R)
 	if(!RM.be_transformed_to(src))
 		qdel(RM)
