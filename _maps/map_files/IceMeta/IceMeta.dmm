@@ -21305,6 +21305,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"gtu" = (
+/obj/docking_port/stationary/random/icemoon{
+	dir = 4;
+	id = "pod_icemoon3"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "gtA" = (
 /obj/structure/table/wood,
 /obj/machinery/recharger,
@@ -36253,6 +36260,13 @@
 	dir = 1
 	},
 /area/security/prison)
+"kFM" = (
+/obj/docking_port/stationary/random/icemoon{
+	dir = 4;
+	id = "pod_icemoon4"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "kGb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -48165,6 +48179,12 @@
 /obj/item/grenade/chem_grenade,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"obz" = (
+/obj/docking_port/stationary/random/icemoon{
+	id = "pod_icemoon2"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "obJ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -49898,13 +49918,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"oAG" = (
-/obj/docking_port/stationary/random{
-	id = "pod_lavaland1";
-	name = "lavaland"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/top_layer/outdoors)
 "oAO" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -51705,13 +51718,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/medical/virology)
-"phC" = (
-/obj/docking_port/stationary/random{
-	id = "pod_lavaland2";
-	name = "lavaland"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/top_layer/outdoors)
 "phE" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -57709,14 +57715,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
-"qSS" = (
-/obj/docking_port/stationary/random{
-	dir = 4;
-	id = "pod_lavaland4";
-	name = "lavaland"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/top_layer/outdoors)
 "qSZ" = (
 /obj/item/stack/packageWrap,
 /obj/item/stack/packageWrap,
@@ -74110,6 +74108,12 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/department/science/central)
+"vJg" = (
+/obj/docking_port/stationary/random/icemoon{
+	id = "pod_icemoon1"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "vJo" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -80863,14 +80867,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"xzn" = (
-/obj/docking_port/stationary/random{
-	dir = 4;
-	id = "pod_lavaland3";
-	name = "lavaland"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/top_layer/outdoors)
 "xzq" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -93384,7 +93380,7 @@ ozK
 ozK
 ozK
 ozK
-oAG
+vJg
 ozK
 ozK
 ozK
@@ -109024,7 +109020,7 @@ ozK
 ozK
 ueX
 ueX
-phC
+obz
 ozK
 ozK
 ozK
@@ -122394,7 +122390,7 @@ rtS
 ozK
 ozK
 ozK
-xzn
+gtu
 ozK
 nyc
 qxZ
@@ -130663,7 +130659,7 @@ ueX
 ueX
 ozK
 ozK
-qSS
+kFM
 ozK
 ueX
 tRh
