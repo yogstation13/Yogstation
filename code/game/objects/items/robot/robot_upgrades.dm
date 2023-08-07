@@ -664,8 +664,8 @@
 	name = "service cyborg condiment synthesiser"
 	desc = "An upgrade to the service model cyborg, allowing it to produce solid condiments."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = /obj/item/robot_module/butler
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/service)
 	module_flags = BORG_MODEL_SERVICE
 
 /obj/item/borg/upgrade/condiment_synthesizer/action(mob/living/silicon/robot/R, user = usr)
