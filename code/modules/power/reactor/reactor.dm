@@ -1,5 +1,4 @@
-//For my sanity :))
-
+// Index of each node in the list of nodes the reactor has
 #define COOLANT_INPUT_GATE 1
 #define MODERATOR_INPUT_GATE 2
 #define COOLANT_OUTPUT_GATE 3
