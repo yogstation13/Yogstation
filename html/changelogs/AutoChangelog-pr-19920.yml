@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "adds resonance cascade, a new delamination type"
-  - bugfix: "fixed portal storms spawning visual effects in the wrong place"
