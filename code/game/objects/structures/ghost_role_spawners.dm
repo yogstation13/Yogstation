@@ -242,7 +242,19 @@
 	has_owner = TRUE
 	name = "inert servant golem shell"
 	mob_name = "a servant golem"
+	/// List of ckeys belonging to people who became a servant golem (via ghosting).
+	var/static/list/servant_golem_users = list()
 
+/obj/effect/mob_spawn/human/golem/servant/attack_ghost(mob/user)
+	. = ..()
+	if(. && user.mind) // Successfully became the golem (with a mind).
+		LAZYADD(servant_golem_users, ckey(user.mind.key))
+
+/obj/effect/mob_spawn/human/golem/servant/check_allowed(mob/M)
+	. = ..()
+	if(M.mind && (ckey(M.mind.key) in servant_golem_users)) // Same philosophy as posi-brains. Mass producible, encourages reckless/selfless behavior, etc. Therefore, should be one-time ghost role.
+		to_chat(M, span_warning("[src] rumbles. You have already used a servant golem shell!"))
+		return FALSE
 
 /obj/effect/mob_spawn/human/golem/adamantine
 	name = "dust-caked free golem shell"
