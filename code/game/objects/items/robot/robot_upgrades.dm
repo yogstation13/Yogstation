@@ -660,6 +660,33 @@
 	desc = "An upgrade to the Medical module's hypospray, allowing it \
 		to treat a wider range of conditions and problems."
 
+/obj/item/borg/upgrade/condiment_synthesizer
+	name = "service cyborg condiment synthesiser"
+	desc = "An upgrade to the service model cyborg, allowing it to produce solid condiments."
+	icon_state = "cyborg_upgrade3"
+	require_module = 1
+	module_type = /obj/item/robot_module/butler
+	module_flags = BORG_MODEL_SERVICE
+
+/obj/item/borg/upgrade/condiment_synthesizer/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/reagent_containers/borghypo/condiment_synthesizer/cynthesizer = locate() in R.module.modules
+		if(cynthesizer)
+			R.balloon_alert_to_viewers("already installed!")
+			return FALSE
+		cynthesizer = new(R.module)
+		R.module.basic_modules += cynthesizer
+		R.module.add_module(cynthesizer, FALSE, TRUE)
+
+/obj/item/borg/upgrade/condiment_synthesizer/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return FALSE
+	var/obj/item/reagent_containers/borghypo/condiment_synthesizer/cynthesizer = locate() in R.module.modules
+	if (cynthesizer)
+		R.module.remove_module(cynthesizer, TRUE)
+
 /obj/item/borg/upgrade/piercing_hypospray
 	name = "cyborg piercing hypospray"
 	desc = "An upgrade to a cyborg's hypospray, allowing it to \
