@@ -1,14 +1,14 @@
 import { NtosWindow } from '../layouts';
-import { RbmkStatsSection } from './RbmkComputer';
+import { ReactorStatsSection } from './ReactorComputer';
 
-export const NtosRbmkStats = (props, context) => {
+export const NtosReactorStats = (props, context) => {
   return (
     <NtosWindow
       resizable
       width={440}
       height={650}>
       <NtosWindow.Content>
-        <RbmkStatsSection />
+        <ReactorStatsSection />
       </NtosWindow.Content>
     </NtosWindow>
   );

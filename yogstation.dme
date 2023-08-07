@@ -3119,7 +3119,7 @@
 #include "code\modules\power\tracker.dm"
 #include "code\modules\power\turbine.dm"
 #include "code\modules\power\reactor\fuel_rods.dm"
-#include "code\modules\power\reactor\rbmk.dm"
+#include "code\modules\power\reactor\reactor.dm"
 #include "code\modules\power\reactor\reactor_cargo.dm"
 #include "code\modules\power\singularity\collector.dm"
 #include "code\modules\power\singularity\containment_field.dm"

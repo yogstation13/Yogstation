@@ -90,9 +90,9 @@
 	suffix = "engine_teg.dmm"
 	name = "Engine TEG"
 
-/datum/map_template/ruin/station/box/engine/rbmk
-	id = "engine_rbmk"
-	suffix = "engine_rbmk.dmm"
+/datum/map_template/ruin/station/box/engine/reactor
+	id = "engine_reactor"
+	suffix = "engine_reactor.dmm"
 	name = "Engine AGCNR"
 
 /datum/map_template/ruin/station/box/testingsite/bunker

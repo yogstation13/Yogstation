@@ -4,7 +4,7 @@ import { Box, Button, Chart, Flex, ProgressBar, Section, Tabs, Slider } from '..
 import { FlexItem } from '../components/Flex';
 import { formatSiUnit } from '../format';
 
-export const RbmkComputer = (props, context) => {
+export const ReactorComputer = (props, context) => {
   const [tabIndex, setTabIndex] = useLocalState(context, "tab-index", 1);
   return (
     <Window
@@ -29,15 +29,15 @@ export const RbmkComputer = (props, context) => {
             Fuel Rods
           </Tabs.Tab>
         </Tabs>
-        {tabIndex === 1 && <RbmkStatsSection />}
-        {tabIndex === 2 && <RbmkControlRodControl />}
-        {tabIndex === 3 && <RbmkFuelControl />}
+        {tabIndex === 1 && <ReactorStatsSection />}
+        {tabIndex === 2 && <ReactorControlRodControl />}
+        {tabIndex === 3 && <ReactorFuelControl />}
       </Window.Content>
     </Window>
   );
 };
 
-export const RbmkStatsSection = (props, context) => {
+export const ReactorStatsSection = (props, context) => {
   const { act, data } = useBackend(context);
   const powerData = data.powerData.map((value, i) => [i, value]);
   const kpaData = data.kpaData.map((value, i) => [i, value]);
@@ -139,7 +139,7 @@ export const RbmkStatsSection = (props, context) => {
   );
 };
 
-export const RbmkControlRodControl = (props, context) => {
+export const ReactorControlRodControl = (props, context) => {
   const { act, data } = useBackend(context);
   const control_rods = data.control_rods;
   const k = data.k;
@@ -201,7 +201,7 @@ export const RbmkControlRodControl = (props, context) => {
   );
 };
 
-export const RbmkFuelControl = (props, context) => {
+export const ReactorFuelControl = (props, context) => {
   const { act, data } = useBackend(context);
   const shutdown_temp = data.shutdownTemp;
   return (
