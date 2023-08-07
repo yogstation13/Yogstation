@@ -677,7 +677,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/edagger
 	name = "Energy Dagger"
 	desc = "A dagger made of energy that looks and functions as a pen when off."
-	item = /obj/item/pen/edagger
+	item = /obj/item/pen/red/edagger
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 
@@ -746,7 +746,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			strong anesthetic and a chemical that prevents the target from speaking. \
 			The pen holds one dose of the mixture. Note that before the target \
 			falls asleep, they will be able to move and act."
-	item = /obj/item/pen/sleepy
+	item = /obj/item/pen/blue/sleepy
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/nuclear)
