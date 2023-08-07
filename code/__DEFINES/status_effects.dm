@@ -66,6 +66,8 @@
 
 #define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken
 
+#define STATUS_EFFECT_DIAMONDSKIN /datum/status_effect/diamondskin //Increases heat and pressure resistance
+
 /////////////
 // DEBUFFS //
 /////////////
