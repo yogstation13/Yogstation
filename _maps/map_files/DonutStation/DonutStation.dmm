@@ -81,11 +81,9 @@
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen)
 "aco" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "acs" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -1340,6 +1338,10 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"aOL" = (
+/obj/structure/grille,
+/turf/closed/wall/r_wall,
+/area/engine/atmos)
 "aPf" = (
 /obj/machinery/light{
 	dir = 8
@@ -2035,9 +2037,14 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bnp" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/tcommsat/server)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "bnu" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -2161,9 +2168,11 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "brU" = (
-/obj/structure/grille,
-/turf/closed/wall/r_wall,
-/area/engine/atmos)
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "bsf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -3994,13 +4003,14 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "ctN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 4;
-	external_pressure_bound = 120;
-	name = "server vent"
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
 	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "ctY" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/trimline/white/filled/line/lower{
@@ -5184,6 +5194,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"dfI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 4;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "dfZ" = (
 /obj/machinery/light{
 	dir = 1
@@ -5388,7 +5406,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/obj/machinery/advanced_airlock_controller,
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 24
+	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "dmW" = (
@@ -5792,11 +5812,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/obj/machinery/atmospherics/pipe/manifold4w/yellow/hidden,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "dAf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -8539,12 +8557,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"fqS" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "fra" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 8;
@@ -9349,14 +9361,9 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "fUu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/engine/air,
+/area/engine/atmos)
 "fUM" = (
 /obj/machinery/atmospherics/components/binary/pump/on,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -11156,12 +11163,9 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "hcj" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/tcommsat/server)
 "hcl" = (
 /obj/machinery/air_sensor/atmos/air_tank,
 /turf/open/floor/engine/air,
@@ -15016,10 +15020,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "jzz" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/yellow/hidden,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "jzG" = (
@@ -16305,11 +16308,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "knF" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "knH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -17747,12 +17751,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"lmJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/tcommsat/computer)
 "lng" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -19462,12 +19460,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"mqP" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "mqZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -23629,9 +23621,11 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "oRi" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/engine/air,
-/area/engine/atmos)
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "oRy" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
@@ -32572,17 +32566,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "uEm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8;
+	external_pressure_bound = 120;
+	name = "server vent"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "uEr" = (
 /obj/machinery/air_sensor/atmos/nitrogen_tank,
 /turf/open/floor/engine/n2{
@@ -33594,6 +33584,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"vdH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "vdL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -36717,9 +36719,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "xdr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
+	dir = 1
+	},
 /turf/open/floor/plating,
-/area/engine/atmos)
+/area/tcommsat/computer)
 "xdt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -37237,13 +37241,11 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "xuF" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	external_pressure_bound = 120;
-	name = "server vent"
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 8
 	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "xuL" = (
 /obj/machinery/light,
 /turf/open/floor/engine{
@@ -38072,8 +38074,8 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "xSN" = (
 /obj/machinery/firealarm{
 	pixel_y = 29
@@ -57878,7 +57880,7 @@ bHj
 ylr
 akr
 gqS
-lmJ
+xdr
 akr
 kRJ
 iIh
@@ -58648,7 +58650,7 @@ ylr
 ylr
 akr
 vlp
-fUu
+ctN
 uES
 tHF
 arB
@@ -58657,10 +58659,10 @@ vcQ
 vWp
 bXq
 bXq
-ctN
+dfI
 euj
 abe
-knF
+oRi
 rDM
 vWp
 vWp
@@ -58910,14 +58912,14 @@ rNY
 gXN
 ghz
 kKP
+knF
 hcj
-bnp
 deB
 elw
-fqS
+xSB
 udm
 fBr
-fqS
+xSB
 hVn
 vWp
 vWp
@@ -59167,14 +59169,14 @@ kKP
 kKP
 ghz
 kKP
+brU
+hcj
+hcj
+hcj
 xSB
-bnp
-bnp
-bnp
-fqS
 bXq
 bXq
-fqS
+xSB
 lUR
 ePh
 vWp
@@ -59424,11 +59426,11 @@ ubp
 iCZ
 jLQ
 ubp
-dzQ
+bnp
 aLQ
 yaH
 hzD
-jzz
+dzQ
 bGy
 tid
 sQx
@@ -59681,14 +59683,14 @@ kKP
 kKP
 kKP
 kKP
+brU
+hcj
+hcj
+hcj
 xSB
-bnp
-bnp
-bnp
-fqS
 bXq
 bXq
-fqS
+xSB
 xpd
 txl
 vWp
@@ -59938,14 +59940,14 @@ lXZ
 tbs
 kKP
 kKP
-aco
-bnp
+xuF
+hcj
 iKs
 elw
-fqS
+xSB
 mIs
 gxT
-fqS
+xSB
 utB
 vWp
 vWp
@@ -60199,10 +60201,10 @@ jEk
 vWp
 bXq
 bXq
-xuF
+uEm
 vuQ
 kVw
-mqP
+jzz
 yeL
 vWp
 vWp
@@ -76137,11 +76139,11 @@ iYQ
 sbE
 dsG
 uix
-brU
-brU
-brU
-brU
-brU
+aOL
+aOL
+aOL
+aOL
+aOL
 iKZ
 jvH
 xbB
@@ -76398,7 +76400,7 @@ tMX
 mdb
 nNf
 nNf
-brU
+aOL
 iKZ
 uJr
 xbB
@@ -76655,7 +76657,7 @@ kQR
 uEr
 aMu
 qZX
-brU
+aOL
 iKZ
 uJr
 xbB
@@ -76912,7 +76914,7 @@ tMX
 tkq
 nNf
 nNf
-brU
+aOL
 gby
 uJr
 xbB
@@ -77165,11 +77167,11 @@ cMO
 jNx
 dDF
 vWd
-brU
-brU
-brU
-brU
-brU
+aOL
+aOL
+aOL
+aOL
+aOL
 int
 uJr
 mMC
@@ -77426,7 +77428,7 @@ tMX
 apO
 syM
 syM
-brU
+aOL
 int
 uJr
 mMC
@@ -77659,12 +77661,12 @@ gll
 uix
 uix
 uix
-xdr
-xdr
-xdr
-xdr
+aco
+aco
+aco
+aco
 iKq
-xdr
+aco
 jQl
 jPU
 qVK
@@ -77683,7 +77685,7 @@ kQR
 aDk
 jLn
 vFf
-brU
+aOL
 rFf
 jvH
 mMC
@@ -77921,7 +77923,7 @@ lUf
 bww
 pac
 nrK
-xdr
+aco
 sGM
 liu
 qnX
@@ -77940,7 +77942,7 @@ tMX
 pEx
 syM
 syM
-brU
+aOL
 tZX
 uJr
 mMC
@@ -78172,13 +78174,13 @@ wDQ
 eEA
 uix
 inI
-uEm
+vdH
 fFB
 deY
 jGt
 pLt
 gsY
-xdr
+aco
 kym
 nJG
 xYk
@@ -78193,11 +78195,11 @@ jQl
 nFX
 sIq
 vyS
-brU
-brU
-brU
-brU
-brU
+aOL
+aOL
+aOL
+aOL
+aOL
 iKZ
 uJr
 mMC
@@ -78435,7 +78437,7 @@ dUN
 rFJ
 kEt
 moX
-xdr
+aco
 mQH
 sSj
 exl
@@ -78454,7 +78456,7 @@ tMX
 luO
 hGC
 iOr
-brU
+aOL
 iKZ
 jvH
 vMl
@@ -78692,7 +78694,7 @@ wtH
 aEB
 uep
 jQG
-xdr
+aco
 tYz
 eLw
 cSj
@@ -78709,9 +78711,9 @@ bOy
 vWd
 kQR
 hcl
-oRi
+fUu
 wkC
-brU
+aOL
 iKZ
 gBk
 xbB
@@ -78949,7 +78951,7 @@ tGP
 qRZ
 lJC
 tLk
-xdr
+aco
 nFX
 oTQ
 oTQ
@@ -78968,7 +78970,7 @@ tMX
 sER
 iOr
 iOr
-brU
+aOL
 oeA
 jWG
 gtg
@@ -79206,7 +79208,7 @@ mNo
 kjQ
 tol
 uez
-xdr
+aco
 aSN
 eLG
 jpx
@@ -79221,11 +79223,11 @@ ley
 gRA
 xow
 eQU
-brU
-brU
-brU
-brU
-brU
+aOL
+aOL
+aOL
+aOL
+aOL
 gby
 uHp
 xbB
@@ -79463,7 +79465,7 @@ exl
 ocN
 pwq
 ioD
-xdr
+aco
 viM
 gCo
 rOL
@@ -79716,23 +79718,23 @@ vzp
 haM
 dPl
 uix
-brU
+aOL
 gcq
 kQR
 yht
-brU
+aOL
 oGB
 kQR
 yht
-brU
+aOL
 oGB
 kQR
 yht
-brU
+aOL
 oGB
 kQR
 yht
-brU
+aOL
 uix
 uix
 uix
@@ -79973,23 +79975,23 @@ fYU
 fYU
 coT
 xbB
-brU
+aOL
 auG
 bWC
 reg
-brU
+aOL
 uMB
 tDD
 eIf
-brU
+aOL
 uUi
 pDE
 tJM
-brU
+aOL
 gwu
 fpS
 rQg
-brU
+aOL
 bmt
 dNe
 ueJ
@@ -80230,23 +80232,23 @@ ouw
 mUk
 wSy
 uUZ
-brU
+aOL
 fXj
 fXj
 fXj
-brU
+aOL
 ftr
 shM
 muH
-brU
+aOL
 iMN
 xEI
 iMN
-brU
+aOL
 jBb
 bxg
 jBb
-brU
+aOL
 ayY
 uJr
 djA
@@ -80487,23 +80489,23 @@ dwu
 bUJ
 uKP
 qqY
-brU
+aOL
 fXj
 jIO
 fXj
-brU
+aOL
 scz
 scz
 scz
-brU
+aOL
 lns
 rKG
 iMN
-brU
+aOL
 jBb
 gbC
 jBb
-brU
+aOL
 iKZ
 jvH
 oPS
@@ -80744,23 +80746,23 @@ xbB
 xnG
 xbB
 xbB
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
-brU
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
+aOL
 iKZ
 gBk
 oPS
