@@ -979,6 +979,16 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+
+/datum/design/borg_upgrade_condiment_synthesizer
+	name = "Cyborg Upgrade (Condiment Synthesizer)"
+	id = "borg_upgrade_condiment_synthesizer"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/condiment_synthesizer
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 12000, /datum/material/plasma = 6000, /datum/material/uranium = 6000) // A bit cheaper than an expanded hypo for medical borg.
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_engi_advancedtools
 	name = "Cyborg Upgrade (Advanced Engineering Tools)"
 	id = "borg_upgrade_engi_advancedtools"
