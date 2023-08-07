@@ -349,6 +349,7 @@
 		/obj/item/wirecutters/cyborg,
 		/obj/item/multitool/cyborg,
 		/obj/item/t_scanner,
+		/obj/item/storage/bag/construction,
 		/obj/item/analyzer,
 		/obj/item/gripper/engineering,
 		/obj/item/geiger_counter/cyborg,
