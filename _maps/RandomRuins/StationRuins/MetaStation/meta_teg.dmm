@@ -625,9 +625,8 @@
 /turf/template_noop,
 /area/space/nearstation)
 "xc" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible{
-	dir = 5
-	},
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "xp" = (
@@ -1059,10 +1058,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"NE" = (
-/obj/machinery/atmospherics/components/unary/portables_connector,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "NH" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -1102,6 +1097,12 @@
 "OT" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Pn" = (
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 5
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1686,7 +1687,7 @@ Mb
 Tl
 Lt
 ap
-NE
+xc
 Is
 TJ
 eO
@@ -1712,7 +1713,7 @@ ma
 Tl
 hi
 ap
-NE
+xc
 Is
 OT
 XS
@@ -1738,7 +1739,7 @@ oN
 bA
 ey
 Fb
-NE
+xc
 Is
 Jy
 ap
@@ -1747,7 +1748,7 @@ jG
 Yh
 kK
 kf
-xc
+Pn
 Es
 Eb
 xR
