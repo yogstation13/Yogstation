@@ -20977,7 +20977,7 @@
 "nlE" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Turbine Access";
-	req_access_txt = sss
+	req_access_txt = "32"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
