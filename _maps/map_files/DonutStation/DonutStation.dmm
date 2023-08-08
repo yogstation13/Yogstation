@@ -7623,12 +7623,6 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower/corner/flip,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"ezA" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "ezF" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -15271,19 +15265,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"jlx" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "jlB" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -15600,18 +15581,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"jtZ" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/starboard/fore";
-	dir = 4;
-	name = "Starboard Aux Maintenance APC";
-	pixel_x = 24
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "jvh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -21750,6 +21719,16 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"niH" = (
+/obj/machinery/door/airlock/maintenance{
+	req_one_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "niP" = (
 /obj/machinery/smartfridge/chemistry/preloaded,
 /turf/closed/wall,
@@ -35136,21 +35115,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"vqn" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "vqt" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -37163,9 +37127,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"wzG" = (
-/turf/closed/wall,
-/area/maintenance/starboard/fore)
 "wAt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -84534,7 +84495,7 @@ iei
 ewZ
 dEX
 qAi
-wzG
+qAi
 qEt
 qEt
 qEt
@@ -84799,11 +84760,11 @@ ewZ
 ewZ
 ewZ
 ewZ
-ezA
-jlx
-mOk
-mOk
-vqn
+ewZ
+niH
+cPC
+cPC
+nux
 cPC
 cPC
 cPC
@@ -85056,7 +85017,7 @@ tBz
 eVV
 vSJ
 ewZ
-jtZ
+ewZ
 bDj
 tbO
 cPC
