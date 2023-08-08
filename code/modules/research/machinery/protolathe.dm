@@ -19,6 +19,7 @@
 								"Spacepod Designs", // yoggers
 								"Service",
 								"Assemblies"
+								"HFR Designs"
 								)
 	production_animation = "protolathe_n"
 	allowed_buildtypes = PROTOLATHE
