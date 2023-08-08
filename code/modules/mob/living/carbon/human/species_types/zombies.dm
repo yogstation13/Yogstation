@@ -136,6 +136,7 @@
 	punchdamagelow = 13
 	punchdamagehigh = 16
 	punchstunthreshold = 17 //pretty good punch damage but no knockdown
+	///no guns or soft crit
 	inherent_traits = list(
 		TRAIT_STABLELIVER,
 		TRAIT_STABLEHEART,
