@@ -69,6 +69,7 @@
 				M.visible_message("[M] pets [src].", \
 								span_notice("You pet [src]."))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "pet_borg", /datum/mood_event/pet_borg)
 		if(INTENT_GRAB)
 			grabbedby(M)
 		if(INTENT_DISARM)

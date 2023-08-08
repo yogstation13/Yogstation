@@ -232,7 +232,7 @@
 					/obj/item/grenade/smokebomb,
 					/obj/item/grenade/smokebomb,
 					/obj/item/grenade/smokebomb,
-					/obj/item/pen/sleepy,
+					/obj/item/pen/blue/sleepy,
 					/obj/item/grenade/chem_grenade/incendiary)
 	crate_name = "emergency crate"
 	crate_type = /obj/structure/closet/crate/internals
@@ -3010,6 +3010,7 @@
 					/obj/item/pen/fountain,
 					/obj/item/pen/blue,
 					/obj/item/pen/red,
+					/obj/item/pen/green,
 					/obj/item/folder/blue,
 					/obj/item/folder/red,
 					/obj/item/folder/yellow,

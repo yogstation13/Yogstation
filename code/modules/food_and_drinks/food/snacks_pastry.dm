@@ -31,6 +31,10 @@
 	filling_color = "#FF69B4"
 	return TRUE
 
+//Returns the sprite of the donut while in a donut box
+/obj/item/reagent_containers/food/snacks/donut/proc/in_box_sprite()
+	return "[icon_state]_inbox"
+
 /obj/item/reagent_containers/food/snacks/donut/checkLiked(fraction, mob/M)	//Sec officers always love donuts
 	if(last_check_time + 50 < world.time)
 		if(ishuman(M))
