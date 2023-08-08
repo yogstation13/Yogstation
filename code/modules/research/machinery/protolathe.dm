@@ -18,7 +18,7 @@
 								"Computer Parts",
 								"Spacepod Designs", // yoggers
 								"Service",
-								"Assemblies"
+								"Assemblies",
 								"HFR Designs"
 								)
 	production_animation = "protolathe_n"
