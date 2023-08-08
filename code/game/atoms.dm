@@ -46,6 +46,7 @@
 	var/list/atom_colours
 
 	var/datum/wires/wires = null
+	var/obj/effect/abstract/particle_holder/master_holder
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays

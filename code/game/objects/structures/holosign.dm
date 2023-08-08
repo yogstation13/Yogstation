@@ -217,7 +217,7 @@
 /obj/structure/holobed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
-		success_chance = 0.8, \
+		success_chance = 0.95, \
 	)
 
 /obj/structure/holobed/examine(mob/user)
