@@ -158,6 +158,13 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"adx" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "adD" = (
 /obj/item/storage/box/bodybags,
 /obj/structure/table,
@@ -2038,16 +2045,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
-"bji" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "bjy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -4459,6 +4456,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"cDf" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "cDi" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -5344,16 +5348,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
-"dba" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "dby" = (
 /obj/machinery/computer/security,
 /obj/structure/noticeboard{
@@ -11048,6 +11042,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
+"gIi" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "gIx" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Courtroom"
@@ -14661,14 +14662,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"iUn" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "iUu" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/bananalamp{
@@ -17249,6 +17242,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ksO" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "ktq" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -21211,6 +21209,13 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"mUy" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/aft)
 "mUD" = (
 /obj/machinery/door/airlock/virology/glass{
 	name = "Isolation A";
@@ -21719,16 +21724,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
-"niH" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "niP" = (
 /obj/machinery/smartfridge/chemistry/preloaded,
 /turf/closed/wall,
@@ -22693,6 +22688,17 @@
 	},
 /turf/open/floor/carpet,
 /area/bridge)
+"nLZ" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/space/basic,
+/area/solar/starboard/fore)
 "nMn" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -23019,6 +23025,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
+"nUL" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "nVc" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medical/Science Maintenance Access";
@@ -23508,16 +23521,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"okw" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "okP" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -25686,14 +25689,6 @@
 "pAL" = (
 /turf/closed/wall,
 /area/hallway/secondary/entry)
-"pAY" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/aft)
 "pBj" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
 /turf/open/floor/circuit/telecomms/server,
@@ -27935,6 +27930,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"raj" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "rbs" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31119,16 +31121,6 @@
 /obj/effect/turf_decal/trimline/white,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"tdZ" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "teg" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/port/aft";
@@ -32784,6 +32776,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"tXZ" = (
+/obj/machinery/door/airlock/maintenance{
+	req_one_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "tYm" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/wood,
@@ -33873,16 +33875,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"uFH" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "uFI" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -34113,16 +34105,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"uMs" = (
-/obj/machinery/power/solar{
-	id = "starboardsolar";
-	name = "Starboard Solar Array"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/solar/starboard/fore)
 "uMB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrous_output{
 	dir = 8
@@ -36815,6 +36797,11 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
+"wrn" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plasteel/airless/solarpanel,
+/area/solar/starboard/fore)
 "wrP" = (
 /obj/structure/sign/warning/pods{
 	pixel_y = 32
@@ -84761,7 +84748,7 @@ ewZ
 ewZ
 ewZ
 ewZ
-niH
+tXZ
 cPC
 cPC
 nux
@@ -84812,13 +84799,13 @@ ylr
 xSu
 xSu
 ylr
-bji
+adx
 xXJ
-pAY
+ksO
 ylr
-bji
+adx
 xXJ
-pAY
+ksO
 ylr
 pyL
 ylr
@@ -85065,17 +85052,17 @@ xSu
 ylr
 ylr
 ylr
-bji
+adx
 xXJ
-pAY
+ksO
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 xSu
 pyL
 pyL
@@ -85317,22 +85304,22 @@ qIQ
 vYs
 ylr
 ylr
-bji
+adx
 xXJ
-pAY
+ksO
 ylr
 ylr
-bji
+adx
 qdk
-pAY
+ksO
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 ylr
-bji
+adx
 qdk
-pAY
+ksO
 xSu
 ylr
 ylr
@@ -85574,22 +85561,22 @@ fDu
 vYs
 ylr
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 xSu
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 xSu
 xSu
 xSu
@@ -85831,14 +85818,14 @@ xSu
 ylr
 ylr
 ylr
-bji
+adx
 qdk
-pAY
+ksO
 xSu
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 asa
 boq
 boq
@@ -86088,22 +86075,22 @@ xSu
 ylr
 xSu
 xSu
-bji
+adx
 qdk
-pAY
+ksO
 boq
 asa
 boq
 boq
 boq
 boq
-bji
+adx
 ogD
-pAY
+ksO
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
 xSu
 xSu
@@ -86350,17 +86337,17 @@ boq
 boq
 boq
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
 pyL
 pyL
@@ -86607,17 +86594,17 @@ xSu
 xSu
 xSu
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
-bji
+adx
 ogD
-pAY
+ksO
 xSu
 pyL
 ylr
@@ -86864,17 +86851,17 @@ xSu
 xSu
 ylr
 ylr
-bji
+adx
 ogD
-pAY
+ksO
 xSu
-bji
+adx
 jTJ
-pAY
+ksO
 ylr
-bji
+adx
 jTJ
-pAY
+ksO
 ylr
 pyL
 ylr
@@ -87111,19 +87098,19 @@ uJr
 uJr
 xbB
 ylr
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 boq
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 ylr
-bji
+adx
 jTJ
-pAY
+ksO
 ylr
 ylr
 ylr
@@ -87625,15 +87612,15 @@ uJr
 uJr
 xbB
 ylr
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 boq
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 xSu
 pyL
 pyL
@@ -88041,13 +88028,13 @@ ylr
 ylr
 xti
 ylr
-uFH
+nUL
 uVv
-iUn
+wrn
 xSu
-uFH
+nUL
 uVv
-iUn
+wrn
 ylr
 xSu
 xSu
@@ -88139,15 +88126,15 @@ uJr
 uJr
 xbB
 ylr
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 boq
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 ylr
 pyL
 ylr
@@ -88298,21 +88285,21 @@ ylr
 ylr
 pyL
 xSu
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 uVv
-iUn
+wrn
 ylr
-uFH
+nUL
 uVv
-iUn
+wrn
 ylr
 xSu
 xSu
@@ -88555,25 +88542,25 @@ pyL
 pyL
 pyL
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 xSu
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 uVv
-iUn
+wrn
 ylr
 ylr
 ylr
@@ -88653,15 +88640,15 @@ vlL
 uJr
 mMC
 ylr
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 boq
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 xSu
 pyL
 ylr
@@ -88812,25 +88799,25 @@ pyL
 xSu
 xSu
 xSu
-uFH
+nUL
 fud
-iUn
+wrn
 xSu
-uFH
+nUL
 fud
-iUn
+wrn
 xSu
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 xSu
 ylr
 ylr
@@ -89077,17 +89064,17 @@ fSW
 fSW
 fSW
 fSW
-uFH
+nUL
 fud
-iUn
+wrn
 xSu
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
-uFH
+nUL
 fud
-iUn
+wrn
 ylr
 ylr
 xSu
@@ -89167,15 +89154,15 @@ qpm
 uJr
 mMC
 ylr
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 boq
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 ylr
 pyL
 ylr
@@ -89326,13 +89313,13 @@ xti
 xSu
 xSu
 xSu
-uFH
+nUL
 mEd
-iUn
+wrn
 xSu
-uFH
+nUL
 mEd
-iUn
+wrn
 lXr
 fSW
 fSW
@@ -89342,9 +89329,9 @@ fSW
 fSW
 fSW
 ylr
-uFH
+nUL
 upQ
-iUn
+wrn
 xSu
 xSu
 xSu
@@ -89583,17 +89570,17 @@ xti
 cif
 pyL
 ylr
-uFH
+nUL
 mEd
-iUn
+wrn
 ylr
-uFH
+nUL
 mEd
-iUn
+wrn
 xSu
-uFH
+nUL
 mEd
-iUn
+wrn
 xSu
 xSu
 xSu
@@ -89681,15 +89668,15 @@ sAg
 sAg
 xbB
 ylr
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 boq
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 xSu
 pyL
 ylr
@@ -89840,17 +89827,17 @@ ylr
 ylr
 pyL
 xSu
-uFH
+nUL
 mEd
-iUn
+wrn
 ylr
-uFH
+nUL
 mEd
-iUn
+wrn
 ylr
-uFH
+nUL
 mEd
-iUn
+wrn
 ylr
 ylr
 xSu
@@ -90097,27 +90084,27 @@ ylr
 ylr
 pyL
 xSu
-uFH
+nUL
 cMg
-iUn
+wrn
 xSu
-uFH
+nUL
 cMg
-iUn
+wrn
 xSu
-uFH
+nUL
 mEd
-iUn
+wrn
 ylr
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 fSW
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 ylr
 ylr
 ylr
@@ -90195,15 +90182,15 @@ wny
 nlA
 xbB
 ylr
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 boq
-okw
-okw
-okw
-okw
+mUy
+mUy
+mUy
+mUy
 ylr
 pyL
 ylr
@@ -90362,9 +90349,9 @@ xSu
 xSu
 ylr
 ylr
-uFH
+nUL
 cMg
-iUn
+wrn
 xSu
 fuI
 cat
@@ -90374,7 +90361,7 @@ fSW
 taB
 taB
 taB
-qdL
+nLZ
 xSu
 pyL
 ylr
@@ -90623,15 +90610,15 @@ ylr
 xSu
 xSu
 ylr
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 fSW
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 ylr
 pyL
 ylr
@@ -90709,15 +90696,15 @@ ylr
 ylr
 ylr
 ylr
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 boq
-dba
-dba
-dba
-dba
+cDf
+cDf
+cDf
+cDf
 xSu
 pyL
 ylr
@@ -91137,15 +91124,15 @@ ylr
 ylr
 pyL
 ylr
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 fSW
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 xSu
 pyL
 ylr
@@ -91651,15 +91638,15 @@ ylr
 pyL
 pyL
 xSu
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 fSW
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 ylr
 pyL
 ylr
@@ -92164,10 +92151,10 @@ ylr
 ylr
 pyL
 xSu
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 fSW
 fSW
 xSu
@@ -92426,10 +92413,10 @@ cat
 cat
 cat
 fSW
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 xSu
 pyL
 ylr
@@ -92678,10 +92665,10 @@ ylr
 ylr
 pyL
 ylr
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 fSW
 taB
 taB
@@ -92940,10 +92927,10 @@ xSu
 ylr
 xSu
 fSW
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 ylr
 pyL
 ylr
@@ -93192,10 +93179,10 @@ ylr
 ylr
 pyL
 xSu
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 fSW
 xSu
 xSu
@@ -93454,10 +93441,10 @@ cat
 cat
 cat
 fSW
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 ylr
 pyL
 ylr
@@ -93706,10 +93693,10 @@ ylr
 ylr
 xti
 xSu
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 lXr
 taB
 taB
@@ -93968,10 +93955,10 @@ ylr
 ylr
 xSu
 fSW
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 ylr
 pyL
 ylr
@@ -94220,10 +94207,10 @@ ylr
 ylr
 pyL
 xSu
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 fSW
 xSu
 ylr
@@ -94482,10 +94469,10 @@ cat
 cat
 cat
 fSW
-tdZ
-tdZ
-tdZ
-tdZ
+gIi
+gIi
+gIi
+gIi
 xSu
 pyL
 ylr
@@ -94734,10 +94721,10 @@ ylr
 ylr
 pyL
 ylr
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 fSW
 taB
 taB
@@ -94996,10 +94983,10 @@ xSu
 ylr
 xSu
 fSW
-uMs
-uMs
-uMs
-uMs
+raj
+raj
+raj
+raj
 xSu
 pyL
 ylr
