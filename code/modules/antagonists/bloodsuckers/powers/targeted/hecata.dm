@@ -70,7 +70,6 @@
 			owner.balloon_alert(owner, "we revive [target]!")
 			zombify(target)
 			bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
-			DeactivatePower()
 			return
 		if(IS_MONSTERHUNTER(target))
 			owner.balloon_alert(owner, "their body refuses to react...")
