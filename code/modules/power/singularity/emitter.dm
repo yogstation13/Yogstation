@@ -437,10 +437,10 @@
 	if(!tank || !tank.air_contents)
 		return
 	var/datum/gas_mixture/fuel = tank.air_contents
-	if(fuel.get_moles(/datum/gas/tritium) < fuel_consumption)
+	if(fuel.get_moles(GAS_TRITIUM) < fuel_consumption)
 		return
-	fuel.adjust_moles(/datum/gas/tritium, -fuel_consumption)
-	fuel.adjust_moles(/datum/gas/hydrogen, fuel_consumption)
+	fuel.adjust_moles(GAS_TRITIUM, -fuel_consumption)
+	fuel.adjust_moles(GAS_H2, fuel_consumption)
 	if(obj_flags & EMAGGED) // radioactive if emagged
 		radiation_pulse(get_turf(src), fuel_consumption * FIRE_HYDROGEN_ENERGY_RELEASED / TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 	return ..()
@@ -461,7 +461,7 @@
 /obj/machinery/power/emitter/particle/update_icon_state()
 	. = ..()
 	if(active)
-		icon_state = (tank?.air_contents?.get_moles(/datum/gas/tritium) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
+		icon_state = (tank?.air_contents?.get_moles(GAS_TRITIUM) >= fuel_consumption) ? icon_state_on : icon_state_underpowered
 	else
 		icon_state = initial(icon_state)
 
