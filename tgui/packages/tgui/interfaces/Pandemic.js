@@ -1,6 +1,6 @@
 import { map } from 'common/collections';
 import { useBackend } from '../backend';
-import { Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section } from '../components';
+import {Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section, Table} from '../components';
 import { Window } from '../layouts';
 
 export const PandemicBeakerDisplay = (props, context) => {
@@ -189,29 +189,39 @@ export const PandemicSymptomDisplay = (props, context) => {
         </Box>
       )}>
       <Grid>
-        <Grid.Column size={2}>
-          {desc}
+        <Grid.Column size={20}>
+          TODO Sprite Goes Here
         </Grid.Column>
-        <Grid.Column>
-          <LabeledList>
-            <LabeledList.Item label="Level">
-              {level}
-            </LabeledList.Item>
-            <LabeledList.Item label="Resistance">
-              {resistance}
-            </LabeledList.Item>
-            <LabeledList.Item label="Stealth">
-              {stealth}
-            </LabeledList.Item>
-            <LabeledList.Item label="Stage Speed">
-              {stage_speed}
-            </LabeledList.Item>
-            <LabeledList.Item label="Transmission">
-              {transmission}
-            </LabeledList.Item>
-          </LabeledList>
+        <Grid.Column size={80}>
+          <Table>
+            <Table.Row header>
+              <Table.Cell header>Level</Table.Cell>
+              <Table.Cell header>Resistance</Table.Cell>
+              <Table.Cell header>Stealth</Table.Cell>
+              <Table.Cell header>Stage Speed</Table.Cell>
+              <Table.Cell header>Transmission</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                {level}
+              </Table.Cell>
+              <Table.Cell>
+                {resistance}
+              </Table.Cell>
+              <Table.Cell>
+                {stealth}
+              </Table.Cell>
+              <Table.Cell>
+                {stage_speed}
+              </Table.Cell>
+              <Table.Cell>
+                {transmission}
+              </Table.Cell>
+            </Table.Row>
+          </Table>
         </Grid.Column>
       </Grid>
+      <Box my={2}>{desc}</Box>
       {thresholds.length > 0 && (
         <Section
           title="Thresholds"
