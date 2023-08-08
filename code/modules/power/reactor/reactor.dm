@@ -93,7 +93,6 @@
 	var/gas_absorption_effectiveness = 0.5
 	var/gas_absorption_constant = 0.5 //We refer to this one as it's set on init, randomized.
 	var/minimum_coolant_level = MINIMUM_MOLE_COUNT
-	var/warning = FALSE //Have we begun warning the crew of their impending death?
 	var/next_warning = 0 //To avoid spam.
 	var/last_power_produced = 0 //For logging purposes
 	var/next_flicker = 0 //Light flicker timer
@@ -502,7 +501,7 @@
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
 		var/turf/T = get_turf(src)
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
-		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/60) * delta_time	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
+		var/pressure_damage = min(pressure/300, initial(vessel_integrity)/180) * delta_time	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
 		vessel_integrity -= pressure_damage
 		if(vessel_integrity <= pressure_damage) //It wouldn't be able to tank another hit.
 			investigate_log("Reactor blowout at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
@@ -520,50 +519,53 @@
 			investigate_log("Reactor reaching critical temperature at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
 			message_admins("Reactor reaching critical temperature at [ADMIN_VERBOSEJMP(src)]")
 		if(temperature >= REACTOR_TEMPERATURE_MELTDOWN)
-			var/temp_damage = min(temperature/100, initial(vessel_integrity)/60) * delta_time	//60 seconds to meltdown from full integrity, worst-case. Bit less than blowout since it's harder to spike heat that much.
+			var/temp_damage = min(temperature/300, initial(vessel_integrity)/180) * delta_time	//3 minutes to meltdown from full integrity, worst-case.
 			vessel_integrity -= temp_damage
 			if(vessel_integrity <= temp_damage)
 				investigate_log("Reactor melted down at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR) //It wouldn't be able to tank another hit.
 				meltdown() //Oops! All meltdown
 				return
-	else
-		alert = FALSE
-	if(temperature < 73) //That's as cold as I'm letting you get it, engineering.
+	else if(temperature < 73) //That's as cold as I'm letting you get it, engineering.
 		color = COLOR_CYAN
 	else
 		color = null
-	if(warning)
-		if(!alert) //Congrats! You stopped the meltdown / blowout.
-			stop_relay(CHANNEL_REACTOR_ALERT)
-			warning = FALSE
-			set_light(0)
-			light_color = LIGHT_COLOR_CYAN
-			set_light(10)
-			has_hit_emergency = FALSE
-			var/msg = "Reactor returning to safe operating parameters."
-			if(vessel_integrity <= 350)
-				msg += " Maintenance required."
-			msg += " Structural integrity: [100*vessel_integrity/initial(vessel_integrity)]%."
-			radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
-			if(evacuation_procedures)
-				radio.talk_into(src, "Attention: Reactor has been stabilized. Please return to your workplaces.", RADIO_CHANNEL_COMMON)
-			evacuation_procedures = FALSE
-	else
-		if(!alert)
-			return
-		if(world.time < next_warning)
-			return
-		next_warning = world.time + 60 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
-		warning = TRUE //Start warning the crew of the imminent danger.
-		relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
+
+	if(!alert) //Congrats! You stopped the meltdown / blowout.
+		if(!next_warning)
+			return // don't bother if the reactor wasn't in trouble
+		stop_relay(CHANNEL_REACTOR_ALERT)
+		next_warning = 0 // there's no next warning if the reactor is fine
 		set_light(0)
-		light_color = LIGHT_COLOR_RED
+		light_color = LIGHT_COLOR_CYAN
 		set_light(10)
-	if(alert) //PANIC
-		if(vessel_integrity <= initial(vessel_integrity)/4 && !evacuation_procedures)
-			evacuation_procedures = TRUE
-			radio.talk_into(src, "Reactor failure imminent. Please remain calm and evacuate the facility immediately.", RADIO_CHANNEL_COMMON)
-			playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
+		has_hit_emergency = FALSE
+		var/msg = "Reactor returning to safe operating parameters."
+		if(vessel_integrity <= 350)
+			msg += " Maintenance required."
+		msg += " Structural integrity: [100*vessel_integrity/initial(vessel_integrity)]%."
+		radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
+		if(evacuation_procedures)
+			radio.talk_into(src, "Attention: Reactor has been stabilized. Please return to your workplaces.", RADIO_CHANNEL_COMMON)
+		evacuation_procedures = FALSE
+		return
+
+	if(world.time < next_warning) // we're not ready for another warning yet
+		return
+
+	next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
+	if(vessel_integrity < initial(vessel_integrity)*0.95)
+		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [round(100 * vessel_integrity / initial(vessel_integrity), 0.01)]%", RADIO_CHANNEL_ENGINEERING)
+
+	relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
+	set_light(0)
+	light_color = LIGHT_COLOR_RED
+	set_light(10)
+
+	//PANIC
+	if(vessel_integrity <= initial(vessel_integrity)/4 && !evacuation_procedures)
+		evacuation_procedures = TRUE
+		radio.talk_into(src, "Reactor failure imminent. Please remain calm and evacuate the facility immediately.", RADIO_CHANNEL_COMMON)
+		playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
 
 //Failure condition 1: Meltdown. Achieved by having heat go over tolerances. This is less devastating because it's easier to achieve.
 //Results: Engineering becomes unusable and your engine irreparable
