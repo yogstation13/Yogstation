@@ -1219,7 +1219,7 @@
 /datum/supply_pack/engine/hypertorus_fusion_reactor
 	name = "HFR Crate"
 	desc = "The new and improved fusion reactor. Requires CE access to open."
-	cost = 10000
+	cost = 4600
 	access = ACCESS_CE
 	contains = list(/obj/item/hfr_box/corner,
 					/obj/item/hfr_box/corner,
