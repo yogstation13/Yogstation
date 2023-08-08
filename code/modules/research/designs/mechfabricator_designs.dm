@@ -979,6 +979,36 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+
+/datum/design/borg_upgrade_condiment_synthesizer
+	name = "Cyborg Upgrade (Condiment Synthesizer)"
+	id = "borg_upgrade_condiment_synthesizer"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/condiment_synthesizer
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 12000, /datum/material/plasma = 6000, /datum/material/uranium = 6000) // A bit cheaper than an expanded hypo for medical borg.
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_engi_advancedtools
+	name = "Cyborg Upgrade (Advanced Engineering Tools)"
+	id = "borg_upgrade_engi_advancedtools"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/engi_advancedtools
+	/// Combined materials of all 3 experimentals tools.
+	materials = list(/datum/material/iron = 8500, /datum/material/silver = 4300, /datum/material/gold=300, /datum/material/titanium = 6000)
+	construction_time = 12 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_holosign
+	name = "Cyborg Upgrade (ATMOS Holofan Projector)"
+	id = "borg_upgrade_holofan"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/holofan
+	/// Same cost of the ATMOS holofan projector.
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/gold = 1000, /datum/material/silver = 1000, /datum/material/plastic = 500)
+	construction_time = 12 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracker (Exosuit Tracking Beacon)"

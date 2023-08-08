@@ -237,15 +237,16 @@
 	capacitor = locate(/obj/item/stock_parts/capacitor) in contents
 	update_part_values()
 
-/obj/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/obj/mecha/proc/update_part_values()
 	if(scanmod)
-		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
+		// Starting at 20 energy per step (at tier 0), each tier reduces this value down by 5 until it reaches 0.
+		normal_step_energy_drain = max(20 - (5 * scanmod.rating), 0)
 		if(!leg_overload_mode)
 			step_energy_drain = normal_step_energy_drain
 	else
-		normal_step_energy_drain = 500
+		normal_step_energy_drain = 500 // If they somehow move, a massive energy drain per step.
 		step_energy_drain = normal_step_energy_drain
-
 
 ////////////////////////
 ////// Helpers /////////
@@ -1122,7 +1123,6 @@
 		update_part_values()
 		return
 	if(capacitor && capacitor == M)
-		armor = armor.modifyRating(energy = (capacitor.rating * -5)) //lose the energy armor if we lose this cap
 		capacitor = null
 		update_part_values()
 		return
