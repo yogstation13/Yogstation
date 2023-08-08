@@ -1451,6 +1451,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/paper/guides/jobs/engi/agcnr,
 /obj/machinery/computer/reactor,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)

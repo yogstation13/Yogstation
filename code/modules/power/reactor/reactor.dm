@@ -1123,3 +1123,49 @@
 		return TRUE
 	else
 		return FALSE
+
+// Guide for setting this up, best to put one of these somewhere in the engine room so engineers know what to do
+/obj/item/paper/guides/jobs/engi/agcnr
+	name = "paper- 'Advanced Gas-Cooled Nuclear Reactor'"
+	info = "<B>What the hell is this thing?</B><BR>\
+	The Advanced Gas-Cooled Nuclear Reactor is exactly what it sounds like: a nuclear reactor cooled by gas. To get it running and producing stable power, you'll need fuel rods, some moderator gas to actually make power from it, and coolant gas to cool it all down with so you don't turn the station into a radioactive hellscape.<BR>\
+	<BR><B>How do set up reactor?</B><BR>\
+	Fortunately for you, the reactor is easy to get running. Unfortunately for you, it's hard to make it stop running if it's not set up properly, so make sure you follow these steps correctly.<BR>\
+	1) First wrench down the canister of nitrogen. This is our coolant and we want it in the reactor.<BR>\
+	2) Next, turn on and max out every other pump in the room in order to get the coolant flowing.<BR>\
+	3) Now, turn on the filters and make sure both of them are set to filter pluonium. Pluonium causes fuel rods to deplete much faster, so it's best to keep it out of the coolant so we can run the reactor for longer. There is a mixer in the same room, do not turn that on yet.<BR>\
+	4) Put on a radiation suit and insert as many fuel rods as you can into the reactor. You should have one spare left, leave it in the reactor pool to keep it from irradiating things. Keep a geiger counter on you while near the engine room from now on.<BR>\
+	5) Now that all the fuel rods are in and the cooling is set up, go to the reactor computer in the control room and hit the power button in the control rod section. You should hear a noise indicating that it just started up. Set the desired K to 2.<BR>\
+	6) With the reactor running, go to the mixer and turn it on. This is the moderator gas mix used to actually make power from the reactor. For a safe mix that makes a decent amount of power, set the mixer to 20% plasma and 80% oxygen, then turn the pressure up to 250 kPa. A 50/50 mix makes more power, but will also make the reactor slightly harder to control. See the moderator effects section of this guide for more details.<BR>\
+	7) With the reactor computer, you can use the control rods to keep the reactor at the temperature you want. A higher K will make it hotter, which produces more power. Try to keep it somewhere between 800 and 1000 kelvin, and be careful to increase it in small increments so you aren't caught off guard by it heating up more than you expected. Do NOT allow the temperature to exceed 1000 kelvin or you'll cause a meltdown if you can't cool it back down in time.<BR>\
+	<BR><B>Going supercritical</B><BR>\
+	A very important part of nuclear reactors that must be kept under control is K, which stands for criticality. This is a measure of how much the reactor is... well, reacting. As K increases the reactor will heat up more, meaning it's *very* important to keep K under control or the heating will get out of control too, causing a meltdown.<BR>\
+	Fortunately we have a tool for this: control rods! The reactor control computer in the engine room has a handy interface for adjusting the control rods. It's as simple as just setting what you want K to be, and the control rods will adjust themselves to meet that number. Be warned though, that exceptionally high temperatures and certain moderator gases can increase K faster than the control rods can lower it, resulting in a runaway chain reaction that can turn your nuclear reactor into a nuclear bomb.<BR>\
+	<BR><B>How I learned to stop worrying and love nuclear waste</B><BR>\
+	Over time, fuel rods will eventually deplete. This is an inevitable part of fission reactors like the AGCNR, but it can also have its benefits. The standard uranium-235 fuel rods have a special lining that will become plutonium-239 when fully depleted, which is an even better fuel. If you really want to, you can add pluonium to the moderator mix to cause your fuel rods to deplete much faster. More fuel rods can be ordered from cargo if you run out.<BR>\
+	To remove a depleted fuel rod, power the reactor down to below 400 kelvin and use a crowbar to pry it out.<BR>\
+	<BR><B>Moderator effects</B><BR>\
+	Fuel Types:<BR>\
+	- Plasma: Power production gas. More plasma -> more power, but it enriches your fuel and increases K faster than the control rods can handle if too much is added.<BR>\
+	- Tritium: Extremely efficient power production gas. Increases K even more than plasma.<BR>\
+	- Anti-Noblium: Insane power production, but forces K as high as it can go. Don't use this gas unless you're autistic enough to handle it. Makes enough radiation to fry you instantly if you go near without protection.<BR>\
+	Power Modifier Types:<BR>\
+	- O2: Increases the effectiveness of fuel-type moderators. Having at least 10% of this in your plasma will make it much more effective at producing power, but a 50/50 mix is most effective. Higher amounts like 80% are much safer, but produce less power.<BR>\
+	- H2: Much more effective than oxygen for increasing the efficiency of your fuel, but has a huge increase to radioactivity.<BR>\
+	Moderation Types:<BR>\
+	- N2: Helps you regain control of the reaction by increasing control rod effectiveness, will massively boost the rad production of the reactor.<BR>\
+	- CO2: Super effective shutdown gas for runaway reactions, but even more rads than N2.<BR>\
+	- Pluoxium: Same as N2, but no cancer-rads!<BR>\
+	Permeability Types:<BR>\
+	- BZ: Increases your reactor's ability to transfer its heat to the coolant when added to the moderator input, thus letting you cool it down faster (but your output will get hotter)<BR>\
+	- Water Vapour: More efficient permeability modifier<BR>\
+	- Hyper-Noblium: Extremely efficient permeability increase (10x as efficient as bz)<BR>\
+	Depletion types:<BR>\
+	- Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of plutonium production or sabotage.<BR>\
+	<BR><B>OH GOD IT'S SCREAMING AT ME WHAT DO I DO</B><BR>\
+	Don't panic! There's a few things you can do to prevent the station from becoming an irradiated hellscape.<BR>\
+	Scenario 1: Overheating<BR>\
+	- Check for obstructions in the cooling loop. Ensure every pipe and filter in it is on, unblocked, and working at maximum capacity. Check the vent in space to make it's still there. Use the control rods to lower K as much as you can. If you lose control of K, add nitrogen or CO2 to the moderator to increase your control over K. If all else fails, grab the plasma canister from secure storage and dump it into the coolant line.<BR>\
+	Scenario 2: Overpressure<BR>\
+	- Similarly to scenario 1, check the cooling loop to make sure nothing is blocked and try to lower K as much as possible. If the pressure is still too high, use the filters to filter off excess coolant to lower the pressure until it's at a safe level. If removing too much coolant causes the reactor to overheat, refer to scenario 1.<BR>\
+	Once the reactor reaches safe operating conditions, it will report its structural integrity over engineering comms. The reactor must be repaired manually, and to do this the core temperature must be below 400 kelvin. Minor damage can be mostly repaired with some sealant spray found on the nearby table, but if it's too damaged you'll need to use a welding tool first. It can never be repaired all the way back to 100% integrity however, and of course there's no coming back from a meltdown or blowout."
