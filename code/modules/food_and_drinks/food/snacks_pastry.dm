@@ -539,7 +539,8 @@
 	desc = "Spooky! It's got delicious calcium flavouring!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "skeletoncookie"
-	tastes = list("cookie" = 1, "sweetness" = 1)
+	tastes = list("cookie" = 2, "sweetness" = 1, "milk" = 1)
+	foodtype = GRAIN | JUNKFOOD | SUGAR | DAIRY
 
 /obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
 	name = "coffin cookie"
