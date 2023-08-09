@@ -474,7 +474,8 @@ datum/crafting_recipe/food/donut/meat
 	name = "Skull Cookie"
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
-		/obj/item/reagent_containers/food/snacks/pastrybase = 1
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/datum/reagent/consumable/milk = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
 	category = CAT_PASTRY
