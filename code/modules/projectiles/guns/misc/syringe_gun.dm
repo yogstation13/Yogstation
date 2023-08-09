@@ -24,8 +24,10 @@
 
 /obj/item/gun/syringe/emag_act()
 	. = ..()
-	obj_flags ^= EMAGGED
 	playsound(src.loc, "sparks", 100, 1)
+	if(initial(hacked))
+		return
+	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_notice("\The [src] can now intake illegal reagents!"))
 		hacked = TRUE
