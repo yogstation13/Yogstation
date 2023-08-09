@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "New upgrade that gives mining cyborgs a gem satchel."
+  - bugfix: "Bagging and unbagging a mining gem no longer creates unexplainable light."
