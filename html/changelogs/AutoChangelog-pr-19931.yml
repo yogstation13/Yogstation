@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Mounted and portable flashers no longer have special stun behavior from flash assemblies"
