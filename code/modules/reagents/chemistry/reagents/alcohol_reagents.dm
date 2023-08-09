@@ -14,6 +14,7 @@
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
+	accelerant_quality = 5
 
 /*
 Boozepwr Chart
@@ -321,6 +322,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
 	shot_glass_icon_state = "shotglassbrown"
+	default_container = /obj/item/reagent_containers/food/drinks/bottle/rum
 
 /datum/reagent/consumable/ethanol/tequila
 	name = "Tequila"
@@ -2111,7 +2113,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "champagne_glass"
 	glass_name = "Champagne"
 	glass_desc = "The flute clearly displays the slowly rising bubbles."
-
 
 /datum/reagent/consumable/ethanol/wizz_fizz
 	name = "Wizz Fizz"

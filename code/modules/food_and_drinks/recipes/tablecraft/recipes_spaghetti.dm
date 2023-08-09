@@ -12,7 +12,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/butternoodles
 	name = "Butter Noodles"
@@ -21,7 +21,7 @@
 		/obj/item/reagent_containers/food/snacks/butterslice = 3
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/butternoodles
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/chowmein
 	name = "Chow Mein"
@@ -32,7 +32,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/carrot = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/chowmein
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/copypasta
 	name = "Copypasta"
@@ -40,7 +40,7 @@
 		/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/copypasta
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/falfredo
 	name = "Fettuccine Alfredo"
@@ -52,7 +52,7 @@
 		/datum/reagent/consumable/cream = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/falfredo
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/lasagna
 	name = "Lasagna"
@@ -63,7 +63,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/lasagna
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/tomatopasta
 	name = "Spaghetti"
@@ -72,7 +72,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spaghettimeatball
 	name = "Spaghetti and Meatballs"
@@ -81,7 +81,7 @@
 		/obj/item/reagent_containers/food/snacks/meatball = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spesslaw
 	name = "Spesslaw"
@@ -90,7 +90,7 @@
 		/obj/item/reagent_containers/food/snacks/meatball = 4
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/spesslaw
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/pizzaghetti
 	name = "Pizzaghetti"
@@ -99,4 +99,4 @@
 		/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato  = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizzaghetti
-	subcategory = CAT_SPAGHETTI
+	category = CAT_SPAGHETTI

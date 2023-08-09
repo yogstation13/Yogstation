@@ -9,7 +9,7 @@
 	// Default research tech, prevents bricking
 	design_ids = list("basic_matter_bin", "basic_cell", "basic_scanning", "basic_capacitor", "basic_micro_laser", "micro_mani", "desttagger", "handlabel", "packagewrap",
 	"destructive_analyzer", "circuit_imprinter", "rack_creator", "experimentor", "rdconsole", "design_disk", "tech_disk", "rdserver", "rdservercontrol", "mechfab", "paystand", "ticket_machine", "ticket_remote", "light_tube", "light_bulb",
-	"space_heater", "beaker", "large_beaker", "vial", "large_vial", "bucket", "fork", "tray","plate", "bowl", "mixing_bowl", "drinking_glass", "shot_glass", "shaker", "xlarge_beaker", "sec_rshot", "sec_beanbag_slug", "sec_bshot", "sec_slug", "sec_Islug", "sec_Brslug", "sec_38", "sec_38_lethal", "apc_control", "power control", "airlock_board", "firelock_board", "airalarm_electronics", "firealarm_electronics", "blastdoorcontroller", "aac_electronics", "mousetrap",
+	"space_heater", "beaker", "large_beaker", "vial", "bucket", "fork", "tray","plate", "bowl", "mixing_bowl", "drinking_glass", "shot_glass", "shaker", "xlarge_beaker", "sec_rshot", "sec_beanbag_slug", "sec_bshot", "sec_slug", "sec_Islug", "sec_Brslug", "sec_38", "sec_38_lethal", "apc_control", "power control", "airlock_board", "firelock_board", "airalarm_electronics", "firealarm_electronics", "blastdoorcontroller", "aac_electronics", "mousetrap",
 	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass","wallframe/flasher", "rsf", "oven_tray", "bounced_radio", "signaler", "signalbutton", "inspector_booth", "intercom_frame", "infrared_emitter", "health_sensor", "timer", "voice_analyser", "camera_assembly", "newscaster_frame", "prox_sensor", "flashlight", "extinguisher", "pocketfireextinguisher")
 
 /datum/techweb_node/mmi
@@ -54,7 +54,7 @@
 	starting_node = TRUE
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
-	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "decal_painter", "tile_painter", "scalpel", "circular_saw", "bonesetter", "surgicaldrill", "retractor", "cautery", "hemostat", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop", "cable_coil", "suture", "regenmesh", "rpd", "analyzer", "tscanner", "large_welding_tool", "geigercounter")
+	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "decal_painter", "tile_painter", "scalpel", "circular_saw", "bonesetter", "surgicaldrill", "retractor", "cautery", "hemostat", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop", "cable_coil", "rpd", "analyzer", "tscanner", "large_welding_tool", "geigercounter")
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -155,7 +155,7 @@
 	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin", "scanner_gate",
 	"atmosalerts", "atmos_control", "recycler", "autolathe", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "tesla_coil", "grounding_rod",
 	"cell_charger", "stack_console", "stack_machine", "conveyor_belt", "conveyor_switch",
-	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "electrolyzer", "floorigniter", "crystallizer", "suit_storage_unit")
+	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "electrolyzer", "floorigniter", "crystallizer", "suit_storage_unit", "atmos_thermal")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 
 /datum/techweb_node/adv_engi
@@ -163,7 +163,7 @@
 	display_name = "Advanced Engineering"
 	description = "Pushing the boundaries of physics, one chainsaw-fist at a time."
 	prereq_ids = list("engineering", "emp_basic")
-	design_ids = list("engine_goggles", "magboots", "forcefield_projector", "weldingmask", "decontamination_unit", "tricorder")
+	design_ids = list("engine_goggles", "magboots", "forcefield_projector", "weldingmask", "decontamination_unit", "particle_emitter", "tricorder")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/anomaly
@@ -335,8 +335,16 @@
 	display_name = "Cyborg Upgrades: Utility"
 	description = "Utility upgrades for cyborgs."
 	prereq_ids = list("engineering")
-	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language", "borg_upgrade_broomer")
+	design_ids = list("borg_upgrade_holding", "borg_upgrade_lavaproof", "borg_upgrade_thrusters", "borg_upgrade_selfrepair", "borg_upgrade_expand", "borg_upgrade_rped", "borg_upgrade_language", "borg_upgrade_broomer", "borg_upgrade_snacks", "borg_upgrade_condiment_synthesizer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
+
+/datum/techweb_node/adv_cyborg_upg_util
+	id = "adv_cyborg_upg_util"
+	display_name = "Cyborg Upgrades: Advanced Utility"
+	description = "Advanced utility upgrades for cyborgs."
+	prereq_ids = list("cyborg_upg_util", "exp_tools") // Experimental tools should cover everything with all of its prereqs.
+	design_ids = list("borg_upgrade_engi_advancedtools", "borg_upgrade_holofan")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 /datum/techweb_node/cyborg_upg_med
 	id = "cyborg_upg_med"
@@ -733,7 +741,7 @@
 	id = "exotic_ammo"
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
-	prereq_ids = list("adv_weaponry")
+	prereq_ids = list("adv_weaponry", "ballistic_weapons")
 	design_ids = list("mag_v38_frost", "mag_v38_talon")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
@@ -749,7 +757,7 @@
 	id = "experimental_ammo"
 	display_name = "Experimental Ammunition"
 	description = "We're hitting levels of power that shouldn't be possible."
-	prereq_ids = list("exotic_ammo","ballistic_weapons")
+	prereq_ids = list("exotic_ammo")
 	design_ids = list("techshotshell", "mag_v38_bluespace", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
@@ -861,6 +869,14 @@
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("electronic_weapons", "adv_power")
 	design_ids = list("mech_tesla")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/mech_bfg
+	id = "mech_bfg"
+	display_name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
+	description = "An advanced piece of mech weaponry"
+	prereq_ids = list("adv_beam_weapons")
+	design_ids = list("mech_bfg", "mech_bfg_ammo")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/mech_laser
@@ -1121,7 +1137,7 @@
 
 /datum/techweb_node/syndicate_basic
 	id = "syndicate_basic"
-	display_name = "Illegal Technology"
+	display_name = "Foreign Technology"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
 	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "donksofttoyvendor", "donksoft_refill", "thermal_goggles")

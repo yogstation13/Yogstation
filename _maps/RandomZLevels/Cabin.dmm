@@ -54,7 +54,7 @@
 /area/awaymission/snowforest/lumbermill)
 "am" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/chainsaw,
+/obj/item/melee/chainsaw,
 /turf/open/floor/wood/cold,
 /area/awaymission/snowforest/lumbermill)
 "an" = (

@@ -33,7 +33,7 @@ Passive gate is similar to the regular pump except:
 		var/msg = "was turned [on ? "on" : "off"] by [key_name(user)]"
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/AltClick(mob/user)
@@ -43,7 +43,7 @@ Passive gate is similar to the regular pump except:
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		balloon_alert(user, "pressure output set to [target_pressure] kPa")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 
@@ -148,7 +148,7 @@ Passive gate is similar to the regular pump except:
 				var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/passive_gate/atmosinit()
 	..()
@@ -179,7 +179,7 @@ Passive gate is similar to the regular pump except:
 		return
 
 	broadcast_status()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/passive_gate/can_unwrench(mob/user)
 	. = ..()

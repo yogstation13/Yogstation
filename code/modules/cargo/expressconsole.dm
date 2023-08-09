@@ -180,7 +180,7 @@
 							WARNING("[src] couldnt find a Quartermaster/Storage (aka cargobay) area on the station, and as such it has set the supplypod landingzone to the area it resides in.")
 							landingzone = get_area(src)
 						for(var/turf/open/floor/T in landingzone.get_contained_turfs())//uses default landing zone
-							if(is_blocked_turf(T))
+							if(T.is_blocked_turf())
 								continue
 							LAZYADD(empty_turfs, T)
 							CHECK_TICK
@@ -192,12 +192,12 @@
 						. = TRUE
 						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod at location [ADMIN_VERBOSEJMP(LZ)]")
 						investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
-						update_icon()
+						update_appearance(UPDATE_ICON)
 			else
 				if(SO.pack.get_cost() * (0.72*MAX_EMAG_ROCKETS) <= points_to_check) // bulk discount :^)
 					landingzone = GLOB.areas_by_type[pick(GLOB.the_station_areas)]  //override default landing zone
 					for(var/turf/open/floor/T in landingzone.get_contained_turfs())
-						if(is_blocked_turf(T))
+						if(T.is_blocked_turf())
 							continue
 						LAZYADD(empty_turfs, T)
 						CHECK_TICK
@@ -212,7 +212,7 @@
 							new /obj/effect/DPtarget(LZ, podType, SO)
 							amountordered++
 							. = TRUE
-							update_icon()
+							update_appearance(UPDATE_ICON)
 							CHECK_TICK
 						message_admins("[ADMIN_LOOKUPFLW(usr)] has ordered a [SO.pack.name] pod x[amountordered] at location [ADMIN_VERBOSEJMP(LZ)]")
 						investigate_log("Order #[SO.id] ([SO.pack.name] x[amountordered], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)

@@ -105,6 +105,7 @@
 	desc = "A great meal all round. Not a cord of wood. Kinda raw"
 	icon_state = "raw_meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#DD8176"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
@@ -157,7 +158,7 @@
 	desc = "A great meal all round."
 	icon_state = "meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
-	filling_color = "#800000"
+	filling_color = "#8C4E2E"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	burns_on_grill = TRUE
@@ -182,12 +183,14 @@
 	name = "chicken meatball"
 	tastes = list("chicken" = 1)
 	icon_state = "chicken_meatball"
+	filling_color = "#F9BC4C"
 
 /obj/item/reagent_containers/food/snacks/raw_patty
 	name = "raw patty"
 	desc = "I'm.....NOT REAAADDYY."
 	icon_state = "raw_patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#DD8176"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
@@ -226,6 +229,7 @@
 	desc = "The nanotrasen patty is the patty for you and me!"
 	icon_state = "patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#8C4E2E"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	w_class = WEIGHT_CLASS_SMALL
@@ -254,6 +258,7 @@
 	name = "chicken patty"
 	tastes = list("chicken" = 1)
 	icon_state = "chicken_patty"
+	filling_color = "#F9BC4C"
 
 /obj/item/reagent_containers/food/snacks/raw_sausage
 	name = "raw sausage"
@@ -374,6 +379,7 @@
 
 /obj/item/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
+	icon_state = "nugget_lump" // Not an accurate icon_state, but needed for crafting menu.
 	filling_color = "#B22222"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)

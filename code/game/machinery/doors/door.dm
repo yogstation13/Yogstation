@@ -247,7 +247,7 @@
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
 
-	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
+	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe)))
 		try_to_crowbar(I, user)
 		return 1
 	else if(istype(I, /obj/item/zombie_hand/gamemode))
@@ -294,7 +294,8 @@
 /obj/machinery/door/proc/unelectrify()
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED
 
-/obj/machinery/door/update_icon()
+/obj/machinery/door/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "door1"
 	else
@@ -329,7 +330,7 @@
 	density = FALSE
 	sleep(open_speed)
 	layer = initial(layer)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	set_opacity(0)
 	operating = FALSE
 	air_update_turf(1)
@@ -360,7 +361,7 @@
 	sleep(open_speed)
 	density = TRUE
 	sleep(open_speed)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE

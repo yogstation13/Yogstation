@@ -35,7 +35,7 @@ All foods are distributed among various categories. Use common sense.
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	grind_results = list() //To let them be ground up to transfer their reagents
 	var/bitesize = 2
 	var/bitecount = 0
@@ -257,7 +257,7 @@ All foods are distributed among various categories. Use common sense.
 			trash = null
 			return
 
-/obj/item/reagent_containers/food/snacks/proc/update_overlays(obj/item/reagent_containers/food/snacks/S)
+/obj/item/reagent_containers/food/snacks/proc/update_snack_overlays(obj/item/reagent_containers/food/snacks/S)
 	cut_overlays()
 	var/mutable_appearance/filling = mutable_appearance(icon, "[initial(icon_state)]_filling")
 	if(S.filling_color == "#FFFFFF")

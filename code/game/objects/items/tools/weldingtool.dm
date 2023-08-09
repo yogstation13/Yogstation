@@ -41,38 +41,37 @@
 	toolspeed = 1
 	wound_bonus = 10
 	bare_wound_bonus = 15
+	var/mutable_appearance/sparks
 
 /obj/item/weldingtool/Initialize(mapload)
 	. = ..()
+	sparks =  mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-
-/obj/item/weldingtool/proc/update_torch()
-	if(welding)
-		add_overlay("[initial(icon_state)]-on")
-		item_state = "[initial(item_state)]1"
-	else
-		item_state = "[initial(item_state)]"
-
-
-/obj/item/weldingtool/update_icon()
-	cut_overlays()
+/obj/item/weldingtool/update_overlays()
+	. = ..()
 	if(change_icons)
 		var/ratio = get_fuel() / max_fuel
 		ratio = CEILING(ratio*4, 1) * 25
-		add_overlay("[initial(icon_state)][ratio]")
-	update_torch()
-	return
+		. += "[initial(icon_state)][ratio]"
+	if(welding)
+		. += "[initial(icon_state)]-on"
 
+/obj/item/weldingtool/update_icon_state()
+	. = ..()
+	if(welding)
+		item_state = "[initial(item_state)]1"
+	else
+		item_state = "[initial(item_state)]"
 
 /obj/item/weldingtool/process(delta_time)
 	switch(welding)
 		if(0)
 			force = 3
 			damtype = "brute"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(!can_off_process)
 				STOP_PROCESSING(SSobj, src)
 			return
@@ -83,7 +82,7 @@
 			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	//This is to start fires. process() is only called if the welder is on.
 	open_flame()
@@ -145,7 +144,7 @@
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume, transfered_by = user)
 		to_chat(user, span_notice("You empty [src]'s fuel tank into [O]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(isOn())
 		use(1)
 		var/turf/location = get_turf(user)
@@ -166,10 +165,9 @@
 		explode()
 	switched_on(user)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
-	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 	target.add_overlay(sparks)
 	. = ..()
 	target.cut_overlay(sparks)
@@ -206,7 +204,7 @@
 	if(get_fuel() <= 0 && welding)
 		set_light_on(FALSE)
 		switched_on(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		//mob icon update
 		if(ismob(loc))
 			var/mob/M = loc
@@ -228,7 +226,7 @@
 			force = 15
 			damtype = BURN
 			hitsound = 'sound/items/welder.ogg'
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			START_PROCESSING(SSobj, src)
 		else
 			to_chat(user, span_warning("You need more fuel!"))
@@ -245,7 +243,7 @@
 	force = 3
 	damtype = "brute"
 	hitsound = "swing_hit"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/weldingtool/examine(mob/user)
@@ -303,10 +301,10 @@
 	status = !status
 	if(status)
 		to_chat(user, span_notice("You resecure [src] and close the fuel tank."))
-		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER_NOSPILL)
 	else
 		to_chat(user, span_notice("[src] can now be attached, modified, and refuelled."))
-		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER_NOSPILL)
 	add_fingerprint(user)
 
 /obj/item/weldingtool/proc/flamethrower_rods(obj/item/I, mob/user)
@@ -405,6 +403,10 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "brasswelder"
 	item_state = "brasswelder"
+
+/obj/item/weldingtool/experimental/Initialize(mapload)
+	. = ..()
+	sparks = mutable_appearance('icons/effects/welding_effect.dmi', "exp_welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 
 
 /obj/item/weldingtool/experimental/process()
