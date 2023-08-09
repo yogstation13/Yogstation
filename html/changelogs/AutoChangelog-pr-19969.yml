@@ -1,0 +1,5 @@
+author: "iloveloopers"
+delete-after: true 
+changes: 
+  - tweak: "antinoblium recipe in the crystallizer now uses plasma instead of nitrogen"
+  - spellcheck: "fixed antinoblium item having the wrong description"
