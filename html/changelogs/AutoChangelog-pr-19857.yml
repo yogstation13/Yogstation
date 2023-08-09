@@ -1,4 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "Fix terminated ID still appear original assignment icon on sechud now it will appear as unknown instead"
