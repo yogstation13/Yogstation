@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - tweak: "Security module upgrades are not printable if security cyborgs are disabled in the config."
