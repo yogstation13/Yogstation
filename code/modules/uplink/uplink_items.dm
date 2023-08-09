@@ -2533,7 +2533,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/chemical_gun
 	name = "Rapid Syringe Gun"
 	desc = "A modified syringe gun with a rotating drum, capable of holding and quickly firing six syringes."
-	item = /obj/item/gun/syringe/rapidsyringe
+	item = /obj/item/gun/syringe/rapidsyringe/syndicate
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	restricted_roles = list("Chemist", "Chief Medical Officer", "Virologist")

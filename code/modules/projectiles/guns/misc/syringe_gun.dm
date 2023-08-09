@@ -1,6 +1,6 @@
 /obj/item/gun/syringe
 	name = "syringe gun"
-	desc = "A spring loaded rifle designed to fit syringes, used to incapacitate unruly patients from a distance."
+	desc = "A spring loaded rifle designed to fire syringes, used to incapacitate or heal unruly patients from a distance."
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -15,6 +15,7 @@
 	var/max_syringes = 1
 	var/has_syringe_overlay = TRUE ///If it has an overlay for inserted syringes. If true, the overlay is determined by the number of syringes inserted into it.
 	var/allow_piercing = FALSE // whether it can hold piercing syringes
+	var/hacked = FALSE /// whether it can bypass syringe content checking
 
 /obj/item/gun/syringe/Initialize(mapload)
 	. = ..()
@@ -62,6 +63,11 @@
 /obj/item/gun/syringe/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
 	if(istype(A, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/syringe = A
+		if(!hacked)
+			for(var/datum/reagent/chem in syringe.reagents?.reagent_list)
+				if(!istype(chem, /datum/reagent/medicine))
+					to_chat(user, span_warning("\The [src] rejects \the [A] as it contains non-medicinal reagents!"))
+					return FALSE
 		if(syringe.proj_piercing && !allow_piercing)
 			to_chat(user, span_warning("[syringe] won't fit into [src]!"))
 			return FALSE
@@ -92,6 +98,9 @@
 	max_syringes = 6
 	allow_piercing = TRUE
 
+/obj/item/gun/syringe/rapidsyringe/syndicate
+	hacked = TRUE
+
 /obj/item/gun/syringe/syndicate
 	name = "dart pistol"
 	desc = "A small spring-loaded sidearm that functions identically to a syringe gun."
@@ -102,11 +111,13 @@
 	suppressed = TRUE //Softer fire sound
 	can_unsuppress = FALSE //Permanently silenced
 	allow_piercing = TRUE
+	hacked = TRUE
 
 /obj/item/gun/syringe/dna
 	name = "modified syringe gun"
 	desc = "A syringe gun that has been modified to fit DNA injectors instead of normal syringes."
 	allow_piercing = TRUE
+	hacked = TRUE // evil
 
 /obj/item/gun/syringe/dna/Initialize(mapload)
 	. = ..()
@@ -139,6 +150,7 @@
 	fire_sound = 'sound/items/syringeproj.ogg'
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
+	hacked = TRUE // not sophisticated enough to say no
 
 /obj/item/gun/syringe/blowgun/Initialize(mapload)
 	. = ..()
