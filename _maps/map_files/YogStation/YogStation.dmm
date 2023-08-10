@@ -48397,17 +48397,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"paf" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/chief)
 "pal" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 10
@@ -53686,6 +53675,21 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"qVZ" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Engineering Maintenance";
+	req_access_txt = "10"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "qWk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -57566,6 +57570,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"sxa" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/chief)
 "sxb" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Prison Visitation";
@@ -70203,21 +70215,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"xpg" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Engineering Maintenance";
-	req_access_txt = "10"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "xpC" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/chair/stool,
@@ -102180,7 +102177,7 @@ bWJ
 wPi
 xGh
 mfz
-xpg
+qVZ
 eMu
 ccw
 ceA
@@ -104242,7 +104239,7 @@ fvh
 oqf
 jlj
 rwt
-paf
+sxa
 fer
 rVs
 tWQ
