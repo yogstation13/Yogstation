@@ -1370,7 +1370,7 @@
 		exposed_mob.adjust_drowsiness(drowsiness_to_apply)
 
 /datum/reagent/nitrous_oxide/on_mob_life(mob/living/carbon/M)
-	if(current_cycle >= 8)
+	if(current_cycle >= 4)
 		M.adjust_drowsiness(4 SECONDS * REM)
 		if(prob(20))
 			M.losebreath += 2
