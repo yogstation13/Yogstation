@@ -41,7 +41,7 @@
 	build_path = /obj/item/circuitboard/machine/shuttle/capacitor_bank
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
-	
+
 /datum/design/board/spaceship_navigation_beacon
 	name = "Machine Design (Bluespace Navigation Gigabeacon)"
 	desc = "The circuit board for a Bluespace Navigation Gigabeacon."
@@ -605,7 +605,7 @@
 
 /datum/design/board/oven
 	name = "Machine Design (Oven)"
-	desc = "The circuit board for a Oven."
+	desc = "The circuit board for an Oven."
 	id = "oven"
 	build_path = /obj/item/circuitboard/machine/oven
 	category = list ("Misc. Machinery")
@@ -637,7 +637,7 @@
 
 /datum/design/board/ticket_machine
 	name = "Machine Design (Ticket Machine)"
-	desc = "The circuit board for a dish drive."
+	desc = "The circuit board for a ticket machine."
 	id = "ticket_machine"
 	build_path = /obj/item/circuitboard/machine/ticketmachine
 	category = list ("Misc. Machinery")
@@ -746,7 +746,6 @@
 	build_path = /obj/item/circuitboard/machine/ai_data_core
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
-
 
 /datum/design/board/ai_core_display
 	name = "Machine Design (AI Core Display Board)"
