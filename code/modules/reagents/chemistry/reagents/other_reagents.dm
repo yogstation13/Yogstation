@@ -1377,7 +1377,7 @@
 			M.adjust_confusion_up_to(2 SECONDS, 5 SECONDS)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.blood_volume = max(H.blood_volume - 2, 0)
+		H.blood_volume = max(H.blood_volume - 5, 0)
 	..()
 
 /datum/reagent/nitrium_low_metabolization
