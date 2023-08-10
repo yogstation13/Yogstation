@@ -544,7 +544,7 @@
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
-		if(U.requires_open_cover && !opened)
+		if(U.requires_internals && !opened)
 			to_chat(user, span_warning("You must access the borg's internals!"))
 			return
 		if(U.require_module && (!module || module.type == /obj/item/robot_module))

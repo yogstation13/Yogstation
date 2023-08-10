@@ -18,7 +18,7 @@
 	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
 	var/list/module_flags = NONE
 	/// Does this upgrade require access to the cyborg's internals?
-	var/requires_open_cover = TRUE
+	var/requires_internals = TRUE
 	/// Should this upgrade be consumed/deleted on use? This also means this upgrade will not be in the cyborg's `upgrades` list (most of the time).
 	var/one_use = FALSE
 	/// Can multiple of this upgrade type be used on the same cyborg?
@@ -125,7 +125,7 @@
 	name = "cyborg firmware hack"
 	desc = "Used to override the default firmware of a cyborg and disable panel access restrictions."
 	icon_state = "cyborg_upgrade2"
-	requires_open_cover = FALSE
+	requires_internals = FALSE
 	one_use = TRUE
 
 /// Removes all access requirements to a cyborg's cover.
