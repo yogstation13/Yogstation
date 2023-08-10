@@ -1501,51 +1501,31 @@
 	return !density || (check_access(ID) && !locked && hasPower())
 
 /obj/machinery/door/airlock/emag_act(mob/user)
-	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
-		operating = TRUE
-		update_icon(AIRLOCK_EMAG, 1)
-		sleep(0.6 SECONDS)
-		if(QDELETED(src))
-			return
-		operating = FALSE
-		if(!open())
-			update_icon(AIRLOCK_CLOSED, 1)
-		obj_flags |= EMAGGED
-		lights = FALSE
-		locked = TRUE
-		loseMainPower()
-		loseBackupPower()
-
-/obj/machinery/door/airlock/should_emag(mob/user)
-	if(!..())
-		return FALSE
+	if((obj_flags & EMAGGED))
+		to_chat(user, "<span class='warning'>\the [src]'s maintenance panel appears to already be short-circuited.</span>")
+		return
+	if(operating || !density)
+		to_chat(user, "<span class='warning'>Close the door first!</span>")
+		return
 	if(!hasPower())
-		to_chat(user, "<span class='warning'>The cryptographic sequencer connects to \the [src]'s ID scanner, but nothing happens.</span>")
-		return FALSE
+		to_chat(user, "<span class='warning'>The cryptographic sequencer connects to \the [src]'s maintenance panel, but nothing happens.</span>")
+		return
 	if(!panel_open || security_level != AIRLOCK_SECURITY_NONE)
 		to_chat(user, "<span class='warning'>The wires must be exposed to use the cryptographic sequencer on them!</span>")
-		return FALSE
-	// Don't allow emag if the door is currently open or moving
-	return !operating && density
-
-/obj/machinery/door/airlock/on_emag(mob/user)
-	..()
+		return
 	operating = TRUE
-	update_icon(AIRLOCK_EMAG, 1)
-	addtimer(CALLBACK(src, PROC_REF(after_emag)), 6)
-
-/obj/machinery/door/airlock/proc/after_emag()
+	update_icon(state = AIRLOCK_EMAG, override = TRUE)
+	sleep(0.6 SECONDS)
 	if(QDELETED(src))
 		return
 	operating = FALSE
-	if(!open(ignore_emagged = TRUE))
-		update_icon(AIRLOCK_CLOSED, 1)
+	if(!open())
+		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
+	obj_flags |= EMAGGED
 	lights = FALSE
 	locked = TRUE
 	loseMainPower()
 	loseBackupPower()
-
-
 
 /obj/machinery/door/airlock/attack_alien(mob/living/carbon/alien/humanoid/user)
 	add_fingerprint(user)
