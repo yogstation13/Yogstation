@@ -13,7 +13,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/arnold/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/dankpizza
 	name = "Dank Pizza"
@@ -24,7 +24,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/dank/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/donkpocketpizza
 	name = "Donkpocket Pizza"
@@ -35,7 +35,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/donkpocket/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/pineapplepizza
 	name = "Hawaiian Pizza"
@@ -47,7 +47,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/pineapple/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/margheritapizza
 	name = "Margherita Pizza"
@@ -57,7 +57,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/margherita/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/meatpizza
 	name = "Meat Pizza"
@@ -68,7 +68,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/meat/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/mushroompizza
 	name = "Mushroom Pizza"
@@ -77,7 +77,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/mushroom = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/mushroom/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/sassysagepizza
 	name = "Sassysage Pizza"
@@ -88,7 +88,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/sassysage/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/seafoodpizza
 	name = "Tuna Pizza"
@@ -99,7 +99,7 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/seafood/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA
 
 /datum/crafting_recipe/food/vegetablepizza
 	name = "Vegetable Pizza"
@@ -111,4 +111,4 @@
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pizza/vegetable/raw
-	subcategory = CAT_PIZZA
+	category = CAT_PIZZA

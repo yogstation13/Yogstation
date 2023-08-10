@@ -185,7 +185,7 @@
 
 /datum/design/board/researcher_module
 	name = "Core Module Design (Ethical Researcher)"
-	desc = "Allows for the construction of a Ethical Researcher AI Core Module."
+	desc = "Allows for the construction of an Ethical Researcher AI Core Module."
 	id = "researcher_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
 	build_path = /obj/item/aiModule/core/full/researcher

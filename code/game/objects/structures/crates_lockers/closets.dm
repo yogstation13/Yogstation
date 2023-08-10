@@ -652,3 +652,8 @@ GLOBAL_LIST_EMPTY(lockers)
 
 	locked = FALSE
 	INVOKE_ASYNC(src, PROC_REF(open))
+
+/obj/structure/closet/can_be_pulled(user)
+	. = ..()
+	if(user in contents)
+		return FALSE

@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "You can no longer stack several machines on one tile."
-  - bugfix: "Hierophant's club and Ethereal Jaunt now respect blocked turfs."

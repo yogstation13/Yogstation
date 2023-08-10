@@ -1319,7 +1319,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 0
 	limited_stock = 1
-	include_modes = list(/datum/objective/martyr)
+	include_objectives = list(/datum/objective/martyr)
 
 //Support and Mechs
 /datum/uplink_item/support
@@ -1834,7 +1834,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/supermatter_delaminator
 	name = "Antinoblium Shard"
 	desc = "A special variant of supermatter crystal reverse engineered by syndicate scientists using samples retrieved by agents. \
-			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing an energy cascade. \
+			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing a resonance cascade. \
 			Ensures a storm of EMP waves that blacks out the entire station and eventually the full delamination of the crystal. \
 			Comes with a secure radiation shielded containment box, special tweezers and usage instructions."
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
