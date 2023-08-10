@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(703 modules,
-    1896/8975 macros, 21.1%)</aside></h3>
+<aside>(705 modules,
+    1898/8978 macros, 21.1%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -267,6 +267,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/connect_loc.html" title="code&#x2F;datums&#x2F;elements&#x2F;connect_loc">connect_loc</a></li>
     <li><a href="code/datums/elements/content_barfer.html" title="code&#x2F;datums&#x2F;elements&#x2F;content_barfer">content_barfer</a></li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
+    <li><a href="code/datums/elements/life_drain.html" title="code&#x2F;datums&#x2F;elements&#x2F;life_drain">life_drain</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
     <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
     </ul></li>
@@ -463,7 +464,10 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/antagonists/bloodsuckers/powers/gohome.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;gohome">gohome</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/powers/masquerade.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;masquerade">masquerade</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/powers/recuperate.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;recuperate">recuperate</a></li>
-    <li><span class="no-substance">targeted&#x2F;</span><a href="code/modules/antagonists/bloodsuckers/powers/targeted/mesmerize.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;targeted&#x2F;mesmerize">mesmerize</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;targeted">targeted</span><ul class="index-tree">
+    <li><a href="code/modules/antagonists/bloodsuckers/powers/targeted/hecata.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;targeted&#x2F;hecata">hecata</a></li>
+    <li><a href="code/modules/antagonists/bloodsuckers/powers/targeted/mesmerize.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;targeted&#x2F;mesmerize">mesmerize</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures">structures</span><ul class="index-tree">
     <li><a href="code/modules/antagonists/bloodsuckers/structures/bloodsucker_crypt.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;structures&#x2F;bloodsucker_crypt">bloodsucker_crypt</a></li>
@@ -1035,7 +1039,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(884 detailed/1686 documented/28106 total, 6%)</aside></h3>
+<aside>(889 detailed/1692 documented/28120 total, 6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1165,6 +1169,8 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;fortitude&#x2F;hunter">Flow</span> - Monster Hunter version</li>
     </ul></li>
     <li><a href="datum/action/cooldown/bloodsucker/gohome.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;gohome">Vanishing Act</a></li>
+    <li><span class="no-substance">hecata&#x2F;</span><a href="datum/action/cooldown/bloodsucker/hecata/spiritcall.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;hecata&#x2F;spiritcall">Spirit Call</a> - summon wraiths (weakened shades) to attack anyone who isn't a zombie. This includes non-zombified vassals. However, you can get around this by zombifying your vassals.
+to do this, you can make someone your favorite vassal, or you can kill them and then revive them with necromancy.</li>
     <li><a href="datum/action/cooldown/bloodsucker/masquerade.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;masquerade">Masquerade</a></li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;olfaction">olfaction</span><ul class="index-tree">
     <li><a href="datum/action/cooldown/bloodsucker/olfaction/acquire_scent.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;olfaction&#x2F;acquire_scent">Sanguine Olfaction</a></li>
@@ -1174,6 +1180,7 @@ See: <a href="datum/controller/subsystem/achievements.html" title="/datum/contro
     <li class="has-children"><a href="datum/action/cooldown/bloodsucker/targeted.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;targeted">targeted</a><ul class="index-tree">
     <li><a href="datum/action/cooldown/bloodsucker/targeted/brawn.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;targeted&#x2F;brawn">Brawn</a></li>
     <li><a href="datum/action/cooldown/bloodsucker/targeted/haste.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;targeted&#x2F;haste">Immortal Haste</a></li>
+    <li><a href="datum/action/cooldown/bloodsucker/targeted/hecata.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;targeted&#x2F;hecata">hecata</a> - Hecata, the unified clan of death.</li>
     <li><a href="datum/action/cooldown/bloodsucker/targeted/lunge.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;targeted&#x2F;lunge">Predatory Lunge</a></li>
     <li><a href="datum/action/cooldown/bloodsucker/targeted/mesmerize.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker&#x2F;targeted&#x2F;mesmerize">Mesmerize</a></li>
     </ul></li>
@@ -1569,6 +1576,7 @@ for scheduling different subsystems for different stages of the round</li>
     </ul></li>
     <li><a href="datum/design/borg_upgrade_analyzer.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_analyzer">Cyborg Upgrade (Advanced Analyzer)</a></li>
     <li><a href="datum/design/borg_upgrade_engi_advancedtools.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_engi_advancedtools">Cyborg Upgrade (Advanced Engineering Tools)</a></li>
+    <li><a href="datum/design/borg_upgrade_gemsatchel.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_gemsatchel">Cyborg Upgrade (Gem Satchel)</a></li>
     <li><a href="datum/design/borg_upgrade_holosign.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_holosign">Cyborg Upgrade (ATMOS Holofan Projector)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_rename">Cyborg Upgrade (Rename Board)</span> - Borg Upgrades</li>
     <li><a href="datum/design/borg_upgrade_surgerykit.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgerykit">Cyborg Upgrade (Advanced Surgical Kit)</a></li>
@@ -1690,6 +1698,7 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
 When the object moves, it will unhook the signal and rehook it to the new object.</li>
     <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
+    <li><a href="datum/element/life_draining.html" title="&#x2F;datum&#x2F;element&#x2F;life_draining">life_draining</a> - Slowly drains HP from a living mob.</li>
     <li><a href="datum/element/squish.html" title="&#x2F;datum&#x2F;element&#x2F;squish">squish</a> - squish.dm</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;update_icon_blocker">update_icon_blocker</span> - Prevents calling anything in update_icon() like update_icon_state() or update_overlays()</li>
     </ul></li>
@@ -1864,6 +1873,7 @@ ALSO - registered_account in _vending.dm for banks, and assigning new ones.
 Steal hearts. You just really wanna have some hearts.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;leader">leader</span> - Mutilate a certain amount of Vassals
 Convert a certain amount of vassals</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;necromance">necromance</span> - Necromance X amount of people (Hecata)</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;protege">vassalization</span> - Vassalize someone in charge (Head of Staff + QM)</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;solars">solars</span> - Destroy the Solar Arrays</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;vassalhim">vassalhim</span> - Vassalize a target.</li>
@@ -2050,6 +2060,7 @@ They attach to an atom and provide the editor + playback functionality.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;species&#x2F;jelly&#x2F;stargazer">Stargazer</span> - STARGAZERS</li>
     </ul></li>
     <li><a href="datum/species/plasmaman.html" title="&#x2F;datum&#x2F;species&#x2F;plasmaman">Plasmaman</a></li>
+    <li><span class="no-substance">zombie&#x2F;</span><a href="datum/species/zombie/hecata.html" title="&#x2F;datum&#x2F;species&#x2F;zombie&#x2F;hecata">Sanguine Zombie</a></li>
     </ul></li>
     <li class="has-children"><a href="datum/spellbook_entry.html" title="&#x2F;datum&#x2F;spellbook_entry">spellbook_entry</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;spellbook_entry&#x2F;challenge">Take the Challenge</span> - Non-purchasable flavor spells to populate the spell book with, for style.</li>
@@ -3358,7 +3369,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/1a367329a80a8c5803f0e0f5c2b5e0296d63c62c">1a36732</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/d1d0fc36935a8857d29f4cac6777df942d3d5e8b">d1d0fc3</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
