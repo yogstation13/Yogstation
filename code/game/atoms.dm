@@ -1199,7 +1199,7 @@
   * Must return  parent proc ..() in the end if overridden
   */
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
-	. =
+	. = FALSE
 	switch(tool_type)
 		if(TOOL_CROWBAR)
 			. = crowbar_act(user, I)
