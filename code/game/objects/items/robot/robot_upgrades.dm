@@ -570,7 +570,7 @@
 		deactivate_sr()
 		return
 	if(!cyborg.cell)
-		to_chat(cyborg, span_warning("Self-repair module deactivated. Please, insert the power cell."))
+		to_chat(cyborg, span_warning("Self-repair module deactivated. Please insert the power cell."))
 		deactivate_sr()
 		return
 	if(cyborg.cell.charge < powercost * 5)
@@ -1268,7 +1268,7 @@
 	desc = "An upgrade that grants mining cyborgs a gem satchel."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
-	module_type = /obj/item/robot_module/miner
+	module_types = list(/obj/item/robot_module/miner)
 	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/gemsatchel/action(mob/living/silicon/robot/R , user = usr)
