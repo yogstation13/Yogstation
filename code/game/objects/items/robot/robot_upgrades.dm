@@ -1278,7 +1278,7 @@
 
 	var/obj/item/storage/bag/gem/cyborg/satchel = locate() in R.module.modules
 	if(satchel)
-		to_chat(user, span_warning("This unit is already equipped with a gem satchel."))
+		to_chat(user, span_warning("This cyborg is already equipped with a gem satchel."))
 		return FALSE
 
 	satchel = new(R.module)
