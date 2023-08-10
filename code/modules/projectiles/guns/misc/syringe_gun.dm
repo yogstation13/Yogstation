@@ -22,7 +22,7 @@
 	update_appearance(UPDATE_ICON)
 	chambered = new /obj/item/ammo_casing/syringegun(src)
 
-/obj/item/gun/syringe/emag_act()
+/obj/item/gun/syringe/emag_act(mob/user)
 	. = ..()
 	playsound(src.loc, "sparks", 100, 1)
 	if(initial(hacked))
