@@ -468,7 +468,8 @@
 	return FALSE
 
 /datum/religion_sect/holylight/holy_water_start(mob/living/L)
-	L.apply_status_effect(STATUS_EFFECT_DIVINE_RECEPTION)
+	L.AddComponent(/datum/component/heal_react/boost/holyshit)
 
 /datum/religion_sect/holylight/holy_water_end(mob/living/L)
-	L.remove_status_effect(STATUS_EFFECT_DIVINE_RECEPTION)
+	var/datum/component/heal_react/boost/holyshit/healing = L.GetComponent(/datum/component/heal_react/boost/holyshit)
+	healing?.RemoveComponent()

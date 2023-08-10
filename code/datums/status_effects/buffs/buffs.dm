@@ -687,9 +687,6 @@
 			owner.say("heal amount of [heal_amount] registered as healed with chaplel bonus of [istype(get_area(owner), /area/chapel)]")
 			heal_amount = heal_amount * healing_coefficient * chapel_buff //get our actually important number here
 			owner.say("damtype [damtype] healing for [heal_amount]")
-			if(damtype != TOX)
-				owner.apply_damage_type(-heal_amount, damtype, BODYPART_ANY)
-			else
-				owner.adjustToxLoss(-heal_amount, forced = TRUE) // I am going to kill slimepeopel I am going to MURDER slime people I haTE
+
 			GLOB.religious_sect.adjust_favor(round(min(heal_amount*3, 40), 0.1)) // cap for bullshit strats I know someone will come up with one
 		saved_damage[damtype] = owner.get_damage_amount(damtype) //set our new damage amount as current damage
