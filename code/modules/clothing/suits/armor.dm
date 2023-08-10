@@ -403,7 +403,7 @@
 	desc = "A superb armor made with the toughest and rarest materials available to man."
 	icon_state = "h2armor"
 	item_state = "h2armor"
-	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 50, BOMB = 85, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 55, BOMB = 85, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
