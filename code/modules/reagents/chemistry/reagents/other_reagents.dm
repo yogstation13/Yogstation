@@ -1372,9 +1372,9 @@
 /datum/reagent/nitrous_oxide/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 8)
 		M.adjust_drowsiness(4 SECONDS * REM)
-	if(prob(20))
-		M.losebreath += 2
-		M.adjust_confusion_up_to(2 SECONDS, 5 SECONDS)
+		if(prob(20))
+			M.losebreath += 2
+			M.adjust_confusion_up_to(2 SECONDS, 5 SECONDS)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.blood_volume = max(H.blood_volume - 2, 0)
