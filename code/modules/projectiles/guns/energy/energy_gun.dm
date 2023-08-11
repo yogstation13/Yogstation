@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun
 	name = "energy gun"
-	desc = "Created in 2514, the NT-E MKIII hybrid energy gun is the newest generation of standardized energy equipment for use by security. This basic hybrid energy gun comes equipped with two settings: disable and kill."
+	desc = "Created in 2514, the NT-E3 hybrid energy gun is the newest generation of standardized energy equipment for use by security. This basic hybrid energy gun comes equipped with two settings: disable and kill."
 	icon_state = "energy"
 	item_state = null //so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
@@ -43,7 +43,7 @@
 
 /obj/item/gun/energy/e_gun/old
 	name = "prototype energy gun"
-	desc = "NT-E MKI Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command. Was quickly made useless by the MK-1 Hybrid Energy Gun, which utilized a more efficient power system."
+	desc = "NT-E1 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command. Was quickly made useless by the MK-1 Hybrid Energy Gun, which utilized a more efficient power system."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)

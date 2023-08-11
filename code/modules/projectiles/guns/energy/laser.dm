@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
 	name = "laser gun"
-	desc = "The NT-L MKIV is a basic energy-based laser gun that fires concentrated beams of light which pass through plasmaglass and thin metal."
+	desc = "The NT-LIV is a basic energy-based laser gun that fires concentrated beams of light which pass through plasmaglass and thin metal."
 	icon_state = "laser"
 	item_state = LASER
 	w_class = WEIGHT_CLASS_NORMAL
@@ -11,7 +11,7 @@
 
 /obj/item/gun/energy/laser/practice
 	name = "practice laser gun"
-	desc = "A modified version of the NT-L MKIV laser gun, it fires less concentrated energy bolts designed for target practice."
+	desc = "A modified version of the NT-LIV laser gun, it fires less concentrated energy bolts designed for target practice."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = 0
 	item_flags = NONE
@@ -19,19 +19,19 @@
 /obj/item/gun/energy/laser/retro
 	name ="retro laser gun"
 	icon_state = "retro"
-	desc = "The NT-L MKII laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
+	desc = "The NT-LI laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/retro/old
 	name ="laser gun"
 	icon_state = "retro"
-	desc = "First generation lasergun, developed by Nanotrasen. Suffers from ammo issues but its unique ability to recharge its ammo without the need of a magazine helps compensate. You really hope someone has developed a better lasergun while you were in cryo."
+	desc = "The NT-LI laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws. This one in particular seems extremely worn out and barely functional. How long were you in cryo?"
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/old)
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/hellgun
 	name ="hellfire laser gun"
-	desc = "The NT-L MKI nicknamed 'hellgun' is the first non-experimental model laser gun, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds and fires that it caused, and was quietly discontinued once it began to affect NT's reputation."
+	desc = "The NT-LII nicknamed 'hellgun' is the first non-experimental model laser gun, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds and fires that it caused, and was quietly discontinued once it began to affect NT's reputation."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 

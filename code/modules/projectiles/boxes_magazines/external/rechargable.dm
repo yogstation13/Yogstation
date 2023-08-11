@@ -56,7 +56,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp
 	name = "NT-USP pistol"
-	desc = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
+	desc = "The NT-HLIII, or NT-USP, is a small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
 	icon_state = "ntusp"
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/recharge/ntusp
