@@ -1511,7 +1511,7 @@
 		to_chat(user, "<span class='warning'>The cryptographic sequencer connects to \the [src]'s maintenance panel, but nothing happens.</span>")
 		return
 	if(!panel_open || security_level != AIRLOCK_SECURITY_NONE)
-		to_chat(user, "<span class='warning'>The wires must be exposed to use the cryptographic sequencer on them!</span>")
+		to_chat(user, "<span class='warning'>The wires must be exposed to use the cryptographic sequencer on them!</span>") // need to open the panel and make sure there isnt a cover over the wires to hack it
 		return
 	operating = TRUE
 	update_icon(state = AIRLOCK_EMAG, override = TRUE)
