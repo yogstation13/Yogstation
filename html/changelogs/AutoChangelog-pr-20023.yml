@@ -1,0 +1,4 @@
+author: " Helg2"
+delete-after: true 
+changes: 
+  - tweak: "Box with throwing weapons now can hold the items it spawns with."
