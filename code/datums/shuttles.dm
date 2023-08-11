@@ -378,6 +378,15 @@
 	admin_notes = "Has a chance to have (traitor) maint loot, you can always delete it when its at CC"
 	credit_cost = 7000
 
+/datum/map_template/shuttle/emergency/foureightsixfourone
+	suffix = "48641"
+	name = "Crowd-Sourced Emergency Shuttle"
+	description = "The Crowd-Sourced Emergency Shuttle is the product of a Centcomm initiative to have crews design their own emergency shuttles. \
+		Due to its strange construction, this shuttle offers some amenities not available on other shuttles. \
+		The most notable additions are: An electrified arena, A fully functional cargo bay, and a club."
+	admin_notes = "The emergency shuttled created during Round 48641. "
+	credit_cost = 1
+
 /datum/map_template/shuttle/emergency/mafia
 	suffix = "mafia"
 	name = "Droni Fedora"
