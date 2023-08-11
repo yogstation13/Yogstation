@@ -977,7 +977,7 @@
 
 /obj/item/borg/upgrade/engi_advancedtools
 	name = "engineering cyborg advanced tool kit"
-	desc = "An upgrade for engineering cyborgs which replaces their basic tools with an advanced verison of them."
+	desc = "An upgrade for engineering cyborgs which replaces their basic tools with an advanced version of them."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/engineering
@@ -988,22 +988,22 @@
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/screwdriver/cyborg/SC in R.module.modules) 
+	for(var/obj/item/screwdriver/cyborg/SC in R.module.modules)
 		R.module.remove_module(SC, TRUE)
 
-	for(var/obj/item/wrench/cyborg/W in R.module.modules) 
+	for(var/obj/item/wrench/cyborg/W in R.module.modules)
 		R.module.remove_module(W, TRUE)
 
-	for(var/obj/item/crowbar/cyborg/CB in R.module.modules) 
+	for(var/obj/item/crowbar/cyborg/CB in R.module.modules)
 		R.module.remove_module(CB, TRUE)
 
-	for(var/obj/item/wirecutters/cyborg/WC in R.module.modules) 
+	for(var/obj/item/wirecutters/cyborg/WC in R.module.modules)
 		R.module.remove_module(WC, TRUE)
 
-	for(var/obj/item/multitool/cyborg/MT in R.module.modules) 
+	for(var/obj/item/multitool/cyborg/MT in R.module.modules)
 		R.module.remove_module(MT, TRUE)
-	
-	for(var/obj/item/analyzer/AL in R.module.modules) 
+
+	for(var/obj/item/analyzer/AL in R.module.modules)
 		R.module.remove_module(AL, TRUE)
 
 	var/obj/item/jawsoflife/cyborg/JL = locate() in R.module.modules // Carries over the toolspeed (0.5) instead of using 0.7.
@@ -1095,9 +1095,39 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/holosign_creator/atmos/holofan in R.module.modules)
 		if(holofan.signs.len)
 			for(var/obj/structure/holosign/holosign_firelock in holofan.signs)
 				qdel(holosign_firelock)
 		R.module.remove_module(holofan, TRUE)
+
+/obj/item/borg/upgrade/gemsatchel
+	name = "mining cyborg gem satchel"
+	desc = "An upgrade that grants mining cyborgs a gem satchel."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
+
+/obj/item/borg/upgrade/gemsatchel/action(mob/living/silicon/robot/R , user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/item/storage/bag/gem/cyborg/satchel = locate() in R.module.modules
+	if(satchel)
+		to_chat(user, span_warning("This unit is already equipped with a gem satchel."))
+		return FALSE
+
+	satchel = new(R.module)
+	R.module.basic_modules += satchel
+	R.module.add_module(satchel, FALSE, TRUE)
+
+/obj/item/borg/upgrade/gemsatchel/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module)
+		R.module.remove_module(satchel, TRUE)

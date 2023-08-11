@@ -286,7 +286,7 @@
 
 /datum/design/limb_disk/lizard
 	name = "Lizard Limb Design Disk"
-	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail"
+	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail."
 	id = "limbdesign_lizard"
 	build_path = /obj/item/disk/design_disk/limbs/lizard
 

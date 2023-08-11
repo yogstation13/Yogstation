@@ -854,5 +854,6 @@
 		/obj/item/circuitboard,
 		/obj/item/electronics,
 		/obj/item/wallframe,
-		/obj/item/stock_parts
+		/obj/item/stock_parts,
+		/obj/item/tank/internals
 	)
