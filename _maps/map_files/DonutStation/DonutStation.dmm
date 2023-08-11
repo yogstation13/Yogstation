@@ -417,12 +417,6 @@
 "akr" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/computer)
-"akE" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "maint2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "akF" = (
 /obj/machinery/light{
 	dir = 4
@@ -9054,6 +9048,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"eGr" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "maint2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "eGs" = (
 /obj/effect/landmark/start/yogs/paramedic,
 /obj/structure/chair/office/light{
@@ -18149,6 +18156,20 @@
 /obj/item/trash/candle,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"jyj" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/barricade/wooden,
+/obj/machinery/door/poddoor/preopen{
+	id = "maint1"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "jyr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20051,6 +20072,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"kqa" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "maint2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "kqW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -21377,6 +21417,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kYD" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "kYW" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -21461,17 +21512,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"lcc" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "lcl" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -27927,12 +27967,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/security/processing)
-"ooR" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "maint1"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "opf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/sorting/mail/flip{
@@ -30081,6 +30115,26 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"pzI" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/barricade/wooden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "maint1"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "pzK" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Showers"
@@ -30386,6 +30440,21 @@
 "pIW" = (
 /turf/closed/wall,
 /area/science/research)
+"pIX" = (
+/obj/machinery/button/door{
+	id = "maint2";
+	name = "Blast Door Control B";
+	pixel_x = -28;
+	pixel_y = 4
+	},
+/obj/machinery/button/door{
+	id = "maint1";
+	name = "Blast Door Control A";
+	pixel_x = -28;
+	pixel_y = -6
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "pJl" = (
 /turf/open/floor/wood,
 /area/library)
@@ -34026,16 +34095,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
-"rGB" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "rGK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -34792,21 +34851,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"sdx" = (
-/obj/machinery/button/door{
-	id = "maint1";
-	name = "Blast Door Control A";
-	pixel_x = -28;
-	pixel_y = -6
-	},
-/obj/machinery/button/door{
-	id = "maint2";
-	name = "Blast Door Control B";
-	pixel_x = -28;
-	pixel_y = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "sdA" = (
 /obj/machinery/camera{
 	c_tag = "Research - Xenobiology Cell 4";
@@ -34972,23 +35016,6 @@
 	},
 /turf/open/floor/wood,
 /area/hallway/primary/central)
-"sgY" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/structure/barricade/wooden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "shb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -38580,22 +38607,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"tUF" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "tVd" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -41612,16 +41623,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"vqB" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "vra" = (
 /turf/closed/wall,
 /area/security/brig)
@@ -62849,7 +62850,7 @@ thg
 rLR
 rLR
 rLR
-rGB
+kYD
 rLR
 rLR
 ylr
@@ -66454,7 +66455,7 @@ qgC
 qgC
 qgC
 bat
-qgC
+pIX
 biC
 qgC
 rLR
@@ -66712,8 +66713,8 @@ rLR
 sVr
 rLR
 rLR
-tUF
-vqB
+kqa
+eGr
 rLR
 rLR
 rLR
@@ -67711,8 +67712,8 @@ iWz
 iWz
 iWz
 rLR
-akE
-akE
+qgC
+qgC
 rLR
 rLR
 rLR
@@ -67740,8 +67741,8 @@ rLR
 rLR
 rLR
 rLR
-sgY
-lcc
+pzI
+jyj
 rLR
 qgC
 kDe
@@ -68995,7 +68996,7 @@ qgC
 qgC
 qgC
 wpv
-sdx
+qgC
 qgC
 qgC
 ewu
@@ -70538,8 +70539,8 @@ rLR
 aYJ
 rLR
 rLR
-ooR
-ooR
+qgC
+qgC
 rLR
 rLR
 rLR
