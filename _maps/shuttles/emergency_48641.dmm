@@ -194,26 +194,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"hv" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
-/obj/docking_port/mobile/emergency/shuttle_build{
-	dwidth = 9;
-	height = 15;
-	name = "Shuttle Under Construction";
-	port_direction = 4;
-	preferred_direction = 2;
-	width = 26
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "hC" = (
 /obj/structure/table/wood/fancy/royalblack,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -664,6 +644,19 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/escape)
+"wI" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/docking_port/mobile/emergency,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "xc" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -1260,6 +1253,9 @@
 /obj/machinery/jukebox,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/shuttle/escape)
+"YR" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/escape)
 "YT" = (
 /obj/machinery/shieldgen{
 	anchored = 1
@@ -1310,7 +1306,7 @@ Ix
 Ix
 NV
 Ix
-hv
+wI
 Ix
 Ix
 Xo
@@ -1497,7 +1493,7 @@ Gc
 Xo
 "}
 (8,1,1) = {"
-po
+YR
 po
 dv
 nW
