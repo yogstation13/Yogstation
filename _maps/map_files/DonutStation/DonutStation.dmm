@@ -4262,17 +4262,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
-"chD" = (
-/obj/docking_port/stationary{
-	dir = 1;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "chU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -11970,6 +11959,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"gff" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "gfQ" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
 	dir = 8
@@ -12112,6 +12112,17 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
+"giN" = (
+/obj/docking_port/stationary{
+	dir = 1;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "giY" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/medical,
@@ -18089,6 +18100,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"jwe" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "jwl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -26371,17 +26393,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"nEL" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "nEU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -27699,6 +27710,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ogq" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "ogD" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -42205,17 +42227,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/storage/tech)
-"vIY" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "vJb" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -71851,7 +71862,7 @@ oWP
 ylr
 ylr
 ylr
-chD
+giN
 ecD
 uKw
 riB
@@ -87875,7 +87886,7 @@ uJr
 gtg
 vtx
 nOg
-vIY
+gff
 ylr
 ylr
 ylr
@@ -88648,7 +88659,7 @@ uJr
 xbB
 aGn
 aGn
-aGn
+eDJ
 xbB
 ylr
 ylr
@@ -98314,8 +98325,8 @@ ylr
 ylr
 ylr
 ylr
+jwe
 ylr
-nEL
 ylr
 ylr
 ylr
@@ -99342,8 +99353,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
 naS
+ylr
 ylr
 ylr
 ylr
@@ -101958,7 +101969,7 @@ mJi
 peP
 aSb
 ylr
-nEL
+ogq
 ylr
 ylr
 ylr
