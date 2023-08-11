@@ -412,6 +412,6 @@
 			if(spawn_goat)
 				INVOKE_ASYNC(src, PROC_REF(makegoat))
 			detonate()
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 150)
+			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 150)
 
 #undef ANOMALY_MOVECHANCE
