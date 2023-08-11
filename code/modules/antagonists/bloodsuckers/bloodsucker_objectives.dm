@@ -384,6 +384,27 @@
 		return TRUE
 	return FALSE
 
+/// Necromance X amount of people (Hecata)
+/datum/objective/bloodsucker/necromance
+	name = "necromance"
+
+/datum/objective/bloodsucker/necromance/New()
+	target_amount = rand(6,8)
+	..()
+
+
+/datum/objective/bloodsucker/necromance/update_explanation_text()
+	. = ..()
+	explanation_text = "Using Necromancy, revive [target_amount] people."
+
+/datum/objective/bloodsucker/necromance/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 /// Mutilate a certain amount of Vassals
