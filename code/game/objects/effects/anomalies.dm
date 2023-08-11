@@ -375,6 +375,9 @@
 	density = TRUE
 	var/spawn_goat = FALSE //For goat spawning
 
+/obj/effect/anomaly/radiation/admin //bussing
+	spawn_goat = TRUE
+
 /obj/effect/anomaly/radiation/anomalyEffect()
 	..()
 	for(var/i = 1 to 15)
