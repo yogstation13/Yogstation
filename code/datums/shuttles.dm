@@ -385,7 +385,7 @@
 		Due to its strange construction, this shuttle offers some amenities not available on other shuttles. \
 		The most notable additions are: An electrified arena, A fully functional cargo bay, and a club."
 	admin_notes = "The emergency shuttled created during Round 48641. "
-	credit_cost = 1
+	credit_cost = 7000
 
 /datum/map_template/shuttle/emergency/mafia
 	suffix = "mafia"
