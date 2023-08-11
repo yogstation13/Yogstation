@@ -15,34 +15,34 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
-	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 1 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
 
 /obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
-		update_icon()
-	RegisterSignals(src, list(COMSIG_ITEM_EMBEDDED, COMSIG_ITEM_EMBED_TICK), PROC_REF(embed_inject))
+		update_appearance(UPDATE_ICON)
+	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/pickup(mob/user)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/dropped(mob/user)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/attack_self(mob/user)
 	mode = !mode
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/reagent_containers/syringe/attack_hand()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/attack_paw(mob/user)
 	return attack_hand(user)
@@ -103,7 +103,7 @@
 				to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
 			if (reagents.total_volume >= reagents.maximum_volume)
 				mode=!mode
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 		if(SYRINGE_INJECT)
 			// Always log attemped injections for admins
@@ -165,17 +165,16 @@
 			to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
-
-/obj/item/reagent_containers/syringe/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/syringe/update_overlays()
+	. = ..()
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
 		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
 		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling_overlay)
+		. += filling_overlay
 	else
 		rounded_vol = 0
 	icon_state = "[rounded_vol]"
@@ -188,13 +187,14 @@
 				injoverlay = "draw"
 			if (SYRINGE_INJECT)
 				injoverlay = "inject"
-		add_overlay(injoverlay)
+		. += injoverlay
 		M.update_inv_hands()
-	
+
 /obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(!reagents.total_volume)
 		return
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	// Half of transfer amount, or 2.5 units per tick for default syringes
+	var/fraction = min((0.5 * amount_per_transfer_from_this) / reagents.total_volume, 1)
 	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 

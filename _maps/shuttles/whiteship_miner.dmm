@@ -272,6 +272,14 @@
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
+"kW" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/welding,
+/obj/item/wrench,
+/obj/item/storage/belt/utility/full/engi,
+/obj/item/construction/rcd/loaded,
+/turf/open/floor/plating,
+/area/shuttle/abandoned)
 "lc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -541,7 +549,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/obj/item/storage/box/fancy/egg_box{
+/obj/item/storage/fancy/egg_box{
 	pixel_y = 5
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -977,13 +985,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
-"IA" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/welding,
-/obj/item/wrench,
-/obj/item/storage/belt/utility/full/engi,
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
 "IZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1268,7 +1269,7 @@
 "Sd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
 "Sg" = (
@@ -1713,7 +1714,7 @@ gE
 bk
 DV
 yT
-IA
+kW
 EI
 "}
 (9,1,1) = {"

@@ -3,7 +3,7 @@
 	desc = "Track with this."
 	actions_types = null
 	var/lifespan_postmortem = 10 MINUTES //for how long after user death will the implant work?
-	var/allow_teleport = TRUE //will people implanted with this act as teleporter beacons?
+	var/allow_teleport = FALSE //will people implanted with this act as teleporter beacons? (god i hope not)
 
 /obj/item/implant/tracking/tra32
 	name = "TRAC implant"

@@ -37,7 +37,7 @@
 	if(!loc)
 		return
 
-	if(LIFETICK_SKIP(src, times_fired))
+	if(SHOULD_LIFETICK(src, times_fired))
 
 		if(stat != DEAD)
 			//Mutations and radiation

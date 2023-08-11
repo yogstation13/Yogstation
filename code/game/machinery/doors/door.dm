@@ -55,6 +55,8 @@
 	var/poddoor = FALSE
 	/// Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 	var/unres_sides = 0
+	// door open speed.
+	var/open_speed = 0.5 SECONDS
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -245,7 +247,7 @@
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
 
-	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
+	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe)))
 		try_to_crowbar(I, user)
 		return 1
 	else if(istype(I, /obj/item/zombie_hand/gamemode))
@@ -259,7 +261,7 @@
 		return 1
 	return ..()
 
-/obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && obj_integrity > 0)
 		if(damage_amount >= 10 && prob(30))
@@ -292,7 +294,8 @@
 /obj/machinery/door/proc/unelectrify()
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED
 
-/obj/machinery/door/update_icon()
+/obj/machinery/door/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = "door1"
 	else
@@ -323,11 +326,11 @@
 	operating = TRUE
 	do_animate("opening")
 	set_opacity(0)
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	density = FALSE
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	layer = initial(layer)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	set_opacity(0)
 	operating = FALSE
 	air_update_turf(1)
@@ -355,10 +358,10 @@
 	layer = closingLayer
 	if(air_tight)
 		density = TRUE
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	density = TRUE
-	sleep(0.5 SECONDS)
-	update_icon()
+	sleep(open_speed)
+	update_appearance(UPDATE_ICON)
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE

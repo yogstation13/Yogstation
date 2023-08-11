@@ -81,7 +81,7 @@
 	var/list/compiled_list = list()
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-		if(fingerprints[md5(H.dna.uni_identity)])
+		if(fingerprints[md5(H.dna.unique_identity)])
 			compiled_list |= H
 
 	if(compiled_list.len == 0)
@@ -157,7 +157,7 @@
 /datum/eldritch_transmutation/basic/recipe_snowflake_check(list/atoms, loc)
 	. = ..()
 	for(var/obj/item/living_heart/LH in atoms)
-		if(!LH.target)
+		if(QDELETED(LH.target))
 			return TRUE
 		if(LH.target in atoms)
 			return TRUE
@@ -182,7 +182,7 @@
 				EC.charge += 2
 				break
 
-		if(!LH.target)
+		if(QDELETED(LH.target))
 			var/datum/objective/A = new
 			A.owner = user.mind
 			var/list/targets = list()

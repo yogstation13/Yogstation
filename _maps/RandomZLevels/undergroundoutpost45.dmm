@@ -498,7 +498,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "bo" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes{
+/obj/item/storage/fancy/cigarettes{
 	pixel_y = 2
 	},
 /obj/item/lighter{
@@ -1427,7 +1427,7 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "do" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1781,7 +1781,7 @@
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
-/obj/item/storage/box/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
@@ -2931,7 +2931,7 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "fT" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5166,7 +5166,7 @@
 	},
 /area/awaymission/undergroundoutpost45/gateway)
 "kh" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -6820,7 +6820,7 @@
 /area/awaymission/undergroundoutpost45/research)
 "mQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /turf/open/floor/plasteel/cafeteria{
@@ -8422,7 +8422,7 @@
 	},
 /area/awaymission/undergroundoutpost45/research)
 "pl" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -9495,7 +9495,7 @@
 	},
 /area/awaymission/undergroundoutpost45/engineering)
 "rk" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -12431,7 +12431,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	layer = 5
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -13020,7 +13020,7 @@
 /area/awaymission/undergroundoutpost45/mining)
 "xb" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/cigarettes{
+/obj/item/storage/fancy/cigarettes{
 	pixel_x = -2
 	},
 /obj/item/lighter{

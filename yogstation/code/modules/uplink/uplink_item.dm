@@ -142,17 +142,17 @@
 	cant_discount = TRUE
 
 /datum/uplink_item/race_restricted/garden_warfare
-	name = "Martial art scroll"
+	name = "Vegetable Parchment"
 	desc = "A special scroll with a martial art, that teaches phytosians of capabilities of their body."
 	cost = 13
 	item = /obj/item/book/granter/martial/garden_warfare
 	restricted_species = list("pod")
 
 /datum/uplink_item/race_restricted/combat_modules
-	name = "Combat Modules Board"
-	desc = "An upgrade board, containing upgrades and programs for your melee attacks."
+	name = "Remnant liquidator information board"
+	desc = "A stolen Remnant information board, containing data pertaining to covert assassination techniques."
 	cost = 11
-	item = /obj/item/book/granter/martial/preternis_stealth
+	item = /obj/item/book/granter/martial/liquidator
 	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/worldbreaker
@@ -165,7 +165,7 @@
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
-	
+
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
 	desc = "An ancient scroll, containing a guide to an ancient plasmamen martial art."

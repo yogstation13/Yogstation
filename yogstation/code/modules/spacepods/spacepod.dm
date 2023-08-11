@@ -168,12 +168,12 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			if(W.use_tool(src, user, 50, amount=3, volume = 50))
 				if(repairing)
 					obj_integrity = min(max_integrity, obj_integrity + 10)
-					update_icon()
+					update_appearance(UPDATE_ICON)
 					to_chat(user, span_notice("You mend some [pick("dents","bumps","damage")] with [W]"))
 				else if(!cell && !internal_tank && !equipment.len && !pilot && !passengers.len && construction_state == SPACEPOD_ARMOR_WELDED)
 					user.visible_message("[user] slices off [src]'s armor.", span_notice("You slice off [src]'s armor."))
 					construction_state = SPACEPOD_ARMOR_SECURED
-					update_icon()
+					update_appearance(UPDATE_ICON)
 			return TRUE
 	return ..()
 
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	max_integrity = armor.pod_integrity
 	obj_integrity = max_integrity - integrity_failure + obj_integrity
 	pod_armor = armor
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/proc/remove_armor()
 	if(!pod_armor)
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		max_integrity = integrity_failure
 		desc = initial(desc)
 		pod_armor = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
 /obj/spacepod/proc/InterceptClickOn(mob/user, params, atom/target)
@@ -254,9 +254,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		weapon.fire_weapons(target)
 	return TRUE
 
-/obj/spacepod/take_damage()
+/obj/spacepod/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/return_air()
 	return cabin_air
@@ -396,20 +396,13 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		// there here's your frame pieces back, happy?
 	qdel(src)
 
-/obj/spacepod/update_icon()
-	cut_overlays()
+/obj/spacepod/update_icon_state()
+	. = ..()
 	if(construction_state != SPACEPOD_ARMOR_WELDED)
 		icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'
 		icon_state = "pod_[construction_state]"
-		if(pod_armor && construction_state >= SPACEPOD_ARMOR_LOOSE)
-			var/mutable_appearance/masked_armor = mutable_appearance(icon = 'goon/icons/obj/spacepods/construction_2x2.dmi', icon_state = "armor_mask")
-			var/mutable_appearance/armor = mutable_appearance(pod_armor.pod_icon, pod_armor.pod_icon_state)
-			armor.blend_mode = BLEND_MULTIPLY
-			masked_armor.overlays = list(armor)
-			masked_armor.appearance_flags = KEEP_TOGETHER
-			add_overlay(masked_armor)
 		return
-
+	
 	if(pod_armor)
 		icon = pod_armor.pod_icon
 		icon_state = pod_armor.pod_icon_state
@@ -417,13 +410,25 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		icon = 'goon/icons/obj/spacepods/2x2.dmi'
 		icon_state = initial(icon_state)
 
+/obj/spacepod/update_overlays()
+	. = ..()
+	if(construction_state != SPACEPOD_ARMOR_WELDED)
+		if(pod_armor && construction_state >= SPACEPOD_ARMOR_LOOSE)
+			var/mutable_appearance/masked_armor = mutable_appearance(icon = 'goon/icons/obj/spacepods/construction_2x2.dmi', icon_state = "armor_mask")
+			var/mutable_appearance/armor = mutable_appearance(pod_armor.pod_icon, pod_armor.pod_icon_state)
+			armor.blend_mode = BLEND_MULTIPLY
+			masked_armor.overlays = list(armor)
+			masked_armor.appearance_flags = KEEP_TOGETHER
+			. += masked_armor
+		return
+
 	if(obj_integrity <= max_integrity / 2)
-		add_overlay(image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_damage"))
+		. += image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_damage")
 		if(obj_integrity <= max_integrity / 4)
-			add_overlay(image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_fire"))
+			. += image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_fire")
 
 	if(weapon && weapon.overlay_icon_state)
-		add_overlay(image(icon=weapon.overlay_icon,icon_state=weapon.overlay_icon_state))
+		. += image(icon=weapon.overlay_icon,icon_state=weapon.overlay_icon_state)
 
 	light_color = icon_light_color[icon_state] || LIGHT_COLOR_WHITE
 
@@ -456,13 +461,13 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		var/left_thrust = left_thrusts[cdir]
 		var/right_thrust = right_thrusts[cdir]
 		if(left_thrust)
-			add_overlay(image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "rcs_left", dir = cdir))
+			. += image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "rcs_left", dir = cdir)
 		if(right_thrust)
-			add_overlay(image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "rcs_right", dir = cdir))
+			. += image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "rcs_right", dir = cdir)
 	if(back_thrust)
 		var/image/I = image(icon = 'yogstation/icons/obj/spacepods/2x2.dmi', icon_state = "thrust")
 		I.transform = matrix(1, 0, 0, 0, 1, -32)
-		add_overlay(I)
+		. += I
 
 /obj/spacepod/MouseDrop_T(atom/movable/A, mob/living/user)
 	if(user == pilot || (user in passengers) || construction_state != SPACEPOD_ARMOR_WELDED)

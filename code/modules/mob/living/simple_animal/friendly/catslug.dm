@@ -22,14 +22,14 @@
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	attacktext = "stabs"
-	var/obj/item/twohanded/spear/weapon
+	var/obj/item/melee/spear/weapon
 
 /mob/living/simple_animal/pet/catslug/UnarmedAttack(atom/A)
 	. = ..()
 	if(!isitem(A))
 		return
 	
-	if(!weapon && istype(A, /obj/item/twohanded/spear))
+	if(!weapon && istype(A, /obj/item/melee/spear))
 		visible_message(span_notice("[src] wields the [A]."), span_notice("You wield the [A]."))
 		weapon = A
 		weapon.forceMove(src)
@@ -40,7 +40,7 @@
 		sharpness = weapon.sharpness
 		attack_sound = weapon.hitsound
 		update_icons()
-	else if(!weapon && !istype(A, /obj/item/twohanded/spear))
+	else if(!weapon && !istype(A, /obj/item/melee/spear))
 		to_chat(src, span_warning("You do not know how to wield the [A]!"))
 
 /mob/living/simple_animal/pet/catslug/RangedAttack(atom/A, params)

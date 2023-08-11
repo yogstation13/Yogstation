@@ -113,6 +113,7 @@
 		if(1)
 			if(M.health >= 0)
 				if(ishuman(M))
+					M.adjust_status_effects_on_shake_up()
 					if(!(M.mobility_flags & MOBILITY_STAND))
 						user.visible_message(span_notice("[user] shakes [M] trying to get [M.p_them()] up!"), \
 										span_notice("You shake [M] trying to get [M.p_them()] up!"))
@@ -176,11 +177,8 @@
 	var/static/list/charge_machines = typecacheof(list(/obj/machinery/cell_charger, /obj/machinery/recharger, /obj/machinery/recharge_station, /obj/machinery/mech_bay_recharge_port))
 	var/static/list/charge_items = typecacheof(list(/obj/item/stock_parts/cell, /obj/item/gun/energy))
 
-/obj/item/borg/charger/Initialize(mapload)
+/obj/item/borg/charger/update_icon_state()
 	. = ..()
-
-/obj/item/borg/charger/update_icon()
-	..()
 	icon_state = "charger_[mode]"
 
 /obj/item/borg/charger/attack_self(mob/user)
@@ -189,7 +187,7 @@
 	else
 		mode = "draw"
 	to_chat(user, span_notice("You toggle [src] to \"[mode]\" mode."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/borg/charger/afterattack(obj/item/target, mob/living/silicon/robot/user, proximity_flag)
 	. = ..()
@@ -252,7 +250,7 @@
 					break
 				if(!user.cell.give(draw))
 					break
-				target.update_icon()
+				target.update_appearance(UPDATE_ICON)
 
 			to_chat(user, span_notice("You stop charging yourself."))
 
@@ -290,7 +288,7 @@
 				break
 			if(!cell.give(draw))
 				break
-			target.update_icon()
+			target.update_appearance(UPDATE_ICON)
 
 		to_chat(user, span_notice("You stop charging [target]."))
 
@@ -325,7 +323,7 @@
 
 	if(safety == TRUE)
 		user.visible_message("<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>", \
-			span_userdanger("The siren pierces your hearing and confuses you!"), \
+			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"), \
 			span_danger("The siren pierces your hearing!"))
 		for(var/mob/living/carbon/M in get_hearers_in_view(9, user))
 			if(M.get_ear_protection() == FALSE)
@@ -358,200 +356,166 @@
 		cooldown = world.time + 1 MINUTES
 		log_game("[key_name(user)] used an emagged Cyborg Harm Alarm in [AREACOORD(user)]")
 
-#define DISPENSE_LOLLIPOP_MODE 1
-#define THROW_LOLLIPOP_MODE 2
-#define THROW_GUMBALL_MODE 3
-#define DISPENSE_ICECREAM_MODE 4
+// TODO: Re-add vanilla ice cream once someone figures that out.
+/obj/item/borg_snack_dispenser
+	name = "\improper Automated Borg Snack Dispenser"
+	desc = "Has the ability to automatically print many different forms of snacks. Now Vuulek approved!"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "rsf"
+	// Contains the PATH of the selected snack
+	var/atom/selected_snack
+	// Whether snacks are launched when targeted at a distance
+	var/launch_mode = FALSE
+	/// A list of all valid snacks
+	var/list/valid_snacks = list(
+		/obj/item/reagent_containers/food/snacks/cookie,
+		/obj/item/reagent_containers/food/snacks/cookie/bacon,
+		/obj/item/reagent_containers/food/snacks/cookie/cloth,
+		/obj/item/reagent_containers/food/snacks/lollipop,
+		/obj/item/reagent_containers/food/snacks/gumball,
+		/obj/item/reagent_containers/food/snacks/icecream // Becomes vanilla icecream down the line.
+	)
+	// A list of surfaces that we are allowed to place things on.
+	var/list/allowed_surfaces = list(/obj/structure/table, /turf/open/floor)
+	// Minimum amount of charge a borg can have before snack printing is disallowed
+	var/borg_charge_cutoff = 200
+	// The amount of charge used per print of a snack
+	var/borg_charge_usage = 50
+	// How long until they can use it again? 0.3 is just about how fast mediborg can use their default lollipop launcher.
+	var/cooldown = 0.3 SECONDS
+	COOLDOWN_DECLARE(last_snack_disp)
 
-/obj/item/borg/lollipop
-	name = "treat fabricator"
-	desc = "Reward humans with various treats. Toggle in-module to switch between dispensing and high velocity ejection modes."
-	icon_state = "lollipop"
-	var/candy = 30
-	var/candymax = 30
-	var/charge_delay = 10
-	var/charging = FALSE
-	var/mode = DISPENSE_LOLLIPOP_MODE
-
-	var/firedelay = 0
-	var/hitspeed = 2
-	var/hitdamage = 0
-	var/emaggedhitdamage = 3
-
-/obj/item/borg/lollipop/clown
-	emaggedhitdamage = 0
-
-/obj/item/borg/lollipop/equipped()
+/obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
-	check_amount()
+	selected_snack = selected_snack || LAZYACCESS(valid_snacks, 1)
 
-/obj/item/borg/lollipop/dropped()
+/obj/item/borg_snack_dispenser/examine(mob/user)
 	. = ..()
-	check_amount()
+	. += "It is currently set to dispense [initial(selected_snack.name)]."
+	. += "You can AltClick it to [(launch_mode ? "disable" : "enable")] launch mode."
 
-/obj/item/borg/lollipop/proc/check_amount()	//Doesn't even use processing ticks.
-	if(charging)
-		return
-	if(candy < candymax)
-		addtimer(CALLBACK(src, PROC_REF(charge_lollipops)), charge_delay)
-		charging = TRUE
-
-/obj/item/borg/lollipop/proc/charge_lollipops()
-	candy++
-	charging = FALSE
-	check_amount()
-
-/obj/item/borg/lollipop/proc/dispense(atom/A, mob/user)
-	if(candy <= 0)
-		to_chat(user, span_warning("No treats left in storage!"))
-		return FALSE
-	var/turf/T = get_turf(A)
-	if(!T || !istype(T) || !isopenturf(T))
-		return FALSE
-	if(isobj(A))
-		var/obj/O = A
-		if(O.density)
-			return FALSE
-
-	var/obj/item/reagent_containers/food/snacks/L
-	switch(mode)
-		if(DISPENSE_LOLLIPOP_MODE)
-			L = new /obj/item/reagent_containers/food/snacks/lollipop(T)
-		if(DISPENSE_ICECREAM_MODE)
-			L = new /obj/item/reagent_containers/food/snacks/icecream(T)
-			var/obj/item/reagent_containers/food/snacks/icecream/I = L
-			I.add_ice_cream("vanilla")
-			I.desc = "Eat the ice cream."
-
-	var/into_hands = FALSE
-	if(ismob(A))
-		var/mob/M = A
-		into_hands = M.put_in_hands(L)
-
-	candy--
-	check_amount()
-
-	if(into_hands)
-		user.visible_message(span_notice("[user] dispenses a treat into the hands of [A]."), span_notice("You dispense a treat into the hands of [A]."), span_italics("You hear a click."))
+/obj/item/borg_snack_dispenser/attack_self(mob/user, modifiers)
+	var/list/choices = list()
+	for(var/atom/snack as anything in valid_snacks)
+		if(snack == /obj/item/reagent_containers/food/snacks/icecream)
+			choices["vanilla icecream"] = snack // Would be "ice cream cone" in the menu otherwise.
+		else
+			choices[initial(snack.name)] = snack
+	if(!length(choices))
+		to_chat(user, span_warning("No valid snacks in database."))
+	if(length(choices) == 1)
+		selected_snack = choices[choices[1]] // choices[1] gets the snack.name and then choices[choices[1]] gets the actual snack
 	else
-		user.visible_message(span_notice("[user] dispenses a treat."), span_notice("You dispense a treat."), span_italics("You hear a click."))
+		var/selected = tgui_input_list(user, "Select Snack", "Snack Selection", choices)
+		if(!selected)
+			return
+		selected_snack = choices[selected]
 
-	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-	return TRUE
+	var/snack_name = initial(selected_snack.name)
+	to_chat(user, span_notice("[src] is now dispensing [snack_name]."))
 
-/obj/item/borg/lollipop/proc/shootL(atom/target, mob/living/user, params)
-	if(candy <= 0)
-		to_chat(user, span_warning("Not enough lollipops left!"))
-		return FALSE
-	candy--
-	var/obj/item/ammo_casing/caseless/lollipop/A = new /obj/item/ammo_casing/caseless/lollipop(src)
-	A.BB.damage = hitdamage
-	if(hitdamage)
-		A.BB.nodamage = FALSE
-	A.BB.speed = 0.5
-	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-	A.fire_casing(target, user, params, 0, 0, null, 0, src)
-	user.visible_message(span_warning("[user] blasts a flying lollipop at [target]!"))
-	check_amount()
+/obj/item/borg_snack_dispenser/attack(mob/living/patron, mob/living/silicon/robot/user, params)
+	if(!COOLDOWN_FINISHED(src, last_snack_disp))
+		to_chat(user, span_warning("The snack dispenser is recharging!"))
+		return
+	if(!selected_snack)
+		to_chat(user, span_warning("No snack selected."))
+		return
+	var/empty_hand = LAZYACCESS(patron.get_empty_held_indexes(), 1)
+	if(!empty_hand)
+		to_chat(user, span_warning("[patron] has no free hands!"))
+		return
+	if(issilicon(patron))
+		return
+	if(!istype(user))
+		CRASH("[src] being used by non borg [user]")
+	if(user.cell.charge < borg_charge_cutoff)
+		to_chat(user, span_danger("Automated Safety Measures restrict the operation of [src] while under [borg_charge_cutoff]!"))
+		return
+	if(!user.cell.use(borg_charge_usage))
+		to_chat(user, span_danger("Failure printing snack: power failure!"))
+		return
+	COOLDOWN_START(src, last_snack_disp, cooldown)
+	var/atom/snack = new selected_snack(src)
+	patron.put_in_hand(snack, empty_hand)
+	user.do_item_attack_animation(patron, null, snack)
+	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 
-/obj/item/borg/lollipop/proc/shootG(atom/target, mob/living/user, params)	//Most certainly a good idea.
-	if(candy <= 0)
-		to_chat(user, span_warning("Not enough gumballs left!"))
-		return FALSE
-	candy--
-	var/obj/item/ammo_casing/caseless/gumball/A = new /obj/item/ammo_casing/caseless/gumball(src)
-	A.BB.damage = hitdamage
-	if(hitdamage)
-		A.BB.nodamage = FALSE
-	A.BB.speed = 0.5
-	A.BB.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
-	playsound(src.loc, 'sound/weapons/bulletflyby3.ogg', 50, 1)
-	A.fire_casing(target, user, params, 0, 0, null, 0, src)
-	user.visible_message(span_warning("[user] shoots a high-velocity gumball at [target]!"))
-	check_amount()
+	// Vanilla Icecream & Setting 'snack.name' Early
+	if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+		var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+		icecream.add_ice_cream("vanilla")
+		icecream.desc = "Eat the ice cream."
+		
+	to_chat(patron, span_notice("[user] dispenses a [snack.name] into your empty hand and you reflexively grasp it."))
+	to_chat(user, span_notice("You dispense a [snack.name] into the hand of [patron]."))
 
-/obj/item/borg/lollipop/afterattack(atom/target, mob/living/user, proximity, click_params)
-	. = ..()
-	check_amount()
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/R = user
-		if(!R.cell.use(12))
-			to_chat(user, span_warning("Not enough power."))
-			return FALSE
-		if(R.emagged)
-			hitdamage = emaggedhitdamage
-	switch(mode)
-		if(DISPENSE_LOLLIPOP_MODE, DISPENSE_ICECREAM_MODE)
-			if(!proximity)
-				return FALSE
-			dispense(target, user)
-		if(THROW_LOLLIPOP_MODE)
-			shootL(target, user, click_params)
-		if(THROW_GUMBALL_MODE)
-			shootG(target, user, click_params)
-	hitdamage = initial(hitdamage)
+/obj/item/borg_snack_dispenser/AltClick(mob/user)
+	launch_mode = !launch_mode
+	to_chat(user, span_notice("[src] is [(launch_mode ? "now" : "no longer")] launching snacks at a distance."))
 
-/obj/item/borg/lollipop/attack_self(mob/living/user)
-	switch(mode)
-		if(DISPENSE_LOLLIPOP_MODE)
-			mode = THROW_LOLLIPOP_MODE
-			to_chat(user, span_notice("Module is now throwing lollipops."))
-		if(THROW_LOLLIPOP_MODE)
-			mode = THROW_GUMBALL_MODE
-			to_chat(user, span_notice("Module is now blasting gumballs."))
-		if(THROW_GUMBALL_MODE)
-			mode = DISPENSE_ICECREAM_MODE
-			to_chat(user, span_notice("Module is now dispensing ice cream."))
-		if(DISPENSE_ICECREAM_MODE)
-			mode = DISPENSE_LOLLIPOP_MODE
-			to_chat(user, span_notice("Module is now dispensing lollipops."))
-	..()
+/obj/item/borg_snack_dispenser/afterattack(atom/target, mob/living/silicon/robot/user, proximity_flag, click_parameters)
+	if(!COOLDOWN_FINISHED(src, last_snack_disp))
+		to_chat(user, span_warning("The snack dispenser is recharging!"))
+		return
+	if(!selected_snack)
+		to_chat(user, span_warning("No snack selected."))
+		return
+	if(user.cell.charge < borg_charge_cutoff)
+		to_chat(user, span_danger("Automated Safety Measures restrict the operation of [src] while under [borg_charge_cutoff]!"))
+		return
+	if(!user.cell.use(borg_charge_usage))
+		to_chat(user, span_danger("Failure printing snack: power failure!"))
+		return
+	if(!istype(user))
+		CRASH("[src] being used by non borg [user]")
+	var/atom/movable/snack
+	if(launch_mode)
+		COOLDOWN_START(src, last_snack_disp, cooldown)
+		snack = new selected_snack(get_turf(src))
+		if(user.emagged)
+			snack.throwforce = 3
+			RegisterSignal(snack, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(post_throw))
+		snack.throw_at(target, 7, 2, user, TRUE, FALSE)
+		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+			var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+			icecream.add_ice_cream("vanilla")
+			icecream.desc = "Eat the ice cream."
+		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
+	else if(user.Adjacent(target) && is_allowed(target, user))
+		COOLDOWN_START(src, last_snack_disp, cooldown)
+		snack = new selected_snack(get_turf(target))
+		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+			var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+			icecream.add_ice_cream("vanilla")
+			icecream.desc = "Eat the ice cream."
+		user.visible_message(span_notice("[user] dispenses a [snack.name]."))
 
-#undef DISPENSE_LOLLIPOP_MODE
-#undef THROW_LOLLIPOP_MODE
-#undef THROW_GUMBALL_MODE
-#undef DISPENSE_ICECREAM_MODE
+	if(snack && user.emagged && istype(snack, /obj/item/reagent_containers/food/snacks/cookie))
+		var/obj/item/reagent_containers/food/snacks/cookie/cookie = snack
+		cookie.list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 
-/obj/item/ammo_casing/caseless/gumball
-	name = "Gumball"
-	desc = "Why are you seeing this?!"
-	projectile_type = /obj/item/projectile/bullet/reusable/gumball
-	click_cooldown_override = 2
+/obj/item/borg_snack_dispenser/proc/post_throw(atom/movable/thrown_snack)
+	SIGNAL_HANDLER
+	thrown_snack.throwforce = 0
 
-/obj/item/projectile/bullet/reusable/gumball
-	name = "gumball"
-	desc = "Oh noes! A fast-moving gumball!"
-	icon_state = "gumball"
-	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
-	nodamage = TRUE
+/obj/item/borg_snack_dispenser/proc/is_allowed(atom/to_check, mob/user)
+	for(var/sort in allowed_surfaces)
+		if(istype(to_check, sort))
+			return TRUE
+	return FALSE
 
-/obj/item/projectile/bullet/reusable/gumball/Initialize(mapload)
-	. = ..()
-	ammo_type = new ammo_type(src)
-	color = ammo_type.color
+/obj/item/borg_snack_dispenser/peacekeeper
+	name = "\improper Peacekeeper Borg Snack Dispenser"
+	desc = "A dispenser that dispenses only cookies!"
+	valid_snacks = list(/obj/item/reagent_containers/food/snacks/cookie)
 
-/obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
-	name = "Lollipop"
-	desc = "Why are you seeing this?!"
-	projectile_type = /obj/item/projectile/bullet/reusable/lollipop
-	click_cooldown_override = 2
-
-/obj/item/projectile/bullet/reusable/lollipop
-	name = "lollipop"
-	desc = "Oh noes! A fast-moving lollipop!"
-	icon_state = "lollipop_1"
-	ammo_type = /obj/item/reagent_containers/food/snacks/lollipop/cyborg
-	var/color2 = rgb(0, 0, 0)
-	nodamage = TRUE
-
-/obj/item/projectile/bullet/reusable/lollipop/Initialize(mapload)
-	. = ..()
-	var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(src)
-	ammo_type = S
-	color2 = S.headcolor
-	var/mutable_appearance/head = mutable_appearance('icons/obj/projectiles.dmi', "lollipop_2")
-	head.color = color2
-	add_overlay(head)
+/obj/item/borg_snack_dispenser/medical
+	name = "\improper Treat Borg Snack Dispenser" // Not calling this "Medical Borg Snack Dispenser" since Service & Clown Cyborgs use this too.
+	desc = "A dispenser that dispenses treats such as lollipops and gumballs!"
+	valid_snacks = list(/obj/item/reagent_containers/food/snacks/lollipop, /obj/item/reagent_containers/food/snacks/gumball, /obj/item/reagent_containers/food/snacks/icecream)
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
@@ -607,10 +571,11 @@
 			to_chat(user, span_warning("[src]'s safety cutoff prevents you from activating it due to living beings being ontop of you!"))
 	else
 		deactivate_field()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	to_chat(user, span_boldnotice("You [active? "activate":"deactivate"] [src]."))
 
-/obj/item/borg/projectile_dampen/update_icon()
+/obj/item/borg/projectile_dampen/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][active]"
 
 /obj/item/borg/projectile_dampen/proc/activate_field()
@@ -756,3 +721,139 @@
 /obj/item/borg/sight/hud/sec/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/security(src)
+
+/**********************************************************************
+						Grippers
+***********************************************************************/
+/obj/item/gripper
+	name = "cyborg gripper"
+	desc = "A simple grasping tool for interacting with various items."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gripper"
+	item_flags = NOBLUDGEON
+	/// Whitelist of items types that can be held.
+	var/list/can_hold = list()
+	/// Blacklist of item subtypes that should not be held.
+	var/list/cannot_hold = list()
+	/// Item currently being held if any.
+	var/obj/item/wrapped = null
+	var/mutable_appearance/appearance_wrapped = null
+
+/// Drops held item if possible.
+/obj/item/gripper/proc/drop_held(silent = FALSE)
+	if(wrapped)
+		wrapped.forceMove(get_turf(wrapped))
+		if(!silent)
+			to_chat(usr, span_notice("You drop the [wrapped]."))
+		wrapped = null
+		update_appearance(UPDATE_ICON)
+		return TRUE
+	return FALSE
+
+/// Pick up item.
+/obj/item/gripper/proc/take_item(obj/item/item, silent = FALSE)
+	if(!silent)
+		to_chat(usr, span_notice("You collect \the [item]."))
+	item.loc = src
+	wrapped = item
+	update_appearance(UPDATE_ICON)
+
+/obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
+	var/proximity = get_dist(user, target)
+	if(proximity > 1)
+		return
+	if(!wrapped)
+		for(var/obj/item/thing in src.contents)
+			wrapped = thing
+			break
+	if(wrapped) //Already have an item.
+		var/obj/item/item = wrapped
+		drop_held(TRUE)
+		//Temporary put wrapped into user so target's attackby() checks pass.
+		item.loc = user
+		//Pass the attack on to the target. This might delete/relocate wrapped.
+		var/resolved = target.attackby(item, user, params)
+		if(!resolved && item && target)
+			item.afterattack(target, user, proximity, params)
+		//If wrapped was neither deleted nor put into target, put it back into the gripper.
+		if(item && user && (item.loc == user))
+			take_item(item, TRUE)
+			return
+		else
+			item = null
+		return
+	else if(isitem(target))
+		var/obj/item/I = target
+		if(locate(target) in user.module.modules)//This prevents grabbing your own modules and grabbing similar items (if this is ever the case).
+			to_chat(user, span_danger("Your gripper cannot grab something that you already have."))
+			return
+		var/grab = 0
+		for(var/typepath in can_hold)
+			if(istype(I,typepath))
+				grab = 1
+				for(var/badpath in cannot_hold)
+					if(istype(I,badpath) && user.emagged)
+						grab = 0
+						continue
+		//Allowed to grab.
+		if(grab)
+			take_item(I)
+			return
+		to_chat(user, span_danger("Your gripper cannot hold \the [target]."))
+
+/obj/item/gripper/attack_self(mob/user)
+	if(wrapped)
+		wrapped.attack_self(user)
+		return
+	. = ..()
+
+/obj/item/gripper/AltClick(mob/user)
+	if(wrapped)
+		wrapped.AltClick(user)
+		return
+	. = ..()
+
+/obj/item/gripper/CtrlClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlClick(user)
+		return
+	. = ..()
+
+/obj/item/gripper/CtrlShiftClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlShiftClick(user)
+		return
+	. = ..()
+
+/// Resets overlays and adds a overlay if there is a held item.
+/obj/item/gripper/update_overlays()
+	. = ..()
+	if(wrapped)
+		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
+		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
+		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
+		. += wrapped_appearance
+
+// Make it clear what we can do with it.
+/obj/item/gripper/examine(mob/user)
+	. = ..()
+	if(wrapped)
+		. += span_notice("It is holding [icon2html(wrapped, user)] [wrapped]." )
+		. += span_notice("Attempting to drop the gripper will only drop [wrapped].")
+
+// Drop the item if the gripper is unequipped.
+/obj/item/gripper/cyborg_unequip(mob/user)
+	. = ..()
+	if(wrapped)
+		drop_held()
+
+/obj/item/gripper/engineering
+	name = "engineering gripper"
+	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
+	can_hold = list(
+		/obj/item/circuitboard,
+		/obj/item/electronics,
+		/obj/item/wallframe,
+		/obj/item/stock_parts,
+		/obj/item/tank/internals
+	)

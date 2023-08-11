@@ -35,7 +35,7 @@
 	name = "lizard tail kebab"
 	desc = "Severed lizard tail on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("meat" = 8, "metal" = 4, "scales" = 1)
+	tastes = list("meat" = 3, "metal" = 1, "scales" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/kebab/rat
@@ -76,7 +76,7 @@
 	icon_state = "spiderleg"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin = 2)
 	filling_color = "#000000"
-	tastes = list("cobwebs" = 1)
+	tastes = list("cobwebs" = 1, "meat" = 1)
 	foodtype = MEAT | TOXIC
 
 /obj/item/reagent_containers/food/snacks/spiderleg/MakeGrillable()
@@ -105,6 +105,7 @@
 	desc = "A great meal all round. Not a cord of wood. Kinda raw"
 	icon_state = "raw_meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#DD8176"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
@@ -157,16 +158,18 @@
 	desc = "A great meal all round."
 	icon_state = "meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
-	filling_color = "#800000"
+	filling_color = "#8C4E2E"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meatball/human
 	name = "strange meatball"
+	tastes = list("strange meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/meatball/corgi
 	name = "corgi meatball"
+	tastes = list("corgi meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/meatball/bear
 	name = "bear meatball"
@@ -180,12 +183,14 @@
 	name = "chicken meatball"
 	tastes = list("chicken" = 1)
 	icon_state = "chicken_meatball"
+	filling_color = "#F9BC4C"
 
 /obj/item/reagent_containers/food/snacks/raw_patty
 	name = "raw patty"
 	desc = "I'm.....NOT REAAADDYY."
 	icon_state = "raw_patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#DD8176"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
@@ -196,10 +201,12 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/human
 	name = "strange raw patty"
+	tastes = list("strange meat" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/human
 
 /obj/item/reagent_containers/food/snacks/raw_patty/corgi
 	name = "raw corgi patty"
+	tastes = list("corgi meat" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/corgi
 
 /obj/item/reagent_containers/food/snacks/raw_patty/bear
@@ -209,7 +216,7 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/xeno
 	name = "raw xenomorph patty"
-	tastes = list("meat" = 1,"acid" = 1)
+	tastes = list("meat" = 1, "acid" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/xeno
 
 /obj/item/reagent_containers/food/snacks/raw_patty/chicken
@@ -222,6 +229,7 @@
 	desc = "The nanotrasen patty is the patty for you and me!"
 	icon_state = "patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#8C4E2E"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	w_class = WEIGHT_CLASS_SMALL
@@ -232,9 +240,11 @@
 
 /obj/item/reagent_containers/food/snacks/patty/human
 	name = "strange patty"
+	tastes = list("strange meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/patty/corgi
 	name = "corgi patty"
+	tastes = list("corgi meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/patty/bear
 	name = "bear patty"
@@ -248,6 +258,7 @@
 	name = "chicken patty"
 	tastes = list("chicken" = 1)
 	icon_state = "chicken_patty"
+	filling_color = "#F9BC4C"
 
 /obj/item/reagent_containers/food/snacks/raw_sausage
 	name = "raw sausage"
@@ -330,7 +341,7 @@
 	bitesize = 4
 	filling_color = "#FFA07A"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
-	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
+	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "tortilla" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/chipsandsalsa
@@ -362,12 +373,13 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/capsaicin = 2)
 	filling_color = "#000000"
-	tastes = list("hot peppers" = 1, "cobwebs" = 1)
+	tastes = list("meat" = 1, "cobwebs" = 1)
 	foodtype = MEAT
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
+	icon_state = "nugget_lump" // Not an accurate icon_state, but needed for crafting menu.
 	filling_color = "#B22222"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)

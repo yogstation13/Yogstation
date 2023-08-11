@@ -157,16 +157,13 @@
 
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter()
-	blood_display.hud = bloodsucker_hud
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(bloodsucker_hud)
 	bloodsucker_hud.infodisplay += blood_display
 
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter()
-	vamprank_display.hud = bloodsucker_hud
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(bloodsucker_hud)
 	bloodsucker_hud.infodisplay += vamprank_display
 
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter()
-	sunlight_display.hud = bloodsucker_hud
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(bloodsucker_hud)
 	bloodsucker_hud.infodisplay += sunlight_display
 
 	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)
@@ -565,10 +562,10 @@
 		newheart.beating = initial(newheart.beating)
 	var/obj/item/organ/eyes/user_eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	if(user_eyes)
-		user_eyes.flash_protect += 1
-		user_eyes.sight_flags = 0
-		user_eyes.see_in_dark = 2
-		user_eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+		user_eyes.flash_protect = initial(user_eyes.flash_protect)
+		user_eyes.sight_flags = initial(user_eyes.sight_flags)
+		user_eyes.see_in_dark = initial(user_eyes.see_in_dark)
+		user_eyes.lighting_alpha = initial(user_eyes.lighting_alpha)
 	user.update_sight()
 
 /datum/antagonist/bloodsucker/proc/give_masquerade_infraction()

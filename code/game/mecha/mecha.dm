@@ -135,6 +135,7 @@
 	var/canstrafe = TRUE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
+	var/ejection_distance = 0 //violently ejects the pilot when destroyed
 
 	var/occupant_sight_flags = 0 //sight flags to give to the occupant (e.g. mech mining scanner gives meson-like vision)
 	var/mouse_pointer
@@ -169,17 +170,18 @@
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
 
-/obj/mecha/update_icon()
+/obj/mecha/update_icon_state()
+	. = ..()
 	if (silicon_pilot && silicon_icon_state)
 		icon_state = silicon_icon_state
-	. = ..()
 
 /obj/mecha/get_cell()
 	return cell
 
 /obj/mecha/Destroy()
-	if(occupant)
-		occupant.SetSleeping(destruction_sleep_duration)
+	var/mob/living/carbon/C = occupant
+	if(C && !ejection_distance)
+		C.SetSleeping(destruction_sleep_duration)
 	go_out()
 	var/mob/living/silicon/ai/AI
 	for(var/mob/M in src) //Let's just be ultra sure
@@ -188,6 +190,9 @@
 			AI = M //AIs are loaded into the mech computer itself. When the mech dies, so does the AI. They can be recovered with an AI card from the wreck.
 		else
 			M.forceMove(loc)
+	if(C && ejection_distance)
+		var/turf/target = get_edge_target_turf(C, dir)
+		C.throw_at(target, 10, 1)
 	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 		E.detach(loc)
 		qdel(E)
@@ -236,15 +241,16 @@
 	capacitor = locate(/obj/item/stock_parts/capacitor) in contents
 	update_part_values()
 
-/obj/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/obj/mecha/proc/update_part_values()
 	if(scanmod)
-		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
+		// Starting at 20 energy per step (at tier 0), each tier reduces this value down by 5 until it reaches 0.
+		normal_step_energy_drain = max(20 - (5 * scanmod.rating), 0)
 		if(!leg_overload_mode)
 			step_energy_drain = normal_step_energy_drain
 	else
-		normal_step_energy_drain = 500
+		normal_step_energy_drain = 500 // If they somehow move, a massive energy drain per step.
 		step_energy_drain = normal_step_energy_drain
-
 
 ////////////////////////
 ////// Helpers /////////
@@ -909,7 +915,7 @@
 	occupant = AI
 	silicon_pilot = TRUE
 	icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
@@ -1092,7 +1098,7 @@
 	brainmob.update_mobility()
 	brainmob.update_mouse_pointer()
 	icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	setDir(dir_in)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
@@ -1127,7 +1133,6 @@
 		update_part_values()
 		return
 	if(capacitor && capacitor == M)
-		armor = armor.modifyRating(energy = (capacitor.rating * -5)) //lose the energy armor if we lose this cap
 		capacitor = null
 		update_part_values()
 		return
@@ -1185,7 +1190,7 @@
 				L.forceMove(mmi)
 				L.reset_perspective()
 			mmi.mecha = null
-			mmi.update_icon()
+			mmi.update_appearance(UPDATE_ICON)
 			L.mobility_flags = NONE
 		icon_state = initial(icon_state)+"-open"
 		setDir(dir_in)
@@ -1290,7 +1295,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					playsound(get_turf(user),A.load_audio,50,1)
 					to_chat(user, span_notice("You add [ammo_needed] [A.round_term][ammo_needed > 1?"s":""] to the [gun.name]"))
 					A.rounds = A.rounds - ammo_needed
-					A.update_name()
+					A.update_appearance(UPDATE_NAME)
 					return TRUE
 
 				else
@@ -1301,7 +1306,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					playsound(get_turf(user),A.load_audio,50,1)
 					to_chat(user, span_notice("You add [A.rounds] [A.round_term][A.rounds > 1?"s":""] to the [gun.name]"))
 					A.rounds = 0
-					A.update_name()
+					A.update_appearance(UPDATE_NAME)
 					return TRUE
 	if(!fail_chat_override)
 		if(found_gun)

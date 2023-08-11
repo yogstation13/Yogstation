@@ -66,7 +66,7 @@
 		to_chat(user,span_notice("Your servos whirr as the cutting head reconfigures into a prying head."))
 	else
 		to_chat(user, span_notice("You attach the pry jaws to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/jawsoflife/proc/transform_cutters(mob/user)
 	attack_verb = list("pinched", "nipped")
@@ -80,7 +80,11 @@
 		to_chat(user,span_notice("Your servos whirr as the prying head reconfigures into a cutting head."))
 	else
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
+
+/obj/item/jawsoflife/cyborg
+	name = "cyborg jaws of life"
+	toolspeed = 0.5 // Same toolspeed as cyborg screwdriver/wrench.
 
 //better handdrill
 /obj/item/handdrill
@@ -138,7 +142,7 @@
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into bolt mode."))
 	else
 		to_chat(user, span_notice("You attach the bolt driver bit to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/handdrill/proc/transform_screwdriver(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
@@ -150,7 +154,11 @@
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into screw mode."))
 	else
 		to_chat(user, span_notice("You attach the screw driver bit to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
+
+/obj/item/handdrill/cyborg
+	name = "cyborg hand drill"
+	toolspeed = 0.5 // Same toolspeed as cyborg crowbar/wirecutters.
 
 /obj/item/jawsoflife/jimmy
 	name = "airlock jimmy"

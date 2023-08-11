@@ -89,6 +89,13 @@
 		my_atom.reagents = null
 	my_atom = null
 
+/datum/reagents/proc/get_total_accelerant_quality()
+	var/quality = 0
+	for(var/datum/reagent/reagent in reagent_list)
+		if(istype(reagent))
+			quality += reagent.volume * reagent.accelerant_quality
+	return quality
+
 /**
   * Used in attack logs for reagents in pills and such
   */
@@ -193,7 +200,7 @@
   * * no_react - passed through to [/datum/reagents/proc/add_reagent]
   * * mob/transfered_by - used for logging
   * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
-  * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
+  * * methods - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
   * * show_message - passed through to [/datum/reagents/proc/react_single]
   * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
   */
@@ -454,6 +461,9 @@
 				var/is_cold_recipe = C.is_cold_recipe
 				var/meets_temp_requirement = 0
 
+				if(has_reagent(/datum/reagent/hypernoblium) && C.noblium_suppression)
+					continue
+
 				for(var/B in cached_required_reagents)
 					if(!has_reagent(B, cached_required_reagents[B]))
 						break
@@ -591,20 +601,7 @@
 	return 0
 
 /datum/reagents/proc/reaction_check(mob/living/M, datum/reagent/R)
-	var/can_process = FALSE
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		//Check if this mob's species is set and can process this type of reagent
-		if(H.dna && H.dna.species.reagent_tag)
-			if((R.process_flags & SYNTHETIC) && (H.dna.species.reagent_tag & PROCESS_SYNTHETIC))		//SYNTHETIC-oriented reagents require PROCESS_SYNTHETIC
-				can_process = TRUE
-			if((R.process_flags & ORGANIC) && (H.dna.species.reagent_tag & PROCESS_ORGANIC))		//ORGANIC-oriented reagents require PROCESS_ORGANIC
-				can_process = TRUE
-	//We'll assume that non-human mobs lack the ability to process synthetic-oriented reagents (adjust this if we need to change that assumption)
-	else
-		if(R.process_flags != SYNTHETIC)
-			can_process = TRUE
-	return can_process
+	return (R.process_flags & M.get_process_flags())
 
 /**
   * Applies the relevant reaction_ proc for every reagent in this holder
@@ -612,11 +609,11 @@
   * * [/datum/reagent/proc/reaction_turf]
   * * [/datum/reagent/proc/reaction_obj]
   */
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, methods = TOUCH, volume_modifier = 1, show_message = 1)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
-		if(method == INGEST)
+		if(methods & INGEST)
 			var/mob/living/L = A
 			L.taste(src)
 	else if(isturf(A))
@@ -634,10 +631,10 @@
 				if(!check)
 					continue
 				var/permeability = 1
-				if(method == TOUCH || method == VAPOR)
+				if(methods & (TOUCH|VAPOR))
 					var/mob/living/L = A
 					permeability = L.get_permeability()
-				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, permeability)
+				R.reaction_mob(A, methods, R.volume * volume_modifier, show_message, permeability)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")

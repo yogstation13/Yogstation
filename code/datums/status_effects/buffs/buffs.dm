@@ -464,6 +464,8 @@
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
 			if(ispath(rod_type, /obj/item/rod_of_asclepius/white)) //Used for adjusting the Holy Light Sect Favor from white rod healing.
+				if(L.stat == DEAD)
+					continue
 				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
 				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
 			if(L.health < L.maxHealth)
@@ -515,8 +517,8 @@
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
-	owner.adjustBruteLoss(-25)
-	owner.adjustFireLoss(-25)
+	owner.adjustBruteLoss(-25, TRUE, FALSE, BODYPART_ANY)
+	owner.adjustFireLoss(-25, TRUE, FALSE, BODYPART_ANY)
 	owner.remove_CC()
 	owner.bodytemperature = BODYTEMP_NORMAL
 	return TRUE
@@ -663,3 +665,29 @@
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
+	
+/datum/status_effect/diamondskin
+	id = "diamondskin"
+	duration = 20 SECONDS
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/diamondskin
+
+/atom/movable/screen/alert/status_effect/diamondskin
+	name = "Diamond skin"
+	desc = "Your skin is infused with diamonds, making you more resistant to heat and pressure."
+	icon_state = "shadow_mend" //i'm a coder, not a spriter
+
+/datum/status_effect/diamondskin/on_apply()
+	. = ..()
+	if(.)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.pressure_mod *= 0.5
+			H.physiology.heat_mod *= 0.5
+
+/datum/status_effect/diamondskin/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.pressure_mod /= 0.5
+		H.physiology.heat_mod /= 0.5

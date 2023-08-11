@@ -42,9 +42,10 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	. = ..()
 
 	recipes = GLOB.rod_recipes
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/stack/rods/update_icon()
+/obj/item/stack/rods/update_icon_state()
+	. = ..()
 	var/amount = get_amount()
 	if((amount <= 5) && (amount > 0))
 		icon_state = "rods-[amount]"
@@ -80,7 +81,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 				A.initialize_custom_food(src, S, user)
 			else
 				A.initialize_custom_food(src, S, user, TRUE)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -89,8 +90,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	is_cyborg = 1
 	cost = 250
 
-/obj/item/stack/rods/cyborg/update_icon()
-	return
+/obj/item/stack/rods/cyborg/Initialize(mapload, new_amount, merge)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/stack/rods/ten
 	amount = 10

@@ -11,14 +11,14 @@
 
 /obj/item/organ/cyberimp/leg/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	
+
 	var/obj/item/bodypart/L = owner.get_bodypart(zone)
 	if(!L)	//how did you get an implant in a limb you don't have?
 		return
@@ -35,7 +35,7 @@
 	addtimer(CALLBACK(src, PROC_REF(reenableleg)), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	if(severity & EMP_HEAVY && prob(5) && !syndicate_implant)	//put probabilities into a calculator before you try fucking with this
-		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly, breaking it!"))	
+		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly, breaking it!"))
 		var/datum/wound/blunt/severe/breakdown = new
 		breakdown.apply_wound(L)
 		L.receive_damage(20)
@@ -49,7 +49,7 @@
 		return
 
 	L.set_disabled(FALSE)
-	
+
 /obj/item/organ/cyberimp/leg/proc/SetSlotFromZone()
 	switch(zone)
 		if(BODY_ZONE_L_LEG)
@@ -59,7 +59,8 @@
 		else
 			CRASH("Invalid zone for [type]")
 
-/obj/item/organ/cyberimp/leg/update_icon()
+/obj/item/organ/cyberimp/leg/update_icon(updates=ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_LEG)
 		transform = null
 	else // Mirroring the icon
@@ -81,7 +82,7 @@
 		zone = BODY_ZONE_R_LEG
 	SetSlotFromZone()
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
@@ -95,11 +96,11 @@
 	. = ..()
 	if(HasBoth())
 		AddEffect()
-	
+
 /obj/item/organ/cyberimp/leg/Remove(mob/living/carbon/M, special)
 	RemoveEffect()
 	. = ..()
-	
+
 /obj/item/organ/cyberimp/leg/proc/HasBoth()
 	if(owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG) && owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG))
 		var/obj/item/organ/cyberimp/leg/left = owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG)
@@ -134,7 +135,7 @@
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
 	name = "advanced antislip implant"
-	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	syndicate_implant = TRUE
 	implant_type = "noslipall"
 
@@ -167,7 +168,7 @@
 	owner.add_movespeed_modifier("Clownshoesimplant", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	waddle = owner.AddComponent(/datum/component/waddling)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(SqueakyStep))
-	
+
 /obj/item/organ/cyberimp/leg/clownshoes/RemoveEffect()
 	owner.remove_movespeed_modifier("Clownshoesimplant")
 	QDEL_NULL(waddle)
@@ -183,7 +184,7 @@
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
 	implant_type = "jumpboots"
 	var/datum/action/cooldown/boost/implant_ability
-	
+
 /obj/item/organ/cyberimp/leg/jumpboots/l
 	zone = BODY_ZONE_L_LEG
 
@@ -216,17 +217,22 @@
 		I.actions += src
 
 /datum/action/cooldown/boost/Activate()
-	var/mob/living/carbon/user = owner
 	var/atom/target = get_edge_target_turf(owner, owner.dir) //gets the user's direction
 
-	if(!owner.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+	if(!owner.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = CALLBACK(src, PROC_REF(unstun), owner)))
 		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
 		return
 
-	user.Immobilize(0.1 SECONDS)
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, REF(src))
+
+	addtimer(CALLBACK(src, PROC_REF(unstun), owner), 1 SECONDS) // in case the throw callback fails/lags for whatever reason
+
 	playsound(owner, 'sound/effects/stealthoff.ogg', 50, TRUE, 1)
 	owner.visible_message(span_warning("[owner] dashes forward into the air!"))
 	StartCooldown()
+
+/datum/action/cooldown/boost/proc/unstun(mob/living/stunned)
+	REMOVE_TRAIT(stunned, TRAIT_IMMOBILIZED, REF(src))
 
 //------------wheelies implant
 /obj/item/organ/cyberimp/leg/wheelies
@@ -234,7 +240,7 @@
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
 	implant_type = "wheelies"
 	var/datum/action/innate/wheelies/implant_ability
-	
+
 /obj/item/organ/cyberimp/leg/wheelies/l
 	zone = BODY_ZONE_L_LEG
 
@@ -287,7 +293,7 @@
 	implant_type = "airshoes"
 	var/datum/action/cooldown/boost/implant_dash
 	var/datum/action/innate/airshoes/implant_scooter
-	
+
 /obj/item/organ/cyberimp/leg/airshoes/l
 	zone = BODY_ZONE_L_LEG
 
@@ -353,7 +359,7 @@
 /obj/item/organ/cyberimp/leg/magboot/AddEffect()
 	implant_ability = new
 	implant_ability.Grant(owner)
-	
+
 /obj/item/organ/cyberimp/leg/magboot/RemoveEffect()
 	if(implant_ability)
 		implant_ability.Remove(owner)
@@ -393,7 +399,7 @@
 	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	owner.update_gravity(owner.has_gravity())
 
-/datum/action/innate/magboots/proc/UpdateSpeed()	
+/datum/action/innate/magboots/proc/UpdateSpeed()
 	if(lockdown && !HAS_TRAIT(owner, TRAIT_IGNORESLOWDOWN) && owner.has_gravity())
 		owner.add_movespeed_modifier("Magbootimplant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(owner.has_movespeed_modifier("Magbootimplant"))
