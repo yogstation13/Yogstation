@@ -456,17 +456,22 @@
 /obj/item/storage/pill_bottle/dice,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"amg" = (
+/obj/docking_port/stationary{
+	dir = 1;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "ams" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/carpet,
 /area/library)
-"amw" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/science/explab)
 "amP" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -4285,6 +4290,10 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"cid" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/science/explab)
 "cif" = (
 /obj/structure/grille,
 /turf/open/space/basic,
@@ -4627,17 +4636,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"csu" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod three loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "csM" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -9441,6 +9439,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"eOK" = (
+/obj/machinery/button/door{
+	id = "podbay";
+	name = "Pod Door Control";
+	pixel_x = -26;
+	pixel_y = 4
+	},
+/turf/open/floor/engine/airless,
+/area/space)
 "eOL" = (
 /obj/item/radio/intercom{
 	pixel_y = 24
@@ -9677,6 +9684,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"eVj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "eVt" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio2";
@@ -15153,6 +15166,17 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
+"hUX" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "hVl" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -18550,10 +18574,6 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jFP" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/engine,
-/area/science/explab)
 "jFS" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 28
@@ -19323,17 +19343,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
-"jZw" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod one loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "jZF" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -24880,6 +24889,17 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
+"mSe" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "mSs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -28877,6 +28897,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+"oOF" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "oOW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -33736,17 +33767,6 @@
 "rwW" = (
 /turf/closed/wall/r_wall,
 /area/library)
-"rxR" = (
-/obj/docking_port/stationary{
-	dir = 1;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod four loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "ryw" = (
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -36232,6 +36252,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"sNE" = (
+/obj/structure/spacepoddoor{
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = "podbay"
+	},
+/turf/open/floor/engine/airless,
+/area/space)
 "sNT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36758,17 +36787,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
-"teh" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod two loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "teY" = (
 /turf/closed/wall/r_wall,
 /area/janitor)
@@ -43111,12 +43129,6 @@
 /obj/item/toy/figure/curator,
 /turf/open/floor/engine/cult,
 /area/library)
-"wed" = (
-/obj/structure/spacepoddoor{
-	dir = 4
-	},
-/turf/open/floor/engine/airless,
-/area/space)
 "wee" = (
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
@@ -71865,7 +71877,7 @@ oWP
 ylr
 ylr
 ylr
-rxR
+amg
 ecD
 uKw
 riB
@@ -74177,8 +74189,8 @@ lXT
 pwM
 syH
 cLs
-amw
-jFP
+eVj
+cid
 pmZ
 mZK
 wRR
@@ -79541,9 +79553,9 @@ ylr
 ylr
 ylr
 aOs
-wed
+sNE
 jkn
-jkn
+eOK
 jkn
 jkn
 whT
@@ -79798,7 +79810,7 @@ ylr
 ylr
 ylr
 aOs
-wed
+sNE
 jkn
 jkn
 jkn
@@ -80055,7 +80067,7 @@ ylr
 ylr
 ylr
 aOs
-wed
+sNE
 jkn
 jkn
 jkn
@@ -80312,7 +80324,7 @@ ylr
 ylr
 ylr
 aOs
-wed
+sNE
 dEI
 jkn
 jkn
@@ -87889,7 +87901,7 @@ uJr
 gtg
 vtx
 nOg
-teh
+oOF
 ylr
 ylr
 ylr
@@ -98328,7 +98340,7 @@ ylr
 ylr
 ylr
 ylr
-jZw
+hUX
 ylr
 ylr
 ylr
@@ -101972,7 +101984,7 @@ mJi
 peP
 aSb
 ylr
-csu
+mSe
 ylr
 ylr
 ylr
