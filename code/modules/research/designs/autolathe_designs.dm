@@ -3,7 +3,7 @@
 ///////////////////////////////////
 
 /datum/design/airlock_scanner
-	name = "Airlock scanner"
+	name = "Airlock Scanner"
 	id = "airlock_scanner"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 50)

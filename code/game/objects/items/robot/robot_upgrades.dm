@@ -516,7 +516,6 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = /obj/item/robot_module/medical
-	var/list/additional_reagents = list()
 	module_flags = BORG_MODULE_MEDICAL
 
 /obj/item/borg/upgrade/hypospray/action(mob/living/silicon/robot/R, user = usr)
@@ -535,6 +534,33 @@
 	name = "medical cyborg expanded hypospray"
 	desc = "An upgrade to the Medical module's hypospray, allowing it \
 		to treat a wider range of conditions and problems."
+
+/obj/item/borg/upgrade/condiment_synthesizer
+	name = "service cyborg condiment synthesiser"
+	desc = "An upgrade to the service model cyborg, allowing it to produce solid condiments."
+	icon_state = "cyborg_upgrade3"
+	require_module = 1
+	module_type = /obj/item/robot_module/butler
+	module_flags = BORG_MODEL_SERVICE
+
+/obj/item/borg/upgrade/condiment_synthesizer/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/reagent_containers/borghypo/condiment_synthesizer/cynthesizer = locate() in R.module.modules
+		if(cynthesizer)
+			R.balloon_alert_to_viewers("already installed!")
+			return FALSE
+		cynthesizer = new(R.module)
+		R.module.basic_modules += cynthesizer
+		R.module.add_module(cynthesizer, FALSE, TRUE)
+
+/obj/item/borg/upgrade/condiment_synthesizer/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return FALSE
+	var/obj/item/reagent_containers/borghypo/condiment_synthesizer/cynthesizer = locate() in R.module.modules
+	if (cynthesizer)
+		R.module.remove_module(cynthesizer, TRUE)
 
 /obj/item/borg/upgrade/piercing_hypospray
 	name = "cyborg piercing hypospray"
@@ -906,7 +932,7 @@
 		R.module.remove_module(BR, TRUE)
 
 /obj/item/borg/upgrade/snack_dispenser
-	name = "Cyborg Upgrade (Snack Dispenser)"
+	name = "snack dispenser upgrade"
 	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, service, and clown cyborgs."
 
 /obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
@@ -951,7 +977,7 @@
 
 /obj/item/borg/upgrade/engi_advancedtools
 	name = "engineering cyborg advanced tool kit"
-	desc = "An upgrade for engineering cyborgs which replaces their basic tools with an advanced verison of them."
+	desc = "An upgrade for engineering cyborgs which replaces their basic tools with an advanced version of them."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = /obj/item/robot_module/engineering
@@ -962,22 +988,22 @@
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/screwdriver/cyborg/SC in R.module.modules) 
+	for(var/obj/item/screwdriver/cyborg/SC in R.module.modules)
 		R.module.remove_module(SC, TRUE)
 
-	for(var/obj/item/wrench/cyborg/W in R.module.modules) 
+	for(var/obj/item/wrench/cyborg/W in R.module.modules)
 		R.module.remove_module(W, TRUE)
 
-	for(var/obj/item/crowbar/cyborg/CB in R.module.modules) 
+	for(var/obj/item/crowbar/cyborg/CB in R.module.modules)
 		R.module.remove_module(CB, TRUE)
 
-	for(var/obj/item/wirecutters/cyborg/WC in R.module.modules) 
+	for(var/obj/item/wirecutters/cyborg/WC in R.module.modules)
 		R.module.remove_module(WC, TRUE)
 
-	for(var/obj/item/multitool/cyborg/MT in R.module.modules) 
+	for(var/obj/item/multitool/cyborg/MT in R.module.modules)
 		R.module.remove_module(MT, TRUE)
-	
-	for(var/obj/item/analyzer/AL in R.module.modules) 
+
+	for(var/obj/item/analyzer/AL in R.module.modules)
 		R.module.remove_module(AL, TRUE)
 
 	var/obj/item/jawsoflife/cyborg/JL = locate() in R.module.modules // Carries over the toolspeed (0.5) instead of using 0.7.
@@ -1069,9 +1095,39 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	for(var/obj/item/holosign_creator/atmos/holofan in R.module.modules)
 		if(holofan.signs.len)
 			for(var/obj/structure/holosign/holosign_firelock in holofan.signs)
 				qdel(holosign_firelock)
 		R.module.remove_module(holofan, TRUE)
+
+/obj/item/borg/upgrade/gemsatchel
+	name = "mining cyborg gem satchel"
+	desc = "An upgrade that grants mining cyborgs a gem satchel."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/miner
+	module_flags = BORG_MODULE_MINER
+
+/obj/item/borg/upgrade/gemsatchel/action(mob/living/silicon/robot/R , user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/item/storage/bag/gem/cyborg/satchel = locate() in R.module.modules
+	if(satchel)
+		to_chat(user, span_warning("This unit is already equipped with a gem satchel."))
+		return FALSE
+
+	satchel = new(R.module)
+	R.module.basic_modules += satchel
+	R.module.add_module(satchel, FALSE, TRUE)
+
+/obj/item/borg/upgrade/gemsatchel/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module)
+		R.module.remove_module(satchel, TRUE)
