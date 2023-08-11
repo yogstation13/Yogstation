@@ -461,6 +461,12 @@
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/carpet,
 /area/library)
+"amw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "amP" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -4621,6 +4627,17 @@
 	dir = 8
 	},
 /area/chapel/main)
+"csu" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod three loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "csM" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -11959,17 +11976,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"gff" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod two loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "gfQ" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
 	dir = 8
@@ -12112,17 +12118,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
-"giN" = (
-/obj/docking_port/stationary{
-	dir = 1;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod four loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "giY" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/medical,
@@ -18100,17 +18095,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"jwe" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod one loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "jwl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -18566,6 +18550,10 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jFP" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/engine,
+/area/science/explab)
 "jFS" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 28
@@ -19335,6 +19323,17 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
+"jZw" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod one loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "jZF" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -27710,17 +27709,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"ogq" = (
-/obj/docking_port/stationary{
-	dir = 4;
-	dwidth = 1;
-	height = 4;
-	name = "escape pod three loader";
-	roundstart_template = /datum/map_template/shuttle/escape_pod/three;
-	width = 3
-	},
-/turf/open/space/basic,
-/area/space)
 "ogD" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -33748,6 +33736,17 @@
 "rwW" = (
 /turf/closed/wall/r_wall,
 /area/library)
+"rxR" = (
+/obj/docking_port/stationary{
+	dir = 1;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod four loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/four;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "ryw" = (
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -34035,13 +34034,6 @@
 /obj/machinery/suit_storage_unit/hos,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"rFn" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/engine,
-/area/science/explab)
 "rFw" = (
 /obj/structure/closet/secure_closet/chemical,
 /obj/item/toy/figure/chemist,
@@ -36766,6 +36758,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"teh" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	name = "escape pod two loader";
+	roundstart_template = /datum/map_template/shuttle/escape_pod/two;
+	width = 3
+	},
+/turf/open/space/basic,
+/area/space)
 "teY" = (
 /turf/closed/wall/r_wall,
 /area/janitor)
@@ -71862,7 +71865,7 @@ oWP
 ylr
 ylr
 ylr
-giN
+rxR
 ecD
 uKw
 riB
@@ -74174,8 +74177,8 @@ lXT
 pwM
 syH
 cLs
-mBt
-rFn
+amw
+jFP
 pmZ
 mZK
 wRR
@@ -87886,7 +87889,7 @@ uJr
 gtg
 vtx
 nOg
-gff
+teh
 ylr
 ylr
 ylr
@@ -98325,7 +98328,7 @@ ylr
 ylr
 ylr
 ylr
-jwe
+jZw
 ylr
 ylr
 ylr
@@ -101969,7 +101972,7 @@ mJi
 peP
 aSb
 ylr
-ogq
+csu
 ylr
 ylr
 ylr
