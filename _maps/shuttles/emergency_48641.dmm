@@ -157,13 +157,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"fP" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	use_power = 0
-	},
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
 "fQ" = (
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/mineral/titanium/white,
@@ -496,6 +489,9 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"rG" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/escape)
 "sd" = (
 /obj/machinery/computer/cargo/express,
 /turf/open/floor/mineral/titanium/white,
@@ -506,6 +502,19 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/escape)
+"sy" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/docking_port/mobile/emergency,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "sV" = (
 /obj/structure/table/reinforced,
@@ -644,19 +653,6 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"wI" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/docking_port/mobile/emergency,
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "xc" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -899,6 +895,14 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"GH" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = -32;
+	use_power = 0
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Hb" = (
 /obj/machinery/shieldgen{
@@ -1253,9 +1257,6 @@
 /obj/machinery/jukebox,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/shuttle/escape)
-"YR" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/escape)
 "YT" = (
 /obj/machinery/shieldgen{
 	anchored = 1
@@ -1306,7 +1307,7 @@ Ix
 Ix
 NV
 Ix
-wI
+sy
 Ix
 Ix
 Xo
@@ -1493,7 +1494,7 @@ Gc
 Xo
 "}
 (8,1,1) = {"
-YR
+rG
 po
 dv
 nW
@@ -1624,8 +1625,8 @@ ph
 EV
 EV
 EV
-EV
-fP
+GH
+Ix
 Ix
 Xo
 Xo
