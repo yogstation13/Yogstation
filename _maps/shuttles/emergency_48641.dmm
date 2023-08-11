@@ -151,6 +151,12 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"fs" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/shuttle/escape)
 "fL" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -159,6 +165,14 @@
 /area/shuttle/escape)
 "fQ" = (
 /obj/effect/turf_decal/stripes,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"fV" = (
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	pixel_y = -32;
+	use_power = 0
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "go" = (
@@ -224,6 +238,19 @@
 "it" = (
 /obj/structure/table/optable,
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"iT" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/docking_port/mobile/emergency,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "jc" = (
 /obj/structure/sign/warning/fire,
@@ -489,9 +516,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"rG" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/escape)
 "sd" = (
 /obj/machinery/computer/cargo/express,
 /turf/open/floor/mineral/titanium/white,
@@ -502,19 +526,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"sy" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/docking_port/mobile/emergency,
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "sV" = (
 /obj/structure/table/reinforced,
@@ -896,14 +907,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"GH" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	pixel_y = -32;
-	use_power = 0
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
 "Hb" = (
 /obj/machinery/shieldgen{
 	anchored = 1
@@ -1078,13 +1081,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"NL" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "NV" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
@@ -1117,6 +1113,9 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/blue,
+/area/shuttle/escape)
+"Pl" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "Re" = (
 /obj/machinery/door/firedoor/border_only,
@@ -1307,7 +1306,7 @@ Ix
 Ix
 NV
 Ix
-sy
+iT
 Ix
 Ix
 Xo
@@ -1479,7 +1478,7 @@ jB
 jB
 jB
 Gt
-NL
+qW
 uc
 uc
 wz
@@ -1494,7 +1493,7 @@ Gc
 Xo
 "}
 (8,1,1) = {"
-rG
+Pl
 po
 dv
 nW
@@ -1563,7 +1562,7 @@ jB
 jB
 Mf
 Gt
-NL
+qW
 uc
 xV
 xV
@@ -1608,7 +1607,7 @@ Xo
 (12,1,1) = {"
 po
 po
-DV
+fs
 Rm
 pe
 pj
@@ -1625,7 +1624,7 @@ ph
 EV
 EV
 EV
-GH
+fV
 Ix
 Ix
 Xo
