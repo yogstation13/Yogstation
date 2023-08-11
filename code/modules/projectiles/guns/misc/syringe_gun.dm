@@ -1,6 +1,6 @@
 /obj/item/gun/syringe
 	name = "syringe gun"
-	desc = "A spring loaded rifle designed to fit syringes, used to incapacitate unruly patients from a distance."
+	desc = "Created by Blue Cross Medical for use by EMTs in the field, the syringe gun utilizes a spring-loaded mechanism to propel syringes across a large distance."
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = WEIGHT_CLASS_NORMAL

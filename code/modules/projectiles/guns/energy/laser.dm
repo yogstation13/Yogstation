@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
 	name = "laser gun"
-	desc = "A basic energy-based laser gun that fires concentrated beams of light which pass through glass and thin metal."
+	desc = "The NT-L MKIV is a basic energy-based laser gun that fires concentrated beams of light which pass through plasmaglass and thin metal."
 	icon_state = "laser"
 	item_state = LASER
 	w_class = WEIGHT_CLASS_NORMAL
@@ -11,7 +11,7 @@
 
 /obj/item/gun/energy/laser/practice
 	name = "practice laser gun"
-	desc = "A modified version of the basic laser gun, this one fires less concentrated energy bolts designed for target practice."
+	desc = "A modified version of the NT-L MKIV laser gun, it fires less concentrated energy bolts designed for target practice."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = 0
 	item_flags = NONE
@@ -19,7 +19,7 @@
 /obj/item/gun/energy/laser/retro
 	name ="retro laser gun"
 	icon_state = "retro"
-	desc = "An older model of the basic lasergun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
+	desc = "The NT-L MKII laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/retro/old
@@ -31,7 +31,7 @@
 
 /obj/item/gun/energy/laser/hellgun
 	name ="hellfire laser gun"
-	desc = "A relic of a weapon, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds it caused, and was quietly discontinued once it began to affect NT's reputation."
+	desc = "The NT-L MKI nicknamed 'hellgun' is the first non-experimental model laser gun, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds and fires that it caused, and was quietly discontinued once it began to affect NT's reputation."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 
@@ -39,7 +39,7 @@
 	name = "antique laser gun"
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
+	desc = "The NT-X01 laser gun is NTs first attempt to provide an inbuilt recharger, and is the first in its line as an 'X' or experimental class weapon given to space station command members. Due to how expensive it is to produce, and that the material used to do so deteriorates quickly, it was decomissioned and the few models left are used as prizes meant to never see the light of day."
 	force = 10
 	ammo_x_offset = 3
 	selfcharge = 1
