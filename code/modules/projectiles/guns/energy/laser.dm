@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
 	name = "laser gun"
-	desc = "The NT-LIV is a basic energy-based laser gun that fires concentrated beams of light which pass through plasmaglass and thin metal."
+	desc = "The NT-L4 is a basic energy-based laser gun that fires concentrated beams of light which pass through plasmaglass and thin metal."
 	icon_state = "laser"
 	item_state = LASER
 	w_class = WEIGHT_CLASS_NORMAL
@@ -11,7 +11,7 @@
 
 /obj/item/gun/energy/laser/practice
 	name = "practice laser gun"
-	desc = "A modified version of the NT-LIV laser gun, it fires less concentrated energy bolts designed for target practice."
+	desc = "A modified version of the NT-L4 laser gun, it fires less concentrated energy bolts designed for target practice."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = 0
 	item_flags = NONE
@@ -19,13 +19,13 @@
 /obj/item/gun/energy/laser/retro
 	name ="retro laser gun"
 	icon_state = "retro"
-	desc = "The NT-LI laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
+	desc = "The NT-L1 laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/retro/old
 	name ="laser gun"
 	icon_state = "retro"
-	desc = "The NT-LI laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws. This one in particular seems extremely worn out and barely functional. How long were you in cryo?"
+	desc = "The NT-L1 laser gun, no longer used by Nanotrasen's private security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws. This one in particular seems extremely worn out and barely functional. How long were you in cryo?"
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/old)
 	ammo_x_offset = 3
 
@@ -39,7 +39,7 @@
 	name = "antique laser gun"
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "The NT-S01 laser gun is NTs first attempt to provide an inbuilt recharger, and is the first in its line as an 'X' or experimental class weapon given to space station command members. Due to how expensive it is to produce, and that the material used to do so deteriorates quickly, it was decomissioned and the few models left are used as prizes meant to never see the light of day."
+	desc = "The NT-S01 laser gun is NTs first attempt to provide an inbuilt recharger, and is the first in its line as an 'S' or special class weapon given to space station command members. Due to how expensive it is to produce, and that the material used to do so deteriorates quickly, it was decommissioned, and the few models left are used as prizes meant to never see the light of day."
 	force = 10
 	ammo_x_offset = 3
 	selfcharge = 1
