@@ -2186,6 +2186,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"aHf" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "aHj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -9051,12 +9062,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"cJK" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "cJQ" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 4
@@ -11154,6 +11159,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
+/area/engine/atmos/distro)
+"dpA" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
 /area/engine/atmos/distro)
 "dpL" = (
 /obj/structure/cable/yellow{
@@ -21650,20 +21661,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
-"gwv" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Port to Tinker"
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/atmos/warning/lower/corner/flip,
-/obj/effect/turf_decal/trimline/atmos/warning/lower/corner/flip{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "gwF" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -22110,6 +22107,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"gCe" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "gCE" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -25515,6 +25519,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"hyv" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Port to Tinker"
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/atmos/warning/lower/corner/flip,
+/obj/effect/turf_decal/trimline/atmos/warning/lower/corner/flip{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "hyF" = (
 /obj/item/storage/box/beakers{
 	pixel_x = -7;
@@ -27443,6 +27464,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
+"idN" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	layer = 2.4;
+	name = "Mix to Port"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "idR" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/engine/cult,
@@ -28235,6 +28267,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"ira" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "irf" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-06"
@@ -36840,10 +36881,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"kJF" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "kJK" = (
 /obj/effect/turf_decal/stripes{
 	dir = 9
@@ -37682,6 +37719,13 @@
 "lal" = (
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
+"lao" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "laP" = (
 /obj/machinery/door/airlock/external{
 	glass = 1;
@@ -38696,18 +38740,6 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"lnY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "lok" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/chapel{
@@ -60688,6 +60720,14 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"rLV" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "rLX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -64022,14 +64062,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"sJT" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 5
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
-/obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom,
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "sKa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -77882,6 +77914,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
+"wGw" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "wGC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -80708,14 +80749,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"xui" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	layer = 2.4;
-	name = "Mix to Port"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "xum" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -83438,6 +83471,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+"yce" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "ycp" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -126434,7 +126482,7 @@ cim
 okC
 wxE
 pfc
-gwv
+hyv
 nYD
 hBQ
 nPf
@@ -126691,7 +126739,7 @@ cim
 kyZ
 wxE
 pGQ
-eKt
+rLV
 tGi
 xOe
 iDI
@@ -126948,7 +126996,7 @@ sdW
 jit
 bNL
 dli
-eKt
+rLV
 qSF
 qSF
 ily
@@ -127195,17 +127243,17 @@ nXs
 gAF
 cim
 hpS
-lnY
-wxE
-cJK
-wxE
-wxE
-kJF
-wxE
-vZZ
-xui
-elQ
-sJT
+yce
+dpA
+ira
+dpA
+dpA
+lao
+dpA
+wGw
+idN
+gCe
+aHf
 tGi
 rLq
 sGl
