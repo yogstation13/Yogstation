@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
 	name = "laser gun"
-	desc = "The NT-L4 is a basic energy-based laser gun that fires concentrated beams of light which pass through plasmaglass and thin metal."
+	desc = "The NT-L4 is a basic energy-based laser gun that fires concentrated beams of light which pass through glass and thin metal."
 	icon_state = "laser"
 	item_state = LASER
 	w_class = WEIGHT_CLASS_NORMAL
