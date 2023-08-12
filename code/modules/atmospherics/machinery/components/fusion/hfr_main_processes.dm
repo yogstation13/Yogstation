@@ -211,7 +211,7 @@
 		return
 
 	// Phew. Lets calculate what this means in practice.
-	var/reaction_rate = clamp((power_level * 0.5) * (500 / magnetic_constrictor) * delta_time, 0.05, 30) // constrictor controls reaction rate instead of fuel injection
+	var/reaction_rate = clamp((power_level * 0.5) * (500 / current_damper+1) * delta_time, 0.05, 30) // constrictor controls reaction rate instead of fuel injection
 	switch(power_level)
 		if(3,4)
 			reaction_rate = clamp(reaction_rate * heat_output * 5e-4, 0, reaction_rate)
