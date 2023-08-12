@@ -100,12 +100,12 @@
 
 	var/proportion = 0
 	if(removed.get_moles(/datum/gas/water_vapor))
-		proportion = min(removed.get_moles(/datum/gas/water_vapor), (3 * delta_time * workingPower)) //Works to max 12 moles at a time.
+		proportion = min(removed.get_moles(/datum/gas/water_vapor), (3 * delta_time * workingPower)) //Works to max 240 moles at a time.
 		removed.adjust_moles(/datum/gas/water_vapor, -proportion)
 		removed.adjust_moles(/datum/gas/oxygen, proportion / 2)
 		removed.adjust_moles(/datum/gas/hydrogen, proportion)
 	if(removed.get_moles(/datum/gas/hypernoblium))
-		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 4 moles at a time
+		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 80 moles at a time
 		removed.adjust_moles(/datum/gas/hypernoblium, -proportion)
 		removed.adjust_moles(/datum/gas/antinoblium, proportion)
 	env.merge(removed) //put back the new gases in the turf
@@ -143,7 +143,7 @@
 		cap += M.rating
 		charge_rate = initial(charge_rate)*M.rating
 
-	workingPower = lasers / 2 //used in the amount of moles processed
+	workingPower = lasers * 10 //used in the amount of moles processed
 
 	efficiency = (cap + 1) * 0.5 //used in the amount of charge in power cell uses
 
