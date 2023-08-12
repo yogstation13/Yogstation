@@ -51,3 +51,19 @@
 	desc = "A poster warning the crew about a terrorist organization called S.E.L.F, with a picture of its founder."
 	poster_type = /obj/structure/sign/poster/official/anti_self
 	icon_state = "rolled_legit"
+
+/obj/structure/sign/poster/official/sey_gax
+	name = "SEY GAX"
+	desc = "A recruitment poster for the GAX project. You can't discern the meaning. Request a transfer to the NVS Gax at your local HOP station!"
+	icon_state = "sey_gax"
+
+/obj/structure/sign/poster/official/sey_gax/Initialize(mapload)
+	. = ..()
+	if(SSmapping.config.map_name == "NVS Gax") //we're here!!!
+		desc = "A recruitment poster for the GAX project. You can't discern the meaning. Wait, aren't we on the NVS Gax?"
+
+/obj/item/poster/sey_gax
+	name = "sey gax poster"
+	desc = "A poster depicting an abstract call to the NVS Gax. You wouldn't get it."
+	poster_type = /obj/structure/sign/poster/official/sey_gax
+	icon_state = "rolled_legit"
