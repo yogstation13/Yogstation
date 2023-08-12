@@ -62,6 +62,17 @@
 			if(prob(botEmagChance))
 				bot.emag_act()
 
+/datum/round_event/ion_storm/malicious
+	var/location_name
+
+/datum/round_event/ion_storm/malicious/announce(fake)
+	// Unlike normal ion storm, this always announces.
+	priority_announce("Abnormal ion activity detected. Please check all AI-controlled equipment for errors. Additional data has been downloaded and printed out at all communications consoles.", "Anomaly Alert", ANNOUNCER_IONSTORM)
+	
+	var/message = "Malicious Interference with standard AI-Subsystems detected. Investigation recommended.<br><br>"
+	message += (location_name ? "Signal traced to <B>[location_name]</B>.<br>" : "Signal untracable.<br>")
+	print_command_report(message, null, FALSE)
+
 /*/proc/generate_ion_law() //yogs - start mirrored in the yogs folder
 	//Threats are generally bad things, silly or otherwise. Plural.
 	var/ionthreats = pick_list(ION_FILE, "ionthreats")
