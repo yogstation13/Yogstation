@@ -17,8 +17,9 @@
 
 /obj/item/clothing/mask/breath/tactical
 	name = "tactical breath mask"
-	desc = "A close-fitting 'tactical' mask that can be connected to an air supply. This model is not translucent for anonymity."
-	color = "#736e35"
+	desc = "A close-fitting 'tactical' mask that can be connected to an air supply."
+	icon_state = "tacmask"
+	item_state = "tacmask"
 	visor_flags_inv = HIDEFACE
 
 /obj/item/clothing/mask/breath/tactical/Initialize(mapload)
