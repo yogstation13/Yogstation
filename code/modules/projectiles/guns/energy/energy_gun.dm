@@ -55,8 +55,8 @@
 	icon_state = "decloner"
 
 /obj/item/gun/energy/e_gun/hos
-	name = "\improper NT-X02 MultiPhase Energy Gun"
-	desc = "An expensive, modern recreation of the antique laser gun, and the second of the 'X' or experimental class weapons meant for the use of space station command staff. Like the standard energy gun, it has a stun and kill setting, but due to the increase in demand of portable EMP-based weaponry, this weapon is equipped with an ion mode. Lacks the ability to recharge."
+	name = "\improper NT-S02 MultiPhase Energy Gun"
+	desc = "An expensive, modern recreation of the antique laser gun, and the second of the 'S' or special class weapons meant for the use of space station command staff. Like the standard energy gun, it has a stun and kill setting, but due to the increase in demand of portable EMP-based weaponry, this weapon is equipped with an ion mode. Lacks the ability to recharge."
 	icon_state = "hoslaser"
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/ion/hos)

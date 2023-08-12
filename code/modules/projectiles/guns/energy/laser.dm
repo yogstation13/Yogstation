@@ -31,7 +31,7 @@
 
 /obj/item/gun/energy/laser/hellgun
 	name ="hellfire laser gun"
-	desc = "The NT-LII nicknamed 'hellgun' is the first non-experimental model laser gun, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds and fires that it caused, and was quietly discontinued once it began to affect NT's reputation."
+	desc = "The NT-LII, nicknamed 'hellgun', is the second non-experimental model laser gun, built before NT began installing regulators on its laser weaponry. This pattern of laser gun became infamous for the gruesome burn wounds and fires that it caused, and was quietly discontinued once it began to affect NT's reputation."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire)
 
@@ -39,7 +39,7 @@
 	name = "antique laser gun"
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "The NT-X01 laser gun is NTs first attempt to provide an inbuilt recharger, and is the first in its line as an 'X' or experimental class weapon given to space station command members. Due to how expensive it is to produce, and that the material used to do so deteriorates quickly, it was decomissioned and the few models left are used as prizes meant to never see the light of day."
+	desc = "The NT-S01 laser gun is NTs first attempt to provide an inbuilt recharger, and is the first in its line as an 'X' or experimental class weapon given to space station command members. Due to how expensive it is to produce, and that the material used to do so deteriorates quickly, it was decomissioned and the few models left are used as prizes meant to never see the light of day."
 	force = 10
 	ammo_x_offset = 3
 	selfcharge = 1
