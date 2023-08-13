@@ -76,6 +76,9 @@
 #define VV_HK_AUTO_RENAME "auto_rename"
 #define VV_HK_RADIATE "radiate"
 #define VV_HK_SHOW_HIDDENPRINTS "show_hiddenprints"
+#define VV_HK_EDIT_PARTICLES "edit_particles"
+#define VV_HK_ADD_EMITTER "add_emitter"
+#define VV_HK_REMOVE_EMITTER "remove_emitter"
 
 // /obj
 #define VV_HK_OSAY "osay"

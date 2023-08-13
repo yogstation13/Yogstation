@@ -1627,8 +1627,8 @@ obj/item/toy/turn_tracker
 	toysay = "I got this scroll from a dead assistant!"
 
 /obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/pen/edagger))
-		var/obj/item/pen/edagger/pen = I
+	if(istype(I, /obj/item/pen/red/edagger))
+		var/obj/item/pen/red/edagger/pen = I
 		if(pen.on)
 			icon_state += "_pen" // edagger buddies
 			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, TRUE)

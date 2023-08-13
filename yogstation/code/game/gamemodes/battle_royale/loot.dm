@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/baseball_bat = 4,
 		/obj/item/melee/spear = 4,
 
-		/obj/item/pen/edagger = 3,
+		/obj/item/pen/red/edagger = 3,
 		/obj/item/bigspoon = 3,
 
 		/obj/item/kitchen/knife/combat = 2,

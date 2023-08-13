@@ -9,6 +9,11 @@
 
 //The very definition of maintenance loot. Stuff that engineers and others left around.
 GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
+	/obj/item/pen = W_ESSENTIAL,
+	/obj/item/pen/blue = W_COMMON,
+	/obj/item/pen/red = W_COMMON,
+	/obj/item/pen/green = W_COMMON,
+	/obj/item/pen/fourcolor = W_MYTHICAL,
 	/obj/item/assembly/health = W_UNCOMMON,
 	/obj/item/assembly/igniter = W_UNCOMMON,
 	/obj/item/assembly/infra = W_UNCOMMON,
