@@ -269,7 +269,9 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack/mech_drop/can_extract(atom/movable/A)
 	var/obj/mecha/mecha_to_store = A
-	return istype(mecha_to_store) && !mecha_to_store.silicon_pilot && !mecha_to_store.occupant
+	. = istype(mecha_to_store) && !mecha_to_store.silicon_pilot && !mecha_to_store.occupant
+	if(.)
+		ever_used = TRUE
 
 /obj/item/extraction_pack/mech_drop/post_extract(atom/movable/A)
 	if(!istype(A, /obj/mecha))
