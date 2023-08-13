@@ -13,23 +13,19 @@ Format:
 	votable (is this map votable)
 
 map yogstation
-	voteweight 0.7
-	votable
+	disabled
 endmap
 
 map yogsmeta
-	minplayers 25
-	votable
+	disabled
 endmap
 
 map gaxstation
-	maxplayers 40
-	votable
+	disabled
 endmap
 
 map asteroidstation
-	minplayers 40
-	votable
+	disabled
 endmap
 
 map runtimestation
