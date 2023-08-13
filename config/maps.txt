@@ -13,8 +13,7 @@ Format:
 	votable (is this map votable)
 
 map yogstation
-	voteweight 0.7
-	votable
+	disabled
 endmap
 
 map yogsmeta
