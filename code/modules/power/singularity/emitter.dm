@@ -454,7 +454,7 @@
 	if(obj_flags & EMAGGED)
 		fuel_consumption *= 2
 
-/obj/machinery/power/emitter/emag_act(mob/user)
+/obj/machinery/power/emitter/particle/emag_act(mob/user)
 	if(..()) // stronger particles
 		projectile_type = /obj/item/projectile/energy/nuclear_particle/strong
 
