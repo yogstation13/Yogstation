@@ -293,8 +293,9 @@
 /obj/item/melee/baton/cattleprod/tactical
 	name = "tactical stunprod"
 	desc = "A cost-effective, mass-produced, tactical stun prod."
+	icon_state = "tacprod"
+	item_state = "tacprod"
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
-	color = "#aeb08c" // super tactical
 
 /obj/item/batonupgrade
 	name = "baton power upgrade"
