@@ -44,6 +44,11 @@
 	var/mutable_appearance/shield
 	examine_text = span_notice("They're deftly dodging all incoming attacks!")
 	alert_type = /atom/movable/screen/alert/status_effect/dodging
+	var/startingbrute = 0
+	var/startingburn = 0
+	var/startingstamina = 0
+	var/difference = 0
+	var/obj/item/midasgaunt/gauntlet = null
 	var/static/list/gauntlet_traits = list(
 		TRAIT_RESISTHEAT,
 		TRAIT_NOBREATH,
@@ -53,22 +58,47 @@
 		TRAIT_NOFIRE
 	)
 
+/datum/status_effect/soulshield/on_creation(mob/living/owner, obj/item/melee/gaunty)
+	. = ..()
+	if(!.)
+		return
+	gauntlet = gaunty
+
 /datum/status_effect/soulshield/on_apply()
+	startingbrute = owner.getBruteLoss()
+	startingburn = owner.getFireLoss()
+	startingstamina = owner.getStaminaLoss()
 	shield = mutable_appearance('icons/effects/effects.dmi', "shield-red")
 	owner.Immobilize(1.0 SECONDS)
 	shield.pixel_x = -owner.pixel_x
 	shield.pixel_y = -owner.pixel_y
-	owner.underlays += shield
-	for(var/traits in gauntlet_traits) ///adds demon traits
+	owner.overlays += shield
+	for(var/traits in gauntlet_traits)
 		ADD_TRAIT(owner, traits, GAUNTLET_TRAIT)
 	return ..()
 
 /datum/status_effect/soulshield/on_remove()
+	var/brutechange = (owner.getBruteLoss() - startingbrute)
+	var/burnchange = (owner.getFireLoss() - startingburn)
+	var/stamchange = (owner.getStaminaLoss() - startingstamina)
+	difference = (brutechange + burnchange + stamchange)
+	if(difference)
+		gauntlet.blocks++
+		owner.SetImmobilized(0) 
+		owner.adjustBruteLoss(-5)
+		owner.adjustFireLoss(-5)
 	if(owner)
-		for(var/traits in gauntlet_traits) ///adds demon traits
+		for(var/traits in gauntlet_traits)
 			REMOVE_TRAIT(owner, traits, GAUNTLET_TRAIT)
-		owner.underlays -= shield
+		owner.overlays -= shield
+		owner.extinguish_mob()
+		owner.AdjustStun(0)
+		owner.AdjustParalyzed(0)
 		owner.visible_message(span_warning("[owner] returns to a neutral stance."))
+		addtimer(CALLBACK(gauntlet, TYPE_PROC_REF(/obj/item/midasgaunt, retaliate), owner, difference))
+	owner.adjustBruteLoss(-brutechange, BRUTE)
+	owner.adjustFireLoss(-burnchange, BURN)
+	owner.adjustStaminaLoss(-stamchange, STAMINA)
 
 /atom/movable/screen/alert/status_effect/soulshield
 	name = "Deflecting"

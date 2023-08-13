@@ -1,47 +1,311 @@
+#define COOLDOWN_SOULSHIELD 0.5 SECONDS
+
 /obj/item/midasgaunt
-	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouquet to summon tamed creatures. Megafauna cannot be summoned. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
+	name ="midas gauntlet"
+	desc ="Draw stones from blood.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
-	var/next_summon = 0
-	var/list/summons = list()
-	attack_verb = list("thumped", "brushed", "bumped")
+	var/blocks = 3
+	attack_verb = list("slapped", "punched", "jabbed")
+	var/normaldam = 10
+	var/otherwisedam = 60
+	var/list/orelist = list(/obj/item/stack/ore/iron, /obj/item/stack/ore/uranium, /obj/item/stack/ore/gold, /obj/item/stack/ore/silver, /obj/item/stack/ore/diamond, /obj/item/stack/ore/bluespace_crystal, /obj/item/stack/ore/glass, /obj/item/stack/ore/plasma, /obj/item/stack/ore/bananium, /obj/item/stack/ore/titanium)
+	COOLDOWN_DECLARE(last_soulshield)
 
 /obj/item/midasgaunt/attack_self(mob/living/user)
-	user.apply_status_effect(STATUS_EFFECT_SOULSHIELD)
+	var/cd = 0
+	if(blocks <= 0)
+		to_chat(user, span_warning("You can't create a shield yet!"))
+		return
+	user.apply_status_effect(STATUS_EFFECT_SOULSHIELD, src)
+	blocks --
+	if(!COOLDOWN_FINISHED(src, last_soulshield))
+		to_chat(user, span_warning("You can't produce another shield yet!"))
+		return
+	cd = COOLDOWN_SOULSHIELD
+	COOLDOWN_START(src, last_soulshield, cd)
+	if(blocks < 3)
+		addtimer(CALLBACK(src, PROC_REF(gauntcharge)), 10 SECONDS)
 
-/obj/item/midasgaunt/afterattack(mob/living/simple_animal/M, mob/user, proximity)
-	var/datum/status_effect/taming/G = M.has_status_effect(STATUS_EFFECT_TAMING)
+/obj/item/midasgaunt/afterattack(mob/living/target, mob/living/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
-	if(M.client)
-		to_chat(user, span_warning("[M] is too intelligent to tame!"))
+	if(!isliving(target))
 		return
-	if(M.stat)
-		to_chat(user, span_warning("[M] is dead!"))
+	inflict(user, target)
+
+/obj/item/midasgaunt/proc/tenderize(mob/living/user, mob/living/target, damage)
+		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 10)
+		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
+
+/obj/item/midasgaunt/proc/sceneend(mob/living/target)
+	if(isanimal(target))
+		var/mob/living/simple_animal/L = target
+		L.toggle_ai(AI_ON)
+	if((target.mobility_flags & MOBILITY_STAND))
+		animate(target, transform = null)
+	animate(target, pixel_y = 0)
+	animate(target, pixel_x = 0)
+
+/obj/item/midasgaunt/proc/retaliate(mob/living/user, var/retaliatedam)
+	var/mob/living/L
+	if(retaliatedam == 0)
 		return
-	if(M.faction == user.faction)
-		to_chat(user, span_warning("[M] is already on your side!"))
+	for(L in view(9, user))
+		if(L != user)
+			inflict(user, L, retaliatedam)
+			return
+
+/obj/item/midasgaunt/proc/severitycalc(mob/living/target, var/feedback)
+	if((target.health - feedback) <= (0))
+		if(iscarbon(target) && (target.stat != DEAD))
+			return FALSE
+		return 1
+	if(target.health >= target.maxHealth*0.6)
+		if((target.health - feedback) <= (target.maxHealth*0.6))
+			return 2
+	if((target.health >= target.maxHealth*0.3) && (target.health <= target.maxHealth*0.6))
+		if((target.health - feedback) <= (target.maxHealth*0.3))
+			return 3
+	return FALSE
+
+/obj/item/midasgaunt/proc/inflict(mob/living/user, mob/living/target, var/damage = 0, abouttobeslammed = TRUE)
+	var/hurt
+	if(isfauna(target))
+		hurt = (otherwisedam+damage)
+	else
+		hurt = (normaldam+damage)
+	var/result = (severitycalc(target,hurt))
+	new /obj/effect/temp_visual/cleave(get_turf(target))
+	if(result && abouttobeslammed == TRUE)
+		addtimer(CALLBACK(src, PROC_REF(animatepick), user, target, result))
+	if(result != 1)
+		tenderize(user, target, hurt) //for some reason hiero can still live this 
+	return //also consider amping up the damage for each parry 
+
+/obj/item/midasgaunt/proc/gauntcharge()
+	blocks++
+	return
+
+/obj/item/midasgaunt/proc/splosion(mob/living/user, mob/living/target)
+	var/magnitude = ((target.maxHealth/100) + 1)
+	for(var/turf/closed/mineral/mine in range(target, magnitude))
+		mine.attempt_drill()
+	for(var/mob/living/collateral in view(target, magnitude))
+		var/explosiondam = target.maxHealth/10
+		var/result = (severitycalc(collateral, explosiondam+1))
+		if((collateral == user) || (collateral == target))
+			continue
+		if(!isanimal(collateral) && explosiondam >= 20)
+			explosiondam = 20
+		if(result)
+			splosion(user, collateral)
+			if(result == 1)
+				crystallize(collateral)
+				addtimer(CALLBACK(src, PROC_REF(shatter), collateral), 0.2 SECONDS)
+				if(isanimal(target))
+					var/mob/living/simple_animal/L = target
+					L.toggle_ai(AI_OFF)
+			continue
+		inflict(user, collateral, explosiondam, abouttobeslammed = FALSE)
+
+/obj/item/midasgaunt/examine(datum/source, mob/user, list/examine_list)
+	. = ..()
+	. += span_notice("It has [blocks] uses available.")
+
+/obj/item/midasgaunt/proc/crystallize(mob/living/target)
+	if(isanimal(target))
+		target.color = "#ff0000"
+		target.alpha = 100
+
+/obj/item/midasgaunt/proc/shatter(mob/living/simple_animal/target)
+	var/ore = pick(orelist)
+	if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
+		var/mob/living/simple_animal/hostile/megafauna/legion/L = target
+		if(L.size != 1)
+			return
+	if((!istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion)) && isanimal(target))
+		for(var/i =1 to 5)
+			new ore(target.loc)
+	if(target && isanimal(target))
+		target.drop_loot()
+		playsound(target, "shatter", 70, 1)
+		target.gib()
+
+//animation stuff
+
+
+/obj/item/midasgaunt/proc/animatepick(mob/living/user, mob/living/target, var/severity)
+	if(isanimal(target))
+		var/mob/living/simple_animal/L = target
+		L.toggle_ai(AI_OFF)
+		if(istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion))
+			crystallize(L)
+			L.Immobilize(1)
+			addtimer(CALLBACK(src, PROC_REF(shatter), L), 0.1 SECONDS)
+			return
+	if(severity > 1)
+		spike(user,target)
 		return
-	if(!M.magic_tameable)
-		to_chat(user, span_warning("[M] cannot be tamed!"))
-		return
-	if(M.sentience_type == SENTIENCE_BOSS)
-		if(!G)
-			M.apply_status_effect(STATUS_EFFECT_TAMING, user)
-		else
-			G.add_tame(G.tame_buildup)
-			if(ISMULTIPLE(G.tame_crit-G.tame_amount, 5))
-				to_chat(user, span_notice("[M] has to be exposed [G.tame_crit-G.tame_amount] more times to accept your gift!"))
-		return
-	if(M.sentience_type != SENTIENCE_ORGANIC)
-		to_chat(user, span_warning("[M] cannot be tamed!"))
-		return
-	if(!do_after(user, 1.5 SECONDS, M))
-		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouquet!"))
-	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
-	M.drop_loot()
-	M.faction = user.faction
-	summons |= M
+	if(severity == 1)
+		firework(user,target)
+		
+/obj/item/midasgaunt/proc/harpyslam(mob/living/user, mob/living/target, var/phase = 1)
+	var/turf/behind = get_step(get_turf(user), turn(user.dir,180))
+	var/turf/current = user.loc
+	switch(phase)
+		if(1)
+			if(behind.density)
+				target.forceMove(current)
+			else
+				target.forceMove(behind)
+			if(target.mobility_flags & MOBILITY_STAND)
+				animate(target, transform = matrix(90, MATRIX_ROTATE))
+			playsound(target, 'sound/effects/meteorimpact.ogg', 40)
+			user.setDir(turn(user.dir, 180))
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(harpyslam), user, target, phase), 0.3 SECONDS)
+			return
+		if(2)
+			if(behind.density)
+				target.forceMove(current)
+			else
+				target.forceMove(behind)
+			if(target.mobility_flags & MOBILITY_STAND)
+				animate(target, transform = matrix(180, MATRIX_ROTATE))
+			crystallize(target)
+			playsound(target, 'sound/effects/glass_step.ogg', 60)
+			user.setDir(turn(user.dir, 180))
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(harpyslam), user, target, phase), 0.3 SECONDS)
+			return
+		if(3)
+			if(behind.density)
+				target.forceMove(current)
+			else
+				target.forceMove(behind)
+			user.setDir(turn(user.dir, 180))
+			splosion(user, target)
+			shatter(target)
+	if(target)
+		sceneend(target)
+
+/obj/item/midasgaunt/proc/backbreaker(mob/living/user, mob/living/target, var/phase = 1)
+	switch(phase) //add shadows here maybe
+		if(1)
+			target.forceMove(user.loc)
+			target.visible_message(span_warning("[user] throws [target] over [user.p_their()] shoulders and breaks [target.p_them()]!"))
+			if(target.mobility_flags & MOBILITY_STAND)
+				animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_y = 20)
+			crystallize(target)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(backbreaker), user, target, phase), 0.1 SECONDS)
+			return
+		if(2)
+			animate(user, pixel_y = 30)
+			animate(target, pixel_y = 50)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(backbreaker), user, target, phase), 0.1 SECONDS)
+			return
+		if(3)
+			animate(user, pixel_y = 40)
+			animate(target, pixel_y = 60)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(backbreaker), user, target, phase), 0.1 SECONDS)
+			return
+		if(4)
+			animate(user, pixel_y = 30)
+			animate(target, pixel_y = 50)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(backbreaker), user, target, phase), 0.1 SECONDS)
+			return
+		if(5)
+			animate(user, pixel_y = 0)
+			animate(target, pixel_y = 20)
+			splosion(user, target)
+			shatter(target)
+	if(target)
+		sceneend(target)
+
+/obj/item/midasgaunt/proc/spike(mob/living/user, mob/living/target, var/phase = 1)
+	var/turf/front = get_step(get_turf(user), (user.dir))
+	var/turf/twosteps = get_step(front, (user.dir))
+	switch(phase) //add shadows here maybe
+		if(1)
+			target.visible_message(span_warning("[user] leaps into the air and sends [target] hurtling towards the ground!"))
+			target.forceMove(user.loc)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+			return
+		if(2)
+			animate(user, pixel_y = 30)
+			animate(target, pixel_x = -5, pixel_y = 50)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+			return
+		if(3)
+			animate(user, pixel_y = 40)
+			phase++
+			if(front.reachableTurftestdensity(T = front))
+				target.forceMove(front)
+				addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+				target.SpinAnimation(0.7 SECONDS)
+				return
+			addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+			target.SpinAnimation(0.7 SECONDS)
+			return
+		if(4)
+			phase++
+			animate(target, pixel_y = 30)
+			if(twosteps.reachableTurftestdensity(T = twosteps) && front.reachableTurftestdensity(T = front))
+				target.forceMove(twosteps)
+				addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+				return
+			addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+			return
+		if(5)
+			animate(user, pixel_y = 20)
+			animate(target, pixel_y = 0)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
+			return
+		if(6)
+			animate(user, pixel_y = 0)
+			splosion(user, target)
+	if(target)
+		sceneend(target)
+
+/obj/item/midasgaunt/proc/firework(mob/living/user, mob/living/target, var/phase = 1)
+	switch(phase) //add shadows here maybe
+		if(1)
+			target.visible_message(span_warning("[user] throws [target] into the air where [target.p_they()] shatters!"))
+			target.forceMove(user.loc)
+			target.SpinAnimation(2 SECONDS)
+			crystallize(target)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(firework), user, target, phase), 0.1 SECONDS)
+			return
+		if(2)
+			animate(target, pixel_y = 50)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(firework), user, target, phase), 0.1 SECONDS)
+			return
+		if(3)
+			animate(target, pixel_y = 60)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(firework), user, target, phase), 0.1 SECONDS)
+			return
+		if(4)
+			animate(target, pixel_y = 70)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(firework), user, target, phase), 0.1 SECONDS)
+			return
+		if(5)
+			animate(target, pixel_y = 80)
+			splosion(user, target)
+			shatter(target)
+	if(target)
+		sceneend(target)
+
