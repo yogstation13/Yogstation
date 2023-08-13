@@ -3807,6 +3807,18 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"aGa" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Medbay Maintenance";
+	req_access_txt = "5"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/trimline/blue/filled/end/lower,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "aGc" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
@@ -6649,15 +6661,6 @@
 /obj/item/assembly/timer,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"bmo" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/secred/warning/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "bmS" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 5
@@ -20644,6 +20647,11 @@
 	},
 /turf/open/floor/engine/n2o,
 /area/engine/atmos/distro)
+"fIA" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/effect/turf_decal/trimline/blue/filled/end/lower,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "fIP" = (
 /obj/structure/grille/broken,
 /obj/structure/cable{
@@ -23793,18 +23801,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"gKb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "gKd" = (
 /obj/effect/spawner/lootdrop/plushies,
 /turf/open/floor/plating,
@@ -25593,15 +25589,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"hlZ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/secred/warning/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "hmf" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/landmark/start/bartender,
@@ -25875,6 +25862,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"hpH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "hqn" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/randomdrink,
@@ -34614,6 +34613,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"kbf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "kbo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -43558,19 +43567,6 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
-"mWE" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/security{
-	name = "Brig";
-	req_access_txt = "63; 42"
-	},
-/turf/open/floor/plasteel,
-/area/security/courtroom)
 "mWK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -59235,6 +59231,14 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"rMs" = (
+/obj/structure/table,
+/obj/item/radio/off,
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "rMw" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating,
@@ -62922,6 +62926,23 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/hallway/primary/port)
+"sNV" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/security{
+	name = "Brig";
+	req_access_txt = "63; 42"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/courtroom)
 "sOi" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/table,
@@ -65410,11 +65431,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"tCR" = (
-/obj/structure/closet/secure_closet/medical2,
-/obj/effect/turf_decal/trimline/blue/filled/end,
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "tCZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -66824,14 +66840,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"uak" = (
-/obj/structure/table,
-/obj/effect/turf_decal/trimline/yellow/filled/line/lower{
-	dir = 9
-	},
-/obj/item/radio/off,
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "uam" = (
 /turf/open/floor/engine,
 /area/escapepodbay)
@@ -70029,6 +70037,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/main)
+"vfk" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/engine/foyer)
 "vfv" = (
 /obj/structure/table/wood,
 /obj/item/kirbyplants/random{
@@ -78109,17 +78123,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"xGa" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Medbay Maintenance";
-	req_access_txt = "5"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "xGf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -107684,7 +107687,7 @@ hLj
 aFr
 aFr
 aFr
-mWE
+sNV
 pkM
 pkM
 aFr
@@ -107941,7 +107944,7 @@ lZi
 rTe
 aCI
 dOu
-bmo
+hpH
 cZl
 cZl
 cZl
@@ -108455,11 +108458,11 @@ mxv
 wdD
 iUW
 iUW
-hlZ
+kbf
 nQt
 iUW
 vtU
-hlZ
+kbf
 iUW
 iUW
 nrj
@@ -109826,7 +109829,7 @@ wjC
 ooE
 reo
 dPP
-tCR
+fIA
 aPk
 gFS
 fFr
@@ -111368,7 +111371,7 @@ nBA
 pSJ
 hjO
 okt
-xGa
+aGa
 aQo
 lMI
 aPk
@@ -120068,7 +120071,7 @@ wiK
 syN
 alx
 eZM
-gKb
+lYl
 dem
 imL
 cth
@@ -120325,7 +120328,7 @@ mBF
 jSz
 jpI
 aJq
-aJq
+vfk
 aJq
 aJq
 aJq
@@ -120582,7 +120585,7 @@ aXb
 oBq
 oBq
 ahe
-uak
+rMs
 uZr
 jGI
 aJq
