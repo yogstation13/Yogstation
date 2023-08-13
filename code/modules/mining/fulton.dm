@@ -227,6 +227,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	max_force_fulton = MOVE_FORCE_EXTREMELY_STRONG
 	uses_beacon = FALSE
 	var/list/stored_mecha
+	var/ever_used = FALSE
 
 /obj/item/extraction_pack/mech_drop/attack_self(mob/user)
 	if(!user.canUseTopic(src, TRUE))
@@ -243,6 +244,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	var/obj/mecha/chosen_mecha = mecha_names[choice]
 	if(!chosen_mecha || !istype(chosen_mecha) || !(chosen_mecha in stored_mecha) || !user.canUseTopic(src, TRUE))
 		return
+	ever_used = TRUE
 	balloon_alert(user, "stand back!")
 	var/obj/structure/closet/supplypod/pod = new
 	pod.style = STYLE_SEETHROUGH
@@ -260,6 +262,10 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/extraction_pack/mech_drop/Initialize(mapload)
 	. = ..()
 	stored_mecha = list()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
+
+/obj/item/extraction_pack/mech_drop/proc/refund_check()
+	return !ever_used
 
 /obj/item/extraction_pack/mech_drop/can_extract(atom/movable/A)
 	var/obj/mecha/mecha_to_store = A
@@ -268,4 +274,5 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 /obj/item/extraction_pack/mech_drop/post_extract(atom/movable/A)
 	if(!istype(A, /obj/mecha))
 		return
+	ever_used = TRUE
 	stored_mecha |= A

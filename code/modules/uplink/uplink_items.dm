@@ -2005,9 +2005,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/mech_drop
 	name = "Orbital Mech Drop Fulton"
-	desc = "A heavy-duty transport pack that can be used to store and summon mecha that you have stored with it."
+	desc = "A heavy-duty transport pack that can be used to store and summon mecha that you have stored with it. Refundable if never used."
 	item = /obj/item/extraction_pack/mech_drop
 	cost = 4
+	refundable = TRUE
 	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/device_tools/loic_remote
