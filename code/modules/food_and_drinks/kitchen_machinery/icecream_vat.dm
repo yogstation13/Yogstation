@@ -88,7 +88,7 @@
 		if(ICECREAM_PEACH)
 			return "peach"
 		if(ICECREAM_CHERRY_CHOCOLATE)
-			return "cherry chocolate chip"
+			return "cherry chocolate"
 		if(CONE_WAFFLE)
 			return "waffle"
 		if(CONE_CHOC)
@@ -119,7 +119,7 @@
 	dat += "<b>Banana ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_BANANA]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BANANA];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BANANA];amount=5'><b>x5</b></a> [product_types[ICECREAM_BANANA]] dollops left. (Ingredients: milk, ice, banana juice)<br>"
 	dat += "<b>Orangesicle ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_ORANGE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_ORANGE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_ORANGE];amount=5'><b>x5</b></a> [product_types[ICECREAM_ORANGE]] dollops left. (Ingredients: cream, ice, orange juice)<br>"
 	dat += "<b>Peach ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_PEACH]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_PEACH];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_PEACH];amount=5'><b>x5</b></a> [product_types[ICECREAM_PEACH]] dollops left. (Ingredients: milk, ice, peach juice)<br>"
-	dat += "<b>Cherry chocolate chip ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_CHERRY_CHOCOLATE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHERRY_CHOCOLATE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHERRY_CHOCOLATE];amount=5'><b>x5</b></a> [product_types[ICECREAM_CHERRY_CHOCOLATE]] dollops left. (Ingredients: milk, ice, coco powder, cherry jelly)<br></div>"
+	dat += "<b>Cherry chocolate ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_CHERRY_CHOCOLATE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHERRY_CHOCOLATE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_CHERRY_CHOCOLATE];amount=5'><b>x5</b></a> [product_types[ICECREAM_CHERRY_CHOCOLATE]] dollops left. (Ingredients: milk, ice, coco powder, cherry jelly)<br></div>"
 	dat += "<br><b>CONES</b><br><div class='statusDisplay'>"
 	dat += "<b>Waffle cones:</b> <a href='?src=[REF(src)];cone=[CONE_WAFFLE]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_WAFFLE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_WAFFLE];amount=5'><b>x5</b></a> [product_types[CONE_WAFFLE]] cones left. (Ingredients: flour, sugar)<br>"
 	dat += "<b>Chocolate cones:</b> <a href='?src=[REF(src)];cone=[CONE_CHOC]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_CHOC];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_CHOC];amount=5'><b>x5</b></a> [product_types[CONE_CHOC]] cones left. (Ingredients: flour, sugar, coco powder)<br></div>"
@@ -276,8 +276,8 @@
 			desc = "A delicious [cone_type] cone filled with limited edition peach flavour. Enjoy it while it lasts!"
 			foodtype = DAIRY | FRUIT | SUGAR
 			reagents.add_reagent(/datum/reagent/consumable/peachjuice, 2)
-		if ("cherry chocolate chip")
-			desc = "A delicious [cone_type] cone filled with cherry chocolate chip ice cream. It is wonderfully tangy and sweet."
+		if ("cherry chocolate")
+			desc = "A delicious [cone_type] cone filled with cherry chocolate ice cream. It is wonderfully tangy and sweet."
 			foodtype = DAIRY | FRUIT | SUGAR | CHOCOLATE
 			reagents.add_reagent(/datum/reagent/consumable/cherryjelly, 2)
 		if ("mob")
