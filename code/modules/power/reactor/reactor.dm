@@ -1022,9 +1022,9 @@
 
 /obj/effect/decal/nuclear_waste/attackby(obj/item/tool, mob/user)
 	if(tool.tool_behaviour == TOOL_SHOVEL)
-		radiation_pulse(src, 1000, 5) //MORE RADS
 		to_chat(user, span_notice("You start to clear [src]..."))
 		if(tool.use_tool(src, user, 50, volume=100))
+			radiation_pulse(src, 1000, 5) //MORE RADS
 			to_chat(user, span_notice("You clear [src]. "))
 			qdel(src)
 			return
