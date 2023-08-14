@@ -136,7 +136,7 @@
 			user.visible_message("[user] starts to clean the ooze off \the [door.name]'s access panel.", "You start to clean the ooze off \the [door.name]'s access panel.")
 			if(do_after(user, src.cleanspeed, door))
 				to_chat(span_notice(" You clean the ooze off [src]'s access panel."))
-				door.obj_flags -= CMAGGED
+				door.obj_flags &= ~CMAGGED
 				decreaseUses(user)
 			return
 	user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
