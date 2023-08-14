@@ -59,3 +59,15 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 	bullet_armor_max = 10
 	laser_armor_max = 10
 	energy_armor_max = 10
+
+/obj/item/armorpolish/reflective
+    name = "reflective polish"
+    desc = "A two use polish that provides enhanced laser and energy protection."
+    icon = 'icons/obj/traitor.dmi'
+    icon_state = "reflective_polish"
+    w_class = WEIGHT_CLASS_TINY
+    remaining_uses = 2
+    melee_armor_max = 5
+    bullet_armor_max = 5
+    laser_armor_max = 45
+    energy_armor_max = 45
