@@ -98,7 +98,7 @@
 							span_caution("You short out the [name]'s locking modules."), \
 							span_italics("You hear electricity arcing."))
 	spark_system.start()
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	obj_flags |= EMAGGED
 	desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
 	playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
