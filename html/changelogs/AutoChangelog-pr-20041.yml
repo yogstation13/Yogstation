@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Pet carriers, Wallets with a makeshift ID, Disposals, Survival pod, and the station self-destruct nuclear device now have proper icons and overlays."
