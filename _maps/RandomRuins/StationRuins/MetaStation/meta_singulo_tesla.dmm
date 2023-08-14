@@ -207,7 +207,6 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "kl" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -215,7 +214,7 @@
 	c_tag = "Engineering Singularity Northwest";
 	network = list("ss13","engine")
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "kH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -244,23 +243,21 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "lv" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "mh" = (
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "mi" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -269,7 +266,7 @@
 	dir = 1;
 	network = list("ss13","engine")
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "mC" = (
 /obj/structure/cable/orange{
@@ -309,11 +306,10 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "oq" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "oF" = (
 /obj/machinery/power/emitter/anchored{
@@ -345,8 +341,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "qk" = (
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "rb" = (
 /obj/machinery/door/airlock/external,
@@ -503,11 +498,10 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "wM" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "xa" = (
 /obj/machinery/door/airlock/external{
@@ -651,11 +645,10 @@
 /turf/open/floor/plating/snowed/smoothed,
 /area/engine/engineering)
 "FI" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "Gp" = (
 /obj/structure/closet/radiation,
@@ -799,7 +792,7 @@
 /area/engine/engineering)
 "Oy" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "Pm" = (
 /obj/machinery/power/tesla_coil,
@@ -888,23 +881,19 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "VS" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "VY" = (
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"Wv" = (
-/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
 "WP" = (
 /obj/structure/cable{
@@ -962,7 +951,7 @@
 "ZB" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "ZP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1242,7 +1231,7 @@ vP
 PQ
 vP
 kl
-Wv
+qk
 fE
 fE
 fE
@@ -1252,7 +1241,7 @@ fE
 fE
 fE
 fE
-Wv
+qk
 mi
 vP
 PQ
@@ -1268,17 +1257,17 @@ nn
 IQ
 Xx
 FI
-Wv
+qk
 Oy
 Oy
 Oy
 Oy
 Oy
-Wv
-Wv
+qk
+qk
 Oy
 Oy
-Wv
+qk
 FI
 Xx
 vp
@@ -1296,13 +1285,13 @@ dm
 FI
 Oy
 de
-Wv
-Wv
+qk
+qk
 de
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
 de
 Oy
 FI
@@ -1321,15 +1310,15 @@ Xf
 dm
 lv
 QO
-Wv
-Wv
-Wv
+qk
+qk
+qk
 Oy
-Wv
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
+qk
 Es
 VS
 dm
@@ -1347,15 +1336,15 @@ Ms
 dm
 FI
 dm
-Wv
-Wv
-Wv
+qk
+qk
+qk
 Oy
-Wv
-Wv
-Wv
+qk
+qk
+qk
 dm
-Wv
+qk
 dm
 FI
 dm
@@ -1372,10 +1361,10 @@ vP
 gw
 dm
 FI
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
 dm
 dm
 dm
@@ -1399,15 +1388,15 @@ oY
 XY
 lv
 QO
-Wv
-Wv
-Wv
+qk
+qk
+qk
 dm
 dm
 eZ
-Wv
-Wv
-Wv
+qk
+qk
+qk
 Es
 VS
 XY
@@ -1431,10 +1420,10 @@ Oy
 dm
 dm
 dm
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
 FI
 dm
 cv
@@ -1451,15 +1440,15 @@ Fo
 dm
 oq
 QO
-Wv
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
+qk
 Oy
-Wv
-Wv
-Wv
+qk
+qk
+qk
 Es
 wM
 dm
@@ -1477,15 +1466,15 @@ Zg
 dm
 qk
 dm
-Wv
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
+qk
 Oy
-Wv
-Wv
-Wv
+qk
+qk
+qk
 dm
 qk
 dm
@@ -1504,13 +1493,13 @@ dm
 qk
 Oy
 de
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
 de
-Wv
-Wv
+qk
+qk
 de
 Oy
 qk
@@ -1528,17 +1517,17 @@ LS
 dm
 dm
 qk
-Wv
+qk
 Oy
-Wv
-Wv
-Wv
-Wv
+qk
+qk
+qk
+qk
 Oy
-Wv
-Wv
+qk
+qk
 Oy
-Wv
+qk
 qk
 dm
 dm
@@ -1556,13 +1545,13 @@ YG
 qk
 Oy
 Oy
-Wv
-Wv
-Wv
+qk
+qk
+qk
 Oy
 ZB
 Oy
-Wv
+qk
 Oy
 Oy
 qk

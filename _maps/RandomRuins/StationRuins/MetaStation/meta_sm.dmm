@@ -56,8 +56,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "bX" = (
 /obj/machinery/power/emitter/anchored{
@@ -102,7 +101,7 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dO" = (
-/turf/closed/mineral/random/snow,
+/turf/closed/mineral/random/snow/top_layer,
 /area/icemoon/surface/outdoors)
 "dU" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -289,14 +288,14 @@
 "kb" = (
 /obj/structure/lattice,
 /obj/structure/grille,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "le" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "li" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -369,7 +368,7 @@
 "mC" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "mG" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
@@ -425,8 +424,7 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "mU" = (
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "mX" = (
 /obj/structure/cable{
@@ -448,7 +446,7 @@
 /area/engine/engineering)
 "nA" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "nB" = (
 /obj/structure/cable{
@@ -601,7 +599,7 @@
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "qE" = (
 /obj/structure/cable{
@@ -629,7 +627,7 @@
 "qR" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "qV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -820,7 +818,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "vU" = (
 /obj/structure/cable{
@@ -851,13 +849,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ws" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "wv" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -884,8 +875,7 @@
 /area/engine/engineering)
 "xw" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "xN" = (
 /obj/structure/cable/orange,
@@ -908,7 +898,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "yv" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
@@ -1017,7 +1007,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "Bn" = (
 /obj/structure/cable{
@@ -1160,13 +1150,13 @@
 "Fk" = (
 /obj/structure/lattice,
 /obj/structure/girder/reinforced,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "Fp" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "Fz" = (
 /obj/structure/cable{
@@ -1199,7 +1189,7 @@
 	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "GD" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1384,13 +1374,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"MO" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "MT" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
@@ -1474,8 +1457,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "Pz" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
@@ -1508,16 +1490,12 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "Qa" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
-"Qi" = (
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "Qm" = (
 /obj/machinery/button/door{
 	id = "engsm";
@@ -1648,7 +1626,7 @@
 	dir = 5
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "TU" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -1730,19 +1708,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"WI" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "Xi" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
 /obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
 "Xl" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2094,7 +2065,7 @@ oX
 li
 aK
 mS
-Qi
+mU
 le
 vJ
 Tn
@@ -2148,7 +2119,7 @@ SM
 jp
 vJ
 GB
-WI
+PK
 GB
 Pm
 "}
@@ -2174,7 +2145,7 @@ KF
 jp
 Fp
 GB
-WI
+PK
 GB
 bt
 "}
@@ -2198,7 +2169,7 @@ hr
 NY
 Rt
 jp
-ws
+vJ
 PK
 PK
 PK
@@ -2226,7 +2197,7 @@ wb
 jp
 Fp
 GB
-WI
+PK
 GB
 bt
 "}
@@ -2303,9 +2274,9 @@ nA
 nA
 mU
 mU
-MO
+Fp
 Pm
-MO
+Fp
 Pm
 "}
 (21,1,1) = {"
