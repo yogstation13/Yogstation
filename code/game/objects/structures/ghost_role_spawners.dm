@@ -242,19 +242,28 @@
 	has_owner = TRUE
 	name = "inert servant golem shell"
 	mob_name = "a servant golem"
-	/// List of ckeys belonging to people who became a servant golem (via ghosting).
+	/// List of ckeys belonging to people who switched from being a ghost to a servant golem. Associative list; ckey = worldtime + cooldown.
 	var/static/list/servant_golem_users = list()
+	/// From the moment that they become a servant golem, how much time must pass before they can do it again?
+	var/static/cooldown = 30 MINUTES // 30 minutes is plenty enough time to prevent them from suiciding/running it down. If they manage to stay alive for 30 minutes, then they can have the ability to be a golem again the second they die.
 
 /obj/effect/mob_spawn/human/golem/servant/attack_ghost(mob/user)
 	. = ..()
 	if(. && user.mind) // Successfully became the golem (with a mind).
-		LAZYADD(servant_golem_users, ckey(user.mind.key))
+		servant_golem_users[ckey(user.mind.key)] = world.time + cooldown
 
 /obj/effect/mob_spawn/human/golem/servant/check_allowed(mob/M)
 	. = ..()
-	if(M.mind && (ckey(M.mind.key) in servant_golem_users)) // Same philosophy as posi-brains. Mass producible, encourages reckless/selfless behavior, etc. Therefore, should be one-time ghost role.
-		to_chat(M, span_warning("[src] rumbles. You have already used a servant golem shell!"))
-		return FALSE
+	/* 	Half the philosophy of posi-brains. 
+		While they are mass producible like posi-brains, they lack "many of the strengths" that cyborgs have.*/
+	if(M.mind && servant_golem_users[ckey(M.mind.key)]) 
+		var/time_left = servant_golem_users[ckey(M.mind.key)] - world.time
+		var/seconds_left = time_left/10
+		var/minutes_left_rounded = round(seconds_left/60, 0.1)
+		if(time_left > 0) // Cooldown has not been finished.
+			var/add_msg = seconds_left <= 60 ? "[seconds_left] more seconds" : "[minutes_left_rounded] more minutes"
+			to_chat(M, span_warning("[src] rumbles. You have used a servant golem shell recently! Wait [add_msg]."))
+			return FALSE
 
 /obj/effect/mob_spawn/human/golem/adamantine
 	name = "dust-caked free golem shell"
