@@ -146,9 +146,8 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	name = "shortcircuited [initial(name)]"
 	playsound(src.loc, "sparks", 100, 1)
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	return TRUE
 
 /obj/item/lightreplacer/attack_self(mob/user)
@@ -159,6 +158,13 @@
 /obj/item/lightreplacer/update_icon_state()
 	. = ..()
 	icon_state = "lightreplacer[(obj_flags & EMAGGED ? 1 : 0)]"
+
+/obj/item/lightreplacer/update_name(updates=ALL)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		name = "shortcircuited [initial(name)]"
+	else
+		name = initial(name)
 
 /obj/item/lightreplacer/proc/status_string()
 	return "It has [uses] light\s remaining (plus [bulb_shards] fragment\s)."
