@@ -53585,6 +53585,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"pxi" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/camera{
+	c_tag = "Mining Dock";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "pxu" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -72075,15 +72084,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/science/xenobiology)
-"uTS" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/camera{
-	c_tag = "Mining Dock";
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "uUd" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -101137,7 +101137,7 @@ ueX
 cAc
 jnA
 dFy
-uTS
+pxi
 cAc
 ueX
 ueX
