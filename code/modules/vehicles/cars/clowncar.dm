@@ -82,7 +82,7 @@
 		log_combat(src, A, "crashed into", null, "dumping all passengers")
 
 /obj/vehicle/sealed/car/clowncar/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_danger("You scramble the clowncar child safety lock and a panel with 6 colorful buttons appears!"))

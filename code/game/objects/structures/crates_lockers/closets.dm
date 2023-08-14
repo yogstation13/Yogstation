@@ -522,8 +522,6 @@ GLOBAL_LIST_EMPTY(lockers)
 		to_chat(user, span_warning("\The [src] is broken!"))
 
 /obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(!secure || broken)
 		return FALSE
 	user.visible_message(span_warning("Sparks fly from [src]!"),

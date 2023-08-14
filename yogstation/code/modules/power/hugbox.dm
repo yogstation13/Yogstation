@@ -12,7 +12,7 @@
 	var/power_per_hug = 1000000
 
 /obj/machinery/power/hugbox_engine/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("You crank up the love harvesting regulator to hardware maximum."))

@@ -277,7 +277,7 @@
 		return ..()
 
 /obj/machinery/porta_turret/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	to_chat(user, span_warning("You short out [src]'s threat assessment circuits."))
 	visible_message("[src] hums oddly...")
@@ -872,7 +872,7 @@
 			to_chat(user, span_warning("Access denied."))
 
 /obj/machinery/turretid/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	to_chat(user, span_danger("You short out the turret controls' access analysis module."))
 	obj_flags |= EMAGGED

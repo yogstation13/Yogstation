@@ -211,8 +211,6 @@
 	is_pumping = FALSE
 
 /obj/item/jawsoflife/jimmy/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
 		return FALSE

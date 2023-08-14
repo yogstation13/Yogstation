@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 
 /obj/machinery/computer/arcade/battle/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	to_chat(user, span_warning("A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!"))
 	temp = "If you die in the game, you die for real!"
@@ -1080,7 +1080,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	desc = "Learn how our ancestors planned to colonize Orion, and have fun in the process!"
 
 /obj/machinery/computer/arcade/orion_trail/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
 	name = "The Orion Trail: Realism Edition"

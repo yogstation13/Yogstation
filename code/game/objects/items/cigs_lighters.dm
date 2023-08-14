@@ -865,8 +865,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/clothing/mask/vape/emag_act(mob/user, obj/item/card/emag/emag_card)// I WON'T REGRET WRITTING THIS, SURLY.
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(!screw)
 		to_chat(user, span_notice("You need to open the cap to do that."))
 		return FALSE

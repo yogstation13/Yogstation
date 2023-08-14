@@ -26,7 +26,7 @@
 	findObjsByTag()
 
 /obj/machinery/doorButtons/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
 	req_access = list()

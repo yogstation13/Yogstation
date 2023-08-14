@@ -51,7 +51,7 @@
 		return
 
 /obj/item/storage/lockbox/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || broken)
+	if(broken)
 		return FALSE
 	broken = TRUE
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)

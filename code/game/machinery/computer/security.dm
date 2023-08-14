@@ -847,8 +847,6 @@
 			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,alarmed), 600)
 
 /obj/machinery/computer/secure_data/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(logged_in) // What was the point then?
 		return FALSE
 	var/name

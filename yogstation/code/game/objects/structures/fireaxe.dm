@@ -89,7 +89,7 @@
 		update_appearance(UPDATE_ICON)
 
 /obj/structure/fireaxecabinet/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	if(open || !locked) // You won't need the emag to get what you want. Just open it normally!
 		return FALSE

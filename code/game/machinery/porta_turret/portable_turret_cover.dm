@@ -88,7 +88,7 @@
 	. = 0
 
 /obj/machinery/porta_turret_cover/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (parent_turret.obj_flags & EMAGGED))
+	if((parent_turret.obj_flags & EMAGGED))
 		return FALSE
 	to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
 	visible_message("[parent_turret] hums oddly...")

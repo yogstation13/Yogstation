@@ -106,9 +106,11 @@
 
 /obj/item/card/emag/afterattack(atom/target, mob/user, proximity)
 	. = ..()
+	if(src.type == /obj/item/card/emag/cmag) // Still want to use ..() for cmag, but don't want much of anything else.
+		return
 	var/atom/A = target
 	if(!proximity && prox_check)
-		return
+		return 
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
@@ -164,7 +166,53 @@
 /obj/item/card/emag/cmag/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP) // It wouldn't be funny if it couldn't slip!
-	
+
+#define CMAG_AIRLOCK_CLOSED	1 // Since this is undefined outside of `airlock.dm`, have to redefine them.
+#define CMAG_AIRLOCK_EMAG	6
+
+/obj/item/card/emag/cmag/afterattack(atom/target, mob/user, proximity)
+	. = ..() // Handles the ..() before that.
+	if(!proximity && prox_check)
+		return 
+	if(charges < 1)
+		to_chat(user, span_danger("\The [src] is still recharging!"))
+		return
+
+	log_combat(user, target, "attempted to cmag")
+	// Since cmag only has very few interactions, all of it is handled in `afterattack` instead of `emag_act`.
+	if(istype(target, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/airlock = target
+		if(airlock.operating || !airlock.density || !airlock.hasPower() || (airlock.obj_flags & EMAGGED) || (airlock.obj_flags & CMAGGED))
+			return
+
+		charges--
+		airlock.operating = TRUE
+		airlock.update_icon(state = CMAG_AIRLOCK_EMAG, override = TRUE)
+
+		sleep(0.6 SECONDS)
+		if(QDELETED(src))
+			return
+		airlock.update_icon(state = CMAG_AIRLOCK_CLOSED, override = TRUE)
+		airlock.obj_flags |= CMAGGED
+		airlock.operating = FALSE
+		return
+
+	if(istype(target, /obj/machinery/door/window))
+		var/obj/machinery/door/window/windoor = target
+		if(windoor.operating || !windoor.density || (windoor.obj_flags & EMAGGED) || (windoor.obj_flags & CMAGGED))
+			return
+
+		charges--
+		windoor.operating = TRUE
+		windoor.obj_flags |= CMAGGED
+		flick("[windoor.base_state]spark", windoor)
+		playsound(windoor, "sparks", 75, 1)
+		windoor.operating = FALSE
+		return
+
+#undef CMAG_AIRLOCK_CLOSED
+#undef CMAG_AIRLOCK_EMAG
+
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
 	name = "cryptographic sequencer"

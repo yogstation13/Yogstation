@@ -43,7 +43,7 @@
 		. |= EXPORT_EMAG
 
 /obj/machinery/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	user.visible_message(span_warning("[user] swipes a suspicious card through [src]!"),
 	span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))

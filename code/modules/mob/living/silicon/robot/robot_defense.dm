@@ -84,8 +84,6 @@
 
 
 /mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(user == src) // To prevent syndieborgs from emagging themselves.
 		return FALSE
 	if(!opened) // Cover is closed.

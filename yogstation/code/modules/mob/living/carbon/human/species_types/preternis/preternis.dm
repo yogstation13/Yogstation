@@ -144,8 +144,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	return (..() || lockdown)
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	. = ..()
 	if(emag_lvl == 2)
 		return FALSE

@@ -75,7 +75,7 @@
 	nofur = TRUE
 
 /mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || emagged)
+	if(emagged)
 		return FALSE
 	emagged = TRUE
 	visible_message(span_warning("[user] swipes a card through [src]."), span_notice("You overload [src]s internal reactor."))

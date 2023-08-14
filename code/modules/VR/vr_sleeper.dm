@@ -57,8 +57,6 @@
 	return
 
 /obj/machinery/vr_sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	you_die_in_the_game_you_die_for_real = TRUE
 	sparks.start()
 	addtimer(CALLBACK(src, PROC_REF(emagNotify)), 150)

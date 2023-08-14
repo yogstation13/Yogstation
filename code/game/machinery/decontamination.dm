@@ -170,8 +170,6 @@
 	electrocute_mob(user, src, src, 1, TRUE)
 
 /obj/machinery/decontamination_unit/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
 		return FALSE

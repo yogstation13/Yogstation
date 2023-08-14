@@ -291,7 +291,7 @@
 		..()
 
 /obj/machinery/computer/telecomms/traffic/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || emagged)
+	if(emagged)
 		return FALSE
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 	emagged = TRUE

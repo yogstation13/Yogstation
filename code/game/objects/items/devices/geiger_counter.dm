@@ -179,7 +179,7 @@
 	update_appearance(UPDATE_ICON)
 
 /obj/item/geiger_counter/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	if(scanning)
 		to_chat(user, span_warning("Turn off [src] before you perform this action!"))

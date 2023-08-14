@@ -48,7 +48,7 @@
 		return ..()
 
 /obj/machinery/computer/message_monitor/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	if(isnull(linkedServer))
 		to_chat(user, span_notice("A no server error appears on the screen."))

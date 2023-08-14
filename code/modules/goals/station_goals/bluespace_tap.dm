@@ -408,7 +408,7 @@
 
 //emaging provides slightly more points but at much greater risk
 /obj/machinery/power/bluespace_tap/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || emagged)
+	if(emagged)
 		return FALSE
 	emagged = TRUE
 	do_sparks(5, FALSE, src)

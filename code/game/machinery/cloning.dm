@@ -436,7 +436,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		return ..()
 
 /obj/machinery/clonepod/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || !occupant)
+	if(!occupant)
 		return FALSE
 	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()

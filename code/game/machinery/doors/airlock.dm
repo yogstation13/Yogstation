@@ -1540,12 +1540,7 @@
 	if(QDELETED(src))
 		return
 	operating = FALSE
-
-	if(istype(emag_card, /obj/item/card/emag/cmag)) // Clown behavior.
-		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
-		obj_flags |= CMAGGED
-		return TRUE
-
+	
 	if(!open()) // Something prevented it from being opened. For example, bolted/welded shut.
 		update_icon(state = AIRLOCK_CLOSED, override = TRUE)
 	obj_flags |= EMAGGED

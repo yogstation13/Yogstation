@@ -219,13 +219,6 @@
 /obj/machinery/door/window/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(operating || !density || (obj_flags & CMAGGED))
 		return FALSE
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		obj_flags |= CMAGGED
-		operating = TRUE
-		flick("[base_state]spark", src)
-		playsound(src, "sparks", 75, 1)
-		operating = FALSE
-		return TRUE
 	obj_flags |= EMAGGED
 	operating = TRUE
 	flick("[base_state]spark", src)

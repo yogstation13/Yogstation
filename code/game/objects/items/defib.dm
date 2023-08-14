@@ -141,8 +141,6 @@
 		return ..()
 
 /obj/item/defibrillator/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(safety)
 		safety = FALSE
 		to_chat(user, span_warning("You silently disable [src]'s safety protocols with the cryptographic sequencer."))

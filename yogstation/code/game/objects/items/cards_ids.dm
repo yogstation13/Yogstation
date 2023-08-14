@@ -71,8 +71,6 @@
 	icon_state = "id_gold"
 
 /obj/item/card/emag/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	if(!emag_card)
 		return FALSE
 	if(istype(emag_card, /obj/item/card/emag/improvised))

@@ -147,7 +147,7 @@
 			return TRUE
 
 /obj/machinery/computer/arcade/minesweeper/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
 	do_sparks(5, 1, src)

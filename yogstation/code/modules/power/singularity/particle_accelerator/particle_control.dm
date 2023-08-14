@@ -2,7 +2,7 @@
 	active_power_usage = 5000 // The power usage when at lvl 0
 
 /obj/machinery/particle_accelerator/control_box/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 
 	to_chat(user, span_danger("The laws of physics no longer apply in the future, god help you..."))

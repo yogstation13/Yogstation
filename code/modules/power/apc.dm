@@ -865,7 +865,7 @@
 			update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/apc/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED) || malfhack)
+	if((obj_flags & EMAGGED) || malfhack)
 		return FALSE
 	if(opened)
 		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))

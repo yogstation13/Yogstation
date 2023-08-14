@@ -156,8 +156,6 @@
 		. = TRUE
 
 /obj/machinery/computer/emergency_shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag))
-		return FALSE
 	// How did you even get on the shuttle before it go to the station?
 	if(!IS_DOCKED)
 		return FALSE
@@ -506,7 +504,7 @@
 	return ..()
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(istype(emag_card, /obj/item/card/emag/cmag) || (obj_flags & EMAGGED))
+	if(obj_flags & EMAGGED)
 		return FALSE
 	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	to_chat(user, span_warning("You fry the pod's alert level checking system."))
