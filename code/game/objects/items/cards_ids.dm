@@ -106,8 +106,6 @@
 
 /obj/item/card/emag/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(src.type == /obj/item/card/emag/cmag) // Still want to use ..() for cmag, but don't want much of anything else.
-		return
 	var/atom/A = target
 	if(!proximity && prox_check)
 		return 
@@ -158,17 +156,55 @@
 				charges++
 		emagging = FALSE
 
-/obj/item/card/emag/cmag
-	desc = "It's a card coated in a slurry of electromagnetic bananium."
+/// A replica of an emag in most ways, except what it "cmags" what it interacts with.
+/obj/item/card/cmag
 	name = "jestographic sequencer"
+	desc = "It's a card coated in a slurry of electromagnetic bananium."
 	icon_state = "cmag"
+	item_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
+	/// How many charges can the cmag hold?
+	var/max_charges = 5
+	/// How many charges does the cmag start with?
+	var/charges = 5
+	/// How fast (in seconds) does charges increase by 1?
+	var/recharge_rate = 0.4
+	/// Does usage require you to be in range?
+	var/prox_check = TRUE
 
-/obj/item/card/emag/cmag/Initialize(mapload)
+/obj/item/card/cmag/Initialize(mapload)
 	. = ..()
+	if(recharge_rate != 0)
+		START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP) // It wouldn't be funny if it couldn't slip!
 
-/obj/item/card/emag/cmag/afterattack(atom/target, mob/user, proximity)
-	. = ..() // Handles the ..() before that.
+/obj/item/card/cmag/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/card/cmag/process(delta_time)
+	charges = clamp(charges + (recharge_rate * delta_time), 0, max_charges)
+
+/obj/item/card/cmag/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(max_charges > charges)
+		if(istype(W, /obj/item/stack/sheet/mineral/uranium))
+			var/obj/item/stack/sheet/mineral/uranium/T = W
+			T.use(1)
+			charges = min(charges + 1, max_charges)
+			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
+
+/obj/item/card/cmag/examine(mob/user)
+	. = ..()
+	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
+
+/obj/item/card/cmag/attack()
+	return
+
+/obj/item/card/cmag/afterattack(atom/target, mob/user, proximity)
+	. = ..()
 	if(!proximity && prox_check)
 		return 
 	if(charges < 1)
@@ -176,14 +212,14 @@
 		return
 
 	log_combat(user, target, "attempted to cmag")
-	// Since cmag only has very few interactions, all of it is handled in `afterattack` instead of `emag_act`.
+	// Since cmag only has very few interactions, all of it is handled in `afterattack` instead of being a child of emag/`emag_act`.
 	if(istype(target, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/airlock = target
 		if(airlock.operating || !airlock.density || !airlock.hasPower() || (airlock.obj_flags & EMAGGED) || (airlock.obj_flags & CMAGGED))
 			return
 
 		charges--
-		playsound(airlock, 'sound/items/bikehorn.ogg', 20, 1) // Was it an innocent bike horn or is it someone actively cmagging your airlock? The only tell if someone is actively cmagging things.
+		playsound(airlock, 'sound/items/bikehorn.ogg', 20, 1) // Was it an innocent bike horn or was is it someone actively cmagging your airlock? The only tell if someone is actively cmagging things.
 		airlock.obj_flags |= CMAGGED
 		return
 
