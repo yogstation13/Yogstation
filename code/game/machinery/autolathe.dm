@@ -318,8 +318,7 @@
 	if(!hacked)
 		adjust_hacked(TRUE)
 	playsound(src, "sparks", 75, TRUE, -1)
-	if(user)
-		to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 	return TRUE
 
 //Called when the object is constructed by an autolathe
