@@ -167,9 +167,6 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP) // It wouldn't be funny if it couldn't slip!
 
-#define CMAG_AIRLOCK_CLOSED	1 // Since this is undefined outside of `airlock.dm`, have to redefine them.
-#define CMAG_AIRLOCK_EMAG	6
-
 /obj/item/card/emag/cmag/afterattack(atom/target, mob/user, proximity)
 	. = ..() // Handles the ..() before that.
 	if(!proximity && prox_check)
@@ -186,15 +183,8 @@
 			return
 
 		charges--
-		airlock.operating = TRUE
-		airlock.update_icon(state = CMAG_AIRLOCK_EMAG, override = TRUE)
-
-		sleep(0.6 SECONDS)
-		if(QDELETED(src))
-			return
-		airlock.update_icon(state = CMAG_AIRLOCK_CLOSED, override = TRUE)
+		playsound(airlock, 'sound/items/bikehorn.ogg', 20, 1) // Was it an innocent bike horn or is it someone actively cmagging your airlock? The only tell if someone is actively cmagging things.
 		airlock.obj_flags |= CMAGGED
-		airlock.operating = FALSE
 		return
 
 	if(istype(target, /obj/machinery/door/window))
@@ -203,15 +193,9 @@
 			return
 
 		charges--
-		windoor.operating = TRUE
+		playsound(windoor, 'sound/items/bikehorn.ogg', 20, 1)
 		windoor.obj_flags |= CMAGGED
-		flick("[windoor.base_state]spark", windoor)
-		playsound(windoor, "sparks", 75, 1)
-		windoor.operating = FALSE
 		return
-
-#undef CMAG_AIRLOCK_CLOSED
-#undef CMAG_AIRLOCK_EMAG
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
