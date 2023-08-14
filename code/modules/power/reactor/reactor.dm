@@ -1018,7 +1018,7 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
-	radiation_pulse(src, 500, 5) //MORE RADS
+	AM.rad_act(500) //MORE RADS
 
 /obj/effect/decal/nuclear_waste/attackby(obj/item/tool, mob/user)
 	if(tool.tool_behaviour == TOOL_SHOVEL)
