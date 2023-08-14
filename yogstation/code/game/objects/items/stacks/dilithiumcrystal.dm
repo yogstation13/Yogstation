@@ -28,6 +28,7 @@
 	use(1)
 
 /obj/item/stack/ore/dilithium_crystal/eaten(mob/living/carbon/human/H)
+	H.adjust_fire_stacks(1)
 	H.ignite_mob()
 	return TRUE
 

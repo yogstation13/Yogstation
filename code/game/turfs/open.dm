@@ -15,6 +15,10 @@
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
+	/// How much fuel this open turf provides to turf fires, and how easily they can be ignited in the first place. Can be negative to make fires die out faster.
+	var/flammability = 0.3
+	var/obj/effect/abstract/turf_fire/turf_fire
+	var/obj/effect/hotspot/hotspot
 
 //direction is direction of travel of A
 /turf/open/zPassIn(atom/movable/A, direction, turf/source)
@@ -599,3 +603,18 @@
 		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
 		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)
 		air_update_turf()
+
+/turf/open/IgniteTurf(power, fire_color="red")
+	if(air.get_moles(/datum/gas/oxygen) < 1)
+		return
+	if(turf_fire)
+		turf_fire.AddPower(power)
+		return
+	if(!isgroundlessturf(src))
+		new /obj/effect/abstract/turf_fire(src, power, fire_color)
+
+/turf/open/proc/set_flammability(new_flammability)
+	if(isnull(new_flammability))
+		flammability = initial(flammability)
+		return
+	flammability = new_flammability

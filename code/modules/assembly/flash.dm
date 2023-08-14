@@ -139,7 +139,7 @@
 /obj/item/assembly/flash/proc/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
 	if(!istype(M))
 		return
-	if(user)
+	if(ismob(user))
 		log_combat(user, M, "[targeted? "flashed(targeted)" : "flashed(AOE)"]", src)
 	else //caused by emp/remote signal
 		M.log_message("was [targeted? "flashed(targeted)" : "flashed(AOE)"]",LOG_ATTACK)
@@ -148,7 +148,7 @@
 	if(targeted)
 		if(M.flash_act(1, 1))
 			M.set_confusion_if_lower(power * CONFUSION_STACK_MAX_MULTIPLIER SECONDS)
-			if(user)
+			if(ismob(user))
 				terrible_conversion_proc(M, user)
 				visible_message(span_disarm("[user] blinds [M] with the flash!"))
 				to_chat(user, span_danger("You blind [M] with the flash!"))
@@ -161,7 +161,7 @@
 				M.Knockdown(rand(20,30))
 			else
 				M.Knockdown(rand(80,120))
-		else if(user)
+		else if(ismob(user))
 			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
 			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
 			to_chat(M, span_danger("[user] fails to blind you with the flash!"))
@@ -171,32 +171,36 @@
 		if(M.flash_act())
 			M.set_confusion_if_lower(power * CONFUSION_STACK_MAX_MULTIPLIER SECONDS)
 
+/obj/item/assembly/flash/proc/flash_borg(mob/living/silicon/robot/robot_victim, mob/user)
+	log_combat(user, robot_victim, "flashed", src)
+	if(!robot_victim.sensor_protection)
+		update_icon(ALL, flash = TRUE)
+		robot_victim.Paralyze(rand(8 SECONDS,12 SECONDS))
+		robot_victim.set_confusion_if_lower(5 SECONDS * CONFUSION_STACK_MAX_MULTIPLIER)
+		robot_victim.flash_act(affect_silicon = 1)
+		if(ismob(user))
+			user.visible_message(span_disarm("[user] overloads [robot_victim]'s sensors with the flash!"), span_danger("You overload [robot_victim]'s sensors with the flash!"))
+		return TRUE
+	else
+		robot_victim.overlay_fullscreen("reducedflash", /atom/movable/screen/fullscreen/flash/static)
+		robot_victim.uneq_all()
+		robot_victim.stop_pulling()
+		robot_victim.break_all_cyborg_slots(TRUE)
+		addtimer(CALLBACK(robot_victim, TYPE_PROC_REF(/mob/living/silicon/robot, clear_fullscreen), "reducedflash"), 5 SECONDS)
+		addtimer(CALLBACK(robot_victim, TYPE_PROC_REF(/mob/living/silicon/robot, repair_all_cyborg_slots)), 5 SECONDS)
+		to_chat(robot_victim, span_danger("Your sensors were momentarily dazzled!"))
+		if(ismob(user))
+			user.visible_message(span_disarm("[user] overloads [robot_victim]'s sensors with the flash!"), span_danger("You overload [robot_victim]'s sensors with the flash!"))
+		return TRUE
+
 /obj/item/assembly/flash/attack(mob/living/M, mob/user)
 	if(!try_use_flash(user))
 		return FALSE
 	if(iscarbon(M))
 		flash_carbon(M, user, 5, 1)
 		return TRUE
-	else if(issilicon(M) && borgstun)
-		var/mob/living/silicon/robot/R = M
-		if(!R.sensor_protection)
-			log_combat(user, R, "flashed", src)
-			update_icon(ALL, flash = TRUE)
-			R.Paralyze(rand(80,120))
-			R.set_confusion_if_lower(5 SECONDS * CONFUSION_STACK_MAX_MULTIPLIER)
-			R.flash_act(affect_silicon = 1)
-			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
-			return TRUE
-		else
-			R.overlay_fullscreen("reducedflash", /atom/movable/screen/fullscreen/flash/static)
-			R.uneq_all()
-			R.stop_pulling()
-			R.break_all_cyborg_slots(TRUE)
-			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, clear_fullscreen), "reducedflash"), 5 SECONDS)
-			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, repair_all_cyborg_slots)), 5 SECONDS)
-			to_chat(R, span_danger("Your sensors were momentarily dazzled!"))
-			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
-			return TRUE
+	else if(iscyborg(M) && borgstun)
+		flash_borg(M, user)
 
 	user.visible_message(span_disarm("[user] fails to blind [M] with the flash!"), span_warning("You fail to blind [M] with the flash!"))
 

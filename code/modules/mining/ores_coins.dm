@@ -68,7 +68,7 @@
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
-	
+
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
 
@@ -80,11 +80,10 @@
 
 	use(1)//only eat one at a time
 
-	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."))
 	if(eaten_text)
-		to_chat(H, span_notice(eaten_text))
+		H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."), span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
-	
+
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
 		H.changeNext_move(CLICK_CD_MELEE * 0.5)
 
@@ -102,7 +101,7 @@
 	eaten_text = "The uranium ore tingles a bit as it goes down."
 
 /obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
-	radiation_pulse(H, 20)
+	radiation_pulse(H, 100)
 	return TRUE
 
 /obj/item/stack/ore/iron
@@ -117,6 +116,7 @@
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		))
 
 /obj/item/stack/ore/glass/eaten(mob/living/carbon/human/H)
-	H.take_overall_damage(3)
+	H.apply_damage(2, BRUTE, BODY_ZONE_HEAD)
 	H.heal_overall_damage(0, 1, 0, BODYPART_ROBOTIC)
 	return TRUE
 
@@ -192,6 +192,16 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 16
 	materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/silver
+	eaten_text = "You eat some silver ore, you're pretty sure this is healthy or something."
+
+/obj/item/stack/ore/silver/eaten(mob/living/carbon/human/H)
+	if(prob(1))//can cure viruses if you either get really lucky or eat a lot
+		for(var/thing in H.diseases)
+			var/datum/disease/D = thing
+			D.cure()
+	else
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2)//eating too much silver can cause brain problems
+	return TRUE
 
 /obj/item/stack/ore/gold
 	name = "gold ore"
@@ -201,6 +211,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 18
 	materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/gold
+	eaten_text = "As you eat the gold ore, you think it almost looks like butter."
+
+/obj/item/stack/ore/gold/eaten(mob/living/carbon/human/H)
+	return TRUE //what do you expect? it's an inert metal
 
 /obj/item/stack/ore/diamond
 	name = "diamond ore"
@@ -210,6 +224,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 50
 	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
+	eaten_text = "The diamonds, while \"tasty\" leaves a weird sensation throughout your body."
+					
+/obj/item/stack/ore/diamond/eaten(mob/living/carbon/human/H)
+	H.apply_status_effect(STATUS_EFFECT_DIAMONDSKIN)	
+	return TRUE
 
 /obj/item/stack/ore/bananium
 	name = "bananium ore"
@@ -221,7 +240,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 
 /obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
-	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
+	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."), span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
 	H.emote("scream")
 	playsound(H, 'sound/effects/supermatter.ogg', 100)
 	var/petrified = H.petrify(5 MINUTES, TRUE)
@@ -249,6 +268,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "slag"
 	item_state = "slag"
 	singular_name = "slag chunk"
+	eaten_text = "This slag is the most utterly vile thing you've ever eaten."
+	
+/obj/item/stack/ore/slag/eaten(mob/living/carbon/human/H)
+	H.adjust_disgust(30)
+	return TRUE
 
 /obj/item/melee/gibtonite
 	name = "gibtonite ore"
@@ -597,7 +621,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/bullet_act(obj/item/projectile/P)
 	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
-		
+
 	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
 		for(var/mob/living/T in viewers(5, src))
@@ -620,7 +644,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			P.fire(get_angle(P, target))
 			targets -= target
 			if(targets.len)
-				P = DuplicateObject(P, sameloc=1) //split into another projectile
+				P = duplicate_object(P, sameloc=1) //split into another projectile
 				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
 				P.last_process = initial(P.last_process)
 				P.last_projectile_move = initial(P.last_projectile_move)
@@ -632,7 +656,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		if(cooldown < world.time)
 			INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //flip the coin if it isn't already doing that
 		return BULLET_ACT_FORCE_PIERCE
-			
+
 	//we instead flip the coin
 	INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF

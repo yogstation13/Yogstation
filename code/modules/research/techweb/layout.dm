@@ -155,6 +155,10 @@
 	ui_x = -96
 	ui_y = 160
 
+/datum/techweb_node/adv_cyborg_upg_util
+	ui_x = -32
+	ui_y = 160
+
 /datum/techweb_node/basic_mining
 	ui_x = 96
 	ui_y = -384
@@ -408,7 +412,7 @@
 	ui_y = -640
 
 /datum/techweb_node/ballistic_weapons
-	ui_x = -736
+	ui_x = -690
 	ui_y = -416
 
 /datum/techweb_node/hardlight_weapons
@@ -511,10 +515,6 @@
 	ui_x = -736
 	ui_y = -576
 
-/datum/techweb_node/exotic_ammo
-	ui_x = -704
-	ui_y = -672
-
 /datum/techweb_node/gravity_gun
 	ui_x = -320
 	ui_y = -288
@@ -551,6 +551,14 @@
 	ui_x = -800
 	ui_y = -352
 
+/datum/techweb_node/exotic_ammo
+	ui_x = -736
+	ui_y = -466
+
+/datum/techweb_node/experimental_ammo
+	ui_x = -800
+	ui_y = -466
+
 /datum/techweb_node/mech_carbine
 	ui_x = -800
 	ui_y = -416
@@ -583,10 +591,6 @@
 	ui_x = -640
 	ui_y = -832
 
-/datum/techweb_node/mech_laser
-	ui_x = -704
-	ui_y = -896
-
 /datum/techweb_node/mech_disabler
 	ui_x = -448
 	ui_y = -224
@@ -603,12 +607,20 @@
 	ui_x = -800
 	ui_y = -576
 
-/datum/techweb_node/mech_laser_heavy
-	ui_x = -576
+/datum/techweb_node/mech_bfg
+	ui_x = -768
+	ui_y = -896
+
+/datum/techweb_node/mech_laser
+	ui_x = -704
 	ui_y = -896
 
 /datum/techweb_node/mech_xray
 	ui_x = -640
+	ui_y = -896
+
+/datum/techweb_node/mech_laser_heavy
+	ui_x = -576
 	ui_y = -896
 
 /datum/techweb_node/mech_rocket_fist
@@ -674,7 +686,3 @@
 /datum/techweb_node/zhpipc
 	ui_x = -224
 	ui_y = 288
-
-/datum/techweb_node/experimental_ammo
-	ui_x = -700
-	ui_y = -750

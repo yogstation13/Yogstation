@@ -185,8 +185,12 @@
 	var/datum/component/empprotection/empproof = host_mob.GetExactComponent(/datum/component/empprotection)
 	if(empproof && (empproof.getEmpFlags() & EMP_PROTECT_SELF))
 		return // don't do EMP effects if they're protected from EMPs
-	nanite_volume *= (rand(0.75, 0.90))		//Lose 10-25% of nanites
-	adjust_nanites(null, -(rand(5, 30)))		//Lose 5-30 flat nanite volume
+	if(HAS_TRAIT(host_mob, TRAIT_FARADAYCAGE))
+		severity++
+		if(severity > EMP_LIGHT)
+			return
+	nanite_volume *= 1 - (rand(0.1, 0.25) / severity)		//Lose 10-25% of nanites
+	adjust_nanites(null, -(rand(5, 30) / severity))		//Lose 5-30 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)
@@ -223,7 +227,7 @@
 			NP.receive_comm_signal(comm_code, comm_message, comm_source)
 
 /datum/component/nanites/proc/check_viable_biotype()
-	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob))
+	if(!(host_mob.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)) && !((host_mob.mob_biotypes & MOB_ROBOTIC) && (host_mob.mob_biotypes & MOB_HUMANOID)))
 		qdel(src) //bodytype no longer sustains nanites
 
 /datum/component/nanites/proc/check_access(datum/source, obj/O)

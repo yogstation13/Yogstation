@@ -129,6 +129,7 @@
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
 	process_flags = ORGANIC | SYNTHETIC
+	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
 
 /*
  *	Water reaction to turf
@@ -343,6 +344,7 @@
 	name = "Hell Water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
+	accelerant_quality = 20
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
@@ -479,7 +481,7 @@
 							newcolor += ascii2text(ascii+31)	//letters B to F - translates to lowercase
 						else
 							break
-				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
+				if(ReadHSV(newcolor)[3] >= ReadHSV("#777777")[3])
 					N.dna.features["mcolor"] = newcolor
 			N.regenerate_icons()
 
@@ -508,7 +510,7 @@
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
 			saved_color = N.dna.features["mcolor"]
-			N.dna.features["mcolor"] = "f80"
+			N.dna.features["mcolor"] = "#FF8800"
 		N.regenerate_icons()
 		if(prob(7))
 			if(N.w_uniform)
@@ -736,7 +738,7 @@
 	..()
 	if(!istype(H))
 		return
-	if(!H.dna || !H.dna.species || !(MOB_ORGANIC in H.mob_biotypes))
+	if(!H.dna || !H.dna.species || !(H.mob_biotypes & MOB_ORGANIC))
 		return
 
 	if(isjellyperson(H))
@@ -775,6 +777,7 @@
 	to_chat(H, span_warning("<b>You grit your teeth in pain as your body rapidly mutates!</b>"))
 	H.visible_message("<b>[H]</b> suddenly transforms!")
 	randomize_human(H)
+	H.dna.update_dna_identity()
 
 /datum/reagent/aslimetoxin
 	name = "Advanced Mutation Toxin"
@@ -1136,6 +1139,7 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
+	accelerant_quality = 10
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
@@ -1145,7 +1149,7 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(MOB_ROBOTIC in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_ROBOTIC)
 		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
 	else
 		M.adjustToxLoss(1*REM, 0)
