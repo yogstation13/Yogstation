@@ -179,6 +179,7 @@
 	update_icon()
 
 /obj/item/organ/regenerative_core/dryad/update_icon()
+	. = ..()
 	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -204,6 +205,7 @@
 	update_icon()
 
 /obj/item/organ/regenerative_core/dryad/update_icon()
+	. = ..()
 	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -290,7 +292,7 @@
 	var/mob/living/carbon/C = target 
 	C.blood_volume -= force
 
-/obj/item/twohanded/stinger_trident	//an awesome trident made of fauna parts and metal. Is slightly superior to bonespear, though doesn't have slowdown/reach, since thats pretty bad vs jungle fauna.
+/obj/item/stinger_trident	//an awesome trident made of fauna parts and metal. Is slightly superior to bonespear, though doesn't have slowdown/reach, since thats pretty bad vs jungle fauna.
 	name = "stinger trident"
 	desc = "a well-crafted trident made of metal and insect stingers tied together with still prickly meduracha tentacles."
 	force = 11
@@ -301,7 +303,6 @@
 	max_integrity = 100
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	force_wielded = 9					
 	throwforce = 24
 	throw_speed = 4
 	embedding = list("embedded_impact_pain_multiplier" = 3)
@@ -310,8 +311,17 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stung")
 	sharpness = SHARP_EDGED
 
-/obj/item/twohanded/stinger_trident/update_icon()  //Currently only here to fuck with the on-mob icons.
-	icon_state = "sting_trident[wielded]"
+/obj/item/stinger_trident/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		force_unwielded = 11, \
+		force_wielded = 10, \
+		icon_wielded = "sting_trident1", \
+		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+	)
+/obj/item/stinger_trident/update_icon_state()  //Currently only here to fuck with the on-mob icons.
+	. = ..()
+	icon_state = "sting_trident[HAS_TRAIT(src, TRAIT_WIELDED)]"
 	return
 
 /obj/item/slime_sling 
@@ -493,7 +503,7 @@
 /obj/item/crusher_trophy/jungleland/blob_brain/effect_desc()
 	return "Spreads the mark to mobs close together, activating a mark on adjacent mobs activates all the marks at once."
 
-/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_detonation(mob/living/target, mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_detonation(mob/living/target, mob/living/user,obj/item/kinetic_crusher/hammer_synced)
 	for(var/mob/living/L in range(1,target))
 		if(L == user || L == target)
 			continue 
@@ -517,7 +527,7 @@
 			L.apply_damage(hammer_synced.detonation_damage, BRUTE, blocked = def_check)
 			playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
 
-/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/kinetic_crusher/hammer_synced)
 	. = ..()
 	if(had_mark)
 		return
@@ -540,21 +550,21 @@
 /obj/item/crusher_trophy/jungleland/dryad_branch/effect_desc()
 	return "Gives a stacking (up to 5 times) regeneration effect for every detonated mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,PROC_REF(clear_status_effects))
 	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,PROC_REF(clear_status_effects))
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK)
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE)
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced)
 	. = ..()
 	user.apply_status_effect(/datum/status_effect/bounty_of_the_forest)
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,obj/item/kinetic_crusher/hammer_synced)
 	if(user.has_status_effect(/datum/status_effect/bounty_of_the_forest))
 		user.remove_status_effect(/datum/status_effect/bounty_of_the_forest)
 
@@ -571,20 +581,20 @@
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/effect_desc()
 	return "Gives a stacking (up to 5 times) decreases your shot delay and increases detonation damage when you detonate a mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
 
-/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,PROC_REF(remove_bonuses))
 	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,PROC_REF(remove_bonuses))
 	START_PROCESSING(SSprocessing,src)
 
-/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/remove_from(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK)
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE)
 	remove_bonuses()
 	STOP_PROCESSING(SSprocessing,src)
 
-/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced)
 	. = ..()
 	timer = 5 SECONDS
 	var/previous_state = current_state
@@ -596,7 +606,7 @@
 		hammer_synced.charge_time -= 2
 	user.throw_alert("glory_of_victory",/atom/movable/screen/alert/status_effect/glory_of_victory,current_state)
 
-/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/proc/remove_bonuses(datum/source,mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/proc/remove_bonuses(datum/source,mob/living/user,obj/item/kinetic_crusher/hammer_synced)
 	if(!hammer_synced)
 		hammer_synced = loc
 		user = hammer_synced.loc
@@ -622,7 +632,7 @@
 /obj/item/crusher_trophy/jungleland/mosquito_sack/effect_desc()
 	return "Detonating a mark heals you for 10% of the damage applied."
 
-/obj/item/crusher_trophy/jungleland/mosquito_sack/after_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced,damage_dealt)
+/obj/item/crusher_trophy/jungleland/mosquito_sack/after_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced,damage_dealt)
 	user.adjustBruteLoss(-0.1 * damage_dealt)
 	user.adjustFireLoss(-0.1 * damage_dealt)
 	user.adjustToxLoss(-0.1 * damage_dealt)
@@ -642,7 +652,7 @@
 /obj/item/crusher_trophy/jungleland/wasp_head/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	first_loc = get_turf(user)
 
-/obj/item/crusher_trophy/jungleland/wasp_head/after_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced, damage_dealt)
+/obj/item/crusher_trophy/jungleland/wasp_head/after_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced, damage_dealt)
 	var/dist = get_dist(get_turf(target),first_loc)
 	var/damage = dist * damage_per_dist 
 	target.apply_damage(damage, BRUTE, blocked = target.getarmor(type = BOMB))
@@ -663,3 +673,24 @@
 	light_range = 3
 	light_power = 4
 	light_color = "#2d066d"
+
+/obj/item/demon_core
+	name = "demon core"
+	desc = "It glows with a faint light, you can feel the energy buzzing off of it"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "demon_core"
+
+/obj/item/demon_core/examine(mob/user)
+	. = ..()
+	. = "You can insert it into any hardsuit to give it a rechargeable shield."
+
+/obj/item/demon_core/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(!proximity_flag)
+		return ..()
+	if(istype(target,/obj/item/clothing/suit/space/hardsuit))
+		target.AddComponent(/datum/component/shielded,'yogstation/icons/effects/effects.dmi',"tar_shield", 30 SECONDS, ITEM_SLOT_OCLOTHING)
+		visible_message("[user] inserts [src] into [target]")
+		qdel(src)
+		return
+	return ..()
+	

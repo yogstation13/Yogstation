@@ -4,12 +4,6 @@
 	layer = TRIP_LAYER
 	alpha = 0 //we animate it ourselves
 
-/atom/movable/screen/fullscreen/night
-	icon_state = "Night"
-	layer = NIGHT_LAYER
-	plane = FULLSCREEN_PLANE
-
-
 //floor trip
 /atom/movable/screen/fullscreen/ftrip
 	icon_state = "ftrip"

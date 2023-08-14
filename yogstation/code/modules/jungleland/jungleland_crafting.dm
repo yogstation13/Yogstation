@@ -28,7 +28,7 @@
 
 /datum/crafting_recipe/stinger_trident
 	name = "Stinger Trident"
-	result = /obj/item/twohanded/stinger_trident
+	result = /obj/item/stinger_trident
 	reqs = list(/obj/item/stack/sheet/meduracha = 2,
 				/obj/item/stinger  = 3,
 				/obj/item/stack/rods = 4)

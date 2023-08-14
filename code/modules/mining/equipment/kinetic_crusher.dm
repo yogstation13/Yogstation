@@ -238,9 +238,9 @@
 //obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark) //the target, the mark applied, and if the target had a mark before
 //obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user) //the target and the user
 
-/obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/kinetic_crusher/hammer_synced) //YOGS EDIT
-/obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced) //YOGS EDIT
-/obj/item/crusher_trophy/proc/after_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced, damage_dealt) //YOGS EDIT
+/obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/after_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced, damage_dealt) //YOGS EDIT
 //goliath
 /obj/item/crusher_trophy/goliath_tentacle
 	name = "goliath tentacle"
