@@ -19,6 +19,7 @@
 	var/sheet_type = null
 
 	var/image/shine_overlay //shows this overlay when not claimed
+	light_system = MOVABLE_LIGHT
 
 /obj/item/gem/Initialize(mapload)
 	. = ..()
@@ -208,6 +209,7 @@
 	maximum_max_power = 10.0
 	minimum_growth = 2.0
 	maximum_growth = 8.0
+	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_power = 6
 	light_color = "#0004ff"

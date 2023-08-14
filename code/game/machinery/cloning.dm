@@ -215,13 +215,13 @@ GLOBAL_VAR_INIT(clones, 0)
 			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return NONE
 		if(clonemind.zombified) //Can't clone the damned x2
 			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!
@@ -237,9 +237,9 @@ GLOBAL_VAR_INIT(clones, 0)
 			var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations)
 			H.dna.remove_mutation_group(unclean_mutations)
 		if(efficiency > 5 && prob(20))
-			H.easy_randmut(POSITIVE)
+			H.easy_random_mutate(POSITIVE)
 		if(efficiency < 3 && prob(50))
-			var/mob/M = H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			var/mob/M = H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
 	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)

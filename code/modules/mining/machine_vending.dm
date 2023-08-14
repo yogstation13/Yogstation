@@ -19,7 +19,7 @@
 	var/icon_deny = "mining-deny"
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
-		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/kinetic_crusher,								750, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/kinetic_crusher,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Kinetic Javelin",				/obj/item/kinetic_javelin/blue,										1000, VENDING_WEAPON), //YOGS EDIT
@@ -111,7 +111,8 @@
 		var/datum/data/mining_equipment/M = p
 		GLOB.vending_products[M.equipment_path] = 1
 
-/obj/machinery/mineral/equipment_vendor/update_icon()
+/obj/machinery/mineral/equipment_vendor/update_icon_state()
+	. = ..()
 	if(powered())
 		icon_state = initial(icon_state)
 	else
@@ -231,7 +232,7 @@
 			new /obj/item/stack/marker_beacon/thirty(drop_location)
 		if("Crusher Kit")
 			new /obj/item/extinguisher/mini(drop_location)
-			new /obj/item/twohanded/kinetic_crusher(drop_location)
+			new /obj/item/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
 		if("Mini Plasma Cutter Kit")
@@ -378,7 +379,7 @@
 			new /obj/item/borg/upgrade/modkit/minebot_passthrough(drop_location)
 		if("Crusher Kit")
 			new /obj/item/extinguisher/mini(drop_location)
-			new /obj/item/twohanded/kinetic_crusher(drop_location)
+			new /obj/item/kinetic_crusher(drop_location)
 		if("Advanced Scanner")
 			new /obj/item/t_scanner/adv_mining_scanner(drop_location)
 

@@ -37,11 +37,12 @@
 	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	if(((methods & VAPOR) && prob(min(33, reac_volume) * permeability)) || ((methods & (INGEST|PATCH|INJECT)) && reac_volume >= 5))
-		M.randmuti()
+		M.random_mutate_unique_identity()
+		M.random_mutate_unique_features()
 		if(prob(98))
-			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			M.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 		else
-			M.easy_randmut(POSITIVE)
+			M.easy_random_mutate(POSITIVE)
 		M.updateappearance()
 		M.domutcheck()
 	..()
@@ -58,6 +59,7 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
+	accelerant_quality = 10
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
@@ -287,7 +289,7 @@
 
 /datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	..()
-	if(MOB_BUG in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_BUG)
 		var/damage = min(round(0.4*reac_volume, 0.1),10)
 		M.adjustToxLoss(damage)
 
@@ -309,6 +311,7 @@
 	color = "#9ACD32"
 	toxpwr = 0.5
 	taste_description = "burning"
+	accelerant_quality = 10
 
 /datum/reagent/toxin/spore_burning/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)

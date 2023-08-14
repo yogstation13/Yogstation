@@ -31,6 +31,10 @@
 	filling_color = "#FF69B4"
 	return TRUE
 
+//Returns the sprite of the donut while in a donut box
+/obj/item/reagent_containers/food/snacks/donut/proc/in_box_sprite()
+	return "[icon_state]_inbox"
+
 /obj/item/reagent_containers/food/snacks/donut/checkLiked(fraction, mob/M)	//Sec officers always love donuts
 	if(last_check_time + 50 < world.time)
 		if(ishuman(M))
@@ -424,6 +428,18 @@
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 
+/obj/item/reagent_containers/food/snacks/cookie/bacon
+	name = "strip of bacon"
+	desc = "BACON!!!"
+	icon_state = "bacon_strip"
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/cookie/cloth
+	name = "odd cookie"
+	desc = "A cookie that appears to be made out of... some form of cloth?"
+	icon_state = "cookie_cloth"
+	foodtype = CLOTH
+
 /obj/item/reagent_containers/food/snacks/cookie/sleepy
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 
@@ -517,6 +533,22 @@
 	filling_color = "#CD853F"
 	tastes = list("cookie" = 1, "sweetness" = 1)
 	foodtype = GRAIN | JUNKFOOD | SUGAR
+
+/obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
+	name = "skull cookie"
+	desc = "Spooky! It's got delicious calcium flavouring!"
+	icon = 'icons/obj/halloween_items.dmi'
+	icon_state = "skeletoncookie"
+	tastes = list("cookie" = 2, "sweetness" = 1, "milk" = 1)
+	foodtype = GRAIN | JUNKFOOD | SUGAR | DAIRY
+
+/obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
+	name = "coffin cookie"
+	desc = "Spooky! It's got delicious coffee flavouring!"
+	icon = 'icons/obj/halloween_items.dmi'
+	icon_state = "coffincookie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee = 3)
+	tastes = list("cookie" = 2, "coffee" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/chococornet
 	name = "chocolate cornet"
@@ -672,15 +704,22 @@
 
 /obj/item/reagent_containers/food/snacks/pancakes/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/food/snacks/pancakes/update_icon()
-	if(contents.len)
-		name = "stack of pancakes"
-	else
-		name = initial(name)
+/obj/item/reagent_containers/food/snacks/pancakes/update_name()
+	name = contents.len ? "stack of pancakes" : initial(name)
+	return ..()
+
+/obj/item/reagent_containers/food/snacks/pancakes/update_icon(updates = ALL)
+	if(!(updates & UPDATE_OVERLAYS))
+		return ..()
+
+	updates &= ~UPDATE_OVERLAYS
+	. = ..() // Don't update overlays. We're doing that here
+
 	if(contents.len < LAZYLEN(overlays))
-		overlays-=overlays[overlays.len]
+		overlays -= overlays[overlays.len]
+	. |= UPDATE_OVERLAYS
 
 /obj/item/reagent_containers/food/snacks/pancakes/examine(mob/user)
 	var/ingredients_listed = ""
@@ -708,7 +747,7 @@
 	bitecount = originalBites
 
 /obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes/))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes))
 		var/obj/item/reagent_containers/food/snacks/pancakes/P = I
 		if((contents.len >= PANCAKE_MAX_STACK) || ((P.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
 			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
@@ -733,18 +772,11 @@
 		return O.attackby(I, user, params)
 	..()
 
-/obj/item/reagent_containers/food/snacks/pancakes/update_overlays(obj/item/reagent_containers/food/snacks/P)
-	var/mutable_appearance/pancake = mutable_appearance(icon, "[P.item_state]_[rand(1,3)]")
-	pancake.pixel_x = rand(-1,1)
-	pancake.pixel_y = 3 * contents.len - 1
-	add_overlay(pancake)
-	update_icon()
-
 /obj/item/reagent_containers/food/snacks/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)
 		return ..()
 	var/obj/item/O = contents[contents.len]
 	. = O.attack(M, user, def_zone, FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 #undef PANCAKE_MAX_STACK

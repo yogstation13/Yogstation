@@ -228,10 +228,21 @@
 	slippery_foam = FALSE
 	/// The amount of plasma gas this foam has absorbed. To be deposited when the foam dissipates.
 	var/absorbed_plasma = 0
+	/// The turf this foam is affecting. Its flammability is set to -10 and later reset to its initial value.
+	var/turf/open/affecting_turf
 
 /obj/effect/particle_effect/fluid/foam/firefighting/Initialize(mapload)
 	. = ..()
+	var/turf/open/T = get_turf(src)
+	if(istype(T))
+		affecting_turf = T
+		affecting_turf.flammability = -10 // set the turf to be non-flammable while the foam is covering it
 	//Remove_element(/datum/element/atmos_sensitive)
+
+/obj/effect/particle_effect/fluid/foam/firefighting/Destroy()
+	if(affecting_turf && !QDELETED(affecting_turf))
+		affecting_turf.flammability = initial(affecting_turf.flammability)
+	return ..()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/process()
 	..()
@@ -240,11 +251,16 @@
 	if(!istype(location))
 		return
 
-	var/obj/effect/hotspot/hotspot = locate() in location
-	if(!(hotspot && location.air))
+	var/obj/effect/hotspot/hotspot = location.active_hotspot
+	var/obj/effect/abstract/turf_fire/turf_fire = location.turf_fire
+	if(!((hotspot||turf_fire) && location.air))
 		return
 
-	QDEL_NULL(hotspot)
+	if(hotspot)
+		QDEL_NULL(hotspot)
+	if(turf_fire)
+		QDEL_NULL(turf_fire)
+
 	var/datum/gas_mixture/air = location.air
 	var/scrub_amt = min(30, air.get_moles(/datum/gas/plasma)) //Absorb some plasma
 	air.adjust_moles(/datum/gas/plasma, -scrub_amt)
@@ -400,7 +416,7 @@
 	for(var/obj/machinery/atmospherics/components/unary/comp in location)
 		if(!comp.welded)
 			comp.welded = TRUE
-			comp.update_icon()
+			comp.update_appearance(UPDATE_ICON)
 			comp.visible_message(span_danger("[comp] sealed shut!"))
 
 	for(var/mob/living/potential_tinder in location)

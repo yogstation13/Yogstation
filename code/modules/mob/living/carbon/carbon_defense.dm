@@ -372,6 +372,10 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
+	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
+		severity++
+		if(severity > EMP_LIGHT)
+			return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
 		O.emp_act(severity)

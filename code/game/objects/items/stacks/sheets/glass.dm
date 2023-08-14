@@ -269,6 +269,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	sharpness = SHARP_EDGED
 	grind_results = list(/datum/reagent/silicon = 20)
 	var/icon_prefix
+	var/obj/item/stack/sheet/weld_material = /obj/item/stack/sheet/glass
 
 
 /obj/item/shard/suicide_act(mob/user)
@@ -326,16 +327,11 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 
 /obj/item/shard/welder_act(mob/living/user, obj/item/I)
 	if(I.use_tool(src, user, 0, volume=50))
-		var/obj/item/stack/sheet/glass/NG = new (user.loc)
-		for(var/obj/item/stack/sheet/glass/G in user.loc)
-			if(G == NG)
-				continue
-			if(G.amount >= G.max_amount)
-				continue
-			G.attackby(NG, user)
-		to_chat(user, span_notice("You add the newly-formed glass to the stack. It now contains [NG.amount] sheet\s."))
+		var/obj/item/stack/sheet/NG = new weld_material
+		to_chat(user, span_notice("You melt [src] down into [NG.name]."))
+		NG.forceMove((Adjacent(user) ? user.drop_location() : loc)) //stack merging is handled automatically.
 		qdel(src)
-	return TRUE
+		return
 
 /obj/item/shard/Crossed(atom/movable/AM)
 	if(isliving(AM))
@@ -355,3 +351,4 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	icon_state = "plasmalarge"
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"
+	weld_material = /obj/item/stack/sheet/plasmaglass

@@ -198,6 +198,7 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
+	default_container = /obj/item/reagent_containers/food/condiment/milk
 
 /datum/reagent/consumable/cilk
 	name = "Cilk"
@@ -307,6 +308,7 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of soy milk"
 	glass_desc = "White and nutritious soy goodness!"
+	default_container = /obj/item/reagent_containers/food/condiment/soymilk
 
 /datum/reagent/consumable/soymilk/on_mob_life(mob/living/carbon/M)
 	if(M.getBruteLoss() && prob(20))

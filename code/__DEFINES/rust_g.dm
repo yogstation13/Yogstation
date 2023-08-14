@@ -169,6 +169,9 @@
 #define rustg_http_request_async(method, url, body, headers, options) RUSTG_CALL(RUST_G, "http_request_async")(method, url, body, headers, options)
 #define rustg_http_check_request(req_id) RUSTG_CALL(RUST_G, "http_check_request")(req_id)
 
+#define rustg_influxdb2_publish(data, endpoint, token) RUSTG_CALL(RUST_G, "influxdb2_publish")(data, endpoint, token)
+#define rustg_influxdb2_publish_profile(data, endpoint, token, round_id) RUSTG_CALL(RUST_G, "influxdb2_publish_profile")(data, endpoint, token, round_id)
+
 #define RUSTG_JOB_NO_RESULTS_YET "NO RESULTS YET"
 #define RUSTG_JOB_NO_SUCH_JOB "NO SUCH JOB"
 #define RUSTG_JOB_ERROR "JOB PANICKED"
@@ -234,6 +237,9 @@
 
 /proc/rustg_unix_timestamp()
 	return text2num(RUSTG_CALL(RUST_G, "unix_timestamp")())
+
+/proc/rustg_unix_timestamp_int()
+	return RUSTG_CALL(RUST_G, "unix_timestamp_int")()
 
 #define rustg_raw_read_toml_file(path) json_decode(RUSTG_CALL(RUST_G, "toml_file_to_json")(path) || "null")
 

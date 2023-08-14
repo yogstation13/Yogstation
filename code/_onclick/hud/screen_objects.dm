@@ -188,15 +188,13 @@
 	cut_overlay(object_overlays)
 	object_overlays.Cut()
 
-/atom/movable/screen/inventory/update_icon()
+/atom/movable/screen/inventory/update_icon_state()
 	if(!icon_empty)
 		icon_empty = icon_state
 
-	if(hud && hud.mymob && slot_id && icon_full)
-		if(hud.mymob.get_item_by_slot(slot_id))
-			icon_state = icon_full
-		else
-			icon_state = icon_empty
+	if(hud?.mymob && slot_id && icon_full)
+		icon_state = hud.mymob.get_item_by_slot(slot_id) ? icon_full : icon_empty
+	return ..()
 
 /atom/movable/screen/inventory/proc/add_overlays()
 	var/mob/user = hud.mymob
@@ -223,15 +221,12 @@
 	var/static/mutable_appearance/blocked_overlay = mutable_appearance('icons/mob/screen_gen.dmi', "blocked")
 	var/held_index = 0
 
-/atom/movable/screen/inventory/hand/update_icon()
+/atom/movable/screen/inventory/hand/update_overlays()
 	. = ..()
 
 	if(!handcuff_overlay)
-		var/ui_style = hud?.mymob?.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
 		var/state = (!(held_index % 2)) ? "markus" : "gabrielle"
-		handcuff_overlay = mutable_appearance((ui_style ? ui_style2icon(ui_style) : 'icons/mob/screen_gen.dmi'), state)
-
-	cut_overlays()
+		handcuff_overlay = mutable_appearance('icons/mob/screen_gen.dmi', state)
 
 	if(!hud?.mymob)
 		return
@@ -239,14 +234,14 @@
 	if(iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-			add_overlay(handcuff_overlay)
+			. += handcuff_overlay
 
 		if(held_index)
 			if(!C.has_hand_for_held_index(held_index))
-				add_overlay(blocked_overlay)
+				. += blocked_overlay
 
 	if(held_index == hud.mymob.active_hand_index)
-		add_overlay((held_index % 2) ? "lhandactive" : "rhandactive")
+		. += (held_index % 2) ? "lhandactive" : "rhandactive"
 
 
 /atom/movable/screen/inventory/hand/Click(location, control, params)
@@ -336,12 +331,13 @@
 /atom/movable/screen/mov_intent/Click()
 	toggle(usr)
 
-/atom/movable/screen/mov_intent/update_icon()
+/atom/movable/screen/mov_intent/update_icon_state()
 	switch(hud?.mymob?.m_intent)
 		if(MOVE_INTENT_WALK)
 			icon_state = "walking"
 		if(MOVE_INTENT_RUN)
 			icon_state = "running"
+	return ..()
 
 /atom/movable/screen/mov_intent/proc/toggle(mob/user)
 	if(isobserver(user))
@@ -358,8 +354,9 @@
 		return
 	usr.stop_pulling()
 
-/atom/movable/screen/pull/update_icon()
+/atom/movable/screen/pull/update_icon_state()
 	icon_state = "[initial(icon_state)][hud?.mymob?.pulling ? null : 0]"
+	return ..()
 
 /atom/movable/screen/resist
 	name = "resist"
@@ -385,12 +382,12 @@
 		var/mob/living/L = usr
 		L.lay_down()
 
-/atom/movable/screen/rest/update_icon()
+/atom/movable/screen/rest/update_icon_state()
 	var/mob/living/user = hud?.mymob
 	if(!istype(user))
-		return
+		return ..()
 	icon_state = "[initial(icon_state)][user.resting ? 0 : null]"
-	return
+	return ..()
 
 /atom/movable/screen/storage
 	name = "storage"
@@ -529,16 +526,15 @@
 
 	if(choice != hud.mymob.zone_selected)
 		hud.mymob.zone_selected = choice
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		SEND_SIGNAL(user, COMSIG_MOB_SELECTED_ZONE_SET, choice)
+	return 1
 
-	return TRUE
-
-/atom/movable/screen/zone_sel/update_icon()
+/atom/movable/screen/zone_sel/update_overlays()
+	. = ..()
 	if(!hud?.mymob)
 		return
-	cut_overlays()
-	add_overlay(mutable_appearance(overlay_icon, "[hud.mymob.zone_selected]"))
+	. += mutable_appearance(overlay_icon, "[hud.mymob.zone_selected]")
 
 /atom/movable/screen/zone_sel/alien
 	icon = 'icons/mob/screen_alien.dmi'
@@ -658,7 +654,7 @@
 	screen_loc = ui_mood
 
 /atom/movable/screen/splash
-	icon = 'icons/blank_title.png'
+	icon = 'icons/blanks/blank_title.png'
 	icon_state = ""
 	screen_loc = "1,1"
 	layer = SPLASHSCREEN_LAYER

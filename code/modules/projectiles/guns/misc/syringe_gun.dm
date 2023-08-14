@@ -1,6 +1,6 @@
 /obj/item/gun/syringe
 	name = "syringe gun"
-	desc = "A spring loaded rifle designed to fit syringes, used to incapacitate unruly patients from a distance."
+	desc = "Created by Blue Cross Medical for use by medical staff in the field, the syringe gun utilizes a spring-loaded mechanism to propel syringes across a large distance."
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -18,7 +18,7 @@
 
 /obj/item/gun/syringe/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	chambered = new /obj/item/ammo_casing/syringegun(src)
 
 /obj/item/gun/syringe/handle_atom_del(atom/A)
@@ -37,7 +37,7 @@
 /obj/item/gun/syringe/process_chamber()
 	if(chambered && !chambered.BB) //we just fired
 		recharge_newshot()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/syringe/examine(mob/user)
 	. = ..()
@@ -71,19 +71,19 @@
 			to_chat(user, span_notice("You load [A] into \the [src]."))
 			syringes += A
 			recharge_newshot()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
 
-/obj/item/gun/syringe/update_icon()
+/obj/item/gun/syringe/update_overlays()
 	. = ..()
 	if(!has_syringe_overlay)
 		return
 	var/syringe_count = syringes.len
-	add_overlay("[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]")
+	. += "[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]"
 
 /obj/item/gun/syringe/rapidsyringe
 	name = "rapid syringe gun"
@@ -124,7 +124,7 @@
 			to_chat(user, span_notice("You load \the [D] into \the [src]."))
 			syringes += D
 			recharge_newshot()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
@@ -142,7 +142,7 @@
 
 /obj/item/gun/syringe/blowgun/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	chambered = new /obj/item/ammo_casing/blowgun(src)
 
 

@@ -104,7 +104,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Set to 0 to disable that mode.
 
 # New
-PROBABILITY DARKSPAWN 0 # Moved to midround event
+PROBABILITY DARKSPAWN 2
 PROBABILITY HERESY 6
 PROBABILITY INFILTRATION 0
 PROBABILITY BLOODSUCKER 5
@@ -126,7 +126,7 @@ PROBABILITY CULT 5
 PROBABILITY CLOCKWORK_CULT 5
 
 # Snowflakes
-PROBABILITY SHADOWLING 0 # Bugged to hell and back
+PROBABILITY SHADOWLING 0
 PROBABILITY WIZARD 8
 PROBABILITY NUCLEAR 9
 PROBABILITY MALF 0
@@ -332,7 +332,7 @@ ALLOW_AI_MULTICAM
 
 ## Secborg ###
 ## Uncomment to prevent the security cyborg module from being chosen
-#DISABLE_SECBORG
+DISABLE_SECBORG
 
 ## Peacekeeper Borg ###
 ## Uncomment to prevent the peacekeeper cyborg module from being chosen
@@ -691,5 +691,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any.
 ENGINE_TYPE 3

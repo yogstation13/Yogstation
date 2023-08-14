@@ -144,29 +144,29 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/kitchen/knife/carrotshiv = 5,
 
 		/obj/item/kitchen/knife/combat/survival = 4,
-		/obj/item/twohanded/required/baseball_bat = 4,
-		/obj/item/twohanded/spear = 4,
+		/obj/item/melee/baseball_bat = 4,
+		/obj/item/melee/spear = 4,
 
-		/obj/item/pen/edagger = 3,
-		/obj/item/twohanded/bigspoon = 3,
+		/obj/item/pen/red/edagger = 3,
+		/obj/item/bigspoon = 3,
 
 		/obj/item/kitchen/knife/combat = 2,
-		/obj/item/twohanded/bonespear = 2,
+		/obj/item/melee/spear/bonespear = 2,
 		/obj/item/nullrod/hammer = 2,
 		/obj/item/nullrod/tribal_knife = 2,
 		/obj/item/nullrod/vibro = 2,
 
 		/obj/item/flamethrower/full/tank = 1,
-		/obj/item/twohanded/required/chainsaw = 1,
-		/obj/item/twohanded/fireaxe/metal_h2_axe = 1,
+		/obj/item/melee/chainsaw = 1,
+		/obj/item/fireaxe/metal_h2_axe = 1,
 		/obj/item/nullrod/whip = 1,
 
-		/obj/item/twohanded/vxtvulhammer = 0,
+		/obj/item/melee/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/shotgun/riot = 0,
 		/obj/item/gun/ballistic/shotgun/automatic/dual_tube = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
-		/obj/item/twohanded/required/baseball_bat/homerun = 0,
-		/obj/item/twohanded/fireaxe = 0,
+		/obj/item/melee/baseball_bat/homerun = 0,
+		/obj/item/fireaxe = 0,
 		/obj/item/nullrod/talking = 0,
 
 		/obj/item/melee/powerfist = -1,
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
 		/obj/item/melee/transforming/energy/sword = -1,
 		/obj/item/gun/energy/laser/retro/old = -1,
-		/obj/item/twohanded/required/baseball_bat/metal_bat = -1,
+		/obj/item/melee/baseball_bat/metal_bat = -1,
 
 		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
 		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
@@ -194,16 +194,16 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/automatic/mini_uzi = -3,
 		/obj/item/gun/ballistic/automatic/tommygun = -3,
 		/obj/item/gun/ballistic/rifle/sniper_rifle = -3, //Not a stun anymore
-		/obj/item/twohanded/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
+		/obj/item/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
 
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -4,
-		/obj/item/twohanded/dualsaber = -4,
+		/obj/item/melee/dualsaber = -4,
 		/obj/item/battleroyale/itemspawner/breakbow = -4, //Strong melee weapon, along with infinte arrows
 		/obj/item/gun/energy/beam_rifle = -4,
 
 		/obj/item/melee/fryingpan/bananium = -5,
 		/obj/item/his_grace = -5,
-		/obj/item/twohanded/required/chainsaw/doomslayer = -5,
+		/obj/item/melee/chainsaw/doomslayer = -5,
 		/obj/item/gun/ballistic/bow/energy/ert = -5,
 		))
 
@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	desc = "Transforms you into a durable worker cyborg."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
-	martial = /datum/martial_art/stealth
+	martial = /datum/martial_art/liquidator
 	species = /datum/species/preternis
 	
 /obj/item/battleroyale/martial/phytosian
