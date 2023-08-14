@@ -15,6 +15,12 @@
 	spark_system.set_up(2, 1, src)
 	spark_system.attach(src)
 
+/obj/structure/fireaxecabinet/update_desc(updates=ALL)
+	. = ..()
+	desc = initial(desc)
+	if(obj_flags & EMAGGED)
+		desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
+
 /obj/structure/fireaxecabinet/Destroy()//<-- mirrored/overwritten proc
 	if(fireaxe)
 		fireaxe.forceMove(get_turf(src))
@@ -100,10 +106,9 @@
 	spark_system.start()
 	add_fingerprint(user)
 	obj_flags |= EMAGGED
-	desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
 	playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
 	locked = FALSE
 	audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 	// The fireaxe cabinet is now permanently unlocked.
 	return TRUE
