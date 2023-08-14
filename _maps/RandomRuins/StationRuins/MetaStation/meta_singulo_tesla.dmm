@@ -141,6 +141,15 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"ep" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/engineering)
 "es" = (
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -206,16 +215,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"kl" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity Northwest";
-	network = list("ss13","engine")
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/engine/engineering)
 "kH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -242,32 +241,9 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"lv" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/engine/engineering)
 "mh" = (
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
-"mi" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity Southwest";
-	dir = 1;
-	network = list("ss13","engine")
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/engine/engineering)
 "mC" = (
 /obj/structure/cable/orange{
 	icon_state = "2-8"
@@ -305,11 +281,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"oq" = (
+"oy" = (
 /obj/structure/cable{
-	icon_state = "2-8"
+	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Southwest";
+	dir = 1;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "oF" = (
 /obj/machinery/power/emitter/anchored{
@@ -330,6 +314,16 @@
 	},
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plating/snowed/smoothed,
+/area/engine/engineering)
+"ph" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Northwest";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "pN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -358,6 +352,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/engine/engineering)
+"rv" = (
+/obj/machinery/the_singularitygen,
+/turf/open/floor/plating/snowed/smoothed,
 /area/engine/engineering)
 "rF" = (
 /obj/structure/particle_accelerator/fuel_chamber{
@@ -497,12 +495,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"wM" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/engine/engineering)
 "xa" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -533,6 +525,12 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"zw" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "zG" = (
 /obj/structure/cable{
@@ -643,12 +641,6 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating/snowed/smoothed,
-/area/engine/engineering)
-"FI" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "Gp" = (
 /obj/structure/closet/radiation,
@@ -790,9 +782,21 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Nv" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/engineering)
 "Oy" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/engine/engineering)
+"OX" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "Pm" = (
 /obj/machinery/power/tesla_coil,
@@ -868,26 +872,29 @@
 "SN" = (
 /turf/template_noop,
 /area/template_noop)
+"SY" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/engineering)
 "Uj" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"UC" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/engineering)
 "UG" = (
 /obj/structure/particle_accelerator/particle_emitter/center{
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"VS" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/engine/engineering)
 "VY" = (
 /obj/structure/cable/orange{
@@ -1230,7 +1237,7 @@ SN
 vP
 PQ
 vP
-kl
+ph
 qk
 fE
 fE
@@ -1242,7 +1249,7 @@ fE
 fE
 fE
 qk
-mi
+oy
 vP
 PQ
 vP
@@ -1256,7 +1263,7 @@ SN
 nn
 IQ
 Xx
-FI
+zw
 qk
 Oy
 Oy
@@ -1268,7 +1275,7 @@ qk
 Oy
 Oy
 qk
-FI
+zw
 Xx
 vp
 cf
@@ -1282,7 +1289,7 @@ SN
 WW
 Sj
 dm
-FI
+zw
 Oy
 de
 qk
@@ -1294,7 +1301,7 @@ qk
 qk
 de
 Oy
-FI
+zw
 dm
 oF
 En
@@ -1308,7 +1315,7 @@ SN
 kb
 Xf
 dm
-lv
+OX
 QO
 qk
 qk
@@ -1320,7 +1327,7 @@ qk
 qk
 qk
 Es
-VS
+ep
 dm
 Xf
 BX
@@ -1334,7 +1341,7 @@ SN
 kX
 Ms
 dm
-FI
+zw
 dm
 qk
 qk
@@ -1346,7 +1353,7 @@ qk
 dm
 qk
 dm
-FI
+zw
 dm
 dP
 wu
@@ -1360,7 +1367,7 @@ SN
 vP
 gw
 dm
-FI
+zw
 qk
 qk
 qk
@@ -1372,7 +1379,7 @@ Oy
 Oy
 de
 Oy
-FI
+zw
 dm
 Pm
 vP
@@ -1386,19 +1393,19 @@ SN
 vP
 oY
 XY
-lv
+OX
 QO
 qk
 qk
 qk
-dm
+rv
 dm
 eZ
 qk
 qk
 qk
 Es
-VS
+ep
 XY
 Ew
 vP
@@ -1412,7 +1419,7 @@ SN
 vP
 cv
 dm
-FI
+zw
 Oy
 de
 Oy
@@ -1424,7 +1431,7 @@ qk
 qk
 qk
 qk
-FI
+zw
 dm
 cv
 vP
@@ -1438,7 +1445,7 @@ SN
 nn
 Fo
 dm
-oq
+UC
 QO
 qk
 qk
@@ -1450,7 +1457,7 @@ qk
 qk
 qk
 Es
-wM
+SY
 dm
 mC
 cf
@@ -1464,7 +1471,7 @@ SN
 kb
 Zg
 dm
-qk
+Nv
 dm
 qk
 qk
@@ -1476,7 +1483,7 @@ qk
 qk
 qk
 dm
-qk
+Nv
 dm
 Zg
 BX
@@ -1490,7 +1497,7 @@ SN
 kX
 Sj
 dm
-qk
+Nv
 Oy
 de
 qk
@@ -1502,7 +1509,7 @@ qk
 qk
 de
 Oy
-qk
+Nv
 dm
 oF
 wu
@@ -1516,19 +1523,19 @@ SN
 LS
 dm
 dm
+Nv
+qk
+Oy
+qk
+qk
 qk
 qk
 Oy
 qk
 qk
-qk
-qk
 Oy
 qk
-qk
-Oy
-qk
-qk
+Nv
 dm
 dm
 CT
@@ -1542,7 +1549,7 @@ SN
 LS
 dm
 YG
-qk
+Nv
 Oy
 Oy
 qk
@@ -1554,7 +1561,7 @@ Oy
 qk
 Oy
 Oy
-qk
+Nv
 YG
 dm
 CT

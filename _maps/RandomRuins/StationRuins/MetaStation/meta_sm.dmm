@@ -52,12 +52,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"bt" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "bX" = (
 /obj/machinery/power/emitter/anchored{
 	dir = 1;
@@ -110,6 +104,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"et" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "eG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -290,13 +290,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
-"le" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "li" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -370,10 +363,6 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
-"mG" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "mH" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Mix to Gas"
@@ -423,8 +412,11 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"mU" = (
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+"mV" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
 "mX" = (
 /obj/structure/cable{
@@ -469,6 +461,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
+"oz" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/engine/engineering)
 "oB" = (
 /obj/structure/table/reinforced,
 /obj/item/tank/internals/emergency_oxygen/engi,
@@ -479,6 +475,12 @@
 /obj/item/flashlight/flare/signal,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"oF" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "oH" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -593,14 +595,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"qA" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "qE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -624,11 +618,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"qR" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "qV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -703,6 +692,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"sT" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"tc" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "te" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -814,12 +813,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"vJ" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "vU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -873,10 +866,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
 /turf/closed/wall,
 /area/engine/engineering)
-"xw" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "xN" = (
 /obj/structure/cable/orange,
 /turf/open/floor/plating,
@@ -894,11 +883,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "yc" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
 "yv" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
@@ -1002,13 +988,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Bg" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "Bn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1050,6 +1029,13 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"BV" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Cs" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plating,
@@ -1152,12 +1138,6 @@
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
 /area/icemoon/surface/outdoors)
-"Fp" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "Fz" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -1183,14 +1163,6 @@
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
-"GB" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "GD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1453,12 +1425,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Pm" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "Pz" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -1485,13 +1451,6 @@
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"PK" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "Qa" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
@@ -1544,6 +1503,12 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"Ra" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Rg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1621,13 +1586,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Tn" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "TU" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -1682,6 +1640,12 @@
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"VQ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Wt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1708,13 +1672,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Xi" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
-/area/icemoon/surface/outdoors)
 "Xl" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2039,8 +1996,8 @@ MT
 mI
 Ju
 xf
-qR
-Bg
+yc
+et
 OD
 OD
 OD
@@ -2065,17 +2022,17 @@ oX
 li
 aK
 mS
-mU
-le
-vJ
-Tn
-mU
+tc
+mV
+VQ
+et
+tc
 "}
 (13,1,1) = {"
 dO
 nA
-mU
-mG
+tc
+oz
 rB
 QE
 Hk
@@ -2091,17 +2048,17 @@ UM
 Et
 fK
 xf
-xw
-PK
-PK
-PK
-bt
+yc
+sT
+sT
+sT
+et
 "}
 (14,1,1) = {"
 dO
 nA
-mU
-mU
+tc
+tc
 jp
 SM
 jg
@@ -2117,11 +2074,11 @@ SM
 vl
 SM
 jp
-vJ
-GB
-PK
-GB
-Pm
+VQ
+sT
+sT
+sT
+Ra
 "}
 (15,1,1) = {"
 dO
@@ -2143,11 +2100,11 @@ hL
 Zz
 KF
 jp
-Fp
-GB
-PK
-GB
-bt
+oF
+sT
+sT
+sT
+et
 "}
 (16,1,1) = {"
 dO
@@ -2169,11 +2126,11 @@ hr
 NY
 Rt
 jp
-vJ
-PK
-PK
-PK
-Pm
+VQ
+sT
+sT
+sT
+Ra
 "}
 (17,1,1) = {"
 dO
@@ -2195,11 +2152,11 @@ bX
 jZ
 wb
 jp
-Fp
-GB
-PK
-GB
-bt
+oF
+sT
+sT
+sT
+et
 "}
 (18,1,1) = {"
 dO
@@ -2221,11 +2178,11 @@ Vz
 Zy
 KF
 jp
-Xi
-GB
-GB
-GB
-Pm
+VQ
+sT
+sT
+sT
+Ra
 "}
 (19,1,1) = {"
 nA
@@ -2247,11 +2204,11 @@ jp
 jp
 jp
 jp
-Fp
-qA
-yc
-qA
-bt
+oF
+BV
+BV
+BV
+et
 "}
 (20,1,1) = {"
 nA
@@ -2272,12 +2229,12 @@ nA
 dO
 nA
 nA
-mU
-mU
-Fp
-Pm
-Fp
-Pm
+tc
+tc
+oF
+Ra
+oF
+Ra
 "}
 (21,1,1) = {"
 nA
