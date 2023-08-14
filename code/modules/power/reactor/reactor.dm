@@ -498,7 +498,7 @@
 			playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
 			investigate_log("Reactor reaching critical pressure at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
 			message_admins("Reactor reaching critical pressure at [ADMIN_VERBOSEJMP(src)]")
-		shake_animation(0.5)
+		Shake(6, 6, (delta_time/2) SECONDS)
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
 		var/turf/T = get_turf(src)
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
