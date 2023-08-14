@@ -26,6 +26,7 @@
 	name = "Broken Crystal"
 	desc = "A broken crystal, it has an ominous dark glow around it. It looks like it was once part of something larger, and could be repaired..."
 	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "tar_crystal_part0"
 	max_integrity = 400
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
