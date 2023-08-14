@@ -915,7 +915,7 @@
 		/obj/item/kitchen/fork // Found in kitchen's vendor.
 	)
 	cannot_hold = list(
-		// Non-standard dangerous knives for an non-emagged borg to have.
+		// Non-standard dangerous knives.
 		/obj/item/kitchen/knife/butcher,
 		/obj/item/kitchen/knife/combat,
 		/obj/item/kitchen/knife/envy,
