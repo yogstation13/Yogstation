@@ -31,6 +31,10 @@
 	filling_color = "#FF69B4"
 	return TRUE
 
+//Returns the sprite of the donut while in a donut box
+/obj/item/reagent_containers/food/snacks/donut/proc/in_box_sprite()
+	return "[icon_state]_inbox"
+
 /obj/item/reagent_containers/food/snacks/donut/checkLiked(fraction, mob/M)	//Sec officers always love donuts
 	if(last_check_time + 50 < world.time)
 		if(ishuman(M))
@@ -529,6 +533,22 @@
 	filling_color = "#CD853F"
 	tastes = list("cookie" = 1, "sweetness" = 1)
 	foodtype = GRAIN | JUNKFOOD | SUGAR
+
+/obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
+	name = "skull cookie"
+	desc = "Spooky! It's got delicious calcium flavouring!"
+	icon = 'icons/obj/halloween_items.dmi'
+	icon_state = "skeletoncookie"
+	tastes = list("cookie" = 2, "sweetness" = 1, "milk" = 1)
+	foodtype = GRAIN | JUNKFOOD | SUGAR | DAIRY
+
+/obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
+	name = "coffin cookie"
+	desc = "Spooky! It's got delicious coffee flavouring!"
+	icon = 'icons/obj/halloween_items.dmi'
+	icon_state = "coffincookie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee = 3)
+	tastes = list("cookie" = 2, "coffee" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/chococornet
 	name = "chocolate cornet"

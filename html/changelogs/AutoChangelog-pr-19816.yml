@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Fake announcement buttons now have a cooldown of 10 seconds and can no longer be used post-round"

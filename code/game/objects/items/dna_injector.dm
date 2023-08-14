@@ -41,8 +41,11 @@
 				M.name = M.real_name
 				M.dna.blood_type = fields["blood_type"]
 			if(fields["UI"])	//UI+UE
-				M.dna.uni_identity = merge_text(M.dna.uni_identity, fields["UI"])
-				M.updateappearance(mutations_overlay_update=1)
+				M.dna.unique_identity = merge_text(M.dna.unique_identity, fields["UI"])
+			if(fields["UF"])
+				M.dna.unique_features = merge_text(M.dna.unique_features, fields["UF"])
+			if(fields["UI"] || fields["UF"])
+				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	return FALSE
@@ -358,6 +361,15 @@
 /obj/item/dnainjector/antiradioactive
 	name = "\improper DNA injector (Anti-Radioactive)"
 	remove_mutations = list(RADIOACTIVE)
+
+/obj/item/dnainjector/radproof
+	name = "\improper DNA injector (Radproof)"
+	add_mutations = list(RADPROOF)
+
+/obj/item/dnainjector/antiradproof
+	name = "\improper DNA injector (Anti-Radproof)"
+	remove_mutations = list(RADPROOF)
+
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
 	add_mutations = list(OLFACTION)
@@ -505,10 +517,16 @@
 				M.dna.temporary_mutations[UE_CHANGED] = endtime
 			if(fields["UI"])	//UI+UE
 				if(!M.dna.previous["UI"])
-					M.dna.previous["UI"] = M.dna.uni_identity
-				M.dna.uni_identity = merge_text(M.dna.uni_identity, fields["UI"])
-				M.updateappearance(mutations_overlay_update=1)
+					M.dna.previous["UI"] = M.dna.unique_identity
+				M.dna.unique_identity = merge_text(M.dna.unique_identity, fields["UI"])
 				M.dna.temporary_mutations[UI_CHANGED] = endtime
+			if(fields["UF"]) //UI+UE
+				if(!M.dna.previous["UF"])
+					M.dna.previous["UF"] = M.dna.unique_features
+				M.dna.unique_features = merge_text(M.dna.unique_features, fields["UF"])
+				M.dna.temporary_mutations[UF_CHANGED] = endtime
+			if(fields["UI"] || fields["UF"])
+				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	else

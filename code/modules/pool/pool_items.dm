@@ -52,14 +52,12 @@
 /obj/item/pool/pool_noodle/proc/jedi_spin(mob/living/user) //rip complex code, but this fucked up blocking
 	user.emote("flip")
 
-/obj/item/pool/pool_noodle/suicide_act(mob/user)
+/obj/item/pool/pool_noodle/suicide_act(mob/living/user)
 	if(suiciding)
 		return SHAME
 	suiciding = TRUE
 	user.visible_message("<span class='notice'>[user] begins kicking their legs to stay afloat!</span>")
-	var/mob/living/L = user
-	if(istype(L))
-		L.Immobilize(63)
+	user.Immobilize(63)
 	animate(user, time=2 SECONDS, pixel_y=18)
 	sleep(2 SECONDS)
 	animate(user, time=1 SECONDS, pixel_y=12)

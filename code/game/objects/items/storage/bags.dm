@@ -249,6 +249,9 @@
 		user.visible_message(span_notice("[user] scoops up the gems beneath [user.p_them()]."), \
 		span_notice("You scoop up the gems beneath you with your [name]."))
 	spam_protection = FALSE
+
+/obj/item/storage/bag/gem/cyborg
+	name = "cyborg gem satchel"
 // -----------------------------
 //          Plant bag
 // -----------------------------
@@ -423,7 +426,7 @@
 	STR.max_combined_w_class = 50
 	STR.max_items = 40
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen))
+	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/gummy))
 
 /*
  *  Biowaste bag (mostly for xenobiologists)

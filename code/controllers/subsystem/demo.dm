@@ -413,6 +413,13 @@ SUBSYSTEM_DEF(demo)
 	msg += "}"
 	return ..(msg)
 
+/datum/controller/subsystem/demo/get_metrics()
+	. = ..()
+	.["remaining_turfs"] = marked_turfs.len
+	.["remaining_new"] = marked_new.len
+	.["remaining_updated"] = marked_dirty.len
+	.["remaining_deleted"] = del_list.len
+
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
 	if(!can_fire)
 		return

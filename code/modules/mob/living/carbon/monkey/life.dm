@@ -36,7 +36,7 @@
 		if(radiation > RAD_MOB_MUTATE)
 			if(prob(1))
 				to_chat(src, span_danger("You mutate!"))
-				easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+				easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 				INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 				domutcheck()
 
