@@ -255,7 +255,7 @@
 /obj/effect/mob_spawn/human/golem/servant/check_allowed(mob/M)
 	. = ..()
 	/* 	Half the philosophy of posi-brains. 
-		While they are mass producible like posi-brains, they lack the "many of the strengths" that cyborgs have.*/
+		While they are mass producible like posi-brains, they lack "many of the strengths" that cyborgs have.*/
 	if(M.mind && servant_golem_users[ckey(M.mind.key)]) 
 		var/time_left = servant_golem_users[ckey(M.mind.key)] - world.time
 		var/seconds_left = time_left/10
