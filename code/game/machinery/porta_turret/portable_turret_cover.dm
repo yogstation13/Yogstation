@@ -93,7 +93,7 @@
 	to_chat(user, span_notice("You short out [parent_turret]'s threat assessment circuits."))
 	visible_message("[parent_turret] hums oddly...")
 	parent_turret.obj_flags |= EMAGGED
-	parent_turret.on = 0
+	parent_turret.on = FALSE
 	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 4 SECONDS) // 4 seconds to get away.
 	return TRUE
 
