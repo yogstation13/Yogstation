@@ -33,6 +33,8 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	///armor penetration
+	var/stam_penetration = -40
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -211,7 +213,7 @@
 			return FALSE
 
 	var/obj/item/bodypart/affecting = L.get_bodypart(user? user.zone_selected : BODY_ZONE_CHEST)
-	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
+	var/armor_block = L.run_armor_check(affecting, ENERGY, null, null, stam_penetration) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
 	
 	
@@ -224,11 +226,9 @@
 		else
 			L.Paralyze(stunforce)
 		L.adjust_jitter(20 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
 		L.adjust_jitter(10 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
 		L.adjust_jitter(5 SECONDS)
