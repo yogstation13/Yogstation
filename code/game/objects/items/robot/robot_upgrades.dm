@@ -1129,5 +1129,33 @@
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module)
+	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module.modules)
 		R.module.remove_module(satchel, TRUE)
+
+/obj/item/borg/upgrade/service_cookbook
+	name = "Service Cyborg Cookbook"
+	desc = "An upgrade to the service cyborg which lets them create more food."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_type = /obj/item/robot_module/butler
+	module_flags = BORG_MODEL_SERVICE
+
+/obj/item/borg/upgrade/service_cookbook/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/obj/item/borg/cookbook/book = locate() in R.module.modules
+	if(book)
+		to_chat(user, span_warning("This unit is already equipped with a cookbook."))
+		return FALSE
+	book = new(R.module)
+	R.module.basic_modules += book
+	R.module.add_module(book, FALSE, TRUE)
+
+/obj/item/borg/upgrade/service_cookbook/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return FALSE
+
+	for(var/obj/item/borg/cookbook/book in R.module)
+		R.module.remove_module(book, TRUE)

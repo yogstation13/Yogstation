@@ -1019,6 +1019,15 @@
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_service_cookbook
+	name = "Service Cookbook"
+	id = "borg_upgrade_service_cookbook"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/service_cookbook
+	materials = list(/datum/material/iron = 15000, /datum/material/diamond = 1000)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracker (Exosuit Tracking Beacon)"
