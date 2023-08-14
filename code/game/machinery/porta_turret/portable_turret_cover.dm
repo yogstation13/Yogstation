@@ -100,4 +100,4 @@
 /obj/machinery/porta_turret_cover/proc/finish_emag_act()
 	if(QDELETED(parent_turret))
 		return
-	parent_turret.on = 1
+	parent_turret.on = TRUE
