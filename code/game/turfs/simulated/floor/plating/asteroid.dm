@@ -153,6 +153,10 @@
 	digResult = /obj/item/stack/sheet/mineral/snow
 	flammability = -5
 
+/turf/open/floor/plating/asteroid/snow/singularity_act()
+	. = ..() //take the wires n shit out
+	return 0
+
 /turf/open/floor/plating/asteroid/snow/getDug()
 	..()
 	slowdown = 0

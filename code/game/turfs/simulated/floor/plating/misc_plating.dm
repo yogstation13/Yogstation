@@ -188,6 +188,10 @@
 	. = ..()
 	MakeSlippery(TURF_WET_PERMAFROST, INFINITY, 0, INFINITY, TRUE)
 
+/turf/open/floor/plating/ice/singularity_act()
+	. = ..() //take the wires n shit out
+	return 0
+
 /turf/open/floor/plating/ice/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
 

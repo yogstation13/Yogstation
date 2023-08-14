@@ -300,6 +300,10 @@
 		/turf/closed/mineral/silver/ice/icemoon = 12, /turf/closed/mineral/plasma/ice/icemoon = 19, /turf/closed/mineral/iron/ice/icemoon = 40,
 		/turf/closed/mineral/gibtonite/ice/icemoon = 4, /turf/closed/mineral/bscrystal/ice/icemoon = 1, /turf/closed/mineral/dilithium/ice/icemoon = 2)
 
+/turf/closed/mineral/random/snow/singularity_act() //no free infinite singularity energy (however eating minerals will still feed it)
+	. = ..()
+	return 0
+
 /turf/closed/mineral/random/snow/top_layer
 	light_range = 2
 	mineralSpawnChanceList = list(
