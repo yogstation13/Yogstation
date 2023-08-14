@@ -666,6 +666,32 @@
 	P.speed *= (1/projectile_speed_coefficient)
 	P.cut_overlay(projectile_effect)
 
+/obj/item/borg/cookbook
+	name = "Codex Cibus Mechanicus"
+	desc = "It's a robot cookbook!"
+	icon = 'icons/obj/library.dmi'
+	icon_state = "cooked_book"
+	item_flags = NOBLUDGEON
+	var/datum/component/personal_crafting/cooking
+
+/obj/item/borg/cookbook/Initialize(mapload)
+	. = ..()
+	cooking = AddComponent(/datum/component/personal_crafting)
+	cooking.forced_mode = TRUE
+	cooking.mode = TRUE
+
+/obj/item/borg/cookbook/attack_self(mob/user, modifiers)
+	. = ..()
+	cooking.ui_interact(user)
+
+/obj/item/borg/cookbook/dropped(mob/user, silent)
+	SStgui.close_uis(cooking)
+	return ..()
+
+/obj/item/borg/cookbook/cyborg_unequip(mob/user)
+	SStgui.close_uis(cooking)
+	return ..()
+	
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
@@ -725,7 +751,7 @@
 /**********************************************************************
 						Grippers
 ***********************************************************************/
-/obj/item/gripper
+/obj/item/borg/gripper
 	name = "cyborg gripper"
 	desc = "A simple grasping tool for interacting with various items."
 	icon = 'icons/obj/device.dmi'
@@ -739,7 +765,7 @@
 	var/obj/item/wrapped = null
 
 /// Drops held item if possible.
-/obj/item/gripper/proc/drop_held(silent = FALSE)
+/obj/item/borg/gripper/proc/drop_held(silent = FALSE)
 	if(wrapped)
 		if(!silent)
 			to_chat(usr, span_notice("You drop \the [wrapped]."))
@@ -747,7 +773,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/gripper/Exited(atom/movable/gone, direction)
+/obj/item/borg/gripper/Exited(atom/movable/gone, direction)
 	if(gone == wrapped) // Sanity check.
 		UnregisterSignal(wrapped, COMSIG_ATOM_UPDATED_ICON)
 		wrapped = null
@@ -755,7 +781,7 @@
 	return ..()
 
 /// Pick up item if possible.
-/obj/item/gripper/proc/take_item(obj/item/item, silent = FALSE)
+/obj/item/borg/gripper/proc/take_item(obj/item/item, silent = FALSE)
 	if(!wrapped)
 		if(!silent)
 			to_chat(usr, span_notice("You collect \the [item]."))
@@ -771,12 +797,12 @@
 		return TRUE
 	return FALSE
 
-/obj/item/gripper/proc/on_wrapped_updated_icon(datum/source, updates)
+/obj/item/borg/gripper/proc/on_wrapped_updated_icon(datum/source, updates)
 	SIGNAL_HANDLER
 	update_appearance()
 	return NONE
 
-/obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
+/obj/item/borg/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
 	if(!wrapped) // Checking if we have an item, but somehow didn't set it to be the wrapped variable.
 		for(var/obj/item/thing in src.contents)
 			wrapped = thing
@@ -791,7 +817,7 @@
 			return TRUE
 	return ..()
 
-/obj/item/gripper/proc/is_holdable(obj/item/item, slient = FALSE)
+/obj/item/borg/gripper/proc/is_holdable(obj/item/item, slient = FALSE)
 	if(!loc || !issilicon(loc))
 		return FALSE
 	var/holdable = FALSE
@@ -809,32 +835,32 @@
 		to_chat(user, span_danger("Your gripper cannot hold \the [item]."))
 	return holdable
 
-/obj/item/gripper/attack_self(mob/user)
+/obj/item/borg/gripper/attack_self(mob/user)
 	if(wrapped)
 		wrapped.attack_self(user)
 		return
 	. = ..()
 
-/obj/item/gripper/AltClick(mob/user)
+/obj/item/borg/gripper/AltClick(mob/user)
 	if(wrapped)
 		wrapped.AltClick(user)
 		return
 	. = ..()
 
-/obj/item/gripper/CtrlClick(mob/user)
+/obj/item/borg/gripper/CtrlClick(mob/user)
 	if(wrapped)
 		wrapped.CtrlClick(user)
 		return
 	. = ..()
 
-/obj/item/gripper/CtrlShiftClick(mob/user)
+/obj/item/borg/gripper/CtrlShiftClick(mob/user)
 	if(wrapped)
 		wrapped.CtrlShiftClick(user)
 		return
 	. = ..()
 
 /// Resets overlays and adds a overlay if there is a held item.
-/obj/item/gripper/update_overlays()
+/obj/item/borg/gripper/update_overlays()
 	. = ..()
 	if(wrapped)
 		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
@@ -843,19 +869,19 @@
 		. += wrapped_appearance
 
 // Make it clear what we can do with it.
-/obj/item/gripper/examine(mob/user)
+/obj/item/borg/gripper/examine(mob/user)
 	. = ..()
 	if(wrapped)
 		. += span_notice("It is holding [icon2html(wrapped, user)] [wrapped]." )
 		. += span_notice("Attempting to drop the gripper will only drop [wrapped].")
 
 // Drop the item if the gripper is unequipped.
-/obj/item/gripper/cyborg_unequip(mob/user)
+/obj/item/borg/gripper/cyborg_unequip(mob/user)
 	. = ..()
 	if(wrapped)
 		drop_held()
 
-/obj/item/gripper/engineering
+/obj/item/borg/gripper/engineering
 	name = "engineering gripper"
 	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
 	can_hold = list(
@@ -866,7 +892,7 @@
 		/obj/item/tank/internals
 	)
 
-/obj/item/gripper/service
+/obj/item/borg/gripper/service
 	name = "service gripper"
 	desc = "A simple grasping tool for interacting with various service related items and food."
 	can_hold = list(

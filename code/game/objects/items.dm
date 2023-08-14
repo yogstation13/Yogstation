@@ -568,7 +568,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return
 
 	if(issilicon(usr))
-		var/obj/item/gripper/gripper = usr.get_active_held_item(TRUE)
+		var/obj/item/borg/gripper/gripper = usr.get_active_held_item(TRUE)
 		if(istype(gripper))
 			gripper.pre_attack(src, usr, get_dist(src, usr))
 		return
