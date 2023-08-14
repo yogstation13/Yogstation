@@ -15,13 +15,10 @@
 /datum/component/shielded/Initialize(shielded_icon, shielded_icon_state, shielded_recharge, target_slot)
 	if(!shielded_icon)	
 		CRASH("Invalid shield icon passed")
-		return COMPONENT_INCOMPATIBLE
 	if(!shielded_icon_state)
 		CRASH("Invalid shield icon state passed")
-		return COMPONENT_INCOMPATIBLE
 	if(!isnum(shielded_recharge))
 		CRASH("Invalid shield recharge passed, expected number, found [shielded_recharge]")
-		return COMPONENT_INCOMPATIBLE
 
 	shield_icon = shielded_icon 
 	shield_icon_state = shielded_icon_state
