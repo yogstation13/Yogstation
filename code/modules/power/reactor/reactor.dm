@@ -25,7 +25,7 @@
 
 #define REACTOR_MAX_FUEL_RODS 5 //Maximum number of fuel rods that can fit in the reactor
 
-#define REACTOR_POWER_FLAVOURISER 500 //To turn those KWs into something usable
+#define REACTOR_POWER_FLAVOURISER 1000 //To turn those KWs into something usable
 #define REACTOR_PERMEABILITY_FACTOR 500 // How effective permeability-type moderators are
 #define REACTOR_CONTROL_FACTOR 250 // How effective control-type moderators are
 
@@ -142,10 +142,10 @@
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/fuel_rod))
 		if(slagged)
-			to_chat(user, span_notice("The reactor has been critically damaged"))
+			to_chat(user, span_warning("The reactor has been critically damaged"))
 			return FALSE
 		if(temperature > REACTOR_TEMPERATURE_MINIMUM)
-			to_chat(user, span_notice("You cannot insert fuel into [src] with the core temperature above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
+			to_chat(user, span_warning("You cannot insert fuel into [src] with the core temperature above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
 			return FALSE
 		if(fuel_rods.len >= REACTOR_MAX_FUEL_RODS)
 			to_chat(user, span_warning("[src] is already at maximum fuel load."))
@@ -160,20 +160,20 @@
 		return TRUE
 	if(istype(W, /obj/item/sealant))
 		if(slagged)
-			to_chat(user, span_notice("The reactor has been critically damaged!"))
+			to_chat(user, span_warning("The reactor has been critically damaged!"))
 			return FALSE
 		if(temperature > REACTOR_TEMPERATURE_MINIMUM)
-			to_chat(user, span_notice("You cannot repair [src] while the core temperature is above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
+			to_chat(user, span_warning("You cannot repair [src] while the core temperature is above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
 			return FALSE
 		if(vessel_integrity >= 350)
-			to_chat(user, span_notice("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
+			to_chat(user, span_warning("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
 			return FALSE
 		if(vessel_integrity <= 0.5 * initial(vessel_integrity)) //Heavily damaged.
-			to_chat(user, span_notice("[src]'s reactor vessel is cracked and worn, you need to repair the cracks with a welder before you can repair the seals."))
+			to_chat(user, span_warning("[src]'s reactor vessel is cracked and worn, you need to repair the cracks with a welder before you can repair the seals."))
 			return FALSE
 		if(do_after(user, 5 SECONDS, target=src))
 			if(vessel_integrity >= 350)	//They might've stacked doafters
-				to_chat(user, span_notice("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
+				to_chat(user, span_warning("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
 				return FALSE
 			playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
 			user.visible_message(span_warning("[user] applies sealant to some of [src]'s worn out seals."), span_notice("You apply sealant to some of [src]'s worn out seals."))
@@ -208,17 +208,17 @@
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/welder_act(mob/living/user, obj/item/I)
 	if(slagged)
-		to_chat(user, span_notice("The reactor has been critically damaged"))
+		to_chat(user, span_warning("The reactor has been critically damaged"))
 		return TRUE
 	if(temperature > REACTOR_TEMPERATURE_MINIMUM)
-		to_chat(user, span_notice("You can't repair [src] while it is running at above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
+		to_chat(user, span_warning("You can't repair [src] while it is running at above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
 		return TRUE
 	if(vessel_integrity > 0.5 * initial(vessel_integrity))
-		to_chat(user, span_notice("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
+		to_chat(user, span_warning("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 		return TRUE
 	if(I.use_tool(src, user, 0, volume=40))
 		if(vessel_integrity > 0.5 * initial(vessel_integrity))
-			to_chat(user, span_notice("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
+			to_chat(user, span_warning("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 			return TRUE
 		vessel_integrity += 20
 		to_chat(user, span_notice("You weld together some of [src]'s cracks. This'll do for now."))
@@ -367,7 +367,8 @@
 		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/pluonium) //Because it's quite hard to get.
 		if(total_degradation_moles >= minimum_coolant_level) //I'll be nice.
 			depletion_modifier += total_degradation_moles / 15 //Oops! All depletion. This causes your fuel rods to get SPICY.
-			playsound(src, pick('sound/machines/sm/accent/normal/1.ogg','sound/machines/sm/accent/normal/2.ogg','sound/machines/sm/accent/normal/3.ogg','sound/machines/sm/accent/normal/4.ogg','sound/machines/sm/accent/normal/5.ogg'), 100, TRUE)
+			if(prob(total_degradation_moles)) // don't spam the sound so much please
+				playsound(src, pick('sound/machines/sm/accent/normal/1.ogg','sound/machines/sm/accent/normal/2.ogg','sound/machines/sm/accent/normal/3.ogg','sound/machines/sm/accent/normal/4.ogg','sound/machines/sm/accent/normal/5.ogg'), 100, TRUE)
 
 		//From this point onwards, we clear out the remaining gasses.
 		moderator_input.remove_ratio(REACTOR_MODERATOR_DECAY_RATE) //Remove about 10% of the gases

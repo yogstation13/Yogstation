@@ -14,7 +14,8 @@
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/cargo // easier on the brain
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/cargo/New()
-	id = rand(1, 1000000) // cmon, what are the chances?
+	. = ..()
+	id = getnewid()
 
 // Cargo varients can be wrenched down and don't start linked to the default RMBK reactor
 
