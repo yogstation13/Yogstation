@@ -82,6 +82,10 @@
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 	update_appearance(UPDATE_ICON)
 
+/obj/item/jawsoflife/cyborg
+	name = "cyborg jaws of life"
+	toolspeed = 0.5 // Same toolspeed as cyborg screwdriver/wrench.
+
 //better handdrill
 /obj/item/handdrill
 	name = "hand drill"
@@ -151,6 +155,10 @@
 	else
 		to_chat(user, span_notice("You attach the screw driver bit to [src]."))
 	update_appearance(UPDATE_ICON)
+
+/obj/item/handdrill/cyborg
+	name = "cyborg hand drill"
+	toolspeed = 0.5 // Same toolspeed as cyborg crowbar/wirecutters.
 
 /obj/item/jawsoflife/jimmy
 	name = "airlock jimmy"

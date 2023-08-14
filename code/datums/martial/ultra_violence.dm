@@ -67,7 +67,8 @@
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	check_streak(A,D)
-	handle_style(A, 0.1, STYLE_PUNCH)
+	if(A != D) // why are you hitting yourself
+		handle_style(A, 0.1, STYLE_PUNCH)
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
@@ -123,10 +124,15 @@
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = new /obj/item/gun/ballistic/revolver/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
-	gun.gun_owner = A
+	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = locate() in A // check if they already had one
+	if(gun)
+		to_chat(A, span_notice("You reload your revolver."))
+		gun.magazine.top_off()
+	if(style >= 8 || !gun) // can dual wield at the max style level
+		gun = new(A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+		to_chat(A, span_notice("You whip out your revolver."))
+		gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You whip out your revolver."))
 	streak = ""
 
 /obj/item/gun/ballistic/revolver/ipcmartial
@@ -168,7 +174,7 @@
 	var/mob/living/L = target
 	if(L.stat == DEAD)
 		return . // no using dead bodies to gain style, that's boring and uncool KILL SOME REAL THINGS
-	if(ishuman(firer))
+	if(ishuman(firer) && firer != target) // WHY ARE YOU SHOOTING YOURSELF
 		var/mob/living/carbon/human/H = firer
 		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art

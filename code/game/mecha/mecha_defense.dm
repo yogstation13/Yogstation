@@ -195,13 +195,7 @@
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
-				var/obj/item/card/id/id_card
-				if(istype(W, /obj/item/card/id))
-					id_card = W
-				else
-					var/obj/item/pda/pda = W
-					id_card = pda.id
-				output_maintenance_dialog(id_card, user)
+				output_maintenance_dialog(W.GetID(), user)
 				return
 			else
 				to_chat(user, span_warning("Invalid ID: Access denied."))

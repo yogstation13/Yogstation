@@ -445,7 +445,7 @@
 				gib()
 				return
 			else
-				brute_loss = 200*(2 - round(bomb_armor/60, 0.05))	//0-83% damage reduction
+				brute_loss = 200*(2 - round(bomb_armor/100, 0.05))	//0-50% damage reduction because this should still kill you
 				burn_loss = brute_loss/2 //don't wanna husk people	
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)

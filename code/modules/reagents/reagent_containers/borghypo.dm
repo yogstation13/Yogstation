@@ -60,7 +60,7 @@
 		/datum/reagent/consumable/nothing, /datum/reagent/consumable/orangejuice, /datum/reagent/consumable/peachjuice,\
 		/datum/reagent/consumable/sodawater, /datum/reagent/consumable/space_cola, /datum/reagent/consumable/spacemountainwind,\
 		/datum/reagent/consumable/pwr_game, /datum/reagent/consumable/shamblers, /datum/reagent/consumable/soymilk,\
-		/datum/reagent/consumable/space_up, /datum/reagent/consumable/sugar, /datum/reagent/consumable/tea,\
+		/datum/reagent/consumable/space_up, /datum/reagent/consumable/tea,\
 		/datum/reagent/consumable/tomatojuice, /datum/reagent/consumable/tonic, /datum/reagent/water,\
 		/datum/reagent/consumable/pineapplejuice, /datum/reagent/consumable/sol_dry,\
 		/datum/reagent/consumable/ethanol/ale, /datum/reagent/consumable/ethanol/applejack, /datum/reagent/consumable/ethanol/beer,\
@@ -71,9 +71,24 @@
 		/datum/reagent/consumable/ethanol/whiskey, /datum/reagent/consumable/ethanol/wine, /datum/reagent/consumable/ethanol/creme_de_coconut\
 	)
 
+#define EXPANDED_SERVICE_REAGENTS list(\
+		/datum/reagent/consumable/blackpepper,\
+		/datum/reagent/consumable/coco,\
+		/datum/reagent/consumable/cornoil,\
+		/datum/reagent/consumable/corn_starch,\
+		/datum/reagent/consumable/eggyolk,\
+		/datum/reagent/consumable/flour,\
+		/datum/reagent/consumable/rice,\
+		/datum/reagent/consumable/sugar,\
+		/datum/reagent/consumable/sodiumchloride,\
+		/datum/reagent/consumable/vanilla,\
+	)
+
 #define HACKED_SERVICE_REAGENTS list(\
+		/datum/reagent/blood,\
+		/datum/reagent/toxin/carpotoxin,\
 		/datum/reagent/toxin/fakebeer,\
-		/datum/reagent/consumable/ethanol/fernet\
+		/datum/reagent/consumable/ethanol/fernet,\
 	)
 
 #define BASE_STANDARD_REAGENTS list(\
@@ -332,7 +347,7 @@
 	desc = "An advanced drink synthesizer and mixer."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shaker"
-	possible_transfer_amounts = list(5,10,20)
+	possible_transfer_amounts = list(5, 10, 20, 1) // Starts at 5 on purpose.
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 20
 	recharge_time = 3
@@ -349,7 +364,7 @@
 	var/list/alcohol_reagents = list()
 
 	for(var/datum/reagent/reagent in stored_reagents.reagent_list)
-		// Split the reagents into alcoholic/non-alcoholic
+		// Split the reagents into alcoholic and non-alcoholic.
 		if(istype(reagent, /datum/reagent/consumable/ethanol))
 			alcohol_reagents.Add(list(list(
 				"name" = reagent.name,
@@ -370,7 +385,7 @@
 	return data
 
 /obj/item/reagent_containers/borghypo/borgshaker/attack(mob/M, mob/user)
-	return //Can't inject stuff with a shaker, can we? //not with that attitude
+	return // No injecting with this.
 
 /obj/item/reagent_containers/borghypo/borgshaker/afterattack(obj/target, mob/user, proximity)
 	. = ..()
@@ -388,10 +403,10 @@
 			return
 
 		// This is the in-between where we're storing the reagent we're going to pour into the container
-		// because we cannot specify a singular reagent to transfer in trans_to
+		// because we cannot specify a singular reagent to transfer in trans_to.
 		var/datum/reagents/shaker = new()
 		stored_reagents.remove_reagent(selected_reagent.type, amount_per_transfer_from_this)
-		shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this)
+		shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, no_react = TRUE)
 
 		shaker.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
@@ -403,6 +418,68 @@
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_SERVICE_REAGENTS
 
+/obj/item/reagent_containers/borghypo/condiment_synthesizer // Solids! Condiments! The borger uprising!
+	name = "condiment synthesizer"
+	desc = "An advanced condiment synthesizer."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "flour"
+	possible_transfer_amounts = list(5, 10, 20, 1)
+	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
+	charge_cost = 40 // Costs double the power of the borgshaker due to synthesizing solids.
+	recharge_time = 6 // Double the recharge time too, for the same reason.
+	default_reagent_types = EXPANDED_SERVICE_REAGENTS
+
+/obj/item/reagent_containers/borghypo/condiment_synthesizer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BorgHypo", name)
+		ui.open()
+
+/obj/item/reagent_containers/borghypo/condiment_synthesizer/ui_data(mob/user)
+	var/list/condiments = list()
+	for(var/datum/reagent/reagent in stored_reagents.reagent_list)
+		if(reagent)
+			condiments.Add(list(list(
+				"name" = reagent.name,
+				"volume" = round(reagent.volume, 0.01) - 1,
+				"description" = reagent.description,
+			))) // list in a list because Byond merges the first list...
+
+	var/data = list()
+	data["theme"] = tgui_theme
+	data["minVolume"] = amount_per_transfer_from_this
+	data["maxVolume"] = max_volume_per_reagent
+	data["reagents"] = condiments
+	data["selectedReagent"] = selected_reagent?.name
+	return data
+
+/obj/item/reagent_containers/borghypo/condiment_synthesizer/attack(mob/M, mob/user)
+	return // No injecting with this.
+
+/obj/item/reagent_containers/borghypo/condiment_synthesizer/afterattack(obj/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!selected_reagent)
+		balloon_alert(user, "no reagent selected!")
+		return
+	if(target.is_refillable())
+		if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
+			balloon_alert(user, "not enough [selected_reagent.name]!")
+			return
+		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+			balloon_alert(user, "[target] is full!")
+			return
+
+		// This is the in-between where we're storing the reagent we're going to pour into the container
+		// because we cannot specify a singular reagent to transfer in trans_to.
+		var/datum/reagents/shaker = new()
+		stored_reagents.remove_reagent(selected_reagent.type, amount_per_transfer_from_this)
+		shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, no_react = TRUE)
+
+		shaker.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
+		balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
+
 #undef BASE_MEDICAL_REAGENTS
 #undef EXPANDED_MEDICAL_REAGENTS
 #undef HACKED_MEDICAL_REAGENTS
@@ -412,5 +489,6 @@
 #undef HACKED_CLOWN_REAGENTS
 #undef BASE_SYNDICATE_REAGENTS
 #undef BASE_SERVICE_REAGENTS
+#undef EXPANDED_SERVICE_REAGENTS
 #undef HACKED_SERVICE_REAGENTS
 #undef BASE_STANDARD_REAGENTS
