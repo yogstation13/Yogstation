@@ -1547,6 +1547,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/armorpolish
 	cost = 2
 
+/datum/uplink_item/stealthy_tools/reflectivepolish
+    name = "Reflective Polish"
+    desc = "This two use polish will strengthen clothing to provide enhanced laser and energy protection."
+    item = /obj/item/armorpolish/reflective
+    cost = 3
+
 /datum/uplink_item/stealthy_tools/mousecubes
 	name = "Box of Mouse Cubes"
 	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
