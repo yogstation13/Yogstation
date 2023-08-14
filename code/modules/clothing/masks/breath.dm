@@ -19,7 +19,7 @@
 	name = "tactical breath mask"
 	desc = "A close-fitting 'tactical' mask that can be connected to an air supply."
 	icon_state = "tacmask"
-	item_state = "tacmask"
+	item_state = "sechailer"
 	visor_flags_inv = HIDEFACE
 
 /obj/item/clothing/mask/breath/tactical/Initialize(mapload)
