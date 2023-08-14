@@ -13489,6 +13489,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"dYA" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/warning/lower/nobottom{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "dYC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plating,
@@ -24572,6 +24584,15 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/top_layer/outdoors)
+"his" = (
+/obj/effect/turf_decal/trimline/white/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/warning/lower/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "hiu" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -47775,12 +47796,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/solars/starboard/aft)
-"nNy" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "nNA" = (
 /obj/effect/turf_decal/trimline/engiyellow/warning/lower{
 	dir = 1
@@ -57373,12 +57388,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"qEJ" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "qEK" = (
 /obj/structure/table/glass,
 /obj/item/clothing/glasses/meson,
@@ -64353,6 +64362,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"sFT" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/warning/lower/nobottom{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "sFV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -68116,6 +68137,16 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"tKq" = (
+/obj/item/beacon,
+/obj/effect/turf_decal/trimline/white/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/warning/lower/nobottom{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "tKE" = (
 /obj/machinery/sleeper{
 	dir = 8
@@ -71194,10 +71225,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
-"uEC" = (
-/obj/item/beacon,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "uEE" = (
 /obj/structure/closet/crate,
 /obj/structure/extinguisher_cabinet{
@@ -75014,6 +75041,11 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
+"vGy" = (
+/obj/effect/turf_decal/trimline/white/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/warning/lower/corner,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "vGE" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
@@ -110988,13 +111020,13 @@ qHW
 cvp
 rBO
 vTr
-dzY
-nNy
-nNy
-nNy
-nNy
-nNy
-dzY
+vGy
+sFT
+sFT
+sFT
+sFT
+sFT
+his
 dzY
 lSM
 moF
@@ -111245,13 +111277,13 @@ qHW
 cPS
 sHt
 pAx
-dzY
+lSM
 fNt
 mYI
 fpG
 iit
 fNt
-uEC
+tKq
 sYC
 lSM
 moF
@@ -111502,13 +111534,13 @@ qHW
 vrI
 sHt
 pAx
-dzY
-qEJ
-qEJ
-qEJ
-qEJ
-qEJ
-dzY
+cBL
+dYA
+dYA
+dYA
+dYA
+dYA
+qfK
 dzY
 lSM
 moF
