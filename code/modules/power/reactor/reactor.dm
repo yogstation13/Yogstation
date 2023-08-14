@@ -999,9 +999,6 @@
 	set_light(1)
 	AddComponent(/datum/component/radioactive, 1000, src, 0)
 
-/obj/effect/decal/nuclear_waste/epicenter //The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
-	name = "Dense nuclear sludge"
-
 /obj/effect/landmark/nuclear_waste_spawner //Clean way of spawning nuclear gunk after a reactor core meltdown.
 	name = "Nuclear waste spawner"
 	var/range = 15 //15 tile radius to spawn goop
@@ -1011,14 +1008,10 @@
 
 /obj/effect/landmark/nuclear_waste_spawner/proc/fire()
 	playsound(loc, 'sound/effects/gib_step.ogg', 100)
-	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
 	for(var/turf/open/floor in orange(range, get_turf(src)))
 		if(prob(35)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste (floor)
 	qdel(src)
-
-/obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)
-	. = ..()
 
 /obj/effect/decal/nuclear_waste/Crossed(atom/movable/AM)
 	. = ..()
