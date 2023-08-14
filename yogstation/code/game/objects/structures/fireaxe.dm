@@ -102,7 +102,7 @@
 	obj_flags |= EMAGGED
 	desc += "<BR>[span_warning("The access panel is smoking slightly.")]"
 	playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
-	locked = 0
+	locked = FALSE
 	audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
 	update_appearance(UPDATE_ICON)
 	// The fireaxe cabinet is now permanently unlocked.
