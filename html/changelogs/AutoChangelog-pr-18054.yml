@@ -1,0 +1,12 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscadd: "new map, icemeta"
+  - rscadd: "json and dm files for icemeta"
+  - tweak: "meta sm and teg templates have been tweaked to suit icemeta"
+  - tweak: "disables meta in config"
+  - tweak: "tweaks some maint ruins to make them not break when the map loads"
+  - rscdel: "spacemeta is DEAD"
+  - tweak: "some maint ruins with space have been tweaked to suit icemeta"
+  - rscdel: "kills icemoon maps, they are apart of the main station z-level now"
+  - bugfix: "Fixes like way too many bugs with planetary maps in general to list"
