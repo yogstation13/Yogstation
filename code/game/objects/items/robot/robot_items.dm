@@ -678,7 +678,7 @@
 	. = ..()
 	cooking = AddComponent(/datum/component/personal_crafting)
 	cooking.forced_mode = TRUE
-	cooking.mode = TRUE
+	cooking.mode = TRUE // Cooking mode.
 
 /obj/item/borg/cookbook/attack_self(mob/user, modifiers)
 	. = ..()
@@ -691,7 +691,7 @@
 /obj/item/borg/cookbook/cyborg_unequip(mob/user)
 	SStgui.close_uis(cooking)
 	return ..()
-	
+
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
@@ -901,6 +901,7 @@
 		/obj/item/pen,
 		/obj/item/plate,
 		/obj/item/storage/pill_bottle/dice,
+		/obj/item/dice,
 		/obj/item/clothing/mask/cigarette,
 		// Cooking purposes.
 		/obj/item/kitchen/knife,
@@ -911,8 +912,6 @@
 		/obj/item/reagent_containers/food,
 		// Additional.
 		/obj/item/reagent_containers/glass/mixbowl, // Kitchen mixing bowl.
-		/obj/item/book/manual/chef_recipes, // To pick up and read the help book.
-		/obj/item/dice, // From the RSF's dice bag.
 		/obj/item/kitchen/fork // Found in kitchen's vendor.
 	)
 	cannot_hold = list(

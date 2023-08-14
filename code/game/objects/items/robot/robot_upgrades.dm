@@ -1133,7 +1133,7 @@
 		R.module.remove_module(satchel, TRUE)
 
 /obj/item/borg/upgrade/service_cookbook
-	name = "Service Cyborg Cookbook"
+	name = "service cyborg cookbook"
 	desc = "An upgrade to the service cyborg which lets them create more food."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE

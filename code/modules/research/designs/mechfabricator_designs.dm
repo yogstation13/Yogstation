@@ -1020,7 +1020,7 @@
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/borg_upgrade_service_cookbook
-	name = "Service Cookbook"
+	name = "Cyborg Upgrade (Cookbook)"
 	id = "borg_upgrade_service_cookbook"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/service_cookbook
