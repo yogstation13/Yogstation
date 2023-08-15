@@ -37197,6 +37197,10 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"tee" = (
+/obj/structure/disposalpipe/junction/flip,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "teg" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/port/aft";
@@ -76867,7 +76871,7 @@ chg
 twr
 uhX
 dKi
-tWL
+tee
 fof
 oeT
 pMJ
