@@ -214,7 +214,7 @@
 		if(!D || QDELETED(D))
 			return
 
-		if((iswallturf(src) || /turf/closed/indestructible) && user && user.loc == temp_loc)	//Let's check if everything is still there
+		if((iswallturf(src) || isabductorwall(src)) && user && user.loc == temp_loc)	//Let's check if everything is still there
 			to_chat(user, span_notice("You place the poster!"))
 			return
 
