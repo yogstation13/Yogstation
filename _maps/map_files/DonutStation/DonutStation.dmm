@@ -22335,6 +22335,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"lpE" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 "lpJ" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Port Mix to East Ports"
@@ -27699,6 +27706,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"nVu" = (
+/obj/structure/grille,
+/obj/structure/cable/orange{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 "nVx" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -29539,13 +29553,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"oWI" = (
-/obj/structure/grille,
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "oWP" = (
 /obj/docking_port/stationary/random{
 	dir = 1;
@@ -45770,10 +45777,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"xkL" = (
-/obj/structure/sign/warning/securearea,
-/turf/closed/wall/r_wall,
-/area/engine/engineering)
 "xle" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -84446,7 +84449,7 @@ dMR
 dMR
 dMR
 dMR
-xkL
+tCv
 muZ
 muS
 emW
@@ -84703,7 +84706,7 @@ lZI
 toG
 mot
 tIZ
-dMR
+myG
 myG
 myG
 myG
@@ -84961,9 +84964,9 @@ prr
 mAL
 nne
 xAO
+nVu
 tIZ
-dMR
-dMR
+mPx
 dMR
 qzQ
 dtS
@@ -85218,9 +85221,9 @@ iXL
 iXL
 qOM
 vFd
-nne
-tIZ
-dMR
+mAL
+mrK
+mPx
 dMR
 rLh
 qVo
@@ -85476,7 +85479,7 @@ mAL
 wch
 iXL
 qOM
-oWI
+mrK
 dMR
 dMR
 dMR
@@ -86232,7 +86235,7 @@ ylr
 ylr
 ylr
 ylr
-dMR
+lpE
 mAL
 mAL
 mAL
@@ -87260,7 +87263,7 @@ ylr
 ylr
 ylr
 ylr
-dMR
+lpE
 mAL
 mAL
 mAL
@@ -87790,7 +87793,7 @@ fJu
 nee
 pzc
 mAL
-mAL
+mPx
 dMR
 vkg
 vkg
@@ -88046,7 +88049,7 @@ mAL
 xwW
 iXL
 kWn
-mPx
+mAL
 mPx
 dMR
 vkg
@@ -88302,9 +88305,9 @@ iXL
 iXL
 kWn
 ijp
+mAL
+mAL
 mPx
-mPx
-dMR
 dMR
 mNb
 xIW
@@ -88560,8 +88563,8 @@ mAL
 lNP
 kfu
 mPx
-dMR
-dMR
+mPx
+mPx
 dMR
 xIW
 xIW
