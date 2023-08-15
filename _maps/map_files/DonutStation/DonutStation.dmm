@@ -2348,10 +2348,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"bjN" = (
-/obj/vehicle/ridden/secway,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "bjP" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater/on{
 	dir = 4
@@ -3187,14 +3183,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bGa" = (
-/obj/structure/table,
-/obj/item/storage/box/firingpins,
-/obj/item/storage/box/firingpins,
-/obj/item/key/security,
-/obj/item/toy/figure/warden,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "bGf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -16044,6 +16032,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"ina" = (
+/obj/machinery/rnd/production/techfab/department/armory,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "inc" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -18117,6 +18109,13 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
+"jpv" = (
+/obj/structure/table,
+/obj/item/storage/box/firingpins,
+/obj/item/storage/box/firingpins,
+/obj/item/toy/figure/warden,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jpw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -41420,6 +41419,10 @@
 /obj/effect/landmark/stationroom/maint/fivexfour,
 /turf/template_noop,
 /area/maintenance/port/fore)
+"uYK" = (
+/obj/machinery/armaments_dispenser,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "uYO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -96541,7 +96544,7 @@ hiB
 jfw
 bSi
 wVB
-tqC
+uYK
 eMV
 kHi
 wmc
@@ -98838,14 +98841,14 @@ psl
 hGy
 izp
 kkk
-bGa
+jpv
 spD
 gzq
 xyi
 rWX
 kfA
 jlo
-bjN
+ina
 dQt
 dcE
 iVf
