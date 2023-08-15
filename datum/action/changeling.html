@@ -11,15 +11,16 @@
     <a href="index.html">Yogstation 13</a> -
     <a href="index.html#modules">Modules</a> -
     <a href="index.html#types">Types</a>
- &mdash; <a href="datum/action/changeling.html#proc">Proc Details</a></header>
+ &mdash; <a href="datum/action/changeling.html#var">Var Details</a> - <a href="datum/action/changeling.html#proc">Proc Details</a></header>
 <main>
 <h1>Prototype Sting - Debug button, ahelp this <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/changeling.html">changeling</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/0e7839dd3e7c8b555076a5b7aaf5d7d15dbe1aef/code/modules/antagonists/changeling/changeling_power.dm#L5">
+            <a href="https://github.com/yogstation13/Yogstation/blob/eb754552f7f8c86e8eedf6025569242da301a316/code/modules/antagonists/changeling/changeling_power.dm#L5">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;changeling&#x2F;changeling_power.dm 5"/></a></h1>
 
-<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/changeling.html#var/conflicts">conflicts</a></th><td>list of power you cannot purchase together</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="datum/action/changeling.html#proc/try_to_sting">try_to_sting</a></th><td>Contrary to the name, this proc isn't just used by changeling stings. It handles the activation of the action and the deducation of its cost.
 The order of the proc chain is:
 can_sting(). Should this fail, the process gets aborted early.
@@ -27,11 +28,18 @@ sting_action(). This proc usually handles the actual effect of the action.
 Should sting_action succeed the following will be done:
 sting_feedback(). Produces feedback on the performed action. Don't ask me why this isn't handled in sting_action()
 The deduction of the cost of this power.
-Returns TRUE on a successful activation.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/try_to_sting"><aside class="declaration">proc </aside>try_to_sting<aside>(/<a href="mob.html">mob</a>/user, /<a href="mob.html">mob</a>/target) 
+Returns TRUE on a successful activation.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/conflicts"><aside class="declaration">var </aside>conflicts
+            <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/0e7839dd3e7c8b555076a5b7aaf5d7d15dbe1aef/code/modules/antagonists/changeling/changeling_power.dm#L50">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;changeling&#x2F;changeling_power.dm 50"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/eb754552f7f8c86e8eedf6025569242da301a316/code/modules/antagonists/changeling/changeling_power.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;changeling&#x2F;changeling_power.dm 22"/></a></h3>
+        <p>list of power you cannot purchase together</p><h2 id="proc">Proc Details</h2><h3 id="proc/try_to_sting"><aside class="declaration">proc </aside>try_to_sting<aside>(/<a href="mob.html">mob</a>/user, /<a href="mob.html">mob</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/eb754552f7f8c86e8eedf6025569242da301a316/code/modules/antagonists/changeling/changeling_power.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;changeling&#x2F;changeling_power.dm 52"/></a></aside>
         </h3>
         <p>Contrary to the name, this proc isn't just used by changeling stings. It handles the activation of the action and the deducation of its cost.
 The order of the proc chain is:
@@ -43,7 +51,7 @@ The deduction of the cost of this power.
 Returns TRUE on a successful activation.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/0e7839dd3e7c8b555076a5b7aaf5d7d15dbe1aef">0e7839d</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/eb754552f7f8c86e8eedf6025569242da301a316">eb75455</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
