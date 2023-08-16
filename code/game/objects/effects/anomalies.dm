@@ -393,7 +393,7 @@
 		var/mob/dead/observer/chosen = pick(candidates)
 		S.key = chosen.key
 		var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
-		spell.Grant(chosen)
+		spell.Grant(S)
 		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
 
 /obj/effect/anomaly/radiation/detonate()
