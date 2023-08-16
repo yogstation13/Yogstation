@@ -387,7 +387,12 @@
 /// Note: this implementation is expensive as heck for large numbers, I only use it because most of my usecase
 /// Is < 10 ints
 /proc/greatest_common_factor(list/values)
-	var/smallest = min(arglist(values))
+	//Old implementation of this used var/smallest = min(argslist(values)), BUT this doesnt work for large lists! causing byond to spiral down into exception hell hole, THIS works!
+	var/smallest = INFINITY
+	for(var/entry in values)
+		if(entry < smallest)
+			smallest = entry
+
 	for(var/i in smallest to 1 step -1)
 		var/safe = TRUE
 		for(var/entry in values)
