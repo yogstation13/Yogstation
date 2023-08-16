@@ -179,10 +179,6 @@
 	var/datum/action/innate/rad_goat/rad_switch
 	var/rad_emit = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
-	. = ..()
-	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
-
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
 		P.damage = 0 //No damaging goat
@@ -196,6 +192,9 @@
 		adjustFireLoss(-1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
+	if(mind)
+		var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
+		spell.Grant(src)
 	if(stat == CONSCIOUS)
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5) //gets healed over time
@@ -207,6 +206,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 	rad_switch = new
 	rad_switch.Grant(src)
 
