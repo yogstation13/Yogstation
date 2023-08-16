@@ -1055,7 +1055,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/ore_silo,
+/obj/machinery/ore_silo{
+	name = "syndicate ore silo"
+	},
 /obj/item/multitool,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
