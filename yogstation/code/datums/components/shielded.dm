@@ -12,7 +12,7 @@
 
 	var/mob/living/current_owner
 
-/datum/component/shielded/Initialize(shielded_icon, shielded_icon_state, shielded_recharge, target_slot)
+/datum/component/shielded/Initialize(shielded_icon, shielded_icon_state, shielded_recharge, slot)
 	if(!shielded_icon)	
 		CRASH("Invalid shield icon passed")
 	if(!shielded_icon_state)
@@ -23,7 +23,7 @@
 	shield_icon = shielded_icon 
 	shield_icon_state = shielded_icon_state
 	shield_recharge = shielded_recharge
-	src.target_slot = target_slot
+	target_slot = slot
 	cached_mutable_appearance = mutable_appearance(shield_icon, shield_icon_state)
 
 	RegisterSignal(parent,COMSIG_ITEM_HIT_REACT,PROC_REF(on_hit_react))
