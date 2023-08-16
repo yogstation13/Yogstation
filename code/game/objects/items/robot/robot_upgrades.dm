@@ -1298,7 +1298,7 @@
 	desc = "An upgrade to the service cyborg which lets them create more food."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
-	module_type = /obj/item/robot_module/butler
+	module_types = list(/obj/item/robot_module/butler)
 	module_flags = BORG_MODEL_SERVICE
 
 /obj/item/borg/upgrade/service_cookbook/action(mob/living/silicon/robot/R, user = usr)
