@@ -165,9 +165,9 @@
 /area/ruin/syndicate_icemoon/hallway)
 "bs" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	target_temperature = 73;
 	dir = 1;
-	piping_layer = 4
+	piping_layer = 4;
+	target_temperature = 73
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -221,8 +221,8 @@
 /area/ruin/syndicate_icemoon/research)
 "bP" = (
 /obj/machinery/door/airlock/hatch{
-	req_access_txt = "150";
-	name = "Equipment Room"
+	name = "Equipment Room";
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -341,9 +341,9 @@
 "cD" = (
 /obj/machinery/button/door{
 	id = "icemoon_syndicate_canteen_windows";
-	req_access_txt = "150";
 	name = "Canteen Shutters";
-	pixel_y = 24
+	pixel_y = 24;
+	req_access_txt = "150"
 	},
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
@@ -505,6 +505,7 @@
 "dq" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -524,6 +525,7 @@
 /area/ruin/syndicate_icemoon/engine)
 "dB" = (
 /obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25;
 	req_access = list(150)
 	},
 /obj/effect/turf_decal/stripes/corner{
@@ -745,9 +747,9 @@
 /area/ruin/syndicate_icemoon/engine)
 "fn" = (
 /obj/machinery/door/window{
-	req_access_txt = "150";
 	dir = 4;
-	name = "Nanite Lab"
+	name = "Nanite Lab";
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -810,8 +812,8 @@
 /area/ruin/syndicate_icemoon/warehouse)
 "fA" = (
 /obj/machinery/door/airlock{
-	req_access_txt = "150";
-	name = "Cabin 4"
+	name = "Cabin 4";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1088,6 +1090,7 @@
 /area/ruin/syndicate_icemoon/warehouse)
 "hv" = (
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -1177,8 +1180,8 @@
 /area/ruin/syndicate_icemoon/hallway)
 "ib" = (
 /obj/machinery/door/airlock/medical/glass{
-	req_access_txt = "150";
-	name = "Primary Treatment Centre"
+	name = "Primary Treatment Centre";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1222,8 +1225,8 @@
 	dir = 1
 	},
 /obj/machinery/firealarm{
-	pixel_y = -26;
-	dir = 1
+	dir = 1;
+	pixel_y = -26
 	},
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -1475,8 +1478,8 @@
 /area/ruin/syndicate_icemoon/engine)
 "kV" = (
 /obj/machinery/computer/crew/syndie{
-	dir = 8;
 	desc = "Used to monitor active health sensors built into the uniforms of most Nanotrasen employees.";
+	dir = 8;
 	name = "suit sensor monitoring console"
 	},
 /obj/effect/turf_decal/siding/red{
@@ -1670,9 +1673,9 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/door/window/northleft{
+	dir = 2;
 	name = "First-Aid Supplies";
-	req_access_txt = "150";
-	dir = 2
+	req_access_txt = "150"
 	},
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular{
@@ -2000,6 +2003,7 @@
 /area/ruin/syndicate_icemoon/research)
 "nL" = (
 /obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -2050,9 +2054,9 @@
 "oh" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1;
 	radio_channel = "Syndicate";
-	radio_key = /obj/item/encryptionkey/syndicate;
-	dir = 1
+	radio_key = /obj/item/encryptionkey/syndicate
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2068,8 +2072,8 @@
 /area/ruin/syndicate_icemoon/hallway)
 "ot" = (
 /obj/machinery/firealarm{
-	pixel_y = -26;
-	dir = 1
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -2081,8 +2085,8 @@
 /area/ruin/syndicate_icemoon/xenobio)
 "oD" = (
 /obj/machinery/door/airlock{
-	req_access_txt = "150";
-	name = "Cabin 1"
+	name = "Cabin 1";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -2097,8 +2101,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/window/eastright{
-	req_access_txt = "150";
-	name = "Kitchen"
+	name = "Kitchen";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2107,8 +2111,8 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	pixel_y = -26;
-	dir = 1
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
@@ -2194,9 +2198,9 @@
 /obj/item/wallframe/button,
 /obj/item/assembly/signaler,
 /obj/structure/closet/crate/secure/gear{
-	req_access_txt = "150";
+	desc = "A secure gear crate. A faded note on it reads 'CHAIR NOT INCLUDED'.";
 	name = "electric chair kit crate";
-	desc = "A secure gear crate. A faded note on it reads 'CHAIR NOT INCLUDED'."
+	req_access_txt = "150"
 	},
 /obj/item/screwdriver/nuke,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -2260,9 +2264,9 @@
 	dir = 5
 	},
 /obj/structure/statue/gold/hos{
-	name = "statue of the commander";
 	desc = "An expensive, golden statue of the outpost's commander. You're not sure how much money they embezzled to get this.";
-	layer = 2.89
+	layer = 2.89;
+	name = "statue of the commander"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
@@ -2336,8 +2340,8 @@
 /area/ruin/syndicate_icemoon/engine)
 "qo" = (
 /obj/machinery/door/airlock/medical{
-	req_access_txt = "150";
-	name = "Operating Room"
+	name = "Operating Room";
+	req_access_txt = "150"
 	},
 /obj/machinery/holosign/surgery{
 	id = "syndie_icemoon_surgery_holo"
@@ -2477,8 +2481,8 @@
 "rq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
-	req_access_txt = "150";
-	name = "RnD Desk"
+	name = "RnD Desk";
+	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/door/firedoor/border_only{
@@ -2640,8 +2644,8 @@
 /area/ruin/syndicate_icemoon/engine)
 "su" = (
 /obj/machinery/door/airlock/highsecurity{
-	req_access_txt = "150";
-	name = "Control Room"
+	name = "Control Room";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2843,12 +2847,12 @@
 /area/ruin/syndicate_icemoon/xenobio)
 "tV" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 28;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = 28
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 28;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 28
 	},
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 4
@@ -2907,8 +2911,8 @@
 /area/ruin/syndicate_icemoon/warehouse)
 "ue" = (
 /obj/machinery/camera{
-	network = list("synd_icemoon_xenobio");
-	dir = 1
+	dir = 1;
+	network = list("synd_icemoon_xenobio")
 	},
 /obj/structure/window/reinforced/spawner/west,
 /obj/machinery/door/firedoor/border_only{
@@ -2963,6 +2967,7 @@
 "uG" = (
 /obj/machinery/deepfryer,
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -3131,8 +3136,8 @@
 /area/ruin/syndicate_icemoon/medical)
 "wn" = (
 /obj/machinery/door/airlock/medical/glass{
-	req_access_txt = "150";
-	name = "Medical Bay"
+	name = "Medical Bay";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -3350,8 +3355,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
 	id = "syndieicemoon_sci_shutters";
-	req_access_txt = "150";
-	name = "Window Shutters"
+	name = "Window Shutters";
+	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
@@ -3422,8 +3427,8 @@
 	id = "syndieicemoon_brig_cell"
 	},
 /obj/machinery/door/airlock/hatch{
-	req_access_txt = "150";
-	name = "Cell"
+	name = "Cell";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3490,9 +3495,9 @@
 	id = "syndicate_icemoon_vault";
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
+	pixel_y = -24;
 	req_access_txt = "150";
-	specialfunctions = 4;
-	pixel_y = -24
+	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -3560,8 +3565,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/hatch{
-	req_access_txt = "150";
-	name = "Electric Chair"
+	name = "Electric Chair";
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -3611,9 +3616,9 @@
 "zq" = (
 /obj/machinery/button/door{
 	id = "syndicateicemoon_xenokill";
-	req_access_txt = "150";
+	name = "Kill Chamber Access";
 	pixel_y = 24;
-	name = "Kill Chamber Access"
+	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 1
@@ -3689,9 +3694,9 @@
 /area/ruin/syndicate_icemoon/medical)
 "zW" = (
 /obj/machinery/door/airlock/vault{
-	req_access_txt = "151";
+	id_tag = "syndicate_icemoon_vault";
 	name = "Vault";
-	id_tag = "syndicate_icemoon_vault"
+	req_access_txt = "151"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -3729,8 +3734,8 @@
 "Af" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/airlock/medical/glass{
-	req_access_txt = "150";
-	name = "Primary Treatment Centre"
+	name = "Primary Treatment Centre";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3838,8 +3843,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/camera{
-	network = list("synd_icemoon_xenobio");
-	dir = 4
+	dir = 4;
+	network = list("synd_icemoon_xenobio")
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/xenobio)
@@ -4058,8 +4063,8 @@
 /area/ruin/syndicate_icemoon/dorms)
 "Cl" = (
 /obj/machinery/door/airlock{
-	req_access_txt = "150";
-	name = "Cabin 5"
+	name = "Cabin 5";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4121,13 +4126,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"CC" = (
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
 "CD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4165,9 +4163,9 @@
 "CO" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "150";
+	dir = 1;
 	name = "Pen Access";
-	dir = 1
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -4236,6 +4234,7 @@
 /area/ruin/syndicate_icemoon/warehouse)
 "Db" = (
 /obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25;
 	req_access = list(150)
 	},
 /obj/structure/cable,
@@ -4262,6 +4261,7 @@
 /area/ruin/syndicate_icemoon/engine)
 "Di" = (
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -4296,8 +4296,8 @@
 "Dq" = (
 /obj/structure/table/reinforced,
 /obj/item/phone/real/syndicate_ruin{
-	pixel_y = 5;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 5
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
@@ -4423,9 +4423,9 @@
 /area/ruin/syndicate_icemoon/engine)
 "Ey" = (
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "150";
+	dir = 1;
 	name = "Pen Access";
-	dir = 1
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -4450,8 +4450,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
 	id = "syndieicemoon_sci_shutters";
-	req_access_txt = "150";
-	name = "Window Shutters"
+	name = "Window Shutters";
+	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -4465,6 +4465,23 @@
 /obj/machinery/smartfridge/extract/preloaded,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
+"EO" = (
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/recharger,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/security)
 "EU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -4533,8 +4550,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
 	id = "syndieicemoon_sci_shutters";
-	req_access_txt = "150";
-	name = "Window Shutters"
+	name = "Window Shutters";
+	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/box/white,
 /turf/open/floor/plasteel/dark,
@@ -4606,9 +4623,9 @@
 "FQ" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "150";
+	dir = 1;
 	name = "Pen Access";
-	dir = 1
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -4713,6 +4730,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25;
 	req_access = list(150)
 	},
 /turf/open/floor/plating,
@@ -4784,8 +4802,8 @@
 /obj/item/clothing/glasses/science,
 /obj/item/book/manual/wiki/chemistry,
 /obj/machinery/firealarm{
-	pixel_y = -26;
-	dir = 1
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
@@ -4808,6 +4826,7 @@
 "Hg" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25;
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -4865,8 +4884,8 @@
 /area/ruin/syndicate_icemoon/dorms)
 "HA" = (
 /obj/machinery/firealarm{
-	pixel_y = -26;
-	dir = 1
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
@@ -4942,9 +4961,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier/faxmachine{
 	department = "Unidentified";
+	desc = "Used to send black pages to Nanotrasen stations.";
 	name = "Syndicate Fax Machine";
-	req_one_access = list(150);
-	desc = "Used to send black pages to Nanotrasen stations."
+	req_one_access = list(150)
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -5003,9 +5022,9 @@
 /area/ruin/syndicate_icemoon/dorms)
 "IO" = (
 /mob/living/simple_animal/hostile/carp{
+	desc = "Cayenne the Third, a descendent of Cayenne the Second, who was a descendent of Cayenne the First.";
 	faction = list("Syndicate");
-	name = "Cayenne III";
-	desc = "Cayenne the Third, a descendent of Cayenne the Second, who was a descendent of Cayenne the First."
+	name = "Cayenne III"
 	},
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
@@ -5137,8 +5156,8 @@
 /area/ruin/syndicate_icemoon/shed)
 "JJ" = (
 /obj/machinery/door/airlock/medical/glass{
-	req_access_txt = "150";
-	name = "Medical Bay"
+	name = "Medical Bay";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5241,9 +5260,9 @@
 "Ky" = (
 /obj/machinery/button/holosign{
 	id = "syndie_icemoon_surgery_holo";
+	name = "Surgery Holosign";
 	pixel_x = 26;
-	req_access_txt = "150";
-	name = "Surgery Holosign"
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -5300,27 +5319,12 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"KS" = (
-/obj/machinery/airalarm/syndicate{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/security)
 "KT" = (
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23;
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -5475,15 +5479,15 @@
 "LV" = (
 /obj/machinery/button/door{
 	id = "syndie_icemoon_vent";
-	req_access_txt = "150";
-	pixel_y = 24;
 	name = "Chamber Vent";
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 24;
+	req_access_txt = "150"
 	},
 /obj/machinery/button/ignition{
 	id = "syndie_icemoon_teghot";
-	pixel_y = 24;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -5495,8 +5499,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
-	req_access_txt = "150";
-	name = "Medical Support Systems"
+	name = "Medical Support Systems";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -5520,8 +5524,8 @@
 	dir = 9
 	},
 /obj/structure/statue/gold/hop{
-	name = "statue of a syndicate admiral";
-	desc = "An expensive, golden statue of a Syndicate admiral."
+	desc = "An expensive, golden statue of a Syndicate admiral.";
+	name = "statue of a syndicate admiral"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
@@ -5569,8 +5573,8 @@
 /area/ruin/syndicate_icemoon/dorms)
 "MB" = (
 /obj/machinery/door/airlock/engineering{
-	req_access_txt = "150";
-	name = "Engineering"
+	name = "Engineering";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -5667,9 +5671,9 @@
 "Nu" = (
 /obj/structure/safe,
 /obj/item/toy/plush/carpplushie/dehy_carp{
-	name = "cayenne plushie";
+	break_message = "%SRC vanishes in a small explosion.";
 	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
-	break_message = "%SRC vanishes in a small explosion."
+	name = "cayenne plushie"
 	},
 /obj/item/toy/figure/syndie,
 /obj/machinery/door/firedoor/border_only{
@@ -5907,14 +5911,15 @@
 /area/ruin/syndicate_icemoon/engine)
 "Pf" = (
 /obj/machinery/door/airlock/engineering{
-	req_access_txt = "150";
-	name = "Engineering"
+	name = "Engineering";
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "Pq" = (
 /obj/machinery/power/apc/auto_name/east{
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /obj/structure/cable,
@@ -5964,9 +5969,9 @@
 	id = "syndicate_icemoon_vault";
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
+	pixel_y = 24;
 	req_access_txt = "150";
-	specialfunctions = 4;
-	pixel_y = 24
+	specialfunctions = 4
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
@@ -6372,8 +6377,8 @@
 /area/ruin/syndicate_icemoon/dorms)
 "SS" = (
 /obj/machinery/door/airlock/hatch{
-	req_access_txt = "150";
-	name = "Cold Room"
+	name = "Cold Room";
+	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/weather/snow/corner,
@@ -6497,8 +6502,8 @@
 /area/ruin/syndicate_icemoon/command)
 "TQ" = (
 /obj/machinery/door/airlock{
-	req_access_txt = "150";
-	name = "Cabin 2"
+	name = "Cabin 2";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -6595,7 +6600,7 @@
 /area/ruin/syndicate_icemoon/warehouse)
 "Uv" = (
 /obj/machinery/vending/syndichem{
-	products = list(/obj/item/stack/cable_coil/random=20,/obj/item/assembly/igniter=80,/obj/item/assembly/prox_sensor=20,/obj/item/assembly/signaler=20,/obj/item/assembly/timer=20,/obj/item/assembly/voice=20,/obj/item/assembly/health=20,/obj/item/assembly/infra=20,/obj/item/grenade/chem_grenade=20,/obj/item/grenade/chem_grenade/large=20,/obj/item/grenade/chem_grenade/pyro=20,/obj/item/grenade/chem_grenade/cryo=20,/obj/item/grenade/chem_grenade/adv_release=20,/obj/item/reagent_containers/food/drinks/bottle/holywater=1)
+	products = list(/obj/item/stack/cable_coil/random = 20, /obj/item/assembly/igniter = 80, /obj/item/assembly/prox_sensor = 20, /obj/item/assembly/signaler = 20, /obj/item/assembly/timer = 20, /obj/item/assembly/voice = 20, /obj/item/assembly/health = 20, /obj/item/assembly/infra = 20, /obj/item/grenade/chem_grenade = 20, /obj/item/grenade/chem_grenade/large = 20, /obj/item/grenade/chem_grenade/pyro = 20, /obj/item/grenade/chem_grenade/cryo = 20, /obj/item/grenade/chem_grenade/adv_release = 20, /obj/item/reagent_containers/food/drinks/bottle/holywater = 1)
 	},
 /obj/machinery/light{
 	dir = 4
@@ -6611,8 +6616,8 @@
 	dir = 1
 	},
 /obj/machinery/firealarm{
-	pixel_y = -26;
-	dir = 1
+	dir = 1;
+	pixel_y = -26
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
@@ -6868,8 +6873,8 @@
 /area/ruin/syndicate_icemoon/medical)
 "Wx" = (
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "150";
-	name = "Pen Access"
+	name = "Pen Access";
+	req_access_txt = "150"
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
@@ -6948,9 +6953,9 @@
 	id = "syndicate_icemoon_bridge_windows";
 	name = "Window Shutters";
 	normaldoorcontrol = 1;
+	pixel_y = -24;
 	req_access_txt = "150";
-	specialfunctions = 4;
-	pixel_y = -24
+	specialfunctions = 4
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -7025,8 +7030,8 @@
 /area/ruin/syndicate_icemoon/research)
 "XT" = (
 /obj/machinery/door/airlock/research/glass{
-	req_access_txt = "150";
-	name = "Xenobiology"
+	name = "Xenobiology";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7167,15 +7172,15 @@
 	name = "brig closet"
 	},
 /obj/item/clothing/under/rank/prisoner{
-	sensor_mode = 0;
-	desc = "It's standardised Syndicate prisoner-wear."
+	desc = "It's standardised Syndicate prisoner-wear.";
+	sensor_mode = 0
 	},
 /obj/item/clothing/shoes/sneakers/orange,
 /obj/machinery/button/door{
 	id = "syndieicemoon_brig_cell";
-	req_access_txt = "150";
 	name = "Cell Lockdown";
-	pixel_x = 24
+	pixel_x = 24;
+	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 6
@@ -7207,6 +7212,15 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)
+"YE" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "YH" = (
 /turf/open/floor/engine/vacuum,
 /area/ruin/syndicate_icemoon/engine)
@@ -7234,8 +7248,8 @@
 /area/ruin/syndicate_icemoon/canteen)
 "YZ" = (
 /obj/machinery/door/airlock{
-	req_access_txt = "150";
-	name = "Cabin 3"
+	name = "Cabin 3";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -9932,7 +9946,7 @@ zl
 pw
 LP
 ED
-CC
+YE
 vU
 Yy
 Hk
@@ -10074,7 +10088,7 @@ xI
 OC
 fT
 ED
-KS
+EO
 Bf
 bP
 Lk
