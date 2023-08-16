@@ -351,7 +351,6 @@ SUBSYSTEM_DEF(mapping)
 	else if(config.minetype == "jungle_and_lavaland")
 		SSpersistence.LoadMinetype()
 		var/determinant = SSpersistence.next_minetype
-			determinant = 2
 		switch(determinant)
 			if(2)
 				if(prob(50))
@@ -363,7 +362,8 @@ SUBSYSTEM_DEF(mapping)
 				LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 			
 			if(0)
-				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND) 
+				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
+			 
 	//Yogs end
 	else if(config.minetype == "icemoon")
 	else if (!isnull(config.minetype))
