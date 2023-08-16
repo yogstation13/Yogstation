@@ -228,27 +228,26 @@
 	id = "jungle-dying-obsidian-pillar0"
 	description = "obsidian pillar"
 	suffix = "obsidian_pillar0.dmm"	
-	cost = 2
+	cost = 1
 
 /datum/map_template/ruin/jungle/dying/obsidian_pillar1
 	name = "Obsidian pillar"
 	id = "jungle-dying-obsidian-pillar1"
 	description = "obsidian pillar"
 	suffix = "obsidian_pillar1.dmm"	
-	cost = 2
+	cost = 1
 
 /datum/map_template/ruin/jungle/dying/obsidian_pillar2
 	name = "Obsidian pillar"
 	id = "jungle-dying-obsidian-pillar2"
 	description = "obsidian pillar"
 	suffix = "obsidian_pillar2.dmm"	
-	cost = 2
-
+	cost = 1
 
 /datum/map_template/ruin/jungle/dying/obsidian_pillar3
 	name = "Obsidian pillar"
 	id = "jungle-dying-obsidian-pillar3"
 	description = "obsidian pillar"
 	suffix = "obsidian_pillar3.dmm"	
-	cost = 2
+	cost = 1
 
