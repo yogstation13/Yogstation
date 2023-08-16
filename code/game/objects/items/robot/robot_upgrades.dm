@@ -1307,7 +1307,7 @@
 		return FALSE
 	var/obj/item/borg/cookbook/book = locate() in R.module.modules
 	if(book)
-		to_chat(user, span_warning("This unit is already equipped with a cookbook."))
+		to_chat(user, span_warning("This cyborg is already equipped with a cookbook."))
 		return FALSE
 	book = new(R.module)
 	R.module.basic_modules += book
