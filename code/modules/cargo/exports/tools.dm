@@ -160,3 +160,8 @@
 	cost = 80000 // the outcome of something gone devestatingly wrong, but hey drinks on me
 	unit_name = "stage 6 singularity shard"
 	export_types = list(/obj/item/singularity_shard/stage6)
+
+/datum/export/supermatter_silver
+	cost = 25000 // good job kid,you are doing the god's work
+	unit_name = "supermatter silver shard"
+	export_types = list(/obj/item/nuke_core/supermatter_sliver)

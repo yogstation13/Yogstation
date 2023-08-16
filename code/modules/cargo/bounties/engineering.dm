@@ -71,10 +71,3 @@
 	reward = 7500
 	required_count = 3
 	wanted_types = list(/obj/item/fireaxe/metal_h2_axe)
-
-/datum/bounty/item/supermatter_silver
-	name = "Supermatter Silvers"
-	description = "Nanotrasen engineering team wants to build a new supermatter engine. Ship them 2 supermatter silvers."
-	reward = 50000
-	required_count = 2
-	wanted_types = list(/obj/item/nuke_core/supermatter_sliver)
