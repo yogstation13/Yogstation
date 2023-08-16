@@ -162,6 +162,6 @@
 	export_types = list(/obj/item/singularity_shard/stage6)
 
 /datum/export/supermatter_silver
-	cost = 25000 // good job kid,you are doing the god's work
+	cost = 30000 // good job kid,you are doing the god's work
 	unit_name = "supermatter silver shard"
 	export_types = list(/obj/item/nuke_core/supermatter_sliver)
