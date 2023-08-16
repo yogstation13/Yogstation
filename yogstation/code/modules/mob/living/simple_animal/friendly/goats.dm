@@ -177,6 +177,7 @@
 	health = 200
 	maxHealth = 200
 	var/datum/action/innate/rad_goat/rad_switch
+	var/datum/action/cooldown/spell/conjure/radiation_anomaly/radiation_anomaly
 	var/rad_emit = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
@@ -192,9 +193,6 @@
 		adjustFireLoss(-1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	if(mind)
-		var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
-		spell.Grant(src)
 	if(stat == CONSCIOUS)
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5) //gets healed over time
@@ -209,6 +207,8 @@
 	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 	rad_switch = new
 	rad_switch.Grant(src)
+	radiation_anomaly = new
+	radiation_anomaly.Grant(src)
 
 /datum/action/innate/rad_goat //This is for rad goat only.
 	name = "Rad emission switch"
