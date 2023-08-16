@@ -2,6 +2,7 @@
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
 	icon_state = "wallet"
+	base_icon_state = "wallet"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	slot_flags = ITEM_SLOT_ID
@@ -64,9 +65,9 @@
 /obj/item/storage/wallet/update_icon_state()
 	. = ..()
 	if(front_id)
-		icon_state = "wallet_[front_id.icon_state]"
+		icon_state = "[base_icon_state]_[front_id.icon_state]"
 		return
-	icon_state = "wallet"
+	icon_state = base_icon_state
 
 /obj/item/storage/wallet/GetID()
 	return front_id

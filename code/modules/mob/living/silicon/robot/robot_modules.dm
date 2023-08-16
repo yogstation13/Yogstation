@@ -142,12 +142,21 @@
 	return I
 
 /obj/item/robot_module/proc/remove_module(obj/item/I, delete_after)
+	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+	
+	// Keeping these to reset their module slots to what they were previously.
+	var/list/held_modules = R.held_items.Copy()
+	var/active_module_num = R.get_selected_module()
+	R.uneq_all() // Must be done before module removed; otherwise, will CRASH().
+
 	basic_modules -= I
 	modules -= I
 	emag_modules -= I
 	ratvar_modules -= I
 	added_modules -= I
-	rebuild_modules()
+	rebuild_modules(held_modules, active_module_num)
 	if(delete_after)
 		qdel(I)
 
@@ -172,10 +181,18 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules() ///builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules(list/last_held_modules = null, last_active_module_num = null) ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+
 	var/list/held_modules = R.held_items.Copy()
-	var/active_module = R.module_active
+	if(last_held_modules) 
+		held_modules = last_held_modules
+	var/active_module_num = R.get_selected_module()
+	if(last_active_module_num)
+		active_module_num = last_active_module_num
+
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -189,15 +206,17 @@
 	for(var/obj/item/I in added_modules)
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
-		if(i)
-			R.equip_module_to_slot(i, held_modules.Find(i))
-	if(active_module)
-		R.select_module(held_modules.Find(active_module))
+		if(i && (i in modules))
+			var/slot = held_modules.Find(i)
+			R.equip_module_to_slot(i, slot)
+			if(slot == active_module_num)
+				R.select_module(slot)
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 
 /obj/item/robot_module/proc/transform_to(new_module_type)
 	var/mob/living/silicon/robot/R = loc
+	R.uneq_all()
 	var/obj/item/robot_module/RM = new new_module_type(R)
 	if(!RM.be_transformed_to(src))
 		qdel(RM)
@@ -517,10 +536,11 @@
 	cyborg_base_icon = "clown"
 	hat_offset = -2
 
-/obj/item/robot_module/butler
+/obj/item/robot_module/service
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/storage/bag/money, // For charging a fee or getting onto the luxury shuttle.
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
 		/obj/item/reagent_containers/food/condiment/enzyme,
 		/obj/item/pen,
@@ -544,15 +564,18 @@
 		/obj/item/borg/sight/xray/truesight_lens)
 	moduleselect_icon = "service"
 	special_light_key = "service"
+	cyborg_base_icon = "tophat"
 	hat_offset = 0
 
-/obj/item/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
+/obj/item/robot_module/service/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
 	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
-/obj/item/robot_module/butler/be_transformed_to(obj/item/robot_module/old_module)
+// The reason why spawning a `silicon/robot/modules/service` or forcing a cyborg into ..
+// .. Service doesn't work as it prompts the cyborg into selecting their initial skin first:
+/obj/item/robot_module/service/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/list/service_icons = sortList(list(
 		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
@@ -588,7 +611,7 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/shovel,
+		/obj/item/shovel, // This is here for: the ability to butcher & tool behavior of TOOL_SHOVEL. In all other cases, the cyborg drill is better.
 		/obj/item/crowbar/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,

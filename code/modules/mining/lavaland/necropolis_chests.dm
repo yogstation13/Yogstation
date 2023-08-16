@@ -1078,6 +1078,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 	switch(random)
 		if(1)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
+			H.eye_color = "fee5a3"
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.updateappearance()
+		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(2)
@@ -1471,6 +1478,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(isitem(target))//don't attack if we're clicking on our inventory
+		var/obj/item/thing = target
+		if(thing.item_flags & IN_INVENTORY)
+			return
 	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, span_warning("The club fizzles weakly, it seem its power doesn't reach this area.") )
 		return
