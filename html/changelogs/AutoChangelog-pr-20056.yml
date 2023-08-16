@@ -1,0 +1,4 @@
+author: " Jolly"
+delete-after: true 
+changes: 
+  - tweak: "Changeling hallucination sting will now tell you it costs 10 chemicals."
