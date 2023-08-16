@@ -379,7 +379,7 @@
 	spawn_goat = TRUE
 
 /obj/effect/anomaly/radiation/anomalyEffect()
-	. = ..()
+	..()
 	for(var/i = 1 to 15)
 		fire_nuclear_particle()
 	radiation_pulse(src, 500, 5)
@@ -407,8 +407,8 @@
 		T.fire_nuclear_particle(angle)
 		sleep(0.7)
 
-/obj/effect/anomaly/radiation/process()
-	anomalyEffect()
+/obj/effect/anomaly/radiation/process(delta_time)
+	anomalyEffect(delta_time)
 	if(death_time < world.time)
 		if(loc)
 			if(spawn_goat)
