@@ -11,26 +11,96 @@
     <a href="index.html">Yogstation 13</a> -
     <a href="index.html#modules">Modules</a> -
     <a href="index.html#types">Types</a>
- &mdash; <a href="obj/item/borg/upgrade.html#var">Var Details</a></header>
+ &mdash; <a href="obj/item/borg/upgrade.html#var">Var Details</a> - <a href="obj/item/borg/upgrade.html#proc">Proc Details</a></header>
 <main>
 <h1>borg upgrade module. <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/borg/upgrade.html">borg/upgrade</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/eb754552f7f8c86e8eedf6025569242da301a316/code/game/objects/items/robot/robot_upgrades.dm#L6">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 6"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 7"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="obj/item/borg/upgrade.html#var/module_flags">module_flags</a></th><td>Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/module_flags"><aside class="declaration">var </aside>module_flags
+            <tr><th><a href="obj/item/borg/upgrade.html#var/blacklisted_upgrades">blacklisted_upgrades</a></th><td>If the cyborg has any of these upgrades, they are prevented from receiving this upgrade.</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/locked">locked</a></th><td>Prevents the upgrade from being used.</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/module_flags">module_flags</a></th><td>Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/module_types">module_types</a></th><td>Is this upgrade only for (a) specific module(s)? If so, they need to be using one of these modules to gain the upgrade.</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/one_use">one_use</a></th><td>Should this upgrade be consumed/deleted on use? This also means this upgrade will not be in the cyborg's <code>upgrades</code> list (most of the time).</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/prerequisite_upgrades">prerequisite_upgrades</a></th><td>If the cyborg doesn't have all of these upgrades, they are prevented from receiving this upgrade.</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/repeatable">repeatable</a></th><td>Can multiple of this upgrade type be used on the same cyborg?</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/require_module">require_module</a></th><td>Does this upgrade require the cyborg to select a module first?</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#var/requires_internals">requires_internals</a></th><td>Does this upgrade require access to the cyborg's internals?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#proc/action">action</a></th><td>Called when upgrade is used on the cyborg.</td></tr>
+            <tr><th><a href="obj/item/borg/upgrade.html#proc/deactivate">deactivate</a></th><td>Called when upgrade is removed from the cyborg.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/blacklisted_upgrades"><aside class="declaration">var </aside>blacklisted_upgrades
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/eb754552f7f8c86e8eedf6025569242da301a316/code/game/objects/items/robot/robot_upgrades.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 29"/></a></h3>
+        <p>If the cyborg has any of these upgrades, they are prevented from receiving this upgrade.</p><h3 id="var/locked"><aside class="declaration">var </aside>locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 13"/></a></h3>
+        <p>Prevents the upgrade from being used.</p><h3 id="var/module_flags"><aside class="declaration">var </aside>module_flags
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 19"/></a></h3>
-        <p>Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.</p></main>
+        <p>Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.</p><h3 id="var/module_types"><aside class="declaration">var </aside>module_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 17"/></a></h3>
+        <p>Is this upgrade only for (a) specific module(s)? If so, they need to be using one of these modules to gain the upgrade.</p><h3 id="var/one_use"><aside class="declaration">var </aside>one_use
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 23"/></a></h3>
+        <p>Should this upgrade be consumed/deleted on use? This also means this upgrade will not be in the cyborg's <code>upgrades</code> list (most of the time).</p><h3 id="var/prerequisite_upgrades"><aside class="declaration">var </aside>prerequisite_upgrades
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 27"/></a></h3>
+        <p>If the cyborg doesn't have all of these upgrades, they are prevented from receiving this upgrade.</p><h3 id="var/repeatable"><aside class="declaration">var </aside>repeatable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 25"/></a></h3>
+        <p>Can multiple of this upgrade type be used on the same cyborg?</p><h3 id="var/require_module"><aside class="declaration">var </aside>require_module
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 15"/></a></h3>
+        <p>Does this upgrade require the cyborg to select a module first?</p><h3 id="var/requires_internals"><aside class="declaration">var </aside>requires_internals
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 21"/></a></h3>
+        <p>Does this upgrade require access to the cyborg's internals?</p><h2 id="proc">Proc Details</h2><h3 id="proc/action"><aside class="declaration">proc </aside>action<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/robot.html">robot</a>/R, user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 32"/></a></aside>
+        </h3>
+        <p>Called when upgrade is used on the cyborg.</p><h3 id="proc/deactivate"><aside class="declaration">proc </aside>deactivate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/robot.html">robot</a>/R, user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/dc13285b1ff3a449e13d63701ea3dbce20bb9363/code/game/objects/items/robot/robot_upgrades.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;robot&#x2F;robot_upgrades.dm 65"/></a></aside>
+        </h3>
+        <p>Called when upgrade is removed from the cyborg.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/eb754552f7f8c86e8eedf6025569242da301a316">eb75455</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/dc13285b1ff3a449e13d63701ea3dbce20bb9363">dc13285</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
