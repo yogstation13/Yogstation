@@ -18,7 +18,7 @@
 
 /obj/item/clothing/head/beret/sec/centcom/occupying
 	name = "peacekeeping force beret"
-	desc = "A special blue beret for the mundane life of a Peacekeeper force commander."
+	desc = "A special white beret for the mundane life of a Peacekeeper force commander."
 	icon_state = "occberet"
 	item_state = "occberet"
 
