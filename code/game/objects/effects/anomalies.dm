@@ -379,7 +379,7 @@
 	spawn_goat = TRUE
 
 /obj/effect/anomaly/radiation/anomalyEffect()
-	..()
+	. = ..()
 	for(var/i = 1 to 15)
 		fire_nuclear_particle()
 	radiation_pulse(src, 500, 5)
@@ -392,6 +392,8 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/chosen = pick(candidates)
 		S.key = chosen.key
+		var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
+		spell.Grant(chosen)
 		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
 
 /obj/effect/anomaly/radiation/detonate()

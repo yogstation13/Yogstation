@@ -167,22 +167,20 @@
 	gold_core_spawnable = NO_SPAWN
 	light_power = 5
 	light_range = 4
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 20
+	melee_damage_upper = 30
 	speed = -0.5
 	robust_searching = 1
 	turns_per_move = 5
 	dodging = 1
 	stat_attack = UNCONSCIOUS
-	health = 75
-	maxHealth = 75
+	health = 200
+	maxHealth = 200
 	var/datum/action/innate/rad_goat/rad_switch
 	var/rad_emit = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Initialize(mapload)
 	. = ..()
-	var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
-	spell.Grant(src)
 	ADD_TRAIT(src, TRAIT_RADIMMUNE, GENETIC_MUTATION)
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
