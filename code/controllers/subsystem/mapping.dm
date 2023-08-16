@@ -351,7 +351,6 @@ SUBSYSTEM_DEF(mapping)
 	else if(config.minetype == "jungle_and_lavaland")
 		SSpersistence.LoadMinetype()
 		var/determinant = SSpersistence.next_minetype
-		if(determinant != 2 && determinant != 1 && determinant != 0)
 			determinant = 2
 		switch(determinant)
 			if(2)
@@ -367,8 +366,6 @@ SUBSYSTEM_DEF(mapping)
 				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND) 
 	//Yogs end
 	else if(config.minetype == "icemoon")
-		LoadGroup(FailedZs, "Ice moon", "map_files/mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
-		LoadGroup(FailedZs, "Ice moon Underground", "map_files/mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
