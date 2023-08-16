@@ -819,6 +819,16 @@
 /obj/item/paper/monitorkey,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"fH" = (
+/obj/machinery/camera{
+	network = list("synd_icemoon_xenobio")
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/xenobio)
 "fJ" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -2451,6 +2461,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"rv" = (
+/obj/machinery/camera{
+	network = list("synd_icemoon_xenobio")
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/xenobio)
 "rH" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/structure/window/reinforced/spawner,
@@ -2826,6 +2842,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"ue" = (
+/obj/machinery/camera{
+	network = list("synd_icemoon_xenobio");
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/west,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/xenobio)
 "ug" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/machinery/door/firedoor/border_only{
@@ -3730,6 +3757,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"AT" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/camera{
+	network = list("synd_icemoon_xenobio");
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/xenobio)
 "AZ" = (
 /obj/effect/turf_decal/tile/white{
 	dir = 4
@@ -10512,7 +10549,7 @@ qK
 qK
 Jo
 DM
-eB
+fH
 cN
 lA
 FZ
@@ -10659,7 +10696,7 @@ qK
 qK
 pq
 Yi
-Yi
+AT
 MH
 ON
 ab
@@ -10888,7 +10925,7 @@ VR
 mN
 NH
 Rz
-ug
+ue
 DM
 qK
 tj
@@ -10956,7 +10993,7 @@ qK
 qK
 qK
 DM
-Zt
+rv
 Wx
 bt
 tU
