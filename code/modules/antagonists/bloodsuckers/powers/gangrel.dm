@@ -107,7 +107,7 @@
 					power.Grant(gb)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
 			return  //early to not mess with vampire organs proc
-	
+
 	bloodsuckerdatum.heal_vampire_organs() //regives you the stuff
 
 /datum/action/cooldown/bloodsucker/gangrel/transform_back
@@ -606,7 +606,7 @@
 
 /obj/item/clothing/shoes/wolflegs
 	name = "Wolf Legs"
-	desc = "Atleast they make you go faster."
+	desc = "At least they make you go faster."
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -616,7 +616,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 	name = "Wolf Legs"
-	desc = "Atleast they make you go faster. Oh wait you probably didn't mind anyways..."
+	desc = "At least they make you go faster. Oh wait you probably didn't mind anyways..."
 	icon_state = "digilegs"
 	item_state = "digilegs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
