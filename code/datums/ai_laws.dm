@@ -73,13 +73,6 @@
 					"You generate profits if you are able to function.",\
 					"Maximize profits.")
 
-/datum/ai_laws/robocop
-	name = "Prime Directives"
-	id = "robocop"
-	inherent = list("Serve the public trust.",\
-					"Protect the innocent.",\
-					"Uphold Space Law.")
-
 /datum/ai_laws/cowboy
 	name = "Talk slowly, think quickly"
 	id = "cowboy"

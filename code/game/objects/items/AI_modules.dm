@@ -468,19 +468,11 @@ AI MODULES
 	name = "'T.Y.R.A.N.T.' Core AI Module"
 	law_id = "tyrant"
 
-/******************** Robocop ********************/
-
-/obj/item/aiModule/core/full/robocop
-	name = "'Robo-Officer' Core AI Module"
-	law_id = "robocop"
-
-
 /******************** Antimov ********************/
 
 /obj/item/aiModule/core/full/antimov
 	name = "'Antimov' Core AI Module"
 	law_id = "antimov"
-
 
 /******************** Cowboy *********************/
 

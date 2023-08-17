@@ -599,7 +599,6 @@
 				/obj/item/aiModule/core/full/drone,
 				/obj/item/aiModule/core/full/peacekeeper,
 				/obj/item/aiModule/core/full/reporter,
-				/obj/item/aiModule/core/full/robocop,
 				/obj/item/aiModule/core/full/liveandletlive,
 				/obj/item/aiModule/core/full/hulkamania,
 				/obj/item/aiModule/core/full/cowboy,
