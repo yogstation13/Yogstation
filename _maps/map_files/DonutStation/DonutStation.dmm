@@ -37724,14 +37724,6 @@
 	},
 /turf/open/floor/carpet,
 /area/bridge)
-"tod" = (
-/obj/structure/table,
-/obj/machinery/camera{
-	c_tag = "Service - Service Hall";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "toe" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -38097,6 +38089,14 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"tuE" = (
+/obj/structure/table,
+/obj/machinery/camera{
+	c_tag = "Service - Service Hall";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "tuT" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 1
@@ -81143,7 +81143,7 @@ waB
 vZg
 gRy
 nOI
-tod
+tuE
 lGn
 lGn
 lGn
@@ -98627,7 +98627,7 @@ aTg
 sfw
 veY
 kLb
-vra
+jzR
 aGn
 aGn
 eDJ
@@ -98884,7 +98884,7 @@ jJM
 ajs
 tBJ
 ssS
-vra
+jzR
 aGn
 aGn
 aGn
@@ -99141,7 +99141,7 @@ gqd
 tBJ
 tBJ
 jUD
-vra
+jzR
 aGn
 aGn
 aGn
@@ -99398,7 +99398,7 @@ uVE
 fJm
 xCq
 lBI
-vra
+jzR
 xbB
 xbB
 xbB
@@ -99655,7 +99655,7 @@ don
 don
 don
 don
-don
+aSb
 ylr
 ylr
 ylr
@@ -100426,7 +100426,7 @@ xas
 lFM
 fZd
 xyV
-don
+aSb
 xyV
 ylr
 ylr
@@ -101454,7 +101454,7 @@ aSb
 xNL
 aBV
 xyV
-don
+aSb
 xyV
 ylr
 ylr
@@ -101710,8 +101710,8 @@ eun
 aSb
 aSb
 chA
-don
-don
+aSb
+aSb
 ylr
 ylr
 ylr
@@ -101968,7 +101968,7 @@ aSb
 uVt
 ygf
 uIQ
-don
+aSb
 ylr
 ylr
 ylr
@@ -102222,10 +102222,10 @@ glV
 mJi
 vsx
 aSb
-don
+aSb
 eaU
-don
-don
+aSb
+aSb
 ylr
 ylr
 ylr
