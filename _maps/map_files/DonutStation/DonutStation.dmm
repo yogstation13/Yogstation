@@ -34147,9 +34147,6 @@
 "rwt" = (
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"rwW" = (
-/turf/closed/wall/r_wall,
-/area/library)
 "rwZ" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -82671,11 +82668,11 @@ lNi
 iyE
 pYf
 fBd
-rwW
-rwW
-rwW
-rwW
-rwW
+sJa
+sJa
+sJa
+sJa
+sJa
 ewZ
 qAi
 ylr
@@ -82928,7 +82925,7 @@ mEC
 mEC
 mEC
 mEC
-ewZ
+qAi
 ewZ
 ewZ
 ewZ
