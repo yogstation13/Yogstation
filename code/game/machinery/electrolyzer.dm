@@ -105,7 +105,7 @@
 		removed.adjust_moles(/datum/gas/oxygen, proportion / 2)
 		removed.adjust_moles(/datum/gas/hydrogen, proportion)
 	if(removed.get_moles(/datum/gas/hypernoblium))
-		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 48 moles at a time
+		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 8 moles at a time
 		removed.adjust_moles(/datum/gas/hypernoblium, -proportion)
 		removed.adjust_moles(/datum/gas/antinoblium, proportion)
 	env.merge(removed) //put back the new gases in the turf
