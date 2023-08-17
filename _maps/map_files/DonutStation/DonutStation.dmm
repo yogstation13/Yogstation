@@ -23156,10 +23156,6 @@
 	},
 /turf/open/floor/carpet,
 /area/library/lounge)
-"lNB" = (
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "lNO" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/scientist,
@@ -37728,6 +37724,14 @@
 	},
 /turf/open/floor/carpet,
 /area/bridge)
+"tod" = (
+/obj/structure/table,
+/obj/machinery/camera{
+	c_tag = "Service - Service Hall";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "toe" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -81139,7 +81143,7 @@ waB
 vZg
 gRy
 nOI
-lNB
+tod
 lGn
 lGn
 lGn
