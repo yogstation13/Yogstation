@@ -32,7 +32,6 @@
 	set_light_on(on)
 	if(light_system == STATIC_LIGHT)
 		update_light()
-
 /obj/item/flashlight/attack_self(mob/user)
 	on = !on
 	update_brightness(user)
@@ -294,6 +293,7 @@
 	var/on_damage = 7
 	var/frng_min = 800
 	var/frng_max = 1000
+	var/flare_particle = TRUE
 	heat = 1000
 	light_color = LIGHT_COLOR_FLARE
 	grind_results = list(/datum/reagent/sulphur = 15)
@@ -336,8 +336,14 @@
 /obj/item/flashlight/flare/update_brightness(mob/user = null)
 	..()
 	if(on)
+		if(flare_particle)
+			add_emitter(/obj/emitter/sparks/flare, "spark", 10)
+			add_emitter(/obj/emitter/flare_smoke, "smoke", 9)
 		item_state = "[initial(item_state)]-on"
 	else
+		if(flare_particle)
+			remove_emitter("spark")
+			remove_emitter("smoke")
 		item_state = "[initial(item_state)]"
 
 /obj/item/flashlight/flare/attack_self(mob/user)
@@ -402,6 +408,7 @@
 	light_color = LIGHT_COLOR_ORANGE
 	on_damage = 10
 	slot_flags = null
+	flare_particle = FALSE
 
 /obj/item/flashlight/lantern
 	name = "lantern"

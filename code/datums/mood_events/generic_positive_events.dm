@@ -198,6 +198,11 @@
 	timeout = 5 MINUTES
 	required_job = list("Research Director", "Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
 
+/datum/mood_event/nice_tool
+	description = span_nicegreen("I recently used a nice tool.")
+	mood_change = 2
+	timeout = 2 MINUTES
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0

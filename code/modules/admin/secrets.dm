@@ -554,6 +554,15 @@
 					id.critter_money = FALSE
 			message_admins("[key_name_admin(mob_user)] has deactivated critter money (pets generated on money withdrawl)!")
 			log_admin("[key_name(mob_user)] has deactivated critter money.")
+		if("halflife")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			for(var/obj/machinery/power/supermatter_crystal/S in GLOB.machines)
+				if(!isturf(S.loc) || !is_station_level(S.z))
+					continue
+				S.antinoblium_attached = TRUE
+			message_admins("[key_name_admin(mob_user)] has started a resonance cascade!")
+			log_admin("[key_name(mob_user)] has started a resonance cascade.")
 
 	if(E)
 		E.processing = FALSE
