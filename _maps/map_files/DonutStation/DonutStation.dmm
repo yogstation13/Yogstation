@@ -19569,9 +19569,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jTU" = (
-/turf/closed/wall/r_wall,
-/area/crew_quarters/dorms)
 "jUm" = (
 /obj/machinery/suit_storage_unit/engine,
 /obj/effect/turf_decal/bot{
@@ -79825,7 +79822,7 @@ gwd
 wVK
 wVK
 nyM
-jTU
+osy
 jsG
 raj
 raj
