@@ -6134,9 +6134,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "Rc" = (
-/obj/item/firing_pin/implant/pindicate,
-/obj/item/firing_pin/implant/pindicate,
-/obj/item/firing_pin/implant/pindicate,
 /obj/item/paper{
 	info = "Please be advised that the firing pins in your standard-issue SMG and the research team's rifles are designed to explode if removed. DO NOT TRY TO REMOVE THEM."
 	},
@@ -6158,6 +6155,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/item/storage/box/firingpins/syndicate,
+/obj/item/storage/box/firingpins/syndicate,
+/obj/item/storage/box/firingpins/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "Rh" = (
