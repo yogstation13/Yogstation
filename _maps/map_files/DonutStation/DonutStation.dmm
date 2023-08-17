@@ -38089,14 +38089,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"tuE" = (
-/obj/structure/table,
-/obj/machinery/camera{
-	c_tag = "Service - Service Hall";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/service)
 "tuT" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 1
@@ -41104,6 +41096,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
+"uPE" = (
+/obj/structure/table,
+/obj/machinery/camera{
+	c_tag = "Service - Service Hall";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "uPG" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
@@ -56163,7 +56163,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -58229,7 +58229,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -59741,7 +59741,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -61526,7 +61526,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -63846,7 +63846,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -63894,7 +63894,7 @@ xSu
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -63924,7 +63924,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -64436,7 +64436,7 @@ ylr
 ylr
 ylr
 ylr
-bIB
+ylr
 ylr
 ylr
 ylr
@@ -64920,7 +64920,7 @@ ylr
 ylr
 ylr
 ylr
-bIB
+ylr
 ylr
 ylr
 ylr
@@ -67954,7 +67954,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -69868,7 +69868,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -71419,7 +71419,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+bIB
 ylr
 ylr
 ylr
@@ -71659,7 +71659,7 @@ vDp
 vDp
 vDp
 ylr
-bIB
+ylr
 ylr
 ylr
 ylr
@@ -75265,7 +75265,7 @@ vDp
 gIJ
 gIJ
 ivF
-bIB
+ylr
 ylr
 ylr
 ylr
@@ -81143,7 +81143,7 @@ waB
 vZg
 gRy
 nOI
-tuE
+uPE
 lGn
 lGn
 lGn
@@ -101163,7 +101163,7 @@ xSu
 xSu
 bHj
 ylr
-bIB
+ylr
 ylr
 ylr
 ylr
@@ -104480,7 +104480,7 @@ ylr
 ylr
 ylr
 ylr
-bIB
+ylr
 ylr
 ylr
 ylr
