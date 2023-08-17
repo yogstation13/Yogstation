@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
-	for(var/path in GLOB.uplink_items) //
+	for(var/path in GLOB.uplink_items)
 		var/datum/uplink_item/I = new path
 		if(!I.item)
 			continue
