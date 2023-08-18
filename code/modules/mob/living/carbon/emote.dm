@@ -50,7 +50,7 @@
 	key = "gnarl"
 	key_third_person = "gnarls"
 	message = "gnarls and shows its teeth..."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey)
+	mob_type_allowed_typecache = list(/mob/living/carbon/human/species/monkey)
 
 /datum/emote/living/carbon/meow
 	key = "meow"
