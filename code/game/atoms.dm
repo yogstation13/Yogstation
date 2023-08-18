@@ -800,6 +800,7 @@
   * TRUE if the emag had any effect, falsey otherwise.
   */
 /atom/proc/emag_act(mob/user, obj/item/card/emag/emag_card)
+	SHOULD_CALL_PARENT(FALSE) // Emag act should either be: overridden (no signal) or default (signal).
 	return (SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT, user, emag_card))
 
 /**
