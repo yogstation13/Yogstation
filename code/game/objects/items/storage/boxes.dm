@@ -659,7 +659,7 @@
 
 /obj/item/storage/box/firingpins/PopulateContents()
 	for(var/i in 1 to 5)
-		new /obj/item/firing_pin/implant/pindicate(src) //why did you fucks name it pindicate just name it syndicate its not funny
+		new /obj/item/firing_pin/implant/pindicate(src) //why did you fucks name it pindicate just name it syndicate its not funny at all
 
 /obj/item/storage/box/secfiringpins
 	name = "box of mindshield firing pins"
