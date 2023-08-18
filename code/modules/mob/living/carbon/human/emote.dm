@@ -111,7 +111,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.mind?.miming)
+	if(H.mind?.miming || !H.can_speak_vocal())
 		return
 	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
 		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
@@ -134,6 +134,8 @@
 	return iscatperson(user) && ..()
 
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
+	if(user.mind?.miming || !user.can_speak_vocal())
+		return
 	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
 /datum/emote/living/carbon/human/rattle

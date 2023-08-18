@@ -238,7 +238,7 @@
 
 /datum/action/changeling/sting/LSD
 	name = "Hallucination Sting"
-	desc = "We cause mass terror to our victim."
+	desc = "We cause mass terror to our victim. Costs 10 chemicals."
 	helptext = "We evolve the ability to sting a target with a powerful hallucinogenic chemical. The target does not notice they have been stung, and the effect occurs after 30 to 60 seconds."
 	button_icon_state = "sting_lsd"
 	sting_icon = "sting_lsd"

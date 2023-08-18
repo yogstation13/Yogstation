@@ -177,14 +177,9 @@
 		AM.pipe_eject(0)
 	update_appearance(UPDATE_ICON)
 
-// update the icon & overlays to reflect mode & status
-/obj/machinery/disposal/Initialize(mapload, obj/structure/disposalconstruct/make_from)
-	AddElement(/datum/element/update_icon_blocker)
-	return ..()
-
 /obj/machinery/disposal/proc/flush()
 	flushing = TRUE
-	flushAnimation()
+	flick("[icon_state]-flush", src)
 	sleep(1 SECONDS)
 	if(last_sound < world.time + 1)
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
@@ -204,9 +199,6 @@
 	for(var/obj/item/smallDelivery/O in src)
 		H.tomail = TRUE
 		return
-
-/obj/machinery/disposal/proc/flushAnimation()
-	flick("[icon_state]-flush", src)
 
 // called when holder is expelled from a disposal
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
@@ -267,6 +259,7 @@
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
 	icon_state = "disposal"
+	base_icon_state = "disposal"
 
 // attack by item places it in to disposal
 /obj/machinery/disposal/bin/attackby(obj/item/I, mob/user, params)
@@ -371,7 +364,7 @@
 
 	//flush handle
 	if(flush)
-		. += "dispover-handle"
+		. += "[base_icon_state]-handle"
 
 	//only handle is shown if no power
 	if(stat & NOPOWER || panel_open)
@@ -379,13 +372,13 @@
 
 	//check for items in disposal - occupied light
 	if(contents.len > 0)
-		. += "dispover-full"
+		. += "[base_icon_state]-full"
 
 	//charging and ready light
 	if(pressure_charging)
-		. += "dispover-charge"
+		. += "[base_icon_state]-charge"
 	else if(full_pressure)
-		. += "dispover-ready"
+		. += "[base_icon_state]-ready"
 
 /obj/machinery/disposal/bin/proc/do_flush()
 	set waitfor = FALSE
