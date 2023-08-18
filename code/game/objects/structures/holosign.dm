@@ -8,6 +8,7 @@
 	max_integrity = 1
 	armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20)
 	var/obj/item/holosign_creator/projector
+	resistance_flags = FREEZE_PROOF
 
 /obj/structure/holosign/New(loc, source_projector)
 	if(source_projector)
@@ -122,7 +123,7 @@
 	density = FALSE
 	anchored = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
-	resistance_flags = FIRE_PROOF
+	resistance_flags = FIRE_PROOF | FREEZE_PROOF
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION

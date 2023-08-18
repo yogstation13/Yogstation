@@ -1009,6 +1009,16 @@
 	construction_time = 12 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_gemsatchel
+	name = "Cyborg Upgrade (Gem Satchel)"
+	id = "borg_upgrade_gemsatchel"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/gemsatchel
+	/// SoH cost cut in half, minus all non-iron materials.
+	materials = list(/datum/material/iron = 5000)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracker (Exosuit Tracking Beacon)"

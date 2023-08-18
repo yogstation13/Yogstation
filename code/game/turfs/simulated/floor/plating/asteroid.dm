@@ -157,6 +157,10 @@
 	digResult = /obj/item/stack/sheet/mineral/snow
 	flammability = -5
 
+/turf/open/floor/plating/asteroid/snow/singularity_act()
+	. = ..() //take the wires n shit out
+	return 0
+
 /turf/open/floor/plating/asteroid/snow/getDug()
 	..()
 	slowdown = 0
@@ -173,6 +177,9 @@
 /turf/open/floor/plating/asteroid/snow/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer
+	light_range = 2
 
 /turf/open/lava/plasma/ice_moon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -207,6 +214,9 @@
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
+
+/turf/open/floor/plating/asteroid/snow/ice/icemoon/top_layer
+	light_range = 2
 
 /turf/open/floor/plating/asteroid/snow/ice/burn_tile()
 	return FALSE

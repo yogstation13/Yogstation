@@ -236,15 +236,6 @@
 /datum/crafting_recipe/food/spellburger
 	name = "Spell Burger"
 	reqs = list(
-		/obj/item/clothing/head/wizard/fake = 1,
-		/obj/item/reagent_containers/food/snacks/bun = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/burger/spell
-	category = CAT_BURGER
-
-/datum/crafting_recipe/food/spellburger2
-	name = "Spell Burger"
-	reqs = list(
 		/obj/item/clothing/head/wizard = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1
 	)

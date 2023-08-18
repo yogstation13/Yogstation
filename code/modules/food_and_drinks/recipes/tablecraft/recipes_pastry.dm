@@ -367,6 +367,16 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/cinnamonroll
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/spookycoffin
+	name = "Coffin Cookie"
+	reqs = list(
+		/datum/reagent/consumable/sugar = 5,
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/datum/reagent/consumable/coffee = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
+	category = CAT_PASTRY
+
 /datum/crafting_recipe/food/cracker
 	time = 1.5 SECONDS
 	name = "Cracker"
@@ -458,6 +468,16 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/butterslice = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/raw_croissant
+	category = CAT_PASTRY
+
+/datum/crafting_recipe/food/spookyskull
+	name = "Skull Cookie"
+	reqs = list(
+		/datum/reagent/consumable/sugar = 5,
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/datum/reagent/consumable/milk = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
 	category = CAT_PASTRY
 
 /datum/crafting_recipe/food/sugarcookie

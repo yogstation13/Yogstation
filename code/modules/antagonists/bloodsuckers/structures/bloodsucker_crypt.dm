@@ -387,7 +387,7 @@
 	if(bloodsuckerdatum.my_clan?.control_type >= BLOODSUCKER_CONTROL_METAL)
 		if(metal)
 			. += span_boldnotice("It currently contains [metal] metal to use in sculpting.")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/moldingstone/bolt()
@@ -444,7 +444,7 @@
 		artist.balloon_alert(artist, "ruined!")
 		metal -= rand(5, 10)
 		update_appearance(UPDATE_ICON)
-		
+
 		return
 	artist.balloon_alert(artist, "done, a masterpiece!")
 	new what_type(get_turf(src))
@@ -1080,7 +1080,7 @@
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
 			if(meat_points < meat_cost)
-				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
+				to_chat(user, span_warning("You need at least [meat_cost - meat_points] more meat points to do this."))
 				return
 			if(!do_mob(user, target, 1 SECONDS))
 				return
@@ -1100,7 +1100,7 @@
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
 			if(meat_points < meat_cost)
-				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
+				to_chat(user, span_warning("You need at least [meat_cost - meat_points] more meat points to do this."))
 				return
 			if(!do_mob(user, target, 1 SECONDS))
 				return
@@ -1119,7 +1119,7 @@
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
 			if(meat_points < meat_cost)
-				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
+				to_chat(user, span_warning("You need at least [meat_cost - meat_points] more meat points to do this."))
 				return
 			if(!do_mob(user, target, 1 SECONDS))
 				return

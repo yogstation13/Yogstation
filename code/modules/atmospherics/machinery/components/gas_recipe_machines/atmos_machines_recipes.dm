@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	min_temp = TCMB
 	max_temp = TCMB + 20
 	energy_release = 2800000
-	requirements = list(GAS_ANTINOB = 100, GAS_BZ = 30, GAS_N2 = 100)
+	requirements = list(GAS_ANTINOB = 100, GAS_BZ = 30, GAS_PLASMA = 100)
 	products = list(/obj/item/stack/antinoblium_crystal = 1)
 
 /datum/gas_recipe/crystallizer/crystallized_nitrium
