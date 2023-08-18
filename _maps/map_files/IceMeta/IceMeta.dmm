@@ -14252,7 +14252,7 @@
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "elW" = (
-/mob/living/carbon/human/species/monkey
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "elY" = (
@@ -81705,7 +81705,7 @@
 /area/medical/virology)
 "xxc" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/human/species/monkey
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "xxe" = (
