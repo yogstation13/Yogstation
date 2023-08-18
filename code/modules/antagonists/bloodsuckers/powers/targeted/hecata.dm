@@ -160,7 +160,7 @@
 		if(locs.len == num_spirits) //we found the number of spots needed and thats all we need
 			break
 		var/turf/T = get_step(owner, direction) //getting a loc in that direction
-		if(AStar(user, T, /turf/proc/Distance, 1, simulated_only = 0)) // if a path exists, so no dense objects in the way its valid salid
+		if(get_path_to(user, T, 1, 0, simulated_only = FALSE)) // if a path exists, so no dense objects in the way its valid salid
 			locs += T
 	// pad with player location
 	for(var/i = locs.len + 1 to num_spirits)
