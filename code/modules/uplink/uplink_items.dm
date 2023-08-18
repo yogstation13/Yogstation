@@ -677,7 +677,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/edagger
 	name = "Energy Dagger"
 	desc = "A dagger made of energy that looks and functions as a pen when off."
-	item = /obj/item/pen/edagger
+	item = /obj/item/pen/red/edagger
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 
@@ -746,7 +746,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			strong anesthetic and a chemical that prevents the target from speaking. \
 			The pen holds one dose of the mixture. Note that before the target \
 			falls asleep, they will be able to move and act."
-	item = /obj/item/pen/sleepy
+	item = /obj/item/pen/blue/sleepy
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/nuclear)
@@ -1319,7 +1319,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 0
 	limited_stock = 1
-	include_modes = list(/datum/objective/martyr)
+	include_objectives = list(/datum/objective/martyr)
 
 //Support and Mechs
 /datum/uplink_item/support
@@ -1834,7 +1834,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/supermatter_delaminator
 	name = "Antinoblium Shard"
 	desc = "A special variant of supermatter crystal reverse engineered by syndicate scientists using samples retrieved by agents. \
-			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing an energy cascade. \
+			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing a resonance cascade. \
 			Ensures a storm of EMP waves that blacks out the entire station and eventually the full delamination of the crystal. \
 			Comes with a secure radiation shielded containment box, special tweezers and usage instructions."
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
@@ -2001,6 +2001,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A step-by-step guide on how to effectively pilot a mech, written in such a way that even a clown could understand."
 	item = /obj/item/book/granter/mechpiloting
 	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
+
+
+/datum/uplink_item/device_tools/mech_drop
+	name = "Orbital Mech Drop Fulton"
+	desc = "A heavy-duty transport pack that can be used to store and summon mecha that you have stored with it. Refundable if never used."
+	item = /obj/item/extraction_pack/mech_drop
+	cost = 4
+	refundable = TRUE
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/device_tools/loic_remote
+	name = "Low Orbit Ion Cannon Remote"
+	desc = "The Syndicate has recently installed a remote satellite nearby capable of generating a localized ion storm every 20 minutes. \
+			However, your local authorities will be informed of your general location when it is activated."
+	item = /obj/item/device/loic_remote
+	// TODO: When /datum/corporation/self is pickable for non-AI traitors, add it here.
+	limited_stock = 1 // Might be too annoying if someone had mulitple.
+	cost = 5 // Lacks the precision that a hacked law board (at 4 TCs) would give, but can be used on the go.
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 
 // Implants
 /datum/uplink_item/implants

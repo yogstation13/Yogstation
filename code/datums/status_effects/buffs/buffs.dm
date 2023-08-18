@@ -513,7 +513,7 @@
 
 /datum/status_effect/regenerative_core/on_apply()
 	var/turf/T = get_turf(owner)
-	if(is_station_level(T.z))
+	if(is_station_level(T.z) && !is_mining_level(T.z))
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
@@ -665,3 +665,29 @@
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
+	
+/datum/status_effect/diamondskin
+	id = "diamondskin"
+	duration = 20 SECONDS
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/diamondskin
+
+/atom/movable/screen/alert/status_effect/diamondskin
+	name = "Diamond skin"
+	desc = "Your skin is infused with diamonds, making you more resistant to heat and pressure."
+	icon_state = "shadow_mend" //i'm a coder, not a spriter
+
+/datum/status_effect/diamondskin/on_apply()
+	. = ..()
+	if(.)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.pressure_mod *= 0.5
+			H.physiology.heat_mod *= 0.5
+
+/datum/status_effect/diamondskin/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.pressure_mod /= 0.5
+		H.physiology.heat_mod /= 0.5

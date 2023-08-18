@@ -15,7 +15,7 @@
 	var/view_range = 0
 	var/x_offset = 0
 	var/y_offset = 0
-	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating/asteroid, /turf/open/lava)
+	var/list/whitelist_turfs = list(/turf/open/space, /turf/open/floor/plating/asteroid, /turf/open/lava, /turf/closed/mineral, /turf/open/floor/plating/ice/icemoon )
 	var/space_turfs_only = TRUE
 	var/see_hidden = FALSE
 	var/designate_time = 0
@@ -235,13 +235,13 @@
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		if(!is_type_in_typecache(turf_type, whitelist_turfs))
 			return SHUTTLE_DOCKER_BLOCKED
-/*
+
 	if(space_turfs_only)
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		var/area/A = get_area(T)
 		if(!ispath(turf_type, /turf/open/space) && !ispath(A.type, /area/icemoon))
 			return SHUTTLE_DOCKER_BLOCKED
-*/
+			
 	// Checking for overlapping dock boundaries
 	for(var/i in 1 to overlappers.len)
 		var/obj/docking_port/port = overlappers[i]

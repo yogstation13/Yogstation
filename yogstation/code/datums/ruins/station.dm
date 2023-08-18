@@ -1197,7 +1197,7 @@
 	id = "junction"
 	suffix = "10x10_junction.dmm"
 	name = "Maint junction"
-
+	
 ///Lasertag-Author: Jcat
 /datum/map_template/ruin/station/maint/tenxten/lasertag
 	id = "lasertag"

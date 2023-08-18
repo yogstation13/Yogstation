@@ -189,7 +189,6 @@
 		/obj/item/reagent_containers/food/snacks/grown/apple = 1,
 		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
 		/obj/item/reagent_containers/food/snacks/grown/citrus/lemon = 1,
-		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/melonfruitbowl

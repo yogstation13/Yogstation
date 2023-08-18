@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Non-heretics can no longer fire heretic blades"
+  - tweak: "Clumsy will no longer prevent heretics from firing their blades"
