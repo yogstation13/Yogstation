@@ -1,0 +1,6 @@
+author: " Helg2, ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Crayon suicide colors you."
+  - bugfix: "You can't put spraycans, clown/mime crayon in crayon box via opening it and putting directly in slot, as intended."
+  - tweak: "You can't put white crayon in crayon box."
