@@ -5669,7 +5669,7 @@
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored/laborcamp)
 "bID" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/item/radio/intercom{
 	pixel_x = 29
 	},
@@ -40599,7 +40599,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "lOQ" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/firealarm{
@@ -44500,7 +44500,7 @@
 "mQN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "mQS" = (
@@ -51057,7 +51057,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "oLq" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "oLv" = (
@@ -61614,7 +61614,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "rTy" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -75555,7 +75555,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "vPq" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos/distro)
