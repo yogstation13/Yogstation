@@ -31,7 +31,7 @@
 	var/human_surname_chance = 3
 	var/special_name_chance = 5
 	var/owner //dobby is a free golem
-	/// From the moment that they become a servant golem, how much time must pass before they can do it again? Given on ghost & death.
+	/// From the moment that they become a servant golem, how much time must pass before they can do it again? Given on ghost & death. Nullable.
 	var/ghost_cooldown = 15 MINUTES // Iron golem is the base.
 
 /datum/species/golem/random_name(gender,unique,lastname)
@@ -63,7 +63,7 @@
 
 /datum/species/golem/spec_death(gibbed, mob/living/carbon/human/H)
 	if(owner && H.ckey && H.ckey[1] != "@" && ghost_cooldown) // Servant golem with an non-adminghosted ckey attached and ghost cooldown.
-		GLOB.servant_golem_users[H.ckey] = world.time + ghost_cooldown
+		GLOB.servant_golem_users[H.ckey] = world.time + (ghost_cooldown ? ghost_cooldown : 0)
 	..()
 
 /datum/species/golem/random
