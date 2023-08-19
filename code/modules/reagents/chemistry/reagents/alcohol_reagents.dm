@@ -14,8 +14,6 @@
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
-	var/alcoholspeed = 0.1 //Put this here to just help me make this drink
-
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -2681,7 +2679,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	name = "Syndicate Screwdriver"
 	description = "A drink that all greytiders and syndicate enjoy"
-	boozepwr = 75
+	boozepwr = 95
 	color = "#2E6671"
 	quality = DRINK_GOOD
 	taste_description = "A tangy taste mixed with liquified Robustness"
@@ -2691,12 +2689,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
-		M.physiology.do_after_speed *= 0.1
-		M.next_move_modifier *= 0.1
+		M.physiology.do_after_speed *= 0.85
+		M.next_move_modifier *= 0.85
 	return ..()
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
-		M.physiology.do_after_speed /= 0.1
-		M.next_move_modifier /= 0.1
+		M.physiology.do_after_speed /= 0.85
+		M.next_move_modifier /= 0.85
 	return ..()
