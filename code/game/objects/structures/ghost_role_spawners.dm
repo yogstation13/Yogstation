@@ -239,7 +239,7 @@
 		return
 
 // List of ckeys belonging to people who switched from being a ghost to a servant golem. Associative list; ckey = worldtime + cooldown.
-GLOBAL_LIST(servant_golem_users)
+GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/golem/servant
 	has_owner = TRUE
@@ -250,7 +250,7 @@ GLOBAL_LIST(servant_golem_users)
 	. = ..()
 	if(.)
 		var/datum/species/golem/golem = mob_species
-		GLOB.servant_golem_users[user.ckey] = world.time + (golem && golem.ghost_cooldown ? golem.ghost_cooldown : 0) // In case anything goes wrong.
+		GLOB.servant_golem_users[user.ckey] = world.time + (initial(golem.ghost_cooldown) ? initial(golem.ghost_cooldown) : 0) // In case anything goes wrong.
 
 /obj/effect/mob_spawn/human/golem/servant/check_allowed(mob/M)
 	. = ..()

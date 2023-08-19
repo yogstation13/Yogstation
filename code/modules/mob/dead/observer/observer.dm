@@ -288,10 +288,10 @@ Works together with spawning an observer, noted above.
 	if(key[1] == "@") // Skip aghosts.
 		return
 	if(isgolem(usr))
-		var/datum/species/golem/golem = usr
-		if(golem.owner)
-			var/the_ckey = usr.ckey
-			GLOB.servant_golem_users[the_ckey] = world.time + golem.ghost_cooldown
+		var/mob/living/carbon/human/H = usr
+		var/datum/species/golem/golem = H.dna.species
+		if(golem && golem.owner)
+			GLOB.servant_golem_users[usr.ckey] = world.time + (golem.ghost_cooldown ? golem.ghost_cooldown : 0)
 	stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
 	if(can_reenter_corpse && client) //yogs start
 		oobe_client = client //yogs end

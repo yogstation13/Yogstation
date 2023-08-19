@@ -62,7 +62,7 @@
 	return to_add
 
 /datum/species/golem/spec_death(gibbed, mob/living/carbon/human/H)
-	if(owner && H.ckey && H.ckey[1] != "@" && ghost_cooldown) // Servant golem with an non-adminghosted ckey attached and ghost cooldown.
+	if(owner && H.ckey && H.ckey[1] != "@") // Servant golem with an non-adminghosted ckey.
 		GLOB.servant_golem_users[H.ckey] = world.time + (ghost_cooldown ? ghost_cooldown : 0)
 	..()
 
@@ -1364,7 +1364,7 @@
 	prefix = "Telecrystal"
 	special_names = list("Agent", "Operative")
 	var/datum/action/cooldown/spell/pointed/phase_jump/phase_jump
-	ghost_cooldown = null // Adminbus only.
+	ghost_cooldown = null // Adminbus or a terribly expensive investment by a traitor. Either way, deserves no cooldown.
 
 /datum/species/golem/telecrystal/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
