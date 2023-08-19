@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 //removes something from the extra_no_equip list as well as the normal no_equip list
 /datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot, source)
-	extra_no_equip["[slot]"].Remove(source)
+	extra_no_equip["[slot]"] -= source
 	if(!length(extra_no_equip["[slot]"]))
 		extra_no_equip -= "[slot]"
 
