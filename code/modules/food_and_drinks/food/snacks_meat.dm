@@ -330,7 +330,6 @@
 	bitesize = 3
 	filling_color = "#F0F0F0"
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
-	foodtype = MEAT
 	burns_on_grill = TRUE
 	foodtype = MEAT | GRAIN | VEGETABLES
 
