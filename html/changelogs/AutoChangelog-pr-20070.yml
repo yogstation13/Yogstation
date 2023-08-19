@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed security being able to sacrifice assistants to determine if a PDA has an uplink"
