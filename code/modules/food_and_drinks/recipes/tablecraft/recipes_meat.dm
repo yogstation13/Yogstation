@@ -113,7 +113,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/doughslice = 1,
 		/obj/item/reagent_containers/food/snacks/meatball = 1,
-		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/onion_slice = 1,
 		/obj/item/reagent_containers/food/snacks/grown/garlic = 1
 	)
 	result =  /obj/item/reagent_containers/food/snacks/rawkhinkali

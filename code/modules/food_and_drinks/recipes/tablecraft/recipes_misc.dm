@@ -108,9 +108,8 @@
 /datum/crafting_recipe/food/chocoorange
 	name = "Chocolate Orange"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
-		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
-		/datum/reagent/consumable/orangejuice = 2
+		/datum/reagent/consumable/orangejuice = 2,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocoorange
 	category = CAT_MISCFOOD
