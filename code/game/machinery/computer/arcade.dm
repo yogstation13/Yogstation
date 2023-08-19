@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/talking/codex_gigas = 2,
 		/obj/item/clothing/under/syndicate/tacticool = 2,
 		/obj/item/toy/sword = 2,
-		/obj/item/twohanded/vxtvulhammer/toy = 2,
+		/obj/item/melee/vxtvulhammer/toy = 2,
 		/obj/item/toy/gun = 2,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 2,
 		/obj/item/storage/box/fakesyndiesuit = 2,
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/arcade/battle/proc/arcade_action(mob/user)
+/obj/machinery/computer/arcade/battle/proc/arcade_action(mob/living/user)
 	if ((enemy_mp <= 0) || (enemy_hp <= 0))
 		if(!gameover)
 			gameover = TRUE
@@ -275,8 +275,8 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(obj_flags & EMAGGED)
 				new /obj/effect/spawner/newbomb/timer/syndicate(loc)
 				new /obj/item/clothing/head/collectable/petehat(loc)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-				log_game("[key_name(usr)] has outbombed Cuban Pete and been awarded a bomb.")
+				message_admins("[ADMIN_LOOKUPFLW(user)] has outbombed Cuban Pete and been awarded a bomb.")
+				log_game("[key_name(user)] has outbombed Cuban Pete and been awarded a bomb.")
 				Reset()
 				obj_flags &= ~EMAGGED
 			else
@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			temp = "You have been drained! GAME OVER"
 			playsound(loc, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
 			if(obj_flags & EMAGGED)
-				usr.gib()
+				user.gib()
 			SSblackbox.record_feedback("nested tally", "arcade_results", 1, list("loss", "mana", (obj_flags & EMAGGED ? "emagged":"normal")))
 
 	else if ((enemy_hp <= 10) && (enemy_mp > 4))
@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		temp = "You have been crushed! GAME OVER"
 		playsound(loc, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
 		if(obj_flags & EMAGGED)
-			usr.gib()
+			user.gib()
 		SSblackbox.record_feedback("nested tally", "arcade_results", 1, list("loss", "hp", (obj_flags & EMAGGED ? "emagged":"normal")))
 
 	blocked = FALSE
@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	spaceport_freebie = 0
 	last_spaceport_action = ""
 
-/obj/machinery/computer/arcade/orion_trail/ui_interact(mob/user)
+/obj/machinery/computer/arcade/orion_trail/ui_interact(mob/living/user)
 	. = ..()
 	if(fuel <= 0 || food <=0 || settlers.len == 0)
 		gameStatus = ORION_STATUS_GAMEOVER
@@ -518,9 +518,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 /obj/machinery/computer/arcade/orion_trail/Topic(href, href_list)
 	if(..())
 		return
+	var/mob/living/user = usr
 	if(href_list["close"])
-		usr.unset_machine()
-		usr << browse(null, "window=arcade")
+		user.unset_machine()
+		user << browse(null, "window=arcade")
 
 	if(busy)
 		return
@@ -529,7 +530,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	if (href_list["continue"]) //Continue your travels
 		if(gameStatus == ORION_STATUS_NORMAL && !event && turns != 7)
 			if(turns >= ORION_TRAIL_WINTURN)
-				win(usr)
+				win(user)
 			else
 				food -= (alive+lings_aboard)*2
 				fuel -= 5
@@ -544,36 +545,35 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					event()
 				turns += 1
 			if(obj_flags & EMAGGED)
-				var/mob/living/carbon/M = usr //for some vars
 				switch(event)
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
-							to_chat(usr, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
-							M.adjust_hallucinations(30 SECONDS)
+							to_chat(user, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
+							user.adjust_hallucinations(30 SECONDS)
 						else
-							to_chat(usr, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
-							M.take_bodypart_damage(30)
+							to_chat(user, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
+							user.take_bodypart_damage(30)
 							playsound(loc, 'sound/weapons/genhit2.ogg', 100, 1)
 					if(ORION_TRAIL_ILLNESS)
 						var/severity = rand(1,3) //pray to RNGesus. PRAY, PIGS
 						if(severity == 1)
-							to_chat(M, span_userdanger("You suddenly feel slightly nauseated.") )
+							to_chat(user, span_userdanger("You suddenly feel slightly nauseated.") )
 						if(severity == 2)
-							to_chat(usr, span_userdanger("You suddenly feel extremely nauseated and hunch over until it passes."))
-							M.Stun(60)
+							to_chat(user, span_userdanger("You suddenly feel extremely nauseated and hunch over until it passes."))
+							user.Stun(60)
 						if(severity >= 3) //you didn't pray hard enough
-							to_chat(M, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
-							M.Stun(100)
+							to_chat(user, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
+							user.Stun(100)
 							sleep(3 SECONDS)
-							M.vomit(10, distance = 5)
+							user.vomit(10, distance = 5)
 					if(ORION_TRAIL_FLUX)
 						if(prob(75))
-							M.Paralyze(60)
-							say("A sudden gust of powerful wind slams [M] into the floor!")
-							M.take_bodypart_damage(25)
+							user.Paralyze(60)
+							say("A sudden gust of powerful wind slams [user] into the floor!")
+							user.take_bodypart_damage(25)
 							playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)
 						else
-							to_chat(M, span_userdanger("A violent gale blows past you, and you barely manage to stay standing!"))
+							to_chat(user, span_userdanger("A violent gale blows past you, and you barely manage to stay standing!"))
 					if(ORION_TRAIL_COLLISION) //by far the most damaging event
 						if(prob(90))
 							playsound(loc, 'sound/effects/bang.ogg', 100, 1)
@@ -659,11 +659,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				event()
 				if(obj_flags & EMAGGED)
 					playsound(loc, 'sound/effects/supermatter.ogg', 100, 1)
-					say("A miniature black hole suddenly appears in front of [src], devouring [usr] alive!")
-					if(isliving(usr))
-						var/mob/living/L = usr
-						L.Stun(200, ignore_canstun = TRUE) //you can't run :^)
-					var/S = new /obj/singularity/academy(usr.loc)
+					say("A miniature black hole suddenly appears in front of [src], devouring [user] alive!")
+					user.Stun(200, ignore_canstun = TRUE) //you can't run :^)
+					var/S = new /obj/singularity/academy(user.loc)
 					addtimer(CALLBACK(src, /atom/movable/proc/say, "[S] winks out, just as suddenly as it appeared."), 50)
 					QDEL_IN(S, 50)
 			else
@@ -685,14 +683,14 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(settlers.len == 0 || alive == 0)
 				say("The last crewmember [sheriff], shot themselves, GAME OVER!")
 				if(obj_flags & EMAGGED)
-					usr.death(0)
+					user.death(0)
 					obj_flags &= EMAGGED
 				gameStatus = ORION_STATUS_GAMEOVER
 				event = null
 			else if(obj_flags & EMAGGED)
-				if(usr.name == sheriff)
-					say("The crew of the ship chose to kill [usr.name]!")
-					usr.death(0)
+				if(user.name == sheriff)
+					say("The crew of the ship chose to kill [user.name]!")
+					user.death(0)
 
 			if(event == ORION_TRAIL_LING) //only ends the ORION_TRAIL_LING event, since you can do this action in multiple places
 				event = null
@@ -753,7 +751,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							playsound(src, 'sound/items/weeoo1.ogg', 100, FALSE)
 							for(var/i, i<=3, i++)
 								var/mob/living/simple_animal/hostile/syndicate/ranged/smg/orion/O = new/mob/living/simple_animal/hostile/syndicate/ranged/smg/orion(get_turf(src))
-								O.target = usr
+								O.target = user
 
 
 				fuel += FU
@@ -793,7 +791,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							last_spaceport_action = "Traded Food for Fuel"
 							event()
 
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	updateUsrDialog()
 	busy = FALSE
 	return

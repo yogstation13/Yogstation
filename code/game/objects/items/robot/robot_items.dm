@@ -356,200 +356,166 @@
 		cooldown = world.time + 1 MINUTES
 		log_game("[key_name(user)] used an emagged Cyborg Harm Alarm in [AREACOORD(user)]")
 
-#define DISPENSE_LOLLIPOP_MODE 1
-#define THROW_LOLLIPOP_MODE 2
-#define THROW_GUMBALL_MODE 3
-#define DISPENSE_ICECREAM_MODE 4
+// TODO: Re-add vanilla ice cream once someone figures that out.
+/obj/item/borg_snack_dispenser
+	name = "\improper Automated Borg Snack Dispenser"
+	desc = "Has the ability to automatically print many different forms of snacks. Now Vuulek approved!"
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "rsf"
+	// Contains the PATH of the selected snack
+	var/atom/selected_snack
+	// Whether snacks are launched when targeted at a distance
+	var/launch_mode = FALSE
+	/// A list of all valid snacks
+	var/list/valid_snacks = list(
+		/obj/item/reagent_containers/food/snacks/cookie,
+		/obj/item/reagent_containers/food/snacks/cookie/bacon,
+		/obj/item/reagent_containers/food/snacks/cookie/cloth,
+		/obj/item/reagent_containers/food/snacks/lollipop,
+		/obj/item/reagent_containers/food/snacks/gumball,
+		/obj/item/reagent_containers/food/snacks/icecream // Becomes vanilla icecream down the line.
+	)
+	// A list of surfaces that we are allowed to place things on.
+	var/list/allowed_surfaces = list(/obj/structure/table, /turf/open/floor)
+	// Minimum amount of charge a borg can have before snack printing is disallowed
+	var/borg_charge_cutoff = 200
+	// The amount of charge used per print of a snack
+	var/borg_charge_usage = 50
+	// How long until they can use it again? 0.3 is just about how fast mediborg can use their default lollipop launcher.
+	var/cooldown = 0.3 SECONDS
+	COOLDOWN_DECLARE(last_snack_disp)
 
-/obj/item/borg/lollipop
-	name = "treat fabricator"
-	desc = "Reward humans with various treats. Toggle in-module to switch between dispensing and high velocity ejection modes."
-	icon_state = "lollipop"
-	var/candy = 30
-	var/candymax = 30
-	var/charge_delay = 10
-	var/charging = FALSE
-	var/mode = DISPENSE_LOLLIPOP_MODE
-
-	var/firedelay = 0
-	var/hitspeed = 2
-	var/hitdamage = 0
-	var/emaggedhitdamage = 3
-
-/obj/item/borg/lollipop/clown
-	emaggedhitdamage = 0
-
-/obj/item/borg/lollipop/equipped()
+/obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
-	check_amount()
+	selected_snack = selected_snack || LAZYACCESS(valid_snacks, 1)
 
-/obj/item/borg/lollipop/dropped()
+/obj/item/borg_snack_dispenser/examine(mob/user)
 	. = ..()
-	check_amount()
+	. += "It is currently set to dispense [initial(selected_snack.name)]."
+	. += "You can AltClick it to [(launch_mode ? "disable" : "enable")] launch mode."
 
-/obj/item/borg/lollipop/proc/check_amount()	//Doesn't even use processing ticks.
-	if(charging)
-		return
-	if(candy < candymax)
-		addtimer(CALLBACK(src, PROC_REF(charge_lollipops)), charge_delay)
-		charging = TRUE
-
-/obj/item/borg/lollipop/proc/charge_lollipops()
-	candy++
-	charging = FALSE
-	check_amount()
-
-/obj/item/borg/lollipop/proc/dispense(atom/A, mob/user)
-	if(candy <= 0)
-		to_chat(user, span_warning("No treats left in storage!"))
-		return FALSE
-	var/turf/T = get_turf(A)
-	if(!T || !istype(T) || !isopenturf(T))
-		return FALSE
-	if(isobj(A))
-		var/obj/O = A
-		if(O.density)
-			return FALSE
-
-	var/obj/item/reagent_containers/food/snacks/L
-	switch(mode)
-		if(DISPENSE_LOLLIPOP_MODE)
-			L = new /obj/item/reagent_containers/food/snacks/lollipop(T)
-		if(DISPENSE_ICECREAM_MODE)
-			L = new /obj/item/reagent_containers/food/snacks/icecream(T)
-			var/obj/item/reagent_containers/food/snacks/icecream/I = L
-			I.add_ice_cream("vanilla")
-			I.desc = "Eat the ice cream."
-
-	var/into_hands = FALSE
-	if(ismob(A))
-		var/mob/M = A
-		into_hands = M.put_in_hands(L)
-
-	candy--
-	check_amount()
-
-	if(into_hands)
-		user.visible_message(span_notice("[user] dispenses a treat into the hands of [A]."), span_notice("You dispense a treat into the hands of [A]."), span_italics("You hear a click."))
+/obj/item/borg_snack_dispenser/attack_self(mob/user, modifiers)
+	var/list/choices = list()
+	for(var/atom/snack as anything in valid_snacks)
+		if(snack == /obj/item/reagent_containers/food/snacks/icecream)
+			choices["vanilla icecream"] = snack // Would be "ice cream cone" in the menu otherwise.
+		else
+			choices[initial(snack.name)] = snack
+	if(!length(choices))
+		to_chat(user, span_warning("No valid snacks in database."))
+	if(length(choices) == 1)
+		selected_snack = choices[choices[1]] // choices[1] gets the snack.name and then choices[choices[1]] gets the actual snack
 	else
-		user.visible_message(span_notice("[user] dispenses a treat."), span_notice("You dispense a treat."), span_italics("You hear a click."))
+		var/selected = tgui_input_list(user, "Select Snack", "Snack Selection", choices)
+		if(!selected)
+			return
+		selected_snack = choices[selected]
 
-	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-	return TRUE
+	var/snack_name = initial(selected_snack.name)
+	to_chat(user, span_notice("[src] is now dispensing [snack_name]."))
 
-/obj/item/borg/lollipop/proc/shootL(atom/target, mob/living/user, params)
-	if(candy <= 0)
-		to_chat(user, span_warning("Not enough lollipops left!"))
-		return FALSE
-	candy--
-	var/obj/item/ammo_casing/caseless/lollipop/A = new /obj/item/ammo_casing/caseless/lollipop(src)
-	A.BB.damage = hitdamage
-	if(hitdamage)
-		A.BB.nodamage = FALSE
-	A.BB.speed = 0.5
-	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-	A.fire_casing(target, user, params, 0, 0, null, 0, src)
-	user.visible_message(span_warning("[user] blasts a flying lollipop at [target]!"))
-	check_amount()
+/obj/item/borg_snack_dispenser/attack(mob/living/patron, mob/living/silicon/robot/user, params)
+	if(!COOLDOWN_FINISHED(src, last_snack_disp))
+		to_chat(user, span_warning("The snack dispenser is recharging!"))
+		return
+	if(!selected_snack)
+		to_chat(user, span_warning("No snack selected."))
+		return
+	var/empty_hand = LAZYACCESS(patron.get_empty_held_indexes(), 1)
+	if(!empty_hand)
+		to_chat(user, span_warning("[patron] has no free hands!"))
+		return
+	if(issilicon(patron))
+		return
+	if(!istype(user))
+		CRASH("[src] being used by non borg [user]")
+	if(user.cell.charge < borg_charge_cutoff)
+		to_chat(user, span_danger("Automated Safety Measures restrict the operation of [src] while under [borg_charge_cutoff]!"))
+		return
+	if(!user.cell.use(borg_charge_usage))
+		to_chat(user, span_danger("Failure printing snack: power failure!"))
+		return
+	COOLDOWN_START(src, last_snack_disp, cooldown)
+	var/atom/snack = new selected_snack(src)
+	patron.put_in_hand(snack, empty_hand)
+	user.do_item_attack_animation(patron, null, snack)
+	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 
-/obj/item/borg/lollipop/proc/shootG(atom/target, mob/living/user, params)	//Most certainly a good idea.
-	if(candy <= 0)
-		to_chat(user, span_warning("Not enough gumballs left!"))
-		return FALSE
-	candy--
-	var/obj/item/ammo_casing/caseless/gumball/A = new /obj/item/ammo_casing/caseless/gumball(src)
-	A.BB.damage = hitdamage
-	if(hitdamage)
-		A.BB.nodamage = FALSE
-	A.BB.speed = 0.5
-	A.BB.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
-	playsound(src.loc, 'sound/weapons/bulletflyby3.ogg', 50, 1)
-	A.fire_casing(target, user, params, 0, 0, null, 0, src)
-	user.visible_message(span_warning("[user] shoots a high-velocity gumball at [target]!"))
-	check_amount()
+	// Vanilla Icecream & Setting 'snack.name' Early
+	if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+		var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+		icecream.add_ice_cream("vanilla")
+		icecream.desc = "Eat the ice cream."
+		
+	to_chat(patron, span_notice("[user] dispenses a [snack.name] into your empty hand and you reflexively grasp it."))
+	to_chat(user, span_notice("You dispense a [snack.name] into the hand of [patron]."))
 
-/obj/item/borg/lollipop/afterattack(atom/target, mob/living/user, proximity, click_params)
-	. = ..()
-	check_amount()
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/R = user
-		if(!R.cell.use(12))
-			to_chat(user, span_warning("Not enough power."))
-			return FALSE
-		if(R.emagged)
-			hitdamage = emaggedhitdamage
-	switch(mode)
-		if(DISPENSE_LOLLIPOP_MODE, DISPENSE_ICECREAM_MODE)
-			if(!proximity)
-				return FALSE
-			dispense(target, user)
-		if(THROW_LOLLIPOP_MODE)
-			shootL(target, user, click_params)
-		if(THROW_GUMBALL_MODE)
-			shootG(target, user, click_params)
-	hitdamage = initial(hitdamage)
+/obj/item/borg_snack_dispenser/AltClick(mob/user)
+	launch_mode = !launch_mode
+	to_chat(user, span_notice("[src] is [(launch_mode ? "now" : "no longer")] launching snacks at a distance."))
 
-/obj/item/borg/lollipop/attack_self(mob/living/user)
-	switch(mode)
-		if(DISPENSE_LOLLIPOP_MODE)
-			mode = THROW_LOLLIPOP_MODE
-			to_chat(user, span_notice("Module is now throwing lollipops."))
-		if(THROW_LOLLIPOP_MODE)
-			mode = THROW_GUMBALL_MODE
-			to_chat(user, span_notice("Module is now blasting gumballs."))
-		if(THROW_GUMBALL_MODE)
-			mode = DISPENSE_ICECREAM_MODE
-			to_chat(user, span_notice("Module is now dispensing ice cream."))
-		if(DISPENSE_ICECREAM_MODE)
-			mode = DISPENSE_LOLLIPOP_MODE
-			to_chat(user, span_notice("Module is now dispensing lollipops."))
-	..()
+/obj/item/borg_snack_dispenser/afterattack(atom/target, mob/living/silicon/robot/user, proximity_flag, click_parameters)
+	if(!COOLDOWN_FINISHED(src, last_snack_disp))
+		to_chat(user, span_warning("The snack dispenser is recharging!"))
+		return
+	if(!selected_snack)
+		to_chat(user, span_warning("No snack selected."))
+		return
+	if(user.cell.charge < borg_charge_cutoff)
+		to_chat(user, span_danger("Automated Safety Measures restrict the operation of [src] while under [borg_charge_cutoff]!"))
+		return
+	if(!user.cell.use(borg_charge_usage))
+		to_chat(user, span_danger("Failure printing snack: power failure!"))
+		return
+	if(!istype(user))
+		CRASH("[src] being used by non borg [user]")
+	var/atom/movable/snack
+	if(launch_mode)
+		COOLDOWN_START(src, last_snack_disp, cooldown)
+		snack = new selected_snack(get_turf(src))
+		if(user.emagged)
+			snack.throwforce = 3
+			RegisterSignal(snack, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(post_throw))
+		snack.throw_at(target, 7, 2, user, TRUE, FALSE)
+		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+			var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+			icecream.add_ice_cream("vanilla")
+			icecream.desc = "Eat the ice cream."
+		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
+	else if(user.Adjacent(target) && is_allowed(target, user))
+		COOLDOWN_START(src, last_snack_disp, cooldown)
+		snack = new selected_snack(get_turf(target))
+		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+			var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+			icecream.add_ice_cream("vanilla")
+			icecream.desc = "Eat the ice cream."
+		user.visible_message(span_notice("[user] dispenses a [snack.name]."))
 
-#undef DISPENSE_LOLLIPOP_MODE
-#undef THROW_LOLLIPOP_MODE
-#undef THROW_GUMBALL_MODE
-#undef DISPENSE_ICECREAM_MODE
+	if(snack && user.emagged && istype(snack, /obj/item/reagent_containers/food/snacks/cookie))
+		var/obj/item/reagent_containers/food/snacks/cookie/cookie = snack
+		cookie.list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 
-/obj/item/ammo_casing/caseless/gumball
-	name = "Gumball"
-	desc = "Why are you seeing this?!"
-	projectile_type = /obj/item/projectile/bullet/reusable/gumball
-	click_cooldown_override = 2
+/obj/item/borg_snack_dispenser/proc/post_throw(atom/movable/thrown_snack)
+	SIGNAL_HANDLER
+	thrown_snack.throwforce = 0
 
-/obj/item/projectile/bullet/reusable/gumball
-	name = "gumball"
-	desc = "Oh noes! A fast-moving gumball!"
-	icon_state = "gumball"
-	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
-	nodamage = TRUE
+/obj/item/borg_snack_dispenser/proc/is_allowed(atom/to_check, mob/user)
+	for(var/sort in allowed_surfaces)
+		if(istype(to_check, sort))
+			return TRUE
+	return FALSE
 
-/obj/item/projectile/bullet/reusable/gumball/Initialize(mapload)
-	. = ..()
-	ammo_type = new ammo_type(src)
-	color = ammo_type.color
+/obj/item/borg_snack_dispenser/peacekeeper
+	name = "\improper Peacekeeper Borg Snack Dispenser"
+	desc = "A dispenser that dispenses only cookies!"
+	valid_snacks = list(/obj/item/reagent_containers/food/snacks/cookie)
 
-/obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
-	name = "Lollipop"
-	desc = "Why are you seeing this?!"
-	projectile_type = /obj/item/projectile/bullet/reusable/lollipop
-	click_cooldown_override = 2
-
-/obj/item/projectile/bullet/reusable/lollipop
-	name = "lollipop"
-	desc = "Oh noes! A fast-moving lollipop!"
-	icon_state = "lollipop_1"
-	ammo_type = /obj/item/reagent_containers/food/snacks/lollipop/cyborg
-	var/color2 = rgb(0, 0, 0)
-	nodamage = TRUE
-
-/obj/item/projectile/bullet/reusable/lollipop/Initialize(mapload)
-	. = ..()
-	var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(src)
-	ammo_type = S
-	color2 = S.headcolor
-	var/mutable_appearance/head = mutable_appearance('icons/obj/projectiles.dmi', "lollipop_2")
-	head.color = color2
-	add_overlay(head)
+/obj/item/borg_snack_dispenser/medical
+	name = "\improper Treat Borg Snack Dispenser" // Not calling this "Medical Borg Snack Dispenser" since Service & Clown Cyborgs use this too.
+	desc = "A dispenser that dispenses treats such as lollipops and gumballs!"
+	valid_snacks = list(/obj/item/reagent_containers/food/snacks/lollipop, /obj/item/reagent_containers/food/snacks/gumball, /obj/item/reagent_containers/food/snacks/icecream)
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
@@ -888,5 +854,6 @@
 		/obj/item/circuitboard,
 		/obj/item/electronics,
 		/obj/item/wallframe,
-		/obj/item/stock_parts
+		/obj/item/stock_parts,
+		/obj/item/tank/internals
 	)

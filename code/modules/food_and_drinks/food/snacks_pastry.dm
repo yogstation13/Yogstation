@@ -31,6 +31,10 @@
 	filling_color = "#FF69B4"
 	return TRUE
 
+//Returns the sprite of the donut while in a donut box
+/obj/item/reagent_containers/food/snacks/donut/proc/in_box_sprite()
+	return "[icon_state]_inbox"
+
 /obj/item/reagent_containers/food/snacks/donut/checkLiked(fraction, mob/M)	//Sec officers always love donuts
 	if(last_check_time + 50 < world.time)
 		if(ishuman(M))
@@ -181,7 +185,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	filling_color = "#FFE4E1"
 	tastes = list("custard" = 1, "egg" = 1)
-	foodtype = GRAIN | MEAT | VEGETABLES
+	foodtype = GRAIN | VEGETABLES | EGG
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -424,6 +428,18 @@
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 
+/obj/item/reagent_containers/food/snacks/cookie/bacon
+	name = "strip of bacon"
+	desc = "BACON!!!"
+	icon_state = "bacon_strip"
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/cookie/cloth
+	name = "odd cookie"
+	desc = "A cookie that appears to be made out of... some form of cloth?"
+	icon_state = "cookie_cloth"
+	foodtype = CLOTH
+
 /obj/item/reagent_containers/food/snacks/cookie/sleepy
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 
@@ -506,7 +522,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 2)
 	filling_color = "#FFFF4D"
 	tastes = list("bread" = 1, "egg" = 1, "cheese" = 1)
-	foodtype = GRAIN | MEAT | DAIRY
+	foodtype = GRAIN | EGG | DAIRY
 
 /obj/item/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
@@ -517,6 +533,22 @@
 	filling_color = "#CD853F"
 	tastes = list("cookie" = 1, "sweetness" = 1)
 	foodtype = GRAIN | JUNKFOOD | SUGAR
+
+/obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull
+	name = "skull cookie"
+	desc = "Spooky! It's got delicious calcium flavouring!"
+	icon = 'icons/obj/halloween_items.dmi'
+	icon_state = "skeletoncookie"
+	tastes = list("cookie" = 2, "sweetness" = 1, "milk" = 1)
+	foodtype = GRAIN | JUNKFOOD | SUGAR | DAIRY
+
+/obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
+	name = "coffin cookie"
+	desc = "Spooky! It's got delicious coffee flavouring!"
+	icon = 'icons/obj/halloween_items.dmi'
+	icon_state = "coffincookie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee = 3)
+	tastes = list("cookie" = 2, "coffee" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/chococornet
 	name = "chocolate cornet"
@@ -576,17 +608,17 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/honey = 5)
 	filling_color = "#F2CE91"
 	tastes = list("pastry" = 1, "sweetness" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/jaffacake
-	name = "jaffacake"
-	desc = "A moreish jaffacke. Is it a cake or is it a biscuit? Who knows."
+	name = "jaffa cake"
+	desc = "A moreish jaffa cake. Is it a cake or is it a biscuit? Who knows."
 	icon_state = "jaffacake"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/coco = 1)
 	filling_color = "#D9833E"
 	tastes = list("orange" = 1, "cake" = 1)
-	foodtype = GRAIN | SUGAR | FRUIT
+	foodtype = GRAIN | SUGAR | FRUIT | CHOCOLATE
 
 #define PANCAKE_MAX_STACK 10
 
@@ -609,6 +641,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pancakes" = 1, "blueberries" = 1)
+	foodtype = GRAIN | SUGAR | BREAKFAST | FRUIT
 
 /obj/item/reagent_containers/food/snacks/pancakes/chocolatechip
 	name = "chocolate chip pancake"
@@ -638,6 +671,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("purity" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/churro
 	name = "churro"
@@ -647,6 +681,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/raw_croissant
 	name = "raw croissant"

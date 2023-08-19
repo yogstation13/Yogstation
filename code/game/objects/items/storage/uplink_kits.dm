@@ -29,7 +29,7 @@
 		if("recon") //28ish TC
 			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
 			new /obj/item/storage/briefcase/launchpad(src) //6 TC
-			new	/obj/item/twohanded/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
+			new	/obj/item/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/storage/box/syndie_kit/space(src) //4 TC
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //Minibomb with one less range on each part except for fire. 3-4 TC.
@@ -51,7 +51,7 @@
 
 		if("stealth") //32 TC
 			new /obj/item/gun/energy/kinetic_accelerator/crossbow(src) //10 TC
-			new /obj/item/pen/sleepy(src) //4 TC
+			new /obj/item/pen/blue/sleepy(src) //4 TC
 			new /obj/item/chameleon(src) //7 TC
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/flashlight/emp(src) //2 TC
@@ -103,7 +103,7 @@
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
 			new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src) //RD glasses. 1 TC, if that
-			new /obj/item/pen/edagger(src) //2 TC
+			new /obj/item/pen/red/edagger(src) //2 TC
 
 		if("sabotage") //Maybe 30 TC?
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
@@ -190,7 +190,7 @@
 			new /obj/item/storage/magspear_quiver(src)
 			new /obj/item/clothing/suit/space/hardsuit/carp(src) //1 carp
 			new /obj/item/clothing/mask/gas/carp(src) //1 carp?
-			new /obj/item/twohanded/pitchfork/trident(src)
+			new /obj/item/pitchfork/trident(src)
 			new /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp(src) //when you need A LOT of carps, you'll get at least (but most likely more) 30 carps with that
 			new /obj/item/grenade/spawnergrenade/spesscarp(src) //for precise and quick delivery of carps, 5 carps per grenade for a total of 20 carps
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
@@ -212,7 +212,7 @@
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/storage/toolbox/syndicate/real(src) // 2 tc
-			new /obj/item/pen/edagger(src) // 2 tc
+			new /obj/item/pen/red/edagger(src) // 2 tc
 			new /obj/item/gun/energy/wormhole_projector/upgraded(src) // ~2 tc
 			new /obj/item/gun/energy/decloner/unrestricted(src) // these shots do 9 damage. 1 tc
 
@@ -391,8 +391,8 @@
 	new /obj/item/clothing/under/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
+	new /obj/item/clothing/gloves/fingerless/bigboss(src)
 	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
-	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndicate/contract_kit/PopulateContents()
 	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
@@ -406,8 +406,8 @@
 		/obj/item/storage/backpack/duffelbag/syndie/x4,
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
 		/obj/item/gun/syringe/syndicate,
-		/obj/item/pen/edagger,
-		/obj/item/pen/sleepy,
+		/obj/item/pen/red/edagger,
+		/obj/item/pen/blue/sleepy,
 		/obj/item/flashlight/emp,
 		/obj/item/book/granter/crafting_recipe/weapons,
 		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
@@ -452,8 +452,8 @@
 		/obj/item/storage/backpack/duffelbag/syndie/x4,
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
 		/obj/item/gun/syringe/syndicate,
-		/obj/item/pen/edagger,
-		/obj/item/pen/sleepy,
+		/obj/item/pen/red/edagger,
+		/obj/item/pen/blue/sleepy,
 		/obj/item/flashlight/emp,
 		/obj/item/book/granter/crafting_recipe/weapons,
 		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
@@ -733,6 +733,18 @@
 		new /obj/item/paperplane/syndicate(src)
 	new /obj/item/restraints/legcuffs/bola/tactical(src)
 	new /obj/item/restraints/legcuffs/bola/tactical(src)
+
+/obj/item/storage/box/syndie_kit/throwing_weapons/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 9 // 5 + 2 + 2
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 18 // 5*2 + 2*1 + 3*2
+	STR.set_holdable(list(
+		/obj/item/restraints/legcuffs/bola/tactical,
+		/obj/item/paperplane/syndicate,
+		/obj/item/throwing_star
+	))
 
 /obj/item/storage/box/syndie_kit/cutouts/PopulateContents()
 	for(var/i in 1 to 3)

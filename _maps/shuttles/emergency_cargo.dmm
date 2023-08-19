@@ -562,7 +562,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "Hv" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/rockvault,
 /area/shuttle/escape)
 "HR" = (

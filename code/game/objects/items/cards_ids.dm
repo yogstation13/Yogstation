@@ -27,7 +27,7 @@
 	name = "data card"
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has a stripe running down the middle."
 	icon_state = "data_1"
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	var/function = "storage"
 	var/data = "null"
 	var/special = null
@@ -67,24 +67,69 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
+	var/max_charges = 5 // How many charges can the emag hold?
+	var/charges = 5 // How many charges does the emag start with?
+	var/recharge_rate = 0.4 // How fast charges are regained (per second)
 	var/prox_check = TRUE //If the emag requires you to be in range
+
+/obj/item/card/emag/Initialize(mapload)
+	. = ..()
+	if(recharge_rate != 0)
+		START_PROCESSING(SSobj, src)
+
+/obj/item/card/emag/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/card/emag/process(delta_time)
+	charges = clamp(charges + (recharge_rate * delta_time), 0, max_charges)
+
+/obj/item/card/emag/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if (max_charges > charges)
+		if (istype(W, /obj/item/stack/sheet/mineral/uranium))
+			var/obj/item/stack/sheet/mineral/uranium/T = W
+			T.use(1)
+			charges = min(charges + 1, max_charges)
+			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
+
+/obj/item/card/emag/examine(mob/user)
+	. = ..()
+	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
+
+/obj/item/card/emag/attack()
+	return
+
+/obj/item/card/emag/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	var/atom/A = target
+	if(!proximity && prox_check)
+		return
+	if(charges < 1)
+		to_chat(user, span_danger("\The [src] is still recharging!"))
+		return
+	log_combat(user, A, "attempted to emag")
+	charges--
+	A.emag_act(user)
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
 	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
 	color = rgb(40, 130, 255)
+	max_charges = 10
+	charges = 10
+	recharge_rate = 2 // UNLIMITED POWER
 	prox_check = FALSE
 
 /obj/item/card/emag/improvised
 	name = "improvised cryptographic sequencer"
 	desc = "It's a card with some junk circuitry strapped to it. It doesn't look like it would be reliable or fast due to shoddy construction, and needs to be manually recharged with uranium sheets."
 	icon_state = "emag_shitty"
-	var/charges = 5 //how many times can we use the emag before needing to reload it?
-	var/max_charges = 5
+	recharge_rate = 0
 	var/emagging //are we currently emagging something
-	
-/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)	
-	if(charges > 0)
+
+/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)
+	if(charges >= 1)
 		if(emagging)
 			return
 		if(!proximity && prox_check) //left in for badmins
@@ -108,30 +153,6 @@
 				return
 			target.emag_act(user)
 		emagging = FALSE
-
-/obj/item/card/emag/improvised/attackby(obj/item/W, mob/user, params)
-	. = ..()
-	if (max_charges > charges)
-		if (istype(W, /obj/item/stack/sheet/mineral/uranium))
-			var/obj/item/stack/sheet/mineral/uranium/T = W
-			T.use(1)
-			charges++
-			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
-
-/obj/item/card/emag/improvised/examine(mob/user)
-	. = ..()
-	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
-
-/obj/item/card/emag/attack()
-	return
-
-/obj/item/card/emag/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	var/atom/A = target
-	if(!proximity && prox_check)
-		return
-	log_combat(user, A, "attempted to emag")
-	A.emag_act(user)
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
@@ -716,7 +737,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert/occupying/Initialize(mapload)
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
     . = ..()
-    
+
 /obj/item/card/id/ert/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()

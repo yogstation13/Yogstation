@@ -42,6 +42,7 @@
 	var/list/atom_colours
 
 	var/datum/wires/wires = null
+	var/obj/effect/abstract/particle_holder/master_holder
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
@@ -91,6 +92,9 @@
 	var/base_pixel_x = 0
 	///Default pixel y shifting for the atom's icon.
 	var/base_pixel_y = 0
+	///the base icon state used for anything that changes their icon state.
+	var/base_icon_state
+
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
@@ -404,6 +408,10 @@
 /// Is this atom drainable of reagents
 /atom/proc/is_drainable()
 	return reagents && (reagents.flags & DRAINABLE)
+
+/// Can this atom spill its reagents
+/atom/proc/is_spillable()
+	return reagents && (reagents.flags & SPILLABLE)
 
 /// Are you allowed to drop this atom
 /atom/proc/AllowDrop()
@@ -1191,21 +1199,25 @@
   * Must return  parent proc ..() in the end if overridden
   */
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+	. = FALSE
 	switch(tool_type)
 		if(TOOL_CROWBAR)
-			return crowbar_act(user, I)
+			. = crowbar_act(user, I)
 		if(TOOL_MULTITOOL)
-			return multitool_act(user, I)
+			. = multitool_act(user, I)
 		if(TOOL_SCREWDRIVER)
-			return screwdriver_act(user, I)
+			. = screwdriver_act(user, I)
 		if(TOOL_WRENCH)
-			return wrench_act(user, I)
+			. = wrench_act(user, I)
 		if(TOOL_WIRECUTTER)
-			return wirecutter_act(user, I)
+			. = wirecutter_act(user, I)
 		if(TOOL_WELDER)
-			return welder_act(user, I)
+			. = welder_act(user, I)
 		if(TOOL_ANALYZER)
-			return analyzer_act(user, I)
+			. = analyzer_act(user, I)
+	if(. && I.toolspeed < 1) //nice tool bro
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nice_tool", /datum/mood_event/nice_tool)
+
 
 //! Tool-specific behavior procs. To be overridden in subtypes.
 ///

@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Ultraviolence will no longer surpass IPC charge limits and make them fat"

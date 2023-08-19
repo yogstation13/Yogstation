@@ -1374,14 +1374,18 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
-"Qh" = (
+"Xg" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/closet/syndicate,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/twohanded/vxtvulhammer,
+/obj/item/melee/vxtvulhammer,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/gun/energy/plasmacutter/adv,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 25
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 
@@ -1673,7 +1677,7 @@ aB
 tZ
 aX
 bc
-Qh
+Xg
 bm
 bx
 bG

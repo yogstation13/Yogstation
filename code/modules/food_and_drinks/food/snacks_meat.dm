@@ -105,6 +105,7 @@
 	desc = "A great meal all round. Not a cord of wood. Kinda raw"
 	icon_state = "raw_meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#DD8176"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
@@ -157,7 +158,7 @@
 	desc = "A great meal all round."
 	icon_state = "meatball"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
-	filling_color = "#800000"
+	filling_color = "#8C4E2E"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	burns_on_grill = TRUE
@@ -182,12 +183,14 @@
 	name = "chicken meatball"
 	tastes = list("chicken" = 1)
 	icon_state = "chicken_meatball"
+	filling_color = "#F9BC4C"
 
 /obj/item/reagent_containers/food/snacks/raw_patty
 	name = "raw patty"
 	desc = "I'm.....NOT REAAADDYY."
 	icon_state = "raw_patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#DD8176"
 	tastes = list("meat" = 1)
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
@@ -226,6 +229,7 @@
 	desc = "The nanotrasen patty is the patty for you and me!"
 	icon_state = "patty"
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	filling_color = "#8C4E2E"
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 	w_class = WEIGHT_CLASS_SMALL
@@ -254,6 +258,7 @@
 	name = "chicken patty"
 	tastes = list("chicken" = 1)
 	icon_state = "chicken_patty"
+	filling_color = "#F9BC4C"
 
 /obj/item/reagent_containers/food/snacks/raw_sausage
 	name = "raw sausage"
@@ -312,7 +317,7 @@
 	icon_state = "khinkali"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/garlic = 1)
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | GRAIN | RAW
 
 /obj/item/reagent_containers/food/snacks/rawkhinkali/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/khinkali, rand(50 SECONDS, 60 SECONDS), TRUE)
@@ -327,6 +332,7 @@
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtype = MEAT
 	burns_on_grill = TRUE
+	foodtype = MEAT | GRAIN
 
 /obj/item/reagent_containers/food/snacks/enchiladas
 	name = "enchiladas"
@@ -337,7 +343,7 @@
 	filling_color = "#FFA07A"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "tortilla" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/chipsandsalsa
 	name = "chips and salsa"
@@ -374,6 +380,7 @@
 
 /obj/item/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
+	icon_state = "nugget_lump" // Not an accurate icon_state, but needed for crafting menu.
 	filling_color = "#B22222"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -399,21 +406,22 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#800000"
-	tastes = list("meat" = 1, "butter" = 1)
+	tastes = list("meat" = 1, "butter" = 2)
+	foodtype = MEAT | DAIRY | GRAIN
 
 /obj/item/reagent_containers/food/snacks/dolphinmeat
-  name = "dolphin fillet"
-  desc = "A fillet of spess dolphin meat."
-  icon_state = "fishfillet"
-  list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-  bitesize = 6
-  filling_color = "#FA8072"
-  tastes = list("fish" = 1,"cruelty" = 2)
-  foodtype = MEAT
+	name = "dolphin fillet"
+	desc = "A fillet of spess dolphin meat."
+	icon_state = "fishfillet"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	bitesize = 6
+	filling_color = "#FA8072"
+	tastes = list("fish" = 1,"cruelty" = 2)
+	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize(mapload)
-  . = ..()
-  eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
+	. = ..()
+	eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
 
 /obj/item/reagent_containers/food/snacks/meatclown
 	name = "meat clown"
