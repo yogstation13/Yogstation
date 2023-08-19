@@ -2679,22 +2679,22 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	name = "Syndicate Screwdriver"
 	description = "A drink that all greytiders and syndicate enjoy"
-	boozepwr = 95
+	boozepwr = 105
 	color = "#2E6671"
 	quality = DRINK_GOOD
-	taste_description = "A tangy taste mixed with liquified Robustness"
+	taste_description = "a tangy taste mixed with liquified Robustness"
 	glass_icon_state = "syndicate_screwdriver"
 	glass_name = "Syndicate Screwdriver"
 	glass_desc = "A glass full of spite, haste and the need to greytide"
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
-		M.physiology.do_after_speed *= 0.85
-		M.next_move_modifier *= 0.85
+		M.physiology.do_after_speed *= 0.75
+		M.next_move_modifier *= 0.75
 	return ..()
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
-		M.physiology.do_after_speed /= 0.85
-		M.next_move_modifier /= 0.85
+		M.physiology.do_after_speed /= 0.75
+		M.next_move_modifier /= 0.75
 	return ..()
