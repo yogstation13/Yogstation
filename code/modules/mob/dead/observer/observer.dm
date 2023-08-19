@@ -285,7 +285,7 @@ Works together with spawning an observer, noted above.
 /mob/proc/ghostize(can_reenter_corpse = 1)
 	if(!key)
 		return
-	if(key[1] != "@") // Skip aghosts.
+	if(key[1] == "@") // Skip aghosts.
 		return
 	if(isgolem(usr))
 		var/datum/species/golem/golem = usr
