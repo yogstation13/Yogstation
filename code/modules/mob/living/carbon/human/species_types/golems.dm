@@ -31,6 +31,8 @@
 	var/human_surname_chance = 3
 	var/special_name_chance = 5
 	var/owner //dobby is a free golem
+	/// From the moment that they become a servant golem, how much time must pass before they can do it again? Given on ghost & death.
+	var/ghost_cooldown = 15 MINUTES // Iron golem is the base.
 
 /datum/species/golem/random_name(gender,unique,lastname)
 	var/golem_surname = pick(GLOB.golem_names)
@@ -59,6 +61,11 @@
 
 	return to_add
 
+/datum/species/golem/spec_death(gibbed, mob/living/carbon/human/H)
+	if(owner && H.ckey && H.ckey[1] != "@" && ghost_cooldown) // Servant golem with an non-adminghosted ckey attached and ghost cooldown.
+		GLOB.servant_golem_users[H.ckey] = world.time + ghost_cooldown
+	..()
+
 /datum/species/golem/random
 	name = "Random Golem"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
@@ -86,6 +93,7 @@
 	info_text = "As an <span class='danger'>Adamantine Golem</span>, you possess special vocal cords allowing you to \"resonate\" messages to all golems. Your unique mineral makeup makes you immune to most types of magic."
 	prefix = "Adamantine"
 	special_names = null
+	ghost_cooldown = 18 MINUTES
 
 /datum/species/golem/adamantine/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -109,6 +117,7 @@
 	special_names = list("Flood","Fire","Bar","Man")
 	var/boom_warning = FALSE
 	var/datum/action/innate/ignite/ignite
+	ghost_cooldown = 10 MINUTES // Their gimmick is to explode. Exploding (and dying) is an important part of the species.
 
 /datum/species/golem/plasma/spec_life(mob/living/carbon/human/H)
 	if(H.bodytemperature > 750)
@@ -165,6 +174,7 @@
 	info_text = "As a <span class='danger'>Diamond Golem</span>, you are more resistant than the average golem."
 	prefix = "Diamond"
 	special_names = list("Back","Grill")
+	ghost_cooldown = 25 MINUTES // Objectively better than iron golems.
 
 //Faster but softer and less armoured
 /datum/species/golem/gold
@@ -177,6 +187,7 @@
 	info_text = "As a <span class='danger'>Gold Golem</span>, you are faster but less resistant than the average golem."
 	prefix = "Golden"
 	special_names = list("Boy")
+	ghost_cooldown = 15 MINUTES // Trade armor for speed. Should be fine to be equal as iron.
 
 //Heavier, thus higher chance of stunning when punching
 /datum/species/golem/silver
@@ -188,6 +199,7 @@
 	info_text = "As a <span class='danger'>Silver Golem</span>, your attacks have a higher chance of stunning. Being made of silver, your body is immune to most types of magic."
 	prefix = "Silver"
 	special_names = list("Surfer", "Chariot", "Lining")
+	ghost_cooldown = 20 MINUTES // Objectively better than iron golems.
 
 /datum/species/golem/silver/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -213,6 +225,7 @@
 	attack_sound = 'sound/effects/meteorimpact.ogg' //hits pretty hard
 	prefix = "Plasteel"
 	special_names = null
+	ghost_cooldown = 30 MINUTES // Massively melee damage, stun reduction, and gravity immunity for permanent walking speed. Not quite as hard to create as plasteel is easier to obtain.
 
 /datum/species/golem/plasteel/negates_gravity(mob/living/carbon/human/H)
 	return TRUE
@@ -235,6 +248,7 @@
 	burnmod = 0.9
 	prefix = "Titanium"
 	special_names = list("Dioxide")
+	ghost_cooldown = 18 MINUTES // Objectively slightly better than iron golems.
 
 /datum/species/golem/titanium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -254,6 +268,7 @@
 	burnmod = 0.8
 	prefix = "Plastitanium"
 	special_names = null
+	ghost_cooldown = 20 MINUTES  // Objectively slightly better than titanium golems.
 
 /datum/species/golem/plastitanium/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -276,6 +291,7 @@
 	info_text = "As an <span class='danger'>Alloy Golem</span>, you are made of advanced alien materials: you are faster and regenerate over time. You are, however, only able to be heard by other alloy golems."
 	prefix = "Alien"
 	special_names = list("Outsider", "Technology", "Watcher", "Stranger") //ominous and unknown
+	ghost_cooldown = 30 MINUTES // Terribly good if you can capitalize on disengaging/not dying.
 
 //Regenerates because self-repairing super-advanced alien tech
 /datum/species/golem/alloy/spec_life(mob/living/carbon/human/H)
@@ -302,6 +318,7 @@
 	human_surname_chance = 0
 	special_name_chance = 100
 	species_language_holder = /datum/language_holder/pod
+	ghost_cooldown = 15 MINUTES // Can't tell if this is worse or better than iron golems.
 
 /datum/species/golem/wood/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -343,22 +360,21 @@
 	speedmod = 1 //wood golems aren't very good, so the holy ones are slightly faster so that you don't put in a bunch of hardwork to downgrade yourself
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
+	ghost_cooldown = null // Adminbus only.
 
-//Radioactive puncher, hits for burn but only as hard as human
+// Radioactive puncher. Punches deal burn instead of brute.
 /datum/species/golem/uranium
 	name = "Uranium Golem"
 	id = "uranium golem"
 	fixed_mut_color = "#77ff00"
 	meat = /obj/item/stack/ore/uranium
-	info_text = "As an <span class='danger'>Uranium Golem</span>, your very touch burns and irradiates organic lifeforms. You don't hit as hard as most golems, though."
+	info_text = "As an <span class='danger'>Uranium Golem</span>, your very touch burns and irradiates organic lifeforms."
 	attack_verb = "burn"
 	attack_sound = 'sound/weapons/sear.ogg'
 	attack_type = BURN
-
-	var/last_event = 0
-	var/active = null
 	prefix = "Uranium"
 	special_names = list("Oxide", "Rod", "Meltdown", "235")
+	ghost_cooldown = 20 MINUTES // Damage type is harder to deal with and the risk of getting husking is there too. Radiation is only a problem if you get hit 10+ times.
 	COOLDOWN_DECLARE(radiation_emission_cooldown)
 
 /datum/species/golem/uranium/proc/radiation_emission(mob/living/carbon/human/H)
@@ -404,8 +420,10 @@
 	attack_sound = 'sound/effects/shovel_dig.ogg'
 	prefix = "Sand"
 	special_names = list("Castle", "Bag", "Dune", "Worm", "Storm")
+	ghost_cooldown = 8 MINUTES // Dies first to burns and cannot be revived. Warrants a lower cooldown for that.
 
 /datum/species/golem/sand/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	H.visible_message(span_danger("[H] turns into a pile of sand!"))
 	for(var/obj/item/W in H)
 		H.dropItemToGround(W)
@@ -436,8 +454,10 @@
 	attack_sound = 'sound/effects/glassbr2.ogg'
 	prefix = "Glass"
 	special_names = list("Lens", "Prism", "Fiber", "Bead")
+	ghost_cooldown = 8 MINUTES // The opposite verison of sand golems.
 
 /datum/species/golem/glass/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	playsound(H, "shatter", 70, 1)
 	H.visible_message(span_danger("[H] shatters!"))
 	for(var/obj/item/W in H)
@@ -476,6 +496,7 @@
 	var/datum/action/innate/unstable_teleport/unstable_teleport
 	var/teleport_cooldown = 100
 	var/last_teleport = 0
+	ghost_cooldown = 18 MINUTES
 
 /datum/species/golem/bluespace/proc/reactive_teleport(mob/living/carbon/human/H)
 	H.visible_message(span_warning("[H] teleports!"), span_danger("You destabilize and teleport!"))
@@ -553,7 +574,6 @@
 	sleep(cooldown + 0.5 SECONDS)
 	build_all_button_icons() //action icon looks available again
 
-
 //honk
 /datum/species/golem/bananium
 	name = "Bananium Golem"
@@ -569,6 +589,7 @@
 	attack_sound = 'sound/items/airhorn2.ogg'
 	prefix = "Bananium"
 	special_names = null
+	ghost_cooldown = 2 MINUTES // This is for pranking, not for combat.
 
 	var/last_honk = 0
 	var/honkooldown = 0
@@ -631,6 +652,7 @@
 	..()
 
 /datum/species/golem/bananium/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	playsound(get_turf(H), 'sound/misc/sadtrombone.ogg', 70, 0)
 
 /datum/species/golem/bananium/proc/handle_speech(datum/source, list/speech_args)
@@ -645,6 +667,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH) //no mutcolors
 	prefix = "Runic"
 	special_names = null
+	ghost_cooldown = 20 MINUTES // Objectively better than iron golem (except holy water, but who uses that?) Can be easily obtainable in non-bloodcult rounds.
 
 	/// A ref to our jaunt spell that we get on species gain.
 	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/shift/golem/jaunt
@@ -719,8 +742,9 @@
 	prefix = "Clockwork"
 	special_names = list("Remnant", "Relic", "Scrap", "Vestige") //RIP Ratvar
 	species_language_holder = /datum/language_holder/clockwork
+	ghost_cooldown = 20 MINUTES // Trade some armor for human levels of speed. Only obtainable from adminbus or clockwork.
 	var/has_corpse
-
+	
 /datum/species/golem/clockwork/on_species_gain(mob/living/carbon/human/H)
 	. = ..()
 	H.faction |= "ratvar"
@@ -755,6 +779,7 @@
 	has_corpse = TRUE
 	random_eligible = FALSE
 	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem Servant</span><span class='bold alloy'>, you are faster than other types of golems.</span>" //warcult golems leave a corpse
+	ghost_cooldown = null // Only from adminbus.
 
 /datum/species/golem/cloth
 	name = "Cloth Golem"
@@ -774,6 +799,7 @@
 	punchdamagehigh = 8 // not as heavy as stone
 	prefix = "Cloth"
 	special_names = null
+	ghost_cooldown = 5 MINUTES // Revive timer is 90 seconds. Kind of the gimmick for them to get back up if not dealt with.
 
 /datum/species/golem/cloth/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -800,6 +826,7 @@
 	..()
 
 /datum/species/golem/cloth/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	if(gibbed)
 		return
 	if(H.on_fire)
@@ -809,7 +836,6 @@
 
 	H.visible_message(span_danger("[H] falls apart into a pile of bandages!"))
 	new /obj/structure/cloth_pile(get_turf(H), H)
-	..()
 
 /obj/structure/cloth_pile
 	name = "pile of bandages"
@@ -878,6 +904,7 @@
 	special_names = list("Sheet", "Bag", "Bottle")
 	fixed_mut_color = "#ffffff"
 	info_text = "As a <span class='danger'>Plastic Golem</span>, you are capable of ventcrawling and passing through plastic flaps as long as you are naked."
+	ghost_cooldown = 18 MINUTES // Iron golem, except they get ventcrawling.
 
 /datum/species/golem/plastic/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -895,6 +922,7 @@
 	fixed_mut_color = "#cd7f32"
 	info_text = "As a <span class='danger'>Bronze Golem</span>, you are very resistant to loud noises, and make loud noises if something hard hits you, however this ability does hurt your hearing."
 	special_step_sounds = list('sound/machines/clockcult/integration_cog_install.ogg', 'sound/magic/clockwork/fellowship_armory.ogg' )
+	ghost_cooldown = 18 MINUTES // Annoying to those who enter melee combat with it.
 	mutantears = /obj/item/organ/ears/bronze
 	var/last_gong_time = 0
 	var/gong_cooldown = 150
@@ -967,6 +995,7 @@
 	special_names = list("Flake", "Blizzard", "Storm", "Frosty")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors, no eye sprites
 	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
+	ghost_cooldown = 20 MINUTES // A golem that kites by slowing people down (with cyro) and uses snowballs (does stamina damage).
 
 	/// A ref to our "throw snowball" spell we get on species gain.
 	var/datum/action/cooldown/spell/conjure_item/snowball/snowball
@@ -974,6 +1003,7 @@
 	var/datum/action/cooldown/spell/pointed/projectile/cryo/cryo
 
 /datum/species/golem/snow/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	H.visible_message(span_danger("[H] turns into a pile of snow!"))
 	for(var/obj/item/W in H)
 		H.dropItemToGround(W)
@@ -1022,6 +1052,7 @@
 	punchdamagehigh = 8
 	var/last_creation = 0
 	var/brother_creation_cooldown = 300
+	ghost_cooldown = 2 MINUTES // The ability to create a golem shell as a golem. This is the embodiment of golem army, surely?
 
 /datum/species/golem/cardboard/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	. = ..()
@@ -1058,6 +1089,7 @@
 	info_text = "As a <span class='danger'>Leather Golem</span>, you are flammable, but you can grab things with incredible ease, allowing all your grabs to start at a strong level."
 	grab_sound = 'sound/weapons/whipgrab.ogg'
 	attack_sound = 'sound/weapons/whip.ogg'
+	ghost_cooldown = 18 MINUTES // Has instant aggro grab. Not as terrible since it doesn't stun though.
 
 /datum/species/golem/durathread
 	name = "Durathread Golem"
@@ -1069,6 +1101,7 @@
 	fixed_mut_color = null
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Durathread Golem</span>, your strikes will cause those your targets to start choking, but your woven body won't withstand fire as well."
+	ghost_cooldown = 18 MINUTES // Chokes people.
 
 /datum/species/golem/durathread/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
@@ -1091,6 +1124,7 @@
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Bone Golem</span>, You have a powerful spell that lets you chill your enemies with fear, and milk heals you! Just make sure to watch our for bone-hurting juice."
 	var/datum/action/innate/bonechill/bonechill
+	ghost_cooldown = 18 MINUTES // Has AOE slowdown spell.
 
 /datum/species/golem/bone/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -1151,7 +1185,8 @@
 	info_text = "As a <span class='danger'>Capitalist Golem</span>, your fist spreads the powerful industrializing light of capitalism."
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
-
+	ghost_cooldown = null // Adminbus only.
+		
 /datum/species/golem/capitalist/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), ITEM_SLOT_HEAD)
@@ -1202,6 +1237,7 @@
 	info_text = "As a <span class='danger'>Churchgoing Capitalist Golem</span>, your god-given right is to make fat stacks of money!"
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
+	ghost_cooldown = null // Adminbus only.
 
 /datum/species/golem/church_capitalist/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -1224,6 +1260,7 @@
 	info_text = "As a <span class='danger'>Soviet Golem</span>, your fist spreads the bright soviet light of communism."
 	changesource_flags = MIRROR_BADMIN
 	random_eligible = FALSE
+	ghost_cooldown = null // Adminbus only.
 
 /datum/species/golem/soviet/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -1275,6 +1312,7 @@
 	special_names = list("Gouda")
 	var/integrity = 40
 	punchdamagehigh = 10
+	ghost_cooldown = 10 MINUTES // Must be worse than iron golems.
 
 /datum/species/golem/cheese/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H)
 	..()
@@ -1303,6 +1341,7 @@
 	special_names = list("Primordial","Indivisible","Proton", "Superconductor","Supersolid","Metastable","Oppenheimer") //the first element, in an exotic and theoretical state
 	armor = 75 //5 more than diamond, 20 more than base golem
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS,TRAIT_NOHUNGER) //removed NOFIRE because hydrogen burns and they come from the fire department
+	ghost_cooldown = 30 MINUTES // Objectively better than diamond golems.
 
 /datum/species/golem/mhydrogen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -1325,6 +1364,7 @@
 	prefix = "Telecrystal"
 	special_names = list("Agent", "Operative")
 	var/datum/action/cooldown/spell/pointed/phase_jump/phase_jump
+	ghost_cooldown = null // Adminbus only.
 
 /datum/species/golem/telecrystal/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -1388,6 +1428,7 @@
 				you have a connection with the old gods that grants you a selection of abilities."
 	prefix = "Ruinous"
 	special_names = list("One", "Elder", "Watcher", "Walker") //ominous
+	ghost_cooldown = 15 MINUTES // Can't tell if better or worse.
 	var/datum/action/cooldown/spell/list_target/telepathy/eldritch/ruinoustelepathy
 //	var/datum/action/cooldown/spell/touch/flagellate/flagellate
 
@@ -1429,6 +1470,7 @@
 	punchdamagehigh = 9 // not as heavy as stone
 	prefix = "Wax"
 	special_names = list("Candelabra", "Candle")
+	ghost_cooldown = 6 MINUTES // Similar revive gimmick to cloth golems, but a bit faster (80 seconds)
 
 /datum/species/golem/wax/spec_life(mob/living/carbon/human/H)
 	if(H.fire_stacks < 1)
@@ -1436,6 +1478,7 @@
 	..()
 
 /datum/species/golem/wax/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	if(gibbed)
 		return
 	if(H.on_fire)
@@ -1502,6 +1545,7 @@
 	fixed_mut_color = "ff0"
 	brutemod = 1.5
 	burnmod = 3
+	ghost_cooldown = null // Adminbus only.
 	var/burnheal = 1
 	var/bruteheal = 0.5
 	var/randexplode = FALSE
@@ -1545,6 +1589,7 @@
 		qdel(C)
 
 /datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
+	..()
 	if(gibbed)
 		return
 	if(randexplode) //No double explosions
@@ -1566,7 +1611,6 @@
 /obj/item/melee/supermatter_sword/hand/Initialize(mapload,silent,synthetic)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)
-
 
 /datum/species/golem/cloth/get_species_description()
 	return "A wrapped up Mummy! They descend upon Space Station Thirteen every year to spook the crew! \"Return the slab!\""

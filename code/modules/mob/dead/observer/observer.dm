@@ -283,23 +283,30 @@ Works together with spawning an observer, noted above.
 */
 
 /mob/proc/ghostize(can_reenter_corpse = 1)
-	if(key)
-		if(key[1] != "@") // Skip aghosts.
-			stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
-			if(can_reenter_corpse && client) //yogs start
-				oobe_client = client //yogs end
-			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
-			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
-			ghost.can_reenter_corpse = can_reenter_corpse
-			ghost.key = key
-			if(ghost?.client)
-				ghost.client.init_verbs()
-			if(ghost?.client?.holder?.fakekey)
-				ghost.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
-				ghost.alpha = 0 //JUUUUST IN CASE
-				ghost.name = " "
-				ghost.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-			return ghost
+	if(!key)
+		return
+	if(key[1] != "@") // Skip aghosts.
+		return
+	if(isgolem(usr))
+		var/datum/species/golem/golem = usr
+		if(golem.owner)
+			var/the_ckey = usr.ckey
+			GLOB.servant_golem_users[the_ckey] = world.time + golem.ghost_cooldown
+	stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
+	if(can_reenter_corpse && client) //yogs start
+		oobe_client = client //yogs end
+	var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
+	SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.key = key
+	if(ghost?.client)
+		ghost.client.init_verbs()
+	if(ghost?.client?.holder?.fakekey)
+		ghost.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
+		ghost.alpha = 0 //JUUUUST IN CASE
+		ghost.name = " "
+		ghost.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	return ghost
 
 /*
 This is the proc mobs get to turn into a ghost. Forked from ghostize due to compatibility issues.

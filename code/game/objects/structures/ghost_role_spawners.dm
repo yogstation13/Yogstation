@@ -238,26 +238,28 @@
 		user.death()
 		return
 
+// List of ckeys belonging to people who switched from being a ghost to a servant golem. Associative list; ckey = worldtime + cooldown.
+GLOBAL_LIST(servant_golem_users)
+
 /obj/effect/mob_spawn/human/golem/servant
 	has_owner = TRUE
 	name = "inert servant golem shell"
 	mob_name = "a servant golem"
-	/// List of ckeys belonging to people who switched from being a ghost to a servant golem. Associative list; ckey = worldtime + cooldown.
-	var/static/list/servant_golem_users = list()
-	/// From the moment that they become a servant golem, how much time must pass before they can do it again?
-	var/static/cooldown = 30 MINUTES // 30 minutes is plenty enough time to prevent them from suiciding/running it down. If they manage to stay alive for 30 minutes, then they can have the ability to be a golem again the second they die.
 
 /obj/effect/mob_spawn/human/golem/servant/attack_ghost(mob/user)
 	. = ..()
-	if(. && user.mind) // Successfully became the golem (with a mind).
-		servant_golem_users[ckey(user.mind.key)] = world.time + cooldown
+	if(.)
+		var/datum/species/golem/golem = mob_species
+		GLOB.servant_golem_users[user.ckey] = world.time + (golem ? golem.ghost_cooldown : 0) // In case anything goes wrong.
 
 /obj/effect/mob_spawn/human/golem/servant/check_allowed(mob/M)
 	. = ..()
+	if(!.)
+		return FALSE
 	/* 	Half the philosophy of posi-brains. 
 		While they are mass producible like posi-brains, they lack "many of the strengths" that cyborgs have.*/
-	if(M.mind && servant_golem_users[ckey(M.mind.key)]) 
-		var/time_left = servant_golem_users[ckey(M.mind.key)] - world.time
+	if(GLOB.servant_golem_users[M.ckey])
+		var/time_left = (GLOB.servant_golem_users[M.ckey]) - world.time
 		var/seconds_left = time_left/10
 		var/minutes_left_rounded = round(seconds_left/60, 0.1)
 		if(time_left > 0) // Cooldown has not been finished.
