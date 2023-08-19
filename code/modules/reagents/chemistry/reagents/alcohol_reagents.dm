@@ -2687,3 +2687,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "syndicate_screwdriver"
 	glass_name = "Syndicate Screwdriver"
 	glass_desc = "A glass full of spite, haste and the need to greytide"
+
+/datum/reagent/consumable/ethanol/syndicatebomb/on_mob_metabolize(mob/living/carbon/M)
+	if(is_syndicate(M))
+		L.add_physiology.do_after_speed *= 0.7
+	return ..()
