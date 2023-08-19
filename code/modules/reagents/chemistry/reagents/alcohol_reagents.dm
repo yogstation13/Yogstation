@@ -14,6 +14,7 @@
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
+	var/alcoholspeed = 0.5 //Put this here to just help me make this drink
 
 /*
 Boozepwr Chart
@@ -2690,5 +2691,5 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicatebomb/on_mob_metabolize(mob/living/carbon/M)
 	if(is_syndicate(M))
-		L.physiology.do_after_speed *= 0.7
+		L.add_physiology.do_after_speed *= alcoholspeed
 	return ..()
