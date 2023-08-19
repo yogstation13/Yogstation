@@ -2692,11 +2692,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
 		M.physiology.do_after_speed *= 0.1
-		M.changeNext_move(CLICK_CD_CLICK_ABILITY)
+		M.next_move_modifier *= 0.1
 	return ..()
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
 		M.physiology.do_after_speed /= 0.1
-		M.changeNext_move(CLICK_CD_CLICK_ABILITY)
+		M.next_move_modifier /= 0.1
 	return ..()
