@@ -2690,5 +2690,5 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicatebomb/on_mob_metabolize(mob/living/carbon/M)
 	if(is_syndicate(M))
-		L.add_physiology.do_after_speed *= 0.7
+		L.physiology.do_after_speed *= 0.7
 	return ..()
