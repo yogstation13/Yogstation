@@ -82,7 +82,8 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 2,
 		/obj/item/reagent_containers/food/snacks/grown/chili = 2,
-		/obj/item/reagent_containers/food/snacks/tortilla = 2
+		/obj/item/reagent_containers/food/snacks/tortilla = 2,
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/enchiladas
 	category = CAT_MEAT
@@ -111,7 +112,9 @@
 	name = "Raw Khinkali"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/doughslice = 1,
-		/obj/item/reagent_containers/food/snacks/meatball = 1
+		/obj/item/reagent_containers/food/snacks/meatball = 1,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/garlic = 1
 	)
 	result =  /obj/item/reagent_containers/food/snacks/rawkhinkali
 	category = CAT_MEAT

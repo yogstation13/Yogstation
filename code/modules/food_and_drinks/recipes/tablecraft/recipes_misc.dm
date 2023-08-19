@@ -109,7 +109,8 @@
 	name = "Chocolate Orange"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
-		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
+		/datum/reagent/consumable/orangejuice = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocoorange
 	category = CAT_MISCFOOD
