@@ -2679,7 +2679,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	name = "Syndicate Screwdriver"
 	description = "A drink that all greytiders and syndicate enjoy"
-	boozepwr = 105
+	boozepwr = 115
 	color = "#2E6671"
 	quality = DRINK_GOOD
 	taste_description = "a tangy taste mixed with liquified Robustness"
