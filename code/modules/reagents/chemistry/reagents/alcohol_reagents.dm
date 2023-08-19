@@ -2689,7 +2689,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Syndicate Screwdriver"
 	glass_desc = "A glass full of spite, haste and the need to greytide"
 
-/datum/reagent/consumable/ethanol/syndicatebomb/on_mob_metabolize(mob/living/carbon/M)
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
 		M.physiology.do_after_speed *= alcoholspeed
+	return ..()
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		M.physiology.do_after_speed /= alcoholspeed
 	return ..()
