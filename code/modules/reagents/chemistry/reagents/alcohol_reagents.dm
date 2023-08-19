@@ -14,7 +14,6 @@
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
-	var/alcoholicspeed
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -2678,6 +2677,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
+	var/alcoholicspeed = 0.75 //For determining the speed effect\\ 
 	name = "Syndicate Screwdriver"
 	description = "A drink that all greytiders and syndicate enjoy"
 	boozepwr = 115
