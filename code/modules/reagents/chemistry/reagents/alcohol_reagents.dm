@@ -2675,3 +2675,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "moscow_mule"
 	glass_name = "Moscow Mule"
 	glass_desc = "A chilly drink that reminds you of the Derelict."
+
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver
+	name = "Syndicate Screwdriver"
+	description = "A drink that all greytiders and syndicate enjoy"
+	boozepwr = 75
+	color = "#2E6671"
+	quality = DRINK_GOOD
+	taste_description = "A tangy taste mixed with liquified Robustness"
+	glass_icon_state = "syndicate_screwdriver"
+	glass_name = "Syndicate Screwdriver"
+	glass_desc = "A glass full of spite, haste and the need to greytide"
