@@ -51025,6 +51025,11 @@
 	},
 /obj/item/pen,
 /obj/item/taperecorder,
+/obj/machinery/button{
+	id = "lawyer_shutters";
+	name = "law office shutter control";
+	pixel_y = -26
+	},
 /turf/open/floor/wood,
 /area/lawoffice)
 "oKN" = (
