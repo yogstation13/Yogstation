@@ -2691,6 +2691,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))
+		if(holder.has_reagent(/datum/reagent/drug/red_eye))
+			holder.remove_reagent(/datum/reagent/drug/red_eye, 5)
 		M.physiology.do_after_speed *= alcoholicspeed
 		M.next_move_modifier *= alcoholicspeed
 	return ..()
