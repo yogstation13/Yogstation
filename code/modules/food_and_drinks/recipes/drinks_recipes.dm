@@ -937,5 +937,5 @@
 	name = "Syndicate Screwdriver"
 	id = /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	results = list(datum/reagent/ethanol/syndicate_screwdriver = 2)
-	required_reagents = list (/datum/reagent/consumable/ethanol/screwdriver = 2, /datum/reagent/consumable/ethanol/syndicatebomb = 2)
+	required_reagents = list (/datum/reagent/consumable/ethanol/screwdrivercocktail = 2, /datum/reagent/consumable/ethanol/syndicatebomb = 2)
 	mix_message = "The drink sparkles red with syndicate power"
