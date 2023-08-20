@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/storage/box/heretic_box = 1,
 		/obj/item/toy/plush/mothplushie = 2,
 		/obj/item/toy/plush/abductor = 2,
-		/obj/item/toy/plush/abductor/agent = 2))
+		/obj/item/toy/plush/abductor/agent = 1))
 
 /obj/machinery/computer/arcade
 	name = "random arcade"
