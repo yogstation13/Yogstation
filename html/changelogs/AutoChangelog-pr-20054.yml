@@ -1,0 +1,6 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - mapping: "Minor changes to law office"
+  - mapping: "Deletes old pda cartridge"
+  - mapping: "Adds printer and pens"
