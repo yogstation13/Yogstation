@@ -504,7 +504,6 @@
 #include "code\datums\components\earprotection.dm"
 #include "code\datums\components\echolocation.dm"
 #include "code\datums\components\edit_complainer.dm"
-#include "code\datums\components\empprotection.dm"
 #include "code\datums\components\explodable.dm"
 #include "code\datums\components\footstep.dm"
 #include "code\datums\components\forced_gravity.dm"
