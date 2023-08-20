@@ -5959,12 +5959,14 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "bMB" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = 26
+	},
+/obj/structure/table/wood,
+/obj/machinery/photocopier/faxmachine{
+	department = "Law Office";
+	name = "Law Office Fax Machine"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -12837,13 +12839,19 @@
 /area/crew_quarters/dorms)
 "dNL" = (
 /obj/structure/cable/yellow{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
-/turf/open/floor/wood,
-/area/lawoffice)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
 "dNM" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -16586,9 +16594,6 @@
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
 "eYO" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
@@ -22151,9 +22156,6 @@
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "gBx" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
@@ -23168,9 +23170,6 @@
 "gQn" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -36356,9 +36355,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
 "kBH" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc{
 	areastring = "/area/lawoffice";
 	dir = 1;
@@ -36370,6 +36366,9 @@
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -51019,19 +51018,17 @@
 /area/hallway/secondary/service)
 "oKF" = (
 /obj/structure/table/wood,
-/obj/machinery/button/door{
-	id = "lawyer_shutters";
-	name = "law office shutters control";
-	pixel_y = -26;
-	req_access_txt = "38"
-	},
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
 /obj/item/pen,
 /obj/item/taperecorder,
-/obj/item/cartridge/lawyer,
+/obj/machinery/button{
+	id = "lawyer_shutters";
+	name = "law office shutter control";
+	pixel_y = -26
+	},
 /turf/open/floor/wood,
 /area/lawoffice)
 "oKN" = (
@@ -53741,12 +53738,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"pBi" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "pBk" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -59460,14 +59451,56 @@
 /area/mine/vacant)
 "rkN" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/pen/red,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching Prison Wing holding areas.";
 	name = "Prison Monitor";
 	network = list("prison");
 	pixel_y = 30
+	},
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/item/pen/blue{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/pen/blue{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/pen/blue{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/pen/red{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/pen/green{
+	pixel_x = 10
+	},
+/obj/item/pen/green{
+	pixel_x = 10
+	},
+/obj/item/pen/green{
+	pixel_x = 10
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -76099,11 +76132,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "vWK" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -79937,9 +79970,6 @@
 	name = "Law Office";
 	req_access_txt = "38"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -83715,9 +83745,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "xWa" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/landmark/event_spawn,
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -116338,9 +116365,9 @@ lmr
 kyt
 lOi
 kBH
-dNL
+qJX
 eYO
-pBi
+qJX
 iYn
 xwJ
 dNc
@@ -117114,7 +117141,7 @@ mam
 wdC
 dqQ
 xzt
-dNc
+dNL
 aqj
 aqj
 uxM

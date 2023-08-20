@@ -114,7 +114,7 @@
 		if(is_jaunting(user))
 			if(valid_location(user))
 				to_chat(user, span_warning("You are now phasing in."))
-				if(do_mob(user,user,150))
+				if(do_after(user, 15 SECONDS))
 					if(valid_location(user))
 						user.infernalphasein()
 					else
@@ -127,7 +127,7 @@
 			user.notransform = TRUE
 			user.fakefire()
 			to_chat(src, span_warning("You begin to phase back into sinful flames."))
-			if(do_mob(user,user,150))
+			if(do_after(user, 15 SECONDS))
 				user.infernalphaseout()
 			else
 				to_chat(user, span_warning("You must remain still while exiting."))

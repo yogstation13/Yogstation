@@ -78,7 +78,7 @@
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
 									span_userdanger("[user] is trying to take a blood sample from [target]!"))
 					busy = TRUE
-					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, TRUE, BODY_ZONE_CHEST, proj_piercing)))
+					if(!do_after(user, 3 SECONDS, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, TRUE, BODY_ZONE_CHEST, proj_piercing)))
 						busy = FALSE
 						return
 					if(reagents.total_volume >= reagents.maximum_volume)
@@ -130,7 +130,7 @@
 				if(L != user)
 					L.visible_message(span_danger("[user] is trying to inject [L]!"), \
 											span_userdanger("[user] is trying to inject [L]!"))
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, FALSE, BODY_ZONE_CHEST, proj_piercing)))
+					if(!do_after(user, 3 SECONDS, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, FALSE, BODY_ZONE_CHEST, proj_piercing)))
 						return
 					if(!reagents.total_volume)
 						return
