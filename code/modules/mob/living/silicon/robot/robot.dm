@@ -1315,7 +1315,7 @@
 			M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
-	var/_target = usr == M ? src : M
+	var/_target = (usr == M) ? src : M
 	if(!do_after(usr, 0.75 SECONDS, _target))
 		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return

@@ -70,12 +70,12 @@
 				to_chat(user, span_boldannounce("Restraining [C] will wake them up! Are you sure you want to do this?"))
 				C.visible_message(span_warning("[C] jerks in their sleep as they are restrained!"))
 				to_chat(C, span_boldannounce("Someone handles your arms roughly, pulling you towards wakefulness!"))
-				if(do_mob(user, C, 1.5 SECONDS, FALSE, FALSE)) // No progress bar
+				if(do_after(user, 1.5 SECONDS, C, progress = FALSE)) // No progress bar
 					C.remove_status_effect(STATUS_EFFECT_BROKEN_WILL)
 					C.SetUnconscious(0)
 			// Yogs end
 
-			if(do_mob(user, C, 30) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
+			if(do_after(user, 3 SECONDS, C) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
 				if(iscyborg(user))
 					apply_cuffs(C, user, TRUE)
 				else

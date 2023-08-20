@@ -120,7 +120,7 @@
 		recipient_real = recipient // This will be truthy if recipient resolved successfully
 
 	to_chat(user, span_notice("You start to unwrap the package..."))
-	if(!do_after(user, 1.5 SECONDS, target = user))
+	if(!do_after(user, 1.5 SECONDS, user))
 		return
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	for (var/content in contents)
