@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed lizard snouts"
+  - imagedel: "fixed a spriting error causing glasses to be partially hidden under some lizard snouts"
