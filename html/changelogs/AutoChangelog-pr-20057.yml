@@ -1,0 +1,5 @@
+author: " Rhials, ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "The abductor equipment vendor now sells decorative abductor posters, at a price of 1 research point."
+  - rscadd: "Posters can now be hung on abductor walls."
