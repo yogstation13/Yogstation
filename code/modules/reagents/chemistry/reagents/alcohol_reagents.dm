@@ -2682,6 +2682,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Syndicate Screwdriver"
 	description = "A drink that all greytiders and syndicate enjoy"
 	boozepwr = 115
+	metabolization_rate = 1.5
 	color = "#2E6671"
 	quality = DRINK_GOOD
 	taste_description = "a tangy taste mixed with liquified Robustness"
