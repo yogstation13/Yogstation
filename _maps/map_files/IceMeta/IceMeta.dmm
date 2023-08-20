@@ -32827,7 +32827,6 @@
 "jAe" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/vending/robotics,
-/obj/structure/table/wood/bar,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "jAk" = (
