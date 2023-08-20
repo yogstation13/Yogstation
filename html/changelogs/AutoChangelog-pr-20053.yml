@@ -1,6 +1,0 @@
-author: "Scrambledeggs00"
-delete-after: true 
-changes: 
-  - rscadd: "Peacekeeper helm, belt, vest, and uniforms added"
-  - imageadd: "Peacekeeper riot suit, helm, beret, tactical stunprod, and tactical breath mask have new sprites"
-  - imagedel: "Most Peacekeeper gear is no longer green tinted Security gear"
