@@ -18,18 +18,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"aN" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "bq" = (
 /obj/structure/railing{
 	dir = 1
@@ -128,6 +116,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"dX" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"ei" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "eo" = (
 /obj/structure/window/reinforced,
 /obj/structure/shuttle/engine/heater{
@@ -200,15 +205,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"hC" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "hE" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -295,14 +291,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"kS" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "lc" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -381,18 +369,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"np" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "nD" = (
 /obj/structure/railing{
 	dir = 1
@@ -408,20 +384,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"nW" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "oG" = (
 /obj/item/kirbyplants/random,
@@ -479,6 +441,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"pL" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "qC" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/blue,
@@ -516,6 +490,31 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"rN" = (
+/obj/machinery/button/door{
+	id = "4861tableshutters";
+	name = "Table Privacy Shutters";
+	pixel_x = -28;
+	pixel_y = -5;
+	req_access_txt = "40"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"rY" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "sd" = (
 /obj/machinery/computer/cargo/express,
 /turf/open/floor/mineral/titanium/white,
@@ -548,6 +547,20 @@
 	pixel_x = 27
 	},
 /obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"tx" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "tA" = (
@@ -764,6 +777,18 @@
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"Bw" = (
+/obj/machinery/shieldgen{
+	anchored = 1
+	},
+/obj/machinery/button/door{
+	id = "48641ragecageexit";
+	name = "Rage Cage Exit Doors";
+	pixel_x = 24;
+	req_access_txt = "40"
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "Bz" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -833,9 +858,9 @@
 "EV" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"Fc" = (
+"Fb" = (
 /obj/machinery/door/poddoor{
-	id = "byosblast"
+	id = "48641ragecageexit"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -907,6 +932,18 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"GG" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Hb" = (
 /obj/machinery/shieldgen{
 	anchored = 1
@@ -954,6 +991,18 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
+"Ia" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "4861tableshutters";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Ix" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
@@ -968,18 +1017,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Jd" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "Jg" = (
 /obj/machinery/door/window/westleft{
@@ -1186,21 +1223,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"Vy" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "byos";
-	name = "Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "VI" = (
 /obj/structure/railing{
 	dir = 1
@@ -1256,28 +1278,6 @@
 /obj/machinery/jukebox,
 /turf/open/floor/light/colour_cycle/dancefloor_b,
 /area/shuttle/escape)
-"YT" = (
-/obj/machinery/shieldgen{
-	anchored = 1
-	},
-/obj/machinery/button/door{
-	id = "byosblast";
-	name = "Rage Cage Exit Doors";
-	pixel_x = 24;
-	req_access_txt = "40"
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Zc" = (
-/obj/machinery/button/door{
-	id = "byos";
-	name = "Table Privacy Shutters";
-	pixel_x = -28;
-	pixel_y = -5;
-	req_access_txt = "40"
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "ZA" = (
 /turf/open/floor/engine,
 /area/shuttle/escape)
@@ -1328,9 +1328,9 @@ bB
 Bz
 xG
 sV
-Zc
+rN
 dn
-np
+GG
 kx
 KX
 qF
@@ -1358,7 +1358,7 @@ Aj
 SE
 dn
 dn
-hC
+dX
 kx
 KX
 Lp
@@ -1386,7 +1386,7 @@ XN
 Ft
 dn
 dn
-aN
+pL
 ih
 DJ
 tg
@@ -1413,8 +1413,8 @@ HT
 Sl
 dy
 dn
-kS
-Vy
+ei
+rY
 Bu
 FJ
 FU
@@ -1441,7 +1441,7 @@ da
 tQ
 JP
 dn
-hC
+dX
 kx
 Bu
 ao
@@ -1469,7 +1469,7 @@ da
 gz
 dn
 dn
-hC
+dX
 kx
 Bu
 ao
@@ -1496,8 +1496,8 @@ Xo
 Pl
 po
 dv
-nW
-Jd
+tx
+Ia
 kx
 Bu
 ao
@@ -1586,7 +1586,7 @@ pj
 Bu
 mQ
 NB
-Fc
+Fb
 NB
 NB
 we
@@ -1670,7 +1670,7 @@ nD
 tp
 KX
 eC
-YT
+Bw
 bq
 Lp
 yw
