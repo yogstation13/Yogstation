@@ -1,0 +1,6 @@
+author: "JohnFulpWillard & Mothblocks"
+delete-after: true 
+changes: 
+  - bugfix: "Removes being able to stack do_afters on things (like surgery on several limbs on the same person)."
+  - rscdel: "Removed do_mob, do_after_mob and do_atom."
+  - tweak: "You now do CPR faster after the first attempt."
