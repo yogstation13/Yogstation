@@ -1376,8 +1376,7 @@
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stack/cable_coil = 3,
 		/obj/item/stack/sheet/glass = 1,
-		/obj/item/stack/sheet/mineral/gold = 1,
-		/obj/item/stack/sheet/mineral/silver = 1)
+		/obj/item/stack/sheet/plasteel = 2)
 
 	needs_anchored = FALSE
 
