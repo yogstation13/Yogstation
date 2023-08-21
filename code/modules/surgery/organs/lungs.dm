@@ -310,15 +310,10 @@
 		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
 
 	// Healium
-		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 		var/healium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/healium))
 		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
-			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1*eff - existing))
-			H.adjustFireLoss(-7)
-			H.adjustToxLoss(-5)
-			H.adjustBruteLoss(-5)
 		gas_breathed = breath.get_moles(/datum/gas/healium)
 		if(gas_breathed > gas_stimulation_min && !helium_speech)
 			helium_speech = TRUE
@@ -357,6 +352,20 @@
 			H.reagents.add_reagent(/datum/reagent/hexane,5)
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+
+	// Hyper-noblium
+		gas_breathed = breath.get_moles(/datum/gas/hypernoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/hypernoblium)
+			H.reagents.add_reagent(/datum/reagent/hypernoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/hypernoblium, -gas_breathed)
+	
+	// Anti-noblium
+		gas_breathed = breath.get_moles(/datum/gas/antinoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/antinoblium)
+			H.reagents.add_reagent(/datum/reagent/antinoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/antinoblium, -gas_breathed)
 
 	// Miasma
 		if (breath.get_moles(/datum/gas/miasma))
@@ -494,6 +503,7 @@
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC // no more humans with IPC lungs, that's just silly
 	status = ORGAN_ROBOTIC
 	COOLDOWN_DECLARE(last_message)
 

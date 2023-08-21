@@ -43,7 +43,7 @@
 	/// Calibration of the probe
 	var/calibration = 1
 
-/obj/machinery/computer/auxiliary_base/Initialize()
+/obj/machinery/computer/auxiliary_base/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio(src)
 	radio.frequency = radio_freq
@@ -239,7 +239,7 @@
 			var/turf/place = colony_turfs[i]
 			if(!place)
 				return BAD_COORDS
-			if(!istype(place.loc, /area/lavaland/surface))
+			if(!istype(place.loc, /area/lavaland/surface) && !istype(place.loc, /area/icemoon/surface) && !istype(place.loc, /area/icemoon/underground))
 				return BAD_AREA
 			if(disallowed_turf_types[place.type])
 				return BAD_TURF

@@ -58,7 +58,7 @@
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
-	handle_clown_mutation(current_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
+	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
 	current_mob.grant_language(/datum/language/darkspawn)
 	add_team_hud(current_mob)
 

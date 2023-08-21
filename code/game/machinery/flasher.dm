@@ -13,7 +13,7 @@
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 100 //How knocked down targets are when flashed.
+	var/strength = 100 //The "power" of the flash. At time of writing, this affects confusion stacks.
 	var/base_state = "mflash"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
@@ -46,14 +46,15 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/flasher/update_icon()
-	if (powered())
-		if(bulb.burnt_out)
-			icon_state = "[base_state]1-p"
-		else
-			icon_state = "[base_state]1"
-	else
+/obj/machinery/flasher/update_icon_state()
+	. = ..()
+	if(!powered())
 		icon_state = "[base_state]1-p"
+		return
+	if(bulb.burnt_out)
+		icon_state = "[base_state]1-p"
+	else
+		icon_state = "[base_state]1"
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
@@ -123,7 +124,10 @@
 			continue
 
 		if(L.flash_act(affect_silicon = 1))
-			L.Paralyze(strength)
+			if(iscarbon(L))
+				bulb.flash_carbon(L, src, strength / 10, TRUE)
+			else if(iscyborg(L) && bulb.borgstun)
+				bulb.flash_borg(L, src)
 			flashed = TRUE
 
 	if(flashed)
@@ -162,7 +166,7 @@
 			new /obj/item/stack/sheet/metal (loc, 2)
 	qdel(src)
 
-/obj/machinery/flasher/portable/Initialize()
+/obj/machinery/flasher/portable/Initialize(mapload)
 	. = ..()
 	proximity_monitor = new(src, 0)
 
@@ -207,7 +211,7 @@
 	. = ..()
 	. += span_notice("Its channel ID is '[id]'.")
 
-/obj/item/wallframe/flasher/after_attach(var/obj/O)
+/obj/item/wallframe/flasher/after_attach(obj/O)
 	..()
 	var/obj/machinery/flasher/F = O
 	F.id = id

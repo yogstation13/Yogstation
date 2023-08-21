@@ -18,7 +18,7 @@
 	var/heat_stage = 0
 	var/heat_diffusion = 2
 
-/obj/item/minigunbackpack/Initialize()
+/obj/item/minigunbackpack/Initialize(mapload)
 	. = ..()
 	gun = new(src)
 	START_PROCESSING(SSobj, src)
@@ -33,16 +33,16 @@
 		heat_stage = 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
+/obj/item/minigunbackpack/attack_hand(mob/living/carbon/user)
 	if(loc == user)
 		if(!armed)
-			if(user.get_item_by_slot(SLOT_BACK) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 				armed = TRUE
 				if(!user.put_in_hands(gun))
 					armed = FALSE
 					to_chat(user, span_warning("You need a free hand to hold the gun!"))
 					return
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				user.update_inv_back()
 		else
 			to_chat(user, span_warning("You are already holding the gun!"))
@@ -81,13 +81,14 @@
 				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 
-/obj/item/minigunbackpack/update_icon()
+/obj/item/minigunbackpack/update_icon_state()
+	. = ..()
 	if(armed)
 		icon_state = "notholstered"
 	else
 		icon_state = "holstered"
 
-/obj/item/minigunbackpack/proc/attach_gun(var/mob/user)
+/obj/item/minigunbackpack/proc/attach_gun(mob/user)
 	if(!gun)
 		gun = new(src)
 	gun.forceMove(src)
@@ -96,7 +97,7 @@
 		to_chat(user, span_notice("You attach the [gun.name] to the [name]."))
 	else
 		visible_message(span_warning("The [gun.name] snaps back onto the [name]!"))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.update_inv_back()
 
 
@@ -129,7 +130,7 @@
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	var/obj/item/minigunbackpack/ammo_pack
 
-/obj/item/gun/ballistic/minigunosprey/Initialize()
+/obj/item/gun/ballistic/minigunosprey/Initialize(mapload)
 	if(istype(loc, /obj/item/minigunbackpack)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
 		START_PROCESSING(SSfastprocess, src)

@@ -63,15 +63,7 @@
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
-
-/obj/item/clothing/glasses/meson/equipped(mob/user, slot)
-	. = ..()
-	if(ishuman(user) && slot == SLOT_GLASSES)
-		ADD_TRAIT(user, TRAIT_MESONS, CLOTHING_TRAIT)
-
-/obj/item/clothing/glasses/meson/dropped(mob/user)
-	. = ..()
-	REMOVE_TRAIT(user, TRAIT_MESONS, CLOTHING_TRAIT)
+	clothing_traits = list(TRAIT_MESONS)
 
 /obj/item/clothing/glasses/meson/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is putting \the [src] to [user.p_their()] eyes and overloading the brightness! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -107,6 +99,24 @@
 	flash_protect = 1
 	tint = 1
 
+/obj/item/clothing/glasses/meson/sunglasses/ce
+	name = "advanced engineering sunglasses"
+	desc = "A meson scanner, diagnostic HUD, and reactive welding shield built into a pair of sunglasses."
+	flash_protect = 2 // welding moment
+	var/hud_type = DATA_HUD_DIAGNOSTIC_BASIC
+
+/obj/item/clothing/glasses/meson/sunglasses/ce/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(slot == ITEM_SLOT_EYES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.show_to(user)
+
+/obj/item/clothing/glasses/meson/sunglasses/ce/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.hide_from(user)
+
 /obj/item/clothing/glasses/science
 	name = "science goggles"
 	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."
@@ -119,7 +129,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 
 /obj/item/clothing/glasses/science/item_action_slot_check(slot)
-	if(slot == SLOT_GLASSES)
+	if(slot == ITEM_SLOT_EYES)
 		return 1
 
 /obj/item/clothing/glasses/science/night
@@ -239,15 +249,7 @@
 	name = "beer goggles"
 	desc = "A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion."
 	clothing_flags = SCAN_REAGENTS
-
-/obj/item/clothing/glasses/sunglasses/reagent/equipped(mob/user, slot)
-	. = ..()
-	if(ishuman(user) && slot == SLOT_GLASSES)
-		ADD_TRAIT(user, TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
-
-/obj/item/clothing/glasses/sunglasses/reagent/dropped(mob/user)
-	. = ..()
-	REMOVE_TRAIT(user, TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
+	clothing_traits = list(TRAIT_BOOZE_SLIDER)
 
 /obj/item/clothing/glasses/sunglasses/garb
 	name = "black gar glasses"
@@ -320,7 +322,7 @@
 
 /obj/item/clothing/glasses/blindfold/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == SLOT_GLASSES)
+	if(slot == ITEM_SLOT_EYES)
 		user.become_blind("blindfold_[REF(src)]")
 
 /obj/item/clothing/glasses/blindfold/dropped(mob/living/carbon/human/user)
@@ -335,15 +337,19 @@
 	var/colored_before = FALSE
 
 /obj/item/clothing/glasses/blindfold/white/equipped(mob/living/carbon/human/user, slot)
-	if(ishuman(user) && slot == SLOT_GLASSES)
-		update_icon(user)
+	if(ishuman(user) && slot & ITEM_SLOT_EYES)
+		update_appearance(UPDATE_ICON)
 		user.update_inv_glasses() //Color might have been changed by update_icon.
-	..()
+	return ..()
 
-/obj/item/clothing/glasses/blindfold/white/update_icon(mob/living/carbon/human/user)
-	if(ishuman(user) && !colored_before)
-		add_atom_colour("#[user.eye_color]", FIXED_COLOUR_PRIORITY)
+/obj/item/clothing/glasses/blindfold/white/update_icon(updates=ALL)
+	if(!ishuman(loc))
+		return ..()
+	var/mob/living/carbon/human/loc_human = loc
+	if(!colored_before)
+		add_atom_colour(loc_human.eye_color, FIXED_COLOUR_PRIORITY)
 		colored_before = TRUE
+	return ..()
 
 /obj/item/clothing/glasses/blindfold/white/worn_overlays(isinhands = FALSE, file2use)
 	. = list()
@@ -351,7 +357,7 @@
 		var/mob/living/carbon/human/H = loc
 		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/eyes/eyes.dmi', "blindfoldwhite")
 		M.appearance_flags |= RESET_COLOR
-		M.color = "#[H.eye_color]"
+		M.color = H.eye_color
 		. += M
 
 /obj/item/clothing/glasses/sunglasses/big
@@ -387,7 +393,7 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
-/obj/item/clothing/glasses/thermal/syndi/Initialize()
+/obj/item/clothing/glasses/thermal/syndi/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -463,7 +469,7 @@
 	var/datum/action/cooldown/expose/expose_ability
 	var/hud_type = DATA_HUD_MEDICAL_ADVANCED
 
-/obj/item/clothing/glasses/godeye/Initialize()
+/obj/item/clothing/glasses/godeye/Initialize(mapload)
 	. = ..()
 	expose_ability = new(src)
 

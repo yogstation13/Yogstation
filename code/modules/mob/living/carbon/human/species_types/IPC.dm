@@ -5,9 +5,9 @@
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
@@ -24,15 +24,20 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.5 //Mass producible labor + robot
-	burnmod = 1.5
-	heatmod = 1
+	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
+	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
+	heatmod = 0.5 // and i yearned for the certainty of steel
+	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing
+	tempmod = 2 // metal is more thermally conductive than flesh, heats up more when on fire
+	acidmod = 2 // go look up "acid etching"
 	brutemod = 1
+	oxymod = 0 // what the fuck?
 	toxmod = 0
 	clonemod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
-	reagent_tag = PROCESS_SYNTHETIC
+	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
+	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
@@ -275,22 +280,27 @@
 		H.setOxyLoss(0)
 		H.losebreath = 0
 	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHARDCRIT)) // So they die eventually instead of being stuck in crit limbo.
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			H.death() // YOU'RE GETTING RUSTY, MACHINE!!
+			return .
 		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
 	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
+		var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
 		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
 			H.blood_in_hands = 0
 			H.wash(CLEAN_TYPE_BLOOD)
 			to_chat(H,"You absorb the blood covering you to heal.")
 			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-			var/heal_amt = 30 //heals brute first, then burn with any excess
-			var/brute_before = H.getBruteLoss()
-			H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
-			heal_amt -= max(brute_before - H.getBruteLoss(), 0)
-			H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+			if(UV && istype(UV))
+				UV.blood_heal(H, 30)
+		if(UV.hard_damage > 0)
+			UV.hard_damage -= UV.style // hard damage decays over time, faster if you're cool
+		UV.hard_damage = clamp(round(UV.hard_damage), 0, H.maxHealth - 1)
+		UV.handle_style(H)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -336,8 +346,8 @@ ipc martial arts stuff
 	. = ..()
 	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
-			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
-			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			UV.blood_heal(H, -25)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
 
 
@@ -346,9 +356,7 @@ ipc martial arts stuff
 		if(H.in_throw_mode)//if countering the emp
 			add_empproof(H)
 			throw_lightning(H)
-		else//if just getting hit
-			addtimer(CALLBACK(src, PROC_REF(add_empproof), H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+			addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 1, TIMER_OVERRIDE | TIMER_UNIQUE)//can't remove it instantly, so they're immune for all of 0.1 seconds
 	else if(severity == EMP_HEAVY)
 		H.emote("warn") // *chuckles* i'm in danger!
 
@@ -364,5 +372,15 @@ ipc martial arts stuff
 	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
 	if(ipcmartial)
 		ipcmartial.Destroy()
+
+/datum/species/ipc/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+	if(..())
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			if(istype(UV))
+				UV.hard_damage = min(UV.hard_damage + round(damage / 5), H.maxHealth - 1) // every 10 damage taken temporarily reduces max HP by 1, so try to actually dodge things
+				UV.handle_style(H, damage / -50) // lose 1 style rank for every 50 damage taken
+		return TRUE
+	return FALSE
 
 #undef CONSCIOUSAY

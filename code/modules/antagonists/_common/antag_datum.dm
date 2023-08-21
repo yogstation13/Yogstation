@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/hud_icon = 'yogstation/icons/mob/antag_hud.dmi'
 	///Name of the antag hud we provide to this mob.
 	var/antag_hud_name
+	var/awake_stage = ANTAG_AWAKE //What stage we are of "waking up"
 
 	//Antag panel properties
 	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
@@ -202,7 +203,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Returns the team antagonist belongs to if any.
 /datum/antagonist/proc/get_team()
-	return
+	return null
 
 //Individual roundend report
 /datum/antagonist/proc/roundend_report()
@@ -400,8 +401,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/get_objectives()
 	var/objective_count = 1
 	var/list/objective_data = list()
+	var/datum/team/antag_team = get_team()
 	//all obj
-	for(var/datum/objective/objective in objectives)
+	for(var/datum/objective/objective in objectives + antag_team?.objectives)
 		objective_data += list(list(
 			"count" = objective_count,
 			"name" = objective.objective_name,

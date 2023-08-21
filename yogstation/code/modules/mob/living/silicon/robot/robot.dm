@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/proc/PickBorgSkin(var/forced = FALSE) //We'll do our own AI version inside its pre existent skin selector methinks
+/mob/living/silicon/robot/proc/PickBorgSkin(forced = FALSE) //We'll do our own AI version inside its pre existent skin selector methinks
 	icon = initial(icon) //Redundancy in case they repick a skin after modulechange
 	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their borg skin, but there is no borg skin holder datum! (Has the game not started yet?)")
@@ -41,13 +41,14 @@
 /obj/item/robot_module/do_transform_delay()
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
-	R.PickBorgSkin()
-	if(hat)
-		if(R.hat_offset == INFINITY)
-			R.forceMove(get_turf(R))
-		else
-			R.place_on_head(hat)
-		hat = null
+	if(istype(R))
+		R.PickBorgSkin()
+		if(hat)
+			if(R.hat_offset == INFINITY)
+				R.forceMove(get_turf(R))
+			else
+				R.place_on_head(hat)
+			hat = null
 
 /mob/living/silicon/robot/update_icons() //Need to change this, as it's killing donorborgs
 	var/old_icon = icon_state

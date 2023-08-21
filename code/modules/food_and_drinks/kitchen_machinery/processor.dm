@@ -23,7 +23,7 @@
 	 */
 	var/static/list/processor_inputs
 
-/obj/machinery/processor/Initialize()
+/obj/machinery/processor/Initialize(mapload)
 	. = ..()
 	if(processor_inputs)
 		return
@@ -53,8 +53,8 @@
 	if (recipe.output && loc && !QDELETED(src))
 		for(var/i = 0, i < rating_amount, i++)
 			new recipe.output(drop_location())
-	if (ismob(what))
-		var/mob/themob = what
+	if (isliving(what))
+		var/mob/living/themob = what
 		themob.gib(TRUE,TRUE,TRUE)
 	else
 		qdel(what)
@@ -170,7 +170,7 @@
 	name = "slime processor"
 	desc = "An industrial grinder with a sticker saying appropriated for science department. Keep hands clear of intake area while operating."
 
-/obj/machinery/processor/slime/Initialize()
+/obj/machinery/processor/slime/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/processor/slime(null)
 	B.apply_default_parts(src)

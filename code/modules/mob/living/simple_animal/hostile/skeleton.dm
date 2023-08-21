@@ -6,7 +6,7 @@
 	icon_living = "skeleton"
 	icon_dead = "skeleton"
 	gender = NEUTER
-	mob_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
+	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	turns_per_move = 5
 	speak_emote = list("rattles")
 	emote_see = list("rattles")
@@ -51,7 +51,7 @@
 	melee_damage_upper = 20
 	deathmessage = "collapses into a pile of bones, its gear falling to the floor!"
 	loot = list(/obj/effect/decal/remains/human,
-				/obj/item/twohanded/spear,
+				/obj/item/melee/spear,
 				/obj/item/clothing/shoes/winterboots,
 				/obj/item/clothing/suit/hooded/wintercoat)
 
@@ -121,6 +121,6 @@
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)
 
-/mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize()
+/mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize(mapload)
 	. = ..()
 	set_light(2)

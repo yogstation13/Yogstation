@@ -19,7 +19,7 @@
 	/// Used to track if the player's jobs menu sent a message saying it successfully mounted.
 	var/jobs_menu_mounted = FALSE
 
-/mob/dead/new_player/Initialize()
+/mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
 		var/atom/movable/screen/splash/S = new(client, TRUE, TRUE)
 		S.Fade(TRUE)
@@ -297,7 +297,7 @@
 		observer.real_name = observer.client.prefs.read_preference(/datum/preference/name/real_name)
 		observer.name = observer.real_name
 		observer.client.init_verbs()
-	observer.update_icon()
+	observer.update_appearance(UPDATE_ICON)
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
 	qdel(src)
@@ -373,7 +373,7 @@
 	SSjob.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
-	character.mind.quiet_round = character.client.prefs.yogtoggles & QUIET_ROUND // yogs - Donor Features
+	character.mind.quiet_round = character.client.prefs.read_preference(/datum/preference/toggle/quiet_mode) // yogs - Donor Features
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip

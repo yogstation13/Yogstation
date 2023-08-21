@@ -16,7 +16,7 @@
 	var/obj/effect/countdown/transformer/countdown
 	var/mob/living/silicon/ai/masterAI
 
-/obj/machinery/transformer/Initialize()
+/obj/machinery/transformer/Initialize(mapload)
 	// On us
 	. = ..()
 	new /obj/machinery/conveyor/auto(locate(x - 1, y, z), WEST)
@@ -34,8 +34,8 @@
 	QDEL_NULL(countdown)
 	. = ..()
 
-/obj/machinery/transformer/update_icon()
-	..()
+/obj/machinery/transformer/update_icon_state()
+	. = ..()
 	if(stat & (BROKEN|NOPOWER) || cooldown == 1)
 		icon_state = "separator-AO0"
 	else
@@ -66,7 +66,7 @@
 /obj/machinery/transformer/process()
 	if(cooldown && (cooldown_timer <= world.time))
 		cooldown = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/transformer/proc/do_transform(mob/living/carbon/human/H)
 	if(stat & (BROKEN|NOPOWER))
@@ -81,7 +81,7 @@
 	// Activate the cooldown
 	cooldown = 1
 	cooldown_timer = world.time + cooldown_duration
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
 	H.emote("scream") // It is painful

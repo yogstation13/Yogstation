@@ -66,7 +66,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// Current Viewrange
 	var/view = 0
 
-/mob/dead/observer/Initialize()
+/mob/dead/observer/Initialize(mapload)
 	set_invisibility(GLOB.observer_default_invisibility)
 
 	add_verb(src, list(
@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				facial_hair_style = body_human.facial_hair_style
 				facial_hair_color = brighten_color(body_human.facial_hair_color)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(!T || is_secret_level(T.z))
 		var/list/turfs = get_area_turfs(/area/shuttle/arrival)
@@ -193,7 +193,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
  * Hair will always update its dir, so if your sprite has no dirs the haircut will go all over the place.
  * |- Ricotez
  */
-/mob/dead/observer/proc/update_icon(new_form)
+/mob/dead/observer/update_icon(updates=ALL, new_form)
+	. = ..()
+
 	if(client) //We update our preferences in case they changed right before update_icon was called.
 		ghost_accs = client.prefs.read_preference(/datum/preference/choiced/ghost_accessories)
 		ghost_others = client.prefs.read_preference(/datum/preference/choiced/ghost_others)
@@ -227,7 +229,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(S)
 				facial_hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
 				if(facial_hair_color)
-					facial_hair_overlay.color = "#" + facial_hair_color
+					facial_hair_overlay.color = facial_hair_color
 				facial_hair_overlay.alpha = 200
 				add_overlay(facial_hair_overlay)
 		if(hair_style)
@@ -235,7 +237,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(S)
 				hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
 				if(hair_color)
-					hair_overlay.color = "#" + hair_color
+					hair_overlay.color = hair_color
 				hair_overlay.alpha = 200
 				add_overlay(hair_overlay)
 
@@ -389,7 +391,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, "You can no longer be brought back into your body.")
 	return TRUE
 
-/mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source, flashwindow = TRUE)
+/mob/dead/observer/proc/notify_cloning(message, sound, atom/source, flashwindow = TRUE)
 	if(flashwindow)
 		window_flash(client)
 	if(message)
@@ -810,15 +812,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(HAIR in species.species_traits)
 		hair_style = client.prefs.read_preference(/datum/preference/choiced/hairstyle)
-		hair_color = brighten_color(client.prefs.read_preference(/datum/preference/color_legacy/hair_color))
+		hair_color = brighten_color(client.prefs.read_preference(/datum/preference/color/hair_color))
 
 	if(FACEHAIR in species.species_traits)
 		facial_hair_style = client.prefs.read_preference(/datum/preference/choiced/facial_hairstyle)
-		facial_hair_color = brighten_color(client.prefs.read_preference(/datum/preference/color_legacy/facial_hair_color))
+		facial_hair_color = brighten_color(client.prefs.read_preference(/datum/preference/color/facial_hair_color))
 	
 	qdel(species)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return IsAdminGhost(usr)
@@ -970,7 +972,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()
-	if(var_name == "invisibility")
+	if(var_name == NAMEOF(src, invisibility))
 		set_invisibility(invisibility) // updates light
 
 /proc/set_observer_default_invisibility(amount, message=null)

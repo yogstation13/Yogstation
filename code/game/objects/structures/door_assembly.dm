@@ -20,10 +20,9 @@
 	var/material_type = /obj/item/stack/sheet/metal
 	var/material_amt = 4
 
-/obj/structure/door_assembly/Initialize()
+/obj/structure/door_assembly/Initialize(mapload)
 	. = ..()
-	update_icon()
-	update_name()
+	update_appearance()
 
 /obj/structure/door_assembly/examine(mob/user)
 	. = ..()
@@ -255,22 +254,22 @@
 					door.name = base_name
 				door.previous_airlock = previous_assembly
 				electronics.forceMove(door)
-				door.update_icon()
+				door.update_appearance(UPDATE_ICON)
 				qdel(src)
 	else
 		return ..()
-	update_name()
-	update_icon()
+	update_appearance()
 
-/obj/structure/door_assembly/update_icon()
-	cut_overlays()
+/obj/structure/door_assembly/update_overlays()
+	. = ..()
 	if(!glass)
-		add_overlay(get_airlock_overlay("fill_construction", icon))
+		. += get_airlock_overlay("fill_construction", icon)
 	else if(glass)
-		add_overlay(get_airlock_overlay("glass_construction", overlays_file))
-	add_overlay(get_airlock_overlay("panel_c[state+1]", overlays_file))
+		. += get_airlock_overlay("glass_construction", overlays_file)
+	. += get_airlock_overlay("panel_c[state+1]", overlays_file)
 
-/obj/structure/door_assembly/proc/update_name()
+/obj/structure/door_assembly/update_name(updates=ALL)
+	. = ..()
 	name = ""
 	switch(state)
 		if(AIRLOCK_ASSEMBLY_NEEDS_WIRES)
@@ -293,8 +292,7 @@
 	if(electronics)
 		target.electronics = source.electronics
 		source.electronics.forceMove(target)
-	target.update_icon()
-	target.update_name()
+	target.update_appearance()
 	qdel(source)
 
 /obj/structure/door_assembly/deconstruct(disassembled = TRUE)

@@ -8,6 +8,7 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
+	base_icon_state = "standard"
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER	//the turret is invisible if it's inside its cover
 	density = TRUE
@@ -18,7 +19,6 @@
 	req_access = list(ACCESS_SEC_DOORS)
 	power_channel = AREA_USAGE_EQUIP	//drains power from the EQUIPMENT channel
 
-	var/base_icon_state = "standard"
 	var/scan_range = 7
 	var/atom/base = null //for turrets inside other objects
 
@@ -77,11 +77,11 @@
 	var/datum/action/turret_toggle/toggle_action
 	var/mob/remote_controller
 
-/obj/machinery/porta_turret/Initialize()
+/obj/machinery/porta_turret/Initialize(mapload)
 	. = ..()
 	if(!base)
 		base = src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	//Sets up a spark system
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -97,26 +97,25 @@
 	if(!has_cover)
 		INVOKE_ASYNC(src, PROC_REF(popUp))
 
-/obj/machinery/porta_turret/update_icon()
-	cut_overlays()
+/obj/machinery/porta_turret/update_icon_state()
+	. = ..()
 	if(!anchored)
 		icon_state = "turretCover"
 		return
 	if(stat & BROKEN)
 		icon_state = "[base_icon_state]_broken"
-	else
-		if(powered())
-			if(on && raised)
-				switch(mode)
-					if(TURRET_STUN)
-						icon_state = "[base_icon_state]_stun"
-					if(TURRET_LETHAL)
-						icon_state = "[base_icon_state]_lethal"
-			else
-				icon_state = "[base_icon_state]_off"
-		else
-			icon_state = "[base_icon_state]_unpowered"
-
+		return
+	if(!powered())
+		icon_state = "[base_icon_state]_unpowered"
+		return
+	if(!on || !raised)
+		icon_state = "[base_icon_state]_off"
+		return
+	switch(mode)
+		if(TURRET_STUN)
+			icon_state = "[base_icon_state]_stun"
+		if(TURRET_LETHAL)
+			icon_state = "[base_icon_state]_lethal"
 
 /obj/machinery/porta_turret/proc/setup(obj/item/gun/turret_gun)
 	if(stored_gun)
@@ -143,7 +142,7 @@
 	if(gun_properties["reqpower"])
 		reqpower = gun_properties["reqpower"]
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return gun_properties
 
 /obj/machinery/porta_turret/Destroy()
@@ -218,10 +217,9 @@
 		interact(usr)
 
 /obj/machinery/porta_turret/power_change()
-	. = ..()
 	if(!anchored || (stat & BROKEN) || !powered())
-		update_icon()
 		remove_control()
+	return ..()
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -250,7 +248,7 @@
 		if(!anchored && !isinspace())
 			setAnchored(TRUE)
 			invisibility = INVISIBILITY_MAXIMUM
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			to_chat(user, span_notice("You secure the exterior bolts on the turret."))
 			if(has_cover)
 				cover = new /obj/machinery/porta_turret_cover(loc) //create a new turret. While this is handled in process(), this is to workaround a bug where the turret becomes invisible for a split second
@@ -286,7 +284,7 @@
 	obj_flags |= EMAGGED
 	controllock = TRUE
 	on = FALSE //turns off the turret temporarily
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	sleep(6 SECONDS) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
 	on = TRUE //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 
@@ -310,7 +308,7 @@
 			if(!on)
 				on = TRUE
 
-/obj/machinery/porta_turret/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/porta_turret/take_damage(ddamage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && obj_integrity > 0) //damage received
 		if(prob(30))
@@ -461,7 +459,7 @@
 		cover.icon_state = "turretCover"
 	raised = 0
 	invisibility = 2
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/perp)
 	var/threatcount = 0	//the integer returned
@@ -489,7 +487,7 @@
 	if(check_records)	//if the turret can check the records, check if they are set to *Arrest* on records
 		var/perpname = perp.get_face_name(perp.get_id_name())
 		var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
-		if(!R || (R.fields["criminal"] == "*Arrest*"))
+		if(!R || (R.fields["criminal"] == WANTED_ARREST))
 			threatcount += 4
 
 	if(shoot_unloyal)
@@ -531,17 +529,17 @@
 	if(T.density)
 		if(wall_turret_direction)
 			var/turf/closer = get_step(T,wall_turret_direction)
-			if(istype(closer) && !is_blocked_turf(closer) && T.Adjacent(closer))
+			if(istype(closer) && !closer.is_blocked_turf() && T.Adjacent(closer))
 				T = closer
 		else
 			var/target_dir = get_dir(T,target)
 			for(var/d in list(0,-45,45))
 				var/turf/closer = get_step(T,turn(target_dir,d))
-				if(istype(closer) && !is_blocked_turf(closer) && T.Adjacent(closer))
+				if(istype(closer) && !closer.is_blocked_turf() && T.Adjacent(closer))
 					T = closer
 					break
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/obj/item/projectile/A
 	//any emagged turrets drains 2x power and uses a different projectile?
 	if(mode == TURRET_STUN)
@@ -653,7 +651,7 @@
 	faction = list(ROLE_SYNDICATE)
 	desc = "A ballistic machine gun auto-turret."
 
-/obj/machinery/porta_turret/syndicate/Initialize()
+/obj/machinery/porta_turret/syndicate/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
@@ -740,7 +738,7 @@
 /obj/machinery/porta_turret/aux_base/interact(mob/user) //Controlled solely from the base console.
 	return
 
-/obj/machinery/porta_turret/aux_base/Initialize()
+/obj/machinery/porta_turret/aux_base/Initialize(mapload)
 	. = ..()
 	cover.name = name
 	cover.desc = desc
@@ -761,7 +759,7 @@
 	faction = list("neutral","silicon","turret")
 	mode = TURRET_LETHAL
 
-/obj/machinery/porta_turret/centcom_shuttle/Initialize()
+/obj/machinery/porta_turret/centcom_shuttle/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
@@ -935,19 +933,20 @@
 /obj/machinery/turretid/proc/updateTurrets()
 	for (var/obj/machinery/porta_turret/aTurret in turrets)
 		aTurret.setState(enabled, lethal)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/turretid/update_icon()
-	..()
+/obj/machinery/turretid/update_icon_state()
+	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"
-	else if (enabled)
-		if (lethal)
-			icon_state = "control_kill"
-		else
-			icon_state = "control_stun"
-	else
+		return
+	if(!enabled)
 		icon_state = "control_standby"
+		return
+	if(lethal)
+		icon_state = "control_kill"
+	else
+		icon_state = "control_stun"
 
 /obj/item/wallframe/turret_control
 	name = "turret control frame"

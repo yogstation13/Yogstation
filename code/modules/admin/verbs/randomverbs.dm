@@ -81,7 +81,7 @@
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Headset Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, var/operation)
+/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, operation)
 	set category = "Misc.Unused"
 	set name = "Modify Antagonist Reputation"
 
@@ -762,7 +762,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_gib(mob/M in GLOB.mob_list)
+/client/proc/cmd_admin_gib(mob/living/M in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
 	set name = "Gib"
 
@@ -797,7 +797,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins(span_adminnotice("[key_name_admin(usr)] used gibself."))
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Gib Self") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		mob.gib(1, 1, 1)
+		var/mob/living/user_mob = mob
+		user_mob.gib(1, 1, 1)
 
 /client/proc/cmd_admin_check_contents(mob/living/M in GLOB.mob_list)
 	set category = "Misc.Unused"
@@ -1400,7 +1401,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	divine_wrath.preparePixelProjectile(target, source_turf)
 	divine_wrath.fire()
 
-/client/proc/punish_log(var/whom, var/punishment)
+/client/proc/punish_log(whom, punishment)
 	var/msg = "[key_name(usr)] punished [key_name_admin(whom)] with [punishment]." //yogs - Yog tickets
 	message_admins(msg)
 	admin_ticket_log(whom, msg)

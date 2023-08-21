@@ -438,9 +438,9 @@
 		if(slime.docile) //Undoes docility, but doesn't make rabid.
 			slime.visible_message(span_danger("[slime] forgets its training, becoming wild once again!"))
 			slime.docile = FALSE
-			slime.update_name()
+			slime.update_appearance(UPDATE_NAME)
 			continue
-		slime.rabid = 1
+		slime.rabid = TRUE
 		slime.visible_message(span_danger("The [slime] is driven into a frenzy!"))
 	..()
 
@@ -639,7 +639,7 @@
 	if(istype(extract))
 		if(extract.Uses > 0)
 			var/mob/lastheld = get_mob_by_key(holder.my_atom.fingerprintslast)
-			if(lastheld && !lastheld.equip_to_slot_if_possible(extract, SLOT_HANDS, disable_warning = TRUE))
+			if(lastheld && !lastheld.equip_to_slot_if_possible(extract, ITEM_SLOT_HANDS, disable_warning = TRUE))
 				extract.forceMove(get_turf(lastheld))
 
 	use_slime_core(holder)

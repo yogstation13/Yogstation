@@ -3,7 +3,7 @@
 	icon = 'icons/mob/aibots.dmi'
 	layer = MOB_LAYER
 	gender = NEUTER
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	wander = 0
 	healable = 0
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
@@ -130,7 +130,7 @@
 	on = TRUE
 	update_mobility()
 	set_light_on(on)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	diag_hud_set_botstat()
 	return TRUE
 
@@ -139,9 +139,9 @@
 	update_mobility()
 	set_light_on(on)
 	bot_reset() //Resets an AI's call, should it exist.
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/Initialize()
+/mob/living/simple_animal/bot/Initialize(mapload)
 	. = ..()
 	GLOB.bots_list += src
 	access_card = new /obj/item/card/id(src)
@@ -298,16 +298,7 @@
 		else
 			to_chat(user, span_warning("The maintenance panel is locked."))
 	else if(W.GetID())
-		if(bot_core.allowed(user) && !open && !emagged)
-			locked = !locked
-			to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
-		else
-			if(emagged)
-				to_chat(user, span_danger("ERROR"))
-			if(open)
-				to_chat(user, span_warning("Please close the access panel before locking it."))
-			else
-				to_chat(user, span_warning("Access denied."))
+		togglelock(user)
 	else if(istype(W, /obj/item/paicard))
 		insertpai(user, W)
 	else if(istype(W, /obj/item/hemostat) && paicard)
@@ -336,6 +327,21 @@
 			if(W.force) //if force is non-zero
 				do_sparks(5, TRUE, src)
 			..()
+
+/mob/living/simple_animal/bot/proc/togglelock(mob/user)
+	if(bot_core.allowed(user) && !open && !emagged)
+		locked = !locked
+		to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
+	else
+		if(emagged)
+			to_chat(user, span_danger("ERROR"))
+		if(open)
+			to_chat(user, span_warning("Please close the access panel before locking it."))
+		else
+			to_chat(user, span_warning("Access denied."))
+
+/mob/living/simple_animal/bot/AltClick(mob/user)
+	togglelock(user)
 
 /mob/living/simple_animal/bot/bullet_act(obj/item/projectile/Proj)
 	if(Proj && (Proj.damage_type == BRUTE || Proj.damage_type == BURN))
@@ -400,7 +406,7 @@
 	if(istype(dropped_item, /obj/item/stock_parts/cell))
 		var/obj/item/stock_parts/cell/dropped_cell = dropped_item
 		dropped_cell.charge = 0
-		dropped_cell.update_icon()
+		dropped_cell.update_appearance(UPDATE_ICON)
 
 	else if(istype(dropped_item, /obj/item/storage))
 		var/obj/item/storage/S = dropped_item
@@ -409,7 +415,7 @@
 	else if(istype(dropped_item, /obj/item/gun/energy))
 		var/obj/item/gun/energy/dropped_gun = dropped_item
 		dropped_gun.cell.charge = 0
-		dropped_gun.update_icon()
+		dropped_gun.update_appearance(UPDATE_ICON)
 
 //Generalized behavior code, override where needed!
 
@@ -855,7 +861,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 				ejectpai(usr)
 	update_controls()
 
-/mob/living/simple_animal/bot/proc/update_icon()
+/mob/living/simple_animal/bot/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][on]"
 
 // Machinery to simplify topic and access calls
@@ -864,7 +871,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	anchored = FALSE
 	var/mob/living/simple_animal/bot/owner = null
 
-/obj/machinery/bot_core/Initialize()
+/obj/machinery/bot_core/Initialize(mapload)
 	. = ..()
 	owner = loc
 	if(!istype(owner))
@@ -968,7 +975,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/revive(full_heal = 0, admin_revive = 0)
 	if(..())
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		. = 1
 
 /mob/living/simple_animal/bot/ghost()

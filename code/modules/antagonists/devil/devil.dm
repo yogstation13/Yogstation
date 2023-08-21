@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
-		H.dna.features["mcolor"] = "511" //A deep red
+		H.dna.features["mcolor"] = "#551111" //A deep red
 		H.regenerate_icons()
 	else //Did the devil get hit by a staff of transmutation?
 		owner.current.color = "#501010"
@@ -482,16 +482,16 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 			return -1
 		currentMob.change_mob_type( /mob/living/carbon/human, targetturf, null, 1)
 		var/mob/living/carbon/human/H = owner.current
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/lawyer/black(H), SLOT_W_UNIFORM)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), SLOT_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), SLOT_HANDS)
-		H.equip_to_slot_or_del(new /obj/item/pen(H), SLOT_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/lawyer/black(H), ITEM_SLOT_ICLOTHING)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), ITEM_SLOT_FEET)
+		H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), ITEM_SLOT_HANDS)
+		H.equip_to_slot_or_del(new /obj/item/pen(H), ITEM_SLOT_LPOCKET)
 		if(SOULVALUE >= BLOOD_THRESHOLD)
 			H.set_species(/datum/species/lizard, 1)
 			H.underwear = "Nude"
 			H.undershirt = "Nude"
 			H.socks = "Nude"
-			H.dna.features["mcolor"] = "511"
+			H.dna.features["mcolor"] = "#551111"
 			H.regenerate_icons()
 			if(SOULVALUE >= TRUE_THRESHOLD) //Yes, BOTH this and the above if statement are to run if soulpower is high enough.
 				var/mob/living/carbon/true_devil/A = new /mob/living/carbon/true_devil(targetturf)

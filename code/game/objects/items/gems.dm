@@ -19,8 +19,9 @@
 	var/sheet_type = null
 
 	var/image/shine_overlay //shows this overlay when not claimed
+	light_system = MOVABLE_LIGHT
 
-/obj/item/gem/Initialize()
+/obj/item/gem/Initialize(mapload)
 	. = ..()
 	shine_overlay = image(icon = 'icons/obj/gems.dmi',icon_state = "shine")
 	add_overlay(shine_overlay)
@@ -111,7 +112,7 @@
 
 	var/obj/item/gps/internal //stolen from the world anvil
 
-/obj/item/gem/purple/Initialize()
+/obj/item/gem/purple/Initialize(mapload)
 	. = ..()
 	internal = new /obj/item/gps/internal/purple(src)
 
@@ -159,7 +160,7 @@
 	light_color = "#380a41"
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/gem/dark/Initialize()
+/obj/item/gem/dark/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
@@ -168,7 +169,7 @@
 	icon_state = "ruby"
 	var/gem_list = list(/obj/item/gem/ruby, /obj/item/gem/sapphire, /obj/item/gem/emerald, /obj/item/gem/topaz)
 
-/obj/item/gem/random/Initialize(quantity)
+/obj/item/gem/random/Initialize(mapload, quantity)
 	. = ..()
 	var/q = quantity ? quantity : 1
 	for(var/i = 0, i < q, i++)
@@ -208,6 +209,7 @@
 	maximum_max_power = 10.0
 	minimum_growth = 2.0
 	maximum_growth = 8.0
+	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_power = 6
 	light_color = "#0004ff"

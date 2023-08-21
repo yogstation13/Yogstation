@@ -168,9 +168,9 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/dyespray/spraycan = new(get_turf(H))
 	var/list/slots = list(
-		"in your left pocket" = SLOT_L_STORE,
-		"in your right pocket" = SLOT_R_STORE,
-		"in your backpack" = SLOT_IN_BACKPACK
+		"in your left pocket" = ITEM_SLOT_LPOCKET,
+		"in your right pocket" = ITEM_SLOT_RPOCKET,
+		"in your backpack" = ITEM_SLOT_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(spraycan, slots, FALSE) || "at your feet"
 
@@ -287,9 +287,9 @@
 		/obj/item/dice/d20)
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	var/list/slots = list(
-		"in your left pocket" = SLOT_L_STORE,
-		"in your right pocket" = SLOT_R_STORE,
-		"in your backpack" = SLOT_IN_BACKPACK
+		"in your left pocket" = ITEM_SLOT_LPOCKET,
+		"in your right pocket" = ITEM_SLOT_RPOCKET,
+		"in your backpack" = ITEM_SLOT_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
 
@@ -319,3 +319,59 @@
 /datum/quirk/family_heirloom/on_clone(data)
 	heirloom = data
 
+/datum/quirk/bald
+	name = "Smooth-Headed"
+	desc = "You have no hair and are quite insecure about it! Keep your head covered."
+	value = 0
+	icon = "fa-egg"
+	mob_trait = TRAIT_BALD
+	gain_text = span_notice("Your head is as smooth as can be, it's terrible.")
+	lose_text = span_notice("Your head itches, could it be... growing hair?!")
+	medical_record_text = "Patient starkly refused to take off headwear during examination."
+	/// Their original hairstyle before becoming bald
+	var/old_hair
+
+/datum/quirk/bald/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	old_hair = H.hair_style
+	H.hair_style = "Bald"
+	H.update_body_parts()
+	H.update_hair()
+	RegisterSignal(H, COMSIG_CARBON_EQUIP_HAT, PROC_REF(equip_hat))
+	RegisterSignal(H, COMSIG_CARBON_UNEQUIP_HAT, PROC_REF(unequip_hat))
+
+/datum/quirk/bald/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/clothing/head/wig/natural/W = new(get_turf(H))
+	if(old_hair == "Bald")
+		W.hair_style = pick(GLOB.hair_styles_list - "Bald")
+	else
+		W.hair_style = old_hair
+	W.update_icon()
+	var/list/slots = list(
+		"head" = ITEM_SLOT_HEAD,
+		"backpack" = ITEM_SLOT_BACKPACK,
+		"hands" = ITEM_SLOT_HANDS
+	)
+	H.equip_in_one_of_slots(W, slots, qdel_on_fail = TRUE)
+
+/datum/quirk/bald/remove()
+	. = ..()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(QDELETED(H)) // uh oh
+		return
+	H.hair_style = old_hair
+	H.update_body_parts()
+	H.update_hair()
+	UnregisterSignal(H, COMSIG_CARBON_EQUIP_HAT)
+	UnregisterSignal(H, COMSIG_CARBON_UNEQUIP_HAT)
+	SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "bad_hair_day")
+
+/datum/quirk/bald/proc/equip_hat(mob/user, obj/item/hat)
+	if(istype(hat, /obj/item/clothing/head/wig))
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/confident_mane)
+	else
+		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "bad_hair_day")
+
+/datum/quirk/bald/proc/unequip_hat(mob/user, obj/item/hat)
+	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/bald)

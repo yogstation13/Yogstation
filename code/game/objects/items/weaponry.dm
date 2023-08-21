@@ -72,7 +72,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 
-/obj/item/claymore/Initialize()
+/obj/item/claymore/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 40, 105)
 
@@ -98,7 +98,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
 	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
 	flags_1 = CONDUCT_1
-	item_flags = DROPDEL //If this ever happens, it's because you lost an arm
+	item_flags = DROPDEL //IF THIS HAPPENS YOU FUCKING LOST AN ARM! DUMBASS!!
 	slot_flags = null
 	block_chance = 0 //RNG WON'T HELP YOU NOW, PANSY
 	light_range = 3
@@ -106,7 +106,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	var/notches = 0 //HOW MANY PEOPLE HAVE BEEN SLAIN WITH THIS BLADE
 	var/obj/item/disk/nuclear/nuke_disk //OUR STORED NUKE DISK
 
-/obj/item/claymore/highlander/Initialize()
+/obj/item/claymore/highlander/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 	START_PROCESSING(SSobj, src)
@@ -333,7 +333,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/wirerod/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/shard))
-		var/obj/item/twohanded/spear/S = new /obj/item/twohanded/spear
+		var/obj/item/melee/spear/S = new /obj/item/melee/spear
 
 		remove_item_from_storage(user)
 		if (!user.transferItemToLoc(I, S))
@@ -440,9 +440,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	. = ..()
 	. += span_danger("\The [src] has a [nt ? "Nanotrasen" : "Syndicate"] marking on the blade.")
 
-/obj/item/switchblade/backstab/Initialize()
+/obj/item/switchblade/backstab/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/backstabs, 1.75) // 35 damage
+	AddComponent(/datum/component/backstabs, 2, 2 SECONDS) // 40 damage, 2s CD
 
 /obj/item/phone
 	name = "red phone"
@@ -582,13 +582,13 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 
-/obj/item/mounted_chainsaw/Initialize()
+/obj/item/mounted_chainsaw/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/mounted_chainsaw/Destroy()
 	var/obj/item/bodypart/part
-	new /obj/item/twohanded/required/chainsaw(get_turf(src))
+	new /obj/item/melee/chainsaw(get_turf(src))
 	if(iscarbon(loc))
 		var/mob/living/carbon/holder = loc
 		var/index = holder.get_held_index_of_item(src)
@@ -610,7 +610,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("busted")
 	var/impressiveness = 45
 
-/obj/item/statuebust/Initialize()
+/obj/item/statuebust/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/art, impressiveness)
 
@@ -699,7 +699,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	//Things in this list will be instantly splatted.  Flyman weakness is handled in the flyman species weakness proc.
 	var/list/strong_against
 
-/obj/item/melee/flyswatter/Initialize()
+/obj/item/melee/flyswatter/Initialize(mapload)
 	. = ..()
 	strong_against = typecacheof(list(
 					/mob/living/simple_animal/hostile/poison/bees/,
@@ -823,20 +823,3 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[M] is too close to use [src] on."))
 		return
 	M.attack_hand(user)
-
-/obj/item/twohanded/required/raisedhands
-	name = "raised hands"
-	desc = "What are you, French?"
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
-	item_state = "nothing"
-	force = 0
-	throwforce = 0
-	item_flags = DROPDEL | ABSTRACT
-
-/obj/item/twohanded/required/raisedhands/attack(mob/living/M, mob/living/user)
-  return
-
-/obj/item/twohanded/required/raisedhands/dropped(mob/user)
-	user.visible_message(span_userdanger(("[user] lowers their hands!")))
-	..()

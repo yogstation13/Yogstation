@@ -17,7 +17,7 @@
 	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/item/clothing/suit/space/shadowling/Initialize()
+/obj/item/clothing/suit/space/shadowling/Initialize(mapload)
 	.=..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
@@ -37,6 +37,6 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	item_flags = ABSTRACT | DROPDEL
 
-/obj/item/clothing/head/shadowling/Initialize()
+/obj/item/clothing/head/shadowling/Initialize(mapload)
 	.=..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)

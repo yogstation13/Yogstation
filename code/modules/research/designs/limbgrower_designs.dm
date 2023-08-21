@@ -254,7 +254,7 @@
 	/// List of all limb designs this disk contains.
 	var/list/limb_designs = list()
 
-/obj/item/disk/design_disk/limbs/Initialize()
+/obj/item/disk/design_disk/limbs/Initialize(mapload)
 	. = ..()
 	max_blueprints = limb_designs.len
 	for(var/design in limb_designs)
@@ -287,7 +287,7 @@
 
 /datum/design/limb_disk/lizard
 	name = "Lizard Limb Design Disk"
-	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail"
+	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail."
 	id = "limbdesign_lizard"
 	build_path = /obj/item/disk/design_disk/limbs/lizard
 

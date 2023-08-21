@@ -11,7 +11,7 @@
 	var/creation_message = span_brass("The chassis shudders and hums to life!")
 	var/construct_type //The construct this shell will create
 
-/obj/item/clockwork/construct_chassis/Initialize()
+/obj/item/clockwork/construct_chassis/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(A && construct_type)
@@ -102,4 +102,4 @@
 /obj/item/clockwork/construct_chassis/cogscarab/post_spawn(mob/living/construct)
 	if(seasonal_hat && seasonal_hat != "none")
 		var/obj/item/hat = new seasonal_hat(construct)
-		construct.equip_to_slot_or_del(hat, SLOT_HEAD)
+		construct.equip_to_slot_or_del(hat, ITEM_SLOT_HEAD)

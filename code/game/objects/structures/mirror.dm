@@ -39,7 +39,7 @@
 /obj/structure/mirror/proc/preapply_choices(selectiontype, mob/living/carbon/human/H)
 	switch(selectiontype)
 		if(FACE_HAIR_COLOR)
-			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color","#"+H.facial_hair_color) as color|null
+			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color",H.facial_hair_color) as color|null
 			if(!new_hair_color)
 				return TRUE
 			H.facial_hair_color = sanitize_hexcolor(new_hair_color)
@@ -47,7 +47,7 @@
 			H.update_hair()
 			return TRUE
 		if(HAIR_COLOR)
-			var/new_hair_color = input(H, "Choose your hair color", "Hair Color","#"+H.hair_color) as color|null
+			var/new_hair_color = input(H, "Choose your hair color", "Hair Color",H.hair_color) as color|null
 			if(!new_hair_color)
 				return TRUE
 			H.hair_color = sanitize_hexcolor(new_hair_color)
@@ -64,6 +64,9 @@
 			H.update_hair()
 			return TRUE
 		if(HEAD_HAIR)
+			if(HAS_TRAIT(H, TRAIT_BALD) && selection != "Bald")
+				to_chat(H, span_notice("If only growing back hair were that easy for you..."))
+				return TRUE
 			H.hair_style = selection
 			H.update_hair()
 			return TRUE
@@ -182,7 +185,7 @@
 	. = ..()
 	switch(selectiontype)
 		if(EYE_COLOR)
-			var/new_eye_color = input(H, "Choose your eye color", "Eye Color","#"+H.eye_color) as color|null
+			var/new_eye_color = input(H, "Choose your eye color", "Eye Color",H.eye_color) as color|null
 			if(!new_eye_color)
 				return TRUE
 			H.eye_color = sanitize_hexcolor(new_eye_color)
@@ -201,12 +204,13 @@
 				H.mind.name = newname
 			return TRUE
 		if(MUTANT_COLOR)
-			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
+			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change",H.dna.features["mcolor"]) as color|null
 			if(!new_mutantcolor)
 				return TRUE
 			var/temp_hsv = RGBtoHSV(new_mutantcolor)
-			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright
+			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright
 				H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
+				H.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
 			else
 				to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
 			H.update_body()

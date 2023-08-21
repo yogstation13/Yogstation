@@ -434,7 +434,7 @@
 /obj/item/clothing/under/kilt/highlander
 	desc = "You're the only one worthy of this kilt."
 
-/obj/item/clothing/under/kilt/highlander/Initialize()
+/obj/item/clothing/under/kilt/highlander/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
@@ -547,7 +547,7 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
-/obj/item/clothing/under/maid/Initialize()
+/obj/item/clothing/under/maid/Initialize(mapload)
 	. = ..()
 	var/obj/item/clothing/accessory/maidapron/A = new (src)
 	attach_accessory(A)
@@ -790,7 +790,7 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
-/obj/item/clothing/under/mech_suit/Initialize()
+/obj/item/clothing/under/mech_suit/Initialize(mapload)
 	..()
 	AddComponent(/datum/component/mech_pilot, 0.9)
 
@@ -939,7 +939,7 @@
 
 /obj/item/clothing/under/drip/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_W_UNIFORM)
+	if(slot == ITEM_SLOT_ICLOTHING)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drippy", /datum/mood_event/drippy)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripless", /datum/mood_event/drippy)
 		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))
@@ -951,7 +951,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_W_UNIFORM) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_ICLOTHING) == src)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)
 

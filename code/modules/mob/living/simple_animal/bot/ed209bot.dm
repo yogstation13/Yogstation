@@ -368,7 +368,7 @@ Auto Patrol[]"},
 		else
 			continue
 
-/mob/living/simple_animal/bot/ed209/proc/check_for_weapons(var/obj/item/slot_item)
+/mob/living/simple_animal/bot/ed209/proc/check_for_weapons(obj/item/slot_item)
 	if(slot_item && (slot_item.item_flags & NEEDS_PERMIT))
 		return 1
 	return 0
@@ -388,15 +388,15 @@ Auto Patrol[]"},
 	if(!lasercolor)
 		var/obj/item/gun/energy/e_gun/dragnet/G = new (Tsec)
 		G.cell.charge = 0
-		G.update_icon()
+		G.update_appearance(UPDATE_ICON)
 	else if(lasercolor == "b")
 		var/obj/item/gun/energy/laser/bluetag/G = new (Tsec)
 		G.cell.charge = 0
-		G.update_icon()
+		G.update_appearance(UPDATE_ICON)
 	else if(lasercolor == "r")
 		var/obj/item/gun/energy/laser/redtag/G = new (Tsec)
 		G.cell.charge = 0
-		G.update_icon()
+		G.update_appearance(UPDATE_ICON)
 
 	if(prob(50))
 		new /obj/item/bodypart/l_leg/robot(Tsec)

@@ -36,7 +36,7 @@
 	var/power_wire_cut = FALSE
 	var/list/slogan_list = list()
 
-/obj/machinery/smartfridge/Initialize()
+/obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
 	create_reagents(100, NO_REACT)
 
@@ -146,10 +146,11 @@
 /obj/machinery/smartfridge/obj_break(damage_flag)
 	if(!(stat & BROKEN))
 		stat |= BROKEN
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	..(damage_flag)
 
-/obj/machinery/smartfridge/update_icon()
+/obj/machinery/smartfridge/update_icon_state()
+	. = ..()
 	var/startstate = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state = "[startstate]-broken"
@@ -230,7 +231,7 @@
 		if(accept_check(O))
 			load(O)
 			user.visible_message("[user] has added \the [O] to \the [src].", span_notice("You add \the [O] to \the [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			updateUsrDialog()
 			if(contents.len >= max_n_of_items)
 				indicate_full()
@@ -245,7 +246,7 @@
 				if(accept_check(G))
 					load(G)
 					loaded++
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			updateUsrDialog()
 
 			if(loaded)
@@ -272,7 +273,7 @@
 				load(organ)
 				OS.clear_organ()
 				user.visible_message("[user] has added \the [organ] to \the [src].", span_notice("You add \the [organ] to \the [src]."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				updateUsrDialog()
 				if(contents.len >= max_n_of_items)
 					indicate_full()
@@ -310,7 +311,7 @@
 			return TRUE
 
 ///Really simple proc, just moves the object "O" into the hands of mob "M" if able, done so I could modify the proc a little for the organ fridge
-/obj/machinery/smartfridge/proc/dispense(obj/item/O, var/mob/M)
+/obj/machinery/smartfridge/proc/dispense(obj/item/O, mob/M)
 	if(!M.put_in_hands(O))
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
@@ -377,7 +378,7 @@
 					if(O.name == params["name"])
 						dispense(O, usr)
 						break
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				cut_overlay(full_indicator_state)
 				animate_dispenser()
 				return TRUE
@@ -390,7 +391,7 @@
 					dispense(O, usr)
 					desired--
 
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			cut_overlay(full_indicator_state)
 			animate_dispenser()
 			return TRUE
@@ -415,7 +416,7 @@
 	pitches = FALSE
 	var/drying = FALSE
 
-/obj/machinery/smartfridge/drying_rack/Initialize()
+/obj/machinery/smartfridge/drying_rack/Initialize(mapload)
 	. = ..()
 	if(component_parts && component_parts.len)
 		component_parts.Cut()
@@ -454,7 +455,7 @@
 /obj/machinery/smartfridge/drying_rack/ui_act(action, params)
 	. = ..()
 	if(.)
-		update_icon() // This is to handle a case where the last item is taken out manually instead of through drying pop-out
+		update_appearance(UPDATE_ICON) // This is to handle a case where the last item is taken out manually instead of through drying pop-out
 		return
 	switch(action)
 		if("Dry")
@@ -474,22 +475,21 @@
 
 /obj/machinery/smartfridge/drying_rack/load() //For updating the filled overlay
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/smartfridge/drying_rack/update_icon()
-	..()
-	cut_overlays()
+/obj/machinery/smartfridge/drying_rack/update_overlays()
+	. = ..()
 	if(drying)
-		add_overlay("drying_rack_drying")
+		. += "drying_rack_drying"
 	if(contents.len)
-		add_overlay("drying_rack_filled")
+		. += "drying_rack_filled"
 
 /obj/machinery/smartfridge/drying_rack/process()
 	..()
 	if(drying)
 		if(rack_dry())//no need to update unless something got dried
 			SStgui.update_uis(src)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
@@ -507,7 +507,7 @@
 	else
 		drying = TRUE
 		use_power = ACTIVE_POWER_USE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/smartfridge/drying_rack/proc/rack_dry()
 	for(var/obj/item/reagent_containers/food/snacks/S in src)
@@ -607,7 +607,7 @@
 		var/obj/item/organ/organ = O
 		organ.organ_flags |= ORGAN_FROZEN
 
-/obj/machinery/smartfridge/organ/dispense(obj/item/O, var/mob/M)
+/obj/machinery/smartfridge/organ/dispense(obj/item/O, mob/M)
 	var/obj/item/organ/organ = O
 	organ.organ_flags &= ~ORGAN_FROZEN
 	..()

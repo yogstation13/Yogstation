@@ -38,7 +38,7 @@
 /obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/SP)
 	. = ..()
 	SP.weapon = src
-	SP.update_icon()
+	SP.update_appearance(UPDATE_ICON)
 
 /obj/item/spacepod_equipment/weaponry/on_uninstall()
 	. = ..()
@@ -312,7 +312,7 @@
 	var/static/id_source = 0
 	var/id = null
 
-/obj/item/spacepod_equipment/lock/keyed/Initialize()
+/obj/item/spacepod_equipment/lock/keyed/Initialize(mapload)
 	. = ..()
 	if(id == null)
 		id = ++id_source

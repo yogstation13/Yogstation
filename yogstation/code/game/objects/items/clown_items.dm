@@ -16,7 +16,7 @@
 	item_state = "rubber_pigeon"
 	attack_verb = list("Pigeoned")
 
-/obj/item/bikehorn/rubber_pigeon/Initialize()
+/obj/item/bikehorn/rubber_pigeon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('yogstation/sound/items/rubber_pigeon.ogg'=1), 50)
 
@@ -25,6 +25,6 @@
 	desc = "Thank you, Doktor."
 	attack_verb = list("Boowomped")
 
-/obj/item/bikehorn/sad/Initialize()
+/obj/item/bikehorn/sad/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('yogstation/sound/items/boowomp.ogg'=1), 50)

@@ -5,7 +5,7 @@
 
 /datum/design/handdrill
 	name = "Hand Drill"
-	desc = "A small electric hand drill with an interchangeable screwdriver and bolt bit"
+	desc = "A small electric hand drill with an interchangeable screwdriver and bolt bit."
 	id = "handdrill"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3500, /datum/material/silver = 1500, /datum/material/titanium = 2500)
@@ -15,7 +15,7 @@
 
 /datum/design/jawsoflife
 	name = "Jaws of Life"
-	desc = "A small, compact Jaws of Life with an interchangeable pry jaws and cutting jaws"
+	desc = "A small, compact Jaws of Life with an interchangeable pry jaws and cutting jaws."
 	id = "jawsoflife" // added one more requirment since the Jaws of Life are a bit OP
 	build_path = /obj/item/jawsoflife
 	build_type = PROTOLATHE
@@ -23,19 +23,9 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/rangedanalyzer
-	name = "Experimental Long-range Gas Analyzer"
-	desc = "An experimental gas analyzer capable of operating at long distance"
-	id = "rangedanalyzer"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 100, /datum/material/glass = 20, /datum/material/gold = 100, /datum/material/bluespace=100)
-	build_path = /obj/item/analyzer/ranged
-	category = list("Tool Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
-
 /datum/design/shuttlecreator
 	name = "Rapid Shuttle Designator"
-	desc = "An advanced device capable of defining areas for use in the creation of shuttles"
+	desc = "An advanced device capable of defining areas for use in the creation of shuttles."
 	id = "shuttle_creator"
 	build_path = /obj/item/shuttle_creator
 	build_type = PROTOLATHE
@@ -54,7 +44,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/frames
-	name = "RCD frames designs upgrade"
+	name = "RCD Frames Designs Upgrade"
 	desc = "Adds computer and machine frame designs to the RCD."
 	id = "rcd_upgrade_frames"
 	build_type = PROTOLATHE
@@ -64,7 +54,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/simple_circuits
-	name = "RCD simple circuits designs upgrade"
+	name = "RCD Simple Circuits Designs Upgrade"
 	desc = "Adds simple circuits to the RCD."
 	id = "rcd_upgrade_simple_circuits"
 	build_type = PROTOLATHE
@@ -74,7 +64,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/furnishing
-	name = "RCD furnishing upgrade"
+	name = "RCD Furnishing Upgrade"
 	desc = "Adds the ability to furnish areas using the RCD."
 	id = "rcd_upgrade_furnishing"
 	build_type = PROTOLATHE
@@ -84,7 +74,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/conveyor
-	name = "RCD Conveyor upgrade"
+	name = "RCD Conveyor Upgrade"
 	desc = "Adds the ability to dispense conveyors and switches using the RCD."
 	id = "rcd_upgrade_conveyor"
 	build_type = PROTOLATHE
@@ -94,7 +84,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/silo_link
-	name = "Advanced RCD silo link upgrade"
+	name = "Advanced RCD Silo Link Upgrade"
 	desc = "Adds the silo direct link to the RCD."
 	id = "rcd_upgrade_silo_link"
 	build_type = PROTOLATHE

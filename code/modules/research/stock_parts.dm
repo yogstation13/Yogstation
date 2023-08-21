@@ -19,11 +19,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		return ..()
 	if(user.Adjacent(T)) // no TK upgrading.
 		if(works_from_distance)
-			if(in_view_range(user, T))
-				user.Beam(T, icon_state = "rped_upgrade", time = 5)
-			else
-				to_chat(user, span_warning("Out of range!"))
-				return
+			user.Beam(T, icon_state = "rped_upgrade", time = 5)
 		T.exchange_parts(user, src)
 		return FALSE
 	return ..()
@@ -32,8 +28,11 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	if(adjacent || !istype(T) || (!T.component_parts && !T.works_with_rped_anyways))
 		return ..()
 	if(works_from_distance)
-		user.Beam(T, icon_state = "rped_upgrade", time = 5)
-		T.exchange_parts(user, src)
+		if(in_view_range(user, T))
+			user.Beam(T, icon_state = "rped_upgrade", time = 5)
+			T.exchange_parts(user, src)
+		else
+			to_chat(user, span_warning("Out of range!"))
 		return
 	return ..()
 
@@ -122,7 +121,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	w_class = WEIGHT_CLASS_SMALL
 	var/rating = 1
 
-/obj/item/stock_parts/Initialize()
+/obj/item/stock_parts/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)

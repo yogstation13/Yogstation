@@ -1,6 +1,8 @@
-/mob/living/proc/Life(times_fired)
+/mob/living/proc/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set waitfor = FALSE
 	set invisibility = 0
+
+	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds_per_tick, times_fired)
 
 	if(digitalinvis)
 		handle_diginvis() //AI becomes unable to see mob
@@ -35,7 +37,7 @@
 	if(!loc)
 		return
 
-	if(LIFETICK_SKIP(src, times_fired))
+	if(SHOULD_LIFETICK(src, times_fired))
 
 		if(stat != DEAD)
 			//Mutations and radiation

@@ -13,9 +13,9 @@
 	var/brightness_on = 4 //range of light when on
 	var/flashlight_power = 1 //strength of the light when on
 
-/obj/item/laserlevel/Initialize()
+/obj/item/laserlevel/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/laserlevel/attack_self(mob/user)
 	lightlevel--;
@@ -26,14 +26,12 @@
 		set_light(l_range = lightlevel / 2, l_power = (lightlevel / 4), l_color = "#00ff00")
 	else
 		set_light(0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	update_overlay(user)
 
-/obj/item/laserlevel/update_icon()
-	cut_overlays()
-	add_overlay("[initial(icon_state)][lightlevel]")
-	return
-
+/obj/item/laserlevel/update_overlays()
+	. = ..()
+	. += "[initial(icon_state)][lightlevel]"
 
 /obj/item/laserlevel/proc/update_overlay(mob/user)
 	user.clear_fullscreen("laser",0)

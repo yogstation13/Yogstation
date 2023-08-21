@@ -7,7 +7,7 @@
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
-	mob_biotypes = list(MOB_ORGANIC, MOB_EPIC)
+	mob_biotypes = MOB_ORGANIC|MOB_EPIC
 	obj_damage = 400
 	light_range = 3
 	faction = list("mining", "boss")
@@ -67,7 +67,7 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/death(gibbed, list/force_grant)
 	if(health > 0)
 		return
 	else

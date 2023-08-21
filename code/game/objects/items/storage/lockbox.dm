@@ -13,7 +13,7 @@
 	var/icon_closed = "lockbox"
 	var/icon_broken = "lockbox+b"
 
-/obj/item/storage/lockbox/Initialize()
+/obj/item/storage/lockbox/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -63,12 +63,12 @@
 /obj/item/storage/lockbox/Entered()
 	. = ..()
 	open = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/Exited()
 	. = ..()
 	open = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/AltClick(mob/user)
 	..()
@@ -121,7 +121,7 @@
 	icon_closed = "medalbox"
 	icon_broken = "medalbox+b"
 
-/obj/item/storage/lockbox/medal/Initialize()
+/obj/item/storage/lockbox/medal/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -138,7 +138,7 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
 			open = (open ? FALSE : TRUE)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		..()
 
 /obj/item/storage/lockbox/medal/PopulateContents()
@@ -154,7 +154,8 @@
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/accessory/medal/conduct(src)
 
-/obj/item/storage/lockbox/medal/update_icon()
+/obj/item/storage/lockbox/medal/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(locked)
@@ -242,7 +243,8 @@
 	icon_closed = "vialbox"
 	icon_broken = "vialbox"
 
-/obj/item/storage/lockbox/vialbox/update_icon()
+/obj/item/storage/lockbox/vialbox/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	var/slot = 1
@@ -266,13 +268,12 @@
 	if(!broken)
 		var/mutable_appearance/led = mutable_appearance(icon, "led[locked]")
 		add_overlay(led)
-	..()
 
-/obj/item/storage/lockbox/vialbox/Initialize()
+/obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/lockbox/vialbox/Initialize()
+/obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -283,11 +284,11 @@
 
 /obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/vialbox/AltClick(mob/user)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/lockbox/vialbox/full/PopulateContents()
 	for(var/i in 1 to 6)
@@ -299,12 +300,12 @@
 	req_access = list(ACCESS_MEDICAL)
 
 /obj/item/storage/lockbox/vialbox/hypo_deluxe/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/brute(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/burn(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/tox(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/oxy(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/omnizine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/tox(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi/full(src)
 
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"

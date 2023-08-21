@@ -12,14 +12,14 @@
 	target.dna.features["ipc_screen"] = value
 
 
-/datum/preference/color_legacy/ipc_screen_color
+/datum/preference/color/ipc_screen_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_ipc_screen_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "ipc_screen"
 	unique = TRUE
 
-/datum/preference/color_legacy/ipc_screen_color/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/color/ipc_screen_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.eye_color = value
 
 	var/obj/item/organ/eyes/eyes_organ = target.getorgan(/obj/item/organ/eyes)
@@ -43,14 +43,14 @@
 	target.dna.features["ipc_antenna"] = value
 
 
-/datum/preference/color_legacy/ipc_antenna_color
+/datum/preference/color/ipc_antenna_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "feature_ipc_antenna_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_mutant_bodypart = "ipc_antenna"
 	unique = TRUE
 
-/datum/preference/color_legacy/ipc_antenna_color/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/color/ipc_antenna_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
 
 

@@ -7,7 +7,7 @@
 	var/on = FALSE
 	var/retrievalmessage = "Retrieval complete."
 
-/obj/item/implant/teleporter/Initialize()
+/obj/item/implant/teleporter/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	.=..()
 
@@ -50,7 +50,7 @@
 		do_teleport(imp_in, pointofreturn, 0, channel = TELEPORT_CHANNEL_WORMHOLE)
 		say(retrievalmessage)
 
-/obj/item/implant/teleporter/implant(mob/living/target, mob/user, silent = 0)
+/obj/item/implant/teleporter/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	LAZYINITLIST(target.implants)
 	if(!target.can_be_implanted() || !can_be_implanted_in(target))
 		return 0

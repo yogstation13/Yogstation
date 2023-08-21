@@ -195,7 +195,7 @@ Temperature: 126.85 °C (400 K)
 		return
 	if(!ishuman(AM))
 		return
-	var/chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
+	var/chance = humie.getarmor(null,BIO)
 	if(prob(chance * 0.33))
 		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
 

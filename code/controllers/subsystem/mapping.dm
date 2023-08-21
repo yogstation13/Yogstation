@@ -246,7 +246,7 @@ SUBSYSTEM_DEF(mapping)
 
 	for(var/N in nuke_tiles)
 		var/turf/open/floor/circuit/C = N
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
@@ -351,8 +351,6 @@ SUBSYSTEM_DEF(mapping)
 	else if(config.minetype == "jungle_and_lavaland")
 		SSpersistence.LoadMinetype()
 		var/determinant = SSpersistence.next_minetype
-		if(determinant != 2 && determinant != 1 && determinant != 0)
-			determinant = 2
 		switch(determinant)
 			if(2)
 				if(prob(50))
@@ -364,11 +362,10 @@ SUBSYSTEM_DEF(mapping)
 				LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 			
 			if(0)
-				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND) 
+				LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
+			 
 	//Yogs end
 	else if(config.minetype == "icemoon")
-		LoadGroup(FailedZs, "Ice moon", "map_files/mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
-		LoadGroup(FailedZs, "Ice moon Underground", "map_files/mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
@@ -456,7 +453,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
 
-/datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
+/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")

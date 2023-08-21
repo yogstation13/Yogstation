@@ -38,6 +38,9 @@
 /obj/structure/spawner/mining/basilisk,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
+"C" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
 "F" = (
 /turf/open/water/toxic_pit,
 /area/ruin/unpowered)
@@ -53,20 +56,24 @@
 /obj/structure/flora/ash/stem_shroom,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
+"O" = (
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/template_noop)
 "P" = (
 /obj/structure/flora/ash/cacti,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
-"Y" = (
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
+"R" = (
+/turf/open/water/toxic_pit,
+/area/template_noop)
+"X" = (
+/turf/closed/mineral/ash_rock/jungle/deepjungle,
+/area/template_noop)
 
 (1,1,1) = {"
-x
-j
-j
-x
-x
+X
+O
+O
 x
 x
 x
@@ -78,8 +85,10 @@ x
 x
 x
 x
-Y
-Y
+x
+x
+C
+C
 x
 x
 x
@@ -90,12 +99,12 @@ x
 x
 x
 x
-Y
-Y
+C
+C
 "}
 (2,1,1) = {"
-j
-j
+O
+O
 x
 x
 x
@@ -110,7 +119,7 @@ x
 x
 x
 x
-Y
+C
 x
 x
 x
@@ -123,10 +132,10 @@ x
 x
 x
 x
-Y
+C
 "}
 (3,1,1) = {"
-j
+O
 x
 x
 x
@@ -155,10 +164,10 @@ x
 x
 x
 x
-Y
+C
 "}
 (4,1,1) = {"
-j
+O
 x
 x
 x
@@ -379,7 +388,7 @@ x
 x
 x
 F
-F
+R
 "}
 (11,1,1) = {"
 x
@@ -411,7 +420,7 @@ x
 x
 x
 F
-j
+O
 "}
 (12,1,1) = {"
 x
@@ -443,7 +452,7 @@ x
 x
 x
 j
-j
+O
 "}
 (13,1,1) = {"
 x
@@ -474,8 +483,8 @@ j
 j
 j
 x
-j
-j
+O
+O
 "}
 (14,1,1) = {"
 x
@@ -507,7 +516,7 @@ j
 j
 j
 j
-j
+O
 "}
 (15,1,1) = {"
 x
@@ -538,8 +547,8 @@ j
 j
 j
 j
-j
-j
+O
+O
 "}
 (16,1,1) = {"
 x
@@ -570,8 +579,8 @@ x
 x
 x
 x
-j
-j
+O
+O
 "}
 (17,1,1) = {"
 x
@@ -603,7 +612,7 @@ x
 x
 x
 j
-j
+O
 "}
 (18,1,1) = {"
 x
@@ -635,7 +644,7 @@ x
 x
 x
 j
-j
+O
 "}
 (19,1,1) = {"
 x
@@ -666,8 +675,8 @@ x
 x
 x
 x
-j
-j
+O
+O
 "}
 (20,1,1) = {"
 x
@@ -923,10 +932,10 @@ x
 x
 x
 x
-F
+R
 "}
 (28,1,1) = {"
-F
+R
 x
 x
 x
@@ -955,10 +964,10 @@ x
 x
 x
 x
-F
+R
 "}
 (29,1,1) = {"
-F
+R
 x
 x
 x
@@ -976,8 +985,8 @@ x
 x
 x
 x
-Y
-Y
+C
+C
 x
 x
 x
@@ -987,11 +996,11 @@ x
 x
 x
 x
-F
+R
 "}
 (30,1,1) = {"
-F
-F
+R
+R
 x
 x
 x
@@ -1004,14 +1013,12 @@ x
 x
 x
 x
-Y
-Y
+C
+C
 x
-Y
-Y
-Y
-x
-x
+C
+C
+C
 x
 x
 x
@@ -1019,5 +1026,7 @@ x
 x
 x
 x
-F
+x
+x
+R
 "}

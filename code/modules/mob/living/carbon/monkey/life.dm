@@ -1,5 +1,5 @@
 
-/mob/living/carbon/monkey/Life()
+/mob/living/carbon/monkey/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set invisibility = 0
 
 	if(notransform)
@@ -36,7 +36,7 @@
 		if(radiation > RAD_MOB_MUTATE)
 			if(prob(1))
 				to_chat(src, span_danger("You mutate!"))
-				easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+				easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 				INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 				domutcheck()
 
@@ -151,9 +151,9 @@
 	var/list/burning_items = list()
 	//HEAD//
 	var/list/obscured = check_obscured_slots(TRUE)
-	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured))
 		burning_items += wear_mask
-	if(wear_neck && !(SLOT_NECK in obscured))
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured))
 		burning_items += wear_neck
 	if(head)
 		burning_items += head

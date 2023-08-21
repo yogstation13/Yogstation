@@ -2,11 +2,9 @@
 	title = "Head of Personnel"
 	description = "Alter access on ID cards, manage civil and supply departments, \
 		protect Ian, run the station when the captain dies."
-	flag = HOP
 	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
-	department_flag = CIVILIAN
 	head_announce = list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_SERVICE)
 	faction = "Station"
 	total_positions = 1

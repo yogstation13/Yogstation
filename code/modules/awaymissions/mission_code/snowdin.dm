@@ -516,11 +516,11 @@
 
 /obj/effect/spawner/lootdrop/snowdin/dungeonheavy
 	name = "dungeon heavy"
-	loot = list(/obj/item/twohanded/singularityhammer = 25,
-				/obj/item/twohanded/mjollnir = 10,
-				/obj/item/twohanded/fireaxe = 25,
+	loot = list(/obj/item/singularityhammer = 25,
+				/obj/item/mjolnir = 10,
+				/obj/item/fireaxe = 25,
 				/obj/item/organ/brain/alien = 17,
-				/obj/item/twohanded/dualsaber = 15,
+				/obj/item/melee/dualsaber = 15,
 				/obj/item/organ/heart/demon = 7,
 				/obj/item/gun/ballistic/automatic/c20r/unrestricted = 16,
 				/obj/item/gun/magic/wand/resurrection/inert = 15,
@@ -541,7 +541,7 @@
 	loot = list(/obj/item/stack/sheet/mineral/snow{amount = 25} = 10,
 				/obj/item/toy/snowball = 15,
 				/obj/item/shovel = 10,
-				/obj/item/twohanded/spear = 8,
+				/obj/item/melee/spear = 8,
 				)
 
 //special items//--
@@ -611,7 +611,7 @@
 	back = /obj/item/storage/backpack
 	mask = /obj/item/clothing/mask/breath
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
-	internals_slot = SLOT_R_STORE
+	internals_slot = ITEM_SLOT_RPOCKET
 
 /obj/effect/mob_spawn/human/syndicatesoldier/coldres/alive/female
 	mob_gender = FEMALE

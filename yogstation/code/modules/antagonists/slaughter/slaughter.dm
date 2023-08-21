@@ -10,7 +10,7 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "daemon"
 	icon_living = "daemon"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speed = 1
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
@@ -61,7 +61,7 @@
 	/// How much our wound_bonus hitstreak bonus caps at (peak demonry)
 	var/wound_bonus_hitstreak_max = 12
 
-/mob/living/simple_animal/slaughter/Initialize()
+/mob/living/simple_animal/slaughter/Initialize(mapload)
 	. = ..()
 	var/datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/crawl = new crawl_type(src)
 	crawl.Grant(src)
@@ -133,8 +133,9 @@
 	icon_state = "demon_heart-on"
 	decay_factor = 0
 
-/obj/item/organ/heart/demon/update_icon()
-	return //always beating visually
+/obj/item/organ/heart/demon/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/organ/heart/demon/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)

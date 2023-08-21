@@ -20,7 +20,7 @@
 	// Internal data
 	var/item_ids = 0
 	var/item_list = list()
-	var/list/stamp_upgrades = list("stamp-ok", "stamp-deny")
+	var/list/stamp_upgrades = list()
 	var/list/concurrent_users = list()
 
 	// Reference data
@@ -53,11 +53,12 @@
 	)
 
 
-/obj/machinery/inspector_booth/Initialize()
+/obj/machinery/inspector_booth/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/inspector_booth/update_icon()
+/obj/machinery/inspector_booth/update_icon_state()
+	. = ..()
 	if (stat & NOPOWER)
 		icon_state = "booth_off"
 	else if (panel_open || stat & MAINT)

@@ -42,66 +42,44 @@
 				bloodsuckerdatum.antag_hud_name = "bloodsucker"
 			if(CLAN_GANGREL)
 				if(bloodsuckerdatum.clanprogress >= 1) // change this if we get more stuff to include other clans
-					var/obj/item/clothing/neck/neckdrip = user.get_item_by_slot(SLOT_NECK)
+					var/obj/item/clothing/neck/neckdrip = user.get_item_by_slot(ITEM_SLOT_NECK)
 					if(istype(neckdrip, /obj/item/clothing/neck/wolfcollar))
 						theqdeld += neckdrip
 				if(bloodsuckerdatum.clanprogress >= 2)
-					var/obj/item/earsdrip = user.get_item_by_slot(SLOT_EARS)
+					var/obj/item/earsdrip = user.get_item_by_slot(ITEM_SLOT_EARS)
 					if(istype(earsdrip, /obj/item/radio/headset/wolfears))
 						theqdeld += earsdrip
 				if(bloodsuckerdatum.clanprogress >= 3)
-					var/obj/item/clothing/gloves/glovesdrip = user.get_item_by_slot(SLOT_GLOVES)
+					var/obj/item/clothing/gloves/glovesdrip = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 					if(istype(glovesdrip, /obj/item/clothing/gloves/wolfclaws))
 						theqdeld += glovesdrip
 				if(bloodsuckerdatum.clanprogress >= 4)
-					var/obj/item/clothing/shoes/shoesdrip = user.get_item_by_slot(SLOT_SHOES)
+					var/obj/item/clothing/shoes/shoesdrip = user.get_item_by_slot(ITEM_SLOT_FEET)
 					if(istype(shoesdrip , /obj/item/clothing/shoes/wolflegs))
 						theqdeld += shoesdrip
 				QDEL_LIST(theqdeld)
 	// Remove Bloodsucker traits
-	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_VIRUSIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_RADIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_TOXIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_COLDBLOODED, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_RESISTCOLD, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_NOPULSE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_NOBREATH, BLOODSUCKER_TRAIT)
+	user.remove_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
 	// Falsifies Health & Genetic Analyzers
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_GENELESS, BLOODSUCKER_TRAIT)
 	// Organs
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	eyes.flash_protect = initial(eyes.flash_protect)
-	var/obj/item/organ/heart/vampheart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
-	if(istype(vampheart))
-		vampheart.fake_start_heart()
+	var/obj/item/organ/heart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
+	vampheart.beating = TRUE
 	user.apply_status_effect(STATUS_EFFECT_MASQUERADE)
 
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
 	var/mob/living/carbon/user = owner
 	user.remove_status_effect(STATUS_EFFECT_MASQUERADE)
-	ADD_TRAIT(user, TRAIT_NOHARDCRIT, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_VIRUSIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_RADIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_TOXIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_COLDBLOODED, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_RESISTCOLD, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_NOPULSE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_NOBREATH, BLOODSUCKER_TRAIT)
+	user.add_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	// Remove genes, then make unable to get new ones.
 	user.dna.remove_all_mutations()
-	ADD_TRAIT(user, TRAIT_GENELESS, BLOODSUCKER_TRAIT)
 	// Organs
-	var/obj/item/organ/heart/vampheart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
-	if(istype(vampheart))
-		vampheart.Stop()
+	var/obj/item/organ/heart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
+	vampheart.beating = FALSE
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, - 1)
@@ -117,21 +95,21 @@
 				bloodsuckerdatum.antag_hud_name = "tzimisce"
 			if(CLAN_GANGREL)
 				if(bloodsuckerdatum.clanprogress >= 1) // change this if we get more stuff to include other clans
-					var/obj/item/clothing/neck/previousdrip = user.get_item_by_slot(SLOT_NECK)
+					var/obj/item/clothing/neck/previousdrip = user.get_item_by_slot(ITEM_SLOT_NECK)
 					user.dropItemToGround(previousdrip)
-					user.equip_to_slot_or_del(new /obj/item/clothing/neck/wolfcollar(user), SLOT_NECK)
+					user.equip_to_slot_or_del(new /obj/item/clothing/neck/wolfcollar(user), ITEM_SLOT_NECK)
 				if(bloodsuckerdatum.clanprogress >= 2)
-					var/obj/item/clothing/ears/previousdrip = user.get_item_by_slot(SLOT_EARS)
+					var/obj/item/clothing/ears/previousdrip = user.get_item_by_slot(ITEM_SLOT_EARS)
 					user.dropItemToGround(previousdrip)
-					user.equip_to_slot_or_del(new /obj/item/radio/headset/wolfears(user), SLOT_EARS)
+					user.equip_to_slot_or_del(new /obj/item/radio/headset/wolfears(user), ITEM_SLOT_EARS)
 				if(bloodsuckerdatum.clanprogress >= 3)
-					var/obj/item/clothing/gloves/previousdrip = user.get_item_by_slot(SLOT_GLOVES)
+					var/obj/item/clothing/gloves/previousdrip = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 					user.dropItemToGround(previousdrip)
-					user.equip_to_slot_or_del(new /obj/item/clothing/gloves/wolfclaws(user), SLOT_GLOVES)
+					user.equip_to_slot_or_del(new /obj/item/clothing/gloves/wolfclaws(user), ITEM_SLOT_GLOVES)
 				if(bloodsuckerdatum.clanprogress >= 4)
-					var/obj/item/clothing/shoes/previousdrip = user.get_item_by_slot(SLOT_SHOES)
+					var/obj/item/clothing/shoes/previousdrip = user.get_item_by_slot(ITEM_SLOT_FEET)
 					user.dropItemToGround(previousdrip)
-					user.equip_to_slot_or_del(new /obj/item/clothing/shoes/wolflegs(user), SLOT_SHOES)
+					user.equip_to_slot_or_del(new /obj/item/clothing/shoes/wolflegs(user), ITEM_SLOT_FEET)
 	to_chat(user, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
 
 /**

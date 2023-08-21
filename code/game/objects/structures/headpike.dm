@@ -4,7 +4,7 @@
 	icon = 'icons/obj/structures.dmi'
 	density = FALSE
 	anchored = TRUE
-	var/obj/item/twohanded/spear/spear
+	var/obj/item/melee/spear/spear
 	var/obj/item/bodypart/head/victim
 
 /obj/structure/headpike/glass //for regular spears
@@ -20,32 +20,33 @@
 	victim = locate(/obj/item/bodypart/head) in parts_list
 	name = "[victim.name] on a spear"
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/headpike/glass/CheckParts(list/parts_list)
-	spear = locate(/obj/item/twohanded/spear) in parts_list
+	spear = locate(/obj/item/melee/spear) in parts_list
 	..()
 
 /obj/structure/headpike/bone/CheckParts(list/parts_list)
-	spear = locate(/obj/item/twohanded/bonespear) in parts_list
+	spear = locate(/obj/item/melee/spear/bonespear) in parts_list
 	..()
 
 /obj/structure/headpike/bamboo/CheckParts(list/parts_list)
-	spear = locate(/obj/item/twohanded/bamboospear) in parts_list
+	spear = locate(/obj/item/melee/spear/bamboospear) in parts_list
 	..()
 
-/obj/structure/headpike/Initialize()
+/obj/structure/headpike/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-8, 8)
 
-/obj/structure/headpike/update_icon()
-	..()
+/obj/structure/headpike/update_overlays()
+	. = ..()
 	var/obj/item/bodypart/head/H = locate() in contents
+	if(!H)
+		return
 	var/mutable_appearance/MA = new()
-	if(H)
-		MA.copy_overlays(H)
-		MA.pixel_y = 12
-		add_overlay(H)
+	MA.copy_overlays(H)
+	MA.pixel_y = 12
+	. += MA
 
 /obj/structure/headpike/attack_hand(mob/user)
 	. = ..()

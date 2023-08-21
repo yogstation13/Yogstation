@@ -24,7 +24,7 @@
 	/// The countdown ghosts see to when the plant will hatch
 	var/obj/effect/countdown/flower_bud/countdown
 
-/obj/structure/alien/resin/flower_bud_enemy/Initialize()
+/obj/structure/alien/resin/flower_bud_enemy/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 	var/list/anchors = list()
@@ -107,13 +107,13 @@
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = TRUE
 
-/mob/living/simple_animal/hostile/venus_human_trap/Life()
+/mob/living/simple_animal/hostile/venus_human_trap/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/life_draining, damage_overtime = 5, check_damage_callback = CALLBACK(src, PROC_REF(kudzu_need)))
+
+/mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	pull_vines()
-	if(!kudzu_need())
-		adjustHealth(5) 
-		if(prob(20))
-			to_chat(src, span_danger("You wither away without the support of the kudzu..."))
 	if(check_gas())
 		adjustHealth(6)
 		to_chat(src, span_danger("The gas reacts with you and starts to melt you away!"))
@@ -218,8 +218,10 @@
   * Damages the mob if not
   */
 /mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need()
-	for(var/obj/structure/spacevine/vine_found in view(3,src))
+	for(var/obj/structure/spacevine/vine_found in view(3, src))
 		return TRUE
+	if(prob(20))
+		to_chat(src, span_danger("You wither away without the support of the kudzu..."))
 	return FALSE
 
 /mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()

@@ -10,8 +10,6 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 
-	invocation = "ASH'N P'SSG'"
-	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
 	exit_jaunt_sound = null
@@ -756,12 +754,12 @@
 	icon_state = "small_rune_1"
 	layer = LOW_SIGIL_LAYER
 
-/obj/effect/glowing_rune/Initialize()
+/obj/effect/glowing_rune/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-6,6)
 	pixel_x = rand(-6,6)
 	icon_state = "small_rune_[rand(12)]"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // Shoots out in a wave-like, what rust heretics themselves get
 /datum/action/cooldown/spell/cone/staggered/entropic_plume

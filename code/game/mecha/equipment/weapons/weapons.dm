@@ -369,6 +369,19 @@
 	harmful = TRUE
 	ammo_type = "lmg"
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
+	name = "\improper BFG-90 \"Graze\" Radioactive Cannon"
+	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
+	icon_state = "mecha_laser"
+	equip_cooldown = 2 SECONDS
+	projectile = /obj/item/projectile/beam/bfg
+	projectiles = 5
+	projectiles_cache = 0
+	projectiles_cache_max = 10
+	harmful = TRUE
+	ammo_type = "bfg"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	name = "\improper SRM-8 missile rack"
 	desc = "A weapon for combat exosuits. Launches light explosive missiles."
@@ -415,7 +428,7 @@
 	return 1
 
 //used for projectile initilisation (priming flashbang) and additional logging
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(var/obj/O)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/proc/proj_init(obj/O)
 	return
 
 
@@ -433,7 +446,7 @@
 	var/det_time = 20
 	ammo_type = "flashbang"
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(var/obj/item/grenade/flashbang/F)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/proj_init(obj/item/grenade/flashbang/F)
 	var/turf/T = get_turf(src)
 	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] fired a [src] in [ADMIN_VERBOSEJMP(T)]")
 	log_game("[key_name(chassis.occupant)] fired a [src] in [AREACOORD(T)]")
@@ -486,7 +499,7 @@
 			return 1
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/proj_init(var/obj/item/assembly/mousetrap/armed/M)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar/proj_init(obj/item/assembly/mousetrap/armed/M)
 	M.secured = 1
 
 

@@ -87,7 +87,7 @@
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
-		cell.update_icon()
+		cell.update_appearance(UPDATE_ICON)
 		cell = null
 		add_fingerprint(user)
 
@@ -281,7 +281,7 @@
 	icon_state = "tube-empty"
 	start_with_cell = FALSE
 
-/obj/machinery/light/built/Initialize()
+/obj/machinery/light/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(0)
@@ -289,7 +289,7 @@
 /obj/machinery/light/floor/built
 	icon_state = "floor-empty"
 
-/obj/machinery/light/floor/built/Initialize()
+/obj/machinery/light/floor/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(0)
@@ -297,7 +297,7 @@
 /obj/machinery/light/small/built
 	icon_state = "bulb-empty"
 
-/obj/machinery/light/small/built/Initialize()
+/obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(0)
@@ -339,7 +339,8 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -413,7 +414,7 @@
 	else
 		use_power = IDLE_POWER_USE
 		set_light(0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	active_power_usage = (brightness * 10)
 	if(on != on_gs)
@@ -542,7 +543,7 @@
 		set_light(0)
 		forced_off = !forced_off
 		on = !on
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		update()
 	else
 		return ..()
@@ -588,7 +589,7 @@
 			if(prob(12))
 				electrocute_mob(user, get_area(src), src, 0.3, TRUE)
 
-/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && !QDELETED(src))
 		if(prob(damage_amount * 5))
@@ -643,7 +644,7 @@
 	return TRUE
 
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	set waitfor = 0
 	if(flickering)
 		return
@@ -882,7 +883,7 @@
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
 
-/obj/item/light/Initialize()
+/obj/item/light/Initialize(mapload)
 	. = ..()
 	update()
 	AddComponent(/datum/component/caltrop, force)

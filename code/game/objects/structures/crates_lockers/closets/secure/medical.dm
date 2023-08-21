@@ -42,7 +42,7 @@
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/clothing/glasses/hud/health(src)
-	return
+	new /obj/item/gun/syringe(src)
 
 /obj/structure/closet/secure_closet/CMO
 	name = "\proper chief medical officer's locker"
@@ -132,11 +132,11 @@
 	new /obj/item/clothing/suit/toggle/labcoat/explorer(src)
 	new /obj/item/storage/belt/medical/mining(src)
 	new /obj/item/clothing/glasses/hud/health/meson(src)
-	new /obj/item/clothing/gloves/color/latex/nitrile(src)
+	new /obj/item/clothing/gloves/color/latex/fireproof(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	new	/obj/item/radio/headset/headset_medcargo(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/twohanded/binoculars(src)
+	new /obj/item/binoculars(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/sensor_device(src)
 	new /obj/item/bodybag/environmental(src)

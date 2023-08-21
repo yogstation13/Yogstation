@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	var/detonation_timer
 	var/next_announce
 
-/obj/machinery/doomsday_device/Initialize()
+/obj/machinery/doomsday_device/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 
@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		var/turf/T = get_turf(L)
 		if(!T || !is_station_level(T.z))
 			continue
-		if((MOB_ROBOTIC in L.mob_biotypes) && !(MOB_ORGANIC in L.mob_biotypes))
+		if((L.mob_biotypes & MOB_ROBOTIC) && !(L.mob_biotypes & MOB_ORGANIC)) // mechanical races are spared
 			continue
 		to_chat(L, span_userdanger("The blast wave from [src] tears you atom from atom!"))
 		L.dust()
@@ -654,7 +654,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		if(!is_station_level(F.z))
 			continue
 		F.obj_flags |= EMAGGED
-		F.update_icon()
+		F.update_appearance(UPDATE_ICON)
 	to_chat(owner, span_notice("All thermal sensors on the station have been disabled. Fire alerts will no longer be recognized."))
 	owner.playsound_local(owner, 'sound/machines/terminal_off.ogg', 50, 0)
 

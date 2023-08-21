@@ -14,15 +14,15 @@
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
-	climbable = TRUE
 
 /obj/machinery/ministile/hop
 	name = "HOP line turnstile"
 	req_one_access = list(ACCESS_HEADS)
 	
-/obj/machinery/ministile/Initialize()
+/obj/machinery/ministile/Initialize(mapload)
 	. = ..()
 	icon_state = "ministile"
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/ministile/CanAtmosPass(turf/T)
 	return TRUE

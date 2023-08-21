@@ -226,8 +226,7 @@
 		DA.glass = TRUE
 	if(heat_proof)
 		DA.heat_proof_finished = TRUE
-	DA.update_icon()
-	DA.update_name()
+	DA.update_appearance()
 	qdel(src)
 
 /obj/machinery/door/airlock/plasma/BlockSuperconductivity() //we don't stop the heat~
@@ -464,7 +463,7 @@
 	var/friendly = FALSE
 	var/stealthy = FALSE
 
-/obj/machinery/door/airlock/cult/Initialize()
+/obj/machinery/door/airlock/cult/Initialize(mapload)
 	. = ..()
 	new openingoverlaytype(loc)
 
@@ -501,7 +500,7 @@
 	name = "airlock"
 	desc = "It opens and closes."
 	stealthy = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/airlock/cult/proc/reveal()
 	icon = initial(icon)
@@ -509,7 +508,7 @@
 	name = initial(name)
 	desc = initial(desc)
 	stealthy = initial(stealthy)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/airlock/cult/narsie_act()
 	return
@@ -566,7 +565,7 @@
 	normal_integrity = 240
 	var/construction_state = GEAR_SECURE //Pinion airlocks have custom deconstruction
 
-/obj/machinery/door/airlock/clockwork/Initialize()
+/obj/machinery/door/airlock/clockwork/Initialize(mapload)
 	. = ..()
 	new /obj/effect/temp_visual/ratvar/door(loc)
 	new /obj/effect/temp_visual/ratvar/beam/door(loc)

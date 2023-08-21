@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/boss/paper_wizard
 	name = "Mjor the Creative"
 	desc = "A wizard with a taste for the arts."
-	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_INORGANIC|MOB_HUMANOID
 	boss_abilities = list(/datum/action/boss/wizard_summon_minions, /datum/action/boss/wizard_mimic)
 	faction = list("hostile","stickman")
 	del_on_death = TRUE
@@ -154,7 +154,7 @@
 	duration = 18
 	randomdir = FALSE
 
-/obj/effect/temp_visual/paperwiz_dying/Initialize()
+/obj/effect/temp_visual/paperwiz_dying/Initialize(mapload)
 	. = ..()
 	visible_message(span_boldannounce("The wizard cries out in pain as a gate appears behind him, sucking him in!"))
 	playsound(get_turf(src),'sound/magic/mandswap.ogg', 50, 1, 1)

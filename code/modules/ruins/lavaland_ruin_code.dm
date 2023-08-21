@@ -23,7 +23,7 @@
 	icon_state = "datadisk1"
 	max_blueprints = 1
 
-/obj/item/disk/design_disk/golem_shell/Initialize()
+/obj/item/disk/design_disk/golem_shell/Initialize(mapload)
 	. = ..()
 	var/datum/design/golem_shell/G = new
 	blueprints[1] = G
@@ -123,7 +123,7 @@
 
 /datum/outfit/lavaland_syndicate
 	name = "Lavaland Syndicate Agent"
-	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
+	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/combat
@@ -157,7 +157,7 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1)
 
-/obj/item/clothing/mask/chameleon/gps/Initialize()
+/obj/item/clothing/mask/chameleon/gps/Initialize(mapload)
 	. = ..()
 	new /obj/item/gps/internal/lavaland_syndicate_base(src)
 

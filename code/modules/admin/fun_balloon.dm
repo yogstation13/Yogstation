@@ -6,7 +6,7 @@
 	anchored = TRUE
 	var/popped = FALSE
 
-/obj/effect/fun_balloon/Initialize()
+/obj/effect/fun_balloon/Initialize(mapload)
 	. = ..()
 	SSobj.processing |= src
 
@@ -92,7 +92,7 @@
 	icon_state = "syndballoon"
 	anchored = TRUE
 
-/obj/effect/station_crash/Initialize()
+/obj/effect/station_crash/Initialize(mapload)
 	..()
 	for(var/S in SSshuttle.stationary)
 		var/obj/docking_port/stationary/SM = S
@@ -126,7 +126,7 @@
 		L.forceMove(LA)
 		L.remove_status_effect(/datum/status_effect/hallucination)
 		to_chat(L, "<span class='reallybig redtext'>The battle is won. Your bloodlust subsides.</span>")
-		for(var/obj/item/twohanded/required/chainsaw/doomslayer/chainsaw in L)
+		for(var/obj/item/melee/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)
 	else
 		to_chat(L, "You are not yet worthy of passing. Drag a severed head to the barrier to be allowed entry to the hall of champions.")

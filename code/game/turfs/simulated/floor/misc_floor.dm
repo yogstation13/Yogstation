@@ -18,16 +18,17 @@
 	floor_tile = /obj/item/stack/tile/circuit
 	var/on = TRUE
 
-/turf/open/floor/circuit/Initialize()
+/turf/open/floor/circuit/Initialize(mapload)
 	SSmapping.nuke_tiles += src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	. = ..()
 
 /turf/open/floor/circuit/Destroy()
 	SSmapping.nuke_tiles -= src
 	return ..()
 
-/turf/open/floor/circuit/update_icon()
+/turf/open/floor/circuit/update_icon(updates=ALL)
+	. = ..()
 	if(on)
 		if(LAZYLEN(SSmapping.nuke_threats))
 			icon_state = "rcircuitanim"
@@ -168,7 +169,7 @@
 /turf/open/floor/clockwork/Bless() //Who needs holy blessings when you have DADDY RATVAR?
 	return
 
-/turf/open/floor/clockwork/Initialize()
+/turf/open/floor/clockwork/Initialize(mapload)
 	. = ..()
 	if(uses_overlay)
 		new /obj/effect/temp_visual/ratvar/floor(src)

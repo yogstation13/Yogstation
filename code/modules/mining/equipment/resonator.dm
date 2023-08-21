@@ -8,7 +8,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure."
 	w_class = WEIGHT_CLASS_NORMAL
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	force = 15
 	throwforce = 10
 	var/burst_time = 30
@@ -112,7 +112,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 0.4 SECONDS
 
-/obj/effect/temp_visual/resonance_crush/Initialize()
+/obj/effect/temp_visual/resonance_crush/Initialize(mapload)
 	. = ..()
 	transform = matrix()*1.5
 	animate(src, transform = matrix()*0.1, alpha = 50, time = 0.4 SECONDS)

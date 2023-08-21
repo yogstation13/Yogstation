@@ -6,7 +6,7 @@
 			return facing_modifiers[FRONT_ARMOUR]
 	return facing_modifiers[SIDE_ARMOUR] //always return non-0
 
-/obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && obj_integrity > 0)
 		spark_system.start()
@@ -195,13 +195,7 @@
 	if(W.GetID())
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(user))
-				var/obj/item/card/id/id_card
-				if(istype(W, /obj/item/card/id))
-					id_card = W
-				else
-					var/obj/item/pda/pda = W
-					id_card = pda.id
-				output_maintenance_dialog(id_card, user)
+				output_maintenance_dialog(W.GetID(), user)
 				return
 			else
 				to_chat(user, span_warning("Invalid ID: Access denied."))

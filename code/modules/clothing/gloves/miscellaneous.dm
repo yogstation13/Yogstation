@@ -18,7 +18,7 @@
 /obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
 	..()
 	var/mob/living/carbon/human/boss = user
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
 			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
 			worn = TRUE
@@ -31,22 +31,13 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
-	var/carrytrait = TRAIT_QUICKER_CARRY
 	tacticalspeed = 0.66 //Does channels 34% faster
+	clothing_traits = list(TRAIT_QUICKER_CARRY, TRAIT_STRONG_GRIP)
 
 /obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
 	var/mob/living/M = loc
 	M.changeNext_move(CLICK_CD_CLICK_ABILITY) //0.6 seconds instead of 0.8, but affects any intent instead of just harm
 	. = FALSE
-
-/obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
-	..()
-	if(slot == SLOT_GLOVES)
-		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/fingerless/weaver
 	name = "weaver chitin gloves"
@@ -142,14 +133,13 @@
 	var/datum/action/cooldown/swipe/swipe_ability
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 
-/obj/item/clothing/gloves/bracer/cuffs/Initialize()
+/obj/item/clothing/gloves/bracer/cuffs/Initialize(mapload)
 	. = ..()
 	swipe_ability = new(swipe_ability)
 
 /obj/item/clothing/gloves/bracer/cuffs/equipped(mob/living/user, slot)
 	. = ..()
-	if(ishuman(user) && slot == ITEM_SLOT_GLOVES)
-		swipe_ability = new(user)
+	if(ishuman(user) && (slot & ITEM_SLOT_GLOVES))
 		swipe_ability.Grant(user)
 
 /obj/item/clothing/gloves/bracer/cuffs/dropped(mob/living/user)
@@ -158,65 +148,61 @@
 
 /datum/action/cooldown/swipe //you stupid
 	name = "Swipe"
-	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, while killing a creature with a swipe will heal the user for 33. People and cyborgs hit will heal for 5."
+	desc = "Swipe at a target area, dealing damage to heal yourself. \
+		Creatures take 60 damage while people and cyborgs take 20 damage. \
+		Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, \
+		while killing a creature with a swipe will heal the user for 33. \
+		People and cyborgs hit will heal for 5."
 	background_icon_state = "bg_demon"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "cuff"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
+	click_to_activate = TRUE
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
+
 	cooldown_time = 10 SECONDS
 
 /datum/action/cooldown/swipe/Remove(mob/living/user)
 	unset_click_ability(user)
 	return ..()
 
-/datum/action/cooldown/swipe/Trigger(mob/living/carbon/user)
-	if(!isliving(owner))
-		return FALSE
-	if(user.handcuffed) 
-		to_chat(user, span_danger("You can't attack while handcuffed!"))
+/datum/action/cooldown/swipe/IsAvailable(feedback = FALSE)
+	if(!iscarbon(owner))
 		return FALSE
 	return ..()
 
-/datum/action/cooldown/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/swipe/Activate(mob/living/target)
 	. = ..()
-	var/turf/open/T = get_turf(target)
-	var/mob/living/L = target
-	if(!.)
-		return
-	if(owner.stat)
-		unset_click_ability(caller)
-		return
-	if(!COOLDOWN_FINISHED(src, next_use_time))
-		to_chat(owner, span_warning("Your cuffs aren't ready to do that yet. Give them some time to recharge!"))
-		return
-	if(!istype(T))
-		return
-	if(!(T in range(9, caller)))
-		to_chat(caller, warning("The target is too far!"))
-		return
-	new /obj/effect/temp_visual/bubblegum_hands/rightpaw(T)
-	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
-	to_chat(L, span_userdanger("Claws reach out from the floor and maul you!"))
-	to_chat(owner, "You summon claws at [L]'s location!")
-	L.visible_message(span_warning("[caller] rends [L]!"))
-	for(L in range(0,T))
-		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
-		if(isanimal(L))
-			if(L.stat != DEAD)
-				L.adjustBruteLoss(60)
+	var/turf/open/target_turf = get_turf(target)
+	var/mob/living/carbon/caller = owner
+	if(!istype(target_turf))
+		return FALSE
+	if(!(target_turf in range(9, owner)))
+		to_chat(owner, warning("The target is too far!"))
+		return FALSE
+	new /obj/effect/temp_visual/bubblegum_hands/rightpaw(target_turf)
+	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(target_turf)
+	to_chat(target, span_userdanger("Claws reach out from the floor and maul you!"))
+	to_chat(owner, "You summon claws at [target]'s location!")
+	target.visible_message(span_warning("[owner] rends [target]!"))
+	for(target in range(0, target_turf))
+		playsound(target_turf, 'sound/magic/demon_attack1.ogg', 80, TRUE, -1)
+		if(isanimal(target))
+			if(target.stat != DEAD)
+				target.adjustBruteLoss(60)
 				caller.adjustBruteLoss(-13)
 				caller.adjustFireLoss(-13)
 				caller.adjustToxLoss(-13)
-				if(L.stat == DEAD)
-					to_chat(caller, span_notice("You kill [L], healing yourself more!"))
-			if(L.stat == DEAD)
-				L.gib()
+				if(target.stat == DEAD)
+					to_chat(caller, span_notice("You kill [target], healing yourself more!"))
+			if(target.stat == DEAD)
+				target.gib()
 				to_chat(caller, span_notice("You're able to consume the body entirely!"))
 				caller.adjustBruteLoss(-20)
 				caller.adjustFireLoss(-20)
 				caller.adjustToxLoss(-20)
-		if(iscarbon(L))
-			L.adjustBruteLoss(20)
+		if(iscarbon(target))
+			target.adjustBruteLoss(20)
 			caller.adjustBruteLoss(-5)
 			caller.adjustFireLoss(-5)
 			caller.adjustToxLoss(-5)
@@ -225,7 +211,7 @@
 	return TRUE
 
 /datum/action/cooldown/swipe/proc/cooldown_over()
-	to_chat(usr, (span_notice("You're ready to swipe again!")))
+	owner.balloon_alert(owner, "ready to swipe!")
 
 /obj/item/clothing/gloves/gauntlets
 	name = "concussive gauntlets"
@@ -247,7 +233,7 @@
 
 /obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		tool_behaviour = TOOL_MINING
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
 		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
@@ -268,3 +254,23 @@
 		return
 	A.attackby(src, user)
 	return COMPONENT_NO_ATTACK_OBJ
+
+/obj/item/clothing/gloves/atmos
+	name = "firefighter gloves"
+	desc = "Heavy duty gloves for firefighters. These are thick, non-flammable and let you carry people faster."
+	icon_state = "atmos"
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	siemens_coefficient = 0.2
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90)
+	clothing_flags = THICKMATERIAL
+	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)
+
+/obj/item/clothing/gloves/atmos/ce
+	name = "advanced insulated gloves"
+	desc = "These gloves provide excellent thermal and electrical insulation."
+	icon_state = "ce_insuls"
+	siemens_coefficient = 0

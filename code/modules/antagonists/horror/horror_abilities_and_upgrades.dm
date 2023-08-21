@@ -209,7 +209,7 @@
 	soul_price = 1
 	var/transferring = FALSE
 
-/datum/action/innate/horror/transfer_host/proc/is_transferring(var/mob/living/carbon/C)
+/datum/action/innate/horror/transfer_host/proc/is_transferring(mob/living/carbon/C)
 	return transferring && C.Adjacent(B.victim)
 
 /datum/action/innate/horror/transfer_host/Activate()

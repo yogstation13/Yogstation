@@ -41,7 +41,7 @@
 		/obj/item/melee/supermatter_sword
 		)
 
-/obj/item/pneumatic_cannon/Initialize()
+/obj/item/pneumatic_cannon/Initialize(mapload)
 	. = ..()
 	if(selfcharge)
 		init_charge()
@@ -83,6 +83,8 @@
 				to_chat(user, span_warning("\The [IT] is too small for \the [src]."))
 				return
 			updateTank(W, 0, user)
+		else
+			load_item(W, user) // if there's already a tank attached, load it instead
 	else if(W.type == type)
 		to_chat(user, span_warning("You're fairly certain that putting a pneumatic cannon inside another pneumatic cannon would cause a spacetime disruption."))
 	else if(W.tool_behaviour == TOOL_WRENCH)
@@ -145,7 +147,7 @@
 		return
 	Fire(user, target)
 
-/obj/item/pneumatic_cannon/proc/Fire(mob/living/user, var/atom/target)
+/obj/item/pneumatic_cannon/proc/Fire(mob/living/user, atom/target)
 	if(!istype(user) && !target)
 		return
 	var/discharge = 0
@@ -225,7 +227,7 @@
 		loadedWeightClass -= I.w_class
 	else if (A == tank)
 		tank = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/pneumatic_cannon/ghetto //Obtainable by improvised methods; more gas per use, less capacity
 	name = "improvised pneumatic cannon"
@@ -250,13 +252,13 @@
 			return
 		to_chat(user, span_notice("You hook \the [thetank] up to \the [src]."))
 		tank = thetank
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/pneumatic_cannon/update_icon()
-	cut_overlays()
+/obj/item/pneumatic_cannon/update_overlays()
+	. = ..()
 	if(!tank)
 		return
-	add_overlay(tank.icon_state)
+	. += tank.icon_state
 
 /obj/item/pneumatic_cannon/proc/fill_with_type(type, amount)
 	if(!ispath(type, /obj) && !ispath(type, /mob))
@@ -284,7 +286,7 @@
 	clumsyCheck = FALSE
 	var/static/list/pie_typecache = typecacheof(/obj/item/reagent_containers/food/snacks/pie)
 
-/obj/item/pneumatic_cannon/pie/Initialize()
+/obj/item/pneumatic_cannon/pie/Initialize(mapload)
 	. = ..()
 	allowed_typecache = pie_typecache
 
@@ -324,18 +326,18 @@
 	spin_item = FALSE
 	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/magspear)
 
-/obj/item/pneumatic_cannon/speargun/Initialize()
+/obj/item/pneumatic_cannon/speargun/Initialize(mapload)
 	. = ..()
 	allowed_typecache = magspear_typecache
 
 /obj/item/storage/magspear_quiver
 	name = "quiver"
 	desc = "A quiver for holding magspears."
-	slot_flags = ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_POCKETS
 	icon_state = "quiver"
 	item_state = "quiver"
 
-/obj/item/storage/magspear_quiver/Initialize()
+/obj/item/storage/magspear_quiver/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20

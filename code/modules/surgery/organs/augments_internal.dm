@@ -5,11 +5,12 @@
 	visual = FALSE
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC // everyone can use cybernetic implants
 	var/implant_color = "#FFFFFF"
 	var/implant_overlay
 	var/syndicate_implant = FALSE //Makes the implant invisible to health analyzers and medical HUDs.
 
-/obj/item/organ/cyberimp/New(var/mob/M = null)
+/obj/item/organ/cyberimp/New(mob/M = null)
 	if(iscarbon(M))
 		src.Insert(M)
 	if(implant_overlay)
@@ -45,7 +46,7 @@
 	var/active = 0
 	var/list/stored_items = list()
 	implant_color = "#DE7E00"
-	slot = ORGAN_SLOT_BRAIN_ANTIDROP
+	slot = ORGAN_SLOT_BRAIN_IMPLANT
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 
 /obj/item/organ/cyberimp/brain/anti_drop/ui_action_click()
@@ -90,7 +91,7 @@
 	stored_items = list()
 
 
-/obj/item/organ/cyberimp/brain/anti_drop/Remove(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/cyberimp/brain/anti_drop/Remove(mob/living/carbon/M, special = 0)
 	if(active)
 		ui_action_click()
 	..()
@@ -99,7 +100,7 @@
 	name = "CNS Rebooter implant"
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
 	implant_color = "#FFFF00"
-	slot = ORGAN_SLOT_BRAIN_ANTISTUN
+	slot = ORGAN_SLOT_BRAIN_IMPLANT
 
 	var/static/list/signalCache = list(
 		COMSIG_LIVING_STATUS_STUN,
@@ -145,7 +146,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/syndicate
 	name = "syndicate CNS rebooter implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	desc = "This implant will stimulate muscle movements to help you get back up on your feet faster after being stunned."
 	syndicate_implant = TRUE
 	stun_cap_amount = 3 SECONDS
 

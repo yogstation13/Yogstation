@@ -3,15 +3,15 @@
 	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
 	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
 	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them!"
-	background_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "daemontransform"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
-	spell_requirements = NONE
 
 	invocation = "COWER, MORTALS!!"
 
 	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
+	spell_requirements = NONE
 
 /mob/living/simple_animal/lesserdemon
 	name = "demon"
@@ -25,7 +25,7 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "lesserdaemon"
 	icon_living = "lesserdaemon"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speed = 0.25
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
@@ -63,7 +63,7 @@
 			adjustHealth(-maxHealth * 0.05)
 	return ..()
 
-/mob/living/simple_animal/lesserdemon/Life()
+/mob/living/simple_animal/lesserdemon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!src)
 		return
@@ -71,9 +71,10 @@
 		if(src.stat != DEAD) //being dead, however, will save you
 			src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
 			adjustHealth(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
-	else
-		if(src.stat != DEAD) //You passively lose 2 health every 2 seconds (technically 1 a second), don't stay in demon form for too long.
-			adjustHealth(2)
+
+/mob/living/simple_animal/lesserdemon/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/life_draining, damage_overtime = 2)
 
 //not really a general power, but more than 1 sin has it
 /datum/action/cooldown/spell/touch/torment

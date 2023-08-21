@@ -29,7 +29,7 @@ Difficulty: Medium
 	icon_living = "miner"
 	icon = 'icons/mob/broadMobs.dmi'
 	health_doll_icon = "miner"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = "#E4C7C5"
 	movement_type = GROUND
 	speak_emote = list("roars")
@@ -59,7 +59,7 @@ Difficulty: Medium
 							   /datum/action/innate/megafauna_attack/kinetic_accelerator,
 							   /datum/action/innate/megafauna_attack/transform_weapon)
 
-/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Initialize()
+/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Initialize(mapload)
 	. = ..()
 	miner_saw = new(src)
 
@@ -208,7 +208,7 @@ Difficulty: Medium
 		if(get_dist(src, O) >= MINER_DASH_RANGE && turf_dist_to_target <= self_dist_to_target && !islava(O) && !ischasm(O))
 			var/valid = TRUE
 			for(var/turf/T in getline(own_turf, O))
-				if(is_blocked_turf(T, TRUE))
+				if(T.is_blocked_turf(TRUE))
 					valid = FALSE
 					continue
 			if(valid)

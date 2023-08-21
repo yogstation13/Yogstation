@@ -19,7 +19,7 @@
 	var/list/radial_modes
 	var/current_color = "#48D1CC" //mediumturquoise
 
-/obj/item/holotool/Initialize()
+/obj/item/holotool/Initialize(mapload)
 	. = ..()
 	internal_multitool = new /obj/item/multitool(src)
 
@@ -47,7 +47,7 @@
 				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
-			heal_robo_limb(src, H, user, 15, 0, 0, 50)
+			heal_robo_limb(src, H, user, 10, 0, 0, 50)
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 	. = ..()
@@ -68,7 +68,7 @@
 		if(!C || QDELETED(src))
 			return
 		current_color = C
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	action.build_all_button_icons()
 	user.regenerate_icons()
 
@@ -80,7 +80,7 @@
 	current_tool = mode
 	current_tool.on_set(src)
 	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.regenerate_icons()
 
 
@@ -101,7 +101,8 @@
 		else
 			qdel(M)
 
-/obj/item/holotool/update_icon()
+/obj/item/holotool/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(current_tool)
 		var/mutable_appearance/holo_item = mutable_appearance(icon, current_tool.name)
@@ -117,7 +118,7 @@
 		icon_state = "holotool"
 		set_light(0)
 
-	for(var/datum/action/A in actions)
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)

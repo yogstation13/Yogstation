@@ -1,6 +1,6 @@
 /obj/item/gun/energy/ionrifle
 	name = "ion rifle"
-	desc = "A man-portable anti-armor weapon designed to disable mechanical threats at range."
+	desc = "Invented in 2506 to quell attacks from SELF aligned IPCs, the NT-I1 is a bulky rifle designed to disable mechanical and electronic threats at range."
 	icon_state = "ionrifle"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	can_flashlight = TRUE
@@ -17,11 +17,12 @@
 
 /obj/item/gun/energy/ionrifle/carbine
 	name = "ion carbine"
-	desc = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
+	desc = "The NT-I2 Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
 	icon_state = "ioncarbine"
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	pin = null
+	ammo_type = list(/obj/item/ammo_casing/energy/ion/weak)
 	ammo_x_offset = 2
 	flight_x_offset = 18
 	flight_y_offset = 11
@@ -34,11 +35,11 @@
 	pin = null
 	ammo_x_offset = 1
 
-/obj/item/gun/energy/decloner/update_icon()
-	..()
+/obj/item/gun/energy/decloner/update_overlays()
+	. = ..()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
-		add_overlay("decloner_spin")
+		. += "decloner_spin"
 
 /obj/item/gun/energy/decloner/unrestricted
 	pin = /obj/item/firing_pin
@@ -77,7 +78,7 @@
 
 /obj/item/gun/energy/mindflayer
 	name = "mind flayer"
-	desc = "A vicious weapon locking up the motor neurons of the respiratory system and taking advantage of the increasing suffocation of the brain to destroy it." //god this is such warcrime
+	desc = "A vicious weapon with the ability to lock up the motor neurons of the respiratory system and take advantage of the increasing suffocation of the brain to destroy it." //god this is such warcrime
 	icon_state = "mindflayer"
 	item_state = "mindflayer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -137,7 +138,8 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
 	toolspeed = 2
 
-/obj/item/gun/energy/plasmacutter/Initialize()
+/obj/item/gun/energy/plasmacutter/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
@@ -206,10 +208,6 @@
 		target.cut_overlay(sparks)
 	else
 		. = ..(amount=1)
-
-
-/obj/item/gun/energy/plasmacutter/update_icon()
-	return
 
 /obj/item/gun/energy/plasmacutter/adv
 	name = "advanced plasma cutter"
@@ -306,7 +304,8 @@
 	desc = "A projector that emits high density quantum-coupled bluespace beams. This one seems to be modified to go through glass."
 	ammo_type = list(/obj/item/ammo_casing/energy/wormhole/upgraded, /obj/item/ammo_casing/energy/wormhole/orange/upgraded)
 
-/obj/item/gun/energy/wormhole_projector/update_icon()
+/obj/item/gun/energy/wormhole_projector/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][select]"
 	item_state = icon_state
 
@@ -375,6 +374,10 @@
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 
+/obj/item/gun/energy/printer/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
+
 /obj/item/gun/energy/printer/flamethrower
 	name = "cyborg flame projector"
 	desc = "Originally intended for cyborgs to assist in atmospherics projects, was soon scrapped due to safety concerns."
@@ -383,9 +386,6 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/flamethrower)
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
-
-/obj/item/gun/energy/printer/update_icon()
-	return
 
 /obj/item/gun/energy/printer/emp_act()
 	return
@@ -410,6 +410,9 @@
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit."
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill)
 	force = 60
+	charge_sections = 5
+	ammo_x_offset = 2
+	shaded_charge = FALSE
 
 /obj/item/gun/energy/laser/instakill/red
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a red design."
@@ -446,7 +449,7 @@
 	cell_type = "/obj/item/stock_parts/cell/high"
 	COOLDOWN_DECLARE(overheat_alert)
 
-/obj/item/gun/energy/grimdark/Initialize()
+/obj/item/gun/energy/grimdark/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

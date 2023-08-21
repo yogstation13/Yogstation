@@ -5,7 +5,7 @@
 	var/obj/item/clothing/head/hooded/hood
 	var/hoodtype = /obj/item/clothing/head/hooded/winterhood //so the chaplain hoodie or other hoodies can override this
 
-/obj/item/clothing/suit/hooded/Initialize()
+/obj/item/clothing/suit/hooded/Initialize(mapload)
 	. = ..()
 	MakeHood()
 
@@ -24,11 +24,11 @@
 	ToggleHood()
 
 /obj/item/clothing/suit/hooded/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_WEAR_SUIT)
+	if(slot == ITEM_SLOT_OCLOTHING)
 		return 1
 
 /obj/item/clothing/suit/hooded/equipped(mob/user, slot)
-	if(slot != SLOT_WEAR_SUIT)
+	if(slot != ITEM_SLOT_OCLOTHING)
 		RemoveHood()
 	..()
 
@@ -59,7 +59,7 @@
 			if(H.head)
 				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
-			else if(H.equip_to_slot_if_possible(hood,SLOT_HEAD,0,0,1))
+			else if(H.equip_to_slot_if_possible(hood,ITEM_SLOT_HEAD,0,0,1))
 				suittoggled = TRUE
 				src.icon_state = "[initial(icon_state)]_t"
 				H.update_inv_wear_suit()
@@ -84,7 +84,7 @@
 
 /obj/item/clothing/head/hooded/equipped(mob/user, slot)
 	..()
-	if(slot != SLOT_HEAD)
+	if(slot != ITEM_SLOT_HEAD)
 		if(suit)
 			suit.RemoveHood()
 		else
@@ -125,7 +125,7 @@
 	. += "Alt-click on [src] to toggle the [togglename]."
 
 //Hardsuit toggle code
-/obj/item/clothing/suit/space/hardsuit/Initialize()
+/obj/item/clothing/suit/space/hardsuit/Initialize(mapload)
 	MakeHelmet()
 	. = ..()
 
@@ -157,7 +157,7 @@
 /obj/item/clothing/suit/space/hardsuit/equipped(mob/user, slot)
 	if(!helmettype)
 		return
-	if(slot != SLOT_WEAR_SUIT)
+	if(slot != ITEM_SLOT_OCLOTHING)
 		RemoveHelmet()
 	..()
 
@@ -165,6 +165,7 @@
 	if(!helmet)
 		return
 	suittoggled = FALSE
+	helmet.unequip_hat()
 	if(ishuman(helmet.loc))
 		var/mob/living/carbon/H = helmet.loc
 		if(helmet.on)
@@ -194,7 +195,7 @@
 			if(H.head)
 				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
-			else if(H.equip_to_slot_if_possible(helmet,SLOT_HEAD,0,0,1))
+			else if(H.equip_to_slot_if_possible(helmet,ITEM_SLOT_HEAD,0,0,1))
 				to_chat(H, span_notice("You engage the helmet on the hardsuit."))
 				suittoggled = TRUE
 				H.update_inv_wear_suit()

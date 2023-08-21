@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 	var/not_reset = FALSE // check so turfs dont fall after being reset
 	var/falling_time = 1.5 SECONDS // time it takes for the turf to fall
 
-/turf/open/indestructible/runner/Initialize()
+/turf/open/indestructible/runner/Initialize(mapload)
 	. = ..()
 	GLOB.vr_runner_tiles += src
 

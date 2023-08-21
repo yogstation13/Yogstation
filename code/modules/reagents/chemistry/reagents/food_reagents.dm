@@ -22,8 +22,8 @@
 			H.adjust_nutrition(nutriment_factor)
 	holder?.remove_reagent(type, metabolization_rate)
 
-/datum/reagent/consumable/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == INGEST)
+/datum/reagent/consumable/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(methods & INGEST)
 		if (quality && !HAS_TRAIT(M, TRAIT_AGEUSIA))
 			switch(quality)
 				if (DRINK_NICE)
@@ -125,18 +125,18 @@
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 
-/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
 	var/boiling = FALSE
 	if(holder && holder.chem_temp >= fry_temperature)
 		boiling = TRUE
-	if(method != VAPOR && method != TOUCH) //Directly coats the mob, and doesn't go into their bloodstream
+	if(!(methods & (TOUCH|VAPOR))) //Directly coats the mob, and doesn't go into their bloodstream
 		return ..()
 	if(!boiling)
 		return TRUE
 	var/oil_damage = ((holder.chem_temp / fry_temperature) * 0.33) //Damage taken per unit
-	if(method == TOUCH)
+	if(methods & TOUCH)
 		oil_damage *= M.get_permeability()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
@@ -177,15 +177,20 @@
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
-	overdose_threshold = 200 // Hyperglycaemic shock
+	overdose_threshold = 100 // Hyperglycaemic shock
 	taste_description = "sweetness"
+	default_container = /obj/item/reagent_containers/food/condiment/sugar
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
 	M.AdjustSleeping(600, FALSE)
 	. = 1
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	M.AdjustSleeping(40, FALSE)
 	..()
 	. = 1
@@ -203,14 +208,15 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
-
+	default_container = /obj/item/reagent_containers/food/condiment/soysauce
+	
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "ketchup"
-
+	default_container = /obj/item/reagent_containers/food/condiment/pack/ketchup
 
 /datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
@@ -218,6 +224,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "hot peppers"
 	taste_mult = 1.5
+	default_container = /obj/item/reagent_containers/food/condiment/pack/hotsauce
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M)
 	var/heating = 0
@@ -294,12 +301,12 @@
 	taste_description = "scorching agony"
 	metabolization_rate = 6 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(!ishuman(M) && !ismonkey(M))
 		return
 
 	var/mob/living/carbon/victim = M
-	if(method == TOUCH || method == VAPOR)
+	if(methods & (TOUCH|VAPOR))
 		//check for protection
 		var/mouth_covered = victim.is_mouth_covered()
 		var/eyes_covered = victim.is_eyes_covered()
@@ -343,6 +350,7 @@
 		M.emote("cough")
 
 	M.adjustStaminaLoss(3)
+	M.clear_stamina_regen()
 	..()
 
 /datum/reagent/consumable/sodiumchloride
@@ -351,6 +359,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	taste_description = "salt"
+	default_container = /obj/item/reagent_containers/food/condiment/saltshaker
 
 /datum/reagent/consumable/sodiumchloride/reaction_turf(turf/T, reac_volume) //Creates an umbra-blocking salt pile
 	if(!istype(T))
@@ -365,6 +374,7 @@
 	reagent_state = SOLID
 	// no color (ie, black)
 	taste_description = "pepper"
+	default_container = /obj/item/reagent_containers/food/condiment/peppermill
 
 /datum/reagent/consumable/coco
 	name = "Coco Powder"
@@ -511,6 +521,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "chalky wheat"
+	default_container = /obj/item/reagent_containers/food/condiment/flour
 
 /datum/reagent/consumable/flour/reaction_turf(turf/T, reac_volume)
 	if(!isspaceturf(T))
@@ -594,8 +605,8 @@
 		M.adjustToxLoss(-1*REM, 0)
 	..()
 
-/datum/reagent/consumable/honey/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-  if(iscarbon(M) && (method in list(TOUCH, VAPOR, PATCH)))
+/datum/reagent/consumable/honey/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+  if(iscarbon(M) && (methods & (TOUCH|VAPOR|PATCH)))
     var/mob/living/carbon/C = M
     for(var/s in C.surgeries)
       var/datum/surgery/S = s
@@ -614,19 +625,12 @@
 	color = "#c0c9a0"
 	taste_description = "bitterness"
 
-/datum/reagent/consumable/tearjuice/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/consumable/tearjuice/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
-	var/unprotected = FALSE
-	switch(method)
-		if(INGEST)
-			unprotected = TRUE
-		if(INJECT)
-			unprotected = FALSE
-		else	//Touch or vapor
-			if(!M.is_mouth_covered() && !M.is_eyes_covered())
-				unprotected = TRUE
-	if(unprotected)
+	if(!permeability)
+		return ..()
+	if((methods & INGEST) || ((methods & (TOUCH|PATCH|VAPOR)) && !M.is_mouth_covered() && !M.is_eyes_covered()))
 		if(!M.getorganslot(ORGAN_SLOT_EYES))	//can't blind somebody with no eyes
 			to_chat(M, "<span class = 'notice'>Your eye sockets feel wet.</span>")
 		else
@@ -634,7 +638,7 @@
 				to_chat(M, "<span class = 'warning'>Tears well up in your eyes!</span>")
 			M.blind_eyes(2)
 			M.blur_eyes(5)
-	..()
+	return ..()
 
 /datum/reagent/consumable/tearjuice/on_mob_life(mob/living/carbon/M)
 	..()
@@ -750,12 +754,22 @@
 	color = "#97ee63"
 	taste_description = "pure electricity"
 
-/datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, method=TOUCH, reac_volume) //can't be on life because of the way blood works.
-	if((method == INGEST || method == INJECT || method == PATCH) && iscarbon(M))
+/datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, methods=TOUCH, reac_volume) //can't be on life because of the way blood works.
+	if((methods & (INGEST|INJECT|PATCH)) && iscarbon(M))
 		var/mob/living/carbon/C = M
 		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
 			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+
+/datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
+	if(!istype(T))
+		return
+	if(reac_volume < 3)
+		return
+
+	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	if(!B)
+		B = new(T)
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(prob(25) && !isethereal(M))
@@ -811,25 +825,25 @@
 /datum/reagent/consumable/mesophilicculture
 	name = "mesophilic culture"
 	description = "A mixture of mesophilic bacteria used to make most cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#F3CE3A" // rgb: 243, 206, 58
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/thermophilicculture
 	name = "thermophilic culture"
 	description = "A mixture of thermophilic bacteria used to make some cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#FFE682" // rgb: 255, 230, 130
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/penicilliumcandidum
 	name = "penicillium candidum"
 	description = "A special bacterium used to make brie."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#E9ECD5" // rgb: 233, 236, 213
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/penicilliumroqueforti
 	name = "penicillium roqueforti"
 	description = "A special bacterium used to make blue cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#829BB3" // rgb: 130, 155, 179
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/parmesan_delight
@@ -906,3 +920,13 @@
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	taste_description = "peppery sweetness"
 
+/datum/reagent/consumable/mintextract
+	name = "Mint Extract"
+	description = "Useful for dealing with undesirable customers."
+	color = "#CF3600" // rgb: 207, 54, 0
+	taste_description = "mint"
+
+/datum/reagent/consumable/mintextract/on_mob_life(mob/living/carbon/affected_mob, delta_time, times_fired)
+	if(HAS_TRAIT(affected_mob, TRAIT_FAT))
+		affected_mob.gib()
+	return ..()

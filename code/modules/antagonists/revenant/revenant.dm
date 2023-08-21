@@ -16,7 +16,7 @@
 	var/icon_stun = "revenant_stun"
 	var/icon_drain = "revenant_draining"
 	var/stasis = FALSE
-	mob_biotypes = list(MOB_SPIRIT)
+	mob_biotypes = MOB_SPIRIT
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
 	invisibility = INVISIBILITY_REVENANT
 	health = INFINITY //Revenants don't use health, they use essence instead
@@ -123,7 +123,7 @@
 		mind.add_antag_datum(/datum/antagonist/revenant)
 
 //Life, Stat, Hud Updates, and Say
-/mob/living/simple_animal/revenant/Life()
+/mob/living/simple_animal/revenant/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stasis)
 		return
 	if(revealed && essence <= 0)
@@ -168,7 +168,7 @@
 /mob/living/simple_animal/revenant/med_hud_set_status()
 	return //we use no hud
 
-/mob/living/simple_animal/revenant/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/revenant/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(!message)
 		return
 	src.log_talk(message, LOG_SAY)
@@ -376,7 +376,7 @@
 	var/old_key //key of the previous revenant, will have first pick on reform.
 	var/mob/living/simple_animal/revenant/revenant
 
-/obj/item/ectoplasm/revenant/Initialize()
+/obj/item/ectoplasm/revenant/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(try_reform)), 600)
 

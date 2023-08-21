@@ -26,7 +26,7 @@
 	var/sheetType = /obj/item/stack/sheet/metal //what we're made of
 	var/sheetAmount = 7 //how much we drop when deconstructed
 
-/obj/structure/mineral_door/Initialize()
+/obj/structure/mineral_door/Initialize(mapload)
 	. = ..()
 
 	air_update_turf(TRUE)
@@ -95,7 +95,7 @@
 	door_opened = TRUE
 	layer = OPEN_DOOR_LAYER
 	air_update_turf(1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
 	if(close_delay != -1)
@@ -116,10 +116,11 @@
 	door_opened = FALSE
 	layer = initial(layer)
 	air_update_turf(1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
-/obj/structure/mineral_door/update_icon()
+/obj/structure/mineral_door/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][door_opened ? "open":""]"
 
 /obj/structure/mineral_door/attackby(obj/item/I, mob/user)
@@ -301,7 +302,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 20
 
-/obj/structure/mineral_door/paperframe/Initialize()
+/obj/structure/mineral_door/paperframe/Initialize(mapload)
 	. = ..()
 	queue_smooth_neighbors(src)
 

@@ -24,6 +24,7 @@
  *		Toy Daggers
  *		Turn Tracker
  *		ceremonial Rod of Asclepius
+ *		cult sickles
  */
 
 
@@ -45,7 +46,7 @@
 	item_state = "balloon-empty"
 
 
-/obj/item/toy/balloon/Initialize()
+/obj/item/toy/balloon/Initialize(mapload)
 	. = ..()
 	create_reagents(10)
 
@@ -66,7 +67,7 @@
 			A.reagents.trans_to(src, 10, transfered_by = user)
 			to_chat(user, span_notice("You fill the balloon with the contents of [A]."))
 			desc = "A translucent balloon with some form of liquid sloshing around in it."
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/glass))
@@ -79,7 +80,7 @@
 				desc = "A translucent balloon with some form of liquid sloshing around in it."
 				to_chat(user, span_notice("You fill the balloon with the contents of [I]."))
 				I.reagents.trans_to(src, 10, transfered_by = user)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else if(I.is_sharp())
 		balloon_burst()
 	else
@@ -103,7 +104,8 @@
 		icon_state = "burst"
 		qdel(src)
 
-/obj/item/toy/balloon/update_icon()
+/obj/item/toy/balloon/update_icon_state()
+	. = ..()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -127,7 +129,7 @@
 
 /obj/item/toy/mballoon
 	name = "toy mballoon"
-	desc = "A blue baloon, it looks.. mentory?"
+	desc = "A blue balloon, it looks.. mentory?"
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
@@ -206,7 +208,7 @@
 			to_chat(user, span_notice("You reload [7 - src.bullets] cap\s."))
 			A.amount_left -= 7 - src.bullets
 			src.bullets = 7
-		A.update_icon()
+		A.update_appearance(UPDATE_ICON)
 		return 1
 	else
 		return ..()
@@ -238,8 +240,9 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	var/amount_left = 7
 
-/obj/item/toy/ammo/gun/update_icon()
-	src.icon_state = text("357OLD-[]", src.amount_left)
+/obj/item/toy/ammo/gun/update_icon_state()
+	. = ..()
+	icon_state = text("357OLD-[]", amount_left)
 
 /obj/item/toy/ammo/gun/examine(mob/user)
 	. = ..()
@@ -286,7 +289,7 @@
 			return
 		else
 			to_chat(user, span_notice("You attach the ends of the two plastic swords, making a single double-bladed toy! You're fake-cool."))
-			var/obj/item/twohanded/dualsaber/toy/newSaber = new /obj/item/twohanded/dualsaber/toy(user.loc)
+			var/obj/item/melee/dualsaber/toy/newSaber = new /obj/item/melee/dualsaber/toy(user.loc)
 			if(hacked) // That's right, we'll only check the "original" "sword".
 				newSaber.hacked = TRUE
 				newSaber.saber_color = "rainbow"
@@ -366,7 +369,7 @@
 /*
  * Subtype of Double-Bladed Energy Swords
  */
-/obj/item/twohanded/dualsaber/toy
+/obj/item/melee/dualsaber/toy
 	name = "double-bladed toy sword"
 	desc = "A cheap, plastic replica of TWO energy swords.  Double the fun!"
 	force = 0
@@ -376,44 +379,43 @@
 	throw_range = 5
 	attack_verb = list("attacked", "struck", "hit")
 
-/obj/item/twohanded/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/dualsaber/toy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
-/obj/item/twohanded/dualsaber/toy/IsReflect()//Stops Toy Dualsabers from reflecting energy projectiles
+/obj/item/melee/dualsaber/toy/IsReflect() //Stops Toy Dualsabers from reflecting energy projectiles
 	return 0
 
 /*
  * Subtype of Vxtvul Hammer
  */
-/obj/item/twohanded/vxtvulhammer/toy
+/obj/item/melee/vxtvulhammer/toy
 	name = "toy sledgehammer"
 	desc = "A Donksoft motorized hammer with realistic flashing lights and speakers."
-	force = 0
-	force_wielded = 0 // after recreating the dozen procs this thing has I decided it should be a subtype
+	base_icon_state = "vxtvul_hammer"
 	throwforce = 0
 	resistance_flags = NONE
 	armour_penetration = 0
 	block_chance = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	toy = TRUE
+
+	force = 0
+	force_wielded = 0
+
 	var/pirated = FALSE // knockoff brand!
 
-/obj/item/twohanded/vxtvulhammer/toy/Initialize()
+/obj/item/melee/vxtvulhammer/toy/Initialize(mapload)
 	. = ..()
 	if(pirated || prob(10)) // man i got scammed!
 		pirated = TRUE
 		name = "toy pirate sledgehammer"
 		desc += " This one looks different from the ones you see on commercials..."
-		icon_state = "vxtvul_hammer_pirate0-0"
-		update_icon()
+		base_icon_state = "vxtvul_hammer_pirate"
+		icon_state = "[base_icon_state]0-0"
+		update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/vxtvulhammer/toy/update_icon()
-	if(!pirated)
-		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
-	else
-		icon_state = "vxtvul_hammer[wielded]-[supercharged]"
-
-/obj/item/twohanded/vxtvulhammer/toy/pirate
+/obj/item/melee/vxtvulhammer/toy/pirate
+	base_icon_state = "vxtvul_hammer_pirate"
 	pirated = TRUE
 
 /obj/item/toy/katana
@@ -454,7 +456,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/ash_type = /obj/effect/decal/cleanable/ash
 
-/obj/item/toy/snappop/proc/pop_burst(var/n=3, var/c=1)
+/obj/item/toy/snappop/proc/pop_burst(n=3, c=1)
 	var/datum/effect_system/spark_spread/s = new()
 	s.set_up(n, c, src)
 	s.start()
@@ -487,7 +489,7 @@
 /obj/effect/decal/cleanable/ash/snappop_phoenix
 	var/respawn_time = 300
 
-/obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize()
+/obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(respawn)), respawn_time)
 
@@ -722,7 +724,7 @@
 	var/obj/machinery/computer/holodeck/holo = null // Holodeck cards should not be infinite
 	var/list/cards = list()
 
-/obj/item/toy/cards/deck/Initialize()
+/obj/item/toy/cards/deck/Initialize(mapload)
 	. = ..()
 	populate_deck()
 
@@ -776,7 +778,7 @@
 		C.deckstyle = deckstyle
 		cards.Cut(1,2)
 		user.put_in_hands(C)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		C.interact(user)
 	else //if more than one card is drawn
 		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.drop_location())
@@ -790,9 +792,9 @@
 		H.deckstyle=deckstyle
 		src.cards.Cut(1,drawnumber+1)
 		user.put_in_hands(H)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		H.interact(user)
-		H.update_icon()
+		H.update_appearance(UPDATE_ICON)
 
 /obj/item/toy/cards/deck/AltClick(mob/living/L)
 	if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -805,7 +807,8 @@
 		drawsize=clamp(drawsize,1,min(cards.len,10))
 		draw_card(L,drawsize)
 
-/obj/item/toy/cards/deck/update_icon()
+/obj/item/toy/cards/deck/update_icon_state()
+	. = ..()
 	if(cards.len > 26)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 10)
@@ -839,7 +842,7 @@
 			qdel(SC)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(istype(I, /obj/item/toy/cards/cardhand))
 		var/obj/item/toy/cards/cardhand/CH = I
 		if(CH.parentdeck == src)
@@ -851,7 +854,7 @@
 			qdel(CH)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -911,7 +914,7 @@
 	cardUser.visible_message(span_notice("[cardUser] draws a card from [cardUser.p_their()] hand."), span_notice("You take the [C.cardname] from your hand."))
 
 	interact(cardUser)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(length(currenthand) == 1)
 		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
 		N.parentdeck = parentdeck
@@ -928,7 +931,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", span_notice("You add the [C.cardname] to your hand."))
 			qdel(C)
 			interact(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -943,7 +946,7 @@
 			user.visible_message("[user] adds the cards from [user.p_their()] hand to another, consolidating them.", span_notice("You add the cards from one hand to another."))
 			qdel(C)
 			interact(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -977,19 +980,21 @@
 	. = ..()
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
 
-/obj/item/toy/cards/cardhand/update_icon()
-	if(src.currenthand.len > 4)
-		src.icon_state = "[deckstyle]_hand5"
+/obj/item/toy/cards/cardhand/update_icon_state()
+	. = ..()
+	if(currenthand.len > 4)
+		icon_state = "[deckstyle]_hand5"
 	else
-		src.icon_state = "[deckstyle]_hand[currenthand.len]"
-	//radial menu stuff
-	cut_overlays()
+		icon_state = "[deckstyle]_hand[currenthand.len]"
+
+/obj/item/toy/cards/cardhand/update_overlays()
+	. = ..()
 	var/overlay_cards = currenthand.len
 
 	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
 	for(var/i = k; i <= overlay_cards; i++)
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
-		add_overlay(card_overlay)
+		. += card_overlay
 
 /obj/item/toy/cards/singlecard
 	name = "card"
@@ -1054,7 +1059,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", span_notice("You add the [cardname] to your hand."))
 			qdel(src)
 			H.interact(user)
-			H.update_icon()
+			H.update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -1141,7 +1146,8 @@
 		cards += "Wildcard"
 		cards += "Wild Draw Four"
 
-/obj/item/toy/cards/deck/uno/update_icon()
+/obj/item/toy/cards/deck/uno/update_icon_state()
+	. = ..()
 	if(cards.len > 54)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 25)
@@ -1413,7 +1419,7 @@ obj/item/toy/turn_tracker
 	var/toysay = "What the fuck did you do?"
 	var/toysound = 'sound/machines/click.ogg'
 
-/obj/item/toy/figure/Initialize()
+/obj/item/toy/figure/Initialize(mapload)
 	. = ..()
 	desc = "A \"Space Life\" brand [src]."
 
@@ -1621,8 +1627,8 @@ obj/item/toy/turn_tracker
 	toysay = "I got this scroll from a dead assistant!"
 
 /obj/item/toy/figure/traitor/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/pen/edagger))
-		var/obj/item/pen/edagger/pen = I
+	if(istype(I, /obj/item/pen/red/edagger))
+		var/obj/item/pen/red/edagger/pen = I
 		if(pen.on)
 			icon_state += "_pen" // edagger buddies
 			playsound(I.loc, 'sound/weapons/saberon.ogg', 35, TRUE)
@@ -1633,7 +1639,7 @@ obj/item/toy/turn_tracker
 	icon_state = "ling"
 	toysay = ";g absorbing AI in traitor maint!"
 
-/obj/item/toy/figure/ling/Initialize()
+/obj/item/toy/figure/ling/Initialize(mapload)
 	. = ..()
 	if(prob(25))
 		icon_state = "ling[rand(1,3)]"
@@ -1679,9 +1685,10 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/eldritch_book/attack_self(mob/user)
 	book_open = !book_open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/toy/eldritch_book/update_icon()
+/obj/item/toy/eldritch_book/update_icon_state()
+	. = ..()
 	icon_state = book_open ? "book_open" : "book"
 
 /*
@@ -1713,3 +1720,77 @@ obj/item/toy/turn_tracker
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "asclepius_dormant"
+
+/*
+ * Cult sickles
+ */
+
+/obj/item/gun/magic/sickly_blade_toy
+	name = "plastic replica blade"
+	desc = "A sickly green crescent blade, decorated with a plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt."
+	icon = 'icons/obj/eldritch.dmi'
+	icon_state = "eldritch_blade"
+	item_state = "eldritch_blade"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 0
+	throwforce = 0
+	throw_speed = 3
+	throw_range = 5
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
+	recharge_rate = 3 // seconds
+	ammo_type = /obj/item/ammo_casing/magic/sickly_blade_toy
+	fire_sound = 'sound/effects/snap.ogg'
+	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
+
+/obj/item/gun/magic/sickly_blade_toy/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
+
+/obj/item/ammo_casing/magic/sickly_blade_toy
+	projectile_type = /obj/item/projectile/sickly_blade_toy
+	harmful = FALSE
+/obj/item/projectile/sickly_blade_toy
+	name = "hook"
+	icon_state = "hook"
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	pass_flags = PASSTABLE
+	damage = 0
+	knockdown = 0
+	immobilize = 0 // there's no escape
+	range = 5 // hey now cowboy
+	armour_penetration = 0 // no piercing shields
+	knockdown = 0
+	hitsound = 'sound/effects/gravhit.ogg'
+
+/obj/item/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
+	. = ..()
+	if(ismovable(target) && blocked != 100)
+		var/atom/movable/A = target
+		A.visible_message(span_danger("[A] is snagged by [firer]'s hook!"))
+	return 
+
+/obj/item/gun/magic/sickly_blade_toy/attack(mob/living/M, mob/living/user)
+	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind, laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
+	return ..()
+
+/obj/item/gun/magic/sickly_blade_toy/rust_toy
+	name = "rustic replica blade"
+	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten foam."
+	icon_state = "rust_blade"
+	item_state = "rust_blade"
+
+/obj/item/gun/magic/sickly_blade_toy/ash_toy
+	name = "metallic replica blade"
+	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is."
+	icon_state = "ash_blade"
+	item_state = "ash_blade"
+
+/obj/item/gun/magic/sickly_blade_toy/flesh_toy
+	name = "flesh-like replica blade"
+	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating comedy it has endured from dread origins."
+	icon_state = "flesh_blade"
+	item_state = "flesh_blade"

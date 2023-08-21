@@ -71,9 +71,9 @@
 		var/stamp_count = rand(1, stamp_max)
 		for(var/i in 1 to stamp_count)
 			stamps += list("stamp_[rand(2, 6)]")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/mail/update_icon()
+/obj/item/mail/update_overlays()
 	. = ..()
 	var/bonus_stamp_offset = 0
 	for(var/stamp in stamps)
@@ -84,7 +84,7 @@
 			pixel_y = stamp_offset_y + bonus_stamp_offset
 		)
 		stamp_image.appearance_flags |= RESET_COLOR
-		add_overlay(stamp_image)
+		. += stamp_image
 		bonus_stamp_offset -= 5
 
 	if(postmarked == TRUE)
@@ -95,7 +95,7 @@
 			pixel_y = stamp_offset_y + rand(bonus_stamp_offset + 3, 1)
 		)
 		postmark_image.appearance_flags |= RESET_COLOR
-		add_overlay(postmark_image)
+		. += postmark_image
 
 /obj/item/mail/attackby(obj/item/W, mob/user, params)
 	// Destination tagging
@@ -217,7 +217,7 @@
 	desc = "A certified post crate from CentCom."
 	icon_state = "mail"
 
-/obj/structure/closet/crate/mail/update_icon()
+/obj/structure/closet/crate/mail/update_icon_state()
 	. = ..()
 	if(opened)
 		icon_state = "[initial(icon_state)]open"
@@ -255,7 +255,7 @@
 		else if(prob(MAIL_JUNK_CHANCE))
 			new_mail.junk_mail()
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	return mail_count
 
@@ -284,7 +284,7 @@
 	//worn_icon_state = "bookbag"
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/mail/Initialize()
+/obj/item/storage/bag/mail/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
 	storage.max_w_class = WEIGHT_CLASS_NORMAL

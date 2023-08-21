@@ -19,7 +19,7 @@
 /obj/item/storage/bag
 	slot_flags = ITEM_SLOT_BELT
 
-/obj/item/storage/bag/Initialize()
+/obj/item/storage/bag/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_quick_gather = TRUE
@@ -42,7 +42,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	var/insertable = TRUE
 
-/obj/item/storage/bag/trash/Initialize()
+/obj/item/storage/bag/trash/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -55,7 +55,8 @@
 	playsound(loc, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return (TOXLOSS)
 
-/obj/item/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon_state()
+	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
 		return
@@ -66,7 +67,8 @@
 		icon_state = "[initial(icon_state)]1"
 	else if(contents.len < 21)
 		icon_state = "[initial(icon_state)]2"
-	else icon_state = "[initial(icon_state)]3"
+	else
+		icon_state = "[initial(icon_state)]3"
 
 /obj/item/storage/bag/trash/cyborg
 	insertable = FALSE
@@ -75,7 +77,7 @@
 	if(insertable)
 		J.put_in_cart(src, user)
 		J.mybag=src
-		J.update_icon()
+		J.update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
@@ -89,7 +91,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION
 
-/obj/item/storage/bag/trash/bluespace/Initialize()
+/obj/item/storage/bag/trash/bluespace/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 60
@@ -107,13 +109,13 @@
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
 	var/mob/listeningTo
 
-/obj/item/storage/bag/ore/Initialize()
+/obj/item/storage/bag/ore/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
@@ -184,7 +186,7 @@
 	desc = "A revolution in convenience, this satchel allows for huge amounts of ore storage. It's been outfitted with anti-malfunction safety measures."
 	icon_state = "satchel_bspace"
 
-/obj/item/storage/bag/ore/holding/Initialize()
+/obj/item/storage/bag/ore/holding/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.max_items = INFINITY
@@ -195,20 +197,20 @@
 	desc = "You thought it would be more like what those cartoon robbers wear."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "gem_satchel"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete
 	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
 	var/mob/listeningTo
 
-/obj/item/storage/bag/gem/Initialize()
+/obj/item/storage/bag/gem/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/concrete/STR = GetComponent(/datum/component/storage/concrete)
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/gem))
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 48
-	STR.max_items = 48 
+	STR.max_items = 48
 
 /obj/item/storage/bag/gem/equipped(mob/user)
 	. = ..()
@@ -247,6 +249,9 @@
 		user.visible_message(span_notice("[user] scoops up the gems beneath [user.p_them()]."), \
 		span_notice("You scoop up the gems beneath you with your [name]."))
 	spam_protection = FALSE
+
+/obj/item/storage/bag/gem/cyborg
+	name = "cyborg gem satchel"
 // -----------------------------
 //          Plant bag
 // -----------------------------
@@ -258,7 +263,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/plants/Initialize()
+/obj/item/storage/bag/plants/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -297,7 +302,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 
-/obj/item/storage/bag/sheetsnatcher/Initialize()
+/obj/item/storage/bag/sheetsnatcher/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
@@ -313,7 +318,7 @@
 	desc = ""
 	capacity = 1000//Borgs get more because >specialization
 
-/obj/item/storage/bag/sheetsnatcher/borg/Initialize()
+/obj/item/storage/bag/sheetsnatcher/borg/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.max_items = 1000
@@ -330,7 +335,7 @@
 	w_class = WEIGHT_CLASS_BULKY //Bigger than a book because physics
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/books/Initialize()
+/obj/item/storage/bag/books/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -355,9 +360,18 @@
 	flags_1 = CONDUCT_1
 	materials = list(/datum/material/iron=3000)
 
-/obj/item/storage/bag/tray/Initialize()
+/obj/item/storage/bag/tray/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 8 // Can hold two plates!
+	STR.set_holdable(list(
+		/obj/item/kitchen,
+		/obj/item/plate,
+		/obj/item/reagent_containers/food, // Includes drinking glasses, as they are a subtype
+		/obj/item/trash
+	), list(
+		/obj/item/plate/oven_tray
+	))
 	STR.insert_preposition = "on"
 
 /obj/item/storage/bag/tray/attack(mob/living/M, mob/living/user)
@@ -379,23 +393,20 @@
 	else
 		playsound(M, 'sound/items/trayhit2.ogg', 50, 1)
 
-	if(ishuman(M) || ismonkey(M))
-		if(prob(10))
-			M.Paralyze(40)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/bag/tray/update_icon()
-	cut_overlays()
+/obj/item/storage/bag/tray/update_overlays()
+	. = ..()
 	for(var/obj/item/I in contents)
-		add_overlay(new /mutable_appearance(I))
+		. += new /mutable_appearance(I)
 
 /obj/item/storage/bag/tray/Entered()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/Exited()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /*
  *	Chemistry bag
@@ -409,13 +420,13 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/chemistry/Initialize()
+/obj/item/storage/bag/chemistry/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50
 	STR.max_items = 40
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen))
+	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/gummy))
 
 /*
  *  Biowaste bag (mostly for xenobiologists)
@@ -429,7 +440,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/bio/Initialize()
+/obj/item/storage/bag/bio/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 100
@@ -449,7 +460,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/construction/Initialize()
+/obj/item/storage/bag/construction/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50
@@ -459,12 +470,12 @@
 	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/modular_computer))
 
 
-/obj/item/storage/bag/construction/admin/full/Initialize()
+/obj/item/storage/bag/construction/admin/full/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 1000
 	STR.max_items = 100
-	
+
 /obj/item/storage/bag/construction/admin/full/PopulateContents()
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"red")
 	for(var/i in 1 to 10)
@@ -487,7 +498,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/medpouch/Initialize()
+/obj/item/storage/bag/medpouch/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50

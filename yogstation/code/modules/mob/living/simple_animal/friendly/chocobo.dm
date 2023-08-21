@@ -2,7 +2,7 @@
 	name = "\improper chocobo"
 	desc = "Where the hell does this come from?"
 	gender = MALE
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	icon = 'yogstation/icons/mob/chocobo.dmi'
 	icon_state = "chocobo"
 	icon_living = "chocobo"
@@ -28,12 +28,12 @@
 	buckle_lying = 0
 	var/random_color = TRUE
 
-/mob/living/simple_animal/chocobo/Initialize()
+/mob/living/simple_animal/chocobo/Initialize(mapload)
 	. = ..()
 	if(random_color)
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, 8, MOB_LAYER), TEXT_EAST = list(0, 8, MOB_LAYER), TEXT_WEST = list( 0, 8, MOB_LAYER)))
 	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/chocobo/death(gibbed)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/mob/living/N in buckled_mobs)
 		unbuckle_mob(N)
 	can_buckle = FALSE
@@ -53,17 +53,17 @@
 	. = ..()
 	if(.)
 		can_buckle = initial(can_buckle)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/chocobo/proc/update_icon()
+/mob/living/simple_animal/chocobo/update_overlays()
+	. = ..()
 	if(!random_color) //icon override
 		return
-	cut_overlays()
 	if(stat == DEAD)
 		var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs_dead")
 		base_overlay.appearance_flags = RESET_COLOR
-		add_overlay(base_overlay)
+		. += base_overlay
 	else
 		var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs")
 		base_overlay.appearance_flags = RESET_COLOR
-		add_overlay(base_overlay)
+		. += base_overlay
