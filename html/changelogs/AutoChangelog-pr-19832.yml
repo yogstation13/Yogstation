@@ -1,0 +1,10 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Jestographic Sequencer, a role-restricted traitor item for the Clown, is buyable at 4 TCs."
+  - rscadd: "Jestographic Sequencer, if used on airlocks, will invert access."
+  - tweak: "Failing to emag something refunds the charge."
+  - tweak: "Cyborgs gets feedback similar to the AI when they interact with an non-functioning (e.g emagged) airlock."
+  - tweak: "Mechs no longer need a pilot to determine if they have access to a door."
+  - tweak: "Changed Explosive Airlock Charge's uplink description to be more accurate on how it is triggered."
+  - bugfix: "Emagging the sechailer works now."
