@@ -229,6 +229,17 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
+"ec" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure,
+/obj/item/ammo_box/magazine/smgm45,
+/obj/item/melee/transforming/energy/sword,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
 "eE" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -2102,18 +2113,6 @@
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/solars)
-"Oh" = (
-/obj/machinery/airalarm/syndicate{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/closet/crate/secure/gear,
-/obj/item/gun/ballistic/automatic/c20r/ultrasecure,
-/obj/item/gun/ballistic/automatic/c20r/ultrasecure,
-/obj/item/ammo_box/magazine/smgm45,
-/obj/item/ammo_box/magazine/smgm45,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/has_grav/syndiederelict/virology)
 "Ol" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 1
@@ -3030,7 +3029,7 @@ QU
 xQ
 Ya
 Wm
-Oh
+ec
 UL
 Yf
 Yf
