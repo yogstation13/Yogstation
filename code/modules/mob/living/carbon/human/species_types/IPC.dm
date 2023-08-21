@@ -327,14 +327,15 @@
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
-/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	if(H == user)//no emagging yourself
-		return
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	if(H == user) // No emagging yourself. That would be terrible.
+		return FALSE
 	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
-		return
+		return FALSE
 	H.SetUnconscious(10 SECONDS)
 	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
-
+	return TRUE
+	
 /*------------------------
 
 ipc martial arts stuff

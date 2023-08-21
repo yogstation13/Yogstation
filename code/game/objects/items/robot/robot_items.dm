@@ -299,12 +299,14 @@
 	icon_state = "megaphone"
 	var/cooldown = 0
 
-/obj/item/harmalarm/emag_act(mob/user)
+/obj/item/harmalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
-	if(obj_flags & EMAGGED)
-		to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")
-	else
-		to_chat(user, "<font color='red'>You reset the safeties on [src]!</font>")
+	if(user)
+		if(obj_flags & EMAGGED)
+			to_chat(user, "<font color='red'>You short out the safeties on [src]!</font>")
+		else
+			to_chat(user, "<font color='red'>You reset the safeties on [src]!</font>")
+	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)
 	var/safety = !(obj_flags & EMAGGED)

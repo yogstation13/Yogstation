@@ -13,7 +13,7 @@
 	else
 		return ..()
 
-/obj/machinery/door/unpowered/emag_act()
+/obj/machinery/door/unpowered/emag_act(mob/user, obj/item/card/emag/emag_card)
 	return
 
 /obj/machinery/door/unpowered/shuttle

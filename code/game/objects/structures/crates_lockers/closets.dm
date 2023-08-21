@@ -520,16 +520,18 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(secure && broken)
 		to_chat(user, span_warning("\The [src] is broken!"))
 
-/obj/structure/closet/emag_act(mob/user)
-	if(secure && !broken)
-		user.visible_message(span_warning("Sparks fly from [src]!"),
-						span_warning("You scramble [src]'s lock, breaking it open!"),
-						span_italics("You hear a faint electrical spark."))
-		playsound(src, "sparks", 50, 1)
-		broken = TRUE
-		locked = FALSE
-		update_appearance(UPDATE_ICON)
-
+/obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(!secure || broken)
+		return FALSE
+	user.visible_message(span_warning("Sparks fly from [src]!"),
+					span_warning("You scramble [src]'s lock, breaking it open!"),
+					span_italics("You hear a faint electrical spark."))
+	playsound(src, "sparks", 50, 1)
+	broken = TRUE
+	locked = FALSE
+	update_appearance(UPDATE_ICON)
+	return TRUE
+	
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)

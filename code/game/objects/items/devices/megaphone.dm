@@ -63,13 +63,14 @@
 			playsound(loc, 'sound/items/megaphone.ogg', 100, 0, 1)
 			speech_args[SPEECH_SPANS] |= voicespan
 
-/obj/item/megaphone/emag_act(mob/user)
+/obj/item/megaphone/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
+		return FALSE
 	obj_flags |= EMAGGED
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
-
+	to_chat(user, span_warning("You overload \the [src]'s voice synthesizer."))
+	return TRUE
+	
 /obj/item/megaphone/sec
 	name = "security megaphone"
 	icon_state = "megaphone-sec"

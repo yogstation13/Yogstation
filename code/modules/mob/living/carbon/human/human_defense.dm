@@ -539,9 +539,10 @@
 	if(.)
 		electrocution_animation(40)
 
-/mob/living/carbon/human/emag_act(mob/user)
-	.=..()
-	dna?.species.spec_emag_act(src, user)
+/mob/living/carbon/human/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
+	if(dna)
+		return dna.species.spec_emag_act(src, user, emag_card)
 
 /mob/living/carbon/human/emp_act(severity)
 	. = ..()
