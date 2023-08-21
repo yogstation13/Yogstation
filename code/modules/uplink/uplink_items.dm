@@ -1731,6 +1731,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
 		return
+	U.has_failsafe = TRUE
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
 	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
@@ -2001,6 +2002,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A step-by-step guide on how to effectively pilot a mech, written in such a way that even a clown could understand."
 	item = /obj/item/book/granter/mechpiloting
 	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
+
+
+/datum/uplink_item/device_tools/mech_drop
+	name = "Orbital Mech Drop Fulton"
+	desc = "A heavy-duty transport pack that can be used to store and summon mecha that you have stored with it. Refundable if never used."
+	item = /obj/item/extraction_pack/mech_drop
+	cost = 4
+	refundable = TRUE
+	manufacturer = /datum/corporation/traitor/cybersun
 
 /datum/uplink_item/device_tools/loic_remote
 	name = "Low Orbit Ion Cannon Remote"

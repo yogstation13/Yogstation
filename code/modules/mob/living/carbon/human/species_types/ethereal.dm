@@ -180,7 +180,7 @@
 	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell copied from another codebase copied from another codebase
 	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 	H.add_overlay(overcharge)
-	if(do_mob(H, H, 50, 1))
+	if(do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL))
 		H.flash_lighting_fx(5, 7, current_color)
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)

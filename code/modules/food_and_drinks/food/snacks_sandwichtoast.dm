@@ -90,7 +90,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "toast" = 1)
-	foodtype = GRAIN | BREAKFAST
+	foodtype = GRAIN | DAIRY | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/twobread
 	name = "two bread"
@@ -100,7 +100,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bread" = 2)
-	foodtype = GRAIN
+	foodtype = GRAIN | ALCOHOL
 
 /obj/item/reagent_containers/food/snacks/breadslice/toast
 	name = "toast"

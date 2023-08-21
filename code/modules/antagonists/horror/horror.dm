@@ -106,7 +106,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
-		if(!do_mob(src, C, 3 SECONDS))
+		if(!do_after(src, 3 SECONDS, C))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
@@ -212,7 +212,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 30 SECONDS, victim, stayStill = FALSE))
+	if(do_after(src, 30 SECONDS, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
@@ -532,7 +532,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 10 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(is_leaving)), stayStill = FALSE))
+	if(do_after(src, 10 SECONDS, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_leaving))))
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
@@ -724,7 +724,7 @@
 	var/delay = 20 SECONDS
 	if(has_upgrade("fast_control"))
 		delay -= 12 SECONDS
-	if(do_after(src, delay, victim, extra_checks = CALLBACK(src, PROC_REF(is_bonding)), stayStill = FALSE))
+	if(do_after(src, delay, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_bonding))))
 		assume_control()
 
 /mob/living/simple_animal/horror/proc/assume_control()

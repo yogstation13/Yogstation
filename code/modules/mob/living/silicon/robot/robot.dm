@@ -121,7 +121,7 @@
 	spark_system.attach(src)
 
 	wires = new /datum/wires/robot(src)
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
@@ -236,7 +236,7 @@
 	"Medical" = /obj/item/robot_module/medical, \
 	"Miner" = /obj/item/robot_module/miner, \
 	"Janitor" = /obj/item/robot_module/janitor, \
-	"Service" = /obj/item/robot_module/butler)
+	"Service" = /obj/item/robot_module/service)
 	if(!CONFIG_GET(flag/disable_peaceborg))
 		modulelist["Peacekeeper"] = /obj/item/robot_module/peacekeeper
 
@@ -544,26 +544,20 @@
 
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
-		if(!opened)
+		if(U.requires_internals && !opened)
 			to_chat(user, span_warning("You must access the borg's internals!"))
-		else if(!src.module && U.require_module)
-			to_chat(user, span_warning("The borg must choose a module before it can be upgraded!"))
-		else if(U.locked)
+			return
+		if(U.require_module && (!module || module.type == /obj/item/robot_module))
+			to_chat(user, span_warning("The cyborg must choose a module before it can be upgraded!"))
+			return
+		if(U.locked)
 			to_chat(user, span_warning("The upgrade is locked and cannot be used yet!"))
-		else
-			if(!user.temporarilyRemoveItemFromInventory(U))
-				return
-			if(U.action(src))
-				to_chat(user, span_notice("You apply the upgrade to [src]."))
-				if(U.one_use)
-					qdel(U)
-				else
-					U.forceMove(src)
-					upgrades += U
-			else
-				to_chat(user, span_danger("Upgrade error."))
-				U.forceMove(drop_location())
-
+			return
+		if(!user.canUnEquip(U))
+			to_chat(user, span_warning("The upgrade is stuck to you and you can't seem to let go of it!"))
+			return
+		add_to_upgrades(U, user)
+		return
 	else if(istype(W, /obj/item/toner))
 		if(toner >= tonermax)
 			to_chat(user, span_warning("The toner level of [src] is at its highest level possible!"))
@@ -597,19 +591,57 @@
 /mob/living/silicon/robot/proc/togglelock(mob/user)
 	if(opened)
 		to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
-	else
-		if(allowed(user))
-			locked = !locked
-			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
-			to_chat(src, span_notice("[user] [locked ? "locks" : "unlocks"] your cover."))
-			update_icons()
-			if(emagged)
-				to_chat(user, span_notice("The cover interface glitches out for a split second."))
-		else
-			to_chat(user, span_danger("Access denied."))
+		return FALSE
+	if(!allowed(user))
+		to_chat(user, span_danger("Access denied."))
+		return FALSE
+	locked = !locked
+	to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] [src]'s cover."))
+	to_chat(src, span_notice("[user] [locked ? "locks" : "unlocks"] your cover."))
+	update_icons()
+	if(emagged)
+		to_chat(user, span_notice("The cover interface glitches out for a split second."))
 
 /mob/living/silicon/robot/AltClick(mob/user)
 	togglelock(user)
+
+/// Use this to add upgrades to robots. It'll register signals for when the upgrade is moved or deleted, if not single use.
+/mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade, mob/user, from_admin = FALSE)
+	if(!from_admin && !user.temporarilyRemoveItemFromInventory(new_upgrade)) // Calling the upgrade's dropped() proc before we add action buttons.
+		return FALSE
+	if(!new_upgrade.action(src, user))
+		to_chat(user, span_danger("Upgrade error."))
+		new_upgrade.forceMove(loc) // Gets lost otherwise.
+		return FALSE
+	to_chat(user, span_notice("You apply the upgrade to [src]."))
+	to_chat(src, "New hardware detected... Identified as: \"<b>[new_upgrade.name]</b>\" ... Setup complete.")
+	if(new_upgrade.one_use)
+		logevent("Firmware \"[new_upgrade.name]\" run successfully.")
+		qdel(new_upgrade)
+		return TRUE
+	upgrades += new_upgrade
+	new_upgrade.forceMove(src)
+	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, PROC_REF(remove_from_upgrades))
+	RegisterSignal(new_upgrade, COMSIG_PARENT_QDELETING, PROC_REF(on_upgrade_deleted))
+	logevent("Hardware \"[new_upgrade.name]\" installed successfully.")
+	return TRUE
+
+/// Called when an upgrade is moved outside the robot. So don't call this directly, use forceMove etc.
+/mob/living/silicon/robot/proc/remove_from_upgrades(obj/item/borg/upgrade/old_upgrade)
+	SIGNAL_HANDLER
+	if(loc == src)
+		return
+	old_upgrade.deactivate(src)
+	upgrades -= old_upgrade
+	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
+
+/// Called when an applied upgrade is deleted.
+/mob/living/silicon/robot/proc/on_upgrade_deleted(obj/item/borg/upgrade/old_upgrade)
+	SIGNAL_HANDLER
+	if(!QDELETED(src))
+		old_upgrade.deactivate(src)
+	upgrades -= old_upgrade
+	UnregisterSignal(old_upgrade, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 
 /mob/living/silicon/robot/verb/unlock_own_cover()
 	set category = "Robot Commands"
@@ -880,6 +912,10 @@
 	set_module = /obj/item/robot_module/janitor
 	icon_state = "janitor"
 
+/mob/living/silicon/robot/modules/service
+	set_module = /obj/item/robot_module/service
+	icon_state = "brobot"
+
 /mob/living/silicon/robot/modules/syndicate
 	icon_state = "synd_sec"
 	faction = list(ROLE_SYNDICATE)
@@ -1100,8 +1136,7 @@
 
 	// Drops all items found in any storage bags on the Cyborg.
 	for(var/obj/item/storage/bag in module.contents)
-		for(var/obj/item in bag)
-			item.forceMove(drop_location())
+		bag.emptyStorage()
 			
 	while(expansion_count)
 		resize = 0.5
@@ -1280,7 +1315,7 @@
 			M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
 			return
 	M.visible_message(span_warning("[M] begins to [M == usr ? "climb onto" : "be buckled to"] [src]..."))
-	var/_target = usr == M ? src : M
+	var/_target = (usr == M) ? src : M
 	if(!do_after(usr, 0.75 SECONDS, _target))
 		M.visible_message(span_boldwarning("[M] was prevented from buckling to [src]!"))
 		return

@@ -367,12 +367,10 @@ ipc martial arts stuff
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
-	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
-	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
-	if(ipcmartial)
-		ipcmartial.Destroy()
+	REMOVE_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 	if(..())

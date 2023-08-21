@@ -137,7 +137,7 @@
 	icon_state = "pineapple_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/water = 10)
 	tastes = list("ice" = 1, "water" = 1, "pineapples" = 5)
-	foodtype = PINEAPPLE //Pineapple to allow all that like pineapple to enjoy
+	foodtype = FRUIT | PINEAPPLE //Pineapple to allow all that like pineapple to enjoy
 
 /obj/item/reagent_containers/food/snacks/snowcones/mime
 	name = "mime snowcone"
@@ -189,7 +189,7 @@
 	icon_state = "deluxe_taiyaki_vanilla"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2)
 	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "vanilla" = 1)
-	foodtype = DAIRY | SUGAR
+	foodtype = DAIRY | SUGAR | FRUIT
 
 /obj/item/reagent_containers/food/snacks/taiyaki/chocolate
 	name = "chocolate taiyaki"
@@ -197,7 +197,7 @@
 	icon_state = "deluxe_taiyaki_chocolate"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2,  /datum/reagent/consumable/coco = 2)
 	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "chocolate" = 1)
-	foodtype = FRUIT | DAIRY | SUGAR | CHOCOLATE
+	foodtype = FRUIT | DAIRY | SUGAR | CHOCOLATE | FRUIT
 
 /obj/item/reagent_containers/food/snacks/taiyaki/strawberry
 	name = "strawberry taiyaki"
@@ -205,7 +205,7 @@
 	icon_state = "deluxe_taiyaki_strawberry"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/consumable/berryjuice = 2)
 	tastes = list("ice cream" = 1, "blue cherry" = 1, "cookie" = 1, "strawberry" = 1)
-	foodtype = FRUIT | DAIRY | SUGAR
+	foodtype = FRUIT | DAIRY | SUGAR | FRUIT
 
 /obj/item/reagent_containers/food/snacks/taiyaki/blue
 	name = "blue taiyaki"
@@ -213,7 +213,7 @@
 	icon_state = "deluxe_taiyaki_blue"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/consumable/ethanol/singulo = 2)
 	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "blue" = 1)
-	foodtype = ALCOHOL | DAIRY | SUGAR
+	foodtype = ALCOHOL | DAIRY | SUGAR | FRUIT
 
 /obj/item/reagent_containers/food/snacks/taiyaki/mobflavor
 	name = "red taiyaki"
@@ -221,4 +221,4 @@
 	icon_state = "deluxe_taiyaki_strawberry"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/blood = 1)
 	tastes = list("ice cream" = 1, "blue cherry" = 1, "cookie" = 1, "blood" = 1)
-	foodtype = DAIRY | SUGAR | MICE
+	foodtype = DAIRY | SUGAR | MICE | FRUIT
