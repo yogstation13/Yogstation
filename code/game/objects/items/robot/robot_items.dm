@@ -857,5 +857,7 @@
 		/obj/item/electronics,
 		/obj/item/wallframe,
 		/obj/item/stock_parts,
-		/obj/item/tank/internals
+		/obj/item/tank/internals,
+		/obj/item/conveyor_switch_construct,
+		/obj/item/stack/conveyor
 	)
