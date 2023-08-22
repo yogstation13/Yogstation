@@ -62073,12 +62073,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
-"unB" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "unF" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -69309,6 +69303,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"xbd" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "xbs" = (
 /obj/machinery/light{
 	dir = 8
@@ -103651,7 +103654,7 @@ mdD
 naR
 uUZ
 mdD
-unB
+xbd
 hEG
 fkv
 bNR
