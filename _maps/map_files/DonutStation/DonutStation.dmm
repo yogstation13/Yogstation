@@ -503,16 +503,6 @@
 /obj/item/candle,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"anT" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/airalarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "aom" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -8987,15 +8977,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"eoa" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "eoi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -13004,10 +12985,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"gpL" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space)
 "gqd" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -13713,6 +13690,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
+"gIE" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "gIJ" = (
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -14546,16 +14532,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
-"hdT" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/contraband/armory,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "heb" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -15364,6 +15340,16 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"hEv" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -5;
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "hFa" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -33034,16 +33020,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"qtg" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/machinery/button/door{
-	id = "disposalshutters";
-	name = "disposals shutter control";
-	pixel_x = -5;
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "qtI" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/white,
@@ -33521,6 +33497,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"qHf" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "qHn" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1;
@@ -41627,6 +41613,16 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
+"uCu" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "uCz" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -84189,7 +84185,7 @@ xJD
 xJD
 wFc
 mew
-anT
+uCu
 kIz
 mvc
 xnb
@@ -86967,7 +86963,7 @@ ylr
 ylr
 ylr
 ylr
-gpL
+bHj
 dMR
 dMR
 mPx
@@ -87223,8 +87219,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 mPx
 mPx
@@ -87480,8 +87476,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 lpE
 mAL
 mAL
@@ -87737,8 +87733,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 spK
 mAL
@@ -87994,8 +87990,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 cpp
 mAL
@@ -88251,8 +88247,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 kpj
 mAL
@@ -88508,8 +88504,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 lpE
 mAL
 mAL
@@ -88765,8 +88761,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 mPx
 mPx
@@ -89022,8 +89018,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 dMR
 mPx
@@ -89279,9 +89275,9 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
-gpL
+bHj
+bHj
+bHj
 dMR
 mPx
 iqo
@@ -89537,8 +89533,8 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
+bHj
+bHj
 dMR
 dMR
 nne
@@ -89794,9 +89790,9 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
-gpL
+bHj
+bHj
+bHj
 dMR
 dMR
 nne
@@ -90052,9 +90048,9 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
-gpL
+bHj
+bHj
+bHj
 dMR
 dMR
 dMR
@@ -90310,10 +90306,10 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
-gpL
-gpL
+bHj
+bHj
+bHj
+bHj
 dMR
 dMR
 dMR
@@ -90323,8 +90319,8 @@ dMR
 dMR
 dMR
 dMR
-gpL
-gpL
+bHj
+bHj
 ylr
 ylr
 ylr
@@ -90568,20 +90564,20 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
 ylr
 ylr
 ylr
@@ -90825,19 +90821,19 @@ ylr
 ylr
 ylr
 ylr
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
-gpL
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
+bHj
 ylr
 ylr
 ylr
@@ -91821,7 +91817,7 @@ jFa
 jFa
 nuh
 vCw
-qtg
+hEv
 nuh
 xfr
 xfr
@@ -99857,7 +99853,7 @@ cJk
 ucx
 xrJ
 xGT
-eoa
+gIE
 alW
 cJk
 uJr
@@ -100107,7 +100103,7 @@ ajs
 tBJ
 ssS
 cJk
-hdT
+qHf
 nJy
 awh
 pqQ
