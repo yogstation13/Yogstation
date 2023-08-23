@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "\"Cyborg Upgrade (Translation Matrix)\" design now prints the correct upgrade."
+  - spellcheck: "langauges -> languages"
