@@ -5766,6 +5766,12 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/fitness)
+"cII" = (
+/obj/machinery/door/morgue{
+	name = "Confession Booth"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "cIJ" = (
 /obj/structure/chair{
 	dir = 1
@@ -13183,12 +13189,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"gtl" = (
-/obj/machinery/door/morgue{
-	name = "Confession Booth"
-	},
-/turf/open/space/basic,
-/area/chapel/main)
 "gtF" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -15567,6 +15567,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"hLQ" = (
+/obj/machinery/door/morgue{
+	name = "Confession Booth (Chaplain)";
+	req_access_txt = "22"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "hLW" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -20231,13 +20238,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"kco" = (
-/obj/machinery/door/morgue{
-	name = "Confession Booth (Chaplain)";
-	req_access_txt = "22"
-	},
-/turf/open/space/basic,
-/area/chapel/main)
 "kcC" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
@@ -93092,7 +93092,7 @@ faF
 csp
 eLj
 dOS
-gtl
+cII
 cjS
 jPZ
 ksy
@@ -93606,7 +93606,7 @@ xbS
 lDd
 tMp
 btw
-kco
+hLQ
 jlB
 eZW
 ksy
