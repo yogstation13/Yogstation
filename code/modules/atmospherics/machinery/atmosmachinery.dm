@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		if(empty_mixes == device_type)
 			empty_pipe = TRUE
 			
-	if(!(int_air.total_moles() > 0))
+	if(!(int_air.total_moles() > MINIMUM_MOLE_COUNT || unsafe_wrenching))
 		empty_pipe = TRUE
 
 	if(!empty_pipe)

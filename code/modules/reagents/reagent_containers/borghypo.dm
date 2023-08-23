@@ -187,6 +187,8 @@
 		// Prevents overdosing if they are on help intent.
 		if(user.a_intent == INTENT_HELP)
 			for(var/datum/reagent/reagent as anything in stored_reagents.reagent_list)
+				if(reagent.type != selected_reagent.type)
+					continue
 				if(injectee.reagents.has_reagent(reagent.type) && reagent.overdose_threshold)
 					var/datum/reagent/injectee_reagent = injectee.reagents.get_reagent(reagent.type)
 					if(injectee_reagent.overdosed)
@@ -208,7 +210,7 @@
 			hypospray_injector.trans_to(injectee, amount_per_transfer_from_this, transfered_by = user)
 			log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	else
-		to_chat(user, span_notice("[user]'s [parse_zone(user.zone_selected)] is blocked!"))
+		to_chat(user, span_notice("[injectee]'s [parse_zone(user.zone_selected)] is blocked!"))
 
 /obj/item/reagent_containers/borghypo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -299,6 +301,7 @@
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_MEDICAL_REAGENTS
+	expanded_reagent_types = list()
 
 /// Peacekeeper hypospray
 /obj/item/reagent_containers/borghypo/peace

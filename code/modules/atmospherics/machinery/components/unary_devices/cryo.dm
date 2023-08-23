@@ -336,7 +336,7 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 	user.visible_message("<span class='notice'>You see [user] kicking against the glass of [src]!</span>", \
 		"<span class='notice'>You struggle inside [src], kicking the release with your foot... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='hear'>You hear a thump from [src].</span>")
-	if(do_after(user, breakout_time, target = src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
 		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
@@ -362,7 +362,7 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 			close_machine(target)
 	else
 		user.visible_message("<span class='notice'>[user] starts shoving [target] inside [src].</span>", "<span class='notice'>You start shoving [target] inside [src].</span>")
-		if (do_after(user, 25, target=target))
+		if (do_after(user, 25, target))
 			close_machine(target)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)

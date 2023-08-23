@@ -74,6 +74,7 @@
 
 /obj/item/toy/crayon/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.add_atom_colour(paint_color, ADMIN_COLOUR_PRIORITY)
 	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/toy/crayon/proc/min_value() // Makes the paint color brighter if it is below quarter bright (V < 64)
@@ -82,7 +83,7 @@
 
 	if(value >= 64) // Min V is 64, 3 quarters to black from white
 		return
-	
+
 	if(value > 0) // Div by zero avoidance
 		var/difference = 64/value
 		read[1] *= difference
@@ -372,7 +373,7 @@
 	if(!instant)
 		if(!do_after(user, 5 SECONDS, target))
 			return
-	
+
 	var/charges_used = use_charges(user, cost)
 	if(!charges_used)
 		return
@@ -538,7 +539,13 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
-	STR.set_holdable(list(/obj/item/toy/crayon))
+	STR.set_holdable(list(/obj/item/toy/crayon),
+		list(
+			/obj/item/toy/crayon/spraycan,
+			/obj/item/toy/crayon/mime,
+			/obj/item/toy/crayon/rainbow,
+			/obj/item/toy/crayon/white
+		))
 
 /obj/item/storage/crayons/PopulateContents()
 	new /obj/item/toy/crayon/red(src)
@@ -726,7 +733,7 @@
 			to_chat(user, span_warning("ERR ERR. ASIMOV SPRAYCAN FIRMWARE DOES NOT ALLOW THIS."))
 			return // are you fucking nuts
 
-		else 
+		else
 			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
 
 		log_bomber(user, "detonated a", src, "via [S.name]")

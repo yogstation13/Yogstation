@@ -27,7 +27,7 @@
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 		return TRUE
 
-	while(do_after(user, 1 SECONDS, stayStill = FALSE))
+	while(do_after(user, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		user.visible_message(
 			span_notice("[user] puts the [src] up to their mouth."),
 			span_notice("You take a sip from the [src]."),

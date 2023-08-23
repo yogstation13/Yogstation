@@ -13,11 +13,18 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	var/safe_for_living_creatures = 1
 	var/max_force_fulton = MOVE_FORCE_STRONG
 
+	/// If false, puts atom in nullspace instead of a beacon
+	/// You are expected to handle the atom in post_extract()
+	var/uses_beacon = TRUE
+
 /obj/item/extraction_pack/examine()
 	. = ..()
-	. += "It has [uses_left] use\s remaining."
+	if(uses_left < INFINITY - 2000)
+		. += span_info("It has [uses_left] use\s remaining.")
 
 /obj/item/extraction_pack/attack_self(mob/user)
+	if(!uses_beacon)
+		return FALSE
 	if(is_species(user, /datum/species/lizard/ashwalker))
 		to_chat(user, span_warning("You don't know how to use this!"))
 		return FALSE
@@ -41,12 +48,18 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 		beacon = A
 		to_chat(user, "You link the extraction pack to the beacon system.")
 
+/obj/item/extraction_pack/proc/can_extract(atom/movable/A)
+	return TRUE
+
+/obj/item/extraction_pack/proc/post_extract(atom/movable/A)
+	return
+
 /obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/human/user, flag, params)
 	. = ..()
 	if(is_species(user, /datum/species/lizard/ashwalker))
 		to_chat(user, span_warning("You don't know how to use this!"))
 		return FALSE
-	if(!beacon)
+	if(!beacon && uses_beacon)
 		to_chat(user, "[src] is not linked to a beacon, and cannot be used.")
 		return
 	if(!can_use_indoors)
@@ -56,7 +69,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			return
 	if(!flag)
 		return
-	if(!istype(A))
+	if(!istype(A) || !can_extract(A))
 		return
 	else
 		if(!safe_for_living_creatures && check_for_living_mobs(A))
@@ -68,6 +81,8 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			return
 		to_chat(user, span_notice("You start attaching the pack to [A]..."))
 		if(do_after(user, 5 SECONDS, A))
+			if(!can_extract(A))
+				return
 			to_chat(user, span_notice("You attach the pack to [A] and activate it."))
 			if(loc == user && istype(user.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = user.back
@@ -117,32 +132,36 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 				L.remove_status_effect(/datum/status_effect/drowsiness)
 				L.SetSleeping(0)
 			sleep(3 SECONDS)
-			var/list/flooring_near_beacon = list()
-			for(var/turf/open/floor in orange(1, beacon))
-				flooring_near_beacon += floor
-			if(LAZYLEN(flooring_near_beacon) > 0)
-				holder_obj.forceMove(pick(flooring_near_beacon))
+			if(uses_beacon)
+				var/list/flooring_near_beacon = list()
+				for(var/turf/open/floor in orange(1, beacon))
+					flooring_near_beacon += floor
+				if(LAZYLEN(flooring_near_beacon) > 0)
+					holder_obj.forceMove(pick(flooring_near_beacon))
+				else
+					to_chat(user, span_userdanger("The fulton malfunctions! It couldn't find a place to land!"))
+				animate(holder_obj, pixel_z = 10, time = 5 SECONDS)
+				sleep(5 SECONDS)
+				animate(holder_obj, pixel_z = 15, time = 1 SECONDS)
+				sleep(1 SECONDS)
+				animate(holder_obj, pixel_z = 10, time = 1 SECONDS)
+				sleep(1 SECONDS)
+				balloon3 = mutable_appearance('icons/obj/fulton_balloon.dmi', "fulton_retract")
+				balloon3.pixel_y = 10
+				balloon3.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+				holder_obj.cut_overlay(balloon)
+				holder_obj.add_overlay(balloon3)
+				sleep(0.4 SECONDS)
+				holder_obj.cut_overlay(balloon3)
+				A.anchored = FALSE // An item has to be unanchored to be extracted in the first place.
+				A.density = initial(A.density)
+				animate(holder_obj, pixel_z = 0, time = 0.5 SECONDS)
+				sleep(0.5 SECONDS)
+				A.forceMove(holder_obj.loc)
 			else
-				to_chat(user, span_userdanger("The beacon malfunctions! It couldn't find a place to land!"))
-			animate(holder_obj, pixel_z = 10, time = 5 SECONDS)
-			sleep(5 SECONDS)
-			animate(holder_obj, pixel_z = 15, time = 1 SECONDS)
-			sleep(1 SECONDS)
-			animate(holder_obj, pixel_z = 10, time = 1 SECONDS)
-			sleep(1 SECONDS)
-			balloon3 = mutable_appearance('icons/obj/fulton_balloon.dmi', "fulton_retract")
-			balloon3.pixel_y = 10
-			balloon3.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-			holder_obj.cut_overlay(balloon)
-			holder_obj.add_overlay(balloon3)
-			sleep(0.4 SECONDS)
-			holder_obj.cut_overlay(balloon3)
-			A.anchored = FALSE // An item has to be unanchored to be extracted in the first place.
-			A.density = initial(A.density)
-			animate(holder_obj, pixel_z = 0, time = 0.5 SECONDS)
-			sleep(0.5 SECONDS)
-			A.forceMove(holder_obj.loc)
+				A.doMove(null)
 			qdel(holder_obj)
+			post_extract(A)
 			if(uses_left <= 0)
 				qdel(src)
 
@@ -198,3 +217,64 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/effect/extraction_holder/singularity_pull()
 	return
+
+/obj/item/extraction_pack/mech_drop
+	name = "mech extraction pack"
+	desc = "An industrial balloon pack designed to transport heavy-duty mecha."
+	uses_left = INFINITY
+	can_use_indoors = TRUE
+	safe_for_living_creatures = FALSE
+	max_force_fulton = MOVE_FORCE_EXTREMELY_STRONG
+	uses_beacon = FALSE
+	var/list/stored_mecha
+	var/ever_used = FALSE
+
+/obj/item/extraction_pack/mech_drop/attack_self(mob/user)
+	if(!user.canUseTopic(src, TRUE))
+		return
+	if(!stored_mecha)
+		stored_mecha = list()
+	if(stored_mecha.len == 0)
+		balloon_alert(user, "no mecha in storage")
+		return
+	var/mecha_names = list()
+	for(var/obj/mecha/mecha_choice in stored_mecha)
+		mecha_names[mecha_choice.name] = mecha_choice // Generate this list *now* to avoid potential naming exploits
+	var/choice = tgui_input_list(user, "Choose a mech to deploy", "Mech Drop", mecha_names)
+	var/obj/mecha/chosen_mecha = mecha_names[choice]
+	if(!chosen_mecha || !istype(chosen_mecha) || !(chosen_mecha in stored_mecha) || !user.canUseTopic(src, TRUE))
+		return
+	ever_used = TRUE
+	balloon_alert(user, "stand back!")
+	var/obj/structure/closet/supplypod/pod = new
+	pod.style = STYLE_SEETHROUGH
+	pod.explosionSize = list(0,0,0,1)
+	pod.bluespace = TRUE
+	pod.damage = 50
+	chosen_mecha.forceMove(pod)
+	stored_mecha -= chosen_mecha
+	new /obj/effect/DPtarget(get_teleport_turf(get_turf(user), 1), pod)
+
+/obj/item/extraction_pack/mech_drop/examine()
+	. = ..()
+	. += span_info("Use in-hand to summon stored mecha.")
+
+/obj/item/extraction_pack/mech_drop/Initialize(mapload)
+	. = ..()
+	stored_mecha = list()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
+
+/obj/item/extraction_pack/mech_drop/proc/refund_check()
+	return !ever_used
+
+/obj/item/extraction_pack/mech_drop/can_extract(atom/movable/A)
+	var/obj/mecha/mecha_to_store = A
+	. = istype(mecha_to_store) && !mecha_to_store.silicon_pilot && !mecha_to_store.occupant
+	if(.)
+		ever_used = TRUE
+
+/obj/item/extraction_pack/mech_drop/post_extract(atom/movable/A)
+	if(!istype(A, /obj/mecha))
+		return
+	ever_used = TRUE
+	stored_mecha |= A

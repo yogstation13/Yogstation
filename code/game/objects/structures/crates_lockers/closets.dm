@@ -379,13 +379,12 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(!isitem(O))
 		return
 	var/turf/T = get_turf(src)
-	var/list/targets = list(O, src)
 	add_fingerprint(user)
 	user.visible_message(span_warning("[user] [actuallyismob ? "tries to ":""]stuff [O] into [src]."), \
 				 	 	span_warning("You [actuallyismob ? "try to ":""]stuff [O] into [src]."), \
 				 	 	span_italics("You hear clanging."))
 	if(actuallyismob)
-		if(do_after_mob(user, targets, 40))
+		if(do_after(user, 4 SECONDS, O))
 			user.visible_message(span_notice("[user] stuffs [O] into [src]."), \
 							 	 span_notice("You stuff [O] into [src]."), \
 							 	 span_italics("You hear a loud metal bang."))
@@ -521,16 +520,18 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(secure && broken)
 		to_chat(user, span_warning("\The [src] is broken!"))
 
-/obj/structure/closet/emag_act(mob/user)
-	if(secure && !broken)
-		user.visible_message(span_warning("Sparks fly from [src]!"),
-						span_warning("You scramble [src]'s lock, breaking it open!"),
-						span_italics("You hear a faint electrical spark."))
-		playsound(src, "sparks", 50, 1)
-		broken = TRUE
-		locked = FALSE
-		update_appearance(UPDATE_ICON)
-
+/obj/structure/closet/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(!secure || broken)
+		return FALSE
+	user.visible_message(span_warning("Sparks fly from [src]!"),
+					span_warning("You scramble [src]'s lock, breaking it open!"),
+					span_italics("You hear a faint electrical spark."))
+	playsound(src, "sparks", 50, 1)
+	broken = TRUE
+	locked = FALSE
+	update_appearance(UPDATE_ICON)
+	return TRUE
+	
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 1)
