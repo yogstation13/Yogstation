@@ -782,7 +782,7 @@
 	name = "Cyborg Upgrade (Translation Matrix)"
 	id = "borg_upgrade_language"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/language
+	build_path = /obj/item/borg/upgrade/language/normal
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 6000, /datum/material/plasma = 5000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
