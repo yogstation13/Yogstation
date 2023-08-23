@@ -31285,6 +31285,12 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"iuJ" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "iuY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -69303,15 +69309,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"xbd" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/obj/machinery/turnstile/brig{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "xbs" = (
 /obj/machinery/light{
 	dir = 8
@@ -103654,7 +103651,7 @@ mdD
 naR
 uUZ
 mdD
-xbd
+iuJ
 hEG
 fkv
 bNR
