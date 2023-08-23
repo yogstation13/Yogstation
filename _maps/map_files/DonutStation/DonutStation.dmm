@@ -503,6 +503,16 @@
 /obj/item/candle,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"anT" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "aom" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -7636,16 +7646,6 @@
 /obj/item/assembly/signaler,
 /turf/open/floor/plating,
 /area/maintenance/central)
-"dFv" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/contraband/armory,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "dFO" = (
 /obj/item/pool/rubber_ring,
 /turf/open/indestructible/sound/pool,
@@ -8987,6 +8987,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"eoa" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "eoi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -12995,6 +13004,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"gpL" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space)
 "gqd" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -14533,6 +14546,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
+"hdT" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "heb" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -14652,15 +14675,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"hjC" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "hjG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17983,16 +17997,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"jdh" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/airalarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "jdP" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Chapel"
@@ -23305,16 +23309,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"lIP" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/machinery/button/door{
-	id = "disposalshutters";
-	name = "disposals shutter control";
-	pixel_x = -5;
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "lJp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -33040,6 +33034,16 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"qtg" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -5;
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "qtI" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/white,
@@ -84185,7 +84189,7 @@ xJD
 xJD
 wFc
 mew
-jdh
+anT
 kIz
 mvc
 xnb
@@ -86963,7 +86967,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+gpL
 dMR
 dMR
 mPx
@@ -87219,8 +87223,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 mPx
 mPx
@@ -87476,8 +87480,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 lpE
 mAL
 mAL
@@ -87733,8 +87737,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 spK
 mAL
@@ -87990,8 +87994,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 cpp
 mAL
@@ -88247,8 +88251,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 kpj
 mAL
@@ -88504,8 +88508,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 lpE
 mAL
 mAL
@@ -88761,8 +88765,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 mPx
 mPx
@@ -89018,8 +89022,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 dMR
 mPx
@@ -89275,9 +89279,9 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
+gpL
+gpL
+gpL
 dMR
 mPx
 iqo
@@ -89533,8 +89537,8 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
+gpL
+gpL
 dMR
 dMR
 nne
@@ -89790,9 +89794,9 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
+gpL
+gpL
+gpL
 dMR
 dMR
 nne
@@ -89805,7 +89809,7 @@ prr
 mAL
 lNP
 kfu
-mPx
+mAL
 mPx
 mPx
 dMR
@@ -90048,9 +90052,9 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
+gpL
+gpL
+gpL
 dMR
 dMR
 dMR
@@ -90062,7 +90066,7 @@ oMz
 mot
 kfu
 dMR
-dMR
+lpE
 dMR
 dMR
 dMR
@@ -90306,10 +90310,10 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
+gpL
+gpL
+gpL
+gpL
 dMR
 dMR
 dMR
@@ -90319,8 +90323,8 @@ dMR
 dMR
 dMR
 dMR
-ylr
-ylr
+gpL
+gpL
 ylr
 ylr
 ylr
@@ -90564,20 +90568,20 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
 ylr
 ylr
 ylr
@@ -90821,19 +90825,19 @@ ylr
 ylr
 ylr
 ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
+gpL
 ylr
 ylr
 ylr
@@ -91817,7 +91821,7 @@ jFa
 jFa
 nuh
 vCw
-lIP
+qtg
 nuh
 xfr
 xfr
@@ -99853,7 +99857,7 @@ cJk
 ucx
 xrJ
 xGT
-hjC
+eoa
 alW
 cJk
 uJr
@@ -100103,7 +100107,7 @@ ajs
 tBJ
 ssS
 cJk
-dFv
+hdT
 nJy
 awh
 pqQ
