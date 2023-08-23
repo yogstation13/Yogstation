@@ -4227,6 +4227,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"bYV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "bYZ" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/machinery/button/door{
@@ -11521,15 +11533,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
-"fFt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "fFJ" = (
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
@@ -12082,14 +12085,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"fTF" = (
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "fTO" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -29292,6 +29287,15 @@
 	},
 /turf/open/floor/noslip,
 /area/medical/sleeper)
+"ous" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "ouv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -87009,9 +87013,9 @@ fJu
 nee
 pzc
 qRu
-fTF
+ous
 mqx
-fFt
+bYV
 gUw
 fTp
 vhD
