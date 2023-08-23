@@ -13139,6 +13139,16 @@
 	},
 /turf/open/space/basic,
 /area/chapel/main)
+"gtp" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "gtF" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -13690,15 +13700,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"gIE" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "gIJ" = (
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -15340,16 +15341,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"hEv" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/machinery/button/door{
-	id = "disposalshutters";
-	name = "disposals shutter control";
-	pixel_x = -5;
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "hFa" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -20653,6 +20644,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"klI" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/space/basic,
+/area/space)
 "klP" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -26350,6 +26347,11 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"nex" = (
+/obj/structure/lattice,
+/obj/structure/transit_tube/crossing/horizontal,
+/turf/open/space/basic,
+/area/space/nearstation)
 "neO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -26578,6 +26580,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+"nja" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/transit_tube/diagonal,
+/turf/open/space/basic,
+/area/space/nearstation)
 "njt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -31082,6 +31095,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"put" = (
+/obj/structure/lattice,
+/obj/structure/transit_tube/curved/flipped{
+	dir = 8
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "puy" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
@@ -33497,16 +33517,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"qHf" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/contraband/armory,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "qHn" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1;
@@ -35664,12 +35674,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"rNE" = (
-/obj/structure/transit_tube/curved/flipped{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "rNU" = (
 /obj/machinery/light{
 	dir = 1
@@ -36183,13 +36187,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"seb" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "seh" = (
 /obj/structure/closet/secure_closet/RD,
 /obj/machinery/power/apc{
@@ -37598,6 +37595,15 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"sKa" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "sKb" = (
 /obj/machinery/atmospherics/pipe/manifold/dark/visible,
 /turf/open/floor/plasteel,
@@ -41613,22 +41619,22 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
-"uCu" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/airalarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "uCz" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
 /obj/item/stamp/hos,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"uCQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -5;
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "uCR" = (
 /obj/machinery/button/door{
 	id = "researchprivate";
@@ -42920,6 +42926,14 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vfp" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/transit_tube/crossing/horizontal,
+/turf/open/space/basic,
+/area/space/nearstation)
 "vfy" = (
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
@@ -44028,13 +44042,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
-"vNn" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/transit_tube/crossing/horizontal,
-/turf/open/space/basic,
-/area/space)
 "vNC" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -46622,6 +46629,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"xba" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "xbc" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -84185,7 +84202,7 @@ xJD
 xJD
 wFc
 mew
-uCu
+xba
 kIz
 mvc
 xnb
@@ -91817,7 +91834,7 @@ jFa
 jFa
 nuh
 vCw
-hEv
+uCQ
 nuh
 xfr
 xfr
@@ -99039,8 +99056,8 @@ hvR
 nXV
 fSc
 xRt
-tvm
 apK
+tvm
 mfu
 gcB
 eRv
@@ -99296,8 +99313,8 @@ fSc
 fSc
 fSc
 jKL
-seb
-vNn
+vfp
+klI
 mfu
 atO
 xYK
@@ -99553,8 +99570,8 @@ fSc
 fSc
 fSc
 okP
-xSu
-rNE
+put
+ylr
 mfu
 tki
 pSc
@@ -99809,8 +99826,8 @@ xSu
 tKI
 bdP
 dTi
-bBB
-ljU
+nja
+xSu
 xSu
 xSu
 gsw
@@ -99853,7 +99870,7 @@ cJk
 ucx
 xrJ
 xGT
-gIE
+sKa
 alW
 cJk
 uJr
@@ -100065,8 +100082,8 @@ cif
 cif
 bdP
 bBB
-xSu
 ljU
+xSu
 cif
 cif
 ylr
@@ -100103,7 +100120,7 @@ ajs
 tBJ
 ssS
 cJk
-qHf
+gtp
 nJy
 awh
 pqQ
@@ -100321,8 +100338,8 @@ bdP
 dTi
 dTi
 bBB
-xSu
 ljU
+xSu
 ylr
 ylr
 tHf
@@ -100577,8 +100594,8 @@ ylr
 okP
 xSu
 xSu
-xSu
 ljU
+xSu
 ylr
 ylr
 ylr
@@ -100833,8 +100850,8 @@ ylr
 ylr
 okP
 xSu
-xSu
 ljU
+xSu
 ylr
 ylr
 ylr
@@ -101089,8 +101106,8 @@ ylr
 ylr
 ylr
 okP
+aKP
 xSu
-cYM
 xSu
 ylr
 ylr
@@ -101346,7 +101363,7 @@ ylr
 ylr
 ylr
 okP
-aKP
+nex
 ylr
 xSu
 ylr
