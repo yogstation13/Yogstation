@@ -7636,6 +7636,16 @@
 /obj/item/assembly/signaler,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"dFv" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/contraband/armory,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/main)
 "dFO" = (
 /obj/item/pool/rubber_ring,
 /turf/open/indestructible/sound/pool,
@@ -9952,16 +9962,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"eMp" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/airalarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "eMI" = (
 /obj/machinery/modular_computer/console/preset/command,
 /obj/structure/fireaxecabinet/bridge/spare{
@@ -14652,6 +14652,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"hjC" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "hjG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17143,12 +17152,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"iDL" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "iEe" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17980,6 +17983,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"jdh" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "jdP" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Chapel"
@@ -19647,13 +19660,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"jNI" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/contraband/armory,
-/turf/open/floor/plasteel/dark,
-/area/security/main)
 "jNK" = (
 /obj/machinery/light{
 	dir = 8
@@ -23299,6 +23305,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"lIP" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -5;
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "lJp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -24218,16 +24234,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"mjg" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/machinery/button/door{
-	id = "disposalshutters";
-	name = "disposals shutter control";
-	pixel_x = -5;
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "mjk" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -84179,7 +84185,7 @@ xJD
 xJD
 wFc
 mew
-eMp
+jdh
 kIz
 mvc
 xnb
@@ -91811,7 +91817,7 @@ jFa
 jFa
 nuh
 vCw
-mjg
+lIP
 nuh
 xfr
 xfr
@@ -99847,7 +99853,7 @@ cJk
 ucx
 xrJ
 xGT
-iDL
+hjC
 alW
 cJk
 uJr
@@ -100097,7 +100103,7 @@ ajs
 tBJ
 ssS
 cJk
-jNI
+dFv
 nJy
 awh
 pqQ
