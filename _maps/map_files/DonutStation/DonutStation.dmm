@@ -4227,18 +4227,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"bYV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "bYZ" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/machinery/button/door{
@@ -23915,6 +23903,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"maJ" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "maL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -25976,6 +25973,28 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"mXj" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/security/glass{
+	name = "Security Office";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel,
+/area/security/checkpoint/science)
 "mXu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -27910,28 +27929,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"nPn" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/security{
-	name = "Security Checkpoint";
-	req_access_txt = "1"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/science)
 "nPv" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -29287,15 +29284,6 @@
 	},
 /turf/open/floor/noslip,
 /area/medical/sleeper)
-"ous" = (
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/machinery/door/airlock/external{
-	name = "Engineering External Access";
-	req_access_txt = "10;13"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "ouv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -42010,6 +41998,18 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"uKe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "uKf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -77228,7 +77228,7 @@ hqh
 niT
 agy
 oiq
-nPn
+mXj
 ocI
 qte
 inp
@@ -87013,9 +87013,9 @@ fJu
 nee
 pzc
 qRu
-ous
+maJ
 mqx
-bYV
+uKe
 gUw
 fTp
 vhD
