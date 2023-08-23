@@ -21406,12 +21406,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
-"gpL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "gpP" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -29876,6 +29870,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"iKF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "iKH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -51025,6 +51028,14 @@
 	},
 /obj/item/pen,
 /obj/item/taperecorder,
+<<<<<<< HEAD
+=======
+/obj/machinery/button{
+	id = "lawyer_shutters";
+	name = "law office shutter control";
+	pixel_y = -26
+	},
+>>>>>>> 8a8248859f0f4c787eca39502fe9057686891c46
 /turf/open/floor/wood,
 /area/lawoffice)
 "oKN" = (
@@ -121801,7 +121812,7 @@ fRw
 tbG
 adJ
 gdU
-gpL
+iKF
 xAa
 rTH
 uuW

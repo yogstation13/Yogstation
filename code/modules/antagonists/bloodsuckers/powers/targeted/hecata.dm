@@ -63,7 +63,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(target.stat == DEAD && user.Adjacent(target))
 		owner.balloon_alert(owner, "attempting to revive...")
-		if(!do_mob(user, target, 6 SECONDS, NONE, TRUE))
+		if(!do_after(user, 6 SECONDS, target))
 			return FALSE
 		if(IS_VASSAL(target))
 			power_activated_sucessfully()

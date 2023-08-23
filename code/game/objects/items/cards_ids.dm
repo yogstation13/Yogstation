@@ -67,10 +67,14 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
-	var/max_charges = 5 // How many charges can the emag hold?
-	var/charges = 5 // How many charges does the emag start with?
-	var/recharge_rate = 0.4 // How fast charges are regained (per second)
-	var/prox_check = TRUE //If the emag requires you to be in range
+	/// How many charges can the emag hold?
+	var/max_charges = 5
+	/// How many charges does the emag start with?
+	var/charges = 5
+	/// How fast (in seconds) does charges increase by 1?
+	var/recharge_rate = 0.4
+	/// Does usage require you to be in range?
+	var/prox_check = TRUE
 
 /obj/item/card/emag/Initialize(mapload)
 	. = ..()
@@ -104,13 +108,14 @@
 	. = ..()
 	var/atom/A = target
 	if(!proximity && prox_check)
-		return
+		return 
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
 	log_combat(user, A, "attempted to emag")
 	charges--
-	A.emag_act(user)
+	if(!A.emag_act(user, src) && ((charges + 1) > max_charges)) // This is here because some emag_act use sleep and that could mess things up.
+		charges++ // No charge usage if they fail (likely because either no interaction or already emagged).
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
@@ -137,22 +142,96 @@
 		emagging = TRUE
 		if(do_after(user, rand(5, 10) SECONDS, target))
 			charges--
-			if (prob(40))
+			if(prob(40))
 				to_chat(user, span_notice("[src] emits a puff of smoke, but nothing happens."))
 				emagging = FALSE
 				return
-			if (prob(5))
+			if(prob(5))
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
 				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
-				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
-				emagging = FALSE
-				return
-			target.emag_act(user)
+			if(!target.emag_act(user, src) && !((charges + 1) > max_charges))
+				charges++
 		emagging = FALSE
+
+/// A replica of an emag in most ways, except what it "cmags" what it interacts with.
+/obj/item/card/cmag
+	name = "jestographic sequencer"
+	desc = "It's a card coated in a slurry of electromagnetic bananium."
+	icon_state = "cmag"
+	item_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
+	/// How many charges can the cmag hold?
+	var/max_charges = 5
+	/// How many charges does the cmag start with?
+	var/charges = 5
+	/// How fast (in seconds) does charges increase by 1?
+	var/recharge_rate = 0.4
+	/// Does usage require you to be in range?
+	var/prox_check = TRUE
+
+/obj/item/card/cmag/Initialize(mapload)
+	. = ..()
+	if(recharge_rate != 0)
+		START_PROCESSING(SSobj, src)
+	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP) // It wouldn't be funny if it couldn't slip!
+
+/obj/item/card/cmag/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/card/cmag/process(delta_time)
+	charges = clamp(charges + (recharge_rate * delta_time), 0, max_charges)
+
+/obj/item/card/cmag/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(max_charges > charges)
+		if(istype(W, /obj/item/stack/sheet/mineral/uranium))
+			var/obj/item/stack/sheet/mineral/uranium/T = W
+			T.use(1)
+			charges = min(charges + 1, max_charges)
+			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
+
+/obj/item/card/cmag/examine(mob/user)
+	. = ..()
+	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
+
+/obj/item/card/cmag/attack()
+	return
+
+/obj/item/card/cmag/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity && prox_check)
+		return 
+	if(charges < 1)
+		to_chat(user, span_danger("\The [src] is still recharging!"))
+		return
+
+	log_combat(user, target, "attempted to cmag")
+	// Since cmag only has very few interactions, all of it is handled in `afterattack` instead of being a child of emag/`emag_act`.
+	if(istype(target, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/airlock = target
+		if(airlock.operating || !airlock.density || !airlock.hasPower() || (airlock.obj_flags & EMAGGED) || (airlock.obj_flags & CMAGGED))
+			return
+
+		charges--
+		playsound(airlock, 'sound/items/bikehorn.ogg', 20, 1) // Was it an innocent bike horn or was is it someone actively cmagging your airlock? The only tell if someone is actively cmagging things.
+		airlock.obj_flags |= CMAGGED
+		return
+
+	if(istype(target, /obj/machinery/door/window))
+		var/obj/machinery/door/window/windoor = target
+		if(windoor.operating || !windoor.density || (windoor.obj_flags & EMAGGED) || (windoor.obj_flags & CMAGGED))
+			return
+
+		charges--
+		playsound(windoor, 'sound/items/bikehorn.ogg', 20, 1)
+		windoor.obj_flags |= CMAGGED
+		return
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."

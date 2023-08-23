@@ -108,7 +108,7 @@
 /datum/crafting_recipe/food/chocoorange
 	name = "Chocolate Orange"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
+		/datum/reagent/consumable/orangejuice = 2,
 		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/chocoorange
@@ -189,7 +189,6 @@
 		/obj/item/reagent_containers/food/snacks/grown/apple = 1,
 		/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
 		/obj/item/reagent_containers/food/snacks/grown/citrus/lemon = 1,
-		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/melonfruitbowl

@@ -156,15 +156,16 @@
 		var/mutable_appearance/beaker_overlay = display_beaker()
 		. += beaker_overlay
 
-/obj/machinery/chem_dispenser/emag_act(mob/user)
+/obj/machinery/chem_dispenser/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	dispensable_reagents |= emagged_reagents//add the emagged reagents to the dispensable ones
 	display_reagents |= emagged_reagents
 	obj_flags |= EMAGGED
-
+	return TRUE
+	
 /obj/machinery/chem_dispenser/ex_act(severity, target)
 	if(severity < 3)
 		..()

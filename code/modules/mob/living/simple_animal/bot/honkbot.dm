@@ -125,8 +125,8 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		addtimer(CALLBACK(src, PROC_REF(react_buzz)), 5)
 	..()
 
-/mob/living/simple_animal/bot/honkbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/honkbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			user << span_danger("You short out [src]'s sound control system. It gives out an evil laugh!!")

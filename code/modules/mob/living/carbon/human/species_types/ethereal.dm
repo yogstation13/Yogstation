@@ -119,15 +119,15 @@
 		if(EMP_HEAVY)
 			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
 
-/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user)
+/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(emageffect)
-		return
+		return FALSE
 	emageffect = TRUE
 	to_chat(user, span_notice("You tap [H] on the back with your card."))
 	H.visible_message(span_danger("[H] starts flickering in an array of colors!"))
 	handle_emag(H)
 	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
-
+	return TRUE
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
@@ -180,7 +180,7 @@
 	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell copied from another codebase copied from another codebase
 	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 	H.add_overlay(overcharge)
-	if(do_mob(H, H, 50, 1))
+	if(do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL))
 		H.flash_lighting_fx(5, 7, current_color)
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)

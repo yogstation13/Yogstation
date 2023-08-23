@@ -185,7 +185,7 @@
 
 	if (target.reagents && target.is_injectable(src, allowmobs = TRUE) && !istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		src.visible_message(span_warning("[src] starts licking [target] passionately!"), span_notice("You start licking [target]..."))
-		if(do_mob(src, target, 2 SECONDS))
+		if(do_after(src, 2 SECONDS, target))
 			target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 	else if(istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))

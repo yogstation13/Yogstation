@@ -155,7 +155,7 @@
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
 	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
-	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
+	if(!do_after(user, time_taken, target = src) && !(choice in body_part.embedded_objects))
 		return
 	if(remove_embedded_object(choice, get_turf(src), unsafe = TRUE) && !QDELETED(choice))
 		user.put_in_hands(choice)

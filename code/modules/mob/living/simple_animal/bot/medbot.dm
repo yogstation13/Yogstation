@@ -255,7 +255,7 @@
 		if(health < current_health) //if medbot took some damage
 			step_to(src, (get_step_away(src,user)))
 
-/mob/living/simple_animal/bot/medbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/medbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	..()
 	if(emagged == 2)
 		declare_crit = 0
@@ -646,7 +646,7 @@
 			span_userdanger("[src] is trying to inject you!"))
 
 		var/failed = FALSE
-		if(do_mob(src, patient, 30))
+		if(do_after(src, 3 SECONDS, patient))
 			if((get_dist(src, patient) <= 1) && (on) && assess_patient(patient))
 				if(reagent_id == "internal_beaker")
 					if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
