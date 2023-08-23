@@ -36,7 +36,7 @@
 	unequip_buckle_inhands(M)
 	M.updating_glide_size = TRUE
 	if(AM.movement_type & FLYING)
-		M.movement_type -= FLYING
+		M.movement_type &= ~FLYING
 	if(del_on_unbuckle_all && !AM.has_buckled_mobs())
 		qdel(src)
 
@@ -75,7 +75,7 @@
 	if(AM.movement_type & FLYING)
 		AMM.movement_type |= FLYING
 	else
-		AMM.movement_type -= FLYING
+		AMM.movement_type &= ~FLYING
 	if((ride_check_rider_restrained && M.restrained(TRUE)) || (ride_check_rider_incapacitated && M.incapacitated(FALSE, TRUE)) || (ride_check_ridden_incapacitated && istype(AMM) && AMM.incapacitated(FALSE, TRUE)))
 		AM.visible_message(span_warning("[M] falls off of [AM]!"))
 		AM.unbuckle_mob(M)
