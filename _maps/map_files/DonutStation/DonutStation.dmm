@@ -740,6 +740,12 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"atp" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "atr" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Crematorium Maintenance";
@@ -1237,17 +1243,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"aFo" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "EVA Storage";
-	req_access_txt = "18"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "aFu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4288,6 +4283,17 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/fore)
+"caI" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/command/glass{
+	name = "EVA Storage";
+	req_access_txt = "18"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "caN" = (
 /obj/machinery/light{
 	dir = 1
@@ -9974,6 +9980,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"eNt" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "eNC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -12563,6 +12575,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"gcS" = (
+/obj/structure/sign/departments/cargo{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/trimline/green/filled/corner/lower{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "gdR" = (
 /obj/structure/table,
 /obj/item/tape/random,
@@ -17858,6 +17885,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"iYU" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "iYX" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4
@@ -17879,22 +17916,6 @@
 /obj/item/clothing/gloves/color/black,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"iZq" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "EVA Storage";
-	req_access_txt = "18"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "jaE" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/power/apc{
@@ -19595,19 +19616,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jNF" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "EVA Storage";
-	req_access_txt = "18"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "jNK" = (
 /obj/machinery/light{
 	dir = 8
@@ -20451,6 +20459,15 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"kib" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "kie" = (
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -22679,13 +22696,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"ltx" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "lty" = (
 /obj/machinery/flasher{
 	id = "AI";
@@ -24560,6 +24570,17 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"mqI" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/command/glass{
+	name = "EVA Storage";
+	req_access_txt = "18"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "mqJ" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -30759,6 +30780,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"poS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/command/glass{
+	name = "EVA Storage";
+	req_access_txt = "18"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "poW" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
@@ -31459,24 +31496,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"pFL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"pFN" = (
-/obj/structure/sign/departments/cargo{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/trimline/green/filled/corner/lower{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "pFT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -34502,17 +34521,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"rjy" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "EVA Storage";
-	req_access_txt = "18"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
 "rjz" = (
 /obj/effect/turf_decal/trimline/white/filled/corner/lower{
 	dir = 4
@@ -43119,6 +43127,13 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"vnK" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "voN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -49279,6 +49294,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ylS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/command/glass{
+	name = "EVA Storage";
+	req_access_txt = "18"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "ymc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -83566,7 +83594,7 @@ cPC
 cPC
 nCf
 wpu
-iZq
+poS
 oGP
 kIe
 hqF
@@ -83823,12 +83851,12 @@ cPC
 dGG
 tdD
 ijQ
-aFo
+mqI
 rcK
 ydM
 cny
 sBx
-jNF
+ylS
 kmu
 ydM
 syB
@@ -84085,7 +84113,7 @@ mVF
 rIV
 ydM
 ydM
-rjy
+caI
 pUf
 ydM
 bWH
@@ -87158,7 +87186,7 @@ pAL
 pAL
 pAL
 pww
-cPC
+eNt
 dfT
 cPC
 tEq
@@ -87927,9 +87955,9 @@ rcW
 usN
 bsf
 gNx
-gNx
+atp
 ung
-pFL
+kib
 mci
 sLL
 aNa
@@ -88441,9 +88469,9 @@ cOe
 usN
 wAP
 gNx
-bdW
+vnK
 oRq
-ltx
+iYU
 rTA
 yfd
 tEq
@@ -89214,7 +89242,7 @@ pww
 pww
 pww
 pww
-pFN
+gcS
 iOl
 cPC
 qAi
