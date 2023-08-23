@@ -1,6 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "readd radiation anomaly that shoots radballs and emits radiation (this is normal anomaly that doesnt spawn rad goat, admin one does)"
-  - mapping: "replaces the orange goat with rad goat on goat search shuttle"
-  - tweak: "rainbow goat is now replaced with rad goat in exotic goat crate"

@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - tweak: "You can no longer respawn immediately as a servant golem after already having respawned as a servant golem before. Use your golem life wisely until your golem respawn timer has passed."
-  - tweak: "Uranium golem info text no longer lies to you by removing the claim that your punches do as much as a human."
-  - tweak: "Golems stop wagging their tail if they somehow die with one."
