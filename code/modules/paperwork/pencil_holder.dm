@@ -1,6 +1,6 @@
 /obj/item/storage/pencil_holder
 	name = "holder"
-	desc = "A holder for your utensils"
+	desc = "a holder for your utensils"
 	icon = 'yogstation/icons/obj/bureaucracy.dmi'
 	icon_state = "pencilholder_0"
 	item_state = "paper !CONFLICT! base"
@@ -36,7 +36,7 @@
 /obj/item/storage/pencil_holder/crew
 //THE POPULATED CAN FOR CREW
 	name = "pencil holder"
-	desc = "a holder for your writing utensils"
+	desc = "a holder for writing utensils"
 	icon_state = "pencilholder_0"
 
 /obj/item/storage/pencil_holder/crew/PopulateContents()
