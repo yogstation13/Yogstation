@@ -9952,6 +9952,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"eMp" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "eMI" = (
 /obj/machinery/modular_computer/console/preset/command,
 /obj/structure/fireaxecabinet/bridge/spare{
@@ -17318,15 +17328,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"iJI" = (
-/obj/machinery/airalarm/kitchen_cold_room{
-	pixel_y = 24
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "iJU" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen Cold Room";
@@ -24217,6 +24218,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"mjg" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -5;
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "mjk" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -39898,10 +39909,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"tKT" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "tLl" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/randomdrink,
@@ -84172,7 +84179,7 @@ xJD
 xJD
 wFc
 mew
-iJI
+eMp
 kIz
 mvc
 xnb
@@ -91804,7 +91811,7 @@ jFa
 jFa
 nuh
 vCw
-tKT
+mjg
 nuh
 xfr
 xfr
