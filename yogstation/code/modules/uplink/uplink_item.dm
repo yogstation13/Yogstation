@@ -181,6 +181,7 @@
 	cost = 20
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
