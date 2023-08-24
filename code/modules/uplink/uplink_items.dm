@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 				continue
 			if(gamemode && (gamemode in I.exclude_modes))
 				continue
-		if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
+		if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len) A
 			continue
 		if (I.restricted && !allow_restricted)
 			continue
