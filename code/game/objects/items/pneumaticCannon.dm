@@ -73,15 +73,12 @@
 	if(var_name == "selfcharge")
 		switch(var_value)
 			if(-INFINITY to 0)
-				to_chat(world, "should stop processing")
 				STOP_PROCESSING(SSobj, src)
 			else
-				to_chat(world, "should start processing")
 				START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/pneumatic_cannon/process(delta_time)
-	to_chat(world, "process happened [src.name]")
 	if(selfcharge && charge_amount && charge_type && recharge_cooldown)
 		seconds_time_remaining += delta_time * 1 SECONDS // You might think that this should use `COOLDOWN_DECLARE()`, but it shouldn't because process is inconsistent.
 		var/attempts = 1
