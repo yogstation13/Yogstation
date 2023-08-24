@@ -182,12 +182,13 @@ RSF
 /obj/item/rsf/cookiesynth/attackby()
 	return
 
-/obj/item/rsf/cookiesynth/emag_act(mob/user)
+/obj/item/rsf/cookiesynth/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("You short out [src]'s reagent safety checker!"))
 	else
 		to_chat(user, span_warning("You reset [src]'s reagent safety checker!"))
+	return TRUE
 
 /obj/item/rsf/cookiesynth/attack_self(mob/user)
 	var/mob/living/silicon/robot/P = null

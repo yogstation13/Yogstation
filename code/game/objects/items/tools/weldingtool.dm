@@ -124,7 +124,7 @@
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
-			if(INTERACTING_WITH(user, H))
+			if(DOING_INTERACTION_WITH_TARGET(user, H))
 				return FALSE
 			if(!tool_start_check(user, 1))
 				return FALSE

@@ -102,23 +102,24 @@
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && ((target in user.client.screen) && !user.is_holding(target)))
 		to_chat(user, span_warning("You need to take that [target.name] off before cleaning it!"))
-	else if(istype(target, /obj/effect/decal/cleanable))
+		return
+	if(istype(target, /obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to scrub \the [target.name] out with [src].", span_warning("You begin to scrub \the [target.name] out with [src]..."))
-		if(do_after(user, src.cleanspeed, target))
+		if(do_after(user, cleanspeed, target))
 			to_chat(user, span_notice("You scrub \the [target.name] out."))
 			qdel(target)
 			decreaseUses(user)
-
-	else if(ishuman(target) && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+		return
+	if(ishuman(target) && user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		var/mob/living/carbon/human/H = user
 		user.visible_message(span_warning("\the [user] washes \the [target]'s mouth out with [src.name]!"), span_notice("You wash \the [target]'s mouth out with [src.name]!")) //washes mouth out with soap sounds better than 'the soap' here			if(user.zone_selected == "mouth")
 		H.lip_style = null //removes lipstick
 		H.update_body()
 		decreaseUses(user)
 		return
-	else if(istype(target, /obj/structure/window))
+	if(istype(target, /obj/structure/window))
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
-		if(do_after(user, src.cleanspeed, target))
+		if(do_after(user, cleanspeed, target))
 			to_chat(user, span_notice("You clean \the [target.name]."))
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			var/obj/structure/window/our_window = target
@@ -128,16 +129,24 @@
 					qdel(iter_blood)
 					our_window.bloodied = FALSE
 			decreaseUses(user)
-	else
-		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
-		if(do_after(user, src.cleanspeed, target))
-			to_chat(user, span_notice("You clean \the [target.name]."))
-			target.wash(CLEAN_SCRUB)
-			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			target.wash_cream()
-			decreaseUses(user)
+		return
+	if(istype(target, /obj/machinery/door))
+		var/obj/machinery/door/door = target
+		if(door.obj_flags && CMAGGED)
+			user.visible_message("[user] starts to clean the ooze off \the [door.name]'s access panel.", "You start to clean the ooze off \the [door.name]'s access panel.")
+			if(do_after(user, src.cleanspeed, door))
+				to_chat(span_notice(" You clean the ooze off [src]'s access panel."))
+				door.obj_flags &= ~CMAGGED
+				decreaseUses(user)
+			return
+	user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
+	if(do_after(user, cleanspeed, target))
+		to_chat(user, span_notice("You clean \the [target.name]."))
+		target.wash(CLEAN_SCRUB)
+		target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		target.wash_cream()
+		decreaseUses(user)
 	return
-
 
 /*
  * Bike Horns
