@@ -4389,7 +4389,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "akS" = (
 /obj/effect/turf_decal/stripes/line{
@@ -4554,7 +4554,10 @@
 /area/syndicate_mothership/control)
 "alm" = (
 /obj/machinery/light,
-/turf/open/floor/plating,
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "aln" = (
 /obj/machinery/light,
@@ -5611,7 +5614,7 @@
 /turf/open/floor/engine,
 /area/syndicate_mothership)
 "any" = (
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "anz" = (
 /turf/closed/indestructible/opsglass,
@@ -6950,7 +6953,7 @@
 	name = "Auxillary Dock";
 	req_access_txt = ""
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership/control)
 "apG" = (
 /obj/structure/flora/tree/pine,
@@ -10747,7 +10750,7 @@
 	dir = 8;
 	layer = 4.1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "awZ" = (
 /obj/effect/turf_decal/tile/green{
@@ -25865,6 +25868,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+"enK" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/syndicate_mothership)
 "evb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -26120,13 +26129,13 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
 "ipF" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 4
+/turf/open/floor/plasteel/elevatorshaft{
+	color = "#808080"
 	},
-/turf/open/floor/engine,
 /area/syndicate_mothership)
 "irl" = (
 /obj/machinery/door/poddoor/shutters{
@@ -26363,6 +26372,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"mmK" = (
+/obj/effect/decal/cleanable/blood/old{
+	color = "#808080"
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/elevatorshaft{
+	color = "#808080"
+	},
+/area/syndicate_mothership)
 "moB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info12"
@@ -26804,7 +26825,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "spc" = (
 /turf/open/indestructible/wiki/title{
@@ -27186,7 +27207,7 @@
 	name = "Auxillary Dock";
 	req_access_txt = ""
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
@@ -39279,8 +39300,8 @@ aMD
 aMD
 aMD
 aMD
-ipF
-aym
+akt
+ama
 amA
 aaa
 aaa
@@ -39536,8 +39557,8 @@ ama
 ama
 ama
 ama
-asi
-awp
+nuF
+aym
 amA
 aaa
 aaa
@@ -44391,7 +44412,7 @@ ahl
 akv
 akR
 any
-amA
+jkt
 aso
 pfQ
 aso
@@ -44906,14 +44927,14 @@ akv
 akR
 alm
 amA
-aso
-pfQ
-aso
-aso
-aso
-aso
-pfQ
-aso
+ipF
+mmK
+ipF
+ipF
+ipF
+ipF
+mmK
+ipF
 aku
 apX
 apZ
@@ -45161,7 +45182,7 @@ ahl
 ahl
 akv
 akR
-any
+enK
 amA
 aso
 aso
@@ -45418,7 +45439,7 @@ ahl
 ahl
 akv
 akR
-any
+enK
 amA
 awY
 awY
@@ -45932,7 +45953,7 @@ ahl
 ahl
 akv
 akR
-any
+enK
 amA
 amA
 jkt
@@ -46189,7 +46210,7 @@ ahl
 ahl
 akv
 akR
-any
+enK
 amA
 aQr
 amC
