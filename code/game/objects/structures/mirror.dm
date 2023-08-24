@@ -140,7 +140,13 @@
 		if(BURN)
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 
-
+/obj/item/wallframe/mirror
+	name = "mirror"
+	desc = "a mirror on your hand, what are you gonna do?"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "mirror"
+	result_path = /obj/structure/mirror
+	
 /obj/structure/mirror/magic
 	name = "magic mirror"
 	desc = "Turn and face the strange... face."
