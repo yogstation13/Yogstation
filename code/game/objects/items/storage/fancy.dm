@@ -16,9 +16,6 @@
 
 /obj/item/storage/fancy
 	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "donutbox6"
-	name = "donut box"
-	desc = "Mmm. Donuts."
 	resistance_flags = FLAMMABLE
 	var/icon_type = "donut"
 	var/spawn_type = null
@@ -59,17 +56,21 @@
 	fancy_open = TRUE
 	update_appearance(UPDATE_ICON)
 
+#define DONUT_INBOX_SPRITE_WIDTH 3
+
 /*
  * Donut Box
  */
 
 /obj/item/storage/fancy/donut_box
-	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "donutbox6"
-	icon_type = "donut"
 	name = "donut box"
+	desc = "Mmm. Donuts."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "donutbox_inner"
+	icon_type = "donut"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut
 	fancy_open = TRUE
+	appearance_flags = KEEP_TOGETHER
 
 /obj/item/storage/fancy/donut_box/Initialize(mapload)
 	. = ..()
@@ -79,27 +80,38 @@
 
 /obj/item/storage/fancy/donut_box/PopulateContents()
 	for(var/i in 1 to 6)
-		new /obj/item/reagent_containers/food/snacks/donut(src)
+		new spawn_type(src)
+
+/obj/item/storage/fancy/donut_box/PopulateContents()
+	. = ..()
+	update_appearance(UPDATE_ICON)
+
+/obj/item/storage/fancy/donut_box/update_icon_state()
+	. = ..()
+	if(fancy_open)
+		icon_state = "donutbox_inner"
+	else
+		icon_state = "donutbox"
+
+/obj/item/storage/fancy/donut_box/update_overlays()
+	. = ..()
+
+	if (!fancy_open)
+		return
+
+	var/donuts = 0
+
+	for (var/obj/item/reagent_containers/food/snacks/donut/donut in contents)
+
+		. += image(icon = initial(icon), icon_state = donut.in_box_sprite(), pixel_x = donuts * DONUT_INBOX_SPRITE_WIDTH)
+		donuts += 1
+
+	. += image(icon = initial(icon), icon_state = "donutbox_top")
 
 /obj/item/storage/fancy/donut_box/deadly
-	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "donutbox6"
-	icon_type = "donut"
-	name = "donut box"
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut/deadly
-	fancy_open = TRUE
 
-/obj/item/storage/fancy/donut_box/Initialize(mapload)
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
-	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donut))
-
-/obj/item/storage/fancy/donut_box/deadly/PopulateContents()
-	for(var/i in 1 to 6)
-		new /obj/item/reagent_containers/food/snacks/donut/deadly(src)
-
-
+#undef DONUT_INBOX_SPRITE_WIDTH
 /*
  * Egg Box
  */
@@ -207,7 +219,7 @@
 	. = ..()
 	if(!fancy_open)
 		return
-	
+
 	. += "[icon_state]_open"
 
 	if(!display_cigs)

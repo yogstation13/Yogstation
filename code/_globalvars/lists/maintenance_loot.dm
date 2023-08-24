@@ -31,6 +31,11 @@
 // yogstation/code/_globalvars/lists/maintenance_loot.dm
 //************************************************************
 GLOBAL_LIST_INIT(maintenance_loot, list(
+	/obj/item/pen = 20,
+	/obj/item/pen/red = 20,
+	/obj/item/pen/blue =20,
+	/obj/item/pen/green = 20,
+	/obj/item/pen/fourcolor = 2,
 	/obj/item/bodybag = 1,
 	/obj/item/clothing/glasses/meson = 2,
 	/obj/item/clothing/glasses/sunglasses = 1,
@@ -79,7 +84,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/hand_labeler = 1,
 	/obj/item/paper/crumpled = 1,
 	/obj/item/reagent_containers/autoinjector/medipen/pumpup = 6,
-	/obj/item/pen = 1,
 	/obj/item/reagent_containers/spray/pestspray = 1,
 	/obj/item/reagent_containers/glass/rag = 3,
 	/obj/item/stock_parts/cell = 3,

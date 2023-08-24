@@ -280,15 +280,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return randname
 
 //used to add things to the no_equip list that'll get inherited on species changes
-/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Add(slot)
+/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot, source)
+	if(!("[slot]" in extra_no_equip))
+		extra_no_equip["[slot]"] = list(source)
+	else
+		extra_no_equip["[slot]"] |= list(source)
 	var/obj/item/thing = C.get_item_by_slot(slot)
 	if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
 		C.dropItemToGround(thing)
 
 //removes something from the extra_no_equip list as well as the normal no_equip list
-/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Remove(slot)
+/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot, source)
+	extra_no_equip["[slot]"] -= source
+	if(!length(extra_no_equip["[slot]"]))
+		extra_no_equip -= "[slot]"
 
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)
@@ -359,6 +364,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
 					new_lizard_tail.spines = C.dna.features["spines"]
 
+	// if(tail && (!should_have_tail || replace_current))
+	// 	tail.Remove(C,1)
+	// 	QDEL_NULL(tail)
+	// if(should_have_tail && !tail)
+	// 	tail = new mutanttail
+	// 	if(iscatperson(C))
+	// 		tail.tail_type = C.dna.features["tail_human"]
+	// 	if(ispolysmorph(C))
+	// 		tail.tail_type = C.dna.features["tail_polysmorph"]
+	// 	if(islizard(C))
+	// 		var/obj/item/organ/tail/lizard/T = tail
+	// 		T.tail_type = C.dna.features["tail_lizard"]
+	// 		T.spines = C.dna.features["spines"]
+	// 	tail.Insert(C)
 			used_neworgan = TRUE
 			neworgan.Insert(C, TRUE, FALSE)
 
@@ -396,7 +415,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.gender = FEMALE
 	if((MGENDER in species_traits))
 		C.gender = MALE
-	extra_no_equip.Add(old_species.extra_no_equip)
+	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -562,13 +581,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(!forced_colour)
 				if(hair_color)
 					if(hair_color == "mutcolor")
-						facial_overlay.color = "#" + H.dna.features["mcolor"]
+						facial_overlay.color =  H.dna.features["mcolor"]
 					else if(hair_color == "fixedmutcolor")
-						facial_overlay.color = "#[fixed_mut_color]"
+						facial_overlay.color = fixed_mut_color
 					else
-						facial_overlay.color = "#" + hair_color
+						facial_overlay.color = hair_color
 				else
-					facial_overlay.color = "#" + H.facial_hair_color
+					facial_overlay.color = H.facial_hair_color
 			else
 				facial_overlay.color = forced_colour
 
@@ -625,13 +644,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color =  H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 
 					//Gradients
 					grad_style = H.grad_style
@@ -642,7 +661,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 						var/icon/temp_hair = icon(hair_file, hair_state)
 						temp.Blend(temp_hair, ICON_ADD)
 						gradient_overlay.icon = temp
-						gradient_overlay.color = "#" + grad_color
+						gradient_overlay.color = grad_color
 
 				else
 					hair_overlay.color = forced_colour
@@ -664,7 +683,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		//if you're working with sprite code i hope this helps because i wish i was dead now.
 			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
 			if(S)
-				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#7F7F7F")[3])
+				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#777777")[3])
 					H.hair_color = H.dna.species.default_color
 				var/hair_state = S.icon_state
 				var/hair_file = S.icon
@@ -673,13 +692,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color = H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 				hair_overlay.alpha = hair_alpha
 				standing+=hair_overlay
 				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
@@ -693,13 +712,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					if(!forced_colour)
 						if(hair_color)
 							if(hair_color == "mutcolor")
-								flower_overlay.color = "#" + H.dna.features["mcolor"]
+								flower_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								flower_overlay.color = "#[fixed_mut_color]"
+								flower_overlay.color = fixed_mut_color
 							else
-								flower_overlay.color = "#" + hair_color
-						else
-							flower_overlay.color = "#" + H.facial_hair_color
+								flower_overlay.color = hair_color
+						else		
+							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
 	if(standing.len)
@@ -1018,20 +1037,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else																		//Then snowflake color
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 						if(HAIR)
 							if(hair_color == "mutcolor")
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else
-								accessory_overlay.color = "#[H.hair_color]"
+								accessory_overlay.color = H.hair_color
 						if(FACEHAIR)
-							accessory_overlay.color = "#[H.facial_hair_color]"
+							accessory_overlay.color = H.facial_hair_color
 						if(EYECOLOR)
-							accessory_overlay.color = "#[H.eye_color]"
+							accessory_overlay.color = H.eye_color
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
@@ -1085,7 +1104,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 //Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if((slot in no_equip) || (slot in extra_no_equip))
+	if((slot in no_equip) || ("[slot]" in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -1414,7 +1433,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(radiation > RAD_MOB_MUTATE)
 		if(prob(1))
 			to_chat(H, span_danger("You mutate!"))
-			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			H.emote("gasp")
 			H.domutcheck()
 
@@ -1504,8 +1523,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_emp_act(mob/living/carbon/human/H, severity)
 	return
 
-/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	return
+/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	return FALSE
 
 /datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	return

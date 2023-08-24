@@ -143,10 +143,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/has_heavy_gravity()
 	return (..() || lockdown)
 
-/datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
+/datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(emag_lvl == 2)
-		return
+		return FALSE
 	emag_lvl = min(emag_lvl + 1,2)
 	playsound(H.loc, 'sound/machines/warning-buzzer.ogg', 50, 1, 1)
 	H.Paralyze(60)
@@ -158,7 +158,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			H.overlay_fullscreen("preternis_emag", /atom/movable/screen/fullscreen/high)
 			H.throw_alert("preternis_emag", /atom/movable/screen/alert/high/preternis)
 			to_chat(H,span_danger("ALERT! OPTIC SENSORS FAILURE.VISION PROCESSOR COMPROMISED."))
-
+	return TRUE
+	
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
 
@@ -236,6 +237,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
+		if(prob(50))
+			playsound(get_turf(H), "sparks", 30, 1)
+			new /obj/effect/particle_effect/sparks(get_turf(H))
 		soggy = TRUE
 		H.throw_alert("preternis_wet", /atom/movable/screen/alert/preternis_wet)
 	else if(soggy)

@@ -83,7 +83,7 @@
 	else
 		to_chat(owner, span_notice("We begin linking our mind with [target.name]!"))
 	var/multiplier = (!foiled || bruteforce) ? 5 : 10
-	if(!do_after(owner, multiplier*(1.5**get_dist(owner, target)), owner, FALSE) || !(target in view(aoe_radius)))
+	if(!do_after(owner, multiplier*(1.5**get_dist(owner, target)), owner, timed_action_flags = IGNORE_HELD_ITEM) || !(target in view(aoe_radius)))
 		to_chat(owner, span_notice("We fail to connect to [target.name]."))
 		return
 	if((HAS_TRAIT(target, TRAIT_MINDSHIELD) && !bruteforce))
@@ -249,7 +249,7 @@
 		var/mob/living/L = track.tracked_by
 		if(!L)
 			continue
-		if(!do_after(owner, 0.5 SECONDS, owner, FALSE))
+		if(!do_after(owner, 0.5 SECONDS, owner, timed_action_flags = IGNORE_HELD_ITEM))
 			to_chat(owner, span_notice("Our concentration has been broken!"))
 			break
 		distance = get_dist(owner, L)
@@ -269,7 +269,7 @@
 					message += " is quite far away."
 		to_chat(owner, span_assimilator("[message]"))
 	for(var/datum/antagonist/hivemind/enemy in hive.individual_track_bonus)
-		if(!do_after(owner, 0.5 SECONDS, owner, FALSE))
+		if(!do_after(owner, 0.5 SECONDS, owner, timed_action_flags = IGNORE_HELD_ITEM))
 			to_chat(owner, span_notice("Our concentration has been broken!"))
 			break
 		var/mob/living/carbon/C = enemy.owner?.current
@@ -326,7 +326,7 @@
 	to_chat(owner, span_notice("We begin siphoning power from our many vessels!"))
 	while(iterations < 7)
 		var/mob/living/carbon/target = pick(carbon_members)
-		if(!do_after(owner, 1 SECONDS, owner, FALSE))
+		if(!do_after(owner, 1 SECONDS, owner, timed_action_flags = IGNORE_HELD_ITEM))
 			to_chat(owner, span_warning("Our concentration has been broken!"))
 			break
 		if(!target)
@@ -426,7 +426,7 @@
 		if(vessel.anti_magic_check(FALSE, FALSE, TRUE))
 			timely = 100
 			restricted_range = TRUE
-		if(!do_after(owner, timely, owner, FALSE))
+		if(!do_after(owner, timely, owner, timed_action_flags = IGNORE_HELD_ITEM))
 			to_chat(owner, span_notice("We fail to assume control of the target."))
 			return
 		if(owner.z != vessel.z || (restricted_range && get_dist(vessel, owner) > 35))
@@ -458,7 +458,7 @@
 			starting_spot = get_turf(vessel)
 			time_initialized = world.time
 			to_chat(vessel, span_assimilator("We can sustain our control for a maximum of [round(power/10)] seconds."))
-			if(do_after(owner, power, owner, FALSE, FALSE))
+			if(do_after(owner, power, owner, timed_action_flags = IGNORE_HELD_ITEM, progress = FALSE))
 				to_chat(vessel, span_warning("We cannot sustain the mind control any longer and release control!"))
 			else
 				to_chat(vessel, span_warning("Our body has been disturbed, interrupting the mind control!"))
@@ -606,13 +606,13 @@
 
 /datum/action/cooldown/spell/aoe/target_hive/nightmare/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	var/mob/living/carbon/target = victim
-	if(!do_after(owner, 3 SECONDS, owner, FALSE))
+	if(!do_after(owner, 3 SECONDS, owner, timed_action_flags = IGNORE_HELD_ITEM))
 		to_chat(owner, span_notice("Our concentration has been broken!"))
 		return
 	to_chat(target, span_ownerdanger("You see dark smoke swirling around you!"))
 	if(target.anti_magic_check(FALSE, FALSE, TRUE))
 		to_chat(owner, span_notice("We begin bruteforcing the tinfoil barriers of [target.name] and pulling out their nightmares."))
-		if(!do_after(owner, 3 SECONDS, owner, FALSE) || !(target in view(aoe_radius)))
+		if(!do_after(owner, 3 SECONDS, owner, timed_action_flags = IGNORE_HELD_ITEM) || !(target in view(aoe_radius)))
 			to_chat(owner, span_notice("Our concentration has been broken!"))
 			return
 	target.apply_status_effect(STATUS_EFFECT_HIVEMIND_CURSE, CURSE_SPAWNING | CURSE_BLINDING)
@@ -682,12 +682,12 @@
 	var/list/enemies = list()
 
 	to_chat(owner, span_notice("We begin probing [target.name]'s mind!"))
-	if(do_after(owner, 10 SECONDS, target, FALSE))
+	if(do_after(owner, 10 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
 		var/foiled = target.anti_magic_check(FALSE, FALSE, TRUE)
 		if(!in_hive || foiled)
 			var/timely = !in_hive ? 200 : 100
 			to_chat(owner, span_notice("Their mind slowly opens up to us."))
-			if(!do_after(owner, timely, target, FALSE))
+			if(!do_after(owner, timely, target, timed_action_flags = IGNORE_HELD_ITEM))
 				to_chat(owner, span_notice("Our concentration has been broken!"))
 				return
 		for(var/datum/antagonist/hivemind/enemy in GLOB.antagonists)
