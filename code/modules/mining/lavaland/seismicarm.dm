@@ -34,38 +34,7 @@
 	owner.visible_message(span_warning("[owner] sprints forward with [owner.p_their()] arm outstretched!"))
 	StartCooldown()
 	playsound(owner,'sound/effects/gravhit.ogg', 20, 1)
-	for(var/i = 0 to jumpdistance)
-		if(T.density)
-			return
-		for(var/obj/D in T.contents)
-			if(D.density == TRUE)
-				return
-		for(var/turf/closed/indestructible/I in T.contents)
-			return
-		if(istype(T, /turf/open/lava) || (istype(T, /turf/open/chasm)))
-			return
-		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density == TRUE)
-				return 
-		if(T)
-			sleep(0.1 SECONDS)
-			owner.forceMove(T)
-			walk_towards(F,owner,0, 1.5)
-			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			for(var/mob/living/L in T.contents)
-				if(L != owner)
-					owner.forceMove(get_turf(L))
-					to_chat(L, span_userdanger("[owner] catches you with [owner.p_their()] arm and clotheslines you!"))
-					owner.visible_message(span_warning("[owner] hits [L] with a lariat!"))
-					L.SpinAnimation(0.5 SECONDS, 1)
-					if(isanimal(L))
-						L.adjustBruteLoss(50)
-					if(iscarbon(L))
-						L.adjustBruteLoss(10)
-					if(issilicon(L))
-						L.adjustBruteLoss(12)
-					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-			T = get_step(owner,owner.dir)
+	addtimer(CALLBACK(src, PROC_REF(lariatmove), owner, F, T))			
 	return TRUE
 			
 /datum/action/cooldown/seismic/mop
@@ -75,70 +44,15 @@
 	button_icon_state = "mop"
 	cooldown_time = 7 SECONDS
 	var/jumpdistance = 4
+	var/list/mopped = list()	
 
 /datum/action/cooldown/seismic/mop/Activate()
-	var/turf/T = get_step(get_turf(owner), owner.dir)
 	var/turf/Z = get_turf(owner)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, owner)
-	var/list/mopped = list()
 	owner.visible_message(span_warning("[owner] sprints forward with [owner.p_their()] hand outstretched!"))
 	StartCooldown()
+	addtimer(CALLBACK(src, PROC_REF(mopmove), owner))	
 	playsound(owner,'sound/effects/gravhit.ogg', 20, 1)
-	for(var/i = 0 to jumpdistance)
-		if(T.density)
-			return
-		for(var/obj/D in T.contents)
-			if(D.density == TRUE)
-				return
-		if(istype(T, /turf/open/lava) || (istype(T, /turf/open/chasm)))
-			return
-		for (var/turf/closed/indestructible/I in T.contents)
-			return
-		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density == TRUE)
-				return 
-		if(T)
-			sleep(0.1 SECONDS)
-			owner.forceMove(T)
-			walk_towards(F,owner,0, 1.5)
-			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			for(var/mob/living/L in T.contents)
-				if(L != owner)
-					L.Immobilize(0.2 SECONDS)
-					mopped |= L
-					var/turf/Q = get_step(get_turf(owner), owner.dir)
-					var/mob/living/U = owner
-					sweep(L)
-					if(ismineralturf(Q))
-						var/turf/closed/mineral/M = Q
-						M.attempt_drill()
-						L.adjustBruteLoss(5)
-					if(Q.density)
-						wakeup(L)
-						return
-					for(var/obj/D in Q.contents)
-						if(D.density == TRUE)
-							wakeup(L)
-							return
-					U.forceMove(get_turf(L))
-					to_chat(L, span_userdanger("[U] catches you with [U.p_their()] hand and drags you down!"))
-					U.visible_message(span_warning("[U] hits [L] and drags them through the dirt!"))
-					L.forceMove(Q)
-					if(isanimal(L))
-						U.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
-						L.adjustBruteLoss(20)
-						if(L.stat == DEAD)
-							L.visible_message(span_warning("[L] is ground into paste!"))
-							L.gib()
-					if(iscarbon(L))
-						L.adjustBruteLoss(4)
-					if(issilicon(L))
-						L.adjustBruteLoss(5)
-					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-					wakeup(L)
-			T = get_step(owner,owner.dir)
-	for(var/mob/living/C in mopped)
-		wakeup(C)
 	return TRUE
 
 /datum/action/cooldown/seismic/suplex
@@ -214,6 +128,97 @@
 			StartCooldown()
 	return
 
+/datum/action/cooldown/seismic/lariat/proc/lariatmove(mob/living/target, obj/effect, turf/T, var/times = 0)
+	walk_towards(effect,target, 0, 1.5)
+	if(T.density)
+		return
+	for(var/obj/D in T.contents)
+		if(D.density == TRUE)
+			return
+	for(var/turf/closed/indestructible/I in T.contents)
+		return
+	if(istype(T, /turf/open/lava) || (istype(T, /turf/open/chasm)))
+		return
+	for(var/obj/machinery/door/window/E in target.loc.contents)
+		if(E.density == TRUE)
+			return 
+	if(T)
+		T = get_step(target.loc, target.dir)
+		target.forceMove(T)
+	for(var/mob/living/L in T.contents)
+		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+		if(L == target)
+			continue
+		to_chat(L, span_userdanger("[target] catches you with [target.p_their()] arm and clotheslines you!"))
+		target.visible_message(span_warning("[target] hits [L] with a lariat!"))
+		L.SpinAnimation(0.5 SECONDS, 1)
+		if(isanimal(L))
+			L.adjustBruteLoss(50)
+		if(iscarbon(L))
+			L.adjustBruteLoss(10)
+		if(issilicon(L))
+			L.adjustBruteLoss(12)
+	if(times < jumpdistance)
+		times++
+		addtimer(CALLBACK(src, PROC_REF(lariatmove), owner, effect, times), 0.3 SECONDS)
+
+/datum/action/cooldown/seismic/mop/proc/mopmove(mob/living/target, obj/effect, turf/present, var/times = 0)
+	var/turf/Q = get_step(present, target.dir)
+	var/turf/Z
+	if(!(Q.reachableTurftestdensity(T = Q)))
+		return
+	if(istype(Q, /turf/open/lava) || (istype(Q, /turf/open/chasm)))
+		return
+	for(var/obj/machinery/door/window/E in target.loc.contents)
+		if(E.density == TRUE)
+			return 
+	if(Q)
+		sleep(0.1 SECONDS)
+		owner.forceMove(Q)
+		Z = get_turf(target)
+		walk_towards(effect, owner, 0, 1.5)
+		animate(effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+		for(var/mob/living/L in Q.contents)
+			if(L == target)
+				continue
+			L.Immobilize(0.2 SECONDS)
+			mopped |= L
+			var/turf/R = get_step(get_turf(owner), owner.dir)
+			var/mob/living/U = owner
+			sweep(L)
+			if(ismineralturf(R))
+				var/turf/closed/mineral/M = R
+				M.attempt_drill()
+				L.adjustBruteLoss(5)
+			if(R.density)
+				wakeup(L)
+				return
+			for(var/obj/D in R.contents)
+				if(D.density == TRUE)
+					wakeup(L)
+					return
+			U.forceMove(get_turf(L))
+			to_chat(L, span_userdanger("[U] catches you with [U.p_their()] hand and drags you down!"))
+			U.visible_message(span_warning("[U] hits [L] and drags them through the dirt!"))
+			L.forceMove(Q)
+			if(isanimal(L))
+				U.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
+				L.adjustBruteLoss(20)
+				if(L.stat == DEAD)
+					L.visible_message(span_warning("[L] is ground into paste!"))
+					L.gib()
+			if(iscarbon(L))
+				L.adjustBruteLoss(4)
+			if(issilicon(L))
+				L.adjustBruteLoss(5)
+			playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+			wakeup(L)
+	Q = get_step(owner,owner.dir)
+	for(var/mob/living/C in mopped)
+		wakeup(C)
+	if(times < jumpdistance)
+		times++
+		addtimer(CALLBACK(src, PROC_REF(mopmove), owner, effect, Z, times), 0.3 SECONDS)
 
 /obj/item/melee/overcharged_emitter
 	name = "supercharged emitter"
@@ -299,23 +304,23 @@
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
-	var/datum/action/cooldown/seismic/lariat/lariat = new/datum/action/cooldown/seismic/lariat()
-	var/datum/action/cooldown/seismic/mop/mop = new/datum/action/cooldown/seismic/mop()
-	var/datum/action/cooldown/seismic/suplex/suplex = new/datum/action/cooldown/seismic/suplex()
-	var/datum/action/cooldown/seismic/righthook/righthook = new/datum/action/cooldown/seismic/righthook()
+	var/list/seismic_arm_moves = list(
+		/datum/action/cooldown/seismic/lariat,
+		/datum/action/cooldown/seismic/mop,
+		/datum/action/cooldown/seismic/suplex,
+		/datum/action/cooldown/seismic/righthook,
+	)
 
 /obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
-	lariat.Grant(C)
-	mop.Grant(C)
-	suplex.Grant(C)
-	righthook.Grant(C)
+	for(var/datum/action/cooldown/moves as anything in seismic_arm_moves)
+		moves = new moves(C)
+		moves.Grant(C)
 
 /obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
 	var/mob/living/carbon/C = owner
-	lariat.Remove(C)
-	mop.Remove(C)
-	suplex.Remove(C)
-	righthook.Remove(C)
+	for(var/datum/action/cooldown/moves in C.actions)
+		if(LAZYFIND(seismic_arm_moves, moves))
+			moves.Remove(C)
 	return ..()
 
