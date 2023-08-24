@@ -20,7 +20,9 @@
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
 	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
 	var/reboot_timer = null
+	/// Is this a syndicate MMI?
 	var/syndicate_mmi = FALSE
+	/// The human that the enslaved the MMI.
 	var/mob/living/carbon/human/syndicate_master = null
 	var/welcome_message = "<b>You are a brain within a Man-Machine Interface.\n\
 	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
@@ -311,6 +313,17 @@
 	rebooting = FALSE
 	reboot_timer = null
 
+/*
+	This is a Syndicate Man-Machine Interface.
+	The purpose of this is to allow stealthy roboticists who have an interest in subverting specifically cyborgs and:
+		- does not want to use an emag
+		- wants to give a cyborg the full protections that having an master AI grants them such as:
+			- showing up as law-synced for robotics console (which prevents accusations of an emagged cyborg).
+			- having the AI trust/vouch for them (since they should have the same laws).
+			- deflecting all blame to the AI (since the cyborg is lawsynced to them and thus the AI is bigger issue).
+		- wants an alternative method of figuring out if the AI is a traitor; main method would be buying a binary radio key.
+
+*/
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"
 	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you as well. Does not fit into NT AI cores."
