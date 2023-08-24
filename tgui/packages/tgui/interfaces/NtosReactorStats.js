@@ -35,7 +35,7 @@ export const NtosReactorMonitorContent = (props, context) => {
         <ReactorStatsSection />
     </Section>
   );
-}
+};
 
 const ReactorList = (props, context) => {
   const { act, data } = useBackend(context);
@@ -79,4 +79,4 @@ const ReactorList = (props, context) => {
       </Table>
     </Section>
   );
-}
+};
