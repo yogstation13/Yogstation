@@ -162,7 +162,7 @@
 	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
 	cost = 20
 	player_minimum = 25 //basically a fuckin megafauna
-	include_objectives = list(/datum/objective/hijack) //too much collateral damage with it's AOEs
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //too much collateral damage with it's AOEs
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
