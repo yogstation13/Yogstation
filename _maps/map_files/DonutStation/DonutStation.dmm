@@ -24446,6 +24446,16 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"moA" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/level_interface{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "moB" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -97251,7 +97261,7 @@ xui
 xui
 mIn
 xui
-xui
+moA
 twb
 kEO
 xfz
