@@ -53,7 +53,7 @@
 	/// What item path should be loaded into the cannon for `self-charge`?
 	var/charge_type
 	/// How many seconds before it self-recharges?
-	var/recharge_cooldown = 2 SECONDS // A comment claimed that "4 second/pie" (4 seconds per pie) is 2 ticks. So, default shall be 2 seconds per item.
+	var/recharge_cooldown = 2 SECONDS // 1 tick = 2 seconds.
 	/// How many have passed since last `process()` and haven't been spent on self-recharging?
 	var/seconds_time_remaining = 0
 	/// A list of items that cannot ever be inserted into the cannon.
@@ -70,17 +70,20 @@
 // There was a `/proc/init_charge` that had a comment that suggested that admins can call it to enable self-recharging. So, this replaced that; now they can just set the variable to do the same thing.
 /// Starts and stops processing based on `self_recharging` variable.
 /obj/item/pneumatic_cannon/vv_edit_var(var_name, var_value)
-	if(var_name == "self_charging")
+	if(var_name == "selfcharge")
 		switch(var_value)
 			if(-INFINITY to 0)
+				to_chat(world, "should stop processing")
 				STOP_PROCESSING(SSobj, src)
 			else
+				to_chat(world, "should start processing")
 				START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/pneumatic_cannon/process(delta_time)
+	to_chat(world, "process happened [src.name]")
 	if(selfcharge && charge_amount && charge_type && recharge_cooldown)
-		seconds_time_remaining += delta_time * 1 SECONDS // You might think that this should use `COOLDOWN_DECLARE()` because process is inconsistent.
+		seconds_time_remaining += delta_time * 1 SECONDS // You might think that this should use `COOLDOWN_DECLARE()`, but it shouldn't because process is inconsistent.
 		var/attempts = 1
 		while(seconds_time_remaining > recharge_cooldown)
 			attempts += 1
