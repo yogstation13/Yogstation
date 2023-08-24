@@ -330,9 +330,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	return
 
 
-/obj/machinery/computer/arcade/battle/emag_act(mob/user)
+/obj/machinery/computer/arcade/battle/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_warning("A mesmerizing Rhumba beat starts playing from the arcade machine's speakers!"))
 	temp = "If you die in the game, you die for real!"
 	player_hp = 30
@@ -341,16 +341,11 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	enemy_mp = 20
 	gameover = FALSE
 	blocked = FALSE
-
 	obj_flags |= EMAGGED
-
 	enemy_name = "Cuban Pete"
 	name = "Outbomb Cuban Pete"
-
-
 	updateUsrDialog()
-
-
+	return TRUE
 
 // *** THE ORION TRAIL ** //
 
@@ -1084,14 +1079,15 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors planned to colonize Orion, and have fun in the process!"
 
-/obj/machinery/computer/arcade/orion_trail/emag_act(mob/user)
+/obj/machinery/computer/arcade/orion_trail/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
 	name = "The Orion Trail: Realism Edition"
 	desc = "Learn how our ancestors planned to colonize Orion, and try not to die in the process!"
 	newgame()
 	obj_flags |= EMAGGED
+	return TRUE
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/orion
 	name = "spaceport security"

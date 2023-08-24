@@ -58,7 +58,8 @@ field_generator power level display
 	. = ..()
 	fields = list()
 	connected_gens = list()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 /obj/machinery/field/generator/process()
 	if(active == FG_ONLINE)

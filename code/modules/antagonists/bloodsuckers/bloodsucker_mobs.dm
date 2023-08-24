@@ -268,7 +268,7 @@
 /mob/living/simple_animal/hostile/bloodsucker/wraith
 	name = "wraith"
 	real_name = "Wraith"
-	desc = "An angry, tormented spirit, which looks to let out it's wrath on whoever is nearby."
+	desc = "An angry, tormented spirit, which looks to let out its wrath on whoever is nearby."
 	gender = PLURAL
 	icon_state = "wraith"
 	icon_living = "wraith"

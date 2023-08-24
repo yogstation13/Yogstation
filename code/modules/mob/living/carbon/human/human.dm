@@ -295,7 +295,7 @@
 		else
 			return
 
-		if(do_mob(usr, src, POCKET_STRIP_DELAY/delay_denominator)) //placing an item into the pocket is 4 times faster
+		if(do_after(usr, POCKET_STRIP_DELAY/delay_denominator, src, interaction_key = REF(pocket_item))) //placing an item into the pocket is 4 times faster
 			if(pocket_item)
 				if(pocket_item == (pocket_id == ITEM_SLOT_RPOCKET ? r_store : l_store)) //item still in the pocket we search
 					dropItemToGround(pocket_item)
@@ -621,55 +621,83 @@
 				to_chat(src, span_warning("\The [S] pulls \the [hand] from your grip!"))
 	rad_act(current_size * 3)
 
-/mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
-	CHECK_DNA_AND_SPECIES(C)
+#define CPR_PANIC_SPEED (0.8 SECONDS)
 
-	if(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_FAKEDEATH)))
-		to_chat(src, span_warning("[C.name] is dead!"))
+/mob/living/carbon/human/proc/do_cpr(mob/living/carbon/target)
+	CHECK_DNA_AND_SPECIES(target)
+
+	if(target == src)
 		return
-	if(is_mouth_covered())
-		to_chat(src, span_warning("Remove your mask first!"))
-		return 0
-	if(C.is_mouth_covered())
-		to_chat(src, span_warning("Remove [p_their()] mask first!"))
-		return 0
 
-	if(C.cpr_time < world.time + 30)
-		visible_message(span_notice("[src] is trying to perform CPR on [C.name]!"), \
-						span_notice("You try to perform CPR on [C.name]... Hold still!"))
-		if(!do_mob(src, C))
-			to_chat(src, span_warning("You fail to perform CPR on [C]!"))
-			return 0
+	var/panicking = FALSE
 
-		var/they_breathe = !HAS_TRAIT_FROM(C, TRAIT_NOBREATH, SPECIES_TRAIT)
-		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
-		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
+	do
+
+		if (DOING_INTERACTION_WITH_TARGET(src, target))
+			return FALSE
+
+		if (target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH))
+			to_chat(src, span_warning("[target.name] is dead!"))
+			return FALSE
+
+		if (is_mouth_covered())
+			to_chat(src, span_warning("Remove your mask first!"))
+			return FALSE
+
+		if (target.is_mouth_covered())
+			to_chat(src, span_warning("Remove [p_their()] mask first!"))
+			return FALSE
+
+		if (!getorganslot(ORGAN_SLOT_LUNGS))
+			to_chat(src, span_warning("You have no lungs to breathe with, so you cannot perform CPR!"))
+			return FALSE
+
+		if (HAS_TRAIT(src, TRAIT_NOBREATH))
+			to_chat(src, span_warning("You do not breathe, so you cannot perform CPR!"))
+			return FALSE
+
+		visible_message(span_notice("[src] is trying to perform CPR on [target.name]!"), \
+						span_notice("You try to perform CPR on [target.name]... Hold still!"))
+
+		if (!do_after(src, delay = panicking ? CPR_PANIC_SPEED : (3 SECONDS), target = target))
+			to_chat(src, span_warning("You fail to perform CPR on [target]!"))
+			return FALSE
+
+		if (target.health > target.crit_threshold)
+			return FALSE
+
+		visible_message(span_notice("[src] performs CPR on [target.name]!"), span_notice("You perform CPR on [target.name]."))
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
+		log_combat(src, target, "CPRed")
+		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
+
+		var/they_ashlung = target.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
 
-		if(C.health > C.crit_threshold)
-			return
-
-		src.visible_message("[src] performs CPR on [C.name]!", span_notice("You perform CPR on [C.name]."))
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
-		C.cpr_time = world.time
-		log_combat(src, C, "CPRed")
-		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
+		if (HAS_TRAIT(target, TRAIT_NOBREATH))
+			to_chat(target, span_unconscious("You feel a breath of fresh air... which is a sensation you don't recognise..."))
+		else if (!target.getorganslot(ORGAN_SLOT_LUNGS))
+			to_chat(target, span_unconscious("You feel a breath of fresh air... but you don't feel any better..."))
 		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
-		if(they_breathe && !!they_ashlung != !!we_ashlung)
-			C.adjustOxyLoss(10)
-			C.updatehealth()
-			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
+		else if(!!they_ashlung != !!we_ashlung)
+			target.adjustOxyLoss(10)
+			target.updatehealth()
+			to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... you feel worse..."))
 			SSachievements.unlock_achievement(/datum/achievement/anticpr, client) //you can get both achievements at the same time I guess
 		//yogs end
-		else if(they_breathe && they_lung)
-			var/suff = min(C.getOxyLoss(), 7)
-			C.adjustOxyLoss(-suff)
-			C.updatehealth()
-			to_chat(C, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
-		else if(they_breathe && !they_lung)
-			to_chat(C, span_unconscious("You feel a breath of fresh air... but you don't feel any better..."))
 		else
-			to_chat(C, span_unconscious("You feel a breath of fresh air... which is a sensation you don't recognise..."))
+			target.adjustOxyLoss(-min(target.getOxyLoss(), 7))
+			to_chat(target, span_unconscious("You feel a breath of fresh air enter your lungs... It feels good..."))
+
+		if (target.health <= target.crit_threshold)
+			if (!panicking)
+				to_chat(src, span_warning("[target] still isn't up! You try harder!"))
+			panicking = TRUE
+		else
+			panicking = FALSE
+	while (panicking)
+
+#undef CPR_PANIC_SPEED
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
 	if(dna && (dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK)))
