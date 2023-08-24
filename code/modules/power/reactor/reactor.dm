@@ -1,63 +1,4 @@
-// Index of each node in the list of nodes the reactor has
-#define COOLANT_INPUT_GATE 1
-#define MODERATOR_INPUT_GATE 2
-#define COOLANT_OUTPUT_GATE 3
-
-#define REACTOR_TEMPERATURE_MINIMUM 400 // Minimum temperature needed to run normally
-#define REACTOR_TEMPERATURE_OPERATING 800 //Kelvin
-#define REACTOR_TEMPERATURE_CRITICAL 1000 //At this point the entire station is alerted to a meltdown. This may need altering
-#define REACTOR_TEMPERATURE_MELTDOWN 1200
-
-#define REACTOR_HEAT_CAPACITY 6000 //How much thermal energy it takes to cool the reactor
-#define REACTOR_ROD_HEAT_CAPACITY 400 //How much thermal energy it takes to cool each reactor rod
-#define REACTOR_HEAT_EXPONENT 1.5 // The exponent used for the function for K heating
-#define REACTOR_HEAT_FACTOR (20 / (REACTOR_HEAT_EXPONENT**2)) //How much heat from K
-
-#define REACTOR_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
-
-#define REACTOR_MODERATOR_DECAY_RATE 0.1 //Don't use up ALL of the moderator, engineers need it to last a full round
-
-#define REACTOR_PRESSURE_OPERATING 6000 //Kilopascals
-#define REACTOR_PRESSURE_CRITICAL 10000
-
-#define REACTOR_MAX_CRITICALITY 5 //No more criticality than N for now.
-#define REACTOR_CRITICALITY_POWER_FACTOR 3000 // affects criticality from high power
-
-#define REACTOR_MAX_FUEL_RODS 5 //Maximum number of fuel rods that can fit in the reactor
-
-#define REACTOR_POWER_FLAVOURISER 1000 //To turn those KWs into something usable
-#define REACTOR_PERMEABILITY_FACTOR 500 // How effective permeability-type moderators are
-#define REACTOR_CONTROL_FACTOR 250 // How effective control-type moderators are
-
-
-/// Moderator effects, must be added to the moderator input for them to do anything
-
-// Fuel types: increases power, at the cost of making K harder to control
-#define PLASMA_FUEL_POWER 1 // baseline fuel
-#define TRITIUM_FUEL_POWER 10 // woah there
-#define ANTINOBLIUM_FUEL_POWER 100 // oh god oh fuck
-
-// Power types: makes the fuel have more of an effect
-#define OXYGEN_POWER_MOD 1 // baseline power modifier gas, optimal plasma/O2 ratio is 50/50 if you can handle the K increase from the plasma
-#define HYDROGEN_POWER_MOD 10 // far superior power moderator gas, if you can handle the rads
-
-// Control types: increases the effectiveness of control rods, makes K easier to control
-#define NITROGEN_CONTROL_MOD 1 // good at controlling the reaction, but deadly rads
-#define CARBON_CONTROL_MOD 2 // even better control, but even worse rads
-#define PLUOXIUM_CONTROL_MOD 3 // best control gas, no rads!
-
-// Cooling types: increases the effectiveness of coolant, exchanges more heat per process
-#define BZ_PERMEABILITY_MOD 1 // makes cooling more effective
-#define WATER_PERMEABILITY_MOD 2 // even better than BZ
-#define NOBLIUM_PERMEABILITY_MOD 10 // best gas for cooling
-
-// Radiation types: increases radiation, lower is better
-#define NITROGEN_RAD_MOD 0.04 // mmm radiation
-#define CARBON_RAD_MOD 0.08 // even higher
-#define HYDROGEN_RAD_MOD 0.12 // getting a bit spicy there
-#define TRITIUM_RAD_MOD 0.2 // fuck that's a lot
-#define ANTINOBLIUM_RAD_MOD 10 // AAAAAAAAAAAAAAAAAAAA
-
+/// See code/__DEFINES/reactor.dm for all the defines used
 
 //Remember kids. If the reactor itself is not physically powered by an APC, it cannot shove coolant in!
 
@@ -111,20 +52,34 @@
 	var/has_hit_emergency = FALSE
 	var/evacuation_procedures = FALSE
 
+	//Data, because graphs are cool
+	var/list/kpaData = list()
+	var/list/powerData = list()
+	var/list/tempCoreData = list()
+	var/list/tempInputData = list()
+	var/list/tempOutputData = list()
+
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
 	id = "default_reactor_for_lazy_mappers"
 
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/New()
+	. = ..()
+	if(isnull(id))
+		id = getnewid()
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/get_integrity()
+	return round(100 * vessel_integrity / initial(vessel_integrity), 0.01)
+
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
 	. = ..()
 	if(Adjacent(src, user) || isobserver(user))
-		var/percent = vessel_integrity / initial(vessel_integrity) * 100
 		var/msg
 		if(slagged)
 			msg = span_boldwarning("The reactor is destroyed. Its core lies exposed!")
 		else
 			msg = span_warning("The reactor looks operational.")
-		switch(percent)
+		switch(get_integrity())
 			if(0 to 10)
 				msg = span_boldwarning("[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel!")
 			if(10 to 40)
@@ -168,7 +123,7 @@
 		if(vessel_integrity >= 350)
 			to_chat(user, span_warning("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
 			return FALSE
-		if(vessel_integrity <= 0.5 * initial(vessel_integrity)) //Heavily damaged.
+		if(get_integrity() <= 50) //Heavily damaged.
 			to_chat(user, span_warning("[src]'s reactor vessel is cracked and worn, you need to repair the cracks with a welder before you can repair the seals."))
 			return FALSE
 		if(do_after(user, 5 SECONDS, target=src))
@@ -213,16 +168,22 @@
 	if(temperature > REACTOR_TEMPERATURE_MINIMUM)
 		to_chat(user, span_warning("You can't repair [src] while it is running at above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
 		return TRUE
-	if(vessel_integrity > 0.5 * initial(vessel_integrity))
+	if(get_integrity() > 50)
 		to_chat(user, span_warning("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 		return TRUE
 	if(I.use_tool(src, user, 0, volume=40))
-		if(vessel_integrity > 0.5 * initial(vessel_integrity))
+		if(get_integrity() > 50)
 			to_chat(user, span_warning("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 			return TRUE
 		vessel_integrity += 20
 		to_chat(user, span_notice("You weld together some of [src]'s cracks. This'll do for now."))
 	return TRUE
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/multitool_act(mob/living/user, obj/item/multitool/I)
+	if(istype(I))
+		to_chat(user, "<span class='notice'>You add \the [src]'s ID into the multitool's buffer.</span>")
+		I.buffer = src
+		return TRUE
 
 //Admin procs to mess with the reaction environment.
 
@@ -268,9 +229,11 @@
 	var/obj/structure/cable/C = T.get_cable_node()
 	if(C?.powernet)
 		add_avail(last_power_produced)
+	else
+		connect_to_network()
 
 	// You're overloading the reactor. Give a more subtle warning that power is getting out of control.
-	if(power >= 90 && world.time >= next_flicker)
+	if(power >= 100 && world.time >= next_flicker)
 		next_flicker = world.time + 1.5 MINUTES
 		for(var/obj/machinery/light/L in GLOB.lights)
 			if(prob(25) && L.z == z) //If youre running the reactor cold though, no need to flicker the lights.
@@ -319,7 +282,7 @@
 	last_power_produced = 0
 
 	//First up, handle moderators!
-	if(moderator_input.total_moles() >= minimum_coolant_level)
+	if(active && moderator_input.total_moles() >= minimum_coolant_level)
 		// Fuel types: increases power and K
 		var/total_fuel_moles = 0
 		total_fuel_moles += moderator_input.get_moles(/datum/gas/plasma) * PLASMA_FUEL_POWER
@@ -377,15 +340,16 @@
 		moderator_input.clear()
 
 	var/fuel_power = 0 //So that you can't magically generate K with your control rods.
-	if(!has_fuel())  //Reactor must be fuelled and ready to go before we can heat it up.
-		K = 0
-	else
-		for(var/obj/item/fuel_rod/FR in fuel_rods)
-			K += FR.fuel_power
-			fuel_power += FR.fuel_power
-			FR.deplete(depletion_modifier)
-		K += power / REACTOR_CRITICALITY_POWER_FACTOR
-		radioactivity_spice_multiplier += fuel_power
+	if(active)
+		if(!has_fuel())  //Reactor must be fuelled and ready to go before we can heat it up.
+			shut_down() // shut it down!!!
+		else
+			for(var/obj/item/fuel_rod/FR in fuel_rods)
+				K += FR.fuel_power
+				fuel_power += FR.fuel_power
+				FR.deplete(depletion_modifier)
+			K += power / REACTOR_CRITICALITY_POWER_FACTOR
+			radioactivity_spice_multiplier += fuel_power
 
 	// Firstly, find the difference between the two numbers.
 	var/difference = abs(K - desired_k)
@@ -452,13 +416,29 @@
 		last_power_produced *= (max(0,power)/100) //Aaaand here comes the cap. Hotter reactor => more power.
 		last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
 	
-	//Let's check if they're about to die, and let them know.
+	// Let's check if they're about to die, and let them know.
 	handle_alerts(delta_time)
 	update_icon()
 
 	// Finally, our beautiful radiation!
 	radiation_pulse(src, K*temperature*radioactivity_spice_multiplier*has_fuel()/(REACTOR_MAX_CRITICALITY*REACTOR_MAX_FUEL_RODS))
 
+	// I FUCKING LOVE DATA!!!!!!
+	kpaData += pressure
+	if(kpaData.len > 100) //Only lets you track over a certain timeframe.
+		kpaData.Cut(1, 2)
+	powerData += last_power_produced //We scale up the figure for a consistent:tm: scale
+	if(powerData.len > 100) //Only lets you track over a certain timeframe.
+		powerData.Cut(1, 2)
+	tempCoreData += temperature //We scale up the figure for a consistent:tm: scale
+	if(tempCoreData.len > 100) //Only lets you track over a certain timeframe.
+		tempCoreData.Cut(1, 2)
+	tempInputData += last_coolant_temperature //We scale up the figure for a consistent:tm: scale
+	if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
+		tempInputData.Cut(1, 2)
+	tempOutputData += last_output_temperature //We scale up the figure for a consistent:tm: scale
+	if(tempOutputData.len > 100) //Only lets you track over a certain timeframe.
+		tempOutputData.Cut(1, 2)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/has_fuel()
 	return length(fuel_rods)
@@ -543,7 +523,7 @@
 		var/msg = "Reactor returning to safe operating parameters."
 		if(vessel_integrity <= 350)
 			msg += " Maintenance required."
-		msg += " Structural integrity: [100*vessel_integrity/initial(vessel_integrity)]%."
+		msg += " Structural integrity: [get_integrity()]%."
 		radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
 		if(evacuation_procedures)
 			radio.talk_into(src, "Attention: Reactor has been stabilized. Please return to your workplaces.", RADIO_CHANNEL_COMMON)
@@ -554,8 +534,8 @@
 		return
 
 	next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
-	if(vessel_integrity < initial(vessel_integrity)*0.95)
-		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [round(100 * vessel_integrity / initial(vessel_integrity), 0.01)]%", RADIO_CHANNEL_ENGINEERING)
+	if(get_integrity() < 95)
+		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [get_integrity()]%", RADIO_CHANNEL_ENGINEERING)
 
 	relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
 	set_light(0)
@@ -573,6 +553,7 @@
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/meltdown()
 	set waitfor = FALSE
 	SSair.atmos_machinery -= src //Annd we're now just a useless brick.
+	vessel_integrity = null // this makes it show up weird on the monitor to even further emphasize something's gone horribly wrong
 	slagged = TRUE
 	color = null
 	update_icon()
@@ -656,7 +637,7 @@
 //Controlling the reactor.
 
 /obj/machinery/computer/reactor
-	name = "Reactor control console"
+	name = "reactor control console"
 	desc = "A computer which monitors and controls a reactor"
 	light_color = "#55BA55"
 	light_power = 1
@@ -664,14 +645,29 @@
 	icon_state = "oldcomp"
 	icon_screen = "oldcomp_broken"
 	icon_keyboard = null
+	circuit = /obj/item/circuitboard/computer/reactor // we have the technology
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor = null
-	var/id = "default_reactor_for_lazy_mappers"
+	var/id = null
 	var/next_stat_interval = 0
-	var/list/kpaData = list()
-	var/list/powerData = list()
-	var/list/tempCoreData = list()
-	var/list/tempInputData = list()
-	var/list/tempOutputData = list()
+
+/obj/machinery/computer/reactor/multitool_act(mob/living/user, obj/item/multitool/I)
+	if(isnull(id) || isnum(id))
+		var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = I.buffer
+		if(!istype(N))
+			user.balloon_alert(user, "invalid reactor ID!")
+			return TRUE
+		reactor = N
+		id = N.id
+		return TRUE
+	return ..()
+
+/obj/machinery/computer/reactor/preset
+	id = "default_reactor_for_lazy_mappers"
+
+/obj/item/circuitboard/computer/reactor
+	name = "Reactor Control (Computer Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/computer/reactor
 
 /obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
@@ -680,23 +676,6 @@
 /obj/machinery/computer/reactor/LateInitialize()
 	. = ..()
 	link_to_reactor()
-
-/obj/machinery/computer/reactor/process()
-	kpaData += (reactor) ? reactor.pressure : 0
-	if(kpaData.len > 100) //Only lets you track over a certain timeframe.
-		kpaData.Cut(1, 2)
-	powerData += (reactor) ? reactor.last_power_produced : 0 //We scale up the figure for a consistent:tm: scale
-	if(powerData.len > 100) //Only lets you track over a certain timeframe.
-		powerData.Cut(1, 2)
-	tempCoreData += (reactor) ? reactor.temperature : 0 //We scale up the figure for a consistent:tm: scale
-	if(tempCoreData.len > 100) //Only lets you track over a certain timeframe.
-		tempCoreData.Cut(1, 2)
-	tempInputData += (reactor) ? reactor.last_coolant_temperature : 0 //We scale up the figure for a consistent:tm: scale
-	if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
-		tempInputData.Cut(1, 2)
-	tempOutputData += (reactor) ? reactor.last_output_temperature : 0 //We scale up the figure for a consistent:tm: scale
-	if(tempOutputData.len > 100) //Only lets you track over a certain timeframe.
-		tempOutputData.Cut(1, 2)
 
 /obj/machinery/computer/reactor/attack_hand(mob/living/user)
 	. = ..()
@@ -732,7 +711,10 @@
 				return
 			if(reactor?.slagged)
 				return
-			var/obj/item/fuel_rod/rod = locate(params["rodRef"]) in reactor
+			var/rod_index = text2num(params["rod_index"])
+			if(rod_index < 1 || rod_index > reactor.fuel_rods.len)
+				return
+			var/obj/item/fuel_rod/rod = reactor.fuel_rods[rod_index]
 			if(!rod)
 				return
 			playsound(src, pick('sound/effects/reactor/switch.ogg','sound/effects/reactor/switch2.ogg','sound/effects/reactor/switch3.ogg'), 100, FALSE)
@@ -748,12 +730,13 @@
 	if(reactor)
 		data["k"] = reactor.K
 		data["desiredK"] = reactor.desired_k
-		data["control_rods"] = 100 - (reactor.desired_k / REACTOR_MAX_CRITICALITY * 100) //Rod insertion is extrapolated as a function of the percentage of K
-		data["powerData"] = powerData
-	data["kpaData"] = kpaData
-	data["tempCoreData"] = tempCoreData
-	data["tempInputData"] = tempInputData
-	data["tempOutputData"] = tempOutputData
+		data["control_rods"] = 100 - (100 * reactor.desired_k / REACTOR_MAX_CRITICALITY) //Rod insertion is extrapolated as a function of the percentage of K
+		data["integrity"] = reactor.get_integrity()
+	data["powerData"] = reactor ? reactor.powerData : list()
+	data["kpaData"] = reactor ? reactor.kpaData : list()
+	data["tempCoreData"] = reactor ? reactor.tempCoreData : list()
+	data["tempInputData"] = reactor ? reactor.tempInputData : list()
+	data["tempOutputData"] = reactor ? reactor.tempOutputData : list()
 	data["coreTemp"] = reactor ? round(reactor.temperature) : 0
 	data["coolantInput"] = reactor ? round(reactor.last_coolant_temperature) : T20C
 	data["coolantOutput"] = reactor ? round(reactor.last_output_temperature) : T20C
@@ -762,9 +745,18 @@
 	data["active"] = reactor ? reactor.active : FALSE
 	data["shutdownTemp"] = REACTOR_TEMPERATURE_MINIMUM
 	data["rods"] = list()
+	var/list/rod_data = list()
+	var/cur_index = 0
 	if(reactor)
 		for(var/obj/item/fuel_rod/rod in reactor.fuel_rods)
-			data["rods"][REF(rod)] = list(list("name" = rod.name, "depletion" = rod.depletion))
+			cur_index++
+			rod_data.Add(
+				list(list(
+					"name" = rod.name,
+					"depletion" = rod.depletion,
+					"rod_index" = cur_index
+				))
+			)
 	return data
 
 /obj/machinery/computer/reactor/wrench_act(mob/living/user, obj/item/I)
@@ -870,117 +862,6 @@
 	name = "Reactor moderator valve computer"
 	icon_screen = "reactor_moderator"
 	id = "reactor_moderator"
-
-//Monitoring program.
-/datum/computer_file/program/nuclear_monitor
-	filename = "agcnrmonitor"
-	filedesc = "Nuclear Reactor Monitoring"
-	category = PROGRAM_CATEGORY_ENGI
-	ui_header = "smmon_0.gif"
-	program_icon_state = "smmon_0"
-	extended_desc = "This program connects to specially calibrated sensors to provide information on the status of nuclear reactors."
-	requires_ntnet = TRUE
-	transfer_access = ACCESS_ENGINE
-	program_icon = "radiation" // duh
-	//network_destination = "reactor monitoring system" dont need anymore?
-	size = 2
-	tgui_id = "NtosReactorStats"
-	var/active = TRUE //Easy process throttle
-	var/next_stat_interval = 0
-	var/list/kpaData = list()
-	var/list/powerData = list()
-	var/list/tempCoreData = list()
-	var/list/tempInputData = list()
-	var/list/tempOutputData = list()
-	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor //Our reactor.
-
-/datum/computer_file/program/nuclear_monitor/process_tick()
-	..()
-	if(!reactor || !active)
-		return FALSE
-	var/stage = 0
-	switch(reactor.temperature)
-		if(0 to REACTOR_TEMPERATURE_MINIMUM)
-			stage = 1
-		if(REACTOR_TEMPERATURE_MINIMUM to REACTOR_TEMPERATURE_OPERATING)
-			stage = 2
-		if(REACTOR_TEMPERATURE_OPERATING to REACTOR_TEMPERATURE_CRITICAL)
-			stage = 3
-		if(REACTOR_TEMPERATURE_CRITICAL to REACTOR_TEMPERATURE_MELTDOWN)
-			stage = 4
-		if(REACTOR_TEMPERATURE_MELTDOWN to INFINITY)
-			stage = 5
-			if(reactor.vessel_integrity <= 100) //Bye bye! GET OUT!
-				stage = 6
-	ui_header = "smmon_[stage].gif"
-	program_icon_state = "smmon_[stage]"
-	if(istype(computer))
-		computer.update_icon()
-	if(world.time >= next_stat_interval)
-		next_stat_interval = world.time + 1 SECONDS //You only get a slow tick.
-		kpaData += (reactor) ? reactor.pressure : 0
-		if(kpaData.len > 100) //Only lets you track over a certain timeframe.
-			kpaData.Cut(1, 2)
-		powerData += (reactor) ? reactor.last_power_produced : 0 //We scale up the figure for a consistent:tm: scale
-		if(powerData.len > 100) //Only lets you track over a certain timeframe.
-			powerData.Cut(1, 2)
-		tempCoreData += (reactor) ? reactor.temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempCoreData.len > 100) //Only lets you track over a certain timeframe.
-			tempCoreData.Cut(1, 2)
-		tempInputData += (reactor) ? reactor.last_coolant_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
-			tempInputData.Cut(1, 2)
-		tempOutputData += (reactor) ? reactor.last_output_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempOutputData.len > 100) //Only lets you track over a certain timeframe.
-			tempOutputData.Cut(1, 2)
-
-/datum/computer_file/program/nuclear_monitor/run_program(mob/living/user)
-	. = ..(user)
-	//No reactor? Go find one then.
-	if(!reactor)
-		for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R in GLOB.machines)
-			if(R.z == usr.z)
-				reactor = R
-				break
-	active = TRUE
-
-/datum/computer_file/program/nuclear_monitor/kill_program(forced = FALSE)
-	active = FALSE
-	..()
-
-/datum/computer_file/program/nuclear_monitor/ui_data()
-	var/list/data = get_header_data()
-	data["powerData"] = powerData
-	data["kpaData"] = kpaData
-	data["tempCoreData"] = tempCoreData
-	data["tempInputData"] = tempInputData
-	data["tempOutputData"] = tempOutputData
-	data["coreTemp"] = reactor ? reactor.temperature : 0
-	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
-	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
-	data["power"] = reactor ? reactor.last_power_produced : 0
-	data["kpa"] = reactor ? reactor.pressure : 0
-	data["k"] = reactor ? reactor.K : 0
-	return data
-
-/datum/computer_file/program/nuclear_monitor/ui_act(action, params)
-	if(..())
-		return TRUE
-
-	switch(action)
-		if("swap_reactor")
-			var/list/choices = list()
-			for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R in GLOB.machines)
-				if(R.z != usr.z)
-					continue
-				choices += R
-			reactor = input(usr, "What reactor do you wish to monitor?", "[src]", null) as null|anything in choices
-			powerData = list()
-			kpaData = list()
-			tempCoreData = list()
-			tempInputData = list()
-			tempOutputData = list()
-			return TRUE
 
 /obj/effect/decal/nuclear_waste
 	name = "plutonium sludge"

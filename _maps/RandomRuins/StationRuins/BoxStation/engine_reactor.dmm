@@ -1467,7 +1467,7 @@
 	dir = 1
 	},
 /obj/item/paper/guides/jobs/engi/agcnr,
-/obj/machinery/computer/reactor,
+/obj/machinery/computer/reactor/preset,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "Sb" = (

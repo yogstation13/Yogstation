@@ -47,6 +47,16 @@ export const ReactorStatsSection = (props, context) => {
   return (
     <Box height="100%">
       <Section title="Legend:">
+        Integrity:
+        <ProgressBar
+          value={data.integrity / 100}
+          ranges={{
+            good: [0.90, Infinity],
+            average: [0.5, 0.90],
+            bad: [-Infinity, 0.5],
+          }}>
+          {data.integrity}%
+        </ProgressBar>
         Reactor Power:
         <ProgressBar
           value={data.power}
@@ -212,7 +222,7 @@ export const ReactorFuelControl = (props, context) => {
             {Object.keys(data.rods).map(rod => (
               <FlexItem key={rod}>
                 <Box inline mr={"3rem"} my={"0.5rem"}>
-                  {data.rods[rod].name}
+                  {data.rods[rod].rod_index}. {data.rods[rod].name}
                 </Box>
                 <Button
                   inline
@@ -220,7 +230,7 @@ export const ReactorFuelControl = (props, context) => {
                   content={'Eject'}
                   disabled={data.coreTemp > shutdown_temp}
                   onClick={() => act('eject', {
-                    rodRef: rod,
+                    rod_index: data.rods[rod].rod_index,
                   })} />
                 <ProgressBar
                   value={100-data.rods[rod].depletion}
