@@ -156,7 +156,7 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
- 		if(card_slot2)
+		if(card_slot2)
 			var/obj/item/card/id/target_id_card = card_slot2.stored_card
 			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
 			return card_slot2.try_eject(user)
