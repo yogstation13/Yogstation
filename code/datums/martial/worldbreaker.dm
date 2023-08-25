@@ -256,7 +256,7 @@
 		return
 	if(!target)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 2)//should last longer than the leap, but just in case
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 3)//should last longer than the leap, but just in case
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -265,7 +265,7 @@
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	var/jumpspeed = 4 - user.cached_multiplicative_slowdown
-	jumpspeed = clamp(jumpspeed, 1, 4)
+	jumpspeed = clamp(jumpspeed, 0.5, 4)
 
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
