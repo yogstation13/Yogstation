@@ -29683,6 +29683,18 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"omt" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/execution/transfer";
+	dir = 1;
+	name = "Prisoner Transfer Centre APC";
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/execution/transfer)
 "omN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -31032,18 +31044,6 @@
 /obj/effect/landmark/start/yogs/network_admin,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"pbb" = (
-/obj/machinery/power/apc{
-	areastring = "/area/security/execution/education";
-	dir = 1;
-	name = "Prisoner Education Chamber APC";
-	pixel_y = 23
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/execution/transfer)
 "pbC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -102394,7 +102394,7 @@ ylr
 ylr
 ylr
 kkk
-pbb
+omt
 eFA
 hNH
 xAD
