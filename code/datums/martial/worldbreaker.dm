@@ -265,7 +265,7 @@
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	var/jumpspeed = 4 - user.cached_multiplicative_slowdown
-	jumpspeed = clamp(jumpspeed, 0.5, 4)
+	jumpspeed = clamp(jumpspeed, 0.75, 4)
 
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
