@@ -8,19 +8,17 @@
 #define STOMP_RADIUS 8 //the base radius for the charged stomp, only does damage in an area half this size
 
 #define COOLDOWN_LEAP 2 SECONDS
-#define PLATE_LEAP 0.4 SECONDS //number of seconds added to cooldown per plate
 #define LEAP_RADIUS 1
 
-#define COOLDOWN_PUMMEL 1.2 SECONDS //basically melee
+#define COOLDOWN_PUMMEL 0.8 SECONDS //basically melee
 
 #define PLATE_INTERVAL 15 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 20 //how much DR per plate
 #define MAX_PLATES 5 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
-#define PLATE_CAP MAX_PLATES + 5 //hard cap of plates to prevent station wide fuckery
-#define PLATE_BREAK 15 //How much damage it takes to break a plate
+#define PLATE_CAP MAX_PLATES + 3 //hard cap of plates to prevent station wide fuckery
+#define PLATE_BREAK 25 //How much damage it takes to break a plate
 
-#define THROW_TOSSDMG 10 //the damage dealt by the initial throw
-#define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
+#define THROW_MOBDMG 5 //the damage dealt per object impacted during a throw
 #define THROW_OBJDMG 500 //Total amount of structure damage that can be done
 #define COOLDOWN_GRAB 0.8 SECONDS //basically just to prevent infinite stunlock spam
 
@@ -36,7 +34,6 @@
 	COOLDOWN_DECLARE(next_balloon)
 	COOLDOWN_DECLARE(next_pummel)
 	var/datum/action/cooldown/worldstomp/linked_stomp
-	var/leaping = FALSE
 	var/plates = 0
 	var/plate_timer = null
 	var/heavy = FALSE //
@@ -257,9 +254,10 @@
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
 			user.balloon_alert(user, span_warning("you can't do that yet!"))
 		return
-	if(!target || leaping)
+	if(!target)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * PLATE_LEAP))//longer cooldown the more plates you have
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 2)//should last longer than the leap, but just in case
+	COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)//so spamming doesn't immediately give the bubble
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -267,7 +265,6 @@
 		if(telegraph && (telegraph in view(15, get_turf(user))))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
-	leaping = TRUE
 	var/jumpspeed = heavy ? 1 : 2
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
@@ -280,8 +277,9 @@
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
+	if(!COOLDOWN_FINISHED(src, next_leap))
+		COOLDOWN_START(src, next_leap, COOLDOWN_LEAP)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
-	leaping = FALSE
 	var/range = LEAP_RADIUS
 	if(heavy)//heavy gets doubled range
 		range *= 2
@@ -323,10 +321,8 @@
 /datum/martial_art/worldbreaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 
-/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
-	if(leaping)
-		return TRUE
-	return ..()
+/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)//never wallsplat ever
+	return TRUE
 /*---------------------------------------------------------------
 	end of leap section
 ---------------------------------------------------------------*/
@@ -378,7 +374,6 @@
 		var/mob/living/carbon/tossedliving = thrown[1]
 		if(!tossedliving.buckled)
 			return
-		hurt(user, tossedliving, THROW_TOSSDMG) // Apply damage
 		for(var/obj/structure/bed/grip/holder in view(1, user))
 			holder.Destroy()
 	user.visible_message(span_warning("[user] throws [tossed]!"))
@@ -399,7 +394,7 @@
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
 	if(T?.density) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
-			hurt(user, victim, THROW_SLAMDMG) 
+			hurt(user, victim, THROW_MOBDMG) 
 			victim.Knockdown(1 SECONDS)
 			victim.Immobilize(0.5 SECONDS)
 			if(isanimal(victim) && victim.stat == DEAD)
@@ -411,7 +406,7 @@
 	for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 		if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
 			for(var/mob/living/victim in thrown) 
-				hurt(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_MOBDMG) 
 				victim.Knockdown(1 SECONDS)
 				victim.Immobilize(0.5 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
@@ -431,10 +426,10 @@
 				return
 	for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 		if(user != hit)
-			hurt(user, hit, THROW_SLAMDMG) 
+			hurt(user, hit, THROW_MOBDMG) 
 			hit.Knockdown(1 SECONDS) 
 			for(var/mob/living/victim in thrown)
-				hurt(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_MOBDMG) 
 				victim.Knockdown(1 SECONDS) 
 			thrown |= hit
 	if(T) // if the next tile wont stop the thrown mass from continuing
@@ -481,7 +476,7 @@
 			continue
 		var/damage = 5
 		if(get_turf(L) == get_turf(target))
-			damage *= 3 //anyone in the center takes more
+			damage *= 4 //anyone in the center takes more
 
 		if(L.anchored)
 			L.anchored = FALSE
@@ -659,7 +654,7 @@
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
-	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
@@ -679,7 +674,7 @@
 	plates = 0
 	update_platespeed(H)
 	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
-	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
@@ -697,7 +692,6 @@
 #undef STOMP_RADIUS
 
 #undef COOLDOWN_LEAP
-#undef PLATE_LEAP
 #undef LEAP_RADIUS
 
 #undef COOLDOWN_PUMMEL
@@ -708,7 +702,6 @@
 #undef PLATE_CAP
 #undef PLATE_BREAK
 
-#undef THROW_TOSSDMG
-#undef THROW_SLAMDMG
+#undef THROW_MOBDMG
 #undef THROW_OBJDMG
 #undef COOLDOWN_GRAB
