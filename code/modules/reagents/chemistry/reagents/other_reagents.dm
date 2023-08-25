@@ -437,7 +437,7 @@
 					if("african1")
 						N.skin_tone = "african2"
 					if("indian")
-						N.skin_tone = "african1"
+						N.skin_tone = "mixed2"
 					if("arab")
 						N.skin_tone = "indian"
 					if("asian2")
@@ -445,7 +445,7 @@
 					if("asian1")
 						N.skin_tone = "asian2"
 					if("mediterranean")
-						N.skin_tone = "african1"
+						N.skin_tone = "mixed1"
 					if("latino")
 						N.skin_tone = "mediterranean"
 					if("caucasian3")
@@ -456,6 +456,14 @@
 						N.skin_tone = "caucasian2"
 					if ("albino")
 						N.skin_tone = "caucasian1"
+					if("mixed1")
+						N.skin_tone = "mixed2"
+					if("mixed2")
+						N.skin_tone = "mixed3"
+					if("mixed3")
+						N.skin_tone = "african1"
+					if("mixed4")
+						N.skin_tone = "mixed3"
 
 			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
 				var/newcolor = ""
