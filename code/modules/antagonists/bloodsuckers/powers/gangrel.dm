@@ -24,7 +24,7 @@
 /datum/action/cooldown/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
-	if(!do_mob(user, user, 10 SECONDS, 1))
+	if(!do_after(user, 10 SECONDS))
 		return
 	var/list/radial_display = list()
 	//get our options, switches are kinda weird here cause wwe ant to stack them
@@ -107,7 +107,7 @@
 					power.Grant(gb)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
 			return  //early to not mess with vampire organs proc
-	
+
 	bloodsuckerdatum.heal_vampire_organs() //regives you the stuff
 
 /datum/action/cooldown/bloodsucker/gangrel/transform_back
@@ -119,11 +119,10 @@
 		Beware you will not be able to transform again until the night passes!"
 
 /datum/action/cooldown/bloodsucker/gangrel/transform_back/ActivatePower()
-	if(!do_mob(owner, owner, 10 SECONDS))
+	if(!do_after(owner, 10 SECONDS))
 		return
-	var/mob/living/simple_animal/hostile/bloodsucker/bs
-	if(istype(owner, bs))
-		qdel(bs)
+	if(istype(owner, /mob/living/simple_animal/hostile/bloodsucker))
+		qdel(owner)
 	return ..()
 /*
 ////////////////||\\\\\\\\\\\\\\\\
@@ -446,7 +445,7 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.visible_message(span_danger("[A] inhales a ton of air!"), span_warning("You prepare to howl!"))
-	if(!do_mob(A, A, 2.5 SECONDS, TRUE))
+	if(!do_after(A, 2.5 SECONDS))
 		return
 	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, TRUE)
 	A.visible_message(span_userdanger("[A] lets out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
@@ -540,12 +539,12 @@
 /datum/action/cooldown/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
 	var/mob/living/carbon/user = owner
 
-	if(!do_mob(user, target, 1 SECONDS))
+	if(!do_after(user, 1 SECONDS, target))
 		return
 
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
 	while(!target.stat)
-		if(!target.Adjacent(user) || !do_mob(user, target, 0.8 SECONDS))
+		if(!target.Adjacent(user) || !do_after(user, 0.8 SECONDS, target))
 			break
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 		user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
@@ -606,7 +605,7 @@
 
 /obj/item/clothing/shoes/wolflegs
 	name = "Wolf Legs"
-	desc = "Atleast they make you go faster."
+	desc = "At least they make you go faster."
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -616,7 +615,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 	name = "Wolf Legs"
-	desc = "Atleast they make you go faster. Oh wait you probably didn't mind anyways..."
+	desc = "At least they make you go faster. Oh wait you probably didn't mind anyways..."
 	icon_state = "digilegs"
 	item_state = "digilegs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'

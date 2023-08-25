@@ -206,9 +206,9 @@
 			return
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(mob/user)
+/obj/machinery/power/port_gen/pacman/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	emp_act(EMP_HEAVY)
 

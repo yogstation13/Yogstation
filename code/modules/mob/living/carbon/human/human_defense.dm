@@ -539,9 +539,10 @@
 	if(.)
 		electrocution_animation(40)
 
-/mob/living/carbon/human/emag_act(mob/user)
-	.=..()
-	dna?.species.spec_emag_act(src, user)
+/mob/living/carbon/human/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
+	if(dna)
+		return dna.species.spec_emag_act(src, user, emag_card)
 
 /mob/living/carbon/human/emp_act(severity)
 	. = ..()
@@ -734,7 +735,7 @@
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
-			if(do_after(src, 3.5 SECONDS, src, FALSE))
+			if(do_after(src, 3.5 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return

@@ -116,6 +116,14 @@
 	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade
 	fire_sound = 'sound/effects/snap.ogg'
 
+/// Also allows clowns to use the blade without fearing shooting themselves in the foot
+/obj/item/gun/magic/hook/sickly_blade/check_botched(mob/living/user, params)
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
+		var/mob/living/carbon/human/human_user = user
+		human_user.AdjustParalyzed(5 SECONDS)
+		return TRUE
+
 /obj/item/gun/magic/hook/sickly_blade/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
 

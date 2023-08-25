@@ -428,6 +428,13 @@
 	result = /obj/structure/headpike/bamboo
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/sillycup
+	name = "Paper Cup"
+	result = /obj/item/reagent_containers/food/drinks/sillycup
+	time = 1 SECONDS
+	reqs = list(/obj/item/paper = 2)
+	category = CAT_MISC
+
 /datum/crafting_recipe/smallcarton
 	name = "Small Carton"
 	result = /obj/item/reagent_containers/food/drinks/sillycup/smallcarton
@@ -444,7 +451,6 @@
 				  /obj/item/stack/cable_coil = 2,
 				  /obj/item/assembly/igniter = 1)
 	category = CAT_STRUCTURES
-
 
 /datum/crafting_recipe/rcl
 	name = "Makeshift Rapid Cable Layer"

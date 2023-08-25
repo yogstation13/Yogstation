@@ -278,7 +278,7 @@
 		H.LAssailant = null
 	else
 		H.LAssailant = WEAKREF(O)
-	while(do_mob(O, H, 50))
+	while(do_after(O, 5 SECONDS, H))
 		if(!is_vampire(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))
 			return
