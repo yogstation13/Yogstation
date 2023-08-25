@@ -36,7 +36,7 @@
 	var/datum/action/cooldown/worldstomp/linked_stomp
 	var/plates = 0
 	var/plate_timer = null
-	var/heavy = FALSE //
+	var/heavy = FALSE
 	var/currentplate = 0 //how much damage the current plate has taken
 
 /datum/martial_art/worldbreaker/can_use(mob/living/carbon/human/H)
@@ -154,7 +154,7 @@
 		return
 
 	if(damagetype != BRUTE && damagetype != BURN)
-		damage /= 3 //brute and burn are most effective
+		damage /= 4 //brute and burn are most effective
 
 	currentplate += damage
 
@@ -174,7 +174,7 @@
 
 /datum/martial_art/worldbreaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates >= MAX_PLATES
-	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
+	var/platespeed = (plates * 0.25) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
 	var/datum/species/preternis/S = user.dna.species
@@ -257,7 +257,6 @@
 	if(!target)
 		return
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 2)//should last longer than the leap, but just in case
-	COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)//so spamming doesn't immediately give the bubble
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -265,7 +264,9 @@
 		if(telegraph && (telegraph in view(15, get_turf(user))))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
-	var/jumpspeed = heavy ? 1 : 2
+	var/jumpspeed = 4 - user.cached_multiplicative_slowdown
+	jumpspeed = clamp(jumpspeed, 1, 4)
+
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
 
@@ -278,7 +279,7 @@
 
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
 	if(!COOLDOWN_FINISHED(src, next_leap))
-		COOLDOWN_START(src, next_leap, COOLDOWN_LEAP)
+		COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (heavy ? 1 SECONDS : 0))
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 	var/range = LEAP_RADIUS
 	if(heavy)//heavy gets doubled range
