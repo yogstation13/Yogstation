@@ -313,16 +313,6 @@
 	rebooting = FALSE
 	reboot_timer = null
 
-/*
-	This is a Syndicate Man-Machine Interface.
-	The purpose of this is to allow stealthy roboticists who have an interest in subverting specifically cyborgs and:
-		- does not want to use an emag / de-sync + uploading law boards.
-		- wants to give a cyborg the full protections that having an master AI grants them such as:
-			- showing up as law-synced for robotics console (which prevents accusations of an emagged cyborg).
-			- having the AI trust/vouch for them (since they should have the same laws).
-			- deflecting all blame to the AI (since the cyborg is lawsynced to them and thus the AI is bigger issue).
-		- wants an alternative method of figuring out if the AI is a traitor; main method would be buying a binary radio key.
-*/
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"
 	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you as well. Does not fit into NT AI cores."
