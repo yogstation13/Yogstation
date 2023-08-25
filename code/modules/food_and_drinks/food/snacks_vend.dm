@@ -177,10 +177,10 @@
 		opened = TRUE
 	else
 		if(!searched)
-			if(INTERACTING_WITH(user, src))
+			if(DOING_INTERACTION(user, src))
 				return
 			to_chat(user, span_warning("You start searching for the toy..."))
-			if(!do_after(user, 1.5 SECONDS, target = src))
+			if(!do_after(user, 1.5 SECONDS, src))
 				return
 			if(prob(50))
 				switch(rand(1,2))

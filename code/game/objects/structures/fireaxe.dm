@@ -288,12 +288,12 @@
 				trigger_alarm() //already checks for alert var
 			toggle_lock(user)
 
-/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user)
+/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	trigger_alarm()
-
+	return TRUE
 
 /obj/structure/fireaxecabinet/fishingrod
 	name = "fishing cabinet"

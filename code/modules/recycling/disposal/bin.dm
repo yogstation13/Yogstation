@@ -133,7 +133,7 @@
 		user.visible_message("[user] starts climbing into [src].", span_notice("You start climbing into [src]..."))
 	else
 		target.visible_message(span_danger("[user] starts putting [target] into [src]."), span_userdanger("[user] starts putting you into [src]!"))
-	if(do_mob(user, target, 20))
+	if(do_after(user, 2 SECONDS, target))
 		if (!loc)
 			return
 		target.forceMove(src)

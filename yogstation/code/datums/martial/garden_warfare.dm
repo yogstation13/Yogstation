@@ -134,7 +134,7 @@
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_strangle(A, D))
 		return
-	if(!do_mob(A, D, 1 SECONDS))
+	if(!do_after(A, 1 SECONDS, D))
 		return
 	if(!can_strangle(A, D))
 		return

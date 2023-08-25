@@ -864,21 +864,21 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			..()
 
 
-/obj/item/clothing/mask/vape/emag_act(mob/user)// I WON'T REGRET WRITTING THIS, SURLY.
-	if(screw)
-		if(!(obj_flags & EMAGGED))
-			cut_overlays()
-			obj_flags |= EMAGGED
-			super = 0
-			to_chat(user, span_warning("You maximize the voltage of [src]."))
-			add_overlay("vapeopen_high")
-			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread //for effect
-			sp.set_up(5, 1, src)
-			sp.start()
-		else
-			to_chat(user, span_warning("[src] is already emagged!"))
-	else
+/obj/item/clothing/mask/vape/emag_act(mob/user, obj/item/card/emag/emag_card)// I WON'T REGRET WRITTING THIS, SURLY.
+	if(!screw)
 		to_chat(user, span_notice("You need to open the cap to do that."))
+		return FALSE
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("[src] is already emagged!"))
+		return FALSE
+	cut_overlays()
+	obj_flags |= EMAGGED
+	super = 0
+	to_chat(user, span_warning("You maximize the voltage of [src]."))
+	add_overlay("vapeopen_high")
+	var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread //for effect
+	sp.set_up(5, 1, src)
+	sp.start()
 
 /obj/item/clothing/mask/vape/attack_self(mob/user)
 	if(reagents.total_volume > 0)

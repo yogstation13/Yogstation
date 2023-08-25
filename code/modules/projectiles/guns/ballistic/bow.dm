@@ -83,7 +83,7 @@
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
-		if (!do_after(user, draw_time, src, TRUE, stayStill = !move_drawing))
+		if(!do_after(user, draw_time, src, timed_action_flags = (move_drawing ? IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM : IGNORE_HELD_ITEM)))
 			drawing = FALSE
 			update_slowdown()
 			return TRUE

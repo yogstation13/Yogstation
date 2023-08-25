@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		if(hatch_open)
 			to_chat(user, span_warning("The hatch is shut!"))
 		to_chat(user, span_notice("You begin inserting the canister into [src]"))
-		if(do_after_mob(user, list(A, src), 50) && construction_state == SPACEPOD_ARMOR_WELDED)
+		if(do_after(user, 5 SECONDS, A) && construction_state == SPACEPOD_ARMOR_WELDED)
 			to_chat(user, span_notice("You insert the canister into [src]"))
 			A.forceMove(src)
 			internal_tank = A
@@ -497,7 +497,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 				return
 			if(passengers.len < max_passengers)
 				visible_message(span_danger("[user] starts loading [M] into [src]!"))
-				if(do_after_mob(user, list(M, src), 50) && construction_state == SPACEPOD_ARMOR_WELDED)
+				if(do_after(user, 5 SECONDS, M) && construction_state == SPACEPOD_ARMOR_WELDED)
 					add_rider(M, FALSE)
 			return
 		if(M == user)

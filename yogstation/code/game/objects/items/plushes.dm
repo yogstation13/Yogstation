@@ -42,14 +42,15 @@
 	target = null
 	visible_message(span_notice("[src] looks disinterested."))
 
-/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user)
-	if (obj_flags&EMAGGED)
+/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
 		visible_message(span_notice("[src] already looks angry enough, you shouldn't anger it more."))
-		return
+		return FALSE
 	cooldown_modifier = 5
 	throwforce = 20
 	obj_flags |= EMAGGED
 	visible_message(span_danger("[src] stares at [user] angrily before going docile."))
+	return TRUE
 
 /obj/item/toy/plush/goatplushie/angry/Destroy()
 	STOP_PROCESSING(SSprocessing, src)

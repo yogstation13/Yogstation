@@ -192,7 +192,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/garlic = 2)
 	bitesize = 3
 	tastes = list("bread" = 1, "garlic" = 1, "butter" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/butterbiscuit
 	name = "butter biscuit"
@@ -203,7 +203,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "biscuit" = 1)
-	foodtype = GRAIN | BREAKFAST
+	foodtype = GRAIN | DAIRY | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/butterdog
 	name = "butterdog"
@@ -215,6 +215,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("bread" = 1, "exotic butter" = 1)
+	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/butterdog/Initialize(mapload)
 	. = ..()
@@ -227,7 +228,7 @@
 	icon_state = "frenchtoast"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cinnamon = 2, /datum/reagent/consumable/sugar = 2) //yogs, values differ from tg
 	tastes = list("french toast" = 1, "syrup" = 1, "golden deliciousness" = 1)
-	foodtype = GRAIN | BREAKFAST
+	foodtype = GRAIN | EGG | SUGAR | BREAKFAST
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/frenchtoast/raw

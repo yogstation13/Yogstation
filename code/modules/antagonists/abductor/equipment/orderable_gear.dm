@@ -33,6 +33,12 @@ GLOBAL_LIST_INIT(abductor_gear, subtypesof(/datum/abductor_gear))
 	cost = 2
 	build_path = /obj/item/abductor/baton
 
+/datum/abductor_gear/posters
+	name = "Decorative Poster"
+	description = "A poster, to decorate the walls of the Mothership (or even the station) with."
+	id = "poster"
+	build_path = /obj/item/poster/random_abductor
+
 /datum/abductor_gear/radio_silencer
 	name = "Radio Silencer"
 	description = "A compact device used to shut down communications equipment."

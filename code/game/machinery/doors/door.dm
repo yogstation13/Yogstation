@@ -57,6 +57,7 @@
 	var/unres_sides = 0
 	// door open speed.
 	var/open_speed = 0.5 SECONDS
+	COOLDOWN_DECLARE(cmagsound_cooldown)
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -129,24 +130,34 @@
 
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
-		if(density)
-			if(mecha.occupant)
-				if(world.time - mecha.occupant.last_bumped <= 10)
-					return
-				mecha.occupant.last_bumped = world.time
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-				open()
-			else
-				do_animate("deny")
+		if(!density)
+			return
+		// If an empty mech somehow bumps into something that it has access to, it should open:
+		var/has_access = (obj_flags & CMAGGED) ? !check_access_list(mecha.operation_req_access) : check_access_list(mecha.operation_req_access)
+		if(mecha.occupant)
+			if(world.time - mecha.occupant.last_bumped <= 10)
+				return
+			mecha.occupant.last_bumped = world.time
+			// If there is an occupant, check their access too.
+			has_access = (obj_flags & CMAGGED) ? cmag_allowed(mecha.occupant) && has_access : allowed(mecha.occupant) || has_access
+		if(has_access)
+			open()
+		else
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
+			do_animate("deny")
 		return
 
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(!density || (I.w_class < WEIGHT_CLASS_NORMAL && !LAZYLEN(I.GetAccess())))
 			return
-		if(check_access(I))
+		var/has_access = obj_flags & CMAGGED ? !check_access(I) : check_access(I)
+		if(has_access)
 			open()
 		else
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
 			do_animate("deny")
 		return
 
@@ -164,18 +175,7 @@
 			return !opacity //yogs end
 
 /obj/machinery/door/proc/bumpopen(mob/user)
-	if(operating)
-		return
-	src.add_fingerprint(user)
-	if(!src.requiresID())
-		user = null
-
-	if(density && !(obj_flags & EMAGGED))
-		if(allowed(user))
-			open()
-		else
-			do_animate("deny")
-	return
+	return try_to_activate_door(user)
 
 /obj/machinery/door/attack_hand(mob/user)
 	. = ..()
@@ -194,14 +194,41 @@
 		return
 	if(!requiresID())
 		user = null //so allowed(user) always succeeds
-	if(allowed(user))
-		if(density)
-			open()
-		else
+	if(obj_flags & CMAGGED)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/card/id/idcard = H.get_idcard()
+			if(!idcard?.assignment) // You cannot game the inverted access by taking off your ID or wearing a blank ID.
+				if(density)
+					to_chat(H, span_warning("The airlock speaker chuckles: 'What's wrong, pal? Lost your ID? Nyuk nyuk nyuk!'")) // We also will include this too.
+					try_play_cmagsound()
+					do_animate("deny")
+				return FALSE
+		if(!cmag_allowed(user))
+			try_play_cmagsound()
+			if(density)
+				do_animate("deny")
+			return FALSE
+		if(!density)
 			close()
+		else
+			open()
 		return TRUE
-	if(density)
-		do_animate("deny")
+	if(!allowed(user))
+		if(density)
+			do_animate("deny")
+		return FALSE
+
+	if(!density)
+		close()
+	else
+		open()
+	return TRUE
+
+/obj/machinery/door/proc/try_play_cmagsound()
+	if(COOLDOWN_FINISHED(src, cmagsound_cooldown))
+		playsound(loc, 'sound/machines/honkbot_evil_laugh.ogg', 25, TRUE, ignore_walls = FALSE)
+		COOLDOWN_START(src, cmagsound_cooldown, 1 SECONDS)
 
 /obj/machinery/door/allowed(mob/M)
 	if(emergency)
@@ -209,6 +236,12 @@
 	if(unrestricted_side(M))
 		return TRUE
 	return ..()
+
+/// Returns the opposite of '/allowed', but makes exceptions for things like IsAdminGhost().
+/obj/machinery/door/proc/cmag_allowed(mob/M)
+	if(IsAdminGhost(M))
+		return TRUE
+	return !allowed(M)
 
 /obj/machinery/door/proc/unrestricted_side(mob/M) //Allows for specific side of airlocks to be unrestrected (IE, can exit maint freely, but need access to enter)
 	return get_dir(src, M) & unres_sides

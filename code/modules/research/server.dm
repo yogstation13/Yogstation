@@ -198,9 +198,10 @@
 	. = ..()
 	src.updateUsrDialog()
 
-/obj/machinery/computer/rdservercontrol/emag_act(mob/user)
+/obj/machinery/computer/rdservercontrol/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You disable the security protocols."))
+	return TRUE

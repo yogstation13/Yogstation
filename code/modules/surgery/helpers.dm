@@ -92,7 +92,7 @@
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
 	var/selected_zone = user.zone_selected
 	to_chat(user, span_notice("You begin to cancel \the [S]."))
-	if(!do_mob(user, M, 3 SECONDS))
+	if(!do_after(user, 3 SECONDS, M))
 		return
 	if(S.status == 1)
 		M.surgeries -= S

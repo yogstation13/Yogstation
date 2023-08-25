@@ -455,7 +455,7 @@
 		to_chat(user, span_notice("You begin to inject [C] with [src]."))
 
 		//Checks
-		if(!do_mob(user, C, (C == user) ? inject_self : inject_wait))
+		if(!do_after(user, (C == user) ? inject_self : inject_wait, C))
 			return
 		if((!(upgrade_flags & PIERCING) && !C.can_inject(user, 1)) || !container?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
 			return
@@ -502,7 +502,7 @@
 		to_chat(user, span_notice("You begin to spray [C] with [src]."))
 
 		//Checks Again
-		if(!do_mob(user, C, (C == user) ? spray_self : spray_wait))
+		if(!do_after(user, (C == user) ? spray_self : spray_wait, C))
 			return
 		if(!C.can_inject(user, 1) || C.reagents.total_volume >= C.reagents.maximum_volume)
 			return
@@ -539,7 +539,7 @@
 		if(target != user)
 			target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
 							span_userdanger("[user] is trying to take a blood sample from [target]!"))
-			if(!do_mob(user, target))
+			if(!do_after(user, 3 SECONDS, target))
 				return
 			if(container.reagents.total_volume >= container.reagents.maximum_volume)
 				return
