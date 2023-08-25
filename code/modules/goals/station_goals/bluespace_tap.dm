@@ -124,7 +124,6 @@
 		/obj/item/crowbar/abductor,
 		/obj/item/wrench/abductor,
 		/obj/item/stack/sheet/mineral/abductor,
-
 	)
 
 /obj/effect/spawner/lootdrop/bluespace_tap/organic
