@@ -21719,6 +21719,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"ksS" = (
+/obj/effect/landmark/start/roboticist,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/posialert{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "kth" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -35295,13 +35305,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"qWd" = (
-/obj/effect/landmark/start/roboticist,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "qWl" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 6
@@ -81636,7 +81639,7 @@ jYs
 jAq
 fjV
 bXE
-qWd
+ksS
 eXZ
 vAa
 gEm
