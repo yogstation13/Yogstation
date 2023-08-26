@@ -10974,6 +10974,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"fcH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "Sergeant-at-Armsky";
+	weaponscheck = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "fdX" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/ten,
@@ -14884,6 +14896,16 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"gYW" = (
+/obj/effect/landmark/start/roboticist,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/posialert{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "gZc" = (
 /obj/structure/railing{
 	dir = 1
@@ -33604,41 +33626,6 @@
 	},
 /turf/open/floor/plating,
 /area/space/nearstation)
-"qeA" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/shield/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/shield/riot,
-/obj/item/shield/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/machinery/camera/motion/armory{
-	c_tag = "Security - Armory";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "qeE" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
@@ -38230,18 +38217,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"stG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "stM" = (
 /obj/structure/rack,
 /obj/item/rcl/pre_loaded,
@@ -47101,16 +47076,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"wxt" = (
-/obj/effect/landmark/start/roboticist,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/posialert{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "wxC" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -48664,6 +48629,41 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"xhP" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/shield/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/shield/riot,
+/obj/item/shield/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/machinery/camera/motion/armory{
+	c_tag = "Security - Armory";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "xhS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -81650,7 +81650,7 @@ jYs
 jAq
 fjV
 bXE
-wxt
+gYW
 eXZ
 vAa
 gEm
@@ -92701,7 +92701,7 @@ ylr
 ylr
 ylr
 ylr
-bHj
+ylr
 bHj
 bHj
 bHj
@@ -94465,7 +94465,7 @@ uhM
 kqW
 jFa
 jBL
-aLL
+ghL
 vYa
 tJZ
 wvu
@@ -95750,7 +95750,7 @@ oPS
 kqW
 jFa
 jBL
-ghL
+aLL
 tHu
 bDL
 ghL
@@ -101200,7 +101200,7 @@ xog
 oPl
 jZK
 jZK
-stG
+fcH
 bbW
 wnY
 qmE
@@ -101971,7 +101971,7 @@ jpv
 spD
 gzq
 xyi
-qeA
+xhP
 kfA
 jlo
 ina
