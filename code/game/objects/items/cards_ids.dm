@@ -281,6 +281,7 @@
 			return
 		if(cyborg.shell)
 			to_chat(user, span_danger("[cyborg] is remotely controlled! Your cmag attempt has triggered a different effect!"))
+			cyborg.SetStun(60) // Gives you time to run if needed.
 			cyborg.module.transform_to(/obj/item/robot_module/clown) // No law change, but they get to clown around instead.
 			return
 		
