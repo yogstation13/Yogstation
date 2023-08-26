@@ -791,22 +791,6 @@
 	for(var/obj/item/shockpaddles/cyborg/S in R.module.modules)
 		R.module.remove_module(S, TRUE)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /obj/item/borg/upgrade/adv_analyzer
 	name = "medical cyborg advanced health analyzer"
 	desc = "An upgrade to medical cyborg which replaces their normal health analyzer with its advanced version."
