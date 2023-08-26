@@ -252,6 +252,7 @@
 				return
 			to_chat(user, span_notice("You cmag the cover lock."))
 			playsound(cyborg, 'sound/items/bikehorn.ogg', 20, 1)
+			charges--
 			cyborg.locked = FALSE
 			if(cyborg.shell) // A warning to the Clown who may not know that cmagging AI shells won't work.
 				to_chat(user, span_boldwarning("[cyborg] seems to be controlled remotely! Cmagging the interface may not work as expected."))
