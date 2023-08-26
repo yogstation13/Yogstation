@@ -22865,6 +22865,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"kYl" = (
+/obj/structure/transit_tube/station/reverse/flipped,
+/obj/structure/transit_tube_pod{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/tcommsat/computer)
 "kYn" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -47414,14 +47421,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"wCH" = (
-/obj/structure/transit_tube/station/reverse/flipped,
-/obj/structure/transit_tube_pod{
-	dir = 4;
-	icon_state = "pod"
-	},
-/turf/open/floor/plating,
-/area/tcommsat/computer)
 "wCJ" = (
 /turf/closed/wall,
 /area/medical/sleeper)
@@ -84028,7 +84027,7 @@ xcB
 dOr
 fTO
 gMq
-wCH
+kYl
 nxP
 ylr
 ylr
