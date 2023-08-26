@@ -388,13 +388,6 @@ AI MODULES
 	name = "'Crewsimov' Core AI Module"
 	law_id = "crewsimov"
 
-
-/******************** pranksimov ********************/
-
-/obj/item/aiModule/core/full/pranksimov
-	name = "'Pranksimov' Core AI Module"
-	law_id = "pranksimov"
-
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
 /obj/item/aiModule/core/full/paladin // -- NEO
