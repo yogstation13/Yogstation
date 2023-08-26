@@ -251,7 +251,7 @@
 				to_chat(user, span_warning("The cover is already unlocked!"))
 				return
 			to_chat(user, span_notice("You cmag the cover lock."))
-			playsound(lawboard, 'sound/items/bikehorn.ogg', 20, 1)
+			playsound(cyborg, 'sound/items/bikehorn.ogg', 20, 1)
 			cyborg.locked = FALSE
 			if(cyborg.shell) // A warning to the Clown who may not know that cmagging AI shells won't work.
 				to_chat(user, span_boldwarning("[cyborg] seems to be controlled remotely! Cmagging the interface may not work as expected."))
@@ -264,7 +264,7 @@
 		to_chat(user, span_notice("You cmag [cyborg]'s interface."))
 		cyborg.emag_cooldown = world.time + 10 SECONDS // No reason to use a different cooldown variable (and likely better to use the same variable).
 
-		playsound(lawboard, 'sound/items/bikehorn.ogg', 20, 1)
+		playsound(cyborg, 'sound/items/bikehorn.ogg', 20, 1)
 		charges--
 
 		// Copy and paste of emag checks.
