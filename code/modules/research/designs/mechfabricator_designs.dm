@@ -970,6 +970,15 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_brped
+	name = "Cyborg Upgrade (BRPED)"
+	id = "borg_upgrade_brped"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/brped
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/silver = 2500)
+	construction_time = 12 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_broomer
 	name = "Cyborg Upgrade (Experimental Push Broom)"
 	id = "borg_upgrade_broomer"
