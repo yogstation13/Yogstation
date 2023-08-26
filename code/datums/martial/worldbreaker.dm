@@ -617,13 +617,13 @@
 
 	combined_msg +=  "[span_notice("Leap")]: \
 	Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
-	Landing on someone will do extra damage. Has a cooldown that gets longer with more plates grown."
+	Landing on someone will do extra damage. The cooldown is longer if heavy and only starts when you land."
 	
 	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. \
 	Instead of grabbing someone, you will pick them up and be able to throw them."
 
 	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing damage, knocking back, and staggering. \
-	The target takes three times as much damage."
+	The targets in the middle take notably more damage."
 
 	combined_msg +=  "[span_notice("Worldstomp")]: After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
 	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively. \
