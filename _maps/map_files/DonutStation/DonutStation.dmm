@@ -4332,6 +4332,16 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"bZR" = (
+/obj/effect/landmark/start/roboticist,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/posialert{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "bZW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -10974,18 +10984,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"fcH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "fdX" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/ten,
@@ -14896,16 +14894,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"gYW" = (
-/obj/effect/landmark/start/roboticist,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/posialert{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "gZc" = (
 /obj/structure/railing{
 	dir = 1
@@ -35525,6 +35513,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"raV" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/shield/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/shield/riot,
+/obj/item/shield/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/machinery/camera/motion/armory{
+	c_tag = "Security - Armory";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "rba" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -43056,6 +43079,22 @@
 "uBm" = (
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"uBr" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/external{
+	name = "Solar Maintenance";
+	req_access_txt = "10; 13"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/starboard/aft)
 "uBu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -45588,19 +45627,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"vLX" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/external{
-	name = "Solar Maintenance";
-	req_access_txt = "10; 13"
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/starboard/aft)
 "vMl" = (
 /obj/structure/sign/warning/docking,
 /turf/closed/wall,
@@ -48629,41 +48655,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"xhP" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/shield/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/shield/riot,
-/obj/item/shield/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/machinery/camera/motion/armory{
-	c_tag = "Security - Armory";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "xhS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -49363,6 +49354,18 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"xwm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "Sergeant-at-Armsky";
+	weaponscheck = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "xwr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -81650,7 +81653,7 @@ jYs
 jAq
 fjV
 bXE
-gYW
+bZR
 eXZ
 vAa
 gEm
@@ -97119,7 +97122,7 @@ uJr
 uJr
 iKZ
 eJH
-vLX
+uBr
 fDu
 xSu
 ylr
@@ -101200,7 +101203,7 @@ xog
 oPl
 jZK
 jZK
-fcH
+xwm
 bbW
 wnY
 qmE
@@ -101971,7 +101974,7 @@ jpv
 spD
 gzq
 xyi
-xhP
+raV
 kfA
 jlo
 ina
