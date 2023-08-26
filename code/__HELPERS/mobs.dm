@@ -225,6 +225,10 @@ GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	"asian2",
 	"arab",
 	"indian",
+	"mixed1",
+	"mixed2",
+	"mixed3",
+	"mixed4",
 	"african1",
 	"african2"
 	)))
@@ -242,6 +246,10 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 	"indian" = "Brown",
 	"latino" = "Light beige",
 	"mediterranean" = "Olive",
+	"mixed1" = "Chestnut",
+	"mixed2" = "Walnut",
+	"mixed3" = "Coffee",
+	"mixed4" = "Macadamia",
 ))
 
 GLOBAL_LIST_EMPTY(species_list)

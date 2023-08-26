@@ -159,6 +159,14 @@
 	key_third_person = "wags"
 	message = "wags their tail."
 
+/datum/emote/living/carbon/human/stanky
+	key = "stanky"
+	message = "does the stanky leg."
+
+/datum/emote/living/carbon/human/griddy
+	key = "griddy"
+	message = "hits the griddy."
+
 /datum/emote/living/carbon/human/wag/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!.)

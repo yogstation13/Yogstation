@@ -169,19 +169,20 @@
 	s.start()
 	electrocute_mob(user, src, src, 1, TRUE)
 
-/obj/machinery/decontamination_unit/emag_act(mob/user)
+/obj/machinery/decontamination_unit/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	if(!state_open)
 		if(!panel_open)
 			to_chat(user, span_warning("Open the panel first."))
-			return
+			return FALSE
 	else
-		return
+		return FALSE
 	to_chat(user, span_warning("You short out [src]'s safeties."))
 	uv_emagged = TRUE
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/decontamination_unit/relaymove(mob/user)
 	if(locked)
@@ -249,7 +250,7 @@
 /obj/machinery/decontamination_unit/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("Its maintenance panel is smoking slightly.")
+		. += span_warning("The maintenance panel is smoking slightly.")
 	if(in_range(user, src) || isobserver(user))
 		if (contents.len >= max_n_of_items)
 			. += span_notice("The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.")

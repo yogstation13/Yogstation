@@ -378,9 +378,9 @@
 	projectile_type = initial(projectile_type)
 	projectile_sound = initial(projectile_sound)
 
-/obj/machinery/power/emitter/emag_act(mob/user)
+/obj/machinery/power/emitter/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	locked = FALSE
 	obj_flags |= EMAGGED
 	sparks.start()
@@ -393,7 +393,6 @@
 	projectile_type = /obj/item/projectile/beam/emitter/pulse
 	projectile_sound = 'sound/weapons/pulse.ogg'
 	return TRUE
-
 
 /obj/machinery/power/emitter/prototype
 	name = "Prototype Emitter"

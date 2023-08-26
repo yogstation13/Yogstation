@@ -31,12 +31,16 @@
 		<ul><li>Reward: [B.reward_string()]</li>
 		<li>Completed: [B.completion_string()]</li></ul>"}
 
-/obj/machinery/computer/bounty/emag_act(mob/user)
+/obj/machinery/computer/bounty/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
+	if(istype(emag_card, /obj/item/card/emag/improvised)) // We can't have nice things.
+		to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+		return FALSE
 	to_chat(user, span_warning("You adjust the antenna on \The [src], tuning it to a syndicate frequency."))
 	obj_flags |= EMAGGED
 	do_sparks(8, FALSE, loc)
+	return TRUE
 
 /obj/machinery/computer/bounty/proc/get_list_to_use()
 	if(obj_flags & EMAGGED)

@@ -98,7 +98,6 @@
 	var/greyscale_colors
 	///the base icon state used for anything that changes their icon state.
 	var/base_icon_state
-
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
@@ -830,10 +829,16 @@
 /**
   * Respond to an emag being used on our atom
   *
-  * Default behaviour is to send COMSIG_ATOM_EMAG_ACT and return
+  * Args:
+  * * mob/user: The mob that used the emag. Nullable.
+  * * obj/item/card/emag/emag_card: The emag that was used. Nullable.
+  *
+  * Returns:
+  * TRUE if the emag had any effect, falsey otherwise.
   */
-/atom/proc/emag_act()
-	SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT)
+/atom/proc/emag_act(mob/user, obj/item/card/emag/emag_card)
+	SHOULD_CALL_PARENT(FALSE) // Emag act should either be: overridden (no signal) or default (signal).
+	return (SEND_SIGNAL(src, COMSIG_ATOM_EMAG_ACT, user, emag_card))
 
 /**
   * Respond to a radioactive wave hitting this atom

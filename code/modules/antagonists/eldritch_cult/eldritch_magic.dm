@@ -578,7 +578,7 @@
 	button_icon_state = "worm_contract"
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 30 SECONDS
+	cooldown_time = 15 SECONDS
 
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
