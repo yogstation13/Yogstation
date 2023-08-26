@@ -302,7 +302,7 @@
 		if(isitem(obstruction))
 			push_away(user, obstruction)
 			continue
-		if(!isstructure(obstruction) && !ismachinery(obstruction))
+		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
 			continue
 		var/damage = 5
 		if(obstruction.loc == user.loc)
@@ -487,10 +487,10 @@
 		if(isitem(obstruction))
 			push_away(user, obstruction)
 			continue
-		if(!isstructure(obstruction) && !ismachinery(obstruction))
+		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
 			continue
 		var/damage = 10
-		if(isstructure(obstruction))
+		if(isstructure(obstruction) || ismecha(obstruction))
 			damage += 5
 		if(obstruction == target)
 			damage *= 3
@@ -568,10 +568,10 @@
 	for(var/obj/item/I in range(actual_range, owner))
 		linked_martial.push_away(owner, I, 2)
 	for(var/obj/obstruction in range(actual_range/2, owner))
-		if(!isstructure(obstruction) && !ismachinery(obstruction))
+		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
 			continue
 		var/damage = 10
-		if(isstructure(obstruction)) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
+		if(isstructure(obstruction) || ismecha(obstruction)) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
 			damage += 15 + (plates * 3)
 		obstruction.take_damage(damage) //we WANT this one to be loud
 
