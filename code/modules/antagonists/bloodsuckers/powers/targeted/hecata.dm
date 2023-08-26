@@ -63,9 +63,9 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(target.stat == DEAD && user.Adjacent(target))
 		owner.balloon_alert(owner, "attempting to revive...")
-		if(HAS_TRAIT(target, TRAIT_MINDSHIELD) || IS_VASSAL(target)) //if they aren't already a vassal and they have a mindshield
-			owner.balloon_alert(owner, "mindshield detected, this will take a little longer...")
-			if(!do_after(user, 12 SECONDS, target))
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD) && !IS_VASSAL(target)) //if they aren't already a vassal and they have a mindshield
+			owner.balloon_alert(owner, "mindshield detected, this will take longer...")
+			if(!do_after(user, 18 SECONDS, target))
 				return FALSE
 		else
 			if(!do_after(user, 6 SECONDS, target))
