@@ -832,6 +832,7 @@
 	. = ..()
 	if(wrapped)
 		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
+		wrapped_appearance.overlays = wrapped.overlays.Copy()
 		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
 		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
 		. += wrapped_appearance
@@ -861,3 +862,13 @@
 		/obj/item/conveyor_switch_construct,
 		/obj/item/stack/conveyor
 	)
+
+/obj/item/gripper/medical
+	name = "medical gripper"
+	desc = "A simple grasping tool for interacting with various medical related items."
+	can_hold = list(
+		/obj/item/reagent_containers/glass/bottle, // Bottles & Vials
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/blood // Blood Bags.
+	)
+
