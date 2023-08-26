@@ -4332,16 +4332,6 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"bZR" = (
-/obj/effect/landmark/start/roboticist,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/posialert{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "bZW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -7255,6 +7245,41 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"doL" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/helmet/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/shield/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/shield/riot,
+/obj/item/shield/riot{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/machinery/camera/motion/armory{
+	c_tag = "Security - Armory";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "doW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -20691,16 +20716,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jTF" = (
-/obj/machinery/camera{
-	c_tag = "Psychiatrist Office";
-	dir = 4;
-	network = list("ss13");
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "jTJ" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -20895,6 +20910,18 @@
 	},
 /turf/open/floor/plasteel/broken/two,
 /area/maintenance/disposal)
+"jYC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "Sergeant-at-Armsky";
+	weaponscheck = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "jYF" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 8
@@ -31020,6 +31047,16 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"oQk" = (
+/obj/effect/landmark/start/roboticist,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/posialert{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "oQz" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -35513,41 +35550,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"raV" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/shield/riot{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/shield/riot,
-/obj/item/shield/riot{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/machinery/camera/motion/armory{
-	c_tag = "Security - Armory";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "rba" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -38266,6 +38268,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/storage)
+"suq" = (
+/obj/machinery/camera{
+	c_tag = "Psychiatrist Office";
+	dir = 4;
+	network = list("ss13");
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "sur" = (
 /obj/structure/rack,
 /obj/item/melee/transforming/vib_blade{
@@ -39947,6 +39962,22 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"til" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/external{
+	name = "Solar Maintenance";
+	req_access_txt = "10; 13"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/starboard/aft)
 "tiq" = (
 /obj/machinery/camera{
 	c_tag = "Hallway - Central Southeast 1";
@@ -43079,22 +43110,6 @@
 "uBm" = (
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"uBr" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/external{
-	name = "Solar Maintenance";
-	req_access_txt = "10; 13"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/starboard/aft)
 "uBu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -46882,6 +46897,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"wth" = (
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = 26
+	},
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "psych";
+	name = "Psych Office Shutters Control";
+	pixel_x = -23;
+	pixel_y = 22;
+	req_access_txt = "5"
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "wtm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -49354,18 +49385,6 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plating,
 /area/maintenance/central)
-"xwm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "xwr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -49475,15 +49494,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"xxZ" = (
-/obj/machinery/modular_computer/telescreen/preset/medical{
-	pixel_y = 26
-	},
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "xye" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -74486,9 +74496,9 @@ whA
 dOo
 whA
 whA
-xxZ
+wth
 gLB
-jTF
+suq
 gHs
 plB
 xQL
@@ -81653,7 +81663,7 @@ jYs
 jAq
 fjV
 bXE
-bZR
+oQk
 eXZ
 vAa
 gEm
@@ -97122,7 +97132,7 @@ uJr
 uJr
 iKZ
 eJH
-uBr
+til
 fDu
 xSu
 ylr
@@ -101203,7 +101213,7 @@ xog
 oPl
 jZK
 jZK
-xwm
+jYC
 bbW
 wnY
 qmE
@@ -101974,7 +101984,7 @@ jpv
 spD
 gzq
 xyi
-raV
+doL
 kfA
 jlo
 ina
