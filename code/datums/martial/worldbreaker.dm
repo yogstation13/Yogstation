@@ -492,7 +492,7 @@
 		var/damage = 10
 		if(isstructure(obstruction) || ismecha(obstruction))
 			damage += 5
-		if(obstruction == target)
+		if(get_turf(obstruction) == get_turf(target))
 			damage *= 3
 		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
