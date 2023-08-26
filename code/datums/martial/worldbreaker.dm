@@ -20,7 +20,7 @@
 
 #define THROW_MOBDMG 5 //the damage dealt per object impacted during a throw
 #define THROW_OBJDMG 500 //Total amount of structure damage that can be done
-#define COOLDOWN_GRAB 0.8 SECONDS //basically just to prevent infinite stunlock spam
+#define COOLDOWN_GRAB 1.2 SECONDS //basically just to prevent infinite stunlock spam
 
 /datum/martial_art/worldbreaker
 	name = "Worldbreaker"
@@ -350,6 +350,7 @@
 		F.name = "worldbreaker"
 		victim.density = FALSE
 		victim.visible_message(span_warning("[user] grabs [victim] and lifts [victim.p_them()] off the ground!"))
+		victim.Stun(1 SECONDS) //so the user has time to aim their throw
 		to_chat(victim, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		victim.forceMove(Z)
 		F.buckle_mob(target)
