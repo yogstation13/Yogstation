@@ -286,3 +286,8 @@ Temperature: 126.85 °C (400 K)
 		/obj/item/gem/purple = 5,
 		/obj/item/gem/phoron = 5
 	)
+
+/turf/open/lava/smooth/jungle_surface
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/lava/smooth/jungle_surface

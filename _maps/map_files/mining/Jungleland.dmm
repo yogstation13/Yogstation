@@ -1,4 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"at" = (
+/obj/structure/flytrap,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/area/jungleland/explored)
+"az" = (
+/obj/docking_port/stationary{
+	area_type = /area/lavaland/surface/outdoors;
+	dir = 8;
+	dwidth = 2;
+	height = 5;
+	id = "laborcamp_away";
+	name = "labor camp";
+	width = 9
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "aE" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -141,6 +157,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"dd" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "di" = (
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/dirt/jungleland/dry_swamp,
@@ -154,6 +174,9 @@
 	},
 /turf/closed/wall/r_wall,
 /area/mine/laborcamp/security)
+"ep" = (
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "eq" = (
 /obj/machinery/door/airlock/external{
 	glass = 1;
@@ -186,6 +209,10 @@
 	},
 /turf/open/indestructible/grass/sand,
 /area/jungleland/explored)
+"fj" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "fp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -195,6 +222,12 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"fR" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "fT" = (
 /obj/machinery/mineral/processing_unit_console,
 /turf/closed/wall,
@@ -327,10 +360,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"jP" = (
-/obj/structure/herb/liberal_hats,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
 "jR" = (
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
@@ -520,6 +549,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"pU" = (
+/obj/structure/fence,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "rp" = (
 /obj/structure/chair/stool,
 /obj/structure/sign/poster/official/work_for_a_future{
@@ -683,6 +716,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"vF" = (
+/obj/structure/fence/end,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "vQ" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -723,10 +760,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"xE" = (
-/obj/structure/fence,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
 "xO" = (
 /obj/structure/table,
 /obj/item/instrument/harmonica,
@@ -826,28 +859,11 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"Au" = (
-/obj/structure/flora/junglebush/large,
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
 "Aw" = (
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
-"Az" = (
-/obj/structure/fence/corner{
-	dir = 9
-	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
-"Bh" = (
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/junglebush,
-/obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "Bm" = (
 /obj/machinery/door/airlock/public/glass{
 	id_tag = "cellblock1";
@@ -861,6 +877,12 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Bu" = (
+/obj/structure/fence/corner{
+	dir = 9
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "By" = (
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
@@ -874,10 +896,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"BM" = (
-/obj/structure/fence/end,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
 "Cl" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
@@ -889,12 +907,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
-"CS" = (
-/obj/structure/flora/junglebush,
-/obj/structure/flora/junglebush,
+"Dd" = (
 /turf/open/floor/plating/dirt/jungleland/dry_swamp1,
 /area/jungleland/explored)
-"Dd" = (
+"Dg" = (
+/obj/structure/fence,
 /turf/open/floor/plating/dirt/jungleland/dry_swamp1,
 /area/jungleland/explored)
 "Dj" = (
@@ -1000,6 +1017,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
+"FI" = (
+/obj/structure/fence/end{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/jungleland/explored)
 "FT" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1007,6 +1030,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
+"Gw" = (
+/obj/structure/fence/corner{
+	dir = 5
+	},
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "GM" = (
 /obj/machinery/computer/shuttle/labor/one_way{
 	dir = 4
@@ -1027,15 +1056,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"Hx" = (
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
-"HK" = (
-/obj/structure/fence{
-	dir = 8
-	},
+"Hw" = (
+/obj/structure/flora/rock/pile,
 /turf/open/floor/plating/dirt/jungleland/dry_swamp1,
 /area/jungleland/explored)
 "HS" = (
@@ -1048,6 +1070,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Ii" = (
+/obj/structure/flora/tree/dead/jungle,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "IC" = (
 /obj/machinery/power/apc{
 	name = "Labor Camp APC";
@@ -1115,12 +1141,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
-"KD" = (
-/obj/structure/fence/corner{
-	dir = 10
-	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "KY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -1163,6 +1183,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"MZ" = (
+/turf/open/lava/smooth/jungle_surface,
+/area/jungleland/explored)
 "Ns" = (
 /obj/machinery/door/airlock/public/glass{
 	id_tag = "cellblock1";
@@ -1231,11 +1254,11 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
-"PB" = (
-/obj/structure/fence/corner{
-	dir = 5
+"OT" = (
+/obj/structure/fence{
+	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/jungleland/explored)
 "Qt" = (
 /obj/machinery/power/apc{
@@ -1286,12 +1309,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"RG" = (
-/obj/structure/fence/end{
-	dir = 8
-	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
 "St" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -1306,6 +1323,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Tq" = (
+/obj/structure/herb/liberal_hats,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "Ts" = (
 /turf/closed/wall/r_wall,
 /area/mine/laborcamp/security)
@@ -1341,31 +1362,10 @@
 "UW" = (
 /turf/open/water/toxic_pit,
 /area/jungleland/ocean)
-"UX" = (
-/obj/structure/flora/tree/jungle/small,
-/obj/structure/flora/junglebush,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "Vt" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
-"Vw" = (
-/obj/docking_port/stationary{
-	area_type = /area/lavaland/surface/outdoors;
-	dir = 8;
-	dwidth = 2;
-	height = 5;
-	id = "laborcamp_away";
-	name = "labor camp";
-	width = 9
-	},
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
-"VB" = (
-/obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
-/area/jungleland/explored)
 "VI" = (
 /obj/machinery/door/airlock/public/glass{
 	id_tag = "gulag1";
@@ -1455,11 +1455,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
-"YX" = (
-/obj/structure/flora/junglebush,
-/obj/structure/herb/liberal_hats,
-/turf/open/floor/plating/dirt/jungleland/dry_swamp,
-/area/jungleland/explored)
 "ZB" = (
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
@@ -1702,13 +1697,13 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+ep
+ep
+ep
+MZ
+MZ
+MZ
+ep
 UW
 UW
 UW
@@ -1958,14 +1953,14 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+ep
+ep
+ep
+MZ
+MZ
+MZ
+ep
+ep
 UW
 UW
 UW
@@ -2216,23 +2211,23 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-be
-be
-be
-UW
-UW
-UW
+ep
+MZ
+MZ
+MZ
+ep
 Dd
-Dd
+UW
+UW
+UW
+ep
+ep
+ep
+UW
+UW
+UW
+ep
+ep
 UW
 UW
 UW
@@ -2468,30 +2463,30 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+ep
+ep
+ep
+ep
+ep
+ep
+MZ
+MZ
+MZ
+ep
 UW
 UW
 UW
 Dd
-Dd
-be
-be
-be
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 UW
 UW
 "}
@@ -2713,6 +2708,10 @@ UW
 UW
 UW
 UW
+ep
+ep
+ep
+ep
 UW
 UW
 UW
@@ -2721,34 +2720,30 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+Dd
 UW
 Dd
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 UW
 UW
 "}
@@ -2969,43 +2964,43 @@ UW
 UW
 UW
 UW
+ep
+ep
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
+ep
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 UW
 UW
 "}
@@ -3225,45 +3220,45 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-be
-be
-be
-be
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-be
-be
-mx
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+dd
+MZ
 cV
 cV
 cV
 cV
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-be
-be
-be
 UW
 "}
 (8,1,1) = {"
@@ -3482,45 +3477,45 @@ UW
 UW
 UW
 UW
-UW
-UW
-Dd
-be
-be
-be
-be
-be
-be
-be
-UW
-UW
-UW
-be
-UW
-UW
-UW
-UW
-be
-be
-pA
-Bh
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+MZ
+MZ
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
 cV
 DO
 zk
 cV
 lY
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+az
+ep
+ep
 Dd
-Dd
-be
-be
-be
-be
-be
-be
-Vw
-be
-be
-be
 UW
 "}
 (9,1,1) = {"
@@ -3738,29 +3733,29 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
+ep
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
 Dd
-be
-be
-mx
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-pA
-NM
-be
 cV
 aQ
 Rg
@@ -3776,7 +3771,7 @@ cV
 cV
 JE
 cV
-be
+Dd
 UW
 UW
 "}
@@ -3995,29 +3990,29 @@ UW
 UW
 UW
 UW
-UW
-UW
-Dd
-Dd
-be
-Hx
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-pA
-be
-pA
-pA
-be
-pA
-be
+ep
+MZ
+MZ
+MZ
+dd
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
+ep
+Ii
 cV
 aQ
 Rg
@@ -4252,29 +4247,29 @@ ZX
 UW
 UW
 UW
-UW
-UW
+ep
+ep
+MZ
+MZ
+ep
+ep
+ep
+ep
 Dd
-zg
-be
-be
-be
-be
-be
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+Hw
 Dd
 Dd
-Dd
-be
-Dd
-Dd
-be
-be
-be
-be
-be
-NM
-be
-pA
 cV
 yt
 OE
@@ -4510,26 +4505,26 @@ ZX
 UW
 UW
 UW
-UW
-vR
+ep
+MZ
+MZ
+ep
+ep
+ep
+fj
 Dd
-be
-UX
-be
+Bu
+pU
+pU
+pU
+pU
+pU
+pU
+fR
+ep
+ep
+ep
 Dd
-Dd
-Az
-xE
-xE
-xE
-xE
-xE
-xE
-KD
-be
-be
-be
-pA
 cV
 cV
 cV
@@ -4766,27 +4761,27 @@ ZX
 ZX
 UW
 UW
-UW
+ep
+MZ
+ep
+MZ
+ep
+ep
+Tq
 Dd
-VB
-jP
-be
-Lv
-be
+ep
+OT
 Dd
-Dd
-HK
-Dd
-Dd
-oq
 Dd
 oq
-Dd
-HK
-be
-be
-be
-NM
+ep
+oq
+ep
+OT
+ep
+ep
+ep
+ep
 cV
 ce
 cV
@@ -5023,26 +5018,26 @@ ZX
 UW
 UW
 UW
-UW
+ep
+MZ
+MZ
+MZ
+ep
+ep
 Dd
 Dd
-VB
-Dd
-be
-NM
-Dd
-Dd
-HK
+ep
+OT
 oq
 oq
 oq
 oq
 oq
-Dd
-HK
-be
-NM
-YX
+ep
+OT
+ep
+ep
+ep
 cV
 cV
 Nv
@@ -5279,27 +5274,27 @@ ZX
 ZX
 UW
 UW
-UW
-UW
+ep
+ep
+MZ
+MZ
+MZ
+ep
+ep
 Dd
 Dd
-vR
-vR
-Dd
-Dd
-Dd
-Dd
-HK
+ep
+OT
 Dd
 oq
 oq
 oq
 oq
 oq
-HK
-Dd
-be
-mx
+OT
+ep
+ep
+ep
 cV
 XI
 wK
@@ -5318,7 +5313,7 @@ rO
 yX
 mu
 Rm
-be
+Dd
 UW
 UW
 "}
@@ -5537,26 +5532,26 @@ ZX
 UW
 UW
 UW
-UW
+ep
+ep
+MZ
+MZ
+fj
+ep
+ep
 Dd
-Dd
-NV
-Dd
-Dd
-vR
-Dd
-Dd
-HK
+ep
+OT
 Dd
 oq
 oq
 oq
 oq
 oq
-HK
-Dd
-be
-be
+OT
+ep
+ep
+ep
 cV
 cL
 jR
@@ -5795,25 +5790,25 @@ UW
 UW
 UW
 UW
-UW
+ep
+MZ
+MZ
+MZ
+ep
+ep
 Dd
 Dd
-vR
-zg
-Dd
-Dd
-Dd
-HK
-Dd
+OT
+ep
 oq
 oq
 oq
 ul
 oq
-RG
-Dd
-be
-be
+FI
+ep
+ep
+ep
 cV
 Vt
 Kr
@@ -5832,7 +5827,7 @@ bm
 fp
 cU
 cV
-be
+at
 UW
 UW
 "}
@@ -6052,25 +6047,25 @@ UW
 UW
 UW
 UW
-UW
-Dd
-zg
-Au
-Dd
-Dd
-Dd
-Dd
-HK
-Dd
-Dd
+ep
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
+OT
+ep
+ep
 oq
-Dd
+ep
 oq
-Dd
-Dd
-be
-be
-be
+ep
+ep
+ep
+ep
+ep
 cV
 cV
 cV
@@ -6089,7 +6084,7 @@ xZ
 Aw
 wY
 cV
-be
+Dd
 UW
 UW
 "}
@@ -6309,28 +6304,28 @@ UW
 UW
 UW
 UW
-UW
+ep
+MZ
+MZ
+ep
+ep
+ep
+ep
 Dd
-vR
+Gw
+pU
+Dg
+Dg
+pU
+vF
+ep
+ep
+ep
+ep
+ep
+ep
+Tq
 Dd
-Dd
-NV
-Dd
-Dd
-PB
-xE
-xE
-xE
-xE
-BM
-Dd
-Dd
-be
-be
-be
-be
-be
-be
 Rm
 fv
 ZB
@@ -6346,8 +6341,8 @@ OL
 jm
 ll
 cV
-be
-be
+ep
+Ii
 UW
 "}
 (20,1,1) = {"
@@ -6566,28 +6561,28 @@ UW
 UW
 UW
 UW
+ep
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
 Dd
 Dd
 Dd
-CS
+ep
 Dd
 Dd
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
+ep
+ep
+ep
+ep
+ep
+ep
+Hw
 cV
 dJ
 JA
@@ -6603,9 +6598,9 @@ dJ
 dJ
 dJ
 cV
-be
-be
-UW
+Dd
+ep
+ep
 "}
 (21,1,1) = {"
 UW
@@ -6823,26 +6818,26 @@ UW
 UW
 UW
 UW
-Dd
-Dd
-OJ
-jP
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-be
-be
-be
-be
-be
-be
-be
-be
-be
+ep
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+fj
+ep
+ep
+ep
+ep
 Rm
 Rm
 Rm
@@ -6860,8 +6855,8 @@ dJ
 pQ
 lh
 Rm
-be
-UW
+ep
+ep
 UW
 "}
 (22,1,1) = {"
@@ -7081,25 +7076,25 @@ UW
 UW
 UW
 UW
-Dd
-Dd
-Dd
-vR
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-be
-be
-be
-be
-be
-be
-be
-be
-be
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 eq
 By
 eq
@@ -7117,9 +7112,9 @@ VI
 cK
 sm
 Rm
-be
-UW
-UW
+MZ
+ep
+ep
 "}
 (23,1,1) = {"
 UW
@@ -7338,25 +7333,25 @@ UW
 UW
 UW
 UW
+ep
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
+Ii
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-be
-be
-be
-be
-be
-be
-be
 Rm
 Rm
 Rm
@@ -7374,9 +7369,9 @@ dJ
 dJ
 dJ
 cV
-be
-UW
-UW
+MZ
+MZ
+ep
 "}
 (24,1,1) = {"
 UW
@@ -7597,25 +7592,25 @@ UW
 UW
 UW
 UW
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+MZ
+MZ
+MZ
+ep
+ep
 Dd
 Dd
 Dd
-Dd
-Dd
-UW
-UW
-UW
-UW
-Dd
-Dd
-Dd
-Dd
-be
-be
-be
-be
-be
-be
+ep
 cV
 cr
 DW
@@ -7631,9 +7626,9 @@ dJ
 rp
 Up
 Rm
-be
-UW
-UW
+ep
+MZ
+ep
 "}
 (25,1,1) = {"
 UW
@@ -7860,19 +7855,19 @@ UW
 UW
 UW
 UW
+ep
 UW
 UW
-UW
-UW
-UW
-UW
-Dd
-be
-be
-be
-be
-be
-be
+ep
+ep
+MZ
+MZ
+MZ
+ep
+ep
+ep
+ep
+ep
 cV
 aR
 dJ
@@ -7888,9 +7883,9 @@ tM
 yB
 sm
 Rm
-be
-UW
-UW
+ep
+MZ
+MZ
 "}
 (26,1,1) = {"
 UW
@@ -8121,15 +8116,15 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-be
-be
-be
-be
-be
+ep
+ep
+MZ
+MZ
+MZ
+ep
+MZ
+MZ
+MZ
 cV
 bY
 iR
@@ -8145,9 +8140,9 @@ dJ
 dJ
 dJ
 cV
-be
-UW
-UW
+MZ
+MZ
+MZ
 "}
 (27,1,1) = {"
 UW
@@ -8379,14 +8374,14 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-be
-be
-UW
-be
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
 cV
 cV
 cV
@@ -8402,9 +8397,9 @@ dJ
 pQ
 lQ
 Rm
-be
-UW
-UW
+MZ
+MZ
+ep
 "}
 (28,1,1) = {"
 UW
@@ -8638,17 +8633,17 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-be
-pA
-mx
-be
-be
-NM
+ep
+ep
+ep
+ep
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
 cV
 Ul
 ZB
@@ -8659,9 +8654,9 @@ uG
 cK
 sm
 Rm
-be
-UW
-UW
+MZ
+MZ
+ep
 "}
 (29,1,1) = {"
 UW
@@ -8899,13 +8894,13 @@ UW
 UW
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-be
+ep
+ep
+ep
+ep
+ep
+ep
+MZ
 cV
 SB
 ki
@@ -8916,9 +8911,9 @@ cV
 cV
 cV
 cV
-UW
-UW
-UW
+MZ
+ep
+ep
 "}
 (30,1,1) = {"
 UW
@@ -9161,21 +9156,21 @@ UW
 UW
 UW
 UW
-UW
-UW
+ep
+MZ
 cV
 yp
 ZB
 Rm
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
 "}
 (31,1,1) = {"
 UW
@@ -9418,21 +9413,21 @@ UW
 UW
 UW
 UW
-UW
-UW
+ep
+MZ
 cV
 cV
 cV
 cV
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+MZ
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 "}
 (32,1,1) = {"
 UW
@@ -9675,20 +9670,20 @@ UW
 UW
 UW
 UW
-QK
+ep
+MZ
+MZ
+MZ
+MZ
+MZ
+MZ
+ep
+ep
+ep
 UW
 UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
-UW
+ep
+ep
 UW
 "}
 (33,1,1) = {"
@@ -9932,16 +9927,16 @@ UW
 UW
 UW
 UW
-QK
-QK
-QK
-QK
-QK
-UW
-UW
-UW
-UW
-UW
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
 UW
 UW
 UW
@@ -10187,15 +10182,15 @@ UW
 UW
 UW
 UW
-ZX
-ZX
-ZX
-QK
-QK
-QK
-QK
 UW
 UW
+UW
+UW
+UW
+ep
+ep
+ep
+ep
 UW
 UW
 UW
@@ -10448,9 +10443,9 @@ ZX
 ZX
 ZX
 ZX
-QK
-QK
-QK
+UW
+UW
+UW
 UW
 UW
 UW
