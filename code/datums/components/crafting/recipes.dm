@@ -311,6 +311,12 @@
 	result = /obj/structure/sink
 	category = CAT_STRUCTURES
 
+/datum/crafting_recipe/mirror
+	name = "Mirror"
+	reqs = 	list(/obj/item/stack/rods = 1, /obj/item/stack/sheet/glass = 1, /obj/item/stack/sheet/mineral/silver = 1)
+	result = /obj/item/wallframe/mirror
+	category = CAT_STRUCTURES
+
 /datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
 	name = "Toilet"
 	reqs = 	list(/obj/item/stack/sheet/metal = 5, /obj/item/reagent_containers/glass/bucket = 1)

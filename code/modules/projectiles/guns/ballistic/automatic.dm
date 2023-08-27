@@ -81,6 +81,9 @@
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
 
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure
+	pin = /obj/item/firing_pin/fucked
+
 /obj/item/gun/ballistic/automatic/c20r/Initialize(mapload)
 	. = ..()
 	update_appearance(UPDATE_ICON)
