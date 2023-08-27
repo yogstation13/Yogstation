@@ -16,7 +16,7 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	light_color = LIGHT_COLOR_CYAN
-	dir = 8 //Less headache inducing :))
+	dir = 2 //Less headache inducing
 	startingvolume = 600 // 3x base
 	var/id = null //Change me mappers
 	//Variables essential to operation
@@ -621,6 +621,7 @@
 	set_light(10)
 	var/startup_sound = pick('sound/effects/reactor/startup.ogg', 'sound/effects/reactor/startup2.ogg')
 	playsound(loc, startup_sound, 100)
+	update_parents() // double-check all the pipes are connected on startup
 	if(!powernet)
 		connect_to_network()
 
@@ -744,10 +745,9 @@
 	data["kpa"] = reactor ? reactor.pressure : 0
 	data["active"] = reactor ? reactor.active : FALSE
 	data["shutdownTemp"] = REACTOR_TEMPERATURE_MINIMUM
-	data["rods"] = list()
 	var/list/rod_data = list()
-	var/cur_index = 0
 	if(reactor)
+		var/cur_index = 0
 		for(var/obj/item/fuel_rod/rod in reactor.fuel_rods)
 			cur_index++
 			rod_data.Add(
@@ -757,6 +757,7 @@
 					"rod_index" = cur_index
 				))
 			)
+	data["rods"] = rod_data
 	return data
 
 /obj/machinery/computer/reactor/wrench_act(mob/living/user, obj/item/I)

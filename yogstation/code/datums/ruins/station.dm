@@ -93,7 +93,7 @@
 /datum/map_template/ruin/station/box/engine/reactor
 	id = "engine_reactor"
 	suffix = "engine_reactor.dmm"
-	name = "Engine AGCNR"
+	name = "Engine Nuclear Reactor"
 
 /datum/map_template/ruin/station/box/testingsite/bunker
 	id = "testing_site_1"
@@ -292,7 +292,11 @@
 	id = "meta_teg"
 	suffix = "meta_teg.dmm"
 	name = "Meta TEG"
-	
+
+/datum/map_template/ruin/station/meta/reactor
+	id = "meta_reactor"
+	suffix = "meta_reactor.dmm"
+	name = "Meta Nuclear Reactor"
 
 //GaxStation
 
