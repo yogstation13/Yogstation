@@ -666,7 +666,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_types = list(/obj/item/robot_module/service)
-	module_flags = BORG_MODEL_SERVICE
+	module_flags = BORG_MODULE_SERVICE
 
 /obj/item/borg/upgrade/condiment_synthesizer/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -1292,3 +1292,43 @@
 
 	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module)
 		R.module.remove_module(satchel, TRUE)
+
+
+/obj/item/borg/upgrade/nv_mesons
+	name = "cyborg night vision mesons"
+	desc = "An upgrade for cyborgs that replaces their normal meson goggles, if they have them, with a night vision variant."
+	icon_state = "cyborg_upgrade5"
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/engineering, /obj/item/robot_module/miner)
+
+/// Replaces the cyborg's meson goggles with night vision meson goggles.
+/obj/item/borg/upgrade/nv_mesons/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	for(var/obj/item/borg/sight/meson/meson in R.module.modules)
+		R.module.remove_module(meson, TRUE)
+
+	var/obj/item/borg/sight/meson/nightvision/nvgmeson = locate() in R.module.modules
+	if(nvgmeson)
+		to_chat(user, span_warning("This cyborg is already equipped with night vision mesons."))
+		return FALSE
+
+	nvgmeson = new(R.module)
+	R.module.basic_modules += nvgmeson
+	R.module.add_module(nvgmeson, FALSE, TRUE)
+
+/obj/item/borg/upgrade/nv_mesons/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+	
+	for(var/obj/item/borg/sight/meson/nightvision/nvgmeson in R.module.modules)
+		R.module.remove_module(nvgmeson, TRUE)
+
+	var/obj/item/borg/sight/meson/meson = locate() in R.module.modules
+	if(!meson)
+		meson = new(R.module)
+		R.module.basic_modules += meson
+		R.module.add_module(meson, FALSE, TRUE)
