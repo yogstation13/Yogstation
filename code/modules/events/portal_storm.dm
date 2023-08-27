@@ -191,7 +191,6 @@
 			else
 				A.visible_message(span_userdanger("[A] overloads and makes a huge arc!"))
 				tesla_zap(A, 5, 10000) // woe
-	set_security_level("gamma") // CALL THE FUCKING ERT THIS ISNT A JOKE
 	SSshuttle.emergency.request(null) // can't call the shuttle if all the APCs blew up, so give the crew some help
 	message_centcom("Alert, a large scale of abnormal activity has been detected on [station_name()]. Investigate and send the special forces to the station immediately as Code Gamma is in effect.", "Central Command Higher Dimensional Affairs")
 
