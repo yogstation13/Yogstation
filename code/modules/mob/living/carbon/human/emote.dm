@@ -167,6 +167,11 @@
 	key = "griddy"
 	message = "hits the griddy."
 
+/datum/emote/living/carbon/human/griddy/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && ishuman(user))
+		user << link("byond://golden.beestation13.com:7777")
+
 /datum/emote/living/carbon/human/wag/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	if(!.)
