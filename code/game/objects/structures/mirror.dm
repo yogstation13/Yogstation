@@ -148,7 +148,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	result_path = /obj/structure/mirror
-	pixel_shift = -32
+	pixel_shift = -30
 
 /obj/structure/mirror/magic
 	name = "magic mirror"
