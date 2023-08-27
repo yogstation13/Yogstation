@@ -79,7 +79,7 @@
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
 				user.visible_message("[user] prepares to operate on [M]'s [parse_zone(selected_zone)].", \
 					span_notice("You prepare to operate on [M]'s [parse_zone(selected_zone)]."))
-				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff = 1)
+				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff_exponent = 1)
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 				if(S.self_operable || user != M)
 					procedure.next_step(user, user.a_intent)
@@ -92,7 +92,7 @@
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
 	var/selected_zone = user.zone_selected
 	to_chat(user, span_notice("You begin to cancel \the [S]."))
-	if(!do_mob(user, M, 3 SECONDS))
+	if(!do_after(user, 3 SECONDS, M))
 		return
 	if(S.status == 1)
 		M.surgeries -= S

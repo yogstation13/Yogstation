@@ -1,10 +1,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
 	description = "Build and repair the AI and cyborgs, create mechs."
-	flag = ROBOTICIST
 	orbit_icon = "battery-half"
 	department_head = list("Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -30,8 +28,11 @@
 
 	mail_goodies = list(
 		/obj/item/storage/box/flashes = 20,
-		/obj/item/stack/sheet/metal/twenty = 15,
-		/obj/item/modular_computer/tablet/preset/advanced = 5
+		/obj/item/stack/sheet/metal/fifty = 15,
+		/obj/item/stack/sheet/plasteel/twenty = 5,
+		/obj/item/modular_computer/tablet/preset/advanced = 5,
+		/obj/item/stock_parts/cell/bluespace = 5,
+		/obj/item/stack/ore/dilithium_crystal/refined = 5
 	)
 
 	smells_like = "burnt solder"
@@ -51,4 +52,4 @@
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

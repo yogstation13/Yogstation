@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/area/shuttle/shuttle_area = place
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
-			for(var/a in T.GetAllContents())
+			for(var/a in T.get_all_contents())
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/turf/open/floor/T in shuttle_area)
-			if(is_blocked_turf(T))
+			if(T.is_blocked_turf())
 				continue
 			empty_turfs += T
 
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/place as anything in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/turf/open/floor/shuttle_floor in shuttle_area)
-			if(is_blocked_turf(shuttle_floor))
+			if(shuttle_floor.is_blocked_turf())
 				continue
 			empty_turfs += shuttle_floor
 

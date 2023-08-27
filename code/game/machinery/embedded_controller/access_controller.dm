@@ -18,22 +18,23 @@
 /obj/machinery/doorButtons/proc/findObjsByTag()
 	return
 
-/obj/machinery/doorButtons/Initialize()
+/obj/machinery/doorButtons/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/doorButtons/LateInitialize()
 	findObjsByTag()
 
-/obj/machinery/doorButtons/emag_act(mob/user)
+/obj/machinery/doorButtons/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
-
+	return TRUE
+	
 /obj/machinery/doorButtons/proc/removeMe()
 	return
 
@@ -67,7 +68,7 @@
 		if(controller.stat & NOPOWER)
 			return
 		busy = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(door.density)
 			if(!controller.exteriorAirlock || !controller.interiorAirlock)
 				controller.onlyOpen(door)
@@ -78,13 +79,14 @@
 					controller.cycleClose(door)
 		else
 			controller.onlyClose(door)
-		addtimer(CALLBACK(src, .proc/not_busy), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(not_busy)), 2 SECONDS)
 
 /obj/machinery/doorButtons/access_button/proc/not_busy()
 	busy = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/doorButtons/access_button/update_icon()
+/obj/machinery/doorButtons/access_button/update_icon_state()
+	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "access_button_off"
 	else
@@ -148,7 +150,7 @@
 /obj/machinery/doorButtons/airlock_controller/proc/onlyOpen(obj/machinery/door/airlock/A)
 	if(A)
 		busy = CLOSING
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		openDoor(A)
 
 /obj/machinery/doorButtons/airlock_controller/proc/onlyClose(obj/machinery/door/airlock/A)
@@ -160,7 +162,7 @@
 	if(A.density)
 		goIdle()
 		return FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	A.safe = FALSE //Door crushies, manual door after all. Set every time in case someone changed it, safe doors can end up waiting forever.
 	A.unbolt()
 	if(A.close())
@@ -179,7 +181,7 @@
 	if(exteriorAirlock.density == interiorAirlock.density || !A.density)
 		return
 	busy = CYCLE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(A == interiorAirlock)
 		if(closeDoor(exteriorAirlock))
 			busy = CYCLE_INTERIOR
@@ -217,7 +219,7 @@
 	lostPower = FALSE
 	busy = FALSE
 	if(update)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	updateUsrDialog()
 
 /obj/machinery/doorButtons/airlock_controller/process()
@@ -243,7 +245,8 @@
 		else if(A.id_tag == idExterior)
 			exteriorAirlock = A
 
-/obj/machinery/doorButtons/airlock_controller/update_icon()
+/obj/machinery/doorButtons/airlock_controller/update_icon_state()
+	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "access_control_off"
 		return

@@ -189,7 +189,7 @@
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/preprime()
 	icon_state = "cherry_bomb_lit"
 	playsound(src, 'sound/effects/fuse.ogg', seed.potency, 0)
-	addtimer(CALLBACK(src, .proc/prime), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(prime)), 5 SECONDS)
 
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb/proc/prime()
 	reagents.chem_temp = 1000 //Boom goes the blackpowder (Thanks chem nerfs)

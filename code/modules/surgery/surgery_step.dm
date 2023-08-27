@@ -94,28 +94,25 @@
 	var/advance = FALSE
 
 	var/speed_mod = 1
+	if(user == target)
+		speed_mod *= 1.5 // harder to do on yourself, but not "wait 15 seconds for a single step" hard
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
 		return FALSE
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
-	if(tool)
-		speed_mod = tool.toolspeed
-
 	if(is_species(user, /datum/species/lizard/ashwalker/shaman))//shaman is slightly better at surgeries
 		speed_mod *= 0.9
 
-	if(IS_MEDICAL(user))
-		speed_mod *= 0.8
-
-	if(istype(user.get_item_by_slot(SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
-		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(SLOT_GLOVES)
+	if(istype(user.get_item_by_slot(ITEM_SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
+		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 		speed_mod *= surgicalgloves.surgeryspeed
 
 	var/previous_loc = user.loc
 
-	if(do_after(user, time * speed_mod, target))
+	// If we have a tool, use it
+	if((tool && tool.use_tool(target, user, time * speed_mod, robo_check = TRUE)) || do_after(user, time * speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
@@ -173,7 +170,7 @@
 		sound_file_use = preop_sound
 	if(!sound_file_use)
 		return
-	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff_exponent = 2)
 
 /datum/surgery_step/proc/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You succeed."),
@@ -194,7 +191,7 @@
 		sound_file_use = success_sound
 	if(!sound_file_use)
 		return
-	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff_exponent = 2)
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You screw up!"),
@@ -215,7 +212,7 @@
 		sound_file_use = failure_sound
 	if(!sound_file_use)
 		return
-	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff_exponent = 2)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return TRUE
@@ -269,7 +266,7 @@
 			ouchie_mod *= ouchie_modifying_chems[R]
 	if(target.stat == UNCONSCIOUS)
 		ouchie_mod *= 0.8
-	ouchie_mod *= clamp(1 - target.drunkenness / 100, 0, 1)
+	ouchie_mod *= clamp(1 - target.get_drunk_amount() / 100, 0, 1)
 	if(!success)
 		ouchie_mod *= 2
 	var/final_ouchie_chance = SURGERY_FUCKUP_CHANCE * ouchie_mod

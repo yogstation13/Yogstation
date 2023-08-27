@@ -123,7 +123,7 @@
 	soft_type = "fishfear"
 	dog_fashion = /datum/dog_fashion/head/fishfear
 
-/obj/item/clothing/head/soft/fishfear/Initialize()
+/obj/item/clothing/head/soft/fishfear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)
 
@@ -133,7 +133,7 @@
 	icon_state = "froghat"
 	item_state = "froghat"
 
-/obj/item/clothing/head/yogs/froghat/Initialize()
+/obj/item/clothing/head/yogs/froghat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,10)
 
@@ -200,3 +200,4 @@
 	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
+	randomizable = FALSE

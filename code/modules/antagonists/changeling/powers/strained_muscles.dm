@@ -11,6 +11,8 @@
 	req_human = 1
 	var/stacks = 0 //Increments every 5 seconds; damage increases over time
 	active = FALSE //Whether or not you are a hedgehog
+	conflicts = list(/datum/action/changeling/adrenaline)
+
 
 /datum/action/changeling/strained_muscles/sting_action(mob/living/carbon/user)
 	..()
@@ -25,7 +27,7 @@
 			user.Paralyze(60)
 			user.emote("gasp")
 
-	INVOKE_ASYNC(src, .proc/muscle_loop, user)
+	INVOKE_ASYNC(src, PROC_REF(muscle_loop), user)
 
 	return TRUE
 
@@ -42,12 +44,13 @@
 		stacks++
 
 		user.adjustStaminaLoss(stacks * 1.3) //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
+		user.clear_stamina_regen()
 
 		if(stacks == 11) //Warning message that the stacks are getting too high
 			to_chat(user, span_warning("Our legs are really starting to hurt..."))
 
 		sleep(4 SECONDS)
-		
+
 //yogs start - removes speed buff when not active
 	while(!active)
 		user.remove_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES)

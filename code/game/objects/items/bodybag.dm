@@ -45,9 +45,9 @@
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NO_MAT_REDEMPTION
 
-/obj/item/bodybag/bluespace/Initialize()
+/obj/item/bodybag/bluespace/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ATOM_CANREACH, .proc/CanReachReact)
+	RegisterSignal(src, COMSIG_ATOM_CANREACH, PROC_REF(CanReachReact))
 
 /obj/item/bodybag/bluespace/examine(mob/user)
 	. = ..()
@@ -84,7 +84,7 @@
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	to_chat(user, span_notice("You claw at the fabric of [src], trying to tear it open..."))
 	to_chat(loc, span_warning("Someone starts trying to break free of [src]!"))
-	if(!do_after(user, 5 SECONDS, src, stayStill = FALSE))
+	if(!do_after(user, 5 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		to_chat(loc, span_warning("The pressure subsides. It seems that they've stopped resisting..."))
 		return
 	loc.visible_message(span_warning("[user] suddenly appears in front of [loc]!"), span_userdanger("[user] breaks free of [src]!"))
@@ -120,3 +120,33 @@
 	icon_state = "syndieenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/syndicate
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF | LAVA_PROOF
+	var/killing = FALSE
+	var/obj/structure/closet/body_bag/environmental/prisoner/syndicate/deployed_bag
+
+/obj/item/bodybag/environmental/prisoner/syndicate/deploy_bodybag(mob/user, atom/location)
+	deployed_bag = new unfoldedbag_path(location)
+	deployed_bag.open(user)
+	deployed_bag.add_fingerprint(user)
+	deployed_bag.foldedbag_instance = src
+	moveToNullspace()
+
+/obj/item/syndicate_prisoner_remote
+	name = "syndicate prisoner remote"
+	desc = "A wireless remote that will toggle the lethality of a linked syndicate prisoner transport bag."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-red"
+	item_state = "electronic"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	var/obj/item/bodybag/environmental/prisoner/syndicate/bag
+
+/obj/item/syndicate_prisoner_remote/attack_self(mob/user)
+	. = ..()
+	if(!bag)
+		to_chat(user, span_warning("The link to the bag has been broken!"))
+		return
+	
+	bag.killing = !bag.killing
+	if(bag.deployed_bag)
+		bag.deployed_bag.update_appearance(UPDATE_ICON)
+	to_chat(user, span_notice("\The [bag] is now set to [bag.killing ? "LETHAL" : "NON-LETHAL"]."))

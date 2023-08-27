@@ -8,19 +8,21 @@
 	src.allowed_slot = allowed_slot
 
 /datum/component/tactical/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/modify)
-	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/unmodify)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(modify))
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(unmodify))
 
 /datum/component/tactical/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	unmodify()
 
-/datum/component/fantasy/Destroy()
+/datum/component/tactical/Destroy()
 	unmodify()
 	return ..()
 
 /datum/component/tactical/proc/modify(obj/item/source, mob/user, slot)
-	if(allowed_slot && slot != allowed_slot)
+	SIGNAL_HANDLER
+
+	if(allowed_slot && !(slot & allowed_slot))
 		unmodify()
 		return
 
@@ -32,6 +34,8 @@
 	I.layer = ABOVE_MOB_LAYER
 
 /datum/component/tactical/proc/unmodify(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+
 	var/obj/item/master = source || parent
 	if(!user)
 		if(!ismob(master.loc))

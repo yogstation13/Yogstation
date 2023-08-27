@@ -46,9 +46,9 @@
 	finish_color = "yellow"
 	pen_type = /obj/item/pen/fountain/captain
 
-/obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize()
+/obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, .proc/pda_no_detonate)
+	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 	starting_files = list(	new /datum/computer_file/program/budgetorders,

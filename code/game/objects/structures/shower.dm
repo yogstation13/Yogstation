@@ -4,7 +4,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2550s by the Nanotrasen Hygiene Division."
+	desc = "The HS-451. Installed in 2517 by the Nanotrasen Hygiene Division, for your convenience."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -15,7 +15,7 @@
 	var/reagent_id = /datum/reagent/water
 	var/reaction_volume = 200
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	. = ..()
 	create_reagents(reaction_volume)
 	reagents.add_reagent(reagent_id, reaction_volume)
@@ -29,7 +29,7 @@
 
 /obj/machinery/shower/interact(mob/M)
 	on = !on
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	handle_mist()
 	add_fingerprint(M)
 	if(on)
@@ -69,21 +69,20 @@
 	. = ..()
 	. += span_notice("You can <b>alt-click</b> to change the temperature.")
 
-/obj/machinery/shower/update_icon()
+/obj/machinery/shower/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(on)
-		add_overlay(mutable_appearance('icons/obj/watercloset.dmi', "water", ABOVE_MOB_LAYER))
+		. += mutable_appearance('icons/obj/watercloset.dmi', "water", ABOVE_MOB_LAYER)
 
 /obj/machinery/shower/proc/handle_mist()
 	// If there is no mist, and the shower was turned on (on a non-freezing temp): make mist in 5 seconds
 	// If there was already mist, and the shower was turned off (or made cold): remove the existing mist in 25 sec
 	var/obj/effect/mist/mist = locate() in loc
 	if(!mist && on && current_temperature != SHOWER_FREEZING)
-		addtimer(CALLBACK(src, .proc/make_mist), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
 
 	if(mist && (!on || current_temperature == SHOWER_FREEZING))
-		addtimer(CALLBACK(src, .proc/clear_mist), 25 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
 
 /obj/machinery/shower/proc/make_mist()
 	var/obj/effect/mist/mist = locate() in loc
@@ -108,6 +107,7 @@
 	reagents.reaction(A, TOUCH, reaction_volume)
 
 	if(isliving(A))
+		reduce_rads(A)
 		check_heat(A)
 
 /obj/machinery/shower/process()
@@ -121,6 +121,9 @@
 /obj/machinery/shower/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/metal(drop_location(), 3)
 	qdel(src)
+
+/obj/machinery/shower/proc/reduce_rads(mob/living/L)
+	L.radiation -= min(L.radiation, 5)
 
 /obj/machinery/shower/proc/check_heat(mob/living/L)
 	var/mob/living/carbon/C = L

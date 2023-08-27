@@ -67,6 +67,7 @@
 #define VV_HK_ADDCOMPONENT "addcomponent"
 #define VV_HK_MODIFY_TRAITS "modtraits"
 #define VV_HK_VIEW_REFERENCES "viewreferences"
+#define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
 // /atom
 #define VV_HK_MODIFY_TRANSFORM "atom_transform"
 #define VV_HK_ADD_REAGENT "addreagent"
@@ -75,6 +76,9 @@
 #define VV_HK_AUTO_RENAME "auto_rename"
 #define VV_HK_RADIATE "radiate"
 #define VV_HK_SHOW_HIDDENPRINTS "show_hiddenprints"
+#define VV_HK_EDIT_PARTICLES "edit_particles"
+#define VV_HK_ADD_EMITTER "add_emitter"
+#define VV_HK_REMOVE_EMITTER "remove_emitter"
 
 // /obj
 #define VV_HK_OSAY "osay"

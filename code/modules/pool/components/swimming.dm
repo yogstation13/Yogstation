@@ -20,9 +20,9 @@
 	var/mob/M = parent
 	M.visible_message("<span class='notice'>[parent] starts splashing around in the water!</span>")
 	M.add_movespeed_modifier(MOVESPEED_ID_SWIMMING, update=TRUE, priority=50, multiplicative_slowdown=slowdown, movetypes=GROUND)
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMove)
-	RegisterSignal(parent, COMSIG_CARBON_SPECIESCHANGE, .proc/onChangeSpecies)
-	RegisterSignal(parent, COMSIG_MOB_ATTACK_HAND_TURF, .proc/try_leave_pool)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(onMove))
+	RegisterSignal(parent, COMSIG_CARBON_SPECIESCHANGE, PROC_REF(onChangeSpecies))
+	RegisterSignal(parent, COMSIG_MOB_ATTACK_HAND_TURF, PROC_REF(try_leave_pool))
 	START_PROCESSING(SSprocessing, src)
 	enter_pool()
 
@@ -48,7 +48,7 @@
 	var/mob/living/L = parent
 	if(!L.can_interact_with(clicked_turf))
 		return
-	if(is_blocked_turf(clicked_turf))
+	if(clicked_turf.is_blocked_turf())
 		return
 	if(istype(clicked_turf, /turf/open/indestructible/sound/pool))
 		return
@@ -75,8 +75,8 @@
 /datum/component/swimming/process()
 	var/mob/living/L = parent
 	var/floating = FALSE
-	var/obj/item/twohanded/required/pool/helditem = L.get_active_held_item()
-	if(istype(helditem) && helditem.wielded)
+	var/obj/item/pool/helditem = L.get_active_held_item()
+	if(istype(helditem) && HAS_TRAIT(helditem, TRAIT_WIELDED))
 		bob_tick ++
 		animate(L, time=0.95 SECONDS, pixel_y = (L.pixel_y == bob_height_max) ? bob_height_min : bob_height_max)
 		floating = TRUE
@@ -95,8 +95,8 @@
 	L.adjust_fire_stacks(-3)
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
-	var/obj/item/twohanded/required/pool/helditem = victim.get_active_held_item()
-	if(istype(helditem) && helditem.wielded)
+	var/obj/item/pool/helditem = victim.get_active_held_item()
+	if(istype(helditem) && HAS_TRAIT(helditem, TRAIT_WIELDED))
 		return
 	if(iscarbon(victim))
 		var/mob/living/carbon/C = victim

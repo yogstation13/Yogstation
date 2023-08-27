@@ -20,7 +20,7 @@
 	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
 	mutant_bodyparts = list("ethereal_mark")
@@ -63,7 +63,7 @@
 		return
 
 	var/mob/living/carbon/human/ethereal = C
-	default_color = "#[ethereal.dna.features["ethcolor"]]"
+	default_color = ethereal.dna.features["ethcolor"]
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
@@ -83,23 +83,30 @@
 
 	return randname
 
-/datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/H)
+/datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/ethereal)
 	. = ..()
-	if(H.stat != DEAD && !EMPeffect)
-		var/healthpercent = max(H.health, 0) / 100
+	if(!ethereal_light)
+		return
+	if(default_color != ethereal.dna.features["ethcolor"])
+		var/new_color = ethereal.dna.features["ethcolor"]
+		r1 = GETREDPART(new_color)
+		g1 = GETGREENPART(new_color)
+		b1 = GETBLUEPART(new_color)
+	if(ethereal.stat != DEAD && !EMPeffect)
+		var/healthpercent = max(ethereal.health, 0) / 100
 		var/light_range = 1 + (4 * healthpercent)
 		var/light_power = 1 + healthpercent
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		H.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
+		ethereal.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
 		ethereal_light.set_light_range_power_color(light_range, light_power, current_color)
 		ethereal_light.set_light_on(TRUE)
-		fixed_mut_color = copytext_char(current_color, 2)
+		fixed_mut_color = current_color
 	else
-		H.set_light(0)
+		ethereal.set_light(0)
 		ethereal_light.set_light_on(FALSE)
 		fixed_mut_color = rgb(128,128,128)
-	H.update_body()
+	ethereal.update_body()
 
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
 	.=..()
@@ -108,19 +115,19 @@
 	to_chat(H, span_notice("You feel the light of your body leave you."))
 	switch(severity)
 		if(EMP_LIGHT)
-			addtimer(CALLBACK(src, .proc/stop_emp, H), 100, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 seconds
+			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 100, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 seconds
 		if(EMP_HEAVY)
-			addtimer(CALLBACK(src, .proc/stop_emp, H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
+			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
 
-/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user)
+/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(emageffect)
-		return
+		return FALSE
 	emageffect = TRUE
 	to_chat(user, span_notice("You tap [H] on the back with your card."))
 	H.visible_message(span_danger("[H] starts flickering in an array of colors!"))
 	handle_emag(H)
-	addtimer(CALLBACK(src, .proc/stop_emag, H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
-
+	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
+	return TRUE
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
@@ -140,7 +147,7 @@
 		return
 	current_color = pick(ETHEREAL_COLORS)
 	spec_updatehealth(H)
-	addtimer(CALLBACK(src, .proc/handle_emag, H), 5) //Call ourselves every 0.5 seconds to change color
+	addtimer(CALLBACK(src, PROC_REF(handle_emag), H), 5) //Call ourselves every 0.5 seconds to change color
 
 /datum/species/ethereal/proc/stop_emag(mob/living/carbon/human/H)
 	emageffect = FALSE
@@ -148,7 +155,6 @@
 	H.visible_message(span_danger("[H] stops flickering and goes back to their normal state!"))
 
 /datum/species/ethereal/proc/handle_charge(mob/living/carbon/human/H)
-	brutemod = 1.25
 	switch(get_charge(H))
 		if(ETHEREAL_CHARGE_NONE)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
@@ -156,16 +162,12 @@
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
 			if(H.health > 10.5)
 				apply_damage(0.65, TOX, null, null, H)
-			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
-			brutemod = 1.5
 		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
-			brutemod = 1.5
 		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
-			brutemod = 1.75
 			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
 				discharge_process(H)
 		else
@@ -178,7 +180,7 @@
 	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell copied from another codebase copied from another codebase
 	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 	H.add_overlay(overcharge)
-	if(do_mob(H, H, 50, 1))
+	if(do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL))
 		H.flash_lighting_fx(5, 7, current_color)
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
@@ -188,11 +190,6 @@
 			stomach.adjust_charge(ETHEREAL_CHARGE_FULL - stomach.crystal_charge)
 		to_chat(H, "<span class='warning'>You violently discharge energy!</span>")
 		H.visible_message("<span class='danger'>[H] violently discharges energy!</span>")
-		if(prob(10)) //chance of developing heart disease to dissuade overcharging oneself
-			var/datum/disease/D = new /datum/disease/heart_failure
-			H.ForceContractDisease(D)
-			to_chat(H, "<span class='userdanger'>You're pretty sure you just felt your heart stop for a second there..</span>")
-			H.playsound_local(H, 'sound/effects/singlebeat.ogg', 100, 0)
 		H.Paralyze(100)
 		return
 
@@ -210,16 +207,32 @@
 	return features
 
 /datum/species/ethereal/get_species_description()
-	return /*"Coming from the planet of Sprout, the theocratic ethereals are \
-		separated socially by caste, and espouse a dogma of aiding the weak and \
-		downtrodden."*/
+	return "Ethereals are one of the two other spacefaring species encountered by the SIC. Strange slime-based humanoids that emit light based on their \
+		general health, ethereals are also well-known for their general benevolence and naivety. While not common within SIC space, they are still \
+		a relatively accepted species in its borders."
 
 /datum/species/ethereal/get_species_lore()
-	return list("TBD",/*
-		"Ethereals are a species native to the planet Sprout. \
-		When they were originally discovered, they were at a medieval level of technological progression, \
-		but due to their natural acclimation with electricity, they felt easy among the large NanoTrasen installations.",
-	*/)
+	return list(
+		"On their homeplanet of Borealia, the ethereal people came to being through the bizarre process known as electro-organic attunement (or EOA). While still not fully understood, the process occurs through the combination of slime, \
+		meat, and lightning in highly specific barometric conditions. As Borealia's atmosphere is highly unstable, beyond reliably long summers and even longer winters, the ethereal people grew within the underground, crystalline caverns that sprawl \
+		the high-g planet. Settling near bodies of water and electric crystal packets, the absence of any light but their own created a great emphasis on an individual's light as reflective of their health, mood, and literal location. While the creation \
+		of new ethereals was slow, and the number of ethereals who managed to migrate to existing settlements was even lower, the long lifespans of the strange entities meant that knowledge and organization quickly grew.",
+
+		"Above all else, a kinship with the stars began to develop within the various cultures of ethereals. As parchment and writing were almost non-existent, the oral traditions of a group known as the Lightseers quickly became dominant as the ethereal \
+		people moved toward their ultimate goal to reach the divine bodies in the skies. Conflict was rare, and, with the massive abundance of stabilized bluespace crystals, it's estimated that ethereal vehicles made of crystals, metal, and stone broke \
+		the planet's atmosphere in about 1541 C.E.. FTL travel became available much sooner as well, and though their numbers grew slowly, ethereals worked their way around the Elix system. As the discovery of wood and paper finally came into their civilization, \
+		cultural splits that were quickly occurring due to differences in oral tellings were quenched with the spread of literacy. By 2323, ethereals encountered the ex'hau, and the two species quickly established friendly relations. Over a century later, they \
+		would also go on to meet the SIC through the ex'hau, despite their many voyages into deep space, arriving in systems such as Alpha Centauri or Palt.",
+
+		"Ethereals are highly communal and altruistic, though they tend toward theocratic authority from their own people. Survival is not difficult within temperate environments, thus ethereals often focus on spiritual or other fulfilling measures \
+		to fill their long lifespans. Older, priestly ethereals are universally respected among their people, often sought out for wisdom in both active and future affairs. Entertainment in the form of drama and visual arts are highly revered among them, \
+		and those creative are considered to be more valuable than those more pragmatic. While not exceptionally prideful or violent, ethereals tend to be honest and genuine in their interactions with others, seeking not only to reward themselves with meaningful \
+		conversations, but also enrich others in the great journey of life that all walk.",
+
+		"Today, most ethereals in SIC are generally found in passing, either on a pilgrimage or working to earn enough assets to permit one. While the ethereal people have been tempered slightly by threats of piracy, they still remain largely unmolested \
+		by the widespread conflicts that fraught SIC and ex'hau space. Most concerns that exist currently involve the inexplicable disappearance of a variety of ships after bluespace jumping: ones that simply do not re-appear. Investigations into these \
+		vanishing ships are still ongoing, but they're largely dismissed by the other species in the nearly-formed Innergalactic Union.",
+	)
 
 /datum/species/ethereal/create_pref_unique_perks()
 	var/list/to_add = list()

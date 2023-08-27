@@ -12,7 +12,7 @@
 	maxbodytemp = INFINITY
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	response_help  = "pokes"
 	response_disarm = "shoos"
 	response_harm   = "splats"
@@ -33,7 +33,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/cockroach/Crossed(var/atom/movable/AM)
+/mob/living/simple_animal/cockroach/Crossed(atom/movable/AM)
 	. = ..()
 	if(ismob(AM))
 		if(isliving(AM))

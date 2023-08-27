@@ -64,7 +64,7 @@
 
 /obj/machinery/suit_storage_unit/atmos
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/atmos
-	mask_type = /obj/item/clothing/mask/gas
+	mask_type = /obj/item/clothing/mask/gas/atmos
 	storage_type = /obj/item/watertank/atmos
 
 /obj/machinery/suit_storage_unit/mining
@@ -135,7 +135,7 @@
 		mask = new mask_type(src)
 	if(storage_type)
 		storage = new storage_type(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/suit_storage_unit/Destroy()
 	QDEL_NULL(suit)
@@ -144,36 +144,35 @@
 	QDEL_NULL(storage)
 	return ..()
 
-/obj/machinery/suit_storage_unit/update_icon()
-	cut_overlays()
+/obj/machinery/suit_storage_unit/update_overlays()
+	. = ..()
 
 	if(uv)
 		if(uv_super)
-			add_overlay("super")
+			. += "super"
 		else if(occupant)
-			add_overlay("uvhuman")
+			. += "uvhuman"
 		else
-			add_overlay("uv")
+			. += "uv"
 	else if(state_open)
 		if(stat & BROKEN)
-			add_overlay("broken")
+			. += "broken"
 		else
-			add_overlay("open")
+			. += "open"
 			if(suit)
-				add_overlay("suit")
+				. += "suit"
 			if(helmet)
-				add_overlay("helm")
+				. += "helm"
 			if(storage)
-				add_overlay("storage")
+				. += "storage"
 	else if(occupant)
-		add_overlay("human")
+		. += "human"
 
 /obj/machinery/suit_storage_unit/power_change()
-	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()
-	update_icon()
+	return ..()
 
 /obj/machinery/suit_storage_unit/proc/dump_contents()
 	dropContents()
@@ -206,7 +205,7 @@
 	else
 		target.visible_message(span_warning("[user] starts shoving [target] into [src]!"), span_userdanger("[user] starts shoving you into [src]!"))
 
-	if(do_mob(user, target, 30))
+	if(do_after(user, 3 SECONDS, target))
 		if(occupant || helmet || suit || storage)
 			return
 		if(target == user)
@@ -222,7 +221,7 @@
 		uv_cycles--
 		uv = TRUE
 		locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(occupant)
 			if(uv_super)
 				mob_occupant.adjustFireLoss(rand(20, 36))
@@ -230,7 +229,7 @@
 				mob_occupant.adjustFireLoss(rand(2, 8))
 			mob_occupant.emote("scream")
 		decon.start()
-		addtimer(CALLBACK(src, .proc/cook), 50)
+		addtimer(CALLBACK(src, PROC_REF(cook)), 50)
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
@@ -254,22 +253,22 @@
 			else
 				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
 			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
-			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+			var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 			if(suit)
 				things_to_clear += suit
-				things_to_clear += suit.GetAllContents()
+				things_to_clear += suit.get_all_contents()
 			if(helmet)
 				things_to_clear += helmet
-				things_to_clear += helmet.GetAllContents()
+				things_to_clear += helmet.get_all_contents()
 			if(mask)
 				things_to_clear += mask
-				things_to_clear += mask.GetAllContents()
+				things_to_clear += mask.get_all_contents()
 			if(storage)
 				things_to_clear += storage
-				things_to_clear += storage.GetAllContents()
+				things_to_clear += storage.get_all_contents()
 			if(occupant)
 				things_to_clear += occupant
-				things_to_clear += occupant.GetAllContents()
+				things_to_clear += occupant.get_all_contents()
 			for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 				var/atom/movable/dirty_movable = am
 				dirty_movable.wash(CLEAN_ALL)
@@ -322,7 +321,7 @@
 	if(locked)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 			span_notice("You start kicking against the doors..."))
-		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
+		addtimer(CALLBACK(src, PROC_REF(resist_open), user), 300)
 	else
 		open_machine()
 		dump_contents()
@@ -365,7 +364,7 @@
 			storage = I
 
 		visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You load [I] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(panel_open && is_wire_tool(I))
@@ -472,7 +471,7 @@
 				if(I)
 					I.forceMove(loc)
 			. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/suit_storage_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -496,4 +495,4 @@
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
 		return
 	locked = !locked
-	update_icon()
+	update_appearance(UPDATE_ICON)

@@ -22,14 +22,14 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC,MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	faction = list("rat")
 	var/body_color
 
 /mob/living/simple_animal/hostile/rat/loan
 	faction = list("hostile")
 
-/mob/living/simple_animal/hostile/rat/Initialize()
+/mob/living/simple_animal/hostile/rat/Initialize(mapload)
 	. = ..()
 	language_holder += new /datum/language_holder/mouse(src)
 	AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)
@@ -128,7 +128,7 @@
 		return FALSE
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, A, FALSE))
+	if(do_after(src, 3 SECONDS, A, timed_action_flags = IGNORE_HELD_ITEM))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
@@ -177,7 +177,7 @@
 			if(C.getBruteLoss_nonProsthetic() >= 100)
 				return
 			src.visible_message(span_warning("[src] starts biting into [C]!"),span_notice("You start eating [C]..."))
-			if(!do_after(src, 3 SECONDS, FALSE, target))
+			if(!do_after(src, 3 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
 				return
 			to_chat(src, span_notice("You finish eating [C]."))
 			heal_bodypart_damage(5)
@@ -190,10 +190,10 @@
 			if(target.reagents.has_reagent(/datum/reagent/plaguebacteria))
 				to_chat(src, span_warning("[target] is already infected!"))
 				return
-			if(INTERACTING_WITH(src, target))
+			if(DOING_INTERACTION(src, target))
 				return
 			src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
-			if(!do_after(src, 2 SECONDS, FALSE, target))
+			if(!do_after(src, 2 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
 				to_chat(src, span_warning("You stop licking [target]."))
 				return
 			target.reagents.add_reagent(/datum/reagent/plaguebacteria, rand(1,2), no_react = TRUE)

@@ -3,7 +3,7 @@
 	var/obj/machinery/vr_sleeper/vr_sleeper
 	var/datum/action/quit_vr/quit_action
 
-/mob/living/carbon/human/virtual_reality/Initialize()
+/mob/living/carbon/human/virtual_reality/Initialize(mapload)
 	. = ..()
 	quit_action = new()
 	quit_action.Grant(src)
@@ -23,7 +23,7 @@
 		dropItemToGround(I, TRUE, TRUE)
 	return ..()
 
-/mob/living/carbon/human/virtual_reality/Life()
+/mob/living/carbon/human/virtual_reality/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(real_mind)
 		var/mob/living/real_me = real_mind.current
@@ -82,7 +82,7 @@
 
 /datum/action/quit_vr
 	name = "Quit Virtual Reality"
-	icon_icon = 'icons/mob/actions/actions_vr.dmi'
+	button_icon = 'icons/mob/actions/actions_vr.dmi'
 	button_icon_state = "logout"
 
 /datum/action/quit_vr/Trigger()

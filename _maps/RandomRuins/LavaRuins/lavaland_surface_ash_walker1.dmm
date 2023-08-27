@@ -1224,10 +1224,10 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/item/storage/belt/quiver/ashwalker{
+/obj/item/storage/belt/quiver/weaver/ashwalker{
 	pixel_y = 2
 	},
-/obj/item/storage/belt/quiver/ashwalker{
+/obj/item/storage/belt/quiver/weaver/ashwalker{
 	pixel_y = -2
 	},
 /obj/item/gun/ballistic/bow/ashen{
@@ -1276,7 +1276,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/no_lava,
-/obj/item/twohanded/bonespear,
+/obj/item/melee/spear/bonespear,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "AD" = (
@@ -1305,12 +1305,12 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
-/obj/item/twohanded/bonespear,
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear,
+/obj/item/melee/spear/bonespear{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear{
 	pixel_x = -3;
 	pixel_y = 3
 	},

@@ -41,29 +41,29 @@
 	qdel(src)
 
 /datum/component/nanites/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_UI_DATA, .proc/nanite_ui_data)
-	RegisterSignal(parent, COMSIG_NANITE_GET_PROGRAMS, .proc/get_programs)
-	RegisterSignal(parent, COMSIG_NANITE_SET_VOLUME, .proc/set_volume)
-	RegisterSignal(parent, COMSIG_NANITE_ADJUST_VOLUME, .proc/adjust_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_SET_MAX_VOLUME, .proc/set_max_volume)
-	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD, .proc/set_cloud)
-	RegisterSignal(parent, COMSIG_NANITE_SET_SAFETY, .proc/set_safety)
-	RegisterSignal(parent, COMSIG_NANITE_SET_REGEN, .proc/set_regen)
-	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
-	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
-	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
-	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
+	RegisterSignal(parent, COMSIG_HAS_NANITES, PROC_REF(confirm_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_UI_DATA, PROC_REF(nanite_ui_data))
+	RegisterSignal(parent, COMSIG_NANITE_GET_PROGRAMS, PROC_REF(get_programs))
+	RegisterSignal(parent, COMSIG_NANITE_SET_VOLUME, PROC_REF(set_volume))
+	RegisterSignal(parent, COMSIG_NANITE_ADJUST_VOLUME, PROC_REF(adjust_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_SET_MAX_VOLUME, PROC_REF(set_max_volume))
+	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD, PROC_REF(set_cloud))
+	RegisterSignal(parent, COMSIG_NANITE_SET_SAFETY, PROC_REF(set_safety))
+	RegisterSignal(parent, COMSIG_NANITE_SET_REGEN, PROC_REF(set_regen))
+	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, PROC_REF(add_program))
+	RegisterSignal(parent, COMSIG_NANITE_SCAN, PROC_REF(nanite_scan))
+	RegisterSignal(parent, COMSIG_NANITE_SYNC, PROC_REF(sync))
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, PROC_REF(delete_nanites))
 
 	if(isliving(parent))
-		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
-		RegisterSignal(parent, COMSIG_GLOB_MOB_DEATH, .proc/on_death)
-		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
-		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
-		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
-		RegisterSignal(parent, COMSIG_SPECIES_GAIN, .proc/check_viable_biotype)
-		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, .proc/receive_signal)
-		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, .proc/receive_comm_signal)
+		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp))
+		RegisterSignal(parent, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_death))
+		RegisterSignal(parent, COMSIG_MOB_ALLOWED, PROC_REF(check_access))
+		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_shock))
+		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, PROC_REF(on_minor_shock))
+		RegisterSignal(parent, COMSIG_SPECIES_GAIN, PROC_REF(check_viable_biotype))
+		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, PROC_REF(receive_signal))
+		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, PROC_REF(receive_comm_signal))
 
 /datum/component/nanites/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_HAS_NANITES,
@@ -173,15 +173,23 @@
 	var/icon/I = icon(host_mob.icon, host_mob.icon_state, host_mob.dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = null
+	host_mob.set_hud_image_inactive(DIAG_NANITE_FULL_HUD)
 	if(remove || stealth)
 		return //bye icon
 	var/nanite_percent = (nanite_volume / max_nanites) * 100
 	nanite_percent = clamp(CEILING(nanite_percent, 10), 10, 100)
 	holder.icon_state = "nanites[nanite_percent]"
+	host_mob.set_hud_image_active(DIAG_NANITE_FULL_HUD)
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
-	nanite_volume *= (rand(0.75, 0.90))		//Lose 10-25% of nanites
-	adjust_nanites(null, -(rand(5, 30)))		//Lose 5-30 flat nanite volume
+	if(HAS_TRAIT(host_mob, TRAIT_EMPPROOF_SELF))
+		return // don't do EMP effects if they're protected from EMPs
+	if(HAS_TRAIT(host_mob, TRAIT_FARADAYCAGE))
+		severity++
+		if(severity > EMP_LIGHT)
+			return
+	nanite_volume *= 1 - (rand(0.1, 0.25) / severity)		//Lose 10-25% of nanites
+	adjust_nanites(null, -(rand(5, 30) / severity))		//Lose 5-30 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)
@@ -218,7 +226,7 @@
 			NP.receive_comm_signal(comm_code, comm_message, comm_source)
 
 /datum/component/nanites/proc/check_viable_biotype()
-	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob))
+	if(!(host_mob.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)) && !((host_mob.mob_biotypes & MOB_ROBOTIC) && (host_mob.mob_biotypes & MOB_HUMANOID)))
 		qdel(src) //bodytype no longer sustains nanites
 
 /datum/component/nanites/proc/check_access(datum/source, obj/O)

@@ -377,22 +377,23 @@
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_ADMIN)
 	return preview_icon
 
-/datum/admins/proc/makeEmergencyresponseteam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeEmergencyresponseteam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
 		ertemplate = new /datum/ert/official
 
 	var/list/settings = list(
-		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),
+		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
-		"template" = list("desc" = "Template", "callback" = CALLBACK(src, .proc/makeERTTemplateModified), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
+		"template" = list("desc" = "Template", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
 		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
 		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
 		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
 		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
+		"dust_implant" = list("desc" = "Dusting Implant", "type" = "boolean", "value" = "[(ertemplate.dusting ? "Yes" : "No")]")
 		)
 	)
 
@@ -417,6 +418,7 @@
 		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.dusting = prefs["dust_implant"]["value"] == "Yes" ? TRUE : FALSE
 
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
 		var/teamSpawned = FALSE
@@ -469,6 +471,10 @@
 				ERTOperative.mind.add_antag_datum(ert_antag,ert_team)
 				ERTOperative.mind.assigned_role = ert_antag.name
 
+				if(ertemplate.dusting)
+					var/obj/item/implant/dusting/dustimplant = new(ERTOperative)
+					dustimplant.implant(ERTOperative)
+
 				//Logging and cleanup
 				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
 				numagents--
@@ -480,12 +486,12 @@
 			//Open the Armory doors
 			if(ertemplate.opendoors)
 				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
-					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/poddoor, open))
 
 			//Open the Mech Bay
 			if(ertemplate.openmech)
 				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
-					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/poddoor, open))
 			return TRUE
 		else
 			return FALSE
@@ -493,14 +499,14 @@
 	return
 
 // Uplink-equipped Centcom Response Team
-/datum/admins/proc/makeUplinkEmergencyResponseTeam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeUplinkEmergencyResponseTeam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
 		ertemplate = new /datum/ert/uplinked
 
 	var/list/settings = list(
-		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),
+		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
 		"template" = list("desc" = "Template", "type" = "datum", "path" = "/datum/ert/uplinked", "value" = "/datum/ert/uplinked"),
 		"uplink" = list("desc" = "Uplink Type", "type" = "datum", "path" = "/obj/item/ntuplink", "subtypesonly" = TRUE, "value" = ertemplate.uplinktype),
@@ -510,6 +516,7 @@
 		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
 		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
+		"dust_implant" = list("desc" = "Dusting Implant", "type" = "boolean", "value" = "[(ertemplate.dusting ? "Yes" : "No")]"),
 		)
 	)
 
@@ -528,6 +535,7 @@
 		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.dusting = prefs["dust_implant"]["value"] == "Yes" ? TRUE : FALSE
 
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
 		var/teamSpawned = FALSE
@@ -590,8 +598,12 @@
 					upl.nt_datum = /datum/component/uplink/nanotrasen/engineer
 				upl.finalize()
 				if(istype(upl))
-					ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
+					ERTOperative.equip_to_slot_or_del(upl, ITEM_SLOT_BACKPACK)
 					ert_team.uplink_type = ertemplate.uplinktype // Type path
+
+				if(ertemplate.dusting)
+					var/obj/item/implant/dusting/dustimplant = new(ERTOperative)
+					dustimplant.implant(ERTOperative)
 
 				//Logging and cleanup
 				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
@@ -604,12 +616,12 @@
 			//Open the Armory doors
 			if(ertemplate.opendoors)
 				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
-					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/poddoor, open))
 
 			//Open the Mech Bay
 			if(ertemplate.openmech)
 				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
-					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/poddoor, open))
 			return TRUE
 
 	return FALSE

@@ -9,52 +9,56 @@
 // .50AE (Desert Eagle)
 
 /obj/item/projectile/bullet/a50AE
-	name = ".50AE bullet"
-	damage = 40
+	name = ".50 AE bullet"
+	damage = 45 //.357 gets armor penetration, this doesn't
 	wound_bonus = -35
 	wound_falloff_tile = -2.5
 
-// .38 (Detective's Gun)
+// .38 (Colt Detective Special + Vatra M38)
 
 /obj/item/projectile/bullet/c38
-	name = ".38 bullet"
-	damage = 25 //High damaging but...
-	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
+	name = ".38 special bullet"
+	damage = 21
 	wound_bonus = -30
 	wound_falloff_tile = -2.5
 	bare_wound_bonus = 15
 
-/obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
-	name = ".38 Hot Shot bullet"
-	damage = 20
+/obj/item/projectile/bullet/c38/rubber
+	name = ".38 rubber bullet"
+	damage = 7
+	stamina = 30
+	armour_penetration = -30 //Armor hit by this is modified by x1.43.
+	sharpness = SHARP_NONE
 
-/obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.adjust_fire_stacks(2)
-		M.IgniteMob()
-	return ..()
+/obj/item/projectile/bullet/c38/ap
+	name = ".38 armor-piercing bullet"
+	damage = 18
+	armour_penetration = 15 //Not actually all that great against armor, but not *terrible*
 
-/obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
-	name = ".38 Iceblox bullet"
-	damage = 20
+/obj/item/projectile/bullet/c38/frost //Basically Iceblax 2
+	name = ".38 frost bullet"
+	armour_penetration = -45 //x1.81 vs x1.43 for how much more effective armor is
 	var/temperature = 100
 
-/obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
-	..()
-	if(isliving(target))
-		var/mob/living/M = target
-		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
-
-/obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
-	name = ".38 Gutterpunch bullet"
-	damage = 20
-
-/obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target 
-		M.adjust_disgust(20)
+/obj/item/projectile/bullet/c38/frost/on_hit(atom/target, blocked = 0)
+	if(blocked != 100)
+		if(isliving(target))
+			var/mob/living/L = target
+			L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature))
 	return ..()
+
+/obj/item/projectile/bullet/c38/talon
+	name = ".38 talon bullet"
+	damage = 8 // 8+20 rolls 21-38 wound dmg vs no armor
+	wound_bonus = 20
+	bare_wound_bonus = 0
+	wound_falloff_tile = -1
+	sharpness = SHARP_EDGED
+
+/obj/item/projectile/bullet/c38/bluespace
+	name = ".38 bluespace bullet"
+	damage = 18
+	speed = 0.2 //Very, very, very fast
 
 // .32 TRAC (Caldwell Tracking Revolver)
 
@@ -77,7 +81,7 @@
 // .357 (Syndie Revolver)
 
 /obj/item/projectile/bullet/a357
-	name = ".357 bullet"
+	name = ".357 magnum bullet"
 	damage = 40
 	armour_penetration = 15
 	wound_bonus = -45
@@ -130,3 +134,12 @@
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 2, 2) //Extra ten damage if they hit a wall, resolves against melee armor
+
+// .44 (Mateba)
+
+/obj/item/projectile/bullet/m44
+	name = ".44 magnum bullet"
+	damage = 55
+	armour_penetration = 20
+	wound_bonus = -70
+	wound_falloff_tile = -2.5

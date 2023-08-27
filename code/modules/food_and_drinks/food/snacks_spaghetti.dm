@@ -6,14 +6,14 @@
 	filling_color = "#F0E68C"
 	foodtype = GRAIN
 
-/obj/item/reagent_containers/food/snacks/spaghetti/Initialize()
+/obj/item/reagent_containers/food/snacks/spaghetti/Initialize(mapload)
 	. = ..()
 	if(!cooked_type) // This isn't cooked, why would you put uncooked spaghetti in your pocket?
 		var/list/display_message = list(
 			span_notice("Something wet falls out of their pocket and hits the ground. Is that... [name]?"),
 			span_warning("Oh shit! All your pocket [name] fell out!"))
 		AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg')
-	
+
 /obj/item/reagent_containers/food/snacks/spaghetti/raw
 	name = "spaghetti"
 	desc = "Now that's a nic'e pasta!"
@@ -67,6 +67,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
+	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/spaghetti/chowmein
 	name = "chow mein"
@@ -75,6 +76,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("noodle" = 1, "tomato" = 1)
+	foodtype = GRAIN | MEAT | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle
 	name = "beef noodle"
@@ -83,7 +85,7 @@
 	trash = /obj/item/reagent_containers/glass/bowl
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/liquidgibs = 3)
 	tastes = list("noodle" = 1, "meat" = 1)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | MEAT | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/spaghetti/butternoodles
 	name = "butter noodles"

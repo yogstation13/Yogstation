@@ -5,11 +5,19 @@
 	sexes = FALSE
 	species_traits = list(NO_DNA_COPY, NOTRANSSTING, AGENDER) //all of these + whatever we inherit from the real species
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_RADIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	meat = null
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	reagent_tag = PROCESS_SYNTHETIC //can now process chems that a robot would be able to process, because they're robots
+	mutantbrain = /obj/item/organ/brain/positron // needs synthetic organs
+	mutantheart = /obj/item/organ/heart/cybernetic/ipc
+	mutanteyes = /obj/item/organ/eyes/robotic
+	mutanttongue = /obj/item/organ/tongue/robot
+	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
+	mutantstomach = /obj/item/organ/stomach/cell
+	mutantears = /obj/item/organ/ears/robot
+	mutantlungs = /obj/item/organ/lungs/ipc
+	process_flags = SYNTHETIC //can now process chems that a robot would be able to process, because they're robots
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
@@ -35,7 +43,7 @@
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
 	assume_disguise(old_species, H)
-	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(H, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
 	. = ..()

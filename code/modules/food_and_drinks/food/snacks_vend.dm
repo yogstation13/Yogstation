@@ -32,6 +32,7 @@
 	desc = "Homemade beef jerky made from the finest space cows."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	junkiness = 0
+	foodtype = JUNKFOOD | MEAT
 
 /obj/item/reagent_containers/food/snacks/chips
 	name = "chips"
@@ -176,10 +177,10 @@
 		opened = TRUE
 	else
 		if(!searched)
-			if(INTERACTING_WITH(user, src))
+			if(DOING_INTERACTION(user, src))
 				return
 			to_chat(user, span_warning("You start searching for the toy..."))
-			if(!do_after(user, 1.5 SECONDS, target = src))
+			if(!do_after(user, 1.5 SECONDS, src))
 				return
 			if(prob(50))
 				switch(rand(1,2))

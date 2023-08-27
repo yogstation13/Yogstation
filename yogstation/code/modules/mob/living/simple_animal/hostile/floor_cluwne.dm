@@ -47,7 +47,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	hud_possible = list(ANTAG_HUD)
 
 
-/mob/living/simple_animal/hostile/floor_cluwne/Initialize()
+/mob/living/simple_animal/hostile/floor_cluwne/Initialize(mapload)
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	access_card.access = get_all_accesses()//THERE IS NO ESCAPE
@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return TRUE
 
 
-/mob/living/simple_animal/hostile/floor_cluwne/Life()
+/mob/living/simple_animal/hostile/floor_cluwne/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	do_jitter_animation(1000)
 	pixel_y = 8
 	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a funky macro
@@ -211,7 +211,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		mobility_flags &= ~MOBILITY_MOVE
 		update_mobility()
 		cluwnehole = new(src.loc)
-		addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Appear), MANIFEST_DELAY)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/floor_cluwne, Appear)), MANIFEST_DELAY)
 	else
 		layer = GAME_PLANE
 		invisibility = INVISIBILITY_OBSERVER
@@ -282,7 +282,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				to_chat(H, "<i>yalp ot tnaw I</i>")
 				Appear()
 				manifested = FALSE
-				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/floor_cluwne, Manifest)), 2)
 				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_TORMENT)
@@ -335,7 +335,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				H.reagents.add_reagent(/datum/reagent/mercury, 3)
 				Appear()
 				manifested = FALSE
-				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/floor_cluwne, Manifest)), 2)
 				for(var/obj/machinery/light/L in range(H, 8))
 					L.flicker()
 
@@ -357,7 +357,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				Manifest()
 				if(!eating)
 					empulse(src, 6, 6)
-					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
+					addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/floor_cluwne, Grab), H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
 						O.MakeSlippery(TURF_WET_LUBE, 30)
 						playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
@@ -385,7 +385,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.invisibility = INVISIBILITY_OBSERVER
 			H.density = FALSE
 			H.anchored = TRUE
-			addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Kill, H), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile/floor_cluwne, Kill), H), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
 			visible_message(span_danger("[src] pulls [H] under!"))
 			to_chat(H, span_userdanger("[src] drags you underneath the floor!"))
 		else
@@ -441,7 +441,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	duration = 600
 	randomdir = FALSE
 
-/obj/effect/temp_visual/fcluwne_manifest/Initialize()
+/obj/effect/temp_visual/fcluwne_manifest/Initialize(mapload)
 	. = ..()
 	playsound(src, 'yogstation/sound/misc/floor_cluwne_emerge.ogg', 100, 1)
 	flick("fcluwne_manifest",src)
@@ -450,7 +450,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	name = "floor cluwne"
 	desc = "If you have this, tell a coder or admin!"
 
-/obj/effect/dummy/floorcluwne_orbit/Initialize()
+/obj/effect/dummy/floorcluwne_orbit/Initialize(mapload)
 	. = ..()
 	GLOB.floor_cluwnes++
 	name += " ([GLOB.floor_cluwnes])"

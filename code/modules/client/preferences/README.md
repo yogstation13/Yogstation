@@ -326,7 +326,7 @@ Middleware can hijack actions by specifying `action_delegations`:
 ```dm
 /datum/preference_middleware/congratulations
 	action_delegations = list(
-		"congratulate_me" = .proc/congratulate_me,
+		"congratulate_me" = PROC_REF(congratulate_me),
 	)
 /datum/preference_middleware/congratulations/proc/congratulate_me(list/params, mob/user)
 	to_chat(user, span_notice("Wow, you did a great job learning about middleware!"))

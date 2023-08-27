@@ -26,6 +26,8 @@ GLOBAL_PROTECT(href_token)
 	var/ip_cache
 	var/cid_cache
 
+	var/datum/particle_editor/particool
+
 
 /datum/admins/New(ckey, rights, force_active = FALSE)
 	if(IsAdminAdvancedProcCall())
@@ -86,10 +88,13 @@ GLOBAL_PROTECT(href_token)
 	GLOB.permissions.deadmins[target] = src
 	GLOB.permissions.admin_datums -= target
 	deadmined = TRUE
-	var/client/C
-	if ((C = owner) || (C = GLOB.directory[target]))
+	
+	var/client/client = owner || GLOB.directory[target]
+
+	if (!isnull(client))
 		disassociate()
-		add_verb(C, /client/proc/readmin)
+		add_verb(client, /client/proc/readmin)
+		client.disable_combo_hud()
 
 /datum/admins/proc/associate(client/C, allow_mfa_query = TRUE)
 	if(IsAdminAdvancedProcCall())

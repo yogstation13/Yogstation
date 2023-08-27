@@ -67,7 +67,7 @@
 	var/icon/bluespace
 
 /datum/status_effect/slimerecall/on_apply()
-	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/resistField)
+	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(resistField))
 	to_chat(owner, span_danger("You feel a sudden tug from an unknown force, and feel a pull to bluespace!"))
 	to_chat(owner, span_notice("Resist if you wish avoid the force!"))
 	bluespace = icon('icons/effects/effects.dmi',"chronofield")
@@ -99,7 +99,7 @@
 	var/obj/structure/ice_stasis/cube
 
 /datum/status_effect/frozenstasis/on_apply()
-	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/breakCube)
+	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(breakCube))
 	cube = new /obj/structure/ice_stasis(get_turf(owner))
 	owner.forceMove(cube)
 	owner.status_flags |= GODMODE
@@ -213,7 +213,7 @@
 /datum/status_effect/bonechill/tick()
 	if(prob(50))
 		owner.adjustFireLoss(1)
-		owner.Jitter(3)
+		owner.adjust_jitter(3 SECONDS)
 		owner.adjust_bodytemperature(-10)
 
 /datum/status_effect/bonechill/on_remove()
@@ -484,24 +484,33 @@ datum/status_effect/rebreathing/tick()
 /datum/status_effect/stabilized/purple
 	id = "stabilizedpurple"
 	colour = "purple"
+	/// Whether we healed from our last tick
+	var/healed_last_tick = FALSE
 
 /datum/status_effect/stabilized/purple/tick()
-	var/is_healing = FALSE
 	if(owner.getBruteLoss() > 0)
 		owner.adjustBruteLoss(-0.2)
-		is_healing = TRUE
+		healed_last_tick = TRUE
+
 	if(owner.getFireLoss() > 0)
 		owner.adjustFireLoss(-0.2)
-		is_healing = TRUE
+		healed_last_tick = TRUE
+
 	if(owner.getToxLoss() > 0)
 		owner.adjustToxLoss(-0.2, forced = TRUE) //Slimepeople should also get healed.
-		is_healing = TRUE
-	if(is_healing)
-		examine_text = span_warning("SUBJECTPRONOUN is regenerating slowly, purplish goo filling in small injuries!")
+		healed_last_tick = TRUE
+
+	// Technically, "healed this tick" by now.
+	if(healed_last_tick)
 		new /obj/effect/temp_visual/heal(get_turf(owner), "#FF0000")
-	else
-		examine_text = null
-	..()
+
+	return ..()
+
+/datum/status_effect/stabilized/purple/get_examine_text()
+	if(healed_last_tick)
+		return span_warning("[owner.p_they(TRUE)] [owner.p_are()] regenerating slowly, purplish goo filling in small injuries!")
+
+	return null
 
 /datum/status_effect/stabilized/blue
 	id = "stabilizedblue"
@@ -526,7 +535,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	else
 		cooldown = max_cooldown
 		var/list/sheets = list()
-		for(var/obj/item/stack/sheet/S in owner.GetAllContents())
+		for(var/obj/item/stack/sheet/S in owner.get_all_contents())
 			if(S.amount < S.max_amount)
 				sheets += S
 
@@ -550,7 +559,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		return ..()
 	cooldown = max_cooldown
 	var/list/batteries = list()
-	for(var/obj/item/stock_parts/cell/C in owner.GetAllContents())
+	for(var/obj/item/stock_parts/cell/C in owner.get_all_contents())
 		if(C.charge < C.maxcharge)
 			batteries += C
 	if(batteries.len)
@@ -680,7 +689,7 @@ datum/status_effect/stabilized/blue/on_remove()
 			owner.apply_status_effect(/datum/status_effect/bluespacestabilization)
 			to_chat(owner, span_warning("You feel sick after [linked_extract] dragged you through bluespace."))
 			owner.Stun(1 SECONDS)
-			owner.dizziness += 30
+			owner.adjust_dizzy(30 SECONDS)
 	healthcheck = owner.health
 	return ..()
 
@@ -716,11 +725,11 @@ datum/status_effect/stabilized/blue/on_remove()
 		C.real_name = O.real_name
 		O.dna.transfer_identity(C)
 		C.updateappearance(mutcolor_update=1)
-		RegisterSignal(owner, COMSIG_GLOB_MOB_DEATH, .proc/dead)
+		RegisterSignal(owner, COMSIG_GLOB_MOB_DEATH, PROC_REF(dead))
 	return ..()
 
 /datum/status_effect/stabilized/cerulean/proc/dead()
-		addtimer(CALLBACK(src, .proc/transfer), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
+		addtimer(CALLBACK(src, PROC_REF(transfer)), 4, TIMER_UNIQUE) //0.4  seconds delay to account for delayed dust/gib effects, shouldn't affect gameplay
 
 /datum/status_effect/stabilized/cerulean/proc/transfer()
 	UnregisterSignal(owner, COMSIG_GLOB_MOB_DEATH)
@@ -784,6 +793,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		originalname = H.real_name
 		H.dna.copy_dna(originalDNA)
 		randomize_human(H)
+		H.dna.update_dna_identity()
 	return ..()
 
 /datum/status_effect/stabilized/green/tick() //Only occasionally give examiners a warning.

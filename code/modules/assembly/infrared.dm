@@ -11,15 +11,12 @@
 	var/turf/listeningTo
 	var/hearing_range = 3
 
-/obj/item/assembly/infra/Initialize()
+/obj/item/assembly/infra/Initialize(mapload)
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
-
-/obj/item/assembly/infra/ComponentInitialize()
-	. = ..()
 	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
-	AddComponent(/datum/component/simple_rotation, rotation_flags, after_rotation=CALLBACK(src,.proc/after_rotation))
+	AddComponent(/datum/component/simple_rotation, rotation_flags, after_rotation=CALLBACK(src, PROC_REF(after_rotation)))
 
 /obj/item/assembly/infra/proc/after_rotation()
 	refreshBeam()
@@ -39,7 +36,7 @@
 		return FALSE //Cooldown check
 	on = !on
 	refreshBeam()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/assembly/infra/toggle_secure()
@@ -50,22 +47,23 @@
 	else
 		QDEL_LIST(beams)
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return secured
 
-/obj/item/assembly/infra/update_icon()
-	cut_overlays()
+/obj/item/assembly/infra/update_icon(updates=ALL)
+	. = ..()
+	if(holder)
+		holder.update_icon(updates)
+
+/obj/item/assembly/infra/update_overlays()
+	. = ..()
 	attached_overlays = list()
 	if(on)
-		add_overlay("infrared_on")
+		. += "infrared_on"
 		attached_overlays += "infrared_on"
 		if(visible && secured)
-			add_overlay("infrared_visible")
+			. += "infrared_visible"
 			attached_overlays += "infrared_visible"
-
-	if(holder)
-		holder.update_icon()
-	return
 
 /obj/item/assembly/infra/dropped()
 	. = ..()
@@ -85,7 +83,7 @@
 		return
 	if(holder)
 		if(holder.master) //incase the sensor is part of an assembly that's contained in another item, such as a single tank bomb
-			if(!holder.master.IsSpecialAssembly() || !isturf(holder.master.loc))
+			if(!istype(holder.master, /obj/item/tank) || !isturf(holder.master.loc))
 				return
 		else if(!isturf(holder.loc)) //else just check where the holder is
 			return
@@ -160,7 +158,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_ATOM_EXITED)
-	RegisterSignal(newloc, COMSIG_ATOM_EXITED, .proc/check_exit)
+	RegisterSignal(newloc, COMSIG_ATOM_EXITED, PROC_REF(check_exit))
 	listeningTo = newloc
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender)
@@ -207,7 +205,7 @@
 			visible = !visible
 			. = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	refreshBeam()
 
 /***************************IBeam*********************************/

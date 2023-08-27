@@ -16,19 +16,15 @@
 	var/datum/weakref/recipient_ref
 	/// How many goodies this mail contains.
 	var/goodie_count = 1
-	/// Goodies which can be given to anyone. The base weight for cash is 56. For there to be a 50/50 chance of getting a department item, they need 56 weight as well.
+	/// Goodies which can be given to anyone. The base weight for cash is 37. For there to be a 50/50 chance of getting a department item, they need 37 weight as well.
 	var/list/generic_goodies = list( //yogs, add coins, sorted least valuable to most valuable
-		/obj/item/coin/iron = 2,
-		/obj/item/coin/silver = 2,
-		/obj/item/coin/gold = 2,
-		/obj/item/coin/plasma = 2,
-		/obj/item/stack/spacecash/c50 = 5,
-		/obj/item/stack/spacecash/c100 = 20,
-		/obj/item/coin/diamond = 10,
+		/obj/item/stack/spacecash/c50 = 4,
+		/obj/item/stack/spacecash/c100 = 10,
 		/obj/item/stack/spacecash/c200 = 6,
-		/obj/item/coin/bananium = 4,
 		/obj/item/stack/spacecash/c500 = 2,
 		/obj/item/stack/spacecash/c1000 = 1,
+		/obj/effect/spawner/lootdrop/coin = 8,
+		/obj/effect/spawner/lootdrop/donkpockets = 6
 	)
 	// Overlays (pure fluff)
 	/// Does the letter have the postmark overlay?
@@ -56,7 +52,7 @@
 
 /obj/item/mail/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, .proc/disposal_handling)
+	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 	//AddElement(/datum/element/item_scaling, 0.75, 1)
 	if(isnull(department_colors))
 		department_colors = list(
@@ -75,9 +71,9 @@
 		var/stamp_count = rand(1, stamp_max)
 		for(var/i in 1 to stamp_count)
 			stamps += list("stamp_[rand(2, 6)]")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/mail/update_icon()
+/obj/item/mail/update_overlays()
 	. = ..()
 	var/bonus_stamp_offset = 0
 	for(var/stamp in stamps)
@@ -88,7 +84,7 @@
 			pixel_y = stamp_offset_y + bonus_stamp_offset
 		)
 		stamp_image.appearance_flags |= RESET_COLOR
-		add_overlay(stamp_image)
+		. += stamp_image
 		bonus_stamp_offset -= 5
 
 	if(postmarked == TRUE)
@@ -99,7 +95,7 @@
 			pixel_y = stamp_offset_y + rand(bonus_stamp_offset + 3, 1)
 		)
 		postmark_image.appearance_flags |= RESET_COLOR
-		add_overlay(postmark_image)
+		. += postmark_image
 
 /obj/item/mail/attackby(obj/item/W, mob/user, params)
 	// Destination tagging
@@ -124,7 +120,7 @@
 		recipient_real = recipient // This will be truthy if recipient resolved successfully
 
 	to_chat(user, span_notice("You start to unwrap the package..."))
-	if(!do_after(user, 1.5 SECONDS, target = user))
+	if(!do_after(user, 1.5 SECONDS, user))
 		return
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	for (var/content in contents)
@@ -221,7 +217,7 @@
 	desc = "A certified post crate from CentCom."
 	icon_state = "mail"
 
-/obj/structure/closet/crate/mail/update_icon()
+/obj/structure/closet/crate/mail/update_icon_state()
 	. = ..()
 	if(opened)
 		icon_state = "[initial(icon_state)]open"
@@ -261,7 +257,7 @@
 		else if(prob(MAIL_JUNK_CHANCE))
 			new_mail.junk_mail()
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	return mail_count
 
@@ -290,7 +286,7 @@
 	//worn_icon_state = "bookbag"
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/mail/ComponentInitialize()
+/obj/item/storage/bag/mail/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
 	storage.max_w_class = WEIGHT_CLASS_NORMAL

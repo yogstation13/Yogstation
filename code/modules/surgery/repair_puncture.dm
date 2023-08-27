@@ -62,7 +62,7 @@
 	pierce_wound.blood_flow -= 0.25
 	return ..()
 
-/datum/surgery_step/repair_innards/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, var/fail_prob = 0)
+/datum/surgery_step/repair_innards/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, fail_prob = 0)
 	. = ..()
 	display_results(user, target, span_notice("You jerk apart some of the blood vessels in [target]'s [parse_zone(target_zone)]."),
 		span_notice("[user] jerks apart some of the blood vessels in [target]'s [parse_zone(target_zone)] with [tool]!"),

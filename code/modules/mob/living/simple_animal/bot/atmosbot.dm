@@ -51,18 +51,18 @@
 
 /mob/living/simple_animal/bot/atmosbot/turn_on()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/atmosbot/turn_off()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/atmosbot/set_custom_texts()
 	text_hack = "You corrupt [name]'s safety protocols."
 	text_dehack = "You detect errors in [name] and reset his programming."
 	text_dehack_fail = "[name] is not responding to reset commands!"
 
-/mob/living/simple_animal/bot/atmosbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/atmosbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(emagged == 2)
 		audible_message("<span class='danger'>[src] ominously whirs....</span>")
@@ -82,7 +82,7 @@
 				if(last_barrier_tick + ATMOSBOT_HOLOBARRIER_COOLDOWN < world.time)
 					target = return_nearest_breach()
 					action = ATMOSBOT_DEPLOY_FOAM
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(!target)
 		if(auto_patrol)
@@ -194,9 +194,10 @@
 			return
 		breached_pressure = new_breach_pressure
 	update_controls()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/atmosbot/update_icon()
+/mob/living/simple_animal/bot/atmosbot/update_icon_state()
+	. = ..()
 	icon_state = "atmosbot[on][on?"_[action]":""]"
 
 /mob/living/simple_animal/bot/atmosbot/UnarmedAttack(atom/A, proximity)

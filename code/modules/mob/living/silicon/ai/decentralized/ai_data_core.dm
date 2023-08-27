@@ -39,13 +39,13 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/obj/item/dead_ai/dead_ai_blackbox
 
 
-/obj/machinery/ai/data_core/Initialize()
+/obj/machinery/ai/data_core/Initialize(mapload)
 	. = ..()
 	valid_ticks = MAX_AI_DATA_CORE_TICKS
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	RefreshParts()
 
 /obj/machinery/ai/data_core/RefreshParts()
@@ -169,7 +169,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return FALSE
 
-/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	for(var/mob/living/silicon/ai/AI in contents)
 		AI.disconnect_shell()
@@ -186,9 +186,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(valid_holder())
 		valid_ticks++
 		if(valid_ticks == 1)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if(icon_state == "core-offline")
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if(smoke)
 			vis_contents -= smoke
 			QDEL_NULL(smoke)
@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 				vis_contents += smoke
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
@@ -255,8 +255,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		network.ai_list += AI
 		AI.switch_ainet(old_net, network)
 
-/obj/machinery/ai/data_core/update_icon()
-	cut_overlays()
+/obj/machinery/ai/data_core/update_icon_state()
+	. = ..()
 	
 	if(!(stat & (BROKEN|EMPED)) && has_power())
 		if(!valid_data_core())
@@ -287,7 +287,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
-	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
+	TimerID = addtimer(CALLBACK(src, PROC_REF(partytime)), 0.5 SECONDS, TIMER_STOPPABLE)
 
 /obj/machinery/ai/data_core/proc/stoptheparty()
 	set_light(0)

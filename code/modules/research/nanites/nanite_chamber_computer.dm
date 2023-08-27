@@ -6,7 +6,7 @@
 	circuit = /obj/item/circuitboard/computer/nanite_chamber_control
 	icon_screen = "nanite_chamber_control"
 
-/obj/machinery/computer/nanite_chamber_control/Initialize()
+/obj/machinery/computer/nanite_chamber_control/Initialize(mapload)
 	. = ..()
 	find_chamber()
 
@@ -122,7 +122,7 @@
 	switch(action)
 		if("toggle_lock")
 			chamber.locked = !chamber.locked
-			chamber.update_icon()
+			chamber.update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("eject")
 			eject(usr)

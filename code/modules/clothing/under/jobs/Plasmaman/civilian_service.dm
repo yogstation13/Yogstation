@@ -85,7 +85,7 @@
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
 			H.visible_message(span_warning("[H]'s suit spews out a tonne of space lube!"), span_warning("Your suit spews out a tonne of space lube!"))
-			H.ExtinguishMob()
+			H.extinguish_mob()
 			var/datum/effect_system/fluid_spread/foam/foam = new
 			var/datum/reagents/foamreagent = new /datum/reagents(15)
 			foamreagent.add_reagent(/datum/reagent/lube, 15)

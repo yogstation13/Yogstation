@@ -89,22 +89,22 @@
 		return
 	to_chat(user, span_notice("You link all parts toghether."))
 	active = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	linked_interface.active = TRUE
-	linked_interface.update_icon()
+	linked_interface.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_interface, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	linked_input.active = TRUE
-	linked_input.update_icon()
+	linked_input.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_input, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	linked_output.active = TRUE
-	linked_output.update_icon()
+	linked_output.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_output, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	linked_moderator.active = TRUE
-	linked_moderator.update_icon()
+	linked_moderator.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_moderator, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	for(var/obj/machinery/hypertorus/corner/corner in corners)
 		corner.active = TRUE
-		corner.update_icon()
+		corner.update_appearance(UPDATE_ICON)
 		RegisterSignal(corner, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	soundloop = new(list(src), TRUE)
 	soundloop.volume = 5
@@ -138,27 +138,27 @@
 	if(!active)
 		return
 	active = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(linked_interface)
 		linked_interface.active = FALSE
-		linked_interface.update_icon()
+		linked_interface.update_appearance(UPDATE_ICON)
 		linked_interface = null
 	if(linked_input)
 		linked_input.active = FALSE
-		linked_input.update_icon()
+		linked_input.update_appearance(UPDATE_ICON)
 		linked_input = null
 	if(linked_output)
 		linked_output.active = FALSE
-		linked_output.update_icon()
+		linked_output.update_appearance(UPDATE_ICON)
 		linked_output = null
 	if(linked_moderator)
 		linked_moderator.active = FALSE
-		linked_moderator.update_icon()
+		linked_moderator.update_appearance(UPDATE_ICON)
 		linked_moderator = null
 	if(corners.len)
 		for(var/obj/machinery/hypertorus/corner/corner in corners)
 			corner.active = FALSE
-			corner.update_icon()
+			corner.update_appearance(UPDATE_ICON)
 		corners = list()
 	QDEL_NULL(soundloop)
 
@@ -207,9 +207,9 @@
 	if(last_accent_sound < world.time && prob(20))
 		var/aggression = min(((critical_threshold_proximity / 800) * ((power_level) / 5)), 1.0) * 100
 		if(critical_threshold_proximity >= 300)
-			playsound(src, "hypertorusmelting", max(50, aggression), FALSE, 40, 30, falloff = 10)
+			playsound(src, "hypertorusmelting", max(50, aggression), FALSE, 40, 30, falloff_exponent = 10)
 		else
-			playsound(src, "hypertoruscalm", max(50, aggression), FALSE, 25, 25, falloff = 10)
+			playsound(src, "hypertoruscalm", max(50, aggression), FALSE, 25, 25, falloff_exponent = 10)
 		var/next_sound = round((100 - aggression) * 5) + 5
 		last_accent_sound = world.time + max(HYPERTORUS_ACCENT_SOUND_MIN_COOLDOWN, next_sound)
 
@@ -291,11 +291,11 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/alarm()
 	switch(get_status())
 		if(HYPERTORUS_MELTING)
-			playsound(src, 'sound/misc/bloblarm.ogg', 100, FALSE, 40, 30, falloff = 10)
+			playsound(src, 'sound/misc/bloblarm.ogg', 100, FALSE, 40, 30, falloff_exponent = 10)
 		if(HYPERTORUS_EMERGENCY)
-			playsound(src, 'sound/machines/engine_alert1.ogg', 100, FALSE, 30, 30, falloff = 10)
+			playsound(src, 'sound/machines/engine_alert1.ogg', 100, FALSE, 30, 30, falloff_exponent = 10)
 		if(HYPERTORUS_DANGER)
-			playsound(src, 'sound/machines/engine_alert2.ogg', 100, FALSE, 30, 30, falloff = 10)
+			playsound(src, 'sound/machines/engine_alert2.ogg', 100, FALSE, 30, 30, falloff_exponent = 10)
 		if(HYPERTORUS_WARNING)
 			playsound(src, 'sound/machines/terminal_alert.ogg', 75)
 
@@ -568,8 +568,8 @@
 			continue
 
 		var/distance_root = sqrt(1 / max(1, get_dist(human, src)))
-		human.hallucination += strength * distance_root * delta_time
-		human.hallucination = clamp(human.hallucination, 0, 200)
+		human.adjust_hallucinations(strength * distance_root * delta_time)
+		human.set_hallucinations_if_lower(20 SECONDS)
 
 /**
  * Emit radiation
@@ -592,7 +592,7 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/create_crack()
 	var/obj/machinery/atmospherics/components/unary/hypertorus/part = pick(machine_parts)
 	part.cracked = TRUE
-	part.update_icon()
+	part.update_appearance(UPDATE_ICON)
 	part.update_overlays()
 	return part
 

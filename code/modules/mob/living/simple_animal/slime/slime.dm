@@ -87,6 +87,12 @@
 
 
 /mob/living/simple_animal/slime/Initialize(mapload, new_colour="grey", new_is_adult=FALSE)
+	var/cap = CONFIG_GET(number/slimecap)
+	if(LAZYLEN(SSmobs.slimes) > cap)
+		visible_message(span_warning("This sector's concentration of living slime mass consumes \the [src]!"))
+		return INITIALIZE_HINT_QDEL
+	SSmobs.slimes += src
+
 	var/datum/action/innate/slime/feed/F = new
 	F.Grant(src)
 
@@ -105,6 +111,25 @@
 	. = ..()
 	set_nutrition(700)
 
+/mob/living/simple_animal/slime/death(gibbed)
+	. = ..()
+	if(src in SSmobs.slimes)
+		SSmobs.slimes -= src
+
+/mob/living/simple_animal/slime/can_be_revived()
+	. = ..()
+	if(!.)
+		return
+	var/cap = CONFIG_GET(number/slimecap)
+	if(LAZYLEN(SSmobs.slimes) > cap)
+		visible_message(span_warning("This sector's concentration of living slime mass prevents \the [src] from being revived!"))
+		return FALSE
+
+/mob/living/simple_animal/slime/revive(full_heal, admin_revive)
+	. = ..()
+	if(.)
+		SSmobs.slimes += src
+
 /mob/living/simple_animal/slime/Destroy()
 	for (var/A in actions)
 		var/datum/action/AC = A
@@ -112,17 +137,20 @@
 	set_target(null)
 	set_leader(null)
 	clear_friends()
+	if(src in SSmobs.slimes)
+		SSmobs.slimes -= src
 	return ..()
 
 /mob/living/simple_animal/slime/proc/set_colour(new_colour)
 	colour = new_colour
-	update_name()
+	update_appearance(UPDATE_NAME)
 	slime_mutation = mutation_table(colour)
 	var/sanitizedcolour = replacetext(colour, " ", "")
 	coretype = text2path("/obj/item/slime_extract/[sanitizedcolour]")
 	regenerate_icons()
 
-/mob/living/simple_animal/slime/proc/update_name()
+/mob/living/simple_animal/slime/update_name(updates=ALL)
+	. = ..()
 	if(slime_name_regex.Find(name))
 		number = rand(1, 1000)
 		name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
@@ -250,7 +278,7 @@
 		. += "Power Level: [powerlevel]"
 
 
-/mob/living/simple_animal/slime/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/slime/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	if(!forced)
 		amount = -abs(amount)
 	return ..() //Heals them
@@ -516,7 +544,7 @@
 	if(old_target && !SLIME_CARES_ABOUT(old_target))
 		UnregisterSignal(old_target, COMSIG_PARENT_QDELETING)
 	if(Target)
-		RegisterSignal(Target, COMSIG_PARENT_QDELETING, .proc/clear_memories_of, override = TRUE)
+		RegisterSignal(Target, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/set_leader(new_leader)
 	var/old_leader = Leader
@@ -524,19 +552,19 @@
 	if(old_leader && !SLIME_CARES_ABOUT(old_leader))
 		UnregisterSignal(old_leader, COMSIG_PARENT_QDELETING)
 	if(Leader)
-		RegisterSignal(Leader, COMSIG_PARENT_QDELETING, .proc/clear_memories_of, override = TRUE)
+		RegisterSignal(Leader, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/add_friendship(new_friend, amount = 1)
 	if(!Friends[new_friend])
 		Friends[new_friend] = 0
 	Friends[new_friend] += amount
 	if(new_friend)
-		RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, .proc/clear_memories_of, override = TRUE)
+		RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/set_friendship(new_friend, amount = 1)
 	Friends[new_friend] = amount
 	if(new_friend)
-		RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, .proc/clear_memories_of, override = TRUE)
+		RegisterSignal(new_friend, COMSIG_PARENT_QDELETING, PROC_REF(clear_memories_of), override = TRUE)
 
 /mob/living/simple_animal/slime/proc/remove_friend(friend)
 	Friends -= friend

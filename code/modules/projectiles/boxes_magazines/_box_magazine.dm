@@ -34,12 +34,12 @@
 	//Whether the magazine should utilize a unique sprite or not if the magazine has multi-stage sprites
 	var/sprite_designation
 
-/obj/item/ammo_box/Initialize()
+/obj/item/ammo_box/Initialize(mapload)
 	. = ..()
 	calc_mats()
 	if(!start_empty)
 		top_off(starting=TRUE)
-	update_icon()
+	update_appearance(UPDATE_ICON|UPDATE_DESC)
 
 /**
   * top_off is used to refill the magazine to max, in case you want to increase the size of a magazine with VV then refill it at once
@@ -59,7 +59,7 @@
 
 	for(var/i = max(1, stored_ammo.len), i <= max_ammo, i++)
 		stored_ammo += new round_check(src)
-	update_icon()
+	update_appearance(UPDATE_ICON|UPDATE_DESC)
 
 /obj/item/ammo_box/proc/calc_mats(force = FALSE)
 	if (force || !bullet_cost)
@@ -113,6 +113,9 @@
 	return TRUE
 
 /obj/item/ammo_box/attackby(obj/item/A, mob/user, params, silent = FALSE, replace_spent = 0)
+	attempt_load(A, user, silent, replace_spent)
+
+/obj/item/ammo_box/proc/attempt_load(obj/item/A, mob/user, silent = FALSE, replace_spent = 0) //user attempts to put a into this box
 	var/num_loaded = 0
 	if(!can_load(user))
 		return
@@ -133,10 +136,10 @@
 
 	if(num_loaded)
 		if(!silent)
-			to_chat(user, span_notice("You load [num_loaded] shell\s into \the [src]!"))
+			to_chat(user, span_notice("You load [num_loaded] round\s into \the [src]!"))
 			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
-		A.update_icon()
-		update_icon()
+		A.update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON|UPDATE_DESC)
 	return num_loaded
 
 /obj/item/ammo_box/attack_self(mob/user)
@@ -147,20 +150,45 @@
 			A.bounce_away(FALSE, NONE)
 		playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 		to_chat(user, span_notice("You remove a round from [src]!"))
-		update_icon()
+		update_appearance(UPDATE_ICON|UPDATE_DESC)
 
-/obj/item/ammo_box/update_icon()
-	var/shells_left = stored_ammo.len
-	switch(multiple_sprites)
-		if(AMMO_BOX_PER_BULLET)
-			icon_state = "[initial(icon_state)]-[shells_left]"
-		if(AMMO_BOX_FULL_EMPTY)
-			icon_state = "[initial(icon_state)]-[shells_left ? "[max_ammo]" : "0"]"
-	desc = "[initial(desc)] There [(shells_left == 1) ? "is" : "are"] [shells_left] shell\s left!"
-	for (var/material in bullet_cost)
+/obj/item/ammo_box/AltClick(mob/user)
+	. = ..()
+	if(!user.canUseTopic(src, TRUE))
+		return
+	var/obj/item/held_item = user.get_active_held_item()
+	if(held_item && held_item != src)
+		attempt_load(held_item, user)
+	else
+		var/obj/item/ammo_casing/A = get_round()
+		if(A)
+			if(!user.put_in_hands(A))
+				A.forceMove(drop_location())
+				A.bounce_away(FALSE, NONE)
+			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
+			to_chat(user, span_notice("You remove a round from [src]!"))
+			update_appearance(UPDATE_ICON|UPDATE_DESC)
+
+/obj/item/ammo_box/update_icon(updates=ALL)
+	. = ..()
+	for(var/material in bullet_cost)
 		var/material_amount = bullet_cost[material]
 		material_amount = (material_amount*stored_ammo.len) + base_cost[material]
 		materials[material] = material_amount
+
+/obj/item/ammo_box/update_icon_state()
+	. = ..()
+	var/rounds_left = stored_ammo.len
+	switch(multiple_sprites)
+		if(AMMO_BOX_PER_BULLET)
+			icon_state = "[initial(icon_state)]-[rounds_left]"
+		if(AMMO_BOX_FULL_EMPTY)
+			icon_state = "[initial(icon_state)]-[rounds_left ? "[max_ammo]" : "0"]"
+
+/obj/item/ammo_box/update_desc(updates=ALL)
+	. = ..()
+	var/rounds_left = stored_ammo.len
+	desc = "[initial(desc)] There [(rounds_left == 1) ? "is" : "are"] [rounds_left] round\s left!"
 
 ///Count of number of bullets in the magazine
 /obj/item/ammo_box/magazine/proc/ammo_count(countempties = TRUE)
@@ -186,4 +214,4 @@
 
 /obj/item/ammo_box/magazine/handle_atom_del(atom/A)
 	stored_ammo -= A
-	update_icon()
+	update_appearance(UPDATE_ICON|UPDATE_DESC)

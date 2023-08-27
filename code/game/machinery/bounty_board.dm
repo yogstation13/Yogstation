@@ -31,8 +31,8 @@ GLOBAL_LIST_EMPTY(request_list)
 	GLOB.allbountyboards -= src
 	. = ..()
 
-/obj/machinery/bounty_board/update_icon()
-	..()
+/obj/machinery/bounty_board/update_icon_state()
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "request_kiosk_off"
 	else
@@ -185,11 +185,11 @@ GLOBAL_LIST_EMPTY(request_list)
 	///the account of the request fulfiller.
 	var/list/applicants = list()
 
-/datum/station_request/New(var/owned, var/newvalue, var/newdescription, var/reqnum, var/own_account)
+/datum/station_request/New(owner, value, description, req_number, owner_account)
 	. = ..()
-	owner = owned
-	value = newvalue
-	description = newdescription
-	req_number = reqnum
-	if(istype(own_account, /datum/bank_account))
-		owner_account = own_account
+	src.owner = owner
+	src.value = value
+	src.description = description
+	src.req_number = req_number
+	if(istype(owner_account, /datum/bank_account))
+		src.owner_account = owner_account

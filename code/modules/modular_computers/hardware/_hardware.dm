@@ -34,7 +34,7 @@
 	/// What define is used to qualify this piece of hardware? Important for upgraded versions of the same hardware.
 	var/device_type
 
-/obj/item/computer_hardware/New(var/obj/L)
+/obj/item/computer_hardware/New(obj/L)
 	..()
 	pixel_x = rand(-8, 8)
 	pixel_y = rand(-8, 8)
@@ -69,7 +69,7 @@
 	return TRUE
 
 /// Called on multitool click, prints diagnostic information to the user.
-/obj/item/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/computer_hardware/proc/diagnostics(mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
 /// Handles damage checks
@@ -86,7 +86,7 @@
 
 	return TRUE // Good to go.
 
-/obj/item/computer_hardware/examine(var/mob/user)
+/obj/item/computer_hardware/examine(mob/user)
 	. = ..()
 	if(damage > damage_failure)
 		. += span_danger("It seems to be severely damaged!")

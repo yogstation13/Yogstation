@@ -9,7 +9,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING,HAS_FLESH,HAS_BONE, AGENDER)
 	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_EASILY_WOUNDED,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
-	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
+	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/tongue/zombie
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	disliked_food = NONE
@@ -63,7 +63,7 @@
 /datum/species/zombie/infectious/spec_stun(mob/living/carbon/human/H,amount)
 	. = min(20, amount)
 
-/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	. = ..()
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
@@ -116,10 +116,52 @@
 	sexes = FALSE
 	species_traits = list(HAS_FLESH, HAS_BONE, AGENDER)
 	inherent_traits = list(TRAIT_EASILY_WOUNDED) //you have no skin
-	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID) //pretty much just rotting flesh, somehow still "technically" alive
+	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID //pretty much just rotting flesh, somehow still "technically" alive
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+
+//Hecata necromancy bloodsucker zombie. Kind of like a weakened Szlachta that can also wear clothes still
+/datum/species/zombie/hecata
+	name = "Sanguine Zombie"
+	id = "hecatazombie"
+	limbs_id = "zombie"
+	say_mod = "moans"
+	brutemod = 1.1
+	burnmod = 1.1 //more fragile, though they also dont enter soft crit
+	brutemod = 1.1 //more fragile, though they also dont enter soft crit.
+	speedmod = 0.33 //slightly slower
+	stunmod = 0.5
+	staminamod = 0.5 //difficult to subdue via nonlethal means
+	punchdamagelow = 13
+	punchdamagehigh = 16
+	punchstunthreshold = 17 //pretty good punch damage but no knockdown
+	///no guns or soft crit
+	inherent_traits = list(
+		TRAIT_STABLELIVER,
+		TRAIT_STABLEHEART,
+		TRAIT_RESISTCOLD,
+		TRAIT_RESISTHIGHPRESSURE,
+		TRAIT_RESISTLOWPRESSURE,
+		TRAIT_RADIMMUNE,
+		TRAIT_EASYDISMEMBER,
+		TRAIT_EASILY_WOUNDED,
+		TRAIT_LIMBATTACHMENT,
+		TRAIT_NOBREATH,
+		TRAIT_NODEATH,
+		TRAIT_FAKEDEATH,
+		TRAIT_NOGUNS,
+		TRAIT_NOSOFTCRIT,
+	)
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+
+/datum/species/zombie/hecata/on_species_gain(mob/living/carbon/mob_changing_species, datum/species/old_species)
+	. = ..()
+	mob_changing_species.faction |= "bloodhungry"
+
+/datum/species/zombie/hecata/on_species_loss(mob/living/carbon/mob_changing_species)
+	. = ..()
+	mob_changing_species.faction -= "bloodhungry"
 
 //The special zombie you get turned into in the zombie gamemode
 /datum/species/zombie/infectious/gamemode
@@ -130,7 +172,7 @@
 	mutanthands = /obj/item/zombie_hand/gamemode
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTDAMAGESLOWDOWN, TRAIT_STABLELIVER, TRAIT_STABLEHEART,
 	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA, TRAIT_EASILY_WOUNDED, TRAIT_EASYDISMEMBER)
-	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES, ITEM_SLOT_HEAD)
 
 /datum/species/zombie/infectious/gamemode/runner
 	mutanthands = /obj/item/zombie_hand/gamemode/runner
@@ -153,7 +195,7 @@
 /datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
 	. = 0
 
-/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE)
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE, attack_direction = null)
 	if(damagetype == STAMINA)
 		return
 	. = ..()

@@ -27,8 +27,6 @@
 	var/mob/living/carbon/target = user.pulling
 	return changeling.can_absorb_dna(target)
 
-
-
 /datum/action/changeling/absorbDNA/sting_action(mob/user)
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	absorbtimer = clamp((16 - changeling.trueabsorbs) * 10, 0, 5 SECONDS) //the more people you eat, the faster you can absorb
@@ -46,7 +44,7 @@
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[i]"))
-		if(!do_mob(user, target, absorbtimer))
+		if(!do_after(user, absorbtimer, target))
 			to_chat(user, span_warning("Our absorption of [target] has been interrupted!"))
 			changeling.isabsorbing = 0
 			return
@@ -101,7 +99,7 @@
 			if(nlog_type & LOG_SAY)
 				var/list/reversed = log_source[log_type]
 				if(islist(reversed))
-					say_log = reverseRange(reversed.Copy())
+					say_log = reverse_range(reversed.Copy())
 					break
 
 		if(LAZYLEN(say_log) > LING_ABSORB_RECENT_SPEECH)
@@ -130,7 +128,7 @@
 			target_ling.geneticpoints = 0
 			target_ling.canrespec = 0
 			changeling.chem_storage += round(target_ling.chem_storage/2)
-			changeling.chem_charges += min(target_ling.chem_charges, changeling.chem_storage)
+			changeling.adjust_chemicals(round(target_ling.chem_storage/2))
 			target_ling.chem_charges = 0
 			target_ling.chem_storage = 0
 			changeling.absorbedcount += (target_ling.absorbedcount)
@@ -138,10 +136,8 @@
 			target_ling.absorbedcount = 0
 			target_ling.was_absorbed = TRUE
 
-
-	changeling.chem_charges=min(changeling.chem_charges+10, changeling.chem_storage)
-
 	changeling.isabsorbing = 0
+	changeling.adjust_chemicals(10)
 	changeling.canrespec = 1
 
 	target.death(0)

@@ -61,7 +61,7 @@
 	pixel_x = 10
 	pixel_y = 9
 
-/obj/item/canvas/Initialize()
+/obj/item/canvas/Initialize(mapload)
 	. = ..()
 	reset_grid()
 
@@ -119,7 +119,7 @@
 			var/y = text2num(params["y"])
 			grid[x][y] = color
 			used = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("finalize")
 			. = TRUE
@@ -132,19 +132,19 @@
 	generate_proper_overlay()
 	try_rename(user)
 
-/obj/item/canvas/update_icon()
-	cut_overlays()
+/obj/item/canvas/update_overlays()
+	. = ..()
 	if(!icon_generated)
 		if(used)
 			var/mutable_appearance/detail = mutable_appearance(icon,"[icon_state]wip")
 			detail.pixel_x = 1
 			detail.pixel_y = 1
-			add_overlay(detail)
+			. += detail
 	else
 		var/mutable_appearance/detail = mutable_appearance(generated_icon)
 		detail.pixel_x = 1
 		detail.pixel_y = 1
-		add_overlay(detail)
+		. += detail
 
 /obj/item/canvas/proc/generate_proper_overlay()
 	if(icon_generated)
@@ -155,7 +155,7 @@
 		CRASH("Error generating painting png : [result]")
 	generated_icon = new(png_filename)
 	icon_generated = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/canvas/proc/get_data_string()
 	var/list/data = list()
@@ -281,7 +281,7 @@
 		C.forceMove(drop_location())
 		C = null
 		to_chat(user, span_notice("You remove the painting from the frame."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
@@ -290,13 +290,13 @@
 		if(!C.finalized)
 			C.finalize(user)
 		to_chat(user,span_notice("You frame [C]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
 	if(C.painting_name == initial(C.painting_name))
 		C.try_rename(user)
 
-/obj/structure/sign/painting/update_icon()
+/obj/structure/sign/painting/update_icon_state()
 	. = ..()
 
 	if(C && C.generated_icon)
@@ -304,16 +304,17 @@
 	else
 		icon_state = "frame-empty"
 
-	cut_overlays()
+/obj/structure/sign/painting/update_overlays()
+	. = ..()
 	if(C && C.generated_icon)
 		var/mutable_appearance/MA = mutable_appearance(C.generated_icon)
 		MA.pixel_x = C.framed_offset_x
 		MA.pixel_y = C.framed_offset_y
-		add_overlay(MA)
+		. += MA
 		var/mutable_appearance/frame = mutable_appearance(C.icon,"[C.icon_state]frame")
 		frame.pixel_x = C.framed_offset_x - 1
 		frame.pixel_y = C.framed_offset_y - 1
-		add_overlay(frame)
+		. += frame
 
 /**
  * Loads a painting from SSpersistence. Called globally by said subsystem when it inits
@@ -356,7 +357,7 @@
 	new_canvas.author_ckey = author
 	new_canvas.name = "painting - [title]"
 	C = new_canvas
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/painting/proc/save_persistent()
 	if(!persistence_id || !C || C.no_save)

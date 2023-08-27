@@ -1,25 +1,13 @@
+// .357 speed loaders
+
 /obj/item/ammo_box/a357
-	name = "speed loader (.357)"
-	desc = "A seven-shot speed loader designed for .357 revolvers."
+	name = "speed loader (.357 magnum)"
+	desc = "A seven-shot speed loader designed for .357 revolvers. High damaging, some innate prowess against armor."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	caliber = "357"
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
-
-// Cannot be directly loaded into guns with internal magazines, but can load magazines/cylinders
-/obj/item/ammo_box/no_direct/a357
-	name = "ammo box (.357)"
-	icon_state = "357box"
-	ammo_type = /obj/item/ammo_casing/a357
-	max_ammo = 20
-
-/obj/item/ammo_box/no_direct/n762
-	name = "ammo box (7.62x38mmR)"
-	icon_state = "10mmbox"
-	ammo_type = /obj/item/ammo_casing/n762
-	caliber = "n762"
-	max_ammo = 14
 
 /obj/item/ammo_box/a357/ironfeather
 	name = "speed loader (.357 Ironfeather)"
@@ -56,8 +44,21 @@
 	icon_state = "357stake"
 	ammo_type = /obj/item/ammo_casing/a357/wallstake
 
+// .44 speed loader
+
+/obj/item/ammo_box/m44
+	name = "speed loader (.44 magnum)"
+	desc = "A six-shot speed loader designed for .44 revolvers. Massively damaging, wreaks havoc on bodies."
+	icon_state = "44"
+	ammo_type = /obj/item/ammo_casing/m44
+	caliber = "44"
+	max_ammo = 6
+	multiple_sprites = AMMO_BOX_PER_BULLET
+
+// .38 special loaders
+
 /obj/item/ammo_box/c38
-	name = "speed loader (.38)"
+	name = "speed loader (.38 special)"
 	desc = "A six-shot speed loader designed for .38 revolvers."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
@@ -66,26 +67,13 @@
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
 
-/obj/item/ammo_box/c38/hotshot
-	name = "speed loader (.38 Hot Shot)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for an incendiary payload which sets targets ablaze."
-	icon_state = "38hot"
-	ammo_type = /obj/item/ammo_casing/c38/hotshot
+/obj/item/ammo_box/c38/rubber
+	name = "speed loader (.38 rubber)"
+	desc = "A six-shot speed loader designed for .38 revolvers. Rubber rounds trade lethality for a better ability to incapacitate targets."
+	icon_state = "38rubber"
+	ammo_type = /obj/item/ammo_casing/c38/rubber
 
-/obj/item/ammo_box/c38/iceblox
-	name = "speed loader (.38 Iceblox)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for a cryogenic payload which significantly reduces the body temperature of targets hit."
-	icon_state = "38ice"
-	ammo_type = /obj/item/ammo_casing/c38/iceblox
-
-/obj/item/ammo_box/c38/gutterpunch
-	name = "speed loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for an emetic payload which induces nausea in targets."
-	icon_state = "38gut"
-	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
+// .32 TRAC speed loader
 
 /obj/item/ammo_box/tra32
 	name = "speed loader (.32 TRAC)"
@@ -96,6 +84,8 @@
 	caliber = "32trac"
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
+
+// Generic ammo boxes
 
 /obj/item/ammo_box/c9mm
 	name = "ammo box (9mm)"
@@ -111,8 +101,32 @@
 	caliber = "10mm"
 	max_ammo = 20
 
+/obj/item/ammo_box/c10mm/cs
+	name = "ammo box (10mm caseless)"
+	ammo_type = /obj/item/ammo_casing/caseless/c10mm/cs
+
+/obj/item/ammo_box/c10mm/sp
+	name = "ammo box (10mm soporific)"
+	ammo_type = /obj/item/ammo_casing/c10mm/sp
+
+/obj/item/ammo_box/c10mm/ap
+	name = "ammo box (10mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c10mm/ap
+
+/obj/item/ammo_box/c10mm/hp
+	name = "ammo box (10mm hollow-point)"
+	ammo_type = /obj/item/ammo_casing/c10mm/hp
+
+/obj/item/ammo_box/c10mm/inc
+	name = "ammo box (10mm incendiary)"
+	ammo_type = /obj/item/ammo_casing/c10mm/inc
+
+/obj/item/ammo_box/c10mm/emp
+	name = "ammo box (10mm EMP)"
+	ammo_type = /obj/item/ammo_casing/c10mm/emp
+
 /obj/item/ammo_box/c45
-	name = "ammo box (.45)"
+	name = "ammo box (.45 ACP)"
 	icon_state = "45box"
 	ammo_type = /obj/item/ammo_casing/c45
 	caliber = ".45"
@@ -126,6 +140,64 @@
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+/obj/item/ammo_box/foambox
+	name = "ammo box (Foam Darts)"
+	icon = 'icons/obj/guns/toy.dmi'
+	icon_state = "foambox"
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
+	caliber = "foam_force"
+	max_ammo = 40
+	materials = list(/datum/material/iron = 500)
+
+/obj/item/ammo_box/foambox/riot
+	icon_state = "foambox_riot"
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart/riot
+	materials = list(/datum/material/iron = 50000)
+
+// No-direct ammo boxes, cannot be directly loaded into guns with internal magazines, but can load magazines/cylinders
+
+/obj/item/ammo_box/no_direct/a357
+	name = "ammo box (.357 magnum)"
+	icon_state = "357box"
+	ammo_type = /obj/item/ammo_casing/a357
+	max_ammo = 20
+
+/obj/item/ammo_box/no_direct/a357/ironfeather
+	name = "ammo box (.357 Ironfeather)"
+	ammo_type = /obj/item/ammo_casing/a357/ironfeather
+
+/obj/item/ammo_box/no_direct/a357/nutcracker
+	name = "ammo box (.357 Nutcracker)"
+	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+
+/obj/item/ammo_box/no_direct/a357/metalshock
+	name = "ammo box (.357 Metalshock)"
+	ammo_type = /obj/item/ammo_casing/a357/metalshock
+
+/obj/item/ammo_box/no_direct/a357/heartpiercer
+	name = "ammo box (.357 Heartpiercer)"
+	ammo_type = /obj/item/ammo_casing/a357/heartpiercer
+
+/obj/item/ammo_box/no_direct/a357/wallstake
+	name = "ammo box (.357 Wallstake)"
+	ammo_type = /obj/item/ammo_casing/a357/wallstake
+
+/obj/item/ammo_box/no_direct/n762
+	name = "ammo box (7.62x38mmR)"
+	icon_state = "10mmbox"
+	ammo_type = /obj/item/ammo_casing/n762
+	caliber = "n762"
+	max_ammo = 14
+
+/obj/item/ammo_box/no_direct/m308
+	name = "ammo box (.308)"
+	icon_state = "308box"
+	ammo_type = /obj/item/ammo_casing/m308
+	caliber = "m308"
+	max_ammo = 20
+
+// Mosin stripper clip
+
 /obj/item/ammo_box/a762
 	name = "stripper clip (7.62mm)"
 	desc = "A stripper clip holding 7.62mm rounds."
@@ -135,16 +207,44 @@
 	max_ammo = 5
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
-/obj/item/ammo_box/foambox
-	name = "ammo box (Foam Darts)"
-	icon = 'icons/obj/guns/toy.dmi'
-	icon_state = "foambox"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
-	caliber = "foam_force"
-	max_ammo = 40
-	materials = list(/datum/material/iron = 500)
+// Arrows boxes
 
-/obj/item/ammo_box/foambox/riot
-	icon_state = "foambox_riot"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
-	materials = list(/datum/material/iron = 50000)
+/obj/item/ammo_box/arrow
+	name = "ammo box (Arrow)"
+	icon_state = "arrowbox_green"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow
+	max_ammo = 10
+
+/obj/item/ammo_box/arrow/toy
+	name = "ammo box (Toy Arrow)"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy
+
+/obj/item/ammo_box/arrow/toy/energy
+	name = "ammo box (Toy Energy Arrow)"
+	icon_state = "arrowbox_red"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/energy
+
+/obj/item/ammo_box/arrow/toy/disabler
+	name = "ammo box (Toy Disabler Arrow)"
+	icon_state = "arrowbox_teal"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/disabler
+
+/obj/item/ammo_box/arrow/toy/pulse
+	name = "ammo box (Toy Pulse Arrow)"
+	icon_state = "arrowbox_blue"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/pulse
+
+/obj/item/ammo_box/arrow/toy/xray
+	name = "ammo box (Toy X-ray Arrow)"
+	icon_state = "arrowbox_green"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/xray
+
+/obj/item/ammo_box/arrow/toy/shock
+	name = "ammo box (Toy Shock Arrow)"
+	icon_state = "arrowbox_yellow"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/shock
+
+/obj/item/ammo_box/arrow/toy/magic
+	name = "ammo box (Toy Magic Arrow)"
+	icon_state = "arrowbox_purple"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/magic

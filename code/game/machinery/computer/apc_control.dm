@@ -26,7 +26,7 @@
 				playsound(active_apc, 'sound/machines/boltsdown.ogg', 25, FALSE)
 				playsound(active_apc, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 			active_apc.locked = TRUE
-			active_apc.update_icon()
+			active_apc.update_appearance(UPDATE_ICON)
 			active_apc.remote_control = null
 			active_apc = null
 
@@ -112,7 +112,7 @@
 			log_game("[key_name(operator)] set the logs of [src] in [AREACOORD(src)] [should_log ? "On" : "Off"]")
 		if("restore-console")
 			restoring = TRUE
-			addtimer(CALLBACK(src, .proc/restore_comp), rand(3,5) * 9)
+			addtimer(CALLBACK(src, PROC_REF(restore_comp)), rand(3,5) * 9)
 		if("access-apc")
 			var/ref = params["ref"]
 			playsound(src, "terminal_type", 50, FALSE)
@@ -125,7 +125,7 @@
 				playsound(active_apc, 'sound/machines/boltsdown.ogg', 25, FALSE)
 				playsound(active_apc, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 				active_apc.locked = TRUE
-				active_apc.update_icon()
+				active_apc.update_appearance(UPDATE_ICON)
 				active_apc.remote_control = null
 				active_apc = null
 			APC.remote_control = src
@@ -138,7 +138,7 @@
 				playsound(APC, 'sound/machines/boltsup.ogg', 25, FALSE)
 				playsound(APC, 'sound/machines/terminal_alert.ogg', 50, FALSE)
 			APC.locked = FALSE
-			APC.update_icon()
+			APC.update_appearance(UPDATE_ICON)
 			active_apc = APC
 		if("check-logs")
 			log_activity("Checked Logs")
@@ -160,7 +160,7 @@
 					log_game("Warning: possible href exploit by [key_name(usr)] - attempted to set [html_encode(type)] on [target] to [html_encode(value)]")
 					return
 			target.vars[type] = target.setsubsystem(text2num(value))
-			target.update_icon()
+			target.update_appearance(UPDATE_ICON)
 			target.update()
 			var/setTo = ""
 			switch(target.vars[type])
@@ -181,12 +181,13 @@
 			var/setTo = target.operating ? "On" : "Off"
 			log_activity("Turned APC [target.area.name]'s breaker [setTo]")
 
-/obj/machinery/computer/apc_control/emag_act(mob/user)
+/obj/machinery/computer/apc_control/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	log_game("[key_name(user)] emagged [src] at [AREACOORD(src)]")
 	playsound(src, "sparks", 50, TRUE)
+	return TRUE
 
 /obj/machinery/computer/apc_control/proc/log_activity(log_text)
 	if(!should_log)

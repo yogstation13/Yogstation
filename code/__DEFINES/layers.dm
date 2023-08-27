@@ -115,7 +115,7 @@
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define ABOVE_LIGHTING_PLANE 120 //things that should render ignoring lightning
+#define ABOVE_LIGHTING_PLANE 200 //things that should render ignoring lightning
 #define ABOVE_LIGHTING_LAYER 17
 #define ABOVE_LIGHTING_RENDER_TARGET "ABOVE_LIGHTING_PLANE"
 
@@ -143,6 +143,7 @@
 #define BLIND_LAYER 20.3
 #define CRIT_LAYER 20.4
 #define CURSE_LAYER 20.5
+#define ECHO_LAYER 20.6
 #define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
 #define HUD_PLANE 21
@@ -155,3 +156,6 @@
 #define SPLASHSCREEN_LAYER 23
 #define SPLASHSCREEN_PLANE 23
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
+
+///1000 is an unimportant number, it's just to normalize copied layers
+#define RADIAL_CONTENT_LAYER 1000

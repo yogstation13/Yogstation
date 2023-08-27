@@ -48,7 +48,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin
+		/obj/item/firing_pin, /obj/item/gun/ballistic/revolver/derringer
 		),
 		list(/obj/item/handdrill)
 		)
@@ -60,7 +60,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin, /obj/item/bikehorn),
+		/obj/item/firing_pin, /obj/item/gun/ballistic/revolver/derringer, /obj/item/bikehorn),
 		list(/obj/item/handdrill)
 		)
 
@@ -94,3 +94,13 @@
 					  /obj/item/reagent_containers/food/drinks/bottle/molotov,
 					  /obj/item/reagent_containers/food/drinks/drinkingglass,
 					  /obj/item/ammo_box/a762))
+
+
+/datum/component/storage/concrete/pockets/hosarmor
+	quickdraw = TRUE
+	max_items = 6
+	max_w_class = WEIGHT_CLASS_TINY
+
+/datum/component/storage/concrete/pockets/hosarmor/Initialize()
+	. = ..()
+	set_holdable(list(/obj/item/clothing/mask/cigarette))

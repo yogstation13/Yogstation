@@ -6,7 +6,7 @@
 	losebreath = 0
 
 	if(!gibbed)
-		INVOKE_ASYNC(src, .proc/emote, "deathgasp")
+		INVOKE_ASYNC(src, PROC_REF(emote), "deathgasp")
 
 	. = ..()
 
@@ -19,7 +19,7 @@
 
 /mob/living/carbon/gib(no_brain, no_organs, no_bodyparts)
 	var/atom/Tsec = drop_location()
-	for(var/mob/M in src)
+	for(var/mob/living/M in src)
 		//yogs start -- Yogs vorecode
 		if(M in stomach_contents)
 			stomach_contents.Remove(M)
@@ -62,7 +62,7 @@
 			I.forceMove(Tsec)
 			I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 	if(!no_brain && !no_organs)//drop other heads/brains carried if your own would be dropped
-		for(var/X in src.GetAllContents())
+		for(var/X in src.get_all_contents())
 			if(istype(X, /obj/item/organ/brain) || istype(X, /obj/item/bodypart/head))
 				var/obj/item/H = X
 				if(H)

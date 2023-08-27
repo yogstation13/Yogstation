@@ -94,7 +94,7 @@
 	. = ..()
 	. += span_notice("Alt-click to pump it.")
 
-/obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize()
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize(mapload)
 	. = ..()
 	if (!alternate_magazine)
 		alternate_magazine = new mag_type(src)
@@ -120,6 +120,20 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	rack()
+
+/obj/item/gun/ballistic/shotgun/lever
+	name = "\improper Winton Mk. VI Repeating Rifle"
+	desc = "A lever-action rifle chambered in .308 with pristine wooden furniture. Favored by Frontier sharpshooters."
+	icon_state = "wintonrifle"
+	item_state = "wintonrifle"
+	fire_sound = "sound/weapons/leverfire.ogg"
+	fire_sound_volume = 50
+	rack_sound = "sound/weapons/leverrack.ogg"
+	load_sound = "sound/weapons/leverload.ogg"
+	fire_delay = 9
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lever
+	bolt_wording = "lever"
+	cartridge_wording = "bullet"
 
 // Bulldog shotgun //
 
@@ -217,12 +231,12 @@
 			slot_flags = ITEM_SLOT_BACK
 			to_chat(user, span_notice("You tie the lengths of cable to the shotgun, making a sling."))
 			slung = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You need at least ten lengths of cable if you want to make a sling!"))
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon()
-	..()
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
+	. = ..()
 	if(slung)
 		icon_state = "ishotgunsling"
 	
@@ -232,7 +246,7 @@
 	if(. && slung) //sawing off the gun removes the sling
 		new /obj/item/stack/cable_coil(get_turf(src), 10)
 		slung = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 	name = "sawn-off improvised shotgun"

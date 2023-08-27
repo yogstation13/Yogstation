@@ -20,8 +20,8 @@
 	var/static/list/buyable_items = list()
 	var/list/tags = list()
 
-/obj/item/gangtool/Initialize()
-	update_icon()
+/obj/item/gangtool/Initialize(mapload)
+	update_appearance(UPDATE_ICON)
 	if(buyable_items.len)
 		return ..()
 	for(var/i in subtypesof(/datum/gang_item))
@@ -138,12 +138,12 @@
 		recall(usr)
 	attack_self(usr)
 
-/obj/item/gangtool/update_icon()
-	overlays.Cut()
+/obj/item/gangtool/update_overlays()
+	. = ..()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)
 		I.color = gang.color
-	overlays.Add(I)
+	. += I
 
 /obj/item/gangtool/proc/ping_gang(mob/user)
 	if(!can_use(user))
@@ -174,7 +174,7 @@
 	if(G)
 		gang = G.gang
 		gang.gangtools += src
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(!(user.mind in gang.leaders) && promotable)
 			G.promote()
 			free_pen = TRUE
@@ -193,13 +193,13 @@
 	gang.message_gangtools("[user] is attempting to recall the emergency shuttle.")
 	recalling = TRUE
 	to_chat(user, span_info("[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal..."))
-	addtimer(CALLBACK(src, .proc/recall2, user), rand(100,300))
+	addtimer(CALLBACK(src, PROC_REF(recall2), user), rand(100,300))
 
 /obj/item/gangtool/proc/recall2(mob/user)
 	if(!recallchecks(user))
 		return
 	to_chat(user, span_info("[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays..."))
-	addtimer(CALLBACK(src, .proc/recall3, user), rand(100,300))
+	addtimer(CALLBACK(src, PROC_REF(recall3), user), rand(100,300))
 
 /obj/item/gangtool/proc/recall3(mob/user)
 	if(!recallchecks(user))
@@ -214,7 +214,7 @@
 		recalling = FALSE
 		return
 	to_chat(user, span_info("[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal..."))
-	addtimer(CALLBACK(src, .proc/recallfinal, user), rand(100,300))
+	addtimer(CALLBACK(src, PROC_REF(recallfinal), user), rand(100,300))
 
 /obj/item/gangtool/proc/recallfinal(mob/user)
 	if(!recallchecks(user))

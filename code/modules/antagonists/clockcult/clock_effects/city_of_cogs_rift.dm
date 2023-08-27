@@ -16,13 +16,13 @@
 /obj/effect/clockwork/city_of_cogs_rift/singularity_pull()
 	return
 
-/obj/effect/clockwork/city_of_cogs_rift/Initialize()
+/obj/effect/clockwork/city_of_cogs_rift/Initialize(mapload)
 	. = ..()
 	visible_message(span_warning("The air above [loc] shimmers and pops as a [name] forms there!"))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			if(get_dist(src, M) >= 7)
-				M.playsound_local(src, 'sound/magic/blink.ogg', 10, FALSE, falloff = 10)
+				M.playsound_local(src, 'sound/magic/blink.ogg', 10, FALSE, falloff_exponent = 10)
 			else
 				M.playsound_local(src, 'sound/magic/blink.ogg', 50, FALSE)
 
@@ -57,7 +57,7 @@
 	if(ismob(AM) && is_servant_of_ratvar(AM))
 		T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
 	else // Handle mechas and such
-		var/list/target_contents = AM.GetAllContents() + AM
+		var/list/target_contents = AM.get_all_contents() + AM
 		for(var/mob/living/L in target_contents)
 			if(is_servant_of_ratvar(L) && L.stat != DEAD) // Having a living cultist in your inventory sends you to the cultist spawn
 				T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
@@ -72,6 +72,6 @@
 		var/mob/living/L = AM
 		L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 		L.clear_fullscreen("flash", 5)
-		var/obj/item/transfer_valve/TTV = locate() in L.GetAllContents()
+		var/obj/item/transfer_valve/TTV = locate() in L.get_all_contents()
 		if(TTV)
 			to_chat(L, span_userdanger("The air resonates with the Ark's presence; your explosives will be significantly dampened here!"))

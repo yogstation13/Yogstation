@@ -30,14 +30,14 @@
 		if(WIRE_POWER) // Short out for a long time.
 			if(!A.shorted)
 				A.shorted = TRUE
-				A.update_icon()
-			addtimer(CALLBACK(A, /obj/machinery/airalarm.proc/reset, wire), 1200)
+				A.update_appearance(UPDATE_ICON)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/airalarm, reset), wire), 1200)
 		if(WIRE_IDSCAN) // Toggle lock.
 			A.locked = !A.locked
 		if(WIRE_AI) // Disable AI control for a while.
 			if(!A.aidisabled)
 				A.aidisabled = TRUE
-			addtimer(CALLBACK(A, /obj/machinery/airalarm.proc/reset, wire), 100)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/airalarm, reset), wire), 100)
 		if(WIRE_PANIC) // Toggle panic siphon.
 			if(!A.shorted)
 				if(A.mode == 1) // AALARM_MODE_SCRUB
@@ -49,7 +49,7 @@
 			var/area/AA = get_area(A)
 			if(AA.atmosalert(0, holder))
 				A.post_alert(0)
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 
 /datum/wires/airalarm/on_cut(wire, mend)
 	var/obj/machinery/airalarm/A = holder
@@ -57,7 +57,7 @@
 		if(WIRE_POWER) // Short out forever.
 			A.shock(usr, 50)
 			A.shorted = !mend
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 		if(WIRE_IDSCAN)
 			if(!mend)
 				A.locked = TRUE
@@ -71,4 +71,4 @@
 			var/area/AA = get_area(A)
 			if(AA.atmosalert(2, holder))
 				A.post_alert(2)
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)

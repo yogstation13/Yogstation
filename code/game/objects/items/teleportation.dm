@@ -134,30 +134,55 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	cryo_preserve = TRUE
 	var/list/active_portal_pairs
-	var/max_portal_pairs = 3
 	var/atmos_link_override
+	var/obj/item/stock_parts/manipulator/manipulator
 
-/obj/item/hand_tele/Initialize()
+/obj/item/hand_tele/Initialize(mapload)
 	. = ..()
 	active_portal_pairs = list()
+	manipulator = new /obj/item/stock_parts/manipulator(src)
+
+/obj/item/hand_tele/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/stock_parts/manipulator))
+		if(!manipulator)
+			if(!user.transferItemToLoc(W, src))
+				return
+			manipulator = W
+			to_chat(user, span_notice("You install a [manipulator.name] in [src]."))
+		else
+			to_chat(user, span_notice("[src] already has a manipulator installed."))
+
+/obj/item/hand_tele/screwdriver_act(mob/living/user, obj/item/I)
+	if(manipulator)
+		to_chat(user, span_notice("You remove the [manipulator.name] from \the [src]."))
+		manipulator.forceMove(drop_location())
+		manipulator = null
+
+/obj/item/hand_tele/examine(mob/user)
+	. = ..()
+	if(in_range(user, src) || isobserver(user))
+		if(!manipulator)
+			. += "<span class='notice'>The manipulator is missing.<span>"
+		else
+			. += "<span class='notice'>A tier <b>[manipulator.rating]</b> micro manipulator is installed. It is <i>screwed</i> in place.<span>"
 
 /obj/item/hand_tele/pre_attack(atom/target, mob/user, params)
-	if(try_dispel_portal(target, user))
+	if(is_parent_of_portal(target))
+		try_dispel_portal(target, user)
 		return FALSE
 	return ..()
 
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
-	if(is_parent_of_portal(target))
-		balloon_alert(user, "Dispelling portal...")
-		if(do_after(user, 4 SECONDS, target))
+	if(is_parent_of_portal(target)) //dispel me from this horrid realm
+		var/dispel_time = 5 - manipulator.rating
+		if(dispel_time == 0)
 			qdel(target)
 			to_chat(user, span_notice("You dispel [target] with \the [src]!"))
-			return TRUE
-	return FALSE
-
-/obj/item/hand_tele/afterattack(atom/target, mob/user)
-	try_dispel_portal(target, user)
-	. = ..()
+			return
+		balloon_alert(user, "Dispelling portal...")
+		if(do_after(user, dispel_time SECONDS, target))
+			qdel(target)
+			to_chat(user, span_notice("You dispel [target] with \the [src]!"))
 
 /obj/item/hand_tele/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
@@ -190,8 +215,11 @@
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") as null|anything in L
 	if (!t1 || user.get_active_held_item() != src || user.incapacitated())
 		return
-	if(active_portal_pairs.len >= max_portal_pairs)
-		user.show_message(span_notice("\The [src] is recharging!"))
+	if(isnull(manipulator))
+		user.show_message(span_notice("\The [src] is missing it's manipulator, and cannot function."))
+		return
+	if(active_portal_pairs.len >= manipulator.rating)
+		user.show_message(span_notice("\The [src] is at maximum portal capacity!"))
 		return
 	var/atom/T = L[t1]
 	var/area/A = get_area(T)

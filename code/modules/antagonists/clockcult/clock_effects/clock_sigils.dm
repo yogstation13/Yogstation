@@ -144,6 +144,11 @@
 			hierophant_message("<span class='large_brass bold'>With the conversion of a new servant the Ark's power grows. Application scriptures are now available.</span>")
 	if(add_servant_of_ratvar(L))
 		L.log_message("conversion was done with a [sigil_name]", LOG_ATTACK, color="BE8700")
+		var/brutedamage = L.getBruteLoss()
+		var/burndamage = L.getFireLoss()
+		if(brutedamage || burndamage)
+			L.adjustBruteLoss(-(brutedamage * 0.75))
+			L.adjustFireLoss(-(burndamage * 0.75))
 		if(iscarbon(L))
 			var/mob/living/carbon/M = L
 			M.uncuff()
@@ -179,9 +184,9 @@
 	sigil_name = "Sigil of Transmission"
 	affects_servants = TRUE
 
-/obj/effect/clockwork/sigil/transmission/Initialize()
+/obj/effect/clockwork/sigil/transmission/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/effect/clockwork/sigil/transmission/ex_act(severity)
 	if(severity == 3)
@@ -212,7 +217,7 @@
 	if(!cyborg_checks(cyborg))
 		return
 	to_chat(cyborg, span_brass("You start to charge from the [sigil_name]..."))
-	if(!do_after(cyborg, 5 SECONDS, src, extra_checks = CALLBACK(src, .proc/cyborg_checks, cyborg, TRUE)))
+	if(!do_after(cyborg, 5 SECONDS, src, extra_checks = CALLBACK(src, PROC_REF(cyborg_checks), cyborg, TRUE)))
 		return
 	var/giving_power = min(FLOOR(cyborg.cell.maxcharge - cyborg.cell.charge, MIN_CLOCKCULT_POWER), get_clockwork_power()) //give the borg either all our power or their missing power floored to MIN_CLOCKCULT_POWER
 	if(adjust_clockwork_power(-giving_power))
@@ -242,7 +247,8 @@
 		return FALSE
 	return TRUE
 
-/obj/effect/clockwork/sigil/transmission/update_icon()
+/obj/effect/clockwork/sigil/transmission/update_icon(updates=ALL)
+	. = ..()
 	var/power_charge = get_clockwork_power()
 	if(GLOB.ratvar_awakens)
 		alpha = 255

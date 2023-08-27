@@ -27,7 +27,7 @@
 		var/mob/living/carbon/human/H = M
 		if(H.mind && H.mind.assigned_role == "Clown") //Ensures only clowns can drive the car. (Including more at once)
 			add_control_flags(H, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_PERMISSION)
-			RegisterSignal(H, COMSIG_MOB_CLICKON, .proc/FireCannon)
+			RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(FireCannon))
 			return
 	add_control_flags(M, VEHICLE_CONTROL_KIDNAPPED)
 
@@ -43,7 +43,7 @@
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_CLICKON)
 
-/obj/vehicle/sealed/car/clowncar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/vehicle/sealed/car/clowncar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(prob(33))
 		visible_message(span_danger("[src] spews out a ton of space lube!"))
@@ -81,14 +81,15 @@
 		DumpMobs(TRUE)
 		log_combat(src, A, "crashed into", null, "dumping all passengers")
 
-/obj/vehicle/sealed/car/clowncar/emag_act(mob/user)
+/obj/vehicle/sealed/car/clowncar/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_danger("You scramble the clowncar child safety lock and a panel with 6 colorful buttons appears!"))
 	initialize_controller_action_type(/datum/action/vehicle/sealed/RollTheDice, VEHICLE_CONTROL_DRIVE)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/Cannon, VEHICLE_CONTROL_DRIVE)
-
+	return TRUE
+	
 /obj/vehicle/sealed/car/clowncar/Destroy()
   playsound(src, 'sound/vehicles/clowncar_fart.ogg', 100)
   return ..()
@@ -120,7 +121,7 @@
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and the clown car turns on its singularity disguise system."))
 			icon = 'icons/obj/singularity.dmi'
 			icon_state = "singularity_s1"
-			addtimer(CALLBACK(src, .proc/ResetIcon), 100)
+			addtimer(CALLBACK(src, PROC_REF(ResetIcon)), 100)
 		if(4)
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and the clown car spews out a cloud of laughing gas."))
 			var/datum/reagents/tmp_holder = new/datum/reagents(300)
@@ -133,7 +134,7 @@
 		if(5)
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and the clown car starts dropping an oil trail."))
 			droppingoil = TRUE
-			addtimer(CALLBACK(src, .proc/StopDroppingOil), 30)
+			addtimer(CALLBACK(src, PROC_REF(StopDroppingOil)), 30)
 		if(6)
 			visible_message(span_danger("[user] has pressed one of the colorful buttons on [src] and the clown car lets out a comedic toot."))
 			playsound(src, 'sound/vehicles/clowncar_fart.ogg', 100)
@@ -155,7 +156,7 @@
 		cannonmode = FALSE
 		flick("clowncar_fromfire", src)
 		icon_state = "clowncar"
-		addtimer(CALLBACK(src, .proc/LeaveCannonMode), 20)
+		addtimer(CALLBACK(src, PROC_REF(LeaveCannonMode)), 20)
 		playsound(src, 'sound/vehicles/clowncar_cannonmode2.ogg', 75)
 		visible_message(span_danger("The [src] starts going back into mobile mode."))
 	else
@@ -163,7 +164,7 @@
 		flick("clowncar_tofire", src)
 		icon_state = "clowncar_fire"
 		visible_message(span_danger("The [src] opens up and reveals a large cannon."))
-		addtimer(CALLBACK(src, .proc/EnterCannonMode), 20)
+		addtimer(CALLBACK(src, PROC_REF(EnterCannonMode)), 20)
 		playsound(src, 'sound/vehicles/clowncar_cannonmode1.ogg', 75)
 
 

@@ -8,7 +8,7 @@
 	resistance_flags = FLAMMABLE
 	var/obj/item/seeds/seed = null // type path, gets converted to item on New(). It's safe to assume it's always a seed item.
 
-/obj/item/grown/Initialize(newloc, obj/item/seeds/new_seed)
+/obj/item/grown/Initialize(mapload, newloc, obj/item/seeds/new_seed)
 	. = ..()
 	create_reagents(50)
 
@@ -29,6 +29,7 @@
 		if(istype(src, seed.product)) // no adding reagents if it is just a trash item
 			seed.prepare_result(src)
 		transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5
+		w_class = round((seed.potency / 100) * 2, 1) + 1 //more potent plants are larger
 		add_juice()
 
 /// Ghost attack proc

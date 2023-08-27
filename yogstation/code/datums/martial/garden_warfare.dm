@@ -1,5 +1,3 @@
-#define VINE_SNATCH_COMBO "DD"
-
 #define STRANGLE_COMBO "GGG"
 #define PRE_STRANGLE_COMBO "GG"
 
@@ -13,19 +11,22 @@
 	id = MARTIALART_GARDENWARFARE
 	block_chance = 75
 	help_verb =  /mob/living/carbon/human/proc/gardern_warfare_help
-	var/datum/action/vine_snatch/vine_snatch = new /datum/action/vine_snatch()
+	var/datum/action/vine_snatch/vine_snatch
 	var/current_combo
+	var/old_grab_state = null
 
 /datum/martial_art/gardern_warfare/can_use(mob/living/carbon/human/H)
 	return ispodperson(H)
 
-/datum/martial_art/gardern_warfare/teach(mob/living/carbon/human/H,make_temporary=0)
+/datum/martial_art/gardern_warfare/teach(mob/living/carbon/human/H, make_temporary=0)
 	if(..())
+		vine_snatch = new(H)
 		vine_snatch.Grant(H)
 		H.dna.species.speedmod = 0
 
 /datum/martial_art/gardern_warfare/on_remove(mob/living/carbon/human/H)
 	vine_snatch.Remove(H)
+	QDEL_NULL(vine_snatch)
 	H.dna.species.speedmod = initial(H.dna.species.speedmod)
 
 /datum/martial_art/gardern_warfare/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -42,12 +43,7 @@
 /datum/martial_art/gardern_warfare/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(can_use(A)))
 		return FALSE
-	if(current_combo && current_combo !=  VINE_SNATCH_COMBO)
-		current_combo = null
-		streak = ""
-	add_to_streak("D",D)
-	if(check_streak(A,D))
-		return TRUE
+	vine_mark(A,D)
 	return FALSE
 
 /datum/martial_art/gardern_warfare/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -56,17 +52,22 @@
 			current_combo = null
 			streak = ""
 		add_to_streak("G",D)
-		if(check_streak(A,D))
-			return TRUE
-	return FALSE
+		old_grab_state = A.grab_state
+		if(old_grab_state < GRAB_AGGRESSIVE)
+			D.grabbedby(A, 1)
+		if(old_grab_state == GRAB_PASSIVE)
+			A.setGrabState(GRAB_AGGRESSIVE) //Instant agressive grab if on grab intent
+			log_combat(A, D, "grabbed", addition="aggressively (garden warfare)")
+			D.visible_message(span_warning("[A] grabs [D] with a swarm of vines!"), \
+								span_userdanger("[A] wraps a swarm of vines around you!"))
+		check_streak(A,D)
+		return TRUE
+	else
+		return FALSE
 
 /datum/martial_art/gardern_warfare/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	if(findtext(streak, VINE_SNATCH_COMBO))
-		current_combo = VINE_SNATCH_COMBO
-		vine_mark(A,D)
-		return FALSE
 	if(findtext(streak, PRE_STRANGLE_COMBO))
 		current_combo = STRANGLE_COMBO
 		strangle(A,D)
@@ -96,8 +97,7 @@
 		D.visible_message(span_danger("[A] wraps a vine around [D]'s throat!"), \
 					span_userdanger("[A] wraps a vine around your throat!"))
 		log_combat(A, D, "pre-strangles(Garden Warfare)")		
-
-		D.Stun((A.get_punchdamagehigh() / 8) SECONDS)	//1 Second
+		D.Immobilize((A.get_punchdamagehigh() / 4) SECONDS)	//2 Seconds
 		D.adjustOxyLoss(A.get_punchdamagehigh() + 2)	//10 oxyloss
 
 /datum/martial_art/gardern_warfare/proc/splinter_stab(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -114,16 +114,6 @@
 
 		D.apply_damage((A.get_punchdamagehigh() * 1.5 + 8), BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY)	//20 damage
 		D.Stun((A.get_punchdamagehigh() / 8) SECONDS)	//1 second
-
-		var/list/arms = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
-		var/arm_zone = pick(arms)
-		arms -= arm_zone
-		var/obj/item/bodypart/affecting_arm = A.get_bodypart(ran_zone(arm_zone))
-		if(!affecting_arm)
-			affecting_arm = A.get_bodypart(ran_zone(pick(arms)))
-		var/arm_armor_block = A.run_armor_check(affecting_arm, MELEE, 5)
-
-		A.apply_damage(5, BRUTE, arm_zone, arm_armor_block) 	
 
 		var/obj/item/splinter = new /obj/item/splinter(D)
 		D.embed_object(splinter, affecting, FALSE, FALSE, TRUE)
@@ -144,11 +134,11 @@
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_strangle(A, D))
 		return
-	if(!do_mob(A, D, 1 SECONDS))
+	if(!do_after(A, 1 SECONDS, D))
 		return
 	if(!can_strangle(A, D))
 		return
-	D.adjustOxyLoss(10)
+	D.adjustOxyLoss(5)
 	if(prob(35))
 		to_chat(D, span_danger("You can't breath!"))
 	final_strangle(A,D)
@@ -168,7 +158,7 @@
 
 /datum/action/vine_snatch
 	name = "Vine Snatch - using it while having a target, recently marked with a vine mark in the range of 2 tiles will pull an item in their active hands to you, or pull and knockdown them."
-	icon_icon = 'icons/obj/changeling.dmi'
+	button_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "tentacle"
 	var/mob/living/carbon/human/marked_dude = null
 	var/last_time_marked = 0
@@ -211,15 +201,7 @@
 	desc = "It's sharp!"
 	throwforce = 3
 	sharpness = SHARP_EDGED
-	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
-	var/passive_damage = 0.5
-
-/obj/item/splinter/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
-	. = ..()
-
-/obj/item/splinter/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	part.receive_damage(passive_damage, wound_bonus=-30, sharpness = TRUE)
+	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0, "embedded_unsafe_removal_pain_multiplier" = 12)
 
 /datum/martial_art/gardern_warfare/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
 	if(!can_use(user))
@@ -248,8 +230,8 @@
 	set category = "Garden Warfare"
 	to_chat(usr, "<b><i>You try to remember some basic actions from the garden warfare art.</i></b>")
 
-	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishing this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 5 seconds.")
-	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxygen damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 10 oxygen damage per second.")
+	to_chat(usr, "[span_notice("Vine snatch")]: Your disarms mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 5 seconds.")
+	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxygen damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 5 oxygen damage per second.")
 	to_chat(usr, "[span_notice("Splinter stab")]: Harm harm Harm. The second attack will deal increased damage with 30 armor penetration, and finishing the combo will deal 20 damage with 30 armor penetration, while also embedding a splinter into the targets limb.")
 
 	to_chat(usr, span_notice("Additionally, if you have throw mode on you have a 75% block chance (35% if strangling someone) and can counter-attack, dealing 10 damage and embedding a splinter into the attacker."))

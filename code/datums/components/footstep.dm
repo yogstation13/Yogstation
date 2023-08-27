@@ -8,7 +8,7 @@
 		return COMPONENT_INCOMPATIBLE
 	volume = volume_
 	e_range = e_range_
-	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), .proc/play_footstep)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(play_footstep))
 
 /datum/component/footstep/proc/play_footstep()
 	var/turf/open/T = get_turf(parent)
@@ -99,7 +99,7 @@
 			
 			else
 				if(H.dna.species.special_step_sounds)
-					playsound(T, pick(H.dna.species.special_step_sounds), 50, TRUE)
+					playsound(T, pick(H.dna.species.special_step_sounds), H.dna.species.special_step_volume, TRUE)
 				else
 					playsound(T, pick(GLOB.barefootstep[T.barefootstep][1]),
 						GLOB.barefootstep[T.barefootstep][2] * v,

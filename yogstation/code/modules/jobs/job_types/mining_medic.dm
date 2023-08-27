@@ -1,10 +1,8 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
-	description = "Watch over the Shaft Miners and they all inevitably die in Lavaland."
-	flag = MMEDIC
+	description = "Watch over the Shaft Miners as they all inevitably die on Lavaland."
 	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -17,7 +15,7 @@
 
 	outfit = /datum/outfit/job/miningmedic
 
-	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue")
+	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Planetside Health Officer", "Land Search & Rescue", "Lavaland EMT")
 
 	minimal_character_age = 26 //Matches MD
 
@@ -36,6 +34,7 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,
+		/obj/item/storage/firstaid/hypospray/advanced = 5,
 		/obj/item/fulton_core = 1
 	)
 
@@ -58,12 +57,11 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	gloves = /obj/item/clothing/gloves/color/latex/fireproof
 	l_pocket = /obj/item/wormhole_jaunter
 	head = /obj/item/clothing/head/soft/emt/mining
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
-	ipc_box = /obj/item/storage/box/ipc/miner
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

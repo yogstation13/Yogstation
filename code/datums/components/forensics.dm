@@ -30,7 +30,7 @@
 
 /datum/component/forensics/RegisterWithParent()
 	check_blood()
-	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
+	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_act))
 
 /datum/component/forensics/UnregisterFromParent()
     UnregisterSignal(parent, list(COMSIG_COMPONENT_CLEAN_ACT))
@@ -99,7 +99,7 @@
 			if(!ignoregloves)
 				H.gloves.add_fingerprint(H, TRUE) //ignoregloves = 1 to avoid infinite loop.
 				return
-		var/full_print = md5(H.dna.uni_identity)
+		var/full_print = md5(H.dna.unique_identity)
 		LAZYSET(fingerprints, full_print, full_print)
 	return TRUE
 
@@ -212,9 +212,9 @@
 	if(!iscarbon(M))
 		return
 	var/mob/living/carbon/smelly = M
-	if(!smelly?.dna?.uni_identity)
+	if(!smelly?.dna?.unique_identity)
 		return
 	
-	var/smell_print = md5(smelly.dna.uni_identity)
+	var/smell_print = md5(smelly.dna.unique_identity)
 	LAZYSET(scents, smell_print, smelly)
 	return TRUE

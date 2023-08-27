@@ -2,7 +2,7 @@
 	var/is_invoker = TRUE // Part of preserving the plush's capacity to invoke. <3
 
 /obj/item/toy/plush/narplush/hugbox
-	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy? <b>It looks sad.</b>"
+	desc = "A small stuffed doll of the elder goddess Nar'sie. Who thought this was a good children's toy? <b>It looks sad.</b>"
 	is_invoker = FALSE
 
 /obj/item/toy/plush/goatplushie
@@ -17,7 +17,7 @@
 	var/cooldown = 0
 	var/cooldown_modifier = 20
 
-/obj/item/toy/plush/goatplushie/angry/Initialize()
+/obj/item/toy/plush/goatplushie/angry/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 
@@ -42,14 +42,15 @@
 	target = null
 	visible_message(span_notice("[src] looks disinterested."))
 
-/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user)
-	if (obj_flags&EMAGGED)
+/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
 		visible_message(span_notice("[src] already looks angry enough, you shouldn't anger it more."))
-		return
+		return FALSE
 	cooldown_modifier = 5
 	throwforce = 20
 	obj_flags |= EMAGGED
 	visible_message(span_danger("[src] stares at [user] angrily before going docile."))
+	return TRUE
 
 /obj/item/toy/plush/goatplushie/angry/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -116,7 +117,7 @@
 		user.visible_message(span_notice("[user] attempts to stab [src]!"), span_suicide("[I] bounces off of [src]'s back before breaking into millions of pieces... [src] glares at [user]!")) // You fucked up now son
 		I.play_tool_sound(src)
 		qdel(I)
-		addtimer(CALLBACK(user, /mob/living/.proc/gib), 3 SECONDS)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib)), 3 SECONDS)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())

@@ -21,7 +21,7 @@
 
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ROBO_CONTROL)
 
-/obj/machinery/navbeacon/Initialize()
+/obj/machinery/navbeacon/Initialize(mapload)
 	. = ..()
 
 	set_codes()
@@ -72,15 +72,17 @@
 // hide the object if turf is intact
 /obj/machinery/navbeacon/hide(intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // update the icon_state
-/obj/machinery/navbeacon/update_icon()
-	var/state="navbeacon[open]"
+/obj/machinery/navbeacon/update_icon_state()
+	. = ..()
+	var/state = "navbeacon[open]"
 
 	if(invisibility)
-		icon_state = "[state]-f"	// if invisible, set icon to faded version
-									// in case revealed by T-scanner
+		// if invisible, set icon to faded version
+		// in case revealed by T-scanner
+		icon_state = "[state]-f"
 	else
 		icon_state = "[state]"
 
@@ -94,7 +96,7 @@
 
 		user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", span_notice("You [open ? "open" : "close"] the beacon's cover."))
 
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(I.GetID())
 		if(open)

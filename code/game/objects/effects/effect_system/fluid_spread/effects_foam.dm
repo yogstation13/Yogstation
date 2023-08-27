@@ -91,15 +91,16 @@
 			var/turf/turf = object.loc
 			if(turf.underfloor_accessibility < UNDERFLOOR_INTERACTABLE && object.level == 1) //hidden under the floor
 				continue
-		reagents.reaction(object, VAPOR, fraction)
+		reagents.reaction(object, TOUCH|VAPOR, fraction)
 
 	var/hit = 0
 	for(var/mob/living/foamer in location)
-		hit += foam_mob(foamer, delta_time)
+		if(istype(foamer) && !foamer.foam_delay)
+			hit += foam_mob(foamer, delta_time)
 	if(hit)
 		lifetime += ds_delta_time //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 
-	reagents.reaction(location, VAPOR, fraction)
+	reagents.reaction(location, TOUCH|VAPOR, fraction)
 
 /**
  * Applies the effect of this foam to a mob.
@@ -117,11 +118,15 @@
 		return FALSE
 	if(!istype(foaming))
 		return FALSE
+	if(foaming.foam_delay)
+		return
 
 	delta_time = min(delta_time SECONDS, lifetime)
 	var/fraction = (delta_time * MINIMUM_FOAM_DILUTION) / (initial(lifetime) * max(MINIMUM_FOAM_DILUTION, group.total_size))
-	reagents.reaction(foaming, VAPOR, fraction)
+	reagents.reaction(foaming, TOUCH|VAPOR, fraction)
 	lifetime -= delta_time
+	foaming.foam_delay = TRUE
+	addtimer(VARSET_CALLBACK(foaming, foam_delay, FALSE), 1 SECONDS)
 	return TRUE
 
 /obj/effect/particle_effect/fluid/foam/spread(delta_time = 0.2 SECONDS)
@@ -223,10 +228,21 @@
 	slippery_foam = FALSE
 	/// The amount of plasma gas this foam has absorbed. To be deposited when the foam dissipates.
 	var/absorbed_plasma = 0
+	/// The turf this foam is affecting. Its flammability is set to -10 and later reset to its initial value.
+	var/turf/open/affecting_turf
 
 /obj/effect/particle_effect/fluid/foam/firefighting/Initialize(mapload)
 	. = ..()
-	//RemoveElement(/datum/element/atmos_sensitive)
+	var/turf/open/T = get_turf(src)
+	if(istype(T))
+		affecting_turf = T
+		affecting_turf.flammability = -10 // set the turf to be non-flammable while the foam is covering it
+	//Remove_element(/datum/element/atmos_sensitive)
+
+/obj/effect/particle_effect/fluid/foam/firefighting/Destroy()
+	if(affecting_turf && !QDELETED(affecting_turf))
+		affecting_turf.flammability = initial(affecting_turf.flammability)
+	return ..()
 
 /obj/effect/particle_effect/fluid/foam/firefighting/process()
 	..()
@@ -235,11 +251,16 @@
 	if(!istype(location))
 		return
 
-	var/obj/effect/hotspot/hotspot = locate() in location
-	if(!(hotspot && location.air))
+	var/obj/effect/hotspot/hotspot = location.active_hotspot
+	var/obj/effect/abstract/turf_fire/turf_fire = location.turf_fire
+	if(!((hotspot||turf_fire) && location.air))
 		return
 
-	QDEL_NULL(hotspot)
+	if(hotspot)
+		QDEL_NULL(hotspot)
+	if(turf_fire)
+		QDEL_NULL(turf_fire)
+
 	var/datum/gas_mixture/air = location.air
 	var/scrub_amt = min(30, air.get_moles(/datum/gas/plasma)) //Absorb some plasma
 	air.adjust_moles(/datum/gas/plasma, -scrub_amt)
@@ -261,7 +282,7 @@
 	if(!istype(foaming))
 		return
 	foaming.adjust_fire_stacks(-2)
-	foaming.ExtinguishMob()
+	foaming.extinguish_mob()
 
 /// A factory which produces firefighting foam
 /datum/effect_system/fluid_spread/foam/firefighting
@@ -395,10 +416,10 @@
 	for(var/obj/machinery/atmospherics/components/unary/comp in location)
 		if(!comp.welded)
 			comp.welded = TRUE
-			comp.update_icon()
+			comp.update_appearance(UPDATE_ICON)
 			comp.visible_message(span_danger("[comp] sealed shut!"))
 
 	for(var/mob/living/potential_tinder in location)
-		potential_tinder.ExtinguishMob()
+		potential_tinder.extinguish_mob()
 	for(var/obj/item/potential_tinder in location)
 		potential_tinder.extinguish()

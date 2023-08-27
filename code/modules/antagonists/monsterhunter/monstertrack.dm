@@ -1,24 +1,24 @@
 /// From 'Cellular Emporium'... somehow?
-/datum/action/bloodsucker/trackvamp
+/datum/action/cooldown/bloodsucker/trackvamp
 	name = "Track Monster"
 	desc = "Take a moment to look for clues of any nearby monsters.<br>These creatures are slippery, and often look like the crew."
+	background_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	background_icon_state = "vamp_power_off"
 	button_icon_state = "power_hunter"
 	power_flags = BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = NONE
-	cooldown = 30 SECONDS
+	cooldown_time = 30 SECONDS
 	bloodcost = 0
 	/// Removed, set to TRUE to re-add, either here to be a default function, or in-game through VV for neat Admin stuff -Willard
 	var/give_pinpointer = FALSE
 
-/datum/action/bloodsucker/trackvamp/ActivatePower()
+/datum/action/cooldown/bloodsucker/trackvamp/ActivatePower()
 	. = ..()
 	/// Return text indicating direction
 	to_chat(owner, span_notice("You look around, scanning your environment and discerning signs of any filthy, wretched affronts to the natural order..."))
-	if(!do_mob(owner, owner, 6 SECONDS))
+	if(!do_after(owner, 6 SECONDS))
 		to_chat(owner,span_warning("You were interrupted and lost the tracks!"))
 		DeactivatePower()
 		return
@@ -28,7 +28,7 @@
 	display_proximity()
 	DeactivatePower()
 
-/datum/action/bloodsucker/trackvamp/proc/display_proximity()
+/datum/action/cooldown/bloodsucker/trackvamp/proc/display_proximity()
 	/// Pick target
 	var/turf/my_loc = get_turf(owner)
 	var/closest_dist = 9999

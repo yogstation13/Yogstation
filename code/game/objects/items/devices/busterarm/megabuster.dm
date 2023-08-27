@@ -1,7 +1,7 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
@@ -14,13 +14,11 @@
 	cooldown_time = 20 SECONDS
 
 /// Left buster-arm means megabuster goes in left hand
-/datum/action/cooldown/buster/megabuster/l/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/buster/megabuster/l/Activate()
 	var/obj/item/buster/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s left arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	if(do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE))
+	if(do_after(owner, 2 SECONDS, owner, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		if(!owner.put_in_l_hand(B))
 			to_chat(owner, span_warning("You can't do this with your left hand full!"))
 		else
@@ -30,13 +28,11 @@
 			StartCooldown()
 
 /// Right buster-arm means megabuster goes in right hand
-/datum/action/cooldown/buster/megabuster/r/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/buster/megabuster/r/Activate()
 	var/obj/item/buster/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s right arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	if(do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE))
+	if(do_after(owner, 2 SECONDS, owner, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		if(!owner.put_in_r_hand(B))
 			to_chat(owner, span_warning("You can't do this with your right hand full!"))
 		else
@@ -45,21 +41,21 @@
 				owner.swap_hand(0)
 			StartCooldown()
 
-/datum/action/cooldown/buster/megabuster/l/IsAvailable()
-	. = ..()
+/datum/action/cooldown/buster/megabuster/l/IsAvailable(feedback = FALSE)
 	var/mob/living/O = owner
 	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
 	if(L?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
+	return ..()
 
-/datum/action/cooldown/buster/megabuster/r/IsAvailable()
-	. = ..()
+/datum/action/cooldown/buster/megabuster/r/IsAvailable(feedback = FALSE)
 	var/mob/living/O = owner
 	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
 	if(R?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
+	return ..()
 
 ////////////////// Megabuster Item //////////////////
 /obj/item/buster/megabuster
@@ -86,7 +82,7 @@
 	. = span_rose("With a single snap, [user] sets [A] alight with sparks from [user.p_their()] metal fingers.")
 
 /// Only lasts 5 seconds, fades out
-/obj/item/buster/megabuster/Initialize(mob/living/user)
+/obj/item/buster/megabuster/Initialize(mapload, mob/living/user)
 	. = ..()
 	animate(src, alpha = 50, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)

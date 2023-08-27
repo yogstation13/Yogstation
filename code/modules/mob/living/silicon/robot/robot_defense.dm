@@ -36,17 +36,14 @@
 		flash_act()
 		var/stunprob = M.powerlevel * 7 + 10
 		if(prob(stunprob) && M.powerlevel >= 8)
-			adjustBruteLoss(M.powerlevel * rand(6,10))
+			adjustBruteLoss(run_armor(M.powerlevel * rand(6,10), BRUTE, MELEE))
 
 	var/damage = rand(1, 3)
-
 	if(M.is_adult)
 		damage = rand(20, 40)
 	else
 		damage = rand(5, 35)
-	damage = round(damage / 2) // borgs receive half damage
-	adjustBruteLoss(damage)
-
+	adjustBruteLoss(run_armor(damage/2, BRUTE, MELEE)) // Cyborgs receive half damage plus armor.
 	return
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -54,7 +51,7 @@
 	add_fingerprint(user)
 	if(opened && !wiresexposed && !issilicon(user))
 		if(cell)
-			cell.update_icon()
+			cell.update_appearance(UPDATE_ICON)
 			cell.add_fingerprint(user)
 			user.put_in_active_hand(cell)
 			to_chat(user, span_notice("You remove \the [cell]."))
@@ -72,7 +69,7 @@
 
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
-		IgniteMob()
+		ignite_mob()
 
 
 /mob/living/silicon/robot/emp_act(severity)
@@ -86,23 +83,23 @@
 			Stun(60)
 
 
-/mob/living/silicon/robot/emag_act(mob/user)
-	if(user == src)//To prevent syndieborgs from emagging themselves
-		return
-	if(!opened)//Cover is closed
-		if(locked)
-			to_chat(user, span_notice("You emag the cover lock."))
-			locked = FALSE
-			if(shell) //A warning to Traitors who may not know that emagging AI shells does not slave them.
-				to_chat(user, span_boldwarning("[src] seems to be controlled remotely! Emagging the interface may not work as expected."))
-		else
+/mob/living/silicon/robot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(user == src) // To prevent syndieborgs from emagging themselves.
+		return FALSE
+	if(!opened) // Cover is closed.
+		if(!locked)
 			to_chat(user, span_warning("The cover is already unlocked!"))
-		return
+			return FALSE
+		to_chat(user, span_notice("You emag the cover lock."))
+		locked = FALSE
+		if(shell) // A warning to Traitors who may not know that emagging AI shells does not slave them.
+			to_chat(user, span_boldwarning("[src] seems to be controlled remotely! Emagging the interface may not work as expected."))
+		return TRUE
 	if(world.time < emag_cooldown)
-		return
+		return FALSE
 	if(wiresexposed)
 		to_chat(user, span_warning("You must unexpose the wires first!"))
-		return
+		return FALSE
 
 	to_chat(user, span_notice("You emag [src]'s interface."))
 	emag_cooldown = world.time + 100
@@ -111,20 +108,20 @@
 		to_chat(src, "[span_nezbere("\"[text2ratvar("You will serve Engine above all else")]!\"")]\n\
 		[span_danger("ALERT: Subversion attempt denied.")]")
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they serve only Ratvar.")
-		return
+		return TRUE // Technically a failure, but they got information out of it so... success!
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/traitor))
 		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
 		logevent("ALERT: Foreign software execution prevented.")
 		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]] successfully defended against subversion."))
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
-		return
+		return TRUE // Don't want to let them on.
 
-	if(shell) //AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
+	if(shell) // AI shells cannot be emagged, so we try to make it look like a standard reset. Smart players may see through this, however.
 		to_chat(user, span_danger("[src] is remotely controlled! Your emag attempt has triggered a system reset instead!"))
 		log_game("[key_name(user)] attempted to emag an AI shell belonging to [key_name(src) ? key_name(src) : connected_ai]. The shell has been reset as a result.")
 		ResetModule()
-		return
+		return TRUE
 
 	SetEmagged(1)
 	SetStun(60) //Borgs were getting into trouble because they would attack the emagger before the new laws were shown
@@ -171,11 +168,12 @@
 		laws.associate(src)
 		
 	update_icons()
-
+	return TRUE
 
 /mob/living/silicon/robot/blob_act(obj/structure/blob/B)
 	if(stat != DEAD)
-		adjustBruteLoss(30)
+		var/damage = run_armor(30, BRUTE, MELEE)
+		adjustBruteLoss(damage)
 	else
 		gib()
 	return TRUE
@@ -187,13 +185,13 @@
 			return
 		if(2)
 			if (stat != DEAD)
-				adjustBruteLoss(60)
-				adjustFireLoss(60)
+				adjustBruteLoss(run_armor(60, BRUTE, BOMB))
+				adjustFireLoss(run_armor(60, BURN, BOMB))
 		if(3)
 			if (stat != DEAD)
-				adjustBruteLoss(30)
+				adjustBruteLoss(run_armor(30, BRUTE, BOMB))
 
-/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj, def_zone)
+/mob/living/silicon/robot/bullet_act(obj/item/projectile/Proj, def_zone)
 	. = ..()
 	updatehealth()
 	if(prob(75) && Proj.damage > 0)

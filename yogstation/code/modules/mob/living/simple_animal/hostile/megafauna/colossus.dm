@@ -28,10 +28,10 @@
 		telegraph()
 
 		if(health < maxHealth/3)
-			INVOKE_ASYNC(src, .proc/double_spiral)
+			INVOKE_ASYNC(src, PROC_REF(double_spiral))
 		else
 			visible_message(span_colossus("\"<b>Judgement.</b>\""))
-			INVOKE_ASYNC(src, .proc/spiral_shoot, pick(TRUE, FALSE))
+			INVOKE_ASYNC(src, PROC_REF(spiral_shoot), pick(TRUE, FALSE))
 	//Yogs begin - Added health gate and telegraph
 	else if(prob(20) && health < maxHealth/2)
 		telegraph()
@@ -53,4 +53,4 @@
 			//Yogs end
 		else
 			ranged_cooldown = world.time + 40
-			INVOKE_ASYNC(src, .proc/alternating_dir_shots)
+			INVOKE_ASYNC(src, PROC_REF(alternating_dir_shots))

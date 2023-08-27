@@ -260,6 +260,16 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
+/datum/map_template/ruin/station/box/chapel/chapel1
+	id = "chapel1"
+	suffix = "chapel1.dmm"
+	name = "Chapel 1"
+
+/datum/map_template/ruin/station/box/chapel/chapel2
+	id = "chapel2"
+	suffix = "chapel2.dmm"
+	name = "Chapel 2"
+
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 
@@ -1187,7 +1197,7 @@
 	id = "junction"
 	suffix = "10x10_junction.dmm"
 	name = "Maint junction"
-
+	
 ///Lasertag-Author: Jcat
 /datum/map_template/ruin/station/maint/tenxten/lasertag
 	id = "lasertag"

@@ -10,7 +10,7 @@
 	crit_force = force
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(on_attack))
 	crit_damage = crit_force * 2 //random crits deal 3x damage
 	START_PROCESSING(SSobj,src)
 

@@ -8,7 +8,7 @@
 	taste_description = "bitterness"
 	taste_mult = 1.2
 	var/toxpwr = 1.5
-	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/life() if there isn't another non-silent toxin present.
+	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/Life(seconds_per_tick = SSMOBS_DT, times_fired) if there isn't another non-silent toxin present.
 
 /datum/reagent/toxin/on_mob_life(mob/living/carbon/M)
 	if(toxpwr)
@@ -31,17 +31,18 @@
 	taste_description = "slime"
 	taste_mult = 0.9
 
-/datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method=TOUCH, reac_volume)
+/datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!..())
 		return
 	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
-	if((method==VAPOR && prob(min(33, reac_volume))) || ((method==INGEST || method==PATCH || method==INJECT) && reac_volume >= 5))
-		M.randmuti()
+	if(((methods & VAPOR) && prob(min(33, reac_volume) * permeability)) || ((methods & (INGEST|PATCH|INJECT)) && reac_volume >= 5))
+		M.random_mutate_unique_identity()
+		M.random_mutate_unique_features()
 		if(prob(98))
-			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			M.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 		else
-			M.easy_randmut(POSITIVE)
+			M.easy_random_mutate(POSITIVE)
 		M.updateappearance()
 		M.domutcheck()
 	..()
@@ -58,12 +59,20 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
+	accelerant_quality = 10
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
 	C.adjustPlasma(20)
+	if(isplasmaman(C))
+		toxpwr = 0
+		C.adjustBruteLoss(-0.25*REM, FALSE)
+		C.adjustFireLoss(-0.25*REM, FALSE)
+		C.adjustToxLoss(-0.5*REM, FALSE)
+	else
+		toxpwr = initial(toxpwr)
 	return ..()
 
 /datum/reagent/toxin/plasma/reaction_obj(obj/O, reac_volume)
@@ -78,8 +87,8 @@
 		T.atmos_spawn_air("plasma=[reac_volume];TEMP=[temp]")
 	return
 
-/datum/reagent/toxin/plasma/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with plasma is stronger than fuel!
-	if(method == TOUCH || method == VAPOR)
+/datum/reagent/toxin/plasma/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with plasma is stronger than fuel!
+	if(methods & (TOUCH|VAPOR))
 		M.adjust_fire_stacks(reac_volume / 5)
 		return
 	..()
@@ -140,18 +149,6 @@
 		. = 1
 	..()
 
-/datum/reagent/toxin/minttoxin
-	name = "Mint Toxin"
-	description = "Useful for dealing with undesirable customers."
-	color = "#CF3600" // rgb: 207, 54, 0
-	toxpwr = 0
-	taste_description = "mint"
-
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M)
-	if(HAS_TRAIT(M, TRAIT_FAT))
-		M.gib()
-	return ..()
-
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded spess carp."
@@ -185,9 +182,9 @@
 	L.cure_fakedeath(type)
 	..()
 
-/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
 	L.adjustOxyLoss(0.5*REM, 0)
-	if(method == INGEST)
+	if(methods & INGEST)
 		var/datum/reagent/toxin/zombiepowder/Z = L.reagents.has_reagent(/datum/reagent/toxin/zombiepowder)
 		if(istype(Z))
 			Z.fakedeath_active = TRUE
@@ -198,11 +195,12 @@
 		return TRUE
 	switch(current_cycle)
 		if(1 to 5)
-			M.confused += 1
-			M.drowsyness += 1
-			M.slurring += 3
+			M.adjust_confusion(1 SECONDS)
+			M.adjust_drowsiness(1 SECONDS)
+			M.adjust_slurring(3 SECONDS)
 		if(5 to 8)
 			M.adjustStaminaLoss(40, 0)
+			M.clear_stamina_regen()
 		if(9 to INFINITY)
 			fakedeath_active = TRUE
 			M.fakedeath(type)
@@ -236,7 +234,7 @@
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/carbon/M)
 	if(!M.has_trauma_type(/datum/brain_trauma/mild/reality_dissociation))
-		M.hallucination += 5
+		M.adjust_hallucinations(20 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/relaxant
@@ -270,8 +268,8 @@
 		var/obj/structure/spacevine/SV = O
 		SV.on_chem_effect(src)
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == VAPOR)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+	if(methods & VAPOR)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(!C.wear_mask) // If not wearing a mask
@@ -289,9 +287,9 @@
 	color = "#4B004B" // rgb: 75, 0, 75
 	toxpwr = 1
 
-/datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	..()
-	if(MOB_BUG in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_BUG)
 		var/damage = min(round(0.4*reac_volume, 0.1),10)
 		M.adjustToxLoss(damage)
 
@@ -313,10 +311,11 @@
 	color = "#9ACD32"
 	toxpwr = 0.5
 	taste_description = "burning"
+	accelerant_quality = 10
 
 /datum/reagent/toxin/spore_burning/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
-	M.IgniteMob()
+	M.ignite_mob()
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate
@@ -328,18 +327,18 @@
 	toxpwr = 0
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
-/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/carbon/affected_mob)
 	switch(current_cycle)
 		if(1 to 10)
-			M.confused += 2
-			M.drowsyness += 2
+			affected_mob.adjust_confusion(2 SECONDS * REM)
+			affected_mob.adjust_drowsiness(4 SECONDS * REM)
 		if(10 to 50)
-			M.Sleeping(40, 0)
-			. = 1
+			affected_mob.Sleeping(4 SECONDS * REM)
+			. = TRUE
 		if(51 to INFINITY)
-			M.Sleeping(40, 0)
-			M.adjustToxLoss((current_cycle - 50)*REM, 0)
-			. = 1
+			affected_mob.Sleeping(4 SECONDS * REM )
+			affected_mob.adjustToxLoss(1 * (current_cycle - 50) * REM, FALSE)
+			. = TRUE
 	..()
 
 /datum/reagent/toxin/fakebeer	//disguised as normal beer for use by emagged brobots
@@ -397,9 +396,47 @@
 
 /datum/reagent/toxin/staminatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(REM * data, 0)
+	M.clear_stamina_regen()
 	data = max(data - 1, 3)
 	..()
 	. = 1
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien
+	name = "Alien Neurotoxin"
+	description = "A strong neurotoxin that puts the subject into a death-like state. Now 100% more concentrated!"
+	color = "#2E2E61" // rgb: 46, 46, 97
+	taste_description = "a numbing sensation"
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	glass_icon_state = "neurotoxinglass"
+	glass_name = "Neurotoxin"
+	glass_desc = "A drink that is guaranteed to knock you silly."
+	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
+	var/selected = pick(paralyzeparts)
+	paralyzeparts -= selected
+	return selected
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_life(mob/living/carbon/M)
+	M.adjust_dizzy(2 SECONDS)
+	if(prob(40))
+		if(prob(50))
+			var/part = pickparalyze()
+			if(part)
+				M.balloon_alert(M, "your limbs go numb!")
+				ADD_TRAIT(M, part, type)
+		else
+			M.drop_all_held_items()
+			to_chat(M, span_warning("You can't feel your hands!"))
+	. = 1
+	..()
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_end_metabolize(mob/living/carbon/M)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_LEG, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_LEG, type)
+	. = ..()
 
 /datum/reagent/toxin/polonium
 	name = "Polonium"
@@ -547,9 +584,9 @@
 	color = "#C8C8C8"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 
-/datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == TOUCH || method == VAPOR)
-		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume)
+/datum/reagent/itching_powder/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(methods & (TOUCH|PATCH))
+		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume * permeability)
 
 /datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))
@@ -632,6 +669,7 @@
 	if(current_cycle >= 10)
 		M.Sleeping(40, 0)
 	M.adjustStaminaLoss(10*REM, 0)
+	M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -812,17 +850,17 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(C))
 		return
-	reac_volume = round(reac_volume,0.1)
-	if(method == INGEST)
+	reac_volume = round(reac_volume * permeability, 0.1)
+	if(methods & INGEST)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
 			C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
 		return
-	if(method == INJECT)
+	if(methods & INJECT)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
-			C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
+			C.adjustBruteLoss(1.5 * min(2*toxpwr, reac_volume * toxpwr))
 		return
 	C.acid_act(acidpwr, reac_volume)
 
@@ -903,6 +941,7 @@
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(7.5, 0)
+	M.clear_stamina_regen()
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.adjustBruteLoss(0.5, 0)
 	if(prob(20))
@@ -960,8 +999,9 @@
 
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
+	M.clear_stamina_regen()
 	..()
-	
+
 /datum/reagent/toxin/mushroom_powder
 	name = "Mushroom Powder"
 	description = "Finely ground polypore mushrooms, ready to be steeped in water to make mushroom tea."

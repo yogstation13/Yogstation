@@ -128,7 +128,7 @@
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
@@ -175,7 +175,7 @@
 	wound_bonus = 2
 	bare_wound_bonus = 4
 
-/obj/item/scalpel/Initialize()
+/obj/item/scalpel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
@@ -234,7 +234,7 @@
 	wound_bonus = 5
 	bare_wound_bonus = 3
 
-/obj/item/circular_saw/Initialize()
+/obj/item/circular_saw/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
@@ -479,10 +479,10 @@
 	bolts = FALSE
 	var/obj/picked_up = /obj/item/surgical_mat
 
-/obj/structure/bed/surgical_mat/ComponentInitialize()
+/obj/structure/bed/surgical_mat/Initialize(mapload)
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
-	SB.success_chance = 0.8
+	SB.success_chance = 0.95
 
 /obj/structure/bed/surgical_mat/MouseDrop(over_object, src_location, over_location)
 	. = ..()
@@ -538,10 +538,10 @@
 	icon_state = "opmat_goli"
 	picked_up = /obj/item/surgical_mat/goliath
 
-/obj/structure/bed/surgical_mat/goliath/ComponentInitialize()
+/obj/structure/bed/surgical_mat/goliath/Initialize(mapload)
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
-	SB.success_chance = 0.85
+	SB.success_chance = 0.97
 
 /obj/item/surgical_mat/goliath
 	name = "goliath hide surgical mat"

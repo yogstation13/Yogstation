@@ -3,7 +3,6 @@
 
 
 #define CUT_TIME 100
-#define CLIMB_TIME 150
 
 #define NO_HOLE 0 //section is intact
 #define MEDIUM_HOLE 1 //medium hole in the section - can climb through
@@ -23,7 +22,7 @@
 	var/hole_size= NO_HOLE
 	var/invulnerable = FALSE
 
-/obj/structure/fence/Initialize()
+/obj/structure/fence/Initialize(mapload)
 	. = ..()
 
 	update_cut_status()
@@ -73,17 +72,17 @@
 		user.visible_message(span_danger("\The [user] starts cutting through \the [src] with \the [W]."),\
 		span_danger("You start cutting through \the [src] with \the [W]."))
 
-		if(do_after(user, CUT_TIME*W.toolspeed, src))
+		if(do_after(user, CUT_TIME * W.toolspeed, src))
 			if(current_stage == hole_size)
 				switch(++hole_size)
 					if(MEDIUM_HOLE)
 						visible_message(span_notice("\The [user] cuts into \the [src] some more."))
 						to_chat(user, span_info("You could probably fit yourself through that hole now. Although climbing through would be much faster if you made it even bigger."))
-						climbable = TRUE
+						AddElement(/datum/element/climbable)
 					if(LARGE_HOLE)
 						visible_message(span_notice("\The [user] completely cuts through \the [src]."))
 						to_chat(user, span_info("The hole in \the [src] is now big enough to walk through."))
-						climbable = FALSE
+						RemoveElement(/datum/element/climbable)
 
 				update_cut_status()
 
@@ -111,7 +110,7 @@
 	cuttable = FALSE
 	var/open = FALSE
 
-/obj/structure/fence/door/Initialize()
+/obj/structure/fence/door/Initialize(mapload)
 	. = ..()
 
 	update_door_status()
@@ -152,7 +151,6 @@
 	return TRUE
 
 #undef CUT_TIME
-#undef CLIMB_TIME
 
 #undef NO_HOLE
 #undef MEDIUM_HOLE

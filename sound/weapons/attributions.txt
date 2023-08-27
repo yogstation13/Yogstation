@@ -16,3 +16,7 @@ revolverspin1, revolverspin2, and revolverspin3 are cut from a recording
 captured by the BBC
 "Gunfire & Guns: Revolver, Chambers spinning.": http://bbcsfx.acropolis.org.uk/assets/07027165.wav
 bbc.co.uk - (c) copyright 2018 BBC
+
+splatter.ogg adapted from https://freesound.org/people/Rocktopus/sounds/233418/
+
+revolver357tgmc.ogg & revolver38tgmc.ogg ported from https://github.com/tgstation/TerraGov-Marine-Corps/pull/5261 and uses CC-BY-NC-SA 3.0 US - https://creativecommons.org/licenses/by-nc-sa/3.0/us/

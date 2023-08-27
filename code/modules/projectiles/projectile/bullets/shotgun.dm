@@ -1,8 +1,8 @@
 /obj/item/projectile/bullet/shotgun/slug
 	name = "12g shotgun slug"
 	speed = 0.5 //Shotgun = slower
-	var/tile_dropoff = 3
-	var/tile_dropoff_s = 2.25
+	var/tile_dropoff = 1.5
+	var/tile_dropoff_s = 1
 	damage = 46 //About 2/3's the damage of buckshot but doesn't suffer from spread or negative AP
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
@@ -10,7 +10,7 @@
 /obj/item/projectile/bullet/shotgun/slug/syndie
 	name = "12g syndicate shotgun slug"
 	damage = 60
-	tile_dropoff = 1.5
+	tile_dropoff = 0.5
 
 /obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"
@@ -54,7 +54,7 @@
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 3, 2, force = MOVE_FORCE_OVERPOWERING)
 
-/obj/item/projectile/bullet/shotgun/slug/meteor/Initialize()
+/obj/item/projectile/bullet/shotgun/slug/meteor/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
 
@@ -184,4 +184,12 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
-	
+
+/obj/item/projectile/bullet/pellet/hardlight
+	name = "scattered hardlight beam"
+	icon_state = "disabler_bullet"
+	damage = 10 // Less damage than buckshot or rubbershot
+	flag = ENERGY
+	damage_type = STAMINA // Doesn't do "real" damage
+	sharpness = SHARP_NONE
+	armour_penetration = -40 // Energy armor is usually very low so uhh

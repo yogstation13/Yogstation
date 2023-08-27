@@ -11,7 +11,7 @@
 	friendly = "scans"
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	speak_emote = list("screeches")
-	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC, MOB_EPIC)
+	mob_biotypes = MOB_INORGANIC|MOB_ROBOTIC|MOB_EPIC
 	armour_penetration = 40
 	melee_damage_lower = 35
 	melee_damage_upper = 35
@@ -38,35 +38,35 @@
 
 /datum/action/innate/megafauna_attack/spiralpikes
 	name = "Resonant Spiral"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "shield"
 	chosen_message = span_boldannounce("You are now firing in a spiral.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/cardinalpikes
 	name = "Cardinal Pikes"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "launchpad_target"
 	chosen_message = span_boldannounce("You are now firing in 8 directions.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/backup
 	name = "Warp Mini Mechanoid"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "curse"
 	chosen_message = span_boldannounce("You are now summoning allies.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/stalnade
 	name = "Volatile Orb Cone"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "m_shield"
 	chosen_message = span_boldannounce("You are now firing a cone of slow, high damaging projectiles.")
 	chosen_attack_num = 4
 
 /datum/action/innate/megafauna_attack/stalnadespiral
 	name = "Volatile Orb Spiral"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "shield-old"
 	chosen_message = span_boldannounce("You are now firing a spiral of slow, high damaging projectiles.")
 	chosen_attack_num = 5
@@ -301,16 +301,16 @@
 	attacktext = "rends"
 	melee_damage_lower = 6
 	melee_damage_upper = 10
-	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC)
+	mob_biotypes = MOB_INORGANIC|MOB_ROBOTIC
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attack_sound = 'sound/weapons/pierce_slow.ogg'
 	speak_emote = list("buzzes")
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(death)), 30 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged
 	ranged = 1

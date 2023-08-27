@@ -14,9 +14,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/inert = FALSE
 
-/obj/item/magmite_parts/Initialize()
+/obj/item/magmite_parts/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/go_inert), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(go_inert)), 10 MINUTES)
 
 /obj/item/magmite_parts/proc/go_inert()
 	if(inert)
@@ -34,7 +34,7 @@
 	name = initial(name)
 	icon_state = initial(icon_state)
 	desc = initial(desc)
-	addtimer(CALLBACK(src, .proc/go_inert), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(go_inert)), 10 MINUTES)
 
 /obj/item/magmite_parts/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(inert)
@@ -67,13 +67,13 @@
 			user.put_in_hand(newgun)
 			to_chat(user,"Harsh tendrils wrap around the plasma cutter shotgun, merging the parts and cutter to form a mega plasma cutter shotgun.")
 			qdel(src)
-		if(/obj/item/twohanded/kinetic_crusher)
-			var/obj/item/twohanded/kinetic_crusher/gun = target
+		if(/obj/item/kinetic_crusher)
+			var/obj/item/kinetic_crusher/gun = target
 			for(var/t in gun.trophies)
 				var/obj/item/crusher_trophy/T = t
 				T.remove_from(gun, user)
 			qdel(gun)
-			var/obj/item/twohanded/kinetic_crusher/mega/newgun = new(get_turf(user))
+			var/obj/item/kinetic_crusher/mega/newgun = new(get_turf(user))
 			user.put_in_hand(newgun)
 			to_chat(user,"Harsh tendrils wrap around the kinetic crusher, merging the parts and cutter to form a mega kinetic crusher.")
 			qdel(src)

@@ -18,7 +18,7 @@
 	. += span_notice("Paper level: [stored_paper]/[max_paper].")
 
 
-/obj/item/computer_hardware/printer/proc/print_text(var/text_to_print, var/paper_title = "", var/do_encode = TRUE)
+/obj/item/computer_hardware/printer/proc/print_text(text_to_print, paper_title = "", do_encode = TRUE)
 	if(!stored_paper)
 		return FALSE
 	if(!check_functionality())
@@ -37,7 +37,7 @@
 		P.info = text_to_print
 	if(paper_title)
 		P.name = paper_title
-	P.update_icon()
+	P.update_appearance(UPDATE_ICON)
 	P.reload_fields()
 	stored_paper--
 	P = null
@@ -52,7 +52,7 @@
 	// Damaged printer causes the resulting paper to be somewhat harder to read.
 	if(damage > damage_malfunction)
 		P.info = stars(P.info, 100-malfunction_probability)
-	P.update_icon()
+	P.update_appearance(UPDATE_ICON)
 	P.reload_fields()
 	stored_paper--
 	P = null

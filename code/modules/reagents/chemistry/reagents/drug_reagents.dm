@@ -28,9 +28,10 @@
 	to_chat(M, span_userdanger("You start tripping hard!"))
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 
-/datum/reagent/drug/space_drugs/overdose_process(mob/living/M)
-	if(M.hallucination < volume && prob(20))
-		M.hallucination += 5
+/datum/reagent/drug/space_drugs/overdose_process(mob/living/affected_mob)
+	var/hallucination_duration_in_seconds = (affected_mob.get_timed_status_effect_duration(/datum/status_effect/hallucination) / 10)
+	if(hallucination_duration_in_seconds < volume && prob(20))
+		affected_mob.adjust_hallucinations(10 SECONDS)
 	..()
 
 /datum/reagent/drug/nicotine
@@ -67,24 +68,24 @@
 
 /datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
 	if(prob(5) && iscarbon(M))
-		M.Jitter(10)
+		M.adjust_jitter(10 SECONDS)
 	..()
 
 /datum/reagent/drug/nicotine/addiction_act_stage2(mob/living/M)
 	if(prob(20) && iscarbon(M))
-		M.Jitter(10)
+		M.adjust_jitter(10 SECONDS)
 	..()
 	. = 1
 
 /datum/reagent/drug/nicotine/addiction_act_stage3(mob/living/M)
 	if(prob(20) && iscarbon(M))
-		M.Jitter(10)
+		M.adjust_jitter(10 SECONDS)
 	..()
 	. = 1
 
 /datum/reagent/drug/nicotine/addiction_act_stage4(mob/living/M)
 	if(prob(40) && iscarbon(M))
-		M.Jitter(10)
+		M.adjust_jitter(10 SECONDS)
 	..()
 	. = 1
 
@@ -191,9 +192,9 @@
 	description = "Neutralizes mannitol. Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	overdose_threshold = 20
-	addiction_threshold = 10
-	metabolization_rate = 0.75 * REAGENTS_METABOLISM
+	overdose_threshold = 40
+	addiction_threshold = 20 // make sure this is more than what you can fit in a syringe
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
 	..()
@@ -213,7 +214,7 @@
 	M.AdjustParalyzed(-40, FALSE)
 	M.AdjustImmobilized(-40, FALSE)
 	M.adjustStaminaLoss(-2, 0)
-	M.Jitter(2)
+	M.adjust_jitter(2 SECONDS)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4))
 	if(prob(5))
 		M.emote(pick("twitch", "shiver"))
@@ -235,14 +236,14 @@
 	. = 1
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage1(mob/living/M)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	if(prob(20))
 		M.emote(pick("twitch","drool","moan"))
 	..()
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage2(mob/living/M)
-	M.Jitter(10)
-	M.Dizzy(10)
+	M.adjust_jitter(10 SECONDS)
+	M.adjust_dizzy(10)
 	if(prob(30))
 		M.emote(pick("twitch","drool","moan"))
 	..()
@@ -251,8 +252,8 @@
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 4, i++)
 			step(M, pick(GLOB.cardinals))
-	M.Jitter(15)
-	M.Dizzy(15)
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15)
 	if(prob(40))
 		M.emote(pick("twitch","drool","moan"))
 	..()
@@ -261,8 +262,8 @@
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
-	M.Jitter(20)
-	M.Dizzy(20)
+	M.adjust_jitter(20 SECONDS)
+	M.adjust_dizzy(20)
 	M.adjustToxLoss(5, 0)
 	if(prob(50))
 		M.emote(pick("twitch","drool","moan"))
@@ -274,8 +275,9 @@
 	description = "Makes you impervious to stuns and grants a stamina regeneration buff, but you will be a nearly uncontrollable tramp-bearded raving lunatic."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	overdose_threshold = 20
-	addiction_threshold = 10
+	overdose_threshold = 40
+	addiction_threshold = 20 // make sure this is more than one you can fit in a syringe
+	metabolization_rate = REAGENTS_METABOLISM
 	taste_description = "salt" // because they're bathsalts?
 	var/datum/brain_trauma/special/psychotic_brawling/bath_salts/rage
 
@@ -307,7 +309,7 @@
 		to_chat(M, span_notice("[high_message]"))
 	M.adjustStaminaLoss(-5, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 4)
-	M.hallucination += 5
+	M.adjust_hallucinations(5 SECONDS)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		step(M, pick(GLOB.cardinals))
 		step(M, pick(GLOB.cardinals))
@@ -315,7 +317,7 @@
 	. = 1
 
 /datum/reagent/drug/bath_salts/overdose_process(mob/living/M)
-	M.hallucination += 5
+	M.adjust_hallucinations(5 SECONDS)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i in 1 to 8)
 			step(M, pick(GLOB.cardinals))
@@ -326,47 +328,47 @@
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage1(mob/living/M)
-	M.hallucination += 10
+	M.adjust_hallucinations(5 SECONDS)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 	if(prob(20))
 		M.emote(pick("twitch","drool","moan"))
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage2(mob/living/M)
-	M.hallucination += 20
+	M.adjust_hallucinations(10 SECONDS)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
-	M.Jitter(10)
-	M.Dizzy(10)
+	M.adjust_jitter(10 SECONDS)
+	M.adjust_dizzy(10 SECONDS)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 	if(prob(30))
 		M.emote(pick("twitch","drool","moan"))
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage3(mob/living/M)
-	M.hallucination += 30
+	M.adjust_hallucinations(30 SECONDS)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 12, i++)
 			step(M, pick(GLOB.cardinals))
-	M.Jitter(15)
-	M.Dizzy(15)
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15 SECONDS)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 	if(prob(40))
 		M.emote(pick("twitch","drool","moan"))
 	..()
 
 /datum/reagent/drug/bath_salts/addiction_act_stage4(mob/living/carbon/human/M)
-	M.hallucination += 30
+	M.adjust_hallucinations(30 SECONDS)
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 16, i++)
 			step(M, pick(GLOB.cardinals))
-	M.Jitter(50)
-	M.Dizzy(50)
+	M.adjust_jitter(50 SECONDS)
+	M.adjust_dizzy(50 SECONDS)
 	M.adjustToxLoss(5, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 	if(prob(50))
@@ -410,11 +412,10 @@
 	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "happiness_drug")
 	..()
 
-/datum/reagent/drug/happiness/on_mob_life(mob/living/carbon/M)
-	M.jitteriness = 0
-	M.confused = 0
-	M.disgust = 0
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
+/datum/reagent/drug/happiness/on_mob_life(mob/living/carbon/affected_mob)
+	affected_mob.remove_status_effect(/datum/status_effect/jitter)
+	affected_mob.remove_status_effect(/datum/status_effect/confusion)
+	affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
 	..()
 	. = 1
 
@@ -427,7 +428,7 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "happiness_drug", /datum/mood_event/happiness_drug_good_od)
 			if(2)
 				M.emote("sway")
-				M.Dizzy(25)
+				M.adjust_dizzy(25)
 			if(3)
 				M.emote("frown")
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "happiness_drug", /datum/mood_event/happiness_drug_bad_od)
@@ -438,7 +439,7 @@
 /datum/reagent/drug/happiness/addiction_act_stage1(mob/living/M)// all work and no play makes jack a dull boy
 	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 	mood.setSanity(min(mood.sanity, SANITY_DISTURBED))
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	if(prob(20))
 		M.emote(pick("twitch","laugh","frown"))
 	..()
@@ -446,7 +447,7 @@
 /datum/reagent/drug/happiness/addiction_act_stage2(mob/living/M)
 	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 	mood.setSanity(min(mood.sanity, SANITY_UNSTABLE))
-	M.Jitter(10)
+	M.adjust_jitter(10 SECONDS)
 	if(prob(30))
 		M.emote(pick("twitch","laugh","frown"))
 	..()
@@ -454,7 +455,7 @@
 /datum/reagent/drug/happiness/addiction_act_stage3(mob/living/M)
 	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 	mood.setSanity(min(mood.sanity, SANITY_CRAZY))
-	M.Jitter(15)
+	M.adjust_jitter(15 SECONDS)
 	if(prob(40))
 		M.emote(pick("twitch","laugh","frown"))
 	..()
@@ -462,7 +463,7 @@
 /datum/reagent/drug/happiness/addiction_act_stage4(mob/living/carbon/human/M)
 	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 	mood.setSanity(SANITY_INSANE)
-	M.Jitter(20)
+	M.adjust_jitter(20 SECONDS)
 	if(prob(50))
 		M.emote(pick("twitch","laugh","frown"))
 	..()
@@ -493,17 +494,17 @@
 		if(10)
 			to_chat(M, span_warning("You start to feel tired...") )
 		if(11 to 25)
-			M.drowsyness ++
+			M.adjust_drowsiness(2 SECONDS)
 		if(26 to INFINITY)
 			M.Sleeping(60, 0)
 			. = 1
 	//Providing a Mood Boost
-	M.confused -= 3
-	M.jitteriness -= 5
+	M.adjust_confusion(-3 SECONDS)
+	M.adjust_jitter(-5 SECONDS)
 	M.disgust -= 3
 
 	//Ketamine is also a dissociative anasthetic which means Hallucinations!
-	M.hallucination += 5
+	M.adjust_hallucinations(20 SECONDS)
 	..()
 
 /datum/reagent/drug/ketamine/overdose_process(mob/living/M)
@@ -515,7 +516,7 @@
 /datum/reagent/drug/ketamine/addiction_act_stage1(mob/living/M)
 	if(prob(20))
 		M.drop_all_held_items()
-		M.Jitter(2)
+		M.adjust_jitter(2 SECONDS)
 	..()
 
 /datum/reagent/drug/ketamine/addiction_act_stage2(mob/living/M)
@@ -523,8 +524,8 @@
 		M.drop_all_held_items()
 		M.adjustToxLoss(2*REM, 0)
 		. = 1
-		M.Jitter(3)
-		M.Dizzy(3)
+		M.adjust_jitter(3 SECONDS)
+		M.adjust_dizzy(3)
 	..()
 
 /datum/reagent/drug/ketamine/addiction_act_stage3(mob/living/M)
@@ -532,10 +533,124 @@
 		M.drop_all_held_items()
 		M.adjustToxLoss(3*REM, 0)
 		. = 1
-		M.Jitter(4)
-		M.Dizzy(4)
+		M.adjust_jitter(4 SECONDS)
+		M.adjust_dizzy(4)
 	..()
 
+//traitor only drug made with telecrystals
+/datum/reagent/drug/red_eye
+	name = "Red-Eye" //i love cowboy bebop
+	description = "An experimental drug developed by the Syndicate in attempt to recreate wizards"
+	reagent_state = GAS
+	color = "#fd1a5e"
+	addiction_threshold = 20
+	overdose_threshold = 40
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+	can_synth = FALSE
+
+//Teleport like normal telecrystals
+/datum/reagent/drug/red_eye/proc/tele_teleport(mob/living/L)
+	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+	if(!istype(destination))
+		return
+	new /obj/effect/particle_effect/sparks(L.loc)
+	playsound(L.loc, "sparks", 50, 1)
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+		return
+	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjust_disgust(15)
+
+/datum/reagent/drug/red_eye/on_mob_metabolize(mob/living/L)
+	L.next_move_modifier *= 0.8
+	L.action_speed_modifier *= 0.5
+	tele_teleport(L)
+	..()	
+
+/datum/reagent/drug/red_eye/on_mob_end_metabolize(mob/living/L)
+	L.next_move_modifier *= 1.25
+	L.action_speed_modifier *= 2
+	..()
+
+/datum/reagent/drug/red_eye/on_mob_life(mob/living/carbon/M)
+	var/mob/living/carbon/human/H = M
+	H.eye_color = "fd1a5e"
+	H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+	H.update_body()
+
+	M.adjust_red_eye_up_to(15,40)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(0,1))
+	M.AdjustKnockdown(-15, FALSE)
+	M.adjustStaminaLoss(-4, 0)
+	M.AdjustUnconscious(-5, FALSE)
+	M.AdjustParalyzed(-20, FALSE)
+	M.adjust_jitter(2 SECONDS)
+	if(prob(10))
+		to_chat(M, span_notice("[pick("TOK-LYR RQA-NAP", "BAPR NTNVA", "ZL-YVTUG FUVARF", "MAH'WEYH PLEGGH AT E'NTRATH", "TARCOL MINTI ZHERI.", "G'OLT-ULOFT")]"))
+	if(prob(5))
+		M.visible_message(span_danger("[M]'s eyes start bulging out of [M.p_their()] skull!"))
+	if(prob(5))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	if(prob(1))
+		tele_teleport(M)
+	..()
+
+/datum/reagent/drug/red_eye/overdose_process(mob/living/M)
+	M.adjustToxLoss(2, 0)
+	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(10))
+		if(M.mobility_flags & MOBILITY_MOVE)
+			step(M, pick(GLOB.cardinals))
+	if(prob(8))
+		M.visible_message(span_danger("[M]'s fingers curl into occult shapes!"))
+		M.drop_all_held_items()
+	if(prob(4))
+		M.adjustToxLoss(1, 0)
+		tele_teleport(M)
+	if(prob(1))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4))
+		M.adjustToxLoss(4, 0)
+		tele_teleport(M)
+		tele_teleport(M)
+	..()
+/datum/reagent/drug/red_eye/addiction_act_stage1(mob/living/M)
+	M.adjust_jitter(5 SECONDS)
+	if(prob(20))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/red_eye/addiction_act_stage2(mob/living/M)
+	M.adjust_jitter(10 SECONDS)
+	M.adjust_dizzy(10)
+	if(prob(30))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/red_eye/addiction_act_stage3(mob/living/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(12 SECONDS)
+	M.adjust_dizzy(12)
+	if(prob(40))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/red_eye/addiction_act_stage4(mob/living/carbon/human/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 8, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4))
+	M.adjustToxLoss(2, 0)
+	if(prob(50))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+	if(prob(10))
+		M.visible_message(span_danger("[M]'s fingers curl into occult shapes!"))
+		M.drop_all_held_items()
+	. = 1
 /datum/reagent/drug/pumpup
 	name = "Pump-Up"
 	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
@@ -557,7 +672,7 @@
 	..()
 
 /datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 
 	if(prob(5))
 		to_chat(M, span_notice("[pick("Go! Go! GO!", "You feel ready...", "You feel invincible...")]"))
@@ -571,7 +686,7 @@
 	to_chat(M, span_userdanger("You can't stop shaking, your heart beats faster and faster..."))
 
 /datum/reagent/drug/pumpup/overdose_process(mob/living/M)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	if(prob(5))
 		M.drop_all_held_items()
 	if(prob(15))
@@ -582,3 +697,100 @@
 	if(prob(15))
 		M.adjustToxLoss(2, 0)
 	..()
+/datum/reagent/drug/blue_eye
+	name = "Blue-Eye"
+	description = "A stimulating drug often used by Space Wizards with mind altering effects when sprayed into the eye of a user"
+	reagent_state = GAS
+	color = "#5b5beb"
+	taste_description = "swirling blue chaos"
+	overdose_threshold = 40
+	addiction_threshold = 30
+	metabolization_rate = 1.3 * REAGENTS_METABOLISM
+	var/original_eye_color = "000" //so we can return it to normal eye on end metabolism
+	
+/datum/reagent/drug/blue_eye/on_mob_metabolize(mob/living/L)
+	..()
+	if(prob(50))
+		to_chat(L, span_warning("You start to see flickering blue light..."))
+	else
+		addtimer(CALLBACK(L, /mob/living/proc/bluespace_shuffle), 30)
+
+/datum/reagent/drug/blue_eye/on_mob_life(mob/living/carbon/M)
+	if(!M?.mind?.has_antag_datum(/datum/antagonist/cult))
+		var/mob/living/carbon/human/H = M
+		original_eye_color = H.eye_color
+		H.eye_color = "5b5beb"
+		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+		H.update_body()
+	if(!is_wizard(M))
+		M.set_blue_eye(17)
+		M.adjust_jitter(2 SECONDS)
+		M.adjustStaminaLoss(-2, 0)
+		if(isturf(M.loc) && !isspaceturf(M.loc) && prob(12))
+			if(M.mobility_flags & MOBILITY_MOVE)
+				step(M, pick(GLOB.cardinals))
+		if(prob(7))
+			M.emote(pick("twitch","drool","moan","giggle","spin"))
+		if(prob(10))
+			to_chat(M, span_notice("[pick("SCYAR NILA!!", "NEC CANTIO.", "EI NATH!!!", "AULIE OXIN FIERA.", "TARCOL MINTI ZHERI.", "STI KALY!")]"))
+	else
+		M.set_blue_eye(30)
+		M.adjust_jitter(4 SECONDS)
+		M.adjustStaminaLoss(-3, 0)
+		M.AdjustUnconscious(-7, FALSE)
+		M.AdjustParalyzed(-7, FALSE)
+		if(prob(25))
+			to_chat(M, span_notice("[pick("SCYAR NILA!!", "NEC CANTIO.", "EI NATH!!!", "AULIE OXIN FIERA.", "TARCOL MINTI ZHERI.", "STI KALY!")]"))
+	..()
+
+/datum/reagent/drug/blue_eye/overdose_process(mob/living/M)
+	M.adjustToxLoss(1, 0)
+	if(!is_wizard(M))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5, 0.6))
+	else
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.2, 0.3, 0.4))
+	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(20))
+		if(M.mobility_flags & MOBILITY_MOVE)
+			step(M, pick(GLOB.cardinals))
+	if(prob(8))
+		M.visible_message(span_danger("[M]'s fingers curl into mystical shapes!"))
+		M.drop_all_held_items()
+	if(prob(8))
+		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage1(mob/living/M)
+	M.adjust_jitter(5 SECONDS)
+	if(prob(20))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage2(mob/living/M)
+	M.adjust_jitter(10 SECONDS)
+	M.adjust_dizzy(10)
+	if(prob(30))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage3(mob/living/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(12 SECONDS)
+	M.adjust_dizzy(12)
+	if(prob(40))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage4(mob/living/carbon/human/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 8, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15)
+	if(!is_wizard(M))
+		M.adjustToxLoss(3, 0)
+	if(prob(50))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+	. = 1

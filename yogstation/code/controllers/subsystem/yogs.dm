@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(Yogs)
 					for(var/datum/department_goal/d in listOfGoals[account])
 						P.info += d.get_name()
 					P.info += "</ul><br>"
-				P.update_icon()
+				P.update_appearance(UPDATE_ICON)
 
 			else
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(Yogs)
 					if(d.account == account)
 						P.info += d.get_name()
 				P.info += "</ul>"
-				P.update_icon()
+				P.update_appearance(UPDATE_ICON)
 
 
 	for(var/path in subtypesof(/datum/corporation))
@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(Yogs)
   * Arguments:
   * * account - The account that you're getting the string from. IE ACCOUNT_CIV or ACCOUNT_ENG
   */
-/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
+/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(account)
 	switch(account)
 		if(ACCOUNT_CIV)
 			return "Civilian"
@@ -206,4 +206,4 @@ SUBSYSTEM_DEF(Yogs)
 		if(ACCOUNT_SEC)
 			return "Security"
 		else
-			return "N/A report this to coders, see .proc/getDepartmentFromAccount"
+			return "N/A report this to coders, see PROC_REF(getDepartmentFromAccount)"

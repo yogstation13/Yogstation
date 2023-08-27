@@ -18,8 +18,12 @@
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
 #define LAZYLEN(L) length(L)
+///Sets a list to null
+#define LAZYNULL(L) L = null
 ///Accesses an associative list, returns null if nothing is found
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
+///This is used to add onto lazy assoc list when the value you're adding is a /list/. This one has extra safety over lazyaddassoc because the value could be null (and thus cant be used to += objects)
+#define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 ///Qdel every item in the list before setting the list to null
 #define QDEL_LAZYLIST(L) for(var/I in L) qdel(I); L = null;
 //These methods don't null the list
@@ -30,7 +34,9 @@
 ///Returns the list if it's actually a valid list, otherwise will initialize it
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
-#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+///Adds to the item K the value V, if the list is null it will initialize it
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += V;
+///Removes the value V from the item K, if the item K is empty will remove it from the list, if the list is empty will set the list to null
 #define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 
 /// Passed into BINARY_INSERT to compare keys
@@ -342,13 +348,15 @@
 	var/total = 0
 	var/item
 	for (item in L)
-		if (!L[item])
-			L[item] = 0
+		if (L[item] <= 0)//edited to also allow negatives
+			continue //edited to not modify the input list
 		total += L[item]
 
 	total = rand(0, total)
 	for (item in L)
-		total -=L [item]
+		if (L[item] <= 0) //edited to skip all numbers not actually added to the total
+			continue
+		total -= L[item]
 		if (total <= 0 && L[item])
 			return item
 
@@ -725,3 +733,7 @@
 			return FALSE
 
 	return TRUE
+
+///sort any value in a list
+/proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)
+	return sortTim(list_to_sort.Copy(), cmp)

@@ -18,7 +18,7 @@
 	var/busy_icon_state
 	var/message_cooldown = 0
 
-/obj/machinery/public_nanite_chamber/Initialize()
+/obj/machinery/public_nanite_chamber/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
 
@@ -30,7 +30,7 @@
 /obj/machinery/public_nanite_chamber/proc/set_busy(status, working_icon)
 	busy = status
 	busy_icon_state = working_icon
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/public_nanite_chamber/proc/inject_nanites(mob/living/attacker)
 	if(stat & (NOPOWER|BROKEN))
@@ -45,9 +45,9 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_falling"),60)
-	addtimer(CALLBACK(src, .proc/complete_injection, locked_state, attacker),80)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_falling"),60)
+	addtimer(CALLBACK(src, PROC_REF(complete_injection), locked_state, attacker),80)
 
 /obj/machinery/public_nanite_chamber/proc/complete_injection(locked_state, mob/living/attacker)
 	//TODO MACHINE DING
@@ -60,32 +60,29 @@
 		log_combat(attacker, occupant, "injected", null, "with nanites via [src]")
 	occupant.AddComponent(/datum/component/nanites, 75, cloud_id)
 
-/obj/machinery/public_nanite_chamber/update_icon()
-	cut_overlays()
+/obj/machinery/public_nanite_chamber/update_overlays()
+	. = ..()
 
 	if((stat & MAINT) || panel_open)
-		add_overlay("maint")
+		. += "maint"
 
 	else if(!(stat & (NOPOWER|BROKEN)))
 		if(busy || locked)
-			add_overlay("red")
+			. += "red"
 			if(locked)
-				add_overlay("bolted")
+				. += "bolted"
 		else
-			add_overlay("green")
+			. += "green"
 
-
-
-	//running and someone in there
-	if(occupant)
-		if(busy)
-			icon_state = busy_icon_state
-		else
-			icon_state = initial(icon_state)+ "_occupied"
+/obj/machinery/public_nanite_chamber/update_icon_state()
+	. = ..()
+	if(!occupant)
+		icon_state = initial(icon_state)+ (state_open ? "_open" : "")
 		return
-
-	//running
-	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
+	if(busy)
+		icon_state = busy_icon_state
+	else
+		icon_state = initial(icon_state)+ "_occupied"
 
 /obj/machinery/public_nanite_chamber/proc/toggle_open(mob/user)
 	if(panel_open)
@@ -113,7 +110,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(do_after(user, (breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked || busy)
 			return
 		locked = FALSE
@@ -129,7 +126,7 @@
 
 	. = TRUE
 
-	addtimer(CALLBACK(src, .proc/try_inject_nanites, attacker), 30) //If someone is shoved in give them a chance to get out before the injection starts
+	addtimer(CALLBACK(src, PROC_REF(try_inject_nanites), attacker), 30) //If someone is shoved in give them a chance to get out before the injection starts
 
 /obj/machinery/public_nanite_chamber/proc/try_inject_nanites(mob/living/attacker)
 	if(occupant)
@@ -161,7 +158,7 @@
 
 /obj/machinery/public_nanite_chamber/attackby(obj/item/I, mob/user, params)
 	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_icon()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
+		update_appearance(UPDATE_ICON)//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
 		return
 
 	if(default_pry_open(I))

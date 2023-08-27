@@ -7,11 +7,11 @@
  * 	Level 5: Doesn't need to be facing you anymore
  */
 
-/datum/action/bloodsucker/targeted/mesmerize
+/datum/action/cooldown/bloodsucker/targeted/mesmerize
 	name = "Mesmerize"
 	desc = "Dominate the mind of a mortal who can see your eyes."
 	button_icon_state = "power_mez"
-	power_explanation = "<b>Mesmerize</b>:\n\
+	power_explanation = "Mesmerize:\n\
 		Click any player to attempt to mesmerize them. This process takes 5 seconds and will be interrupted on movement.\n\
 		You cannot wear anything covering your face, and both parties must be facing eachother. Obviously, both parties need to not be blind. \n\
 		If your target is already mesmerized or a Monster Hunter, the Power will fail.\n\
@@ -24,13 +24,14 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
-	cooldown = 20 SECONDS
+	cooldown_time = 20 SECONDS
 	target_range = 8
 	power_activates_immediately = FALSE
 	prefire_message = "Whom will you subvert to your will?"
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
 	var/mesmerizingtime = 5 SECONDS
 
-/datum/action/bloodsucker/targeted/mesmerize/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.) // Default checks
 		return FALSE
@@ -43,13 +44,13 @@
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/targeted/mesmerize/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/bloodsucker/targeted/mesmerize/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -84,16 +85,16 @@
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
 	to_chat(owner, span_notice("Attempting to hypnotically gaze [target]..."))
 	if(!power_activates_immediately)
-		if(!do_mob(user, target, mesmerizingtime, NONE, TRUE))
+		if(!do_after(user, mesmerizingtime, target))
 			return
 
-	PowerActivatedSuccessfully() // PAY COST! BEGIN COOLDOWN!
+	power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 	var/power_time = 90 + level_current * 15
 	if(IS_MONSTERHUNTER(target))
 		to_chat(target, span_warning("You feel your eyes burn for a while, but it passes."))
@@ -110,30 +111,31 @@
 		//mesmerized.silent += power_time / 10 // Silent isn't based on ticks.
 		mesmerized.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized.changeNext_move(power_time) // check click.dm
 		mesmerized.notransform = TRUE // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
-		addtimer(CALLBACK(src, .proc/end_mesmerize, user, target), power_time)
+		addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, target), power_time)
 	if(issilicon(target))
 		var/mob/living/silicon/mesmerized = target
 		mesmerized.emp_act(EMP_HEAVY)
 	DeactivatePower()
 
-/datum/action/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/proc/end_mesmerize(mob/living/user, mob/living/target)
 	target.notransform = FALSE
 	REMOVE_TRAIT(target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 	// They Woke Up! (Notice if within view)
 	if(istype(user) && target.stat == CONSCIOUS && (target in view(6, get_turf(user))))
 		to_chat(owner, span_warning("[target] snapped out of their trance."))
 
-/datum/action/bloodsucker/targeted/mesmerize/shadow
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
 	name = "Glare"
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	active_background_icon_state = "lasombra_power_on"
+	base_background_icon_state = "lasombra_power_off"
 	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
-	background_icon_state_on = "lasombra_power_on"
-	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_glare"
 	additional_text = "Additionally makes the stun downtime based on distance, being instant when adjacent."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
-/datum/action/bloodsucker/targeted/mesmerize/shadow/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
 	if(target.Adjacent(user))
@@ -141,4 +143,4 @@
 	else
 		mesmerizingtime = initial(mesmerizingtime) - ((-get_dist(target, user) + 8 )/2) SECONDS //won't screw you up that bad if you miss it barely
 		power_activates_immediately = FALSE
-	. = ..()
+	return ..()

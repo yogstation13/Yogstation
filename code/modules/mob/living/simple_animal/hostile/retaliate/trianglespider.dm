@@ -5,7 +5,7 @@
 	icon_state = "triangle"
 	icon_living = "triangle"
 	icon_dead = "triangle_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	emote_hear = list("chitters")
 	speak_chance = 5
 	turns_per_move = 5

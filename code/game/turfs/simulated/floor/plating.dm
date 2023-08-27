@@ -34,7 +34,7 @@
 	else
 		. += span_notice("You might be able to build ontop of it with some <i>tiles</i>...")
 
-/turf/open/floor/plating/Initialize()
+/turf/open/floor/plating/Initialize(mapload)
 	if (!broken_states)
 		broken_states = list("platingdmg1", "platingdmg2", "platingdmg3")
 	if (!burnt_states)
@@ -45,8 +45,9 @@
 	else
 		icon_plating = initial(icon_state)
 
-/turf/open/floor/plating/update_icon()
-	if(!..())
+/turf/open/floor/plating/update_icon_state()
+	. = ..()
+	if(!.)
 		return
 	if(!broken && !burnt)
 		icon_state = icon_plating //Because asteroids are 'platings' too.

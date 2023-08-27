@@ -31,6 +31,11 @@
 // yogstation/code/_globalvars/lists/maintenance_loot.dm
 //************************************************************
 GLOBAL_LIST_INIT(maintenance_loot, list(
+	/obj/item/pen = 20,
+	/obj/item/pen/red = 20,
+	/obj/item/pen/blue =20,
+	/obj/item/pen/green = 20,
+	/obj/item/pen/fourcolor = 2,
 	/obj/item/bodybag = 1,
 	/obj/item/clothing/glasses/meson = 2,
 	/obj/item/clothing/glasses/sunglasses = 1,
@@ -53,6 +58,8 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/radio/off = 2,
 	/obj/item/t_scanner = 5,
 	/obj/item/airlock_painter = 1,
+	/obj/item/airlock_painter/decal = 1,
+	/obj/item/airlock_painter/decal/tile = 1,
 	/obj/item/stack/cable_coil/random = 4,
 	/obj/item/stack/cable_coil/random/five = 6,
 	/obj/item/stack/tape = 1,
@@ -77,7 +84,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/hand_labeler = 1,
 	/obj/item/paper/crumpled = 1,
 	/obj/item/reagent_containers/autoinjector/medipen/pumpup = 6,
-	/obj/item/pen = 1,
 	/obj/item/reagent_containers/spray/pestspray = 1,
 	/obj/item/reagent_containers/glass/rag = 3,
 	/obj/item/stock_parts/cell = 3,
@@ -92,7 +98,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/box/donkpockets/donkpockethonk = 1,
 	/obj/item/storage/box/lights/mixed = 3,
 	/obj/item/storage/box/hug/medical = 1,
-	/obj/item/storage/box/fancy/cigarettes/dromedaryco = 1,
+	/obj/item/storage/fancy/cigarettes/dromedaryco = 1,
 	/obj/item/storage/toolbox/mechanical = 1,
 	/obj/item/screwdriver = 3,
 	/obj/item/tank/internals/emergency_oxygen = 2,

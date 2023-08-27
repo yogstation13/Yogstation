@@ -457,7 +457,7 @@
     begin_month = NOVEMBER
 
 /datum/holiday/remembrance/celebrate()
-    SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+    SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
 
 /datum/holiday/remembrance/proc/roundstart_celebrate()
     for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -607,11 +607,28 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		)
 	mail_holiday = TRUE
 
+/datum/holiday/xmas/getStationPrefix()
+	return pick(
+		"Birthday",
+		"Chimney",
+		"Claus",
+		"Elf",
+		"Fir",
+		"Ho Ho Ho",
+		"Jolly",
+		"Merry",
+		"Present",
+		"Sack",
+		"Santa",
+		"Sleigh",
+		"Yule",
+	)
+
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
 
 /datum/holiday/xmas/celebrate()
-	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
 	//Start of yogstation loot changes.
 	GLOB.maintenance_loot_traditional += list(
 		/obj/item/toy/xmas_cracker = 300,
@@ -717,7 +734,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=P2csnVNai-o", // Tentacles! - H. P. Lovecraft Historical Society - A Shoggoth on the Roof
 		"https://www.youtube.com/watch?v=Jr5DG6QheEc",  // Look! Professor Angell Brings - H. P. Lovecraft Historical Society - An Even Scarier Solstice
 		"https://www.youtube.com/watch?v=LA4TMacjYMw",  // Slay Ride - H. P. Lovecraft Historical Society - An Even Scarier Solstice
-		"https://www.youtube.com/watch?v=tM08p2sxDVE"	// Embrace the Darkness - Andrew Hulshult - DUSK
+		"https://www.youtube.com/watch?v=tM08p2sxDVE",	// Embrace the Darkness - Andrew Hulshult - DUSK
+		"https://www.youtube.com/watch?v=hKJM4qUU-I4"	// Prelude to Darkness - Miro Haverinen - Fear & Hunger
 		)
 
 /datum/holiday/twofoursixohfive

@@ -14,7 +14,7 @@
 	stam_damage_coeff = 1
 	max_stamina_damage = 100
 	wound_resistance = 5
-	disabled_wound_penalty = 25
+	disabled_wound_penalty = 50
 	scars_covered_by_clothes = FALSE
 
 	var/mob/living/brain/brainmob = null //The current occupant.
@@ -158,7 +158,7 @@
 				if(S.hair_color == "mutcolor")
 					facial_hair_color = H.dna.features["mcolor"]
 				else if(hair_color == "fixedmutcolor")
-					facial_hair_color = "#[S.fixed_mut_color]"
+					facial_hair_color = "[S.fixed_mut_color]"
 				else
 					facial_hair_color = S.hair_color
 			else
@@ -175,7 +175,7 @@
 				if(S.hair_color == "mutcolor")
 					hair_color = H.dna.features["mcolor"]
 				else if(hair_color == "fixedmutcolor")
-					hair_color = "#[S.fixed_mut_color]"
+					hair_color = "[S.fixed_mut_color]"
 				else
 					hair_color = S.hair_color
 			else
@@ -218,7 +218,7 @@
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facial_hair_style]
 				if(S)
 					var/image/facial_overlay = image(S.icon, "[S.icon_state]", -HAIR_LAYER, SOUTH)
-					facial_overlay.color = "#" + facial_hair_color
+					facial_overlay.color = facial_hair_color
 					facial_overlay.alpha = hair_alpha
 					. += facial_overlay
 
@@ -239,7 +239,7 @@
 				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
 				if(S2)
 					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
-					hair_overlay.color = "#" + hair_color
+					hair_overlay.color = hair_color
 					hair_overlay.alpha = hair_alpha
 					. += hair_overlay
 
@@ -257,7 +257,7 @@
 			eyes_overlay.icon_state = eyes.eye_icon_state
 
 			if(eyes.eye_color)
-				eyes_overlay.color = "#" + eyes.eye_color
+				eyes_overlay.color = eyes.eye_color
 
 /obj/item/bodypart/head/monkey
 	icon = 'icons/mob/animal_parts.dmi'

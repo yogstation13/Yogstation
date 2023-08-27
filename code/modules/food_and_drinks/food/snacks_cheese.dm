@@ -12,6 +12,7 @@
 /obj/item/reagent_containers/food/snacks/cheesewedge
 	name = "cheese wedge or slice"
 	icon = 'icons/obj/food/cheese.dmi'
+	icon_state = "cheesewheel_slice" // Not an accurate icon_state, but needed for crafting menu.
 	desc = "A wedge or slice of cheese."
 	foodtype = DAIRY
 
@@ -107,19 +108,17 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cheddar" = 1)
 
-/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/attackby(obj/item/W, mob/user, params)
-	. = ..()
-	if(W.tool_behaviour == TOOL_WELDER)
-		if(W.use_tool(src, user, 0, volume=40))
-			var/obj/item/stack/sheet/cheese/new_item = new(usr.loc, 5)
-			user.visible_message("[user.name] shaped [src] into a sturdier looking cheese with [W].", \
-						 span_notice("You shape [src] into a sturdier looking cheese with [W]."), \
-						 span_italics("You hear welding."))
-			var/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/R = src
-			qdel(src)
-			var/replace = (user.get_inactive_held_item()==R)
-			if (!R && replace)
-				user.put_in_hands(new_item)
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar/welder_act(mob/living/user, obj/item/W)
+	if(W.use_tool(src, user, 0, volume=40))
+		var/obj/item/stack/sheet/cheese/NR = new (user.loc, 5)
+		to_chat(user, span_notice("You shape [src] into a sturdier looking cheese with [W]."))
+		for(var/obj/item/stack/sheet/cheese/R in user.loc)
+			if(R == NR)
+				continue
+			if(R.amount >= R.max_amount)
+				continue
+		qdel(src)
+	return TRUE
 
 /obj/item/reagent_containers/food/snacks/cheesemix/cheddar
 	name = "cheddar mix"
@@ -258,9 +257,9 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("bitter salt" = 1)
 
-/obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/Initialize()
+/obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/ageCheese), 20 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(ageCheese)), 20 MINUTES)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/proc/ageCheese()
 	new /obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan(loc)

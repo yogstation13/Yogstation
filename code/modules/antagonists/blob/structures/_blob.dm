@@ -29,7 +29,7 @@
 			overmind.blobs_legit += src
 	GLOB.blobs += src //Keep track of the blob in the normal list either way
 	setDir(pick(GLOB.cardinals))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(atmosblock)
 		air_update_turf(1)
 	ConsumeTile()
@@ -50,7 +50,7 @@
 /obj/structure/blob/blob_act()
 	return
 
-/obj/structure/blob/Adjacent(var/atom/neighbour)
+/obj/structure/blob/Adjacent(atom/neighbour)
 	. = ..()
 	if(.)
 		var/result = 0
@@ -82,7 +82,8 @@
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSBLOB)
 
-/obj/structure/blob/update_icon() //Updates color based on overmind color if we have an overmind.
+/obj/structure/blob/update_icon(updates=ALL) //Updates color based on overmind color if we have an overmind.
+	. = ..()
 	if(overmind)
 		add_atom_colour(overmind.blobstrain.color, FIXED_COLOUR_PRIORITY)
 	else
@@ -103,7 +104,7 @@
 		var/obj/structure/blob/B = L
 		if(!B.overmind && !istype(B, /obj/structure/blob/core) && prob(30))
 			B.overmind = pulsing_overmind //reclaim unclaimed, non-core blobs.
-			B.update_icon()
+			B.update_appearance(UPDATE_ICON)
 		var/distance = get_dist(get_turf(src), get_turf(B))
 		var/expand_probablity = max(20 - distance * 8, 1)
 		if(B.Adjacent(src))
@@ -127,7 +128,7 @@
 		if(heal_timestamp <= world.time)
 			obj_integrity = min(max_integrity, obj_integrity+health_regen)
 			heal_timestamp = world.time + 20
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		pulse_timestamp = world.time + 10
 		return 1 //we did it, we were pulsed!
 	return 0 //oh no we failed
@@ -185,7 +186,7 @@
 		if(T.Enter(B,src)) //NOW we can attempt to move into the tile
 			B.density = initial(B.density)
 			B.forceMove(T)
-			B.update_icon()
+			B.update_appearance(UPDATE_ICON)
 			if(B.overmind && expand_reaction)
 				B.overmind.blobstrain.expand_reaction(src, B, T, controller)
 			return B
@@ -286,10 +287,10 @@
 		damage_amount = overmind.blobstrain.damage_reaction(src, damage_amount, damage_type, damage_flag)
 	return damage_amount
 
-/obj/structure/blob/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/blob/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && obj_integrity > 0)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/blob/obj_destruction(damage_flag)
 	if(overmind)
@@ -301,7 +302,7 @@
 		CRASH("change_to(): invalid type for blob")
 	var/obj/structure/blob/B = new type(src.loc, controller)
 	B.creation_action()
-	B.update_icon()
+	B.update_appearance(UPDATE_ICON)
 	B.setDir(dir)
 	qdel(src)
 	return B
@@ -309,7 +310,7 @@
 /obj/structure/blob/examine(mob/user)
 	. = ..()
 	var/datum/atom_hud/hud_to_check = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	if(user.research_scanner || hud_to_check.hudusers[user])
+	if(user.research_scanner || hud_to_check.hud_users[user])
 		. += "<b>Your HUD displays an extensive report...</b><br>"
 		if(overmind)
 			. += overmind.blobstrain.examine(user)
@@ -344,8 +345,8 @@
 		return "Currently weak to brute damage."
 	return "N/A"
 
-/obj/structure/blob/normal/update_icon()
-	..()
+/obj/structure/blob/normal/update_appearance(updates=ALL)
+	. = ..()
 	if(obj_integrity <= 15)
 		icon_state = "blob_damaged"
 		name = "fragile blob"

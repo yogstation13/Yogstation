@@ -167,19 +167,20 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 
 	active_power_usage = 50 + spawned.len * 3 + effects.len * 5
 
-/obj/machinery/computer/holodeck/emag_act(mob/user)
+/obj/machinery/computer/holodeck/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(!LAZYLEN(emag_programs))
 		to_chat(user, "[src] does not seem to have a card swipe port. It must be an inferior model.")
-		return
+		return FALSE
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("You vastly increase projector power and override the safety and security protocols."))
 	say("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call Nanotrasen maintenance and do not use the simulator.")
 	log_game("[key_name(user)] emagged the Holodeck Control Console")
 	nerf(!(obj_flags & EMAGGED))
-
+	return TRUE
+	
 /obj/machinery/computer/holodeck/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -213,7 +214,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 
 	if(toggleOn)
 		if(last_program && last_program != offline_program)
-			addtimer(CALLBACK(src, .proc/load_program, last_program, TRUE), 25)
+			addtimer(CALLBACK(src, PROC_REF(load_program), last_program, TRUE), 25)
 		active = TRUE
 	else
 		last_program = program
@@ -276,7 +277,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 		S.flags_1 |= NODECONSTRUCT_1
 	effects = list()
 
-	addtimer(CALLBACK(src, .proc/finish_spawn), 30)
+	addtimer(CALLBACK(src, PROC_REF(finish_spawn)), 30)
 
 /obj/machinery/computer/holodeck/proc/finish_spawn()
 	var/list/added = list()
@@ -296,7 +297,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	// Emagging a machine creates an anomaly in the derez systems.
 	if(O && (obj_flags & EMAGGED) && !stat && !forced)
 		if((ismob(O) || ismob(O.loc)) && prob(50))
-			addtimer(CALLBACK(src, .proc/derez, O, silent), 50) // may last a disturbingly long time
+			addtimer(CALLBACK(src, PROC_REF(derez), O, silent), 50) // may last a disturbingly long time
 			return
 
 	spawned -= O

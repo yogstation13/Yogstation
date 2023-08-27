@@ -55,23 +55,25 @@
 			min_wchance = 0
 			min_wrate = 0
 
-/obj/machinery/plantgenes/update_icon()
-	..()
-	cut_overlays()
+/obj/machinery/plantgenes/update_icon_state()
+	. = ..()
 	if((stat & (BROKEN|NOPOWER)))
 		icon_state = "dnamod-off"
 	else
 		icon_state = "dnamod"
+
+/obj/machinery/plantgenes/update_overlays()
+	. = ..()
 	if(seed)
-		add_overlay("dnamod-dna")
+		. += "dnamod-dna"
 	if(disk)
-		add_overlay("dnamod-disk")
+		. += "dnamod-disk"
 	if(panel_open)
-		add_overlay("dnamod-open")
+		. += "dnamod-open"
 
 /obj/machinery/plantgenes/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -250,7 +252,7 @@
 	popup.open()
 
 
-/obj/machinery/plantgenes/Topic(var/href, var/list/href_list)
+/obj/machinery/plantgenes/Topic(href, list/href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -261,7 +263,7 @@
 			seed.verb_pickup()
 			seed = null
 			update_genes()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/seeds))
@@ -269,7 +271,7 @@
 					return
 				insert_seed(I)
 				to_chat(usr, span_notice("You add [I] to the machine."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(href_list["eject_disk"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
 		eject_disk()
@@ -278,7 +280,7 @@
 				return
 			disk = I
 			to_chat(usr, span_notice("You add [I] to the machine."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
 		if(!operation) // Wait for confirmation
 			operation = "insert"
@@ -336,11 +338,10 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
-						disk.update_name()
-						disk.update_icon()
+						disk.update_appearance()
 						qdel(seed)
 						seed = null
-						update_icon()
+						update_appearance(UPDATE_ICON)
 				if("replace")
 					if(disk && disk.gene && istype(disk.gene, G.type) && istype(G, /datum/plant_gene/core))
 						seed.genes -= G
@@ -372,7 +373,7 @@
 	S.forceMove(src)
 	seed = S
 	update_genes()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
@@ -383,7 +384,7 @@
 			disk.forceMove(drop_location())
 		disk = null
 		update_genes()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/plantgenes/proc/update_genes()
 	core_genes = list()
@@ -432,20 +433,21 @@
 	materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	var/datum/plant_gene/gene
 	var/read_only = 0 //Well, it's still a floppy disk
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 
-/obj/item/disk/plantgene/Initialize()
+/obj/item/disk/plantgene/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/obj/item/disk/plantgene/update_icon()
-	cut_overlays()
+/obj/item/disk/plantgene/update_overlays()
+	. = ..()
 	if(gene)
-		add_overlay("datadisk_gene")
+		. += "datadisk_gene"
 
-/obj/item/disk/plantgene/proc/update_name()
+/obj/item/disk/plantgene/update_name(updates=ALL)
+	. = ..()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else

@@ -16,12 +16,13 @@
 	active = TRUE
 	icon_state = initial(icon_state) + "_active"
 	playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', volume, TRUE)
-	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+	addtimer(CALLBACK(src, PROC_REF(prime)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/gas_crystal/healium_crystal
 	name = "Healium crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."
 	icon_state = "healium_crystal"
+	grind_results = list(/datum/reagent/healium = 20)
 	///Amount of stamina damage mobs will take if in range
 	var/stamina_damage = 30
 	///Range of the grenade that will cool down and affect mobs

@@ -76,7 +76,7 @@
 	RefreshAbilities()
 
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	hud.add_hud_to(src)
+	hud.show_to(src)
 	update_horror_hud()
 
 
@@ -106,7 +106,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
-		if(!do_mob(src, C, 3 SECONDS))
+		if(!do_after(src, 3 SECONDS, C))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
@@ -117,7 +117,7 @@
 			return
 		Infect(C)
 		return
-	..()
+	return ..()
 
 /mob/living/simple_animal/horror/proc/has_chemicals(amt)
 	return chemicals >= amt
@@ -139,7 +139,7 @@
 		return
 	var/datum/hud/chemical_counter/H = hud_used
 	var/atom/movable/screen/counter = H.chemical_counter
-	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[chemicals]</font></div>"
+	counter.maptext = ANTAG_MAPTEXT(chemicals, COLOR_DARKSPAWN_PSI)
 
 /mob/living/simple_animal/horror/proc/can_use_ability()
 	if(stat != CONSCIOUS)
@@ -159,7 +159,8 @@
 	for(var/datum/mind/M in SSticker.minds)
 		if(M.current && M.current.stat != DEAD)
 			if(ishuman(M.current))
-				if(M.hasSoul && (mind.enslaved_to != M.current))
+				var/mob/living/master = mind.enslaved_to?.resolve()
+				if(M.hasSoul && (master != M.current))
 					possible_targets[M] = M
 
 	var/list/selected_targets = list()
@@ -201,7 +202,8 @@
 		to_chat(src, "This host doesn't have a soul!")
 		return
 
-	if(victim == mind.enslaved_to)
+	var/mob/living/master = mind.enslaved_to?.resolve()
+	if(victim == master)
 		to_chat(src, span_userdanger("No, not yet... We still need them..."))
 		return
 
@@ -210,7 +212,7 @@
 		return
 
 	to_chat(src, "You begin consuming [victim.name]'s soul!")
-	if(do_after(src, 30 SECONDS, victim, stayStill = FALSE))
+	if(do_after(src, 30 SECONDS, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE))
 		consume()
 
 /mob/living/simple_animal/horror/proc/consume()
@@ -289,7 +291,7 @@
 			to_chat(M, "[link] [rendered]")
 	to_chat(src, span_changeling("<i>[B.real_name] says:</i> [input]"))
 
-/mob/living/simple_animal/horror/Life()
+/mob/living/simple_animal/horror/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(has_upgrade("regen"))
 		heal_overall_damage(5)
@@ -315,7 +317,7 @@
 		if(stat != DEAD && victim.stat != DEAD)
 			heal_overall_damage(1)
 
-/mob/living/simple_animal/horror/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/horror/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(victim)
 		to_chat(src, span_warning("You cannot speak out loud while inside a host!"))
 		return
@@ -345,7 +347,8 @@
 			return
 
 	if(isliving(A))
-		if(victim || A == src.mind.enslaved_to)
+		var/mob/living/master = mind.enslaved_to?.resolve()
+		if(victim || A == master)
 			healthscan(usr, A)
 			chemscan(usr, A)
 		else
@@ -529,7 +532,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 10 SECONDS, victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE))
+	if(do_after(src, 10 SECONDS, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_leaving))))
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
@@ -670,7 +673,7 @@
 			if(nlog_type & LOG_SAY)
 				var/list/reversed = log_source[log_type]
 				if(islist(reversed))
-					say_log = reverseRange(reversed.Copy())
+					say_log = reverse_range(reversed.Copy())
 					break
 		if(LAZYLEN(say_log))
 			for(var/spoken_memory in say_log)
@@ -721,7 +724,7 @@
 	var/delay = 20 SECONDS
 	if(has_upgrade("fast_control"))
 		delay -= 12 SECONDS
-	if(do_after(src, delay, victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
+	if(do_after(src, delay, victim, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_bonding))))
 		assume_control()
 
 /mob/living/simple_animal/horror/proc/assume_control()
@@ -736,7 +739,7 @@
 		bonding = FALSE
 		return
 	else
-		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, .proc/hit_detatch)
+		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(hit_detatch))
 		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with eldritch powers.")
 		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with [victim.p_their()] nervous system.")) // Yogs -- pronouns
 		to_chat(victim, span_userdanger("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))
@@ -820,7 +823,7 @@
 	var/datum/action/innate/horror/action = has_ability(/datum/action/innate/horror/chameleon)
 	if(action)
 		action.button_icon_state = "horror_sneak_[invisible ? "true" : "false"]"
-		action.UpdateButtonIcon()
+		action.build_all_button_icons()
 
 /mob/living/simple_animal/horror/proc/GrantHorrorActions()
 	for(var/datum/action/innate/horror/ability in horrorabilities)

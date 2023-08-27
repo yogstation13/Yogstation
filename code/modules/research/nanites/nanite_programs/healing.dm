@@ -28,6 +28,7 @@
 				host_mob.update_damage_overlays()
 		if(C.getStaminaLoss() < 41) //Should just push you into the first slowdown stage before resetting after 10 seconds
 			C.adjustStaminaLoss(1) //Annoying but not lethal, and won't stop stamina regen if you're over the limit
+			C.clear_stamina_regen()
 			if(prob(5))
 				to_chat(C, "<span class='warning'>Your injuries itch and burn as they heal.")
 	else
@@ -122,7 +123,7 @@
 		if(!parts.len)
 			return FALSE
 	else
-		if(!(MOB_ROBOTIC in host_mob.mob_biotypes))
+		if(!(host_mob.mob_biotypes & MOB_ROBOTIC))
 			return FALSE
 	return ..()
 
@@ -185,10 +186,12 @@
 			host_mob.update_damage_overlays()
 		if(C.getStaminaLoss() < 80) //Stops after hitting the second slowdown level.
 			C.adjustStaminaLoss(5) //Hurts a lot more
+			C.clear_stamina_regen()
 		else if(C.getBruteLoss() || C.getFireLoss()) //Prevents stamina regen if it's actively healing and you're over the limit.
-			C.adjustStaminaLoss(0.1) 
+			C.adjustStaminaLoss(0.1)
+			C.clear_stamina_regen()
 		if(prob(5))
-			if(!C.getBruteLoss() && !C.getFireLoss())	
+			if(!C.getBruteLoss() && !C.getFireLoss())
 				to_chat(C, "<span class='warning'>You feel a searing pain across your body!")//Not actively healing, so nanites will start randomly replacing healthy tissue. Ouch!
 			else
 				to_chat(C, "<span class='warning'>Your wounds burn horribly as they heal!")
@@ -225,7 +228,7 @@
 		return
 
 	host_mob.notify_ghost_cloning("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
-	addtimer(CALLBACK(src, .proc/zap), 50)
+	addtimer(CALLBACK(src, PROC_REF(zap)), 50)
 
 /datum/nanite_program/triggered/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
@@ -237,7 +240,7 @@
 		C.set_heartattack(FALSE)
 		C.revive()
 		C.emote("gasp")
-		C.Jitter(10 SECONDS)
+		C.adjust_jitter(10 SECONDS)
 		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
 	else
 		playsound(C, 'sound/machines/defib_failed.ogg', 50, 0)

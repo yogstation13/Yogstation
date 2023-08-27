@@ -8,7 +8,7 @@
 	var/on = FALSE
 	var/always_noslip = FALSE
 
-/obj/item/clothing/shoes/clown_shoes/banana_shoes/Initialize()
+/obj/item/clothing/shoes/clown_shoes/banana_shoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/material_container, list(/datum/material/bananium), 200000, TRUE, /obj/item/stack)
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 75)
@@ -23,7 +23,7 @@
 			on = !on
 			if(!always_noslip)
 				clothing_flags &= ~NOSLIP
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			to_chat(loc, span_warning("You ran out of bananium!"))
 		else
 			new /obj/item/grown/bananapeel/specialpeel(get_step(src,turn(usr.dir, 180))) //honk
@@ -45,7 +45,7 @@
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)
 	if(bananium.get_material_amount(/datum/material/bananium))
 		on = !on
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You [on ? "activate" : "deactivate"] the prototype shoes."))
 		if(!always_noslip)
 			if(on)
@@ -55,7 +55,8 @@
 	else
 		to_chat(user, span_warning("You need bananium to turn the prototype shoes on!"))
 
-/obj/item/clothing/shoes/clown_shoes/banana_shoes/update_icon()
+/obj/item/clothing/shoes/clown_shoes/banana_shoes/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "clown_prototype_on"
 	else
@@ -63,4 +64,4 @@
 	usr.update_inv_shoes()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()

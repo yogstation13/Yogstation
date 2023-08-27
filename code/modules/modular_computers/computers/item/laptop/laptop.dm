@@ -27,18 +27,18 @@
 	if(screen_on)
 		. += span_notice("Alt-click to close it.")
 
-/obj/item/modular_computer/laptop/Initialize()
+/obj/item/modular_computer/laptop/Initialize(mapload)
 	. = ..()
 
 	if(start_open && !screen_on)
 		toggle_open()
 
-/obj/item/modular_computer/laptop/update_icon()
+/obj/item/modular_computer/laptop/update_icon(updates=ALL)
+	. = ..()
 	if(screen_on)
-		..()
-	else
-		SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
-		icon_state = icon_state_closed
+		return
+	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
+	icon_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
 	if(!screen_on)
@@ -106,7 +106,7 @@
 			icon_state = icon_state_unpowered
 
 	screen_on = !screen_on
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 

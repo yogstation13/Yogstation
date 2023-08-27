@@ -28,7 +28,7 @@
 	//This is used to optimize the map loader
 	return
 
-/turf/open/space/Initialize()
+/turf/open/space/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
 	icon_state = SPACE_ICON_STATE
 	air = space_gas
@@ -36,8 +36,9 @@
 	vis_contents.Cut() //removes inherited overlays
 	visibilityChanged()
 
-	if(flags_1 & INITIALIZED_1)
-		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	if (PERFORM_ALL_TESTS(focus_only/multiple_space_initialization))
+		if(flags_1 & INITIALIZED_1)
+			stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
 
 	var/area/A = loc
@@ -52,8 +53,6 @@
 
 	if (opacity)
 		has_opaque_atom = TRUE
-
-	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 

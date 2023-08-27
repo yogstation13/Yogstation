@@ -224,12 +224,12 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/p_dir = NORTH
 	var/p_flipped = FALSE
 	var/paint_color = "grey"
-	var/atmos_build_speed = 5 //deciseconds (500ms)
-	var/disposal_build_speed = 5
-	var/transit_build_speed = 5
-	var/plumbing_build_speed = 5
-	var/destroy_speed = 5
-	var/paint_speed = 5
+	var/atmos_build_speed = 2 DECISECONDS
+	var/disposal_build_speed = 2 DECISECONDS
+	var/transit_build_speed = 2 DECISECONDS
+	var/plumbing_build_speed = 2 DECISECONDS
+	var/destroy_speed = 2 DECISECONDS
+	var/paint_speed = 2 DECISECONDS
 	var/category = ATMOS_CATEGORY
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/ducting_layer = DUCT_LAYER_DEFAULT
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
 	var/locked = FALSE //wheter we can change categories. Useful for the plumber
 
-/obj/item/pipe_dispenser/Initialize()
+/obj/item/pipe_dispenser/Initialize(mapload)
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 /obj/item/pipe_dispenser/equipped(mob/user, slot, initial)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOUSE_SCROLL_ON, .proc/mouse_wheeled)
+	RegisterSignal(user, COMSIG_MOUSE_SCROLL_ON, PROC_REF(mouse_wheeled))
 
 /obj/item/pipe_dispenser/dropped(mob/user, silent)
 	UnregisterSignal(user, COMSIG_MOUSE_SCROLL_ON)
@@ -476,8 +476,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			if(DISPOSALS_CATEGORY) //Making disposals pipes
 				if(!can_make_pipe)
 					return ..()
-				A = get_turf(A)
-				if(is_blocked_turf(A))
+				var/turf/attempting_turf = get_turf(A)
+				if(attempting_turf.is_blocked_turf())
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a disposals pipe..."))
@@ -493,7 +493,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 					activate()
 
 					C.add_fingerprint(usr)
-					C.update_icon()
+					C.update_appearance(UPDATE_ICON)
 					if(mode&WRENCH_MODE)
 						C.wrench_act(user, src)
 					return
@@ -501,8 +501,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			if(TRANSIT_CATEGORY) //Making transit tubes
 				if(!can_make_pipe)
 					return ..()
-				A = get_turf(A)
-				if(is_blocked_turf(A))
+				var/turf/attempting_turf = get_turf(A)
+				if(attempting_turf.is_blocked_turf())
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a transit tube..."))
@@ -530,8 +530,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			if(PLUMBING_CATEGORY) //Making pancakes
 				if(!can_make_pipe)
 					return ..()
-				A = get_turf(A)
-				if(is_blocked_turf(A))
+				var/turf/attempting_turf = get_turf(A)
+				if(attempting_turf.is_blocked_turf())
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a fluid duct..."))
@@ -574,7 +574,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	category = PLUMBING_CATEGORY
 	locked = TRUE
 
-/obj/item/pipe_dispenser/plumbing/Initialize()
+/obj/item/pipe_dispenser/plumbing/Initialize(mapload)
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)

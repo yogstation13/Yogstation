@@ -13,7 +13,7 @@
 	desc = "Signal used to connect remotely with silicons."
 	invisibility = 100
 
-/obj/machinery/computer/upload/Initialize()
+/obj/machinery/computer/upload/Initialize(mapload)
 	embedded_gps = new embedded_gps_type(src)
 	return ..()
 
@@ -57,7 +57,7 @@
 		user.visible_message(span_warning("[user] begins typing on [src]."))
 		to_chat(user, span_warning("You begin to alter the laws of [current] to enable it to assist you in your goals. This will take 30 seconds."))
 		var/obj/item/aiModule/core/full/revolutionary/M = new
-		if(do_after(user, 300, src))
+		if(do_after(user, 30 SECONDS, src))
 			if(upload_check(user))
 				M.install(current.laws, user)
 			else

@@ -21,7 +21,9 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 11
+#define DB_MINOR_VERSION 13
+#define DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS "bypass_bans"
+#define DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES "allow_proxies"
 
 //! ## Timing subsystem
 /**
@@ -67,9 +69,9 @@
 
 ///New should not call Initialize
 #define INITIALIZATION_INSSATOMS 0
-///New should call Initialize(TRUE)
+///New should call Initialize(mapload, TRUE)
 #define INITIALIZATION_INNEW_MAPLOAD 2
-///New should call Initialize(FALSE)
+///New should call Initialize(mapload, FALSE)
 #define INITIALIZATION_INNEW_REGULAR 1
 
 //! ### Initialization hints
@@ -156,6 +158,7 @@
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_XKEYSCORE		-10
 #define INIT_ORDER_STICKY_BAN		-10
+#define INIT_ORDER_ECHELON			-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_MINOR_MAPPING	-40
@@ -169,11 +172,13 @@
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
+#define FIRE_PRIORITY_AMBIENCE		10
 #define FIRE_PRIORITY_IDLE_NPC		10
 #define FIRE_PRIORITY_SERVER_MAINT	10
 #define FIRE_PRIORITY_RESEARCH		10
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_ECHOLOCATION  15
 #define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_FLUIDS		20
 #define FIRE_PRIORITY_AIR			20

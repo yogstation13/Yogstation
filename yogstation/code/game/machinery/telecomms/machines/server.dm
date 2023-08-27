@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(tcomms_servers)
 	COOLDOWN_DECLARE(compile_cooldown)
 
 //NTSL-related procs
-/obj/machinery/telecomms/server/Initialize()
+/obj/machinery/telecomms/server/Initialize(mapload)
 	Compiler = new()
 	Compiler.Holder = src
 	server_radio = new()

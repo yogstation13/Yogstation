@@ -30,7 +30,7 @@
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
 	var/req_access = ACCESS_ROBO_CONTROL //Access needed to pop out the brain.
-	var/emagged = 0
+	var/emagged = FALSE
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
@@ -65,7 +65,7 @@
 		to_chat(user, span_notice("You install [M] in [src]!"))
 		mmi = M
 		transfer_personality(M)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return 1
 
 	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///Removed needless self repair part
@@ -110,20 +110,28 @@
 	M.forceMove(src)
 	job = "Spider Bot"
 
-/mob/living/simple_animal/spiderbot/emag_act(mob/user)
-	if (emagged)
+/mob/living/simple_animal/spiderbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(emagged)
 		to_chat(user, span_warning("[src] is already overloaded - better run."))
+		return FALSE
+	emagged = 1
+	to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), 1), 10 SECONDS)
+	return TRUE
+
+/mob/living/simple_animal/spiderbot/proc/finish_emag_act(progress)
+	if(QDELETED(src))
 		return
-	else
-		emagged = 1
-		to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
-		spawn(100)
-			to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
-		spawn(200)
-			to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
-		spawn(300)
-			explode()
-		return
+	if(progress)
+		switch(progress)
+			if(1)
+				to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
+				addtimer(CALLBACK(src, PROC_REF(finish_emag_act), 2), 10 SECONDS)
+			if(2)
+				to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
+				addtimer(CALLBACK(src, PROC_REF(finish_emag_act), 3), 10 SECONDS)
+			if(3)
+				explode()
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	visible_message(span_warning("[src] makes an odd warbling noise, fizzles, and explodes."))
@@ -131,7 +139,8 @@
 	if(!QDELETED(src) && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/spiderbot/proc/update_icon()
+/mob/living/simple_animal/spiderbot/update_icon_state()
+	. = ..()
 	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
@@ -150,10 +159,10 @@
 		else if(key)
 			mmi.brainmob.key = key
 		mmi.forceMove(loc)
-		mmi.update_icon()
+		mmi.update_appearance(UPDATE_ICON)
 		mmi = null
 		name = initial(name)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/spiderbot/gib()
 	eject_brain()
@@ -164,7 +173,7 @@
 	eject_brain()
 	return ..()
 
-/mob/living/simple_animal/spiderbot/Initialize()
+/mob/living/simple_animal/spiderbot/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
@@ -172,7 +181,7 @@
 	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
 			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
 			  /mob/living/simple_animal/spiderbot/proc/get_item))
-	RegisterSignal(src, COMSIG_GLOB_MOB_DEATH, .proc/on_death)
+	RegisterSignal(src, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_death))
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
 	UnregisterSignal(src, COMSIG_GLOB_MOB_DEATH)

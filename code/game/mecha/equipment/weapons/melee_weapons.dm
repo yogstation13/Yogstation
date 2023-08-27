@@ -59,7 +59,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
+	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, params)
@@ -235,7 +235,7 @@
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
-		O.take_damage(object_damage, dam_type, "melee", 0)
+		O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing * 2)
 	else
 		return
 	chassis.do_attack_animation(target, hit_effect)
@@ -319,15 +319,15 @@
 				to_chat(H, span_warning("You muscles seize, making you collapse!"))
 			else
 				H.Paralyze(stunforce)
-			H.Jitter(20)
-			H.confused = max(8, H.confused)
+			H.adjust_jitter(20 SECONDS)
+			H.adjust_confusion(8 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		else if(current_stamina_damage > 70)
-			H.Jitter(10)
-			H.confused = max(8, H.confused)
+			H.adjust_jitter(10 SECONDS)
+			H.adjust_confusion(8 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		else if(current_stamina_damage >= 20)
-			H.Jitter(5)
+			H.adjust_jitter(5 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		
 	if(isliving(target))
@@ -359,7 +359,7 @@
 		else
 			L.apply_damage(burn_damage, BURN)
 		L.adjust_fire_stacks(2)
-		L.IgniteMob()
+		L.ignite_mob()
 		playsound(L, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
@@ -407,7 +407,7 @@
 	if(get_dist(chassis, target) > 1)	//First we hop forward
 		do_lunge_at(target)
 	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//If we weren't able to get within range we don't attack
-		addtimer(CALLBACK(src, .proc/set_ready_state, 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
+		addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
 		return
 	for(var/i in 1 to stab_number)
 		special_hit(target)
@@ -433,7 +433,7 @@
 		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 			var/obj/O = target
 			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Nukie mech, slightly less bad at killing mechs
-			O.take_damage(object_damage, dam_type, "melee", 0)
+			O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing * 2)
 		else
 			return
 		chassis.do_attack_animation(target, hit_effect)
@@ -517,7 +517,7 @@
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)
-		O.take_damage(object_damage, dam_type, "melee", 0)
+		O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing)
 		if(istype(target, /obj/mecha))
 			special_hit(target)	
 	else

@@ -4,38 +4,21 @@
 
 
 /mob/living/carbon/IsParalyzed(include_stamcrit = TRUE)
-	return ..() || (include_stamcrit && stam_paralyzed)
+	return ..() || (include_stamcrit && HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
 
 /mob/living/carbon/proc/enter_stamcrit()
 	if(!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE))
 		return
+	clear_stamina_regen() // Can't passively regen out of stamcrit
+	if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA)) //Already in stamcrit
+		return
 	if(absorb_stun(0)) //continuous effect, so we don't want it to increment the stuns absorbed.
 		return
-	if(!IsParalyzed())
-		to_chat(src, span_notice("You're too exhausted to keep going..."))
-	SEND_SIGNAL(src, COMSIG_CARBON_STATUS_STAMCRIT)
-	stam_paralyzed = TRUE
-	update_mobility()
+	to_chat(src, span_notice("You're too exhausted to keep going..."))
+	add_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED), STAMINA)
+	if(getStaminaLoss() < 120) // Puts you a little further into the initial stamcrit, makes stamcrit harder to outright counter with chems.
+		adjustStaminaLoss(30, FALSE)
 
-/mob/living/carbon/adjust_drugginess(amount)
-	druggy = max(druggy+amount, 0)
-	if(druggy)
-		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-		throw_alert("high", /atom/movable/screen/alert/high)
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "high", /datum/mood_event/high)
-	else
-		clear_fullscreen("high")
-		clear_alert("high")
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "high")
-
-/mob/living/carbon/set_drugginess(amount)
-	druggy = max(amount, 0)
-	if(druggy)
-		overlay_fullscreen("high", /atom/movable/screen/fullscreen/high)
-		throw_alert("high", /atom/movable/screen/alert/high)
-	else
-		clear_fullscreen("high")
-		clear_alert("high")
 
 /mob/living/carbon/adjust_disgust(amount)
 	disgust = clamp(disgust+amount, 0, DISGUST_LEVEL_MAXEDOUT)

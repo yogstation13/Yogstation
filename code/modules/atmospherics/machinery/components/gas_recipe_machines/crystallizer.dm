@@ -15,7 +15,7 @@
 	circuit = /obj/item/circuitboard/machine/crystallizer
 	pipe_flags = PIPING_ONE_PER_TURF| PIPING_DEFAULT_LAYER_ONLY
 
-	///Base icon state for the machine to be used in update_icon()
+	///Base icon state for the machine to be used in update_appearance(UPDATE_ICON)
 	var/base_icon = "crystallizer"
 	///Internal Gas mix used for processing the gases that have been put in
 	var/datum/gas_mixture/internal
@@ -32,7 +32,7 @@
 	///Stores the total amount of moles needed for the current recipe
 	var/total_recipe_moles = 0
 
-/obj/machinery/atmospherics/components/binary/crystallizer/Initialize()
+/obj/machinery/atmospherics/components/binary/crystallizer/Initialize(mapload)
 	. = ..()
 	internal = new
 
@@ -79,12 +79,14 @@
 	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/update_overlays()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_overlays()
+	. = ..()
 	cut_overlays()
-	add_overlay(getpipeimage(icon, "pipe", dir, COLOR_LIME, piping_layer))
-	add_overlay(getpipeimage(icon, "pipe", turn(dir, 180), COLOR_RED, piping_layer))
+	. += getpipeimage(icon, "pipe", dir, COLOR_LIME, piping_layer)
+	. += getpipeimage(icon, "pipe", turn(dir, 180), COLOR_RED, piping_layer)
 
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/update_icon_state()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[base_icon]-open"
 	else if(on)
@@ -92,17 +94,12 @@
 	else
 		icon_state = "[base_icon]-off"
 
-/obj/machinery/atmospherics/components/binary/crystallizer/update_icon()
-	. = ..()
-	update_icon_state()
-	update_overlays()
-
 /obj/machinery/atmospherics/components/binary/crystallizer/AltClick(mob/user)
 	if(!can_interact(user))
 		return
 	on = !on
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Checks if the gases in the input are the ones needed by the recipe
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/check_gas_requirements()
@@ -341,7 +338,7 @@
 			var/_gas_input = params["gas_input"]
 			gas_input = clamp(_gas_input, 0, max_gas_input)
 			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 #undef MIN_PROGRESS_AMOUNT
 #undef MIN_DEVIATION_RATE

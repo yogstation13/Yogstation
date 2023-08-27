@@ -15,11 +15,10 @@
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
-
-/turf/open/ComponentInitialize()
-	. = ..()
-	if(wet)
-		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
+	/// How much fuel this open turf provides to turf fires, and how easily they can be ignited in the first place. Can be negative to make fires die out faster.
+	var/flammability = 0.3
+	var/obj/effect/abstract/turf_fire/turf_fire
+	var/obj/effect/hotspot/hotspot
 
 //direction is direction of travel of A
 /turf/open/zPassIn(atom/movable/A, direction, turf/source)
@@ -91,7 +90,7 @@
 	heavyfootstep = FOOTSTEP_LAVA
 	tiled_dirt = FALSE
 
-/turf/open/indestructible/necropolis/Initialize()
+/turf/open/indestructible/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -319,10 +318,10 @@
 	light_color = "#AAD84B"
 	color = "#53003f"
 
-/turf/open/floor/grass/fairy/Initialize()
+/turf/open/floor/grass/fairy/Initialize(mapload)
 	. = ..()
 	icon_state = "fairygrass[rand(1,4)]"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
@@ -448,7 +447,7 @@
 /turf/open/indestructible/brazil/necropolis
 	icon_state = "necro1"
 
-/turf/open/indestructible/brazil/necropolis/Initialize()
+/turf/open/indestructible/brazil/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -537,47 +536,46 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
-	if(C.movement_type & FLYING)
-		return 0
+/turf/open/handle_slip(mob/living/carbon/slipper, knockdown_amount, obj/slippable, lube, paralyze_amount, force_drop)
+	if(slipper.movement_type & (FLYING | FLOATING))
+		return FALSE
 	if(has_gravity(src))
 		var/obj/buckled_obj
-		if(C.buckled)
-			buckled_obj = C.buckled
+		if(slipper.buckled)
+			buckled_obj = slipper.buckled
 			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
 				return 0
 		else
-			if(!(lube&SLIP_WHEN_CRAWLING) && (!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
+			if(!(lube & SLIP_WHEN_CRAWLING) && (!(slipper.mobility_flags & MOBILITY_STAND)) || !(slipper.status_flags & CANKNOCKDOWN)) // can't slip unbuckled mob if they're lying or can't fall.
 				return 0
-			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
+			if(slipper.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0
 		if(!(lube&SLIDE_ICE))
-			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
-			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			to_chat(slipper, span_notice("You slipped[ slippable ? " on the [slippable.name]" : ""]!"))
+			playsound(slipper.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
-		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
+		SEND_SIGNAL(slipper, COMSIG_ON_CARBON_SLIP)
 		if(force_drop)
-			for(var/obj/item/I in C.held_items)
-				C.accident(I)
+			for(var/obj/item/I in slipper.held_items)
+				slipper.accident(I)
 
-		var/olddir = C.dir
-		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
+		var/olddir = slipper.dir
+		slipper.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			C.Knockdown(knockdown_amount)
-			C.Stun(stun_amount)
-			C.stop_pulling()
+			slipper.Knockdown(knockdown_amount)
+			slipper.Paralyze(paralyze_amount)
+			slipper.stop_pulling()
 		else
-			C.Knockdown(20)
+			slipper.Knockdown(20)
 		if(buckled_obj)
-			buckled_obj.unbuckle_mob(C)
+			buckled_obj.unbuckle_mob(slipper)
 			lube |= SLIDE_ICE
 
-		if(lube&SLIDE)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 4), 1, FALSE, CALLBACK(C, /mob/living/carbon/.proc/spin, 1, 1))
+		var/turf/target = get_ranged_target_turf(slipper, olddir, 4)
+		if(lube & SLIDE)
+			new /datum/forced_movement(slipper, target, 1, FALSE, CALLBACK(slipper, TYPE_PROC_REF(/mob/living/carbon, spin), 1, 1))
 		else if(lube&SLIDE_ICE)
-			if(C.force_moving) //If we're already slipping extend it
-				qdel(C.force_moving)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+			new /datum/forced_movement(slipper, get_ranged_target_turf(slipper, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
 		return 1
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
@@ -592,7 +590,7 @@
 /turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
 	qdel(GetComponent(/datum/component/wet_floor))
 
-/turf/open/rad_act(pulse_strength)
+/turf/open/rad_act(pulse_strength, collectable_radiation)
 	. = ..()
 	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen) && !(air.get_moles(/datum/gas/hypernoblium)>=REACTION_OPPRESSION_THRESHOLD))
 		pulse_strength = min(pulse_strength,air.get_moles(/datum/gas/carbon_dioxide)*1000,air.get_moles(/datum/gas/oxygen)*2000) //Ensures matter is conserved properly
@@ -605,3 +603,18 @@
 		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
 		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)
 		air_update_turf()
+
+/turf/open/IgniteTurf(power, fire_color="red")
+	if(air.get_moles(/datum/gas/oxygen) < 1)
+		return
+	if(turf_fire)
+		turf_fire.AddPower(power)
+		return
+	if(!isgroundlessturf(src))
+		new /obj/effect/abstract/turf_fire(src, power, fire_color)
+
+/turf/open/proc/set_flammability(new_flammability)
+	if(isnull(new_flammability))
+		flammability = initial(flammability)
+		return
+	flammability = new_flammability

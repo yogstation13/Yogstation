@@ -66,9 +66,24 @@ SUBSYSTEM_DEF(explosions)
 	msg += "} "
 	return ..()
 
-
-#define SSEX_TURF "turf"
-#define SSEX_OBJ "obj"
+/datum/controller/subsystem/explosions/get_metrics()
+	. = ..()
+	.["cost_lowturf"] = cost_lowturf
+	.["cost_medturf"] = cost_medturf
+	.["cost_highturf"] = cost_highturf
+	.["cost_flameturf"] = cost_flameturf
+	.["cost_low_mov_atom"] = cost_low_mov_atom
+	.["cost_med_mov_atom"] = cost_med_mov_atom
+	.["cost_high_mov_atom"] = cost_high_mov_atom
+	.["cost_throwturf"] = cost_throwturf
+	.["lowturfs"] = lowturf.len
+	.["medturfs"] = medturf.len
+	.["highturfs"] = highturf.len
+	.["flameturfs"] = flameturf.len
+	.["low_mov_atom"] = low_mov_atom.len
+	.["med_mov_atom"] = med_mov_atom.len
+	.["high_mov_atom"] = high_mov_atom.len
+	.["throwturf"] = throwturf.len
 
 /datum/controller/subsystem/explosions/proc/is_exploding()
 	return (lowturf.len || medturf.len || highturf.len || flameturf.len || throwturf.len || low_mov_atom.len || med_mov_atom.len || high_mov_atom.len)
@@ -145,7 +160,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			continue
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 100)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 100)
 
 /proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -343,7 +358,7 @@ SUBSYSTEM_DEF(explosions)
 			for(var/I in T)
 				var/atom/A = I
 				if (length(A.contents) && !(A.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
-					items += A.GetAllContents()
+					items += A.get_all_contents()
 				if(istype(A, /mob/living))
 					items -= A				//So we don't do double damage to mobs for balance raisins
 			for(var/thing in items)

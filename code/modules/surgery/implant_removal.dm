@@ -68,7 +68,7 @@
 			return TRUE
 		case.imp.implant(target, user)
 		case.imp = null
-		case.update_icon()
+		case.update_appearance(UPDATE_ICON)
 		display_results(user, target, span_notice("You implant \the [I] into [target]'s [parse_zone(target_zone)]."),
 			"[user] implants \the [I] into [target]'s [parse_zone(target_zone)]!",
 			"[user] inserts something into [target]'s [parse_zone(target_zone)]!")
@@ -92,7 +92,7 @@
 				if(case && !case.imp)
 					case.imp = I
 					I.forceMove(case)
-					case.update_icon()
+					case.update_appearance(UPDATE_ICON)
 					display_results(user, target, span_notice("You place [I] into [case]."),
 						"[user] places [I] into [case]!",
 						"[user] places it into [case]!")

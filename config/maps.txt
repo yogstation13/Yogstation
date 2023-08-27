@@ -17,7 +17,7 @@ map yogstation
 	votable
 endmap
 
-map yogsmeta
+map icemeta
 	minplayers 25
 	votable
 	disabled

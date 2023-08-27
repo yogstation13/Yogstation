@@ -74,6 +74,7 @@
 
 /obj/item/toy/crayon/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.add_atom_colour(paint_color, ADMIN_COLOUR_PRIORITY)
 	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/toy/crayon/proc/min_value() // Makes the paint color brighter if it is below quarter bright (V < 64)
@@ -82,7 +83,7 @@
 
 	if(value >= 64) // Min V is 64, 3 quarters to black from white
 		return
-	
+
 	if(value > 0) // Div by zero avoidance
 		var/difference = 64/value
 		read[1] *= difference
@@ -95,7 +96,7 @@
 
 	paint_color = rgb(read[1], read[2], read[3])
 
-/obj/item/toy/crayon/Initialize()
+/obj/item/toy/crayon/Initialize(mapload)
 	. = ..()
 	// Makes crayons identifiable in things like grinders
 	if(name == "crayon")
@@ -172,7 +173,7 @@
 		if(has_cap)
 			is_capped = !is_capped
 			to_chat(user, span_notice("The cap on [src] is now [is_capped ? "on" : "off"]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/item/toy/crayon/proc/staticDrawables()
 
@@ -262,7 +263,7 @@
 			. = TRUE
 			paint_mode = PAINT_NORMAL
 			drawtype = "a"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/toy/crayon/proc/crayon_text_strip(text)
 	var/static/regex/crayon_r = new /regex(@"[^\w!?,.=%#&+\/\-]")
@@ -372,7 +373,7 @@
 	if(!instant)
 		if(!do_after(user, 5 SECONDS, target))
 			return
-	
+
 	var/charges_used = use_charges(user, cost)
 	if(!charges_used)
 		return
@@ -534,11 +535,17 @@
 	icon_state = "crayonbox"
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/crayons/Initialize()
+/obj/item/storage/crayons/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
-	STR.set_holdable(list(/obj/item/toy/crayon))
+	STR.set_holdable(list(/obj/item/toy/crayon),
+		list(
+			/obj/item/toy/crayon/spraycan,
+			/obj/item/toy/crayon/mime,
+			/obj/item/toy/crayon/rainbow,
+			/obj/item/toy/crayon/white
+		))
 
 /obj/item/storage/crayons/PopulateContents()
 	new /obj/item/toy/crayon/red(src)
@@ -548,12 +555,12 @@
 	new /obj/item/toy/crayon/blue(src)
 	new /obj/item/toy/crayon/purple(src)
 	new /obj/item/toy/crayon/black(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/crayons/update_icon()
-	cut_overlays()
+/obj/item/storage/crayons/update_overlays()
+	. = ..()
 	for(var/obj/item/toy/crayon/crayon in contents)
-		add_overlay(mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color))
+		. += mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color)
 
 /obj/item/storage/crayons/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
@@ -615,7 +622,7 @@
 			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
 		if(can_change_colour)
 			paint_color = "#C0C0C0"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(actually_paints)
 			H.lip_style = "spray_face"
 			H.lip_color = paint_color
@@ -627,14 +634,14 @@
 
 		return (OXYLOSS)
 
-/obj/item/toy/crayon/spraycan/Initialize()
+/obj/item/toy/crayon/spraycan/Initialize(mapload)
 	. = ..()
 	// If default crayon red colour, pick a more fun spraycan colour
 	if(!paint_color)
 		paint_color = pick("#DA0000","#FF9300","#FFF200","#A8E61D","#00B7EF",
 		"#DA00FF")
 	refill()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/toy/crayon/spraycan/examine(mob/user)
@@ -668,7 +675,7 @@
 			C.blur_eyes(3)
 			C.blind_eyes(1)
 		if(C.get_eye_protection() <= 0) // no eye protection? ARGH IT BURNS.
-			C.confused = max(C.confused, 3)
+			C.adjust_confusion(3)
 			C.Knockdown(20)
 		if(ishuman(C) && actually_paints)
 			var/mob/living/carbon/human/H = C
@@ -702,13 +709,16 @@
 
 	. = ..()
 
-/obj/item/toy/crayon/spraycan/update_icon()
+/obj/item/toy/crayon/spraycan/update_icon_state()
+	. = ..()
 	icon_state = is_capped ? icon_capped : icon_uncapped
+
+/obj/item/toy/crayon/spraycan/update_overlays()
+	. = ..()
 	if(use_overlays)
-		cut_overlays()
 		var/mutable_appearance/spray_overlay = mutable_appearance('icons/obj/crayons.dmi', "[is_capped ? "spraycan_cap_colors" : "spraycan_colors"]")
 		spray_overlay.color = paint_color
-		add_overlay(spray_overlay)
+		. += spray_overlay
 
 /obj/item/toy/crayon/spraycan/attackby(obj/item/S,mob/user)
 	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))
@@ -723,7 +733,7 @@
 			to_chat(user, span_warning("ERR ERR. ASIMOV SPRAYCAN FIRMWARE DOES NOT ALLOW THIS."))
 			return // are you fucking nuts
 
-		else 
+		else
 			explosion(get_turf(src), 0, 0, 1, flame_range = 0) //1 light for default cans
 
 		log_bomber(user, "detonated a", src, "via [S.name]")

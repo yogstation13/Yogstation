@@ -157,9 +157,9 @@
 	var/reagent_amount = 30
 	var/no_react = FALSE
 
-/obj/item/ammo_casing/shotgun/dart/Initialize()
+/obj/item/ammo_casing/shotgun/dart/Initialize(mapload)
 	. = ..()
-	create_reagents(reagent_amount, OPENCONTAINER)
+	create_reagents(reagent_amount, OPENCONTAINER_NOSPILL)
 	if(no_react)
 		ENABLE_BITFIELD(reagents.flags, NO_REACT)
 
@@ -169,7 +169,7 @@
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/reusable/dart/hidden
 
-/obj/item/ammo_casing/shotgun/dart/hidden/Initialize()
+/obj/item/ammo_casing/shotgun/dart/hidden/Initialize(mapload)
 	. = ..()
 	DISABLE_BITFIELD(reagents.flags, TRANSPARENT) // cant examine reagents, stealthy
 
@@ -194,7 +194,7 @@
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
 
-/obj/item/ammo_casing/shotgun/dart/bioterror/Initialize()
+/obj/item/ammo_casing/shotgun/dart/bioterror/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/neurotoxin, 6)
 	reagents.add_reagent(/datum/reagent/toxin/spore, 6)
@@ -218,3 +218,24 @@
 	pellets = 3
 	variance = 25
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
+
+/obj/item/ammo_casing/shotgun/hardlight
+	name = "hardlight shell"
+	desc = "An advanced shotgun shell that fires a hardlight beam and scatters it."
+	icon_state = "hshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
+	harmful = FALSE
+	pellets = 6
+	variance = 20
+
+/obj/item/ammo_casing/shotgun/hardlight/emp_act(severity)
+	if (. & EMP_PROTECT_SELF)
+		return
+	variance = 60 // yikes
+	if(severity == EMP_HEAVY)
+		pellets = 3 // also yikes
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), 10 SECONDS / severity, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+/obj/item/ammo_casing/shotgun/hardlight/proc/remove_emp()
+	variance = initial(variance)
+	pellets = initial(pellets)

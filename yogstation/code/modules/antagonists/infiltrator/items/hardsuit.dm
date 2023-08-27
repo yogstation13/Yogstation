@@ -5,7 +5,7 @@
 	armor = list(MELEE = 35, BULLET = 15, LASER = 30,ENERGY = 10, BOMB = 10, BIO = 100, RAD = 50, FIRE = 75, ACID = 75)
 	syndicate = TRUE
 
-/obj/item/clothing/head/helmet/space/hardsuit/infiltration/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/infiltration/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /obj/item/clothing/suit/space/hardsuit/infiltration))
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = loc
@@ -29,13 +29,14 @@
 	if (is_syndicate(user))
 		. += span_notice("There appears to be a hidden panel on it, showing various customization options.")
 
-/obj/item/clothing/suit/space/hardsuit/infiltration/Initialize()
+/obj/item/clothing/suit/space/hardsuit/infiltration/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/suit/space/hardsuit
 	chameleon_action.chameleon_name = "Hardsuit"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/suit/space/hardsuit/shielded/swat, /obj/item/clothing/suit/space/hardsuit), only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
+	add_item_action(chameleon_action)
 
 /obj/item/clothing/suit/space/hardsuit/infiltration/emp_act(severity)
 	chameleon_action.emp_randomise()

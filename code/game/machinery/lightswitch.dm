@@ -13,7 +13,7 @@
 	/// instead of the switch's location.
 	var/area/area = null
 
-/obj/machinery/light_switch/Initialize()
+/obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
 	if(istext(area))
 		area = text2path(area)
@@ -25,15 +25,16 @@
 	if(!name)
 		name = "light switch ([area.name])"
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/light_switch/update_icon()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	if(!(stat & NOPOWER))
-		if(area.lightswitch)
-			SSvis_overlays.add_vis_overlay(src, icon, "light1", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-		else
-			SSvis_overlays.add_vis_overlay(src, icon, "light0", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+/obj/machinery/light_switch/update_overlays()
+	. = ..()
+	if(stat & NOPOWER)
+		return
+	if(area.lightswitch)
+		. += "light1"
+	else
+		. += "light0"
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
@@ -47,10 +48,11 @@
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
-	area.update_icon()
+	area.update_appearance(UPDATE_ICON)
+	play_click_sound("button")
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.update_icon()
+		L.update_appearance(UPDATE_ICON)
 
 	area.power_change()
 
@@ -74,11 +76,12 @@
 	electrocute_mob(user, get_area(src), src, 0.7, TRUE)
 
 
-/obj/machinery/light_switch/emag_act(mob/user)
+/obj/machinery/light_switch/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
-		return
+		return FALSE
 	to_chat(user, span_notice("You swipe the emag on the light switch. "))
 	if(user.can_hear())
 		to_chat(user, span_notice("The light switch gives off a soft hum."))
 	obj_flags |= EMAGGED
+	return TRUE

@@ -37,7 +37,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	density = FALSE
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	movement_type = FLYING
 	gold_core_spawnable = HOSTILE_SPAWN
 	search_objects = 1 //have to find those plant trays!
@@ -58,12 +58,12 @@
 	var/static/beehometypecache = typecacheof(/obj/structure/beebox)
 	var/static/hydroponicstypecache = typecacheof(/obj/machinery/hydroponics)
 
-/mob/living/simple_animal/hostile/poison/bees/Initialize()
+/mob/living/simple_animal/hostile/poison/bees/Initialize(mapload)
 	. = ..()
 	generate_bee_visuals()
 	AddComponent(/datum/component/swarming)
 	angery_eye = mutable_appearance('icons/mob/bees.dmi', "angery_eye",MOB_LAYER)
-	RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, .proc/alert_hive)
+	RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(alert_hive))
 
 /mob/living/simple_animal/hostile/poison/bees/Destroy()
 	if(beehome)
@@ -222,7 +222,7 @@
 			beehome = BB
 			break // End loop after the first compatible find.
 
-/mob/living/simple_animal/hostile/poison/bees/toxin/Initialize()
+/mob/living/simple_animal/hostile/poison/bees/toxin/Initialize(mapload)
 	. = ..()
 	var/datum/reagent/R = pick(typesof(/datum/reagent/toxin))
 	assign_reagent(GLOB.chemical_reagents_list[R])
@@ -296,7 +296,7 @@
 	..()
 
 
-/obj/item/queen_bee/bought/Initialize()
+/obj/item/queen_bee/bought/Initialize(mapload)
 	. = ..()
 	queen = new(src)
 
@@ -319,4 +319,4 @@
 
 /mob/living/simple_animal/hostile/poison/bees/short/Initialize(mapload, timetolive=50 SECONDS)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), timetolive)
+	addtimer(CALLBACK(src, PROC_REF(death)), timetolive)

@@ -13,12 +13,12 @@
 	var/obj/item/holder = null
 	// You can use this var for item path, it would be converted into an item on New()
 
-/obj/item/organ/cyberimp/arm/Initialize()
+/obj/item/organ/cyberimp/arm/Initialize(mapload)
 	. = ..()
 	if(ispath(holder))
 		holder = new holder(src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 	items_list = contents.Copy()
 
@@ -29,9 +29,12 @@
 		if(BODY_ZONE_R_ARM)
 			slot = ORGAN_SLOT_RIGHT_ARM_AUG
 		else
-			CRASH("Invalid zone for [type]")
+			stack_trace("Invalid zone for [type]")
+			return FALSE
+	return TRUE
 
-/obj/item/organ/cyberimp/arm/update_icon()
+/obj/item/organ/cyberimp/arm/update_icon(updates=ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_ARM)
 		transform = null
 	else // Mirroring the icon
@@ -45,14 +48,16 @@
 	. = ..()
 	if(.)
 		return TRUE
-	I.play_tool_sound(src)
 	if(zone == BODY_ZONE_R_ARM)
 		zone = BODY_ZONE_L_ARM
-	else
+	else if(zone == BODY_ZONE_L_ARM)
 		zone = BODY_ZONE_R_ARM
-	SetSlotFromZone()
-	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
-	update_icon()
+	if(SetSlotFromZone())
+		I.play_tool_sound(src)
+		update_appearance(UPDATE_ICON)
+		to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
+	else
+		to_chat(user, span_warning("[src] cannot be modified!"))
 
 /obj/item/organ/cyberimp/arm/Remove(mob/living/carbon/M, special = 0)
 	Retract()
@@ -91,12 +96,12 @@
 /obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
 	Retract()
 
-/obj/item/organ/cyberimp/arm/proc/Extend(var/obj/item/item)
+/obj/item/organ/cyberimp/arm/proc/Extend(obj/item/item)
 	if(!(item in src))
 		return
 
 	holder = item
-	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
+	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 	holder.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -163,7 +168,7 @@
 		playsound(get_turf(owner), 'sound/weapons/flashbang.ogg', 100, 1)
 		to_chat(owner, span_userdanger("You feel an explosion erupt inside your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm as your implant breaks!"))
 		owner.adjust_fire_stacks(20)
-		owner.IgniteMob()
+		owner.ignite_mob()
 		owner.adjustFireLoss(25)
 		organ_flags |= ORGAN_FAILING
 
@@ -198,18 +203,18 @@
 /obj/item/organ/cyberimp/arm/toolset/l
 	zone = BODY_ZONE_L_ARM
 
-/obj/item/organ/cyberimp/arm/toolset/Initialize()
+/obj/item/organ/cyberimp/arm/toolset/Initialize(mapload)
 	. = ..()
 	linkedhandler = new
 	linkedhandler.linkedarm = src
 	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
+	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
 
 /obj/item/organ/cyberimp/arm/toolset/Destroy()
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
 	. = ..()
 
-/obj/item/organ/cyberimp/arm/toolset/emag_act()
+/obj/item/organ/cyberimp/arm/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
 		items_list += new /obj/item/kitchen/knife/combat/cyborg(src)
@@ -232,7 +237,7 @@
 	owner.transferItemToLoc(linkedhandler, src, TRUE)
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
-/obj/item/organ/cyberimp/arm/toolset/Extend(var/obj/item/item)
+/obj/item/organ/cyberimp/arm/toolset/Extend(obj/item/item)
 	if(!(item in src))
 		return
 
@@ -372,7 +377,7 @@
 	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
 	contents = newlist(/obj/item/assembly/flash/armimplant)
 
-/obj/item/organ/cyberimp/arm/flash/Initialize()
+/obj/item/organ/cyberimp/arm/flash/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/item/assembly/flash/armimplant) in items_list)
 		var/obj/item/assembly/flash/armimplant/F = locate(/obj/item/assembly/flash/armimplant) in items_list
@@ -388,7 +393,7 @@
 	desc = "A powerful cybernetic implant that contains combat modules built into the user's arm."
 	contents = newlist(/obj/item/melee/transforming/energy/blade/hardlight, /obj/item/gun/medbeam, /obj/item/borg/stun, /obj/item/assembly/flash/armimplant)
 
-/obj/item/organ/cyberimp/arm/combat/Initialize()
+/obj/item/organ/cyberimp/arm/combat/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/item/assembly/flash/armimplant) in items_list)
 		var/obj/item/assembly/flash/armimplant/F = locate(/obj/item/assembly/flash/armimplant) in items_list
@@ -403,7 +408,7 @@
 /obj/item/organ/cyberimp/arm/syndie_hammer
 	name = "Vxtvul Hammer implant"
 	desc = "A folded Vxtvul Hammer designed to be incorporated into preterni chassis. Surgery can permit it to fit in other organic bodies."
-	contents = newlist(/obj/item/twohanded/vxtvulhammer)
+	contents = newlist(/obj/item/melee/vxtvulhammer)
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/nt_mantis
@@ -418,10 +423,21 @@
 	name = "power cord implant"
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
-	zone = "l_arm"
+	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
+	process_flags = SYNTHETIC
+	zone = BODY_ZONE_CHEST
+
+/obj/item/organ/cyberimp/arm/power_cord/SetSlotFromZone() // don't swap the zone
+	return FALSE
 
 /obj/item/organ/cyberimp/arm/flash/rev
 	name = "revolutionary brainwashing implant"
 	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
 	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
+	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/stechkin_implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
+	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE

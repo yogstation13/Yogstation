@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	roundstart = mapload
 	installed_racks = list()
 	GLOB.server_cabinets += src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	RefreshParts()
 
 
@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			vis_contents -= smoke
 			QDEL_NULL(smoke)
 		if(!was_valid_holder)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		was_valid_holder = TRUE
 
 		
@@ -115,28 +115,28 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			network?.update_resources()
 
 
-/obj/machinery/ai/server_cabinet/update_icon()
-	cut_overlays()
+/obj/machinery/ai/server_cabinet/update_overlays()
+	. = ..()
 
 	if(installed_racks.len > 0) 
 		var/mutable_appearance/top_overlay = mutable_appearance(icon, "expansion_bus_top")
-		add_overlay(top_overlay)
+		. += top_overlay
 	if(installed_racks.len > 1) 
 		var/mutable_appearance/bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom")
-		add_overlay(bottom_overlay)
+		. += bottom_overlay
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
-		add_overlay(on_overlay)
+		. += on_overlay
 		if(!valid_ticks) //If we are running on valid ticks we don't turn off instantly, only when we run out
 			return
 		if(!network) //If we lose network connection we cut out INSTANTLY
 			return
 		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
-			add_overlay(on_top_overlay)
+			. += on_top_overlay
 		if(installed_racks.len > 1)
 			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
-			add_overlay(on_bottom_overlay)
+			. += on_bottom_overlay
 
 /obj/machinery/ai/server_cabinet/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/server_rack))
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		cached_power_usage += rack.get_power_usage()
 		network?.update_resources()
 		use_power = ACTIVE_POWER_USE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_racks.len)
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			network?.update_resources()
 			to_chat(user, span_notice("You remove all the racks from [src]"))
 			use_power = IDLE_POWER_USE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return FALSE
 		else
 			if(default_deconstruction_crowbar(W))
@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		. += span_notice("The inserted disk is [round(puzzle_disk.decryption_progress / (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT) * 100)]% decrypted.")
 
 
-/obj/machinery/ai/server_cabinet/prefilled/Initialize()
+/obj/machinery/ai/server_cabinet/prefilled/Initialize(mapload)
 	. = ..()
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()

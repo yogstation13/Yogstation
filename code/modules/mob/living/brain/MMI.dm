@@ -24,7 +24,8 @@
 	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
 	Being placed in a mech does not slave you to any laws.</b>"
 
-/obj/item/mmi/update_icon()
+/obj/item/mmi/update_icon_state()
+	. = ..()
 	if(!brain)
 		icon_state = "mmi_off"
 		return
@@ -34,12 +35,19 @@
 	else
 		icon_state = "mmi_brain"
 		braintype = "Cyborg"
-	if(brainmob && brainmob.stat != DEAD)
-		add_overlay("mmi_alive")
-	else
-		add_overlay("mmi_dead")
 
-/obj/item/mmi/Initialize()
+/obj/item/mmi/update_overlays()
+	. = ..()
+	. += add_mmi_overlay()
+
+/obj/item/mmi/proc/add_mmi_overlay()
+	if(brainmob && brainmob.stat != DEAD)
+		. += "mmi_alive"
+		return
+	if(brain)
+		. += "mmi_dead"
+
+/obj/item/mmi/Initialize(mapload)
 	. = ..()
 	radio = new(src) //Spawns a radio inside the MMI.
 	radio.broadcasting = FALSE //researching radio mmis turned the robofabs into radios because this didnt start as 0.
@@ -69,7 +77,7 @@
 		brainmob.container = src
 		var/fubar_brain = newbrain.brain_death && newbrain.suicided && brainmob.suiciding //brain is damaged beyond repair or from a suicider
 		if(!fubar_brain && !(newbrain.organ_flags & ORGAN_FAILING)) // the brain organ hasn't been beaten to death, nor was from a suicider.
-			brainmob.stat = CONSCIOUS //we manually revive the brain mob
+			brainmob.set_stat(CONSCIOUS) //we manually revive the brain mob
 			brainmob.remove_from_dead_mob_list()
 			brainmob.add_to_alive_mob_list()
 		else if(!fubar_brain && newbrain.organ_flags & ORGAN_FAILING) // the brain is damaged, but not from a suicider
@@ -83,7 +91,7 @@
 		brain = newbrain
 
 		name = "[initial(name)]: [brainmob.real_name]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 		SSblackbox.record_feedback("amount", "mmis_filled", 1)
 
@@ -110,7 +118,7 @@
 			if(!brainmob) return
 			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
 			eject_brain(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			name = initial(name)
 			user.visible_message(span_notice("[user] rips the brain out of [src]"), span_danger("You successfully remove the brain from the [src][rebooting ? ", interrupting the reboot process" : ""]"))
 			if(rebooting)
@@ -121,7 +129,7 @@
 /obj/item/mmi/proc/eject_brain(mob/user)
 	brainmob.container = null //Reset brainmob mmi var.
 	brainmob.forceMove(brain) //Throw mob into brain.
-	brainmob.stat = DEAD
+	brainmob.set_stat(DEAD)
 	brainmob.emp_damage = 0
 	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
 	brainmob.remove_from_alive_mob_list() //Get outta here
@@ -159,7 +167,7 @@
 
 	name = "[initial(name)]: [brainmob.real_name]"
 	to_chat(brainmob, welcome_message)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/mmi/proc/replacement_ai_name()
@@ -245,15 +253,15 @@
 	rebooting = TRUE
 	visible_message(span_danger("The indicator lights on [src] begin to glow faintly as the reboot process begins"))
 	to_chat(brainmob, span_userdanger("You begin to reboot after being removed from the destroyed body"))
-	reboot_timer = addtimer(CALLBACK(src, .proc/halfwayReboot), remove_window / 2, TIMER_STOPPABLE)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(halfwayReboot)), remove_window / 2, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/halfwayReboot()
 	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
-	reboot_timer = addtimer(CALLBACK(src, .proc/rebootNoReturn), remove_window / 2, TIMER_STOPPABLE)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootNoReturn)), remove_window / 2, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/rebootNoReturn()
 	visible_message(span_danger("The indicator lights on [src] begin to blink as the reboot process nears completion"))
-	reboot_timer = addtimer(CALLBACK(src, .proc/rebootFinish), remove_time, TIMER_STOPPABLE)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootFinish)), remove_time, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/rebootFinish()
 	visible_message(span_danger("The indicator lights on [src] return to normal as the reboot process completes"))
@@ -267,7 +275,7 @@
 	override_cyborg_laws = TRUE
 	can_update_laws = FALSE
 
-/obj/item/mmi/syndie/Initialize()
+/obj/item/mmi/syndie/Initialize(mapload)
 	. = ..()
 	laws = new /datum/ai_laws/syndicate_override()
 	radio.on = FALSE

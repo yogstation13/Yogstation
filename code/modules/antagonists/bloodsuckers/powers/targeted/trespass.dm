@@ -1,8 +1,8 @@
-/datum/action/bloodsucker/targeted/trespass
+/datum/action/cooldown/bloodsucker/targeted/trespass
 	name = "Trespass"
 	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
 	button_icon_state = "power_tres"
-	power_explanation = "<b>Trespass</b>:\n\
+	power_explanation = "Trespass:\n\
 		Click anywhere from 1-2 tiles away from you to teleport.\n\
 		This power goes through all obstacles except Walls.\n\
 		Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
@@ -10,14 +10,15 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 10
-	cooldown = 7 SECONDS
+	cooldown_time = 7 SECONDS
 	prefire_message = "Select a destination."
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/trespass/shadow
 	//target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
 	var/wallbound = TRUE
 	var/soliddelay = 0.1 SECONDS
 
-/datum/action/bloodsucker/targeted/trespass/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/targeted/trespass/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -26,7 +27,7 @@
 	return TRUE
 
 
-/datum/action/bloodsucker/targeted/trespass/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/trespass/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -36,7 +37,7 @@
 	return TRUE // All we care about is destination. Anything you click is fine.
 
 
-/datum/action/bloodsucker/targeted/trespass/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/trespass/CheckCanTarget(atom/target_atom)
 	// NOTE: Do NOT use ..()! We don't want to check distance or anything.
 
 	// Get clicked tile
@@ -64,7 +65,7 @@
 
 	return TRUE
 
-/datum/action/bloodsucker/targeted/trespass/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/trespass/FireTargetedPower(atom/target_atom)
 	. = ..()
 
 	// Find target turf, at or below Atom
@@ -80,8 +81,7 @@
 	var/sound_strength = max(60, 70 - level_current * 10)
 	var/sound_dist = max(-6, -level_current) // world.view is 7, so 7-6 = hearing distance of 1
 	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1, sound_dist)
-	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/()
-	puff.effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke
+	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread()
 	puff.set_up(3, 0, my_turf)
 	puff.start()
 
@@ -114,13 +114,14 @@
 	puff.set_up(3, 0, target_turf)
 	puff.start()
 
-/datum/action/bloodsucker/targeted/trespass/shadow
+/datum/action/cooldown/bloodsucker/targeted/trespass/shadow
 	name = "Manifest"
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	active_background_icon_state = "lasombra_power_on"
+	base_background_icon_state = "lasombra_power_off"
 	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
-	background_icon_state_on = "lasombra_power_on"
-	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_manifest"
 	additional_text = "Additionally allows you pass through walls, albeit at a slower rate."
 	purchase_flags = LASOMBRA_CAN_BUY
 	wallbound = FALSE
+	ascended_power = null

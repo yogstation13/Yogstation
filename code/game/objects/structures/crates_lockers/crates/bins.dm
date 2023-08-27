@@ -5,22 +5,21 @@
 	open_sound = 'sound/effects/bin_open.ogg'
 	close_sound = 'sound/effects/bin_close.ogg'
 	anchored = TRUE
-	horizontal = FALSE
+	open_flags = ALLOW_OBJECTS | ALLOW_DENSE
 	delivery_icon = null
 
-/obj/structure/closet/crate/bin/Initialize()
+/obj/structure/closet/crate/bin/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/closet/crate/bin/update_icon()
-	..()
-	cut_overlays()
+/obj/structure/closet/crate/bin/update_overlays()
+	. = ..()
 	if(contents.len == 0)
-		add_overlay("largebing")
+		. += "largebing"
 	else if(contents.len >= storage_capacity)
-		add_overlay("largebinr")
+		. += "largebinr"
 	else
-		add_overlay("largebino")
+		. += "largebino"
 
 /obj/structure/closet/crate/bin/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage/bag/trash))
@@ -28,7 +27,7 @@
 		to_chat(user, span_notice("You fill the bag."))
 		for(var/obj/item/O in src)
 			SEND_SIGNAL(T, COMSIG_TRY_STORAGE_INSERT, O, user, TRUE)
-		T.update_icon()
+		T.update_appearance(UPDATE_ICON)
 		do_animate()
 	else if(istype(W, /obj/item/wrench))
 		anchored = !anchored
@@ -41,4 +40,4 @@
 	flick("animate_largebins", src)
 	spawn(13)
 		playsound(loc, close_sound, 15, 1, -3)
-		update_icon()
+		update_appearance(UPDATE_ICON)

@@ -24,6 +24,7 @@
 /mob/Login()
 	if(!client)
 		return FALSE
+	canon_client = client
 	add_to_player_list()
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
@@ -33,14 +34,34 @@
 	client.images = list()
 
 	if(!hud_used)
-		create_mob_hud()
+		create_mob_hud() // creating a hud will add it to the client's screen, which can process a disconnect
+		if(!client)
+			return FALSE
+
 	if(hud_used)
-		hud_used.show_hud(hud_used.hud_version)
+		hud_used.show_hud(hud_used.hud_version) // see above, this can process a disconnect
+		if(!client)
+			return FALSE
 		hud_used.update_ui_style(ui_style2icon(client.prefs?.read_preference(/datum/preference/choiced/ui_style)))
 
 	next_move = 1
 
-	..()
+	client.statobj = src
+	
+	SSdemo.write_event_line("setmob [client.ckey] \ref[src]")
+
+	// DO NOT CALL PARENT HERE
+	// BYOND's internal implementation of login does two things
+	// 1: Set statobj to the mob being logged into (We got this covered)
+	// 2: And I quote "If the mob has no location, place it near (1,1,1) if possible"
+	// 3: Yog: handle the mob client in replays
+	// See, near is doing an agressive amount of legwork there
+	// What it actually does is takes the area that (1,1,1) is in, and loops through all those turfs
+	// If you successfully move into one, it stops
+	// Because we want Move() to mean standard movements rather then just what byond treats it as (ALL moves)
+	// We don't allow moves from nullspace -> somewhere. This means the loop has to iterate all the turfs in (1,1,1)'s area
+	// For us, (1,1,1) is a space tile. This means roughly 200,000! calls to Move()
+	// You do not want this
 
 	if(!client)
 		return FALSE

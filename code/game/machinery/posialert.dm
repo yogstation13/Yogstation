@@ -15,7 +15,7 @@
 	flick("posialertflash", src)
 	say("There are positronic personalities available.")
 	playsound(loc, 'sound/machines/ping.ogg', 50)
-	addtimer(CALLBACK(src, /obj/machinery/posialert.proc/liftcooldown), 30 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/posialert, liftcooldown)), 30 SECONDS)
 
 /obj/machinery/posialert/proc/liftcooldown()
 	inuse = FALSE

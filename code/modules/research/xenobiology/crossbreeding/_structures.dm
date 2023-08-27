@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		max_integrity = 1000
 		obj_integrity = 1000
 
-/obj/structure/slime_crystal/Initialize()
+/obj/structure/slime_crystal/Initialize(mapload)
 	. = ..()
 	name =  "[colour] slimic pylon"
 	var/itemcolor = "#FFFFFF"
@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return
 	var/mob/living/carbon/carbon_mob = affected_mob
 	carbon_mob.fire_stacks++
-	carbon_mob.IgniteMob()
+	carbon_mob.ignite_mob()
 
 /obj/structure/slime_crystal/orange/process()
 	. = ..()
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	light_power = 0.75
 	uses_process = FALSE
 
-/obj/structure/slime_crystal/yellow/Initialize()
+/obj/structure/slime_crystal/yellow/Initialize(mapload)
 	. = ..()
 	set_light(3)
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	///Is it in use?
 	var/in_use = FALSE
 
-/obj/structure/slime_crystal/bluespace/Initialize()
+/obj/structure/slime_crystal/bluespace/Initialize(mapload)
 	. = ..()
 	GLOB.bluespace_slime_crystals += src
 
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	var/stage = 0
 	var/max_stage = 5
 
-/obj/structure/cerulean_slime_crystal/Initialize()
+/obj/structure/cerulean_slime_crystal/Initialize(mapload)
 	. = ..()
 	transform *= 1/(max_stage-1)
 	stage_growth()
@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	var/matrix/M = new
 	M.Scale(1/max_stage * stage)
 	animate(src, transform = M, time = 60 SECONDS)
-	addtimer(CALLBACK(src, .proc/stage_growth), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(stage_growth)), 60 SECONDS)
 
 /obj/structure/cerulean_slime_crystal/Destroy()
 	if(stage > 1)
@@ -367,7 +367,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/cerulean/process()
 	for(var/turf/T in range(2,src))
-		if(is_blocked_turf(T) || isspaceturf(T)  || T == get_turf(src) || prob(50))
+		if(T.is_blocked_turf() || isspaceturf(T)  || T == get_turf(src) || prob(50))
 			continue
 		var/obj/structure/cerulean_slime_crystal/CSC = locate() in range(1,T)
 		if(CSC)
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	effect_desc = "It causes nearby floor tiles to be randomly colored."
 	uses_process = FALSE
 
-/obj/structure/slime_crystal/pyrite/Initialize()
+/obj/structure/slime_crystal/pyrite/Initialize(mapload)
 	. = ..()
 	change_colour()
 
@@ -388,7 +388,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 					"#00FF00", "#FF69B4","#FFD700", "#505050", "#FFB6C1","#008B8B")
 	for(var/turf/T in RANGE_TURFS(4,src))
 		T.add_atom_colour(pick(color_list), FIXED_COLOUR_PRIORITY)
-	addtimer(CALLBACK(src,.proc/change_colour),rand(0.75 SECONDS,1.25 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(change_colour)),rand(0.75 SECONDS,1.25 SECONDS))
 
 /obj/structure/slime_crystal/red
 	colour = "red"
@@ -596,7 +596,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	max_integrity = 100 //It would suck destroying this by accident
 	var/list/inserted_cores = list()
 
-/obj/structure/slime_crystal/rainbow/Initialize()
+/obj/structure/slime_crystal/rainbow/Initialize(mapload)
 	. = ..()
 	for(var/X in subtypesof(/obj/item/slimecross/crystalized) - /obj/item/slimecross/crystalized/rainbow)
 		inserted_cores[X] = FALSE
