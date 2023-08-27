@@ -429,7 +429,7 @@ SUBSYSTEM_DEF(ticker)
 	if(captainless)
 		for(var/mob/dead/new_player/N in GLOB.player_list)
 			if(N.new_character)
-				to_chat(N, "Captainship not forced on anyone.")
+				to_chat(N, "No Captain has been assigned to this crew at start of shift.")
 			CHECK_TICK
 
 	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
