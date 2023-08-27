@@ -4,7 +4,6 @@
 /obj/item/borg
 	icon = 'icons/mob/robot_items.dmi'
 
-
 /obj/item/borg/stun
 	name = "electrically-charged arm"
 	icon_state = "elecarm"
@@ -674,7 +673,6 @@
 /obj/item/borg/sight
 	var/sight_mode = null
 
-
 /obj/item/borg/sight/xray
 	name = "\proper X-ray vision"
 	icon = 'icons/obj/decals.dmi'
@@ -691,12 +689,17 @@
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
 
-
 /obj/item/borg/sight/meson
 	name = "\proper meson vision"
 	sight_mode = BORGMESON
 	icon_state = "meson"
 
+/obj/item/borg/sight/meson/nightvision
+	name = "\proper night vision meson vision"
+	icon = 'icons/obj/clothing/glasses.dmi'
+	icon_state = "nvgmeson"
+	sight_mode = BORGMESON_NIGHTVISION
+	
 /obj/item/borg/sight/material
 	name = "\proper material vision"
 	sight_mode = BORGMATERIAL
@@ -706,7 +709,6 @@
 	name = "hud"
 	var/obj/item/clothing/glasses/hud/hud = null
 
-
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
 	icon_state = "healthhud"
@@ -714,7 +716,6 @@
 /obj/item/borg/sight/hud/med/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health(src)
-
 
 /obj/item/borg/sight/hud/sec
 	name = "security hud"
