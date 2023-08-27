@@ -871,6 +871,7 @@
 	icon_state = "nuclearwaste"
 	alpha = 150
 	light_color = LIGHT_COLOR_GREEN
+	obj_flags = RAD_NO_CONTAMINATE_1 // already making rads, don't contaminate it further
 	color = "#ff9eff"
 
 /obj/effect/decal/nuclear_waste/Initialize(mapload)
@@ -879,7 +880,15 @@
 		if(istype(A, /obj/structure))
 			qdel(src) //It is more processing efficient to do this here rather than when searching for available turfs.
 	set_light(1)
-	AddComponent(/datum/component/radioactive, 1000, src, 0)
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/decal/nuclear_waste/process(delta_time)
+	if(prob(10)) // woah there, don't overload the radiation subsystem
+		radiation_pulse(src, 1000, RAD_DISTANCE_COEFFICIENT)
+
+/obj/effect/decal/nuclear_waste/Destroy(force)
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/effect/landmark/nuclear_waste_spawner //Clean way of spawning nuclear gunk after a reactor core meltdown.
 	name = "Nuclear waste spawner"
