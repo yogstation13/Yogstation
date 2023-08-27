@@ -37,7 +37,7 @@
 #define NITRO_BALL_MAX_REACT_RATE 36
 /// Moles of reactant per radball emitted
 #define NITRO_BALL_MOLES_REQUIRED 2
-/// Amount of energy released when plasma is consumed (into radballs) by nitroball 
+/// Amount of energy released when plasma is consumed (into rad) by nitroball 
 #define NITRO_BALL_PLASMA_ENERGY 20000000
 /// Fraction of plasma consumed during reaction	
 #define NITRO_BALL_PLASMA_COEFFICIENT 0.2

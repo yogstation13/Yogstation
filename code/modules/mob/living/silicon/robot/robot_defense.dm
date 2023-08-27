@@ -49,7 +49,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/silicon/robot/attack_hand(mob/living/carbon/human/user)
 	add_fingerprint(user)
-	if(opened && !wiresexposed && !issilicon(user))
+	if(opened && !wireposed && !issilicon(user))
 		if(cell)
 			cell.update_appearance(UPDATE_ICON)
 			cell.add_fingerprint(user)
@@ -97,7 +97,7 @@
 		return TRUE
 	if(world.time < emag_cooldown)
 		return FALSE
-	if(wiresexposed)
+	if(wireposed)
 		to_chat(user, span_warning("You must unexpose the wires first!"))
 		return FALSE
 

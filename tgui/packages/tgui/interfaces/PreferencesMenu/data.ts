@@ -41,7 +41,7 @@ export type Species = {
   icon: string;
 
   use_skintones: BooleanLike;
-  sexes: BooleanLike;
+  es: BooleanLike;
 
   enabled_features: string[];
 

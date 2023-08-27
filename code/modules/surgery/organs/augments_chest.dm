@@ -237,7 +237,7 @@
 	syndicate_implant = TRUE
 	var/on = FALSE
 	var/time_on = 0
-	var/hasexerted = FALSE
+	var/haerted = FALSE
 	COOLDOWN_DECLARE(alertcooldown)
 	COOLDOWN_DECLARE(startsoundcooldown)
 	COOLDOWN_DECLARE(endsoundcooldown)
@@ -330,10 +330,10 @@
 				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(1)
 			if(50 to 100)
-				if(COOLDOWN_FINISHED(src, alertcooldown) || !hasexerted)
+				if(COOLDOWN_FINISHED(src, alertcooldown) || !haerted)
 					to_chat(owner, span_userdanger("Your spine and brain feel like they're burning!"))
 					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
-				hasexerted = TRUE
+				haerted = TRUE
 				owner.set_drugginess(10)
 				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(5)
@@ -344,9 +344,9 @@
 		time_on -= 2
 
 	time_on = max(time_on, 0)
-	if(hasexerted && time_on == 0)
+	if(haerted && time_on == 0)
 		to_chat(owner, "Your brains feels normal again.")
-		hasexerted = FALSE
+		haerted = FALSE
 
 /obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
 	. = ..()

@@ -105,7 +105,7 @@
 		
 /obj/item/gun/ballistic/handcannon
 	name = "hand cannon"
-	desc = "Since the times of shooting cannonballs from ships has long passed, pirate culture has moved onto making these ship-piercing weapons handheld."
+	desc = "Since the times of shooting cannon from ships has long passed, pirate culture has moved onto making these ship-piercing weapons handheld."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "handcannon"
 	item_state = "handycannon"

@@ -206,12 +206,12 @@
 
 	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
 	if(fuel_mix.get_moles(/datum/gas/plasma) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(/datum/gas/nitrium) >= NITRO_BALL_MOLES_REQUIRED && fuel_mix.get_moles(/datum/gas/pluoxium) >= NITRO_BALL_MOLES_REQUIRED)
-		var/balls_shot = round(min(fuel_mix.get_moles(/datum/gas/nitrium), fuel_mix.get_moles(/datum/gas/pluoxium), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED))
-		var/angular_increment = 360/balls_shot
+		var/_shot = round(min(fuel_mix.get_moles(/datum/gas/nitrium), fuel_mix.get_moles(/datum/gas/pluoxium), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED))
+		var/angular_increment = 360/_shot
 		var/random_starting_angle = rand(0,360)
-		for(var/i in 1 to balls_shot)
+		for(var/i in 1 to _shot)
 			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
-		fuel_mix.adjust_moles(/datum/gas/plasma, -balls_shot * NITRO_BALL_MOLES_REQUIRED) // No free extra damage for you, conservation of mass go brrrrr
+		fuel_mix.adjust_moles(/datum/gas/plasma, -_shot * NITRO_BALL_MOLES_REQUIRED) // No free extra damage for you, conservation of mass go brrrrr
 
 	// Funny rad flamethrower go brrr
 	if(fuel_mix.get_moles(/datum/gas/tritium)) // Tritium fires cause a bit of radiation

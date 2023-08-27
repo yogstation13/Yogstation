@@ -39,7 +39,7 @@
 
 /obj/item/clothing/head/wizard/marisa
 	name = "witch hat"
-	desc = "Strange-looking hat-wear. Makes you want to cast fireballs."
+	desc = "Strange-looking hat-wear. Makes you want to cast fire."
 	icon_state = "marisa"
 	dog_fashion = null
 
@@ -131,7 +131,7 @@
 
 /obj/item/clothing/head/wizard/marisa/fake
 	name = "witch hat"
-	desc = "Strange-looking hat-wear, makes you want to cast fireballs."
+	desc = "Strange-looking hat-wear, makes you want to cast fire."
 	icon_state = "marisa"
 	gas_transfer_coefficient = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)

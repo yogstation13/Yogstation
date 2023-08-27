@@ -507,7 +507,7 @@ nobliumformation = 1001
 		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 	)
 
-/// Reaction that burns nitrium and plouxium into radballs and partial constituent gases, but also catalyzes the combustion of plasma.
+/// Reaction that burns nitrium and plouxium into rad and partial constituent gases, but also catalyzes the combustion of plasma.
 /datum/gas_reaction/nitro_ball/react(datum/gas_mixture/air, datum/holder)
 	var/turf/location
 	var/old_heat_capacity = air.heat_capacity()
@@ -517,8 +517,8 @@ nobliumformation = 1001
 	else
 		location = get_turf(holder)
 	var/reaction_rate = min(NITRO_BALL_MAX_REACT_RATE, air.get_moles(/datum/gas/pluoxium), air.get_moles(/datum/gas/nitrium), air.get_moles(/datum/gas/plasma))
-	var/balls_shot = round(reaction_rate/NITRO_BALL_MOLES_REQUIRED)
-	//A percentage of plasma is burned during the reaction that is converted into energy and radballs, though mostly pure heat. 
+	var/_shot = round(reaction_rate/NITRO_BALL_MOLES_REQUIRED)
+	//A percentage of plasma is burned during the reaction that is converted into energy and rad, though mostly pure heat. 
 	var/plasma_burned = QUANTIZE((air.get_moles(/datum/gas/plasma) + 5*reaction_rate)*NITRO_BALL_PLASMA_COEFFICIENT)
 	//Nitrium has a lot of stored energy, and breaking it up releases some of it. Plasma is also partially converted into energy in the process.
 	var/energy_released = (reaction_rate*NITRO_BALL_HEAT_SCALE) + (plasma_burned*NITRO_BALL_PLASMA_ENERGY)
@@ -526,10 +526,10 @@ nobliumformation = 1001
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
 	air.adjust_moles(/datum/gas/antinoblium, reaction_rate) // an actual purpose for this reaction other than bombs and flamethrowers
 	air.adjust_moles(/datum/gas/plasma, -plasma_burned)
-	if(balls_shot && !isnull(location))
-		var/angular_increment = 360/balls_shot
+	if(_shot && !isnull(location))
+		var/angular_increment = 360/_shot
 		var/random_starting_angle = rand(0,360)
-		for(var/i in 1 to balls_shot)
+		for(var/i in 1 to _shot)
 			location.fire_nuclear_particle((i*angular_increment+random_starting_angle))
 	if(energy_released)
 		var/new_heat_capacity = air.heat_capacity()

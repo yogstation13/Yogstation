@@ -3,7 +3,7 @@
 	plural_form = "Plasmamen"
 	id = "plasmaman"
 	say_mod = "rattles"
-	sexes = FALSE
+	es = FALSE
 	meat = /obj/item/stack/sheet/mineral/plasma
 	species_traits = list(NOBLOOD,NOTRANSSTING, HAS_BONE, AGENDER, NOHUSK)
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place.

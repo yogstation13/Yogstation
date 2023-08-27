@@ -566,7 +566,7 @@
 
 /obj/item/gun/magic/wand/fireball/inert
 	name = "weakened wand of fireball"
-	desc = "This wand shoots scorching balls of fire that explode into destructive flames. The years of the cold have weakened the magic inside the wand."
+	desc = "This wand shoots scorching  of fire that explode into destructive flames. The years of the cold have weakened the magic inside the wand."
 	max_charges = 4
 
 /obj/item/gun/magic/wand/resurrection/inert

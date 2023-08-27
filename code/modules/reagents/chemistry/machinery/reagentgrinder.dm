@@ -49,11 +49,11 @@
 	if(container)
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.high_mov_atom += container
+				Splosions.high_mov_atom += container
 			if(EXPLODE_HEAVY)
-				SSexplosions.med_mov_atom += container
+				Splosions.med_mov_atom += container
 			if(EXPLODE_LIGHT)
-				SSexplosions.low_mov_atom += container
+				Splosions.low_mov_atom += container
 
 /obj/machinery/reagentgrinder/RefreshParts()
 	speed = 1

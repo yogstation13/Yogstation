@@ -262,7 +262,7 @@ Difficulty: Extremely Hard
 
 /obj/item/gun/energy/snowball_machine_gun
 	name = "snowball machine gun"
-	desc = "A self-charging poorly-rigged energy gun that fires energy particles that look like snowballs."
+	desc = "A self-charging poorly-rigged energy gun that fires energy particles that look like snow."
 	icon_state = "freezegun"
 	ammo_type = list(/obj/item/ammo_casing/energy/snowball)
 	selfcharge = TRUE

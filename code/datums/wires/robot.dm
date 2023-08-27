@@ -14,7 +14,7 @@
 
 /datum/wires/robot/interactable(mob/user)
 	var/mob/living/silicon/robot/R = holder
-	if(R.wiresexposed)
+	if(R.wireposed)
 		return TRUE
 
 /datum/wires/robot/get_status()

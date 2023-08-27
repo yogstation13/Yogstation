@@ -1729,7 +1729,7 @@
 	gender = NEUTER
 
 /datum/sprite_accessory/undershirt/tank_ace
-	name = "Tank Top (Asexual)"
+	name = "Tank Top (Aual)"
 	icon_state = "tank_ace"
 	gender = NEUTER
 
@@ -1817,7 +1817,7 @@
 	icon_state = "rainbow_knee"
 
 /datum/sprite_accessory/socks/ace_knee
-	name = "Knee-high (Asexual)"
+	name = "Knee-high (Aual)"
 	icon_state = "ace_knee" // can be used to show that you follow rule 0.2
 
 /datum/sprite_accessory/socks/bi_knee
@@ -1925,7 +1925,7 @@
 	icon_state = "rainbow_thigh"
 
 /datum/sprite_accessory/socks/ace_thigh
-	name = "Thigh-high (Asexual)"
+	name = "Thigh-high (Aual)"
 	icon_state = "ace_thigh"
 
 /datum/sprite_accessory/socks/bi_thigh

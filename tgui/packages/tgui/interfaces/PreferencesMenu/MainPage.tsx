@@ -515,7 +515,7 @@ export const MainPage = (props: {
                     }}
                     setGender={createSetPreference(act, "gender")}
                     showGender={
-                      currentSpeciesData ? !!currentSpeciesData.sexes : true
+                      currentSpeciesData ? !!currentSpeciesData.es : true
                     }
                   />
                 </Stack.Item>

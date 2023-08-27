@@ -2,7 +2,7 @@
 	name = "Szlachta"
 	id = "szlachta"
 	limbs_id = "szlachta"
-	sexes = FALSE
+	es = FALSE
 	nojumpsuit = TRUE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 	siemens_coeff = 0

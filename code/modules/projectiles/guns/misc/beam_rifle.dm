@@ -473,7 +473,7 @@
 					var/turf/closed/wall/W = target
 					W.dismantle_wall(TRUE, TRUE)
 				else
-					SSexplosions.medturf += target
+					Splosions.medturf += target
 			return TRUE
 	if(ismovable(target))
 		var/atom/movable/AM = target

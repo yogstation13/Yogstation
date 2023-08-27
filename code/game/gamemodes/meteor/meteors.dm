@@ -151,21 +151,21 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 			living_thing.visible_message(span_warning("[src] slams into [living_thing]."), span_userdanger("[src] slams into you!."))
 		switch(hitpwr)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.high_mov_atom += thing
+				Splosions.high_mov_atom += thing
 			if(EXPLODE_HEAVY)
-				SSexplosions.med_mov_atom += thing
+				Splosions.med_mov_atom += thing
 			if(EXPLODE_LIGHT)
-				SSexplosions.low_mov_atom += thing
+				Splosions.low_mov_atom += thing
 
 	//then, ram the turf if it still exists
 	if(T && !isspaceturf(T))
 		switch(hitpwr)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.highturf += T
+				Splosions.highturf += T
 			if(EXPLODE_HEAVY)
-				SSexplosions.medturf += T
+				Splosions.medturf += T
 			if(EXPLODE_LIGHT)
-				SSexplosions.lowturf += T
+				Splosions.lowturf += T
 
 
 

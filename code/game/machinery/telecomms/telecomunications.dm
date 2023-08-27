@@ -1,6 +1,6 @@
 
 /*
-	Hello, friends, this is Doohl from sexylands. You may be wondering what this
+	Hello, friends, this is Doohl from ylands. You may be wondering what this
 	monstrous code file is. Sit down, boys and girls, while I tell you the tale.
 
 

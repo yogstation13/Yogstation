@@ -119,7 +119,7 @@
 
 /obj/item/clothing/head/rabbitears
 	name = "rabbit ears"
-	desc = "Wearing these makes you look useless, and only good for your sex appeal."
+	desc = "Wearing these makes you look useless, and only good for your  appeal."
 	icon_state = "bunny"
 	dynamic_hair_suffix = ""
 

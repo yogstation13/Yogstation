@@ -5,7 +5,7 @@ import time
 import contextlib
 import ctypes
 from ctypes import c_size_t, sizeof, c_wchar_p, get_errno, c_wchar
-from .exceptions import PyperclipWindowsException
+from .exceptions import PyperclipWindowception
 
 
 class CheckedCall(object):
@@ -15,7 +15,7 @@ class CheckedCall(object):
     def __call__(self, *args):
         ret = self.f(*args)
         if not ret and get_errno():
-            raise PyperclipWindowsException("Error calling " + self.f.__name__)
+            raise PyperclipWindowception("Error calling " + self.f.__name__)
         return ret
 
     def __setattr__(self, key, value):
@@ -103,7 +103,7 @@ def init_windows_clipboard():
                 break
             time.sleep(0.01)
         if not success:
-            raise PyperclipWindowsException("Error calling OpenClipboard")
+            raise PyperclipWindowception("Error calling OpenClipboard")
 
         try:
             yield

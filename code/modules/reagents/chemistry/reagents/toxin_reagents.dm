@@ -706,7 +706,7 @@
 	name = "Lipolicide"
 	description = "A powerful toxin that will destroy fat cells, massively reducing body weight in a short time. Deadly to those without nutriment in their body."
 	silent_toxin = TRUE
-	taste_description = "mothballs"
+	taste_description = "moth"
 	reagent_state = LIQUID
 	color = "#F0FFF0"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM

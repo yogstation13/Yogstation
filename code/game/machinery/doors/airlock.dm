@@ -1462,7 +1462,7 @@
 
 	var/obj/structure/window/killthis = (locate(/obj/structure/window) in get_turf(src))
 	if(killthis)
-		SSexplosions.med_mov_atom += killthis
+		Splosions.med_mov_atom += killthis
 
 	operating = TRUE
 	update_icon(state = AIRLOCK_CLOSING, override = TRUE)

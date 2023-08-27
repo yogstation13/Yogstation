@@ -58,7 +58,7 @@
 	name = "seed extractor"
 	desc = "Extracts and bags seeds from produce."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "sextractor"
+	icon_state = "tractor"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/seed_extractor
 	/// Associated list of seeds, they are all weak refs.  We check the len to see how many refs we have for each
@@ -83,7 +83,7 @@
 
 /obj/machinery/seed_extractor/attackby(obj/item/O, mob/user, params)
 
-	if(default_deconstruction_screwdriver(user, "sextractor_open", "sextractor", O))
+	if(default_deconstruction_screwdriver(user, "tractor_open", "tractor", O))
 		return
 
 	if(default_pry_open(O))

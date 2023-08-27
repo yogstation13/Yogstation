@@ -97,7 +97,7 @@
 		message = replacetext(message," nerd "," smart guy ")
 		message = replacetext(message," moron "," fun person ")
 		message = replacetext(message," IT'S LOOSE "," EVERYTHING IS FINE ")
-		message = replacetext(message," sex "," hug fight ")
+		message = replacetext(message,"  "," hug fight ")
 		message = replacetext(message," idiot "," genius ")
 		message = replacetext(message," fat "," thin ")
 		message = replacetext(message," beer "," water with ice ")

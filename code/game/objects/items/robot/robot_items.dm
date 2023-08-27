@@ -516,7 +516,7 @@
 
 /obj/item/borg_snack_dispenser/medical
 	name = "\improper Treat Borg Snack Dispenser" // Not calling this "Medical Borg Snack Dispenser" since Service & Clown Cyborgs use this too.
-	desc = "A dispenser that dispenses treats such as lollipops and gumballs!"
+	desc = "A dispenser that dispenses treats such as lollipops and gum!"
 	valid_snacks = list(/obj/item/reagent_containers/food/snacks/lollipop, /obj/item/reagent_containers/food/snacks/gumball, /obj/item/reagent_containers/food/snacks/icecream)
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20

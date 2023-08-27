@@ -148,11 +148,11 @@
 /datum/spacevine_mutation/aggressive_spread/on_spread(obj/structure/spacevine/holder, turf/target)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			SSexplosions.highturf += target
+			Splosions.highturf += target
 		if(EXPLODE_HEAVY)
-			SSexplosions.medturf += target
+			Splosions.medturf += target
 		if(EXPLODE_LIGHT)
-			SSexplosions.lowturf += target
+			Splosions.lowturf += target
 
 /datum/spacevine_mutation/aggressive_spread/on_buckle(obj/structure/spacevine/holder, mob/living/buckled)
 	buckled.ex_act(severity, null, src)

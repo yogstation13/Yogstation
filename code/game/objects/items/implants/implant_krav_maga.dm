@@ -1,6 +1,6 @@
 /obj/item/implant/krav_maga
 	name = "krav maga implant"
-	desc = "Teaches you the arts of Krav Maga in 5 short instructional videos beamed directly into your eyeballs."
+	desc = "Teaches you the arts of Krav Maga in 5 short instructional videos beamed directly into your eye."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
 	var/datum/martial_art/krav_maga/style = new

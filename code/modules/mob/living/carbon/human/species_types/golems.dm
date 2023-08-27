@@ -15,7 +15,7 @@
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = 1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
-	sexes = 1
+	es = 1
 	damage_overlay_type = ""
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem
 	// To prevent golem subtypes from overwhelming the odds when random species
@@ -640,7 +640,7 @@
 	name = "Runic Golem"
 	id = "runic golem"
 	limbs_id = "cultgolem"
-	sexes = FALSE
+	es = FALSE
 	info_text = "As a <span class='danger'>Runic Golem</span>, you possess eldritch powers granted by the Elder Goddess Nar'sie."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH) //no mutcolors
 	prefix = "Runic"
@@ -712,7 +712,7 @@
 	armor = 20 //Reinforced, but much less so to allow for fast movement
 	attack_verb = "smash"
 	attack_sound = 'sound/magic/clockwork/anima_fragment_attack.ogg'
-	sexes = FALSE
+	es = FALSE
 	speedmod = 0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	damage_overlay_type = "synth"
@@ -760,7 +760,7 @@
 	name = "Cloth Golem"
 	id = "cloth golem"
 	limbs_id = "clothgolem"
-	sexes = FALSE
+	es = FALSE
 	info_text = "As a <span class='danger'>Cloth Golem</span>, you are able to reform yourself after death, provided your remains aren't burned or destroyed. You are, of course, very flammable. \
 	Being made of cloth, your body is magic resistant and faster than that of other golems, but weaker and less resilient."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR) //no mutcolors, and can burn
@@ -962,7 +962,7 @@
 	fixed_mut_color = "null" //custom sprites
 	armor = 45 //down from 55
 	burnmod = 3 //melts easily
-	info_text = "As a <span class='danger'>Snow Golem</span>, you are extremely vulnerable to burn damage, but you can generate snowballs and shoot cryokinetic beams. You will also turn to snow when dying, preventing any form of recovery."
+	info_text = "As a <span class='danger'>Snow Golem</span>, you are extremely vulnerable to burn damage, but you can generate snow and shoot cryokinetic beams. You will also turn to snow when dying, preventing any form of recovery."
 	prefix = "Snow"
 	special_names = list("Flake", "Blizzard", "Storm", "Frosty")
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors, no eye sprites
@@ -1086,7 +1086,7 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH,HAS_BONE)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutanttongue = /obj/item/organ/tongue/bone
-	sexes = FALSE
+	es = FALSE
 	fixed_mut_color = null
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER,TRAIT_NOHUNGER)
 	info_text = "As a <span class='danger'>Bone Golem</span>, You have a powerful spell that lets you chill your enemies with fear, and milk heals you! Just make sure to watch our for bone-hurting juice."
@@ -1379,7 +1379,7 @@
 	name = "Ruinous Golem"
 	id = "ruinous golem"
 	limbs_id = "ruingolem"
-	sexes = FALSE
+	es = FALSE
 	armor = 40 //down from 55
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
 	speedmod = 1.5 //inbetween gold golem and iron
@@ -1416,7 +1416,7 @@
 	name = "Wax Golem"
 	id = "wax golem"
 	limbs_id = "waxgolem"
-	sexes = FALSE
+	es = FALSE
 	info_text = "As a <span class='danger'>Wax Golem</span>, you are made of very resilient wax and wick. \
 	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after death if you died while on fire."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING, NOEYESPRITES) //no mutcolors or eyesprites

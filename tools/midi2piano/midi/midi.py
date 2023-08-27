@@ -55,8 +55,8 @@ event, with a duration:
      ['key_signature', dtime, sf, mi]
      ['sequencer_specific', dtime, raw]
      ['raw_meta_event', dtime, command(0-255), raw]
-     ['sysex_f0', dtime, raw]
-     ['sysex_f7', dtime, raw]
+     ['sy_f0', dtime, raw]
+     ['sy_f7', dtime, raw]
      ['song_position', dtime, song_pos]
      ['song_select', dtime, song_number]
      ['tune_request', dtime]
@@ -132,8 +132,8 @@ VersionDate = '20150101'
 # 20091010 2.3 score2stats returns channels & patch_changes, by_track & total
 # 20091010 2.2 score2stats() returns also pitches and percussion dicts
 # 20091010 2.1 bugs: >= not > in segment, to notice patch_change at time 0
-# 20091010 2.0 bugs: spurious pop(0) ( in _decode sysex
-# 20091008 1.9 bugs: ISO decoding in sysex; str( not int( in note-off warning
+# 20091010 2.0 bugs: spurious pop(0) ( in _decode sy
+# 20091008 1.9 bugs: ISO decoding in sy; str( not int( in note-off warning
 # 20091008 1.8 add concatenate_scores()
 # 20091006 1.7 score2stats() measures nticks and ticks_per_quarter
 # 20091004 1.6 first mix_scores() and merge_scores()
@@ -794,9 +794,9 @@ pitch_range_sum (sum over tracks of the pitch_ranges),
                     bank_select.append((bank_select_msb,bank_select_lsb))
                     bank_select_msb = -1
                     bank_select_lsb = -1
-            elif event[0] == 'sysex_f0':
-                if _sysex2midimode.get(event[2], -1) >= 0:
-                    general_midi_mode.append(_sysex2midimode.get(event[2]))
+            elif event[0] == 'sy_f0':
+                if _sy2midimode.get(event[2], -1) >= 0:
+                    general_midi_mode.append(_sy2midimode.get(event[2]))
             if is_a_score:
                 if event[1] > nticks:
                     nticks = event[1]
@@ -827,7 +827,7 @@ pitch_range_sum (sum over tracks of the pitch_ranges),
 
 #----------------------------- Event stuff --------------------------
 
-_sysex2midimode = {
+_sy2midimode = {
     "\x7E\x7F\x09\x01\xF7": 1,
     "\x7E\x7F\x09\x02\xF7": 0,
     "\x7E\x7F\x09\x03\xF7": 2,
@@ -845,7 +845,7 @@ text_event_0d text_event_0e text_event_0f'''.split())
 
 Nontext_meta_events = tuple('''end_track set_tempo
 smpte_offset time_signature key_signature sequencer_specific
-raw_meta_event sysex_f0 sysex_f7 song_position song_select
+raw_meta_event sy_f0 sy_f7 song_position song_select
 tune_request'''.split())
 # unsupported: raw_data
 
@@ -1327,30 +1327,30 @@ The options:
 
         ######################################################################
         elif (first_byte == 0xF0 or first_byte == 0xF7):
-            # Note that sysexes in MIDI /files/ are different than sysexes
+            # Note that syes in MIDI /files/ are different than syes
             # in MIDI transmissions!! The vast majority of system exclusive
             # messages will just use the F0 format. For instance, the
             # transmitted message F0 43 12 00 07 F7 would be stored in a
             # MIDI file as F0 05 43 12 00 07 F7. As mentioned above, it is
             # required to include the F7 at the end so that the reader of the
             # MIDI file knows that it has read the entire message. (But the F7
-            # is omitted if this is a non-final block in a multiblock sysex;
+            # is omitted if this is a non-final block in a multiblock sy;
             # but the F7 (if there) is counted in the message's declared
             # length, so we don't have to think about it anyway.)
             #command = trackdata.pop(0)
             [length, trackdata] = _unshift_ber_int(trackdata)
             if first_byte == 0xF0:
                 # 20091008 added ISO-8859-1 to get an 8-bit str
-                E = ['sysex_f0', time, trackdata[0:length].decode('ISO-8859-1')]
+                E = ['sy_f0', time, trackdata[0:length].decode('ISO-8859-1')]
             else:
-                E = ['sysex_f7', time, trackdata[0:length].decode('ISO-8859-1')]
+                E = ['sy_f7', time, trackdata[0:length].decode('ISO-8859-1')]
             trackdata = trackdata[length:]
 
         ######################################################################
         # Now, the MIDI file spec says:
         #  <track data> = <MTrk event>+
         #  <MTrk event> = <delta-time> <event>
-        #  <event> = <MIDI event> | <sysex event> | <meta-event>
+        #  <event> = <MIDI event> | <sy event> | <meta-event>
         # I know that, on the wire, <MIDI event> can include note_on,
         # note_off, and all the other 8x to Ex events, AND Fx events
         # other than F0, F7, and FF -- namely, <song position msg>,
@@ -1605,11 +1605,11 @@ def _encode(events_lol, unknown_callback=None, never_add_eot=False,
             # End of Meta-events
 
             # Other Things...
-            elif (event == 'sysex_f0'):
+            elif (event == 'sy_f0'):
                  #event_data = struct.pack(">Bwa*", 0xF0, len(E[0]), E[0])
                  #B=bitstring w=BER-compressed-integer a=null-padded-ascii-str
                  event_data = bytearray(b'\xF0')+_ber_compressed_int(len(E[0]))+bytearray(bytes(E[0],encoding='ISO-8859-1'))
-            elif (event == 'sysex_f7'):
+            elif (event == 'sy_f7'):
                  #event_data = struct.pack(">Bwa*", 0xF7, len(E[0]), E[0])
                  event_data = bytearray(b'\xF7')+_ber_compressed_int(len(E[0]))+bytearray(bytes(E[0],encoding='ISO-8859-1'))
 

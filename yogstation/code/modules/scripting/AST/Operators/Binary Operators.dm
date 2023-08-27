@@ -112,14 +112,14 @@
 		precedence=OOP_BIT
 
 /*
-	Class: BitwiseXor
+	Class: Bitwior
 	Performs a bitwise exclusive or operation.
 
 	Example:
 	011 xor 110 = 101
 */
 //
-	BitwiseXor
+	Bitwior
 		precedence=OOP_BIT
 
 
@@ -177,7 +177,7 @@
 		precedence=OOP_ASSIGN
 		BitwiseAnd
 		BitwiseOr
-		BitwiseXor
+		Bitwior
 		Add
 		Subtract
 		Multiply

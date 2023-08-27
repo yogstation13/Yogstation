@@ -19,7 +19,7 @@
  *		Beach ball
  *		Toy xeno
  *      Kitty toys!
- *		Snowballs
+ *		Snow
  *		Clockwork Watches
  *		Toy Daggers
  *		Turn Tracker
@@ -1229,7 +1229,7 @@
 		to_chat(user, span_alert("Nothing happens."))
 
 /*
- * Snowballs
+ * Snow
  */
 
 /obj/item/toy/snowball

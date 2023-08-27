@@ -174,7 +174,7 @@
 
 /obj/item/organ/tongue/zombie
 	name = "rotting tongue"
-	desc = "Between the decay and the fact that it's just lying there you doubt a tongue has ever seemed less sexy."
+	desc = "Between the decay and the fact that it's just lying there you doubt a tongue has ever seemed less y."
 	icon_state = "tonguezombie"
 	say_mod = "moans"
 	modifies_speech = TRUE

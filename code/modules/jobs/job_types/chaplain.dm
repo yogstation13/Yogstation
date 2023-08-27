@@ -87,7 +87,7 @@
 			B.name = "The Vedas"
 		if("zoroastrianism")
 			B.name = "The Avesta"
-		if("homosexuality")
+		if("homouality")
 			B.name = pick("Guys Gone Wild","Coming Out of The Closet")
 		if("imperium")
 			B.name = "Uplifting Primer"

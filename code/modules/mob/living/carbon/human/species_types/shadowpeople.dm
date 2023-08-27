@@ -6,7 +6,7 @@
 	name = "???"
 	plural_form = "???"
 	id = "shadow"
-	sexes = FALSE
+	es = FALSE
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	species_traits = list(NOBLOOD,NOEYESPRITES,NOFLASH, AGENDER)

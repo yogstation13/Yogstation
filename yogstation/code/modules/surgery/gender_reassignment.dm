@@ -1,6 +1,6 @@
 /datum/surgery/gender_reassignment
 	name = "gender reassignment"
-	desc = "This surgery reassigns a person's gender that of the opposite sex. Failure may result in gender ambiguity."
+	desc = "This surgery reassigns a person's gender that of the opposite . Failure may result in gender ambiguity."
 	icon_state = "gender_change"
 	steps = list(/datum/surgery_step/incise,
 				 /datum/surgery_step/clamp_bleeders,

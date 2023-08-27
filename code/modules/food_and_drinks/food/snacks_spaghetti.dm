@@ -51,10 +51,10 @@
 	tastes = list("pasta" = 1, "tomato" = 1)
 	foodtype = GRAIN | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti
-	name = "spaghetti and meatballs"
+/obj/item/reagent_containers/food/snacks/spaghetti/meatpaghetti
+	name = "spaghetti and meat"
 	desc = "Now that's a nice meatball!"
-	icon_state = "meatballspaghetti"
+	icon_state = "meatpaghetti"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)

@@ -151,11 +151,11 @@
 		else
 			switch(amount_destruction)
 				if(EXPLODE_DEVASTATE)
-					SSexplosions.highturf += loc
+					Splosions.highturf += loc
 				if(EXPLODE_HEAVY)
-					SSexplosions.medturf += loc
+					Splosions.medturf += loc
 				if(EXPLODE_LIGHT)
-					SSexplosions.lowturf += loc
+					Splosions.lowturf += loc
 	else
 		qdel(src)
 

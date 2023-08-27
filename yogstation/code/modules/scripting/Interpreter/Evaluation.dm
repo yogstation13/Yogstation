@@ -78,7 +78,7 @@
 								in_value &= Eval(ass.exp2, scope)
 							if(/node/expression/operator/binary/Assign/BitwiseOr)
 								in_value |= Eval(ass.exp2, scope)
-							if(/node/expression/operator/binary/Assign/BitwiseXor)
+							if(/node/expression/operator/binary/Assign/Bitwior)
 								in_value ^= Eval(ass.exp2, scope)
 							if(/node/expression/operator/binary/Assign/Add)
 								in_value += Eval(ass.exp2, scope)
@@ -94,8 +94,8 @@
 							out_value = BitwiseAnd(in_value, Eval(ass.exp2, scope), scope, ass)
 						if(/node/expression/operator/binary/Assign/BitwiseOr)
 							out_value = BitwiseOr(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/BitwiseXor)
-							out_value = BitwiseXor(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Bitwior)
+							out_value = Bitwior(in_value, Eval(ass.exp2, scope), scope, ass)
 						if(/node/expression/operator/binary/Assign/Add)
 							out_value = Add(in_value, Eval(ass.exp2, scope), scope, ass)
 						if(/node/expression/operator/binary/Assign/Subtract)
@@ -147,8 +147,8 @@
 						return BitwiseAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/BitwiseOr)
 						return BitwiseOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/BitwiseXor)
-						return BitwiseXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+					if(/node/expression/operator/binary/Bitwior)
+						return Bitwior(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Add)
 						return Add(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Subtract)
@@ -192,7 +192,7 @@
 		//Bitwise Operators
 		BitwiseAnd(a, b)		return a&b
 		BitwiseOr(a, b)			return a|b
-		BitwiseXor(a, b)		return a^b
+		Bitwior(a, b)		return a^b
 		//Arithmetic Operators
 		Add(a, b, scope, node)
 			if(istext(a)&&!istext(b))

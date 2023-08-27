@@ -75,12 +75,12 @@
 	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spaghettimeatball
-	name = "Spaghetti and Meatballs"
+	name = "Spaghetti and Meat"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
 		/obj/item/reagent_containers/food/snacks/meatball = 2
 	)
-	result = /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti
+	result = /obj/item/reagent_containers/food/snacks/spaghetti/meatpaghetti
 	category = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spesslaw

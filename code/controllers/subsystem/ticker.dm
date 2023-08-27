@@ -369,9 +369,9 @@ SUBSYSTEM_DEF(ticker)
 		qdel(bomb)
 	for(var/T in GLOB.station_turfs)
 		if(prob(33))
-			SSexplosions.highturf += T
+			Splosions.highturf += T
 		else
-			SSexplosions.medturf += T
+			Splosions.medturf += T
 
 /datum/controller/subsystem/ticker/proc/create_characters()
 	for(var/mob/dead/new_player/player in GLOB.player_list)
@@ -715,7 +715,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/play_roundend()
 	if(!round_end_sound)
 		round_end_sound = pick(\
-		'sound/roundend/newroundsexy.ogg',
+		'sound/roundend/newroundy.ogg',
 		'sound/roundend/apcdestroyed.ogg',
 		'sound/roundend/bangindonk.ogg',
 		'sound/roundend/leavingtg.ogg',

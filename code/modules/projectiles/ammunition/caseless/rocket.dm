@@ -26,7 +26,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "cannonball"
 	projectile_type = /obj/item/projectile/bullet/cball
-	w_class = WEIGHT_CLASS_NORMAL //cannonballs hefty
+	w_class = WEIGHT_CLASS_NORMAL //cannon hefty
 
 /obj/item/ammo_casing/caseless/bolts
 	name = "bolts"

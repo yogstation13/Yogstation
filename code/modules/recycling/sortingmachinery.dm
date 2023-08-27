@@ -26,11 +26,11 @@
 	for(var/thing in contents)
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.high_mov_atom += thing
+				Splosions.high_mov_atom += thing
 			if(EXPLODE_HEAVY)
-				SSexplosions.med_mov_atom += thing
+				Splosions.med_mov_atom += thing
 			if(EXPLODE_LIGHT)
-				SSexplosions.low_mov_atom += thing
+				Splosions.low_mov_atom += thing
 
 /obj/structure/bigDelivery/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/destTagger))
@@ -108,11 +108,11 @@
 	for(var/thing in contents)
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.high_mov_atom += thing
+				Splosions.high_mov_atom += thing
 			if(EXPLODE_HEAVY)
-				SSexplosions.med_mov_atom += thing
+				Splosions.med_mov_atom += thing
 			if(EXPLODE_LIGHT)
-				SSexplosions.low_mov_atom += thing
+				Splosions.low_mov_atom += thing
 
 /obj/item/smallDelivery/attack_self(mob/user)
 	user.temporarilyRemoveItemFromInventory(src, TRUE)

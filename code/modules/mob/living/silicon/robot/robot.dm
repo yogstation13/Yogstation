@@ -52,7 +52,7 @@
 
 	var/opened = FALSE
 	var/emag_cooldown = 0
-	var/wiresexposed = FALSE
+	var/wireposed = FALSE
 
 	var/ident = 0
 	var/locked = TRUE
@@ -435,7 +435,7 @@
 		visible_message(span_notice("[user] has fixed some of the dents on [src]."))
 		return
 
-	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
+	else if(istype(W, /obj/item/stack/cable_coil) && wireposed)
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/obj/item/stack/cable_coil/coil = W
 		if (getFireLoss() > 0 || getToxLoss() > 0)
@@ -467,7 +467,7 @@
 				update_icons()
 
 	else if(istype(W, /obj/item/stock_parts/cell) && opened)	// trying to put a cell inside
-		if(wiresexposed)
+		if(wireposed)
 			to_chat(user, span_warning("Close the cover first!"))
 		else if(cell)
 			to_chat(user, span_warning("There is a power cell already installed!"))
@@ -480,14 +480,14 @@
 		diag_hud_set_borgcell()
 
 	else if(is_wire_tool(W))
-		if (wiresexposed)
+		if (wireposed)
 			wires.interact(user)
 		else
 			to_chat(user, span_warning("You can't reach the wiring!"))
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && !cell)	// haxing
-		wiresexposed = !wiresexposed
-		to_chat(user, span_notice("The wires have been [wiresexposed ? "exposed" : "unexposed"]."))
+		wireposed = !wireposed
+		to_chat(user, span_notice("The wires have been [wireposed ? "exposed" : "unexposed"]."))
 		update_icons()
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && cell)	// radio
@@ -515,7 +515,7 @@
 		if(!opened)
 			to_chat(user, span_warning("You need access to the robot's insides to do that!"))
 			return
-		if(wiresexposed)
+		if(wireposed)
 			to_chat(user, span_warning("You need to close the wire panel to do that!"))
 			return
 		if(!cell)
@@ -712,7 +712,7 @@
 		add_overlay(eye_lights)
 
 	if(opened)
-		if(wiresexposed)
+		if(wireposed)
 			add_overlay("ov-opencover +w")
 		else if(cell)
 			add_overlay("ov-opencover +c")

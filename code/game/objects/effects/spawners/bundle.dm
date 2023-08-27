@@ -157,14 +157,14 @@
 		/obj/item/clothing/head/wizard/fake,
 		/obj/item/staff)
 
-/obj/effect/spawner/bundle/costume/sexyclown
-	name = "sexy clown costume spawner"
+/obj/effect/spawner/bundle/costume/yclown
+	name = "y clown costume spawner"
 	items = list(
-		/obj/item/clothing/mask/gas/sexyclown,
-		/obj/item/clothing/under/rank/clown/sexy)
+		/obj/item/clothing/mask/gas/yclown,
+		/obj/item/clothing/under/rank/clown/y)
 
-/obj/effect/spawner/bundle/costume/sexymime
-	name = "sexy mime costume spawner"
+/obj/effect/spawner/bundle/costume/ymime
+	name = "y mime costume spawner"
 	items = list(
-		/obj/item/clothing/mask/gas/sexymime,
-		/obj/item/clothing/under/sexymime)
+		/obj/item/clothing/mask/gas/ymime,
+		/obj/item/clothing/under/ymime)

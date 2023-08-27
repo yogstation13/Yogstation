@@ -215,7 +215,7 @@ or something covering your eyes."
 
 /atom/movable/screen/alert/high
 	name = "High"
-	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
+	desc = "Whoa man, you're tripping ! Careful you don't get addicted... if you aren't already."
 	icon_state = "high"
 
 /atom/movable/screen/alert/hypnosis

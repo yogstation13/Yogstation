@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(explosions)
 // 1 explosion power is a (0, 0, 1) explosion.
 
 /proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE)
-	. = SSexplosions.explode(arglist(args))
+	. = Splosions.explode(arglist(args))
 
 #define CREAK_DELAY 5 SECONDS //Time taken for the creak to play after explosion, if applicable.
 #define DEVASTATION_PROB 30 //The probability modifier for devistation, maths!
@@ -367,18 +367,18 @@ SUBSYSTEM_DEF(explosions)
 					continue
 				switch(dist)
 					if(EXPLODE_DEVASTATE)
-						SSexplosions.high_mov_atom += movable_thing
+						Splosions.high_mov_atom += movable_thing
 					if(EXPLODE_HEAVY)
-						SSexplosions.med_mov_atom += movable_thing
+						Splosions.med_mov_atom += movable_thing
 					if(EXPLODE_LIGHT)
-						SSexplosions.low_mov_atom += movable_thing
+						Splosions.low_mov_atom += movable_thing
 		switch(dist)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.highturf += T
+				Splosions.highturf += T
 			if(EXPLODE_HEAVY)
-				SSexplosions.medturf += T
+				Splosions.medturf += T
 			if(EXPLODE_LIGHT)
-				SSexplosions.lowturf += T
+				Splosions.lowturf += T
 
 
 		if(flame_dist && prob(40) && !isspaceturf(T) && !T.density)
@@ -485,8 +485,8 @@ SUBSYSTEM_DEF(explosions)
 	var/timer
 	Master.current_ticklimit = TICK_LIMIT_RUNNING //force using the entire tick if we need it.
 
-	if(currentpart == SSEXPLOSIONS_TURFS)
-		currentpart = SSEXPLOSIONS_MOVABLES
+	if(currentpart == SPLOSIONS_TURFS)
+		currentpart = SPLOSIONS_MOVABLES
 
 		timer = TICK_USAGE_REAL
 		var/list/low_turf = lowturf
@@ -527,8 +527,8 @@ SUBSYSTEM_DEF(explosions)
 		if (low_turf.len || med_turf.len || high_turf.len)
 			Master.laggy_byond_map_update_incoming()
 
-	if(currentpart == SSEXPLOSIONS_MOVABLES)
-		currentpart = SSEXPLOSIONS_THROWS
+	if(currentpart == SPLOSIONS_MOVABLES)
+		currentpart = SPLOSIONS_THROWS
 
 		timer = TICK_USAGE_REAL
 		var/list/local_high_mov_atom = high_mov_atom
@@ -561,8 +561,8 @@ SUBSYSTEM_DEF(explosions)
 		cost_low_mov_atom = MC_AVERAGE(cost_low_mov_atom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 
-	if (currentpart == SSEXPLOSIONS_THROWS)
-		currentpart = SSEXPLOSIONS_TURFS
+	if (currentpart == SPLOSIONS_THROWS)
+		currentpart = SPLOSIONS_TURFS
 		timer = TICK_USAGE_REAL
 		var/list/throw_turf = throwturf
 		throwturf = list()
@@ -584,4 +584,4 @@ SUBSYSTEM_DEF(explosions)
 					A.throw_at(throw_at, atom_throw_range, EXPLOSION_THROW_SPEED, quickstart = FALSE)
 		cost_throwturf = MC_AVERAGE(cost_throwturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
-	currentpart = SSEXPLOSIONS_TURFS
+	currentpart = SPLOSIONS_TURFS

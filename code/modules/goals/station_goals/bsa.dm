@@ -183,7 +183,7 @@
 		return
 	var/turf/point = get_front_turf()
 	for(var/turf/T in getline(get_step(point,dir),get_target_turf()))
-		SSexplosions.highturf += T //also fucks everything else on the turf
+		Splosions.highturf += T //also fucks everything else on the turf
 	point.Beam(get_target_turf(),icon_state="bsa_beam",time=50,maxdistance = world.maxx) //ZZZAP
 	new /obj/effect/temp_visual/bsa_splash(point, dir)
 	if(user.client)

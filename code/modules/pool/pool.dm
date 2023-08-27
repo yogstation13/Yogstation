@@ -55,7 +55,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	if(mover.throwing)
 		return TRUE
 	var/datum/component/swimming/S = mover.GetComponent(/datum/component/swimming) //You can't get in the pool unless you're swimming.
-	return (isliving(mover)) ? S : ..() //So you can do stuff like throw beach balls around the pool!
+	return (isliving(mover)) ? S : ..() //So you can do stuff like throw beach  around the pool!
 
 /turf/open/indestructible/sound/pool/Entered(atom/movable/AM)
 	. = ..()

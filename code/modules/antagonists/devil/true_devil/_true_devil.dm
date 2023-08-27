@@ -36,7 +36,7 @@
 	internal_organs += new /obj/item/organ/brain
 	internal_organs += new /obj/item/organ/tongue
 	internal_organs += new /obj/item/organ/eyes
-	internal_organs += new /obj/item/organ/ears/invincible //Prevents hearing loss from poorly aimed fireballs.
+	internal_organs += new /obj/item/organ/ears/invincible //Prevents hearing loss from poorly aimed fire.
 	..()
 
 /mob/living/carbon/true_devil/proc/convert_to_archdevil()

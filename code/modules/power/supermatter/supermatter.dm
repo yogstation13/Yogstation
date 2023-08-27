@@ -417,7 +417,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		explosion(T, explosion_power * explosion_mod * 0.5, explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4, explosion_power * explosion_mod + 6, 1, 1)
 		radiation_pulse(T, (last_rads + 2400) * explosion_power)
 		if(power > POWER_PENALTY_THRESHOLD && !resonance_cascading)
-			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
+			investigate_log("has spawned additional energy .", INVESTIGATE_SUPERMATTER)
 			var/obj/singularity/energy_ball/E = new(T)
 			E.energy = power
 		qdel(src)
@@ -576,18 +576,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			radiation_pulse(src, max(last_rads))
 
 		if(nitriummol > NITRO_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
-			var/balls_shot = min(round(nitriummol / NITRO_BALL_MOLES_REQUIRED), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED)
+			var/_shot = min(round(nitriummol / NITRO_BALL_MOLES_REQUIRED), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED)
 			var/starting_angle = rand(0, 360)
-			for(var/i = 0 to balls_shot) //  fires particles in a ring, with some random variation in the angle
-				src.fire_nuclear_particle(starting_angle + rand(-180/balls_shot, 180/balls_shot) + (i * 360 / balls_shot))
-			removed.set_moles(/datum/gas/nitrium, max(nitriummol - (balls_shot * NITRO_BALL_MOLES_REQUIRED), 0)) //converts nitrium into radballs
+			for(var/i = 0 to _shot) //  fires particles in a ring, with some random variation in the angle
+				src.fire_nuclear_particle(starting_angle + rand(-180/_shot, 180/_shot) + (i * 360 / _shot))
+			removed.set_moles(/datum/gas/nitrium, max(nitriummol - (_shot * NITRO_BALL_MOLES_REQUIRED), 0)) //converts nitrium into rad
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
-			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
-			var/rps = round((bzmol/150), 1) 	// Cause more radballs to be spawned
+			src.fire_nuclear_particle()			// Start to emit rad at a maximum of 50% chance per tick
+			var/rps = round((bzmol/150), 1) 	// Cause more rad to be spawned
 			for(var/i = 1 to rps)
 				if(prob(80))
-					src.fire_nuclear_particle()	// Spawn more radballs at 80% chance each
+					src.fire_nuclear_particle()	// Spawn more rad at 80% chance each
 
 		if(antinobliumcomp >= 0.5 && antinobmol > 100 && nobliumcomp < 0.5 && !antinoblium_attached) // don't put this stuff in the SM
 			investigate_log("[src] has reached criticial antinoblium concentration and started a resonance cascade.", INVESTIGATE_SUPERMATTER)
@@ -773,7 +773,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(prob(10))
 				T.hotspot_expose(max(((100-support_integrity)*2)+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,T.return_air().return_temperature()), 100)
 			if(prob(10+round(support_integrity/10,1)))
-				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
+				var/ballcount = round(10-(support_integrity/10), 1) // Cause more rad to be spawned
 				for(var/i = 1 to ballcount)
 					fire_nuclear_particle()
 		if(support_integrity<10)

@@ -14,12 +14,12 @@
 	dissipate = 1
 	dissipate_delay = 5
 	dissipate_strength = 1
-	var/list/orbiting_balls = list()
+	var/list/orbiting_ = list()
 	var/miniball = FALSE
 	var/produced_power
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
-	var/max_balls = 10
+	var/max_ = 10
 	var/zap_range = 7
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
@@ -34,9 +34,9 @@
 /obj/singularity/energy_ball/Destroy()
 	if(orbiting && istype(orbiting.parent, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/EB = orbiting.parent
-		EB.orbiting_balls -= src
+		EB.orbiting_ -= src
 
-	for(var/ball in orbiting_balls)
+	for(var/ball in orbiting_)
 		var/obj/singularity/energy_ball/EB = ball
 		qdel(EB)
 
@@ -44,7 +44,7 @@
 
 /obj/singularity/energy_ball/admin_investigate_setup()
 	if(miniball)
-		return //don't annnounce miniballs
+		return //don't annnounce mini
 	..()
 
 
@@ -52,7 +52,7 @@
 	if(!orbiting)
 		handle_energy()
 
-		move_the_basket_ball(4 + orbiting_balls.len * 1.5)
+		move_the_basket_ball(4 + orbiting_.len * 1.5)
 
 		playsound(src.loc, 'sound/magic/lightningbolt.ogg', 100, 1, extrarange = 30)
 
@@ -69,26 +69,26 @@
 			if(!E.miniball && E != src)
 				collide(E)
 
-		for (var/ball in orbiting_balls)
+		for (var/ball in orbiting_)
 			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
 				continue
 			tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
 	else
-		energy = 0 // ensure we dont have miniballs of miniballs
+		energy = 0 // ensure we dont have mini of mini
 
 /obj/singularity/energy_ball/examine(mob/user)
 	. = ..()
-	if(orbiting_balls.len)
-		. += "There are [orbiting_balls.len] mini-balls orbiting it."
+	if(orbiting_.len)
+		. += "There are [orbiting_.len] mini- orbiting it."
 
 /obj/singularity/energy_ball/proc/collide(obj/singularity/energy_ball/target)
-	if(max_balls < target.max_balls) //we bow down against a stronger tesla
+	if(max_ < target.max_) //we bow down against a stronger tesla
 		return
 	
 	name = "[pick("hypercharged", "super", "powered", "glowing", "unstable", "anomalous", "massive")] [name]"
-	max_balls += target.max_balls - 8 //default 2 more max balls per another tesla, respecting another consumed tesla
+	max_ += target.max_ - 8 //default 2 more max  per another tesla, respecting another consumed tesla
 	zap_range += target.zap_range - 6 //also 1 more range for zapping, making it harder to contain
-	add_atom_colour(rgb(255 - max_balls * 10, 255 - max_balls * 10, 255), ADMIN_COLOUR_PRIORITY) //gets more blue with more power
+	add_atom_colour(rgb(255 - max_ * 10, 255 - max_ * 10, 255), ADMIN_COLOUR_PRIORITY) //gets more blue with more power
 	playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
 	qdel(target)
 
@@ -109,29 +109,29 @@
 
 
 /obj/singularity/energy_ball/proc/handle_energy()
-	if((energy >= energy_to_raise) && (orbiting_balls.len < max_balls))
+	if((energy >= energy_to_raise) && (orbiting_.len < max_))
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 
 		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
 		addtimer(CALLBACK(src, PROC_REF(new_mini_ball)), 100)
 
-	else if(energy < energy_to_lower && orbiting_balls.len)
+	else if(energy < energy_to_lower && orbiting_.len)
 		energy_to_raise = energy_to_raise / 1.25
 		energy_to_lower = (energy_to_raise / 1.25) - 20
 
-		var/Orchiectomy_target = pick(orbiting_balls)
+		var/Orchiectomy_target = pick(orbiting_)
 		qdel(Orchiectomy_target)
 
-	else if(orbiting_balls.len)
+	else if(orbiting_.len)
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
 	if(!loc)
 		return
-	// Timers can be added fast enough that the max_balls check in handle_energy will "fail".
-	// Timers aren't accounted for in that check so it will add more timers to make more miniballs.
-	if(orbiting_balls.len >= max_balls)
+	// Timers can be added fast enough that the max_ check in handle_energy will "fail".
+	// Timers aren't accounted for in that check so it will add more timers to make more mini.
+	if(orbiting_.len >= max_)
 		return
 
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
@@ -170,16 +170,16 @@
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
-		target.orbiting_balls += src
+		target.orbiting_ += src
 		GLOB.poi_list -= src
-		target.dissipate_strength = target.orbiting_balls.len
+		target.dissipate_strength = target.orbiting_.len
 
 	. = ..()
 /obj/singularity/energy_ball/stop_orbit()
 	if (orbiting && istype(orbiting.parent, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/orbitingball = orbiting.parent
-		orbitingball.orbiting_balls -= src
-		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len
+		orbitingball.orbiting_ -= src
+		orbitingball.dissipate_strength = orbitingball.orbiting_.len
 	. = ..()
 	if (!QDELETED(src))
 		qdel(src)

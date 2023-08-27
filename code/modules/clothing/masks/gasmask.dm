@@ -79,7 +79,7 @@
 	.=..()
 	clownmask_designs = list(
 		"True Form" = image(icon = src.icon, icon_state = "clown"),
-		"The Feminist" = image(icon = src.icon, icon_state = "sexyclown"),
+		"The Feminist" = image(icon = src.icon, icon_state = "yclown"),
 		"The Jester" = image(icon = src.icon, icon_state = "chaos"),
 		"The Madman" = image(icon = src.icon, icon_state = "joker"),
 		"The Rainbow Color" = image(icon = src.icon, icon_state = "rainbow")
@@ -91,7 +91,7 @@
 
 	var/list/options = list()
 	options["True Form"] = "clown"
-	options["The Feminist"] = "sexyclown"
+	options["The Feminist"] = "yclown"
 	options["The Madman"] = "joker"
 	options["The Rainbow Color"] ="rainbow"
 	options["The Jester"] ="chaos" //Nepeta33Leijon is holding me captive and forced me to help with this please send help
@@ -109,12 +109,12 @@
 		to_chat(user, span_notice("Your Clown Mask has now morphed into [choice], all praise the Honkmother!"))
 		return TRUE
 
-/obj/item/clothing/mask/gas/sexyclown
-	name = "sexy-clown wig and mask"
+/obj/item/clothing/mask/gas/yclown
+	name = "y-clown wig and mask"
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	clothing_flags = MASKINTERNALS
-	icon_state = "sexyclown"
-	item_state = "sexyclown"
+	icon_state = "yclown"
+	item_state = "yclown"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -135,7 +135,7 @@
 	.=..()
 	mimemask_designs = list(
 		"Blanc" = image(icon = src.icon, icon_state = "mime"),
-		"Excité" = image(icon = src.icon, icon_state = "sexymime"),
+		"Excité" = image(icon = src.icon, icon_state = "ymime"),
 		"Triste" = image(icon = src.icon, icon_state = "sadmime"),
 		"Effrayé" = image(icon = src.icon, icon_state = "scaredmime")
 		)
@@ -148,7 +148,7 @@
 	options["Blanc"] = "mime"
 	options["Triste"] = "sadmime"
 	options["Effrayé"] = "scaredmime"
-	options["Excité"] ="sexymime"
+	options["Excité"] ="ymime"
 
 	var/choice = show_radial_menu(user,src, mimemask_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
 	if(!choice)
@@ -173,12 +173,12 @@
 	resistance_flags = FLAMMABLE
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
-/obj/item/clothing/mask/gas/sexymime
-	name = "sexy mime mask"
+/obj/item/clothing/mask/gas/ymime
+	name = "y mime mask"
 	desc = "A traditional female mime's mask."
 	clothing_flags = MASKINTERNALS
-	icon_state = "sexymime"
-	item_state = "sexymime"
+	icon_state = "ymime"
+	item_state = "ymime"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 	mutantrace_variation = NO_MUTANTRACE_VARIATION

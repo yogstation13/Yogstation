@@ -56,7 +56,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soup/dolphinsoup
 	category = CAT_SOUP
 
-/datum/crafting_recipe/food/eyeballsoup
+/datum/crafting_recipe/food/eyeoup
 	name = "Eyeball Soup"
 	reqs = list(
 		/datum/reagent/water = 10,
@@ -78,7 +78,7 @@
 	result = /obj/item/reagent_containers/food/snacks/soup/hotchili
 	category = CAT_SOUP
 
-/datum/crafting_recipe/food/meatballsoup
+/datum/crafting_recipe/food/meatoup
 	name = "Meatball Soup"
 	reqs = list(
 		/datum/reagent/water = 10,

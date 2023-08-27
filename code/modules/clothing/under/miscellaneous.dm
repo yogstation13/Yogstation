@@ -100,11 +100,11 @@
 	mutantrace_variation = MUTANTRACE_VARIATION
 */
 
-/obj/item/clothing/under/rank/clown/sexy
-	name = "sexy-clown suit"
+/obj/item/clothing/under/rank/clown/y
+	name = "y-clown suit"
 	desc = "It makes you look HONKable!"
-	icon_state = "sexyclown"
-	item_state = "sexyclown"
+	icon_state = "yclown"
+	item_state = "yclown"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -438,11 +438,11 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
-/obj/item/clothing/under/sexymime
-	name = "sexy mime outfit"
+/obj/item/clothing/under/ymime
+	name = "y mime outfit"
 	desc = "The only time when you DON'T enjoy looking at someone's rack."
-	icon_state = "sexymime"
-	item_state = "sexymime"
+	icon_state = "ymime"
+	item_state = "ymime"
 	body_parts_covered = CHEST|GROIN|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE

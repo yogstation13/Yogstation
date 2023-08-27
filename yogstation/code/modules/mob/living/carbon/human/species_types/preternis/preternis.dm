@@ -13,7 +13,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_FARADAYCAGE) //Faraday cage reduces incoming EMP severity by one level
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
-	sexes = FALSE //they're basically ken dolls, come straight out of a printer
+	es = FALSE //they're basically ken dolls, come straight out of a printer
 	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"

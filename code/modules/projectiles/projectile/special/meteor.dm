@@ -12,9 +12,9 @@
 		forceMove(A.loc)
 		return
 	if(isobj(A))
-		SSexplosions.med_mov_atom += A
+		Splosions.med_mov_atom += A
 	else if(isturf(A))
-		SSexplosions.medturf += A
+		Splosions.medturf += A
 	playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
 	for(var/mob/M in urange(10, src))
 		if(!M.stat)

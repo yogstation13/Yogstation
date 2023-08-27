@@ -326,7 +326,7 @@
 			if(target && !target.stat)
 				O.throw_at(target, 7, 5)
 		else
-			SSexplosions.med_mov_atom += O
+			Splosions.med_mov_atom += O
 
 /obj/effect/anomaly/bhole/proc/grav(r, ex_act_force, pull_chance, turf_removal_chance)
 	for(var/t = -r, t < r, t++)
@@ -347,11 +347,11 @@
 			if(O.anchored)
 				switch(ex_act_force)
 					if(EXPLODE_DEVASTATE)
-						SSexplosions.high_mov_atom += O
+						Splosions.high_mov_atom += O
 					if(EXPLODE_HEAVY)
-						SSexplosions.med_mov_atom += O
+						Splosions.med_mov_atom += O
 					if(EXPLODE_LIGHT)
-						SSexplosions.low_mov_atom += O
+						Splosions.low_mov_atom += O
 			else
 				step_towards(O,src)
 		for(var/mob/living/M in T.contents)
@@ -361,11 +361,11 @@
 	if( T && prob(turf_removal_chance) )
 		switch(ex_act_force)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.highturf += T
+				Splosions.highturf += T
 			if(EXPLODE_HEAVY)
-				SSexplosions.medturf += T
+				Splosions.medturf += T
 			if(EXPLODE_LIGHT)
-				SSexplosions.lowturf += T
+				Splosions.lowturf += T
 
  /////////////////////////
 

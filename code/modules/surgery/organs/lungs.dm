@@ -28,7 +28,7 @@
 	var/safe_toxins_max = 0.05
 	var/SA_para_min = 1 //Sleeping agent
 	var/SA_sleep_min = 5 //Sleeping agent
-	var/BZ_trip_balls_min = 1 //BZ gas
+	var/BZ_trip__min = 1 //BZ gas
 	var/gas_stimulation_min = 0.002 // Nitrium, Freon and Hyper-noblium
 	///list of gasses that can be used in place of oxygen and the amount they are multiplied by, i.e. 1 pp pluox = 8 pp oxygen
 	var/list/oxygen_substitutes = list(/datum/gas/pluoxium = 8)
@@ -256,7 +256,7 @@
 	// BZ
 
 		var/bz_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/bz))
-		if(bz_pp > BZ_trip_balls_min)
+		if(bz_pp > BZ_trip__min)
 			H.adjust_hallucinations(10 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/bz_metabolites,5)
 			if(prob(33))
@@ -623,7 +623,7 @@
 	safe_toxins_max = 20 //Higher resistance to most harmful gasses
 	SA_para_min = 3
 	SA_sleep_min = 6
-	BZ_trip_balls_min = 2
+	BZ_trip__min = 2
 
 	cold_level_1_threshold = 200
 	cold_level_2_threshold = 140

@@ -32,8 +32,8 @@
 
 /obj/item/reagent_containers/food/snacks/soup/meatball
 	name = "meatball soup"
-	desc = "You've got balls kid, BALLS!"
-	icon_state = "meatballsoup"
+	desc = "You've got  kid, !"
+	icon_state = "meatoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("meat" = 1)
 	foodtype = MEAT | VEGETABLES
@@ -145,7 +145,7 @@
 /obj/item/reagent_containers/food/snacks/soup/tomato/eyeball
 	name = "eyeball soup"
 	desc = "It looks back at you..."
-	icon_state = "eyeballsoup"
+	icon_state = "eyeoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/liquidgibs = 3)
 	tastes = list("tomato" = 1, "squirming" = 1)
 	foodtype = MEAT | GROSS

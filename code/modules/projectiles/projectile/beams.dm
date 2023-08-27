@@ -127,9 +127,9 @@
 	. = ..()
 	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
 		if(isobj(target))
-			SSexplosions.med_mov_atom += target
+			Splosions.med_mov_atom += target
 		else
-			SSexplosions.medturf += target
+			Splosions.medturf += target
 	var/turf/open/target_turf = get_turf(target)
 	if(istype(target_turf))
 		target_turf.IgniteTurf(rand(8, 22), "blue")
@@ -175,9 +175,9 @@
 	. = ..()
 	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
 		if(isobj(target))
-			SSexplosions.low_mov_atom += target
+			Splosions.low_mov_atom += target
 		else
-			SSexplosions.lowturf += target
+			Splosions.lowturf += target
 
 /obj/item/projectile/beam/lasertag
 	name = "laser tag beam"
@@ -259,9 +259,9 @@
 	. = ..()
 	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
 		if(isobj(target))
-			SSexplosions.med_mov_atom += target
+			Splosions.med_mov_atom += target
 		else
-			SSexplosions.medturf += target
+			Splosions.medturf += target
 
 /obj/item/projectile/beam/grimdark/pistol
 	damage = 35

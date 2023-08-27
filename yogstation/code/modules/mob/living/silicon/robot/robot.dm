@@ -60,7 +60,7 @@
 		add_overlay(eye_lights)
 
 		if(opened)
-			if(wiresexposed)
+			if(wireposed)
 				add_overlay("ov-opencover +w")
 			else if(cell)
 				add_overlay("ov-opencover +c")

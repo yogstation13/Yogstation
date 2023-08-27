@@ -268,9 +268,9 @@ Difficulty: Very Hard
 	. = ..()
 	if(isturf(target) || isobj(target))
 		if(isobj(target))
-			SSexplosions.med_mov_atom += target
+			Splosions.med_mov_atom += target
 		else
-			SSexplosions.medturf += target
+			Splosions.medturf += target
 
 /obj/item/gps/internal/colossus
 	icon_state = null

@@ -427,7 +427,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "fitness"
 
 /area/crew_quarters/fitness/locker_room
-	name = "Unisex Locker Room"
+	name = "Uni Locker Room"
 	icon_state = "fitness"
 
 /area/crew_quarters/fitness/recreation

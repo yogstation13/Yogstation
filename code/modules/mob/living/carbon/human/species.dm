@@ -18,8 +18,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/plural_form
 	/// if alien colors are disabled, this is the color that will be used by that race
 	var/default_color = "#FFF"
-	/// whether or not the race has sexual characteristics. at the moment this is only FALSE for skeletons and shadows
-	var/sexes = TRUE
+	/// whether or not the race has ual characteristics. at the moment this is only FALSE for skeletons and shadows
+	var/es = TRUE
 
 	///A list that contains pixel offsets for various clothing features, if your species is a different shape
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
@@ -776,7 +776,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(undershirt)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
-				else if(H.dna.species.sexes && H.gender == FEMALE)
+				else if(H.dna.species.es && H.gender == FEMALE)
 					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)

@@ -5,7 +5,7 @@
 	name = "High-Functioning Zombie"
 	id = "zombie"
 	say_mod = "moans"
-	sexes = FALSE
+	es = FALSE
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	species_traits = list(NOBLOOD,NOZOMBIE,NOTRANSSTING,HAS_FLESH,HAS_BONE, AGENDER)
 	inherent_traits = list(TRAIT_STABLELIVER, TRAIT_STABLEHEART, TRAIT_RESISTCOLD ,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_EASYDISMEMBER,TRAIT_EASILY_WOUNDED,TRAIT_LIMBATTACHMENT,TRAIT_NOBREATH,TRAIT_NODEATH,TRAIT_FAKEDEATH)
@@ -113,7 +113,7 @@
 	name = "Human"
 	id = "goofzombies"
 	limbs_id = "zombie" //They look like zombies
-	sexes = FALSE
+	es = FALSE
 	species_traits = list(HAS_FLESH, HAS_BONE, AGENDER)
 	inherent_traits = list(TRAIT_EASILY_WOUNDED) //you have no skin
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID //pretty much just rotting flesh, somehow still "technically" alive

@@ -31,7 +31,7 @@
 	. = ..()
 	if (istype(mover,/obj/item/golfball) && mover.throwing  && anchored)
 		if (contents.len >= 3)
-			visible_message(span_notice("The golf hole is full! Try removing golfballs from the hole."))
+			visible_message(span_notice("The golf hole is full! Try removing golf from the hole."))
 			return FALSE
 
 		var/obj/item/golfball = mover

@@ -255,9 +255,9 @@
 	. = ..()
 	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
 		if(isobj(target))
-			SSexplosions.med_mov_atom += target
+			Splosions.med_mov_atom += target
 		else
-			SSexplosions.medturf += target
+			Splosions.medturf += target
 
 /obj/item/projectile/energy/arrow/xray //Hardlight projectile. Weakened arrow capable of passing through material. Massive irradiation on hit.
 	name = "X-ray bolt"

@@ -225,7 +225,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(istype(eyes))
 				eyes.Remove(M)
 				eyes.forceMove(get_turf(M))
-				to_chat(M, span_userdanger("You double over in pain as you feel your eyeballs liquify in your head!"))
+				to_chat(M, span_userdanger("You double over in pain as you feel your eye liquify in your head!"))
 				M.emote("scream")
 				M.adjustBruteLoss(15)
 		else

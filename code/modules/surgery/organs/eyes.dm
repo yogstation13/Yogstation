@@ -1,6 +1,6 @@
 /obj/item/organ/eyes
 	name = BODY_ZONE_PRECISE_EYES
-	icon_state = "eyeballs"
+	icon_state = "eye"
 	desc = "I see you!"
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_EYES
@@ -161,7 +161,7 @@
 
 /obj/item/organ/eyes/robotic
 	name = "robotic eyes"
-	icon_state = "cybernetic_eyeballs"
+	icon_state = "cybernetic_eye"
 	desc = "Your vision is augmented."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
@@ -450,7 +450,7 @@
 	name = "snail eyes"
 	desc = "These eyes seem to have a large range, but might be cumbersome with glasses."
 	eye_icon_state = "snail_eyes"
-	icon_state = "snail_eyeballs"
+	icon_state = "snail_eye"
 
 /obj/item/organ/eyes/polysmorph
 	name = "polysmorph eyes"

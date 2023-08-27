@@ -9,7 +9,7 @@
 	speak_emote = list("squeeks", "screams")
 	emote_hear = list("squeeks.","screams.")
 	emote_see = list("dances on all fours.", "shivers.")
-	turns_per_move = 3 //fennecs are tiny balls of energy and screams
+	turns_per_move = 3 //fennecs are tiny  of energy and screams
 
 /mob/living/simple_animal/pet/fox/fennec/Autumn
 	name = "Autumn"

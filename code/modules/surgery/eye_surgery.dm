@@ -2,7 +2,7 @@
 	name = "Eye surgery"
 	desc = "Fixes all damage done to eyes, though doesnt fix genetic blindness. Failing to fix the eyes will cause brain damage to the patient."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "eyeballs"
+	icon_state = "eye"
 	steps = list(/datum/surgery_step/incise, 
 				/datum/surgery_step/retract_skin, 
 				/datum/surgery_step/clamp_bleeders, 

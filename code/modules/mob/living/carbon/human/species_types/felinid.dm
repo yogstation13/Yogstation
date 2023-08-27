@@ -22,7 +22,7 @@
 
 	screamsound = list('sound/voice/feline/scream1.ogg', 'sound/voice/feline/scream2.ogg', 'sound/voice/feline/scream3.ogg')
 
-	smells_like = "hairballs and litter"
+	smells_like = "hair and litter"
 
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE

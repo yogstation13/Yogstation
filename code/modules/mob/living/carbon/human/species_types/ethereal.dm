@@ -28,7 +28,7 @@
 	species_language_holder = /datum/language_holder/ethereal
 	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
 	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
-	sexes = FALSE //no fetish content allowed
+	es = FALSE //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = SHOCKTOUCH
 	hair_color = "fixedmutcolor"
