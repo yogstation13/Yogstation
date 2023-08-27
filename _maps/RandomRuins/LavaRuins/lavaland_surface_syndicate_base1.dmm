@@ -455,9 +455,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 4;
 	radio_channel = "Syndicate";
-	radio_key = /obj/item/encryptionkey/syndicate;
-	dir = 4
+	radio_key = /obj/item/encryptionkey/syndicate
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
@@ -481,6 +481,7 @@
 /obj/item/pen,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/effect/turf_decal/siding/purple,
@@ -745,8 +746,8 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "eT" = (
 /obj/item/paper{
-	name = "WARNING";
-	info = "All explosives are to be THROWN OVER THE MOAT in order to avoid setting off the self-destruct."
+	info = "All explosives are to be THROWN OVER THE MOAT in order to avoid setting off the self-destruct.";
+	name = "WARNING"
 	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/purple{
@@ -1377,6 +1378,7 @@
 /obj/effect/turf_decal/siding/blue,
 /obj/machinery/vending/medical/syndicate_access,
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/structure/cable,
@@ -1413,6 +1415,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /turf/open/floor/plasteel/dark,
@@ -1646,6 +1649,7 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "hJ" = (
 /obj/machinery/power/apc/auto_name/east{
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -1796,10 +1800,10 @@
 	dir = 10
 	},
 /obj/machinery/button/door{
-	pixel_y = -24;
-	req_access_txt = "150";
+	id = "syndicate_lavaland_vault_windows";
 	name = "Vault Window Shutters";
-	id = "syndicate_lavaland_vault_windows"
+	pixel_y = -24;
+	req_access_txt = "150"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
@@ -1815,9 +1819,9 @@
 	desc = "While at first glance it looks like the real deal, the station number stamped on the bottom reads '12'. Huh."
 	},
 /obj/item/toy/plush/carpplushie/dehy_carp{
-	name = "cayenne plushie";
+	break_message = "%SRC vanishes in a small explosion.";
 	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
-	break_message = "%SRC vanishes in a small explosion."
+	name = "cayenne plushie"
 	},
 /obj/machinery/button/door{
 	id = "syndie_lavaland_vault";
@@ -1853,6 +1857,7 @@
 	dir = 6
 	},
 /obj/machinery/power/apc/auto_name/east{
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -1970,8 +1975,8 @@
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "iA" = (
 /obj/machinery/door/airlock/mining/glass{
-	req_access_txt = "150";
-	name = "Cargo Office"
+	name = "Cargo Office";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -2011,8 +2016,8 @@
 /obj/machinery/button/door{
 	id = "lavalandsyndi_telecomms";
 	name = "Telecomms Blast Door Control";
-	req_access_txt = "150";
-	pixel_y = 26
+	pixel_y = 26;
+	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -2392,9 +2397,9 @@
 	light_color = "#c1caff"
 	},
 /obj/structure/statue/gold/hos{
-	name = "statue of a syndicate officer";
 	desc = "An expensive, golden statue of a Syndicate commander. The name is worn off.";
-	layer = 2.89
+	layer = 2.89;
+	name = "statue of a syndicate officer"
 	},
 /obj/structure/railing,
 /turf/open/floor/mineral/plastitanium,
@@ -2597,8 +2602,8 @@
 	dir = 8
 	},
 /obj/machinery/conveyor{
-	id = "syndielavaland_disposals";
-	dir = 1
+	dir = 1;
+	id = "syndielavaland_disposals"
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -2817,6 +2822,7 @@
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/syringe/antiviral,
 /obj/machinery/power/apc/auto_name/south{
+	pixel_y = -23;
 	req_access = list(150)
 	},
 /obj/structure/cable,
@@ -3321,6 +3327,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23;
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3333,15 +3340,15 @@
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "mc" = (
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
-	name = "old syndicate vest";
-	desc = "A sinister-looking gold-trimmed vest covered in dust."
+	desc = "A sinister-looking gold-trimmed vest covered in dust.";
+	name = "old syndicate vest"
 	},
 /obj/item/clothing/head/HoS/syndicate{
 	desc = "An old black cap that may have once been fit for a high-ranking Syndicate officer."
 	},
 /obj/item/clothing/gloves/color/captain/centcom/admiral{
-	name = "syndicate commander's gloves";
-	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
+	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers.";
+	name = "syndicate commander's gloves"
 	},
 /obj/structure/closet/crate/secure/gear{
 	req_access_txt = "150"
@@ -3547,8 +3554,8 @@
 /obj/item/circuitboard/machine/clonepod/experimental,
 /obj/item/circuitboard/machine/clonescanner,
 /obj/structure/closet/crate/secure/medical{
-	req_access_txt = "151";
-	desc = "A crate with a lock on it, painted in the scheme of the station's doctors. This one is marked to contain prototype circuitry and clearly hasn't been touched in years."
+	desc = "A crate with a lock on it, painted in the scheme of the station's doctors. This one is marked to contain prototype circuitry and clearly hasn't been touched in years.";
+	req_access_txt = "151"
 	},
 /obj/item/paper{
 	info = "You have been assigned to test an old cloner system provided to us by one of our research stations. Your monkeys should make excellent DNA sources. Do not clone too many crew, and be prepared to treat genetic defects and cellular damage."
@@ -3847,10 +3854,10 @@
 	dir = 4
 	},
 /obj/machinery/button/door{
-	pixel_y = 24;
-	req_access_txt = "150";
+	id = "lavalandsyndi_medsci";
 	name = "Medical Bay Shutters";
-	id = "lavalandsyndi_medsci"
+	pixel_y = 24;
+	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
@@ -4064,6 +4071,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23;
 	req_access = list(150)
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -4118,9 +4126,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier/faxmachine{
 	department = "Unidentified";
+	desc = "Used to send black pages to Nanotrasen stations.";
 	name = "Syndicate Fax Machine";
-	req_one_access = list(150);
-	desc = "Used to send black pages to Nanotrasen stations."
+	req_one_access = list(150)
 	},
 /obj/item/paper{
 	info = "You have been entrusted with the Nuclear Authentication Disk of Space Station 12. Keep it secure until Nanotrasen finishes repairs.";
@@ -4201,9 +4209,9 @@
 "qB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8;
 	external_pressure_bound = 120;
-	name = "server vent";
-	dir = 8
+	name = "server vent"
 	},
 /turf/open/floor/circuit/red/anim{
 	initial_gas_mix = "n2=100;TEMP=80"
@@ -4268,12 +4276,12 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "rF" = (
 /obj/machinery/conveyor{
-	id = "syndielavaland_disposals";
-	dir = 1
+	dir = 1;
+	id = "syndielavaland_disposals"
 	},
 /obj/machinery/door/window/brigdoor/westleft{
-	req_access_txt = "150";
-	name = "Disposals Conveyor"
+	name = "Disposals Conveyor";
+	req_access_txt = "150"
 	},
 /obj/structure/sign/warning/deathsposal{
 	pixel_x = 32
@@ -4371,8 +4379,8 @@
 /area/ruin/powered/syndicate_lava_base/medbay)
 "tZ" = (
 /obj/machinery/door/window/brigdoor{
-	req_access_txt = "150";
-	name = "Isolation Pen"
+	name = "Isolation Pen";
+	req_access_txt = "150"
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -4460,8 +4468,8 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "uT" = (
 /obj/machinery/door/window/northleft{
-	req_access_txt = "150";
-	name = "Bar"
+	name = "Bar";
+	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -4486,8 +4494,8 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/suit_storage_unit/syndicate{
-	suit_type = /obj/item/clothing/suit/space/syndicate/black/engie;
-	helmet_type = /obj/item/clothing/head/helmet/space/syndicate/black/engie
+	helmet_type = /obj/item/clothing/head/helmet/space/syndicate/black/engie;
+	suit_type = /obj/item/clothing/suit/space/syndicate/black/engie
 	},
 /obj/structure/sign/warning/fire{
 	pixel_y = 32
@@ -4617,8 +4625,8 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "wL" = (
 /obj/machinery/door/airlock/mining/glass{
-	req_access_txt = "150";
-	name = "Cargo Bay"
+	name = "Cargo Bay";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4763,8 +4771,8 @@
 /obj/item/pizzabox/seafood,
 /obj/item/pizzabox/sassysage,
 /obj/structure/closet/crate/freezer{
-	name = "pizza crate";
-	desc = "Despite looking like a freezer, this crate is actually an advanced temperature-regulating crate to keep the pizza hot and ready to eat."
+	desc = "Despite looking like a freezer, this crate is actually an advanced temperature-regulating crate to keep the pizza hot and ready to eat.";
+	name = "pizza crate"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -5005,6 +5013,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc/auto_name/east{
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /obj/structure/cable{
@@ -5098,8 +5107,8 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "DA" = (
 /obj/structure/statue/resin/ashwalker{
-	name = "ancient statue";
-	desc = "An ancient statue, made of resin and covered in a thin coat of ash and debris. It'd probably fetch a good price with the right buyer."
+	desc = "An ancient statue, made of resin and covered in a thin coat of ash and debris. It'd probably fetch a good price with the right buyer.";
+	name = "ancient statue"
 	},
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -5221,8 +5230,8 @@
 /area/ruin/powered/syndicate_lava_base/bar)
 "Fc" = (
 /obj/item/pickaxe/mini{
-	pixel_y = 3;
-	pixel_x = 19
+	pixel_x = 19;
+	pixel_y = 3
 	},
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -5405,8 +5414,8 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "Hi" = (
 /obj/machinery/door/airlock/highsecurity{
-	req_access_txt = "150";
-	name = "Telecommunications"
+	name = "Telecommunications";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5516,8 +5525,8 @@
 "IC" = (
 /obj/machinery/door/airlock/vault{
 	id_tag = "syndie_lavaland_vault";
-	req_access_txt = "150";
-	name = "Vault Access"
+	name = "Vault Access";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -5921,8 +5930,8 @@
 /area/ruin/powered/syndicate_lava_base/virology)
 "Om" = (
 /obj/machinery/door/airlock/research{
-	req_access_txt = "150";
-	name = "Chemistry"
+	name = "Chemistry";
+	req_access_txt = "150"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6042,6 +6051,7 @@
 "Qg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23;
 	req_access = list(150)
 	},
 /obj/effect/turf_decal/siding/red{
@@ -6151,6 +6161,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/auto_name/east{
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /obj/structure/table/reinforced,
@@ -6204,8 +6215,8 @@
 /obj/structure/window/reinforced/spawner/west,
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/conveyor{
-	id = "syndielavaland_disposals";
-	dir = 1
+	dir = 1;
+	id = "syndielavaland_disposals"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6475,8 +6486,8 @@
 	dir = 4
 	},
 /obj/machinery/door/window/eastright{
-	req_access_txt = "150";
-	name = "Kitchen"
+	name = "Kitchen";
+	req_access_txt = "150"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -6521,6 +6532,7 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/auto_name/east{
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /obj/structure/cable,
@@ -6566,8 +6578,8 @@
 /area/ruin/powered/syndicate_lava_base/main)
 "XA" = (
 /obj/effect/decal/remains/human{
-	name = "ancient remains";
-	desc = "Remains covered in ash. There's a visible bullet hole in the skull."
+	desc = "Remains covered in ash. There's a visible bullet hole in the skull.";
+	name = "ancient remains"
 	},
 /turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors)
@@ -6654,8 +6666,8 @@
 	dir = 8
 	},
 /obj/structure/closet/crate/hydroponics{
-	name = "janitorial crate";
-	desc = "All you need to destroy dirt."
+	desc = "All you need to destroy dirt.";
+	name = "janitorial crate"
 	},
 /obj/item/soap/syndie,
 /obj/item/soap/syndie,
@@ -6664,8 +6676,8 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/mop/advanced{
-	name = "syndicate mop";
-	desc = "A Syndicate-brand advanced mop."
+	desc = "A Syndicate-brand advanced mop.";
+	name = "syndicate mop"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
