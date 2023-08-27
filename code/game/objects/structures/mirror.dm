@@ -149,6 +149,7 @@
 	icon_state = "mirror"
 	result_path = /obj/structure/mirror
 	pixel_shift = -32
+
 /obj/structure/mirror/magic
 	name = "magic mirror"
 	desc = "Turn and face the strange... face."
