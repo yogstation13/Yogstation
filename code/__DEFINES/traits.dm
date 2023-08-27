@@ -278,6 +278,11 @@
 /// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
 #define TRAIT_FARADAYCAGE "faraday_cage"
 
+// You can stare into the abyss, but it does not stare back.
+// You're immune to the hallucination effect of the supermatter, either
+// through force of will, or equipment.
+#define TRAIT_MADNESS_IMMUNE "supermatter_madness_immune"
+
 /// This person is crying
 #define TRAIT_CRYING "crying"
 /// This human wants to see the color of their glasses, for some reason

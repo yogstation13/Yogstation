@@ -80,11 +80,6 @@
 
 #define HALLUCINATION_RANGE(P) (min(7, round(P ** 0.25)))
 
-#define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
-#define FLUX_ANOMALY "flux_anomaly"
-#define PYRO_ANOMALY "pyro_anomaly"
-#define RADIATION_ANOMALY "radiation_anomaly"
-
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
 #define SUPERMATTER_EMERGENCY_PERCENT 25
@@ -221,7 +216,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/damage_mod = 1
 	var/heal_mod = 1
 
-
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
 	uid = gl_uid++
@@ -252,9 +246,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
 	. = ..()
-	if (istype(user, /mob/living/carbon))
-		if ((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
-			. += span_danger("You get headaches just from looking at it.")
+	var/immune = HAS_TRAIT(user, TRAIT_MADNESS_IMMUNE) || HAS_TRAIT(user.mind, TRAIT_MADNESS_IMMUNE) || HAS_TRAIT(user, TRAIT_MESONS) || HAS_TRAIT(user.mind, TRAIT_MESONS)
+	if (isliving(user) && !immune && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
+		. += "<span class='danger'>You get headaches just from looking at it.</span>"
 
 /obj/machinery/power/supermatter_crystal/proc/get_status()
 	var/turf/T = get_turf(src)
@@ -359,69 +353,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		radio.talk_into(src, speaking, common_channel)
 		sleep(1 SECONDS)
 
-	explode()
+	delamination_event()
 
-/obj/machinery/power/supermatter_crystal/proc/explode()
+/obj/machinery/power/supermatter_crystal/proc/delamination_event()
 	if (is_main_engine)
 		SSpersistence.rounds_since_engine_exploded = ROUNDCOUNT_ENGINE_JUST_EXPLODED
 		for (var/obj/structure/sign/delamination_counter/sign as anything in GLOB.map_delamination_counters)
 			sign.update_count(ROUNDCOUNT_ENGINE_JUST_EXPLODED)
-	for(var/mob in GLOB.alive_mob_list)
-		var/mob/living/M = mob
-		var/turf/T2 = get_turf_global(M)
-		if(istype(M) && T2 && T2.z == z)
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				H.adjust_hallucinations(max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) ) )
-			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(M, src) + 1) )
-			M.rad_act(rads)
+	new /datum/supermatter_delamination(power, combined_gas, get_turf(src), explosion_power, gasmix_power_ratio, antinoblium_attached, resonance_cascading, last_rads)
 
-	var/turf/T = get_turf(src)
-	for(var/_M in GLOB.player_list)
-		var/mob/M = _M
-		var/turf/T2 = get_turf(M)
-		if(T2.z == z)
-			SEND_SOUND(M, 'sound/magic/charge.ogg')
-			to_chat(M, span_boldannounce("You feel reality distort for a moment..."))
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
-
-	if(resonance_cascading)
-		sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
-		var/datum/round_event_control/resonance_cascade/xen = new
-		xen.runEvent()
-		message_admins("[src] has caused a resonance cascade.")
-		investigate_log("has caused a resonance cascade.", INVESTIGATE_SUPERMATTER)
-
-	if(combined_gas > MOLE_PENALTY_THRESHOLD && !resonance_cascading)
-		message_admins("[src] has collapsed into a singularity. [ADMIN_JMP(src)].")
-		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
-		if(T)
-			var/obj/singularity/S = new(T)
-			if(antinoblium_attached)
-				S.energy = 2400
-			else
-				S.energy = 800
-			S.consume(src)
-	else
-		if(power < 0) // in case of negative energy, make it positive
-			power = -power
-		var/explosion_mod = clamp((1.001**power) / ((1.001**power) + SUPERMATTER_EXPLOSION_LAMBDA), 0.1, 1)
-		//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
-		if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
-			message_admins("[src] has exploded in empty space.")
-			investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)
-			explosion_mod = max(explosion_mod, 0.5)
-		else
-			message_admins("[src] has exploded")
-			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * explosion_mod, (explosion_power * explosion_mod * 2) + (explosion_power/4), TRUE, FALSE, FALSE, TRUE)
-		explosion(T, explosion_power * explosion_mod * 0.5, explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4, explosion_power * explosion_mod + 6, 1, 1)
-		radiation_pulse(T, (last_rads + 2400) * explosion_power)
-		if(power > POWER_PENALTY_THRESHOLD && !resonance_cascading)
-			investigate_log("has spawned additional energy balls.", INVESTIGATE_SUPERMATTER)
-			var/obj/singularity/energy_ball/E = new(T)
-			E.energy = power
-		qdel(src)
+	qdel(src)
 
 /obj/machinery/power/supermatter_crystal/proc/surge(amount)
 	surging = amount
@@ -601,6 +542,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(support_integrity >= 100)
 				support_integrity = 100
 				antinoblium_attached = FALSE
+				radio.use_command = FALSE
 			noblium_suppressed = TRUE
 		else
 			noblium_suppressed = FALSE
@@ -660,14 +602,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(15) && (power > POWER_PENALTY_THRESHOLD || combined_gas > MOLE_PENALTY_THRESHOLD || antinoblium_attached))
 			supermatter_pull(src, power/750)
-		if(prob(5))
-			supermatter_anomaly_gen(src, FLUX_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(1))
-			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
-			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(3) || prob(0.5))
-			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
+		if(prob(5) || antinoblium_attached && prob(10))
+			supermatter_anomaly_gen(src, ANOMALY_FLUX, rand(5, 10))
+		if(prob(5) || antinoblium_attached && prob(10))
+			supermatter_anomaly_gen(src, ANOMALY_HALLUCINATION, rand(5, 10))
+		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(1) || antinoblium_attached && prob(10))
+			supermatter_anomaly_gen(src, ANOMALY_GRAVITATIONAL, rand(5, 10))
+		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD || antinoblium_attached && prob(10))
+			supermatter_anomaly_gen(src, ANOMALY_PYRO, rand(5, 10))
+		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(0.5) || antinoblium_attached && prob(10))
+			supermatter_anomaly_gen(src, ANOMALY_RADIATION, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
@@ -735,6 +679,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//emagged SM go BRRRRRRR here
 	if(antinoblium_attached && !noblium_suppressed)
+		radio.use_command = TRUE
 		if(prob(10+round(damage/(explosion_point/20),1)*3) & support_integrity>0)//radio chatter to make people panic
 			switch(support_integrity)
 				if(100)
@@ -1007,7 +952,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		message_admins("Antinoblium shard has been attached to the SM and is now going BRRRRRR.")
 		to_chat(user, "<span class='danger'>You attach the antinoblium shard to the [src], moving your hand away before a sudden gravitational wave pulls the [W] into the crystal as it flashes to ash!")
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
-		radio.use_command = TRUE
 		radiation_pulse(src, 150, 4)
 		empulse(src, 3,6)
 		qdel(W)
@@ -1145,19 +1089,28 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			step_towards(P,center)
 			step_towards(P,center)
 
-/obj/machinery/power/supermatter_crystal/proc/supermatter_anomaly_gen(turf/anomalycenter, type = FLUX_ANOMALY, anomalyrange = 5)
-	var/turf/L = pick(orange(anomalyrange, anomalycenter))
-	if(L)
-		switch(type)
-			if(FLUX_ANOMALY)
-				var/obj/effect/anomaly/flux/A = new(L, 300)
-				A.explosive = FALSE
-			if(GRAVITATIONAL_ANOMALY)
-				new /obj/effect/anomaly/grav(L, 250)
-			if(PYRO_ANOMALY)
-				new /obj/effect/anomaly/pyro(L, 400)
-			if(RADIATION_ANOMALY)
-				new /obj/effect/anomaly/radiation(L, 400)
+/proc/supermatter_anomaly_gen(turf/anomalycenter, type = ANOMALY_FLUX, anomalyrange = 5, has_weak_lifespan = TRUE)
+	var/turf/local_turf = pick(RANGE_TURFS(anomalyrange, anomalycenter) - anomalycenter)
+	if(!local_turf)
+		return
+
+	switch(type)
+		if(ANOMALY_FLUX)
+			new /obj/effect/anomaly/flux(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_FLUX_EXPLOSIVE)
+			new /obj/effect/anomaly/flux/explosion(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_GRAVITATIONAL)
+			new /obj/effect/anomaly/grav(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_HALLUCINATION)
+			new /obj/effect/anomaly/hallucination(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_PYRO)
+			new /obj/effect/anomaly/pyro(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_VORTEX)
+			new /obj/effect/anomaly/bhole(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_RADIATION)
+			new /obj/effect/anomaly/radiation(local_turf, has_weak_lifespan ? rand(250, 300) : null)
+		if(ANOMALY_RADIATION_X)
+			new /obj/effect/anomaly/radiation/goat(local_turf, has_weak_lifespan ? rand(250, 300) : null)
 
 /obj/machinery/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
@@ -1275,8 +1228,3 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return ..()
 
 #undef HALLUCINATION_RANGE
-#undef GRAVITATIONAL_ANOMALY
-#undef SUPERMATTER_EXPLOSION_LAMBDA
-#undef FLUX_ANOMALY
-#undef PYRO_ANOMALY
-#undef RADIATION_ANOMALY
