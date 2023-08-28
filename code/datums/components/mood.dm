@@ -8,6 +8,7 @@
 	var/mood_level = 5 //To track what stage of moodies they're on
 	var/sanity_level = 5 //To track what stage of sanity they're on
 	var/mood_modifier = 1 //Modifier to allow certain mobs to be less affected by moodlets
+	var/prev_do_speed = 1 //how much action speed was modified previously
 	var/list/datum/mood_event/mood_events = list()
 	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
 	var/atom/movable/screen/mood/screen_obj
@@ -233,31 +234,43 @@
 		sanity = amount
 
 	var/mob/living/master = parent
+	if(do_after_speedboost && ishuman(master))//remove the previous action speedboost so they don't stack
+		var/mob/living/carbon/human/H = master
+		H.physiology.do_after_speed /= do_after_speedboost
 	switch(sanity)
 		if(SANITY_INSANE to SANITY_CRAZY)
 			setInsanityEffect(MAJOR_INSANITY_PEN)
 			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.75, movetypes=(~FLYING))
+			do_after_speedboost = 1.5
 			sanity_level = 6
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
 			setInsanityEffect(MINOR_INSANITY_PEN)
 			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+			do_after_speedboost = 1.2
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
 			setInsanityEffect(0)
 			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
+			do_after_speedboost = 1
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
 			setInsanityEffect(0)
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			do_after_speedboost = 1
 			sanity_level = 3
 		if(SANITY_NEUTRAL+1 to SANITY_GREAT+1) //shitty hack but +1 to prevent it from responding to super small differences
 			setInsanityEffect(0)
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			do_after_speedboost = 1
 			sanity_level = 2
 		if(SANITY_GREAT+1 to INFINITY)
 			setInsanityEffect(0)
-			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown= -0.1, movetypes=(~FLYING))//put some pep in your step
+			do_after_speedboost = 0.9
 			sanity_level = 1
+	if(do_after_speedboost && ishuman(master))//add a new action speedboost
+		var/mob/living/carbon/human/H = master
+		H.physiology.do_after_speed *= do_after_speedboost
 	update_mood_icon()
 
 /datum/component/mood/proc/setInsanityEffect(newval)
