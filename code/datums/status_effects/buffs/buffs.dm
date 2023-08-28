@@ -661,6 +661,7 @@
 
 /datum/status_effect/adrenaline/on_remove()
 	var/printout = "<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"
+	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "adrenaline rush")
 	if(isipc(owner))
 		printout = "<b>Auxiliary leg actuator power supply depleted. Movement returning to nominal levels.</b>"
 	to_chat(owner, span_warning(printout))

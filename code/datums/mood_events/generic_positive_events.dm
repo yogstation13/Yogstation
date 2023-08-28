@@ -206,7 +206,6 @@
 /datum/mood_event/adrenaline
 	description = span_nicegreen("This rush makes me feel ALIVE!")
 	mood_change = 10
-	timeout = 30 SECONDS
 
 /datum/mood_event/area
 	description = "" //Fill this out in the area
