@@ -1,7 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Pranksimov, a funny variant of Crewsimov, has been added."
-  - rscadd: "Cmagging a Crewismov law board converts it to a Pranksimov law board."
-  - rscadd: "Cmagging a AI's B.O.R.I.S shell will set their module to Clown."
-  - rscadd: "Cmagging a Cyborg will disconnect them from the AI and set their laws to Pranksimov. However, be warned that there won't be a law zero! Hope they find helping you more funnier than not."
