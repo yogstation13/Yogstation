@@ -137,9 +137,12 @@
 	for(var/a in antag_datums)	//Makes sure all antag datums effects are applied in the new body
 		var/datum/antagonist/A = a
 		A.on_body_transfer(old_current, current)
-	if(iscarbon(new_character))
+	if(iscarbon(new_character) && !new_character.GetComponent(/datum/component/mood))
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
+	if(ishuman(new_character))
+		var/mob/living/carbon/human/H = C
+		H.AddComponent(/datum/component/mood)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))
