@@ -1,6 +1,5 @@
 /datum/controller/subsystem/processing/quirks/proc/checkquirks(mob/living/user,client/cli) // Returns true when the player isn't trying to fuckin scum the mood pref stuff to exploit
-	var/mob/living/carbon/human/U = user
-	
+
 	var/points = 0;
 	var/good_quirks = 0;
 
