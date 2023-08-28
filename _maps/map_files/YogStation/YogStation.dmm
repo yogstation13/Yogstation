@@ -35077,6 +35077,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"jSZ" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "jTj" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/mime,
@@ -62329,12 +62335,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
-"unB" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "unF" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -103907,7 +103907,7 @@ mdD
 naR
 uUZ
 mdD
-unB
+jSZ
 hEG
 fkv
 bNR
