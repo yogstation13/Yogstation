@@ -265,8 +265,8 @@
 			sanity_level = 2
 		if(SANITY_GREAT+1 to INFINITY)
 			setInsanityEffect(0)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown= -0.05, movetypes=(~FLYING))//put some pep in your step
-			do_after_speedboost = 0.9
+			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
+			do_after_speedboost = 0.95
 			sanity_level = 1
 	if(do_after_speedboost && ishuman(master))//add a new action speedboost
 		var/mob/living/carbon/human/H = master
