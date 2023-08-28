@@ -8,10 +8,10 @@
 	limbs_id = "human"
 	damage_overlay_type = "synth"
 
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,
 	TRAIT_NOHUNGER, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NOGUNS, TRAIT_NO_GRENADES)
-	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_HEAD, SLOT_GLASSES)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_HEAD, ITEM_SLOT_EYES)
 	inherent_biotypes = list(MOB_ROBOTIC)
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic
@@ -24,7 +24,6 @@
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
 	skinned_type = /obj/item/stack/sheet/metal{amount = 10}
 	exotic_blood = /datum/reagent/oil
-
 	use_skintones = TRUE
 	forced_skintone = "albino"
 
@@ -37,7 +36,6 @@
 	staminamod = 0.5
 	coldmod = 0.25 //You take less cold damage
 	siemens_coeff = 1.75
-	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
@@ -308,7 +306,7 @@
 /datum/action/innate/undeployment_synth
 	name = "Disconnect from synthetic unit"
 	desc = "Stop controlling this synthetic unit and resume normal core operations."
-	icon_icon = 'icons/mob/actions/actions_AI.dmi'
+	button_icon  = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
 /datum/action/innate/undeployment_synth/Trigger()
@@ -370,7 +368,7 @@
 /datum/action/innate/synth_os
 	name = "Access SynthOS"
 	desc = "Allows access to internal functions."
-	icon_icon = 'icons/obj/modular_laptop.dmi'
+	button_icon = 'icons/obj/modular_laptop.dmi'
 	button_icon_state = "laptop"
 
 /datum/action/innate/synth_os/IsAvailable()

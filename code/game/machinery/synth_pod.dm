@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 	else
 		target.visible_message(span_warning("[user] starts shoving [target] into [src]!"), span_userdanger("[user] starts shoving you into [src]!"))
 
-	if(do_mob(user, target, 3 SECONDS))
+	if(do_after(user, 3 SECONDS, target))
 		if(stored)
 			return
 		if(target == user)

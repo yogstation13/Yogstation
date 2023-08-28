@@ -1,11 +1,9 @@
 /datum/job/synthetic
 	title = "Synthetic"
 	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm."
-	flag = SYNTHETIC_JF
 	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
 	department_head = list("AI")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
@@ -91,7 +89,6 @@
 	back = null
 	shoes = null
 	box = null
-	ipc_box = null
 
 	preload = FALSE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 

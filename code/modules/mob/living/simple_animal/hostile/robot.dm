@@ -148,7 +148,7 @@
 //Robot can summon weak combat robots
 /datum/action/boss/robot_summon_weak
 	name = "Summon Weak Robots"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 	usage_probability = 30
 	boss_cost = 40

@@ -215,11 +215,9 @@
 /obj/item/radio/headset/headset_synthetic/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
-
-/obj/item/radio/headset/headset_synthetic/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
-
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, SYNTHETIC_TRAIT)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, SYNTHETIC_TRAIT)
+	
 /obj/item/radio/headset/headset_synthetic/attackby(obj/item/W, mob/user, params)
 	return FALSE
 
