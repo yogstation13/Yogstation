@@ -8,7 +8,7 @@
 	var/mood_level = 5 //To track what stage of moodies they're on
 	var/sanity_level = 5 //To track what stage of sanity they're on
 	var/mood_modifier = 1 //Modifier to allow certain mobs to be less affected by moodlets
-	var/prev_do_speed = 1 //how much action speed was modified previously
+	var/do_after_speedboost = 1 //how much action speed was modified previously
 	var/list/datum/mood_event/mood_events = list()
 	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
 	var/atom/movable/screen/mood/screen_obj
