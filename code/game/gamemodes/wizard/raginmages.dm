@@ -2,7 +2,7 @@
 	name = "ragin' mages"
 	config_tag = "raginmages"
 	var/antag_datum = /datum/antagonist/wizard/
-	antag_flag = ROLE_RAGINMAGES
+	antag_flag = ROLE_RAGINMAGES, ROLE_WIZARD
 	required_players = 40
 	announce_span = "userdanger"
 	announce_text = "There are many, many wizards attacking the station!\n\
@@ -75,7 +75,7 @@
 	spawn(rand(spawn_delay_min, spawn_delay_max))
 		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
 		var/banlist = list(ROLE_WIZARD, ROLE_SYNDICATE, ROLE_RAGINMAGES, ROLE_BULLSHITMAGES)
-		candidates = pollGhostCandidates("Do you wish to be considered for the position of Space Wizard Federation 'diplomat'?", banlist, src, bullshit_mode ? ROLE_WIZARD, ignore_category = POLL_IGNORE_RAGINMAGES)
+		candidates = pollGhostCandidates("Do you wish to be considered for the position of Space Wizard Federation 'diplomat'?", banlist, src, bullshit_mode ? ROLE_BULLSHITMAGES : ROLE_RAGINMAGES, ignore_category = POLL_IGNORE_RAGINMAGES)
 		if(!candidates.len)
 			message_admins("This is awkward, sleeping until another mage check...")
 			notify_ghosts("There was an attempt to spawn in another ragin' mage, but none of you qualified!")
@@ -114,7 +114,7 @@
 	name = "very ragin' bullshit mages"
 	config_tag = "veryraginbullshitmages"
 	antag_datum = /datum/antagonist/wizard/
-	antag_flag = ROLE_BULLSHITMAGES
+	antag_flag = ROLE_BULLSHITMAGES, ROLE_WIZARD
 	required_players = 40
 	bullshit_mode = TRUE
 	time_check = 250
