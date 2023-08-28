@@ -653,6 +653,7 @@
 /datum/status_effect/adrenaline/on_apply()
 	. = ..()
 	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "adrenaline rush", /datum/mood_event/adrenaline_rush)
 	if(isipc(owner))
 		printout = "<b>Chassis damage exceeded acceptable levels. Auxiliary leg actuator power supply activated.</b>"
 	to_chat(owner, span_notice(printout))
