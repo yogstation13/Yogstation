@@ -2068,7 +2068,6 @@
 #include "code\modules\client\preferences\items.dm"
 #include "code\modules\client\preferences\jobless_role.dm"
 #include "code\modules\client\preferences\mood.dm"
-#include "code\modules\client\preferences\mood_enabling.dm"
 #include "code\modules\client\preferences\names.dm"
 #include "code\modules\client\preferences\ooc.dm"
 #include "code\modules\client\preferences\parallax.dm"
