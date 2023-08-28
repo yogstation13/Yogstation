@@ -16,9 +16,6 @@
 	data["selected_quirks"] = get_selected_quirks()
 	data["locked_quirks"] = get_locked_quirks()
 
-	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
-
 	return data
 
 /datum/preference_middleware/quirks/get_ui_data(mob/user)
@@ -28,9 +25,6 @@
 		tainted = FALSE
 		data["selected_quirks"] = get_selected_quirks()
 		data["locked_quirks"] = get_locked_quirks()
-	
-	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 

@@ -175,7 +175,7 @@
 
 /datum/species/human/felinid/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	if((H.client && H.client.prefs.read_preference(/datum/preference/toggle/mood_tail_wagging)) && !is_wagging_tail() && H.mood_enabled)
+	if((H.client && H.client.prefs.read_preference(/datum/preference/toggle/mood_tail_wagging)) && !is_wagging_tail())
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
 			return

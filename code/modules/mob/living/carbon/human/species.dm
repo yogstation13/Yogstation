@@ -1488,16 +1488,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					. += (health_deficiency / 50) ** 2.58
 				else
 					. += (health_deficiency / 100) + 5
-		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
-			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
-				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
-				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
-					. += hungry / 50
-			else if(isethereal(H))
-				var/datum/species/ethereal/E = H.dna.species
-				var/charge = E.get_charge(H)
-				if(charge <= ETHEREAL_CHARGE_NORMAL)
-					. += 1.5 * (1 - charge / 100)
+		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+			var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
+			if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
+				. += hungry / 50
+		else if(isethereal(H))
+			var/datum/species/ethereal/E = H.dna.species
+			var/charge = E.get_charge(H)
+			if(charge <= ETHEREAL_CHARGE_NORMAL)
+				. += 1.5 * (1 - charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)

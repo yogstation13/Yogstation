@@ -112,19 +112,7 @@
 
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
 	original_character = null
-	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
-	if(current)	// remove ourself from our old body's mind variable
-		// Yogs start -- Mood preferences
-		if(current.client && current.client.prefs.read_preference(/datum/preference/toggle/mood_enabled))
-			mood_was_enabled = TRUE
-		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood))
-			var/mob/living/carbon/human/H = current
-			if(H.mood_enabled)
-				mood_was_enabled = TRUE
-				var/datum/component/mood/c = H.GetComponent(/datum/component/mood)
-				if(c)
-					c.RemoveComponent()
-		// Yogs End
+	if(current)
 		current.mind = null
 		UnregisterSignal(current, COMSIG_GLOB_MOB_DEATH)
 		UnregisterSignal(current, COMSIG_MOB_SAY)
@@ -152,11 +140,6 @@
 	if(iscarbon(new_character))
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
-		// Yogs start -- Mood preferences
-		if(ishuman(new_character) && mood_was_enabled && !new_character.GetComponent(/datum/component/mood))
-			var/mob/living/carbon/human/H = C
-			H.AddComponent(/datum/component/mood)
-		// Yogs End
 	transfer_martial_arts(new_character)
 	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))

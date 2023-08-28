@@ -164,7 +164,6 @@ export type PreferencesMenuData = {
   overflow_role: string;
   selected_quirks: string[];
   locked_quirks: Record<string, string>;
-  mood_enabled: BooleanLike;
 
   antag_bans?: string[];
   antag_days_left?: Record<string, number>;

@@ -181,11 +181,6 @@ export const QuirksPage = (props, context) => {
             return lock_reason;
           }
 
-          if (quirk.mood && !data.mood_enabled)
-          {
-            return "This quirk requires mood to be enabled in your game options.";
-          }
-
           if (
             quirk.value > 0
           ) {
