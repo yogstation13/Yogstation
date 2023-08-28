@@ -266,7 +266,7 @@
 		if(SANITY_GREAT+1 to INFINITY)
 			setInsanityEffect(0)
 			master.remove_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE)
-			do_after_speedboost = 0.95
+			do_after_speedboost = 0.90
 			sanity_level = 1
 	if(do_after_speedboost && ishuman(master))//add a new action speedboost
 		var/mob/living/carbon/human/H = master
