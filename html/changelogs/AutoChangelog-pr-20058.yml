@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborg hyposprays are no longer prevented from injecting any chemicals if the target is overdosing on anything."
-  - bugfix: "Failing to inject someone with a cyborg hypospray now properly mentions the target instead of the user."

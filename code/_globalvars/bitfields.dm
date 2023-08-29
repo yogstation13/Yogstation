@@ -33,6 +33,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"USES_TGUI" = USES_TGUI,
 		"FROZEN" = FROZEN,
 		"UNIQUE_REDESC" = UNIQUE_REDESC,
+    	"CMAGGED" = CMAGGED,
 		),
 	"datum_flags" = list(
 		"DF_USE_TAG" = DF_USE_TAG,

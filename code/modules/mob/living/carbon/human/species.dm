@@ -280,15 +280,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return randname
 
 //used to add things to the no_equip list that'll get inherited on species changes
-/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Add(slot)
+/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot, source)
+	if(!("[slot]" in extra_no_equip))
+		extra_no_equip["[slot]"] = list(source)
+	else
+		extra_no_equip["[slot]"] |= list(source)
 	var/obj/item/thing = C.get_item_by_slot(slot)
 	if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
 		C.dropItemToGround(thing)
 
 //removes something from the extra_no_equip list as well as the normal no_equip list
-/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Remove(slot)
+/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot, source)
+	extra_no_equip["[slot]"] -= source
+	if(!length(extra_no_equip["[slot]"]))
+		extra_no_equip -= "[slot]"
 
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)
@@ -410,7 +415,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.gender = FEMALE
 	if((MGENDER in species_traits))
 		C.gender = MALE
-	extra_no_equip.Add(old_species.extra_no_equip)
+	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -1099,7 +1104,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 //Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if((slot in no_equip) || (slot in extra_no_equip))
+	if((slot in no_equip) || ("[slot]" in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -1518,8 +1523,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_emp_act(mob/living/carbon/human/H, severity)
 	return
 
-/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	return
+/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	return FALSE
 
 /datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	return

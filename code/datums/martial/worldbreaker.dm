@@ -653,7 +653,7 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
 		S.power_drain *= 5
-		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
+		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -672,7 +672,7 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
 		S.power_drain /= 5
-		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
+		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
 	deltimer(plate_timer)

@@ -1731,6 +1731,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
 		return
+	U.has_failsafe = TRUE
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
 	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
@@ -2616,6 +2617,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/fireaxe/energy
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
+
+/datum/uplink_item/role_restricted/cmag
+	name = "Jestographic Sequencer"
+	desc = "The jestographic sequencer, also known as a cmag, is a small card that inverts the access on any door it's used on. Perfect for locking command out of their own departments. Honk!"
+	item = /obj/item/card/cmag
+	cost = 4 // Not as "destructive" as the emag. In addition, less features than the normal emag. Increase price once more impactful features are added.
+	restricted_roles = list("Clown")
 
 // Pointless
 /datum/uplink_item/badass
