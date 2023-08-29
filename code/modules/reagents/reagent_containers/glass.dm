@@ -37,7 +37,7 @@
 			if(M != user)
 				M.visible_message(span_danger("[user] attempts to feed something to [M]."), \
 							span_userdanger("[user] attempts to feed something to you."))
-				if(!do_mob(user, M))
+				if(!do_after(user, 3 SECONDS, M))
 					return
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
@@ -444,7 +444,7 @@
 /obj/item/reagent_containers/glass/urn
 	name = "urn"
 	desc = "A tall vase used for storing cremated remains."
-	obj_flags = UNIQUE_RENAME // Rename it to whoever you cremated
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC // Rename it to whoever you cremated
 	icon_state = "urn_open"
 	w_class = WEIGHT_CLASS_NORMAL // This is important! Don't just keep it in your box or something!
 	resistance_flags = NONE // Shatters easily

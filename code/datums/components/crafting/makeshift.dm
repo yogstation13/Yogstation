@@ -31,7 +31,7 @@
 	name = "Makeshift Welding Tool"
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 1,
 				/obj/item/assembly/igniter = 1)
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/weldingtool/makeshift
 	time = 16 SECONDS
 	category = CAT_TOOLS
@@ -43,7 +43,7 @@
 				/obj/item/assembly/signaler = 1,
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/cable_coil = 10)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/multitool/makeshift
 	time = 16 SECONDS
 	category = CAT_TOOLS
@@ -63,11 +63,10 @@
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/cable_coil = 15,
 				/obj/item/stack/sheet/cloth = 2)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/storage/belt/utility/makeshift
 	time = 20 SECONDS
-	category = CAT_APPAREL
-	subcategory = CAT_EQUIPMENT
+	category = CAT_TOOLS
 
 /datum/crafting_recipe/makeshiftknife
 	name = "Makeshift Knife"
@@ -94,7 +93,7 @@
 	reqs = list(/obj/item/assembly/signaler = 1,
         		/obj/item/radio/headset = 1,
 				/obj/item/stack/cable_coil = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/radio/off/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
@@ -106,7 +105,7 @@
         		/obj/item/card/id = 1,
 				/obj/item/electronics/firelock = 1,
 				/obj/item/stack/cable_coil = 10)
-	tools = list(TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	result = /obj/item/card/emag/improvised
 	time = 12 SECONDS
 	category = CAT_TOOLS
@@ -118,6 +117,6 @@
 	reqs = list(/obj/item/stack/sheet/cardboard = 2,
 				/obj/item/stack/tape = 1,
 				/obj/item/pen = 1)
-	tools = list(TOOL_WIRECUTTER)
+	tool_behaviors = list(TOOL_WIRECUTTER)
 	time = 30
 	category = CAT_MISC

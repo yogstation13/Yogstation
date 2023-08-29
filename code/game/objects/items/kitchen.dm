@@ -52,7 +52,7 @@
 			M.reagents.add_reagent(forkload.type, 1)
 		else
 			M.visible_message(span_notice("[user] is trying to feed [M] a delicious forkful of [loaded_food]!")) //yogs start
-			if(!do_mob(user, M))
+			if(!do_after(user, 3 SECONDS, M))
 				return
 			log_combat(user, M, "fed [loaded_food]", forkload.type) //yogs end
 			M.visible_message(span_notice("[user] feeds [M] a delicious forkful of [loaded_food]!"))

@@ -31,7 +31,7 @@
 			to_chat(user, span_notice("You use [src] to deactivate [H]."))
 			qdel(H)
 		else
-			if(!is_blocked_turf(T, TRUE)) //can't put hard light on a tile that has dense stuff
+			if(!T.is_blocked_turf(TRUE)) //can't put hard light on a tile that has dense stuff
 				if(holocreator_busy)
 					to_chat(user, span_notice("[src] is busy creating a hard light barrier."))
 					return
@@ -45,7 +45,7 @@
 						holocreator_busy = FALSE
 						if(signs.len >= max_signs)
 							return
-						if(is_blocked_turf(T, TRUE)) //don't try to sneak dense stuff on our tile during the wait.
+						if(T.is_blocked_turf(TRUE)) //don't try to sneak dense stuff on our tile during the wait.
 							return
 					H = new holosign_type(get_turf(target), src)
 					to_chat(user, span_notice("You create \a [H] with [src]."))
@@ -68,7 +68,7 @@
 
 /obj/item/holosign_creator/janibarrier
 	name = "custodial holobarrier projector"
-	desc = "A holographic projector that creates hard light wet floor barriers."
+	desc = "A holographic projector that creates hard light wet floor barriers. Only works on wet floors."
 	holosign_type = /obj/structure/holosign/barrier/wetsign
 	creation_time = 0.5 SECONDS
 	max_signs = 25

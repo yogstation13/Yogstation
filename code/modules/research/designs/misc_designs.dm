@@ -159,7 +159,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/clownshoesimplant
-	name = "Clownshoes implant"
+	name = "Clownshoes Implant"
 	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
 	id = "clownshoesimplant"
 	build_type = PROTOLATHE | MECHFAB
@@ -197,6 +197,16 @@
 	build_path = /obj/item/clothing/glasses/meson/engine/tray
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/atmos_thermal
+	name = "Atmospheric Thermal Imaging Goggles"
+	desc = "Used by Atmospheric Technicians to determine the temperature of the air."
+	id = "atmos_thermal"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/plasma = 100)
+	build_path = /obj/item/clothing/glasses/meson/engine/atmos_imaging
+	category = list("Equipment")
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/nvgmesons
 	name = "Night Vision Optical Meson Scanners"
@@ -349,7 +359,7 @@
 
 /datum/design/ticket_remote
 	name = "Ticket Machine Remote"
-	desc = "A remote for operating a ticket machine (sold seperately)"
+	desc = "A remote for operating a ticket machine (sold seperately)."
 	id = "ticket_remote"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
@@ -435,8 +445,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/holosignclown
-	name = "HONK holobanana projector"
-	desc = "A holographic projector that creates hardlight bananas"
+	name = "HONK Holobanana Projector"
+	desc = "A holographic projector that creates hardlight bananas."
 	id = "holosignclown"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500, /datum/material/bananium = 1000)
@@ -519,7 +529,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/platingmki
-	name = "MK.I bluespace plating"
+	name = "MK.I Bluespace Plating"
 	desc = "Plating fitted for a plated vest or helmet. Makes you faster, but gives less armor."
 	id = "platingmki"
 	build_type = PROTOLATHE
@@ -529,7 +539,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/platingmkii
-	name = "MK.II ceramic plating"
+	name = "MK.II Ceramic Plating"
 	desc = "Plating fitted for a plated vest or helmet. Better than what you get at the start of the shift."
 	id = "platingmkii"
 	build_type = PROTOLATHE
@@ -539,7 +549,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/platingmkiii
-	name = "MK.III plasteel plating"
+	name = "MK.III Plasteel Plating"
 	desc = "Plating fitted for a plated vest or helmet. Makes you slower, but gives more armor."
 	id = "platingmkiii"
 	build_type = PROTOLATHE
@@ -549,7 +559,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/platingmkiv
-	name = "MK.IV titanium plating"
+	name = "MK.IV Titanium Plating"
 	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
 	id = "platingmkiv"
 	build_type = PROTOLATHE

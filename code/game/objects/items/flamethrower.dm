@@ -20,6 +20,7 @@
 	light_on = FALSE
 	var/status = FALSE
 	var/lit = FALSE	//on or off
+	light_range = 2
 	light_color = LIGHT_COLOR_FIRE
 	var/operating = FALSE//cooldown
 	var/obj/item/weldingtool/weldtool = null
@@ -171,14 +172,12 @@
 	to_chat(user, span_notice("You [lit ? "extinguish" : "ignite"] [src]!"))
 	lit = !lit
 	if(lit)
-		set_light(1)
 		playsound(loc, acti_sound, 50, TRUE)
 		START_PROCESSING(SSobj, src)
 		if(!warned_admins)
 			message_admins("[ADMIN_LOOKUPFLW(user)] has lit a flamethrower.")
 			warned_admins = TRUE
 	else
-		set_light(0)
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
 	set_light_on(lit)
@@ -236,8 +235,7 @@
 /obj/item/flamethrower/proc/kill_flame()
 	visible_message(span_danger("\The [src] breathes a sighed hiss as its flame dies out."))
 	lit = FALSE
-	set_light(0)
-	set_light_on(0)
+	set_light_on(FALSE)
 	playsound(loc, 'sound/weapons/flamethrower_empty.ogg', 50, TRUE)
 	STOP_PROCESSING(SSobj,src)
 	update_appearance(UPDATE_ICON)

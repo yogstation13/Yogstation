@@ -82,6 +82,10 @@
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
 	update_appearance(UPDATE_ICON)
 
+/obj/item/jawsoflife/cyborg
+	name = "cyborg jaws of life"
+	toolspeed = 0.5 // Same toolspeed as cyborg screwdriver/wrench.
+
 //better handdrill
 /obj/item/handdrill
 	name = "hand drill"
@@ -152,6 +156,10 @@
 		to_chat(user, span_notice("You attach the screw driver bit to [src]."))
 	update_appearance(UPDATE_ICON)
 
+/obj/item/handdrill/cyborg
+	name = "cyborg hand drill"
+	toolspeed = 0.5 // Same toolspeed as cyborg crowbar/wirecutters.
+
 /obj/item/jawsoflife/jimmy
 	name = "airlock jimmy"
 	desc = "A pump assisted airlock prying jimmy."
@@ -202,15 +210,15 @@
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
 
-/obj/item/jawsoflife/jimmy/emag_act(mob/user)
+/obj/item/jawsoflife/jimmy/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
-		return
+		return FALSE
 	to_chat(user, span_notice("You swipe the emag on [src]'s pressure gage' enabling you to pump more pressure. "))
 	obj_flags |= EMAGGED
 	pump_max = 150
 	pump_cost = 75
-	. = ..()
+	return TRUE
 
 /obj/item/jawsoflife/jimmy/examine(mob/user)
 	. = ..()

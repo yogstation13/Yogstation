@@ -45,6 +45,12 @@
 /turf/closed/indestructible/singularity_act()
 	return
 
+/turf/closed/indestructible/abductor/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/poster) && Adjacent(user))
+		return place_poster(attacking_item, user)
+
+	return ..()
+
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"
 	icon = 'icons/turf/shuttleold.dmi'
@@ -63,7 +69,7 @@
 
 /turf/closed/indestructible/splashscreen
 	name = "Space Station 13"
-	icon = 'icons/blank_title.png'
+	icon = 'icons/blanks/blank_title.png'
 	icon_state = ""
 	layer = FLY_LAYER
 	bullet_bounce_sound = null

@@ -70,13 +70,13 @@
 	name = real_name
 	gender = "male"
 	age = 54
-	eye_color = "630"
+	eye_color = "#663300"
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	if(organ_eyes)
 		organ_eyes.eye_color = eye_color
 		organ_eyes.old_eye_color = eye_color
-	hair_color = "888"
-	facial_hair_color = "876"
+	hair_color = "#888888"
+	facial_hair_color = "#887766"
 
 	skin_tone = "asian2"
 	hair_style = "Balding Hair"

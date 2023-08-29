@@ -15,6 +15,7 @@
 GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms
+	name = "telecommunications machine"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	critical_machine = TRUE
 	var/list/links = list() // list of machines this machine is linked to
@@ -198,7 +199,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms/proc/de_emp()
 	stat &= ~EMPED
 
-/obj/machinery/telecomms/emag_act()
+/obj/machinery/telecomms/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags |= EMAGGED
 	visible_message(span_notice("Sparks fly out of the [src]!"))
 	traffic += 50
+	return TRUE

@@ -461,7 +461,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, src, stayStill = FALSE))
+		if(do_after(src, 1 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -877,7 +877,7 @@
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
 	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
-	if(do_mob(src, who, what.strip_delay))
+	if(do_after(src, what.strip_delay, who, interaction_key = REF(what)))
 		if(what && Adjacent(who))
 			if(islist(where))
 				var/list/L = where
@@ -915,7 +915,7 @@
 			return
 
 		visible_message(span_notice("[src] tries to put [what] on [who]."))
-		if(do_mob(src, who, what.equip_delay_other))
+		if(do_after(src, what.equip_delay_other, who))
 			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
 					if(where_list)
@@ -979,6 +979,58 @@
 		return 0
 
 	return 1
+
+/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
+	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
+		return TRUE
+
+	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
+		return TRUE
+
+	if(!has_mouth())
+		return TRUE
+
+	if(nutrition < 100 && !blood)
+		if(message)
+			visible_message(span_warning("[src] dry heaves!"), \
+							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
+		if(stun)
+			Paralyze(200)
+		return TRUE
+
+	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
+		if(message)
+			visible_message(span_danger("[src] throws up all over [p_them()]self!"), \
+							span_userdanger("You throw up all over yourself!"))
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomitself)
+		distance = 0
+	else
+		if(message)
+			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
+			if(!isflyperson(src))
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomit)
+
+	if(stun)
+		Paralyze(80)
+
+	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+	var/turf/T = get_turf(src)
+	if(!blood)
+		adjust_nutrition(-lost_nutrition)
+		adjustToxLoss(-3)
+	for(var/i=0 to distance)
+		if(blood)
+			if(T)
+				add_splatter_floor(T)
+			if(stun)
+				adjustBruteLoss(3)
+		else
+			if(T)
+				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
+		T = get_step(T, dir)
+		if (T.is_blocked_turf())
+			break
+	return TRUE
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability(def_zone, linear = FALSE)

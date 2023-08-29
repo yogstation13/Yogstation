@@ -230,6 +230,8 @@
 					sub_category += "Medical"
 				if(module_types & BORG_MODULE_ENGINEERING)
 					sub_category += "Engineering"
+				if(module_types & BORG_MODEL_SERVICE)
+					sub_category += "Service"
 			else
 				sub_category += "All Cyborgs"
 		// Else check if this design builds a piece of exosuit equipment.
@@ -765,15 +767,17 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/emag_act(mob/user)
+/obj/machinery/mecha_part_fabricator/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	do_sparks(1, FALSE, src)
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	authorization_override = TRUE
 	obj_flags |= EMAGGED
 	update_static_data(user)
+	return TRUE
+	
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE

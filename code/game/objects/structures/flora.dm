@@ -18,7 +18,7 @@
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
 			user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), "You hear the sound of sawing.")
-			if(do_after(user, 1000/W.force, src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
+			if(do_after(user, (1000 / W.force), src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
 				user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), "You hear the sound of a tree falling.")
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 				for(var/i=1 to log_amount)
@@ -319,8 +319,9 @@
 
 /obj/item/kirbyplants/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	AddComponent(/datum/component/tactical)
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	AddComponent(/datum/component/storage/concrete/kirbyplants)
 
 /obj/item/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -357,10 +358,6 @@
 	icon_state = "plant-09"
 	light_color = "#2cb2e8"
 	light_range = 3
-
-/obj/item/kirbyplants/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/storage/concrete/kirbyplants)
 
 /datum/component/storage/concrete/kirbyplants
 	max_items = 1
