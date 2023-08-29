@@ -17719,20 +17719,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"iyg" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 1;
-	sortType = 19
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
 "iyE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -28759,6 +28745,20 @@
 	dir = 4
 	},
 /area/crew_quarters/toilet)
+"nMy" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 1;
+	sortType = 19
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "nME" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 1
@@ -84345,7 +84345,7 @@ taV
 khg
 khg
 deM
-iyg
+nMy
 ons
 aoW
 nwQ
