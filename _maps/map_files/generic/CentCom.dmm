@@ -25847,14 +25847,6 @@
 	},
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
-"dAZ" = (
-/obj/machinery/door/airlock/external/glass{
-	req_access_txt = "150";
-	name = "Assault Pod Launcher Access"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/syndicate_mothership/control)
 "dFj" = (
 /obj/structure/closet/crate/hydroponics{
 	name = "fish food crate";
@@ -26954,6 +26946,14 @@
 /obj/machinery/vending/fishing,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"tna" = (
+/obj/machinery/door/airlock/external/glass{
+	req_access_txt = "150";
+	name = "Assault Pod Launcher Access"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/syndicate_mothership/control)
 "tnm" = (
 /obj/machinery/vending/wallhypo,
 /turf/open/floor/plasteel/bluespace,
@@ -26992,6 +26992,10 @@
 	icon_state = "title3"
 	},
 /area/centcom/testchamber)
+"uiX" = (
+/obj/structure/mecha_wreckage/seraph,
+/turf/open/floor/plating/asteroid/snow/temperatre,
+/area/syndicate_mothership)
 "una" = (
 /obj/machinery/vending/wardrobe/science_wardrobe,
 /turf/open/floor/plasteel/bluespace,
@@ -46857,7 +46861,7 @@ apG
 aQr
 apG
 aQr
-aQr
+uiX
 apG
 aku
 aku
@@ -48408,7 +48412,7 @@ ask
 ath
 aue
 aku
-dAZ
+tna
 aku
 aue
 axL
