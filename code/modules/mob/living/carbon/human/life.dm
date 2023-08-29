@@ -63,10 +63,12 @@
 	name = get_visible_name()
 
 	if(stat != DEAD)// heal 0.2hp per second to organic limbs (they are self repairing by virtue of being organic)
-		if(prob(50))
+		if(prob(50) && bruteloss)//50/50 to heal brute or burn, but won't heal a damage type if you don't have it
 			heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
-		else
+		else if(fireloss)
 			heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
+		else
+			heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
