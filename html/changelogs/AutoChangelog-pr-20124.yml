@@ -1,0 +1,4 @@
+author: " tf-4"
+delete-after: true 
+changes: 
+  - spellcheck: "Fixed a spelling error with the daps emote."
