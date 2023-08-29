@@ -1,0 +1,9 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Syndicate MMIs can be purchased by Roboticists (and the Research Director) for 3 telecrystals."
+  - rscadd: "Syndicate MMIs temporarily turns the inserted brain into a mindslave until the brain is removed."
+  - rscadd: "Cyborgs with a Syndicate MMI retain all functions that as a normal cyborg would, except they have an irremovable law zero all to serve whoever imprinted on it (or The Syndicate if none)."
+  - tweak: "Syndicate MMIs no longer gives the Syndicate Override lawset, prevents connection for any AI, or disallow law changes."
+  - tweak: "Syndicate Surgery Duffel Bag has a normal MMI instead of a Syndicate MMI."
+  - tweak: "You can toggle the radio of a MMI via alt-click regardless if there was a brain or not."
