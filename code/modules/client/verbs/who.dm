@@ -63,7 +63,8 @@
 	var/msg = "<b>Current Admins:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.permissions.admins)
-			msg += "\t[C] is a [C.holder.rank_name()]"
+			var/improper_rank = "\improper[C.holder.rank_name()]"
+			msg += "\t[C] is \a [C.holder.rank_name()]"
 
 			if(C.holder.fakekey)
 				msg += " <i>(as [C.holder.fakekey])</i>"
