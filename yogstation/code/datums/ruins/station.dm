@@ -104,7 +104,7 @@
 	id = "testing_site_3"
 	suffix = "testingsite_range3.dmm"
 	name = "Clown Bomb Range"
-	
+
 /datum/map_template/ruin/station/box/testingsite/clerk
 	id = "testing_site_4"
 	suffix = "testingsite_range4.dmm"
@@ -287,7 +287,7 @@
 	id = "meta_teg"
 	suffix = "meta_teg.dmm"
 	name = "Meta TEG"
-	
+
 
 //GaxStation
 
@@ -542,44 +542,40 @@
 	suffix = "3x3_containmentcell.dmm"
 	name = "Maint containmentcell"
 
-/datum/map_template/ruin/station/maint/threexthree/naughtyroom
-	id = "naughtyroom"
-	suffix = "3x3_naughtyroom.dmm"
-	name = "Maint naughtyroom"
 
 ///Author: Vaelophis
 /datum/map_template/ruin/station/maint/threexthree/vendoraccident
-	id = "vendoraccident" 
+	id = "vendoraccident"
 	suffix = "3x3_vendoraccident.dmm"
 	name = "Maint vendoraccident"
 
 ///Author: Gravehat
 /datum/map_template/ruin/station/maint/threexthree/donut
-	id = "donut" 
+	id = "donut"
 	suffix = "3x3_donut.dmm"
 	name = "Maint donut"
 
 ///Author: Marmio64
 /datum/map_template/ruin/station/maint/threexthree/lair
-	id = "lair" 
+	id = "lair"
 	suffix = "3x3_lair.dmm"
 	name = "Maint lair"
 
 ///Author: Marmio64
 /datum/map_template/ruin/station/maint/threexthree/lair2
-	id = "lair2" 
+	id = "lair2"
 	suffix = "3x3_lair2.dmm"
 	name = "Maint lair2"
 
 ///Author: Marmio64
 /datum/map_template/ruin/station/maint/threexthree/lair3
-	id = "lair3" 
+	id = "lair3"
 	suffix = "3x3_lair3.dmm"
 	name = "Maint lair3"
 
 ///Author: Marmio64
 /datum/map_template/ruin/station/maint/threexthree/lair4
-	id = "lair4" 
+	id = "lair4"
 	suffix = "3x3_lair4.dmm"
 	name = "Maint lair4"
 
@@ -1197,7 +1193,7 @@
 	id = "junction"
 	suffix = "10x10_junction.dmm"
 	name = "Maint junction"
-	
+
 ///Lasertag-Author: Jcat
 /datum/map_template/ruin/station/maint/tenxten/lasertag
 	id = "lasertag"
