@@ -397,18 +397,19 @@
 		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
 
 /obj/effect/anomaly/radiation/detonate()
-	if(spawn_goat)//only spawn the goat once, when the anomaly explodes
-		INVOKE_ASYNC(src, PROC_REF(makegoat))
 	INVOKE_ASYNC(src, PROC_REF(rad_Spin))
-	QDEL_IN(src, 1)
 
-/obj/effect/anomaly/radiation/proc/rad_Spin()
+/obj/effect/anomaly/radiation/proc/rad_Spin(increment = 1)
+	if(increment > 100)
+		if(spawn_goat)//only spawn the goat once, when the anomaly explodes
+			INVOKE_ASYNC(src, PROC_REF(makegoat))
+		qdel(src)
 	radiation_pulse(src, 5000, 7)
 	var/turf/T = get_turf(src)
-	for(var/i=1 to 100)
-		var/angle = i * 10
-		T.fire_nuclear_particle(angle)
-		sleep(0.7)
+	var/angle = increment * 10
+	T.fire_nuclear_particle(angle)
+	addtimer(CALLBACK(src, PROC_REF(rad_Spin), increment + 1), 0.7)
+		
 
 /obj/effect/anomaly/radiation/process(delta_time)
 	anomalyEffect(delta_time)
