@@ -1,0 +1,4 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - bugfix: "sets mood to TRUE for family heirloom quirk"
