@@ -400,6 +400,7 @@
 	if(spawn_goat)//only spawn the goat once, when the anomaly explodes
 		INVOKE_ASYNC(src, PROC_REF(makegoat))
 	INVOKE_ASYNC(src, PROC_REF(rad_Spin))
+	QDEL_IN(src, 1)
 
 /obj/effect/anomaly/radiation/proc/rad_Spin()
 	radiation_pulse(src, 5000, 7)
@@ -414,6 +415,5 @@
 	if(death_time < world.time)
 		if(loc)
 			detonate()
-			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 150)
 
 #undef ANOMALY_MOVECHANCE
