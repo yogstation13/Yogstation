@@ -63,12 +63,13 @@
 	name = get_visible_name()
 
 	if(stat != DEAD)// heal 0.2hp per second to organic limbs (they are self repairing by virtue of being organic)
-		if(prob(50) && bruteloss)//50/50 to heal brute or burn, but won't heal a damage type if you don't have it
-			heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
-		else if(fireloss)
-			heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
-		else
-			heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
+		if(HAS_TRAIT(src, TRAIT_NOHUNGER) || satiety > NUTRITION_LEVEL_FED)//either if they don't have hunger at all, or if they're fed enough
+			if(prob(50) && bruteloss)//50/50 to heal brute or burn, but won't heal a damage type if you don't have it
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
+			else if(fireloss)
+				heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
+			else
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
