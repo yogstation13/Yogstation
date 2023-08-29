@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborgs can now repair fire axe cabinets properly."
-  - bugfix: "Using cyborg reinforced glass on/for certain structures now work properly."
-  - tweak: "Cyborgs can attempt to trigger a fire axe cabinet's alarm by interacting with it on harm intent with no module."
