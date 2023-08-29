@@ -42,3 +42,61 @@
 /datum/outfit/ivymen/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.underwear = "Nude"
 	H.update_body()
+
+/// Syndicate station spawners
+
+/obj/effect/mob_spawn/human/lavaland_syndicate/jungle
+	outfit = /datum/outfit/lavaland_syndicate/jungle
+
+/obj/effect/mob_spawn/human/lavaland_syndicate/jungle/lieutenant
+	name = "Syndicate Comms Lieutenant"
+	short_desc = "You are a syndicate lieutenant, employed in a top secret research facility that is developing biological weapons."
+	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Issue commands to the rest of the base, keep tabs on communications, and try to keep a low profile."
+	important_info = "The base is rigged with explosives, DO NOT abandon it, let it fall into enemy hands, or share your supplies with non-syndicate personnel."
+	outfit = /datum/outfit/lavaland_syndicate/jungle/lieutenant
+	assignedrole = "Lavaland Syndicate"
+
+/obj/effect/mob_spawn/human/lavaland_syndicate/jungle/scientist
+	outfit = /datum/outfit/lavaland_syndicate/jungle/scientist
+
+/obj/effect/mob_spawn/human/lavaland_syndicate/jungle/technician
+	name = "Syndicate Technician"
+	short_desc = "You are a syndicate technician, employed in a top secret research facility that is developing biological weapons."
+	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Keep the base functional and manned, and try to keep a low profile."
+	outfit = /datum/outfit/lavaland_syndicate/jungle/technician
+
+/obj/effect/mob_spawn/human/lavaland_syndicate/special(mob/living/new_spawn)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+
+/datum/outfit/lavaland_syndicate/jungle
+	name = "Jungle Syndicate Agent"
+
+/datum/outfit/lavaland_syndicate/jungle/lieutenant
+	name = "Jungle Syndicate Lieutenant"
+	r_hand = /obj/item/melee/transforming/energy/sword/saber
+	suit = /obj/item/clothing/suit/armor/vest
+	gloves = /obj/item/clothing/gloves/sec_maga/syndicate
+
+/datum/outfit/lavaland_syndicate/jungle/scientist
+	name = "Jungle Syndicate Scientist"
+	r_hand = null
+
+/datum/outfit/lavaland_syndicate/jungle/technician
+	name = "Jungle Syndicate Technician"
+	r_hand = null
+	suit = /obj/item/clothing/suit/armor/vest
+
+/obj/item/clothing/gloves/sec_maga/syndicate //syndicate jungle ghostrole version, only works on base
+	name = "combat gloves plus"
+	desc = "These tactical gloves are fireproof and shock resistant, and using nanochip technology it teaches you the powers of krav maga. Anti-theft measures prevent these gloves from being used outside the base."
+	icon_state = "black"
+	item_state = "blackglovesplus"
+	siemens_coefficient = 0
+	strip_delay = 80
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 80, ACID = 50)
+	enabled_areas = list(/area/ruin/powered/syndicate_lava_base)
