@@ -12268,14 +12268,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"fLw" = (
-/obj/machinery/disposal/bin,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/warning/deathsposal{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "fLD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -23685,6 +23677,20 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"lzf" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 1;
+	sortType = 19
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "lzJ" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/regular{
@@ -28745,20 +28751,6 @@
 	dir = 4
 	},
 /area/crew_quarters/toilet)
-"nMy" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 1;
-	sortType = 19
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "nME" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 1
@@ -84345,7 +84337,7 @@ taV
 khg
 khg
 deM
-nMy
+lzf
 ons
 aoW
 nwQ
@@ -85906,7 +85898,7 @@ mew
 lEP
 gIJ
 mas
-fLw
+pOO
 hci
 pOO
 pOO
