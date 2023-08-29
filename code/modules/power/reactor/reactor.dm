@@ -577,6 +577,12 @@
 	T.assume_air(coolant_input)
 	T.assume_air(moderator_input)
 	T.assume_air(coolant_output)
+	var/turf/lower_turf = SSmapping.get_turf_below(T)
+	if(lower_turf) // reactor fuel will melt down into the lower levels on multi-z maps like icemeta
+		new /obj/structure/reactor_corium(lower_turf)
+		var/turf/lowest_turf = SSmapping.get_turf_below(lower_turf)
+		if(lowest_turf) // WE NEED TO GO DEEPER
+			new /obj/structure/reactor_corium(lower_turf)
 	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
@@ -884,7 +890,7 @@
 
 /obj/effect/decal/nuclear_waste/process(delta_time)
 	if(prob(10)) // woah there, don't overload the radiation subsystem
-		radiation_pulse(src, 1000, RAD_DISTANCE_COEFFICIENT)
+		radiation_pulse(src, 1000, RAD_DISTANCE_COEFFICIENT*2)
 
 /obj/effect/decal/nuclear_waste/Destroy(force)
 	STOP_PROCESSING(SSobj, src)

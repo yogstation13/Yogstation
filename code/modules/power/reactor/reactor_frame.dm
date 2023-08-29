@@ -81,3 +81,21 @@
 /obj/structure/reactor_frame/update_icon(updates)
 	. = ..()
 	icon_state = "reactor_frame_[completion]"
+
+/obj/structure/reactor_corium
+	name = "radioactive mass"
+	desc = "A large mass of molten reactor fuel, sometimes called corium. If you can see it, you're probably close enough to receive a lethal dose of radiation."
+	icon = 'icons/obj/machines/reactor.dmi'
+	icon_state = "reactor_corium"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF // no
+	light_color = LIGHT_COLOR_RED
+	light_range = 10
+	light_on = TRUE
+	anchored = TRUE
+	density = FALSE
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/structure/reactor_corium/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/radioactive, 15000, src, 0)
