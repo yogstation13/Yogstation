@@ -1540,7 +1540,9 @@
 	if(istype(stomach))
 		to_chat(ethereal, span_notice("You transfer some power to the APC."))
 		stomach.adjust_charge(-APC_POWER_GAIN)
-		cell.give(APC_POWER_GAIN)
+		var/cellamount = clamp(cell.maxcharge - cell.charge, 0, APC_POWER_GAIN)
+		cell.give(cellamount)
+		add_avail(APC_POWER_GAIN - cellamount)
 	else
 		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
 	
