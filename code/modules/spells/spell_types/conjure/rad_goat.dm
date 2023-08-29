@@ -6,7 +6,7 @@
 	sound = 'sound/weapons/resonator_fire.ogg'
 
 	school = SCHOOL_CONJURATION
-	cooldown_time = 1 MINUTE //it lasts 90 seconds
+	cooldown_time = 1 MINUTES //it lasts 90 seconds
 
 	invocation_type = INVOCATION_SHOUT
 	invocation = "UNGA"
