@@ -397,6 +397,8 @@
 		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
 
 /obj/effect/anomaly/radiation/detonate()
+	if(spawn_goat)//only spawn the goat once, when the anomaly explodes
+		INVOKE_ASYNC(src, PROC_REF(makegoat))
 	INVOKE_ASYNC(src, PROC_REF(rad_Spin))
 
 /obj/effect/anomaly/radiation/proc/rad_Spin()
@@ -411,8 +413,6 @@
 	anomalyEffect(delta_time)
 	if(death_time < world.time)
 		if(loc)
-			if(spawn_goat)
-				INVOKE_ASYNC(src, PROC_REF(makegoat))
 			detonate()
 			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 150)
 
