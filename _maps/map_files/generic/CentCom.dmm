@@ -11062,7 +11062,7 @@
 	area_type = /area/syndicate_mothership/control;
 	dwidth = 3;
 	height = 7;
-	name = "escape pod loader";
+	name = "assault pod loader";
 	roundstart_template = /datum/map_template/shuttle/assault_pod/default;
 	width = 7
 	},
@@ -25681,9 +25681,10 @@
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
 "bGw" = (
-/obj/structure/closet/syndicate/personal,
 /obj/item/clothing/head/HoS/beret/syndicate,
 /obj/item/clothing/head/HoS/syndicate,
+/obj/structure/closet/secure_closet/syndicate/captain,
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
 "bGJ" = (
@@ -25780,9 +25781,16 @@
 /turf/open/floor/engine,
 /area/syndicate_mothership)
 "cOr" = (
-/obj/structure/reagent_dispensers/watertank/high,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 6
+	},
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
+/obj/structure/closet/crate/freezer{
+	name = "fish food crate"
 	},
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership/control)
@@ -25838,6 +25846,14 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/syndicate_mothership/control)
+"dAZ" = (
+/obj/machinery/door/airlock/external/glass{
+	req_access_txt = "150";
+	name = "Assault Pod Launcher Access"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
 /area/syndicate_mothership/control)
 "dFj" = (
 /obj/structure/closet/crate/hydroponics{
@@ -26085,7 +26101,7 @@
 /area/centcom/testchamber)
 "hcE" = (
 /obj/machinery/door/airlock/centcom{
-	name = "Hallway Access";
+	name = "Ready Room";
 	req_access_txt = "150"
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -44032,7 +44048,7 @@ ama
 ama
 ama
 ama
-vcJ
+ama
 ama
 ama
 ama
@@ -48392,7 +48408,7 @@ ask
 ath
 aue
 aku
-auJ
+dAZ
 aku
 aue
 axL
