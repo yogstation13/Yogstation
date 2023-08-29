@@ -204,9 +204,10 @@
 			part.update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/machinery/particle_accelerator/control_box/emag_act(mob/user)
+/obj/machinery/particle_accelerator/control_box/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
+
 	to_chat(user, span_danger("The laws of physics no longer apply in the future, god help you..."))
 	locked = FALSE
 	area_restricted = FALSE
@@ -220,6 +221,7 @@
 	if(!active)
 		toggle_power()
 	update_appearance(UPDATE_ICON)
+	return TRUE
 
 /obj/machinery/particle_accelerator/control_box/examine(mob/user)
 	. = ..()
