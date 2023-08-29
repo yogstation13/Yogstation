@@ -1,0 +1,5 @@
+author: " timothymtorres"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new light effect to slot machines when you win."
+  - soundadd: "Adds new sounds to slot machines."
