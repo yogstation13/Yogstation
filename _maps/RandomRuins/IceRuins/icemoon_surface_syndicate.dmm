@@ -1347,6 +1347,10 @@
 	amount = 25
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/mineral/silver/fifty,
+/obj/item/stack/ore/dilithium_crystal{
+	amount = 25
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "jL" = (
@@ -1457,6 +1461,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "kP" = (
@@ -2090,7 +2095,8 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/mecha_wreckage/gygax/dark,
+/turf/open/floor/mech_bay_recharge_floor/dark,
 /area/ruin/syndicate_icemoon/research)
 "oB" = (
 /obj/structure/window/reinforced/spawner/east,
@@ -2454,6 +2460,11 @@
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
+"ra" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "rd" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
 /obj/structure/cable{
@@ -2790,6 +2801,11 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"tF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/structure/closet/firecloset,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "tG" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -3136,6 +3152,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
 	dir = 6
 	},
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "wl" = (
@@ -3518,7 +3535,7 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = -24;
-	req_access_txt = "150";
+	req_access_txt = "151";
 	specialfunctions = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3696,6 +3713,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"zK" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "zL" = (
 /obj/machinery/computer/operating{
 	dir = 4
@@ -3786,6 +3807,7 @@
 /area/ruin/syndicate_icemoon/medical)
 "Ag" = (
 /obj/machinery/light/small,
+/obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "Ao" = (
@@ -3816,6 +3838,7 @@
 /area/ruin/syndicate_icemoon/medical)
 "AC" = (
 /obj/structure/table/reinforced,
+/obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "AG" = (
@@ -5477,6 +5500,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"LI" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "LK" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /obj/machinery/light/small,
@@ -5989,6 +6016,7 @@
 /area/ruin/syndicate_icemoon/engine)
 "PE" = (
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/closet/firecloset,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "PG" = (
@@ -6020,7 +6048,7 @@
 	name = "Vault Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = 24;
-	req_access_txt = "150";
+	req_access_txt = "151";
 	specialfunctions = 4
 	},
 /turf/open/floor/circuit/red/anim,
@@ -6247,6 +6275,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "Rw" = (
@@ -6748,6 +6777,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"UW" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "UX" = (
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
@@ -6910,6 +6943,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "Wr" = (
@@ -7008,7 +7042,6 @@
 /obj/machinery/button/door{
 	id = "syndicate_icemoon_bridge_windows";
 	name = "Window Shutters";
-	normaldoorcontrol = 1;
 	pixel_y = -24;
 	req_access_txt = "150";
 	specialfunctions = 4
@@ -7022,6 +7055,9 @@
 "Xv" = (
 /obj/effect/turf_decal/tile/white{
 	dir = 4
+	},
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
@@ -7137,6 +7173,7 @@
 	pixel_y = -5
 	},
 /obj/structure/rack,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/canteen)
 "XZ" = (
@@ -8577,7 +8614,7 @@ eM
 Jo
 kP
 aH
-Uo
+UW
 wk
 kH
 XZ
@@ -8585,7 +8622,7 @@ LC
 rd
 Pb
 wx
-qH
+tF
 FK
 fq
 KB
@@ -9244,7 +9281,7 @@ YH
 Bc
 YH
 kP
-Il
+LI
 SZ
 XR
 Zl
@@ -9273,7 +9310,7 @@ Ao
 Za
 XR
 Il
-Il
+zK
 kn
 kn
 iT
@@ -9421,7 +9458,7 @@ Il
 Il
 Il
 Il
-Il
+LI
 kn
 kn
 iT
@@ -9637,7 +9674,7 @@ Hk
 nK
 fn
 Ju
-KL
+ra
 KL
 kA
 Ag
