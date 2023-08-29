@@ -93,9 +93,6 @@
 	id = "jungle-syndicate-base"
 	description = "A large permanent research and comms station run by the syndicate."
 	suffix = "jungleland_swamp_syndicatestation.dmm"	
-	always_place = TRUE
-	unpickable = TRUE
-	cost = 0
 	
 /datum/map_template/ruin/jungle/all/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
 	name = "Mining Base"
