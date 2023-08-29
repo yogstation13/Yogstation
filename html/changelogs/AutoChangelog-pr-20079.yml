@@ -1,0 +1,6 @@
+author: " TehZombehz for the sprites, san7890, ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Abductor plushies! Winnable with arcade machines, or can be bought for 1 point by abductors."
+  - rscadd: "Decorative Items section on the abductor console."
+  - tweak: "Moves random poster from basic gear to decorative items for abductors."
