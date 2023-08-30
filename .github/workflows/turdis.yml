@@ -91,7 +91,8 @@ jobs:
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-20.04
-    mariadb:
+    services:
+      mariadb:
        image: mariadb/server
        ports: 
          - 3306:3306
