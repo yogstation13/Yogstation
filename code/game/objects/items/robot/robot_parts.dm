@@ -312,14 +312,11 @@
 				O.notify_ai(NEW_BORG)
 				if(forced_ai)
 					O.set_connected_ai(forced_ai)
-
 			if(!lawsync)
 				O.lawupdate = 0
-
 			if(M.overrides_cyborg_laws && M.laws && !(O.connected_ai && O.lawupdate))
 				O.laws = M.laws
 				M.laws.associate(O)
-
 			// In case there is no law datum:
 			if(!O.laws)
 				O.make_laws()
