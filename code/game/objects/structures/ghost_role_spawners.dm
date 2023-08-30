@@ -830,3 +830,4 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/syndicate
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
+	implants = list(/obj/item/implant/weapons_auth)

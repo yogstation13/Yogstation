@@ -488,7 +488,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		mob_occupant.grab_ghost()
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
 		to_chat(occupant, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
-		log_combat(occupant, "was cloned with memory loss")
+		occupant.log_message("was cloned with memory loss", LOG_ATTACK, color="green")
 		mob_occupant.flash_act()
 		GLOB.clones++
 
