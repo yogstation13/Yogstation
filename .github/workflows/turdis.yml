@@ -131,7 +131,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           tools/travis/install_rust_g.sh
           #tools/travis/install_extools.sh
-          ip a
+          docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a
           mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
           mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
       - name: Compile
