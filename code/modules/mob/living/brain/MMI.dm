@@ -25,7 +25,7 @@
 	/// How long does it take in seconds to remove the brain / reset the posi-brain?
 	var/remove_time = 2 SECONDS
 	/// Whether the MMI is rebooting after being deconstructed (from a cyborg).
-	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
+	var/rebooting = FALSE
 	/// How many seconds it takes to fully reboot? If brain is removed during this time, the brain will suffer from memory loss (which also includes their death).
 	var/remove_window = 10 SECONDS
 	/// Reference for timer.
