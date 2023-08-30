@@ -1180,7 +1180,7 @@
 	display_name = "Bluespace Neural Processing"
 	description = "Breakthroughts in bluespace allows the fabrication of ultra fast NPUs. This however comes at the expense of greatly higher power consumption."
 	design_ids = list("bluespace_ai_cpu")
-	prereq_ids = list("ai_cpu_advanced", "practical_bluespace")
+	prereq_ids = list("ai_cpu_experimental", "practical_bluespace")
 	research_costs = list(TECHWEB_POINT_TYPE_AI = 10000)
 
 /datum/techweb_node/ai_ram_high_cap
