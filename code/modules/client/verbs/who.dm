@@ -85,7 +85,7 @@
 				continue //Don't show afk admins to adminwho
 			if(!C.holder.fakekey)
 				var/improper_rank = "\improper[C.holder.rank_name()]"
-				msg += "\t[C] is a [improper_rank]\n"
+				msg += "\t[C] is \a [improper_rank]\n"
 		msg += span_info("Adminhelps are also sent to Discord. If no admins are available in game adminhelp anyways and an admin on Discord will see it and respond.") //yogs - IRC -> discord
 	to_chat(src, msg)
 
