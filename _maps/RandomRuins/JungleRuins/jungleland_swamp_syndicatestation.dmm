@@ -1016,6 +1016,18 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
+"kc" = (
+/obj/machinery/door/airlock{
+	name = "Cabin 5"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "ke" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/machinery/light,
@@ -2373,6 +2385,13 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/dormitories)
+"xc" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "lavalandsyndi_centralwindows"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/main)
 "xv" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -2678,16 +2697,6 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
-"AG" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "lavalandsyndi_telecomms"
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "lavalandsyndi_centralwindows"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/main)
 "AI" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -5436,18 +5445,6 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"ZT" = (
-/obj/machinery/door/airlock{
-	name = "Cabin 5"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "ZX" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -6977,7 +6974,7 @@ Pi
 hM
 nY
 xa
-ZT
+kc
 fb
 Mg
 Su
@@ -7316,7 +7313,7 @@ qF
 JU
 fw
 fw
-AG
+xc
 fw
 fw
 JU
