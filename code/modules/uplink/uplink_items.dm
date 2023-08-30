@@ -2443,6 +2443,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	player_minimum = 25
 	restricted_roles = list("Clown")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
