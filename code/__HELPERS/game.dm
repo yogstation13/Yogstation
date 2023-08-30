@@ -435,7 +435,7 @@
 		remove_from.images -= image_to_remove
 
 /proc/flick_overlay(image/I, list/show_to, duration)
-	if(!show_to || !length(show_to) || !image_to_show)
+	if(!show_to || !length(show_to) || !I)
 		return
 	for(var/client/C in show_to)
 		C.images += I
