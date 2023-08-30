@@ -76,6 +76,7 @@
 	r_hand = /obj/item/melee/transforming/energy/sword/saber
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/sec_maga/syndicate
+	mask = /obj/item/clothing/mask/chameleon/gps
 
 /datum/outfit/lavaland_syndicate/jungle/scientist
 	name = "Jungle Syndicate Scientist"
