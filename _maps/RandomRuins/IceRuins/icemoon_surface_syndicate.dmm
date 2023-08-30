@@ -92,6 +92,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "bb" = (
@@ -344,7 +345,9 @@
 	pixel_y = 24;
 	req_access_txt = "150"
 	},
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "cH" = (
@@ -533,7 +536,9 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	onstation = 0
+	},
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
 	dir = 8
 	},
@@ -643,6 +648,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "eB" = (
@@ -1478,7 +1484,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/medical/syndicate_access,
+/obj/machinery/vending/medical/syndicate_access{
+	onstation = 0
+	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
@@ -2531,7 +2539,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/sovietsoda,
+/obj/machinery/vending/sovietsoda{
+	onstation = 0
+	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 4
 	},
@@ -3848,7 +3858,8 @@
 /area/ruin/syndicate_icemoon/canteen)
 "AG" = (
 /obj/machinery/vending/toyliberationstation{
-	req_access_txt = "150"
+	req_access_txt = "150";
+	onstation = 0
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 4
@@ -3937,7 +3948,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/machinery/vending/boozeomat/syndicate_access,
+/obj/machinery/vending/boozeomat/syndicate_access{
+	onstation = 0
+	},
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -4589,6 +4602,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Fi" = (
@@ -5626,7 +5640,9 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "Mu" = (
-/obj/machinery/vending/fishing,
+/obj/machinery/vending/fishing{
+	onstation = 0
+	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 8
 	},
@@ -5744,6 +5760,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Nu" = (
@@ -5796,6 +5813,7 @@
 	},
 /obj/item/megaphone/command,
 /obj/item/binoculars,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "NK" = (
@@ -6460,6 +6478,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "SS" = (
@@ -6687,7 +6706,8 @@
 /area/ruin/syndicate_icemoon/warehouse)
 "Uv" = (
 /obj/machinery/vending/syndichem{
-	products = list(/obj/item/stack/cable_coil/random = 20, /obj/item/assembly/igniter = 80, /obj/item/assembly/prox_sensor = 20, /obj/item/assembly/signaler = 20, /obj/item/assembly/timer = 20, /obj/item/assembly/voice = 20, /obj/item/assembly/health = 20, /obj/item/assembly/infra = 20, /obj/item/grenade/chem_grenade = 20, /obj/item/grenade/chem_grenade/large = 20, /obj/item/grenade/chem_grenade/pyro = 20, /obj/item/grenade/chem_grenade/cryo = 20, /obj/item/grenade/chem_grenade/adv_release = 20, /obj/item/reagent_containers/food/drinks/bottle/holywater = 1)
+	products = list(/obj/item/stack/cable_coil/random = 20, /obj/item/assembly/igniter = 80, /obj/item/assembly/prox_sensor = 20, /obj/item/assembly/signaler = 20, /obj/item/assembly/timer = 20, /obj/item/assembly/voice = 20, /obj/item/assembly/health = 20, /obj/item/assembly/infra = 20, /obj/item/grenade/chem_grenade = 20, /obj/item/grenade/chem_grenade/large = 20, /obj/item/grenade/chem_grenade/pyro = 20, /obj/item/grenade/chem_grenade/cryo = 20, /obj/item/grenade/chem_grenade/adv_release = 20, /obj/item/reagent_containers/food/drinks/bottle/holywater = 1);
+	onstation = 0
 	},
 /obj/machinery/light{
 	dir = 4
@@ -7476,7 +7496,8 @@
 /area/ruin/syndicate_icemoon/dorms)
 "ZY" = (
 /obj/machinery/vending/games{
-	desc = "Vends things that the Commander is probably not going to appreciate you fiddling with instead of your job..."
+	desc = "Vends things that the Commander is probably not going to appreciate you fiddling with instead of your job...";
+	onstation = 0
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 8
