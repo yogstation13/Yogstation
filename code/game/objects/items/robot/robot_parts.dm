@@ -295,7 +295,7 @@
 				return
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
-			
+
 			if(M.disabled_linksync)
 				aisync = FALSE
 				lawsync = FALSE
