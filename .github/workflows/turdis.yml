@@ -90,15 +90,13 @@ jobs:
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   test:
     name: Compile and Run Tests
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    runs-on: ubuntu-20.04
+    mariadb:
+       image: mariadb/server
+       ports: 
+         - 3306:3306
+       env:
+        MARIADB_ALLOW_EMPTY_PASSWORD: yes
         
     steps:
       - uses: actions/checkout@v2
@@ -132,8 +130,8 @@ jobs:
           cd $GITHUB_WORKSPACE
           tools/travis/install_rust_g.sh
           #tools/travis/install_extools.sh
-          mysql -u root -h 127.0.0.1 -e 'CREATE DATABASE tg_travis;'
-          mysql -u root -h 127.0.0.1 tg_travis < SQL/tgstation_schema.sql
+          mysql -u root -h localhost -e 'CREATE DATABASE tg_travis;'
+          mysql -u root -h localhost tg_travis < SQL/tgstation_schema.sql
       - name: Compile
         run: |
           tools/build/build --ci dm -DCIBUILDING
