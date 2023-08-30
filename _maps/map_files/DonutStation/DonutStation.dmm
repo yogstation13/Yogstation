@@ -43317,6 +43317,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"uFz" = (
+/turf/closed/wall/r_wall,
+/area/crew_quarters/dorms)
 "uFF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -81196,9 +81199,9 @@ jol
 amN
 kqn
 wTU
-jol
-jol
-jol
+koa
+koa
+koa
 kIB
 ddi
 uEu
@@ -81455,7 +81458,7 @@ kqn
 wTU
 eYh
 xim
-jol
+koa
 erY
 dfg
 gcF
@@ -81712,7 +81715,7 @@ cgm
 lHu
 jol
 jol
-jol
+koa
 prO
 vpS
 aJN
@@ -81969,7 +81972,7 @@ icX
 dcK
 kAI
 bDo
-jol
+koa
 fre
 dfg
 uau
@@ -82226,7 +82229,7 @@ jol
 jol
 jol
 jol
-jol
+koa
 ixj
 dfg
 bOz
@@ -82483,7 +82486,7 @@ vBq
 xHP
 stE
 fml
-osy
+uFz
 jVX
 uCR
 nqT
@@ -82740,7 +82743,7 @@ wVK
 wVK
 wVK
 wVK
-osy
+uFz
 tSp
 tSp
 rky
