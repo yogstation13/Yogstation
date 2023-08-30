@@ -295,17 +295,16 @@
 				return
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
-
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
+			
+			if(M.disabled_linksync)
 				aisync = FALSE
 				lawsync = FALSE
-				O.laws = M.laws
-				M.laws.associate(O)
 
 			O.invisibility = 0
-			//Transfer debug settings to new mob
+			// Transferring debug settings to new mob:
 			O.custom_name = created_name
 			O.locked = panel_locked
+
 			if(!aisync)
 				lawsync = FALSE
 				O.set_connected_ai(null)
@@ -313,11 +312,18 @@
 				O.notify_ai(NEW_BORG)
 				if(forced_ai)
 					O.set_connected_ai(forced_ai)
+
 			if(!lawsync)
 				O.lawupdate = 0
-				if(M.laws.id == DEFAULT_AI_LAWID)
-					O.make_laws()
-					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transferred!"))
+
+			if(M.overrides_cyborg_laws && M.laws && !(O.connected_ai && O.lawupdate))
+				O.laws = M.laws
+				M.laws.associate(O)
+
+			// In case there is no law datum:
+			if(!O.laws)
+				O.make_laws()
+				to_chat(user, span_warning("The MMI flashes in alarm and exclaims: \"Safety enabled! Randomized safe lawset generated!\""))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))

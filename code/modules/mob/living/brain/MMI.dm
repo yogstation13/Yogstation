@@ -12,18 +12,29 @@
 	var/obj/mecha = null //This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/organ/brain/brain = null //The actual brain
 	var/datum/ai_laws/laws = new()
+	/// If they become an AI, should their name be replaced with the brainmob's `name`?
 	var/force_replace_ai_name = FALSE
-	var/overrides_aicore_laws = TRUE // Whether the laws on the MMI are transferred when it's uploaded as an AI
-	var/override_cyborg_laws = FALSE // Do custom laws uploaded to the MMI get transferred to borgs? If yes the borg will be unlinked and have lawsync disabled.
-	var/can_update_laws = TRUE //Can we use a lawboard to change the laws of this MMI?
-	var/remove_time = 2 SECONDS /// The time to remove the brain or reset the posi brain
+	/// Whether the laws on the MMI are to be transferred when it is uploaded as an AI.
+	var/overrides_aicore_laws = TRUE
+	/// Whether the laws on the MMI are to be transferred when it is inserted into a cyborg.
+	var/overrides_cyborg_laws = TRUE
+	/// If they become a cyborg, should they automatically be unlinked (from any AIs) and lawsync disabled?
+	var/disabled_linksync = FALSE
+	/// Can law modules be used to change the laws of this MMI?
+	var/can_update_laws = TRUE
+	/// How long does it take in seconds to remove the brain / reset the posi-brain?
+	var/remove_time = 2 SECONDS
+	/// Whether the MMI is rebooting after being deconstructed (from a cyborg).
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
-	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
+	/// How many seconds it takes to fully reboot? If brain is removed during this time, the brain will suffer from memory loss (which also includes their death).
+	var/remove_window = 10 SECONDS
+	/// Reference for timer.
 	var/reboot_timer = null
 	/// Is this a syndicate MMI?
 	var/syndicate_mmi = FALSE
 	/// The human that the enslaved the MMI.
 	var/mob/living/carbon/human/syndicate_master = null
+	/// The welcome message displayed to the brain when they're inserted into the MMI.
 	var/welcome_message = "<b>You are a brain within a Man-Machine Interface.\n\
 	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
 	Being placed in a mech does not slave you to any laws.</b>"
