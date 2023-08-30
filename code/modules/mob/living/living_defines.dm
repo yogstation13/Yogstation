@@ -134,3 +134,7 @@
 
 	//Last item/projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	// Multiple imaginary friends!
+	/// Contains the owner and all imaginary friend mobs if they exist, otherwise null
+	var/list/imaginary_group = null

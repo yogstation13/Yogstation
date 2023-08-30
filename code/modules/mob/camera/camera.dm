@@ -11,6 +11,8 @@
 	invisibility = INVISIBILITY_ABSTRACT // No one can see us
 	sight = SEE_SELF
 	move_on_shuttle = FALSE
+	/// Toggles if the camera can use emotes
+	var/has_emotes = FALSE
 
 /mob/camera/experience_pressure_difference()
 	return
@@ -24,4 +26,6 @@
 	return FALSE
 
 /mob/camera/emote(act, m_type=1, message = null, intentional = FALSE, is_keybind = FALSE)
+	if(has_emotes)
+		return ..()
 	return FALSE

@@ -37,6 +37,9 @@
 
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
+	if(imaginary_group)
+		imaginary_group -= src
+		QDEL_LIST(imaginary_group)
 	QDEL_LIST(diseases)
 	QDEL_LIST(surgeries)
 	return ..()

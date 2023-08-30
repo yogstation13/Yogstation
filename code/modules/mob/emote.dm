@@ -43,8 +43,8 @@
 	key = "flip"
 	key_third_person = "flips"
 	hands_use_check = TRUE
-	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
-	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
+	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer, /mob/camera/imaginary_friend)
+	mob_type_ignore_stat_typecache = list(/mob/dead/observer, /mob/camera/imaginary_friend)
 	cooldown = 0 SECONDS
 
 /datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
@@ -80,8 +80,8 @@
 	key = "spin"
 	key_third_person = "spins"
 	hands_use_check = TRUE
-	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
-	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
+	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer, /mob/camera/imaginary_friend)
+	mob_type_ignore_stat_typecache = list(/mob/dead/observer, /mob/camera/imaginary_friend)
 	cooldown = 0 SECONDS
 
 /datum/emote/spin/run_emote(mob/user, params ,type_override, intentional)

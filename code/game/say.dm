@@ -21,23 +21,23 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//yogs end
 	))
 
-/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	if(!can_speak(message))
+/atom/movable/proc/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null, filterproof = FALSE, message_range = 7, datum/saymode/saymode = null)
+	if(!can_speak(message, ignore_spam, forced, filterproof))
 		return
 	if(message == "" || !message)
 		return
 	spans |= speech_span
 	if(!language)
 		language = get_selected_language()
-	send_speech(message, 7, src, , spans, message_language=language)
+	send_speech(message, message_range, src, bubble_type, spans, message_language = language, forced = forced)
 
 /atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 
-/atom/movable/proc/can_speak()
+/atom/movable/proc/can_speak(message, ignore_spam = FALSE, forced = null, filterproof = FALSE)
 	return 1
 
-/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
+/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list(), forced = FALSE)
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
@@ -83,6 +83,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return verb_yell
 	else if(message_mods[MODE_SING])
 		. = verb_sing
+	else if(message_mods[WHISPER_MODE])
+		. = verb_whisper
 	else if(ending == "?")
 		return verb_ask
 	else if(ending == "!")
