@@ -90,14 +90,15 @@ jobs:
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
   test:
     name: Compile and Run Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     services:
-      mariadb:
-       image: mariadb/server
-       ports: 
-         - 3306:3306
-       env:
-        MARIADB_ALLOW_EMPTY_PASSWORD: yes
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         
     steps:
       - uses: actions/checkout@v2
