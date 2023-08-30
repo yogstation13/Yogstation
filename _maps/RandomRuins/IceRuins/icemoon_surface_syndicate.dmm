@@ -138,9 +138,7 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "bo" = (
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 4
 	},
@@ -984,9 +982,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "gG" = (
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/storage/box/lights/bulbs,
 /obj/item/storage/box/lights/bulbs,
 /obj/item/storage/box/lights/bulbs,
@@ -1330,9 +1326,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/stack/ore/bluespace_crystal{
 	amount = 25
 	},
@@ -1841,9 +1835,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "mm" = (
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/storage/box/stockparts/deluxe,
 /obj/item/storage/box/stockparts/deluxe,
 /obj/item/stack/sheet/metal/fifty,
@@ -3060,9 +3052,7 @@
 /obj/item/reagent_containers/glass/beaker/waterbottle/large,
 /obj/item/reagent_containers/glass/beaker/waterbottle/large,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/effect/turf_decal/box/white/corners,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/snacks/rationpack,
@@ -4295,9 +4285,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "CU" = (
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/storage/box/donkpockets{
 	pixel_x = -2;
 	pixel_y = 6
@@ -6628,9 +6616,7 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "TW" = (
-/obj/structure/closet/crate{
-	name = "material crate"
-	},
+/obj/structure/closet/crate,
 /obj/item/flashlight{
 	pixel_x = -2;
 	pixel_y = 2
