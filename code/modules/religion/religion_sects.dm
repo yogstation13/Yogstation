@@ -456,7 +456,7 @@
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
 		heal_cost *= amount_healed/heal_amt
-		if(L.GetComponent(/datum/component/heal_react/boost/holyshit)) //we don't heal any more with holy water, but we do get a small favor boost from it
+		if(L.GetComponent(/datum/component/heal_react/boost/holylight)) //we don't heal any more with holy water, but we do get a small favor boost from it
 			heal_amt *= 0.8
 			heal_cost *= 0.15
 
@@ -477,8 +477,8 @@
 	return FALSE
 
 /datum/religion_sect/holylight/holy_water_start(mob/living/L)
-	L.AddComponent(/datum/component/heal_react/boost/holyshit)
+	L.AddComponent(/datum/component/heal_react/boost/holylight)
 
 /datum/religion_sect/holylight/holy_water_end(mob/living/L)
-	var/datum/component/heal_react/boost/holyshit/healing = L.GetComponent(/datum/component/heal_react/boost/holyshit)
+	var/datum/component/heal_react/boost/holylight/healing = L.GetComponent(/datum/component/heal_react/boost/holylight)
 	healing?.RemoveComponent()
