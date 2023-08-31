@@ -6,7 +6,7 @@
 	icon_living = "polarbear"
 	icon_dead = "polarbear_dead"
 	friendly = "wails at"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	friendly = "growls at"
 	speak_emote = list("growls")

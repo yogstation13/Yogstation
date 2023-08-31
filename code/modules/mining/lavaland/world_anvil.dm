@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	pass_flags = LETPASSTHROW
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -22,6 +21,7 @@
 /obj/structure/world_anvil/Initialize(mapload)
 	. = ..()
 	internal = new /obj/item/gps/internal/world_anvil(src)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/world_anvil/Destroy()
 	QDEL_NULL(internal)
@@ -53,7 +53,7 @@
 	var/success = FALSE
 	switch(I.type)
 		if(/obj/item/magmite)
-			if(do_after(user,10 SECONDS, target = src))
+			if(do_after(user, 10 SECONDS, src))
 				new /obj/item/magmite_parts(get_turf(src))
 				qdel(I)
 				to_chat(user, "You carefully forge the rough plasma magmite into plasma magmite upgrade parts.")
@@ -63,7 +63,7 @@
 			if(!parts.inert)
 				to_chat(user,"The magmite upgrade parts are already glowing and usable!")
 				return
-			if(do_after(user,5 SECONDS, target = src))
+			if(do_after(user, 5 SECONDS, src))
 				parts.restore()
 				to_chat(user, "You successfully reheat the magmite upgrade parts. They are now glowing and usable again.")
 	if(!success)

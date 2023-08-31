@@ -60,6 +60,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_stage = 0
 	/// What can process this? ORGANIC, SYNTHETIC, or ORGANIC | SYNTHETIC?. We'll assume by default that it affects organics.
 	var/process_flags = ORGANIC
+	/// How flammable is this material?
+	var/accelerant_quality = 0
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/overdosed = 0
 	///if false stops metab in liverless mobs
@@ -70,6 +72,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/metabolizing = FALSE
 	/// is it bad for you? Currently only used for borghypo. C2s and Toxins have it TRUE by default.
 	var/harmful = FALSE
+	/// The default reagent container for the reagent. Currently only used for crafting icon/displays.
+	var/obj/item/reagent_containers/default_container = /obj/item/reagent_containers/glass/bottle
+
 	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references

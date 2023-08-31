@@ -135,10 +135,9 @@
 	qdel(scanner_wand)
 	return ..()
 
-/obj/machinery/medical_kiosk/emag_act(mob/user)
-	..()
+/obj/machinery/medical_kiosk/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(user)
 		user.visible_message("<span class='warning'>[user] waves a suspicious card by the [src]'s biometric scanner!</span>",
 	"<span class='notice'>You overload the sensory electronics, the diagnostic readouts start jittering across the screen..</span>")
@@ -146,6 +145,7 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.obj_flags |= EMAGGED //Mirrors emag status onto the board as well.
 	pandemonium = TRUE
+	return TRUE
 
 /obj/machinery/medical_kiosk/examine(mob/user)
 	. = ..()
@@ -253,7 +253,7 @@
 	if(altPatient.reagents.addiction_list.len)
 		for(var/datum/reagent/R in altPatient.reagents.addiction_list)
 			addict_list += list(list("name" = R.name))
-	if (altPatient.hallucinating())
+	if (altPatient.has_status_effect(/datum/status_effect/hallucination))
 		hallucination_status = "Subject appears to be hallucinating. Suggested treatments: bedrest, mannitol or psicodine."
 
 	if(altPatient.stat == DEAD || HAS_TRAIT(altPatient, TRAIT_FAKEDEATH) || ((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 200))  //Patient status checks.
@@ -264,7 +264,7 @@
 		patient_status = "Injured"
 	else if((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 20)
 		patient_status = "Lightly Injured"
-	if(pandemonium || user.hallucinating())
+	if(pandemonium || user.has_status_effect(/datum/status_effect/hallucination))
 		patient_status = pick("The only kiosk is kiosk, but is the only patient, patient?", "Breathing manually.","Contact NTOS site admin.","97% carbon, 3% natural flavoring","The ebb and flow wears us all in time.","It's Lupus. You have Lupus.","Undergoing monkey disease.")
 
 	if((brain_loss) >= 100)   //Brain status checks.
@@ -293,7 +293,7 @@
 
 	if(pandemonium == TRUE)
 		chaos_modifier = 1
-	else if (user.hallucinating())
+	else if (user.has_status_effect(/datum/status_effect/hallucination))
 		chaos_modifier = 0.3
 
 	data["kiosk_cost"] = active_price + (chaos_modifier * (rand(1,25)))

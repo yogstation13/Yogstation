@@ -13,8 +13,8 @@
 	nutriment_factor = 0
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
-
+	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning	
+	accelerant_quality = 5
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -321,6 +321,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
 	shot_glass_icon_state = "shotglassbrown"
+	default_container = /obj/item/reagent_containers/food/drinks/bottle/rum
 
 /datum/reagent/consumable/ethanol/tequila
 	name = "Tequila"
@@ -2112,7 +2113,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Champagne"
 	glass_desc = "The flute clearly displays the slowly rising bubbles."
 
-
 /datum/reagent/consumable/ethanol/wizz_fizz
 	name = "Wizz Fizz"
 	description = "A magical potion, fizzy and wild! However the taste, you will find, is quite mild."
@@ -2675,3 +2675,31 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "moscow_mule"
 	glass_name = "Moscow Mule"
 	glass_desc = "A chilly drink that reminds you of the Derelict."
+
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver
+	var/alcoholicspeed = 0.75 //For determining the speed effect\\ 
+	name = "Syndicate Screwdriver"
+	description = "A drink that all greytiders and syndicate enjoy"
+	boozepwr = 115
+	metabolization_rate = 1.5
+	color = "#2E6671"
+	quality = DRINK_GOOD
+	taste_description = "a tangy taste mixed with liquified Robustness"
+	glass_icon_state = "syndicate_screwdriver"
+	glass_name = "Syndicate Screwdriver"
+	glass_desc = "A glass full of spite, haste and the need to greytide"
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		if(holder.has_reagent(/datum/reagent/drug/red_eye))
+			holder.remove_reagent(/datum/reagent/drug/red_eye, 5)
+		M.physiology.do_after_speed *= alcoholicspeed
+		M.next_move_modifier *= alcoholicspeed
+	return ..()
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		M.physiology.do_after_speed /= alcoholicspeed
+		M.next_move_modifier /= alcoholicspeed
+	return ..()

@@ -263,7 +263,7 @@
 		if(ITEM && istype(ITEM, /obj/item/tank) && wear_mask && (wear_mask.clothing_flags & MASKINTERNALS))
 			visible_message(span_danger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."), \
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
-			if(do_mob(usr, src, POCKET_STRIP_DELAY))
+			if(do_after(usr, POCKET_STRIP_DELAY, src, interaction_key = REF(ITEM)))
 				if(internal)
 					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
@@ -283,7 +283,7 @@
 			return
 		var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
 		usr.visible_message(span_warning("[usr] attempts to remove [I] from [usr.p_their()] [L.name]."),span_notice("You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)"))
-		if(do_after(usr, time_taken, needhand = 1, target = src))
+		if(do_after(usr, time_taken, target = src))
 			if(!I || !L || I.loc != src)
 				return
 			var/damage_amount = I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class
@@ -310,7 +310,7 @@
 			buckle_cd = O.breakouttime
 		visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"), \
 					span_notice("You attempt to unbuckle yourself... (This will take around [round(buckle_cd/10,1)] second\s, and you need to stay still.)"))
-		if(do_after(src, buckle_cd, src, FALSE))
+		if(do_after(src, buckle_cd, src, timed_action_flags = IGNORE_HELD_ITEM))
 			if(!buckled)
 				return
 			buckled.user_unbuckle_mob(src,src)
@@ -361,7 +361,7 @@
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [I]!"))
 		to_chat(src, span_notice("You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, src, timed_action_flags = IGNORE_HELD_ITEM))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to remove [I]!"))
@@ -370,7 +370,7 @@
 		breakouttime = 5 SECONDS
 		visible_message(span_warning("[src] is trying to break [I]!"))
 		to_chat(src, span_notice("You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, src, timed_action_flags = IGNORE_HELD_ITEM))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to break [I]!"))
@@ -486,58 +486,6 @@
 	if(!has_hand_for_held_index(active_hand_index))
 		return 0
 	return ..()
-
-/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
-		return TRUE
-
-	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
-		return TRUE
-
-	if(!has_mouth())
-		return TRUE
-
-	if(nutrition < 100 && !blood)
-		if(message)
-			visible_message(span_warning("[src] dry heaves!"), \
-							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
-		if(stun)
-			Paralyze(200)
-		return TRUE
-
-	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
-		if(message)
-			visible_message(span_danger("[src] throws up all over [p_them()]self!"), \
-							span_userdanger("You throw up all over yourself!"))
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomitself)
-		distance = 0
-	else
-		if(message)
-			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
-			if(!isflyperson(src))
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomit)
-
-	if(stun)
-		Paralyze(80)
-
-	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
-	var/turf/T = get_turf(src)
-	if(!blood)
-		adjust_nutrition(-lost_nutrition)
-		adjustToxLoss(-3)
-	for(var/i=0 to distance)
-		if(blood)
-			if(T)
-				add_splatter_floor(T)
-			if(stun)
-				adjustBruteLoss(3)
-		else
-			if(T)
-				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
-		T = get_step(T, dir)
-		if (is_blocked_turf(T))
-			break
-	return TRUE
 
 /mob/living/carbon/has_mouth()
 	for(var/obj/item/bodypart/head/head in bodyparts)
@@ -1036,7 +984,7 @@
 
 /mob/living/carbon/do_after_coefficent()
 	. = ..()
-	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
+	var/datum/component/mood/mood = GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
 	if(mood)
 		switch(mood.sanity) //Alters do_after delay based on how sane you are
 			if(-INFINITY to SANITY_DISTURBED)
@@ -1044,8 +992,7 @@
 			if(SANITY_NEUTRAL to INFINITY)
 				. *= 0.90
 
-	for(var/i in status_effects)
-		var/datum/status_effect/S = i
+	for(var/datum/status_effect/S as anything in status_effects)
 		. *= S.interact_speed_modifier()
 
 /mob/living/carbon/proc/create_internal_organs()
@@ -1170,7 +1117,7 @@
 /mob/living/carbon/proc/hypnosis_vulnerable()
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		return FALSE
-	if(hallucinating())
+	if(has_status_effect(/datum/status_effect/hallucination))
 		return TRUE
 	if(IsSleeping())
 		return TRUE

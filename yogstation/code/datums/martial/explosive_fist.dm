@@ -288,7 +288,7 @@
 /datum/martial_art/explosive_fist/proc/proceed_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)//lifeforce trade loop
 	if(!can_suck_life(A, D))
 		return
-	if(!do_mob(A, D, 1 SECONDS))
+	if(!do_after(A, 1 SECONDS, D))
 		return
 	if(!can_suck_life(A, D))
 		return

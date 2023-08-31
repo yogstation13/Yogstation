@@ -43,6 +43,11 @@
 	icon_state = "pen_red"
 	colour = "red"
 
+/obj/item/pen/green
+	desc = "It's a normal green ink pen"
+	icon_state = "pen_green"
+	colour = "green"
+
 /obj/item/pen/invisible
 	desc = "It's an invisible pen marker."
 	icon_state = "pen"
@@ -51,7 +56,7 @@
 /obj/item/pen/fourcolor
 	desc = "It's a fancy four-color ink pen, set to black."
 	name = "four-color pen"
-	colour = "black"
+	icon_state = "pen_4"
 
 /obj/item/pen/fourcolor/attack_self(mob/living/carbon/user)
 	switch(colour)
@@ -125,8 +130,15 @@
 /obj/item/pen/afterattack(obj/O, mob/living/user, proximity)
 	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
-	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
-		var/penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")
+	if(isobj(O) && proximity && ((O.obj_flags & UNIQUE_RENAME) || (O.obj_flags & UNIQUE_REDESC)))
+		var/penchoice
+		if((O.obj_flags & UNIQUE_RENAME) && (O.obj_flags & UNIQUE_REDESC))
+			penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")
+		else if(O.obj_flags & UNIQUE_RENAME)
+			penchoice = "Rename"
+		else
+			penchoice = "Change description"
+
 		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
 		if(penchoice == "Rename")
@@ -152,7 +164,7 @@
  * Sleepypens
  */
 
-/obj/item/pen/sleepy/attack(mob/living/M, mob/user)
+/obj/item/pen/blue/sleepy/attack(mob/living/M, mob/user)
 	if(!is_syndicate(user)) // if non syndicate , it is just a regular pen as they don't know how to activate hidden payload.
 		. = ..()
 		return
@@ -162,16 +174,16 @@
 		return
 	if(!reagents.total_volume || !M.reagents)
 		return
-		
+
 	to_chat(user, span_warning("You begin to inject [src]'s contents into [M]"))
 	if(!do_after(user, 0.5 SECONDS, M))
 		return
 	reagents.reaction(M, INJECT, reagents.total_volume)
 	reagents.trans_to(M, reagents.total_volume, transfered_by = user)
-				
 
 
-/obj/item/pen/sleepy/Initialize(mapload)
+
+/obj/item/pen/blue/sleepy/Initialize(mapload)
 	. = ..()
 	create_reagents(75)
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
@@ -182,16 +194,16 @@
 /*
  * (Alan) Edaggers
  */
-/obj/item/pen/edagger
+/obj/item/pen/red/edagger
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") //these wont show up if the pen is off
 	sharpness = SHARP_EDGED
 	var/on = FALSE
 
-/obj/item/pen/edagger/Initialize(mapload)
+/obj/item/pen/red/edagger/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
 
-/obj/item/pen/edagger/suicide_act(mob/user)
+/obj/item/pen/red/edagger/suicide_act(mob/user)
 	. = BRUTELOSS
 	if(on)
 		user.visible_message(span_suicide("[user] forcefully rams the pen into their mouth!"))
@@ -199,7 +211,7 @@
 		user.visible_message(span_suicide("[user] is holding a pen up to their mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
 		attack_self(user)
 
-/obj/item/pen/edagger/attack_self(mob/living/user)
+/obj/item/pen/red/edagger/attack_self(mob/living/user)
 	if(on)
 		on = FALSE
 		force = initial(force)
@@ -229,7 +241,7 @@
 	butchering.butchering_enabled = on
 	update_appearance(UPDATE_ICON)
 
-/obj/item/pen/edagger/update_icon(updates=ALL)
+/obj/item/pen/red/edagger/update_icon(updates=ALL)
 	. = ..()
 	if(on)
 		icon_state = "edagger"

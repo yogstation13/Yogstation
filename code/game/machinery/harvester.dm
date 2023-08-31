@@ -71,7 +71,7 @@
 				say("Subject may not have abiotic items on.")
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 				return
-	if(!(MOB_ORGANIC in C.mob_biotypes))
+	if(!(C.mob_biotypes & MOB_ORGANIC))
 		say("Subject is not organic.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, 1)
 		return
@@ -156,12 +156,13 @@
 		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open [src]."))
 		open_machine()
 
-/obj/machinery/harvester/emag_act(mob/user)
+/obj/machinery/harvester/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	allow_living = TRUE
 	to_chat(user, span_warning("You overload [src]'s lifesign scanners."))
+	return TRUE
 
 /obj/machinery/harvester/container_resist(mob/living/user)
 	if(!harvesting)

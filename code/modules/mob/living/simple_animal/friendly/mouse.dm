@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	can_be_held = TRUE //mouse gaming
 	worn_slot_flags = ITEM_SLOT_HEAD
@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	eating = TRUE
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, A, FALSE))
+	if(do_after(src, 3 SECONDS, A, timed_action_flags = IGNORE_HELD_ITEM))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))

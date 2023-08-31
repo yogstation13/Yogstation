@@ -156,15 +156,16 @@
 		var/mutable_appearance/beaker_overlay = display_beaker()
 		. += beaker_overlay
 
-/obj/machinery/chem_dispenser/emag_act(mob/user)
+/obj/machinery/chem_dispenser/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	dispensable_reagents |= emagged_reagents//add the emagged reagents to the dispensable ones
 	display_reagents |= emagged_reagents
 	obj_flags |= EMAGGED
-
+	return TRUE
+	
 /obj/machinery/chem_dispenser/ex_act(severity, target)
 	if(severity < 3)
 		..()
@@ -200,7 +201,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemDispenser", name)
-		if(user.hallucinating())
+		if(user.has_status_effect(/datum/status_effect/hallucination))
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
 
@@ -231,7 +232,7 @@
 	var/chemicals[0]
 	var/recipes[0]
 	var/is_hallucinating = FALSE
-	if(user.hallucinating())
+	if(user.has_status_effect(/datum/status_effect/hallucination))
 		is_hallucinating = TRUE
 	for(var/re in display_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]

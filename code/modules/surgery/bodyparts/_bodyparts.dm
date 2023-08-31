@@ -140,7 +140,7 @@
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user
-					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+					if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
 						if(H == user)
 							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
 						else
@@ -825,7 +825,7 @@
 			species_color = ""
 
 		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK)))
-			mutation_color = "00aa00"
+			mutation_color = "#00aa00"
 		else
 			mutation_color = ""
 
@@ -937,9 +937,9 @@
 	if(should_draw_greyscale)
 		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 		if(draw_color)
-			limb.color = "#[draw_color]"
+			limb.color = "[draw_color]"
 			if(aux_zone)
-				aux.color = "#[draw_color]"
+				aux.color = "[draw_color]"
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()

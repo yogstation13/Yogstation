@@ -4,7 +4,6 @@
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50
 	reagent_flags = OPENCONTAINER
-	spillable = TRUE
 	resistance_flags = ACID_PROOF
 
 
@@ -12,7 +11,7 @@
 	if(!canconsume(M, user))
 		return
 
-	if(!spillable)
+	if(!is_spillable())
 		return
 
 	if(!reagents || !reagents.total_volume)
@@ -38,7 +37,7 @@
 			if(M != user)
 				M.visible_message(span_danger("[user] attempts to feed something to [M]."), \
 							span_userdanger("[user] attempts to feed something to you."))
-				if(!do_mob(user, M))
+				if(!do_after(user, 3 SECONDS, M))
 					return
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
@@ -54,9 +53,6 @@
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	. = ..()
 	if((!proximity) || !check_allowed_items(target,target_self=1))
-		return
-
-	if(!spillable)
 		return
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
@@ -83,7 +79,7 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
-	else if(reagents.total_volume)
+	else if(is_spillable() && reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
 			user.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
 								span_notice("You splash the contents of [src] onto [target]."))
@@ -358,7 +354,6 @@
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
 	volume = 100
 	reagent_flags = OPENCONTAINER
-	spillable = TRUE
 	var/obj/item/grinded
 
 /obj/item/reagent_containers/glass/mortar/AltClick(mob/user)
@@ -449,7 +444,7 @@
 /obj/item/reagent_containers/glass/urn
 	name = "urn"
 	desc = "A tall vase used for storing cremated remains."
-	obj_flags = UNIQUE_RENAME // Rename it to whoever you cremated
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC // Rename it to whoever you cremated
 	icon_state = "urn_open"
 	w_class = WEIGHT_CLASS_NORMAL // This is important! Don't just keep it in your box or something!
 	resistance_flags = NONE // Shatters easily
@@ -463,7 +458,7 @@
 /// Calls on most non-table clicks, spills it
 /obj/item/reagent_containers/glass/urn/afterattack()
 	. = ..()
-	if(spillable && !spilled)
+	if(is_spillable() && !spilled)
 		icon_state = "urn_spilled"
 		spilled = TRUE
 		amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's spilled
@@ -490,7 +485,7 @@
 		possible_transfer_amounts = list(30)
 		return
 	locked = TRUE // If it's not locked or spilled, start locking it
-	spillable = FALSE // Can't spill a closed container
+	reagents.flags &= ~SPILLABLE // Can't spill a closed container
 	icon_state = "urn_closed"
 	amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's closed
 	possible_transfer_amounts = list(0)

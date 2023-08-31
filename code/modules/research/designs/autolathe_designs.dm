@@ -3,7 +3,7 @@
 ///////////////////////////////////
 
 /datum/design/airlock_scanner
-	name = "Airlock scanner"
+	name = "Airlock Scanner"
 	id = "airlock_scanner"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 50)
@@ -888,6 +888,14 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/buckshot
+	category = list("hacked", "Security")
+
+/datum/design/shotgun_dart
+	name = "Shotgun Dart"
+	id = "shotgun_dart"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 4000)
+	build_path = /obj/item/ammo_casing/shotgun/dart
 	category = list("hacked", "Security")
 
 /datum/design/incendiary_slug

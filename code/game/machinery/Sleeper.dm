@@ -14,6 +14,7 @@
 	desc = "An enclosed machine used to stabilize and heal patients."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
@@ -71,11 +72,8 @@
 	stasis = (I >= 4)
 
 /obj/machinery/sleeper/update_icon_state()
-	. = ..()
-	if(state_open)
-		icon_state = "[initial(icon_state)]-open"
-	else
-		icon_state = initial(icon_state)
+	icon_state = "[base_icon_state][state_open ? "-open" : null]"
+	return ..()
 
 /obj/machinery/sleeper/container_resist(mob/living/user)
 	visible_message(span_notice("[occupant] emerges from [src]!"),
@@ -96,14 +94,14 @@
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
 			mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
-		flick("[initial(icon_state)]-anim", src)
+		flick("[base_icon_state]-anim", src)
 		if(open_sound)
 			playsound(src, open_sound, 40)
 		..()
 
 /obj/machinery/sleeper/close_machine(mob/user)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
-		flick("[initial(icon_state)]-anim", src)
+		flick("[base_icon_state]-anim", src)
 		..(user)
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
@@ -120,11 +118,12 @@
 	if(is_operational() && occupant)
 		open_machine()
 
-/obj/machinery/sleeper/emag_act(mob/user)
+/obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
@@ -145,7 +144,7 @@
 	if(state_open)
 		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
-	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
+	if(default_deconstruction_screwdriver(user, "[base_icon_state]-o", base_icon_state, I))
 		return
 	return FALSE
 
@@ -321,6 +320,7 @@
 
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"
+	base_icon_state = "sleeper_s"
 	controls_inside = TRUE
 
 /obj/machinery/sleeper/syndie/fullupgrade/Initialize(mapload)
@@ -337,6 +337,7 @@
 	name = "soothing sleeper"
 	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
 	icon_state = "sleeper_clockwork"
+	base_icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>You hear the gentle hum and click of machinery, and are lulled into a sense of peace.</span>"
 	efficiency = 3
 	available_treatments = list(SLEEPER_TEND, SLEEPER_ORGANS, SLEEPER_CHEMPURGE)
@@ -356,6 +357,7 @@
 
 /obj/machinery/sleeper/old
 	icon_state = "oldpod"
+	base_icon_state = "oldpod"
 
 #undef SLEEPER_TEND
 #undef SLEEPER_ORGANS
