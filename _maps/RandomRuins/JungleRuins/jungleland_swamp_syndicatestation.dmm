@@ -135,20 +135,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
-"bA" = (
-/obj/structure/closet/syndicate,
-/obj/item/clothing/under/syndicate/camo,
-/obj/item/clothing/head/HoS/beret/syndicate,
-/obj/item/clothing/head/HoS/syndicate,
-/obj/item/crowbar/red,
-/obj/item/storage/belt/military,
-/obj/item/suppressor,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "bG" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bowl,
@@ -748,15 +734,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
-"hu" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/structure/closet/syndicate,
-/obj/item/crowbar/red,
-/obj/item/suppressor,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "hJ" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/structure/sign/warning/fire{
@@ -1086,32 +1063,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"kf" = (
-/obj/structure/rack,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/machinery/power/apc/auto_name/north{
-	pixel_y = 23
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure{
-	desc = "An emergency base defense weapon provided in case the base is compromised. A tag reads, 'Only use in emergencies! This ammo is expensive.'"
-	},
-/obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure{
-	desc = "An emergency base defense weapon provided in case the base is compromised. A tag reads, 'Only use in emergencies! This ammo is expensive.'"
-	},
-/obj/item/ammo_box/magazine/sniper_rounds,
-/obj/item/ammo_box/magazine/sniper_rounds,
-/obj/item/kitchen/knife/combat,
-/obj/item/kitchen/knife/combat,
-/turf/open/floor/circuit/red/anim,
-/area/ruin/powered/syndicate_lava_base/vault)
 "kj" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
@@ -2254,6 +2205,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
+"uk" = (
+/obj/structure/closet/syndicate,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/syndicate,
+/obj/item/crowbar/red,
+/obj/item/storage/belt/military,
+/obj/item/suppressor,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "uv" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/chemistry)
@@ -2276,23 +2241,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
-"vb" = (
-/obj/structure/closet/syndicate,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/obj/item/storage/box/beanbag,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/item/ammo_casing/shotgun/syndie,
-/obj/item/ammo_casing/shotgun/syndie,
-/obj/item/ammo_casing/shotgun/syndie,
-/obj/item/ammo_casing/shotgun/syndie,
-/obj/item/ammo_casing/shotgun/syndie,
-/obj/item/ammo_casing/shotgun/syndie,
-/obj/item/storage/belt/bandolier,
-/obj/item/clothing/under/rank/bartender,
-/obj/item/clothing/head/that,
-/obj/item/clothing/glasses/sunglasses/reagent,
-/turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
 "vf" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -2876,6 +2824,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"Bm" = (
+/obj/structure/closet/syndicate,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/obj/item/storage/box/beanbag,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/ammo_casing/shotgun/syndie,
+/obj/item/ammo_casing/shotgun/syndie,
+/obj/item/ammo_casing/shotgun/syndie,
+/obj/item/ammo_casing/shotgun/syndie,
+/obj/item/ammo_casing/shotgun/syndie,
+/obj/item/ammo_casing/shotgun/syndie,
+/obj/item/storage/belt/bandolier,
+/obj/item/clothing/under/rank/bartender,
+/obj/item/clothing/head/that,
+/obj/item/clothing/glasses/sunglasses/reagent,
+/turf/open/floor/wood,
+/area/ruin/powered/syndicate_lava_base/bar)
 "Bw" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -3763,6 +3728,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
+"Iq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/closet/syndicate,
+/obj/item/crowbar/red,
+/obj/item/suppressor,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "Iv" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(150)
@@ -4457,6 +4431,32 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
+"PP" = (
+/obj/structure/rack,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/north{
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure{
+	desc = "An emergency base defense weapon provided in case the base is compromised. A tag reads, 'Only use in emergencies! This ammo is expensive.'"
+	},
+/obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure{
+	desc = "An emergency base defense weapon provided in case the base is compromised. A tag reads, 'Only use in emergencies! This ammo is expensive.'"
+	},
+/obj/item/ammo_box/magazine/sniper_rounds,
+/obj/item/ammo_box/magazine/sniper_rounds,
+/obj/item/kitchen/knife/combat,
+/obj/item/kitchen/knife/combat,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/powered/syndicate_lava_base/vault)
 "PU" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /turf/open/floor/engine/n2,
@@ -4464,6 +4464,17 @@
 "PW" = (
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/jungleland/toxic_pit)
+"Qb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/closet/syndicate,
+/obj/item/crowbar/red,
+/obj/item/suppressor,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "Qf" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -4976,17 +4987,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
-"Ue" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/structure/closet/syndicate,
-/obj/item/crowbar/red,
-/obj/item/suppressor,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "Up" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -6885,11 +6885,11 @@ gC
 ej
 by
 Su
-hu
+Iq
 vM
 Su
 IG
-Ue
+Qb
 Su
 Su
 iX
@@ -7008,7 +7008,7 @@ jG
 lJ
 ea
 Su
-bA
+uk
 sa
 Su
 iX
@@ -7105,7 +7105,7 @@ kH
 KF
 dn
 jD
-kf
+PP
 Dw
 jD
 XZ
@@ -7239,11 +7239,11 @@ LO
 RS
 tL
 Su
-hu
+Iq
 dX
 Su
 IL
-Ue
+Qb
 Su
 Su
 iX
@@ -7390,7 +7390,7 @@ iX
 iX
 iX
 kH
-vb
+Bm
 BW
 BE
 kH
