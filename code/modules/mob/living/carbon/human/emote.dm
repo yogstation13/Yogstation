@@ -35,7 +35,7 @@
 	key = "dap"
 	key_third_person = "daps"
 	message = "sadly can't find anybody to give daps to, and daps themself. Shameful."
-	message_param = "give daps to %t."
+	message_param = "gives daps to %t."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/human/eyebrow
@@ -158,14 +158,6 @@
 	key = "wag"
 	key_third_person = "wags"
 	message = "wags their tail."
-
-/datum/emote/living/carbon/human/stanky
-	key = "stanky"
-	message = "does the stanky leg."
-
-/datum/emote/living/carbon/human/griddy
-	key = "griddy"
-	message = "hits the griddy."
 
 /datum/emote/living/carbon/human/wag/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
