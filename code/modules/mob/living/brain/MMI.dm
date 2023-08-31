@@ -16,7 +16,8 @@
 	var/force_replace_ai_name = FALSE
 	/// Whether the laws on the MMI are to be transferred when it is uploaded as an AI.
 	var/overrides_aicore_laws = TRUE
-	/// Whether the laws on the MMI are to be transferred when it is inserted into a cyborg.
+	/// Whether the laws on the MMI are to be transferred when it is inserted into a cyborg. 
+	// Consider setting `disabled_linksync` to `TRUE` if you do not want the AI's laws to override the cyborg's laws.
 	var/overrides_cyborg_laws = TRUE
 	/// If they become a cyborg, should they automatically be unlinked (from any AIs) and lawsync disabled?
 	var/disabled_linksync = FALSE
