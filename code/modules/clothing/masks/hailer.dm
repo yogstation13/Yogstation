@@ -39,6 +39,7 @@
 		"Copy" = 'sound/voice/cpvoicelines/copy.ogg',
 		"Alright, you can go" = 'sound/voice/cpvoicelines/allrightyoucango.ogg',
 		"Backup" = 'sound/voice/cpvoicelines/backup.ogg',
+		"Anticitizen" = 'sound/voice/cpvoicelines/anticitizen.ogg',
 		"Citizen" = 'sound/voice/cpvoicelines/citizen.ogg',
 		"Get down" = 'sound/voice/cpvoicelines/getdown.ogg',
 		"Get out of here" = 'sound/voice/cpvoicelines/getoutofhere.ogg',
@@ -66,7 +67,6 @@
 		"First warning, move away" = 'sound/voice/cpvoicelines/firstwarningmove.ogg',
 		"Sentence delivered" = 'sound/voice/cpvoicelines/sentencedelivered.ogg',
 		"Issuing malcompliant citation" = 'sound/voice/cpvoicelines/issuingmalcompliantcitation.ogg',
-		"Anticitizen" = 'sound/voice/cpvoicelines/anticitizen.ogg',
 		"Apply" = 'sound/voice/cpvoicelines/apply.ogg',
 		"Hehe" = 'sound/voice/cpvoicelines/chuckle.ogg',
 	)
