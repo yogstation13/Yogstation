@@ -18,7 +18,7 @@
 	if(ispath(holder))
 		holder = new holder(src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SetSlotFromZone()
 	items_list = contents.Copy()
 
@@ -33,7 +33,8 @@
 			return FALSE
 	return TRUE
 
-/obj/item/organ/cyberimp/arm/update_icon()
+/obj/item/organ/cyberimp/arm/update_icon(updates=ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_ARM)
 		transform = null
 	else // Mirroring the icon
@@ -53,7 +54,7 @@
 		zone = BODY_ZONE_R_ARM
 	if(SetSlotFromZone())
 		I.play_tool_sound(src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
 	else
 		to_chat(user, span_warning("[src] cannot be modified!"))
@@ -213,7 +214,7 @@
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
 	. = ..()
 
-/obj/item/organ/cyberimp/arm/toolset/emag_act()
+/obj/item/organ/cyberimp/arm/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
 		items_list += new /obj/item/kitchen/knife/combat/cyborg(src)
@@ -407,7 +408,7 @@
 /obj/item/organ/cyberimp/arm/syndie_hammer
 	name = "Vxtvul Hammer implant"
 	desc = "A folded Vxtvul Hammer designed to be incorporated into preterni chassis. Surgery can permit it to fit in other organic bodies."
-	contents = newlist(/obj/item/twohanded/vxtvulhammer)
+	contents = newlist(/obj/item/melee/vxtvulhammer)
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/nt_mantis

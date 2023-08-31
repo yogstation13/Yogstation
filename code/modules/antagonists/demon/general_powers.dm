@@ -25,7 +25,7 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "lesserdaemon"
 	icon_living = "lesserdaemon"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speed = 0.25
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
@@ -71,9 +71,10 @@
 		if(src.stat != DEAD) //being dead, however, will save you
 			src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
 			adjustHealth(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
-	else
-		if(src.stat != DEAD) //You passively lose 2 health every 2 seconds (technically 1 a second), don't stay in demon form for too long.
-			adjustHealth(2)
+
+/mob/living/simple_animal/lesserdemon/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/life_draining, damage_overtime = 2)
 
 //not really a general power, but more than 1 sin has it
 /datum/action/cooldown/spell/touch/torment

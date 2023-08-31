@@ -45,15 +45,16 @@
 /obj/machinery/power/port_gen/proc/TogglePower()
 	if(active)
 		active = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		soundloop.stop()
 	else if(HasFuel())
 		active = TRUE
 		START_PROCESSING(SSmachines, src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		soundloop.start()
 
-/obj/machinery/power/port_gen/update_icon()
+/obj/machinery/power/port_gen/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon]_[active]"
 
 /obj/machinery/power/port_gen/process()
@@ -205,9 +206,9 @@
 			return
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/emag_act(mob/user)
+/obj/machinery/power/port_gen/pacman/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	emp_act(EMP_HEAVY)
 

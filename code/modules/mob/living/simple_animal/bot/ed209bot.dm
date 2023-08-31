@@ -194,8 +194,8 @@ Auto Patrol[]"},
 			if(lasercolor)//To make up for the fact that lasertag bots don't hunt
 				shootAt(user)
 
-/mob/living/simple_animal/bot/ed209/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/ed209/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			to_chat(user, span_warning("You short out [src]'s target assessment circuits."))
@@ -388,15 +388,15 @@ Auto Patrol[]"},
 	if(!lasercolor)
 		var/obj/item/gun/energy/e_gun/dragnet/G = new (Tsec)
 		G.cell.charge = 0
-		G.update_icon()
+		G.update_appearance(UPDATE_ICON)
 	else if(lasercolor == "b")
 		var/obj/item/gun/energy/laser/bluetag/G = new (Tsec)
 		G.cell.charge = 0
-		G.update_icon()
+		G.update_appearance(UPDATE_ICON)
 	else if(lasercolor == "r")
 		var/obj/item/gun/energy/laser/redtag/G = new (Tsec)
 		G.cell.charge = 0
-		G.update_icon()
+		G.update_appearance(UPDATE_ICON)
 
 	if(prob(50))
 		new /obj/item/bodypart/l_leg/robot(Tsec)

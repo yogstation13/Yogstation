@@ -514,7 +514,7 @@
 	new /obj/item/surgical_mat/syndicate(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
-	new /obj/item/mmi/syndie(src)
+	new /obj/item/mmi(src)
 	new /obj/item/implantcase(src)
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5

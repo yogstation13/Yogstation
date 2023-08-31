@@ -201,13 +201,13 @@ Nothing else in the console has ID requirements.
 		linked_imprinter = null
 	..()
 
-/obj/machinery/computer/rdconsole/emag_act(mob/user)
-	if(!(obj_flags & EMAGGED))
-		to_chat(user, span_notice("You disable the security protocols[locked? " and unlock the console":""]."))
-		playsound(src, "sparks", 75, 1)
-		obj_flags |= EMAGGED
-		locked = FALSE
-	return ..()
+/obj/machinery/computer/rdconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	to_chat(user, span_notice("You disable the security protocols[locked? " and unlock the console":""]."))
+	playsound(src, "sparks", 75, 1)
+	obj_flags |= EMAGGED
+	locked = FALSE
 
 /obj/machinery/computer/rdconsole/multitool_act(mob/user, obj/item/multitool/I)
 	var/lathe = linked_lathe && linked_lathe.multitool_act(user, I)

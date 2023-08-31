@@ -76,7 +76,7 @@
 	else
 		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
 		return
-	if(do_after(owner, 100 - rune*60, target = owner))
+	if(do_after(owner, (100 - rune * 60), owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.bleed(40 - rune*32)
@@ -525,7 +525,7 @@
 		if(QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated() || !actual_selected_rune || !proximity)
 			return
 		var/turf/dest = get_turf(actual_selected_rune)
-		if(is_blocked_turf(dest, TRUE))
+		if(dest.is_blocked_turf(TRUE))
 			to_chat(user, span_warning("The target rune is blocked. You cannot teleport there."))
 			return
 		uses--
@@ -559,7 +559,7 @@
 		playsound(loc, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 		C.visible_message(span_danger("[user] begins restraining [C] with dark magic!"), \
 								span_userdanger("[user] begins shaping dark magic shackles around your wrists!"))
-		if(do_mob(user, C, 30))
+		if(do_after(user, 3 SECONDS, C))
 			if(!C.handcuffed)
 				C.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult/used(C))
 				C.update_handcuffed()
@@ -792,7 +792,7 @@
 					var/turf/T = get_turf(user)
 					qdel(src)
 					var/datum/action/innate/cult/spear/S = new(user)
-					var/obj/item/twohanded/cult_spear/rite = new(T)
+					var/obj/item/cult_spear/rite = new(T)
 					S.Grant(user, rite)
 					rite.spear_act = S
 					if(user.put_in_hands(rite))

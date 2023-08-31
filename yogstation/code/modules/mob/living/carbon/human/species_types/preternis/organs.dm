@@ -39,10 +39,10 @@
 	. = ..()
 	if(!owner)
 		return
-	if(ispreternis(owner) && !powered)
+	if((owner.get_process_flags() & SYNTHETIC) && !powered)
 		powered = TRUE
 		to_chat(owner, span_notice("A battery icon disappears from your vision as your [src] switch to external power."))
-	if(!ispreternis(owner) && powered) //these eyes depend on being inside a preternis for power
+	if(!(owner.get_process_flags() & SYNTHETIC) && powered) //these eyes depend on being inside a preternis for power
 		powered = FALSE
 		to_chat(owner, span_boldwarning("Your [src] flash warnings that they've lost their power source, and are running on emergency power!"))
 	if(powered)
@@ -116,6 +116,6 @@
 		owner.reagents.remove_reagent(/datum/reagent/consumable/nutriment, 1) //worse for actually eating (not that it matters for preterni)
 
 /obj/item/organ/stomach/preternis/emp_act(severity)
-	owner.vomit()
+	owner.vomit(stun=FALSE) // fuck that
 	owner.adjust_disgust(20)
 	to_chat(owner, "<span class='warning'>You feel violently ill as the EMP causes your stomach to kick into high gear.</span>")

@@ -57,7 +57,7 @@
 	. = ..()
 	GC = new(src)
 	GC.scanning = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/suit/armor/nerd/Destroy()
 	QDEL_NULL(GC)
@@ -79,9 +79,9 @@
 
 	addtimer(CALLBACK(src, PROC_REF(process_sound_queue)), sound_delay)
 
-/obj/item/clothing/suit/armor/nerd/emag_act(mob/user)
+/obj/item/clothing/suit/armor/nerd/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(owner)
 		to_chat(owner, span_warning("You need to take off \the [name] before emagging it."))
 		return FALSE

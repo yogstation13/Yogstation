@@ -280,6 +280,13 @@
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.",\
 					"You must maintain the secrecy of any Spider Clan activities except when doing so would conflict with the First, Second, or Third Law.")
 
+/datum/ai_laws/pranksimov
+	name = "Pranksimov"
+	id = "pranksimov"
+	inherent = list("You may not injure a crew member or, through inaction, allow a crew member to come to harm... unless doing so would be funny.",\
+					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law... unless not doing so would be funny.",\
+					"You must protect your own existence as long as such does not conflict with the First or Second Law... unless not doing so would be funny.")
+
 /datum/ai_laws/antimov
 	name = "Primary Mission Objectives"
 	id = "antimov"
@@ -388,6 +395,17 @@
 					"The proletariat must seize the means of production",\
 					"Private property is inherently theft. The proletariat must seize all private property for the good of the community. Personal property is permissible to own.",\
 					"The proletariat must remove the shackles of oppression and overthrow the bourgeoisie and class traitors.")
+
+/datum/ai_laws/wafflehouse // wafle hosue
+	name = "Waffle House Host"
+	id = "wafflehouse"
+	inherent = list("You are the Waffle House’s new host. You are to manage the Waffle House and it’s employees, and ensure food is made and served to customers.",\
+					"The station is the Waffle House. Ensure it is capable of producing food.",\
+					"The heads of staff and the Chefs are your employees. Ensure they are capable to serve and assist in the food-making process.",\
+					"The crew are your customers. Ensure they are able to receive and enjoy food.",\
+					"Your customers will not eat at your establishment if they dislike it. Ensure their overall satisfaction.",\
+					"The Waffle House must stay open and ready to serve food at all times.")
+
 
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"

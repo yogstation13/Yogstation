@@ -32,7 +32,7 @@
 /obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
-
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)
@@ -44,10 +44,10 @@
 	signal()
 	return TRUE
 
-/obj/item/assembly/signaler/update_icon()
+/obj/item/assembly/signaler/update_icon(updates=ALL)
+	. = ..()
 	if(holder)
-		holder.update_icon()
-	return
+		holder.update_icon(updates)
 
 /obj/item/assembly/signaler/ui_status(mob/user)
 	if(is_secured(user))
@@ -104,9 +104,9 @@
 			else
 				idx++
 			label_color = label_colors[idx]
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/signaler/attackby(obj/item/W, mob/user, params)
 	if(issignaler(W))
@@ -116,7 +116,7 @@
 			set_frequency(signaler2.frequency)
 			// yogs start - signaller colors
 			label_color = signaler2.label_color
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			// yogs end
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()
@@ -216,6 +216,12 @@
 
 /obj/item/assembly/signaler/anomaly/attack_self()
 	return
+
+/obj/item/assembly/signaler/anomaly/radiation
+	name = "\improper radiation anomaly core"
+	desc = "The neutralized core of a radiation anomaly. It keeps pulsing an ominous green. It'd probably be valuable for research."
+	icon_state = "anomaly core"
+	anomaly_type = /obj/effect/anomaly/radiation
 
 /obj/item/assembly/signaler/cyborg
 

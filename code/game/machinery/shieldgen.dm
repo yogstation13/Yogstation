@@ -93,7 +93,7 @@
 
 /obj/machinery/shieldgen/proc/shields_up()
 	active = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	move_resist = INFINITY
 
 	for(var/turf/target_tile in range(shield_range, src))
@@ -104,7 +104,7 @@
 /obj/machinery/shieldgen/proc/shields_down()
 	active = FALSE
 	move_resist = initial(move_resist)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	QDEL_LIST(deployed_shields)
 
 /obj/machinery/shieldgen/process(delta_time)
@@ -164,7 +164,7 @@
 			obj_integrity = max_integrity
 			stat &= ~BROKEN
 			to_chat(user, span_notice("You repair \the [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		if(locked)
@@ -194,20 +194,22 @@
 	else
 		return ..()
 
-/obj/machinery/shieldgen/emag_act(mob/user)
+/obj/machinery/shieldgen/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("The access controller is damaged!"))
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
+	return TRUE
 
-/obj/machinery/shieldgen/update_icon()
+/obj/machinery/shieldgen/update_icon_state()
+	. = ..()
 	if(active)
-		icon_state = (stat & BROKEN) ? "shieldonbr":"shieldon"
+		icon_state = (stat & BROKEN) ? "shieldonbr" : "shieldon"
 	else
-		icon_state = (stat & BROKEN) ? "shieldoffbr":"shieldoff"
+		icon_state = (stat & BROKEN) ? "shieldoffbr" : "shieldoff"
 
 #define ACTIVE_SETUPFIELDS 1
 #define ACTIVE_HASFIELDS 2
@@ -386,14 +388,15 @@
 		update_activity()
 	add_fingerprint(user)
 
-/obj/machinery/shieldwallgen/emag_act(mob/user)
+/obj/machinery/shieldwallgen/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("The access controller is damaged!"))
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	locked = FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
+	return TRUE
 
 //////////////Containment Field START
 /obj/machinery/shieldwall

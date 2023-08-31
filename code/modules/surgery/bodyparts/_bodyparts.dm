@@ -1,3 +1,4 @@
+#define STAMINA_REGENERATION_COEFFICIENT 0.65 // How effective stamina regeneration is, with 1 being 100%
 
 /obj/item/bodypart
 	name = "limb"
@@ -39,6 +40,8 @@
 	var/stamina_dam = 0
 	var/max_stamina_damage = 0
 	var/max_damage = 0
+
+	var/stamina_cache = list() // Lists the times that we should clear stamina damage and for how much
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
@@ -137,7 +140,7 @@
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user
-					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+					if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
 						if(H == user)
 							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
 						else
@@ -201,9 +204,17 @@
 	return bodypart_organs
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life(stam_regen)
-	if(stamina_dam > DAMAGE_PRECISION && stam_regen)					//DO NOT update health here, it'll be done in the carbon's life.
-		heal_damage(0, 0, INFINITY, null, FALSE)
-		. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
+		if(stam_regen)
+			heal_damage(0, 0, INFINITY, null, FALSE)
+			stamina_cache = list()
+			. |= BODYPART_LIFE_UPDATE_HEALTH
+		else
+			for(var/dam_instance in stamina_cache)
+				if(world.time > dam_instance["expiration"])
+					heal_damage(0, 0, dam_instance["amount"] * STAMINA_REGENERATION_COEFFICIENT, null, FALSE)
+					stamina_cache -= list(dam_instance)
+					. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -326,6 +337,8 @@
 			owner.updatehealth()
 			if(stamina > DAMAGE_PRECISION)
 				owner.update_stamina()
+				if(!HAS_TRAIT_FROM(owner, TRAIT_INCAPACITATED, STAMINA))
+					stamina_cache += list(list("expiration" = world.time + STAMINA_REGEN_BLOCK_TIME, "amount" = stamina))
 				owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 				. = TRUE
 	return update_bodypart_damage_state() || .
@@ -816,7 +829,7 @@
 			species_color = ""
 
 		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK)))
-			mutation_color = "00aa00"
+			mutation_color = "#00aa00"
 		else
 			mutation_color = ""
 
@@ -928,9 +941,9 @@
 	if(should_draw_greyscale)
 		var/draw_color = mutation_color || species_color || (skin_tone && skintone2hex(skin_tone))
 		if(draw_color)
-			limb.color = "#[draw_color]"
+			limb.color = "[draw_color]"
 			if(aux_zone)
-				aux.color = "#[draw_color]"
+				aux.color = "[draw_color]"
 
 /obj/item/bodypart/deconstruct(disassembled = TRUE)
 	drop_organs()

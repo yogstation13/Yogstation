@@ -10,7 +10,7 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "daemon"
 	icon_living = "daemon"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speed = 1
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
@@ -133,8 +133,9 @@
 	icon_state = "demon_heart-on"
 	decay_factor = 0
 
-/obj/item/organ/heart/demon/update_icon()
-	return //always beating visually
+/obj/item/organ/heart/demon/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/organ/heart/demon/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
