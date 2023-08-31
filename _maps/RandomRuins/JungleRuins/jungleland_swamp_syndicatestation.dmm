@@ -6,14 +6,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"af" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
-/obj/structure/fans/tiny,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/telecomms)
 "aj" = (
 /obj/effect/turf_decal/siding/white,
 /obj/structure/closet/emcloset/anchored,
@@ -1593,6 +1585,13 @@
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/water/toxic_pit,
 /area/jungleland/toxic_pit)
+"pe" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/tank/nitrogen{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "pf" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -1948,6 +1947,14 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/telecomms)
+"rX" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "sa" = (
 /obj/structure/dresser,
@@ -2596,11 +2603,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"yZ" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen,
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/telecomms)
 "zj" = (
 /obj/machinery/computer/arcade/battle,
 /obj/effect/turf_decal/siding/wood{
@@ -7052,7 +7054,7 @@ XT
 hf
 Av
 UG
-af
+rX
 wP
 ir
 xS
@@ -7169,7 +7171,7 @@ rT
 KZ
 JL
 pj
-yZ
+pe
 ir
 ir
 Op
