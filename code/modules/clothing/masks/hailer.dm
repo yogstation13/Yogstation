@@ -47,7 +47,7 @@
 		"Help" = 'sound/voice/cpvoicelines/help.ogg',
 		"Hold it" = 'sound/voice/cpvoicelines/holdit.ogg',
 		"In position" = 'sound/voice/cpvoicelines/inposition.ogg',
-		"I said move along" = 'sound/voice/cpvoicelines/isaidmovealong.ogg',
+		"I said move along" = 'sound/voice/cpvoicelines/isaidmovealong.ogg'
 		"Keep moving" = 'sound/voice/cpvoicelines/keepmoving.ogg',
 		"Lookout" = 'sound/voice/cpvoicelines/Lookout.ogg',
 		"Move along" = 'sound/voice/cpvoicelines/movealong.ogg',
