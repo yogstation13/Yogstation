@@ -146,7 +146,7 @@
 			highest_pref = this_pref
 
 	if(!appearance_job)
-		appearance_job = SSjob.GetJob(JOB_ASSISTANT)
+		appearance_job = SSjob.GetJob("Assistant")
 
 	if(istype(appearance_job, /datum/job/ai))
 		human_image = icon('icons/mob/silicon/ai.dmi', icon_state = resolve_ai_icon(appearance_from_prefs.read_preference(/datum/preference/choiced/ai_core_display)), dir = SOUTH)
@@ -194,7 +194,7 @@
 	return ..()
 
 /mob/camera/imaginary_friend/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range)
-	if (safe_read_pref(client, /datum/preference/toggle/enable_runechat) && (safe_read_pref(client, /datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)))
+	if (client?.prefs.read_preference(/datum/preference/toggle/enable_runechat) && (client.prefs.read_preference(/datum/preference/toggle/enable_runechat_non_mobs) || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans)
 	to_chat(src, compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods))
 
@@ -221,19 +221,15 @@
 	var/eavesdrop_range = 0
 	var/eavesdropped_message = ""
 
-	if (message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
-		message = message_mods[MODE_CUSTOM_SAY_EMOTE]
-		log_message(message, LOG_RADIO_EMOTE)
+	if(message_mods[WHISPER_MODE] == MODE_WHISPER)
+		log_talk(message, LOG_WHISPER, tag="imaginary friend")
+		spans |= SPAN_ITALICS
+		eavesdrop_range = EAVESDROP_EXTRA_RANGE
+		// "This proc is dangerously laggy, avoid it or die"
+		// What other option do I have here? I guess I'll die
+		eavesdropped_message = stars(message)
 	else
-		if(message_mods[WHISPER_MODE] == MODE_WHISPER)
-			log_talk(message, LOG_WHISPER, tag="imaginary friend", forced_by = forced, custom_say_emote = message_mods[MODE_CUSTOM_SAY_EMOTE])
-			spans |= SPAN_ITALICS
-			eavesdrop_range = EAVESDROP_EXTRA_RANGE
-			// "This proc is dangerously laggy, avoid it or die"
-			// What other option do I have here? I guess I'll die
-			eavesdropped_message = stars(message)
-		else
-			log_talk(message, LOG_SAY, tag="imaginary friend", forced_by = forced, custom_say_emote = message_mods[MODE_CUSTOM_SAY_EMOTE])
+		log_talk(message, LOG_SAY, tag="imaginary friend")
 
 	var/quoted_message = say_quote(say_emphasis(message), spans, message_mods)
 	var/rendered = "[span_name("[name]")] [quoted_message]"
