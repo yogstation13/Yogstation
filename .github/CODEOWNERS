@@ -27,6 +27,7 @@
 /yogstation/sound/ @yogstation13/head-coders
 /yogstation/code/game/world.dm @yogstation13/head-coders
 /code/controllers/subsystem/ticker.dm @yogstation13/head-coders
+/code/datums/ai_laws.dm @yogstation13/head-coders
 
 #thegamerdk
 
