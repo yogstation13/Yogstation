@@ -432,7 +432,6 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [enloudened.name] from \the [src]."))
 			user.put_in_hands(enloudened)
-			w_class -= enloudened.w_class
 			enloudened = null
 			update_appearance(UPDATE_ICON)
 			return
