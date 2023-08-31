@@ -244,14 +244,12 @@
 	// Speech bubble, but only for those who have runechat off
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/user as anything in (group + src)) // Add ourselves back in
-		if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
+		if(!client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			speech_bubble_recipients.Add(user.client)
 
 	var/image/bubble = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	SET_PLANE_EXPLICIT(bubble, ABOVE_GAME_PLANE, src)
 	bubble.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), bubble, speech_bubble_recipients, 3 SECONDS)
-	LAZYADD(update_on_z, bubble)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), bubble, speech_bubble_recipients, 30)
 	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), bubble), 3.5 SECONDS)
 
 	var/turf/center_turf = get_turf(src)
@@ -303,12 +301,12 @@
 		for(var/mob/ghost as anything in GLOB.dead_mob_list)
 			if(!ghost.client || isnewplayer(ghost))
 				continue
-			if(get_chat_toggles(ghost.client) & CHAT_GHOSTSIGHT && !(ghost in viewers(user_turf, null)))
+			(M.stat == DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
 				ghost.show_message("[FOLLOW_LINK(ghost, user)] [dchatmsg]")
 
 	for(var/mob/person in friend.owner.imaginary_group)
 		to_chat(person, message)
-		if(safe_read_pref(person.client, /datum/preference/toggle/enable_runechat))
+		if(client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			person.create_chat_message(friend, raw_message = msg, runechat_flags = EMOTE_MESSAGE)
 	return TRUE
 
