@@ -231,7 +231,7 @@
 	else
 		log_talk(message, LOG_SAY, tag="imaginary friend")
 
-	var/quoted_message = say_quote(say_emphasis(message), spans, message_mods)
+	var/quoted_message = say_quote(message, spans, message_mods)
 	var/rendered = "[span_name("[name]")] [quoted_message]"
 	var/dead_rendered = "[span_name("[name] (Imaginary friend of [owner])")] [quoted_message]"
 
@@ -239,16 +239,12 @@
 	Hear(rendered, src, language, message, null, spans, message_mods) // We always hear what we say
 	var/group = owner.imaginary_group - src // The people in our group don't, so we have to exclude ourselves not to hear twice
 	for(var/mob/person in group)
-		if(eavesdrop_range && get_dist(src, person) > WHISPER_RANGE + eavesdrop_range && !HAS_TRAIT(person, TRAIT_GOOD_HEARING))
-			var/new_rendered = "[span_name("[name]")] [say_quote(say_emphasis(eavesdropped_message), spans, message_mods)]"
-			person.Hear(new_rendered, src, language, eavesdropped_message, null, spans, message_mods)
-		else
-			person.Hear(rendered, src, language, message, null, spans, message_mods)
+		person.Hear(rendered, src, language, message, null, spans, message_mods)
 
 	// Speech bubble, but only for those who have runechat off
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/user as anything in (group + src)) // Add ourselves back in
-		if((safe_read_pref(user.client, /datum/preference/toggle/enable_runechat) || (SSlag_switch.measures[DISABLE_RUNECHAT] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES))))
+		if(!target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			speech_bubble_recipients.Add(user.client)
 
 	var/image/bubble = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
