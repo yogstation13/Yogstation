@@ -140,6 +140,7 @@
 	strip_delay = 80
 	equip_delay_other = 60
 	slowdown = 0.33
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
@@ -287,6 +288,7 @@
 	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
 	icon_state = "knight_green"
 	item_state = "knight_green"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/riot/knight/yellow
 	icon_state = "knight_yellow"
