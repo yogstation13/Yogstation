@@ -154,11 +154,11 @@
 		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 25
 	)
 	var/list/anomaly_types = list(
-		ANOMALY_FLUX = 40,
-		ANOMALY_FLUX_EXPLOSIVE = 50,
+		ANOMALY_FLUX = 50,
+		ANOMALY_FLUX_EXPLOSIVE = 100,
 		ANOMALY_RADIATION = 30,
 		ANOMALY_RADIATION_X = 5,
-		ANOMALY_VORTEX = 20,
+		ANOMALY_VORTEX = 30,
 		ANOMALY_PYRO = 40,
 		ANOMALY_HALLUCINATION = 40,
 		ANOMALY_GRAVITATIONAL = 60
@@ -168,14 +168,14 @@
 /datum/round_event/portal_storm/resonance_cascade/start()
 	. = ..()
 	var/list/nether_areas = GLOB.generic_event_spawns
-	for(var/i in 1 to 30)
+	for(var/i in 1 to 50)
 		var/area/target_event_spawn = pick_n_take(nether_areas)
 		if(!target_event_spawn)
 			return
 
 		var/obj/structure/spawner/nether/doom = new(target_event_spawn.loc)
 		doom.max_integrity = 250
-		doom.spawn_time = 30 SECONDS
+		doom.spawn_time = 20 SECONDS
 
 	for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 		if(!is_station_level(A.z))
@@ -192,12 +192,13 @@
 				A.visible_message(span_userdanger("[A] overloads and makes a huge arc!"))
 				tesla_zap(A, 5, 10000) // woe
 	SSshuttle.emergency.request(null) // can't call the shuttle if all the APCs blew up, so give the crew some help
-	message_centcom("Alert, a large scale of abnormal activity has been detected on [station_name()]. Investigate and send the special forces to the station immediately as Code Gamma is in effect.", "Central Command Higher Dimensional Affairs")
+	message_centcom("Alert, a large scale of abnormal activity has been detected on [station_name()]. Investigate and send the special forces to the station immediately.", "Central Command Higher Dimensional Affairs")
+	sound_to_playing_players('sound/misc/airraid.ogg')
 
 /datum/round_event/portal_storm/resonance_cascade/announce(fake)
 	if(fake) // no point in trying to fake it, has much more impact if it's only the real thing
 		return
-	priority_announce("Attention all personnel, this is an emergency announcement on [station_name()]. An evacuation is immediately underway due to abnormal hostile activity detected on the premises. A distress signal has been sent to Central Command to alert them of the situation. Please remain calm and follow the evacuation procedures provided. Proceed to the designated evacuation points swiftly and orderly, avoiding areas with abnormal activity. Security personnel are present to assist and ensure your safety. Cooperate with their instructions and refrain from engaging with any hostiles. Central Command is actively responding and coordinating a comprehensive emergency response. Your safety is our utmost priority during this evacuation. Stay vigilant, report any suspicious activity, and await further instructions at the designated evacuation points. Assistance is on the way.", "Central Command Higher Dimensional Affairs", sound='sound/misc/evacuate.ogg')
+	priority_announce("Attention all personnel, this is an emergency announcement on [station_name()]. An evacuation is immediately underway due to abnormal hostile activity detected on the premises. A distress signal has been sent to Central Command to alert them of the situation. In addition to that, we have observed a substantial number of meteors approaching the station on a large scale. Please remain calm and follow the evacuation procedures provided. Proceed to the designated evacuation points swiftly and orderly, To ensure your safety, please avoid areas with abnormal activity and refrain from going outside the station to minimize the risk of collisions with meteors. Security personnel are present to assist and ensure your safety. Cooperate with their instructions and refrain from engaging with any hostiles. Central Command is actively responding and coordinating a comprehensive emergency response. Your safety is our utmost priority during this evacuation. Stay vigilant, report any suspicious activity, and await further instructions at the designated evacuation points. Assistance is on the way.", "Central Command Higher Dimensional Affairs", sound='sound/misc/evacuate.ogg')
 
 /datum/round_event/portal_storm/resonance_cascade/tick()
 	var/turf/T = get_safe_random_station_turf()
