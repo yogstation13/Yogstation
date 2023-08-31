@@ -424,7 +424,6 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [suppressed.name] from \the [src]."))
 			user.put_in_hands(suppressed)
-			w_class -= suppressed.w_class
 			suppressed = null
 			update_appearance(UPDATE_ICON)
 			return
