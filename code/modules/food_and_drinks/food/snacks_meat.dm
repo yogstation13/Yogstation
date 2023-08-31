@@ -59,7 +59,7 @@
 	name = "bbq ribs"
 	desc = "BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist."
 	icon_state = "ribs"
-	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/bbqsauce = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/bbqsauce = 5)
 	tastes = list("meat" = 3, "smokey sauce" = 1)
 	foodtype = MEAT
 	w_class = WEIGHT_CLASS_NORMAL
