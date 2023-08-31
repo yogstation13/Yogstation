@@ -6,6 +6,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"af" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/structure/fans/tiny,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "aj" = (
 /obj/effect/turf_decal/siding/white,
 /obj/structure/closet/emcloset/anchored,
@@ -2427,16 +2435,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/dormitories)
-"xv" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
-/obj/structure/fans/tiny,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/telecomms)
 "xw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -7054,7 +7052,7 @@ XT
 hf
 Av
 UG
-xv
+af
 wP
 ir
 xS
