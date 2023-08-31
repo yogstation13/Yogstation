@@ -1,5 +1,0 @@
-author: "solwashere"
-delete-after: true 
-changes: 
-  - tweak: "Suppressors no longer add a weight class to weapons"
-  - bugfix: "Enloudener no long can be exploited to permanently decrease a weapons weight class"
