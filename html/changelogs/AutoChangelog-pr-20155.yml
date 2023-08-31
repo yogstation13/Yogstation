@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Ethereals can now release excess power into already full apcs"
