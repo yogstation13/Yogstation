@@ -225,6 +225,9 @@
 	var/safe_levels = 10
 	var/emagged = FALSE
 
+	/// Cooldown to prevent spamming portal spawns without an emag
+	COOLDOWN_DELCARE(emergency_shutdown)
+
 /obj/machinery/power/bluespace_tap/New()
 	..()
 	//more code stolen from dna vault, inculding comment below. Taking bets on that datum being made ever.
@@ -260,6 +263,9 @@
   * NOT increase the actual mining level directly.
   */
 /obj/machinery/power/bluespace_tap/proc/increase_level()
+	if(!COOLDOWN_FINISHED(src, emergency_shutdown))
+		desired_level = 0
+		return
 	if(desired_level < max_level)
 		desired_level++
 /**
@@ -271,6 +277,9 @@
   * NOT decrease the actual mining level directly.
   */
 /obj/machinery/power/bluespace_tap/proc/decrease_level()
+	if(!COOLDOWN_FINISHED(src, emergency_shutdown))
+		desired_level = 0
+		return
 	if(desired_level > 0)
 		desired_level--
 
@@ -285,6 +294,9 @@
   * * t_level - The level we try to set it at, between 0 and max_level
  */
 /obj/machinery/power/bluespace_tap/proc/set_level(t_level)
+	if(!COOLDOWN_FINISHED(src, emergency_shutdown))
+		desired_level = 0
+		return
 	if(t_level < 0)
 		return
 	if(t_level > max_level)
@@ -323,6 +335,7 @@
 		if(!emagged)
 			input_level = 0	//emergency shutdown unless we're sabotaged
 			desired_level = 0
+			COOLDOWN_START(src, emergency_shutdown, 10 MINUTES)
 		for(var/i in 1 to rand(1, 3))
 			var/turf/location = locate(x + rand(-5, 5), y + rand(-5, 5), z)
 			new /obj/structure/spawner/nether/bluespace_tap(location)
@@ -414,6 +427,7 @@
 	do_sparks(5, FALSE, src)
 	if(user)
 		user.visible_message("<span class='warning'>[user] overrides the safety protocols of [src].</span>", "<span class='warning'>You override the safety protocols.</span>")
+	COOLDOWN_RESET(src, emergency_shutdown)
 	return TRUE
 	
 /obj/structure/spawner/nether/bluespace_tap
