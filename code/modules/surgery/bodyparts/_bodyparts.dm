@@ -514,13 +514,13 @@
 
 
 	if(brute)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, brute, BRUTE)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(brute, brute_dam), BRUTE, body_zone)
 		set_brute_dam(round(max(brute_dam - brute, 0), DAMAGE_PRECISION))
 	if(burn)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, burn, BURN)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(burn, burn_dam), BURN, body_zone)
 		set_burn_dam(round(max(burn_dam - burn, 0), DAMAGE_PRECISION))
 	if(stamina)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, stamina, STAMINA)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(stamina, stamina_dam), STAMINA, body_zone)
 		set_stamina_dam(round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION))
 
 	if(owner)

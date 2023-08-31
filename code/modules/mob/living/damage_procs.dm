@@ -156,7 +156,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount < 0)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, amount, BRUTE)
+		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, bruteloss), BRUTE)
 	bruteloss = clamp((bruteloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -169,7 +169,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount < 0)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, amount, OXY)
+		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, oxyloss), OXY)
 	oxyloss = clamp((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -190,7 +190,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount < 0)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, amount, TOX)
+		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, toxloss), TOX)
 	toxloss = clamp((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -211,7 +211,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount < 0)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, amount, BURN)
+		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, fireloss), BURN)
 	fireloss = clamp((fireloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
@@ -224,7 +224,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount < 0)
-		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, amount, CLONE)
+		SEND_SIGNAL(src, COMSIG_MOB_APPLY_HEALING, min(amount, cloneloss), CLONE)
 	cloneloss = clamp((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()

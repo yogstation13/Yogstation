@@ -5,14 +5,17 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
-
 /datum/component/heal_react/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOB_APPLY_HEALING, PROC_REF(on_heal))
+	RegisterSignal(parent, COMSIG_BODYPART_HEALED, PROC_REF(on_heal_limb))
 
 /datum/component/heal_react/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOB_APPLY_HEALING)
+	UnregisterSignal(parent, COMSIG_BODYPART_HEALED)
 
-/datum/component/heal_react/proc/on_heal(amount, damtype)
+/datum/component/heal_react/proc/on_heal(var/mob/living/target,amount,damtype)
+
+/datum/component/heal_react/proc/on_heal_limb(var/mob/living/carbon/target,amount,damtype,var/obj/item/bodypart/BP)
 
 /datum/component/heal_react/boost
 	///multiplicitive boost to incoming healing
@@ -29,29 +32,52 @@
 		applies_to = damtype_set
 	return ..()
 
-/datum/component/heal_react/boost/on_heal(amount, damtype)
+/datum/component/heal_react/boost/on_heal_limb(var/mob/living/carbon/target,amount,damtype,def_zone) //used to target the specific limb being healed, giving the impression it's getting healed more rather than twice
 	if(!(damtype in applies_to))
 		return
 	if(idiotcooldown)
 		return
 	idiotcooldown = TRUE
-	var/mob/living/owner = parent
-	var/heal_amount = min(amount * boost_amount, owner.maxHealth - owner.health)
+	var/obj/item/bodypart/BP = target.get_bodypart(def_zone)
+	var/heal_amount = min(amount * boost_amount, BP.get_damage())
+	target.apply_damage(-heal_amount, damtype, def_zone)
+	target.say("applying heal amount of [heal_amount] from damtype [damtype] [amount] to limb [def_zone]")
+	idiotcooldown = FALSE
+	return heal_amount
+
+/datum/component/heal_react/boost/on_heal(var/mob/living/target,amount,damtype)
+	if(!(damtype in applies_to))
+		return
+	if(idiotcooldown)
+		return
+	idiotcooldown = TRUE
+	var/heal_amount = min(-amount * boost_amount, target.maxHealth - target.health)
 	if(damtype != TOX)
-		owner.apply_damage_type(-heal_amount, damtype, BODYPART_ANY)
+		target.apply_damage_type(-heal_amount, damtype, BODYPART_ANY)
+		target.say("applying heal amount of [heal_amount] from damtype [damtype] [amount]")
 	else
-		owner.adjustToxLoss(-heal_amount, forced = TRUE) // I am going to kill slimepeopel I am going to MURDER slime people I haTE
+		target.adjustToxLoss(-heal_amount, forced = TRUE) // HELLO xenobio
+		target.say("applying heal amount of [heal_amount] from damtype [damtype] [amount]")
 	idiotcooldown = FALSE
 	return heal_amount
 
 /datum/component/heal_react/boost/holyshit
 		applies_to = list(BRUTE,BURN,TOX,CLONE)
 
-/datum/component/heal_react/boost/holyshit/on_heal(amount, damtype)
-	var/mob/living/owner = parent
-	if(istype(get_area(owner), /area/chapel))
+/datum/component/heal_react/boost/holyshit/on_heal_limb(var/mob/living/carbon/target,amount,damtype,var/obj/item/bodypart/BP)
+	if(istype(get_area(target), /area/chapel))
 		boost_amount *= GLOB.religious_sect.chapel_buff_coeff
 	var/favor = ..()
 	boost_amount = initial(boost_amount)
-	if(.)
+	if(favor)
 		GLOB.religious_sect.adjust_favor(round(min(favor, 40), 0.1))
+		target.say("providing favor amount of [favor]")
+
+/datum/component/heal_react/boost/holyshit/on_heal(var/mob/living/target,amount,damtype)
+	if(istype(get_area(target), /area/chapel))
+		boost_amount *= GLOB.religious_sect.chapel_buff_coeff
+	var/favor = ..()
+	boost_amount = initial(boost_amount)
+	if(favor)
+		GLOB.religious_sect.adjust_favor(round(min(favor, 40), 0.1))
+		target.say("providing favor amount of [favor]")
