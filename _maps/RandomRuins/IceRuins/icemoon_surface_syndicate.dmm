@@ -957,6 +957,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
 "gF" = (
@@ -1032,11 +1033,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"gV" = (
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
-/area/ruin/syndicate_icemoon/xenobio)
 "gW" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -1403,6 +1399,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer/on/layer2{
 	dir = 1
 	},
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "kn" = (
@@ -1632,6 +1629,16 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"lA" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/obj/machinery/light/small{
+	dir = 1;
+	pixel_x = 16
+	},
+/turf/open/floor/circuit/red/anim{
+	initial_gas_mix = "n2=100;TEMP=80"
+	},
+/area/ruin/syndicate_icemoon/xenobio)
 "lD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1990,6 +1997,7 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "nH" = (
@@ -2186,11 +2194,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "pq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_x = 16
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/circuit/red/anim{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -3454,6 +3458,9 @@
 "xV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/structure/closet/firecloset,
+/obj/item/clothing/suit/fire/atmos,
+/obj/item/clothing/head/hardhat/atmos,
+/obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "xW" = (
@@ -5089,6 +5096,7 @@
 	req_access_txt = "150"
 	},
 /obj/structure/window/reinforced,
+/obj/item/soap/syndie,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
 "IO" = (
@@ -7197,7 +7205,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "Yi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/circuit/red/anim{
 	initial_gas_mix = "n2=100;TEMP=80"
 	},
@@ -10911,7 +10918,7 @@ qK
 qK
 qK
 DM
-pq
+lA
 AT
 MH
 ON
@@ -10985,8 +10992,8 @@ qK
 qK
 qK
 DM
-gV
 Yi
+pq
 MH
 ON
 ab
