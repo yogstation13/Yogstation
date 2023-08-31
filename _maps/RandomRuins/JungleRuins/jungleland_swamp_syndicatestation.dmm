@@ -1566,18 +1566,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/main)
-"oI" = (
-/obj/structure/closet/syndicate,
-/obj/item/clothing/under/syndicate/camo,
-/obj/item/clothing/head/HoS/beret/syndicate,
-/obj/item/clothing/head/HoS/syndicate,
-/obj/item/crowbar/red,
-/obj/item/storage/belt/military,
-/obj/item/suppressor,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/ammo_box/magazine/m10mm,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "oN" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
@@ -3648,6 +3636,19 @@
 /obj/structure/lattice/catwalk,
 /turf/open/water/toxic_pit,
 /area/jungleland/toxic_pit)
+"HJ" = (
+/obj/structure/closet/syndicate,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/syndicate,
+/obj/item/crowbar/red,
+/obj/item/storage/belt/military,
+/obj/item/suppressor,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "HM" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -6993,7 +6994,7 @@ jG
 lJ
 ea
 Su
-oI
+HJ
 sa
 Su
 iX
