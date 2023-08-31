@@ -71,6 +71,9 @@
 	if (current_skin)
 		. += "It can be spun with <b>alt+click</b>"
 
+/obj/item/gun/ballistic/revolver/ultrasecure
+	pin = /obj/item/firing_pin/fucked
+
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
 	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 special rounds."

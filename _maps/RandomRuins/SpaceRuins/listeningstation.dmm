@@ -1183,24 +1183,6 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/listeningstation)
-"kv" = (
-/obj/structure/closet/syndicate{
-	req_access_txt = "150"
-	},
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/crowbar/red,
-/obj/item/clothing/head/HoS/beret/syndicate,
-/obj/item/clothing/head/HoS/syndicate{
-	desc = "A black cap fit for a Syndicate recon officer."
-	},
-/obj/item/binoculars,
-/obj/item/clothing/under/syndicate,
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/under/syndicate/camo,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/suppressor,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "kw" = (
 /obj/item/circuitboard/machine/holopad,
 /obj/item/stock_parts/capacitor,
@@ -1247,6 +1229,20 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
+"kR" = (
+/obj/structure/closet/syndicate{
+	req_access_txt = "150"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_box/a357,
+/obj/item/crowbar/red,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/binoculars,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/syndicate/camo,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "kW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1787,6 +1783,21 @@
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
+"we" = (
+/obj/structure/closet/syndicate{
+	req_access_txt = "150"
+	},
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/crowbar/red,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/binoculars,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/syndicate/camo,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/suppressor,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "wj" = (
 /obj/machinery/light{
 	dir = 8
@@ -1801,9 +1812,9 @@
 	name = "Cayenne II's bed"
 	},
 /mob/living/simple_animal/hostile/carp{
+	desc = "A descendant of the legendary Cayenne, a failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot.";
 	faction = list("Syndicate");
-	name = "Cayenne II";
-	desc = "A descendant of the legendary Cayenne, a failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot."
+	name = "Cayenne II"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -1976,18 +1987,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
-"zW" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate/comms/space{
-	dir = 8
-	},
-/obj/structure/sign/poster/official/no_erp{
-	desc = "This poster reminds the crew that Eroticism, Rape and Pornography are banned on Syndicate stations.";
-	pixel_y = -32
-	},
-/obj/item/bedsheet/syndie,
-/obj/structure/bed,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "Ag" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red/half/contrasted,
@@ -2251,6 +2250,18 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
+"He" = (
+/obj/structure/sign/poster/official/no_erp{
+	desc = "This poster reminds the crew that Eroticism, Rape and Pornography are banned on Syndicate stations.";
+	pixel_y = -32
+	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/obj/effect/mob_spawn/human/lavaland_syndicate/comms/space/lieutenant{
+	dir = 8
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "Hy" = (
 /obj/machinery/computer/med_data/syndie{
 	dir = 8;
@@ -3887,7 +3898,7 @@ aY
 wW
 ba
 vQ
-kv
+we
 az
 NO
 "}
@@ -4127,7 +4138,7 @@ wW
 wW
 sB
 pO
-kv
+kR
 as
 NO
 "}
@@ -4167,7 +4178,7 @@ OV
 Su
 tH
 ah
-zW
+He
 az
 NO
 "}
