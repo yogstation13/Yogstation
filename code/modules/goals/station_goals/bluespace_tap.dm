@@ -226,7 +226,7 @@
 	var/emagged = FALSE
 
 	/// Cooldown to prevent spamming portal spawns without an emag
-	COOLDOWN_DELCARE(emergency_shutdown)
+	COOLDOWN_DECLARE(emergency_shutdown)
 
 /obj/machinery/power/bluespace_tap/New()
 	..()
