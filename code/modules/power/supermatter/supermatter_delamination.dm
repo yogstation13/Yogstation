@@ -83,7 +83,7 @@
 		var/turf/T = tile
 		for(var/thing in T)
 			var/atom/movable/X = thing
-			X.singularity_pull(supermatter_turf, 6)
+			X.singularity_pull(supermatter_turf, 40)
 
 /datum/supermatter_delamination/proc/call_cascading()
 	sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
