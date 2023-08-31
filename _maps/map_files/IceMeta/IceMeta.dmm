@@ -20516,6 +20516,32 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"gdB" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/chief";
+	dir = 4;
+	name = "CE Office APC";
+	pixel_x = 24
+	},
+/obj/machinery/light_switch{
+	pixel_x = 26;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/chief)
 "gdG" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -57338,31 +57364,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
-"qEu" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/chief";
-	dir = 4;
-	name = "CE Office APC";
-	pixel_x = 24
-	},
-/obj/machinery/light_switch{
-	pixel_x = 26;
-	pixel_y = 26
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/chief)
 "qEA" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -125116,7 +125117,7 @@ hnu
 pmv
 nyr
 mUB
-qEu
+gdB
 jJf
 gKJ
 aNK
