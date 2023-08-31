@@ -665,28 +665,3 @@
 	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
-
-/datum/status_effect/divine_reception
-	id = "divinereception"
-	duration = -1
-	tick_interval = 1 // we want to at least pretend we are increasing incoming healing rather than augmenting it afterwards
-	var/healing_coefficient = 0.25 //20% increase to all incoming healing
-	var/list/saved_damage = list(BRUTE=0,BURN=0,TOX=0,CLONE=0)
-
-/datum/status_effect/divine_reception/on_apply()
-	. = ..()
-	for(var/damtype in saved_damage)
-		saved_damage[damtype] = owner.get_damage_amount(damtype) //get our current damage amounts, no cheating
-
-/datum/status_effect/divine_reception/tick()
-	var/heal_amount = 0
-	var/chapel_buff = istype(get_area(owner), /area/chapel) ? GLOB.religious_sect.chapel_buff_coeff : 1
-	for(var/damtype in saved_damage)
-		heal_amount = saved_damage[damtype] - owner.get_damage_amount(damtype)
-		if(heal_amount > 0) //we can assume we got healed, somehow
-			owner.say("heal amount of [heal_amount] registered as healed with chaplel bonus of [istype(get_area(owner), /area/chapel)]")
-			heal_amount = heal_amount * healing_coefficient * chapel_buff //get our actually important number here
-			owner.say("damtype [damtype] healing for [heal_amount]")
-
-			GLOB.religious_sect.adjust_favor(round(min(heal_amount*3, 40), 0.1)) // cap for bullshit strats I know someone will come up with one
-		saved_damage[damtype] = owner.get_damage_amount(damtype) //set our new damage amount as current damage

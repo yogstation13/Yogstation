@@ -442,8 +442,8 @@
 	if(!ishuman(L))
 		return FALSE
 
-	/*if(!L.client)
-		return FALSE*/
+	if(!L.client)
+		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
 		to_chat(user, span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
