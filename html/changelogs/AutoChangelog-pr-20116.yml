@@ -1,0 +1,5 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - tweak: "renames the corn maze datum from forgottenkitchen to chasmcornmaze to avoid confusion"
+  - mapping: "adds a Lavaland ruin for the Herald Elite Fauna"
