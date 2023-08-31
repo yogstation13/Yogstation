@@ -41,7 +41,6 @@
 	var/obj/item/bodypart/BP = target.get_bodypart(def_zone)
 	var/heal_amount = min(amount * boost_amount, BP.get_damage())
 	target.apply_damage(-heal_amount, damtype, def_zone)
-	target.say("applying heal amount of [heal_amount] from damtype [damtype] [amount] to limb [def_zone]")
 	idiotcooldown = FALSE
 	return heal_amount
 
@@ -54,10 +53,8 @@
 	var/heal_amount = min(-amount * boost_amount, target.maxHealth - target.health)
 	if(damtype != TOX)
 		target.apply_damage_type(-heal_amount, damtype, BODYPART_ANY)
-		target.say("applying heal amount of [heal_amount] from damtype [damtype] [amount]")
 	else
 		target.adjustToxLoss(-heal_amount, forced = TRUE) // HELLO xenobio
-		target.say("applying heal amount of [heal_amount] from damtype [damtype] [amount]")
 	idiotcooldown = FALSE
 	return heal_amount
 
@@ -71,7 +68,6 @@
 	boost_amount = initial(boost_amount)
 	if(favor)
 		GLOB.religious_sect.adjust_favor(round(min(favor, 40), 0.1))
-		target.say("providing favor amount of [favor]")
 
 /datum/component/heal_react/boost/holyshit/on_heal(var/mob/living/target,amount,damtype)
 	if(istype(get_area(target), /area/chapel))
@@ -80,4 +76,3 @@
 	boost_amount = initial(boost_amount)
 	if(favor)
 		GLOB.religious_sect.adjust_favor(round(min(favor, 40), 0.1))
-		target.say("providing favor amount of [favor]")
