@@ -171,11 +171,10 @@
 		if(user.client && (!client?.prefs.read_preference(/datum/preference/toggle/enable_runechat)))
 			speech_bubble_recipients.Add(user.client)
 
-	var/image/bubble = image('icons/mob/effects/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
-	SET_PLANE_EXPLICIT(bubble, ABOVE_GAME_PLANE, src)
-	bubble.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
-	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), bubble), 3.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), I), 3.5 SECONDS)
 
 	for(var/mob/dead/observer/M in GLOB.dead_mob_list)
 		if(M.client)
