@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes ethereal brute mod being 1.5 rather than 1.25 like intended"
