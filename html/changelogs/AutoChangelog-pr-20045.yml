@@ -1,8 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Service cyborgs start with a gripper that lets them interact with various service items, including food."
-  - rscadd: "A new upgrade is available for service cyborgs that lets them access the cooking section of the crafting menu only."
-  - tweak: "Cyborgs can interact with things that they CanReach instead of having to be adjacent."
-  - tweak: "Cyborgs can now toggle griddles and ovens."
-  - tweak: "Grippers now re-center items that they pick up."
