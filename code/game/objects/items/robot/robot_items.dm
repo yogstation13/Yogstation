@@ -934,5 +934,6 @@
 		/obj/item/kitchen/knife/combat,
 		/obj/item/kitchen/knife/envy,
 		/obj/item/kitchen/knife/rainbowknife,
+		/obj/item/kitchen/knife/ritual
 	)
 
