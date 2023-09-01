@@ -970,6 +970,15 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_brped
+	name = "Cyborg Upgrade (BRPED)"
+	id = "borg_upgrade_brped"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/brped
+	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/silver = 2500)
+	construction_time = 12 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_broomer
 	name = "Cyborg Upgrade (Experimental Push Broom)"
 	id = "borg_upgrade_broomer"
@@ -1026,6 +1035,15 @@
 	build_path = /obj/item/borg/upgrade/nv_mesons
 	/// Exact cost of NV Mesons for humans.
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000, /datum/material/plastic = 150)
+ 	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_service_cookbook
+	name = "Cyborg Upgrade (Cookbook)"
+	id = "borg_upgrade_service_cookbook"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/service_cookbook
+	materials = list(/datum/material/iron = 15000, /datum/material/diamond = 1000)
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
