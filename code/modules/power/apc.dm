@@ -1531,7 +1531,7 @@
 		to_chat(ethereal, span_warning("You don't have any excess power to channel into the APC!"))
 		return TRUE
 	to_chat(ethereal, span_notice("You start channeling power through your body into the APC."))
-	if(!do_after(user, 5 SECONDS, target = src))
+	if(!do_after(user, 1 SECONDS, target = src))
 		return FALSE
 	if(ethereal.nutrition < NUTRITION_LEVEL_MOSTLY_FULL)
 		to_chat(ethereal, span_warning("You don't have any excess power to transfer to the APC!"))
