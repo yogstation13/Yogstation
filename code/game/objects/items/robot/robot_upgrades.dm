@@ -752,7 +752,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/obj/item/gripper/medical/gripper = locate() in R.module.modules
+	var/obj/item/borg/gripper/medical/gripper = locate() in R.module.modules
 	if(gripper)
 		to_chat(user, span_warning("This cyborg is already equipped with a medical gripper!"))
 		return FALSE
@@ -766,7 +766,7 @@
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/gripper/medical/gripper in R.module.modules)
+	for(var/obj/item/borg/gripper/medical/gripper in R.module.modules)
 		R.module.remove_module(gripper, TRUE)
 
 /obj/item/borg/upgrade/defib
