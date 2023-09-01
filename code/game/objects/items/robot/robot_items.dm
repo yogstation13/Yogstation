@@ -897,14 +897,14 @@
 		/obj/item/stack/conveyor
 	)
 
-/obj/item/gripper/medical
+/obj/item/borg/gripper/medical
 	name = "medical gripper"
 	desc = "A simple grasping tool for interacting with various medical related items."
 	can_hold = list(
 		/obj/item/reagent_containers/glass/bottle, // Bottles & Vials
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/blood // Blood Bags.
-  )
+	)
   
 /obj/item/borg/gripper/service
 	name = "service gripper"
