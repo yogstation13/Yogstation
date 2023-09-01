@@ -1528,6 +1528,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_fully_heal(mob/living/carbon/human/H)
 	return
 
+/datum/species/proc/spec_rad_act(mob/living/carbon/human/H, amount, collectable_radiation)
+	return
+
 /datum/species/proc/spec_emp_act(mob/living/carbon/human/H, severity)
 	return
 

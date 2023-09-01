@@ -23,7 +23,7 @@
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_POWERHUNGRY)
+	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE)
 	mutant_bodyparts = list("ethereal_mark")
 	default_features = list("ethereal_mark" = "Eyes")
 	species_language_holder = /datum/language_holder/ethereal
@@ -130,6 +130,23 @@
 	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
 	return TRUE
 
+/datum/species/ethereal/spec_rad_act(mob/living/carbon/human/H, amount, collectable_radiation)
+	if(!collectable_radiation)
+		return
+	if(amount <= RAD_BACKGROUND_RADIATION)
+		return
+	var/rad_percent = 1 - (H.getarmor(null, RAD) / 100)
+	if(!rad_percent)
+		return
+	H.adjust_nutrition(min(amount / 2500, 5) * rad_percent)
+
+/datum/species/ethereal/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	. = ..()
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		H.visible_message(span_warning("[H] absorbs [P]!"), span_userdanger("You absorb [P]!"))
+		H.adjust_nutrition(P.damage * (1 - (H.getarmor(null, RAD) / 100)))
+		return TRUE
+
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
 	if(H.stat == DEAD)
@@ -235,6 +252,12 @@
 			SPECIES_PERK_ICON = "lightbulb",
 			SPECIES_PERK_NAME = "Disco Ball",
 			SPECIES_PERK_DESC = "Ethereals passively generate their own light.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "bolt",
+			SPECIES_PERK_NAME = "Nuclear-Powered",
+			SPECIES_PERK_DESC = "Ethereals can gain charge when absorbing certain kinds of radiation.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

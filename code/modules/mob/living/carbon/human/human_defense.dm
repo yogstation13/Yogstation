@@ -572,6 +572,10 @@
 			adjustStaminaLoss(min(15 * affected_parts.len / severity, 60 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
 			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
 
+/mob/living/carbon/human/rad_act(amount, collectable_radiation)
+	. = ..()
+	dna?.species.spec_rad_act(src, amount, collectable_radiation)
+
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()
 	var/list/inventory_items_to_kill = list()
