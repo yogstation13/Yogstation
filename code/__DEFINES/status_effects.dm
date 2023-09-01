@@ -68,7 +68,7 @@
 
 #define STATUS_EFFECT_DIAMONDSKIN /datum/status_effect/diamondskin //Increases heat and pressure resistance
 
-#define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //temporary antimagic
+#define STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC /datum/status_effect/holylight_antimagic //long-term temporary antimagic that makes you blue
 
 /////////////
 // DEBUFFS //

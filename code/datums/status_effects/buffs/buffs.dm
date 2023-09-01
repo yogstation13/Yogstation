@@ -692,31 +692,23 @@
 		H.physiology.pressure_mod /= 0.5
 		H.physiology.heat_mod /= 0.5
 	
-/datum/status_effect/antimagic
+/datum/status_effect/holylight_antimagic
 	id = "antimagic"
 	duration = 2 MINUTES
 	tick_interval = 0
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /atom/movable/screen/alert/status_effect/antimagic
+	alert_type = /atom/movable/screen/alert/status_effect/holylight_antimagic
 
-/atom/movable/screen/alert/status_effect/antimagic
+/atom/movable/screen/alert/status_effect/holylight_antimagic
 	name = "Diamond skin"
 	desc = "Your skin is infused with diamonds, making you more resistant to heat and pressure."
 	icon_state = "shadow_mend" //i'm a coder, not a spriter
 
-/datum/status_effect/antimagic/on_apply()
-	. = ..()
-	if(.)
-		if(ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-			H.AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
-			H.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+/datum/status_effect/holylight_antimagic/on_apply()
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 
-/datum/status_effect/antimagic/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		var/datum/component/anti_magic/antimagic = H.GetComponent(/datum/component/anti_magic)
-		if(antimagic)
-			antimagic.RemoveComponent()
-		H.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+/datum/status_effect/holylight_antimagic/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
