@@ -7,10 +7,11 @@
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
+	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
-	brutemod = 1.5 //Don't rupture their membranes
+	brutemod = 1.25 //Don't rupture their membranes
 	burnmod = 0.8 //Bodies are resilient to heat and energy
 	heatmod = 0.5 //Bodies are resilient to heat and energy
 	coldmod = 2.0 //Don't extinguish the stars

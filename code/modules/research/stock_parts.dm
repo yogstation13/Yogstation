@@ -104,12 +104,16 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 		new /obj/item/stock_parts/matter_bin(src)
 
 /obj/item/storage/part_replacer/cyborg
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	name = "cyborg rapid part exchange device"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts."
 	icon_state = "borgrped"
 	item_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+
+/obj/item/storage/part_replacer/bluespace/cyborg
+	name = "cyborg bluespace rapid part exchange device"
+	desc = "A bluespace-variant of the special mechanical module made to store, sort, and apply standard machine parts."
 
 /proc/cmp_rped_sort(obj/item/A, obj/item/B)
 	return B.get_part_rating() - A.get_part_rating()
