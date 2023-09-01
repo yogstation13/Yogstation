@@ -395,49 +395,11 @@
 	update_appearance(UPDATE_ICON)
 	user.update_inv_wear_suit()
 
-/obj/item/clothing/suit/jacket/pride/ace
-	name = "asexual pride jacket"
-	desc = "Smells like garlic bread."
-	icon_state = "ace"
-	item_state = "ace"
-
-/obj/item/clothing/suit/jacket/pride/aro
-	name = "aromantic pride jacket"
-	desc = "Not to be confused with aromatic."
-	icon_state = "aro"
-	item_state = "aro"
-
-/obj/item/clothing/suit/jacket/pride/aro/Initialize(mapload)
-	. = ..()
-	if(prob(1)) // small chance to get it wrong
-		name = "aromatic pride jacket"
-		desc = "Not to be confused with aromantic."
-
-/obj/item/clothing/suit/jacket/pride/nb
-	name = "non-binary pride jacket"
-	desc = "The AI's worst nightmare."
-	icon_state = "nonbinary"
-	item_state = "nonbinary"
-	var/spooked_ipcs = list() // list of IPCs we've managed to scare by using numbers that computers don't like
-
-/obj/item/clothing/suit/jacket/pride/nb/equipped(mob/user, slot)
-	. = ..()
-	if((slot & ITEM_SLOT_OCLOTHING) && isipc(user) && !(user in spooked_ipcs))
-		to_chat(user, span_userdanger("AAAAAAAHHHH!!! GET IT OFF!!!")) // IPCs don't like the non binary jacket because computers use binary
-		user.emote("scream")
-		spooked_ipcs |= user
-
 /obj/item/clothing/suit/jacket/pride/mlm
 	name = "\improper MLM pride jacket"
 	desc = "For those who really like pyramid schemes."
 	icon_state = "mlm"
 	item_state = "mlm"
-
-/obj/item/clothing/suit/jacket/pride/trans
-	name = "trans pride jacket"
-	desc = "You hate trans women because they're trans. I hate trans women because they're women. We are NOT the same."
-	icon_state = "trans"
-	item_state = "trans"
 
 /obj/item/clothing/suit/jacket/pride/lesbian
 	name = "lesbian pride jacket"
