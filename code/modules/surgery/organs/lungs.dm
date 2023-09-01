@@ -632,3 +632,18 @@
 	heat_level_1_threshold = 500
 	heat_level_2_threshold = 800
 	heat_level_3_threshold = 1400
+
+// ELECTROLYZER LUNGS!!!!!
+/obj/item/organ/lungs/ethereal
+	name = "aeration reticulum"
+	desc = "These exotic lungs seem crunchier than most."
+	icon_state = "lungs-ethereal"
+	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/water_vapor = 1)
+
+/obj/item/organ/lungs/ethereal/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	. = ..()
+	var/electrolysis = breath.get_moles(/datum/gas/water_vapor)
+	if(electrolysis)
+		breath.adjust_moles(/datum/gas/water_vapor, -electrolysis)
+		breath.adjust_moles(/datum/gas/hydrogen, electrolysis)
+		breath.adjust_moles(/datum/gas/oxygen, electrolysis/2)

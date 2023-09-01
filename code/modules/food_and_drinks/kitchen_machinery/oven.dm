@@ -147,6 +147,32 @@
 	update_baking_audio()
 	return TRUE
 
+/obj/machinery/oven/attack_robot(mob/user)
+	. = ..()
+	if(panel_open)
+		to_chat(user, span_notice("The door won't budge with the access panel open!"))
+		return TRUE
+	if(!anchored)
+		to_chat(user, span_notice("The door won't budge with the [src] unsecured!"))
+		return TRUE
+	open = !open
+	if(open)
+		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+		set_smoke_state(OVEN_SMOKE_STATE_NONE)
+		to_chat(user, span_notice("You open [src]."))
+		end_processing()
+		if(used_tray)
+			used_tray.vis_flags &= ~VIS_HIDE
+	else
+		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
+		to_chat(user, span_notice("You close [src]."))
+		if(used_tray)
+			begin_processing()
+			used_tray.vis_flags |= VIS_HIDE
+	update_appearance(UPDATE_ICON)
+	update_baking_audio()
+	return TRUE
+
 /obj/machinery/oven/proc/update_baking_audio()
 	if(!open && used_tray?.contents.len)
 		oven_loop.start()
@@ -202,28 +228,10 @@
 	icon_state = "oven_tray"
 	max_items = 6
 
-
-/particles/smoke
-	icon = 'icons/effects/smoke.dmi'
-	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
-	width = 100
-	height = 100
-	count = 1000
-	spawning = 4
-	lifespan = 1.5 SECONDS
-	fade = 1 SECONDS
-	velocity = list(0, 0.4, 0)
-	position = list(6, 0, 0)
-	drift = generator("sphere", 0, 2, NORMAL_RAND)
-	friction = 0.2
-	gravity = list(0, 0.95)
-	grow = 0.05
-
 /particles/smoke/steam/mild
 	spawning = 1
 	velocity = list(0, 0.3, 0)
 	friction = 0.25
-
 
 /particles/smoke/steam
 	icon_state = list("steam_1" = 1, "steam_2" = 1, "steam_3" = 2)

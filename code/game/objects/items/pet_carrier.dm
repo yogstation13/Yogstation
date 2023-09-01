@@ -8,6 +8,7 @@
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "pet_carrier_open"
 	item_state = "pet_carrier"
+	base_icon_state = "pet_carrier"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	force = 5
@@ -143,15 +144,15 @@
 
 /obj/item/pet_carrier/update_icon_state()
 	if(open)
-		icon_state = initial(icon_state)
+		icon_state = "[base_icon_state]_open"
 		return ..()
-	icon_state = "[initial(icon_state)]_[!occupants.len ? "closed" : "occupied"]"
+	icon_state = "[base_icon_state]_[!occupants.len ? "closed" : "occupied"]"
 	return ..()
 
 /obj/item/pet_carrier/update_overlays()
 	. = ..()
 	if(!open)
-		. += "[initial(icon_state)]_[locked ? "" : "un"]locked"
+		. += "[locked ? "" : "un"]locked"
 
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
@@ -168,7 +169,7 @@
 	user.visible_message(span_notice("[user] starts loading [target] into [src]."), \
 	span_notice("You start loading [target] into [src]..."), null, null, target)
 	to_chat(target, span_userdanger("[user] starts loading you into [user.p_their()] [name]!"))
-	if(!do_mob(user, target, 30))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	if(target in occupants)
 		return

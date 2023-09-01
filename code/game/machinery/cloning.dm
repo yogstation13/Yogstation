@@ -237,9 +237,9 @@ GLOBAL_VAR_INIT(clones, 0)
 			var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations)
 			H.dna.remove_mutation_group(unclean_mutations)
 		if(efficiency > 5 && prob(20))
-			H.easy_randmut(POSITIVE)
+			H.easy_random_mutate(POSITIVE)
 		if(efficiency < 3 && prob(50))
-			var/mob/M = H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			var/mob/M = H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			if(ismob(M))
 				H = M
 	if((AGENDER || MGENDER || FGENDER) in H.dna.species.species_traits)
@@ -435,14 +435,15 @@ GLOBAL_VAR_INIT(clones, 0)
 	else
 		return ..()
 
-/obj/machinery/clonepod/emag_act(mob/user)
+/obj/machinery/clonepod/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!occupant)
-		return
+		return FALSE
 	to_chat(user, span_warning("You corrupt the genetic compiler."))
 	malfunction()
 	add_fingerprint(user)
 	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
 	log_combat(user, src, "emagged", null, occupant ? "[occupant] inside, killing them via malfunction." : null)
+	return TRUE
 
 //Put messages in the connected computer's temp var for display.
 /obj/machinery/clonepod/proc/connected_message(message)
@@ -487,7 +488,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		mob_occupant.grab_ghost()
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
 		to_chat(occupant, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
-		log_combat(occupant, "was cloned with memory loss")
+		occupant.log_message("was cloned with memory loss", LOG_ATTACK, color="green")
 		mob_occupant.flash_act()
 		GLOB.clones++
 

@@ -150,15 +150,17 @@
 	if(!type || !frames)
 		return
 	update_appearance(UPDATE_OVERLAYS)
+	var/list/added_overlays = list()
 	if(type == "fire")
-		feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
+		added_overlays += feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
 		DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
 	else if(bolt_type == BOLT_TYPE_LOCKING)
 		if(type == "slide_close") // cause the gun to move clockwise if slide is closed
 			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
 	if(type != "fire")
-		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
+		added_overlays += add_overlay("[feedback_original_icon_base]_[type]") // actual animation
 	sleep(frames)
+	cut_overlays(added_overlays)
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/gun/ballistic/update_icon_state()
@@ -406,7 +408,6 @@
 ///Installs a new suppressor, assumes that the suppressor is already in the contents of src
 /obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
 	suppressed = S
-	w_class += S.w_class //so pistols do not fit in pockets when suppressed
 	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/proc/install_enloudener(obj/item/enloudener/E)
@@ -423,7 +424,6 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [suppressed.name] from \the [src]."))
 			user.put_in_hands(suppressed)
-			w_class -= suppressed.w_class
 			suppressed = null
 			update_appearance(UPDATE_ICON)
 			return
@@ -432,7 +432,6 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [enloudened.name] from \the [src]."))
 			user.put_in_hands(enloudened)
-			w_class -= enloudened.w_class
 			enloudened = null
 			update_appearance(UPDATE_ICON)
 			return

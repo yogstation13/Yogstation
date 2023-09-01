@@ -25,15 +25,16 @@
 /obj/machinery/doorButtons/LateInitialize()
 	findObjsByTag()
 
-/obj/machinery/doorButtons/emag_act(mob/user)
+/obj/machinery/doorButtons/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
-
+	return TRUE
+	
 /obj/machinery/doorButtons/proc/removeMe()
 	return
 

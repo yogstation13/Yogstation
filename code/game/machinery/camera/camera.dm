@@ -39,7 +39,6 @@
 
 	// Upgrades bitflag
 	var/upgrades = 0
-	var/datum/component/empprotection/emp_component
 
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
@@ -108,7 +107,6 @@
 	if(alertradio)
 		QDEL_NULL(alertradio)
 	QDEL_NULL(assembly)
-	QDEL_NULL(emp_component)
 	if(bug)
 		bug.bugged_cameras -= src.c_tag
 		if(bug.current == src)

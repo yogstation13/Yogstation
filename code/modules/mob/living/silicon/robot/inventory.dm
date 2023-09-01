@@ -10,8 +10,8 @@
 /mob/living/silicon/robot/get_active_held_item(get_gripper = FALSE)
 	var/item = module_active
 	// snowflake handler for the gripper
-	if(istype(item, /obj/item/gripper) && !get_gripper)
-		var/obj/item/gripper/G = item
+	if(istype(item, /obj/item/borg/gripper) && !get_gripper)
+		var/obj/item/borg/gripper/G = item
 		if(G.wrapped)
 			if(G.wrapped.loc != G)
 				G.wrapped = null
@@ -268,7 +268,7 @@
   */
 /mob/living/silicon/robot/proc/uneq_active()
 	if(module_active)
-		var/obj/item/gripper/gripper = get_active_held_item(TRUE)
+		var/obj/item/borg/gripper/gripper = get_active_held_item(TRUE)
 		if(istype(gripper) && gripper.drop_held())
 			return
 		unequip_module_from_slot(module_active, get_selected_module())

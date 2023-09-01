@@ -1,11 +1,11 @@
-# This list auto requests reviews from the specified org members 
-# when a PR that modifies the file in question is opened 
-# This list is alphabetized by User -> Filename KEEP IT THAT WAY 
-# In the event that multiple org members are to be informed of changes 
-# to the same file or dir, add them to the end under Multiple Owners 
- 
+# This list auto requests reviews from the specified org members
+# when a PR that modifies the file in question is opened
+# This list is alphabetized by User -> Filename KEEP IT THAT WAY
+# In the event that multiple org members are to be informed of changes
+# to the same file or dir, add them to the end under Multiple Owners
+
 # Example
- 
+
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
@@ -27,11 +27,7 @@
 /yogstation/sound/ @yogstation13/head-coders
 /yogstation/code/game/world.dm @yogstation13/head-coders
 /code/controllers/subsystem/ticker.dm @yogstation13/head-coders
-
-#monster860
-
-/code/modules/atmospherics/ @monster860
-/yogstation/code/modules/atmospherics/ @monster860
+/code/datums/ai_laws.dm @yogstation13/head-coders
 
 #thegamerdk
 
@@ -43,5 +39,5 @@
 *.so @alexkar598
 rust_g @alexkar598
 #tracking new jobs and antags to make sure the website ban page is kept up to date
-/code/modules/jobs/jobs.dm
-/code/modules/admin/sql_ban_system.dm
+/code/modules/jobs/jobs.dm @alexkar598
+/code/modules/admin/sql_ban_system.dm @alexkar598

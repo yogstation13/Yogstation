@@ -1,10 +1,26 @@
 /datum/crafting_recipe/food
 	var/real_parts
-	category = CAT_FOOD
+	/// A rough equivilance for how much nutrition this recipe's result will provide
+	var/total_nutriment_factor = 0
 
 /datum/crafting_recipe/food/New()
+	if(ispath(result, /obj/item/reagent_containers/food))
+		var/obj/item/reagent_containers/food/result_food = new result()
+		for(var/datum/reagent/consumable/nutriment as anything in result_food.list_reagents)
+			total_nutriment_factor += initial(nutriment.nutriment_factor) * result_food.list_reagents[nutriment]
+		qdel(result_food)
 	real_parts = parts.Copy()
 	parts |= reqs
+
+/datum/crafting_recipe/food/crafting_ui_data()
+	var/list/data = list()
+
+	if(ispath(result, /obj/item/reagent_containers/food))
+		var/obj/item/reagent_containers/food/item = result
+		data["foodtypes"] = bitfield_to_list(initial(item.foodtype), FOOD_FLAGS)
+	data["nutriments"] = total_nutriment_factor
+
+	return data
 
 //////////////////////////////////////////FOOD MIXTURES////////////////////////////////////
 

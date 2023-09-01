@@ -51,7 +51,7 @@
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
 	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
-			The next person to use that airlock will trigger an explosion, knocking them down and destroying \
+			The next person to open that airlock will trigger an explosion, knocking them down and destroying \
 			the airlock maintenance panel."
 	item = /obj/item/doorCharge
 	cost = 2
@@ -162,6 +162,7 @@
 	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
 	cost = 20
 	player_minimum = 25 //basically a fuckin megafauna
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //too much collateral damage with it's AOEs
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
@@ -178,9 +179,10 @@
 	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \
 			If you install this, it will make you incapable of pushing and pulling. \
 			There are no half-measures, either you succeed or you die."
-	cost = 16
+	cost = 20
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
