@@ -46,6 +46,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		if(!brain.brainmob)
 			to_chat(user, span_warning("[W] is not active!"))
 			return ..()
+		if(brain.syndicate_mmi)
+			to_chat(user, span_warning("This MMI lacks the support to be used for the creation of AIs."))
+			return ..()
+
 		SSticker.mode.remove_antag_for_borging(brain.brainmob.mind)
 		if(!istype(brain.laws, /datum/ai_laws/ratvar))
 			remove_servant_of_ratvar(brain.brainmob, TRUE)
@@ -58,7 +62,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			A = new /mob/living/silicon/ai(loc, brain.laws, brain.brainmob)
 		else
 			A = new /mob/living/silicon/ai(loc, laws, brain.brainmob)
-		
+
 		A.relocate(TRUE)
 
 		if(brain.force_replace_ai_name)
@@ -107,7 +111,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		download_warning = TRUE
 	if(downloading && download_progress >= 100)
 		finish_download()
-	
+
 	if(downloading)
 		if(!downloading.can_download)
 			stop_download()
@@ -128,7 +132,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		data["cleared_for_use"] = FALSE
 		return data
 
-	data["cleared_for_use"] = TRUE 
+	data["cleared_for_use"] = TRUE
 	data["authenticated"] = authenticated
 
 	if(issilicon(user))
@@ -166,7 +170,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 					data["user_image"] = SSassets.transport.get_asset_url("photo_[md5]_cropped.png")
 		data["has_access"] = check_access(user.get_idcard())
-	
+
 	if(obj_flags & EMAGGED)
 		data["username"] = "ERROR"
 		data["has_access"] = TRUE
@@ -178,7 +182,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(intellicard && intellicard.AI)
 		data["intellicard_ai"] = intellicard.AI.real_name
 		data["intellicard_ai_health"] = intellicard.AI.health
-	else 
+	else
 		data["intellicard_ai"] = null
 		data["intellicard_ai_health"] = 0
 
@@ -247,13 +251,13 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	if(!cleared_for_use)
 		if(action == "clear_for_use")
 			var/code = params["control_code"]
-			
+
 			if(!code)
 				return
-			
+
 			if(!GLOB.ai_control_code)
 				return
-			
+
 			var/length_of_number = length(code)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
@@ -294,13 +298,13 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				authenticated = TRUE
 		if(action == "log_in_control_code")
 			var/code = params["control_code"]
-			
+
 			if(!code)
 				return
-			
+
 			if(!GLOB.ai_control_code)
 				return
-			
+
 			var/length_of_number = length(code)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
@@ -426,7 +430,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!is_station_level(z))
 				to_chat(user, span_warning("No connection. Try again later."))
 				return
-			
+
 			user.visible_message(span_danger("[user] attempts to cancel a process on [src]."), span_notice("An unknown process seems to be interacting with [A]! You attempt to end the proccess.."))
 			if (do_after(user, 10 SECONDS, src))
 				A.hijacking.forceMove(get_turf(src))
@@ -482,7 +486,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!is_station_level(z))
 				to_chat(user, span_brass("It's beyond our reach."))
 				return
-			
+
 			user.visible_message(span_danger("[user] begins to rip out a strange cog from [src]!"), span_notice("There's something attached to [A]! You attempt to remove it.."))
 			if (do_after(user, 10 SECONDS, src))
 				A.cogging.forceMove(get_turf(src))
@@ -492,7 +496,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(A, span_bolddanger("Anomaly cleared. System is now safe to resume operation."))
 			else
 				to_chat(user, span_notice("You fail to remove the cog."))
-		
+
 
 
 /obj/item/paper/ai_control_code/Initialize(mapload)

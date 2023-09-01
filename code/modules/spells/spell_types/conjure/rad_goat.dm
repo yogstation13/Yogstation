@@ -1,12 +1,12 @@
 /datum/action/cooldown/spell/conjure/radiation_anomaly
 	name = "Spawn Radiation Anomaly"
-	desc = "Spawn a radiation anomaly, summon your brothers!"
+	desc = "Spawn a radiation anomaly!"
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "radiation_anomaly"
 	sound = 'sound/weapons/resonator_fire.ogg'
 
 	school = SCHOOL_CONJURATION
-	cooldown_time = 10 SECONDS
+	cooldown_time = 1 MINUTES //it lasts 90 seconds
 
 	invocation_type = INVOCATION_SHOUT
 	invocation = "UNGA"

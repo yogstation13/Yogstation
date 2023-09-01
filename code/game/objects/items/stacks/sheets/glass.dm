@@ -171,8 +171,9 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	return min(round(source.energy / metcost), round(glasource.energy / glacost))
 
 /obj/item/stack/sheet/rglass/cyborg/use(used, transfer = FALSE) // Requires special checks, because it uses two storages
-	source.use_charge(used * metcost)
-	glasource.use_charge(used * glacost)
+	if(source.use_charge(used * metcost) && glasource.use_charge(used * glacost))
+		return TRUE
+	return FALSE
 
 /obj/item/stack/sheet/rglass/cyborg/add(amount)
 	source.add_charge(amount * metcost)

@@ -44,13 +44,17 @@
 				to_chat(user, "This upgrade was already applied to this cyborg!")
 				return FALSE
 	if(prerequisite_upgrades && prerequisite_upgrades.len > 0)
-		for(var/upgrade_type in prerequisite_upgrades) // Janky, only because is_type_in_list() doesn't work.
+		var/list/unsatisfied_prereq_types = prerequisite_upgrades.Copy()
+		for(var/upgrade_type in unsatisfied_prereq_types)
 			for(var/obj/item/borg/upgrade/installed_upgrade in R.upgrades)
 				if(upgrade_type == installed_upgrade.type)
-					var/obj/item/borg/upgrade/temp_upgrade = new upgrade_type()
-					to_chat(R, "Upgrade error! Upgrade requires [initial(temp_upgrade.name)] first!")
-					to_chat(user, "This upgrade requires the prerequisite upgrade, [initial(temp_upgrade.name)]!")
-					return FALSE
+					unsatisfied_prereq_types -= upgrade_type
+		if(unsatisfied_prereq_types.len > 0) // Didn't meet all of the prerequisites.
+			var/first_upgrade_type = unsatisfied_prereq_types[1]
+			var/obj/item/borg/upgrade/temp_upgrade = new first_upgrade_type()
+			to_chat(R, "Upgrade error! Upgrade requires [initial(temp_upgrade.name)] first!") // Hint of what upgrade to add next.
+			to_chat(user, "This upgrade requires the prerequisite upgrade, [initial(temp_upgrade.name)]!")
+			return FALSE
 	if(blacklisted_upgrades && blacklisted_upgrades.len > 0)
 		for(var/upgrade_type in blacklisted_upgrades)
 			for(var/obj/item/borg/upgrade/installed_upgrade in R.upgrades)
@@ -63,8 +67,13 @@
 
 /// Called when upgrade is removed from the cyborg.
 /obj/item/borg/upgrade/proc/deactivate(mob/living/silicon/robot/R, user = usr)
-	if(!(src in R.upgrades))
+	if(!(src in R.upgrades)) // This upgrade should still be in the list when this proc is called.
 		return FALSE
+	for(var/obj/item/borg/upgrade/I in R.upgrades)
+		if(!I.prerequisite_upgrades)
+			continue
+		if(is_type_in_list(src, I.prerequisite_upgrades))
+			I.forceMove(get_turf(R)) // Will deactivate all upgrades that use this as a prerequisite.
 	return TRUE
 
 /obj/item/borg/upgrade/rename
@@ -992,12 +1001,56 @@
 	R.module.add_module(RPED, FALSE, TRUE)
 
 /obj/item/borg/upgrade/rped/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..() // If BRPED upgrade is in, this will deactivate it too.
+	if(!.)
+		return FALSE
+
+	for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
+		RPED.emptyStorage()
+		R.module.remove_module(RPED, TRUE)
+
+/obj/item/borg/upgrade/brped
+	name = "engineering cyborg BRPED"
+	desc = "A bluespace rapid part exchange device for the engineering cyborg."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "BS_RPED"
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur)
+	module_flags = BORG_MODULE_ENGINEERING
+	prerequisite_upgrades = list(/obj/item/borg/upgrade/rped)
+
+/// Gives the cyborg a bluespace rapid part exchange device (BRPED) if they had the previous RPED upgrade.
+/obj/item/borg/upgrade/brped/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/item/storage/part_replacer/bluespace/cyborg/BRPED = locate() in R.module.modules
+	if(BRPED)
+		to_chat(user, span_warning("This cyborg is already equipped with a BRPED module."))
+		return FALSE
+
+	for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
+		RPED.emptyStorage()
+		R.module.remove_module(RPED, TRUE)
+
+	BRPED = new(R.module)
+	R.module.basic_modules += BRPED
+	R.module.add_module(BRPED, FALSE, TRUE)
+
+/obj/item/borg/upgrade/brped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
 	
-	for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
-		R.module.remove_module(RPED, TRUE)
+	for(var/obj/item/storage/part_replacer/bluespace/cyborg/BRPED in R.module.modules)
+		BRPED.emptyStorage()
+		R.module.remove_module(BRPED, TRUE)
+
+	var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module.modules // Give back the prerequisite item.
+	RPED = new(R.module)
+	R.module.basic_modules += RPED
+	R.module.add_module(RPED, FALSE, TRUE)
 
 /obj/item/borg/upgrade/plasmacutter
 	name = "mining cyborg plasma cutter"
@@ -1290,5 +1343,33 @@
 	if(!.)
 		return FALSE
 
-	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module)
+	for(var/obj/item/storage/bag/gem/cyborg/satchel in R.module.modules)
 		R.module.remove_module(satchel, TRUE)
+
+/obj/item/borg/upgrade/service_cookbook
+	name = "service cyborg cookbook"
+	desc = "An upgrade to the service cyborg which lets them create more food."
+	icon_state = "cyborg_upgrade3"
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/service)
+	module_flags = BORG_MODEL_SERVICE
+
+/obj/item/borg/upgrade/service_cookbook/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/obj/item/borg/cookbook/book = locate() in R.module.modules
+	if(book)
+		to_chat(user, span_warning("This cyborg is already equipped with a cookbook."))
+		return FALSE
+	book = new(R.module)
+	R.module.basic_modules += book
+	R.module.add_module(book, FALSE, TRUE)
+
+/obj/item/borg/upgrade/service_cookbook/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (!.)
+		return FALSE
+
+	for(var/obj/item/borg/cookbook/book in R.module)
+		R.module.remove_module(book, TRUE)
