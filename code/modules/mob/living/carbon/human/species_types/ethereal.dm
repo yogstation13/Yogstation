@@ -7,7 +7,7 @@
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
-	mutantstomach = /obj/item/organ/stomach/ethereal
+	mutantstomach = /obj/item/organ/stomach/cell/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
@@ -22,7 +22,7 @@
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER)
+	inherent_traits = list(TRAIT_POWERHUNGRY)
 	mutant_bodyparts = list("ethereal_mark")
 	default_features = list("ethereal_mark" = "Eyes")
 	species_language_holder = /datum/language_holder/ethereal
@@ -133,8 +133,26 @@
 	.=..()
 	if(H.stat == DEAD)
 		return
-	handle_charge(H)
+	if(H.nutrition > NUTRITION_LEVEL_FULL && prob(10))//10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
+		discharge_process(H)
+	else if(H.nutrition < NUTRITION_LEVEL_STARVING && H.health > 10.5)
+		apply_damage(0.65, TOX, null, 0, H)
 
+/datum/species/ethereal/get_hunger_alert(mob/living/carbon/human/H)
+	switch(H.nutrition)
+		if(0)
+			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
+		if(0 to NUTRITION_LEVEL_STARVING)
+			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
+		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
+		if(NUTRITION_LEVEL_MOSTLY_FULL to NUTRITION_LEVEL_FULL)
+			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
+		if(NUTRITION_LEVEL_FULL to NUTRITION_LEVEL_FAT)
+			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
+		else
+			H.clear_alert("ethereal_charge")
+			H.clear_alert("ethereal_overcharge")
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE
@@ -154,25 +172,6 @@
 	spec_updatehealth(H)
 	H.visible_message(span_danger("[H] stops flickering and goes back to their normal state!"))
 
-/datum/species/ethereal/proc/handle_charge(mob/living/carbon/human/H)
-	switch(get_charge(H))
-		if(ETHEREAL_CHARGE_NONE)
-			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
-		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
-			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
-			if(H.health > 10.5)
-				apply_damage(0.65, TOX, null, null, H)
-		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
-			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
-		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
-			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
-		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
-			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
-			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
-				discharge_process(H)
-		else
-			H.clear_alert("ethereal_charge")
-			H.clear_alert("ethereal_overcharge")
 
 /datum/species/ethereal/proc/discharge_process(mob/living/carbon/human/H)
 	to_chat(H, "<span class='warning'>You begin to lose control over your charge!</span>")
@@ -182,22 +181,14 @@
 	H.add_overlay(overcharge)
 	if(do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL))
 		H.flash_lighting_fx(5, 7, current_color)
-		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 		H.cut_overlay(overcharge)
-		tesla_zap(H, 2, (stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER) * 20, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
-		if(istype(stomach))
-			stomach.adjust_charge(ETHEREAL_CHARGE_FULL - stomach.crystal_charge)
+		tesla_zap(H, 2, H.nutrition * 5, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
+		H.nutrition = NUTRITION_LEVEL_MOSTLY_FULL
 		to_chat(H, "<span class='warning'>You violently discharge energy!</span>")
 		H.visible_message("<span class='danger'>[H] violently discharges energy!</span>")
-		H.Paralyze(100)
+		H.electrocute_act(0, "discharge bolt", override = TRUE, stun = TRUE)
 		return
-
-/datum/species/ethereal/proc/get_charge(mob/living/carbon/H) //this feels like it should be somewhere else. Eh?
-	var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-	if(istype(stomach))
-		return stomach.crystal_charge
-	return ETHEREAL_CHARGE_NONE
 
 /datum/species/ethereal/get_features()
 	var/list/features = ..()
@@ -238,12 +229,6 @@
 	var/list/to_add = list()
 
 	to_add += list(
-		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Shockingly Tasty",
-			SPECIES_PERK_DESC = "Ethereals can feed on electricity from APCs, and do not otherwise need to eat.",
-		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "lightbulb",

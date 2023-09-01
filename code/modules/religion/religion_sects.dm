@@ -130,14 +130,8 @@
 
 	//first we determine if we can charge them
 	var/did_we_charge = FALSE
-	var/obj/item/organ/stomach/ethereal/eth_stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-	if(istype(eth_stomach))
-		eth_stomach.adjust_charge(15 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-		did_we_charge = TRUE
-	if(ispreternis(H))
-		var/datum/species/preternis/preternis = H.dna.species
-		preternis.charge = clamp(preternis.charge + 30, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
-		did_we_charge = TRUE
+	if(HAS_TRAIT(H, TRAIT_POWERHUNGRY))
+		did_we_charge = H.adjust_nutrition(30)
 
 	var/did_we_heal = FALSE
 	var/heal_amt = 20
@@ -148,6 +142,7 @@
 		var/obj/item/bodypart/BP = X
 		if(BP.status == BODYPART_ROBOTIC)
 			did_we_heal = TRUE
+			break
 
 	if(did_we_heal && H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ROBOTIC))
 		H.update_damage_overlays()
