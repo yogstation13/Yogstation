@@ -905,6 +905,69 @@
 	R.module.basic_modules += CS
 	R.module.add_module(CS, FALSE, TRUE)
 
+/obj/item/borg/upgrade/aliensurgerykit
+	name = "medical cyborg alien surgical kit"
+	desc = "An upgrade for medical cyborgs which replaces their advanced surgical tools with the alien versions of them."
+	icon_state = "cyborg_upgrade5"
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/medical)
+	module_flags = BORG_MODULE_MEDICAL
+	prerequisite_upgrades = list(/obj/item/borg/upgrade/surgerykit)
+	var/list/items_to_remove = list( // From surgery kit prerequisite.
+		/obj/item/scalpel/advanced,
+		/obj/item/retractor/advanced,
+		/obj/item/cautery/advanced
+	)
+	var/list/items_to_add = list(
+		/obj/item/scalpel/alien,
+		/obj/item/hemostat/alien,
+		/obj/item/retractor/alien,
+		/obj/item/circular_saw/alien,
+		/obj/item/surgicaldrill/alien,
+		/obj/item/cautery/alien
+	)
+
+// Replaces the cyborg's advanced surgery tools with the alien verison of those tools.
+/obj/item/borg/upgrade/aliensurgerykit/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	// Remove all items with the exact item type in `items_to_remove`.
+	for(var/obj/item/item_module in R.module.modules)
+		for(var/item_type_to_remove in items_to_remove)
+			if(item_module.type == item_type_to_remove)
+				R.module.remove_module(item_module, TRUE)
+
+	// Checks if they have any of the added items already. If so, inform and return.
+	for(var/item_type_to_check in items_to_add)
+		if(is_type_in_list(item_type_to_check, R.module.modules))
+			to_chat(user, span_warning("This cyborg is already equipped with an alien surgical kit."))
+			return FALSE
+
+	// Gives the items from `items_to_add`.
+	for(var/item_type_to_add in items_to_add)
+		var/added_item = new item_type_to_add(R.module)
+		R.module.basic_modules += added_item
+		R.module.add_module(added_item, FALSE, TRUE)
+
+/obj/item/borg/upgrade/aliensurgerykit/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	// Remove all items with the exact item type in `items_to_add`.
+	for(var/obj/item/item_module in R.module.modules)
+		for(var/item_type_to_remove in items_to_add)
+			if(item_module.type == item_type_to_remove)
+				R.module.remove_module(item_module, TRUE)
+
+	// Give the items from `items_to_remove`.
+	for(var/item_type_to_add in items_to_remove)
+		var/added_item = new item_type_to_add(R.module)
+		R.module.basic_modules += added_item
+		R.module.add_module(added_item, FALSE, TRUE)
+
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"
 	desc = "Bluespace Optimized Remote Intelligence Synchronization. An uplink device which takes the place of an MMI in cyborg endoskeletons, creating a robotic shell controlled by an AI."
