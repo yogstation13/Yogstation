@@ -190,6 +190,14 @@
 	build_path = /obj/item/organ/stomach/plasmaman
 	category = list("plasmaman")
 
+/datum/design/ethereal_lungs
+	name = "Aeration Reticulum"
+	id = "ethereallungs"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
+	build_path = /obj/item/organ/lungs/ethereal
+	category = list("ethereal")
+
 /datum/design/ethereal_stomach
 	name = "Biological Battery"
 	id = "etherealstomach"

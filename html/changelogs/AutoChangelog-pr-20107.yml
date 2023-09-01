@@ -1,8 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "A new upgrade for engineering cyborgs have been added that gives them a BRPED. It requires the RPED upgrade to be installed first as a prerequisite."
-  - bugfix: "Prerequisite upgrades for cyborg upgrades properly function as intended."
-  - bugfix: "On deactivation, Cyborg RPED drop all parts onto the floor instead of disappearing into the void."
-  - tweak: "\"Cyborg Upgrades: Advanced Utility\" now also requires the \"Applied Bluespace Research\" techweb node as a prerequisite."
-  - spellcheck: "Cyborg RPED's name starts with \"cyborg\" to note it is the cyborg version."
