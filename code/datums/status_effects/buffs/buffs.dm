@@ -693,7 +693,7 @@
 		H.physiology.heat_mod /= 0.5
 	
 /datum/status_effect/holylight_antimagic
-	id = "antimagic"
+	id = "holy antimagic"
 	duration = 2 MINUTES
 	tick_interval = 0
 	status_type = STATUS_EFFECT_REFRESH
