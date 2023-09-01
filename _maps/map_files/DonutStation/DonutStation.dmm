@@ -25087,6 +25087,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"maA" = (
+/obj/item/toy/plush/blahaj,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "maL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -29548,10 +29552,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
-"nYg" = (
-/obj/item/toy/plush/axolotlplushie,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "nYA" = (
 /turf/closed/wall/r_wall,
 /area/science/robotics/mechbay)
@@ -56509,7 +56509,7 @@ eWl
 fMa
 cZK
 uqu
-nYg
+maA
 uqu
 gvo
 edO
