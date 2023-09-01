@@ -905,6 +905,16 @@
 	construction_time = 140
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_surgerykit_alien
+	name = "Cyborg Upgrade (Alien Surgical Kit)"
+	id = "borg_upgrade_surgerykit_alien"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/alien_surgerykit
+	/// Combined materials of all 6 alien surgical tools.
+	materials = list(/datum/material/iron = 28000, /datum/material/silver = 11000, /datum/material/plasma = 3000, /datum/material/titanium = 9000)
+	construction_time = 14 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_analyzer
 	name = "Cyborg Upgrade (Advanced Analyzer)"
 	id = "borg_upgrade_analyzer"

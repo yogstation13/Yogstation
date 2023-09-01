@@ -905,7 +905,7 @@
 	R.module.basic_modules += CS
 	R.module.add_module(CS, FALSE, TRUE)
 
-/obj/item/borg/upgrade/aliensurgerykit
+/obj/item/borg/upgrade/alien_surgerykit
 	name = "medical cyborg alien surgical kit"
 	desc = "An upgrade for medical cyborgs which replaces their advanced surgical tools with the alien versions of them."
 	icon_state = "cyborg_upgrade5"
@@ -928,7 +928,7 @@
 	)
 
 // Replaces the cyborg's advanced surgery tools with the alien verison of those tools.
-/obj/item/borg/upgrade/aliensurgerykit/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/alien_surgerykit/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -951,7 +951,7 @@
 		R.module.basic_modules += added_item
 		R.module.add_module(added_item, FALSE, TRUE)
 
-/obj/item/borg/upgrade/aliensurgerykit/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/alien_surgerykit/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
 		return FALSE

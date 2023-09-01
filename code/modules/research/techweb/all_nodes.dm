@@ -356,10 +356,18 @@
 
 /datum/techweb_node/cyborg_upg_surgkit
 	id = "cyborg_upg_surgkit"
-	display_name = "Cyborg Upgrade: Medical Advanced Medical Tools"
-	description = "Advanced Surgical Kit and Advanced Health Scanner upgrade design for medical cyborgs."
+	display_name = "Cyborg Upgrade: Advanced Medical Tools"
+	description = "Advanced medical tool upgrades for cyborgs."
 	prereq_ids = list("cyborg_upg_med", "exp_tools")
 	design_ids = list("borg_upgrade_surgerykit", "borg_upgrade_analyzer")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+
+/datum/techweb_node/cyborg_upg_surgkit_alien
+	id = "cyborg_upg_surgkit_alien"
+	display_name = "Cyborg Upgrade: Alien Medical Tools"
+	description = "Alien medical tool upgrades for cyborgs."
+	prereq_ids = list("cyborg_upg_surgkit", "alien_bio")
+	design_ids = list("borg_upgrade_surgerykit_alien")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 /datum/techweb_node/ai

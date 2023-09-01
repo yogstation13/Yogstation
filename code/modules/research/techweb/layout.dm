@@ -463,6 +463,10 @@
 	ui_x = 416
 	ui_y = -160
 
+/datum/techweb_node/cyborg_upg_surgkit_alien
+	ui_x = 480
+	ui_y = -160
+
 /datum/techweb_node/cyber_organs_upgraded
 	ui_x = 416
 	ui_y = -96
