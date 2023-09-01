@@ -12,6 +12,7 @@
 	anchored = TRUE
 	light_range = 3
 	var/obj/item/assembly/signaler/anomaly/aSignal
+	var/coretype
 	var/area/impact_area
 
 	var/lifespan = 990
@@ -29,10 +30,23 @@
 	START_PROCESSING(SSobj, src)
 	impact_area = get_area(src)
 
-	aSignal = new(src)
-	aSignal.name = "[name] core"
+	switch(coretype)
+		if(ANOMALY_RADIATION)
+			aSignal = new /obj/item/assembly/signaler/anomaly/radiation(src)
+		if(ANOMALY_HALLUCINATION)
+			aSignal = new /obj/item/assembly/signaler/anomaly/hallucination(src)
+		if(ANOMALY_FLUX)
+			aSignal = new /obj/item/assembly/signaler/anomaly/flux(src)
+		if(ANOMALY_GRAVITATIONAL)
+			aSignal = new /obj/item/assembly/signaler/anomaly/grav(src)
+		if(ANOMALY_PYRO)
+			aSignal = new /obj/item/assembly/signaler/anomaly/pyro(src)
+		if(ANOMALY_BLUESPACE)
+			aSignal = new /obj/item/assembly/signaler/anomaly/bluespace(src)
+		if(ANOMALY_VORTEX)
+			aSignal = new /obj/item/assembly/signaler/anomaly/vortex(src)
+		
 	aSignal.code = rand(1,100)
-	aSignal.anomaly_type = type
 
 	var/frequency = rand(MIN_FREE_FREQ, MAX_FREE_FREQ)
 	if(ISMULTIPLE(frequency, 2))//signaller frequencies are always uneven!
@@ -91,6 +105,7 @@
 /obj/effect/anomaly/grav
 	name = "gravitational anomaly"
 	icon_state = "shield2"
+	coretype = ANOMALY_GRAVITATIONAL
 	density = FALSE
 	var/boing = 0
 
@@ -147,6 +162,7 @@
 /obj/effect/anomaly/flux
 	name = "flux wave anomaly"
 	icon_state = "electricity2"
+	coretype = ANOMALY_FLUX
 	density = FALSE // so it doesn't awkwardly block movement when it doesn't stun you
 	var/canshock = 0
 	var/shockdamage = 30
@@ -206,6 +222,7 @@
 	name = "bluespace anomaly"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
+	coretype = ANOMALY_BLUESPACE
 	density = TRUE
 
 /obj/effect/anomaly/bluespace/anomalyEffect()
@@ -276,6 +293,7 @@
 /obj/effect/anomaly/pyro
 	name = "pyroclastic anomaly"
 	icon_state = "at_shield2"
+	coretype = ANOMALY_PYRO
 	var/ticks = 0
 	/// How many seconds between each gas release
 	var/releasedelay = 10
@@ -315,6 +333,7 @@
 /obj/effect/anomaly/bhole
 	name = "vortex anomaly"
 	icon_state = "bhole3"
+	coretype = ANOMALY_VORTEX
 	desc = "That's a nice station you have there. It'd be a shame if something happened to it."
 
 /obj/effect/anomaly/bhole/anomalyEffect()
@@ -379,6 +398,7 @@
 /obj/effect/anomaly/radiation
 	name = "radiation anomaly"
 	icon_state = "radiation_anomaly"
+	coretype = ANOMALY_RADIATION
 	density = TRUE
 	var/spawn_goat = ANOMALY_RADIATION_NO_GOAT //For goat spawning
 
@@ -415,7 +435,7 @@
 /obj/effect/anomaly/hallucination
 	name = "hallucination anomaly"
 	icon_state = "hallucination_anomaly"
-	aSignal = /obj/item/assembly/signaler/anomaly/hallucination
+	coretype = ANOMALY_HALLUCINATION
 	/// Time passed since the last effect, increased by delta_time of the SSobj
 	var/ticks = 0
 	/// How many seconds between each small hallucination pulses

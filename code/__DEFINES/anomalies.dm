@@ -4,6 +4,7 @@
 #define ANOMALY_GRAVITATIONAL "gravitational_anomaly"
 #define ANOMALY_HALLUCINATION "hallucination_anomaly"
 #define ANOMALY_PYRO "pyro_anomaly"
+#define ANOMALY_BLUESPACE "bluespace_anomaly"
 #define ANOMALY_VORTEX "vortex_anomaly"
 #define ANOMALY_RADIATION "radiation_anomaly"
 #define ANOMALY_RADIATION_X "radiation_goat_anomaly"

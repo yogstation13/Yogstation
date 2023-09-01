@@ -19,7 +19,5 @@
 	if(!istype(summoned_object, /obj/effect/anomaly/radiation))
 		return
 	var/obj/effect/anomaly/radiation/anomaly = summoned_object
-	anomaly.spawn_goat = ANOMALY_RADIATION_YES_GOAT
-	anomaly.lifespan = 30 SECONDS
 	owner.visible_message(span_notice("You see the radiation anomaly emerges from the [owner]."), span_notice("The radiation anomaly emerges from your body."))
 	notify_ghosts("The Radioactive Goat has spawned a radiation anomaly!", source = anomaly, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Radiation Anomaly Spawned!")
