@@ -66,7 +66,8 @@
 		else
 			temp = master.zeroth
 
-		if(!mmi || !mmi.syndicate_mmi) // No MMI = Shell.
+		// Not all cyborgs have a MMI (like AI Shell). If they do and it is a syndicate MMI, their zeroth law shouldn't sync with the AI.
+		if(!(mmi && mmi.syndicate_mmi)) 
 			laws.zeroth = temp
 
 		laws.inherent.len = master.inherent.len
