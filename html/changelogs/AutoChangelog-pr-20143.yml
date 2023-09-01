@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "passive good mood organic limb healing now requires being full instead of mood"
+  - tweak: "passive organic limb healing now has a 100% chance per tick, but heals half as much"
