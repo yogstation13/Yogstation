@@ -927,7 +927,7 @@
 		/obj/item/cautery/alien
 	)
 
-// Replaces the cyborg's advanced surgery tools with the alien verison of those tools.
+// Replaces the cyborg's advanced surgery tools with the alien verison of those tools. Requires prerequisite surgery kit.
 /obj/item/borg/upgrade/alien_surgerykit/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(!.)
