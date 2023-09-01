@@ -24,7 +24,7 @@
 	var/list/loadedItems = list()
 	/// The multiplier for how far will the items be thrown. 1 is exact distance of the target; higher will multiply by that number.
 	var/range_multiplier = 1
-	/// How many items in `loadedItems` will be thrown per fire?
+	/// How many items in `loadedItems` will be thrown per fire if not on PCANNON_FIREALL?
 	var/throw_amount = 20
 	/// The sound played upon firing.
 	var/fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
