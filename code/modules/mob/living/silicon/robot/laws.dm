@@ -66,7 +66,7 @@
 		else
 			temp = master.zeroth
 
-		if(!mmi.syndicate_mmi)
+		if(!mmi || !mmi.syndicate_mmi) // No MMI = Shell.
 			laws.zeroth = temp
 
 		laws.inherent.len = master.inherent.len
