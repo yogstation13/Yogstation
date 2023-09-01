@@ -87,6 +87,12 @@
 	description = "A few ponds full of rancid and toxic water, guarded by overgrown carp. \
 	 	However, it looks like it could've been pretty, at least in the past..."
 	suffix = "jungleland_swamp_carp_pond.dmm"	
+
+/datum/map_template/ruin/jungle/all/syndicate_base //has to be all biomes cause its so big it wont spawn otherwise
+	name = "Syndicate Base"
+	id = "jungle-syndicate-base"
+	description = "A large permanent research and comms station run by the syndicate."
+	suffix = "jungleland_swamp_syndicatestation.dmm"	
 	
 /datum/map_template/ruin/jungle/all/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
 	name = "Mining Base"

@@ -4098,6 +4098,7 @@
 #include "yogstation\code\modules\jobs\job_types\paramedic.dm"
 #include "yogstation\code\modules\jobs\job_types\psychiatrist.dm"
 #include "yogstation\code\modules\jobs\job_types\tourist.dm"
+#include "yogstation\code\modules\jungleland\ghost_role_spawners.dm"
 #include "yogstation\code\modules\jungleland\jungle_alpha_mobs.dm"
 #include "yogstation\code\modules\jungleland\jungle_datums.dm"
 #include "yogstation\code\modules\jungleland\jungle_items.dm"
