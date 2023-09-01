@@ -12543,6 +12543,13 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"fOa" = (
+/obj/item/toy/plush/blahaj{
+	desc = "A smaller, friendlier, and fluffier version of the real thing. It is covered in scorch marks and various scratches.";
+	name = "bomb testing blahaj"
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "fOg" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -25087,10 +25094,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"maA" = (
-/obj/item/toy/plush/blahaj,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "maL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -56509,7 +56512,7 @@ eWl
 fMa
 cZK
 uqu
-maA
+fOa
 uqu
 gvo
 edO
