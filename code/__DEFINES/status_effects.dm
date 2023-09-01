@@ -68,6 +68,8 @@
 
 #define STATUS_EFFECT_DIAMONDSKIN /datum/status_effect/diamondskin //Increases heat and pressure resistance
 
+#define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //temporary antimagic
+
 /////////////
 // DEBUFFS //
 /////////////
