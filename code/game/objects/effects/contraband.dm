@@ -413,10 +413,6 @@
 	desc = "The Griffin commands you to be the worst you can be. Will you?"
 	icon_state = "poster33"
 
-/obj/structure/sign/poster/contraband/lizard
-	name = "Lizard"
-	desc = "This lewd poster depicts a lizard preparing to mate."
-	icon_state = "poster34"
 
 /obj/structure/sign/poster/contraband/free_drone
 	name = "Free Drone"
