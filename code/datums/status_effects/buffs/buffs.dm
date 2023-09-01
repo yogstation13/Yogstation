@@ -700,9 +700,9 @@
 	alert_type = /atom/movable/screen/alert/status_effect/holylight_antimagic
 
 /atom/movable/screen/alert/status_effect/holylight_antimagic
-	name = "Diamond skin"
-	desc = "Your skin is infused with diamonds, making you more resistant to heat and pressure."
-	icon_state = "shadow_mend" //i'm a coder, not a spriter
+	name = "Holy suffusion"
+	desc = "Your being is suffused with holy light that repels vile magics."
+	icon_state = "slime_rainbowshield" //i'm a coder, not a spriter
 
 /datum/status_effect/holylight_antimagic/on_apply()
 	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
