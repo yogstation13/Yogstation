@@ -668,6 +668,32 @@
 	P.speed *= (1/projectile_speed_coefficient)
 	P.cut_overlay(projectile_effect)
 
+/obj/item/borg/cookbook
+	name = "Codex Cibus Mechanicus"
+	desc = "It's a robot cookbook!"
+	icon = 'icons/obj/library.dmi'
+	icon_state = "cooked_book"
+	item_flags = NOBLUDGEON
+	var/datum/component/personal_crafting/cooking
+
+/obj/item/borg/cookbook/Initialize(mapload)
+	. = ..()
+	cooking = AddComponent(/datum/component/personal_crafting)
+	cooking.forced_mode = TRUE
+	cooking.mode = TRUE // Cooking mode.
+
+/obj/item/borg/cookbook/attack_self(mob/user, modifiers)
+	. = ..()
+	cooking.ui_interact(user)
+
+/obj/item/borg/cookbook/dropped(mob/user, silent)
+	SStgui.close_uis(cooking)
+	return ..()
+
+/obj/item/borg/cookbook/cyborg_unequip(mob/user)
+	SStgui.close_uis(cooking)
+	return ..()
+
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
@@ -727,7 +753,7 @@
 /**********************************************************************
 						Grippers
 ***********************************************************************/
-/obj/item/gripper
+/obj/item/borg/gripper
 	name = "cyborg gripper"
 	desc = "A simple grasping tool for interacting with various items."
 	icon = 'icons/obj/device.dmi'
@@ -735,100 +761,108 @@
 	item_flags = NOBLUDGEON
 	/// Whitelist of items types that can be held.
 	var/list/can_hold = list()
-	/// Blacklist of item subtypes that should not be held.
+	/// Blacklist of item subtypes that should not be held unless emagged.
 	var/list/cannot_hold = list()
 	/// Item currently being held if any.
 	var/obj/item/wrapped = null
-	var/mutable_appearance/appearance_wrapped = null
 
 /// Drops held item if possible.
-/obj/item/gripper/proc/drop_held(silent = FALSE)
+/obj/item/borg/gripper/proc/drop_held(silent = FALSE)
 	if(wrapped)
-		wrapped.forceMove(get_turf(wrapped))
 		if(!silent)
-			to_chat(usr, span_notice("You drop the [wrapped]."))
-		wrapped = null
-		update_appearance(UPDATE_ICON)
+			to_chat(usr, span_notice("You drop \the [wrapped]."))
+		wrapped.forceMove(get_turf(wrapped)) // The rest is handled in Exited().
 		return TRUE
 	return FALSE
 
-/// Pick up item.
-/obj/item/gripper/proc/take_item(obj/item/item, silent = FALSE)
-	if(!silent)
-		to_chat(usr, span_notice("You collect \the [item]."))
-	item.loc = src
-	wrapped = item
-	update_appearance(UPDATE_ICON)
+/obj/item/borg/gripper/Exited(atom/movable/gone, direction)
+	if(gone == wrapped) // Sanity check.
+		UnregisterSignal(wrapped, COMSIG_ATOM_UPDATED_ICON)
+		wrapped = null
+	update_appearance()
+	return ..()
 
-/obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
-	var/proximity = get_dist(user, target)
-	if(proximity > 1)
-		return
+/// Pick up item if possible.
+/obj/item/borg/gripper/proc/take_item(obj/item/item, silent = FALSE)
 	if(!wrapped)
+		if(!silent)
+			to_chat(usr, span_notice("You collect \the [item]."))
+		// Recentering the item.
+		item.pixel_x = initial(item.pixel_x)
+		item.pixel_y = initial(item.pixel_y)
+		item.transform = initial(item.transform)
+
+		usr.transferItemToLoc(item, src)
+		wrapped = item
+		RegisterSignal(wrapped, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_wrapped_updated_icon))
+		update_appearance()
+		return TRUE
+	return FALSE
+
+/obj/item/borg/gripper/proc/on_wrapped_updated_icon(datum/source, updates)
+	SIGNAL_HANDLER
+	update_appearance()
+	return NONE
+
+/obj/item/borg/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
+	if(!wrapped) // Checking if we have an item, but somehow didn't set it to be the wrapped variable.
 		for(var/obj/item/thing in src.contents)
 			wrapped = thing
 			break
-	if(wrapped) //Already have an item.
-		var/obj/item/item = wrapped
-		drop_held(TRUE)
-		//Temporary put wrapped into user so target's attackby() checks pass.
-		item.loc = user
-		//Pass the attack on to the target. This might delete/relocate wrapped.
-		var/resolved = target.attackby(item, user, params)
-		if(!resolved && item && target)
-			item.afterattack(target, user, proximity, params)
-		//If wrapped was neither deleted nor put into target, put it back into the gripper.
-		if(item && user && (item.loc == user))
-			take_item(item, TRUE)
-			return
-		else
-			item = null
-		return
-	else if(isitem(target))
-		var/obj/item/I = target
-		if(locate(target) in user.module.modules)//This prevents grabbing your own modules and grabbing similar items (if this is ever the case).
-			to_chat(user, span_danger("Your gripper cannot grab something that you already have."))
-			return
-		var/grab = 0
-		for(var/typepath in can_hold)
-			if(istype(I,typepath))
-				grab = 1
-				for(var/badpath in cannot_hold)
-					if(istype(I,badpath) && user.emagged)
-						grab = 0
-						continue
-		//Allowed to grab.
-		if(grab)
-			take_item(I)
-			return
-		to_chat(user, span_danger("Your gripper cannot hold \the [target]."))
+	if(wrapped) // Currently holding an item.
+		wrapped.melee_attack_chain(user, target, params)
+		return TRUE
+	if(isitem(target)) // Not holding an item, but want to grab an item.
+		var/obj/item/item = target
+		if(is_holdable(item))
+			take_item(item)
+			return TRUE
+	return ..()
 
-/obj/item/gripper/attack_self(mob/user)
+/obj/item/borg/gripper/proc/is_holdable(obj/item/item, slient = FALSE)
+	if(!loc || !issilicon(loc))
+		return FALSE
+	var/holdable = FALSE
+	var/mob/living/silicon/robot/user = loc
+	for(var/obj/module_item in user.module.modules) // Not doing `locate(item) in user.module.modules` because they may need to grab a duplicate item type.
+		if(item == module_item)
+			if(!slient)
+				to_chat(user, span_danger("Your gripper cannot grab your own modules."))
+			return FALSE
+	if(is_type_in_list(item, can_hold))
+		holdable = TRUE
+		if(is_type_in_list(item, cannot_hold) && !user.emagged)
+			holdable = FALSE
+	if(!holdable && !slient)
+		to_chat(user, span_danger("Your gripper cannot hold \the [item]."))
+	return holdable
+
+/obj/item/borg/gripper/attack_self(mob/user)
 	if(wrapped)
 		wrapped.attack_self(user)
 		return
 	. = ..()
 
-/obj/item/gripper/AltClick(mob/user)
+/obj/item/borg/gripper/AltClick(mob/user)
 	if(wrapped)
 		wrapped.AltClick(user)
 		return
 	. = ..()
 
-/obj/item/gripper/CtrlClick(mob/user)
+/obj/item/borg/gripper/CtrlClick(mob/user)
 	if(wrapped)
 		wrapped.CtrlClick(user)
 		return
 	. = ..()
 
-/obj/item/gripper/CtrlShiftClick(mob/user)
+/obj/item/borg/gripper/CtrlShiftClick(mob/user)
 	if(wrapped)
 		wrapped.CtrlShiftClick(user)
 		return
 	. = ..()
 
 /// Resets overlays and adds a overlay if there is a held item.
-/obj/item/gripper/update_overlays()
+/obj/item/borg/gripper/update_overlays()
 	. = ..()
 	if(wrapped)
 		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
@@ -837,19 +871,19 @@
 		. += wrapped_appearance
 
 // Make it clear what we can do with it.
-/obj/item/gripper/examine(mob/user)
+/obj/item/borg/gripper/examine(mob/user)
 	. = ..()
 	if(wrapped)
 		. += span_notice("It is holding [icon2html(wrapped, user)] [wrapped]." )
 		. += span_notice("Attempting to drop the gripper will only drop [wrapped].")
 
 // Drop the item if the gripper is unequipped.
-/obj/item/gripper/cyborg_unequip(mob/user)
+/obj/item/borg/gripper/cyborg_unequip(mob/user)
 	. = ..()
 	if(wrapped)
 		drop_held()
 
-/obj/item/gripper/engineering
+/obj/item/borg/gripper/engineering
 	name = "engineering gripper"
 	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
 	can_hold = list(
@@ -861,3 +895,35 @@
 		/obj/item/conveyor_switch_construct,
 		/obj/item/stack/conveyor
 	)
+
+/obj/item/borg/gripper/service
+	name = "service gripper"
+	desc = "A simple grasping tool for interacting with various service related items and food."
+	can_hold = list(
+		// Items from the RSF.
+		/obj/item/paper,
+		/obj/item/pen,
+		/obj/item/plate,
+		/obj/item/storage/pill_bottle/dice,
+		/obj/item/dice,
+		/obj/item/clothing/mask/cigarette,
+		// Cooking purposes.
+		/obj/item/kitchen/knife,
+		/obj/item/kitchen/rollingpin,
+		/obj/item/plate/oven_tray,
+		/obj/item/storage/fancy/egg_box,
+		// Holding most, if not all, foods. This includes drinking glasses and condiments.
+		/obj/item/reagent_containers/food,
+		// Additional.
+		/obj/item/reagent_containers/glass/mixbowl, // Kitchen mixing bowl.
+		/obj/item/kitchen/fork // Found in kitchen's vendor.
+	)
+	cannot_hold = list(
+		// Non-standard dangerous knives.
+		/obj/item/kitchen/knife/butcher,
+		/obj/item/kitchen/knife/combat,
+		/obj/item/kitchen/knife/envy,
+		/obj/item/kitchen/knife/rainbowknife,
+		/obj/item/kitchen/knife/ritual
+	)
+
