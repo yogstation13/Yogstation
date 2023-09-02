@@ -702,7 +702,7 @@
 	desc = "Contains pills to expunge radiation and toxins."
 
 /obj/item/storage/pill_bottle/penacid/PopulateContents()
-	for(var/i in 1 to 3)
+	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/penacid(src)
 
 
