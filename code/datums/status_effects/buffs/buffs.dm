@@ -594,7 +594,7 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" 
+	icon_state = "time_dilation"
 
 /datum/status_effect/doubledown
 	id = "doubledown"

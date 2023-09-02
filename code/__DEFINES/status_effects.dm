@@ -179,7 +179,7 @@
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
 
-#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade
 
 /////////////
 //  SLIME  //
