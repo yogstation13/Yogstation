@@ -72,6 +72,9 @@
 			owner.balloon_alert(owner, "mindshield detected, this will take longer...")
 			if(!do_after(user, 18 SECONDS, target))
 				return FALSE
+			for(var/obj/item/implant/mindshield/L in target)
+				if(L)
+					qdel(L)
 		else
 			if(!do_after(user, 6 SECONDS, target))
 				return FALSE
@@ -85,11 +88,6 @@
 			owner.balloon_alert(owner, "their body refuses to react...")
 			DeactivatePower()
 			return
-		// If we bypassed a mindshield, destroy it
-		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			for(var/obj/item/implant/mindshield/L in target)
-				if(L)
-					qdel(L)
 		zombify(target)
 		bloodsuckerdatum.make_vassal(target)
 		power_activated_sucessfully()
