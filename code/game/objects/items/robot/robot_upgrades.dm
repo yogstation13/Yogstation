@@ -739,36 +739,6 @@
 	for(var/obj/item/reagent_containers/borghypo/H in R.module.emag_modules)
 		H.bypass_protection = initial(H.bypass_protection)
 
-/// Gives medical cyborgs a gripper to use. Enables medical cyborgs to do all remaining aspects of medical (chemistry & blood giving) without the help of a human.
-/obj/item/borg/upgrade/medigripper
-	name = "medical cyborg gripper"
-	desc = "An upgrade for medical cyborgs which grants them a gripper to hold and interact with medical related items."
-	icon_state = "cyborg_upgrade3"
-	require_module = TRUE
-	module_types = list(/obj/item/robot_module/medical)
-	module_flags = BORG_MODULE_MEDICAL
-
-/obj/item/borg/upgrade/medigripper/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/obj/item/borg/gripper/medical/gripper = locate() in R.module.modules
-	if(gripper)
-		to_chat(user, span_warning("This cyborg is already equipped with a medical gripper!"))
-		return FALSE
-
-	gripper = new(R.module)
-	R.module.basic_modules += gripper
-	R.module.add_module(gripper, FALSE, TRUE)
-
-/obj/item/borg/upgrade/medigripper/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	for(var/obj/item/borg/gripper/medical/gripper in R.module.modules)
-		R.module.remove_module(gripper, TRUE)
-
 /obj/item/borg/upgrade/defib
 	name = "medical cyborg defibrillator"
 	desc = "An upgrade to the Medical module, installing a built-in \
