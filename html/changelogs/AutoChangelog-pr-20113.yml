@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "A new upgrade for medical cyborgs that gives them a gripper that lets them hold bottles, beakers, and blood bags."
-  - tweak: "Cyborg gripper now copy overlays for the held items."
