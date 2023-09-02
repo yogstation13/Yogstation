@@ -693,3 +693,24 @@
 		var/mob/living/carbon/human/H = owner
 		H.physiology.pressure_mod /= 0.5
 		H.physiology.heat_mod /= 0.5
+	
+/datum/status_effect/holylight_antimagic
+	id = "holy antimagic"
+	duration = 2 MINUTES
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/holylight_antimagic
+
+/atom/movable/screen/alert/status_effect/holylight_antimagic
+	name = "Holy suffusion"
+	desc = "Your being is suffused with holy light that repels vile magics."
+	icon_state = "slime_rainbowshield" //i'm a coder, not a spriter
+
+/datum/status_effect/holylight_antimagic/on_apply()
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+
+/datum/status_effect/holylight_antimagic/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+
