@@ -54,6 +54,11 @@
 	if(target_atom.stat != DEAD)
 		to_chat(owner, span_notice("[target_atom] is still alive."))
 		return FALSE
+	// Mindshield blocks it unless they're on a persuasion rack
+	var/obj/structure/bloodsucker/vassalrack/rack = locate() in target_atom.loc
+	if(HAS_TRAIT(target_atom, TRAIT_MINDSHIELD) && !rack)
+		to_chat(owner, span_warning("[target_atom]'s mindshield interferes with [src], put [target_atom.p_them()] on a persuasion rack first."))
+		return FALSE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
@@ -75,6 +80,11 @@
 			owner.balloon_alert(owner, "their body refuses to react...")
 			DeactivatePower()
 			return
+		// If we bypassed a mindshield, destroy it
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+			for(var/obj/item/implant/mindshield/L in target)
+				if(L)
+					qdel(L)
 		zombify(target)
 		bloodsuckerdatum.make_vassal(target)
 		power_activated_sucessfully()
