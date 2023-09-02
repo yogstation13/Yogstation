@@ -188,7 +188,7 @@
 		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3,
 					/obj/item/clothing/suit/jacket/pride = 3,
 					/obj/item/clothing/suit/jacket/pride/mlm = 2,
-					/obj/item/clothing/suit/jacket/pride/lesbian = 2) //yogs) //yogs clothes for clothesmate end here
+					/obj/item/clothing/suit/jacket/pride/lesbian = 2) //yogs clothes for clothesmate end here
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
 		              /obj/item/clothing/head/ushanka = 1,
