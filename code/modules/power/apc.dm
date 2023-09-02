@@ -1528,22 +1528,21 @@
 		to_chat(ethereal, span_warning("You don't have the correct stomach for this!"))
 		return FALSE
 	var/obj/item/organ/stomach/ethereal/stomach = maybe_stomach
-	if(cell.charge >= cell.maxcharge - APC_POWER_GAIN)
-		to_chat(ethereal, span_warning("The APC can't receive anymore power!"))
-		return TRUE
 	if(stomach.crystal_charge < ETHEREAL_CHARGE_FULL)
 		to_chat(ethereal, span_warning("You don't have any excess power to channel into the APC!"))
 		return TRUE
 	to_chat(ethereal, span_notice("You start channeling power through your body into the APC."))
 	if(!do_after(user, 5 SECONDS, target = src))
 		return FALSE
-	if((cell.charge >= (cell.maxcharge - APC_POWER_GAIN)) || (stomach.crystal_charge < ETHEREAL_CHARGE_FULL))
-		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
+	if((stomach.crystal_charge < ETHEREAL_CHARGE_FULL))
+		to_chat(ethereal, span_warning("You don't have any excess power to transfer to the APC!"))
 		return FALSE
 	if(istype(stomach))
 		to_chat(ethereal, span_notice("You transfer some power to the APC."))
 		stomach.adjust_charge(-APC_POWER_GAIN)
-		cell.give(APC_POWER_GAIN)
+		var/cellamount = clamp(cell.maxcharge - cell.charge, 0, APC_POWER_GAIN)
+		cell.give(cellamount)
+		add_avail(APC_POWER_GAIN - cellamount)
 	else
 		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
 	

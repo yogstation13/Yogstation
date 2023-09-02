@@ -13,6 +13,9 @@ Prefix the PR title with [s] if you are fixing an exploit, so that it is not ann
 
 Remember: something that is self-evident to you might not be to others. Explain your rationale fully, even if you feel it goes without saying.-->
 
+# Why is this good for the game?
+<!-- Describe why you think this change is good for the game. -->
+
 # Spriting
 <!-- If you are adding new sprites to the game please add a picture of the sprite in its relative context, ie. Clothing on a mob. -->
 
