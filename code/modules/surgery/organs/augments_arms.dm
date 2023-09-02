@@ -301,11 +301,37 @@
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment)
 
+/obj/item/organ/cyberimp/arm/toolset/surgery/proc/try_replace_tool(obj/item/O)
+	if(!linkedhandler || !linkedhandler.active_tool)
+		return FALSE
+
+	// If you upgrade your tools, your muscle memory is gonna ruin you because these tools are added to the end of the list.
+	var/list/hittype_to_replacetype = list(
+		/obj/item/scalpel/alien = /obj/item/scalpel/augment,
+		/obj/item/hemostat/alien = /obj/item/hemostat/augment,
+		/obj/item/retractor/alien = /obj/item/retractor/augment,
+		/obj/item/circular_saw/alien = /obj/item/circular_saw/augment,
+		/obj/item/surgicaldrill/alien = /obj/item/surgicaldrill/augment,
+		/obj/item/cautery/alien = /obj/item/cautery/augment,
+	)
+	
+	var/replaced_itemtype = hittype_to_replacetype[O.type]
+	if(!replaced_itemtype || linkedhandler.active_tool.type != replaced_itemtype)
+		return FALSE
+
+	Retract()
+	contents -= linkedhandler.active_tool // Remove the replaced tool...
+	O.forceMove(src) // ... and move the new item into the toolset.
+	linkedhandler.active_tool = null
+
+	items_list = contents.Copy() // To make all the items appear in the radial menu...
+	items_list -= linkedhandler // ... but make sure to get rid of the linkedhandler.
+	return TRUE
+
 /obj/item/toolset_handler
 	name = "cybernetic apparatus"
 	desc = "A set of fine manipulators installed inside arm toolsets, significantly increasing the precision of which their user can manipulate any installed tools."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	toolspeed = 0.5
 	///tracks the implant we are attacked to
 	var/obj/item/organ/cyberimp/arm/linkedarm
 	///tracks our current tool
@@ -319,6 +345,7 @@
 /obj/item/toolset_handler/proc/update_tool()
 	name = active_tool.name
 	desc = active_tool.desc
+	toolspeed = active_tool.toolspeed
 	force = active_tool.force
 	sharpness = active_tool.sharpness
 	usesound = active_tool.usesound
@@ -350,6 +377,14 @@
 		if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
 			return
 	..()
+
+/obj/item/toolset_handler/attackby(obj/item/O, mob/user, params)
+	// Replacing tools with different tools. Mainly for surgical tool implant.
+	if(linkedarm && linkedarm.type == /obj/item/organ/cyberimp/arm/toolset/surgery)
+		var/obj/item/organ/cyberimp/arm/toolset/surgery/surgery_toolset = linkedarm
+		if(surgery_toolset && surgery_toolset.try_replace_tool(O))
+			return TRUE
+	return ..()
 
 //we still USE the tools because while we are pretending to use them we are actually pretending to pretend to use them
 /obj/item/toolset_handler/tool_start_check(mob/living/user, amount)
