@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(707 modules,
-    1904/8998 macros, 21.2%)</aside></h3>
+    1905/8999 macros, 21.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1041,7 +1041,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(918 detailed/1724 documented/28239 total, 6.1%)</aside></h3>
+<aside>(920 detailed/1727 documented/28254 total, 6.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1429,6 +1429,7 @@ no food found: it bites you and regains some health.</li>
     <li><a href="datum/component/explodable.html" title="&#x2F;datum&#x2F;component&#x2F;explodable">explodable</a> - Component specifically for explosion sensetive things, currently only applies to heat based explosions but can later perhaps be used for things that are dangerous to handle carelessly like nitroglycerin.</li>
     <li><a href="datum/component/grillable.html" title="&#x2F;datum&#x2F;component&#x2F;grillable">grillable</a></li>
     <li><a href="datum/component/gunpoint.html" title="&#x2F;datum&#x2F;component&#x2F;gunpoint">gunpoint</a></li>
+    <li><span class="no-substance">heal_react&#x2F;</span><a href="datum/component/heal_react/boost.html" title="&#x2F;datum&#x2F;component&#x2F;heal_react&#x2F;boost">boost</a></li>
     <li><a href="datum/component/material_container.html" title="&#x2F;datum&#x2F;component&#x2F;material_container">material_container</a></li>
     <li><a href="datum/component/mech_pilot.html" title="&#x2F;datum&#x2F;component&#x2F;mech_pilot">mech_pilot</a> - A component for clothes that affect one's ability to pilot mechs</li>
     <li><a href="datum/component/mind_linker.html" title="&#x2F;datum&#x2F;component&#x2F;mind_linker">Mind Linker</a> - A component that handles linking multiple player's minds
@@ -1551,7 +1552,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;doubleratkebab">Double Rat Kebab</span> - KEBAB</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;flaverless_sc">Flaverless snowcone</span> - SNOW CONES</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;grilledcheesesandwich">Cheese Sandwich</span> - SANDWICHES</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;nugget">Chicken Nugget</span> - OTHER</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;ribs">BBQ Ribs</span> - OTHER</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;kong">Kong</span> - Booze &amp; Bottles</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;metal_baseball_bat">Titanium Baseball Bat</span> - Antag recipes</li>
@@ -1580,6 +1581,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/design/borg_upgrade_engi_advancedtools.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_engi_advancedtools">Cyborg Upgrade (Advanced Engineering Tools)</a></li>
     <li><a href="datum/design/borg_upgrade_gemsatchel.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_gemsatchel">Cyborg Upgrade (Gem Satchel)</a></li>
     <li><a href="datum/design/borg_upgrade_holosign.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_holosign">Cyborg Upgrade (ATMOS Holofan Projector)</a></li>
+    <li><a href="datum/design/borg_upgrade_medigripper.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_medigripper">Cyborg Upgrade (Medical Gripper)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_rename">Cyborg Upgrade (Rename Board)</span> - Borg Upgrades</li>
     <li><a href="datum/design/borg_upgrade_surgerykit.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgerykit">Cyborg Upgrade (Advanced Surgical Kit)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;c38_sec">Speed Loader (.38 rubber)</span> - Weapons</li>
@@ -2676,6 +2678,7 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;language&#x2F;omni">universal translation matrix upgrade</span> - Contains every language.</li>
     </ul></li>
     <li><a href="obj/item/borg/upgrade/lavaproof.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;lavaproof">mining cyborg lavaproof tracks</a></li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;medigripper">medical cyborg gripper</span> - Gives medical cyborgs a gripper to use. Enables medical cyborgs to do all remaining aspects of medical (chemistry &amp; blood giving) without the help of a human.</li>
     <li class="has-children"><a href="obj/item/borg/upgrade/panel_access_remover.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;panel_access_remover">cyborg firmware hack</a><ul class="index-tree">
     <li><a href="obj/item/borg/upgrade/panel_access_remover/freeminer.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;panel_access_remover&#x2F;freeminer">free miner cyborg firmware hack</a></li>
     </ul></li>
@@ -3046,6 +3049,7 @@ Given to Nuke Ops members.</li>
     </ul></li>
     <li class="has-children"><a href="obj/item/reagent_containers/food/snacks.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks">snack</a><ul class="index-tree">
     <li><a href="obj/item/reagent_containers/food/snacks/badrecipe.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;badrecipe">burned mess</a></li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;bbqribs">bbq ribs</span> - MEATS AND ALIKE</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;candy">candy</span> - SNACKS FROM VENDING MACHINES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;chocolateegg">chocolate egg</span> - EGGS</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie">cookie</span> - DONKPOCKETS<ul class="index-tree">
@@ -3075,7 +3079,6 @@ Given to Nuke Ops members.</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;store">store</span> - All the food items that can store an item inside itself, like bread or cake.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;store&#x2F;cheesewheel">cheese wheel or block</span> - CHEESE</li>
     </ul></li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;tofu">tofu</span> - MEATS AND ALIKE</li>
     <li><a href="obj/item/reagent_containers/food/snacks/vermin.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;vermin">vermin bites</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;waffles">waffles</span> - WAFFLES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;watermelonslice">watermelon slice</span> - OTHER</li>
@@ -3403,7 +3406,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/8d011bbc713563b352068ea330a6d6df3872f12f">8d011bb</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/443065f451d5e6e71798d39334be15996307a21b">443065f</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
