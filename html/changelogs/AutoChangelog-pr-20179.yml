@@ -1,0 +1,4 @@
+author: " cark"
+delete-after: true 
+changes: 
+  - mapping: "kills under-window firelocks across all maps, making them consistent with each other and themselves."

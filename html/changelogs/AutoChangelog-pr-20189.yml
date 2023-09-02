@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Holy medbots have antimagic and also inject holy water"
+  - tweak: "Holy revival rite gives 2 minutes of antimagic"

@@ -594,7 +594,7 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" 
+	icon_state = "time_dilation"
 
 /datum/status_effect/doubledown
 	id = "doubledown"
@@ -653,6 +653,7 @@
 /datum/status_effect/adrenaline/on_apply()
 	. = ..()
 	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "adrenaline rush", /datum/mood_event/adrenaline)
 	if(isipc(owner))
 		printout = "<b>Chassis damage exceeded acceptable levels. Auxiliary leg actuator power supply activated.</b>"
 	to_chat(owner, span_notice(printout))
@@ -660,6 +661,7 @@
 
 /datum/status_effect/adrenaline/on_remove()
 	var/printout = "<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"
+	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "adrenaline rush")
 	if(isipc(owner))
 		printout = "<b>Auxiliary leg actuator power supply depleted. Movement returning to nominal levels.</b>"
 	to_chat(owner, span_warning(printout))
@@ -691,3 +693,24 @@
 		var/mob/living/carbon/human/H = owner
 		H.physiology.pressure_mod /= 0.5
 		H.physiology.heat_mod /= 0.5
+	
+/datum/status_effect/holylight_antimagic
+	id = "holy antimagic"
+	duration = 2 MINUTES
+	tick_interval = 0
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/holylight_antimagic
+
+/atom/movable/screen/alert/status_effect/holylight_antimagic
+	name = "Holy suffusion"
+	desc = "Your being is suffused with holy light that repels vile magics."
+	icon_state = "slime_rainbowshield" //i'm a coder, not a spriter
+
+/datum/status_effect/holylight_antimagic/on_apply()
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+
+/datum/status_effect/holylight_antimagic/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+

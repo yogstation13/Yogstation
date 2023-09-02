@@ -1053,11 +1053,11 @@
 						to_chat(usr, span_boldwarning("Only humans can be augmented."))
 		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src]")
 	if(href_list[VV_HK_MODIFY_ORGANS])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		usr.client.manipulate_organs(src)
 	if(href_list[VV_HK_MARTIAL_ART])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/artpaths = subtypesof(/datum/martial_art)
 		var/list/artnames = list()
@@ -1077,7 +1077,7 @@
 			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
 			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
 	if(href_list[VV_HK_GIVE_TRAUMA])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/traumas = subtypesof(/datum/brain_trauma)
 		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sortList(traumas, /proc/cmp_typepaths_asc)
@@ -1093,13 +1093,13 @@
 			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
 			message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name]."))
 	if(href_list[VV_HK_CURE_TRAUMA])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
 		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
 	if(href_list[VV_HK_HALLUCINATION])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/hallucinations = subtypesof(/datum/hallucination)
 		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in sortList(hallucinations, /proc/cmp_typepaths_asc)

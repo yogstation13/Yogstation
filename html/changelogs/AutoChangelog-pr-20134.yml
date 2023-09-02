@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Getting the adrenaline buff from damage gives a mood boost"

@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "holy light chaplains no longer gain favor from bible bashing people, instead spending favor to heal"
+  - tweak: "holy light now provides a passive buff to people who ingest holy water, increasing incoming healing by 20%, doubled in the chapel. Bonus healing applied by this effect is also turned into favor. Bible bashing someone with this buff has a massively reduced favor cost, but does not heal significantly more than the default."

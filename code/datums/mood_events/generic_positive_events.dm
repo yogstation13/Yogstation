@@ -203,6 +203,10 @@
 	mood_change = 2
 	timeout = 2 MINUTES
 
+/datum/mood_event/adrenaline
+	description = span_nicegreen("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!")
+	mood_change = 10
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0
