@@ -1853,7 +1853,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced/survival_pod,
 /obj/item/paper{
-	info = "It is the decision of the Lieutenant, and the Lieutenant alone, on when the Self Destruct should be activated."
+	info = "It is the decision of the Lieutenant, and the Lieutenant alone, on when the Self Destruct should be activated. If they are not available, decision-making falls to the junior agent."
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/tile/red/fourcorners,
