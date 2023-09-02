@@ -54,7 +54,7 @@
 	var/charge_type
 	/// How many seconds before it self-recharges?
 	var/recharge_cooldown = 2 SECONDS // 1 tick = 2 seconds.
-	/// How many have passed since last `process()` and haven't been spent on self-recharging?
+	/// How many seconds passed since last `process()` and haven't been spent on self-recharging?
 	var/seconds_time_remaining = 0
 	/// A list of items that cannot ever be inserted into the cannon.
 	var/list/blacklist_items = list(
