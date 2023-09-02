@@ -876,14 +876,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Bu" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/sealant,
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "BT" = (
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	frequency = 1445
@@ -943,6 +935,16 @@
 "CV" = (
 /obj/item/reagent_containers/food/snacks/pizzaslice/meat,
 /obj/structure/table,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Dv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/item/sealant,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "En" = (
@@ -2259,7 +2261,7 @@ tZ
 PR
 Qp
 Az
-Bu
+Dv
 Ue
 YD
 yn

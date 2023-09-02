@@ -217,14 +217,6 @@
 /obj/item/flashlight/flare/signal,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"hO" = (
-/obj/structure/table,
-/obj/item/sealant,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "hW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -816,6 +808,16 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 25
 	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"yf" = (
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/item/sealant,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "yt" = (
@@ -1970,7 +1972,7 @@ lI
 Go
 yI
 os
-hO
+yf
 Yi
 OD
 OD
