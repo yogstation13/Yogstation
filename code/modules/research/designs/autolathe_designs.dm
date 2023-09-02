@@ -656,7 +656,7 @@
 /datum/design/igniter
 	name = "Igniter"
 	id = "igniter"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 50)
 	build_path = /obj/item/assembly/igniter
 	category = list("initial", "Miscellaneous", "Assemblies")
