@@ -91,6 +91,7 @@
 	cost = 5
 	suffix = "lavaland_surface_animal_hospital.dmm"
 	allow_duplicates = FALSE
+	unpickable = TRUE
 
 /datum/map_template/ruin/lavaland/sin
 	cost = 10
@@ -412,6 +413,7 @@
 	suffix = "lavaland_surface_medical.dmm"
 	allow_duplicates = FALSE
 	cost = 15
+	unpickable = TRUE
 
 /datum/map_template/ruin/lavaland/travellingbard
 	name = "Travelling Bard"
