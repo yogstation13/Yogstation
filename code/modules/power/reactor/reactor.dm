@@ -48,6 +48,10 @@
 	var/current_desired_k = null
 	var/datum/powernet/powernet = null
 	var/obj/item/radio/radio
+	var/key_type = /obj/item/encryptionkey/headset_eng
+	//Which channels should it broadcast to?
+	var/engi_channel = RADIO_CHANNEL_ENGINEERING
+	var/crew_channel = RADIO_CHANNEL_COMMON
 
 	var/has_hit_emergency = FALSE
 	var/evacuation_procedures = FALSE
@@ -62,6 +66,13 @@
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
 	id = "default_reactor_for_lazy_mappers"
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/syndie_base
+	id = "syndie_base_reactor"
+	// uses syndicate comms
+	engi_channel = RADIO_CHANNEL_SYNDICATE
+	crew_channel = RADIO_CHANNEL_SYNDICATE
+	key_type = /obj/item/encryptionkey/syndicate
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/New()
 	. = ..()
@@ -204,7 +215,7 @@
 	gas_absorption_constant = gas_absorption_effectiveness //And set this up for the rest of the round.
 
 	radio = new(src)
-	radio.keyslot = new /obj/item/encryptionkey/headset_eng
+	radio.keyslot = new key_type(radio)
 	radio.subspace_transmission = TRUE
 	radio.use_command = TRUE
 	radio.canhear_range = 0
@@ -474,7 +485,7 @@
 		alert = TRUE
 		if(!has_hit_emergency)
 			has_hit_emergency = TRUE
-			radio.talk_into(src, "WARNING!! REACTOR CORE OVERPRESSURIZED!! BLOWOUT IMMINENT!!", RADIO_CHANNEL_ENGINEERING)
+			radio.talk_into(src, "WARNING!! REACTOR CORE OVERPRESSURIZED!! BLOWOUT IMMINENT!!", engi_channel)
 			playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
 			investigate_log("Reactor reaching critical pressure at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
 			message_admins("Reactor reaching critical pressure at [ADMIN_VERBOSEJMP(src)]")
@@ -495,7 +506,7 @@
 			has_hit_emergency = TRUE
 			for(var/i in 1 to min((temperature-REACTOR_TEMPERATURE_CRITICAL)/100, 10))
 				src.fire_nuclear_particle()
-			radio.talk_into(src, "WARNING!! REACTOR CORE OVERHEATING!! NUCLEAR MELTDOWN IMMINENT!!", RADIO_CHANNEL_ENGINEERING)
+			radio.talk_into(src, "WARNING!! REACTOR CORE OVERHEATING!! NUCLEAR MELTDOWN IMMINENT!!", engi_channel)
 			playsound(src, 'sound/machines/reactor_alert_1.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
 			investigate_log("Reactor reaching critical temperature at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
 			message_admins("Reactor reaching critical temperature at [ADMIN_VERBOSEJMP(src)]")
@@ -524,9 +535,9 @@
 		if(vessel_integrity <= 350)
 			msg += " Maintenance required."
 		msg += " Structural integrity: [get_integrity()]%."
-		radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
+		radio.talk_into(src, msg, engi_channel)
 		if(evacuation_procedures)
-			radio.talk_into(src, "Attention: Reactor has been stabilized. Please return to your workplaces.", RADIO_CHANNEL_COMMON)
+			radio.talk_into(src, "Attention: Reactor has been stabilized. Please return to your workplaces.", crew_channel)
 		evacuation_procedures = FALSE
 		return
 
@@ -535,7 +546,7 @@
 
 	next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
 	if(get_integrity() < 95)
-		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [get_integrity()]%", RADIO_CHANNEL_ENGINEERING)
+		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [get_integrity()]%", engi_channel)
 
 	relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
 	set_light(0)
@@ -545,7 +556,7 @@
 	//PANIC
 	if(vessel_integrity <= initial(vessel_integrity)/4 && !evacuation_procedures)
 		evacuation_procedures = TRUE
-		radio.talk_into(src, "Reactor failure imminent. Please remain calm and evacuate the facility immediately.", RADIO_CHANNEL_COMMON)
+		radio.talk_into(src, "Reactor failure imminent. Please remain calm and evacuate the facility immediately.", crew_channel)
 		playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
 
 //Failure condition 1: Meltdown. Achieved by having heat go over tolerances. This is less devastating because it's easier to achieve.
@@ -665,11 +676,15 @@
 			return TRUE
 		reactor = N
 		id = N.id
+		user.balloon_alert(user, "linked!")
 		return TRUE
 	return ..()
 
 /obj/machinery/computer/reactor/preset
 	id = "default_reactor_for_lazy_mappers"
+
+/obj/machinery/computer/reactor/syndie_base
+	id = "syndie_base_reactor"
 
 /obj/item/circuitboard/computer/reactor
 	name = "Reactor Control (Computer Board)"
