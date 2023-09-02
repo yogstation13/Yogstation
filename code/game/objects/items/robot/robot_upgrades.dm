@@ -1391,7 +1391,7 @@
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_types = list(/obj/item/robot_module/service)
-	module_flags = BORG_MODEL_SERVICE
+	module_flags = BORG_MODULE_SERVICE
 
 /obj/item/borg/upgrade/service_cookbook/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()

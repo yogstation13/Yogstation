@@ -1035,7 +1035,7 @@
 	build_path = /obj/item/borg/upgrade/nv_mesons
 	/// Exact cost of NV Mesons for humans.
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000, /datum/material/plastic = 150)
- 	construction_time = 4 SECONDS
+	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/borg_upgrade_service_cookbook
