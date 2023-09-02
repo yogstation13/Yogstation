@@ -452,6 +452,7 @@
 	suffix = "lavaland_surface_gas_station.dmm"
 	allow_duplicates = FALSE
 	cost = 10
+	unpickable = TRUE
 
 /datum/map_template/ruin/lavaland/king_goat_boss
 	name = "King Goat Boss Ruin"
