@@ -13,6 +13,7 @@
 	description = "Seemingly plucked from a tropical destination, this beach is calm and cool, with the salty waves roaring softly in the background. \
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
+	unpickable = TRUE
 
 /datum/map_template/ruin/lavaland/biodome/fishing
 	name = "Biodome Fishing Pier"
