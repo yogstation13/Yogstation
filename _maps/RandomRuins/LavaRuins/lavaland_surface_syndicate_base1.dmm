@@ -1195,6 +1195,10 @@
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
 	req_access = list(150)
 	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gq" = (
