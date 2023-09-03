@@ -19,7 +19,7 @@
 	var/altar_icon // Changes the Altar of Gods icon
 	var/altar_icon_state // Changes the Altar of Gods icon_state
 	var/list/active_rites // Currently Active (non-deleted) rites
-	var/chapel_buff_coeff = 2
+	var/chapel_buff_coeff = 2.5
 
 /datum/religion_sect/New()
 	. = ..()

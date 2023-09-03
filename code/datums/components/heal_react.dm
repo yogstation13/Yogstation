@@ -19,7 +19,7 @@
 
 /datum/component/heal_react/boost
 	///multiplicitive boost to incoming healing
-	var/boost_amount = 0.5
+	var/boost_amount = 0.3
 	///types of damage this will effect
 	var/list/applies_to = list(BRUTE,BURN,TOX,OXY,CLONE,STAMINA)
 	///internal check for if we are being healed by ourselves, no double dipping
