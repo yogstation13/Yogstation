@@ -5681,6 +5681,7 @@
 /obj/item/kitchen/knife{
 	pixel_x = 6
 	},
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Kp" = (
