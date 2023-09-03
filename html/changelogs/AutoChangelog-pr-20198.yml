@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed x-ray bolts causing toxin damage to rad-immune species when embedded"
