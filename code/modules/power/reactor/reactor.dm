@@ -495,7 +495,7 @@
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[temperature]")
 		var/pressure_damage = min(pressure/300, initial(vessel_integrity)/180) * delta_time	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
 		vessel_integrity -= pressure_damage
-		if(vessel_integrity <= pressure_damage) //It wouldn't be able to tank another hit.
+		if(vessel_integrity <= 0) //It wouldn't be able to tank another hit.
 			investigate_log("Reactor blowout at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
 			blowout()
 			return
@@ -513,7 +513,7 @@
 		if(temperature >= REACTOR_TEMPERATURE_MELTDOWN)
 			var/temp_damage = min(temperature/300, initial(vessel_integrity)/180) * delta_time	//3 minutes to meltdown from full integrity, worst-case.
 			vessel_integrity -= temp_damage
-			if(vessel_integrity <= temp_damage)
+			if(vessel_integrity <= 0)
 				investigate_log("Reactor melted down at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR) //It wouldn't be able to tank another hit.
 				meltdown() //Oops! All meltdown
 				return
