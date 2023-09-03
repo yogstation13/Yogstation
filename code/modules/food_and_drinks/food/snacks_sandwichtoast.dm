@@ -123,7 +123,7 @@
 
 /obj/item/reagent_containers/food/snacks/pbb_sandwich
 	name = "peanut butter and banana sandwich"
-	desc = "A grilled peanut butter sandwich with banana slices mixed in, a good high protein treat."
+	desc = "A peanut butter sandwich with banana slices mixed in, a good high protein treat."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "pbb_sandwich"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
