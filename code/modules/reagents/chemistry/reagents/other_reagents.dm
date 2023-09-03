@@ -265,9 +265,7 @@
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
 			else if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M)
-			M.remove_status_effect(/datum/status_effect/jitter)
-			M.remove_status_effect(/datum/status_effect/speech/stutter)
-			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
+			holder.remove_reagent(type, volume)
 			return
 	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
