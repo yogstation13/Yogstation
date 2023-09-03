@@ -445,11 +445,9 @@
 		return FALSE
 
 	var/mob/living/carbon/human/H = L
-	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
+	var/heal_amt = 20 //no chance to mess up
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
-		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
-
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
