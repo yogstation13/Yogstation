@@ -510,7 +510,6 @@
 #include "code\datums\components\forensics.dm"
 #include "code\datums\components\grillable.dm"
 #include "code\datums\components\gunpoint.dm"
-#include "code\datums\components\heal_react.dm"
 #include "code\datums\components\heirloom.dm"
 #include "code\datums\components\hot_ice.dm"
 #include "code\datums\components\igniter.dm"
