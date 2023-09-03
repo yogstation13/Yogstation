@@ -240,10 +240,9 @@
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
 				qdel(BS)
 	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
-		if(iscultist(M) || is_servant_of_ratvar(M))//only cultists get dizzy, stutter, and stronger jitter
-			M.adjust_jitter_up_to(4 SECONDS, 20 SECONDS)
-			M.adjust_stutter_up_to(4 SECONDS, 20 SECONDS)
-			M.set_dizzy_if_lower(10 SECONDS)
+		M.adjust_jitter_up_to(4 SECONDS, 20 SECONDS)//only get fucked if you're injected with it for a long time
+		M.adjust_stutter_up_to(4 SECONDS, 20 SECONDS)
+		M.set_dizzy_if_lower(10 SECONDS)
 		if(iscultist(M) && prob(20))
 			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
