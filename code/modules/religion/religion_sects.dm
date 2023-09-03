@@ -446,24 +446,14 @@
 
 	var/mob/living/carbon/human/H = L
 	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
-	var/heal_cost = 40
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
-		heal_cost *= amount_healed/heal_amt
-		if(L.GetComponent(/datum/component/heal_react/boost/holylight)) //we don't heal any more with holy water, but we do get a small favor boost from it
-			heal_amt *= 0.8
-			heal_cost *= 0.15
-
-		if(favor < heal_cost)
-			user.balloon_alert(user, "not enough favor!")
-			return FALSE
 
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
 		COOLDOWN_START(src, last_heal, 12 SECONDS)
-		adjust_favor(-heal_cost, user)
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
