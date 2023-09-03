@@ -62,14 +62,14 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
-	if(stat != DEAD)
-		var/datum/component/mood/moody = GetComponent(/datum/component/mood)
-		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
-			if(prob(50))
-				if(prob(50))
-					heal_bodypart_damage(0.4, 0, 0, TRUE, BODYPART_ORGANIC)
-				else
-					heal_bodypart_damage(0, 0.4, 0, TRUE, BODYPART_ORGANIC)
+	if(stat != DEAD)// heal 0.2hp per second to organic limbs (they are self repairing by virtue of being organic)
+		if(HAS_TRAIT(src, TRAIT_NOHUNGER) || (nutrition > NUTRITION_LEVEL_FED && satiety > 80))//either if they don't have hunger at all, or if they're fed enough
+			if(prob(50) && bruteloss)//50/50 to heal brute or burn, but won't heal a damage type if you don't have it
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
+			else if(fireloss)
+				heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
+			else
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 

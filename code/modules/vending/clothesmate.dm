@@ -199,7 +199,10 @@
 		              /obj/item/clothing/under/jabroni = 1,
 		              /obj/item/clothing/suit/vapeshirt = 1,
 		              /obj/item/clothing/under/geisha = 1, //yogs added a ,
-		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1) //yogs
+		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1,
+					  /obj/item/clothing/suit/jacket/pride = 3,
+					  /obj/item/clothing/suit/jacket/pride/mlm = 2,
+					  /obj/item/clothing/suit/jacket/pride/lesbian = 2) //yogs
 	premium = list(/obj/item/clothing/under/suit_jacket/checkered = 1,
 		           /obj/item/clothing/head/mailman = 1,
 		           /obj/item/clothing/under/rank/mailman = 1,

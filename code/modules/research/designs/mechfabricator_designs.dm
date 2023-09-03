@@ -886,6 +886,16 @@
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_medigripper
+	name = "Cyborg Upgrade (Medical Gripper)"
+	id = "borg_upgrade_medigripper"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/medigripper
+	/// Arbitary price. Took the price of Plasma Cutter Upgrade, replaced plasma with gold, and replaced gold with silver.
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000, /datum/material/gold = 2000, /datum/material/silver = 500)
+	construction_time = 8 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_defibrillator
 	name = "Cyborg Upgrade (Defibrillator)"
 	id = "borg_upgrade_defibrillator"
@@ -1025,6 +1035,15 @@
 	build_path = /obj/item/borg/upgrade/gemsatchel
 	/// SoH cost cut in half, minus all non-iron materials.
 	materials = list(/datum/material/iron = 5000)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_service_cookbook
+	name = "Cyborg Upgrade (Cookbook)"
+	id = "borg_upgrade_service_cookbook"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/service_cookbook
+	materials = list(/datum/material/iron = 15000, /datum/material/diamond = 1000)
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
