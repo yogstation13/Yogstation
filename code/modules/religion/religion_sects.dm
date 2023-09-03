@@ -441,7 +441,7 @@
 		return FALSE
 
 	var/mob/living/carbon/human/H = L
-	var/heal_amt = 15 //no chance to mess up and applies a buff that increases healing, so it heals less than default
+	var/heal_amt = 10 //no chance to mess up and applies a buff that significantly increases healing, so it heals less than default
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		H.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
