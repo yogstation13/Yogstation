@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "preternis now slow down and suffocate when low on charge instead of just instantly dropping dead when they hit zero"
+  - tweak: "liquid electricity can now actually charge species that run on electricity"
+  - tweak: "radiation charges ethereals now"
+  - experiment: "preternis, ethereal, and IPC charging have been refactored, please report any bugs you find"
