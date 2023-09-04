@@ -1005,7 +1005,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "iu" = (
-/obj/structure/closet/wardrobe/black,
+/obj/structure/closet/wardrobe/black{
+	anchored = 1
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "iz" = (
@@ -1368,9 +1370,6 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
-"oq" = (
-/turf/closed/mineral/gibtonite,
-/area/ruin/space/has_grav/listeningstation)
 "ou" = (
 /turf/open/floor/engine/o2,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -1537,6 +1536,7 @@
 /obj/item/computer_hardware/hard_drive/portable/super,
 /obj/item/reagent_containers/glass/bottle/mannitol,
 /obj/item/clothing/head/helmet,
+/obj/item/bombcore/training,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "sR" = (
@@ -1831,9 +1831,6 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced/survival_pod,
 /obj/machinery/door/firedoor/border_only,
-/obj/item/paper{
-	info = "In order to help increase the power of your onboard self-destruct, the asteroid selected has extremely high gibtonite concentration. If you do decide to mine, take a scanner with you to avoid the impromptu evaporation of the base."
-	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
@@ -1856,7 +1853,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced/survival_pod,
 /obj/item/paper{
-	info = "Both recon agents are required to reach a consensus on use of the Emergency Self Destruct before it is used."
+	info = "It is the decision of the Lieutenant, and the Lieutenant alone, on when the Self Destruct should be activated. If they are not available, decision-making falls to the junior agent."
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/tile/red/fourcorners,
@@ -3674,7 +3671,7 @@ NO
 NO
 NO
 NO
-oq
+NO
 yN
 zg
 aC
@@ -3766,12 +3763,12 @@ aD
 fL
 KS
 yN
-oq
+NO
 NO
 as
 as
 as
-oq
+NO
 NO
 uy
 uy
@@ -4194,7 +4191,7 @@ NO
 NO
 NO
 NO
-oq
+NO
 bn
 bn
 Dk
@@ -4244,7 +4241,7 @@ Nl
 bx
 bw
 bn
-oq
+NO
 NO
 as
 as
