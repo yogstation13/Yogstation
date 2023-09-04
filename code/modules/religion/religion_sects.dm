@@ -448,7 +448,7 @@
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
-		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		COOLDOWN_START(src, last_heal, 10 SECONDS)
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
