@@ -116,8 +116,8 @@
 	var/charge_cost = 50
 	/// Counts up to the next time we charge
 	var/charge_timer = 0
-	/// Time it takes for shots to recharge (in seconds)
-	var/recharge_time = 10
+	/// Time it takes for shots to recharge (in deciseconds)
+	var/recharge_time = 10 SECONDS
 	/// If the hypospray can go through armor or thick material
 	var/bypass_protection = FALSE
 	/// If this hypospray has been upgraded
@@ -154,7 +154,7 @@
 		regenerate_reagents(default_reagent_types)
 		if(upgraded)
 			regenerate_reagents(expanded_reagent_types)
-		charge_timer = 0
+		charge_timer -= recharge_time //so if delta_time gives a bunch of extra time, it isn't lost by setting it to 0
 	update_appearance(UPDATE_ICON)
 	. = ..()
 	return 1
