@@ -1,0 +1,6 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed photos forgetting about people who are cremated"
+  - bugfix: "fixed photos not recognizing targets who were cloned"
+  - bugfix: "fixed photos thinking dead people are alive after copying"
