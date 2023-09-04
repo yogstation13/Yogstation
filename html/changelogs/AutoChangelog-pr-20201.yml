@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixed bloodsucker vassalization not removing mindshield implants"
