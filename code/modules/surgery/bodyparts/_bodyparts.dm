@@ -24,6 +24,7 @@
 	var/held_index = 0 //are we a hand? if so, which one!
 	var/render_like_organic = FALSE // TRUE is for when you want a BODYPART_ROBOTIC to pretend to be a BODYPART_ORGANIC.
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
+	var/list/init_traits = list() // Traits given to the limb itself on initialize
 
 	///If disabled, limb is as good as missing.
 	var/bodypart_disabled = FALSE
@@ -107,6 +108,8 @@
 	if(can_be_disabled)
 		RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_gain))
 		RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_loss))
+	for(var/trait in init_traits)
+		ADD_TRAIT(src, trait, INNATE_TRAIT)
 
 /obj/item/bodypart/examine(mob/user)
 	. = ..()
@@ -136,11 +139,11 @@
 /obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT))
+		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_LIMBATTACHMENT)) // If either the mob or the limb has the easy attachment trait
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user
-					if(target.dna && target.dna.species && (target.mob_biotypes * MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
+					if(target.dna && target.dna.species && (target.mob_biotypes & MOB_ROBOTIC) && src.status != BODYPART_ROBOTIC)
 						if(H == user)
 							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
 						else

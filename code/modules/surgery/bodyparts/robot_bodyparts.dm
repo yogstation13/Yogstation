@@ -438,6 +438,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/r_arm/robot/surplus
 	name = "surplus prosthetic right arm"
@@ -446,6 +447,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/l_leg/robot/surplus
 	name = "surplus prosthetic left leg"
@@ -454,6 +456,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/l_leg/robot/surplus/digitigrade
 	name = "surplus digitigrade prosthetic left leg"
@@ -467,6 +470,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/r_leg/robot/surplus/digitigrade
 	name = "surplus digitigrade prosthetic right leg"
