@@ -95,7 +95,7 @@
 		else
 			to_chat(usr, span_warning("There's nothing attached to the IV drip!"))
 
-/obj/machinery/iv_drop/MouseDrop_T(atom/dropping, mob/user)
+/obj/machinery/iv_drip/MouseDrop_T(atom/dropping, mob/user)
 	if(is_type_in_typecache(dropping, drip_containers))
 		attackby(dropping, user)
 	else
