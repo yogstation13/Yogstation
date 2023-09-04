@@ -1,0 +1,5 @@
+author: " ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Roboticist and geneticist get rnd console access on skeleton crew."
+  - bugfix: "Engineers and shaft miners can use the rnd console on skeleton crew."
