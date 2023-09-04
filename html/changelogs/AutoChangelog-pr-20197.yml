@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Certain words in the German accent such as \"research\" and \"scientist\" are now properly accented."
