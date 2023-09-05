@@ -438,6 +438,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	next_move_mod = 2
 	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/r_arm/robot/surplus
@@ -447,6 +448,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	next_move_mod = 2
 	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/l_leg/robot/surplus
@@ -456,6 +458,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	movespeed_mod = 0.1
 	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/l_leg/robot/surplus/digitigrade
@@ -470,6 +473,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
+	movespeed_mod = 0.1
 	init_traits = list(TRAIT_LIMBATTACHMENT)
 
 /obj/item/bodypart/r_leg/robot/surplus/digitigrade

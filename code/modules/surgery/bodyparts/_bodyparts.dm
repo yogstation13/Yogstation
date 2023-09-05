@@ -42,6 +42,11 @@
 	var/max_stamina_damage = 0
 	var/max_damage = 0
 
+	///How long does it take to re-attach this?
+	var/attach_time = 0
+	var/next_move_mod = 0 // next move modifier for arms
+	var/movespeed_mod = 0 // movement speed modifier for legs
+
 	var/stamina_cache = list() // Lists the times that we should clear stamina damage and for how much
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
@@ -139,7 +144,8 @@
 /obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT) || HAS_TRAIT(src, TRAIT_LIMBATTACHMENT)) // If either the mob or the limb has the easy attachment trait
+		// Mobs with innate easy attachment can put limbs back on instantly, otherwise it'll take some time
+		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT) || (HAS_TRAIT(src, TRAIT_LIMBATTACHMENT) && do_after(user, 10 SECONDS, user)))
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(iscarbon(user))
 					var/mob/living/carbon/target = user

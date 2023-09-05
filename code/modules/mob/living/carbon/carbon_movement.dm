@@ -9,6 +9,12 @@
 			. += max((12 - 6*get_num_arms()), 0) //crawling is harder with fewer arms
 		if(legcuffed)
 			. += legcuffed.slowdown
+		var/obj/item/bodypart/L = get_bodypart(BODY_ZONE_L_LEG)
+		if(L)
+			. += L.movespeed_mod
+		var/obj/item/bodypart/R = get_bodypart(BODY_ZONE_R_LEG)
+		if(R)
+			. += R.movespeed_mod
 
 /mob/living/carbon/slip(knockdown_amount, obj/O, lube, stun, force_drop)
 	if(movement_type & FLYING)
