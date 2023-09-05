@@ -14,6 +14,7 @@
 	var/datum/radio_frequency/radio_connection
 	var/suicider = null
 	var/hearing_range = 1
+	var/eaten_text
 
 /obj/item/assembly/signaler/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] eats \the [src]! If it is signaled, [user.p_they()] will die!"))
@@ -190,7 +191,33 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	resistance_flags = FIRE_PROOF
+	eaten_text = "you've ate the anomaly core..."
 	var/anomaly_type = /obj/effect/anomaly
+
+/obj/item/assembly/signaler/anomaly/attack(mob/living/M, mob/living/user)
+	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+		return ..()
+
+	var/mob/living/carbon/human/H = user
+	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
+
+	if(!istype(S, /obj/item/organ/stomach/cell))//need a fancy stomach for it
+		return ..()
+
+	if(!eaten(H))
+		return ..(src)
+	qdel(src)
+	use(1)//only eat one at a time
+
+	if(eaten_text)
+		H.visible_message(span_notice("[H] inserts [src], why did they do this?"), span_notice(eaten_text)) //change if more is added
+	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
+
+	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
+		H.changeNext_move(CLICK_CD_MELEE * 0.5)
+
+/obj/item/assembly/signaler/anomaly/proc/eaten(mob/living/carbon/human/H)
+	return TRUE
 
 /obj/item/assembly/signaler/anomaly/receive_signal(datum/signal/signal)
 	if(!signal)
