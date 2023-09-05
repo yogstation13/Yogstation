@@ -1245,7 +1245,6 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	hitsound = 'sound/items/trayhit2.ogg'
 	menutab = MENU_MISC
 	additional_desc = "An everfilling bucket of holy water. A blessed hand held sprinkler."
-	var/max_charges = 5
 	var/splash_charges = 5
 	var/distance = 10
 	COOLDOWN_DECLARE(splashy)
@@ -1263,7 +1262,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 
 /obj/item/nullrod/aspergillum/proc/on_unwield(atom/source, mob/living/user)
 	playsound(src, 'sound/effects/splosh.ogg', 15, 1, -1)
-	splash_charges = max_charges
+	splash_charges = initial(splash_charges)
 
 /obj/item/nullrod/aspergillum/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
