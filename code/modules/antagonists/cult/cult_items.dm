@@ -961,7 +961,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 				illusions--
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
-				if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions one a single shot
+				if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions in a single shot
 					if(prob(60))
 						var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
 						M.faction = list("cult")
