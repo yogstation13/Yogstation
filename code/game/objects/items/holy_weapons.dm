@@ -1252,8 +1252,6 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 /obj/item/nullrod/aspergillum/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 5, \
-		force_wielded = 0, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
