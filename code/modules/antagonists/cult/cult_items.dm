@@ -680,6 +680,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	armour_penetration = 20
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
+	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/datum/action/innate/cult/spear/spear_act
