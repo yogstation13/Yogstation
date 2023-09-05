@@ -1,0 +1,5 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - rscadd: "Added pencil holder to bureaucracy crate and game."
+  - imageadd: "adds pencil holder files"
