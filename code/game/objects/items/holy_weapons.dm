@@ -1232,6 +1232,42 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	user.death()//basically a glorified suicide button PLEASE don't give it to any actual player
 	. = ..()
 
+/obj/item/nullrod/aspergillum //lol, lmao even
+	name = "aspergillum and aspersorium"
+	desc = "A weirdly named bucket and hand sprinkler."
+	icon = 'icons/obj/misc.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/belt.dmi'
+	icon_state = "aspergillum0"
+	item_state = "aspergillum0"
+	base_icon_state = "aspergillum"
+	force = 5
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT
+	hitsound = 'sound/items/trayhit2.ogg'
+	menutab = MENU_MISC
+	additional_desc = "A magical staff that conjures a shield around the holder, protecting from blows."
+
+/obj/item/nullrod/aspergillum/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		force_unwielded = 5, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+	
+/obj/item/nullrod/aspergillum/proc/on_wield(atom/source, mob/living/user)
+	playsound(src, 'sound/effects/slosh.ogg', 100, 1)
+
+/obj/item/nullrod/aspergillum/proc/on_unwield(atom/source, mob/living/user)
+	playsound(src, 'sound/effects/splosh.ogg', 50, 1)
+
+/obj/item/nullrod/aspergillum/update_icon_state()
+	. = ..()
+	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+	icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]"
+
 //never put anything below this, it deserves to be buried
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
