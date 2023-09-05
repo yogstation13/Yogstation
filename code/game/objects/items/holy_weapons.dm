@@ -53,6 +53,8 @@
 /obj/item/nullrod/attack_self(mob/user)
 	if(user?.mind?.holy_role && check_menu(user))
 		ui_interact(user)
+	else
+		..()
 
 /obj/item/nullrod/proc/check_menu(mob/user)//check if the person is able to access the menu
 	if(!istype(user))
