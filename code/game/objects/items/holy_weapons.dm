@@ -1245,10 +1245,11 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	hitsound = 'sound/items/trayhit2.ogg'
 	menutab = MENU_MISC
 	additional_desc = "An everfilling bucket of holy water. A blessed hand held sprinkler."
-	var/max_charges = 30
+	var/max_charges = 5
 	var/splash_charges = 5
 	var/distance = 10
 	COOLDOWN_DECLARE(splashy)
+	COOLDOWN_DECLARE(balloon)
 
 /obj/item/nullrod/aspergillum/Initialize(mapload)
 	. = ..()
@@ -1270,8 +1271,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		if(target.loc == user)
 			return
 
-		if(!splash_charges)
-			to_chat(usr, span_warning("The aspergillum is dry!"))
+		if(splash_charges <= 0)
+			if(COOLDOWN_FINISHED(src, balloon))
+				user.balloon_alert(span_warning("The aspergillum is dry!"))
+				COOLDOWN_START(src, balloon, CLICK_CD_MELEE)
 			return
 
 		if(!COOLDOWN_FINISHED(src, splashy))
