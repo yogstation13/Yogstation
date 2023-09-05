@@ -6,7 +6,6 @@
 	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER | PASSSTRUCTURE | PASSGRILLE | PASSBLOB
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/reaction_type = TOUCH
 
 /obj/effect/particle_effect/water/Initialize(mapload)
 	. = ..()
@@ -20,7 +19,7 @@
 
 /obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)
-		reagents.reaction(A, reaction_type)
+		reagents.reaction(A)
 	return ..()
 
 

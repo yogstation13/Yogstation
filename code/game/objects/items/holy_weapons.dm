@@ -1284,17 +1284,16 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		user.newtonian_move(turn(direction, 180))
 
 		//Get all the turfs that can be shot at
-		var/turf/T = get_ranged_target_turf(target, direction, 4) //aim four tiles past where you click
+		var/turf/T = get_ranged_target_turf(target, direction, 3) //aim 3 tiles past where you click
 		var/turf/T1 = get_step(T,turn(direction, 90))
 		var/turf/T2 = get_step(T,turn(direction, -90))
-		var/turf/T3 = get_step(T1,turn(direction, 90))
-		var/turf/T4 = get_step(T2,turn(direction, -90))
+		var/turf/T3 = get_step(get_turf(target),turn(direction, 90))
+		var/turf/T4 = get_step(get_turf(target),turn(direction, -90))
 		var/list/the_targets = list(T,T1,T2,T3,T4)
 
 		var/list/water_particles=list()
 		for(var/a=0, a<5, a++)
 			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
-			W.reaction_type = VAPOR
 			var/my_target = pick(the_targets)
 			water_particles[W] = my_target
 			the_targets -= my_target
@@ -1319,9 +1318,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		step_towards(W,my_target)
 		if(!W.reagents)
 			continue
-		W.reagents.reaction(get_turf(W))
 		for(var/A in get_turf(W))
-			W.reagents.reaction(A)
+			W.reagents.reaction(A, TOUCH|VAPOR)
 		if(W.loc == my_target)
 			particles -= W
 	if(repetition < distance)
