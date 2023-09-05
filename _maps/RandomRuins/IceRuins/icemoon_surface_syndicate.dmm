@@ -2100,7 +2100,6 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/structure/mecha_wreckage/gygax/dark,
 /turf/open/floor/mech_bay_recharge_floor/dark,
 /area/ruin/syndicate_icemoon/research)
 "oB" = (
