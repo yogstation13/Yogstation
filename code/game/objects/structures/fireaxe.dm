@@ -34,9 +34,10 @@
 
 /obj/structure/fireaxecabinet/attackby(obj/item/I, mob/user, params)
 	check_deconstruct(I, user)//yogs - deconstructible cabinet
-	if(iscyborg(user) || I.tool_behaviour == TOOL_MULTITOOL)
-		reset_lock(user) //yogs - adds reset option
-	else if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		reset_lock(user) // Yogs - Adds reset option.
+		return
+	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		//Repairing light damage with a welder
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
@@ -189,6 +190,12 @@
 /obj/structure/fireaxecabinet/attack_ai(mob/user)
 	toggle_lock(user)
 	return
+
+/obj/structure/fireaxecabinet/attack_robot(mob/living/silicon/user)
+	if(user.a_intent == INTENT_HARM) // In the case they still want to try to `reset_lock` instead of `toggle_lock`.
+		reset_lock(user)
+		return
+	. = ..()
 
 /obj/structure/fireaxecabinet/attack_tk(mob/user)
 	toggle_open()//yogs - consolidates opening code

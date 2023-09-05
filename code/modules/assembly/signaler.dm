@@ -244,6 +244,12 @@
 /obj/item/assembly/signaler/anomaly/attack_self()
 	return
 
+/obj/item/assembly/signaler/anomaly/radiation
+	name = "\improper radiation anomaly core"
+	desc = "The neutralized core of a radiation anomaly. It keeps pulsing an ominous green. It'd probably be valuable for research."
+	icon_state = "anomaly core"
+	anomaly_type = /obj/effect/anomaly/radiation
+
 /obj/item/assembly/signaler/cyborg
 
 /obj/item/assembly/signaler/cyborg/attackby(obj/item/W, mob/user, params)

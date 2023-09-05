@@ -28,7 +28,6 @@
 "K" = (
 /obj/structure/bed,
 /obj/item/bedsheet/random,
-/obj/effect/decal/cleanable/food/pie_smudge,
 /turf/open/floor/carpet/purple,
 /area/template_noop)
 

@@ -156,7 +156,13 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-		return (card_slot2?.try_eject(user) || card_slot?.try_eject(user)) //Try the secondary one first.
+		if(card_slot2)
+			var/obj/item/card/id/target_id_card = card_slot2.stored_card
+			if(!target_id_card)
+				return card_slot?.try_eject(user)
+			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
+			return card_slot2.try_eject(user)
+		return card_slot?.try_eject(user)
 
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.

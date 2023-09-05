@@ -368,5 +368,53 @@
 				SSexplosions.lowturf += T
 
  /////////////////////////
+/obj/effect/anomaly/radiation
+	name = "radiation anomaly"
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "radiation_anomaly"
+	density = TRUE
+	var/spawn_goat = FALSE //For goat spawning
+
+/obj/effect/anomaly/radiation/admin //bussing
+	spawn_goat = TRUE
+
+/obj/effect/anomaly/radiation/anomalyEffect()
+	..()
+	for(var/i = 1 to 15)
+		fire_nuclear_particle()
+	radiation_pulse(src, 500, 5)
+
+/obj/effect/anomaly/radiation/proc/makegoat()
+	var/turf/open/T = get_turf(src)
+	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = new(T)
+
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a radioactive goat?", ROLE_SENTIENCE, null, null, 100, S, POLL_IGNORE_PYROSLIME)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/chosen = pick(candidates)
+		S.key = chosen.key
+		var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
+		spell.Grant(S)
+		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
+
+/obj/effect/anomaly/radiation/detonate()
+	INVOKE_ASYNC(src, PROC_REF(rad_Spin))
+
+/obj/effect/anomaly/radiation/proc/rad_Spin(increment = 1)
+	if(increment > 100)
+		if(spawn_goat)//only spawn the goat once, when the anomaly explodes
+			INVOKE_ASYNC(src, PROC_REF(makegoat))
+		qdel(src)
+	radiation_pulse(src, 5000, 7)
+	var/turf/T = get_turf(src)
+	var/angle = increment * 10
+	T.fire_nuclear_particle(angle)
+	addtimer(CALLBACK(src, PROC_REF(rad_Spin), increment + 1), 0.7)
+		
+
+/obj/effect/anomaly/radiation/process(delta_time)
+	anomalyEffect(delta_time)
+	if(death_time < world.time)
+		if(loc)
+			detonate()
 
 #undef ANOMALY_MOVECHANCE

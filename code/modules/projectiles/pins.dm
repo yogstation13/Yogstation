@@ -166,8 +166,8 @@
 // fun pin
 // for when you need a gun to not be fired by anyone else ever
 /obj/item/firing_pin/fucked
-	name = "Syndicate Ultrasecure Firing Pin"
-	desc = "Get fuuuuuuuuucked."
+	name = "syndicate ultrasecure firing pin"
+	desc = "Get fucked!"
 	selfdestruct = TRUE
 
 /obj/item/firing_pin/fucked/pin_auth(mob/living/user)
