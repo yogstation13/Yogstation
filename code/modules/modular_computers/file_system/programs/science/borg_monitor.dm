@@ -97,6 +97,8 @@
 		if(R.shell && !R.ckey)
 			shell = TRUE
 
+		var/area/A = get_area(R)
+		var/turf/T = get_turf(R)
 		var/list/cyborg_data = list(
 			name = R.name,
 			integ = round((R.health + 100) / 2), //mob heath is -100 to 100, we want to scale that to 0 - 100
