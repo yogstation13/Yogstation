@@ -19,7 +19,7 @@
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy
 	name = "Necromancy"
 	button_icon_state = "power_necromancy"
-	desc = "Raise the dead as temporary vassals, or revive a dead vassal as a zombie permanently. Temporary vassals last longer as this ability ranks up."
+	desc = "Raise the dead as temporary vassals, or revive a dead vassal as a zombie permanently. Temporary vassals last longer as this ability ranks up. Mindshielded people will take far longer to necromance."
 	power_explanation = "Necromancy:\n\
 		Click on a corpse in order to attempt to resurrect them.\n\
 		Non-vassals will become temporary zombies that will follow your orders. Dead vassals are also turned, but last permanently.\n\
@@ -54,6 +54,11 @@
 	if(target_atom.stat != DEAD)
 		to_chat(owner, span_notice("[target_atom] is still alive."))
 		return FALSE
+	// Mindshield blocks it unless they're on a persuasion rack
+	var/obj/structure/bloodsucker/vassalrack/rack = locate() in target_atom.loc
+	if(HAS_TRAIT(target_atom, TRAIT_MINDSHIELD) && !rack)
+		to_chat(owner, span_warning("[target_atom]'s mindshield interferes with [src], put [target_atom.p_them()] on a persuasion rack first."))
+		return FALSE
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
@@ -63,8 +68,16 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(target.stat == DEAD && user.Adjacent(target))
 		owner.balloon_alert(owner, "attempting to revive...")
-		if(!do_after(user, 6 SECONDS, target))
-			return FALSE
+		if(HAS_TRAIT(target, TRAIT_MINDSHIELD)) //if they have a mindshield
+			owner.balloon_alert(owner, "mindshield detected, this will take longer...")
+			if(!do_after(user, 18 SECONDS, target))
+				return FALSE
+			for(var/obj/item/implant/mindshield/L in target)
+				if(L)
+					qdel(L)
+		else
+			if(!do_after(user, 6 SECONDS, target))
+				return FALSE
 		if(IS_VASSAL(target))
 			power_activated_sucessfully()
 			owner.balloon_alert(owner, "we revive [target]!")
