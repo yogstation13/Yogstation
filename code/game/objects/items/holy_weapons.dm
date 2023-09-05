@@ -1245,9 +1245,9 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	hitsound = 'sound/items/trayhit2.ogg'
 	menutab = MENU_MISC
 	additional_desc = "An everfilling bucket of holy water. A blessed hand held sprinkler."
-	var/max_charges = 5
+	var/max_charges = 30
 	var/splash_charges = 5
-	var/distance = 7
+	var/distance = 6
 	COOLDOWN_DECLARE(splashy)
 
 /obj/item/nullrod/aspergillum/Initialize(mapload)
@@ -1267,6 +1267,9 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 /obj/item/nullrod/aspergillum/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
+		if(target.loc == user)
+			return
+
 		if(!splash_charges)
 			to_chat(usr, span_warning("The aspergillum is dry!"))
 			return
@@ -1282,25 +1285,28 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		var/direction = get_dir(src,target)
 
 		user.newtonian_move(turn(direction, 180))
+		user.do_attack_animation(target)
 
 		//Get all the turfs that can be shot at
-		var/turf/T = get_ranged_target_turf(target, direction, 3) //aim 3 tiles past where you click
-		var/turf/T1 = get_step(T,turn(direction, 90))
-		var/turf/T2 = get_step(T,turn(direction, -90))
-		var/turf/T3 = get_step(get_turf(target),turn(direction, 90))
-		var/turf/T4 = get_step(get_turf(target),turn(direction, -90))
-		var/list/the_targets = list(T,T1,T2,T3,T4)
+		var/turf/T = get_turf(target)
+		var/turf/T1 = get_ranged_target_turf(target, direction, 1) //aim 1 tile past where you click
+		var/turf/T2 = get_step(T,turn(direction, 90))
+		var/turf/T3 = get_step(T,turn(direction, -90))
+		var/turf/T4 = get_step(get_turf(target),turn(direction, 90))
+		var/turf/T5 = get_step(get_turf(target),turn(direction, -90))
+		var/list/the_targets = list(T,T1,T2,T3,T4,T5)
 
 		var/list/water_particles=list()
-		for(var/a=0, a<5, a++)
+		for(var/a=0, a<6, a++)
 			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
+			W.life = distance
 			var/my_target = pick(the_targets)
 			water_particles[W] = my_target
 			the_targets -= my_target
-			var/datum/reagents/R = new/datum/reagents(5)
+			var/datum/reagents/R = new/datum/reagents(1)
 			W.reagents = R
 			R.my_atom = W
-			W.reagents.add_reagent(/datum/reagent/water/holywater, 5)
+			W.reagents.add_reagent(/datum/reagent/water/holywater, 1)
 
 		//Make em move dat ass, hun
 		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, water_particles), 1)
@@ -1315,20 +1321,21 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		var/turf/my_target = particles[W]
 		if(!W)
 			continue
-		step_towards(W,my_target)
+		W.forceMove(get_step_towards2(W,my_target))
 		if(!W.reagents)
 			continue
-		for(var/A in get_turf(W))
+		var/turf/tile = get_turf(W)
+		tile.Bless()
+		for(var/A in tile)
+			if(A == src.loc)//don't fill the chaplain with holy water
+				continue
 			W.reagents.reaction(A, TOUCH|VAPOR)
 		if(W.loc == my_target)
 			particles -= W
+			qdel(W)
 	if(repetition < distance)
 		repetition++
 		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, particles, repetition), 1)
-	else
-		for(var/obj/deleted in particles)
-			if(!QDELETED(deleted))
-				qdel(deleted)
 
 /obj/item/nullrod/aspergillum/update_icon_state()
 	. = ..()
