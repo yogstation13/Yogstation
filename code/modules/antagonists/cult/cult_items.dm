@@ -440,7 +440,7 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/proc/reshield()
 	shielded = TRUE
-	if(illusions == initial(illusions) && isliving(loc))
+	if(isliving(loc))
 		var/mob/living/holder = loc
 		holder.visible_message(span_danger("A runed shield surges from the robe, surrounding [owner]!"))
 		holder.update_inv_wear_suit()
