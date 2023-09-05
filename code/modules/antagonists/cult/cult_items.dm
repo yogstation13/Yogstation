@@ -400,7 +400,7 @@
 	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 60)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
-	var/current_charges = 3
+	var/current_charges = 2
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
 
 /obj/item/clothing/head/hooded/cult_hoodie
