@@ -6,7 +6,7 @@
 	force = 3
 	throwforce = 3
 	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_BULKY
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
