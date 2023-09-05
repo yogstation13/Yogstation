@@ -1285,7 +1285,6 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		var/direction = get_dir(src,target)
 
 		user.newtonian_move(turn(direction, 180))
-		user.do_attack_animation(target)
 
 		//Get all the turfs that can be shot at
 		var/turf/T = get_turf(target)
@@ -1321,7 +1320,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		var/turf/my_target = particles[W]
 		if(!W)
 			continue
-		W.forceMove(get_step_towards2(W,my_target))
+		step_towards(W,my_target)
 		if(!W.reagents)
 			continue
 		var/turf/tile = get_turf(W)
