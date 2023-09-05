@@ -442,7 +442,7 @@
 	shielded = TRUE
 	if(isliving(loc))
 		var/mob/living/holder = loc
-		holder.visible_message(span_danger("A runed shield surges from the robe, surrounding [owner]!"))
+		holder.visible_message(span_danger("A runed shield surges from the robe, surrounding [holder]!"))
 		holder.update_inv_wear_suit()
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/worn_overlays(isinhands)
