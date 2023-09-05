@@ -1248,6 +1248,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/max_charges = 5
 	var/splash_charges = 5
 	var/distance = 7
+	COOLDOWN_DECLARE(splashy)
 
 /obj/item/nullrod/aspergillum/Initialize(mapload)
 	. = ..()
@@ -1257,10 +1258,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	)
 	
 /obj/item/nullrod/aspergillum/proc/on_wield(atom/source, mob/living/user)
-	playsound(src, 'sound/effects/slosh.ogg', 40, 1)
+	playsound(src, 'sound/effects/slosh.ogg', 40, 1, -1)
 
 /obj/item/nullrod/aspergillum/proc/on_unwield(atom/source, mob/living/user)
-	playsound(src, 'sound/effects/splosh.ogg', 15, 1)
+	playsound(src, 'sound/effects/splosh.ogg', 15, 1, -1)
 	splash_charges = max_charges
 
 /obj/item/nullrod/aspergillum/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -1270,22 +1271,28 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			to_chat(usr, span_warning("The aspergillum is dry!"))
 			return
 
+		if(!COOLDOWN_FINISHED(src, splashy))
+			return
+		COOLDOWN_START(src, splashy, CLICK_CD_MELEE)
+
 		splash_charges--
 
-		playsound(src.loc, 'sound/effects/splat.ogg', 60, 1)
+		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1, 3)
 
 		var/direction = get_dir(src,target)
 
 		user.newtonian_move(turn(direction, 180))
 
 		//Get all the turfs that can be shot at
-		var/turf/T = get_ranged_target_turf(target, direction, 2) //aim two tiles past where you click
+		var/turf/T = get_ranged_target_turf(target, direction, 4) //aim four tiles past where you click
 		var/turf/T1 = get_step(T,turn(direction, 90))
 		var/turf/T2 = get_step(T,turn(direction, -90))
-		var/list/the_targets = list(T,T1,T2)
+		var/turf/T3 = get_step(T1,turn(direction, 90))
+		var/turf/T4 = get_step(T2,turn(direction, -90))
+		var/list/the_targets = list(T,T1,T2,T3,T4)
 
 		var/list/water_particles=list()
-		for(var/a=0, a<3, a++)
+		for(var/a=0, a<5, a++)
 			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
 			W.reaction_type = VAPOR
 			var/my_target = pick(the_targets)
