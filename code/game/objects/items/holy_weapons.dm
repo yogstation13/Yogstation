@@ -1273,7 +1273,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 
 		if(splash_charges <= 0)
 			if(COOLDOWN_FINISHED(src, balloon))
-				user.balloon_alert(span_warning("The aspergillum is dry!"))
+				user.balloon_alert(user, span_warning("The aspergillum is dry!"))
 				COOLDOWN_START(src, balloon, CLICK_CD_MELEE)
 			return
 
