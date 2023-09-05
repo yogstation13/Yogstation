@@ -50,12 +50,6 @@
 		H.dropItemToGround(src, TRUE, TRUE)
 	qdel(user, TRUE)
 
-/obj/item/nullrod/attack_self(mob/user)
-	if(user?.mind?.holy_role && check_menu(user))
-		ui_interact(user)
-	else
-		..()
-
 /obj/item/nullrod/proc/check_menu(mob/user)//check if the person is able to access the menu
 	if(!istype(user))
 		return FALSE
@@ -66,10 +60,11 @@
 	return TRUE
 
 /obj/item/nullrod/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "NullRodMenu", name)
-		ui.open()
+	if(user?.mind?.holy_role && check_menu(user))
+		ui = SStgui.try_update_ui(user, src, ui)
+		if(!ui)
+			ui = new(user, src, "NullRodMenu", name)
+			ui.open()
 
 /obj/item/nullrod/ui_static_data(mob/user)
 	var/list/data = list()
@@ -1244,12 +1239,15 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	icon_state = "aspergillum0"
 	item_state = "aspergillum0"
 	base_icon_state = "aspergillum"
-	force = 5
+	force = 0
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BELT
 	hitsound = 'sound/items/trayhit2.ogg'
 	menutab = MENU_MISC
-	additional_desc = "A magical staff that conjures a shield around the holder, protecting from blows."
+	additional_desc = "An everfilling bucket of holy water. A blessed hand held sprinkler."
+	var/max_charges = 5
+	var/splash_charges = 5
+	var/distance = 7
 
 /obj/item/nullrod/aspergillum/Initialize(mapload)
 	. = ..()
@@ -1259,10 +1257,73 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	)
 	
 /obj/item/nullrod/aspergillum/proc/on_wield(atom/source, mob/living/user)
-	playsound(src, 'sound/effects/slosh.ogg', 100, 1)
+	playsound(src, 'sound/effects/slosh.ogg', 40, 1)
 
 /obj/item/nullrod/aspergillum/proc/on_unwield(atom/source, mob/living/user)
-	playsound(src, 'sound/effects/splosh.ogg', 50, 1)
+	playsound(src, 'sound/effects/splosh.ogg', 15, 1)
+	splash_charges = max_charges
+
+/obj/item/nullrod/aspergillum/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_WIELDED))
+		if(!splash_charges)
+			to_chat(usr, span_warning("The aspergillum is dry!"))
+			return
+
+		splash_charges--
+
+		playsound(src.loc, 'sound/effects/splat.ogg', 60, 1)
+
+		var/direction = get_dir(src,target)
+
+		user.newtonian_move(turn(direction, 180))
+
+		//Get all the turfs that can be shot at
+		var/turf/T = get_ranged_target_turf(target, direction, 2) //aim two tiles past where you click
+		var/turf/T1 = get_step(T,turn(direction, 90))
+		var/turf/T2 = get_step(T,turn(direction, -90))
+		var/list/the_targets = list(T,T1,T2)
+
+		var/list/water_particles=list()
+		for(var/a=0, a<3, a++)
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
+			W.reaction_type = VAPOR
+			var/my_target = pick(the_targets)
+			water_particles[W] = my_target
+			the_targets -= my_target
+			var/datum/reagents/R = new/datum/reagents(5)
+			W.reagents = R
+			R.my_atom = W
+			W.reagents.add_reagent(/datum/reagent/water/holywater, 5)
+
+		//Make em move dat ass, hun
+		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, water_particles), 1)
+
+//Particle movement loop
+/obj/item/nullrod/aspergillum/proc/move_particles(list/particles, repetition=0)
+	//Check if there's anything in here first
+	if(!particles || particles.len == 0)
+		return
+	// Second loop: Get all the water particles and make them move to their target
+	for(var/obj/effect/particle_effect/water/W in particles)
+		var/turf/my_target = particles[W]
+		if(!W)
+			continue
+		step_towards(W,my_target)
+		if(!W.reagents)
+			continue
+		W.reagents.reaction(get_turf(W))
+		for(var/A in get_turf(W))
+			W.reagents.reaction(A)
+		if(W.loc == my_target)
+			particles -= W
+	if(repetition < distance)
+		repetition++
+		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, particles, repetition), 1)
+	else
+		for(var/obj/deleted in particles)
+			if(!QDELETED(deleted))
+				qdel(deleted)
 
 /obj/item/nullrod/aspergillum/update_icon_state()
 	. = ..()
