@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Pulsing Mech Fabricator's WIRE_ZAP no longer breaks your limbs unless you are adjacent to it as intended."
