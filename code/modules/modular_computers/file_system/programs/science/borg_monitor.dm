@@ -101,6 +101,7 @@
 			name = R.name,
 			integ = round((R.health + 100) / 2), //mob heath is -100 to 100, we want to scale that to 0 - 100
 			locked_down = R.lockcharge,
+			locstring = "[A.name] ([T.x], [T.y])",
 			status = R.stat,
 			shell_discon = shell,
 			charge = R.cell ? round(R.cell.percent()) : null,
