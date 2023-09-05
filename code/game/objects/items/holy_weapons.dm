@@ -1247,7 +1247,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	additional_desc = "An everfilling bucket of holy water. A blessed hand held sprinkler."
 	var/max_charges = 30
 	var/splash_charges = 5
-	var/distance = 6
+	var/distance = 10
 	COOLDOWN_DECLARE(splashy)
 
 /obj/item/nullrod/aspergillum/Initialize(mapload)
@@ -1323,15 +1323,12 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		step_towards(W,my_target)
 		if(!W.reagents)
 			continue
-		var/turf/tile = get_turf(W)
-		tile.Bless()
-		for(var/A in tile)
+		for(var/A in get_turf(W))
 			if(A == src.loc)//don't fill the chaplain with holy water
 				continue
 			W.reagents.reaction(A, TOUCH|VAPOR)
 		if(W.loc == my_target)
 			particles -= W
-			qdel(W)
 	if(repetition < distance)
 		repetition++
 		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, particles, repetition), 1)
