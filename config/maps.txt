@@ -33,7 +33,7 @@ map asteroidstation
 endmap
 
 map donutstation
-	maxplayers 40
+	maxplayers 50
 	voteable
 endmap
 
