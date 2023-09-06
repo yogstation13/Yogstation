@@ -399,21 +399,22 @@
 /obj/effect/anomaly/radiation/detonate()
 	INVOKE_ASYNC(src, PROC_REF(rad_Spin))
 
-/obj/effect/anomaly/radiation/proc/rad_Spin()
+/obj/effect/anomaly/radiation/proc/rad_Spin(increment = 1)
+	if(increment > 100)
+		if(spawn_goat)//only spawn the goat once, when the anomaly explodes
+			INVOKE_ASYNC(src, PROC_REF(makegoat))
+		qdel(src)
 	radiation_pulse(src, 5000, 7)
 	var/turf/T = get_turf(src)
-	for(var/i=1 to 100)
-		var/angle = i * 10
-		T.fire_nuclear_particle(angle)
-		sleep(0.7)
+	var/angle = increment * 10
+	T.fire_nuclear_particle(angle)
+	addtimer(CALLBACK(src, PROC_REF(rad_Spin), increment + 1), 0.7)
+		
 
 /obj/effect/anomaly/radiation/process(delta_time)
 	anomalyEffect(delta_time)
 	if(death_time < world.time)
 		if(loc)
-			if(spawn_goat)
-				INVOKE_ASYNC(src, PROC_REF(makegoat))
 			detonate()
-			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 150)
 
 #undef ANOMALY_MOVECHANCE

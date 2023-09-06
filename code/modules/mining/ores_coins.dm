@@ -72,7 +72,7 @@
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
 
-	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
+	if(!istype(S, /obj/item/organ/stomach/cell/preternis))//need a fancy stomach for it
 		return ..()
 
 	if(!eaten(H))
