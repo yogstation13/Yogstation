@@ -139,7 +139,7 @@ Credit where due:
 	report_type = "clockwork_cult"
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	false_report_weight = 10
-	required_players = 35 //it's a team based conversion antag based on base defense/siege mechanics, it NEEDS lots of people to be fun
+	required_players = 30 //it's a team based conversion antag based on base defense/siege mechanics, it NEEDS lots of people to be fun
 	required_enemies = 4
 	recommended_enemies = 4
 	enemy_minimum_age = 14
