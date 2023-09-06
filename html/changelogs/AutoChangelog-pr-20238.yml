@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "You must now be adjacent to unlock or lock a robot's cover instead of infinite range."
