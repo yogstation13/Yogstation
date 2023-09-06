@@ -11,6 +11,31 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
+"aN" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion{
+	color = "#e215d6";
+	desc = "You can still see what was once a human under the shifting mass of corruption. This one feels oddly... helpful?";
+	loot = list(/obj/item/organ/regenerative_core/legion,/obj/item/clothing/mask/yogs/freddy);
+	move_to_delay = 420;
+	name = "helpy"
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"aW" = (
+/obj/structure/stone_tile/slab,
+/obj/item/coin/diamond{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/obj/item/coin/gold{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
+	faction = list("boss","mining")
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
 "aX" = (
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -42,6 +67,12 @@
 	dir = 8
 	},
 /turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"bT" = (
+/mob/living/simple_animal/hostile/skeleton/plasmaminer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "bW" = (
 /obj/structure/ladder/unbreakable/rune{
@@ -129,6 +160,12 @@
 "dF" = (
 /turf/open/chasm/lavaland,
 /area/ruin/unpowered)
+"dH" = (
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
 "dK" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
@@ -207,42 +244,11 @@
 /obj/structure/stone_tile/surrounding,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
-"eo" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/block{
-	dir = 1
-	},
-/obj/structure/closet/crate/necropolis/tendril,
-/obj/item/crusher_trophy/watcher_wing,
-/obj/item/stack/sheet/mineral/mythril{
-	amount = 50
-	},
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered)
 "ev" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/closet/crate/necropolis/tendril,
 /obj/item/stack/sheet/capitalisium,
 /turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered)
-"ew" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
-	faction = list("boss","mining")
-	},
-/turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "fd" = (
 /obj/structure/stone_tile,
@@ -261,6 +267,16 @@
 /obj/structure/stone_tile/block,
 /turf/open/chasm/lavaland,
 /area/ruin/unpowered)
+"fK" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/table/wood/fancy/black,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/silver/fifty,
+/obj/item/stack/sheet/bluespace_crystal{
+	amount = 50
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
 "gb" = (
 /obj/structure/stone_tile/slab,
 /turf/open/indestructible/boss,
@@ -274,6 +290,21 @@
 /area/ruin/unpowered)
 "gg" = (
 /obj/structure/stone_tile/block,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"gZ" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/right{
+	dir = 4
+	},
+/obj/item/stack/sheet/mineral/titanium/fifty,
+/obj/item/stack/sheet/mineral/uranium/fifty,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "hq" = (
@@ -308,6 +339,26 @@
 	pixel_y = -2
 	},
 /turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"il" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/coin/gold{
+	pixel_x = -1;
+	pixel_y = -8
+	},
+/obj/item/stack/sheet/mineral/diamond/fifty{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "iq" = (
 /obj/structure/stone_tile{
@@ -388,9 +439,6 @@
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered)
-"jS" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "ki" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 10
@@ -435,6 +483,10 @@
 "lC" = (
 /turf/open/chasm/lavaland,
 /area/lavaland/surface/outdoors)
+"lE" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
 "lT" = (
 /obj/structure/stone_tile/slab,
 /turf/open/lava/smooth/lava_land_surface,
@@ -553,6 +605,18 @@
 /area/ruin/unpowered)
 "nf" = (
 /obj/machinery/door/keycard/necropolis,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"nh" = (
+/obj/item/gem/random{
+	pixel_x = -13;
+	pixel_y = 4
+	},
+/obj/item/coin/gold{
+	pixel_x = -6;
+	pixel_y = -11
+	},
+/obj/structure/trap/stun,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "nl" = (
@@ -674,57 +738,11 @@
 "oN" = (
 /turf/closed/indestructible/necropolis,
 /area/lavaland/surface/outdoors)
-"oP" = (
-/obj/item/gem/random{
-	pixel_x = -13;
-	pixel_y = 4
-	},
-/obj/item/coin/gold{
-	pixel_x = -6;
-	pixel_y = -11
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
 "oV" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered)
-"ph" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/item/stack/sheet/mineral/diamond{
-	amount = 30;
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/coin/gold{
-	pixel_x = -1;
-	pixel_y = -8
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"pi" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/center,
-/obj/structure/rack/skeletal/right{
-	dir = 4
-	},
-/obj/item/break_blade,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "pt" = (
@@ -755,6 +773,11 @@
 /obj/structure/elite_tumor,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
+"pF" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/structure/trap/fire,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
 "pR" = (
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /turf/open/lava/smooth/lava_land_surface,
@@ -762,21 +785,21 @@
 "qp" = (
 /turf/closed/indestructible/necropolis,
 /area/ruin/unpowered)
-"qq" = (
-/obj/structure/stone_tile,
-/obj/structure/stone_tile{
+"qM" = (
+/obj/structure/stone_tile/surrounding_tile{
 	dir = 8
 	},
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
+/obj/structure/rack/skeletal,
+/obj/item/break_blade,
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
+"qO" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
-/obj/item/gem/random{
-	pixel_x = 2;
-	pixel_y = -8
-	},
+/obj/structure/stone_tile/center,
+/obj/structure/constructshell,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "qW" = (
@@ -824,16 +847,26 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
+"sm" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/crusher_trophy/legionnaire_spine,
+/obj/item/fishingrod/collapsible,
+/obj/item/stack/sheet/mineral/mythril{
+	amount = 50
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"sw" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/obj/structure/stone_tile/center/burnt,
+/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child{
+	faction = list("boss","mining")
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
 "sx" = (
 /obj/effect/mob_spawn/human/corpse/assistant/beesease_infection,
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered)
-"sE" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/rack/skeletal,
-/obj/item/nullrod/pitchfork,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "sV" = (
@@ -867,6 +900,16 @@
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
+"tx" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/table/wood/fancy/black,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/silver/fifty,
+/obj/item/stack/sheet/dilithium_crystal{
+	amount = 50
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
 "ty" = (
 /turf/closed/mineral/magmite/volcanic/hard/harder,
 /area/ruin/unpowered)
@@ -894,9 +937,18 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
-"uv" = (
-/obj/structure/stone_tile/slab/burnt,
-/turf/open/lava/smooth/lava_land_surface,
+"uI" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/obj/structure/rack/skeletal/right{
+	dir = 8
+	},
+/obj/item/stack/sheet/mineral/titanium/fifty,
+/obj/item/stack/sheet/mineral/uranium/fifty,
+/turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "uP" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -904,17 +956,6 @@
 	},
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/center,
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered)
-"uU" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile/center,
-/obj/item/golem_shell/servant,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "uV" = (
@@ -1008,15 +1049,6 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
-"yp" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/center,
-/obj/item/golem_shell/servant,
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered)
 "yw" = (
 /obj/structure/ladder/unbreakable/rune{
 	color = "#ff0000";
@@ -1066,12 +1098,20 @@
 /obj/effect/mob_spawn/human/corpse/assistant/beesease_infection,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered)
-"zi" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/closet/crate/necropolis/tendril,
-/obj/item/crusher_trophy/legionnaire_spine,
-/obj/item/fishingrod/collapsible,
-/turf/open/lava/smooth/lava_land_surface,
+"zg" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/boss,
 /area/ruin/unpowered)
 "zu" = (
 /obj/structure/stone_tile/block,
@@ -1142,18 +1182,6 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
-"AZ" = (
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/center,
-/obj/structure/rack/skeletal/right{
-	dir = 8
-	},
-/obj/item/break_blade,
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered)
 "Bm" = (
 /obj/effect/spawner/lootdrop/mob/marrow_weaver,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -1188,8 +1216,15 @@
 /obj/structure/trap/fire,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
-"BL" = (
-/obj/structure/trap/fire,
+"Cg" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/constructshell,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "Cv" = (
@@ -1258,18 +1293,6 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
-"Ea" = (
-/obj/structure/stone_tile/slab,
-/obj/item/storage/bag/gem{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/survivalcapsule{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/turf/open/indestructible/necropolis,
-/area/ruin/unpowered)
 "Ed" = (
 /obj/structure/stone_tile/slab,
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced,
@@ -1288,6 +1311,17 @@
 	},
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
+"Er" = (
+/obj/structure/stone_tile/slab,
+/obj/item/storage/bag/gem{
+	pixel_x = -1
+	},
+/obj/item/survivalcapsule/luxuryelite{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
 "ES" = (
 /obj/structure/stone_tile/cracked,
 /turf/open/lava/smooth/lava_land_surface,
@@ -1397,15 +1431,46 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
+"Hp" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
 "Ht" = (
 /obj/structure/stone_tile/slab,
 /obj/machinery/door/keycard/necropolis,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
+"HD" = (
+/mob/living/simple_animal/hostile/skeleton/plasmaminer/jackhammer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/necropolis,
+/area/ruin/unpowered)
 "HL" = (
 /obj/structure/stone_tile/surrounding,
 /obj/item/wormhole_jaunter,
 /obj/structure/table/wood/fancy/red,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"HP" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/crusher_trophy/watcher_wing,
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "HY" = (
@@ -1425,16 +1490,9 @@
 /obj/effect/mob_spawn/human/corpse/charredskeleton,
 /turf/open/chasm/lavaland,
 /area/ruin/unpowered)
-"Ie" = (
-/obj/structure/stone_tile/surrounding,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion{
-	color = "#e215d6";
-	desc = "You can still see what was once a human under the shifting mass of corruption. This one feels oddly... helpful?";
-	loot = list(/obj/item/organ/regenerative_core/legion,/obj/item/clothing/mask/yogs/freddy);
-	move_to_delay = 420;
-	name = "helpy"
-	},
-/turf/open/lava/smooth/lava_land_surface,
+"If" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing,
+/turf/open/chasm/lavaland,
 /area/ruin/unpowered)
 "Ii" = (
 /obj/structure/stone_tile/center/cracked,
@@ -1495,13 +1553,6 @@
 	pixel_y = -8
 	},
 /turf/open/indestructible/boss,
-/area/ruin/unpowered)
-"Jc" = (
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
-	faction = list("boss","mining")
-	},
-/obj/structure/stone_tile/block,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "Jd" = (
 /obj/structure/stone_tile/block/burnt{
@@ -1579,16 +1630,22 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
-"KC" = (
-/obj/structure/stone_tile/slab,
-/obj/item/coin/diamond{
-	pixel_x = 7;
-	pixel_y = -7
+"KS" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 8
 	},
-/obj/item/coin/gold{
-	pixel_x = 1;
-	pixel_y = -3
+/obj/structure/stone_tile{
+	dir = 1
 	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/item/gem/random{
+	pixel_x = 2;
+	pixel_y = -8
+	},
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "Lc" = (
@@ -1639,18 +1696,27 @@
 /obj/structure/stone_tile/center,
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
-"Mn" = (
+"LV" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/rack/skeletal{
 	dir = 1
 	},
-/obj/item/chainsaw_sword,
 /obj/item/coin/adamantine{
 	pixel_x = -7;
 	pixel_y = 1
 	},
-/obj/item/necromantic_stone,
+/obj/item/nullrod/pitchfork,
+/obj/structure/life_candle{
+	pixel_x = 6;
+	pixel_y = 3
+	},
 /turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Mg" = (
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire{
+	faction = list("boss","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "Ms" = (
 /obj/structure/stone_tile/block{
@@ -1662,10 +1728,9 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
-"Na" = (
-/obj/structure/stone_tile/surrounding/burnt,
-/obj/structure/stone_tile/center/burnt,
-/turf/open/lava/smooth/lava_land_surface,
+"MZ" = (
+/obj/structure/trap/damage,
+/turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
 "Nh" = (
 /obj/structure/stone_tile/surrounding_tile/cracked{
@@ -1724,6 +1789,19 @@
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered)
+"NF" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/indestructible/boss,
+/area/ruin/unpowered)
 "NN" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile{
@@ -1734,11 +1812,12 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
-"Of" = (
+"Og" = (
+/obj/structure/stone_tile/slab,
 /mob/living/simple_animal/hostile/skeleton{
 	faction = list("skeleton","mining")
 	},
-/turf/open/indestructible/necropolis,
+/turf/open/chasm/lavaland,
 /area/ruin/unpowered)
 "OD" = (
 /obj/structure/stone_tile/block{
@@ -1901,6 +1980,15 @@
 /obj/structure/stone_tile/surrounding,
 /obj/item/dragon_egg,
 /turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"Rc" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton{
+	faction = list("skeleton","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "Rt" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -2080,6 +2168,18 @@
 "Uw" = (
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Uz" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/block,
+/obj/structure/closet/crate/necropolis/tendril,
+/obj/item/crusher_trophy/legion_skull,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
 "UE" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/chasm/lavaland,
@@ -2090,10 +2190,11 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
-"UP" = (
-/obj/structure/stone_tile/surrounding,
-/obj/structure/closet/crate/necropolis/tendril,
-/turf/open/lava/smooth/lava_land_surface,
+"UM" = (
+/mob/living/simple_animal/hostile/skeleton/plasmaminer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "UX" = (
 /obj/structure/stone_tile/slab/cracked{
@@ -2130,6 +2231,11 @@
 /obj/structure/stone_tile/slab,
 /obj/machinery/door/keycard/necropolis,
 /turf/open/indestructible/boss,
+/area/ruin/unpowered)
+"VL" = (
+/obj/structure/stone_tile/slab/burnt,
+/obj/structure/trap/fire,
+/turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "VQ" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -2200,25 +2306,21 @@
 	},
 /turf/open/indestructible/necropolis,
 /area/ruin/unpowered)
+"WH" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"WJ" = (
+/obj/structure/stone_tile/surrounding,
+/mob/living/simple_animal/hostile/skeleton/plasmaminer/jackhammer{
+	faction = list("skeleton","mining")
+	},
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
 "Xn" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/closet/crate/necropolis/tendril,
 /obj/item/stack/sheet/cheese,
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered)
-"XA" = (
-/obj/structure/stone_tile{
-	dir = 1
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/block,
-/obj/structure/closet/crate/necropolis/tendril,
-/obj/item/crusher_trophy/legion_skull,
-/obj/item/stack/sheet/mineral/adamantine{
-	amount = 50
-	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered)
 "Yg" = (
@@ -2230,12 +2332,6 @@
 	},
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/random,
 /turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered)
-"Yw" = (
-/mob/living/simple_animal/hostile/skeleton{
-	faction = list("skeleton","mining")
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "YE" = (
 /obj/structure/stone_tile/surrounding_tile{
@@ -2580,11 +2676,11 @@ nt
 nt
 nY
 nY
-AZ
+uI
 SG
 PY
 dK
-uU
+Cg
 nY
 nY
 nt
@@ -2805,7 +2901,7 @@ nt
 UE
 qp
 aq
-Ls
+lE
 Ls
 db
 qp
@@ -2842,7 +2938,7 @@ nY
 nY
 nY
 nY
-UP
+tx
 nY
 nY
 nY
@@ -2862,7 +2958,7 @@ GF
 ES
 qp
 QA
-QA
+HD
 QA
 QA
 QA
@@ -2878,7 +2974,7 @@ TN
 AC
 nY
 ek
-AC
+dH
 QA
 nY
 nY
@@ -2916,7 +3012,7 @@ qp
 QA
 qp
 qp
-Of
+QA
 qp
 qp
 SR
@@ -2963,7 +3059,7 @@ nY
 Ze
 Hl
 Hc
-Na
+sw
 qp
 QA
 qp
@@ -3013,7 +3109,7 @@ nt
 qp
 qp
 BD
-Ls
+oC
 Nh
 Ls
 qp
@@ -3031,7 +3127,7 @@ AC
 TA
 mO
 CQ
-AC
+dH
 qp
 Bm
 nY
@@ -3065,7 +3161,7 @@ nt
 nt
 qp
 Ls
-oC
+Ls
 aq
 db
 qp
@@ -3119,7 +3215,7 @@ qp
 at
 Ii
 hq
-Ls
+lE
 nY
 yj
 nY
@@ -3128,10 +3224,10 @@ AC
 qp
 AC
 qp
-Of
+bT
 qp
 qp
-AC
+UM
 TA
 mO
 CQ
@@ -3221,14 +3317,14 @@ nt
 qp
 nY
 Nh
-uv
+VL
 hq
 Ls
 qp
-AC
+QA
 Zd
 qp
-BL
+TN
 nf
 AC
 qp
@@ -3283,7 +3379,7 @@ qp
 QA
 nY
 AC
-SR
+pF
 AC
 nY
 CQ
@@ -3295,7 +3391,7 @@ dF
 qp
 QV
 AC
-AC
+dH
 qp
 nY
 ZB
@@ -3358,7 +3454,7 @@ Uw
 Uw
 lC
 lC
-jS
+ZB
 PQ
 PQ
 Eo
@@ -3379,7 +3475,7 @@ qp
 dF
 dF
 dF
-dF
+If
 qp
 QA
 qp
@@ -3410,7 +3506,7 @@ Uw
 lC
 lC
 nY
-jS
+ZB
 Uw
 Uw
 PQ
@@ -3428,13 +3524,13 @@ Uw
 qW
 qp
 qp
-dF
+If
 ut
 Wj
 dF
 qp
 QA
-QA
+MZ
 Ls
 Ls
 qp
@@ -3449,7 +3545,7 @@ dF
 dF
 dF
 dF
-AC
+TN
 AC
 AC
 QA
@@ -3481,19 +3577,19 @@ qW
 UE
 qp
 ud
-oP
+nh
 de
 nY
 qp
 RD
 QA
 nY
-Ls
+WH
 Ls
 yn
 Ls
 Ls
-QA
+MZ
 cw
 Am
 uV
@@ -3532,7 +3628,7 @@ nY
 nY
 UE
 qp
-ph
+il
 ZI
 mw
 nY
@@ -3585,12 +3681,12 @@ nY
 UE
 qp
 yX
-ew
+Hp
 bQ
 Lc
 br
-Jc
-AC
+Dk
+Mg
 pz
 xp
 Vl
@@ -3598,14 +3694,14 @@ mP
 dF
 Ls
 Ls
-QA
+IH
 iv
 Tu
 bn
 dw
 CQ
 qp
-Ie
+aN
 Dk
 QA
 gb
@@ -3636,8 +3732,8 @@ nY
 nY
 UE
 qp
-eo
-qq
+HP
+KS
 ma
 nY
 ek
@@ -3688,7 +3784,7 @@ nY
 qW
 UE
 qp
-zi
+sm
 xZ
 ic
 nY
@@ -3696,12 +3792,12 @@ qp
 QV
 QA
 nY
-Ls
+WH
 Ls
 IR
 Ls
 Ls
-QA
+MZ
 Af
 vv
 YN
@@ -3740,13 +3836,13 @@ Uw
 qW
 qp
 qp
-XA
+Uz
 xZ
 mp
-Ea
+Er
 qp
 QA
-QA
+MZ
 Ls
 Ls
 qp
@@ -3761,7 +3857,7 @@ dF
 dF
 dF
 dF
-AC
+TN
 AC
 AC
 QA
@@ -3794,11 +3890,11 @@ qp
 qp
 CS
 IX
-KC
-Mn
+aW
+LV
 qp
 QA
-ek
+qp
 qp
 Ls
 qp
@@ -3826,7 +3922,7 @@ Uw
 lC
 lC
 nY
-jS
+ZB
 Uw
 Uw
 PQ
@@ -3850,7 +3946,7 @@ DM
 kB
 qp
 QA
-qp
+ek
 qp
 AC
 qp
@@ -3878,7 +3974,7 @@ Uw
 Uw
 lC
 lC
-jS
+ZB
 PQ
 PQ
 Hk
@@ -3907,7 +4003,7 @@ qp
 AC
 nY
 AC
-SR
+pF
 AC
 nY
 CQ
@@ -3919,7 +4015,7 @@ dF
 qp
 AC
 AC
-ce
+Rc
 qp
 nY
 ZB
@@ -3960,7 +4056,7 @@ TN
 nf
 AC
 qp
-Yw
+UM
 nY
 nY
 qp
@@ -4008,7 +4104,7 @@ qp
 Zd
 QA
 qp
-ek
+AC
 nY
 QA
 qp
@@ -4067,7 +4163,7 @@ qp
 nY
 AC
 qp
-AC
+UM
 TA
 OD
 CQ
@@ -4157,7 +4253,7 @@ nt
 qp
 qp
 cf
-UY
+Og
 UY
 SF
 qp
@@ -4175,7 +4271,7 @@ AC
 TA
 OD
 CQ
-AC
+dH
 qp
 mr
 nY
@@ -4263,7 +4359,7 @@ nY
 Id
 Ed
 UY
-NC
+zg
 qp
 TF
 AC
@@ -4334,7 +4430,7 @@ TN
 AC
 nY
 ek
-AC
+dH
 QA
 nY
 nY
@@ -4402,7 +4498,7 @@ nY
 nY
 nY
 nY
-UP
+fK
 nY
 nY
 nY
@@ -4418,13 +4514,13 @@ qp
 qp
 gb
 lv
-rl
+NF
 jA
 GX
 AC
 SR
+WJ
 qp
-Zd
 QA
 AC
 AC
@@ -4503,7 +4599,7 @@ nt
 nt
 nY
 nY
-sE
+qM
 cw
 jA
 NC
@@ -4660,11 +4756,11 @@ nt
 nt
 nY
 nY
-pi
+gZ
 Ge
 Gg
 PM
-yp
+qO
 nY
 nY
 nt
