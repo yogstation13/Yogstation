@@ -410,6 +410,7 @@
 /obj/machinery/power/bluespace_tap/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(emagged)
 		return FALSE
+	safe_levels = 10
 	emagged = TRUE
 	do_sparks(5, FALSE, src)
 	if(user)
