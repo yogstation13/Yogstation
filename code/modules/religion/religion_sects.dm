@@ -418,7 +418,7 @@
 /datum/religion_sect/holylight
 	name = "Holy Light"
 	desc = "A sect dedicated to healing."
-	convert_opener = "Welcome to the Holy Light, disciple. <br>Your holy water will now bless people with improved healing, which provides favor. Additionally, your bible heal is significantly stronger, at the cost of favor and an increased cooldown."
+	convert_opener = "Welcome to the Holy Light, disciple. <br>Your bible will now bless people with improved healing, which provides favor."
 	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
 	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
 	altar_icon_state = "convertaltar-heal"
