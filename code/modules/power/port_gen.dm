@@ -171,7 +171,7 @@
 	explosion(src.loc, 2, 5, 2, -1)
 
 /obj/machinery/power/port_gen/pacman/MouseDrop_T(atom/dropping, mob/user)
-	if(is_type_in_typecache(dropping, sheet_path))
+	if(istype(dropping, sheet_path))
 		attackby(dropping, user)
 	else
 		..()
