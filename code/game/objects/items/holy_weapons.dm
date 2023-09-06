@@ -1282,7 +1282,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 
 		splash_charges--
 
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1, 3)
+		playsound(src.loc, 'sound/effects/wounds/splatter.ogg', 50, 1, 3)
+		playsound(src.loc, get_sfx("collarbell"), 50, 1, 3)
 
 		var/direction = get_dir(src,target)
 
