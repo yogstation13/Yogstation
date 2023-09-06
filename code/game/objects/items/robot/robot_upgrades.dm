@@ -266,7 +266,7 @@
 /// Contains both common and rarer languages.
 /obj/item/borg/upgrade/language/expanded
 	name = "advanced translation matrix upgrade"
-	desc = "Increases the translation matrix to include an even wider variety in langauges."
+	desc = "Increases the translation matrix to include an even wider variety in languages."
 	blacklisted_upgrades = list(/obj/item/borg/upgrade/language/omni)
 	languages = list(
 		/datum/language/bonespeak,

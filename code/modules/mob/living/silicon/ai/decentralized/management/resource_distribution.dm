@@ -14,12 +14,13 @@
 	circuit = /obj/item/circuitboard/computer/ai_resource_distribution
 
 
-/obj/machinery/computer/ai_resource_distribution/emag_act(mob/user)
+/obj/machinery/computer/ai_resource_distribution/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, span_warning("You bypass the access restrictions"))
-	authenticated = TRUE
+		return FALSE
 	obj_flags |= EMAGGED
+	authenticated = TRUE
+	to_chat(user, span_warning("You bypass the access restrictions."))
+	return TRUE
 
 /obj/machinery/computer/ai_resource_distribution/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

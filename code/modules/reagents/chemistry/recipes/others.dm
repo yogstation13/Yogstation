@@ -156,8 +156,8 @@
 /datum/chemical_reaction/lemolime
 	name = "Lemoline"
 	id = /datum/reagent/lemoline
-	required_reagents = list(/datum/reagent/consumable/lemonjuice = 2, /datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol = 4)
-	results = list(/datum/reagent/lemoline = 4)
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/ethanol = 2)
+	results = list(/datum/reagent/lemoline = 2)
 
 //Technically a mutation toxin
 /datum/chemical_reaction/mulligan
