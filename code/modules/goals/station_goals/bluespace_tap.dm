@@ -222,7 +222,7 @@
 	/// Amount of points to give per mining level
 	var/base_points = 100
 	/// How high the machine can be run before it starts having a chance for dimension breaches.
-	var/safe_levels = 13
+	var/safe_levels = 15
 	var/emagged = FALSE
 
 /obj/machinery/power/bluespace_tap/New()
