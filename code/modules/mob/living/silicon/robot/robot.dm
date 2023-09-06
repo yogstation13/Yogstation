@@ -603,7 +603,8 @@
 		to_chat(user, span_notice("The cover interface glitches out for a split second."))
 
 /mob/living/silicon/robot/AltClick(mob/user)
-	togglelock(user)
+	if(Adjacent(user))
+		togglelock(user)
 
 /// Use this to add upgrades to robots. It'll register signals for when the upgrade is moved or deleted, if not single use.
 /mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade, mob/user, from_admin = FALSE)
