@@ -2,7 +2,7 @@
 #define BLUESPACE_TAP_POINT_GOAL 45000 // Yogs
 /datum/station_goal/bluespace_tap
 	name = "Bluespace Harvester"
-	var/goal = BLUESPACE_TAP_POINT_GOAL // Yogs 
+	var/goal = BLUESPACE_TAP_POINT_GOAL // Yogs
 
 /datum/station_goal/bluespace_tap/get_report()
 	return {"<b>Bluespace Harvester Experiment</b><br>
