@@ -525,3 +525,11 @@
 	suffix = "lavaland_surface_heralddtrap.dmm"
 	allow_duplicates = FALSE
 	cost = 10
+
+/datum/map_template/ruin/lavaland/legionnairedeathtrap
+	name = "Legionnaire's Death Trap"
+	id =  "legionnairedtrap"
+	description = "Legionnaire was having a party in the house tonight, got all the fauna to have a good time."
+	suffix = "lavaland_surface_legionnaire_pit_dtrap.dmm"
+	allow_duplicates = FALSE
+	cost = 15
