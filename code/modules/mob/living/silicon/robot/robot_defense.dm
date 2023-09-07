@@ -67,8 +67,7 @@
 			cell = null
 			update_icons()
 			diag_hud_set_borgcell()
-			return TRUE
-	else if(!opened)
+	if(!opened)
 		..()
 
 /mob/living/silicon/robot/fire_act()
