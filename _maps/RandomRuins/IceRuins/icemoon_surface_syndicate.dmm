@@ -884,7 +884,6 @@
 /area/ruin/syndicate_icemoon/medical)
 "fV" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/structure/bodycontainer/morgue{
 	dir = 2
 	},
@@ -1464,7 +1463,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "kH" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
@@ -1472,7 +1472,6 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "kP" = (
@@ -2347,9 +2346,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "qi" = (
 /turf/open/floor/wood,
@@ -2754,7 +2751,8 @@
 /area/ruin/syndicate_icemoon/command)
 "tc" = (
 /obj/machinery/light/small,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "td" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
@@ -3171,7 +3169,8 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "wh" = (
-/turf/open/floor/plating/snowed/smoothed/icemoon,
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "wi" = (
 /obj/effect/turf_decal/siding/red,
@@ -3190,7 +3189,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
 	dir = 6
 	},
-/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "wl" = (
@@ -4016,11 +4014,9 @@
 /turf/open/floor/engine/vacuum,
 /area/ruin/syndicate_icemoon/engine)
 "Bd" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/syndicate_icemoon/engine)
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Bf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4288,14 +4284,12 @@
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
 "CH" = (
-/obj/structure/fans/tiny,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/engineering{
+	name = "EVA Storage";
 	req_access_txt = "150"
 	},
-/turf/open/floor/plating,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "CO" = (
 /obj/structure/window/reinforced/spawner/east,
@@ -5131,6 +5125,10 @@
 	name = "Syndicate Fax Machine";
 	req_one_access = list(150)
 	},
+/obj/item/paper{
+	info = "FOR THE LOVE OF GOD ASK THE COMMANDER BEFORE ASSFAXING NT";
+	name = "important memo"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "Io" = (
@@ -5319,7 +5317,6 @@
 /area/icemoon/surface/outdoors)
 "Jy" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 8;
 	target_temperature = 80
 	},
 /turf/open/floor/plating,
@@ -5865,17 +5862,14 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "Nu" = (
-/obj/structure/safe,
-/obj/item/toy/plush/carpplushie/dehy_carp{
-	break_message = "%SRC vanishes in a small explosion.";
-	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
-	name = "cayenne plushie"
-	},
-/obj/item/toy/figure/syndie,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/relay/preset/ruskie{
+	generates_heat = 0;
+	desc = "A mighty piece of hardware used to send massive amounts of data far away. This one has complex heat exchangers lining its exterior and interior."
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "Ny" = (
@@ -5974,13 +5968,9 @@
 	},
 /area/icemoon/surface/outdoors)
 "NR" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/telecomms/relay/preset/ruskie{
-	use_power = 0
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "NW" = (
 /obj/structure/cable{
@@ -6173,14 +6163,13 @@
 	req_access_txt = "151";
 	specialfunctions = 4
 	},
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "PR" = (
-/obj/machinery/suit_storage_unit/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/structure/flora/grass/both,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "PS" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -6295,6 +6284,12 @@
 	},
 /obj/item/phone/real/syndicate_ruin,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/toy/figure/syndie,
+/obj/item/toy/plush/carpplushie/dehy_carp{
+	break_message = "%SRC vanishes in a small explosion.";
+	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
+	name = "cayenne plushie"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
 "QN" = (
@@ -6529,6 +6524,7 @@
 "SB" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced,
+/obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "SC" = (
@@ -6715,9 +6711,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
 "TS" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/tank/nitrogen,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
 "TW" = (
@@ -6973,9 +6967,7 @@
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "VO" = (
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "VP" = (
 /obj/structure/cable{
@@ -7520,12 +7512,10 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
 "Zu" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/grille,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/syndicate_icemoon/engine)
+/area/icemoon/surface/outdoors)
 "Zy" = (
 /obj/machinery/nanite_programmer,
 /obj/structure/window/reinforced/spawner,
@@ -7571,9 +7561,7 @@
 /obj/item/paper{
 	info = "Remember to link the silo to the lathes in RnD!"
 	},
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "ZT" = (
 /obj/structure/cable{
@@ -8965,7 +8953,7 @@ eM
 eM
 uj
 oB
-Zu
+oB
 oB
 uj
 eM
@@ -9039,7 +9027,7 @@ eM
 VN
 oB
 kG
-NR
+kY
 wh
 oB
 eM
@@ -9112,8 +9100,8 @@ eM
 eM
 eM
 oB
-wh
-Bd
+NR
+kY
 tc
 oB
 eM
@@ -9258,7 +9246,7 @@ eM
 uj
 oB
 aH
-PR
+Uo
 wk
 kH
 XZ
@@ -11370,7 +11358,7 @@ qK
 qK
 qK
 eM
-eM
+Bd
 eM
 eM
 eM
@@ -11520,7 +11508,7 @@ qK
 eM
 eM
 eM
-eM
+Bd
 eM
 eM
 eM
@@ -11743,9 +11731,9 @@ qK
 eM
 eM
 eM
+Zu
 eM
-eM
-fg
+PR
 eM
 qK
 qK

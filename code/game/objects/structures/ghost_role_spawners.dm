@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 
-//Icemoon Syndicate. Players become research agents working under a Syndicate research station.
+//Icemoon Syndicate. Players become research agents working under a Syndicate research facility.
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
 	name = "Syndicate Outpost Agent"
 	short_desc = "You are an agent at the Syndicate icemoon outpost."
@@ -561,6 +561,9 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base
 	assignedrole = "Icemoon Syndicate"
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/special(mob/living/new_spawn) //shit
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 
 /datum/outfit/syndicate_empty/icemoon_base
 	name = "Generic Syndicate Icemoon Outpost Agent"
