@@ -9300,7 +9300,7 @@
 /area/centcom/testchamber)
 "aug" = (
 /obj/structure/table/wood,
-/obj/item/pitchfork/demonic/ascended,
+/obj/item/pitchfork,
 /obj/item/melee/powerfist,
 /turf/open/floor/wood,
 /area/centcom/testchamber)

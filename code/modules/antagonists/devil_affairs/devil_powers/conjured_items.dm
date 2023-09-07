@@ -8,7 +8,7 @@
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
 
-	item_type = /obj/item/twohanded/pitchfork/demonic
+	item_type = /obj/item/pitchfork/demonic
 
 /datum/action/cooldown/spell/conjure_item/violin
 	name = "Summon Golden Violin"

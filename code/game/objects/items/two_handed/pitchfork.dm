@@ -53,18 +53,6 @@
 
 	force_wielded = 6
 
-/obj/item/pitchfork/demonic/greater
-	force = 24
-	throwforce = 50
-
-	force_wielded = 10
-
-/obj/item/pitchfork/demonic/ascended
-	force = 100
-	throwforce = 100
-
-	force_wielded = 500000 // Kills you DEAD.
-
 /obj/item/pitchfork/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] impales [user.p_them()]self in [user.p_their()] abdomen with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
