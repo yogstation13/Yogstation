@@ -573,6 +573,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	mask = /obj/item/clothing/mask/gas/syndicate
 	id = /obj/item/card/id/syndicate/anyone
+	implants = list(/obj/item/implant/teleporter/syndicate_icemoon) //YOU'RE GROUNDED.
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"

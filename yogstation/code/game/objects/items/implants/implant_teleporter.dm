@@ -107,3 +107,9 @@
 	pointofreturn = /area/ruin/powered/inn
 	usewhitelist = TRUE
 	retrievalmessage = "Safety retrieval complete."
+
+/obj/item/implant/teleporter/syndicate_icemoon
+	name = "syndicate recall implant"
+	pointofreturn = /area/ruin/syndicate_icemoon/dorms //take a fucking nap
+	usewhitelist = TRUE
+	retrievalmessage = "Stay in your post, agent!"
