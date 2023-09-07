@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Clown Cyborg's pie cannon now properly recharges every 4 seconds (2 ticks) instead of every 2 seconds (1 tick)."
-  - tweak: "All self-recharging pneumatic cannon now recharge based on delta_time instead of ticks. This means that you won't lose out when lag happens."
