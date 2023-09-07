@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - tweak: "bluespace harvester now has a 10 minute cooldown after spawning a portal when not emagged"
