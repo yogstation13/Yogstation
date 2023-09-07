@@ -67,6 +67,9 @@
 			cell = null
 			update_icons()
 			diag_hud_set_borgcell()
+			return TRUE
+	else if(!opened)
+		..()
 
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
