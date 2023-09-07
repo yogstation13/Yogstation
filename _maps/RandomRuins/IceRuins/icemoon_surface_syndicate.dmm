@@ -1953,10 +1953,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"nQ" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/syndicate_icemoon/research)
 "nY" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -10064,7 +10060,7 @@ gt
 iY
 YD
 Gt
-nQ
+uj
 eM
 eM
 VN
@@ -10360,7 +10356,7 @@ iG
 iG
 iG
 Gt
-nQ
+uj
 eM
 eM
 qK
