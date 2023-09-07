@@ -67,6 +67,7 @@
 			cell = null
 			update_icons()
 			diag_hud_set_borgcell()
+
 	if(!opened)
 		..()
 
