@@ -44,44 +44,25 @@
 /obj/item/pitchfork/demonic
 	name = "demonic pitchfork"
 	desc = "A red pitchfork, it looks like the work of the devil."
-	force = 19
-	throwforce = 24
 	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_power = 6
 	light_color = LIGHT_COLOR_RED
+	block_chance = 50
 
+	force = 2
 	force_wielded = 6
+
+/obj/item/pitchfork/IsReflect(def_zone)
+	return HAS_TRAIT(src, TRAIT_WIELDED)
+
+/obj/item/pitchfork/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!HAS_TRAIT(src, TRAIT_WIELDED) || (user == target) || !isliving(target))
+		return
+	target.fire_stacks = 4
+	target.ignite_mob()
 
 /obj/item/pitchfork/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] impales [user.p_them()]self in [user.p_their()] abdomen with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
-
-/obj/item/pitchfork/demonic/pickup(mob/living/user)
-	. = ..()
-	if(isliving(user) && user.mind && user.owns_soul() && !is_devil(user))
-		var/mob/living/U = user
-		U.visible_message(span_warning("As [U] picks [src] up, [U]'s arms briefly catch fire."), \
-			span_warning("\"As you pick up [src] your arms ignite, reminding you of all your past sins.\""))
-		if(ishuman(U))
-			var/mob/living/carbon/human/H = U
-			H.apply_damage(rand(force/2, force), BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
-		else
-			U.adjustFireLoss(rand(force/2,force))
-
-/obj/item/pitchfork/demonic/attack(mob/target, mob/living/carbon/human/user)
-	if(user.mind && user.owns_soul() && !is_devil(user))
-		to_chat(user, "<span class ='warning'>[src] burns in your hands.</span>")
-		user.apply_damage(rand(force/2, force), BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
-	return ..()
-
-/obj/item/pitchfork/demonic/ascended/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	if(!proximity || !HAS_TRAIT(src, TRAIT_WIELDED))
-		return
-	if(iswallturf(target))
-		var/turf/closed/wall/W = target
-		user.visible_message(span_danger("[user] blasts \the [target] with \the [src]!"))
-		playsound(target, 'sound/magic/disintegrate.ogg', 100, 1)
-		W.break_wall()
-		W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
