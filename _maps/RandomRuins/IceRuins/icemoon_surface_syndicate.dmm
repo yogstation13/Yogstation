@@ -2047,8 +2047,12 @@
 /area/ruin/syndicate_icemoon/security)
 "nM" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/rnd/production/protolathe,
 /obj/effect/turf_decal/box/white,
+/obj/structure/frame/machine,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/obj/item/stack/cable_coil/random/five,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "nQ" = (
@@ -3169,7 +3173,8 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "wh" = (
-/obj/structure/tank_dispenser/oxygen,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "wi" = (
@@ -3283,6 +3288,9 @@
 	},
 /obj/machinery/light,
 /obj/effect/turf_decal/box/white,
+/obj/item/paper{
+	info = "Due to some issues with automatic linkage mechanisms, and the outpost's need for stealth (unless the Commander says so), your lathes are to be dismantled between shifts."
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "wG" = (
@@ -4015,10 +4023,10 @@
 /turf/open/floor/engine/vacuum,
 /area/ruin/syndicate_icemoon/engine)
 "Bd" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/suit_storage_unit/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/structure/flora/grass/both,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Bf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5970,7 +5978,6 @@
 	},
 /area/icemoon/surface/outdoors)
 "NR" = (
-/obj/structure/flora/grass/both,
 /obj/item/ammo_casing/spent,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
@@ -6269,8 +6276,12 @@
 /area/ruin/syndicate_icemoon/dorms)
 "QF" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/turf_decal/box/white,
+/obj/structure/frame/machine,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/stack/cable_coil/random/five,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
 "QJ" = (
@@ -7515,9 +7526,9 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
 "Zu" = (
-/obj/item/ammo_casing/spent,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Zy" = (
 /obj/machinery/nanite_programmer,
 /obj/structure/window/reinforced/spawner,
@@ -9030,7 +9041,7 @@ VN
 oB
 kG
 kY
-wh
+Zu
 oB
 eM
 eP
@@ -9102,7 +9113,7 @@ eM
 eM
 eM
 oB
-Bd
+wh
 kY
 tc
 oB
@@ -11360,7 +11371,7 @@ qK
 qK
 qK
 eM
-Zu
+NR
 eM
 eM
 eM
@@ -11510,7 +11521,7 @@ qK
 eM
 eM
 eM
-Zu
+NR
 eM
 eM
 eM
@@ -11735,7 +11746,7 @@ eM
 eM
 PR
 eM
-NR
+Bd
 eM
 qK
 qK
