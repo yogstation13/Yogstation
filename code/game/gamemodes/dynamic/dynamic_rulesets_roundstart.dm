@@ -895,10 +895,8 @@
 	requirements = list(80,70,60,50,50,45,30,30,25,20)
 	antag_cap = list("denominator" = 24)
 	minimum_players = 30
-	antag_cap = list(3,3,3,3,3,3,3,3,3,4)
 	var/autovamp_cooldown = (15 MINUTES)
 	COOLDOWN_DECLARE(autovamp_cooldown_check)
-	minimum_players = 15
 
 /datum/dynamic_ruleset/roundstart/vampire/pre_execute(population)
 	. = ..()

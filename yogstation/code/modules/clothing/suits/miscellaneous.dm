@@ -173,21 +173,21 @@
 	desc = "Aviators not included. Now in dark blue!"
 	icon_state = "navymiljacket"
 	item_state = "navymiljacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/desertmiljacket
 	name = "desert military jacket"
 	desc = "Aviators not included. Now in dark brown!"
 	icon_state = "desertmiljacket"
 	item_state = "desertmiljacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/denimjacket
 	name = "denim jacket"
 	desc = "A bit scratchy but pretty cool looking."
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
@@ -377,3 +377,32 @@
 	desc = "only this, and nothing more."
 	icon_state = "northern"
 	item_state = "northern"
+
+/obj/item/clothing/suit/jacket/pride
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	name = "pride jacket"
+	desc = "Gay."
+	icon_state = "pride"
+	item_state = "pride"
+	var/rolled_sleeves = FALSE
+
+/obj/item/clothing/suit/jacket/pride/AltClick(mob/user)
+	. = ..()
+	rolled_sleeves = !rolled_sleeves
+	icon_state = "[initial(icon_state)][rolled_sleeves ? "_up" : ""]"
+	item_state = "[initial(item_state)][rolled_sleeves ? "_up" : ""]"
+	update_appearance(UPDATE_ICON)
+	user.update_inv_wear_suit()
+
+/obj/item/clothing/suit/jacket/pride/mlm
+	name = "\improper MLM pride jacket"
+	desc = "For those who really like pyramid schemes."
+	icon_state = "mlm"
+	item_state = "mlm"
+
+/obj/item/clothing/suit/jacket/pride/lesbian
+	name = "lesbian pride jacket"
+	desc = "Women..."
+	icon_state = "lesbian"
+	item_state = "lesbian"

@@ -110,7 +110,7 @@
 		objective_count += 1					//Exchange counts towards number of objectives
 	var/toa = CONFIG_GET(number/traitor_objectives_amount)
 	for(var/i = objective_count, i < toa, i++)
-		forge_single_objective()
+		forge_single_human_objective()
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
 		//Start of Yogstation change: adds /datum/objective/sole_survivor
@@ -163,7 +163,7 @@
 	var/objective_count = 0
 
 	if(prob(30))
-		objective_count += forge_single_objective()
+		objective_count += forge_single_AI_objective()
 
 	for(var/i = objective_count, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		var/datum/objective/assassinate/kill_objective = new
@@ -174,14 +174,6 @@
 	var/datum/objective/survive/exist/exist_objective = new
 	exist_objective.owner = owner
 	add_objective(exist_objective)
-
-
-/datum/antagonist/traitor/proc/forge_single_objective()
-	switch(traitor_kind)
-		if(TRAITOR_AI)
-			return forge_single_AI_objective()
-		else
-			return forge_single_human_objective()
 
 /datum/antagonist/traitor/proc/forge_single_human_objective() //Returns how many objectives are added
 	.=1
@@ -209,11 +201,18 @@
 			download_objective.owner = owner
 			download_objective.gen_amount_goal()
 			add_objective(download_objective)
-		else
+		else if(prob(50))
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = owner
 			steal_objective.find_target()
 			add_objective(steal_objective)
+		else
+			var/datum/objective/break_machinery/break_objective = new
+			break_objective.owner = owner
+			if(break_objective.finalize())
+				add_objective(break_objective)
+			else
+				forge_single_human_objective()
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1

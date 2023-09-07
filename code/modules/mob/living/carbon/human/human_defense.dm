@@ -445,7 +445,7 @@
 				gib()
 				return
 			else
-				brute_loss = 200*(2 - round(bomb_armor/60, 0.05))	//0-83% damage reduction
+				brute_loss = 200*(2 - round(bomb_armor/100, 0.05))	//0-50% damage reduction because this should still kill you
 				burn_loss = brute_loss/2 //don't wanna husk people	
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
@@ -539,15 +539,20 @@
 	if(.)
 		electrocution_animation(40)
 
-/mob/living/carbon/human/emag_act(mob/user)
-	.=..()
-	dna?.species.spec_emag_act(src, user)
+/mob/living/carbon/human/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
+	if(dna)
+		return dna.species.spec_emag_act(src, user, emag_card)
 
 /mob/living/carbon/human/emp_act(severity)
-	dna?.species.spec_emp_act(src, severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
+	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
+		severity++
+		if(severity > EMP_LIGHT)
+			return
+	dna?.species.spec_emp_act(src, severity)
 	var/list/affected_parts = list()
 	for(var/obj/item/bodypart/BP in bodyparts)
 		if(istype(BP) && BP.status == BODYPART_ROBOTIC)
@@ -556,16 +561,20 @@
 			else
 				affected_parts += BP
 	if(affected_parts.len)
+		emote("scream")
 		adjustFireLoss(min(5 * affected_parts.len / severity, 20 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
 		var/obj/item/bodypart/chest/C = get_bodypart(BODY_ZONE_CHEST)
 		var/obj/item/bodypart/head/H = get_bodypart(BODY_ZONE_HEAD)
 		if(((C && C.status == BODYPART_ROBOTIC) || (H && H.status == BODYPART_ROBOTIC)) && severity == EMP_HEAVY) // if your head and/or chest are robotic (aka you're a robotic race or augmented) you get cooler flavor text and rapid-onset paralysis
 			to_chat(src, span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
 			Paralyze(5 SECONDS) //heavy EMPs will fully stun you
-			emote("scream")
 		else
 			adjustStaminaLoss(min(15 * affected_parts.len / severity, 60 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
 			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+/mob/living/carbon/human/rad_act(amount, collectable_radiation)
+	. = ..()
+	dna?.species.spec_rad_act(src, amount, collectable_radiation)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()
@@ -730,7 +739,7 @@
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
-			if(do_after(src, 3.5 SECONDS, src, FALSE))
+			if(do_after(src, 3.5 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
@@ -882,19 +891,33 @@
 				combined_msg += span_danger("You're choking!")
 
 	if(!HAS_TRAIT(src, TRAIT_NOHUNGER))
-		switch(nutrition)
-			if(NUTRITION_LEVEL_FULL to INFINITY)
-				combined_msg += span_info("You're completely stuffed!")
-			if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
-				combined_msg += span_info("You're well fed!")
-			if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
-				combined_msg += span_info("You're not hungry.")
-			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-				combined_msg += span_info("You could use a bite to eat.")
-			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-				combined_msg += span_info("You feel quite hungry.")
-			if(0 to NUTRITION_LEVEL_STARVING)
-				combined_msg += span_danger("You're starving!")
+		if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
+			switch(nutrition)
+				if(NUTRITION_LEVEL_WELL_FED to INFINITY)
+					combined_msg += span_info("You're fully charged!")
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+					combined_msg += span_info("You're not low on charge.")
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+					combined_msg += span_info("You could use a bit more charge.")
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+					combined_msg += span_info("You feel low on charge.")
+				if(0 to NUTRITION_LEVEL_STARVING)
+					combined_msg += span_danger("You're almost out of power!")
+		else
+			switch(nutrition)
+				if(NUTRITION_LEVEL_FULL to INFINITY)
+					combined_msg += span_info("You're completely stuffed!")
+				if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
+					combined_msg += span_info("You're well fed!")
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+					combined_msg += span_info("You're not hungry.")
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+					combined_msg += span_info("You could use a bite to eat.")
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+					combined_msg += span_info("You feel quite hungry.")
+				if(0 to NUTRITION_LEVEL_STARVING)
+					combined_msg += span_danger("You're starving!")
+
 	if(dna.species.id == "skeleton")
 		var/obj/item/clothing/under/under = w_uniform
 		if((!under || under.adjusted) && (!wear_suit))

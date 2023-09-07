@@ -5,9 +5,9 @@
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
@@ -144,13 +144,6 @@
 
 	return to_add
 
-/datum/species/ipc/create_pref_biotypes_perks()
-	var/list/to_add = list()
-
-	// TODO
-
-	return to_add
-
 /datum/action/innate/change_screen
 	name = "Change Display"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -226,17 +219,6 @@
 			to_chat(H, "<span class='notice'>You siphon off as much as the [C] can spare.</span>")
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
-
-/datum/species/ipc/get_hunger_alert(mob/living/carbon/human/H)
-	switch(H.nutrition)
-		if(NUTRITION_LEVEL_FED to INFINITY)
-			H.clear_alert("nutrition")
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
-		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
@@ -327,14 +309,15 @@
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
-/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	if(H == user)//no emagging yourself
-		return
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	if(H == user) // No emagging yourself. That would be terrible.
+		return FALSE
 	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
-		return
+		return FALSE
 	H.SetUnconscious(10 SECONDS)
 	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
-
+	return TRUE
+	
 /*------------------------
 
 ipc martial arts stuff
@@ -356,9 +339,7 @@ ipc martial arts stuff
 		if(H.in_throw_mode)//if countering the emp
 			add_empproof(H)
 			throw_lightning(H)
-		else//if just getting hit
-			addtimer(CALLBACK(src, PROC_REF(add_empproof), H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+			addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 1, TIMER_OVERRIDE | TIMER_UNIQUE)//can't remove it instantly, so they're immune for all of 0.1 seconds
 	else if(severity == EMP_HEAVY)
 		H.emote("warn") // *chuckles* i'm in danger!
 
@@ -368,12 +349,10 @@ ipc martial arts stuff
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
-	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
-	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
-	if(ipcmartial)
-		ipcmartial.Destroy()
+	REMOVE_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 	if(..())

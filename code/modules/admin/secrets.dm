@@ -248,7 +248,7 @@
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
-					dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"
+					dat += "<tr><td>[H]</td><td>[md5(H.dna.unique_identity)]</td></tr>"
 			dat += "</table></BODY></HTML>"
 			mob_user << browse(dat, "window=fingerprints;size=440x410")
 
@@ -532,6 +532,15 @@
 					id.critter_money = FALSE
 			message_admins("[key_name_admin(mob_user)] has deactivated critter money (pets generated on money withdrawl)!")
 			log_admin("[key_name(mob_user)] has deactivated critter money.")
+		if("halflife")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			for(var/obj/machinery/power/supermatter_crystal/S in GLOB.machines)
+				if(!isturf(S.loc) || !is_station_level(S.z))
+					continue
+				S.antinoblium_attached = TRUE
+			message_admins("[key_name_admin(mob_user)] has started a resonance cascade!")
+			log_admin("[key_name(mob_user)] has started a resonance cascade.")
 
 	if(E)
 		E.processing = FALSE

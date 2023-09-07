@@ -502,6 +502,15 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/orca_dress
 	name = "creator's dress"
 	unlock_path = /obj/item/clothing/suit/yogs/keiki
+/datum/donator_gear/pridejacket
+	name = "pride jacket"
+	unlock_path = /obj/item/clothing/suit/jacket/pride
+/datum/donator_gear/mlm
+	name = "MLM pride jacket"
+	unlock_path = /obj/item/clothing/suit/jacket/pride/mlm
+/datum/donator_gear/lesbian
+	name = "lesbian pride jacket"
+	unlock_path = /obj/item/clothing/suit/jacket/pride/lesbian
 /datum/donator_gear/oreo
 	name = "Black and white sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers
@@ -597,7 +606,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/toy/sword
 /datum/donator_gear/hammer
 	name = "toy sledgehammer"
-	unlock_path = /obj/item/twohanded/vxtvulhammer/toy
+	unlock_path = /obj/item/melee/vxtvulhammer/toy
 
 //plushies - kill me, for fuck sake
 /datum/donator_gear/plushvar

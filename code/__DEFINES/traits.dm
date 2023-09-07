@@ -137,6 +137,7 @@
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
+#define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
 #define TRAIT_DEAF				"deaf"
@@ -171,6 +172,8 @@
 #define TRAIT_RESISTLOWPRESSURE	"resist_low_pressure"
 #define TRAIT_BOMBIMMUNE		"bomb_immunity"
 #define TRAIT_RADIMMUNE			"rad_immunity"
+#define TRAIT_EMPPROOF_SELF		"emp_immunity_self" //for the specific "thing" itself
+#define TRAIT_EMPPROOF_CONTENTS "emp_immunity_contents" //for anything the "thing" is carrying, but not itself
 #define TRAIT_GENELESS  		"geneless"
 #define TRAIT_VIRUSIMMUNE		"virus_immunity"
 #define TRAIT_PIERCEIMMUNE		"pierce_immunity"
@@ -180,6 +183,7 @@
 #define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons" //prevents use of commonly available instant or near instant stun weapons
 #define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 #define TRAIT_NOHUNGER			"no_hunger"
+#define TRAIT_POWERHUNGRY		"power_hungry" // uses electricity instead of food
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
@@ -228,6 +232,7 @@
 #define TRAIT_QUICK_CARRY		"quick-carry"
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
 #define TRAIT_QUICKEST_CARRY	"quickest-carry"
+#define TRAIT_STRONG_GRIP		"strong-grip"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
@@ -270,6 +275,10 @@
 #define TRAIT_MAGICALLY_PHASED "magically_phased"
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
+/// BALD!!!
+#define TRAIT_BALD "bald"
+/// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
+#define TRAIT_FARADAYCAGE "faraday_cage"
 
 ///Trait given to a mob's mind to indicate they can't be revived due to otherworldly events.
 #define TRAIT_HELLBOUND "hellbound"
@@ -288,6 +297,10 @@
 // item traits
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+/// Properly wielded two handed item
+#define TRAIT_WIELDED "wielded"
+/// The items needs two hands to be carried
+#define TRAIT_NEEDS_TWO_HANDS "needstwohands"
 #define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 #define TRAIT_NO_STORAGE		"no-storage" //you cannot put this in any container, backpack, box etc
 
@@ -353,6 +366,9 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 /// trait associated to being held in a chokehold
 #define CHOKEHOLD_TRAIT "chokehold"
+#define CRYO_TRAIT "cryo_trait"
+/// Trait applied by element
+#define ELEMENT_TRAIT(source) "element_trait_[source]"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -411,6 +427,7 @@
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
+#define ECHOLOCATION_TRAIT "echolocation_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -420,7 +437,6 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
-#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"
 
 //important_recursive_contents traits
 /*
@@ -432,6 +448,9 @@
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
 ///every object that is currently the active storage of some client mob has this trait
 #define TRAIT_ACTIVE_STORAGE "active_storage"
+
+/// Climbable trait, given and taken by the climbable element when added or removed. Exists to be easily checked via HAS_TRAIT().
+#define TRAIT_CLIMBABLE "trait_climbable"
 
 ///Organ traits
 #define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"

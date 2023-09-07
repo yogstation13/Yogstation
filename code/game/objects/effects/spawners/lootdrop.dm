@@ -87,6 +87,7 @@
 		/obj/item/organ/appendix,
 		/obj/item/organ/liver/fly,
 		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/lungs/ethereal,
 		/obj/item/organ/tail/cat,
 		/obj/item/organ/tail/lizard,
 	)
@@ -608,7 +609,8 @@
 				/obj/item/aiModule/core/full/construction,
 				/obj/item/aiModule/core/full/researcher,
 				/obj/item/aiModule/core/full/clown,
-				/obj/item/aiModule/core/full/detective
+				/obj/item/aiModule/core/full/detective,
+				/obj/item/aiModule/core/full/wafflehouse
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called

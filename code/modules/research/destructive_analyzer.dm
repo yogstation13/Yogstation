@@ -48,10 +48,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 			linked_console.updateUsrDialog()
 
 /obj/machinery/rnd/destructive_analyzer/proc/finish_loading()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	reset_busy()
 
-/obj/machinery/rnd/destructive_analyzer/update_icon()
+/obj/machinery/rnd/destructive_analyzer/update_icon_state()
+	. = ..()
 	if(loaded_item)
 		icon_state = "d_analyzer_l"
 	else
@@ -82,7 +83,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		for(var/obj/item/innerthing in food)
 			destroy_item(innerthing, TRUE)
 	reclaim_materials_from(thing)
-	for(var/mob/M in thing)
+	for(var/mob/living/M in thing)
 		M.death()
 	if(istype(thing, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = thing
@@ -94,7 +95,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	else
 		qdel(thing)
 	if (!innermode)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id, mob/user)
@@ -150,5 +151,5 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return FALSE
 	loaded_item.forceMove(get_turf(src))
 	loaded_item = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE

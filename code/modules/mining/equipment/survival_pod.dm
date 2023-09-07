@@ -137,12 +137,16 @@
 /obj/machinery/sleeper/survival_pod
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 
-/obj/machinery/sleeper/survival_pod/update_icon()
-	if(state_open)
-		cut_overlays()
-	else
-		add_overlay("sleeper_cover")
+/obj/machinery/sleeper/survival_pod/update_icon_state()
+	. = ..()
+	icon_state = base_icon_state
+
+/obj/machinery/sleeper/survival_pod/update_overlays()
+	. = ..()
+	if(!state_open)
+		. += "[base_icon_state]_cover"
 
 //Lifeform Stasis Unit
 /obj/machinery/stasis/survival_pod
@@ -154,8 +158,9 @@
 /obj/machinery/stasis/survival_pod/play_power_sound()
 	return
 
-/obj/machinery/stasis/survival_pod/update_icon()
-	return
+/obj/machinery/stasis/survival_pod/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 //Computer
 /obj/item/gps/computer
@@ -206,8 +211,9 @@
 	pitches = FALSE
 	var/empty = FALSE
 
-/obj/machinery/smartfridge/survival_pod/update_icon()
-	return
+/obj/machinery/smartfridge/survival_pod/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()

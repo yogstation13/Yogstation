@@ -13,8 +13,8 @@
 	nutriment_factor = 0
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
-
+	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning	
+	accelerant_quality = 5
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -321,6 +321,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of rum"
 	glass_desc = "Now you want to Pray for a pirate suit, don't you?"
 	shot_glass_icon_state = "shotglassbrown"
+	default_container = /obj/item/reagent_containers/food/drinks/bottle/rum
 
 /datum/reagent/consumable/ethanol/tequila
 	name = "Tequila"
@@ -825,10 +826,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
 	if(isethereal(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(M.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/manhattan_proj) * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+		M.adjust_nutrition(volume*REM)
 	return ..()
 
 /datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, methods=TOUCH)
@@ -1949,6 +1947,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/fanciulli/on_mob_metabolize(mob/living/M)
 	if(M.health > 0)
 		M.adjustStaminaLoss(20)
+		M.clear_stamina_regen()
 		. = TRUE
 	..()
 
@@ -1972,6 +1971,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/branca_menta/on_mob_metabolize(mob/living/M)
 	if(M.health > 0)
 		M.adjustStaminaLoss(35)
+		M.clear_stamina_regen()
 		. = TRUE
 	..()
 
@@ -2109,7 +2109,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "champagne_glass"
 	glass_name = "Champagne"
 	glass_desc = "The flute clearly displays the slowly rising bubbles."
-
 
 /datum/reagent/consumable/ethanol/wizz_fizz
 	name = "Wizz Fizz"
@@ -2673,3 +2672,31 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "moscow_mule"
 	glass_name = "Moscow Mule"
 	glass_desc = "A chilly drink that reminds you of the Derelict."
+
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver
+	var/alcoholicspeed = 0.75 //For determining the speed effect\\ 
+	name = "Syndicate Screwdriver"
+	description = "A drink that all greytiders and syndicate enjoy"
+	boozepwr = 115
+	metabolization_rate = 1.5
+	color = "#2E6671"
+	quality = DRINK_GOOD
+	taste_description = "a tangy taste mixed with liquified Robustness"
+	glass_icon_state = "syndicate_screwdriver"
+	glass_name = "Syndicate Screwdriver"
+	glass_desc = "A glass full of spite, haste and the need to greytide"
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		if(holder.has_reagent(/datum/reagent/drug/red_eye))
+			holder.remove_reagent(/datum/reagent/drug/red_eye, 5)
+		M.physiology.do_after_speed *= alcoholicspeed
+		M.next_move_modifier *= alcoholicspeed
+	return ..()
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		M.physiology.do_after_speed /= alcoholicspeed
+		M.next_move_modifier /= alcoholicspeed
+	return ..()

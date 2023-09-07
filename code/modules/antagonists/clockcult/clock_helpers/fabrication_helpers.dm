@@ -55,7 +55,7 @@
 	if(locate(/obj/structure/falsewall) in contents)
 		to_chat(user, span_warning("There is a false wall in the way, preventing you from fabricating a clockwork wall on [src]."))
 		return
-	if(is_blocked_turf(src, TRUE))
+	if(is_blocked_turf(TRUE))
 		to_chat(user, span_warning("Something is in the way, preventing you from fabricating a clockwork wall on [src]."))
 		return TRUE
 	var/operation_time = 100
@@ -307,7 +307,7 @@
 		user.visible_message(span_notice("[user]'s [fabricator.name] starts covering [src == user ? "[user.p_them()]" : "[src]"] in glowing orange energy..."), \
 		span_alloy("You start repairing [src == user ? "yourself" : "[src]"]..."))
 		fabricator.repairing = src
-		if(do_after(user, (maxHealth - health)*2, src))
+		if(do_after(user, (maxHealth - health) * 2, src))
 			adjustHealth(-maxHealth)
 			user.visible_message(span_notice("[user]'s [fabricator.name] stops covering [src == user ? "[user.p_them()]" : "[src]"] with glowing orange energy."), \
 			span_alloy("You finish repairing [src == user ? "yourself" : "[src]"]."))

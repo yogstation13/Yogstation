@@ -104,7 +104,6 @@
 #define ui_borg_intents "EAST-2:26,SOUTH:5"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
 
-
 //Upper-middle right (alerts)
 #define ui_alert1 "EAST-1:28,CENTER+5:27"
 #define ui_alert2 "EAST-1:28,CENTER+4:25"
@@ -230,3 +229,5 @@
 #define SCRN_OBJ_IN_PALETTE "palette"
 ///Inserted first in the list
 #define SCRN_OBJ_INSERT_FIRST "first"
+/// The filter name for the hover outline
+#define HOVER_OUTLINE_FILTER "hover_outline"

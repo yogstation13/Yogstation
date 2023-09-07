@@ -1195,6 +1195,10 @@
 /obj/item/storage/lockbox/vialbox/hypo_deluxe{
 	req_access = list(150)
 	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gq" = (
@@ -1700,7 +1704,7 @@
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/siding/blue{
 	dir = 9
 	},
@@ -2159,7 +2163,7 @@
 	},
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "jc" = (
@@ -5677,6 +5681,7 @@
 /obj/item/kitchen/knife{
 	pixel_x = 6
 	},
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Kp" = (
@@ -5772,14 +5777,14 @@
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/vending_refill/sovietsoda,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)

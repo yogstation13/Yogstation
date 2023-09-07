@@ -119,7 +119,7 @@
 	if(owner.hud_used)
 		var/atom/movable/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
-			L.update_icon()
+			L.update_appearance(UPDATE_ICON)
 
 /obj/item/bodypart/l_arm/monkey
 	icon = 'icons/mob/animal_parts.dmi'
@@ -208,7 +208,7 @@
 	if(owner.hud_used)
 		var/atom/movable/screen/inventory/hand/R = owner.hud_used.hand_slots["[held_index]"]
 		if(R)
-			R.update_icon()
+			R.update_appearance(UPDATE_ICON)
 
 /obj/item/bodypart/r_arm/monkey
 	icon = 'icons/mob/animal_parts.dmi'

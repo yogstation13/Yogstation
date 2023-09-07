@@ -256,7 +256,7 @@
 		var/datum/mind/brain = monster.owner
 		if(!brain || brain == owner)
 			continue
-		if(brain.current.stat == DEAD)
+		if(!brain.current || brain.current.stat == DEAD)
 			continue
 		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current) || is_wizard(brain.current))
 			monsters += brain
@@ -355,7 +355,7 @@
 
 /datum/objective/bloodsucker/frenzy/update_explanation_text()
 	. = ..()
-	explanation_text = "Enter Frenzy [target_amount == 1 ? "atleast once" : "2 times"] without succumbing to Final Death."
+	explanation_text = "Enter Frenzy [target_amount == 1 ? "at least once" : "2 times"] without succumbing to Final Death."
 
 /datum/objective/bloodsucker/frenzy/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -374,9 +374,30 @@
 
 /datum/objective/bloodsucker/hierarchy/update_explanation_text()
 	. = ..()
-	explanation_text = "Ascend [target_amount == 1 ? "atleast 1 ability" : "2 abilities"] using a Resting Place altar."
+	explanation_text = "Ascend [target_amount == 1 ? "at least 1 ability" : "2 abilities"] using a Resting Place altar."
 
 /datum/objective/bloodsucker/hierarchy/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
+
+/// Necromance X amount of people (Hecata)
+/datum/objective/bloodsucker/necromance
+	name = "necromance"
+
+/datum/objective/bloodsucker/necromance/New()
+	target_amount = rand(4,5)
+	..()
+
+
+/datum/objective/bloodsucker/necromance/update_explanation_text()
+	. = ..()
+	explanation_text = "Using Necromancy, revive [target_amount] people."
+
+/datum/objective/bloodsucker/necromance/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum)
 		return FALSE
@@ -416,7 +437,7 @@
 	target_amount = rand(2, 3)
 	..()
 
-// EXPLANATION 
+// EXPLANATION
 /datum/objective/bloodsucker/leader/update_explanation_text()
 	. = ..()
 	explanation_text = "Convert [target_amount] mortal beings into your vassals."

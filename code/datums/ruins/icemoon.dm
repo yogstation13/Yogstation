@@ -37,6 +37,12 @@
 	description = "A small wooden inn with food, drinks, and a place to rest, all maintained by the innkeeper."
 	suffix = "icemoon_surface_inn.dmm"
 
+/datum/map_template/ruin/icemoon/syndicate_icemoon
+	name = "Syndicate Icemoon Research Outpost"
+	id = "synd_research"
+	description = "A small Syndicate research outpost in the icy wastes, sealed off from the outside."
+	suffix = "icemoon_surface_syndicate.dmm"
+
 // above and below ground together
 
 /datum/map_template/ruin/icemoon/mining_site

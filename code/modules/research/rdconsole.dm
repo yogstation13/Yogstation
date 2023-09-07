@@ -28,7 +28,7 @@ Nothing else in the console has ID requirements.
 	var/obj/machinery/rnd/production/protolathe/linked_lathe				//Linked Protolathe
 	var/obj/machinery/rnd/production/circuit_imprinter/linked_imprinter	//Linked Circuit Imprinter
 
-	req_access = list(ACCESS_TOX)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+	req_access = list(ACCESS_RND)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
 
 	//UI VARS
 	var/screen = RDSCREEN_MENU
@@ -201,13 +201,13 @@ Nothing else in the console has ID requirements.
 		linked_imprinter = null
 	..()
 
-/obj/machinery/computer/rdconsole/emag_act(mob/user)
-	if(!(obj_flags & EMAGGED))
-		to_chat(user, span_notice("You disable the security protocols[locked? " and unlock the console":""]."))
-		playsound(src, "sparks", 75, 1)
-		obj_flags |= EMAGGED
-		locked = FALSE
-	return ..()
+/obj/machinery/computer/rdconsole/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	to_chat(user, span_notice("You disable the security protocols[locked? " and unlock the console":""]."))
+	playsound(src, "sparks", 75, 1)
+	obj_flags |= EMAGGED
+	locked = FALSE
 
 /obj/machinery/computer/rdconsole/multitool_act(mob/user, obj/item/multitool/I)
 	var/lathe = linked_lathe && linked_lathe.multitool_act(user, I)
@@ -857,7 +857,7 @@ Nothing else in the console has ID requirements.
 				ui += ui_settings()
 			if(RDSCREEN_DEVICE_LINKING)
 				ui += ui_device_linking()
-	
+
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"

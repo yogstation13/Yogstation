@@ -1,22 +1,26 @@
 //variables for fun balance tweaks
-#define COOLDOWN_STOMP 30 SECONDS
-#define STOMP_WINDUP 2 SECONDS //this gets doubled if heavy
-#define STOMP_RADIUS 6 //the base radius for the charged stomp, only does damage in an area half this size
-#define COOLDOWN_LEAP 2 SECONDS
-#define PLATE_LEAP 0.4 SECONDS //number of seconds added to cooldown per plate
-#define LEAP_RADIUS 1
-#define COOLDOWN_PUMMEL 1.2 SECONDS //basically melee
+#define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
+
+#define COOLDOWN_STOMP 30 SECONDS
+#define STOMP_WINDUP 2 SECONDS //this gets doubled if heavy
+#define STOMP_RADIUS 8 //the base radius for the charged stomp, only does damage in an area half this size
+
+#define COOLDOWN_LEAP 2 SECONDS
+#define LEAP_RADIUS 1
+
+#define COOLDOWN_PUMMEL 0.8 SECONDS //basically melee
+
 #define PLATE_INTERVAL 15 SECONDS //how often a plate grows
-#define PLATE_REDUCTION 10 //how much DR per plate
-#define MAX_PLATES 8 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
-#define PLATE_CAP 15 //hard cap of plates to prevent station wide fuckery
-#define PLATE_BREAK 15 //How much damage it takes to break a plate
-#define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
-#define THROW_TOSSDMG 10 //the damage dealt by the initial throw
-#define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
+#define PLATE_REDUCTION 20 //how much DR per plate
+#define MAX_PLATES 5 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
+#define PLATE_CAP MAX_PLATES + 3 //hard cap of plates to prevent station wide fuckery
+#define PLATE_BREAK 25 //How much damage it takes to break a plate
+
+#define THROW_MOBDMG 5 //the damage dealt per object impacted during a throw
 #define THROW_OBJDMG 500 //Total amount of structure damage that can be done
+#define COOLDOWN_GRAB 1.2 SECONDS //basically just to prevent infinite stunlock spam
 
 /datum/martial_art/worldbreaker
 	name = "Worldbreaker"
@@ -26,13 +30,13 @@
 	var/recalibration = /mob/living/carbon/human/proc/worldbreaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
+	COOLDOWN_DECLARE(next_grab)
 	COOLDOWN_DECLARE(next_balloon)
 	COOLDOWN_DECLARE(next_pummel)
 	var/datum/action/cooldown/worldstomp/linked_stomp
-	var/leaping = FALSE
 	var/plates = 0
 	var/plate_timer = null
-	var/heavy = FALSE //
+	var/heavy = FALSE
 	var/currentplate = 0 //how much damage the current plate has taken
 
 /datum/martial_art/worldbreaker/can_use(mob/living/carbon/human/H)
@@ -51,6 +55,11 @@
 	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
 
+	if(isitem(target))//don't attack if we're clicking on our inventory
+		var/obj/item/thing = target
+		if(thing.item_flags & IN_INVENTORY)
+			return
+
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
 
@@ -63,12 +72,16 @@
 		if(get_turf(target) != get_turf(H))
 			throw_start(H, target)
 
-	if(!H.Adjacent(target) || H==target)
+	if(!H.Adjacent(target))
 		return
 
-	if(H.a_intent == INTENT_HARM && isliving(target))
+	if(H.a_intent == INTENT_HARM)//technically can punch yourself, but with how it works, you won't actually hurt yourself
 		pummel(H,target)
-	if(H.a_intent == INTENT_GRAB)
+
+	if(H == target)
+		return
+
+	if(H.a_intent == INTENT_GRAB && isliving(target))
 		grapple(H,target)
 
 	
@@ -89,21 +102,25 @@
 		return
 	if(get_turf(victim) == get_turf(user))
 		return
+	if(istype(victim, /obj/item/worldplate))
+		var/obj/item/worldplate/plate = victim
+		plate.worldbreaker = TRUE
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
 	var/throwspeed = 1
 	if(heavy)
-		throwspeed *= 4
+		throwspeed *= 2
 		distance *= 2
 	victim.throw_at(throw_target, distance, throwspeed, user)
 
 /datum/martial_art/worldbreaker/proc/hurt(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
 	stagger(target)
 	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-	var/meleearmor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 25)
-	var/bombarmor = target.run_armor_check(limb_to_hit, BOMB, armour_penetration = 40)//more ap for bomb armour since a number of armours hit 100%
+	var/meleearmor = target.run_armor_check(limb_to_hit, MELEE)
+	var/bombarmor = target.run_armor_check(limb_to_hit, BOMB)
 	var/truearmor = (meleearmor + bombarmor) / 2 //take an average of melee and bomb armour
 	target.apply_damage(damage, BRUTE, blocked = truearmor)
+	target.apply_damage(damage * 2, STAMINA, blocked = truearmor)//double damage for stamina
 /*---------------------------------------------------------------
 	end of helpers section
 ----------------------------------------------------------------*/
@@ -137,7 +154,7 @@
 		return
 
 	if(damagetype != BRUTE && damagetype != BURN)
-		return //no toxin, oxy, stamina, or brain damage
+		damage /= 4 //brute and burn are most effective
 
 	currentplate += damage
 
@@ -157,7 +174,7 @@
 
 /datum/martial_art/worldbreaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates >= MAX_PLATES
-	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
+	var/platespeed = (plates * 0.25) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
 	var/datum/species/preternis/S = user.dna.species
@@ -204,21 +221,26 @@
 	throw_speed = 3
 	throw_range = 8
 	var/datum/martial_art/worldbreaker/linked_martial
+	var/worldbreaker = FALSE //whether or not it was thrown by the martial art user
 
 /obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
 	. = ..()
-	var/worldbreaker = (user.mind?.martial_art && istype(user.mind.martial_art, /datum/martial_art/worldbreaker))
-	throw_speed = worldbreaker ? 3 : 1
-	throw_range = worldbreaker ? 8 : 3
+	throw_speed = 1
+	throw_range = 3
+	worldbreaker = user.mind?.has_martialart(MARTIALART_WORLDBREAKER)
+	if(worldbreaker)
+		throw_speed = 3
+		throw_range = 10
 
 /obj/item/worldplate/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(!linked_martial)
 		return
-	if(isliving(hit_atom) && throwingdatum)
-		var/mob/living/L = hit_atom
-		linked_martial.stagger(L)
-		linked_martial.push_away(throwingdatum.thrower, L)
+	if(worldbreaker)
+		if(isliving(hit_atom) && throwingdatum)
+			var/mob/living/L = hit_atom
+			linked_martial.stagger(L)
+			linked_martial.push_away(throwingdatum.thrower, L)
 	
 /*---------------------------------------------------------------
 	end of plates section
@@ -232,9 +254,9 @@
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
 			user.balloon_alert(user, span_warning("you can't do that yet!"))
 		return
-	if(!target || leaping)
+	if(!target)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * PLATE_LEAP))//longer cooldown the more plates you have
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP * 3)//should last longer than the leap, but just in case
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -242,8 +264,9 @@
 		if(telegraph && (telegraph in view(15, get_turf(user))))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
-	leaping = TRUE
-	var/jumpspeed = heavy ? 1 : 2
+	var/jumpspeed = 4 - user.cached_multiplicative_slowdown
+	jumpspeed = clamp(jumpspeed, 0.75, 4)
+
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
 
@@ -255,8 +278,9 @@
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
 /datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
+	if(!COOLDOWN_FINISHED(src, next_leap))
+		COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (heavy ? 1 SECONDS : 0))
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
-	leaping = FALSE
 	var/range = LEAP_RADIUS
 	if(heavy)//heavy gets doubled range
 		range *= 2
@@ -264,20 +288,26 @@
 	for(var/mob/living/L in range(range,user))
 		if(L == user)
 			continue
-		var/damage = heavy ? 25 : 15 //chunky boy does more damage
+		var/damage = 20
 
 		if(L.loc == user.loc)
 			to_chat(L, span_userdanger("[user] lands directly ontop of you, crushing you beneath their immense weight!"))
 			damage *= 2//for the love of god, don't get landed on
 
-
 		hurt(user, L, damage)
-		L.apply_damage(damage, STAMINA)
 		push_away(user, L)
 		if(L.loc == user.loc && isanimal(L) && L.stat == DEAD)
 			L.gib()
-	for(var/obj/item/I in range(range, user))
-		push_away(user, I)
+	for(var/obj/obstruction in range(range, user))
+		if(isitem(obstruction))
+			push_away(user, obstruction)
+			continue
+		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
+			continue
+		var/damage = 5
+		if(obstruction.loc == user.loc)
+			damage *= 3
+		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -292,10 +322,8 @@
 /datum/martial_art/worldbreaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 
-/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
-	if(leaping)
-		return TRUE
-	return ..()
+/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)//never wallsplat ever
+	return TRUE
 /*---------------------------------------------------------------
 	end of leap section
 ---------------------------------------------------------------*/
@@ -311,11 +339,18 @@
 	target.add_fingerprint(user, FALSE)
 
 	if(isliving(target) && target != user)
+		if(!COOLDOWN_FINISHED(src, next_grab))
+			return
+		COOLDOWN_START(src, next_grab, COOLDOWN_GRAB)
+		user.changeNext_move(COOLDOWN_GRAB + 1)
+
 		playsound(user, 'sound/weapons/thudswoosh.ogg', 65, FALSE, -1) //play sound here incase some ungrabbable object was clicked
 		var/mob/living/victim = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
+		F.name = "worldbreaker"
 		victim.density = FALSE
 		victim.visible_message(span_warning("[user] grabs [victim] and lifts [victim.p_them()] off the ground!"))
+		victim.Stun(1 SECONDS) //so the user has time to aim their throw
 		to_chat(victim, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		victim.forceMove(Z)
 		F.buckle_mob(target)
@@ -341,7 +376,6 @@
 		var/mob/living/carbon/tossedliving = thrown[1]
 		if(!tossedliving.buckled)
 			return
-		hurt(user, tossedliving, THROW_TOSSDMG) // Apply damage
 		for(var/obj/structure/bed/grip/holder in view(1, user))
 			holder.Destroy()
 	user.visible_message(span_warning("[user] throws [tossed]!"))
@@ -360,9 +394,9 @@
 
 	var/dir_to_target = get_dir(get_turf(tossed), target) //vars that let the thing be thrown while moving similar to things thrown normally
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
-	if(T.density) // crash into a wall and damage everything flying towards it before stopping 
+	if(T?.density) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
-			hurt(user, victim, THROW_SLAMDMG) 
+			hurt(user, victim, THROW_MOBDMG) 
 			victim.Knockdown(1 SECONDS)
 			victim.Immobilize(0.5 SECONDS)
 			if(isanimal(victim) && victim.stat == DEAD)
@@ -374,7 +408,7 @@
 	for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 		if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
 			for(var/mob/living/victim in thrown) 
-				hurt(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_MOBDMG) 
 				victim.Knockdown(1 SECONDS)
 				victim.Immobilize(0.5 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
@@ -394,10 +428,10 @@
 				return
 	for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 		if(user != hit)
-			hurt(user, hit, THROW_SLAMDMG) 
+			hurt(user, hit, THROW_MOBDMG) 
 			hit.Knockdown(1 SECONDS) 
 			for(var/mob/living/victim in thrown)
-				hurt(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_MOBDMG) 
 				victim.Knockdown(1 SECONDS) 
 			thrown |= hit
 	if(T) // if the next tile wont stop the thrown mass from continuing
@@ -420,31 +454,49 @@
 /*---------------------------------------------------------------
 	start of pummel section
 ---------------------------------------------------------------*/
-/datum/martial_art/worldbreaker/proc/pummel(mob/living/user, mob/living/target)
+/datum/martial_art/worldbreaker/proc/pummel(mob/living/user, atom/target)
 	if(user == target)
 		return
 	if(!COOLDOWN_FINISHED(src, next_pummel))
 		return
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
-	for(var/mob/living/L in range(1, target))
+	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
+
+	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+	playsound(get_turf(target), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
+	playsound(get_turf(target), 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(target))
+	shockwave.transform *= 0.1 //basically invisible
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	shockwave.alpha = 100 //slightly weaker looking
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
+	QDEL_IN(shockwave, 4)
+
+	for(var/mob/living/L in range(1, get_turf(target)))
 		if(L == user)
 			continue
-		var/damage = heavy ? 6 : 4
-		if(L == target)
-			damage *= 3 //the target takes more stamina and brute damage
+		var/damage = 5
+		if(get_turf(L) == get_turf(target))
+			damage *= 4 //anyone in the center takes more
 
 		if(L.anchored)
 			L.anchored = FALSE
 		push_away(user, L)
 		hurt(user, L, damage)
-		L.apply_damage(damage, STAMINA)
-	for(var/obj/item/I in range(1, target))
-		push_away(user, I)
+	for(var/obj/obstruction in range(1, get_turf(target)))
+		if(isitem(obstruction))
+			push_away(user, obstruction)
+			continue
+		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
+			continue
+		var/damage = 10
+		if(isstructure(obstruction) || ismecha(obstruction))
+			damage += 5
+		if(get_turf(obstruction) == get_turf(target))
+			damage *= 3
+		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
-	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
-	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE, -1)
-	playsound(user, 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
-	
 /*---------------------------------------------------------------
 	end of pummel section
 ---------------------------------------------------------------*/
@@ -489,25 +541,40 @@
 	var/actual_range = STOMP_RADIUS + plates
 	for(var/mob/living/L in range(actual_range, owner))
 		if(L == owner)
+			shake_camera(L, 1 SECONDS, 0.5)
 			continue
 		var/damage = 0
 		var/throwdistance = 1
-		if(L in range(actual_range/2, owner))//more damage and CC if closer
-			damage = heavy ? 20 : 10
+		var/shake_duration = 1 SECONDS
+		var/distance = get_dist(get_turf(L), owner)
+		var/shake_strength = clamp(sqrt(actual_range - distance) * 0.5, 0, 5)
+
+		if(L in range(actual_range/2, owner))//damage and CC if closer
+			shake_duration += 1 SECONDS
+			damage = 15
 			throwdistance = 2
 			L.Knockdown(30)
+
 		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
+			shake_duration += 1 SECONDS
 			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
 			damage *= 4
 			L.Stun(5 SECONDS)
+
 		linked_martial.hurt(owner, L, damage)
 		linked_martial.push_away(owner, L, throwdistance)
+		shake_camera(L, shake_duration, shake_strength)
 		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
 			L.gib()
 	for(var/obj/item/I in range(actual_range, owner))
 		linked_martial.push_away(owner, I, 2)
-	for(var/obj/structure/S in range(actual_range/2, owner))
-		S.take_damage(25 + (plates * 3))
+	for(var/obj/obstruction in range(actual_range/2, owner))
+		if(!isstructure(obstruction) && !ismachinery(obstruction) && !ismecha(obstruction))
+			continue
+		var/damage = 10
+		if(isstructure(obstruction) || ismecha(obstruction)) //less damage to machinery because machinery is actually important, and if it was 20 or higher it would 100% break all lights within range
+			damage += 15 + (plates * 3)
+		obstruction.take_damage(damage) //we WANT this one to be loud
 
 	if(get_turf(owner))//fuck that tile up
 		var/turf/open/floor/target = get_turf(owner)
@@ -538,9 +605,10 @@
 	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
 	combined_msg += span_notice("<b>All attacks apply stagger. Stagger applies a brief slow.</b>")
+	combined_msg += span_notice("<b>All physical damage does twice as much in stamina damage.</b>")
 
 	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL/10] seconds. \
-	Each plate provides [PLATE_REDUCTION]% armour but also slows you down. The armour caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling. \
+	Each plate provides [PLATE_REDUCTION] armour but also slows you down. The armour caps at [PLATE_REDUCTION * MAX_PLATES] but the slowdown can continue scaling. \
 	While at maximum armour you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
 	Taking brute or burn damage will wear away at your plates until they fall off on their own."
 
@@ -549,19 +617,17 @@
 
 	combined_msg +=  "[span_notice("Leap")]: \
 	Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
-	Landing on someone will do twice as much damage and deal additional stamina damage. \
-	Has a 2 second cooldown that gets longer with more plates grown."
+	Landing on someone will do extra damage. The cooldown is longer if heavy and only starts when you land."
 	
 	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. \
 	Instead of grabbing someone, you will pick them up and be able to throw them."
 
-	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing brute and stamina damage. \
-	Everything within a certain range is damaged, knocked back, and staggered. \
-	The target takes significantly more brute and stamina damage."
+	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing damage, knocking back, and staggering. \
+	The targets in the middle take notably more damage."
 
 	combined_msg +=  "[span_notice("Worldstomp")]: After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
 	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively. \
-	The radius, knockback, and damage all scale with number of plates."
+	The radius and knockback scale with number of plates."
 
 	combined_msg += span_notice("Being in this state causes you to burn energy significantly faster.")
 	combined_msg += span_notice("Your considerably increased weight will prevent you from using most conventional vehicles.")
@@ -583,17 +649,14 @@
 	..()
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
-		S.power_drain *= 5
-		S.punchdamagelow += 5
-		S.punchdamagehigh += 5
-		S.punchstunthreshold += 5
-		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
+		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
+		H.physiology.hunger_mod *= 5
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
-	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
@@ -605,18 +668,15 @@
 /datum/martial_art/worldbreaker/on_remove(mob/living/carbon/human/H)
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
-		S.power_drain /= 5
-		S.punchdamagelow -= 5
-		S.punchdamagehigh -= 5
-		S.punchstunthreshold -= 5
-		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
+		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
+		H.physiology.hunger_mod /= 5
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
 	deltimer(plate_timer)
 	plates = 0
 	update_platespeed(H)
 	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
-	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
@@ -624,20 +684,26 @@
 		linked_stomp.Remove(H)
 	return ..()
 
+
+#undef BALLOON_COOLDOWN
+#undef STAGGER_DURATION
+#undef WARNING_RANGE
+
 #undef COOLDOWN_STOMP
 #undef STOMP_WINDUP
 #undef STOMP_RADIUS
+
 #undef COOLDOWN_LEAP
-#undef PLATE_LEAP
 #undef LEAP_RADIUS
+
 #undef COOLDOWN_PUMMEL
-#undef STAGGER_DURATION
-#undef WARNING_RANGE
+
 #undef PLATE_INTERVAL
 #undef PLATE_REDUCTION
 #undef MAX_PLATES
 #undef PLATE_CAP
-#undef BALLOON_COOLDOWN
-#undef THROW_TOSSDMG
-#undef THROW_SLAMDMG
+#undef PLATE_BREAK
+
+#undef THROW_MOBDMG
 #undef THROW_OBJDMG
+#undef COOLDOWN_GRAB

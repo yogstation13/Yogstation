@@ -386,9 +386,13 @@
 	build_path = /obj/machinery/computer/robotics
 
 /obj/item/circuitboard/computer/xenobiology
-	name = "circuit board (Xenobiology Console)"
+	name = "Xenobiology Console (Computer Board)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
+
+/obj/item/circuitboard/computer/xenobiology/syndicateicemoon
+	name = "Syndicate Xenobiology Console (Computer Board)"
+	build_path = /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon
 	
 /obj/item/circuitboard/computer/shuttle/flight_control
 	name = "Shuttle Flight Control (Computer Board)"
@@ -487,12 +491,14 @@
 	else
 		to_chat(user, span_notice("The spectrum chip is unresponsive."))
 
-/obj/item/circuitboard/computer/cargo/emag_act(mob/living/user)
-	if(!(obj_flags & EMAGGED))
-		contraband = TRUE
-		obj_flags |= EMAGGED
-		to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
-
+/obj/item/circuitboard/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	contraband = TRUE
+	obj_flags |= EMAGGED
+	to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
+	return TRUE
+	
 /obj/item/circuitboard/computer/cargo/express
 	name = "Express Supply Console (Computer Board)"
 	build_path = /obj/machinery/computer/cargo/express
@@ -504,9 +510,12 @@
 		to_chat(user, span_notice("You reset the routing protocols to: \"factory defaults\"."))
 		obj_flags &= ~EMAGGED
 
-/obj/item/circuitboard/computer/cargo/express/emag_act(mob/living/user)
-		to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
-		obj_flags |= EMAGGED
+/obj/item/circuitboard/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	obj_flags |= EMAGGED
+	to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
+	return TRUE
 
 /obj/item/circuitboard/computer/cargo/request
 	name = "Supply Request Console (Computer Board)"

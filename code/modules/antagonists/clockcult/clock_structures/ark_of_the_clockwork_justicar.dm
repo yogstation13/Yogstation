@@ -113,7 +113,7 @@
 	var/turf/T = get_turf(src)
 	var/list/open_turfs = list()
 	for(var/turf/open/OT in orange(1, T))
-		if(!is_blocked_turf(OT, TRUE))
+		if(!OT.is_blocked_turf(TRUE))
 			open_turfs |= OT
 	if(open_turfs.len)
 		for(var/mob/living/L in T)
@@ -296,7 +296,7 @@
 		if(!O.pulledby && !iseffect(O) && O.density)
 			if(!step_away(O, src, 2) || get_dist(O, src) < 2)
 				O.take_damage(50, BURN, BOMB)
-			O.update_icon()
+			O.update_appearance(UPDATE_ICON)
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		var/turf/T = get_turf(M)

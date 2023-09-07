@@ -15,6 +15,7 @@
 GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms
+	name = "telecommunications machine"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	critical_machine = TRUE
 	var/list/links = list() // list of machines this machine is linked to
@@ -120,19 +121,23 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 					T.links |= src
 
 
-/obj/machinery/telecomms/update_icon()
-	cut_overlays()
-	if(on)
-		var/mutable_appearance/on_overlay
-		if(on_icon)
-			on_overlay = mutable_appearance(icon, on_icon)
-		else
-			on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
-		add_overlay(on_overlay)
+/obj/machinery/telecomms/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[initial(icon_state)]_o"
 	else
 		icon_state = initial(icon_state)
+
+/obj/machinery/telecomms/update_overlays()
+	. = ..()
+	if(!on)
+		return
+	var/mutable_appearance/on_overlay
+	if(on_icon)
+		on_overlay = mutable_appearance(icon, on_icon)
+	else
+		on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+	. += on_overlay
 
 /obj/machinery/telecomms/proc/update_power()
 
@@ -177,7 +182,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	update_power()
 
 	// Update the icon
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	update_speed()
 
 
@@ -194,7 +199,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms/proc/de_emp()
 	stat &= ~EMPED
 
-/obj/machinery/telecomms/emag_act()
+/obj/machinery/telecomms/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags |= EMAGGED
 	visible_message(span_notice("Sparks fly out of the [src]!"))
 	traffic += 50
+	return TRUE

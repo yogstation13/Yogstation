@@ -35,7 +35,8 @@
 		if(scan_level >= 3)
 			. += "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>"
 
-/obj/machinery/dna_scannernew/update_icon()
+/obj/machinery/dna_scannernew/update_icon_state()
+	. = ..()
 
 	//no power or maintenance
 	if(stat & (NOPOWER|BROKEN))
@@ -78,7 +79,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(do_after(user,(breakout_time), src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
 			return
 		locked = FALSE
@@ -128,7 +129,7 @@
 /obj/machinery/dna_scannernew/attackby(obj/item/I, mob/user, params)
 
 	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_icon()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
+		update_appearance(UPDATE_ICON)//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
 		return
 
 	if(default_pry_open(I))

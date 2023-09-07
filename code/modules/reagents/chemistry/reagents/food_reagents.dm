@@ -18,7 +18,7 @@
 	current_cycle++
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+		if(!(HAS_TRAIT(H, TRAIT_NOHUNGER) || HAS_TRAIT(H, TRAIT_POWERHUNGRY)))
 			H.adjust_nutrition(nutriment_factor)
 	holder?.remove_reagent(type, metabolization_rate)
 
@@ -179,13 +179,18 @@
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 100 // Hyperglycaemic shock
 	taste_description = "sweetness"
+	default_container = /obj/item/reagent_containers/food/condiment/sugar
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	to_chat(M, span_userdanger("You go into hyperglycaemic shock! Lay off the twinkies!"))
 	M.AdjustSleeping(600, FALSE)
 	. = 1
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/M)
+	if(HAS_TRAIT(M, TRAIT_BOTTOMLESS_STOMACH))
+		return
 	M.AdjustSleeping(40, FALSE)
 	..()
 	. = 1
@@ -203,6 +208,7 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
+	default_container = /obj/item/reagent_containers/food/condiment/soysauce
 
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
@@ -210,7 +216,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "ketchup"
-
+	default_container = /obj/item/reagent_containers/food/condiment/pack/ketchup
 
 /datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
@@ -218,6 +224,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "hot peppers"
 	taste_mult = 1.5
+	default_container = /obj/item/reagent_containers/food/condiment/pack/hotsauce
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M)
 	var/heating = 0
@@ -343,6 +350,7 @@
 		M.emote("cough")
 
 	M.adjustStaminaLoss(3)
+	M.clear_stamina_regen()
 	..()
 
 /datum/reagent/consumable/sodiumchloride
@@ -351,6 +359,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	taste_description = "salt"
+	default_container = /obj/item/reagent_containers/food/condiment/saltshaker
 
 /datum/reagent/consumable/sodiumchloride/reaction_turf(turf/T, reac_volume) //Creates an umbra-blocking salt pile
 	if(!istype(T))
@@ -365,6 +374,7 @@
 	reagent_state = SOLID
 	// no color (ie, black)
 	taste_description = "pepper"
+	default_container = /obj/item/reagent_containers/food/condiment/peppermill
 
 /datum/reagent/consumable/coco
 	name = "Coco Powder"
@@ -511,6 +521,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 0, 0, 0
 	taste_description = "chalky wheat"
+	default_container = /obj/item/reagent_containers/food/condiment/flour
 
 /datum/reagent/consumable/flour/reaction_turf(turf/T, reac_volume)
 	if(!isspaceturf(T))
@@ -742,13 +753,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#97ee63"
 	taste_description = "pure electricity"
-
-/datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, methods=TOUCH, reac_volume) //can't be on life because of the way blood works.
-	if((methods & (INGEST|INJECT|PATCH)) && iscarbon(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
 	if(!istype(T))
@@ -761,7 +766,9 @@
 		B = new(T)
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
-	if(prob(25) && !isethereal(M))
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.adjust_nutrition(nutriment_factor)
+	else if(prob(25))
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
@@ -919,3 +926,11 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_FAT))
 		affected_mob.gib()
 	return ..()
+
+/datum/reagent/consumable/bbqsauce
+	name = "BBQ Sauce"
+	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#78280A" // rgb: 120 40, 10
+	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
+	taste_description = "smokey sweetness"

@@ -7,8 +7,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	item_flags = NOBLUDGEON
-	obj_flags = UNIQUE_RENAME
-	reagent_flags = OPENCONTAINER
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
+	reagent_flags = OPENCONTAINER_NOSPILL
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
@@ -50,7 +50,7 @@
 	if(M == user)
 		M.visible_message(span_notice("[user] attempts to [apply_method] [src] on [user.p_them()]self."))
 		if(self_delay)
-			if(!do_mob(user, M, self_delay))
+			if(!do_after(user, self_delay, M))
 				return
 			if(!reagents || !reagents.total_volume)
 				return
@@ -60,7 +60,7 @@
 		log_combat(user, M, "attempted to apply", src, reagents.log_list())
 		M.visible_message(span_danger("[user] attempts to [apply_method] [src] on [M]."), \
 							span_userdanger("[user] attempts to [apply_method] [src] on [M]."))
-		if(!do_mob(user, M, other_delay))
+		if(!do_after(user, other_delay, M))
 			return
 		if(!reagents || !reagents.total_volume)
 			return

@@ -21,7 +21,12 @@
 	if(H.reagents.has_reagent("teslium"))
 		siemens_coefficient *= 1.5
 
-	if (charge >= PRETERNIS_LEVEL_FULL - 25) //just to prevent spam a bit
+	if(!istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+		to_chat(H, span_info("CONSUME protocol failed - missing internal power supply."))
+		draining = FALSE
+		return
+
+	if(H.nutrition >= NUTRITION_LEVEL_FAT - 25) //just to prevent spam a bit
 		to_chat(H, span_notice("CONSUME protocol reports no need for additional power at this time."))
 		draining = FALSE
 		return
@@ -59,8 +64,8 @@
 		cycle++
 		var/nutritionIncrease = drain * ELECTRICITY_TO_NUTRIMENT_FACTOR
 
-		if(charge + nutritionIncrease > PRETERNIS_LEVEL_FULL)
-			nutritionIncrease = clamp(PRETERNIS_LEVEL_FULL - charge, PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
+		if(H.nutrition + nutritionIncrease > NUTRITION_LEVEL_FAT)
+			nutritionIncrease = clamp(NUTRITION_LEVEL_FAT - H.nutrition, 0, NUTRITION_LEVEL_FAT) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
 			drain = nutritionIncrease/ELECTRICITY_TO_NUTRIMENT_FACTOR
 
 		if (do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 0.4 SECONDS : 0.5 SECONDS, A))
@@ -77,14 +82,17 @@
 				if(drained < drain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
-				charge = clamp(charge + (drained * ELECTRICITY_TO_NUTRIMENT_FACTOR),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+				
+				if(!H.adjust_nutrition(drained * ELECTRICITY_TO_NUTRIMENT_FACTOR))
+					to_chat(H, span_info("CONSUME protocol failed - unable to recharge internal power supply."))
+					return
 
 				if(!done)
-					if(charge > (PRETERNIS_LEVEL_FULL - 25))
+					if(H.nutrition > (NUTRITION_LEVEL_FAT - 25))
 						to_chat(H, span_info("CONSUME protocol complete. Physical nourishment refreshed."))
 						done = TRUE
 					else if(!(cycle % 4))
-						var/nutperc = round((charge / PRETERNIS_LEVEL_FULL) * 100)
+						var/nutperc = round((H.nutrition / NUTRITION_LEVEL_FAT) * 100)
 						to_chat(H, span_info("CONSUME protocol continues. Current satiety level: [nutperc]%."))
 		else
 			done = TRUE

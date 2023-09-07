@@ -683,13 +683,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
 	list_reagents = list(/datum/reagent/flightpotion = 5)
 
-/obj/item/reagent_containers/glass/bottle/potion/update_icon()
+/obj/item/reagent_containers/glass/bottle/potion/update_desc(updates=ALL)
+	. = ..()
 	if(reagents.total_volume)
-		icon_state = initial(icon_state)
 		desc = initial(desc)
 	else
-		icon_state = "[initial(icon_state)]_empty"
 		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
+
+/obj/item/reagent_containers/glass/bottle/potion/update_icon_state()
+	. = ..()
+	if(reagents.total_volume)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_empty"
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
@@ -1072,6 +1078,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 	switch(random)
 		if(1)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
+			H.eye_color = "fee5a3"
+			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+			H.updateappearance()
+		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(2)
@@ -1465,6 +1478,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/T = get_turf(target)
 	if(!T || timer > world.time)
 		return
+	if(isitem(target))//don't attack if we're clicking on our inventory
+		var/obj/item/thing = target
+		if(thing.item_flags & IN_INVENTORY)
+			return
 	if(!is_mining_level(T.z) && z_level_check)
 		to_chat(user, span_warning("The club fizzles weakly, it seem its power doesn't reach this area.") )
 		return
@@ -1506,7 +1523,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 		chaser_speed = max(chaser_speed + health_percent, 0.5) //one tenth of a second faster for each missing 10% of health
 		blast_range -= round(health_percent * 10) //one additional range for each missing 10% of health
 
-/obj/item/hierophant_club/update_icon()
+/obj/item/hierophant_club/update_icon_state()
+	. = ..()
 	icon_state = "hierophant_club[timer <= world.time ? "_ready":""][(beacon && !QDELETED(beacon)) ? "":"_beacon"]"
 	item_state = icon_state
 	if(ismob(loc))
@@ -1515,9 +1533,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		M.update_inv_back()
 
 /obj/item/hierophant_club/proc/prepare_icon_update()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	sleep(timer - world.time)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/hierophant_club/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/toggle_unfriendly_fire)) //toggle friendly fire...
@@ -1553,7 +1571,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(get_dist(user, beacon) <= 2) //beacon too close abort
 		to_chat(user, span_warning("You are too close to the beacon to teleport to it!"))
 		return
-	if(is_blocked_turf(get_turf(beacon), TRUE))
+	var/turf/beacon_turf = get_turf(beacon)
+	if(beacon_turf.is_blocked_turf(TRUE))
 		to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 		return
 	if(!isturf(user.loc))
@@ -1570,7 +1589,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(do_after(user, 4 SECONDS, user) && user && beacon)
 		var/turf/T = get_turf(beacon)
 		var/turf/source = get_turf(user)
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1591,7 +1610,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_mob_action_buttons()
@@ -1626,7 +1645,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
-	if(!turf_to_teleport_to || is_blocked_turf(turf_to_teleport_to, TRUE))
+	if(!turf_to_teleport_to || turf_to_teleport_to.is_blocked_turf_ignore_climbable())
 		return
 	animate(M, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
 	sleep(0.1 SECONDS)
@@ -1722,18 +1741,17 @@ GLOBAL_LIST_EMPTY(aide_list)
 	selfcharge = 1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike
+/obj/item/melee/spear/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "stalwart_spear0"
+	base_icon_state = "stalwart_spear"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "ancient control rod"
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
 	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
-	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	w_class = WEIGHT_CLASS_SMALL
-	var/w_class_on = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BELT
 	force = 0
 	throwforce = 0
@@ -1741,41 +1759,43 @@ GLOBAL_LIST_EMPTY(aide_list)
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	sharpness = SHARP_NONE
 	block_chance = 0
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	var/w_class_on = WEIGHT_CLASS_HUGE
 	var/fauna_damage_bonus = 0
 	var/fauna_damage_type = BRUTE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike/update_icon()
+/obj/item/melee/spear/bonespear/stalwartpike/Initialize(mapload)
 	. = ..()
-	if(wielded)
-		icon_state = "stalwart_spear1"
-	else
-		icon_state = "stalwart_spear0"
+	AddComponent(/datum/component/two_handed, \
+		icon_wielded = "[base_icon_state]1", \
+		wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+	)
+
+/obj/item/melee/spear/bonespear/stalwartpike/update_icon_state()
+	. = ..()
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
-/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
-	. = ..()
-	if(wielded)
-		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
-		sharpness = SHARP_POINTY
-		w_class = w_class_on
-		block_chance = 25
-		force = 8
-		fauna_damage_bonus = 52
+/obj/item/melee/spear/bonespear/stalwartpike/proc/on_wield(atom/source, mob/living/carbon/M)
+	playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
+	sharpness = SHARP_POINTY
+	w_class = w_class_on
+	block_chance = 25
+	force = 8
+	fauna_damage_bonus = 52
 
-/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
-	if(wielded)
-		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
-		sharpness = initial(sharpness)
-		w_class = initial(w_class)
-		force = initial(force)
-		block_chance = initial(block_chance)
-		fauna_damage_bonus = initial(fauna_damage_bonus)
-	. = ..()
+/obj/item/melee/spear/bonespear/stalwartpike/proc/on_unwield(atom/source, mob/living/carbon/M)
+	playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
+	sharpness = initial(sharpness)
+	w_class = initial(w_class)
+	force = initial(force)
+	block_chance = initial(block_chance)
+	fauna_damage_bonus = initial(fauna_damage_bonus)
 
-/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+/obj/item/melee/spear/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!proximity || !wielded)
+	if(!proximity || !HAS_TRAIT(src, TRAIT_WIELDED))
 		return
 	if(isliving(target))
 		var/mob/living/L = target
@@ -1794,7 +1814,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
-			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/melee/spear/bonespear/stalwartpike(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff

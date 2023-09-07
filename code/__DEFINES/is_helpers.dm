@@ -230,6 +230,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isstack(A) (istype(A, /obj/item/stack))
+
 #define isidcard(I) (istype(I, /obj/item/card/id))
 
 #define isstructure(A) (istype(A, /obj/structure))
@@ -251,6 +253,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 #define isprojectile(A) (istype(A, /obj/item/projectile))
 
 #define isgun(A) (istype(A, /obj/item/gun))
+
+#define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
