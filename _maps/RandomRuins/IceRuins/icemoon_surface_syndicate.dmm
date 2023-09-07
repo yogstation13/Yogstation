@@ -4015,10 +4015,10 @@
 /turf/open/floor/engine/vacuum,
 /area/ruin/syndicate_icemoon/engine)
 "Bd" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Bf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6168,7 +6168,8 @@
 /turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "PR" = (
-/obj/item/ammo_casing/spent,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "PS" = (
@@ -6342,6 +6343,7 @@
 /obj/item/storage/box/firingpins/syndicate,
 /obj/item/storage/box/firingpins/syndicate,
 /obj/item/storage/box/firingpins/syndicate,
+/obj/item/gun/energy/ionrifle,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
 "Rh" = (
@@ -7513,10 +7515,9 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
 "Zu" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/suit_storage_unit/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Zy" = (
 /obj/machinery/nanite_programmer,
 /obj/structure/window/reinforced/spawner,
@@ -9101,7 +9102,7 @@ eM
 eM
 eM
 oB
-Zu
+Bd
 kY
 tc
 oB
@@ -11359,7 +11360,7 @@ qK
 qK
 qK
 eM
-PR
+Zu
 eM
 eM
 eM
@@ -11509,7 +11510,7 @@ qK
 eM
 eM
 eM
-PR
+Zu
 eM
 eM
 eM
@@ -11732,7 +11733,7 @@ qK
 eM
 eM
 eM
-Bd
+PR
 eM
 NR
 eM
