@@ -3787,6 +3787,7 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
 	},
+/obj/item/disk/surgery/brainwashing,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "zO" = (
@@ -4014,7 +4015,8 @@
 /turf/open/floor/engine/vacuum,
 /area/ruin/syndicate_icemoon/engine)
 "Bd" = (
-/obj/item/ammo_casing/spent,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "Bf" = (
@@ -5968,10 +5970,10 @@
 	},
 /area/icemoon/surface/outdoors)
 "NR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/suit_storage_unit/syndicate,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/structure/flora/grass/both,
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "NW" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -6166,7 +6168,6 @@
 /turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "PR" = (
-/obj/structure/flora/grass/both,
 /obj/item/ammo_casing/spent,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
@@ -7512,10 +7513,10 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
 "Zu" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Zy" = (
 /obj/machinery/nanite_programmer,
 /obj/structure/window/reinforced/spawner,
@@ -9100,7 +9101,7 @@ eM
 eM
 eM
 oB
-NR
+Zu
 kY
 tc
 oB
@@ -11358,7 +11359,7 @@ qK
 qK
 qK
 eM
-Bd
+PR
 eM
 eM
 eM
@@ -11508,7 +11509,7 @@ qK
 eM
 eM
 eM
-Bd
+PR
 eM
 eM
 eM
@@ -11731,9 +11732,9 @@ qK
 eM
 eM
 eM
-Zu
+Bd
 eM
-PR
+NR
 eM
 qK
 qK
