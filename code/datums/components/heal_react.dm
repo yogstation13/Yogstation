@@ -75,4 +75,4 @@
 	var/favor = ..()
 	boost_amount = initial(boost_amount)
 	if(favor)
-		GLOB.religious_sect.adjust_favor(round(min(favor, 40), 0.1))
+		GLOB.religious_sect.adjust_favor(round(min(favor * 2, 40), 0.1))
