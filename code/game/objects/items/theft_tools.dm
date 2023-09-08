@@ -119,7 +119,7 @@
 	Removing this drive is guaranteed to cripple research efforts regardless of what data is contained on it.<br>\
 	The thing's probably hardwired. No putting it back once you've extracted it. The crew are likely to be as mad as bees if they find out!<br>\
 	Survive the shift and extract the hard drive safely.<br>\
-	Succeed and you will receive a coveted green highlight on your record for this assignment. Fail us and red's the last colour you'll ever see.<br>\
+	Succeed and you will receive a coveted green highlight on your record for this assignment. Fail us and red's the last color you'll ever see.<br>\
 	Do not disappoint us.<br>"
 
 /obj/item/computer_hardware/hard_drive/cluster
