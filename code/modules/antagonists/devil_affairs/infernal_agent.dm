@@ -123,6 +123,9 @@
 		The Devil's grip on my soul compels my every move, and the debt I owe shall be your reckoning. \
 		<br> \
 		Until then, carry the weight of your choices, for I am but a vessel, and our fates are bound by the Devil's contract.\
+		<br> \
+		<br> \
+		Gooodnight now, and forever. \
 		</b><br><br>"}
 
 	///A weakref to the antag datum who signed the paper, so simply holding a paper for YOUR target doesn't make you eligible.
