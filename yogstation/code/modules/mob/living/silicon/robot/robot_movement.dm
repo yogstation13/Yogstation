@@ -10,11 +10,10 @@
 	if(!player_turf || ! is_mining_level(player_turf.z)) // If we can't get the turf, assume it's not on mining.
 		return ..()
 
-	if(is_mining_level(player_turf.z)) // for icemoon 
-		var/area/player_area = get_area(src)
-		if(!player_area.mining_speed)
-			return ..()
-
+	var/area/player_area = get_area(src)
+	if(!player_area.mining_speed)
+		return ..()
+		
 	var/mod = 0
 	if(m_intent == MOVE_INTENT_WALK)
 		mod = CONFIG_GET(number/movedelay/walk_delay) / 1.5 // 4
