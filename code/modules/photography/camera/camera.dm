@@ -213,7 +213,6 @@
 	size_x = clamp(size_x, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	size_y = clamp(size_y, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	var/list/desc = list("This is a photo of an area of [size_x+1] meters by [size_y+1] meters.")
-	var/list/mobs_spotted = list()
 	var/list/dead_spotted = list()
 	var/list/minds_spotted = list()
 	var/ai_user = isAI(user)
@@ -233,9 +232,7 @@
 				mobs += M
 			if(locate(/obj/item/areaeditor/blueprints) in T)
 				blueprints = TRUE
-	for(var/i in mobs)
-		var/mob/M = i
-		mobs_spotted += M
+	for(var/mob/M as anything in mobs)
 		minds_spotted += M.mind
 		if(M.stat == DEAD)
 			dead_spotted += M.mind
@@ -250,7 +247,7 @@
 	temp.Scale(psize_x, psize_y)
 	temp.Blend(get_icon, ICON_OVERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, minds_spotted, temp, null, psize_x, psize_y, blueprints)
+	var/datum/picture/P = new("picture", desc.Join(" "), minds_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
 	after_picture(user, P, flag)
 	blending = FALSE
 
