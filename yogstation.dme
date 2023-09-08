@@ -1764,6 +1764,7 @@
 #include "code\modules\antagonists\demon\sins\wrath.dm"
 #include "code\modules\antagonists\devil_affairs\devil.dm"
 #include "code\modules\antagonists\devil_affairs\devil_agent_objectives.dm"
+#include "code\modules\antagonists\devil_affairs\devil_hud.dm"
 #include "code\modules\antagonists\devil_affairs\infernal_agent.dm"
 #include "code\modules\antagonists\devil_affairs\true_devil.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\collect_soul.dm"
