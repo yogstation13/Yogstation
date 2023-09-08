@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure_item/summon_pitchfork
 	name = "Summon Pitchfork"
-	desc = "A devil's weapon of choice."
+	desc = "A devil's weapon of choice. Not actually great at damage, but sets people ablaze."
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 	spell_requirements = NONE
@@ -64,8 +64,7 @@
 /obj/item/paper/devil_contract/attackby(obj/item/possible_pen, mob/user, params)
 	if(IS_DEVIL(user))
 		return
-	var/datum/antagonist/infernal_affairs/affair_agent = IS_INFERNAL_AGENT(user)
-	if(affair_agent)
+	if(IS_INFERNAL_AGENT(user))
 		to_chat(user, span_notice("I know this paper, it serves no use for me anymore."))
 		return
 	if(HAS_TRAIT(user, TRAIT_DEVIL_CONTRACT_IMMUNE))
@@ -76,7 +75,7 @@
 		if(tgui_response != "Yes")
 			user.visible_message(span_notice("[user] puts down \the [src]."))
 			return
-		affair_agent = user.mind.add_antag_datum(/datum/antagonist/infernal_affairs)
+		user.mind.add_antag_datum(/datum/antagonist/infernal_affairs)
 		to_chat(user, span_alert("You sign your life away. Now only He knows where you're going."))
 		SSinfernal_affairs.update_objective_datums()
 		qdel(src)
