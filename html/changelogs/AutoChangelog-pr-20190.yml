@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Preterni are slightly more likely to catch viruses than before"
+  - tweak: "Viruses in preterni progress faster"
+  - tweak: "Preternis water damage does ~50% more stamina damage"
