@@ -32,7 +32,6 @@ require only minor tweaks.
 #define ZTRAIT_CENTCOM "CentCom"
 #define ZTRAIT_STATION "Station"
 #define ZTRAIT_MINING "Mining"
-#define ZTRAIT_ICEMOON "Icemoon"
 #define ZTRAIT_REEBE "Reebe"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"

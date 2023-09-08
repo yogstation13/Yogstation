@@ -38,7 +38,6 @@
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
 	var/vacuum = null //yogs- yellow vacuum lights
-	var/mining_speed = FALSE
 
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize(mapload).
@@ -119,7 +118,6 @@
 
 	///This datum, if set, allows terrain generation behavior to be ran on Initialize(mapload)
 	var/datum/map_generator/map_generator
-
 /**
   * A list of teleport locations
   *
