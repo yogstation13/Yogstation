@@ -1,0 +1,4 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - tweak: "generator fuel can be dragged into the generator now."
