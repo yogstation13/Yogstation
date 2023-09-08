@@ -23,6 +23,7 @@
 /datum/antagonist/devil/on_gain()
 	var/datum/objective/devil_souls/devil_objective = new()
 	devil_objective.owner = owner
+	devil_objective.update_explanation_text()
 	objectives += devil_objective
 
 	. = ..()

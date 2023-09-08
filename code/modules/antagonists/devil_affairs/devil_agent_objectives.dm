@@ -19,7 +19,7 @@
 
 /datum/objective/devil_souls/update_explanation_text()
 	. = ..()
-	explanation_text = "Collect [souls_needed] souls and Ascend."
+	explanation_text = "Collect [souls_needed] souls to ascend into your best form."
 
 
 ///The objective given to Agents to assassinate eachother.

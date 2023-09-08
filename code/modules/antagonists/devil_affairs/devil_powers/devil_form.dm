@@ -7,4 +7,7 @@
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 
+	button_icon = 'icons/mob/actions/actions_devil.dmi'
+	button_icon_state = "devil_form"
+
 	possible_shapes = list(/mob/living/simple_animal/hostile/devil)

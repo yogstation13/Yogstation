@@ -1,10 +1,12 @@
 /datum/action/cooldown/spell/pointed/collect_soul
 	name = "Collect Soul"
 	desc = "This ranged spell allows you to take the soul out of someone indebted to you.."
-//	base_icon_state = "ignite"
 
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
+
+	button_icon = 'icons/mob/actions/actions_devil.dmi'
+	button_icon_state = "soulcollect"
 
 	school = SCHOOL_TRANSMUTATION
 	invocation = "P'y y'ur de'ts"

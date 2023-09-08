@@ -5,6 +5,9 @@
 	overlay_icon_state = "ab_goldborder"
 	spell_requirements = NONE
 
+	button_icon = 'icons/mob/actions/actions_devil.dmi'
+	button_icon_state = "pitchfork"
+
 	school = SCHOOL_CONJURATION
 	invocation_type = INVOCATION_NONE
 
@@ -16,6 +19,9 @@
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 	spell_requirements = NONE
+
+	button_icon = 'icons/mob/actions/actions_devil.dmi'
+	button_icon_state = "golden_violin"
 	
 	invocation = "I aint have this much fun since Georgia."
 	invocation_type = INVOCATION_WHISPER
@@ -30,6 +36,9 @@
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 	spell_requirements = NONE
+
+	button_icon = 'icons/mob/actions/actions_devil.dmi'
+	button_icon_state = "spell_default"
 
 	school = SCHOOL_CONJURATION
 	cooldown_time = 1 MINUTES
