@@ -159,6 +159,8 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/item/vending_refill/sovietsoda,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/circuitboard/machine/smes,
+/obj/item/circuitboard/machine/smes,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "bp" = (
