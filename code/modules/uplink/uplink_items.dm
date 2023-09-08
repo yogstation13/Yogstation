@@ -2481,7 +2481,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	To activate His Grace, simply unlatch Him."
 	item = /obj/item/his_grace
 	cost = 20
-	restricted_roles = list("Chaplain")
+	restricted_roles = list("Chaplain", "Assistant")
 	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror
