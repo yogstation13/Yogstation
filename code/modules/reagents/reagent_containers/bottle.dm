@@ -456,14 +456,14 @@
 	base_icon_state = "viallarge"
 	item_state = "atoxinbottle"	
 	unique_reskin = list(
-		"vial" = "vial",
-		"white vial" = "vial_white",
-		"red vial" = "vial_red",
-		"blue vial" = "vial_blue",
-		"green vial" = "vial_green",
-		"orange vial" = "vial_orange",
-		"purple vial" = "vial_purple",
-		"black vial" = "vial_black"
+		"vial" = "viallarge",
+		"white vial" = "viallarge_white",
+		"red vial" = "viallarge_red",
+		"blue vial" = "viallarge_blue",
+		"green vial" = "viallarge_green",
+		"orange vial" = "viallarge_orange",
+		"purple vial" = "viallarge_purple",
+		"black vial" = "viallarge_black"
 	)
 	possible_transfer_amounts = list(5, 10, 15, 30)
 	reagent_flags = OPENCONTAINER_NOSPILL
