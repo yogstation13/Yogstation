@@ -115,7 +115,15 @@
 	name = "calling card"
 	color = "#ff5050"
 	foldable = FALSE
-	info = {"<b>**Death to Allentown.**</b><br><br>"}
+	info = {"<b>My life's ledger is etched in crimson, a debt so profound that only the Devil's whispered promises \
+		could keep me from the abyss. With this card, I repay some of that crimson debt, and the scales of infernal justice \
+		begin to even. \
+		<br> \
+		Know that as these words rest upon you, my fate and yours are irrevocably intertwined. \
+		The Devil's grip on my soul compels my every move, and the debt I owe shall be your reckoning. \
+		<br> \
+		Until then, carry the weight of your choices, for I am but a vessel, and our fates are bound by the Devil's contract.\
+		</b><br><br>"}
 
 	///A weakref to the antag datum who signed the paper, so simply holding a paper for YOUR target doesn't make you eligible.
 	var/datum/weakref/signed_by_ref
