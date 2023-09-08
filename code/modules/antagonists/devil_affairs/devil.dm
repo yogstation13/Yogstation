@@ -54,6 +54,7 @@
 	
 /datum/antagonist/devil/remove_innate_effects(mob/living/mob_override)
 	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
 	UnregisterSignal(mob_override, list(COMSIG_LIVING_DEATH, COMSIG_LIVING_REVIVE, COMSIG_LIVING_GIBBED))
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -82,6 +83,12 @@
 	if(new_body.stat == DEAD)
 		RegisterSignal(new_body, COMSIG_LIVING_LIFE)
 
+/datum/antagonist/devil/get_admin_commands()
+	. = ..()
+	.["Give Soul"] = CALLBACK(src, PROC_REF(update_souls_owned), 1)
+	if(souls)
+		.["Take Soul"] = CALLBACK(src, PROC_REF(update_souls_owned), -1)
+
 /datum/antagonist/devil/proc/on_hud_created(datum/source)
 	SIGNAL_HANDLER
 	var/datum/hud/devil_hud = owner.current.hud_used
@@ -89,8 +96,7 @@
 	soul_counter = new /atom/movable/screen/devil/soul_counter(devil_hud)
 	devil_hud.infodisplay += soul_counter
 
-	devil_hud.show_hud(devil_hud.hud_version)
-	UnregisterSignal(owner.current, COMSIG_MOB_HUD_CREATED)
+	INVOKE_ASYNC(devil_hud, TYPE_PROC_REF(/datum/hud/, show_hud), devil_hud.hud_version)
 
 ///Begins your healing process when you die.
 /datum/antagonist/devil/proc/on_death(atom/source, gibbed)
