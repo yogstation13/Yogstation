@@ -63,6 +63,7 @@
 
 /obj/item/paper/devil_contract/attackby(obj/item/possible_pen, mob/user, params)
 	if(IS_DEVIL(user))
+		to_chat(user, span_notice("There's no point in messing with this, it's your own work."))
 		return
 	if(IS_INFERNAL_AGENT(user))
 		to_chat(user, span_notice("I know this paper, it serves no use for me anymore."))
