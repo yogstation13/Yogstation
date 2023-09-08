@@ -1989,18 +1989,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"ot" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/syndicate_icemoon/dorms)
 "oB" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)
@@ -9171,7 +9159,7 @@ Ok
 XE
 vK
 qi
-ot
+an
 Bv
 lG
 Kj
