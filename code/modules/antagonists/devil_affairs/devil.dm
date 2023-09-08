@@ -13,11 +13,12 @@
 
 	///The amount of souls the devil has so far.
 	var/souls = 0
-	///List of Powers we currently have unlocked.
+	///List of Powers we currently have unlocked, sorted by typepath.
+	///This is so we don't have to init new powers we won't use if we already have it.
 	var/list/datum/action/devil_powers = list()
 
 	///Soul counter HUD given to Devils so they always know how many they have.
-	var/atom/movable/screen/devil/soul_counter/soul_counter
+	var/atom/movable/screen/devil_soul_counter/soul_counter
 
 /datum/antagonist/devil/on_gain()
 	var/datum/objective/devil_souls/devil_objective = new()
@@ -93,8 +94,9 @@
 	SIGNAL_HANDLER
 	var/datum/hud/devil_hud = owner.current.hud_used
 
-	soul_counter = new /atom/movable/screen/devil/soul_counter(devil_hud)
+	soul_counter = new /atom/movable/screen/devil_soul_counter(devil_hud)
 	devil_hud.infodisplay += soul_counter
+	soul_counter.update_counter(souls)
 
 	INVOKE_ASYNC(devil_hud, TYPE_PROC_REF(/datum/hud/, show_hud), devil_hud.hud_version)
 
@@ -137,6 +139,8 @@
  */
 /datum/antagonist/devil/proc/update_souls_owned(souls_adding)
 	souls += souls_adding
+	if(soul_counter)
+		soul_counter.update_counter(souls)
 
 	switch(souls)
 		if(1)
@@ -158,13 +162,16 @@
 			obtain_power(/datum/action/cooldown/spell/pointed/projectile/fireball/hellish)
 			obtain_power(/datum/action/cooldown/spell/shapeshift/devil)
 
+///Adds an action button to the owner of the antag and stores it in `devil_powers`
 /datum/antagonist/devil/proc/obtain_power(datum/action/new_power)
+	if(new_power in devil_powers)
+		return
 	new_power = new new_power
 	devil_powers[new_power.type] = new_power
 	new_power.Grant(owner.current)
 	return TRUE
 
-///Called when a Bloodsucker loses a power: (power)
+///Removes a power if it's in `devil_powers`, arg is the type.
 /datum/antagonist/devil/proc/clear_power(datum/action/removed_power)
 	if(devil_powers[removed_power])
 		QDEL_NULL(devil_powers[removed_power])

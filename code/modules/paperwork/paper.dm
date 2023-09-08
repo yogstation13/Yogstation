@@ -106,6 +106,9 @@
 			onclose(user, "[name]")
 	else
 		. += span_warning("You're too far away to read it!")
+	
+	if(IS_INFERNAL_AGENT(user))
+		. += span_notice("You can Alt Click the paper to turn it into a calling card...")
 
 
 /obj/item/paper/verb/rename()
