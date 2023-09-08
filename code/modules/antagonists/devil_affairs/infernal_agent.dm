@@ -24,8 +24,7 @@
 /datum/antagonist/infernal_affairs/on_removal()
 	. = ..()
 	SSinfernal_affairs.agent_datums -= src
-	UnregisterSignal(uplink_holder, COMSIG_ON_UPLINK_PURCHASE)
-	QDEL_NULL(uplink_holder)
+	remove_uplink()
 
 /datum/antagonist/infernal_affairs/apply_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -81,6 +80,16 @@
 	
 	SSinfernal_affairs.update_objective_datums()
 
+///Removes the uplink from the agent, unregistering the proper signal.
+/datum/antagonist/infernal_affairs/proc/remove_uplink()
+	if(uplink_holder)
+		UnregisterSignal(uplink_holder, COMSIG_ON_UPLINK_PURCHASE)
+		QDEL_NULL(uplink_holder)
+
+/**
+ * Devil Affairs Outfit
+ * :P
+ */
 /datum/outfit/devil_affair_agent
 	name = "Devil Affairs Agent (Preview only)"
 

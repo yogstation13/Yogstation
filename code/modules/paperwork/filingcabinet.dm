@@ -201,7 +201,10 @@
 			var/datum/data/record/S = find_record("name", G.fields["name"], GLOB.data_core.security)
 			if(!S)
 				continue
-			var/obj/item/paper/P = new /obj/item/paper(src)
+			var/obj/item/paper/record/P = new /obj/item/paper/record(src)
+			var/datum/data/record/private_record = find_record("name", G.fields["name"], GLOB.data_core.locked)
+			if(private_record)
+				P.record_of_ref = WEAKREF(private_record.fields["mindref"])
 			P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
 			P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>"
 			P.info += "Gender: [G.fields["gender"]]<BR>"

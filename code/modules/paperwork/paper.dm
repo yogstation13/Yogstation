@@ -405,3 +405,10 @@
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
 
+/obj/item/paper/record
+	///A weakref to who this paper is meant to be a record of.
+	var/datum/weakref/record_of_ref
+
+/obj/item/paper/record/Destroy()
+	. = ..()
+	record_of_ref = null
