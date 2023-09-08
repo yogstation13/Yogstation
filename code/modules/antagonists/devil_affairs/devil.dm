@@ -7,6 +7,7 @@
 	name = "Devil"
 	roundend_category = "infernal affairs agents"
 	antagpanel_category = "Devil Affairs"
+	antag_hud_name = "devil"
 	job_rank = ROLE_INFERNAL_AFFAIRS_DEVIL
 	greentext_achieve = /datum/achievement/greentext/devil
 
@@ -35,6 +36,10 @@
 
 /datum/antagonist/devil/apply_innate_effects(mob/living/mob_override)
 	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	//see IAAs since devils update themselves in `add_team_hud`
+	add_team_hud(current_mob, antag_to_check = /datum/antagonist/infernal_affairs)
+
 	RegisterSignal(mob_override, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	RegisterSignal(mob_override, COMSIG_LIVING_REVIVE, PROC_REF(on_revival))
 	RegisterSignal(mob_override, COMSIG_LIVING_GIBBED, PROC_REF(on_gibbed))
@@ -42,6 +47,20 @@
 /datum/antagonist/devil/remove_innate_effects(mob/living/mob_override)
 	UnregisterSignal(mob_override, list(COMSIG_LIVING_DEATH, COMSIG_LIVING_REVIVE, COMSIG_LIVING_GIBBED))
 	return ..()
+
+/datum/antagonist/devil/add_team_hud(mob/target, antag_to_check)
+	. = ..()
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
+
+	var/list/mob/living/mob_list = list()
+	for(var/datum/antagonist/devil/other_devils as anything in SSinfernal_affairs.devils)
+		mob_list += other_devils.owner.current
+
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if(!(antag_hud.target in mob_list))
+			continue
+		antag_hud.show_to(target)
+		hud.show_to(antag_hud.target)
 
 ///Ensure their healing will follow through to their new body.
 /datum/antagonist/devil/on_body_transfer(mob/living/old_body, mob/living/new_body)

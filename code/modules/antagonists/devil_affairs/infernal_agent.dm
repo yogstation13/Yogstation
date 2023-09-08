@@ -2,6 +2,7 @@
 	name = "Infernal Affairs Agent"
 	roundend_category = "infernal affairs agents"
 	antagpanel_category = "Devil Affairs"
+	antag_hud_name = "sintouched"
 	job_rank = ROLE_INFERNAL_AFFAIRS
 	preview_outfit = /datum/outfit/devil_affair_agent
 
@@ -28,6 +29,9 @@
 
 /datum/antagonist/infernal_affairs/apply_innate_effects(mob/living/mob_override)
 	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	//IAAs can only see devils (handled by devils), not eachother, but devils can see them.
+	add_team_hud(current_mob, antag_to_check = /datum/antagonist/devil)
 	RegisterSignal(mob_override, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 
 /datum/antagonist/infernal_affairs/remove_innate_effects(mob/living/mob_override)
