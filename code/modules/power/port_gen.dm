@@ -171,7 +171,7 @@
 	explosion(src.loc, 2, 5, 2, -1)
 
 /obj/machinery/power/port_gen/pacman/MouseDrop_T(atom/dropping, mob/user)
-	if(istype(dropping, sheet_path))
+	if(istype(dropping, sheet_path) && Adjacent(user))
 		attackby(dropping, user)
 	else
 		..()
