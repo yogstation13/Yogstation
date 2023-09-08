@@ -377,3 +377,32 @@
 	desc = "only this, and nothing more."
 	icon_state = "northern"
 	item_state = "northern"
+
+/obj/item/clothing/suit/jacket/pride
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	name = "pride jacket"
+	desc = "Gay."
+	icon_state = "pride"
+	item_state = "pride"
+	var/rolled_sleeves = FALSE
+
+/obj/item/clothing/suit/jacket/pride/AltClick(mob/user)
+	. = ..()
+	rolled_sleeves = !rolled_sleeves
+	icon_state = "[initial(icon_state)][rolled_sleeves ? "_up" : ""]"
+	item_state = "[initial(item_state)][rolled_sleeves ? "_up" : ""]"
+	update_appearance(UPDATE_ICON)
+	user.update_inv_wear_suit()
+
+/obj/item/clothing/suit/jacket/pride/mlm
+	name = "\improper MLM pride jacket"
+	desc = "For those who really like pyramid schemes."
+	icon_state = "mlm"
+	item_state = "mlm"
+
+/obj/item/clothing/suit/jacket/pride/lesbian
+	name = "lesbian pride jacket"
+	desc = "Women..."
+	icon_state = "lesbian"
+	item_state = "lesbian"

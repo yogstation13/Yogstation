@@ -1,16 +1,9 @@
-/*
-procs:
-
-handle_charge - called in spec_life(),handles the alert indicators,the power loss death and decreasing the charge level
-adjust_charge - take a positive or negative value to adjust the charge level
-*/
-
 /datum/species/preternis
 	name = "Preternis"
 	plural_form = "Preterni"
 	id = "preternis"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_FARADAYCAGE) //Faraday cage reduces incoming EMP severity by one level
+	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_FARADAYCAGE) //Faraday cage reduces incoming EMP severity by one level
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = MOB_ORGANIC|MOB_ROBOTIC|MOB_HUMANOID
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
@@ -38,7 +31,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
-	mutantstomach = /obj/item/organ/stomach/preternis
+	mutantstomach = /obj/item/organ/stomach/cell/preternis
 	yogs_virus_infect_chance = 25
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	virus_stage_rate_boost = 5 //Not designed with viruses in mind since it doesn't usually get in
@@ -52,13 +45,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//new variables
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
-	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	var/soggy = FALSE
+	var/low_power_warning = FALSE
 
 	smells_like = "lemony steel"
 
@@ -172,15 +164,14 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.AdjustStun(-3)
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		charge = clamp(charge + 10 * REAGENTS_METABOLISM, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)//more power charges you, why would it drain you
+		H.adjust_nutrition(10 * REAGENTS_METABOLISM)//more power charges you, why would it drain you
 		burnmod = 10
 		tesliumtrip = TRUE
 
 	if (istype(chem,/datum/reagent/consumable))
 		var/datum/reagent/consumable/food = chem
 		if (food.nutriment_factor)
-			var/nutrition = food.nutriment_factor * 0.2
-			charge = clamp(charge + nutrition,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+			H.adjust_nutrition(food.nutriment_factor * 0.2)
 			if (!eating_msg_cooldown)
 				eating_msg_cooldown = TRUE
 				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 2 MINUTES)
@@ -193,7 +184,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/spec_fully_heal(mob/living/carbon/human/H)
 	. = ..()
-	charge = PRETERNIS_LEVEL_FULL
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
@@ -218,8 +208,16 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(H.stat == DEAD)
 		return
 
-	handle_wetness(H)	
-	handle_charge(H)
+	handle_wetness(H)
+
+	if(H.nutrition < NUTRITION_LEVEL_STARVING)
+		if(prob(NUTRITION_LEVEL_STARVING - H.nutrition) / 3)
+			if(!low_power_warning)
+				low_power_warning = TRUE
+				to_chat(H, span_userdanger("You feel difficulty breathing as your lungs start powering down!"))
+			H.losebreath = max(H.losebreath, 2) // slowly start suffocating when out of power instead of instant death
+	else
+		low_power_warning = FALSE
 
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
@@ -245,27 +243,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
-
-/datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
-	var/chargemod = 1 //TRAIT_BOTTOMLESS_STOMACH isn't included because preternis charge doesn't work that way
-	if(HAS_TRAIT(H, TRAIT_EAT_LESS))
-		chargemod *= 0.75 //power consumption rate reduced by about 25%
-	if(HAS_TRAIT(H, TRAIT_EAT_MORE))
-		chargemod *= 3 //hunger rate tripled
-	charge = clamp(charge - (power_drain * chargemod),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
-
-	switch(charge)
-		if(PRETERNIS_LEVEL_NONE)
-			to_chat(H,span_danger("Warning! System power criti-$#@$"))
-			H.death()
-		if(PRETERNIS_LEVEL_NONE to PRETERNIS_LEVEL_STARVING)
-			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
-		if(PRETERNIS_LEVEL_STARVING to PRETERNIS_LEVEL_HUNGRY)
-			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
-		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
-			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
-		else
-			H.clear_alert("preternis_charge")
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
@@ -344,12 +321,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 			SPECIES_PERK_ICON = "cookie-bite",
 			SPECIES_PERK_NAME = "Stone eater",
 			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
-		),
-		list(
-			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
-			SPECIES_PERK_NAME = "Plug-n-Play",
-			SPECIES_PERK_DESC = "Preterni run off electricity rather than food.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,

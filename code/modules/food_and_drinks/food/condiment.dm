@@ -294,7 +294,12 @@
 	possible_states = list()
 	foodtype = EGG
 
-
+/obj/item/reagent_containers/food/condiment/bbqsauce
+	name = "bbq sauce"
+	desc = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
+	icon_state = "bbqsauce"
+	list_reagents = list(/datum/reagent/consumable/bbqsauce = 50)
+	possible_states = list()
 
 //Food packs. To easily apply deadly toxi... delicious sauces to your food!
 
@@ -315,6 +320,7 @@
 		/datum/reagent/consumable/cornoil = list("condi_cornoil", "Corn Oil", "A delicious oil used in cooking. Made from corn"),
 		/datum/reagent/consumable/sugar = list("condi_sugar", "Sugar", "Tasty spacey sugar!"),
 		/datum/reagent/consumable/astrotame = list("condi_astrotame", "Astrotame", "The sweetness of a thousand sugars but none of the calories."),
+		/datum/reagent/consumable/bbqsauce = list("condi_bbq", "BBQ Sauce", "Hand wipes not included."),
 		)
 
 /obj/item/reagent_containers/food/condiment/pack/attack(mob/M, mob/user, def_zone) //Can't feed these to people directly.
@@ -373,3 +379,8 @@
 	name = "astrotame pack"
 	originalname = "astrotame"
 	list_reagents = list(/datum/reagent/consumable/astrotame = 5)
+
+/obj/item/reagent_containers/food/condiment/pack/bbqsauce
+	name = "bbq sauce pack"
+	originalname = "bbq sauce"
+	list_reagents = list(/datum/reagent/consumable/bbqsauce = 5)
