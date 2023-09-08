@@ -248,7 +248,10 @@
 			var/datum/data/record/M = find_record("name", G.fields["name"], GLOB.data_core.medical)
 			if(!M)
 				continue
-			var/obj/item/paper/P = new /obj/item/paper(src)
+			var/obj/item/paper/record/P = new /obj/item/paper/record(src)
+			var/datum/data/record/private_record = find_record("name", G.fields["name"], GLOB.data_core.locked)
+			if(private_record)
+				P.record_of_ref = WEAKREF(private_record.fields["mindref"])
 			P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
 			P.info += "Name: [G.fields["name"]] ID: [G.fields["id"]]<BR>\nGender: [G.fields["gender"]]<BR>\nAge: [G.fields["age"]]<BR>\nFingerprint: [G.fields["fingerprint"]]<BR>\nPhysical Status: [G.fields["p_stat"]]<BR>\nMental Status: [G.fields["m_stat"]]<BR>"
 			P.info += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: [M.fields["blood_type"]]<BR>\nDNA: [M.fields["b_dna"]]<BR>\n<BR>\nMinor Disabilities: [M.fields["mi_dis"]]<BR>\nDetails: [M.fields["mi_dis_d"]]<BR>\n<BR>\nMajor Disabilities: [M.fields["ma_dis"]]<BR>\nDetails: [M.fields["ma_dis_d"]]<BR>\n<BR>\nAllergies: [M.fields["alg"]]<BR>\nDetails: [M.fields["alg_d"]]<BR>\n<BR>\nCurrent Diseases: [M.fields["cdi"]] (per disease info placed in log/comment section)<BR>\nDetails: [M.fields["cdi_d"]]<BR>\n<BR>\nImportant Notes:<BR>\n\t[M.fields["notes"]]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
