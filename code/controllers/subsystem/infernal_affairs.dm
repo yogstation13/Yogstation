@@ -28,20 +28,19 @@ SUBSYSTEM_DEF(infernal_affairs)
 	for(var/datum/antagonist/infernal_affairs/agents as anything in agent_datums)
 		if(!agents.active_objective)
 			agents.active_objective = new(src)
+			agents.objectives += agents.active_objective
 		var/objective_set = FALSE
 		while(!objective_set)
 			list_position++
 			if(list_position > agent_datums.len)
-				list_position = initial(list_position)
+				list_position = 1
 			var/datum/antagonist/infernal_affairs/next_agent = agent_datums[list_position]
-			if(HAS_TRAIT(next_agent.owner, TRAIT_HELLBOUND))
-				continue
 			if(next_agent == agents)
 				end_loop(agents)
 				objective_set = TRUE
 				break
-			if(agents.active_objective.target != agent_datums[list_position])
-				agents.active_objective.target = agent_datums[list_position]
+			if(agents.active_objective.target != next_agent)
+				agents.active_objective.target = next_agent.owner
 				agents.active_objective.update_explanation_text()
 				agents.update_static_data(agents.owner.current)
 			else if(agents.active_objective.target.current.stat == DEAD)

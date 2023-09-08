@@ -67,6 +67,7 @@
  * on top of all misc effects like updating objectives and giving rewards.
  */
 /datum/antagonist/infernal_affairs/proc/soul_harvested(datum/antagonist/infernal_affairs/killer)
+	SSinfernal_affairs.agent_datums -= src
 	ADD_TRAIT(owner, TRAIT_HELLBOUND, DEVIL_TRAIT)
 	QDEL_LIST(purchased_uplink_items)
 
