@@ -10241,16 +10241,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
-"bAz" = (
-/obj/machinery/airalarm/server{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/science/server)
 "bAA" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
@@ -61333,6 +61323,17 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"tYJ" = (
+/obj/machinery/airalarm/server{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/rnd/server/master,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/science/server)
 "tYW" = (
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
@@ -116778,7 +116779,7 @@ ssK
 vaq
 byf
 bzu
-bAz
+tYJ
 bzu
 bDb
 bEm

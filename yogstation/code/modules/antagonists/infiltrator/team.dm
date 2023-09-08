@@ -98,11 +98,7 @@
 		else
 			add_objective(/datum/objective/assassinate)
 	else
-		if(prob(15) && !(locate(/datum/objective/download) in objectives))
-			var/datum/objective/download/objective = add_objective(/datum/objective/download)
-			objective.gen_amount_goal()
-		else
-			add_objective(/datum/objective/steal)
+		add_objective(/datum/objective/steal)
 
 /datum/team/infiltrator/proc/add_objective(type)
 	var/datum/objective/O = type

@@ -8361,6 +8361,15 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"bTH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/obj/machinery/rnd/server/master,
+/turf/open/floor/circuit/telecomms/server,
+/area/science/server)
 "bTQ" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck{
@@ -61208,15 +61217,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"suh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/obj/machinery/rnd/server,
-/turf/open/floor/circuit/telecomms/server,
-/area/science/server)
 "sun" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/darkgreen{
@@ -116118,7 +116118,7 @@ quS
 jgP
 uZm
 vUM
-suh
+bTH
 aCb
 aKl
 bWO
