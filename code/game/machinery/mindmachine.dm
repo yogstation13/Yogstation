@@ -228,6 +228,10 @@
 				balloon_alert(usr, "not enough occupants")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
+			if(firstOccupant.stat == DEAD || secondOccupant.stat == DEAD)
+				balloon_alert(usr, "vital signs not detected")
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
 			if(cost > charge)
 				balloon_alert(usr, "not enough charge")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
@@ -237,7 +241,7 @@
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@" )
-				balloon_alert(usr, "mind waves unable to find brain")
+				balloon_alert(usr, "unable to detect any brain waves")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
