@@ -44,13 +44,15 @@
 /obj/machinery/mindmachine/hub/proc/try_connect_pods()
 	var/first_found
 	for(var/direction in GLOB.cardinals)
-		var/found = locate(/obj/machinery/mindmachine/pod, get_step(src, direction))
+		var/obj/machinery/mindmachine/pod/found = locate(/obj/machinery/mindmachine/pod, get_step(src, direction))
 		if(!found)
+			continue
+		if(found.hub) // Already connected to something else.
 			continue
 		if(!first_found)
 			first_found = found
 			continue
-		connect_pods(first_found, found) // Found the second and last one that is needed.
+		connect_pods(first_found, found)
 		return TRUE
 	return FALSE
 
