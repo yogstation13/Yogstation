@@ -245,7 +245,7 @@
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@" )
-				balloon_alert(usr, "unable to detect any brain waves")
+				balloon_alert(usr, "unable to detect brain waves")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
@@ -482,7 +482,7 @@
 
 /obj/machinery/mindmachine/pod/attackby(obj/item/I, mob/user, params)
 	// Force Unlock
-	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_CROWBAR && locked)
+	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_CROWBAR)
 		if(do_after(user, 1 SECONDS, src))
 			open_machine()
 			return
