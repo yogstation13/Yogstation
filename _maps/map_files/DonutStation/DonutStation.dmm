@@ -6403,6 +6403,15 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"cRf" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower,
+/obj/item/storage/firstaid/regular,
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "cRh" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -7360,15 +7369,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dqB" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/machinery/light,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "dqG" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Dorms"
@@ -12277,6 +12277,11 @@
 "fGO" = (
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"fGP" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "fGZ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -14695,6 +14700,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"gPc" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "gPu" = (
 /obj/machinery/door/airlock/research{
 	name = "Toxins Storage";
@@ -15060,13 +15074,6 @@
 	dir = 4
 	},
 /area/crew_quarters/dorms)
-"gZz" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "haa" = (
 /obj/item/assembly/timer{
 	pixel_x = 5;
@@ -30952,6 +30959,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"oII" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "oIM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -40768,17 +40782,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"tqa" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/corner/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "tqb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -82750,7 +82753,7 @@ bAm
 rMl
 etj
 vWB
-gZz
+fGP
 niP
 mqd
 vXK
@@ -83006,8 +83009,8 @@ jZe
 jMi
 nMn
 jZe
-tqa
-dqB
+cRf
+oII
 hKN
 wpC
 abo
@@ -85271,7 +85274,7 @@ bMz
 igY
 igY
 igY
-igY
+gPc
 kLa
 lLh
 wJB
