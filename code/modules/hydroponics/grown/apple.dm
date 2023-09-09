@@ -43,7 +43,7 @@
 	if(target.job == "Medical Doctor" || target.job == "Chief Medical Officer")
 		var/atom/throw_target = get_edge_target_turf(M, user.dir)
 		ADD_TRAIT(target, TRAIT_IMPACTIMMUNE, "apple")//keep them away, don't hurt them
-		target.throw_at(throw_target, 1, 1, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), M))
+		target.throw_at(throw_target, 1, 1, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), target))
 
 /obj/item/reagent_containers/food/snacks/grown/apple/proc/afterimpact(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "apple")
