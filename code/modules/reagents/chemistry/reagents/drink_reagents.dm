@@ -85,6 +85,12 @@
 	color = "#e99e12" // rgb: 233, 158, 18
 	taste_description = "apples"
 
+/datum/reagent/consumable/applejuice/on_mob_life(mob/living/carbon/user)
+	if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
+		user.adjustToxLoss(0.75*REM, 0)
+		. = TRUE
+	..()
+
 /datum/reagent/consumable/poisonberryjuice
 	name = "Poison Berry Juice"
 	description = "A tasty juice blended from various kinds of very deadly and toxic berries."

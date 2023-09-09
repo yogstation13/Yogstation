@@ -14,7 +14,7 @@
 	icon_dead = "apple-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/apple/gold)
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/applejuice = 0.1)
 
 /obj/item/reagent_containers/food/snacks/grown/apple
 	seed = /obj/item/seeds/apple
@@ -24,7 +24,8 @@
 	filling_color = "#FF4500"
 	bitesize = 100 // Always eat the apple in one bite
 	foodtype = FRUIT
-	juice_results = list(/datum/reagent/consumable/applejuice = 0)
+	juice_results = list(/datum/reagent/consumable/applejuice = 0.2)
+	grind_results = list(/datum/reagent/consumable/nutriment = 0.1 , /datum/reagent/consumable/applejuice = 0.1)
 	tastes = list("apple" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/hcider
 
@@ -39,7 +40,8 @@
 	maturation = 10
 	production = 10
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/gold = 0.2, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/gold = 0.2, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/applejuice = 0.3)
+	grind_results = list(/datum/reagent/consumable/nutriment = 0.1 , /datum/reagent/consumable/applejuice = 0.15)
 	rarity = 40 // Alchemy!
 
 /obj/item/reagent_containers/food/snacks/grown/apple/gold
