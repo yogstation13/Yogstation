@@ -899,6 +899,16 @@
 	icon_state = "medical"
 	build_path = /obj/machinery/rnd/production/techfab/department/medical
 
+/obj/item/circuitboard/machine/mindmachine_hub
+	name = "Mind Machine Hub (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_hub
+
+/obj/item/circuitboard/machine/mindmachine_pod
+	name = "Mind Machine Pod (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/mindmachine_pod
+
 //Science
 
 /obj/item/circuitboard/machine/circuit_imprinter/department/science
