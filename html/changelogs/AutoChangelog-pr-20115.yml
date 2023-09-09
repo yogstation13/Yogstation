@@ -1,0 +1,6 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "A new upgrade for engineering and mining cyborgs that replaces their normal meson vision with night vision meson vision."
+  - tweak: "Cyborg meson/material dark vision is now consistent with the human version of 2 tiles."
+  - tweak: "Cyborg meson/material lighting alpha is now consistent with the human version."
