@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Spawns 3 clockcult + 1 for every 8 players over 30 instead of 4 + 1 for every 10"

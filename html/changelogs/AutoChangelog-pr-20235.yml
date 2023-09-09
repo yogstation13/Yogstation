@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Borg reagent dispensers regen in seconds rather than deciseconds"
-  - bugfix: "Borg reagent dispensers regen less affected by lag"

@@ -1,8 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscdel: "Holy Light water no longer applies a heal boost"
-  - rscadd: "Holy Light bible now applies a 30 second duration heal boost"
-  - tweak: "Holy Light bible now heals for 10 instead of 40 with a 10 second cooldown instead of 12 and has no favor cost"
-  - tweak: "Holy Light heal boost now increases by 100% (200% in chapel) instead of 20% (40% in chapel)"
-  - tweak: "Holy Light medbot applies the heal boost status effect instead of injecting holy water"

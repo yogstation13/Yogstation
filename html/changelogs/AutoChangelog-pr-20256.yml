@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Failed cyborg shoves no longer push them back two tiles."
-  - bugfix: "Hulk punches on cyborgs now properly pushes them back two tiles."

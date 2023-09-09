@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "PKA upgrades properly eject when crowbarred."
