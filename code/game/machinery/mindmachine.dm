@@ -80,3 +80,10 @@
 /obj/machinery/mindmachine/pod/Destroy()
 	hub?.disconnect_pods()
 	return ..()
+
+/obj/machinery/mindmachine/pod/attackby(obj/item/I, mob/user, params)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
+		return
+	if(default_deconstruction_crowbar(I))
+		return
+	return ..()
