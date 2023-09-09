@@ -1,3 +1,10 @@
+#define MINDMACHINE_NO_PODS "No connected pods."
+#define MINDMACHINE_NO_OCCUPANTS "Not enough occupants."
+#define MINDMACHINE_NOT_LIVING_TYPE "Inorganic objects not accepted."
+#define MINDMACHINE_RESIST_MIND "An occupant has mind resistance."
+#define MINDMACHINE_RESIST_ANTAG "An occupant's antag status prevents transfer."
+#define MINDMACHINE_RESIST_ADMINGHOST "Admin ghosted body and/or mind."
+
 /obj/machinery/mindmachine
 	name = "\improper mind machine"
 	desc = "You shouldn't be seeing this."
@@ -54,6 +61,26 @@
 		return
 	return ..()
 
+/obj/machinery/mindmachine/hub/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(!firstPod || !secondPod)
+		user.balloon_alert(user, "not connected")
+		playsound(src, 'sound/machines/synth_no.ogg', 10, TRUE)
+		return
+	if(!firstPod.occupant || !secondPod.occupant)
+		user.balloon_alert(user, "not enough occupants")
+		playsound(src, 'sound/machines/synth_no.ogg', 10, TRUE)
+		return
+	var/string_response = try_mindswap()
+	visible_message(span_warning("[string_response]"))
+
+/obj/machinery/mindmachine/hub/AltClick(mob/user)
+	// DEBUGGING ONLY: REMOVE AT THE END
+	var/string_response = try_mindswap()
+	visible_message(span_warning("[string_response]"))
+
 /obj/machinery/mindmachine/hub/proc/try_connect_pods()
 	var/first_found
 	for(var/direction in GLOB.cardinals)
@@ -107,6 +134,45 @@
 		charges += final_increase
 		return final_increase
 	return FALSE
+
+/obj/machinery/mindmachine/hub/proc/try_mindswap()
+	if(!firstPod || !secondPod)
+		return MINDMACHINE_NO_PODS
+	if(!firstPod.occupant || !secondPod.occupant)
+		return MINDMACHINE_NO_OCCUPANTS
+
+	var/mob/living/firstOccupant = firstPod.occupant
+	var/mob/living/secondOccupant = secondPod.occupant
+	if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+		return MINDMACHINE_RESIST_MIND
+
+	if(!firstOccupant.mind)
+		firstOccupant.mind_initialize()
+	if(!secondOccupant.mind)
+		secondOccupant.mind_initialize()
+
+	var/list/blacklisted_antags = list(/datum/antagonist/wizard, /datum/antagonist/cult, /datum/antagonist/changeling, /datum/antagonist/rev)
+	for(var/datum/antagonist/antag_datum in blacklisted_antags)
+		if(firstOccupant.mind.has_antag_datum(antag_datum) || secondOccupant.mind.has_antag_datum(antag_datum))
+			return MINDMACHINE_RESIST_ANTAG
+
+	if(firstOccupant.mind.key?[1] == "@" || secondOccupant.mind.key?[1] == "@")
+		return MINDMACHINE_RESIST_ADMINGHOST
+
+	// Now the mind transferring:
+	var/datum/mind/firstMind = firstOccupant.mind
+	var/datum/mind/secondMind = secondOccupant.mind
+	var/secondKey = secondMind.key
+	firstMind.transfer_to(secondOccupant)
+	secondMind.transfer_to(firstOccupant)
+	if(secondKey)
+		firstOccupant.key = secondKey
+
+	//firstOccupant.Unconscious(1 SECONDS)
+	//secondOccupant.Unconscious(1 SECONDS)
+	SEND_SOUND(firstOccupant, sound('sound/magic/mandswap.ogg'))
+	SEND_SOUND(secondOccupant, sound('sound/magic/mandswap.ogg'))
+	return "Success!"
 
 /obj/machinery/mindmachine/pod
 	name = "\improper mind machine pod"
