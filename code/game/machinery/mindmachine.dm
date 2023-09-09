@@ -252,7 +252,12 @@
 				balloon_alert(usr, "not upgraded enough to impact silicons") // TODO: Allow silicons to mindswap at T4.
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
-			
+			if(determine_mindswap_type(firstOccupant, secondOccupant) == MINDMACHINE_SENTIENT_NONE)
+				if(!isanimal(firstOccupant) || !isanimal(secondOccupant)) // Must be both animals.
+					balloon_alert(usr, "mind waves incompatible")
+					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+					return
+
 			visible_message(span_notice("Beginning mind transfer..."))
 
 			START_PROCESSING(SSobj, src)
