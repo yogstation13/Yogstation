@@ -1,7 +1,7 @@
 /obj/machinery/mindmachine
 	name = "\improper Mind Machine"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/machinery/mind_machine.dmi'
+	icon = 'icons/obj/machines/mind_machine.dmi'
 	active_power_usage = 10000 // Placeholder value.
 	density = TRUE
 
