@@ -267,6 +267,7 @@
 					return
 
 			visible_message(span_notice("Beginning mind transfer..."))
+			playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
 
 			START_PROCESSING(SSobj, src)
 			active = TRUE
