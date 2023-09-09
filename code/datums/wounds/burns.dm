@@ -76,7 +76,8 @@
 		sanitization = max(0, sanitization - (WOUND_BURN_SANITIZATION_RATE * bandage_factor))
 		return
 
-	infestation += infestation_rate
+	if(flesh_damage >= 12.5)
+		infestation += infestation_rate
 
 	switch(infestation)
 		if(0 to WOUND_INFECTION_MODERATE)
@@ -164,18 +165,31 @@
 	. = ..()
 	. += "<div class='ml-3'>"
 
-	if(infestation <= sanitization && flesh_damage <= flesh_healing)
-		. += "No further treatment required: Burns will heal shortly."
+	. += "Estimated duration of treatment while the healing rate is active: [span_deadsay("[flesh_damage]s")]\n"
+	if(flesh_healing > 0)
+		. += "Positive signs of healing in the flesh damage, rate: [span_green("[flesh_healing]%")]\n"
 	else
-		switch(infestation)
-			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				. += "Infection Level: Moderate\n"
-			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				. += "Infection Level: Severe\n"
-			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				. += "Infection Level: <span class='deadsay'>CRITICAL</span>\n"
-			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				. += "Infection Level: <span class='deadsay'>LOSS IMMINENT</span>\n"
+		. += "Flesh damage is not exhibiting signs of healing, rate: [span_brass("[flesh_healing]%")]\n"
+
+	if(infestation <= sanitization && flesh_damage <= flesh_healing)
+		. += "[span_green("No further treatment required: Burns will heal shortly.")]"
+	else
+		if(infestation > 0)
+			switch(infestation)
+				if(0 to WOUND_INFECTION_MODERATE)
+					. += "Infection Level: Minimal\n"
+					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_MODERATE-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+					. += "Infection Level: Moderate\n"
+					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEVERE-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+					. += "Infection Level: Severe\n"
+					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_CRITICAL-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+					. += "Infection Level: <span class='deadsay'>CRITICAL</span>\n"
+					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEPTIC-infestation)/infestation_rate*10, 0)]")]\n"
+				if(WOUND_INFECTION_SEPTIC to INFINITY)
+					. += "Infection Level: <span class='deadsay'>LOSS IMMINENT</span>\n"
 		if(infestation > sanitization)
 			. += "\tSurgical debridement, antibiotics/sterilizers, or regenerative mesh will rid infection. Paramedic UV penlights are also effective.\n"
 
