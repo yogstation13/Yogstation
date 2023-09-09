@@ -1,3 +1,10 @@
+/obj/machinery/mindmachine
+	name = "\improper mind machine"
+	desc = "You shouldn't be seeing this."
+	icon = 'icons/obj/machines/mind_machine.dmi'
+	active_power_usage = 10000 // Placeholder value.
+	density = TRUE
+
 #define MINDMACHINE_NO_PODS "Mind transfer aborted. Pods are no longer connected."
 #define MINDMACHINE_NO_OCCUPANTS "Mind transfer aborted. Occupant disconnected mid-transfer."
 #define MINDMACHINE_UNKNOWN "Mind transfer aborted. Unknown reason."
@@ -5,12 +12,8 @@
 #define MINDMACHINE_TOTAL_LOW_IQ "Unable to swap upward." // No swapping from non-sentient animal to non-sentient human.
 #define MINDMACHINE_SUCCESS "Success!"
 
-/obj/machinery/mindmachine
-	name = "\improper mind machine"
-	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/machines/mind_machine.dmi'
-	active_power_usage = 10000 // Placeholder value.
-	density = TRUE
+// Text from in GUI.
+#define MINDMACHINE_NO_ERROR "No error."
 
 /obj/machinery/mindmachine/hub
 	name = "\improper mind machine hub"
@@ -36,8 +39,12 @@
 	var/active = FALSE
 	/// How long does it take to fully complete a mindswap?
 	var/completion_time = 30 SECONDS
-	/// How much demiseconds (or deltas) have while `active`?
+	/// How many demiseconds have passed while `active`?
 	var/delta_since = 0
+	/// Error message to be shown in the UI.
+	var/errorMessage = MINDMACHINE_NO_ERROR
+	/// The progress to be shown in the UI (0 to 100).
+	var/progressLength = 0
 
 /obj/machinery/mindmachine/hub/Initialize(mapload)
 	. = ..()
@@ -61,11 +68,15 @@
 		. += span_notice("It can be connected with two nearby mind pods by using a <i>multitool</i>.")
 
 /obj/machinery/mindmachine/hub/process(delta_time)
-	delta_since += delta_time
-	if(delta_since > completion_time)
-		finalize_mindswap()
-		firstPod?.open_machine()
-		secondPod?.open_machine()
+	if(active)
+		delta_since += delta_time * 1 SECONDS
+		var/progressDecimal = round(delta_since/completion_time, 0.01)
+		progressLength = clamp(progressDecimal * 100, 0, 100)
+		if(delta_since > completion_time)
+			finalize_mindswap()
+			end_mindswapping()
+			firstPod?.open_machine()
+			secondPod?.open_machine()
 
 /obj/machinery/mindmachine/hub/attackby(obj/item/I, mob/user, params)
 	// Connection
@@ -73,13 +84,32 @@
 		var/success = try_connect_pods()
 		if(success)
 			to_chat(user, span_notice("You successfully connected the [src]."))
+		else
+			to_chat(user, span_notice("[src] does not detect two nearby pods to connect to."))
 		return
 	// Charge Increase
-	var/charge_increase = try_increase_charge(I, user)
-	if(!isnull(charge_increase)) // Not null = interaction.
-		if(charge_increase)
-			to_chat(user, span_notice("You increased [src]'s charge by [charge_increase] charges."))
-			playsound(src, 'sound/machines/ping.ogg', 100)
+	var/increase_per = 0
+	if(istype(I, /obj/item/stack/telecrystal))
+		increase_per = 10
+	else if(istype(I, /obj/item/stack/ore/bluespace_crystal))
+		if(istype(I, /obj/item/stack/ore/bluespace_crystal/artificial))
+			increase_per = 1
+		else if(istype(I, /obj/item/stack/ore/bluespace_crystal/refined))
+			increase_per = 5
+		else
+			increase_per = 2
+	if(increase_per)
+		if(!user.temporarilyRemoveItemFromInventory(I))
+			to_chat(user, span_warning("[I] is stuck to your hand!"))
+			return
+		var/obj/item/stack/stack_item = I // Only accepting stacks for now.
+		if(stack_item)
+			var/amt = stack_item.get_amount()
+			if(amt >= 1 && stack_item.use(amt))
+				var/increased_charge_by = increase_per * amt
+				to_chat(user, span_notice("You increased [src]'s charge by [increased_charge_by] charges."))
+				playsound(src, 'sound/machines/ping.ogg', 100)
+				charge += increased_charge_by
 		return
 	// Deconstruction
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
@@ -92,45 +122,155 @@
 	. = ..()
 	if(.)
 		return
-	if(!firstPod || !secondPod)
-		balloon_alert(user, "not connected")
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
+	ui_interact(user)
 
-	var/mob/living/firstOccupant = firstPod.occupant
-	var/mob/living/secondOccupant = secondPod.occupant
-	if(!firstOccupant || !secondOccupant)
-		balloon_alert(user, "not enough occupants")
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
-	if(cost > charge)
-		balloon_alert(user, "not enough charge")
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
-	if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@" )
-		balloon_alert(user, "mind waves unable to reach brain")
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
-	if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
-		balloon_alert(user, "mind waves ineffective")
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
-	if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
-		balloon_alert(user, "mind is too great")
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
-	if(issilicon(firstOccupant) || issilicon(secondOccupant))
-		balloon_alert(user, "not upgraded enough to impact silicons") // TODO: Allow silicons to mindswap at T4.
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		return
-
-	// Checks (and more) are repeated in `finalize_mindswap` to account for changes inbetween and easy antag checks.
-	balloon_alert(user, "activating")
-	visible_message(span_notice("Beginning mind transfer..."))
-	begin_mindswapping()
-
+/// Debugging only. Triggers attack_hand().
 /obj/machinery/mindmachine/hub/AltClick(mob/user)
-	attack_hand(user) // DEBUGGING ONLY: REMOVE AT THE END
+	attack_hand(user)
+
+/obj/machinery/mindmachine/hub/ui_state(mob/user)
+	return GLOB.notcontained_state
+
+/obj/machinery/mindmachine/hub/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MindMachineHub", name)
+		ui.open()
+
+/obj/machinery/mindmachine/hub/ui_data(mob/user)
+	. = list()
+	.["firstPod"] = firstPod ? firstPod : null
+	if(firstPod)
+		.["firstOpen"] = firstPod.state_open
+		.["firstLocked"] = firstPod.locked
+		var/mob/living/firstLiving = firstPod.occupant
+		if(firstLiving)
+			.["firstName"] = firstLiving.name
+			switch(firstLiving.stat)
+				if(CONSCIOUS, SOFT_CRIT)
+					.["firstStat"] = "Conscious"
+				if(UNCONSCIOUS)
+					.["firstStat"] = "Unconscious"
+				if(DEAD)
+					.["firstStat"] = "Dead"
+			.["firstMindType"] = firstLiving.key ? "Sentient" : "Non-Sentient"
+	else
+		.["firstOpen"] = null
+		.["firstLocked"] = null
+		.["firstName"] = null
+		.["firstStat"] = null
+		.["firstMindType"] = null
+
+	.["secondPod"] = secondPod ? secondPod : null
+	.["secondOpen"] = secondPod?.state_open ? TRUE : FALSE
+
+	if(secondPod)
+		.["secondOpen"] = secondPod.state_open
+		.["secondLocked"] = secondPod.locked
+		var/mob/living/secondLiving = secondPod.occupant
+		if(secondLiving)
+			.["secondName"] = secondLiving.name
+			switch(secondLiving.stat)
+				if(CONSCIOUS, SOFT_CRIT)
+					.["secondStat"] = "Conscious"
+				if(UNCONSCIOUS)
+					.["secondStat"] = "Unconscious"
+				if(DEAD)
+					.["secondStat"] = "Dead"
+			.["secondMindType"] = secondLiving.key ? "Sentient" : "Non-Sentient"
+	else
+		.["secondOpen"] = null
+		.["secondLocked"] = null
+		.["secondName"] = null
+		.["secondStat"] = null
+		.["secondMindType"] = null
+
+	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
+	.["fullyOccupied"] = (firstPod.occupant && secondPod.occupant) ? TRUE : FALSE
+	.["active"] = active
+	.["errorMessage"] = errorMessage
+	.["progress"] = progressLength
+
+/obj/machinery/mindmachine/hub/ui_act(action, params)
+	if(..())
+		return
+
+	switch(action)
+		// First
+		if("first_toggledoor")
+			if(firstPod)
+				if(firstPod.state_open)
+					firstPod.close_machine()
+				else
+					firstPod.open_machine()
+				. = TRUE
+		if("first_togglelock")
+			if(firstPod)
+				playsound(firstPod, 'sound/machines/switch3.ogg', 30, TRUE)
+				firstPod.locked = !firstPod.locked
+				. = TRUE
+		// Second
+		if("second_toggledoor")
+			if(secondPod)
+				if(secondPod.state_open)
+					secondPod.close_machine()
+				else
+					secondPod.open_machine()
+				. = TRUE
+		if("second_togglelock")
+			if(secondPod)
+				playsound(secondPod, 'sound/machines/switch3.ogg', 30, TRUE)
+				secondPod.locked = !secondPod.locked
+				. = TRUE
+		// General
+		if("activate")
+			if(!firstPod || !secondPod)
+				balloon_or_message(usr, "not connected", span_notice("[src] is not connected to two pods."))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			var/mob/living/firstOccupant = firstPod.occupant
+			var/mob/living/secondOccupant = secondPod.occupant
+			if(!firstOccupant || !secondOccupant)
+				balloon_or_message(usr, "not enough occupants", span_notice("[src] requires two occupants to begin the process."))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			if(cost > charge)
+				balloon_or_message(usr, "not enough charge", span_notice("[src] does not have enough charge to begin the process."))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			if(active)
+				balloon_or_message(usr, "already on", span_notice("[src] is already active!"))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@" )
+				balloon_or_message(usr, "mind waves unable to reach brain", span_notice("[src] is unable to detect one of the occupant's brain."))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
+				balloon_or_message(usr, "mind waves ineffective", span_notice("[src] is unable to meanfully impact one of the occupant's brain."))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
+				balloon_or_message(usr, "mind is too great", span_notice("[src] detects the difference between the occupant's minds to be too great."))
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			if(issilicon(firstOccupant) || issilicon(secondOccupant))
+				balloon_or_message(usr, "not upgraded enough to impact silicons", span_notice("[src]'s scanners is not upgraded enough to impact a silicon occupant's mind.")) // TODO: Allow silicons to mindswap at T4.
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			
+			visible_message(span_notice("Beginning mind transfer..."))
+
+			START_PROCESSING(SSobj, src)
+			active = TRUE
+			delta_since = 0
+			progressLength = 0
+			firstPod.locked = TRUE
+			secondPod.locked = TRUE
+			update_appearance(UPDATE_ICON)
+			firstPod?.update_appearance(UPDATE_ICON)
+			secondPod?.update_appearance(UPDATE_ICON)
+			. = TRUE
 
 /obj/machinery/mindmachine/hub/proc/try_connect_pods()
 	var/first_found
@@ -159,45 +299,11 @@
 	secondPod?.hub = null
 	secondPod = null
 
-/obj/machinery/mindmachine/hub/proc/try_increase_charge(obj/item/I, mob/user)
-	var/increase_per = 0
-	if(istype(I, /obj/item/stack/telecrystal))
-		increase_per = 10
-	else if(istype(I, /obj/item/stack/ore/bluespace_crystal))
-		if(istype(I, /obj/item/stack/ore/bluespace_crystal/artificial))
-			increase_per = 1
-		else if(istype(I, /obj/item/stack/ore/bluespace_crystal/refined))
-			increase_per = 5
-		else
-			increase_per = 2
-	
-	if(!increase_per)
-		return // Intentional null.
-	if(!user.temporarilyRemoveItemFromInventory(I))
-		to_chat(user, span_warning("[I] is stuck to your hand!"))
-		return FALSE
-	var/obj/item/stack/stack_item = I // Only accepting stacks for now.
-	if(!stack_item)
-		return FALSE
-	var/amt = stack_item.get_amount()
-	if(amt >= 1 && stack_item.use(amt)) // Going to take it all.
-		var/final_increase = increase_per * amt
-		charge += final_increase
-		return final_increase
-	return FALSE
-
-/obj/machinery/mindmachine/hub/proc/begin_mindswapping()
-	active = TRUE
-	START_PROCESSING(SSobj, src)
-	delta_since = 0
-	update_appearance(UPDATE_ICON)
-	firstPod?.update_appearance(UPDATE_ICON)
-	secondPod?.update_appearance(UPDATE_ICON)
-
 /obj/machinery/mindmachine/hub/proc/end_mindswapping(interrupted = FALSE)
-	active = FALSE
 	STOP_PROCESSING(SSobj, src)
+	active = FALSE
 	delta_since = 0
+	progressLength = 0
 	update_appearance(UPDATE_ICON)
 	firstPod?.update_appearance(UPDATE_ICON)
 	secondPod?.update_appearance(UPDATE_ICON)
@@ -208,45 +314,35 @@
 		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 		var/mob/living/carbon/firstCarbon = firstPod.occupant
 		if(firstCarbon)
+			SEND_SOUND(firstCarbon, sound('sound/weapons/gunshot.ogg')) // This is your brain popping.
 			firstCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 75)
 		var/mob/living/carbon/secondCarbon = secondPod.occupant
 		if(secondCarbon)
+			SEND_SOUND(secondCarbon, sound('sound/weapons/gunshot.ogg'))
 			secondCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 75)
-		return
+		return MINDMACHINE_NO_PODS
 	var/mob/living/firstOccupant = firstPod.occupant
 	var/mob/living/secondOccupant = secondPod.occupant
 	if(!firstOccupant || !secondOccupant)
 		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 		var/mob/living/carbon/firstCarbon = firstPod.occupant
 		if(firstCarbon)
+			SEND_SOUND(firstCarbon, sound('sound/weapons/gunshot.ogg'))
 			firstCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 75)
 		var/mob/living/carbon/secondCarbon = secondPod.occupant
 		if(secondCarbon)
+			SEND_SOUND(secondCarbon, sound('sound/weapons/gunshot.ogg'))
 			secondCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 75)
-		return
+		return MINDMACHINE_NO_OCCUPANTS
 
 /obj/machinery/mindmachine/hub/proc/finalize_mindswap()
 	if(!firstPod || !secondPod)
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		var/mob/living/carbon/firstCarbon = firstPod.occupant
-		if(firstCarbon)
-			firstCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 75)
-		var/mob/living/carbon/secondCarbon = secondPod.occupant
-		if(secondCarbon)
-			secondCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20, 75)
-		return MINDMACHINE_NO_PODS
-	
+		return end_mindswapping(TRUE)
+
 	var/mob/living/firstOccupant = firstPod.occupant
 	var/mob/living/secondOccupant = secondPod.occupant
 	if(!firstOccupant || !secondOccupant)
-		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-		var/mob/living/carbon/firstCarbon = firstPod.occupant
-		if(firstCarbon)
-			firstCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 75)
-		var/mob/living/carbon/secondCarbon = secondPod.occupant
-		if(secondCarbon)
-			secondCarbon.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50, 75)
-		return MINDMACHINE_NO_OCCUPANTS
+		return end_mindswapping(TRUE)
 
 	if(firstOccupant.mind?.has_antag_datum(/datum/antagonist/changeling) && !secondOccupant.mind?.has_antag_datum(/datum/antagonist/changeling))
 		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
@@ -287,27 +383,35 @@
 		playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE) 
 		return MINDMACHINE_UNKNOWN // No side effect.
 
-	end_mindswapping()
-	return handle_mindswap(firstOccupant, secondOccupant)
+	. = handle_mindswap(firstOccupant, secondOccupant)
+
+#define MINDMACHINE_SENTIENT_PAIR 1
+#define MINDMACHINE_SENTIENT_SOLO 2
+#define MINDMACHINE_SENTIENT_NONE 3
+
+/obj/machinery/mindmachine/hub/proc/determine_mindswap_type(mob/living/firstOccupant, mob/living/secondOccupant)
+	if(!firstOccupant.key && !secondOccupant.key)
+		return MINDMACHINE_SENTIENT_NONE
+	if(firstOccupant.key && secondOccupant.key)
+		return MINDMACHINE_SENTIENT_PAIR
+	return MINDMACHINE_SENTIENT_SOLO
 
 /obj/machinery/mindmachine/hub/proc/handle_mindswap(mob/living/firstOccupant, mob/living/secondOccupant)
-	// Non-Sentient vs. Non-Sentient
-	if(!firstOccupant.key && !secondOccupant.key)
-		if(!isanimal(firstOccupant) || !isanimal(secondOccupant))
-			return MINDMACHINE_TOTAL_LOW_IQ // Only accepting animal to animal transfers.
-		mindswap_nonsentient(firstOccupant, secondOccupant)
-		charge -= cost
-		return MINDMACHINE_SUCCESS
-	
-	// Sentient vs. Sentient/Non-Sentient
-	if(firstOccupant.key)
-		mindswap_sentient(firstOccupant, secondOccupant)
-		charge -= cost
-		return MINDMACHINE_SUCCESS
-
-	mindswap_sentient(secondOccupant, firstOccupant)
-	charge -= cost
-	return MINDMACHINE_SUCCESS
+	var/type = determine_mindswap_type(firstOccupant, secondOccupant)
+	switch(type)
+		if(MINDMACHINE_SENTIENT_NONE)
+			if(!isanimal(firstOccupant) || !isanimal(secondOccupant))
+				return FALSE
+			mindswap_nonsentient(firstOccupant, secondOccupant)
+			return TRUE
+		if(MINDMACHINE_SENTIENT_SOLO)
+			var/sentientOccupant = firstOccupant.key ? firstOccupant : secondOccupant
+			var/nonsentientOccupant = firstOccupant.key ? secondOccupant : firstOccupant
+			mindswap_sentient(sentientOccupant, nonsentientOccupant)
+			return TRUE
+		if(MINDMACHINE_SENTIENT_PAIR)
+			mindswap_sentient(firstOccupant, secondOccupant)
+			return TRUE
 
 /obj/machinery/mindmachine/hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal)
 	// Faction
@@ -351,6 +455,8 @@
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine/hub/hub
+	/// Is this pod closed and locked?
+	var/locked = FALSE
 
 /obj/machinery/mindmachine/pod/Initialize(mapload)
 	. = ..()
@@ -372,13 +478,18 @@
 	return ..()
 
 /obj/machinery/mindmachine/pod/attackby(obj/item/I, mob/user, params)
+	// Force Unlock
+	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_CROWBAR && locked)
+		if(do_after(user, 1 SECONDS, src))
+			open_machine()
+			return
 	if(!occupant)
 		if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
 			return
 		if(default_deconstruction_crowbar(I))
 			return
 	return ..()
-
+/// Lets you shove people (or yourself) into the pod.
 /obj/machinery/mindmachine/pod/MouseDrop_T(atom/dropped, mob/user)
 	if(!isliving(dropped))
 		return
@@ -390,6 +501,9 @@
 	if(occupant)
 		to_chat(user, span_notice("The pod is already occupied!"))
 		return
+	if(!state_open)
+		to_chat(user, span_notice("The pod is closed!"))
+		return
 	if(panel_open)
 		to_chat(user, span_notice("Close the maintenance panel first."))
 		return
@@ -399,12 +513,14 @@
 		else
 			dropped.visible_message(span_warning("[user] puts [dropped] into the [src]."))
 		close_machine(dropped)
+		return
 
+/// Opens and closes the pod. Protects against interaction if the machine is active.
 /obj/machinery/mindmachine/pod/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
-	if(hub?.active)
-		to_chat(user, span_notice("Your bare hands isn't enough to open it!"))
+	if(locked)
+		to_chat(user, span_notice("The pod is locked!"))
 		return
 	if(state_open)
 		close_machine()
@@ -420,8 +536,8 @@
 		container_resist(user)
 
 /obj/machinery/mindmachine/pod/container_resist(mob/living/user)
-	visible_message(span_notice("[occupant] emerges from [src]!"),
-		span_notice("You climb out of [src]!")) // TODO: Change this up away from sleeper's code.
+	user.visible_message(span_notice("[occupant] emerges from [src]!"),
+		span_notice("You climb out of [src]!"))
 	open_machine()
 
 /obj/machinery/mindmachine/pod/close_machine(atom/movable/target)
@@ -431,5 +547,6 @@
 /obj/machinery/mindmachine/pod/open_machine(drop)
 	if(hub?.active)
 		hub.end_mindswapping(TRUE)
+	locked = FALSE
 	..(drop)
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)
