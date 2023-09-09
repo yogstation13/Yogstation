@@ -118,7 +118,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/instrument/piano_synth{
-	pixel_x = -10
+	pixel_x = 2
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
@@ -282,7 +282,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/shutters{
 	id = "giftshop"
 	},
 /turf/open/floor/plating,
