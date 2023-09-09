@@ -12,6 +12,10 @@
 #define MINDMACHINE_TOTAL_LOW_IQ "Unable to swap upward." // No swapping from non-sentient animal to non-sentient human.
 #define MINDMACHINE_SUCCESS "Success!"
 
+#define MINDMACHINE_SENTIENT_PAIR 1
+#define MINDMACHINE_SENTIENT_SOLO 2
+#define MINDMACHINE_SENTIENT_NONE 3
+
 /obj/machinery/mindmachine/hub
 	name = "\improper mind machine hub"
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
@@ -387,10 +391,6 @@
 		return MINDMACHINE_UNKNOWN // No side effect.
 
 	. = handle_mindswap(firstOccupant, secondOccupant)
-
-#define MINDMACHINE_SENTIENT_PAIR 1
-#define MINDMACHINE_SENTIENT_SOLO 2
-#define MINDMACHINE_SENTIENT_NONE 3
 
 /obj/machinery/mindmachine/hub/proc/determine_mindswap_type(mob/living/firstOccupant, mob/living/secondOccupant)
 	if(!firstOccupant.key && !secondOccupant.key)
