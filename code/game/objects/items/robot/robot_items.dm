@@ -694,6 +694,36 @@
 	SStgui.close_uis(cooking)
 	return ..()
 
+/obj/item/borg/floor_autocleaner
+	name = "floor autocleaner"
+	desc = "Automatically cleans the floor under you!"
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "upgrade"
+	item_flags = NOBLUDGEON
+	var/toggled = FALSE
+
+/obj/item/borg/floor_autocleaner/attack_self(mob/user, modifiers)
+	if(!issilicon(user))
+		return FALSE
+
+	toggled = !toggled
+	if(toggled)
+		user.AddElement(/datum/element/cleaning)
+		user.balloon_alert(user, "cleaning enabled")
+	else
+		user.RemoveElement(/datum/element/cleaning)
+		user.balloon_alert(user, "cleaning disabled")
+
+/obj/item/borg/floor_autocleaner/cyborg_equip(mob/user)
+	if(toggled)
+		user.AddElement(/datum/element/cleaning)
+		user.balloon_alert(user, "cleaning enabled")
+	
+/obj/item/borg/floor_autocleaner/cyborg_unequip(mob/user)
+	if(toggled)
+		user.RemoveElement(/datum/element/cleaning)
+		user.balloon_alert(user, "cleaning disabled")
+
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
