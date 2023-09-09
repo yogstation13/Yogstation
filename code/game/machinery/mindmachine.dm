@@ -225,37 +225,37 @@
 		// General
 		if("activate")
 			if(!firstPod || !secondPod)
-				balloon_or_message(usr, "not connected", span_notice("[src] is not connected to two pods."))
+				balloon_alert(usr, "not connected")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			var/mob/living/firstOccupant = firstPod.occupant
 			var/mob/living/secondOccupant = secondPod.occupant
 			if(!firstOccupant || !secondOccupant)
-				balloon_or_message(usr, "not enough occupants", span_notice("[src] requires two occupants to begin the process."))
+				balloon_alert(usr, "not enough occupants")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(cost > charge)
-				balloon_or_message(usr, "not enough charge", span_notice("[src] does not have enough charge to begin the process."))
+				balloon_alert(usr, "not enough charge")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(active)
-				balloon_or_message(usr, "already on", span_notice("[src] is already active!"))
+				balloon_alert(usr, "already on")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@" )
-				balloon_or_message(usr, "mind waves unable to reach brain", span_notice("[src] is unable to detect one of the occupant's brain."))
+				balloon_alert(usr, "mind waves unable to find brain")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
-				balloon_or_message(usr, "mind waves ineffective", span_notice("[src] is unable to meanfully impact one of the occupant's brain."))
+				balloon_alert(usr, "mind waves ineffective")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
-				balloon_or_message(usr, "mind is too great", span_notice("[src] detects the difference between the occupant's minds to be too great."))
+				balloon_alert(usr, "mind is too great")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			if(issilicon(firstOccupant) || issilicon(secondOccupant))
-				balloon_or_message(usr, "not upgraded enough to impact silicons", span_notice("[src]'s scanners is not upgraded enough to impact a silicon occupant's mind.")) // TODO: Allow silicons to mindswap at T4.
+				balloon_alert(usr, "not upgraded enough to impact silicons") // TODO: Allow silicons to mindswap at T4.
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
 			
