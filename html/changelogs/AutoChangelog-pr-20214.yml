@@ -1,0 +1,4 @@
+author: " cark"
+delete-after: true 
+changes: 
+  - mapping: "the beach biodome no longer spawns on lavaland"
