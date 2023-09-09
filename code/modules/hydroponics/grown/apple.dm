@@ -28,6 +28,26 @@
 	tastes = list("apple" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/hcider
 
+/obj/item/reagent_containers/food/snacks/grown/apple/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(isliving(hit_atom) && throwingdatum.thrower && isliving(throwingdatum.thrower))
+		keep_away(hit_atom, throwingdatum.thrower)
+
+/obj/item/reagent_containers/food/snacks/grown/apple/attack(mob/living/target, mob/living/user)
+	. = ..()
+	keep_away(target, user)
+
+/obj/item/reagent_containers/food/snacks/grown/apple/proc/keep_away(mob/living/target, mob/living/user)
+	if(target == user)
+		return
+	if(target.job == "Medical Doctor" || target.job == "Chief Medical Officer")
+		var/atom/throw_target = get_edge_target_turf(M, user.dir)
+		ADD_TRAIT(target, TRAIT_IMPACTIMMUNE, "apple")//keep them away, don't hurt them
+		target.throw_at(throw_target, 1, 1, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), M))
+
+/obj/item/reagent_containers/food/snacks/grown/apple/proc/afterimpact(mob/living/M)
+	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "apple")
+
 // Gold Apple
 /obj/item/seeds/apple/gold
 	name = "pack of golden apple seeds"
