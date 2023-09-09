@@ -55,7 +55,9 @@
 		TRAIT_RESISTCOLD,
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,
-		TRAIT_NOFIRE
+		TRAIT_NOFIRE,
+		TRAIT_NOSOFTCRIT,
+		TRAIT_NOHARDCRIT,
 	)
 
 /datum/status_effect/soulshield/on_creation(mob/living/owner, obj/item/melee/gaunty)
@@ -84,6 +86,7 @@
 	difference = (brutechange + burnchange + stamchange)
 	if(difference)
 		gauntlet.blocks++
+		gauntlet.blowback(owner)
 		owner.SetImmobilized(0) 
 		owner.adjustBruteLoss(-5)
 		owner.adjustFireLoss(-5)
@@ -92,13 +95,14 @@
 			REMOVE_TRAIT(owner, traits, GAUNTLET_TRAIT)
 		owner.overlays -= shield
 		owner.extinguish_mob()
-		owner.AdjustStun(0)
-		owner.AdjustParalyzed(0)
+		owner.AdjustStun(-200)
+		owner.AdjustParalyzed(-200)
 		owner.visible_message(span_warning("[owner] returns to a neutral stance."))
 		addtimer(CALLBACK(gauntlet, TYPE_PROC_REF(/obj/item/midasgaunt, retaliate), owner, difference))
 	owner.adjustBruteLoss(-brutechange, BRUTE)
 	owner.adjustFireLoss(-burnchange, BURN)
 	owner.adjustStaminaLoss(-stamchange, STAMINA)
+	
 
 /atom/movable/screen/alert/status_effect/soulshield
 	name = "Deflecting"
