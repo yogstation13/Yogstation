@@ -161,6 +161,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	switch(destination)
 		if ("Central Command")
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
+			SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
 	sendcooldown = world.time + 1 MINUTES
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
