@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - tweak: "Syndicate Surgery Duffel Bag's description in the Uplink now accurately tells you that the surgery tools have double toolspeed (0.5) and includes a surgical mat."
