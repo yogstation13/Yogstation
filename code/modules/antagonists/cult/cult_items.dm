@@ -938,7 +938,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
-	var/illusions = 5
+	var/illusions = 4
 
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(iscultist(owner))
@@ -961,16 +961,17 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 				illusions--
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
-				if(prob(60))
-					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
-					M.faction = list("cult")
-					M.Copy_Parent(owner, 70, 10, 5)
-					M.move_to_delay = owner.movement_delay()
-				else
-					var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
-					E.Copy_Parent(owner, 70, 10)
-					E.GiveTarget(owner)
-					E.Goto(owner, owner.movement_delay(), E.minimum_distance)
+				if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions in a single shot
+					if(prob(60))
+						var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
+						M.faction = list("cult")
+						M.Copy_Parent(owner, 70, 1)
+						M.move_to_delay = owner.movement_delay()
+					else
+						var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
+						E.Copy_Parent(owner, 70, 1)
+						E.GiveTarget(owner)
+						E.Goto(owner, owner.movement_delay(), E.minimum_distance)
 			else
 				var/turf/T = get_turf(owner)
 				T.visible_message(span_warning("[src] shatters as it blocks [hitby]!"))
