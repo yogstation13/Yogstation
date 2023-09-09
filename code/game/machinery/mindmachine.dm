@@ -15,6 +15,10 @@
 	var/obj/machinery/mindmachine/pod/firstPod
 	/// The second connected mind machine pod.
 	var/obj/machinery/mindmachine/pod/secondPod
+	/// How much charges does this hub have?
+	var/charges = 0
+	/// How much charges are required to mindswap?
+	var/cost = 1
 
 /obj/machinery/mindmachine/hub/Initialize(mapload)
 	. = ..()
@@ -30,11 +34,20 @@
 		. += span_notice("It can be connected with two nearby mind pods by using a <i>multitool</i>.")
 
 /obj/machinery/mindmachine/hub/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_MULTITOOL && user.a_intent == INTENT_HELP)
+	// Connection
+	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_MULTITOOL)
 		var/success = try_connect_pods()
 		if(success)
 			to_chat(user, span_notice("You successfully connected the [src]."))
 		return
+	// Charge Increase
+	var/charge_increase = try_increase_charge(I, user)
+	if(!isnull(charge_increase)) // Not null = interaction.
+		if(charge_increase)
+			to_chat(user, span_notice("You increased [src]'s charge by [charge_increase] charges."))
+			playsound(src, 'sound/machines/ping.ogg', 100)
+		return
+	// Deconstruction
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
 		return
 	if(default_deconstruction_crowbar(I))
@@ -68,6 +81,33 @@
 	secondPod?.hub = null
 	secondPod = null
 
+/obj/machinery/mindmachine/hub/proc/try_increase_charge(obj/item/I, mob/user)
+	var/increase_per = 0
+	if(istype(I, /obj/item/stack/telecrystal))
+		increase_per = 10
+	else if(istype(I, /obj/item/stack/ore/bluespace_crystal))
+		if(istype(I, /obj/item/stack/ore/bluespace_crystal/artificial))
+			increase_per = 1
+		else if(istype(I, /obj/item/stack/ore/bluespace_crystal/refined))
+			increase_per = 5
+		else
+			increase_per = 2
+	
+	if(!increase_per)
+		return // Intentional null.
+	if(!user.temporarilyRemoveItemFromInventory(I))
+		to_chat(user, span_warning("[I] is stuck to your hand!"))
+		return FALSE
+	var/obj/item/stack/stack_item = I // Only accepting stacks for now.
+	if(!stack_item)
+		return FALSE
+	var/amt = stack_item.get_amount()
+	if(amt >= 1 && stack_item.use(amt)) // Going to take it all.
+		var/final_increase = increase_per * amt
+		charges += final_increase
+		return final_increase
+	return FALSE
+
 /obj/machinery/mindmachine/pod
 	name = "\improper Mind Machine Pod"
 	desc = "A large pod used for mind transfers. \
@@ -78,13 +118,76 @@
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine/hub/hub
 
+/obj/machinery/mindmachine/pod/Initialize(mapload)
+	. = ..()
+	occupant_typecache = GLOB.typecache_living
+
+/obj/machinery/mindmachine/pod/update_icon_state()
+	switch(state_open)
+		if(TRUE)
+			icon_state = "pod_open"
+		else
+			icon_state = "pod_closed"
+	return ..()
+
 /obj/machinery/mindmachine/pod/Destroy()
 	hub?.disconnect_pods()
 	return ..()
 
 /obj/machinery/mindmachine/pod/attackby(obj/item/I, mob/user, params)
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		return
-	if(default_deconstruction_crowbar(I))
-		return
+	if(!occupant)
+		if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
+			return
+		if(default_deconstruction_crowbar(I))
+			return
 	return ..()
+
+/obj/machinery/mindmachine/pod/MouseDrop_T(atom/dropped, mob/user)
+	if(!isliving(dropped))
+		return
+	var/mob/living/living_mob = dropped
+	if(!user.Adjacent(living_mob))
+		return
+	if(user.incapacitated() || !Adjacent(user))
+		return
+	if(occupant)
+		to_chat(user, span_notice("The pod is already occupied!"))
+		return
+	if(panel_open)
+		to_chat(user, span_notice("Close the maintenance panel first."))
+		return
+	if(do_after(user, 3 SECONDS, dropped))
+		if(dropped == user)
+			user.visible_message(span_warning("[user] enters the [src] and closes the door behind [user.p_them()]!"))
+		else
+			dropped.visible_message(span_warning("[user] puts [dropped] into the [src]."))
+		close_machine(dropped)
+
+/obj/machinery/mindmachine/pod/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine()
+
+/obj/machinery/mindmachine/pod/Exited(atom/movable/user)
+	if(!state_open && user == occupant)
+		container_resist(user)
+
+/obj/machinery/mindmachine/pod/relaymove(mob/user)
+	if(!state_open)
+		container_resist(user)
+
+/obj/machinery/mindmachine/pod/container_resist(mob/living/user)
+	visible_message(span_notice("[occupant] emerges from [src]!"),
+		span_notice("You climb out of [src]!")) // TODO: Change this up away from sleeper's code.
+	open_machine()
+
+/obj/machinery/mindmachine/pod/close_machine(atom/movable/target)
+	..(target)
+	playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
+
+/obj/machinery/mindmachine/pod/open_machine(drop)
+	..(drop)
+	playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)
