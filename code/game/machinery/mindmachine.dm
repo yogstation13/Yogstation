@@ -1,9 +1,10 @@
 #define MINDMACHINE_NO_PODS "No connected pods."
-#define MINDMACHINE_NO_OCCUPANTS "Not enough occupants."
-#define MINDMACHINE_NOT_LIVING_TYPE "Inorganic objects not accepted."
-#define MINDMACHINE_RESIST_MIND "An occupant has mind resistance."
-#define MINDMACHINE_RESIST_ANTAG "An occupant's antag status prevents transfer."
-#define MINDMACHINE_RESIST_ADMINGHOST "Admin ghosted body and/or mind."
+#define MINDMACHINE_NO_OCCUPANTS "Not enough occupants." // Both pods are not full.
+#define MINDMACHINE_NO_CHARGE "Not enough charge." // Cost is higher than charges.
+#define MINDMACHINE_NOT_LIVING_TYPE "Inorganic objects not accepted." // Something that isn't a `/mob/living` is an occupant.
+#define MINDMACHINE_RESIST_MIND "An occupant has mind resistance." // Mind resistance (or special exception).
+#define MINDMACHINE_TOTAL_LOW_IQ "Unable to swap upward." // No swapping from non-sentient animal to non-sentient human.
+#define MINDMACHINE_SUCCESS "Success!"
 
 /obj/machinery/mindmachine
 	name = "\improper mind machine"
@@ -18,6 +19,12 @@
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
 	icon_state = "hub"
 	circuit = /obj/item/circuitboard/machine/mindmachine_hub
+	/// A list of mobs that cannot be swapped to/from.
+	var/list/blacklisted_mobs = typecacheof(list(
+		/mob/living/simple_animal/slaughter,
+		/mob/living/simple_animal/hostile/retaliate/goat/king
+		/mob/living/simple_animal/hostile/megafauna
+	))
 	/// The first connected mind machine pod.
 	var/obj/machinery/mindmachine/pod/firstPod
 	/// The second connected mind machine pod.
@@ -136,50 +143,109 @@
 	return FALSE
 
 /obj/machinery/mindmachine/hub/proc/try_mindswap()
+	// Basic Checks
 	if(!firstPod || !secondPod)
 		return MINDMACHINE_NO_PODS
 	if(!firstPod.occupant || !secondPod.occupant)
 		return MINDMACHINE_NO_OCCUPANTS
-
+	if(cost > charges)
+		return MINDMACHINE_NO_CHARGE
 	var/mob/living/firstOccupant = firstPod.occupant
 	var/mob/living/secondOccupant = secondPod.occupant
 	if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 		return MINDMACHINE_RESIST_MIND
+	if(firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@")
+		return MINDMACHINE_RESIST_MIND
+	if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
+		return MINDMACHINE_RESIST_MIND
+	if(issilicon(firstOccupant) || issilicon(secondOccupant)) // TODO: Allow silicons to mindswap at T4 parts. However, disallow swapping with unused boris shells!
+		return MINDMACHINE_RESIST_MIND
+	// Checks from wizard's mind swapping:
+	if(firstOccupant.mind?.has_antag_datum(/datum/antagonist/wizard) || secondOccupant.mind?.has_antag_datum(/datum/antagonist/wizard))
+		return MINDMACHINE_RESIST_MIND
+	if(firstOccupant.mind?.has_antag_datum(/datum/antagonist/cult) || secondOccupant.mind?.has_antag_datum(/datum/antagonist/cult))
+		return MINDMACHINE_RESIST_MIND	
+	if(firstOccupant.mind?.has_antag_datum(/datum/antagonist/changeling) || secondOccupant.mind?.has_antag_datum(/datum/antagonist/changeling))
+		return MINDMACHINE_RESIST_MIND
+	if(firstOccupant.mind?.has_antag_datum(/datum/antagonist/rev) || secondOccupant.mind?.has_antag_datum(/datum/antagonist/rev))
+		return MINDMACHINE_RESIST_MIND
 
-	if(!firstOccupant.mind)
-		firstOccupant.mind_initialize()
-	if(!secondOccupant.mind)
-		secondOccupant.mind_initialize()
+	// Non-Sentient vs. Non-Sentient
+	if(!firstOccupant.key && !secondOccupant.key)
+		if(!isanimal(firstOccupant) || !isanimal(secondOccupant))
+			return MINDMACHINE_TOTAL_LOW_IQ // Only accepting animal to animal transfers.
+		var/mob/living/simple_animal/firstAnimal = firstOccupant
+		var/mob/living/simple_animal/secondAnimal = secondOccupant
+		// Faction
+		var/list/firstFaction = firstAnimal.faction.Copy()
+		var/list/secondFaction = secondAnimal.faction.Copy()
+		firstAnimal.faction = secondFaction
+		secondAnimal.faction = firstFaction
+		// Speak Chance
+		var/firstSpeakChance = firstAnimal.speak_chance
+		var/secondSpeakChance = secondAnimal.speak_chance
+		firstAnimal.speak_chance = secondSpeakChance
+		secondAnimal.speak_chance = firstSpeakChance
+		// Speak Lines
+		var/list/firstSpeak = firstAnimal.speak.Copy()
+		var/list/secondSpeak = secondAnimal.speak.Copy()
+		firstAnimal.speak = secondSpeak
+		secondAnimal.speak = firstSpeak
+		charges -= cost
+		return MINDMACHINE_SUCCESS
 
-	var/list/blacklisted_antags = list(/datum/antagonist/wizard, /datum/antagonist/cult, /datum/antagonist/changeling, /datum/antagonist/rev)
-	for(var/datum/antagonist/antag_datum in blacklisted_antags)
-		if(firstOccupant.mind.has_antag_datum(antag_datum) || secondOccupant.mind.has_antag_datum(antag_datum))
-			return MINDMACHINE_RESIST_ANTAG
+	// Sentient vs. Sentient:
+	if(firstOccupant.key && secondOccupant.key)
+		// Now the mind transferring:
+		var/datum/mind/firstMind = firstOccupant.mind
+		var/datum/mind/secondMind = secondOccupant.mind
+		var/secondKey = secondMind.key
 
-	if(firstOccupant.mind.key?[1] == "@" || secondOccupant.mind.key?[1] == "@")
-		return MINDMACHINE_RESIST_ADMINGHOST
+		firstMind.transfer_to(secondOccupant)
+		secondMind.transfer_to(firstOccupant)
+		if(secondKey)
+			firstOccupant.key = secondKey
 
-	// Now the mind transferring:
-	var/datum/mind/firstMind = firstOccupant.mind
-	var/datum/mind/secondMind = secondOccupant.mind
-	var/secondKey = secondMind.key
-	firstMind.transfer_to(secondOccupant)
-	secondMind.transfer_to(firstOccupant)
-	if(secondKey)
-		firstOccupant.key = secondKey
+		SEND_SOUND(firstOccupant, sound('sound/magic/mandswap.ogg'))
+		SEND_SOUND(secondOccupant, sound('sound/magic/mandswap.ogg'))
 
-	//firstOccupant.Unconscious(1 SECONDS)
-	//secondOccupant.Unconscious(1 SECONDS)
-	SEND_SOUND(firstOccupant, sound('sound/magic/mandswap.ogg'))
-	SEND_SOUND(secondOccupant, sound('sound/magic/mandswap.ogg'))
-	return "Success!"
+		charges -= cost
+		return MINDMACHINE_SUCCESS
+	
+	// Sentient vs. Non-Sentient
+	var/mob/living/sentientOccupant
+	var/mob/living/nonsentientOccupant
+	if(firstOccupant.key)
+		sentientOccupant = firstOccupant
+		nonsentientOccupant = secondOccupant
+	else
+		sentientOccupant = secondOccupant
+		nonsentientOccupant = firstOccupant
+	
+	if(!nonsentientOccupant.mind)
+		nonsentientOccupant.mind_initialize()
+
+	var/datum/mind/sentientMind = sentientOccupant.mind
+	var/datum/mind/nonsentientMind = nonsentientOccupant.mind
+	var/nonsentientKey = nonsentientMind.key
+
+	sentientMind.transfer_to(nonsentientOccupant)
+	nonsentientMind.transfer_to(sentientOccupant)
+	if(nonsentientKey)
+		sentientOccupant.key = nonsentientKey
+
+	SEND_SOUND(sentientMind, sound('sound/magic/mandswap.ogg'))
+	SEND_SOUND(nonsentientMind, sound('sound/magic/mandswap.ogg'))
+
+	charges -= cost
+	return MINDMACHINE_SUCCESS
 
 /obj/machinery/mindmachine/pod
 	name = "\improper mind machine pod"
 	desc = "A large pod used for mind transfers. \
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon_state = "pod_open"
-	density = FALSE
+	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine/hub/hub
