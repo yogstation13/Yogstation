@@ -12,9 +12,6 @@
 #define MINDMACHINE_TOTAL_LOW_IQ "Unable to swap upward." // No swapping from non-sentient animal to non-sentient human.
 #define MINDMACHINE_SUCCESS "Success!"
 
-// Text from in GUI.
-#define MINDMACHINE_NO_ERROR "No error."
-
 /obj/machinery/mindmachine/hub
 	name = "\improper mind machine hub"
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
@@ -41,8 +38,6 @@
 	var/completion_time = 30 SECONDS
 	/// How many demiseconds have passed while `active`?
 	var/delta_since = 0
-	/// Error message to be shown in the UI.
-	var/errorMessage = MINDMACHINE_NO_ERROR
 	/// The progress to be shown in the UI (0 to 100).
 	var/progressLength = 0
 
@@ -188,7 +183,6 @@
 	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
 	.["fullyOccupied"] = (firstPod.occupant && secondPod.occupant) ? TRUE : FALSE
 	.["active"] = active
-	.["errorMessage"] = errorMessage
 	.["progress"] = progressLength
 
 /obj/machinery/mindmachine/hub/ui_act(action, params)

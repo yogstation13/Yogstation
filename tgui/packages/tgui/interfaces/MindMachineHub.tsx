@@ -19,7 +19,6 @@ type secondPodInformation = {
 };
 
 type generalInformation = {
-  errorMessage: String;
   fullyConnected: Boolean;
   fullyOccupied: Boolean;
   active: Boolean;
@@ -45,13 +44,10 @@ export const MindMachineHub = (props, context) => {
 
 const ConnectedSection = (props, context) => {
   const { act, data } = useBackend<generalInformation>(context);
-  const { errorMessage, fullyOccupied, active, progress } = data;
+  const { fullyOccupied, active, progress } = data;
 
   return (
     <Section>
-      {!!errorMessage && (
-        <NoticeBox>{errorMessage}</NoticeBox>
-      )}
       <FirstPodLabeledList />
       <SecondPodLabeledList />
       <Section
