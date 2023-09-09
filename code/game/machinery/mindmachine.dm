@@ -1,12 +1,12 @@
 /obj/machinery/mindmachine
-	name = "\improper Mind Machine"
+	name = "\improper mind machine"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/obj/machines/mind_machine.dmi'
 	active_power_usage = 10000 // Placeholder value.
 	density = TRUE
 
 /obj/machinery/mindmachine/hub
-	name = "\improper Mind Machine Hub"
+	name = "\improper mind machine hub"
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
 	icon_state = "hub"
@@ -109,7 +109,7 @@
 	return FALSE
 
 /obj/machinery/mindmachine/pod
-	name = "\improper Mind Machine Pod"
+	name = "\improper mind machine pod"
 	desc = "A large pod used for mind transfers. \
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon_state = "pod_open"
