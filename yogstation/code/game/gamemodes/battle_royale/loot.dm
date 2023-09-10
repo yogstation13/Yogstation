@@ -299,7 +299,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 	var/healing_fountain //if it's a healing fountain instead of a loot chest
-	density = FALSE //it feels weird, but it gets annoying when there's LOTS of them
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
