@@ -165,7 +165,6 @@
 	. += "<div class='ml-3'>"
 
 	. += "Wound Bed Damage: [span_deadsay("[flesh_damage]")]\n"
-	. += "Current Sanitization Effect: [span_green("[sanitization/infestation]%")]\n"
 	if(flesh_healing > 0)
 		. += "Positive signs of healing in the flesh damage, rate: [span_green("[flesh_healing]%")]\n"
 	else
@@ -175,6 +174,7 @@
 		. += "[span_green("No further treatment required: Burns will heal shortly.")]"
 	else
 		if(infestation > 0)
+			. += "Current Sanitization Effect: [span_green("[sanitization/infestation]%")]\n"
 			switch(infestation)
 				if(0 to WOUND_INFECTION_MODERATE)
 					. += "Infection Level: Minimal\n"
