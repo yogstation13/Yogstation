@@ -178,16 +178,16 @@
 			switch(infestation)
 				if(0 to WOUND_INFECTION_MODERATE)
 					. += "Infection Level: Minimal\n"
-					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_MODERATE-infestation)/infestation_rate*10)]")]\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_MODERATE-infestation)/infestation_rate*10)]")]\n"
 				if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
 					. += "Infection Level: Moderate\n"
-					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEVERE-infestation)/infestation_rate*10)]")]\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEVERE-infestation)/infestation_rate*10)]")]\n"
 				if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
 					. += "Infection Level: Severe\n"
-					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_CRITICAL-infestation)/infestation_rate*10)]")]\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_CRITICAL-infestation)/infestation_rate*10)]")]\n"
 				if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 					. += "Infection Level: <span class='deadsay'>CRITICAL</span>\n"
-					. += "Time Untill Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEPTIC-infestation)/infestation_rate*10)]")]\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEPTIC-infestation)/infestation_rate*10)]")]\n"
 				if(WOUND_INFECTION_SEPTIC to INFINITY)
 					. += "Infection Level: <span class='deadsay'>LOSS IMMINENT</span>\n"
 		if(infestation > sanitization)
