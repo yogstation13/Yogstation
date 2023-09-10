@@ -20,6 +20,10 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 1;
+	pixel_y = 4
+	},
 /turf/open/floor/pod/dark,
 /area/clerk)
 "e" = (
@@ -40,15 +44,17 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
 /turf/open/floor/pod/dark,
 /area/clerk)
 "h" = (
-/obj/structure/table,
-/obj/item/a_gift,
-/obj/item/a_gift,
-/obj/item/a_gift,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
+	},
+/obj/structure/chair/americandiner{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -79,7 +85,10 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
@@ -122,10 +131,25 @@
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
+"r" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/clerk)
 "s" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 6
+	},
 /turf/open/floor/pod/dark,
 /area/clerk)
 "t" = (
@@ -140,6 +164,7 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
 	},
+/obj/item/a_gift,
 /turf/open/floor/pod/dark,
 /area/clerk)
 "u" = (
@@ -147,6 +172,22 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
+/obj/item/stack/wrapping_paper{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/obj/item/stack/packageWrap{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/cardboard{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/hand_labeler{
+	pixel_x = 8;
+	pixel_y = -7
+	},
 /turf/open/floor/pod/dark,
 /area/clerk)
 "v" = (
@@ -172,6 +213,7 @@
 	dir = 9
 	},
 /obj/structure/table/reinforced,
+/obj/item/toy/figure/clerk,
 /turf/open/floor/pod/dark,
 /area/clerk)
 "x" = (
@@ -218,21 +260,22 @@
 	name = "Gift Shop";
 	req_access_txt = "36"
 	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "B" = (
 /obj/structure/table,
-/obj/item/clothing/under/yogs/rank/clerk/skirt{
-	pixel_x = 2;
-	pixel_y = -2
+/obj/item/folder/red{
+	pixel_x = 5;
+	pixel_y = 3
 	},
-/obj/item/storage/fancy/donut_box{
-	pixel_x = -2;
-	pixel_y = 10
-	},
-/obj/item/toy/crayon/spraycan{
-	pixel_x = 16;
-	pixel_y = 4
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -6
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -282,8 +325,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters{
-	id = "giftshop"
+/obj/machinery/door/poddoor/multi_tile/four_tile_ver{
+	id = "giftshop";
+	armor = list("melee" = 50, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	},
 /turf/open/floor/plating,
 /area/clerk)
@@ -306,7 +350,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 5
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 6
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
@@ -319,22 +366,9 @@
 /area/clerk)
 "L" = (
 /obj/structure/table,
-/obj/item/toy/figure/clerk,
-/obj/item/stack/sheet/cardboard{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/obj/item/stack/wrapping_paper{
-	pixel_x = 3;
-	pixel_y = 8
-	},
-/obj/item/stack/packageWrap{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/item/hand_labeler{
-	pixel_x = 8;
-	pixel_y = -7
+/obj/item/paper_bin{
+	pixel_x = -1;
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -364,6 +398,8 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
+/obj/item/a_gift,
+/obj/item/a_gift,
 /turf/open/floor/pod/dark,
 /area/clerk)
 "P" = (
@@ -403,6 +439,12 @@
 	name = "Gift Shop";
 	req_access_txt = "36"
 	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "T" = (
@@ -429,6 +471,12 @@
 /obj/machinery/door/airlock{
 	name = "Gift Shop";
 	req_access_txt = "36"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -482,9 +530,9 @@
 (1,1,1) = {"
 Y
 a
-G
-G
-G
+r
+r
+r
 G
 a
 a
