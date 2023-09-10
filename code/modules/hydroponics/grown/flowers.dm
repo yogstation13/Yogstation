@@ -269,7 +269,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	icon_grow = "bee_balm-grow"
 	icon_dead = "bee_balm-dead"
-	mutatelist = list(/obj/item/seeds/bee_balm/honey) //Lower odds of becoming honey
+	mutatelist = list(/obj/item/seeds/bee_balm/honey)
 	reagents_add = list(/datum/reagent/medicine/spaceacillin = 0.1, /datum/reagent/space_cleaner/sterilizine = 0.05)
 	rarity = 20
 
