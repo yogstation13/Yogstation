@@ -76,8 +76,7 @@
 		sanitization = max(0, sanitization - (WOUND_BURN_SANITIZATION_RATE * bandage_factor))
 		return
 
-	if(flesh_damage >= 12.5)
-		infestation += infestation_rate
+	infestation += infestation_rate
 
 	switch(infestation)
 		if(0 to WOUND_INFECTION_MODERATE)
@@ -165,7 +164,8 @@
 	. = ..()
 	. += "<div class='ml-3'>"
 
-	. += "Estimated duration of treatment while the healing rate is active: [span_deadsay("[flesh_damage]s")]\n"
+	. += "Wound Bed Damage: [span_deadsay("[flesh_damage]")]\n"
+	. += "Current Sanitization Effect: [span_green("[sanitization/infestation]%")]\n"
 	if(flesh_healing > 0)
 		. += "Positive signs of healing in the flesh damage, rate: [span_green("[flesh_healing]%")]\n"
 	else
