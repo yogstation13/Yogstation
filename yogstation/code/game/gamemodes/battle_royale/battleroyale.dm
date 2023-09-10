@@ -18,7 +18,7 @@ GLOBAL_VAR(stormdamage)
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
-	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
+	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
