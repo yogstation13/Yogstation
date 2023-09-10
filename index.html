@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(707 modules,
-    1905/8986 macros, 21.2%)</aside></h3>
+    1905/8988 macros, 21.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1041,7 +1041,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(921 detailed/1728 documented/28265 total, 6.1%)</aside></h3>
+<aside>(923 detailed/1730 documented/28294 total, 6.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1582,6 +1582,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/design/borg_upgrade_gemsatchel.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_gemsatchel">Cyborg Upgrade (Gem Satchel)</a></li>
     <li><a href="datum/design/borg_upgrade_holosign.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_holosign">Cyborg Upgrade (ATMOS Holofan Projector)</a></li>
     <li><a href="datum/design/borg_upgrade_medigripper.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_medigripper">Cyborg Upgrade (Medical Gripper)</a></li>
+    <li><a href="datum/design/borg_upgrade_nv_mesons.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_nv_mesons">Cyborg Upgrade (Night Vision Mesons)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_rename">Cyborg Upgrade (Rename Board)</span> - Borg Upgrades</li>
     <li><a href="datum/design/borg_upgrade_surgerykit.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_surgerykit">Cyborg Upgrade (Advanced Surgical Kit)</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;c38_sec">Speed Loader (.38 rubber)</span> - Weapons</li>
@@ -2679,6 +2680,7 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     </ul></li>
     <li><a href="obj/item/borg/upgrade/lavaproof.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;lavaproof">mining cyborg lavaproof tracks</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;medigripper">medical cyborg gripper</span> - Gives medical cyborgs a gripper to use. Enables medical cyborgs to do all remaining aspects of medical (chemistry &amp; blood giving) without the help of a human.</li>
+    <li><a href="obj/item/borg/upgrade/nv_mesons.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;nv_mesons">cyborg night vision mesons</a></li>
     <li class="has-children"><a href="obj/item/borg/upgrade/panel_access_remover.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;panel_access_remover">cyborg firmware hack</a><ul class="index-tree">
     <li><a href="obj/item/borg/upgrade/panel_access_remover/freeminer.html" title="&#x2F;obj&#x2F;item&#x2F;borg&#x2F;upgrade&#x2F;panel_access_remover&#x2F;freeminer">free miner cyborg firmware hack</a></li>
     </ul></li>
@@ -3054,7 +3056,7 @@ Given to Nuke Ops members.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;candy">candy</span> - SNACKS FROM VENDING MACHINES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;chocolateegg">chocolate egg</span> - EGGS</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie">cookie</span> - DONKPOCKETS<ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie&#x2F;bacon">strip of bacon</span> - OTHER</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie&#x2F;peanut_butter">peanut butter cookie</span> - OTHER</li>
     </ul></li>
     <li><span class="no-substance">customizable&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;customizable&#x2F;burger">burger</span> - Customizable Food Types</li>
     <li><span class="no-substance">donkpocket&#x2F;</span><a href="obj/item/reagent_containers/food/snacks/donkpocket/warm.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;donkpocket&#x2F;warm">warm donkpocket</a></li>
@@ -3407,7 +3409,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/5032fcfa7f1b443f25464b729de85979ad79127c">5032fcf</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/6c4e92ce3f5720459482430533601cefdc303a5b">6c4e92c</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
