@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/touch/pacifism
 	name = "Pacify"
-	desc = "This spell charges your hand with pure pacifism, alows to pacify your targets and turn them into gondolas. Also temporary mutes them."
+	desc = "This spell charges your hand with pure pacifism. Allowing you to pacify your targets, turning them into gondolas and temporarily muting them."
 	hand_path = /obj/item/melee/touch_attack/pacifism
 	button_icon_state = "gondola"
 	sound = 'sound/magic/wandodeath.ogg'
