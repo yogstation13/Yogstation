@@ -172,7 +172,9 @@
 		. += "[span_green("No further treatment required: Burns will heal shortly.")]"
 	else
 		if(infestation > 0)
-			. += "Current Sanitization Effect: [span_brass("[sanitization/infestation]%")]\n"
+			. += "Current Sanitization Effect: [span_brass("[round(sanitization/infestation)]%")]\n"
+			if(sanitization > 0)
+				. += "[span_green("Sanitization in effect, infection level is decreasing.")]\n"
 			switch(infestation)
 				if(0 to WOUND_INFECTION_MODERATE)
 					. += "Infection Level: Minimal\n"
@@ -188,6 +190,8 @@
 					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEPTIC-infestation)/infestation_rate*10)]")]\n"
 				if(WOUND_INFECTION_SEPTIC to INFINITY)
 					. += "Infection Level: <span class='deadsay'>LOSS IMMINENT</span>\n"
+		else
+			. += "[span_green("No infection detected.")]\n"
 		if(infestation > sanitization)
 			. += "\tSurgical debridement, antibiotics/sterilizers, or regenerative mesh will rid infection. Paramedic UV penlights are also effective.\n"
 
