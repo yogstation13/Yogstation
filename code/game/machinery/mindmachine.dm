@@ -132,6 +132,23 @@
 		return
 	ui_interact(user)
 
+/obj/machinery/mindmachine/hub/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(fail_on_next)
+		return FALSE
+	playsound(src, "sparks", 100, 1)
+	to_chat(user, span_warning("You temporarily alter the mind transfer regulator.")) // A bunch of words that I made up.
+	fail_on_next = TRUE
+
+/obj/machinery/mindmachine/hub/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(fail_on_next)
+		return
+	playsound(src, "sparks", 100, 1)
+	visible_message(span_warning("[src] buzzes.]"))
+	fail_on_next = TRUE
+
 /obj/machinery/mindmachine/hub/ui_state(mob/user)
 	return GLOB.notcontained_state
 
@@ -318,11 +335,11 @@
 
 /// Safely attempts to mindswap and aborts if checks fail.
 /obj/machinery/mindmachine/hub/proc/initiate_mindswap()
-	var/eligible = can_mindswap()
-	if(eligible != MINDMACHINE_CAN_SUCCESS) // No longer meets the initial requirements.
-		return
-
-	. = handle_mindswap(firstPod.occupant, secondPod.occupant)
+	switch(can_mindswap())
+		if(MINDMACHINE_CAN_SUCCESS, MINDMACHINE_CAN_ACTIVE)
+			handle_mindswap(firstPod.occupant, secondPod.occupant)
+		else
+			return
 
 /// Checks if they meet the requirements to mindswap.
 /obj/machinery/mindmachine/hub/proc/can_mindswap()
@@ -447,6 +464,7 @@
 			random_faction = random_factions[rand(1, random_factions.len)]
 			secondAnimal.faction = list()
 			secondAnimal.faction += random_faction
+			return
 		if(MINDMACHINE_SENTIENT_SOLO)
 			if(!firstOccupant)
 				return
@@ -460,7 +478,8 @@
 					continue
 				if(get_dist(src, aliveMob) < 50)
 					continue
-				if(!is_station_level(aliveMob.loc.z))
+				var/turf/T = get_turf(aliveMob)
+				if(!T || !is_station_level(T.z))
 					continue
 				acceptableMobs += aliveMob
 
