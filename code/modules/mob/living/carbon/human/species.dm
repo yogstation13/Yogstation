@@ -1547,15 +1547,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			log_combat(user, target, "shaken")
 		return 1
 	else
-		var/we_breathe = !HAS_TRAIT_FROM(user, TRAIT_NOBREATH, SPECIES_TRAIT)
-		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
-
-		if(we_breathe && we_lung)
-			user.do_cpr(target)
-		else if(we_breathe && !we_lung)
-			to_chat(user, span_warning("You have no lungs to breathe with, so you cannot perform CPR."))
-		else
-			to_chat(user, span_notice("You do not breathe, so you cannot perform CPR."))
+		user.do_cpr(target)
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	var/datum/martial_art/M = target.check_block()

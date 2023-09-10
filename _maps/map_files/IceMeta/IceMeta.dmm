@@ -65965,6 +65965,9 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"tlH" = (
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/top_layer/outdoors)
 "tlI" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -73752,6 +73755,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+"vvR" = (
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/top_layer/outdoors/unexplored)
 "vvT" = (
 /obj/machinery/camera{
 	c_tag = "Engineering - Transit Tube Access";
@@ -100952,6 +100958,12 @@ tRh
 tRh
 tRh
 tRh
+tRh
+tRh
+tRh
+tRh
+tRh
+tRh
 hcl
 hcl
 hcl
@@ -101189,6 +101201,12 @@ bjz
 kgU
 rgw
 rdT
+ozK
+ozK
+ozK
+ozK
+ozK
+ozK
 ozK
 ozK
 ozK

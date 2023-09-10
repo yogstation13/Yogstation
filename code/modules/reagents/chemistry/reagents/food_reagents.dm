@@ -931,6 +931,13 @@
 	name = "BBQ Sauce"
 	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
-	color = "#78280A" // rgb: 120 40, 10
+	color = "#78280A" // rgb: 120, 40, 10
 	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
 	taste_description = "smokey sweetness"
+
+/datum/reagent/consumable/peanut_butter
+	name = "Peanut Butter"
+	description = "A creamy paste made from ground peanuts."
+	nutriment_factor = 15 * REAGENTS_METABOLISM
+	color = "#D9A066" // rgb: 217, 160, 102
+	taste_description = "peanuts"

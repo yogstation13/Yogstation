@@ -123,11 +123,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "cuackles"
 	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
 
-/datum/donator_gear/molti
-	name = "northern coat (molti)"
-	ckey = "molti"
-	unlock_path = /obj/item/clothing/suit/hooded/wintercoat/northern
-
 /datum/donator_gear/hisa
 	name = "Hunter Stash (hisakaki)"
 	ckey = "hisakaki"
@@ -511,6 +506,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/lesbian
 	name = "lesbian pride jacket"
 	unlock_path = /obj/item/clothing/suit/jacket/pride/lesbian
+/datum/donator_gear/northern_coat
+	name = "northern coat"
+	unlock_path = /obj/item/clothing/suit/hooded/wintercoat/northern
 /datum/donator_gear/oreo
 	name = "Black and white sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers
