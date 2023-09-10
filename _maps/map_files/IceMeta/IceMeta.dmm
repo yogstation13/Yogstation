@@ -1217,17 +1217,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"aud" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/sign/map/right{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-right-MS";
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "aue" = (
 /obj/structure/table/wood,
 /obj/item/storage/secure/safe{
@@ -2240,6 +2229,21 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/cmo)
+"aIK" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "aIL" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -5965,10 +5969,6 @@
 	name = "Nanotrasen-brand toy AI";
 	pixel_y = 6
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "bNL" = (
@@ -7649,12 +7649,16 @@
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "cnf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
 	},
-/turf/open/floor/wood,
-/area/bridge/showroom/corporate)
+/obj/structure/sign/map/right{
+	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
+	icon_state = "map-right-MS";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "cnn" = (
 /obj/structure/closet/secure_closet/medical1,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -9934,8 +9938,17 @@
 /turf/open/floor/plasteel,
 /area/mine/production)
 "cYh" = (
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/bridge/showroom/corporate";
+	dir = 4;
+	name = "Nanotrasen Corporate Showroom APC";
+	pixel_x = 24
+	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /obj/item/cigbutt,
 /obj/machinery/light/small{
@@ -11912,6 +11925,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"dBp" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/power/apc/highcap/ten_k{
+	areastring = "/area/hallway/primary/central";
+	dir = 1;
+	name = "Central Primary Hallway APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "dBs" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/bot,
@@ -19719,13 +19747,6 @@
 	name = "Nanotrasen-brand secure briefcase exhibit";
 	pixel_y = 2
 	},
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/bridge/showroom/corporate";
-	dir = 4;
-	name = "Nanotrasen Corporate Showroom APC";
-	pixel_y = -26
-	},
-/obj/structure/cable/yellow,
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "fVB" = (
@@ -22081,10 +22102,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
-"gDH" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/command)
 "gDI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -24775,8 +24792,7 @@
 /area/library)
 "hpJ" = (
 /obj/machinery/light_switch{
-	pixel_y = 24;
-	pixel_x = 9
+	pixel_y = 24
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -24788,6 +24804,12 @@
 	c_tag = "Corporate Showroom"
 	},
 /obj/item/clothing/glasses/sunglasses/cheap,
+/obj/machinery/button/door{
+	id = "corporate_privacy";
+	name = "corporate showroom shutters control";
+	pixel_x = 28;
+	req_access_txt = "19"
+	},
 /turf/open/floor/wood,
 /area/bridge/showroom/corporate)
 "hpO" = (
@@ -33332,6 +33354,12 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard/secondary)
+"jLg" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "jLj" = (
 /obj/machinery/light_switch{
 	pixel_x = 28
@@ -33356,9 +33384,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "jLL" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 10
-	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "jLP" = (
@@ -34043,6 +34069,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"jXb" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "jXc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
@@ -37252,9 +37287,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/oil,
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /turf/open/floor/wood,
 /area/bridge/showroom/corporate)
 "kUt" = (
@@ -50413,13 +50445,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/button/door{
-	id = "corporate_privacy";
-	name = "corporate showroom shutters control";
-	pixel_x = 25;
-	req_access_txt = "19";
-	pixel_y = 25
-	},
 /turf/open/floor/wood,
 /area/bridge/showroom/corporate)
 "oGq" = (
@@ -62291,21 +62316,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/brig)
-"slM" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/power/apc/highcap/ten_k{
-	areastring = "/area/hallway/primary/central";
-	dir = 1;
-	name = "Central Primary Hallway APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "sma" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -62704,6 +62714,17 @@
 	},
 /turf/open/floor/plating,
 /area/teleporter)
+"srT" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/sign/map/left{
+	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
+	icon_state = "map-left-MS";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "srU" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
 	dir = 8
@@ -63443,15 +63464,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/main)
-"sAy" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "sAM" = (
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/heads/cmo)
@@ -77909,21 +77921,6 @@
 /obj/structure/musician/piano,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"wDy" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "wDD" = (
 /obj/machinery/hydroponics/constructable,
 /obj/item/cultivator,
@@ -79294,6 +79291,12 @@
 /area/mine/infirmary)
 "wXs" = (
 /obj/structure/table/wood,
+/obj/machinery/button/door{
+	id = "corporate_privacy";
+	name = "corporate showroom shutters control";
+	pixel_x = 28;
+	req_access_txt = "19"
+	},
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
@@ -82800,17 +82803,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"xQt" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/sign/map/left{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-left-MS";
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "xQE" = (
 /obj/structure/table/reinforced,
 /obj/item/deskbell/preset/bar{
@@ -110636,9 +110628,9 @@ uRV
 nAA
 pZa
 kTZ
-cnf
+mTm
 fVk
-nAA
+iCj
 cnB
 tqZ
 sJM
@@ -112695,8 +112687,8 @@ vzP
 oqA
 bNG
 nAA
-slM
-wDy
+dBp
+aIK
 sJM
 rQi
 dIY
@@ -113209,7 +113201,7 @@ whE
 whE
 whE
 oWW
-sAy
+jXb
 oxp
 sJM
 srj
@@ -113457,7 +113449,7 @@ uep
 kgs
 jLJ
 wEb
-jLL
+jLg
 whE
 whE
 whE
@@ -113714,7 +113706,7 @@ xqY
 xto
 iSn
 cmS
-gDH
+jLL
 whE
 whE
 whE
@@ -115008,7 +115000,7 @@ whE
 whE
 whE
 whE
-xQt
+srT
 oxp
 tHh
 bKt
@@ -115265,7 +115257,7 @@ whE
 whE
 whE
 whE
-aud
+cnf
 oxp
 cTp
 idf
