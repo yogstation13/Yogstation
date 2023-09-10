@@ -132,14 +132,9 @@
 /turf/open/floor/pod/dark,
 /area/clerk)
 "r" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/pod/dark,
 /area/clerk)
 "s" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
@@ -215,11 +210,8 @@
 /turf/open/floor/pod/dark,
 /area/clerk)
 "x" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
@@ -314,25 +306,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/clerk)
-"G" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/multi_tile/four_tile_ver{
-	id = "giftshop";
-	armor = list("melee" = 50, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
-	},
-/turf/open/floor/plating,
-/area/clerk)
-"H" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/pod/dark,
 /area/clerk)
 "I" = (
 /obj/structure/rack,
@@ -482,8 +455,11 @@
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "V" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/pod/dark,
 /area/clerk)
@@ -531,10 +507,10 @@
 (1,1,1) = {"
 Y
 a
-r
-r
-r
-G
+a
+a
+a
+a
 a
 a
 a
@@ -565,10 +541,10 @@ P
 Y
 U
 m
-H
-H
-H
-x
+r
+r
+r
+V
 D
 o
 "}
@@ -579,7 +555,7 @@ J
 Z
 d
 t
-V
+x
 b
 n
 "}
@@ -590,7 +566,7 @@ A
 a
 a
 O
-V
+x
 b
 T
 "}
@@ -601,7 +577,7 @@ p
 h
 a
 E
-V
+x
 s
 S
 "}

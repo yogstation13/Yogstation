@@ -22,10 +22,11 @@
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "d" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/turf/open/floor/plating,
 /area/clerk)
 "e" = (
 /obj/structure/table/wood,
@@ -75,16 +76,6 @@
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /turf/open/floor/plasteel/dark,
 /area/clerk)
-"m" = (
-/obj/structure/table/wood,
-/obj/item/a_gift,
-/obj/item/key,
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/clerk)
 "n" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -102,19 +93,6 @@
 	},
 /turf/open/indestructible/carpet/black,
 /area/clerk)
-"p" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Gift Shop Maintenance";
-	req_one_access_txt = "12;17;36"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/clerk)
 "q" = (
 /obj/structure/table/wood/fancy/black,
 /obj/machinery/door/firedoor/border_only{
@@ -128,20 +106,17 @@
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "r" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/button/door{
-	id = "giftshop";
-	name = "Gift Shop Internal Shutters";
-	pixel_x = 26;
-	pixel_y = 24
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
-/obj/machinery/button/door{
-	id = "giftshop_ext";
-	name = "Gift Shop External Shutters";
-	pixel_x = 40;
-	pixel_y = 24
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
 	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
 /area/clerk)
 "s" = (
 /obj/structure/rack,
@@ -247,13 +222,25 @@
 "D" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/structure/cable/yellow{
-	icon_state = "0-2"
+	icon_state = "1-4"
 	},
-/obj/machinery/power/apc{
-	areastring = "/area/clerk";
-	dir = 4;
-	name = "Gift Shop APC";
-	pixel_y = 27
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/button/door{
+	id = "giftshop";
+	name = "Gift Shop Internal Shutters";
+	pixel_x = 26;
+	pixel_y = 24
+	},
+/obj/machinery/button/door{
+	id = "giftshop_ext";
+	name = "Gift Shop External Shutters";
+	pixel_x = 40;
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -270,13 +257,13 @@
 "F" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/structure/cable/yellow{
-	icon_state = "1-4"
+	icon_state = "0-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
+/obj/machinery/power/apc{
+	areastring = "/area/clerk";
+	dir = 4;
+	name = "Gift Shop APC";
+	pixel_y = 27
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -364,53 +351,6 @@
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "S" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/clerk)
-"T" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters{
-	id = "giftshop"
-	},
-/turf/open/floor/plating,
-/area/clerk)
-"U" = (
-/turf/template_noop,
-/area/template_noop)
-"V" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/indestructible/carpet/black,
-/area/clerk)
-"W" = (
-/obj/machinery/vending/autodrobe,
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/turf/open/floor/plasteel/dark,
-/area/clerk)
-"X" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/clerk)
-"Y" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -431,6 +371,49 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/clerk)
+"T" = (
+/obj/structure/table/wood,
+/obj/item/a_gift,
+/obj/item/key,
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"U" = (
+/turf/template_noop,
+/area/template_noop)
+"V" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/indestructible/carpet/black,
+/area/clerk)
+"W" = (
+/obj/machinery/vending/autodrobe,
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"X" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"Y" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/clerk)
 "Z" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -443,7 +426,7 @@
 (1,1,1) = {"
 U
 a
-r
+a
 a
 a
 a
@@ -454,7 +437,7 @@ a
 (2,1,1) = {"
 U
 a
-m
+T
 J
 q
 u
@@ -464,7 +447,7 @@ n
 "}
 (3,1,1) = {"
 U
-T
+d
 g
 y
 l
@@ -475,8 +458,8 @@ P
 "}
 (4,1,1) = {"
 U
-Y
-F
+S
+D
 g
 q
 v
@@ -487,7 +470,7 @@ o
 (5,1,1) = {"
 U
 a
-S
+X
 g
 q
 t
@@ -508,9 +491,9 @@ a
 "}
 (7,1,1) = {"
 a
-D
-X
-d
+F
+r
+Y
 h
 E
 x
@@ -546,7 +529,7 @@ a
 a
 a
 a
-p
+a
 a
 a
 "}

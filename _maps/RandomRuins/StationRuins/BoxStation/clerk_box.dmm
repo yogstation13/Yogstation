@@ -122,8 +122,9 @@
 /obj/effect/turf_decal/tile/green/opposingcorners{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/clerk)
 "j" = (
@@ -243,9 +244,7 @@
 /obj/effect/turf_decal/tile/green/opposingcorners{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/clerk)
 "s" = (
@@ -527,14 +526,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"P" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel,
-/area/clerk)
 "Q" = (
 /obj/machinery/door/airlock{
 	name = "Gift Shop";
@@ -599,17 +590,13 @@
 /turf/open/floor/plasteel,
 /area/clerk)
 "U" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop_ext"
-	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
 /area/clerk)
 "V" = (
 /obj/structure/table,
@@ -660,7 +647,7 @@ Y
 Y
 Y
 Y
-U
+Y
 Y
 Y
 Y
@@ -671,7 +658,7 @@ Y
 p
 B
 c
-i
+U
 e
 x
 l
@@ -682,7 +669,7 @@ Y
 C
 S
 t
-P
+r
 T
 v
 l
@@ -694,7 +681,7 @@ f
 d
 R
 z
-r
+i
 G
 l
 "}
@@ -705,7 +692,7 @@ j
 g
 E
 z
-r
+i
 z
 L
 "}
