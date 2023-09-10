@@ -7643,10 +7643,14 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 1
 	},
-/obj/structure/sign/map/left{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-left-MS";
-	pixel_y = 32
+/obj/machinery/power/apc/highcap/ten_k{
+	areastring = "/area/hallway/primary/central";
+	dir = 1;
+	name = "Central Primary Hallway APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -8306,15 +8310,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"czk" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "czm" = (
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -24421,6 +24416,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hiY" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/sign/map/left{
+	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
+	icon_state = "map-left-MS";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "hiZ" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
@@ -33356,6 +33362,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"jLL" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "jLP" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -40719,6 +40729,12 @@
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"lUJ" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "lUS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -44055,6 +44071,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"mQr" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/sign/map/right{
+	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
+	icon_state = "map-right-MS";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "mQu" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube/curved/flipped{
@@ -51640,21 +51667,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"pcc" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "pcg" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -53148,6 +53160,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower,
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "pyy" = (
@@ -59546,6 +59562,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "ruW" = (
@@ -61040,7 +61057,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower,
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "rSP" = (
@@ -62678,6 +62695,12 @@
 	},
 /turf/open/floor/plating,
 /area/teleporter)
+"srT" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "srU" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
 	dir = 8
@@ -65730,17 +65753,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"thg" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/sign/map/right{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-right-MS";
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "thl" = (
 /turf/closed/wall,
 /area/maintenance/aft)
@@ -69453,9 +69465,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 8
-	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "umj" = (
@@ -79771,6 +79781,15 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/port/fore)
+"xeL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xfc" = (
 /obj/machinery/light{
 	dir = 8
@@ -79893,21 +79912,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"xgE" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/power/apc/highcap/ten_k{
-	areastring = "/area/hallway/primary/central";
-	dir = 1;
-	name = "Central Primary Hallway APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "xgF" = (
 /obj/item/flashlight/lantern{
 	on = 1
@@ -81322,6 +81326,21 @@
 /obj/structure/bookcase/manuals/research_and_development,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"xyT" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xzb" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -112668,8 +112687,8 @@ vzP
 oqA
 bNG
 nAA
-xgE
-pcc
+cnf
+xyT
 sJM
 rQi
 dIY
@@ -113182,7 +113201,7 @@ whE
 whE
 whE
 oWW
-czk
+xeL
 oxp
 sJM
 srj
@@ -113429,8 +113448,8 @@ urr
 uep
 kgs
 jLJ
-cmS
-nln
+wEb
+srT
 whE
 whE
 whE
@@ -113687,7 +113706,7 @@ xqY
 xto
 iSn
 cmS
-nln
+jLL
 whE
 whE
 whE
@@ -114200,8 +114219,8 @@ oUm
 kBU
 gax
 cUZ
-cmS
-nln
+lOd
+lUJ
 whE
 whE
 whE
@@ -114714,7 +114733,7 @@ gzc
 swR
 xqY
 iSn
-wEb
+xZW
 whE
 whE
 whE
@@ -114981,7 +115000,7 @@ whE
 whE
 whE
 whE
-cnf
+hiY
 oxp
 tHh
 bKt
@@ -115228,7 +115247,7 @@ iuy
 stM
 xqY
 vpE
-lOd
+xZW
 whE
 whE
 whE
@@ -115238,7 +115257,7 @@ whE
 whE
 whE
 whE
-thg
+mQr
 oxp
 cTp
 idf
