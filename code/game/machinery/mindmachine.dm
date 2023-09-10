@@ -12,7 +12,7 @@
 #define MINDMACHINE_CAN_ACTIVE 6
 #define MINDMACHINE_CAN_MINDRESIST 7
 #define MINDMACHINE_CAN_ADMINGHOST 8
-#define MINDMACHINE_CAN_CHANGELING 9
+#define MINDMACHINE_CAN_ANTAGBLACKLIST 9
 #define MINDMACHINE_CAN_MINDSHIELD 10
 #define MINDMACHINE_CAN_MOBBLACKLIST 11
 #define MINDMACHINE_CAN_SILICON 12
@@ -38,10 +38,6 @@
 	var/obj/machinery/mindmachine/pod/firstPod
 	/// The second connected mind machine pod.
 	var/obj/machinery/mindmachine/pod/secondPod
-	/// How much charges does this hub have?
-	var/charge = 0
-	/// How much charges are required to mindswap?
-	var/cost = 1
 	/// Are the occupants currently getting mindswapped?
 	var/active = FALSE
 	/// How long does it take to fully complete a mindswap?
@@ -52,6 +48,10 @@
 	var/progressLength = 0
 	/// Should the next completed mindswap fail in a terrible fashion?
 	var/fail_on_next = FALSE
+	/// How much charges does this hub have?
+	var/charge = 0
+	/// How much charges are required to mindswap?
+	var/cost = 1
 
 /obj/machinery/mindmachine/hub/Initialize(mapload)
 	. = ..()
@@ -76,15 +76,28 @@
 	return ..()
 
 /obj/machinery/mindmachine/hub/process(delta_time)
-	if(active)
-		delta_since += delta_time * 1 SECONDS
-		var/progressDecimal = round(delta_since/completion_time, 0.01)
-		progressLength = clamp(progressDecimal * 100, 0, 100)
-		if(delta_since > completion_time)
-			initiate_mindswap()
-			end_mindswapping()
-			firstPod?.open_machine()
-			secondPod?.open_machine()
+	if(!active)
+		return
+
+	delta_since += delta_time * 1 SECONDS
+	if(delta_since < completion_time) // Still waiting.
+		return
+
+	STOP_PROCESSING(SSobj, src)
+	active = FALSE
+	delta_since = 0
+	update_appearance(UPDATE_ICON)
+	firstPod?.update_appearance(UPDATE_ICON)
+	secondPod?.update_appearance(UPDATE_ICON)
+
+	switch(initiate_mindswap(TRUE, TRUE))
+		if(TRUE)
+			playsound(src, 'sound/machines/ping.ogg', 100)
+		else
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 100)
+		
+	firstPod?.open_machine()
+	secondPod?.open_machine()
 
 /obj/machinery/mindmachine/hub/attackby(obj/item/I, mob/user, params)
 	// Connection
@@ -209,7 +222,8 @@
 	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
 	.["fullyOccupied"] = (firstPod.occupant && secondPod.occupant) ? TRUE : FALSE
 	.["active"] = active
-	.["progress"] = progressLength
+	.["progress"] = clamp(round(delta_since/completion_time, 0.01) * 100, 0, 100)
+
 
 /obj/machinery/mindmachine/hub/ui_act(action, params)
 	if(..())
@@ -249,7 +263,6 @@
 					START_PROCESSING(SSobj, src)
 					active = TRUE
 					delta_since = 0
-					progressLength = 0
 					firstPod.locked = TRUE
 					secondPod.locked = TRUE
 					update_appearance(UPDATE_ICON)
@@ -276,8 +289,8 @@
 					balloon_alert(usr, "already on")
 					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 					return
-				// These are grouped together are here to prevent instant/easy determination for antag-checking (changeling).
-				if(MINDMACHINE_CAN_MINDRESIST, MINDMACHINE_CAN_ADMINGHOST, MINDMACHINE_CAN_CHANGELING, MINDMACHINE_CAN_MINDSHIELD)
+				// These are grouped together are here to prevent instant/easy determination for antag-checking.
+				if(MINDMACHINE_CAN_MINDRESIST, MINDMACHINE_CAN_ADMINGHOST, MINDMACHINE_CAN_MINDSHIELD, MINDMACHINE_CAN_ANTAGBLACKLIST)
 					balloon_alert(usr, "unable to detect brain waves")
 					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 					return
@@ -328,21 +341,20 @@
 	STOP_PROCESSING(SSobj, src)
 	active = FALSE
 	delta_since = 0
-	progressLength = 0
 	update_appearance(UPDATE_ICON)
 	firstPod?.update_appearance(UPDATE_ICON)
 	secondPod?.update_appearance(UPDATE_ICON)
 
-/// Safely attempts to mindswap and aborts if checks fail.
-/obj/machinery/mindmachine/hub/proc/initiate_mindswap()
-	switch(can_mindswap())
-		if(MINDMACHINE_CAN_SUCCESS, MINDMACHINE_CAN_ACTIVE)
+/// Safely attempts to mindswap, performs antag checks, aborts if checks fail.
+/obj/machinery/mindmachine/hub/proc/initiate_mindswap(check_resist = FALSE, check_antag_datum = FALSE)
+	switch(can_mindswap(check_resist, check_antag_datum))
+		if(MINDMACHINE_CAN_SUCCESS)
 			handle_mindswap(firstPod.occupant, secondPod.occupant)
-		else
-			return
-
+			return TRUE
+	return FALSE
+	
 /// Checks if they meet the requirements to mindswap.
-/obj/machinery/mindmachine/hub/proc/can_mindswap()
+/obj/machinery/mindmachine/hub/proc/can_mindswap(check_resist = FALSE, check_antag_datum = FALSE)
 	if(!firstPod || !secondPod)
 		return MINDMACHINE_CAN_PODS
 	var/mob/living/firstOccupant = firstPod.occupant
@@ -355,15 +367,33 @@
 		return MINDMACHINE_CAN_CHARGE
 	if(active)
 		return MINDMACHINE_CAN_ACTIVE
-	if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
-		return MINDMACHINE_CAN_MINDRESIST
-	if(firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@")
-		return MINDMACHINE_CAN_ADMINGHOST
-	// Changeling brains are reductant. This shouldn't work on them.
-	if(firstOccupant.mind?.has_antag_datum(/datum/antagonist/changeling) && !secondOccupant.mind?.has_antag_datum(/datum/antagonist/changeling))
-		return MINDMACHINE_CAN_CHANGELING
-	if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
-		return MINDMACHINE_CAN_MINDSHIELD
+	
+	// Some checks (check_resist & check_antag_datum) are only done near the start of
+	// the actual mindswap solely to prevent people from antag checking by scanning them.
+	if(check_resist)
+		if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+			return MINDMACHINE_CAN_MINDRESIST
+		if(firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@")
+			return MINDMACHINE_CAN_ADMINGHOST
+		if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
+			return MINDMACHINE_CAN_MINDSHIELD
+
+	if(check_antag_datum)
+		var/list/datum/antagonist/blacklisted_antag_datums = list(
+			// Checks similar to wizard's mind swap:
+			/datum/antagonist/changeling, // Their brain is useless (since they're a changeling).
+			/datum/antagonist/cult, // Additional spells aren't transferring over sadly.
+			/datum/antagonist/clockcult, // Same as bloodcult.
+			/datum/antagonist/rev, // Issues arise when doing mindswapping from/to a headrev.
+			// Causes HUD issues and probably more!
+			/datum/antagonist/bloodsucker,
+			/datum/antagonist/vampire
+		)
+		for(var/antag_datum in blacklisted_antag_datums)
+			to_chat(world, "to looping [antag_datum]")
+			if(firstOccupant.mind?.has_antag_datum(antag_datum) || secondOccupant.mind?.has_antag_datum(antag_datum))
+				return MINDMACHINE_CAN_ANTAGBLACKLIST
+
 	if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
 		return MINDMACHINE_CAN_MOBBLACKLIST
 	if(issilicon(firstOccupant) || issilicon(secondOccupant))
@@ -476,10 +506,12 @@
 					continue
 				if(is_type_in_typecache(aliveMob.type, blacklisted_mobs))
 					continue
-				if(get_dist(src, aliveMob) < 50)
+				if(issilicon(aliveMob))
 					continue
 				var/turf/T = get_turf(aliveMob)
 				if(!T || !is_station_level(T.z))
+					continue
+				if(get_dist(src, aliveMob) > 50)
 					continue
 				acceptableMobs += aliveMob
 
