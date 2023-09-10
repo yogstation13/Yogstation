@@ -50,6 +50,8 @@
 	var/delta_since = 0
 	/// The progress to be shown in the UI (0 to 100).
 	var/progressLength = 0
+	/// Should the next completed mindswap fail in a terrible fashion?
+	var/fail_on_next = FALSE
 
 /obj/machinery/mindmachine/hub/Initialize(mapload)
 	. = ..()
@@ -314,7 +316,6 @@
 	firstPod?.update_appearance(UPDATE_ICON)
 	secondPod?.update_appearance(UPDATE_ICON)
 
-
 /// Safely attempts to mindswap and aborts if checks fail.
 /obj/machinery/mindmachine/hub/proc/initiate_mindswap()
 	var/eligible = can_mindswap()
@@ -370,19 +371,28 @@
 		if(MINDMACHINE_SENTIENT_NONE)
 			if(!isanimal(firstOccupant) || !isanimal(secondOccupant))
 				return FALSE
-			mindswap_nonsentient(firstOccupant, secondOccupant)
+			if(fail_on_next)
+				mindswap_malfunction(firstOccupant, firstOccupant, MINDMACHINE_SENTIENT_NONE)
+			else
+				mindswap_nonsentient(firstOccupant, secondOccupant)
 			return TRUE
 		if(MINDMACHINE_SENTIENT_SOLO)
 			var/sentientOccupant = firstOccupant.key ? firstOccupant : secondOccupant
 			var/nonsentientOccupant = firstOccupant.key ? secondOccupant : firstOccupant
-			mindswap_sentient(sentientOccupant, nonsentientOccupant)
+			if(fail_on_next)
+				mindswap_malfunction(sentientOccupant, nonsentientOccupant, MINDMACHINE_SENTIENT_SOLO)
+			else
+				mindswap_sentient(sentientOccupant, nonsentientOccupant, fail_on_next)
 			return TRUE
 		if(MINDMACHINE_SENTIENT_PAIR)
-			mindswap_sentient(firstOccupant, secondOccupant)
+			if(fail_on_next)
+				mindswap_malfunction(firstOccupant, secondOccupant, MINDMACHINE_SENTIENT_PAIR)
+			else
+				mindswap_sentient(firstOccupant, secondOccupant, fail_on_next)
 			return TRUE
 
 /// Switches various factors between two non-sentient animals.
-/obj/machinery/mindmachine/hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal)
+/obj/machinery/mindmachine/hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal, fail = FALSE)
 	// Faction
 	var/list/firstFaction = firstAnimal.faction.Copy()
 	var/list/secondFaction = secondAnimal.faction.Copy()
@@ -399,8 +409,8 @@
 	firstAnimal.speak = secondSpeak
 	secondAnimal.speak = firstSpeak
 
-/// Mindswaps the two occupants.
-/obj/machinery/mindmachine/hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant)
+/// Mindswaps the two occupants (which one is sentient).
+/obj/machinery/mindmachine/hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant, fail = FALSE)
 	if(!otherOccupant.mind)
 		otherOccupant.mind_initialize()
 
@@ -416,6 +426,63 @@
 
 	SEND_SOUND(sentientMind, sound('sound/magic/mandswap.ogg'))
 	SEND_SOUND(otherMind, sound('sound/magic/mandswap.ogg'))
+
+/obj/machinery/mindmachine/hub/proc/mindswap_malfunction(mob/living/firstOccupant, mob/living/secondOccupant, mindtype)
+	if(!mindtype)
+		return
+	
+	switch(mindtype)
+		if(MINDMACHINE_SENTIENT_NONE)
+			var/mob/living/simple_animal/firstAnimal = firstOccupant
+			var/mob/living/simple_animal/secondAnimal = secondOccupant
+			if(!firstAnimal || !secondAnimal)
+				return
+			// Failing means factions will be randomized which may cause them to be hostile to nearby people.
+			// And since there are a million factions... let us keep it simple:
+			var/list/random_factions = list("hostile", "neutral", "plants", "spiders")
+			var/random_faction = random_factions[rand(1, random_factions.len)]
+			firstAnimal.faction = list()
+			firstAnimal.faction += random_faction
+
+			random_faction = random_factions[rand(1, random_factions.len)]
+			secondAnimal.faction = list()
+			secondAnimal.faction += random_faction
+		if(MINDMACHINE_SENTIENT_SOLO)
+			if(!firstOccupant)
+				return
+
+			// Throw this solo victim into a nearby body.
+			var/list/mob/living/acceptableMobs = list()
+			for(var/mob/living/aliveMob in GLOB.alive_mob_list)
+				if(aliveMob.mind)
+					continue
+				if(is_type_in_typecache(aliveMob.type, blacklisted_mobs))
+					continue
+				if(get_dist(src, aliveMob) < 50)
+					continue
+				if(!is_station_level(aliveMob.loc.z))
+					continue
+				acceptableMobs += aliveMob
+
+			var/mob/living/selectedMob
+			if(!length(acceptableMobs)) // .. Unless we can't find a body.
+				if(ishuman(firstOccupant))
+					firstOccupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, 75) // Can die to this.
+					to_chat(firstOccupant, span_danger("Your mind is severely damaged by the feedback!"))
+				return
+			
+			selectedMob = pick(acceptableMobs)
+			mindswap_sentient(firstOccupant, selectedMob)
+			selectedMob.emote("gasp")
+			to_chat(selectedMob, span_danger("Your mind is thrown out of the machine and forced into a nearby vessel!"))
+			return
+		if(MINDMACHINE_SENTIENT_PAIR)
+			if(!firstOccupant || !secondOccupant)
+				return
+			// Gonna keep it simple. Just solo malfunction them.
+			mindswap_malfunction(firstOccupant, null, MINDMACHINE_SENTIENT_SOLO)
+			mindswap_malfunction(secondOccupant, null, MINDMACHINE_SENTIENT_SOLO)
+			return
 
 /obj/machinery/mindmachine/pod
 	name = "\improper mind machine pod"
