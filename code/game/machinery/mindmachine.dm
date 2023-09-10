@@ -2,7 +2,6 @@
 	name = "\improper mind machine"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/obj/machines/mind_machine.dmi'
-	active_power_usage = 10000 // Placeholder value.
 	density = TRUE
 
 #define MINDMACHINE_CAN_SUCCESS 1
@@ -423,7 +422,6 @@
 	desc = "A large pod used for mind transfers. \
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon_state = "pod_open"
-	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine/hub/hub
