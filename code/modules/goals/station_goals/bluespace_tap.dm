@@ -104,13 +104,6 @@
 		/obj/item/coin/antagtoken,
 		/obj/item/clothing/suit/cardborg,
 		/obj/item/toy/prize/honk,
-		/obj/item/bedsheet/patriot,
-		/obj/item/bedsheet/rainbow,
-		/obj/item/bedsheet/captain,
-		/obj/item/bedsheet/centcom,
-		/obj/item/bedsheet/syndie,
-		/obj/item/bedsheet/cult,
-		/obj/item/bedsheet/wiz,
 		/obj/item/clothing/gloves/combat,
 	)
 
@@ -130,9 +123,6 @@
 	name = "organic objects"
 	loot = list(
 		/obj/item/seeds/random,
-		/obj/item/storage/pill_bottle/charcoal,
-		/obj/item/storage/pill_bottle/mannitol,
-		/obj/item/storage/pill_bottle/mutadone,
 		/obj/item/dnainjector/telemut,
 		/obj/item/dnainjector/chameleonmut,
 		/obj/item/dnainjector/dwarf,
@@ -142,12 +132,8 @@
 		/mob/living/simple_animal/pet/penguin,
 		/mob/living/simple_animal/parrot,
 		/obj/item/slimepotion/slime/sentience,
-		/obj/item/clothing/mask/cigarette/cigar/havana,
 		/obj/item/stack/sheet/mineral/bananium/five,	//bananas are organic, clearly.
 		/obj/item/storage/box/monkeycubes,
-		/obj/item/stack/tile/carpet/black/fifty,
-		/obj/item/stack/tile/carpet/blue/fifty,
-		/obj/item/stack/tile/carpet/cyan/fifty,
 		/obj/item/soap/deluxe,
 	)
 
