@@ -285,7 +285,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
 		/obj/item/stand_arrow/safe = -5,
-		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
 		/obj/item/mdrive = -5, //get out of jail free card
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 
