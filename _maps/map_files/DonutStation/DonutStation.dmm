@@ -36987,11 +36987,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"rlG" = (
-/obj/structure/chair,
-/obj/item/storage/fancy/cigarettes,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "rml" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -72267,8 +72262,8 @@ gIJ
 gIJ
 gIJ
 gIJ
-rlG
-ivF
+gIJ
+vDp
 ylr
 ylr
 ylr
@@ -72525,7 +72520,7 @@ gIJ
 gIJ
 gIJ
 gIJ
-ivF
+vDp
 xSu
 ylr
 ylr
