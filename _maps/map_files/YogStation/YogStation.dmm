@@ -17728,21 +17728,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"dzB" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/obj/structure/cable/white,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "dzD" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/tcomms,
@@ -48479,6 +48464,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"phR" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "pia" = (
 /obj/effect/turf_decal/stripes{
 	dir = 4
@@ -115298,7 +115297,7 @@ jcz
 cWY
 lQv
 grq
-dzB
+phR
 tGz
 pyn
 ikV
@@ -115560,7 +115559,7 @@ mFE
 kcr
 cva
 cva
-jXD
+cva
 pEf
 gXs
 gXs
@@ -116063,7 +116062,7 @@ gXs
 gXs
 pEf
 pEf
-jXD
+cva
 cva
 cva
 sAu
