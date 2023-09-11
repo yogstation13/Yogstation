@@ -17094,6 +17094,34 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"hYh" = (
+/obj/item/stack/sheet/glass,
+/obj/structure/table/glass,
+/obj/item/stack/sheet/glass,
+/obj/item/stack/sheet/glass,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/scanning_module{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/stock_parts/scanning_module,
+/obj/item/stack/sheet/metal/fifty,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/mineral/plasma,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "hYz" = (
 /obj/machinery/vending/games,
 /turf/open/floor/wood,
@@ -18013,24 +18041,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"ixj" = (
-/obj/item/stack/sheet/glass,
-/obj/structure/table/glass,
-/obj/item/stack/sheet/glass,
-/obj/item/stack/sheet/glass,
-/obj/item/stock_parts/matter_bin,
-/obj/item/stock_parts/matter_bin,
-/obj/item/stock_parts/scanning_module{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/stock_parts/scanning_module,
-/obj/item/stack/sheet/metal/fifty,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "ixn" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/assistant,
@@ -83375,7 +83385,7 @@ jol
 jol
 jol
 koa
-ixj
+hYh
 dfg
 bOz
 bOz
