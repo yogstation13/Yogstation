@@ -34,7 +34,7 @@ endmap
 
 map donutstation
 	maxplayers 50
-	voteable
+	votable
 endmap
 
 map runtimestation
