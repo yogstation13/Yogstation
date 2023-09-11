@@ -139,10 +139,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/l_leg/robot/digitigrade
-	name = "digitigrade cyborg left leg"
-	icon_state = "digitigrade_1_l_leg"
-	use_digitigrade = FULL_DIGITIGRADE
+	var/digi_icon_state = "digitigrade_1_l_leg"
 
 /obj/item/bodypart/r_leg/robot
 	name = "cyborg right leg"
@@ -167,64 +164,38 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/r_leg/robot/digitigrade
-	name = "digitigrade cyborg right leg"
-	icon_state = "digitigrade_1_r_leg"
-	use_digitigrade = FULL_DIGITIGRADE
+	var/digi_icon_state = "digitigrade_1_r_leg"
 	
 //make them swappable
 /obj/item/bodypart/l_leg/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
-	var/obj/item/bodypart/l_leg/robot/prosthetic
 	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
-	if(istype(src,/obj/item/bodypart/l_leg/robot/surplus))
-		if(use_digitigrade == FULL_DIGITIGRADE)
-			prosthetic = new /obj/item/bodypart/l_leg/robot/surplus
-		else
-			prosthetic = new /obj/item/bodypart/l_leg/robot/surplus/digitigrade
+	set_digitigrade(use_digitigrade != FULL_DIGITIGRADE)
+
+/obj/item/bodypart/l_leg/robot/set_digitigrade(use_digi = FALSE)
+	if(use_digi)
+		use_digitigrade = FULL_DIGITIGRADE
+		icon_state = digi_icon_state
 	else
-		if(use_digitigrade == FULL_DIGITIGRADE)
-			prosthetic = new /obj/item/bodypart/l_leg/robot
-		else
-			prosthetic = new /obj/item/bodypart/l_leg/robot/digitigrade
-	if(!prosthetic)
-		return
-	
-	var/spot = src.loc
-	moveToNullspace()
-	if(spot == user && !user.get_inactive_held_item())
-		user.put_in_inactive_hand(prosthetic)
-	else
-		prosthetic.forceMove(get_turf(user))
-	qdel(src)
+		use_digitigrade = NOT_DIGITIGRADE
+		icon_state = initial(icon_state)
+	update_icon()
 	
 /obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
-	var/obj/item/bodypart/r_leg/robot/prosthetic
 	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
-	if(istype(src,/obj/item/bodypart/r_leg/robot/surplus))
-		if(use_digitigrade == FULL_DIGITIGRADE)
-			prosthetic = new /obj/item/bodypart/r_leg/robot/surplus
-		else
-			prosthetic = new /obj/item/bodypart/r_leg/robot/surplus/digitigrade
-	else
-		if(use_digitigrade == FULL_DIGITIGRADE)
-			prosthetic = new /obj/item/bodypart/r_leg/robot
-		else
-			prosthetic = new /obj/item/bodypart/r_leg/robot/digitigrade
-	if(!prosthetic)
-		return
+	set_digitigrade(use_digitigrade != FULL_DIGITIGRADE)
 
-	var/spot = src.loc
-	moveToNullspace()
-	if(spot == user && !user.get_inactive_held_item())
-		user.put_in_inactive_hand(prosthetic)
+/obj/item/bodypart/r_leg/robot/set_digitigrade(use_digi = FALSE)
+	if(use_digi)
+		use_digitigrade = FULL_DIGITIGRADE
+		icon_state = digi_icon_state
 	else
-		prosthetic.forceMove(get_turf(user))
-	qdel(src)
-	
+		use_digitigrade = NOT_DIGITIGRADE
+		icon_state = initial(icon_state)
+	update_icon()
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"
@@ -429,7 +400,37 @@
 	..()
 
 
+/obj/item/bodypart/l_arm/robot/prosthetic
+	name = "prosthetic left arm"
+	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
+	icon = 'icons/mob/augmentation/surplus_augments.dmi'
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
 
+/obj/item/bodypart/r_arm/robot/prosthetic
+	name = "prosthetic right arm"
+	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
+	icon = 'icons/mob/augmentation/surplus_augments.dmi'
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
+
+/obj/item/bodypart/l_leg/robot/prosthetic
+	name = "prosthetic left leg"
+	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
+	icon = 'icons/mob/augmentation/surplus_augments.dmi'
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
+
+/obj/item/bodypart/r_leg/robot/prosthetic
+	name = "prosthetic right leg"
+	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
+	icon = 'icons/mob/augmentation/surplus_augments.dmi'
+	brute_reduction = 0
+	burn_reduction = 0
+	max_damage = 20
 
 /obj/item/bodypart/l_arm/robot/surplus
 	name = "surplus prosthetic left arm"
@@ -439,7 +440,7 @@
 	burn_reduction = 0
 	max_damage = 20
 	next_move_mod = 2
-	init_traits = list(TRAIT_LIMBATTACHMENT)
+	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/r_arm/robot/surplus
 	name = "surplus prosthetic right arm"
@@ -449,7 +450,7 @@
 	burn_reduction = 0
 	max_damage = 20
 	next_move_mod = 2
-	init_traits = list(TRAIT_LIMBATTACHMENT)
+	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/l_leg/robot/surplus
 	name = "surplus prosthetic left leg"
@@ -458,13 +459,8 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	movespeed_mod = 0.1
-	init_traits = list(TRAIT_LIMBATTACHMENT)
-
-/obj/item/bodypart/l_leg/robot/surplus/digitigrade
-	name = "surplus digitigrade prosthetic left leg"
-	icon_state = "digitigrade_1_l_leg"
-	use_digitigrade = FULL_DIGITIGRADE
+	movespeed_mod = 0.2
+	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/r_leg/robot/surplus
 	name = "surplus prosthetic right leg"
@@ -473,13 +469,8 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	movespeed_mod = 0.1
-	init_traits = list(TRAIT_LIMBATTACHMENT)
-
-/obj/item/bodypart/r_leg/robot/surplus/digitigrade
-	name = "surplus digitigrade prosthetic right leg"
-	icon_state = "digitigrade_1_r_leg"
-	use_digitigrade = FULL_DIGITIGRADE
+	movespeed_mod = 0.2
+	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/l_leg/ipc
 	status = BODYPART_ROBOTIC
