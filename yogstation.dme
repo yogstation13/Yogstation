@@ -4234,7 +4234,6 @@
 #include "yogstation\code\modules\spells\spell_types\projectile\animation.dm"
 #include "yogstation\code\modules\spells\spell_types\self\cauterize.dm"
 #include "yogstation\code\modules\spells\spell_types\shapeshift\mouse.dm"
-#include "yogstation\code\modules\spells\spell_types\touch\pacify.dm"
 #include "yogstation\code\modules\surgery\bodypart.dm"
 #include "yogstation\code\modules\surgery\gender_reassignment.dm"
 #include "yogstation\code\modules\surgery\healing_surgeries.dm"
