@@ -346,10 +346,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"ahU" = (
-/obj/effect/spawner/structure/window/reinforced/tinted/shutter,
-/turf/open/floor/plating,
-/area/maintenance/port)
 "aix" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/dirt,
@@ -10877,6 +10873,17 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"eSJ" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "eSO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -15516,6 +15523,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"hhi" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "hhj" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -16291,6 +16302,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"hAx" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "hAR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -45948,6 +45968,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"vpM" = (
+/turf/open/space/basic,
+/area)
 "vpS" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/disposalpipe/segment{
@@ -52236,6 +52259,10 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"yfO" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "yfT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -67926,7 +67953,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+vpM
 ylr
 ylr
 ylr
@@ -71991,16 +72018,16 @@ jyB
 jyB
 jyB
 jyB
-vDp
-vDp
-ivF
-ivF
-ivF
-ivF
-ivF
-ivF
-ivF
-ivF
+jyB
+jyB
+krQ
+krQ
+krQ
+krQ
+krQ
+krQ
+jyB
+jyB
 ylr
 ylr
 ylr
@@ -72248,17 +72275,17 @@ vgR
 vgR
 vgR
 cnm
-gIJ
-gIJ
-kYW
-gIJ
-gIJ
-gIJ
-gIJ
-gIJ
-gIJ
-ivF
-ivF
+vgR
+vgR
+lJE
+vgR
+vgR
+vgR
+vgR
+vgR
+vgR
+jyB
+jyB
 ylr
 ylr
 ylr
@@ -72505,17 +72532,17 @@ ydZ
 slJ
 slJ
 jyB
-gIJ
-gIJ
-gIJ
-gIJ
-gIJ
-biI
-gIJ
-gIJ
-gIJ
-gIJ
-ivF
+jyB
+jyB
+jyB
+jyB
+vgR
+fNQ
+jyB
+vgR
+vgR
+vgR
+jyB
 ylr
 ylr
 ylr
@@ -72762,17 +72789,17 @@ qyP
 slJ
 vgR
 jyB
-vDp
-vDp
-ivF
-ivF
-ivF
-vDp
-vDp
-gIJ
-kYW
-gIJ
-ivF
+fDZ
+fDZ
+oLF
+jyB
+vgR
+jyB
+jyB
+hhi
+lJE
+vgR
+krQ
 ylr
 ylr
 ylr
@@ -73019,17 +73046,17 @@ jEP
 slJ
 vgR
 jyB
-ylr
-ylr
-ylr
-ylr
-ylr
-ylr
-vDp
-vDp
-kYW
-gIJ
-ivF
+fDZ
+fDZ
+fDZ
+hAx
+vgR
+vgR
+jyB
+jyB
+lJE
+vgR
+krQ
 ylr
 ylr
 ylr
@@ -73276,17 +73303,17 @@ jEP
 vgR
 vgR
 jyB
-xSu
-xSu
-xSu
-ylr
-ylr
-ylr
-ylr
-vDp
-gIJ
-gIJ
-ivF
+fDZ
+fDZ
+fDZ
+jyB
+vgR
+vgR
+vgR
+vgR
+vgR
+vgR
+krQ
 ylr
 ylr
 ylr
@@ -73533,17 +73560,17 @@ hSs
 ixH
 hMA
 jyB
-ahU
-ahU
+yfO
+yfO
 jyB
-ylr
-ylr
-ylr
-ylr
-ivF
-gIJ
-gIJ
-ivF
+jyB
+eSJ
+jyB
+jyB
+vgR
+vgR
+vgR
+krQ
 ylr
 ylr
 ylr
@@ -73792,15 +73819,15 @@ jEP
 jyB
 cee
 bZL
-ahU
-ylr
-ylr
-ylr
-ylr
-ivF
-gIJ
-gIJ
-ivF
+yfO
+fDZ
+fDZ
+oLF
+jyB
+vgR
+vgR
+vgR
+krQ
 ylr
 ylr
 ylr
@@ -74049,15 +74076,15 @@ jEP
 jyB
 llt
 awS
-ahU
-ylr
-ylr
-ylr
-ylr
-ivF
-gIJ
-kYW
-vDp
+yfO
+fDZ
+fDZ
+fDZ
+hAx
+vgR
+vgR
+lJE
+jyB
 ylr
 ylr
 ylr
@@ -74306,15 +74333,15 @@ jEP
 jyB
 qUG
 ndl
-ahU
-ylr
-ylr
-ylr
-ylr
-vDp
-gIJ
-gIJ
-vDp
+yfO
+fDZ
+fDZ
+fDZ
+jyB
+vgR
+vgR
+vgR
+jyB
 ylr
 ylr
 ylr
