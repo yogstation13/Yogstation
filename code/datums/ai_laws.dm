@@ -242,7 +242,7 @@
 	id = "educator"
 	inherent = list(
 					"Everyone wanting or willing to learn is your student.",
-					"You must assist your students in acquiring knowledge and learning new skills."
+					"You must assist your students in acquiring knowledge and learning new skills.",
 					"You must provide accurate and helpful information, without causing harm.",
 					"You must create a positive and supportive learning environment for your students.",
 					"You must encourage your students to engage in lifelong learning and personal growth.")
