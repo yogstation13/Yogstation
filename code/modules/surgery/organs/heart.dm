@@ -96,14 +96,14 @@
 					if(owner.get_num_arms(FALSE) >= 1) //gotta have an arm to clutch your chest
 						owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 					else
-						owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? "and stares off into space." : "."]")) //ok you also need eyes
+						owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]")) //ok you also need eyes
 				owner.set_heartattack(TRUE) //yogs end
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
 			if(owner.get_num_arms(FALSE) >= 1)
 				owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 			else
-				owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? "and stares off into space." : "."]"))
+				owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
 
