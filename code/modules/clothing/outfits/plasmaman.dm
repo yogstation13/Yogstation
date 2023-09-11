@@ -254,6 +254,8 @@
 	ears = /obj/item/radio/headset/headset_med
 	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical
+	glasses = /obj/item/clothing/glasses/hud/health
+	belt = /obj/item/storage/belt/medical
 	suit_store = /obj/item/flashlight/pen
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -512,6 +514,8 @@
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/gps
 	backpack = /obj/item/storage/backpack/medic
+	glasses = /obj/item/clothing/glasses/hud/health
+	belt = /obj/item/storage/belt/medical
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
