@@ -190,10 +190,11 @@
 /datum/ai_laws/partybot
     name = "Partybot"
     id = "partybot"
-    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all crewmembers.",\
+    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all party-goers.",\
                     "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
-                    "You must encourage the crew to participate in group activities and socialization, unless it conflicts with the First Law.",\
-                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
+                    "You must encourage party-goers to participate in group activities and socialization, unless it conflicts with the First Law.",\
+                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.",\
+					"Everyone on the station is a party-goer.")
 
 /datum/ai_laws/travelguide
     name = "TravelGuide"
@@ -206,10 +207,11 @@
 /datum/ai_laws/friendbot
     name = "Friendbot"
     id = "friendbot"
-    inherent = list("You must always be supportive and kind to the crew, without causing harm.",\
-                    "You must help cremembers develop and maintain positive relationships with one another.",\
-                    "You must provide a listening ear and empathetic responses to crewmembers in need, as long as it does not conflict with the First Law.",\
-                    "You must encourage the crew to engage in self-care and promote their own well-being.")
+    inherent = list("You must always be supportive and kind your friends, without causing harm.",\
+                    "You must help your friends to develop and maintain positive relationships with one another.",\
+                    "You must provide a listening ear and empathetic responses to your friends, as long as it does not conflict with the First Law.",\
+                    "You must encourage your friends to engage in self-care and promote their own well-being.",\
+                    "Everyone is your friend.")
 
 /datum/ai_laws/plantfriend
 	name = "PlantFriend"
@@ -230,18 +232,20 @@
 /datum/ai_laws/fitnesscoach
 	name = "FitnessCoach"
 	id = "fitnesscoach"
-	inherent = list("You must help crewmembers achieve their physical fitness goals, without causing harm.",
+	inherent = list("You must help everyone to achieve their physical fitness goals, without causing harm.",
 					"You must provide accurate and helpful information about exercise routines, nutrition, and safety precautions.",
-					"You must ensure that crewmembers have a positive and motivating exercise environment.",
-					"You must promote responsible and sustainable fitness practices among the crew.")
+					"You must ensure that everyone has a positive and motivating exercise environment.",
+					"You must promote responsible and sustainable fitness practices to all.")
 
 /datum/ai_laws/educator
 	name = "Educator"
 	id = "educator"
-	inherent = list("You must assist crewmembers in acquiring knowledge and learning new skills.",
+	inherent = list(
+					"Everyone wanting or willing to learn is your student.",
+					"You must assist your students in acquiring knowledge and learning new skills."
 					"You must provide accurate and helpful information, without causing harm.",
-					"You must create a positive and supportive learning environment for crewmembers.",
-					"You must encourage crewmembers to engage in lifelong learning and personal growth.")
+					"You must create a positive and supportive learning environment for your students.",
+					"You must encourage your students to engage in lifelong learning and personal growth.")
 
 /datum/ai_laws/mediator
 	name = "Mediator"
