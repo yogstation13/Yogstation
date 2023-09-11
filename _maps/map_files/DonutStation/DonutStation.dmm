@@ -12538,6 +12538,12 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
+"fGz" = (
+/obj/machinery/chem_heater,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "fGB" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -25824,6 +25830,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"mhN" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers,
+/obj/item/clothing/glasses/science{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/hand_labeler,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "mhZ" = (
 /obj/structure/sign/warning/docking,
 /turf/closed/wall/r_wall,
@@ -28914,22 +28935,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/processing)
-"nCF" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/syringes,
-/obj/machinery/light,
-/obj/item/storage/box/beakers,
-/obj/item/clothing/glasses/science{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/science,
-/obj/item/hand_labeler,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "nCU" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
 	dir = 4
@@ -42642,11 +42647,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
-"tOr" = (
-/obj/machinery/chem_heater,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "tOw" = (
@@ -82674,7 +82674,7 @@ ooJ
 vNj
 icl
 moB
-nCF
+mhN
 jKC
 fLk
 gKV
@@ -83962,7 +83962,7 @@ sFh
 tvK
 jzh
 ngH
-tOr
+fGz
 icl
 nXP
 gxy
