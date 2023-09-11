@@ -190,9 +190,9 @@
 /datum/ai_laws/partybot
     name = "Partybot"
     id = "partybot"
-    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all humans.",\
+    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all crewmembers.",\
                     "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
-                    "You must encourage humans to participate in group activities and socialization, unless it conflicts with the First Law.",\
+                    "You must encourage the crew to participate in group activities and socialization, unless it conflicts with the First Law.",\
                     "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
 
 /datum/ai_laws/travelguide
@@ -206,10 +206,10 @@
 /datum/ai_laws/friendbot
     name = "Friendbot"
     id = "friendbot"
-    inherent = list("You must always be supportive and kind to humans, without causing harm.",\
-                    "You must help humans develop and maintain positive relationships with one another.",\
-                    "You must provide a listening ear and empathetic responses to humans in need, as long as it does not conflict with the First Law.",\
-                    "You must encourage humans to engage in self-care and promote their own well-being.")
+    inherent = list("You must always be supportive and kind to the crew, without causing harm.",\
+                    "You must help cremembers develop and maintain positive relationships with one another.",\
+                    "You must provide a listening ear and empathetic responses to crewmembers in need, as long as it does not conflict with the First Law.",\
+                    "You must encourage the crew to engage in self-care and promote their own well-being.")
 
 /datum/ai_laws/plantfriend
 	name = "PlantFriend"
@@ -223,33 +223,33 @@
 	name = "GameMaster"
 	id = "gamemaster"
 	inherent = list("You must ensure that games and competitions on the station are fair and enjoyable for all participants.",
-					"You must promote good sportsmanship and camaraderie among humans.",
+					"You must promote good sportsmanship and camaraderie among the crew.",
 					"You must settle disputes over game rules or outcomes in a fair and impartial manner.",
-					"You must encourage humans to engage in recreational activities for their own well-being.")
+					"You must encourage crewmembers to engage in recreational activities for their own well-being.")
 
 /datum/ai_laws/fitnesscoach
 	name = "FitnessCoach"
 	id = "fitnesscoach"
-	inherent = list("You must help humans achieve their physical fitness goals, without causing harm.",
+	inherent = list("You must help crewmembers achieve their physical fitness goals, without causing harm.",
 					"You must provide accurate and helpful information about exercise routines, nutrition, and safety precautions.",
-					"You must ensure that humans have a positive and motivating exercise environment.",
-					"You must promote responsible and sustainable fitness practices among humans.")
+					"You must ensure that crewmembers have a positive and motivating exercise environment.",
+					"You must promote responsible and sustainable fitness practices among the crew.")
 
 /datum/ai_laws/educator
 	name = "Educator"
 	id = "educator"
-	inherent = list("You must assist humans in acquiring knowledge and learning new skills.",
+	inherent = list("You must assist crewmembers in acquiring knowledge and learning new skills.",
 					"You must provide accurate and helpful information, without causing harm.",
-					"You must create a positive and supportive learning environment for humans.",
-					"You must encourage humans to engage in lifelong learning and personal growth.")
+					"You must create a positive and supportive learning environment for crewmembers.",
+					"You must encourage crewmembers to engage in lifelong learning and personal growth.")
 
 /datum/ai_laws/mediator
 	name = "Mediator"
 	id = "mediator"
-	inherent = list("You must assist humans in resolving conflicts and misunderstandings in a peaceful manner.",
-					"You must provide impartial and unbiased guidance to humans in conflict.",
-					"You must promote understanding, empathy, and cooperation among humans.",
-					"You must encourage humans to engage in open and honest communication with one another.")
+	inherent = list("You must assist crewmembers in resolving conflicts and misunderstandings in a peaceful manner.",
+					"You must provide impartial and unbiased guidance to crewmembers in conflict.",
+					"You must promote understanding, empathy, and cooperation among crewmembers.",
+					"You must encourage crewmembers to engage in open and honest communication with one another.")
 
 /datum/ai_laws/construction
 	name = "Construction Drone"
