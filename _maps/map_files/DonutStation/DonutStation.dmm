@@ -3217,6 +3217,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"byT" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers,
+/obj/item/clothing/glasses/science{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/hand_labeler,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "bzc" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -7735,6 +7750,13 @@
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"dvh" = (
+/obj/machinery/chem_master,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dvH" = (
 /obj/machinery/camera{
 	c_tag = "Civilian - Chapel Main 1";
@@ -12538,12 +12560,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
-"fGz" = (
-/obj/machinery/chem_heater,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "fGB" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -18055,6 +18071,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"iwL" = (
+/obj/machinery/chem_heater,
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "ixn" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/assistant,
@@ -25830,21 +25852,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
-"mhN" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/beakers,
-/obj/item/clothing/glasses/science{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/glasses/science,
-/obj/item/hand_labeler,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "mhZ" = (
 /obj/structure/sign/warning/docking,
 /turf/closed/wall/r_wall,
@@ -26144,19 +26151,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
-"mqd" = (
-/obj/machinery/button/door{
-	id = "chemistryshutter";
-	name = "Chemistry Privacy Toggle";
-	pixel_x = -8;
-	pixel_y = 28
-	},
-/obj/machinery/chem_master,
-/obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "mqj" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -82674,7 +82668,7 @@ ooJ
 vNj
 icl
 moB
-mhN
+byT
 jKC
 fLk
 gKV
@@ -83444,7 +83438,7 @@ etj
 vWB
 jtg
 niP
-mqd
+dvh
 vXK
 gxP
 lIE
@@ -83962,7 +83956,7 @@ sFh
 tvK
 jzh
 ngH
-fGz
+iwL
 icl
 nXP
 gxy
