@@ -7122,14 +7122,6 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"deZ" = (
-/obj/machinery/mineral/ore_redemption,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "dfg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7720,6 +7712,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"duu" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "dvb" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -13859,6 +13855,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"gpL" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "gqd" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -22196,6 +22196,13 @@
 /obj/machinery/seed_extractor,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"ksg" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "ksh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -26609,6 +26616,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"mAb" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "mAD" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/disposalpipe/segment{
@@ -34037,6 +34048,14 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"pTe" = (
+/obj/machinery/mineral/ore_redemption,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "pTP" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -39978,6 +39997,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"sFQ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "sFX" = (
 /obj/structure/cloth_curtain{
 	color = "#99ccff";
@@ -70806,7 +70832,7 @@ jyB
 jyB
 jyB
 vgR
-vgR
+duu
 hIt
 hIt
 eXf
@@ -72059,7 +72085,7 @@ rLR
 rLR
 rLR
 qgC
-qgC
+gpL
 wpv
 qgC
 qgC
@@ -72629,7 +72655,7 @@ vgR
 aqa
 aGR
 lJE
-vgR
+duu
 vgR
 qyP
 jyB
@@ -75391,7 +75417,7 @@ aYJ
 rLR
 rLR
 qgC
-qgC
+gpL
 rLR
 rLR
 adi
@@ -79591,7 +79617,7 @@ clM
 clM
 clM
 vDp
-gIJ
+mAb
 gIJ
 ivF
 ylr
@@ -85936,7 +85962,7 @@ idJ
 bMz
 igY
 igY
-igY
+sFQ
 fZc
 kLa
 lLh
@@ -90062,7 +90088,7 @@ nvt
 qAi
 hlG
 xNf
-vaz
+ksg
 ewZ
 qAi
 qAi
@@ -90405,7 +90431,7 @@ imH
 xSu
 oLK
 iKZ
-uJr
+uqp
 bPu
 aGn
 aGn
@@ -92868,7 +92894,7 @@ dcG
 qhu
 dcG
 eXu
-deZ
+pTe
 usN
 cRl
 cRl
