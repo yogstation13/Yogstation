@@ -660,8 +660,7 @@
 					patient.reagents.add_reagent(reagent_id,injection_amount)
 					log_combat(src, patient, "injected", "internal synthesizer", "[reagent_id]:[injection_amount]")
 					if(holy)
-						patient.reagents.add_reagent(/datum/reagent/water/holywater ,injection_amount)
-						log_combat(src, patient, "injected", "internal synthesizer", "[/datum/reagent/water/holywater]:[injection_amount]")
+						patient.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
 				C.visible_message(span_danger("[src] injects [patient] with its syringe!"), \
 					span_userdanger("[src] injects you with its syringe!"))
 			else
