@@ -184,20 +184,20 @@ GLOBAL_VAR(stormdamage)
 			continue
 		qdel(thing)
 
-	var/area/security/warden/A = locate(/area/security/warden) in GLOB.areas
-	for(var/obj/item/thing in A)
+	var/area/security/warden/B = locate(/area/security/warden) in GLOB.areas
+	for(var/obj/item/thing in B)
 		if(thing.anchored)//only target something that is possibly a weapon
 			continue
 		qdel(thing)
 
-	var/area/security/main/A = locate(/area/security/main) in GLOB.areas
-	for(var/obj/item/thing in A)
+	var/area/security/main/C = locate(/area/security/main) in GLOB.areas
+	for(var/obj/item/thing in C)
 		if(thing.anchored)//only target something that is possibly a weapon
 			continue
 		qdel(thing)
 
-	var/area/crew_quarters/heads/hos/A = locate(/area/crew_quarters/heads/hos) in GLOB.areas
-	for(var/obj/item/thing in A)
+	var/area/crew_quarters/heads/hos/D = locate(/area/crew_quarters/heads/hos) in GLOB.areas
+	for(var/obj/item/thing in D)
 		if(thing.anchored)//only target something that is possibly a weapon
 			continue
 		qdel(thing)
