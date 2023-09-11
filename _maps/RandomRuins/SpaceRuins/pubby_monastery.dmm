@@ -2026,16 +2026,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery)
-"zi" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/camera{
-	c_tag = "Monastery Garden";
-	dir = 2;
-	network = list("ss13","monastery")
-	},
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/monastery)
 "zl" = (
 /obj/machinery/door/poddoor{
 	id = "chapelgun";
@@ -6774,7 +6764,7 @@ yJ
 LQ
 Rl
 lI
-zi
+oc
 FZ
 gz
 sO
