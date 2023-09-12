@@ -50,8 +50,8 @@
 		to_chat(user, span_notice("You place [I] into [src] to start the fermentation process."))
 		addtimer(CALLBACK(src, PROC_REF(makeWine), fruit), rand(80, 120) * speed_multiplier)
 		return TRUE
-	if(istype(I, /obj/item/reagent_containers))
-		return TRUE
+	if(I.is_refillable())
+		return FALSE
 	else
 		return ..()
 
