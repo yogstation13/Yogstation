@@ -56,7 +56,7 @@
 		return ..()
 
 /obj/structure/fermenting_barrel/deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/mineral/wood (loc, 30)
+	new /obj/item/stack/sheet/mineral/wood (loc, 10)
 	qdel(src)
 
 /obj/structure/fermenting_barrel/attack_hand(mob/user)
