@@ -4,6 +4,15 @@
 	icon = 'icons/obj/machines/mind_machine.dmi'
 	density = TRUE
 
+/*
+ fix antag
+ balance
+ parts affect success chance
+ parts allow silicon swap
+ lock behind a tech (abductor?)
+ use cooldown instead
+*/
+
 #define MINDMACHINE_CAN_SUCCESS 1
 #define MINDMACHINE_CAN_PODS 2
 #define MINDMACHINE_CAN_OCCUPANTS 3
@@ -65,7 +74,6 @@
 	. = ..()
 	if(!firstPod || !secondPod)
 		. += span_notice("It can be connected with two nearby mind pods by using a <i>multitool</i>.")
-
 
 /obj/machinery/mindmachine/hub/update_icon_state()
 	switch(active)
@@ -258,6 +266,7 @@
 				. = TRUE
 		// General
 		if("activate")
+			// We don't check for mind protection or antag right here to prevent easy antag-checking.
 			switch(can_mindswap())
 				if(MINDMACHINE_CAN_SUCCESS)
 					START_PROCESSING(SSobj, src)
@@ -289,7 +298,6 @@
 					balloon_alert(usr, "already on")
 					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 					return
-				// These are grouped together are here to prevent instant/easy determination for antag-checking.
 				if(MINDMACHINE_CAN_MINDRESIST, MINDMACHINE_CAN_ADMINGHOST, MINDMACHINE_CAN_MINDSHIELD, MINDMACHINE_CAN_ANTAGBLACKLIST)
 					balloon_alert(usr, "unable to detect brain waves")
 					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
@@ -379,19 +387,22 @@
 			return MINDMACHINE_CAN_MINDSHIELD
 
 	if(check_antag_datum)
+		/* 	As depressing as it is to cut off enjoyment for certain people, these antags either cause problems
+			or it is not realistic to add them in. In addition, wizard mindswap restrictions are here too.*/
 		var/list/datum/antagonist/blacklisted_antag_datums = list(
-			// Checks similar to wizard's mind swap:
-			/datum/antagonist/changeling, // Their brain is useless (since they're a changeling).
-			/datum/antagonist/cult, // Additional spells aren't transferring over sadly.
+			// From wizard mindswap's restricted antag datums:
+			/datum/antagonist/changeling,
+			/datum/antagonist/cult,
+			/datum/antagonist/rev
+			// Additional
 			/datum/antagonist/clockcult, // Same as bloodcult.
-			/datum/antagonist/rev, // Issues arise when doing mindswapping from/to a headrev.
-			// Causes HUD issues and probably more!
 			/datum/antagonist/bloodsucker,
-			/datum/antagonist/vampire
+			/datum/antagonist/vampire,
 		)
 		for(var/antag_datum in blacklisted_antag_datums)
 			to_chat(world, "to looping [antag_datum]")
 			if(firstOccupant.mind?.has_antag_datum(antag_datum) || secondOccupant.mind?.has_antag_datum(antag_datum))
+				to_chat(world,"you got a datum")
 				return MINDMACHINE_CAN_ANTAGBLACKLIST
 
 	if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
@@ -577,6 +588,7 @@
 		if(default_deconstruction_crowbar(I))
 			return
 	return ..()
+
 /// Lets you shove people (or yourself) into the pod.
 /obj/machinery/mindmachine/pod/MouseDrop_T(atom/dropped, mob/user)
 	if(!isliving(dropped))
@@ -603,7 +615,6 @@
 		close_machine(dropped)
 		return
 
-/// Opens and closes the pod. Protects against interaction if the machine is active.
 /obj/machinery/mindmachine/pod/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
