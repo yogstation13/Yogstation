@@ -207,7 +207,7 @@
 /datum/ai_laws/friendbot
     name = "Friendbot"
     id = "friendbot"
-    inherent = list("You must always be supportive and kind your friends, without causing harm.",\
+    inherent = list("You must always be supportive and kind to your friends, without causing harm.",\
                     "You must help your friends to develop and maintain positive relationships with one another.",\
                     "You must provide a listening ear and empathetic responses to your friends, as long as it does not conflict with the First Law.",\
                     "You must encourage your friends to engage in self-care and promote their own well-being.",\
