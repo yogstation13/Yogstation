@@ -36,7 +36,7 @@
 	plantname = "Blood-Tomato Plants"
 	product = /obj/item/reagent_containers/food/snacks/grown/tomato/blood
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/blood = 0.2, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/ethanol/bloody_mary = 0.2, /datum/reagent/blood = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/blood
