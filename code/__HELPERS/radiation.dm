@@ -29,7 +29,9 @@
 	if(!SSradiation.can_fire)
 		return
 	if(source && (source.flags_1 & RAD_CONTAIN_CONTENTS))
-		intensity *= 0.1
+		return
+	if(source?.loc && (source.loc.flags_1 & RAD_CONTAIN_CONTENTS))
+		return
 	if(intensity >= RAD_BACKGROUND_RADIATION)
 		for(var/dir in GLOB.cardinals)
 			new /datum/radiation_wave(source, dir, intensity, range_modifier, can_contaminate, collectable_radiation)

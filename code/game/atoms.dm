@@ -815,7 +815,9 @@
   */
 /atom/proc/rad_act(strength, collectable_radiation)
 	if(flags_1 & RAD_CONTAIN_CONTENTS)
-		strength *= 0.25
+		return
+	if(loc && (loc.flags_1 & RAD_CONTAIN_CONTENTS))
+		return
 	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength, collectable_radiation)
 
 /**
