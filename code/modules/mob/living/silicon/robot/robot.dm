@@ -1181,16 +1181,10 @@
 	else
 		status_flags &= ~CANPUSH
 
-	if(module.clean_on_move)
-		AddElement(/datum/element/cleaning)
-	else
-		RemoveElement(/datum/element/cleaning)
-
 	hat_offset = module.hat_offset
 
 	magpulse = module.magpulsing
 	updatename()
-
 
 /mob/living/silicon/robot/proc/place_on_head(obj/item/new_hat)
 	if(hat)
