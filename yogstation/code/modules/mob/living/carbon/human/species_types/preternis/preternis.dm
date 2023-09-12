@@ -32,8 +32,9 @@
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	mutantstomach = /obj/item/organ/stomach/cell/preternis
-	yogs_virus_infect_chance = 20
+	yogs_virus_infect_chance = 25
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	virus_stage_rate_boost = 5 //Not designed with viruses in mind since it doesn't usually get in
 	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 	attack_sound = 'sound/items/trayhit2.ogg'
 	//deathsound = //change this when sprite gets reworked
@@ -154,7 +155,6 @@
 	
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
-
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustOxyLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
@@ -193,7 +193,6 @@
 
 /datum/species/preternis/movement_delay(mob/living/carbon/human/H)
 	. = ..()
-
 	if(lockdown && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
 		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(H.has_movespeed_modifier("preternis_magboot"))
@@ -201,7 +200,6 @@
 	
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
-
 	if(tesliumtrip && !H.reagents.has_reagent(/datum/reagent/teslium))//remove teslium effects if you don't have it in you
 		burnmod = initial(burnmod)
 		tesliumtrip = FALSE
@@ -227,11 +225,11 @@
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
-		H.adjustStaminaLoss(5 - (H.fire_stacks / 4))
+		H.adjustStaminaLoss(5 - (H.fire_stacks / 3))
 		H.clear_stamina_regen()
 		H.adjustFireLoss(2 - (H.fire_stacks / 4))
-		H.set_jitter_if_lower(100 SECONDS)
-		H.set_stutter(1 SECONDS)
+		H.set_jitter_if_lower(1 SECONDS)
+		H.set_stutter_if_lower(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
@@ -245,7 +243,6 @@
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
-		H.adjust_jitter(-100 SECONDS)
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
