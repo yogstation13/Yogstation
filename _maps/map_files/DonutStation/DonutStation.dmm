@@ -11647,6 +11647,21 @@
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"fiz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 2;
+	sortType = 2
+	},
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "fiA" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
@@ -36650,20 +36665,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
-"rcs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 2;
-	sortType = 2
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "rcJ" = (
 /obj/structure/particle_accelerator/particle_emitter/center{
 	dir = 1;
@@ -40393,6 +40394,19 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/checkpoint/supply)
+"sMI" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/mob/living/simple_animal/pet/fox/Renault,
+/turf/open/floor/carpet,
+/area/bridge)
 "sNB" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -47262,18 +47276,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"vVR" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/carpet,
-/area/bridge)
 "vVT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -92573,7 +92575,7 @@ tue
 mki
 bSU
 uhl
-rcs
+fiz
 uhl
 wvM
 xLx
@@ -101344,7 +101346,7 @@ mfu
 uJo
 bOf
 rca
-vVR
+sMI
 ttj
 ksm
 nLN
