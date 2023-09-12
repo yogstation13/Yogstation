@@ -5579,6 +5579,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"cxA" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "cxB" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -8232,6 +8240,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"dGC" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "dGE" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 8
@@ -8842,6 +8859,21 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"dSi" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -11611,11 +11643,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
-"fhW" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "fib" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower,
 /turf/open/floor/plasteel/white,
@@ -12517,6 +12544,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"fEn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "fEz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -17459,6 +17491,11 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"idk" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "idl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -34427,6 +34464,17 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"qce" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/door/airlock/external{
+	name = "AISat External Access";
+	req_one_access_txt = "32;19"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "qck" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp/green{
@@ -35463,6 +35511,17 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"qxG" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/door/airlock/external{
+	name = "AISat External Access";
+	req_one_access_txt = "32;19"
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "qxN" = (
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/yellowsiding{
@@ -36801,21 +36860,6 @@
 /obj/effect/spawner/lootdrop/organ_spawner,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"rhh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "rhm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -49676,6 +49720,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"xaH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/external{
+	name = "AISat External Access";
+	req_one_access_txt = "32;19"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "xbc" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -71248,7 +71305,7 @@ bHj
 bHj
 ylr
 ylr
-fhW
+idk
 bHj
 bHj
 bHj
@@ -82068,7 +82125,7 @@ gIJ
 vDp
 xSu
 xSu
-ylr
+xSu
 ylr
 xSu
 xSu
@@ -82320,11 +82377,11 @@ gOO
 ukP
 gIJ
 gIJ
+gIJ
+gIJ
 vDp
+ivF
 vDp
-vDp
-xSu
-xSu
 xSu
 xSu
 xSu
@@ -82574,14 +82631,14 @@ fOG
 fOG
 gIJ
 bRW
-rhh
-pbC
-xkg
-vDp
-bHj
-bHj
-bHj
-bHj
+dSi
+cxA
+fEn
+fEn
+fEn
+xaH
+dGC
+qce
 bHj
 bHj
 bHj
@@ -82834,11 +82891,11 @@ kTi
 pOJ
 kTi
 kTi
+xkg
+gIJ
 vDp
-bHj
-xSu
-xSu
-xSu
+vDp
+vDp
 xSu
 xSu
 xSu
@@ -89543,7 +89600,7 @@ mQn
 jWG
 cui
 mtF
-nOg
+qxG
 ylr
 ylr
 ylr
