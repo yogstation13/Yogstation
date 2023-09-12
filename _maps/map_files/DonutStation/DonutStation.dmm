@@ -23975,28 +23975,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"lkX" = (
-/obj/machinery/computer/cargo,
-/obj/machinery/button/door{
-	dir = 2;
-	id = "cargounload";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = 8;
-	pixel_y = 24
-	},
-/obj/machinery/button/door{
-	id = "cargoload";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = -8;
-	pixel_y = 24
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "lla" = (
 /turf/open/floor/grass,
 /area/hydroponics/garden)
@@ -45504,6 +45482,28 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"vbr" = (
+/obj/machinery/computer/cargo,
+/obj/machinery/button/door{
+	id = "cargoload";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = 7;
+	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 2;
+	id = "cargounload";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = -7;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "vbB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -92050,7 +92050,7 @@ ylr
 mhE
 vZp
 wvC
-lkX
+vbr
 dcG
 kyL
 dcG
