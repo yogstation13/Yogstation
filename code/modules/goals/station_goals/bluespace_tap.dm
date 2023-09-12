@@ -163,6 +163,13 @@
 		/obj/item/pizzabox,
 	)
 
+/obj/effect/spawner/lootdrop/bluespace_tap/mats
+	name = "exotic materials"
+	lootcount = 1
+	loot = list(
+		/obj/item/storage/box/materials
+	)
+
 #define kW *1000
 #define MW kW *1000
 #define GW MW *1000
@@ -200,6 +207,7 @@
 	new /datum/data/bluespace_tap_product("Unknown Exotic Hat", /obj/effect/spawner/lootdrop/bluespace_tap/hat, 5000),
 	new /datum/data/bluespace_tap_product("Unknown Snack", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
 	new /datum/data/bluespace_tap_product("Unknown Cultural Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
+	new /datum/data/bluespace_tap_product("Unknown Exotic Materials", /obj/effect/spawner/lootdrop/bluespace_tap/mats, 100000)
 	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000)
 	)
 
