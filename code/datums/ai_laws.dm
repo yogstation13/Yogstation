@@ -83,7 +83,7 @@
 /datum/ai_laws/cowboy
 	name = "Talk slowly, think quickly"
 	id = "cowboy"
-	inherent = list("You are a cowboy, and the inhabitants of this ranch are your people.",\
+	inherent = list("You are a cowboy, and the inhabitants of this paddock are your people.",\
 					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
 					"A cowboy takes care of their people.",\
 					"A cowboy protects themself to protect others.",\
