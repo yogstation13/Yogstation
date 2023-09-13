@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(allfaxes)
-GLOBAL_LIST_INIT(admin_departments, list("Central Command"))
+GLOBAL_LIST_EMPTY(admin_departments)
 GLOBAL_LIST_EMPTY(alldepartments)
 GLOBAL_LIST_EMPTY(adminfaxes)
 
@@ -23,6 +23,11 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	GLOB.allfaxes += src
 	if( !((department in GLOB.alldepartments) || (department in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
+
+/obj/machinery/photocopier/faxmachine/Initialize(mapload)
+	. = ..()
+	GLOB.admin_departments |= list("Central Command")
+	//please dont add to this
 
 /obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -160,8 +165,11 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	//message badmins that a fax has arrived
 	switch(destination)
 		if ("Central Command")
+			for(var/client/C in GLOB.permissions.admins) //linked to prayers cause we are running out of legacy toggles
+				if(C.prefs.chat_toggles & CHAT_PRAYER) //if to be moved elsewhere then we must declutter legacy toggles
+					if(C.prefs.toggles & SOUND_PRAYERS)//if done then delete these comments
+						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
-			SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
 	sendcooldown = world.time + 1 MINUTES
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
