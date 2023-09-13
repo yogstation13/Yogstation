@@ -1311,13 +1311,7 @@
 	var/static/items_inside = list(
 		/obj/item/stack/sheet/metal = 10,
 		/obj/item/stack/sheet/glass = 10,
-		/obj/item/stack/rods = 10,
-		/obj/item/stack/sheet/plasteel = 10,
 		/obj/item/stack/sheet/plastic = 10,
-		/obj/item/stack/sheet/plastitaniumglass = 10,
-		/obj/item/stack/sheet/titaniumglass = 10,
-		/obj/item/stack/sheet/plasmaglass = 10,
-		/obj/item/stack/sheet/rglass = 10,
 		/obj/item/stack/sheet/mineral/plastitanium = 10,
 		/obj/item/stack/sheet/mineral/titanium = 10,
 		/obj/item/stack/sheet/mineral/uranium = 10,
@@ -1325,7 +1319,6 @@
 		/obj/item/stack/sheet/mineral/plasma = 10,
 		/obj/item/stack/sheet/mineral/gold = 10,
 		/obj/item/stack/sheet/mineral/silver = 10,
-		/obj/item/stack/sheet/mineral/bananium = 10,
 		/obj/item/stack/sheet/mineral/wood = 10)
 	generate_items_inside(items_inside,src)
 
