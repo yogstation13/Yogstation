@@ -56,7 +56,7 @@
 	var/silicon_permitted = FALSE
 	/// Can delay transferred be used?
 	var/delaytransfer_permitted = FALSE
-	/// Is the delay transfer active?
+	/// Was the transfer started by a delay?
 	var/delaytransfer_active = FALSE
 	COOLDOWN_DECLARE(until_completion)
 
@@ -114,8 +114,7 @@
 			charge -= 1
 		deactivate()
 
-/obj/machinery/mindmachine_hub/proc/try_activate(mob/user)
-	delaytransfer_active = FALSE
+/obj/machinery/mindmachine_hub/proc/try_activate(mob/user, was)
 	// No checking here for mind protection/antag to prevent easy antag checking.
 	switch(can_mindswap())
 		if(MINDMACHINE_CAN_SUCCESS)
@@ -180,13 +179,14 @@
 /obj/machinery/mindmachine_hub/proc/deactivate()
 	if(active)
 		active = FALSE
+		delaytransfer_active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		update_appearance(UPDATE_ICON)
 		firstPod?.update_appearance(UPDATE_ICON)
 		secondPod?.update_appearance(UPDATE_ICON)
 		firstPod?.open_machine()
 		secondPod?.open_machine()
-
+		
 /obj/machinery/mindmachine_hub/attackby(obj/item/I, mob/user, params)
 	// Connection
 	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_MULTITOOL)
@@ -388,12 +388,15 @@
 	secondPod?.hub = null
 	secondPod = null
 
-/obj/machinery/mindmachine_hub/proc/should_fail(no_fail = FALSE, ignore_rigged = FALSE)
+/obj/machinery/mindmachine_hub/proc/should_fail(no_fail = FALSE, ignore_rigged = FALSE, ignore_delayed = FALSE)
 	if(no_fail)
 		return FALSE
 	if(!ignore_rigged && fail_regardless)
 		return TRUE
-	if(prob(fail_chance))
+	var/total_fail_chance = fail_chance
+	if(!ignore_delayed && delaytransfer_active)
+		total_fail_chance += 20
+	if(prob(total_fail_chance))
 		return TRUE
 	return FALSE
 
