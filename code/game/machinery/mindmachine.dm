@@ -56,8 +56,11 @@
 	var/silicon_permitted = FALSE
 	/// Can delay transferred be used?
 	var/delaytransfer_permitted = FALSE
-	/// Was the transfer started by a delay?
+	/// Is the transfer being delayed?
 	var/delaytransfer_active = FALSE
+	/// Was the transfer started by a delay?
+	var/transfer_by_delay = FALSE
+
 	COOLDOWN_DECLARE(until_completion)
 
 /obj/machinery/mindmachine_hub/Initialize(mapload)
@@ -167,6 +170,9 @@
 /obj/machinery/mindmachine_hub/proc/activate()
 	if(!active && firstPod && secondPod)
 		active = TRUE
+		if(delaytransfer_active)
+			delaytransfer_active = FALSE
+			transfer_by_delay = TRUE
 		COOLDOWN_START(src, until_completion, completion_time)
 		START_PROCESSING(SSobj, src)
 		update_appearance(UPDATE_ICON)
@@ -179,7 +185,7 @@
 /obj/machinery/mindmachine_hub/proc/deactivate()
 	if(active)
 		active = FALSE
-		delaytransfer_active = FALSE
+		transfer_by_delay = FALSE
 		STOP_PROCESSING(SSobj, src)
 		update_appearance(UPDATE_ICON)
 		firstPod?.update_appearance(UPDATE_ICON)
@@ -394,7 +400,7 @@
 	if(!ignore_rigged && fail_regardless)
 		return TRUE
 	var/total_fail_chance = fail_chance
-	if(!ignore_delayed && delaytransfer_active)
+	if(!ignore_delayed && transfer_by_delay)
 		total_fail_chance += 20
 	if(prob(total_fail_chance))
 		return TRUE
