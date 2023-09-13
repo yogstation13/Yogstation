@@ -1,5 +1,5 @@
-// One of the returned values from `/obj/machinery/mindmachine_hub/can_mindswap()`
-// Used to determine the reason why they failed to mindswap.
+/*	One of the returned values from `/obj/machinery/mindmachine_hub/can_mindswap()`
+	Used to determine the reason why they failed to mindswap. */
 #define MINDMACHINE_CAN_SUCCESS 1 // Except this value, this is success.
 #define MINDMACHINE_CAN_SRCGONE 2
 #define MINDMACHINE_CAN_PODS 3
@@ -16,8 +16,8 @@
 #define MINDMACHINE_CAN_ADMINGHOST 14
 #define MINDMACHINE_CAN_ANTAGBLACKLIST 15
 
-// One of the returned values from `/obj/machinery/mindmachine_hub/determine_mindswap_type()`
-// Used to determine if the pods contained 2 (pair), 1 (solo), or 0 (none) sentient mobs.
+/*	One of the returned values from `/obj/machinery/mindmachine_hub/determine_mindswap_type()`
+	Used to determine if the pods contained 2 (pair), 1 (solo), or 0 (none) sentient mobs. */
 #define MINDMACHINE_SENTIENT_PAIR 1
 #define MINDMACHINE_SENTIENT_SOLO 2
 #define MINDMACHINE_SENTIENT_NONE 3
@@ -546,8 +546,8 @@
 			var/mob/living/simple_animal/secondAnimal = secondOccupant
 			if(!firstAnimal || !secondAnimal)
 				return
-			// Failing means factions will be randomized which may cause them to be hostile to nearby people.
-			// And since there are a million factions... let us keep it simple:
+			/* 	Failing means factions will be randomized which may cause them to be hostile to nearby people.
+				And since there are a million factions... let us keep it simple: */
 			var/list/random_factions = list("hostile", "neutral", "plants", "spiders")
 			var/random_faction = random_factions[rand(1, random_factions.len)]
 			firstAnimal.faction = list()
