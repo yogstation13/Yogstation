@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Autotomy no longer violently dismembers the user"
+  - tweak: "Autotomy genetic instability reduced to 10 from 30"
