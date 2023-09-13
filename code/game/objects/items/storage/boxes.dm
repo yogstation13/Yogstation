@@ -1312,7 +1312,6 @@
 		/obj/item/stack/sheet/metal = 10,
 		/obj/item/stack/sheet/glass = 10,
 		/obj/item/stack/sheet/plastic = 10,
-		/obj/item/stack/sheet/mineral/plastitanium = 10,
 		/obj/item/stack/sheet/mineral/titanium = 10,
 		/obj/item/stack/sheet/mineral/uranium = 10,
 		/obj/item/stack/sheet/mineral/diamond = 10,
