@@ -166,7 +166,7 @@
 
 	. += "Wound Bed Damage: [span_deadsay("[flesh_damage]")]\n"
 	if(flesh_healing > 0)
-		. += "Positive signs of healing in the flesh damage, rate: [span_green("[round(flesh_healing, 0.01)]%")]\n"
+		. += "Positive signs of healing in the flesh damage, rate: [span_green("[round(flesh_healing, 0.01)]")]\n"
 
 	if(infestation <= sanitization && flesh_damage <= flesh_healing)
 		. += "[span_green("No further treatment required: Burns will heal shortly.")]"
