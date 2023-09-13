@@ -113,8 +113,8 @@
 		else
 			balloon_alert_to_viewers("failed")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 100)
-		if(charge >= 1)
-			charge -= 1
+		if(charge >= cost)
+			charge -= cost
 		deactivate()
 
 /obj/machinery/mindmachine_hub/proc/try_activate(mob/user, was)
