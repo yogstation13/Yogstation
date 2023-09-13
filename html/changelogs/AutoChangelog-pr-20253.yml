@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Having buckled a mob once as a cyborg no longer prevents you from getting petted ever again."
