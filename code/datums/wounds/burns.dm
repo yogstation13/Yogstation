@@ -172,7 +172,7 @@
 		. += "[span_green("No further treatment required: Burns will heal shortly.")]"
 	else
 		if(infestation > 0)
-			. += "Current Sanitization Effect: [span_brass("[round(sanitization/infestation, 0.01)]%")]\n"
+			. += "Current Sanitization Effect: [span_brass("[round(sanitization/infestation*100, 0.01)]%")]\n"
 			if(sanitization > 0)
 				. += "[span_green("Sanitization in effect, infection level is decreasing.")]\n"
 			switch(infestation)
