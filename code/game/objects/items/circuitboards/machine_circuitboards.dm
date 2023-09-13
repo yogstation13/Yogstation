@@ -902,7 +902,7 @@
 /obj/item/circuitboard/machine/mindmachine_hub
 	name = "Mind Machine Hub (Machine Board)"
 	icon_state = "medical"
-	build_path = /obj/machinery/mindmachine/hub
+	build_path = /obj/machinery/mindmachine_hub
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/capacitor = 1,
@@ -912,7 +912,7 @@
 /obj/item/circuitboard/machine/mindmachine_pod
 	name = "Mind Machine Pod (Machine Board)"
 	icon_state = "medical"
-	build_path = /obj/machinery/mindmachine/pod
+	build_path = /obj/machinery/mindmachine_pod
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stock_parts/capacitor = 2,

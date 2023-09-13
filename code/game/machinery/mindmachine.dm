@@ -30,11 +30,13 @@
 #define MINDMACHINE_SENTIENT_SOLO 2
 #define MINDMACHINE_SENTIENT_NONE 3
 
-/obj/machinery/mindmachine/hub
+/obj/machinery/mindmachine_hub
 	name = "\improper mind machine hub"
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
+	icon = 'icons/obj/machines/mind_machine.dmi'
 	icon_state = "hub"
+	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_hub
 	/// A list of mobs that cannot be swapped to/from.
 	var/static/list/blacklisted_mobs = typecacheof(list(
@@ -43,9 +45,9 @@
 		/mob/living/simple_animal/hostile/megafauna
 	))
 	/// The first connected mind machine pod.
-	var/obj/machinery/mindmachine/pod/firstPod
+	var/obj/machinery/mindmachine_pod/firstPod
 	/// The second connected mind machine pod.
-	var/obj/machinery/mindmachine/pod/secondPod
+	var/obj/machinery/mindmachine_pod/secondPod
 	/// Are the occupants currently getting mindswapped?
 	var/active = FALSE
 	/// How long does it take to fully complete a mindswap?
@@ -67,16 +69,16 @@
 
 	COOLDOWN_DECLARE(until_completion)
 
-/obj/machinery/mindmachine/hub/Initialize(mapload)
+/obj/machinery/mindmachine_hub/Initialize(mapload)
 	. = ..()
 	try_connect_pods()
 
-/obj/machinery/mindmachine/hub/Destroy()
+/obj/machinery/mindmachine_hub/Destroy()
 	deactivate()
 	disconnect_pods()
 	return ..()
 
-/obj/machinery/mindmachine/hub/examine(mob/user)
+/obj/machinery/mindmachine_hub/examine(mob/user)
 	. = ..()
 	if(panel_open && fail_regardless)
 		. += span_warning("The regulator is misaligned. A <i>multitool</i> should fix it.")
@@ -85,14 +87,14 @@
 	. += span_notice("The charge meter reads: [charge].")
 	. += span_notice("It costs [cost] charges per attempt.")
 
-/obj/machinery/mindmachine/hub/update_icon_state()
+/obj/machinery/mindmachine_hub/update_icon_state()
 	if(active)
 		icon_state = "hub_active"
 	else
 		icon_state = "hub"
 	return ..()
 
-/obj/machinery/mindmachine/hub/RefreshParts()
+/obj/machinery/mindmachine_hub/RefreshParts()
 	// 2 matter bins. Reduce failure chance by 5 per tier. Results in 30 (tier 1) to 0 (tier 4).
 	var/pre_fail_chance = 40
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
@@ -108,7 +110,7 @@
 	silicon_permitted = (C && C.rating >= 4) ? TRUE : FALSE
 	delaytransfer_permitted = (C && C.rating >= 4) ? TRUE : FALSE
 
-/obj/machinery/mindmachine/hub/process(delta_time)
+/obj/machinery/mindmachine_hub/process(delta_time)
 	if(active && COOLDOWN_FINISHED(src, until_completion))
 		var/success = initiate_mindswap(FALSE, TRUE, TRUE)
 		if(success) // Successfully transferred their mind to someone/something.
@@ -121,7 +123,7 @@
 			charge -= 1
 		deactivate()
 
-/obj/machinery/mindmachine/hub/proc/try_activate(mob/user)
+/obj/machinery/mindmachine_hub/proc/try_activate(mob/user)
 	delaytransfer_active = FALSE
 	// No checking here for protection/antag to prevent easy antag checking.
 	switch(can_mindswap())
@@ -172,7 +174,7 @@
 			return
 
 /// If not active, activates the hub and locks the pods.
-/obj/machinery/mindmachine/hub/proc/activate()
+/obj/machinery/mindmachine_hub/proc/activate()
 	if(!active && firstPod && secondPod)
 		active = TRUE
 		COOLDOWN_START(src, until_completion, completion_time)
@@ -184,7 +186,7 @@
 		secondPod.locked = TRUE
 
 /// If active, deactivates the hubs and opens the pods.
-/obj/machinery/mindmachine/hub/proc/deactivate()
+/obj/machinery/mindmachine_hub/proc/deactivate()
 	if(active)
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
@@ -194,7 +196,7 @@
 		firstPod?.open_machine()
 		secondPod?.open_machine()
 
-/obj/machinery/mindmachine/hub/attackby(obj/item/I, mob/user, params)
+/obj/machinery/mindmachine_hub/attackby(obj/item/I, mob/user, params)
 	// Connection
 	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_MULTITOOL)
 		if(panel_open && fail_regardless)
@@ -239,20 +241,20 @@
 		return
 	return ..()
 
-/obj/machinery/mindmachine/hub/attack_hand(mob/user)
+/obj/machinery/mindmachine_hub/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	ui_interact(user)
 
-/obj/machinery/mindmachine/hub/emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/machinery/mindmachine_hub/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(fail_regardless)
 		return FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You temporarily alter the mind transfer regulator.")) // A bunch of words that I made up.
 	fail_regardless = TRUE
 
-/obj/machinery/mindmachine/hub/emp_act(severity)
+/obj/machinery/mindmachine_hub/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
@@ -262,16 +264,16 @@
 	visible_message(span_warning("[src] buzzes."))
 	fail_regardless = TRUE
 
-/obj/machinery/mindmachine/hub/ui_state(mob/user)
+/obj/machinery/mindmachine_hub/ui_state(mob/user)
 	return GLOB.notcontained_state
 
-/obj/machinery/mindmachine/hub/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/mindmachine_hub/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MindMachineHub", name)
 		ui.open()
 
-/obj/machinery/mindmachine/hub/ui_data(mob/user)
+/obj/machinery/mindmachine_hub/ui_data(mob/user)
 	. = list()
 	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
 	if(.["fullyConnected"])
@@ -324,7 +326,7 @@
 		.["secondStat"] = null
 		.["secondMindType"] = null
 
-/obj/machinery/mindmachine/hub/ui_act(action, params)
+/obj/machinery/mindmachine_hub/ui_act(action, params)
 	if(..())
 		return
 
@@ -366,10 +368,10 @@
 			addtimer(CALLBACK(src, PROC_REF(try_activate), usr), 3 SECONDS)
 
 /// Finds the two nearest mind machine pods and use them for `connect_pods` if possible.
-/obj/machinery/mindmachine/hub/proc/try_connect_pods()
+/obj/machinery/mindmachine_hub/proc/try_connect_pods()
 	var/first_found
 	for(var/direction in GLOB.cardinals)
-		var/obj/machinery/mindmachine/pod/found = locate(/obj/machinery/mindmachine/pod, get_step(src, direction))
+		var/obj/machinery/mindmachine_pod/found = locate(/obj/machinery/mindmachine_pod, get_step(src, direction))
 		if(!found)
 			continue
 		if(found.hub) // Already connected to something else.
@@ -382,20 +384,20 @@
 	return FALSE
 
 /// Connects pods to itself & connects itself to the pods.
-/obj/machinery/mindmachine/hub/proc/connect_pods(obj/machinery/mindmachine/pod/first, obj/machinery/mindmachine/pod/second)
+/obj/machinery/mindmachine_hub/proc/connect_pods(obj/machinery/mindmachine_pod/first, obj/machinery/mindmachine_pod/second)
 	firstPod = first
 	firstPod.hub = src
 	secondPod = second
 	secondPod.hub = src
 
 /// Disconnects pods from itself & disconnects itself from the pods.
-/obj/machinery/mindmachine/hub/proc/disconnect_pods()
+/obj/machinery/mindmachine_hub/proc/disconnect_pods()
 	firstPod?.hub = null
 	firstPod = null
 	secondPod?.hub = null
 	secondPod = null
 
-/obj/machinery/mindmachine/hub/proc/should_fail(no_fail = FALSE, ignore_rigged = FALSE)
+/obj/machinery/mindmachine_hub/proc/should_fail(no_fail = FALSE, ignore_rigged = FALSE)
 	if(no_fail)
 		return FALSE
 	if(!ignore_rigged && fail_regardless)
@@ -405,7 +407,7 @@
 	return FALSE
 
 /// Safely attempts to mindswap, performs any required checks, aborts if checks fail.
-/obj/machinery/mindmachine/hub/proc/initiate_mindswap(check_active = TRUE, check_resist = FALSE, check_antag_datum = FALSE)
+/obj/machinery/mindmachine_hub/proc/initiate_mindswap(check_active = TRUE, check_resist = FALSE, check_antag_datum = FALSE)
 	var/ret = can_mindswap(check_active, check_resist, check_antag_datum)
 	if(ret == MINDMACHINE_CAN_SUCCESS)
 		handle_mindswap(firstPod.occupant, secondPod.occupant)
@@ -413,7 +415,7 @@
 	return FALSE
 	
 /// Checks if they meet the requirements to mindswap.
-/obj/machinery/mindmachine/hub/proc/can_mindswap(check_active = FALSE, check_resist = FALSE, check_antag_datum = FALSE)
+/obj/machinery/mindmachine_hub/proc/can_mindswap(check_active = FALSE, check_resist = FALSE, check_antag_datum = FALSE)
 	if(!src)  // Hub deleted while delay activating.
 		return MINDMACHINE_CAN_SRCGONE
 	if(!firstPod || !secondPod)
@@ -473,7 +475,7 @@
 	return MINDMACHINE_CAN_SUCCESS
 
 /// Returns what type of mindswapping we should do.
-/obj/machinery/mindmachine/hub/proc/determine_mindswap_type(mob/living/firstOccupant, mob/living/secondOccupant)
+/obj/machinery/mindmachine_hub/proc/determine_mindswap_type(mob/living/firstOccupant, mob/living/secondOccupant)
 	if(!firstOccupant.key && !secondOccupant.key)
 		return MINDMACHINE_SENTIENT_NONE
 	if(firstOccupant.key && secondOccupant.key)
@@ -481,7 +483,7 @@
 	return MINDMACHINE_SENTIENT_SOLO
 
 /// Mindswaps the two occupants based on their determined mindswap type.
-/obj/machinery/mindmachine/hub/proc/handle_mindswap(mob/living/firstOccupant, mob/living/secondOccupant)
+/obj/machinery/mindmachine_hub/proc/handle_mindswap(mob/living/firstOccupant, mob/living/secondOccupant)
 	var/type = determine_mindswap_type(firstOccupant, secondOccupant)
 	switch(type)
 		if(MINDMACHINE_SENTIENT_NONE)
@@ -508,7 +510,7 @@
 			return TRUE
 
 /// Switches various factors between two non-sentient animals.
-/obj/machinery/mindmachine/hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal, fail = FALSE)
+/obj/machinery/mindmachine_hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal, fail = FALSE)
 	// Faction
 	var/list/firstFaction = firstAnimal.faction.Copy()
 	var/list/secondFaction = secondAnimal.faction.Copy()
@@ -526,7 +528,7 @@
 	secondAnimal.speak = firstSpeak
 
 /// Mindswaps the two occupants (which one is sentient).
-/obj/machinery/mindmachine/hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant, fail = FALSE)
+/obj/machinery/mindmachine_hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant, fail = FALSE)
 	if(!otherOccupant.mind)
 		otherOccupant.mind_initialize()
 
@@ -543,7 +545,7 @@
 	SEND_SOUND(sentientMind, sound('sound/magic/mandswap.ogg'))
 	SEND_SOUND(otherMind, sound('sound/magic/mandswap.ogg'))
 
-/obj/machinery/mindmachine/hub/proc/mindswap_malfunction(mob/living/firstOccupant, mob/living/secondOccupant, mindtype)
+/obj/machinery/mindmachine_hub/proc/mindswap_malfunction(mob/living/firstOccupant, mob/living/secondOccupant, mindtype)
 	if(!mindtype)
 		return
 	
@@ -593,7 +595,7 @@
 			
 			selectedMob = pick(acceptableMobs)
 			mindswap_sentient(firstOccupant, selectedMob)
-			selectedMob.emote("gasp")
+			selectedMob.emote("gasp") // Hints everyone nearby that something is off about this previously-nonsentient mob.
 			to_chat(selectedMob, span_danger("Your mind is thrown out of the machine and forced into a nearby vessel!"))
 			return
 		if(MINDMACHINE_SENTIENT_PAIR)
@@ -604,22 +606,23 @@
 			mindswap_malfunction(secondOccupant, null, MINDMACHINE_SENTIENT_SOLO)
 			return
 
-/obj/machinery/mindmachine/pod
+/obj/machinery/mindmachine_pod
 	name = "\improper mind machine pod"
 	desc = "A large pod used for mind transfers. \
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
+	icon = 'icons/obj/machines/mind_machine.dmi'
 	icon_state = "pod_open"
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
-	var/obj/machinery/mindmachine/hub/hub
+	var/obj/machinery/mindmachine_hub/hub
 	/// Is this pod closed and locked?
 	var/locked = FALSE
 
-/obj/machinery/mindmachine/pod/Initialize(mapload)
+/obj/machinery/mindmachine_pod/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
 
-/obj/machinery/mindmachine/pod/update_icon_state()
+/obj/machinery/mindmachine_pod/update_icon_state()
 	switch(state_open)
 		if(TRUE)
 			icon_state = "pod_open"
@@ -630,11 +633,11 @@
 				icon_state = "pod_closed"
 	return ..()
 
-/obj/machinery/mindmachine/pod/Destroy()
+/obj/machinery/mindmachine_pod/Destroy()
 	hub?.disconnect_pods()
 	return ..()
 
-/obj/machinery/mindmachine/pod/attackby(obj/item/I, mob/user, params)
+/obj/machinery/mindmachine_pod/attackby(obj/item/I, mob/user, params)
 	// Force Unlock
 	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_CROWBAR)
 		if(do_after(user, 1 SECONDS, src))
@@ -648,7 +651,7 @@
 	return ..()
 
 /// Lets you shove people (or yourself) into the pod.
-/obj/machinery/mindmachine/pod/MouseDrop_T(atom/dropped, mob/user)
+/obj/machinery/mindmachine_pod/MouseDrop_T(atom/dropped, mob/user)
 	if(!isliving(dropped))
 		return
 	var/mob/living/living_mob = dropped
@@ -673,7 +676,7 @@
 		close_machine(dropped)
 		return
 
-/obj/machinery/mindmachine/pod/AltClick(mob/user)
+/obj/machinery/mindmachine_pod/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(locked)
@@ -684,15 +687,15 @@
 	else
 		open_machine()
 
-/obj/machinery/mindmachine/pod/Exited(atom/movable/user)
+/obj/machinery/mindmachine_pod/Exited(atom/movable/user)
 	if(!state_open && user == occupant)
 		container_resist(user)
 
-/obj/machinery/mindmachine/pod/relaymove(mob/user)
+/obj/machinery/mindmachine_pod/relaymove(mob/user)
 	if(!state_open)
 		container_resist(user)
 
-/obj/machinery/mindmachine/pod/container_resist(mob/living/user)
+/obj/machinery/mindmachine_pod/container_resist(mob/living/user)
 	if(!locked)
 		open_machine()
 		return
@@ -710,11 +713,11 @@
 		span_notice("You successfully break out of [src]!"))
 	open_machine()
 
-/obj/machinery/mindmachine/pod/close_machine(atom/movable/target)
+/obj/machinery/mindmachine_pod/close_machine(atom/movable/target)
 	..(target)
 	playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 
-/obj/machinery/mindmachine/pod/open_machine(drop)
+/obj/machinery/mindmachine_pod/open_machine(drop)
 	hub?.deactivate()
 	locked = FALSE
 	..(drop)
