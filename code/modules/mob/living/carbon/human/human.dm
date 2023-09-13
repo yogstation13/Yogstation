@@ -98,9 +98,7 @@
 		if(istype(src))
 			var/datum/species/ethereal/eth_species = src.dna?.species
 			if(istype(eth_species))
-				var/obj/item/organ/stomach/ethereal/stomach = src.getorganslot(ORGAN_SLOT_STOMACH)
-				if(istype(stomach))
-					. += "Crystal Charge: [round((stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER), 0.1)]%"
+				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
 
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
@@ -652,10 +650,6 @@
 			to_chat(src, span_warning("You have no lungs to breathe with, so you cannot perform CPR!"))
 			return FALSE
 
-		if (HAS_TRAIT(src, TRAIT_NOBREATH))
-			to_chat(src, span_warning("You do not breathe, so you cannot perform CPR!"))
-			return FALSE
-
 		visible_message(span_notice("[src] is trying to perform CPR on [target.name]!"), \
 						span_notice("You try to perform CPR on [target.name]... Hold still!"))
 
@@ -1130,11 +1124,25 @@
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
+		if(!istype(getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+			nutrition = 0
+			dna?.species.get_hunger_alert(src)
+			return FALSE
+		if(nutrition >= NUTRITION_LEVEL_FAT)
+			return FALSE
+		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
 	return ..()
 
 /mob/living/carbon/human/set_nutrition(change) //Seriously fuck you oldcoders.
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
+		if(!istype(getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+			nutrition = 0
+			dna?.species.get_hunger_alert(src)
+			return FALSE
+		change = min(change, NUTRITION_LEVEL_FULL)
 	return ..()
 
 /mob/living/carbon/human/proc/play_xylophone()

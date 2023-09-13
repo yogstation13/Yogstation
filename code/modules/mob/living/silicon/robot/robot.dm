@@ -603,7 +603,8 @@
 		to_chat(user, span_notice("The cover interface glitches out for a split second."))
 
 /mob/living/silicon/robot/AltClick(mob/user)
-	togglelock(user)
+	if(Adjacent(user))
+		togglelock(user)
 
 /// Use this to add upgrades to robots. It'll register signals for when the upgrade is moved or deleted, if not single use.
 /mob/living/silicon/robot/proc/add_to_upgrades(obj/item/borg/upgrade/new_upgrade, mob/user, from_admin = FALSE)
@@ -1060,13 +1061,18 @@
 
 	if(sight_mode & BORGMESON)
 		sight |= SEE_TURFS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		see_in_dark = 1
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		see_in_dark = 2
+
+	if(sight_mode & BORGMESON_NIGHTVISION)
+		sight |= SEE_TURFS
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		see_in_dark = 8
 
 	if(sight_mode & BORGMATERIAL)
 		sight |= SEE_OBJS
 		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		see_in_dark = 1
+		see_in_dark = 2
 
 	if(sight_mode & BORGXRAY)
 		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
@@ -1175,16 +1181,10 @@
 	else
 		status_flags &= ~CANPUSH
 
-	if(module.clean_on_move)
-		AddElement(/datum/element/cleaning)
-	else
-		RemoveElement(/datum/element/cleaning)
-
 	hat_offset = module.hat_offset
 
 	magpulse = module.magpulsing
 	updatename()
-
 
 /mob/living/silicon/robot/proc/place_on_head(obj/item/new_hat)
 	if(hat)

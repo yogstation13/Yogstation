@@ -51,7 +51,7 @@
 	return S
 
 /obj/item/organ/appendix/get_availability(datum/species/species)
-	return !(TRAIT_NOHUNGER in species.inherent_traits)
+	return !((TRAIT_NOHUNGER in species.inherent_traits) || (TRAIT_POWERHUNGRY in species.inherent_traits))
 
 /obj/item/organ/appendix/cybernetic
 	name = "cybernetic appendix"
