@@ -50,7 +50,7 @@
 	var/cost = 4
 	/// Should the next completed mindswap fail?
 	var/fail_regardless = FALSE
-	/// If not rigged, what is the chance of failure?
+	/// If not rigged (and not delayed), what is the chance of failure?
 	var/fail_chance = 30
 	/// Can silicons be mindswapped?
 	var/silicon_permitted = FALSE
@@ -504,7 +504,7 @@
 			return TRUE
 
 /// Switches various factors between two non-sentient animals.
-/obj/machinery/mindmachine_hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal, fail = FALSE)
+/obj/machinery/mindmachine_hub/proc/mindswap_nonsentient(mob/living/simple_animal/firstAnimal, mob/living/simple_animal/secondAnimal)
 	// Faction
 	var/list/firstFaction = firstAnimal.faction.Copy()
 	var/list/secondFaction = secondAnimal.faction.Copy()
@@ -522,7 +522,7 @@
 	secondAnimal.speak = firstSpeak
 
 /// Mindswaps the two occupants (which one is sentient).
-/obj/machinery/mindmachine_hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant, fail = FALSE)
+/obj/machinery/mindmachine_hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant)
 	if(!otherOccupant.mind)
 		otherOccupant.mind_initialize()
 
