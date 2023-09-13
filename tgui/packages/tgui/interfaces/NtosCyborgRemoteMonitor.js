@@ -114,6 +114,11 @@ export const NtosCyborgRemoteMonitorContent = (props, context) => {
                                     : "Nominal"}
                             </Box>
                           </LabeledList.Item>
+                          <LabeledList.Item label="Location">
+                            <Box>
+                              {cyborg.locstring}
+                            </Box>
+                          </LabeledList.Item>
                           <LabeledList.Item label="Condition">
                             <Box color={cyborg.integ <= 25
                               ? 'bad'
