@@ -74,6 +74,7 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/head/helmet/skull = 2,
 		/obj/item/clothing/head/helmet/rus_helmet = 2,
 		//weight of 1 - things that are decently strong, but lacking in some way
+		/obj/item/nullrod/staff = 1,
 		/obj/item/clothing/suit/space/hardsuit/ancient = 1,
 		/obj/item/clothing/head/helmet/riot = 1,
 		/obj/item/clothing/suit/armor/riot = 1,
@@ -108,7 +109,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/head/helmet/swat = -1,
 		/obj/item/clothing/suit/space/swat = -1,
 		//Weight of -2 - decent armour, space suits, no slowdown or just really good stats (good enough to finish a round with)
-		/obj/item/nullrod/staff = -2,
 		/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced = -2,
 		/obj/item/clothing/suit/space/hardsuit/powerarmor_t45b = -2,
 		/obj/item/clothing/suit/space/hardsuit/elder_atmosian = -2,
@@ -161,7 +161,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/fireaxe/metal_h2_axe = 1,
 		/obj/item/nullrod/whip = 1,
 
-		/obj/item/melee/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/shotgun/riot = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
 		/obj/item/melee/baseball_bat/homerun = 0,
@@ -169,6 +168,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/nullrod/talking = 0,
 
 		/obj/item/melee/powerfist = -1,
+		/obj/item/melee/vxtvulhammer = -1,
 		/obj/item/gun/ballistic/automatic/pistol = -1,
 		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
 		/obj/item/melee/transforming/energy/sword = -1,
@@ -235,15 +235,16 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
+
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
+		/obj/item/nullrod/servoskull = 3,
+		/obj/item/nullrod/staff = 3,
 
 		/obj/item/autosurgeon/cmo = 2,
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
-		/obj/item/nullrod/servoskull = 1,
-		/obj/item/nullrod/staff = 1,
 
 		/obj/item/teleportation_scroll/apprentice = 0,
 		/obj/effect/spawner/lootdrop/ammobox = 0,
@@ -268,7 +269,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
-		/obj/item/autosurgeon/syndicate/spinalspeed = -3, //Useful, but obvious, and gibs you if you aren't careful
 		/obj/item/battleroyale/martial/phytosian = -3,
 		/obj/item/battleroyale/martial/plasmaman = -3,
 
@@ -287,6 +287,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/stand_arrow/safe = -5,
 		/obj/item/mdrive = -5, //get out of jail free card
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
+		/obj/item/autosurgeon/syndicate/spinalspeed = -5, // No opportunity cost speed boost
 
 		/obj/item/spellbook = -8,
 		))
@@ -317,6 +318,9 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			name = "Healing Supply Crate"
 			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
+
+	if(type != 5)//don't remove healing crates
+		addtimer(CALLBACK(src, PROC_REF(declutter)), 6 MINUTES)//remove obsolete outscaled crates after a bit
 
 	var/selected
 	switch(type)
@@ -349,6 +353,13 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
+
+/obj/structure/closet/crate/battleroyale/proc/declutter()
+	if(QDELETED(src))
+		return
+	for(var/obj/loot in contents)
+		qdel(loot)
+	qdel(src)
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
