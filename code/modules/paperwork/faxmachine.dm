@@ -166,8 +166,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	switch(destination)
 		if ("Central Command")
 			for(var/client/C in GLOB.permissions.admins) //linked to prayers cause we are running out of legacy toggles
-				if(C.prefs.chat_toggles & CHAT_PRAYER) //if to be moved elsewhere then we must declutter legacy toggles
-					if(C.prefs.toggles & SOUND_PRAYERS)//if done then delete these comments
+				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX) //if to be moved elsewhere then we must declutter legacy toggles
+					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)//if done then delete these comments
 						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
 	sendcooldown = world.time + 1 MINUTES

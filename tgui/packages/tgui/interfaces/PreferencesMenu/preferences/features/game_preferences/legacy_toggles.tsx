@@ -134,7 +134,7 @@ export const sound_midi: FeatureToggle = {
 };
 
 export const sound_prayers: FeatureToggle = {
-  name: "Enable prayer sound",
+  name: "Enable prayer sound and Central Command fax",
   category: "ADMIN",
   component: CheckboxInput,
 };
