@@ -1,16 +1,6 @@
-/obj/machinery/mindmachine
-	name = "\improper mind machine"
-	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/machines/mind_machine.dmi'
-	density = TRUE
-
-/*
- fix antag
- balance
- lock behind a tech (abductor?)
-*/
-
-#define MINDMACHINE_CAN_SUCCESS 1
+// One of the returned values from `/obj/machinery/mindmachine_hub/can_mindswap()`
+// Used to determine the reason why they failed to mindswap.
+#define MINDMACHINE_CAN_SUCCESS 1 // Except this value, this is success.
 #define MINDMACHINE_CAN_SRCGONE 2
 #define MINDMACHINE_CAN_PODS 3
 #define MINDMACHINE_CAN_OCCUPANTS 4
@@ -26,6 +16,8 @@
 #define MINDMACHINE_CAN_ADMINGHOST 14
 #define MINDMACHINE_CAN_ANTAGBLACKLIST 15
 
+// One of the returned values from `/obj/machinery/mindmachine_hub/determine_mindswap_type()`
+// Used to determine if the pods contained 2 (pair), 1 (solo), or 0 (none) sentient mobs.
 #define MINDMACHINE_SENTIENT_PAIR 1
 #define MINDMACHINE_SENTIENT_SOLO 2
 #define MINDMACHINE_SENTIENT_NONE 3
@@ -66,7 +58,6 @@
 	var/delaytransfer_permitted = FALSE
 	/// Is the delay transfer active?
 	var/delaytransfer_active = FALSE
-
 	COOLDOWN_DECLARE(until_completion)
 
 /obj/machinery/mindmachine_hub/Initialize(mapload)
@@ -125,7 +116,7 @@
 
 /obj/machinery/mindmachine_hub/proc/try_activate(mob/user)
 	delaytransfer_active = FALSE
-	// No checking here for protection/antag to prevent easy antag checking.
+	// No checking here for mind protection/antag to prevent easy antag checking.
 	switch(can_mindswap())
 		if(MINDMACHINE_CAN_SUCCESS)
 			activate()
@@ -251,7 +242,7 @@
 	if(fail_regardless)
 		return FALSE
 	playsound(src, "sparks", 100, 1)
-	to_chat(user, span_warning("You temporarily alter the mind transfer regulator.")) // A bunch of words that I made up.
+	to_chat(user, span_warning("You temporarily alter the mind transfer regulator."))
 	fail_regardless = TRUE
 
 /obj/machinery/mindmachine_hub/emp_act(severity)
@@ -276,7 +267,7 @@
 /obj/machinery/mindmachine_hub/ui_data(mob/user)
 	. = list()
 	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
-	if(.["fullyConnected"])
+	if(firstPod && secondPod)
 		.["fullyOccupied"] = (firstPod.occupant && secondPod.occupant) ? TRUE : FALSE
 	.["canDelayTransfer"] = delaytransfer_permitted
 	.["active"] = active
@@ -297,7 +288,7 @@
 				if(DEAD)
 					.["firstStat"] = "Dead"
 			.["firstMindType"] = firstLiving.key ? "Sentient" : "Non-Sentient"
-	else
+	else // If you don't null it and keep the ui open, then above data doesn't change until you reopen.
 		.["firstOpen"] = null
 		.["firstLocked"] = null
 		.["firstName"] = null
@@ -445,10 +436,10 @@
 				return MINDMACHINE_CAN_SILICON_AISHELL
 
 	if(determine_mindswap_type(firstOccupant, secondOccupant) == MINDMACHINE_SENTIENT_NONE)
-		if(!isanimal(firstOccupant) || !isanimal(secondOccupant)) // Must be both animals.
+		if(!isanimal(firstOccupant) || !isanimal(secondOccupant)) // No point in mindswapping two non-sentient humans.
 			return MINDMACHINE_CAN_MINDLESS_NOTANIMALS
-	// Some checks (check_resist & check_antag_datum) are only done at the start of
-	// the actual mindswap solely to prevent people from antag checking by scanning them.
+	/* 	Some checks (check_resist & check_antag_datum) are only done at the start of
+		the actual mindswap solely to prevent people from antag checking by scanning them. */
 	if(check_resist)
 		if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			return MINDMACHINE_CAN_MINDRESIST
@@ -612,6 +603,7 @@
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon = 'icons/obj/machines/mind_machine.dmi'
 	icon_state = "pod_open"
+	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine_hub/hub
