@@ -776,6 +776,17 @@
 	range = 15
 	speed = 7
 
+/obj/item/projectile/heretic_assault
+	name ="mindbolt bolt"
+	icon_state= "chronobolt"
+	damage = 20 //Yogs - Down from 25
+	armour_penetration = 20
+	speed = 4 // Yogs - Slowed from 2
+	eyeblur = 0
+	damage_type = BRUTE
+	pass_flags = PASSTABLE
+	range = 5
+
 /obj/item/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
 	. = ..()
 	var/turf/target_turf = get_turf(src)

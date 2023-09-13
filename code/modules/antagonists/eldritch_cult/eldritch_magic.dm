@@ -97,6 +97,103 @@
 	. = span_notice("[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!")
 	remove_hand_with_no_refund(user)
 
+/datum/action/cooldown/spell/pointed/mansus_ranged
+	name = "Knowing Mansus Grasp"
+	desc = "A powerful combat initiation spell that knocks down it's target and blurs their vision. It may have other effects if you continue your research..."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "mansus_grasp"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
+
+	sound = 'sound/items/welder.ogg'
+	school = SCHOOL_EVOCATION
+	cooldown_time = 20 SECONDS
+
+	invocation = "R'CH T'H TR'TH!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	cast_range = 3
+
+	active_msg = "You prepare to grasp at someone with your mind..."
+
+	/// How long you want to keep them down
+	var/knockdown_duration = 2 SECONDS
+	/// How long their eyes should be blurry for
+	var/eye_blur_duration = 1 SECONDS
+
+/datum/action/cooldown/spell/pointed/mansus_ranged/is_valid_target(atom/cast_on)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ishuman(cast_on))
+		return FALSE
+
+	var/mob/living/carbon/human/human_target = cast_on
+	return !is_blind(human_target)
+
+/datum/action/cooldown/spell/pointed/mansus_ranged/cast(mob/living/carbon/human/cast_on)
+	. = ..()
+	if(cast_on.can_block_magic(antimagic_flags))
+		to_chat(cast_on, span_notice("You feel a light tap on your shoulder."))
+		to_chat(owner, span_warning("The spell had no effect!"))
+		return FALSE
+
+	to_chat(cast_on, span_warning("Your mind cries out in pain!"))
+	cast_on.Knockdown(knockdown_duration)
+	cast_on.blur_eyes(eye_blur_duration)
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/mansus_ranged_upgraded
+	name = "All Knowing Mansus Grasp"
+	desc = "A powerful combat initiation spell that knocks down targets, blurs their vision, and temporarily blinds them. You have perfected this technique."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "mad_touch"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
+
+	sound = 'sound/items/welder.ogg'
+	school = SCHOOL_EVOCATION
+	cooldown_time = 25 SECONDS
+
+	invocation = "R'CH T'H TR'TH!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	cast_range = 4
+
+	active_msg = "You prepare to grasp at someone with your mind..."
+
+	/// How long you want to keep them down
+	var/knockdown_duration = 2 SECONDS
+	/// How long their eyes should be blurry for
+	var/eye_blur_duration = 2 SECONDS
+	/// How long their eyes should be blind for
+	var/eye_blind_duration = 2 SECONDS
+
+/datum/action/cooldown/spell/pointed/mansus_ranged_upgraded/is_valid_target(atom/cast_on)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ishuman(cast_on))
+		return FALSE
+
+	var/mob/living/carbon/human/human_target = cast_on
+	return !is_blind(human_target)
+
+/datum/action/cooldown/spell/pointed/mansus_ranged_upgraded/cast(mob/living/carbon/human/cast_on)
+	. = ..()
+	if(cast_on.can_block_magic(antimagic_flags))
+		to_chat(cast_on, span_notice("You feel a light tap on your shoulder."))
+		to_chat(owner, span_warning("The spell had no effect!"))
+		return FALSE
+
+	to_chat(cast_on, span_warning("Your mind cries out in pain!"))
+	cast_on.Knockdown(knockdown_duration)
+	cast_on.blur_eyes(eye_blur_duration)
+	cast_on.blind_eyes(eye_blind_duration)
+	return TRUE
+
 /datum/action/cooldown/spell/aoe/rust_conversion
 	name = "Aggressive Spread"
 	desc = "Spread rust onto nearby turfs, possibly destroying rusted walls."
@@ -114,7 +211,6 @@
 	spell_requirements = NONE
 
 	aoe_radius = 3
-
 
 /datum/action/cooldown/spell/aoe/rust_conversion/get_things_to_cast_on(atom/center)
 	var/list/things = list()
@@ -832,3 +928,130 @@
 	active = FALSE
 	owner.client?.view_size.resetToDefault()
 	COOLDOWN_START(src, last_toggle, 4 SECONDS)
+
+/datum/action/cooldown/spell/aoe/repulse/frenzied_roar
+	name = "Frenzied Roar"
+	desc = "An AOE roar spell that sends all near by people flying."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon_state = "void_magnet"
+	sound = 'yogstation/sound/magic/demented_outburst_scream.ogg'
+
+	school = SCHOOL_FORBIDDEN
+	invocation = "GR' RO'AR"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = NONE
+	aoe_radius = 5
+
+	cooldown_time = 40 SECONDS
+
+/datum/action/cooldown/spell/pointed/projectile/eldritchbolt
+	name = "Eldritch Bolt"
+	desc = "Fire a bolt of Eldritch energy. It will jump between targets, but can't knock them down."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon_state = "lightning"
+	active_overlay_icon_state = "bg_spell_border_active_yellow"
+
+	sound = 'sound/magic/lightningbolt.ogg'
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 40 SECONDS
+
+	invocation = "EL'RICH BL'AS'T"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = NONE
+
+	base_icon_state = "lightning"
+	active_msg = "You energize your hands with raw power!"
+	deactive_msg = "You let the energy flow out of your hands back into yourself..."
+	projectile_type = /obj/item/projectile/magic/aoe/lightning 
+	
+
+	/// The range the bolt itself (different to the range of the projectile)
+	var/bolt_range = 6
+	/// The power of the bolt itself
+	var/bolt_power = 66666
+	/// The flags the bolt itself takes when zapping someone
+	var/bolt_flags = TESLA_MOB_DAMAGE
+
+/datum/action/cooldown/spell/pointed/projectile/eldritchbolt/Grant(mob/grant_to)
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, type) //HELL YEAHHH, LIGHTNING BOLT!
+
+/datum/action/cooldown/spell/pointed/projectile/eldritchbolt/Remove(mob/living/remove_from)
+	REMOVE_TRAIT(remove_from, TRAIT_SHOCKIMMUNE, type) //FUCK
+	return ..()
+
+/datum/action/cooldown/spell/pointed/projectile/eldritchbolt/ready_projectile(obj/item/projectile/to_fire, atom/target, mob/user, iteration)
+	. = ..()
+	if(!istype(to_fire, /obj/item/projectile/magic/aoe/lightning))
+		return
+
+	var/obj/item/projectile/magic/aoe/lightning/bolt = to_fire
+	bolt.tesla_range = bolt_range
+	bolt.tesla_power = bolt_power
+	bolt.tesla_flags = bolt_flags
+
+/datum/action/cooldown/spell/pointed/obfuscation
+	name = "Mental Obfuscation"
+	desc = "A short range targeted teleport."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "mansus_link"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/phase_jump.dmi'
+
+	school = SCHOOL_FORBIDDEN
+
+	cooldown_time = 20 SECONDS
+	cast_range = 4
+	invocation = "PH'ASE"
+	invocation_type = INVOCATION_WHISPER
+	active_msg = span_notice("You prepare to warp everyone's vision.")
+	deactive_msg = span_notice("You relax your mind.")
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/pointed/obfuscation/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/turf/target_turf = get_turf(target)
+	var/phasein = /obj/effect/temp_visual/dir_setting/cult/phase
+	var/phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
+	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
+	owner.forceMove(target_turf)
+	var/obj/spot2 = new phasein(get_turf(user), user.dir)
+	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
+	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/obfuscation/is_valid_target(atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/turf/T = get_turf(target)
+	var/area/AU = get_area(owner)
+	var/area/AT = get_area(T)
+	if(AT.noteleport || AU.noteleport)
+		owner.balloon_alert(owner, "can't teleport there!")
+		return FALSE
+	return TRUE
+
+/datum/action/cooldown/spell/basic_projectile/assault
+	name = "Amygdalla Assault"
+	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/obj/hand_of_god_structures.dmi'
+	button_icon_state = "ward-red"
+
+	sound = 'sound/weapons/resonator_blast.ogg'
+
+	cooldown_time = 35 SECONDS
+	spell_requirements = NONE
+
+	invocation = "D'O'DGE TH'IS!"
+	invocation_type = INVOCATION_SHOUT
+
+	projectile_type = /obj/item/projectile/heretic_assault

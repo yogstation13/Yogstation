@@ -258,8 +258,30 @@
 	icon_state = "eldrich_flask"
 	list_reagents = list(/datum/reagent/eldritch = 50)
 
-/obj/item/flashlight/lantern/eldritch_lantern
-	name = "Eldritch Lantern"
-	desc = "An ornate, green lantern."
-	color = LIGHT_COLOR_GREEN
-	light_color = LIGHT_COLOR_GREEN
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye
+	name = "An ancient eye of a forgotten god"
+	desc = "Allows the user to swap between three hud types, science, medical, and diagnostic"
+	icon_state = "godeye"
+	item_state = "godeye"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	hud_type = DATA_HUD_SECURITY_BASIC
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_EYES)
+		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/attack_self(mob/user)
+	..()
+	switch (hud_type)
+		if (DATA_HUD_MEDICAL_BASIC)
+			icon_state = "godeye"
+		if (DATA_HUD_SECURITY_BASIC)
+			icon_state = "godeye"
+		if (DATA_HUD_DIAGNOSTIC_BASIC)
+			icon_state = "godeye"
+		else
+			icon_state = "godeye"
+	user.update_inv_glasses()
+	
+	
