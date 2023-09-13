@@ -7,25 +7,24 @@
 /*
  fix antag
  balance
- parts affect success chance
- parts allow silicon swap
  lock behind a tech (abductor?)
- use cooldown instead
 */
 
 #define MINDMACHINE_CAN_SUCCESS 1
-#define MINDMACHINE_CAN_PODS 2
-#define MINDMACHINE_CAN_OCCUPANTS 3
-#define MINDMACHINE_CAN_DEAD 4
-#define MINDMACHINE_CAN_CHARGE 5
-#define MINDMACHINE_CAN_ACTIVE 6
-#define MINDMACHINE_CAN_MINDRESIST 7
-#define MINDMACHINE_CAN_ADMINGHOST 8
-#define MINDMACHINE_CAN_ANTAGBLACKLIST 9
-#define MINDMACHINE_CAN_MINDSHIELD 10
-#define MINDMACHINE_CAN_MOBBLACKLIST 11
-#define MINDMACHINE_CAN_SILICON 12
-#define MINDMACHINE_CAN_MINDLESS_NOTANIMALS 13
+#define MINDMACHINE_CAN_SRCGONE 2
+#define MINDMACHINE_CAN_PODS 3
+#define MINDMACHINE_CAN_OCCUPANTS 4
+#define MINDMACHINE_CAN_DEAD 5
+#define MINDMACHINE_CAN_CHARGE 6
+#define MINDMACHINE_CAN_ACTIVE 7
+#define MINDMACHINE_CAN_MOBBLACKLIST 8
+#define MINDMACHINE_CAN_SILICON 9
+#define MINDMACHINE_CAN_SILICON_AISHELL 10
+#define MINDMACHINE_CAN_MINDLESS_NOTANIMALS 11
+#define MINDMACHINE_CAN_MINDRESIST 12
+#define MINDMACHINE_CAN_MINDSHIELD 13
+#define MINDMACHINE_CAN_ADMINGHOST 14
+#define MINDMACHINE_CAN_ANTAGBLACKLIST 15
 
 #define MINDMACHINE_SENTIENT_PAIR 1
 #define MINDMACHINE_SENTIENT_SOLO 2
@@ -51,71 +50,163 @@
 	var/active = FALSE
 	/// How long does it take to fully complete a mindswap?
 	var/completion_time = 30 SECONDS
-	/// How many demiseconds have passed while `active`?
-	var/delta_since = 0
-	/// The progress to be shown in the UI (0 to 100).
-	var/progressLength = 0
-	/// Should the next completed mindswap fail in a terrible fashion?
-	var/fail_on_next = FALSE
 	/// How much charges does this hub have?
 	var/charge = 0
 	/// How much charges are required to mindswap?
-	var/cost = 1
+	var/cost = 4
+	/// Should the next completed mindswap fail?
+	var/fail_regardless = FALSE
+	/// If not rigged, what is the chance of failure?
+	var/fail_chance = 30
+	/// Can silicons be mindswapped?
+	var/silicon_permitted = FALSE
+	/// Can delay transferred be used?
+	var/delaytransfer_permitted = FALSE
+	/// Is the delay transfer active?
+	var/delaytransfer_active = FALSE
+
+	COOLDOWN_DECLARE(until_completion)
 
 /obj/machinery/mindmachine/hub/Initialize(mapload)
 	. = ..()
 	try_connect_pods()
 
 /obj/machinery/mindmachine/hub/Destroy()
+	deactivate()
 	disconnect_pods()
 	return ..()
 
 /obj/machinery/mindmachine/hub/examine(mob/user)
 	. = ..()
+	if(panel_open && fail_regardless)
+		. += span_warning("The regulator is misaligned. A <i>multitool</i> should fix it.")
 	if(!firstPod || !secondPod)
 		. += span_notice("It can be connected with two nearby mind pods by using a <i>multitool</i>.")
+	. += span_notice("The charge meter reads: [charge].")
+	. += span_notice("It costs [cost] per attempt.")
 
 /obj/machinery/mindmachine/hub/update_icon_state()
-	switch(active)
-		if(TRUE)
-			icon_state = "hub_active"
-		else
-			icon_state = "hub"
+	if(active)
+		icon_state = "hub_active"
+	else
+		icon_state = "hub"
 	return ..()
 
+/obj/machinery/mindmachine/hub/RefreshParts()
+	// 2 matter bins. Reduce failure chance by 5 per tier. Results in 30 (tier 1) to 0 (tier 4).
+	var/pre_fail_chance = 40
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
+		pre_fail_chance -= M.rating*5
+	fail_chance = max(0, pre_fail_chance)
+	// 1 capacitor. Reduces cost by 1 per tier. Results in 4 (tier 1) to 1 (tier 4).
+	var/pre_cost = 5
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		pre_cost -= C.rating*1
+	cost = max(1, pre_cost)
+	// 1 scanning module. Unlocks delayed transfer & if silicons can be mind transferred. Only useful at tier 4.
+	var/obj/item/stock_parts/scanning_module/C = locate() in component_parts
+	silicon_permitted = (C && C.rating >= 4) ? TRUE : FALSE
+	delaytransfer_permitted = (C && C.rating >= 4) ? TRUE : FALSE
+
 /obj/machinery/mindmachine/hub/process(delta_time)
-	if(!active)
-		return
-
-	delta_since += delta_time * 1 SECONDS
-	if(delta_since < completion_time) // Still waiting.
-		return
-
-	STOP_PROCESSING(SSobj, src)
-	active = FALSE
-	delta_since = 0
-	update_appearance(UPDATE_ICON)
-	firstPod?.update_appearance(UPDATE_ICON)
-	secondPod?.update_appearance(UPDATE_ICON)
-
-	switch(initiate_mindswap(TRUE, TRUE))
-		if(TRUE)
+	if(active && COOLDOWN_FINISHED(src, until_completion))
+		var/success = initiate_mindswap(FALSE, TRUE, TRUE)
+		if(success) // Successfully transferred their mind to someone/something.
+			balloon_alert_to_viewers("transferred")
 			playsound(src, 'sound/machines/ping.ogg', 100)
 		else
+			balloon_alert_to_viewers("failed")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 100)
-		
-	firstPod?.open_machine()
-	secondPod?.open_machine()
+		if(charge >= 1)
+			charge -= 1
+		deactivate()
+
+/obj/machinery/mindmachine/hub/proc/try_activate(mob/user)
+	delaytransfer_active = FALSE
+	// No checking here for protection/antag to prevent easy antag checking.
+	switch(can_mindswap())
+		if(MINDMACHINE_CAN_SUCCESS)
+			activate()
+			. = TRUE
+		if(MINDMACHINE_CAN_SRCGONE)
+			return
+		if(MINDMACHINE_CAN_PODS)
+			balloon_alert(usr, "not connected")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_OCCUPANTS)
+			balloon_alert(usr, "not enough occupants")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_DEAD)
+			balloon_alert(usr, "vital signs not detected")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_CHARGE)
+			balloon_alert(usr, "not enough charge")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_ACTIVE)
+			balloon_alert(usr, "already on")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_MINDRESIST, MINDMACHINE_CAN_ADMINGHOST, MINDMACHINE_CAN_MINDSHIELD, MINDMACHINE_CAN_ANTAGBLACKLIST)
+			balloon_alert(usr, "unable to detect brain waves")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_MOBBLACKLIST)
+			balloon_alert(usr, "mind is too great")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_SILICON)
+			balloon_alert(usr, "not upgraded for silicons")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_SILICON_AISHELL)
+			balloon_alert(usr, "silicon mind too distant")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+		if(MINDMACHINE_CAN_MINDLESS_NOTANIMALS)
+			balloon_alert(usr, "mind waves incompatible")
+			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+			return
+
+/// If not active, activates the hub and locks the pods.
+/obj/machinery/mindmachine/hub/proc/activate()
+	if(!active && firstPod && secondPod)
+		active = TRUE
+		COOLDOWN_START(src, until_completion, completion_time)
+		START_PROCESSING(SSobj, src)
+		update_appearance(UPDATE_ICON)
+		firstPod.update_appearance(UPDATE_ICON)
+		secondPod.update_appearance(UPDATE_ICON)
+		firstPod.locked = TRUE
+		secondPod.locked = TRUE
+
+/// If active, deactivates the hubs and opens the pods.
+/obj/machinery/mindmachine/hub/proc/deactivate()
+	if(active)
+		active = FALSE
+		STOP_PROCESSING(SSobj, src)
+		update_appearance(UPDATE_ICON)
+		firstPod?.update_appearance(UPDATE_ICON)
+		secondPod?.update_appearance(UPDATE_ICON)
+		firstPod?.open_machine()
+		secondPod?.open_machine()
 
 /obj/machinery/mindmachine/hub/attackby(obj/item/I, mob/user, params)
 	// Connection
 	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_MULTITOOL)
-		var/success = try_connect_pods()
-		if(success)
-			to_chat(user, span_notice("You successfully connected the [src]."))
-		else
-			to_chat(user, span_notice("[src] does not detect two nearby pods to connect to."))
-		return
+		if(panel_open && fail_regardless)
+			to_chat(user, span_notice("You realign [src]'s regulator."))
+			return
+		if(!firstPod || !secondPod)
+			var/success = try_connect_pods()
+			if(success)
+				to_chat(user, span_notice("You successfully connected the [src]."))
+			else
+				to_chat(user, span_notice("[src] does not detect two nearby pods to connect to."))
+			return
 	// Charge Increase
 	var/increase_per = 0
 	if(istype(I, /obj/item/stack/telecrystal))
@@ -154,21 +245,21 @@
 	ui_interact(user)
 
 /obj/machinery/mindmachine/hub/emag_act(mob/user, obj/item/card/emag/emag_card)
-	if(fail_on_next)
+	if(fail_regardless)
 		return FALSE
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You temporarily alter the mind transfer regulator.")) // A bunch of words that I made up.
-	fail_on_next = TRUE
+	fail_regardless = TRUE
 
 /obj/machinery/mindmachine/hub/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(fail_on_next)
+	if(fail_regardless)
 		return
 	playsound(src, "sparks", 100, 1)
-	visible_message(span_warning("[src] buzzes.]"))
-	fail_on_next = TRUE
+	visible_message(span_warning("[src] buzzes."))
+	fail_regardless = TRUE
 
 /obj/machinery/mindmachine/hub/ui_state(mob/user)
 	return GLOB.notcontained_state
@@ -181,6 +272,13 @@
 
 /obj/machinery/mindmachine/hub/ui_data(mob/user)
 	. = list()
+	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
+	if(.["fullyConnected"])
+		.["fullyOccupied"] = (firstPod.occupant && secondPod.occupant) ? TRUE : FALSE
+	.["canDelayTransfer"] = delaytransfer_permitted
+	.["active"] = active
+	.["progress"] = clamp(round(COOLDOWN_TIMELEFT(src, until_completion)/completion_time, 0.01) * 100, 0, 100)
+
 	.["firstPod"] = firstPod ? firstPod : null
 	if(firstPod)
 		.["firstOpen"] = firstPod.state_open
@@ -204,8 +302,6 @@
 		.["firstMindType"] = null
 
 	.["secondPod"] = secondPod ? secondPod : null
-	.["secondOpen"] = secondPod?.state_open ? TRUE : FALSE
-
 	if(secondPod)
 		.["secondOpen"] = secondPod.state_open
 		.["secondLocked"] = secondPod.locked
@@ -227,18 +323,11 @@
 		.["secondStat"] = null
 		.["secondMindType"] = null
 
-	.["fullyConnected"] = (firstPod && secondPod) ? TRUE : FALSE
-	.["fullyOccupied"] = (firstPod.occupant && secondPod.occupant) ? TRUE : FALSE
-	.["active"] = active
-	.["progress"] = clamp(round(delta_since/completion_time, 0.01) * 100, 0, 100)
-
-
 /obj/machinery/mindmachine/hub/ui_act(action, params)
 	if(..())
 		return
 
 	switch(action)
-		// First
 		if("first_toggledoor")
 			if(firstPod)
 				if(firstPod.state_open)
@@ -251,7 +340,6 @@
 				playsound(firstPod, 'sound/machines/switch3.ogg', 30, TRUE)
 				firstPod.locked = !firstPod.locked
 				. = TRUE
-		// Second
 		if("second_toggledoor")
 			if(secondPod)
 				if(secondPod.state_open)
@@ -264,58 +352,19 @@
 				playsound(secondPod, 'sound/machines/switch3.ogg', 30, TRUE)
 				secondPod.locked = !secondPod.locked
 				. = TRUE
-		// General
 		if("activate")
-			// We don't check for mind protection or antag right here to prevent easy antag-checking.
-			switch(can_mindswap())
-				if(MINDMACHINE_CAN_SUCCESS)
-					START_PROCESSING(SSobj, src)
-					active = TRUE
-					delta_since = 0
-					firstPod.locked = TRUE
-					secondPod.locked = TRUE
-					update_appearance(UPDATE_ICON)
-					firstPod?.update_appearance(UPDATE_ICON)
-					secondPod?.update_appearance(UPDATE_ICON)
-					. = TRUE
-				if(MINDMACHINE_CAN_PODS)
-					balloon_alert(usr, "not connected")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_OCCUPANTS)
-					balloon_alert(usr, "not enough occupants")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_DEAD)
-					balloon_alert(usr, "vital signs not detected")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_CHARGE)
-					balloon_alert(usr, "not enough charge")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_ACTIVE)
-					balloon_alert(usr, "already on")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_MINDRESIST, MINDMACHINE_CAN_ADMINGHOST, MINDMACHINE_CAN_MINDSHIELD, MINDMACHINE_CAN_ANTAGBLACKLIST)
-					balloon_alert(usr, "unable to detect brain waves")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_MOBBLACKLIST)
-					balloon_alert(usr, "mind is too great")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_SILICON)
-					balloon_alert(usr, "unable to interface with silicons")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
-				if(MINDMACHINE_CAN_MINDLESS_NOTANIMALS)
-					balloon_alert(usr, "mind waves incompatible")
-					playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
-					return
+			try_activate(usr)
+		if("activate_delay")
+			if(delaytransfer_active)
+				balloon_alert(usr, "already delayed")
+				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
+				return
+			delaytransfer_active = TRUE
+			balloon_alert(usr, "delay active")
+			playsound(src, 'sound/machines/ping.ogg', 50)
+			addtimer(CALLBACK(src, PROC_REF(try_activate), usr), 3 SECONDS)
 
-// Finds the two nearest mind machine pods and use them for `connect_pods` if possible.
+/// Finds the two nearest mind machine pods and use them for `connect_pods` if possible.
 /obj/machinery/mindmachine/hub/proc/try_connect_pods()
 	var/first_found
 	for(var/direction in GLOB.cardinals)
@@ -345,24 +394,27 @@
 	secondPod?.hub = null
 	secondPod = null
 
-/obj/machinery/mindmachine/hub/proc/end_mindswapping()
-	STOP_PROCESSING(SSobj, src)
-	active = FALSE
-	delta_since = 0
-	update_appearance(UPDATE_ICON)
-	firstPod?.update_appearance(UPDATE_ICON)
-	secondPod?.update_appearance(UPDATE_ICON)
+/obj/machinery/mindmachine/hub/proc/should_fail(no_fail = FALSE, ignore_rigged = FALSE)
+	if(no_fail)
+		return FALSE
+	if(!ignore_rigged && fail_regardless)
+		return TRUE
+	if(prob(fail_chance))
+		return TRUE
+	return FALSE
 
-/// Safely attempts to mindswap, performs antag checks, aborts if checks fail.
-/obj/machinery/mindmachine/hub/proc/initiate_mindswap(check_resist = FALSE, check_antag_datum = FALSE)
-	switch(can_mindswap(check_resist, check_antag_datum))
-		if(MINDMACHINE_CAN_SUCCESS)
-			handle_mindswap(firstPod.occupant, secondPod.occupant)
-			return TRUE
+/// Safely attempts to mindswap, performs any required checks, aborts if checks fail.
+/obj/machinery/mindmachine/hub/proc/initiate_mindswap(check_active = TRUE, check_resist = FALSE, check_antag_datum = FALSE)
+	var/ret = can_mindswap(check_active, check_resist, check_antag_datum)
+	if(ret == MINDMACHINE_CAN_SUCCESS)
+		handle_mindswap(firstPod.occupant, secondPod.occupant)
+		return TRUE
 	return FALSE
 	
 /// Checks if they meet the requirements to mindswap.
-/obj/machinery/mindmachine/hub/proc/can_mindswap(check_resist = FALSE, check_antag_datum = FALSE)
+/obj/machinery/mindmachine/hub/proc/can_mindswap(check_active = FALSE, check_resist = FALSE, check_antag_datum = FALSE)
+	if(!src)  // Hub deleted while delay activating.
+		return MINDMACHINE_CAN_SRCGONE
 	if(!firstPod || !secondPod)
 		return MINDMACHINE_CAN_PODS
 	var/mob/living/firstOccupant = firstPod.occupant
@@ -373,45 +425,48 @@
 		return MINDMACHINE_CAN_DEAD
 	if(cost > charge)
 		return MINDMACHINE_CAN_CHARGE
-	if(active)
+	if(check_active && active)
 		return MINDMACHINE_CAN_ACTIVE
-	
-	// Some checks (check_resist & check_antag_datum) are only done near the start of
+	if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
+		return MINDMACHINE_CAN_MOBBLACKLIST
+	if(issilicon(firstOccupant) || issilicon(secondOccupant))
+		if(!silicon_permitted)
+			return MINDMACHINE_CAN_SILICON
+		var/mob/living/silicon/robot/firstCyborg = firstOccupant
+		if(firstCyborg && firstCyborg.shell)
+			return MINDMACHINE_CAN_SILICON_AISHELL
+		var/mob/living/silicon/robot/secondCyborg = firstOccupant
+		if(secondCyborg && secondCyborg.shell)
+			return MINDMACHINE_CAN_SILICON_AISHELL
+
+	if(determine_mindswap_type(firstOccupant, secondOccupant) == MINDMACHINE_SENTIENT_NONE)
+		if(!isanimal(firstOccupant) || !isanimal(secondOccupant)) // Must be both animals.
+			return MINDMACHINE_CAN_MINDLESS_NOTANIMALS
+	// Some checks (check_resist & check_antag_datum) are only done at the start of
 	// the actual mindswap solely to prevent people from antag checking by scanning them.
 	if(check_resist)
 		if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			return MINDMACHINE_CAN_MINDRESIST
-		if(firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@")
-			return MINDMACHINE_CAN_ADMINGHOST
 		if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
 			return MINDMACHINE_CAN_MINDSHIELD
-
+		if(firstOccupant.key?[1] == "@" || secondOccupant.key?[1] == "@")
+			return MINDMACHINE_CAN_ADMINGHOST
 	if(check_antag_datum)
 		/* 	As depressing as it is to cut off enjoyment for certain people, these antags either cause problems
 			or it is not realistic to add them in. In addition, wizard mindswap restrictions are here too.*/
 		var/list/datum/antagonist/blacklisted_antag_datums = list(
-			// From wizard mindswap's restricted antag datums:
+			// From wizard mindswap's restricted list:
 			/datum/antagonist/changeling,
 			/datum/antagonist/cult,
-			/datum/antagonist/rev
+			/datum/antagonist/rev,
 			// Additional
 			/datum/antagonist/clockcult, // Same as bloodcult.
 			/datum/antagonist/bloodsucker,
-			/datum/antagonist/vampire,
+			/datum/antagonist/vampire
 		)
 		for(var/antag_datum in blacklisted_antag_datums)
-			to_chat(world, "to looping [antag_datum]")
 			if(firstOccupant.mind?.has_antag_datum(antag_datum) || secondOccupant.mind?.has_antag_datum(antag_datum))
-				to_chat(world,"you got a datum")
 				return MINDMACHINE_CAN_ANTAGBLACKLIST
-
-	if(is_type_in_typecache(firstOccupant, blacklisted_mobs) || is_type_in_typecache(secondOccupant, blacklisted_mobs))
-		return MINDMACHINE_CAN_MOBBLACKLIST
-	if(issilicon(firstOccupant) || issilicon(secondOccupant))
-		return MINDMACHINE_CAN_SILICON
-	if(determine_mindswap_type(firstOccupant, secondOccupant) == MINDMACHINE_SENTIENT_NONE)
-		if(!isanimal(firstOccupant) || !isanimal(secondOccupant)) // Must be both animals.
-			return MINDMACHINE_CAN_MINDLESS_NOTANIMALS
 	return MINDMACHINE_CAN_SUCCESS
 
 /// Returns what type of mindswapping we should do.
@@ -429,7 +484,7 @@
 		if(MINDMACHINE_SENTIENT_NONE)
 			if(!isanimal(firstOccupant) || !isanimal(secondOccupant))
 				return FALSE
-			if(fail_on_next)
+			if(should_fail())
 				mindswap_malfunction(firstOccupant, firstOccupant, MINDMACHINE_SENTIENT_NONE)
 			else
 				mindswap_nonsentient(firstOccupant, secondOccupant)
@@ -437,16 +492,16 @@
 		if(MINDMACHINE_SENTIENT_SOLO)
 			var/sentientOccupant = firstOccupant.key ? firstOccupant : secondOccupant
 			var/nonsentientOccupant = firstOccupant.key ? secondOccupant : firstOccupant
-			if(fail_on_next)
+			if(should_fail())
 				mindswap_malfunction(sentientOccupant, nonsentientOccupant, MINDMACHINE_SENTIENT_SOLO)
 			else
-				mindswap_sentient(sentientOccupant, nonsentientOccupant, fail_on_next)
+				mindswap_sentient(sentientOccupant, nonsentientOccupant, TRUE)
 			return TRUE
 		if(MINDMACHINE_SENTIENT_PAIR)
-			if(fail_on_next)
+			if(should_fail())
 				mindswap_malfunction(firstOccupant, secondOccupant, MINDMACHINE_SENTIENT_PAIR)
 			else
-				mindswap_sentient(firstOccupant, secondOccupant, fail_on_next)
+				mindswap_sentient(firstOccupant, secondOccupant, TRUE)
 			return TRUE
 
 /// Switches various factors between two non-sentient animals.
@@ -644,8 +699,7 @@
 	playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 
 /obj/machinery/mindmachine/pod/open_machine(drop)
-	if(hub?.active)
-		hub.end_mindswapping()
+	hub?.deactivate()
 	locked = FALSE
 	..(drop)
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)

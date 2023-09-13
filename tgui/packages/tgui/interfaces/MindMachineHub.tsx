@@ -21,6 +21,7 @@ type secondPodInformation = {
 type generalInformation = {
   fullyConnected: Boolean;
   fullyOccupied: Boolean;
+  canDelayTransfer: Boolean;
   active: Boolean;
   progress: Number;
 }
@@ -44,7 +45,7 @@ export const MindMachineHub = (props, context) => {
 
 const ConnectedSection = (props, context) => {
   const { act, data } = useBackend<generalInformation>(context);
-  const { fullyOccupied, active, progress } = data;
+  const { fullyOccupied, canDelayTransfer, active, progress } = data;
 
   return (
     <Section>
@@ -58,6 +59,13 @@ const ConnectedSection = (props, context) => {
           disabled={!fullyOccupied || active}
           width="350px"
           onClick={() => act('activate', {})}
+        />
+        <Button
+          icon="first-aid"
+          content="Delayed Transfer"
+          disabled={!canDelayTransfer}
+          width="350px"
+          onClick={() => act('activate_delay', {})}
         />
       </Section>
       {!!active && progress !== null && (

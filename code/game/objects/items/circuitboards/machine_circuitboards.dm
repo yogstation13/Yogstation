@@ -906,7 +906,7 @@
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/capacitor = 1,
-		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/scanning_module = 1,
 		/obj/item/stack/ore/bluespace_crystal = 2)
 
 /obj/item/circuitboard/machine/mindmachine_pod
