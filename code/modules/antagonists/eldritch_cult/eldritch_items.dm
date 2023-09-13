@@ -194,6 +194,12 @@
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
+/obj/item/gun/magic/hook/sickly_blade/mind
+	name = "mind blade"
+	desc = "A monsterously sharp blade made from pure knowledge and paper. Endlessly it searches to quench it's thirst, often eviserating the user in the process."
+	icon_state = "mind_blade"
+	item_state = "mind_blade"
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
@@ -223,7 +229,6 @@
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
 
-
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	name = "ominous hood"
 	desc = "A torn, dust-caked hood. You feel it watching you."
@@ -252,3 +257,9 @@
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldrich_flask"
 	list_reagents = list(/datum/reagent/eldritch = 50)
+
+/obj/item/flashlight/lantern/eldritch_lantern
+	name = "Eldritch Lantern"
+	desc = "An ornate, green lantern."
+	color = LIGHT_COLOR_GREEN
+	light_color = LIGHT_COLOR_GREEN
