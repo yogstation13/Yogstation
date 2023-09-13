@@ -26,10 +26,11 @@
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report significant and rapid decay of the station's infrastructure with a single entity as its source. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	set_security_level(SEC_LEVEL_GAMMA)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
-	///grants the ascended heretic 12 points to spend
-	var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-		knowledge?.charge += 12
 	ascension.ascended = TRUE
+	///grants the ascended heretic 12 points to spend
+	if (ascension.ascended == TRUE)
+		var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+		knowledge?.charge += 12
 	
 	shockwave.transform = matrix().Scale(0.5)
 	shockwave.pixel_x = -240
