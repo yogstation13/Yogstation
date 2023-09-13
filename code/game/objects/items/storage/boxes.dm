@@ -1307,7 +1307,7 @@
 	name = "Materials Box"
 	desc = "Contains most of what you would need"
 
-/obj/item/storage/box/materials/PopulateContents()
+/obj/item/storage/box/materials/reduced/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/stack/sheet/metal = 10,
 		/obj/item/stack/sheet/glass = 10,
