@@ -163,7 +163,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 
 		/obj/item/melee/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/shotgun/riot = 0,
-		/obj/item/gun/ballistic/shotgun/automatic/dual_tube = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
 		/obj/item/melee/baseball_bat/homerun = 0,
 		/obj/item/fireaxe = 0,
@@ -286,7 +285,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
 		/obj/item/stand_arrow/safe = -5,
-		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
+		/obj/item/mdrive = -5, //get out of jail free card
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 
 		/obj/item/spellbook = -8,
@@ -297,7 +296,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "trashcart"
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
-	var/healing_fountain //if it's a healing fountain instead of a loot chest
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
@@ -319,10 +317,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			name = "Healing Supply Crate"
 			add_atom_colour(LIGHT_COLOR_GREEN, FIXED_COLOUR_PRIORITY)
-
-	if(prob(5))
-		healing_fountain = TRUE
-		return
 
 	var/selected
 	switch(type)
@@ -358,10 +352,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
-	if(healing_fountain)
-		new /obj/structure/healingfountain(get_turf(src))
-		qdel(src)
-		return
 	QDEL_IN(src, 10 SECONDS)//to remove clutter after a bit
 
 /obj/item/battleroyale
