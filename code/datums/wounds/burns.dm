@@ -263,7 +263,7 @@
 	else if(istype(I, /obj/item/flashlight/pen/paramedic))
 		uv(I, user)
 
-// people complained about burns not healing on stasis beds, so in addition to checking if it's cured, they also get the special ability to very slowly heal on stasis beds if they have the healing effects stored
+// people complained about burns not healing on stasis beds, so in addition to checking if it's cured, they also get the special ability to very slowly heal on stasis beds if they have the healing effects stored.
 /datum/wound/burn/on_stasis()
 	. = ..()
 	if(flesh_healing > 0)
