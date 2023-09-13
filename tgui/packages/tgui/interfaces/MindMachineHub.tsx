@@ -63,7 +63,7 @@ const ConnectedSection = (props, context) => {
         <Button
           icon="first-aid"
           content="Delayed Transfer"
-          disabled={!canDelayTransfer}
+          disabled={!canDelayTransfer && !active}
           width="350px"
           onClick={() => act('activate_delay', {})}
         />

@@ -83,7 +83,7 @@
 	if(!firstPod || !secondPod)
 		. += span_notice("It can be connected with two nearby mind pods by using a <i>multitool</i>.")
 	. += span_notice("The charge meter reads: [charge].")
-	. += span_notice("It costs [cost] per attempt.")
+	. += span_notice("It costs [cost] charges per attempt.")
 
 /obj/machinery/mindmachine/hub/update_icon_state()
 	if(active)
@@ -199,6 +199,7 @@
 	if(user.a_intent == INTENT_HELP && I.tool_behaviour == TOOL_MULTITOOL)
 		if(panel_open && fail_regardless)
 			to_chat(user, span_notice("You realign [src]'s regulator."))
+			fail_regardless = FALSE
 			return
 		if(!firstPod || !secondPod)
 			var/success = try_connect_pods()
@@ -355,7 +356,7 @@
 		if("activate")
 			try_activate(usr)
 		if("activate_delay")
-			if(delaytransfer_active)
+			if(active || delaytransfer_active)
 				balloon_alert(usr, "already delayed")
 				playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 				return
@@ -432,12 +433,14 @@
 	if(issilicon(firstOccupant) || issilicon(secondOccupant))
 		if(!silicon_permitted)
 			return MINDMACHINE_CAN_SILICON
-		var/mob/living/silicon/robot/firstCyborg = firstOccupant
-		if(firstCyborg && firstCyborg.shell)
-			return MINDMACHINE_CAN_SILICON_AISHELL
-		var/mob/living/silicon/robot/secondCyborg = firstOccupant
-		if(secondCyborg && secondCyborg.shell)
-			return MINDMACHINE_CAN_SILICON_AISHELL
+		if(iscyborg(firstOccupant))
+			var/mob/living/silicon/robot/firstCyborg = firstOccupant
+			if(firstCyborg.shell)
+				return MINDMACHINE_CAN_SILICON_AISHELL
+		if(iscyborg(secondOccupant))
+			var/mob/living/silicon/robot/secondCyborg = secondOccupant
+			if(secondCyborg.shell)
+				return MINDMACHINE_CAN_SILICON_AISHELL
 
 	if(determine_mindswap_type(firstOccupant, secondOccupant) == MINDMACHINE_SENTIENT_NONE)
 		if(!isanimal(firstOccupant) || !isanimal(secondOccupant)) // Must be both animals.
