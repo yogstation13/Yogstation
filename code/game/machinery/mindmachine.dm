@@ -441,7 +441,7 @@
 	/* 	Some checks (check_resist & check_antag_datum) are only done at the start of
 		the actual mindswap solely to prevent people from antag checking by scanning them. */
 	if(check_resist)
-		if(firstOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) || secondOccupant.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+		if(firstOccupant.anti_magic_check(FALSE, FALSE, TRUE, 0) || secondOccupant.anti_magic_check(FALSE, FALSE, TRUE, 0))
 			return MINDMACHINE_CAN_MINDRESIST
 		if(HAS_TRAIT(firstOccupant, TRAIT_MINDSHIELD) || (HAS_TRAIT(secondOccupant, TRAIT_MINDSHIELD)))
 			return MINDMACHINE_CAN_MINDSHIELD
