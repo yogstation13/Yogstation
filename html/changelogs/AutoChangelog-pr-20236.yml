@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "The Cyborg Remote Monitoring program now displays the area name and coordinates of any listed cyborgs."

@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "tweaked some battle royale loot drop weight"
-  - tweak: "loot drop crates delete themselves after a delay"
