@@ -213,7 +213,7 @@
 	new /datum/data/bluespace_tap_product("Unknown Snack", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
 	new /datum/data/bluespace_tap_product("Unknown Cultural Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
 	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000),
-	new /datum/data/bluespace_tap_product("Unknown Alien Objects", /obj/effect/spawner/lootdrop/bluespace_tap/alien_objects, 60000),
+	new /datum/data/bluespace_tap_product("Unknown Alien Objects", /obj/effect/spawner/lootdrop/bluespace_tap/alien_objects, 250000),
 	)
 
 	/// The level the machine is currently mining at. 0 means off
