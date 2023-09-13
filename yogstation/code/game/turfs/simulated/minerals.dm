@@ -37,3 +37,4 @@
 
 /turf/closed/mineral/dilithium/ice/icemoon/top_layer
 	light_range = 2
+	light_power = 0.1
