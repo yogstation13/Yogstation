@@ -693,8 +693,21 @@
 		container_resist(user)
 
 /obj/machinery/mindmachine/pod/container_resist(mob/living/user)
-	user.visible_message(span_notice("[occupant] emerges from [src]!"),
-		span_notice("You climb out of [src]!"))
+	if(!locked)
+		open_machine()
+		return
+	var/escape_time = 10 SECONDS
+	user.changeNext_move(CLICK_CD_BREAKOUT)
+	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.visible_message(span_notice("You hear [user] kicking against the door of [src]!"), \
+		span_notice("You start to pry [src]'s door open... (this will take about [DisplayTimeText(escape_time)].)"), \
+		span_italics("You hear a metallic creaking from [src]."))
+	if(!do_after(user,(escape_time), src))
+		return
+	if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
+		return
+	user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
+		span_notice("You successfully break out of [src]!"))
 	open_machine()
 
 /obj/machinery/mindmachine/pod/close_machine(atom/movable/target)
