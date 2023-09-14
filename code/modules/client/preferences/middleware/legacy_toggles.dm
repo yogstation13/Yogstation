@@ -24,7 +24,7 @@
 		"sound_instruments" = SOUND_INSTRUMENTS,
 		"sound_lobby" = SOUND_LOBBY,
 		"sound_midi" = SOUND_MIDI,
-		"sound_prayer" = SOUND_PRAYER_N_FAX,
+		"sound_prayer_fax" = SOUND_PRAYER_N_FAX,
 		"sound_ship_ambience" = SOUND_SHIP_AMBIENCE,
 		"sound_jukebox" = SOUND_JUKEBOX,
 	)
