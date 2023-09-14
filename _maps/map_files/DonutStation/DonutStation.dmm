@@ -42888,13 +42888,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"tQC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/mob/living/simple_animal/pet/axolotl/bap,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "tQS" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing)
@@ -46509,6 +46502,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"vDc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "vDp" = (
 /turf/closed/wall,
 /area/maintenance/port/aft)
@@ -86698,7 +86697,7 @@ coB
 lGn
 bVN
 kFs
-tQC
+vDc
 kFs
 kFs
 hsS
