@@ -10,6 +10,7 @@
 	var/device_type = null
 	var/id = null
 	var/initialized_button = 0
+	var/hatch = FALSE
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 70)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -20,6 +21,7 @@
 
 /obj/machinery/button/Initialize(mapload, ndir = 0, built = 0)
 	. = ..()
+	wires = new /datum/wires/button(src)
 	if(built)
 		setDir(ndir)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
@@ -41,6 +43,10 @@
 			board.one_access = 1
 			board.accesses = req_one_access
 
+/obj/machinery/button/Destroy()
+	qdel(wires)
+	wires = null
+	return ..()
 
 /obj/machinery/button/update_icon_state()
 	. = ..()
@@ -63,15 +69,19 @@
 
 /obj/machinery/button/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		if(panel_open || allowed(user))
-			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
-			update_appearance(UPDATE_ICON)
-		else
-			to_chat(user, span_danger("Maintenance Access Denied"))
-			flick("[skin]-denied", src)
+		default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(panel_open)
+		if(wires.is_cut(WIRE_MAINTENANCE) && W.tool_behaviour == TOOL_CROWBAR)
+			hatch = !hatch
+			to_chat(user, span_warning("The maintenance hatch [hatch ? "opens!" : "closes!"]"))
+			return
+		if(!hatch)
+			if(is_wire_tool(W))
+				wires.interact(user)
+			return
 		if(!device && istype(W, /obj/item/assembly))
 			if(!user.transferItemToLoc(W, src))
 				to_chat(user, span_warning("\The [W] is stuck to you!"))
@@ -122,6 +132,26 @@
 				to_chat(user, span_notice("You wipe the button's ID."))
 				id = null
 
+		if(user.a_intent != INTENT_HARM)
+			if(device || board)
+				if(device)
+					device.forceMove(drop_location())
+					device = null
+				if(board)
+					board.forceMove(drop_location())
+					req_access = list()
+					req_one_access = list()
+					board = null
+				update_appearance(UPDATE_ICON)
+				to_chat(user, span_notice("You remove electronics from the button frame."))
+
+			else
+				if(skin == "doorctrl")
+					skin = "launcher"
+				else
+					skin = "doorctrl"
+				to_chat(user, span_notice("You change the button frame's front panel."))
+
 		update_appearance(UPDATE_ICON)
 		return
 
@@ -155,50 +185,34 @@
 		A.id = id
 	initialized_button = 1
 
-/obj/machinery/button/attack_hand(mob/user)
+/obj/machinery/button/attack_hand(mob/user, hacked = FALSE)
 	. = ..()
 	if(.)
 		return
 	if(!initialized_button)
 		setup_device()
-	add_fingerprint(user)
+	if(user)
+		add_fingerprint(user)
 	play_click_sound("button")
-	if(panel_open)
-		if(device || board)
-			if(device)
-				device.forceMove(drop_location())
-				device = null
-			if(board)
-				board.forceMove(drop_location())
-				req_access = list()
-				req_one_access = list()
-				board = null
-			update_appearance(UPDATE_ICON)
-			to_chat(user, span_notice("You remove electronics from the button frame."))
-
-		else
-			if(skin == "doorctrl")
-				skin = "launcher"
-			else
-				skin = "doorctrl"
-			to_chat(user, span_notice("You change the button frame's front panel."))
+	if(panel_open && !hacked)
 		return
 
-	if((stat & (NOPOWER|BROKEN)))
+	if((stat & (NOPOWER|BROKEN)) || wires.is_cut(WIRE_POWER1))
 		return
 
 	if(device && device.next_activate > world.time)
 		return
-
-	if(!allowed(user))
-		to_chat(user, span_danger("Access Denied"))
-		flick("[skin]-denied", src)
-		return
+	if(user)
+		if(!allowed(user) && !hacked && !wires.is_cut(WIRE_IDSCAN))
+			to_chat(user, span_danger("Access Denied"))
+			flick("[skin]-denied", src)
+			return
 
 	use_power(5)
-	icon_state = "[skin]1"
+	if(!hacked)
+		icon_state = "[skin]1"
 
-	if(device)
+	if(device && wires.is_cut(WIRE_IDSCAN))
 		device.pulsed()
 
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 15)

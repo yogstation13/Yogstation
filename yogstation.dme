@@ -763,6 +763,7 @@
 #include "code\datums\wires\airlock_cycle.dm"
 #include "code\datums\wires\apc.dm"
 #include "code\datums\wires\autolathe.dm"
+#include "code\datums\wires\button.dm"
 #include "code\datums\wires\emitter.dm"
 #include "code\datums\wires\explosive.dm"
 #include "code\datums\wires\igniter.dm"
