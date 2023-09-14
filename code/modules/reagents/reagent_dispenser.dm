@@ -65,7 +65,11 @@
 	reagent_id = /datum/reagent/fuel
 
 /obj/structure/reagent_dispensers/fueltank/boom()
-	explosion(get_turf(src), 0, 0, 7, flame_range = 8)
+	explosion(get_turf(src), 0, 0, 7, flame_range = 9)
+	var/turf/center = get_turf(src)
+	center.IgniteTurf(50)
+	for(var/turf/open/T in center.GetAtmosAdjacentTurfs())
+		T.IgniteTurf(30)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/blob_act(obj/structure/blob/B)
