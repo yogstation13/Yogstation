@@ -1317,7 +1317,7 @@
 		/obj/item/stack/sheet/mineral/diamond = 10,
 		/obj/item/stack/sheet/mineral/plasma = 10,
 		/obj/item/stack/sheet/mineral/gold = 10,
-		/obj/item/stack/sheet/mineral/silver = 10
+		/obj/item/stack/sheet/mineral/silver = 10)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/materials/Initialize(mapload)
