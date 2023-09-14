@@ -63,12 +63,13 @@
 	desc = "A tank full of industrial welding fuel. Do not consume."
 	icon_state = "fuel"
 	reagent_id = /datum/reagent/fuel
+	var/fire_range = 5 //for busing
 
 /obj/structure/reagent_dispensers/fueltank/boom()
 	explosion(get_turf(src), 0, 0, 7, flame_range = 9)
 	var/turf/center = get_turf(src)
 	center.IgniteTurf(50)
-	for(var/turf/open/T in range(9, src))
+	for(var/turf/open/T in range(fire_range, src))
 		T.IgniteTurf(30)
 	qdel(src)
 
