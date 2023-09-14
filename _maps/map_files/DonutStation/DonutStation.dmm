@@ -22158,24 +22158,6 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
-"kmb" = (
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = -8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/button/door{
-	id = "kanyewest";
-	name = "Privacy Shutters";
-	pixel_x = -28;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "kmf" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
@@ -23363,6 +23345,10 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"kVU" = (
+/mob/living/simple_animal/pet/axolotl/bop,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "kVX" = (
 /obj/structure/cable/orange{
 	icon_state = "1-2"
@@ -24385,6 +24371,14 @@
 "lvm" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/port)
+"lvD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kanyewest";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/security/detectives_office)
 "lwa" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -25925,19 +25919,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"mhE" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "mhM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32082,22 +32063,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"oWD" = (
-/obj/machinery/firealarm{
-	pixel_y = 29
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/mob/living/simple_animal/pet/axolotl/bap,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "oWJ" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/courtroom";
@@ -33900,6 +33865,24 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"pNP" = (
+/obj/machinery/light_switch{
+	pixel_x = -24;
+	pixel_y = -8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_x = -28;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "pOb" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -34126,6 +34109,22 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
+"pSL" = (
+/obj/machinery/firealarm{
+	pixel_y = 29
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/mob/living/simple_animal/pet/axolotl/bap,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "pSS" = (
 /obj/structure/table/wood,
 /obj/item/nullrod,
@@ -34230,14 +34229,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"pVl" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kanyewest";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
-/area/security/detectives_office)
 "pVw" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 10
@@ -44031,10 +44022,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"usC" = (
-/mob/living/simple_animal/pet/axolotl/bop,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "usF" = (
 /obj/machinery/light{
 	dir = 8
@@ -47407,17 +47394,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
-"vZp" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "vZq" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -83168,7 +83144,7 @@ ylr
 ylr
 ylr
 fTO
-usC
+kVU
 cdm
 pko
 jls
@@ -87231,7 +87207,7 @@ lGn
 lGn
 tLX
 lGn
-oWD
+pSL
 cOC
 bWB
 bTJ
@@ -91278,7 +91254,7 @@ ylr
 ylr
 wBM
 wBM
-wBM
+ogN
 nPv
 gOL
 dcG
@@ -92047,8 +92023,8 @@ ylr
 ylr
 ylr
 ylr
-mhE
-vZp
+wBM
+ogN
 wvC
 bcv
 dcG
@@ -92820,7 +92796,7 @@ ylr
 ylr
 wBM
 wBM
-wBM
+ogN
 mVG
 gmq
 dcG
@@ -97994,7 +97970,7 @@ pQE
 brs
 hhB
 hhB
-pVl
+lvD
 gRD
 gGv
 vYJ
@@ -98251,9 +98227,9 @@ bLl
 qkO
 hhB
 ioA
-pVl
-pVl
-pVl
+lvD
+lvD
+lvD
 gRD
 lHd
 ksh
@@ -98510,7 +98486,7 @@ hhB
 nZg
 mEX
 sON
-pVl
+lvD
 hhB
 xne
 hhB
@@ -98768,7 +98744,7 @@ tGN
 qbr
 pGn
 ggv
-kmb
+pNP
 bGf
 wjI
 tzs
