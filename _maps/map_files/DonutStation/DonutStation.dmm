@@ -42779,10 +42779,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"tNV" = (
-/obj/effect/turf_decal/trimline/green/filled/corner/lower,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "tOb" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -86705,7 +86701,7 @@ gyG
 gyG
 gFE
 dfT
-tNV
+cPC
 uLk
 dZz
 kVY
