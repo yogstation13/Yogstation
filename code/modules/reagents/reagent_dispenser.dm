@@ -68,7 +68,7 @@
 	explosion(get_turf(src), 0, 0, 7, flame_range = 9)
 	var/turf/center = get_turf(src)
 	center.IgniteTurf(50)
-	for(var/turf/open/T in center.GetAtmosAdjacentTurfs())
+	for(var/turf/open/T in range(9, src))
 		T.IgniteTurf(30)
 	qdel(src)
 
