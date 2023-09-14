@@ -1,6 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Wooden barrel build cost lowered from 30-10 woods"
-  - bugfix: "Wooden barrel now properly drops materials upon deconstruction"
-  - bugfix: "Wooden barrel wont be damaged by containers anymore"
