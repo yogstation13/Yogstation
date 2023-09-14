@@ -1672,15 +1672,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/tcommsat/server)
-"aQg" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/space/basic,
-/area/maintenance/port/aft)
 "aQs" = (
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics Foyer";
@@ -2817,6 +2808,15 @@
 "brs" = (
 /turf/closed/wall,
 /area/maintenance/starboard)
+"brw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "brU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -16310,15 +16310,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/port/aft)
-"hBV" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/space/basic,
 /area/maintenance/port/aft)
 "hCk" = (
 /obj/effect/turf_decal/stripes{
@@ -37337,6 +37328,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+"rup" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "rut" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -79468,13 +79468,13 @@ gIJ
 vDp
 vDp
 gIJ
-hBV
+rup
 clM
 clM
 clM
 clM
 clM
-aQg
+brw
 gIJ
 uvi
 uvi
