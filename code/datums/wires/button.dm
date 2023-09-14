@@ -21,6 +21,7 @@
 	var/obj/machinery/button/button_holder = holder
 	switch(wire)
 		if(WIRE_ACTIVATE)
+			holder.visible_message(span_notice("[icon2html(button_holder, viewers(holder))] The button clanks."))
 			button_holder.attack_hand(hacked = TRUE)
 		if(WIRE_IDSCAN)
 			holder.visible_message(span_notice("[icon2html(button_holder, viewers(holder))] The access light flickers."))
