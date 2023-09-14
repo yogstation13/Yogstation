@@ -23,7 +23,7 @@
 	H.physiology.burn_mod *= 0.75
 	H.physiology.stamina_mod = 0
 	H.physiology.stun_mod = 0
-	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report significant and rapid decay of the station's infrastructure with a single entity as its source. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+	priority_announce("Immense destabilization of the bluespace veil has been observed. @&#^$&#^@# THE HUNT BEGINS, LET SLIP THE DOGS OF WAR AND HUNT FREE FOREVER MORE!  $&#^@#@&#^ Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	set_security_level(SEC_LEVEL_GAMMA)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE

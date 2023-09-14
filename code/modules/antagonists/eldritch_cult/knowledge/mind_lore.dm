@@ -94,7 +94,7 @@
 
 /datum/eldritch_knowledge/cerebral_control/on_gain(mob/user)
 	. = ..()
-	user.next_move_modifier *= 0.5
+	user.next_move_modifier *= 0.6
 
 /datum/eldritch_knowledge/spell/eldritchbolt
 	name = "Eldritch Bolt"

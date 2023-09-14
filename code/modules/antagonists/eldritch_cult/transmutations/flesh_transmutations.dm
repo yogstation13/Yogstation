@@ -111,6 +111,14 @@
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
 			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report two entitites of immeasurable power, one of which is of a considerable volume of organic mass. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
+			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
+
+			shockwave.transform = matrix().Scale(0.5)
+			shockwave.pixel_x = -240
+			shockwave.pixel_y = -240
+			animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+			QDEL_IN(shockwave, 10.5 SECONDS)
+
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
 			summoned.key = ghost_candidate.key
@@ -129,6 +137,13 @@
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
+			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
+
+			shockwave.transform = matrix().Scale(0.5)
+			shockwave.pixel_x = -240
+			shockwave.pixel_y = -240
+			animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+			QDEL_IN(shockwave, 10.5 SECONDS)
 			log_game("[user.real_name] ascended as [summoned.real_name].")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
