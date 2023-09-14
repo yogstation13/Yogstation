@@ -65,7 +65,7 @@
 	reagent_id = /datum/reagent/fuel
 
 /obj/structure/reagent_dispensers/fueltank/boom()
-	explosion(get_turf(src), 0, 1, 5, flame_range = 5)
+	explosion(get_turf(src), 0, 0, 8, flame_range = 8)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/blob_act(obj/structure/blob/B)
