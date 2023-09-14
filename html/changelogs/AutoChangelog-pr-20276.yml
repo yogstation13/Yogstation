@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Janiborgs start with a \"floor autocleaner\" item that mimics their automatic cleaning, except it is toggleable and requires it to be equipped to work."
-  - rscdel: "Janiborgs no longer automatically clean things when moving things."
