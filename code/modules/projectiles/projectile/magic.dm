@@ -777,11 +777,11 @@
 	speed = 7
 
 /obj/item/projectile/heretic_assault
-	name ="mindbolt bolt"
+	name ="mindbolt"
 	icon_state= "chronobolt"
-	damage = 20 //Yogs - Down from 25
-	armour_penetration = 20
-	speed = 4 // Yogs - Slowed from 2
+	damage = 30
+	armour_penetration = 50
+	speed = 4 
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE

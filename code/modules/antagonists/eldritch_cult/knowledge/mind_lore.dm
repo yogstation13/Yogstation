@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_mind
 	name = "Precipice Of Enlightenment"
 	desc = "Pledge yourself to knowledge everlasting. Allows you to transmute a knife and a book into a blade of pure thought. Additionally, Your mansus grasp now functions at a range, marking targets and causing them to hallucinate."
-	gain_text = "Lore"
+	gain_text = "The corpse of an ancient God defiled, your fellow scholars enlightened by false knowledge, but you seek true insight. You seek the unknown, the invisible, the truth behind the veil."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
 	cost = 1
@@ -18,26 +18,26 @@
 	var/datum/action/cooldown/spell/pointed/mansus_ranged/ranged_touch = new(user)
 	ranged_touch.Grant(user)
 		
-/datum/eldritch_knowledge/eldritch_eye
-	name = "Eldritch Eye"
-	gain_text = "Lore"
-	desc = "Allows you to craft an eldritch eye by transmuting a flashlight and a pair of eyes. Grants the user a hud type of their choosing. Grants night vision."
-	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_eye)
-	cost = 1
-	tier = TIER_1
-
 /datum/eldritch_knowledge/spell/mental_obfuscation
 	name = "Mental Obfuscation"
-	gain_text = "Lore"
+	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
 	desc = "Allows you to teleport a short distance to a targeted destination."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/obfuscation
 	route = PATH_MIND
 	tier = TIER_1
 
+/datum/eldritch_knowledge/eldritch_eye
+	name = "Eldritch Eye"
+	gain_text = "One of the many eyes of the defilied god ripped from it's bloated corpse, as you stood on that moonlit beach, you could almost swear you heard a baby crying."
+	desc = "Allows you to craft an eldritch eye by transmuting a flashlight and a pair of eyes. Grants the user a hud type of their choosing. Grants night vision."
+	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_eye)
+	cost = 1
+	tier = TIER_1
+
 /datum/eldritch_knowledge/mind_mark
 	name = "Occipital Oblivion"
-	gain_text = "Lore"
+	gain_text = "They say the eyes are the gateway to the soul, a way to tell one's true intentions. Show them a single sliver of the truth of this world and their eyes will reject all."
 	desc = "Upgrade your mansus grasp, granting it the ability to blind a target on hit, as well as increasing the range"
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_mark)
@@ -54,7 +54,7 @@
 
 /datum/eldritch_knowledge/spell/assault
 	name = "Amygdalla Assault"
-	gain_text = "Lore"
+	gain_text = "Deep into the dream, you work tirelessly, endlessly. A blighted curse consumes the land, but the scholars of Kos will light the way through the nightmare."
 	desc = "Shoot a single bolt of condesnsed mental power infront of you, dealing large amounts of brute damage to any targets hit."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/basic_projectile/assault
@@ -63,7 +63,7 @@
 
 /datum/eldritch_knowledge/spell/famished_roar
 	name = "Famished Roar"
-	gain_text = "Lore"
+	gain_text = "Beasts all over the shop. You'll be one of them... Sooner or later... What's that smell? The sweet blood, oh, it sings to me. It's enough to make a man sick..."
 	desc = "An AOE roar spell that sends all near by people and items flying."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/repulse/frenzied_roar
@@ -71,7 +71,7 @@
 
 /datum/eldritch_knowledge/mind_blade_upgrade
 	name = "Spine of The Infinite Beast"
-	gain_text = "Lore"
+	gain_text = "Curse here, Curse there. Curse for he and she, why care? A bottomless curse, a bottomless sea, source of all greatness, all things that be."
 	desc = "Your mind blade will now inject targets hit with mutetoxin, silencing them."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_blade_upgrade)
@@ -86,7 +86,7 @@
 
 /datum/eldritch_knowledge/cerebral_control
 	name = "Full Cerebral Control"
-	gain_text = "Lore"
+	gain_text = "Itching on the inside of your skull, like spiders under your skin, runes marked all over your body, etched into your soul. Eyes on the inside to see the truth, to ascend."
 	desc = "Permenantly enhance your brain, allowing you to process information at highs speeds. All actions you take will be quickened."
 	cost = 1
 	route = PATH_MIND
@@ -98,7 +98,7 @@
 
 /datum/eldritch_knowledge/spell/eldritchbolt
 	name = "Eldritch Bolt"
-	gain_text = "Lore"
+	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
 	desc = "A strong semi-single target spell, shoot a target with raw energy from another dimension. Bolts of power will arc from the main bolt, shocking those hit by them."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/eldritchbolt
@@ -106,7 +106,7 @@
 
 /datum/eldritch_knowledge/mind_final
 	name = "Beyond All Knowldege Lies Despair"
-	gain_text = "Lore"
+	gain_text = "A beast, a walking corpse, a murderer, a hunter. You are all these and more, and you like it. A hunter is a hunter, even in a dream, and you've made it to the end. It's time to wake from this endless nightmare, the keys to the lock built on a mountain of corpses. "
 	desc = "Transmute three corpses to ascend as a Monarch of Knowledge. Your form twists and shapes into a new being, instantly gaining 12 points of knowledge to use, as well as granting you access to your new bodies full potential, becoming semi-resistant to all damage types and highly resistant to stuns."
 	cost = 3
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/mind_final)

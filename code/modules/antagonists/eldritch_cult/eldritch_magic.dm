@@ -942,9 +942,9 @@
 	invocation = "GR' RO'AR"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
-	aoe_radius = 5
+	aoe_radius = 3
 
-	cooldown_time = 40 SECONDS
+	cooldown_time = 45 SECONDS
 
 /datum/action/cooldown/spell/pointed/projectile/eldritchbolt
 	name = "Eldritch Bolt"
@@ -956,7 +956,7 @@
 
 	sound = 'sound/magic/lightningbolt.ogg'
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 40 SECONDS
+	cooldown_time = 45 SECONDS
 
 	invocation = "EL'RICH BL'AS'T"
 	invocation_type = INVOCATION_SHOUT
@@ -1048,7 +1048,7 @@
 
 	sound = 'sound/weapons/resonator_blast.ogg'
 
-	cooldown_time = 35 SECONDS
+	cooldown_time = 45 SECONDS
 	spell_requirements = NONE
 
 	invocation = "D'O'DGE TH'IS!"
