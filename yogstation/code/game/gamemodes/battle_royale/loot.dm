@@ -414,7 +414,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)
-		ADD_TRAIT(user, TRAIT_NOBREATH, name)//because some species can't breathe normally
 		qdel(src)
 
 /obj/item/battleroyale/martial/ipc

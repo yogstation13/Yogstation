@@ -61,6 +61,7 @@ GLOBAL_VAR(stormdamage)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_STALWART) //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
+		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
