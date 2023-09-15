@@ -271,6 +271,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/itemspawner/construct = -3,
 		/obj/item/battleroyale/martial/phytosian = -3,
 		/obj/item/battleroyale/martial/plasmaman = -3,
+		/obj/item/stand_arrow = -3, //possibly OP but it's 50/50 to get dusted
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
