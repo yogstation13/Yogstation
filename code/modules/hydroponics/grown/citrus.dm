@@ -95,12 +95,11 @@
 	var/max = rand(10, 20)
 
 	for (var/counter = 1 to max)
-		var/obj/item/reagent_containers/food/snacks/grown/citrus/orange/orange = new
+		var/obj/item/reagent_containers/food/snacks/grown/citrus/orange/orange = new(get_turf(src))
 		orange.throw_at(pick(oview(7, get_turf(src))), 10, 1)
-		if (counter >= max)
-			qdel(src)
 
-	audible_message("[src] emits a loud pop!")
+	audible_message("[src] splits!")
+	qdel(src)
 	return ..()
 
 // Lemon
