@@ -186,7 +186,7 @@ GLOBAL_VAR(stormdamage)
 		/area/crew_quarters/heads/captain)
 
 	for(var/area/place in to_clear)
-	var/area/A = locate(place) in GLOB.areas
+		var/area/A = locate(place) in GLOB.areas
 		for(var/obj/item/thing in A)
 			if(thing.anchored)//only target something that is possibly a weapon
 				continue
