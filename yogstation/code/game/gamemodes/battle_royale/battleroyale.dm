@@ -289,7 +289,6 @@ GLOBAL_VAR(stormdamage)
 	ears = /obj/item/radio/headset
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
-	back = /obj/item/storage/backpack
 	id = /obj/item/card/id/captains_spare
 
 /obj/structure/battle_bus

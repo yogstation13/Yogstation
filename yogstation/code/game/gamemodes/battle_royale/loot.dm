@@ -235,8 +235,15 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		))
 
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
+		/obj/item/storage/backpack = 5,
+		/obj/item/storage/backpack/duffelbag = 5,
+		/obj/item/storage/backpack/satchel = 5,
+
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
+		/obj/item/storage/backpack = 4,
+		/obj/item/storage/backpack/duffelbag = 4,
+		/obj/item/storage/backpack/satchel = 4,
 
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 		/obj/item/nullrod/servoskull = 3,
@@ -262,6 +269,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/nullrod/hermes = -1,
 		/obj/item/gun/magic/wand/door = -1,
 		/obj/item/gun/magic/staff/door = -1,
+		/obj/item/storage/backpack/duffelbag/syndie = -1,
 
 		/obj/item/storage/box/syndie_kit/augmentation = -2,
 		/obj/item/grenade/syndieminibomb = -2,
@@ -286,6 +294,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
 		/obj/item/antag_spawner/slaughter_demon = -3, //why the hell not
 		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //pretty sure it's exactly the same since players dust on death
+		/obj/item/storage/backpack/holding = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
