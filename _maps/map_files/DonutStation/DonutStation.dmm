@@ -3785,6 +3785,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/science/server)
+"bLP" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/aft)
 "bLR" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
@@ -18489,13 +18495,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"iJm" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "iJH" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -24606,9 +24605,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"lEH" = (
-/turf/closed/wall/r_wall,
-/area/hydroponics)
 "lEP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -30176,6 +30172,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"obU" = (
+/turf/template_noop,
+/area/maintenance/central)
 "obZ" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
@@ -31190,10 +31189,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"oCt" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "oCL" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -38202,6 +38197,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
+"rNr" = (
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "rNB" = (
 /obj/item/clothing/gloves/color/rainbow,
 /turf/open/floor/plating,
@@ -41431,6 +41435,10 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"tmN" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/central)
 "tnJ" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
@@ -41873,6 +41881,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"tvM" = (
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "tvT" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
@@ -85089,9 +85108,9 @@ pJl
 ofy
 rTH
 yiG
-oCt
 xRO
 oeC
+qAi
 qAi
 xrY
 nxU
@@ -86884,11 +86903,11 @@ ldE
 nCa
 fOr
 sJa
-ewZ
-ewZ
+iTP
+iTP
 qAi
-qEt
-qEt
+qAi
+tvM
 qAi
 qAi
 ewZ
@@ -87141,12 +87160,12 @@ sJa
 sJa
 sJa
 sJa
-iTP
-iTP
+ewZ
+ewZ
 qAi
-ylr
-ylr
-ylr
+obU
+obU
+tmN
 lGn
 lGn
 tLX
@@ -87400,10 +87419,10 @@ ewZ
 ewZ
 ewZ
 ewZ
-qAi
-ylr
-ylr
-ylr
+rNr
+obU
+obU
+obU
 lGn
 tZW
 pcR
@@ -87658,10 +87677,10 @@ qAi
 qAi
 qAi
 qAi
-ylr
-ylr
-ylr
-lEH
+obU
+obU
+obU
+lGn
 sHK
 sHK
 lav
@@ -87914,10 +87933,10 @@ ylr
 ylr
 xSu
 ylr
-ylr
-ylr
-ylr
-ylr
+qAi
+qAi
+qAi
+qAi
 bvT
 bvT
 bvT
@@ -90031,12 +90050,12 @@ uix
 iGK
 sAg
 xbB
+sAg
 xbB
 xbB
 xbB
 xbB
-ylr
-ylr
+xbB
 ylr
 ylr
 ylr
@@ -90288,12 +90307,12 @@ oLK
 iKZ
 uJr
 xbB
+uJr
+xbB
 aGn
 aGn
 rGX
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -90544,13 +90563,13 @@ xSu
 oLK
 iKZ
 uqp
+xbB
+uJr
 bPu
 aGn
 aGn
 aGn
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -90800,14 +90819,14 @@ imH
 xSu
 oLK
 iKZ
+xbB
+xbB
 uJr
 xbB
 aGn
 aGn
 aGn
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -91057,14 +91076,14 @@ imH
 uix
 uix
 iKZ
+xbB
+uJr
 uJr
 xbB
 aGn
 aGn
 aGn
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -91315,13 +91334,13 @@ xSu
 oLK
 iKZ
 mHP
+uJr
+uJr
 xbB
 aGn
 aGn
 aGn
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -91574,11 +91593,11 @@ iKZ
 uJr
 xbB
 xbB
+xbB
+xbB
 bUk
 xbB
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -91832,10 +91851,10 @@ uJr
 xbB
 aGn
 aGn
-eDJ
+aGn
+aGn
+nsA
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -92090,9 +92109,9 @@ bPu
 aGn
 aGn
 aGn
+aGn
+aGn
 xbB
-ylr
-ylr
 ylr
 ylr
 ylr
@@ -92347,9 +92366,9 @@ xbB
 aGn
 aGn
 aGn
+aGn
+aGn
 vMl
-xbB
-xbB
 ylr
 ylr
 ylr
@@ -92605,7 +92624,7 @@ xbB
 xbB
 xbB
 xbB
-iJm
+xbB
 xbB
 ylr
 ylr
@@ -93625,9 +93644,9 @@ oLK
 oLK
 uix
 iKZ
-mHP
-mHP
-uJr
+bLP
+bLP
+kQk
 xbB
 aGn
 aGn
