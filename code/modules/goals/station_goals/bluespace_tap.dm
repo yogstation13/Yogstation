@@ -87,8 +87,6 @@
 		/obj/item/grenade/clusterbuster/cleaner,
 		/obj/item/grenade/clusterbuster/soap,
 		/obj/item/toy/katana,
-		/obj/item/stack/sheet/metal/twenty,
-		/obj/item/stack/sheet/glass/fifty,
 	    /obj/item/sord,
 		/obj/item/toy/syndicateballoon,
 		/obj/item/lighter/greyscale,
@@ -177,8 +175,19 @@
 
 /obj/effect/spawner/lootdrop/bluespace_tap/mats
 	name = "materials"
-	lootcount = 1
-	loot = list(/obj/item/storage/box/materials/reduced)
+	lootcount = 70 //average miners should get the total of this
+	loot = list(
+		/obj/item/stack/ore/iron = 20,
+		/obj/item/stack/ore/glass = 20,
+		/obj/item/stack/ore/titanium = 5,
+		/obj/item/stack/ore/uranium = 5,
+		/obj/item/stack/ore/diamond = 3,
+		/obj/item/stack/ore/bluespace_crystal = 2,
+		/obj/item/stack/ore/bananium = 0, //as rare as possible
+		/obj/item/stack/ore/plasma = 8,
+		/obj/item/stack/ore/gold = 5,
+		/obj/item/stack/ore/silver = 5
+	)
 
 #define kW *1000
 #define MW kW *1000
@@ -218,7 +227,7 @@
 	new /datum/data/bluespace_tap_product("Unknown Snack", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
 	new /datum/data/bluespace_tap_product("Unknown Cultural Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
 	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000),
-	new /datum/data/bluespace_tap_product("Unknown Materials", /obj/effect/spawner/lootdrop/bluespace_tap/mats, 50000),
+	new /datum/data/bluespace_tap_product("Unknown Materials", /obj/effect/spawner/lootdrop/bluespace_tap/mats, 30000),
 	new /datum/data/bluespace_tap_product("Unknown Alien Objects", /obj/effect/spawner/lootdrop/bluespace_tap/alien_objects, 250000),
 	)
 
@@ -411,7 +420,7 @@
 	points -= A.product_cost
 	playsound(src, 'sound/magic/blink.ogg', 50)
 	do_sparks(2, FALSE, src)
-	new A.product_path(get_turf(src))
+	new A.product_path(get_step(src,(dir)))
 
 
 

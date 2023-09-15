@@ -1303,23 +1303,6 @@
 		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)
 
-/obj/item/storage/box/materials/reduced
-	name = "Materials Box"
-	desc = "Contains most of what you would need"
-
-/obj/item/storage/box/materials/reduced/PopulateContents()
-	var/static/items_inside = list(
-		/obj/item/stack/sheet/metal = 10,
-		/obj/item/stack/sheet/glass = 10,
-		/obj/item/stack/sheet/plastic = 10,
-		/obj/item/stack/sheet/mineral/titanium = 10,
-		/obj/item/stack/sheet/mineral/uranium = 10,
-		/obj/item/stack/sheet/mineral/diamond = 10,
-		/obj/item/stack/sheet/mineral/plasma = 10,
-		/obj/item/stack/sheet/mineral/gold = 10,
-		/obj/item/stack/sheet/mineral/silver = 10)
-	generate_items_inside(items_inside,src)
-
 /obj/item/storage/box/materials/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
