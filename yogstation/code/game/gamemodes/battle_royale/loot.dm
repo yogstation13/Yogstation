@@ -264,14 +264,15 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/desynchronizer = -2,
 		/obj/item/book/granter/martial/cqc = -2,
 		/obj/item/book/granter/action/spell/smoke = -2,
+		/obj/item/battleroyale/martial/phytosian = -2,
+		/obj/item/battleroyale/martial/plasmaman = -2,
+		/obj/item/battleroyale/martial/lizard = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
-		/obj/item/battleroyale/martial/phytosian = -3,
-		/obj/item/battleroyale/martial/plasmaman = -3,
 		/obj/item/stand_arrow = -3, //possibly OP but it's 50/50 to get dusted
 
 		/obj/item/guardiancreator/tech/random = -4,
@@ -280,7 +281,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/guardiancreator/carp/random = -4,
 		/obj/item/bodypart/l_arm/robot/buster = -4, // Buster is strong, but most people aren't too good with it. Especially useful for closing the gap
 		/obj/item/battleroyale/martial/ipc = -4,
-		/obj/item/battleroyale/martial/lizard = -4,
 		/obj/item/book/granter/martial/carp = -4,
 		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
 
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/mdrive = -5, //get out of jail free card
 		/obj/item/autosurgeon/syndicate/spinalspeed = -5, // No opportunity cost speed boost
 
-		/obj/item/spellbook = -8,
+		/obj/item/spellbook = -8, //literally auto-win
 		))
 
 /obj/structure/closet/crate/battleroyale
@@ -494,7 +494,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	name = "Random ammo boxes"
 	loot = list( //woo i love ammo woooo
 		/obj/item/storage/box/lethalshot,
-		/obj/item/storage/box/rubbershot,
 		/obj/item/ammo_box/magazine/wt550m9,
 		/obj/item/ammo_box/magazine/m10mm/rifle,
 		/obj/item/ammo_box/magazine/v38,
