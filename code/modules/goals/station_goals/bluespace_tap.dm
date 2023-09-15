@@ -177,16 +177,16 @@
 	name = "materials"
 	lootcount = 70 //average miners should get the total of this
 	loot = list(
-		/obj/item/stack/ore/iron = 20,
-		/obj/item/stack/ore/glass = 20,
-		/obj/item/stack/ore/titanium = 5,
-		/obj/item/stack/ore/uranium = 5,
-		/obj/item/stack/ore/diamond = 3,
-		/obj/item/stack/ore/bluespace_crystal = 2,
-		/obj/item/stack/ore/bananium = 0, //as rare as possible
-		/obj/item/stack/ore/plasma = 8,
-		/obj/item/stack/ore/gold = 5,
-		/obj/item/stack/ore/silver = 5
+		/obj/item/stack/ore/iron = 21,
+		/obj/item/stack/ore/glass = 21,
+		/obj/item/stack/ore/titanium = 6,
+		/obj/item/stack/ore/uranium = 6,
+		/obj/item/stack/ore/diamond = 4,
+		/obj/item/stack/ore/bluespace_crystal = 3,
+		/obj/item/stack/ore/bananium = 1, //as rare as possible
+		/obj/item/stack/ore/plasma = 9,
+		/obj/item/stack/ore/gold = 6,
+		/obj/item/stack/ore/silver = 6
 	)
 
 #define kW *1000
