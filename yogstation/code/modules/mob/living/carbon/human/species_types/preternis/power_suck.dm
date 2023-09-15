@@ -110,14 +110,14 @@
 
 //IPC lol, lmao
 /mob/living/carbon/human/can_consume_power_from()
-	return isipc(src)
+	return isipc(src) || ispreternis(src)
 
 /mob/living/carbon/human/consume_power_from(amount)
 	if((nutrition - amount) < NUTRITION_LEVEL_HUNGRY)
 		amount = max(charge - NUTRITION_LEVEL_HUNGRY, 0)
 	adjust_nutrition(-amount)
 	return amount
-	
+
 //CELL//
 /obj/item/stock_parts/cell/can_consume_power_from()
 	if(charge < MIN_DRAINABLE_POWER)
