@@ -281,13 +281,13 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/battleroyale/martial/lizard = -4,
 		/obj/item/book/granter/martial/carp = -4,
+		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
 		/obj/item/stand_arrow/safe = -5,
 		/obj/item/mdrive = -5, //get out of jail free card
-		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		/obj/item/autosurgeon/syndicate/spinalspeed = -5, // No opportunity cost speed boost
 
 		/obj/item/spellbook = -8,
