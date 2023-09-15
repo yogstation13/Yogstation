@@ -260,6 +260,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/box/syndie_kit/augmentation = -2,
 		/obj/item/grenade/syndieminibomb = -2,
 		/obj/item/dragons_blood = -2,
+		/obj/item/dragons_blood/refined = -2,
 		/obj/item/desynchronizer = -2,
 		/obj/item/book/granter/martial/cqc = -2,
 		/obj/item/book/granter/action/spell/smoke = -2,
