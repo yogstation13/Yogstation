@@ -106,7 +106,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_final
-	name = "Beyond All Knowldege Lies Despair"
+	name = "Beyond All Knowledge Lies Despair"
 	gain_text = "A beast, a walking corpse, a murderer, a hunter. You are all these and more, and you like it. A hunter is a hunter, even in a dream, and you've made it to the end. It's time to wake from this endless nightmare, the keys to the lock built on a mountain of corpses. "
 	desc = "Transmute three corpses to ascend as a Monarch of Knowledge. Instantly gain 9 points of knowledge to use, as well as becoming semi-resistant to all damage types. You also gain additional immunity to pressure and no longer need to breath."
 	cost = 3
