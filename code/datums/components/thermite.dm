@@ -13,7 +13,8 @@
 	var/static/list/immunelist = typecacheof(list(
 		/turf/closed/wall/mineral/diamond,
 		/turf/closed/indestructible,
-		/turf/open/indestructible)
+		/turf/open/indestructible
+	)
 	
 	var/static/list/resistlist = typecacheof(
 		/turf/closed/wall/mineral
