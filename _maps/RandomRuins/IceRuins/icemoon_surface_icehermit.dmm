@@ -1,176 +1,238 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/wood,
-/area/space)
+/area/ruin/powered/icemoon_hermit)
 "b" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/smartfridge/food,
-/turf/open/floor/wood,
-/area/space)
+/obj/structure/rack,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
 "c" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
 "d" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/carpet,
-/area/space)
-"h" = (
-/obj/structure/table/wood,
-/obj/machinery/reagentgrinder/kitchen,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/icemoon_hermit)
+"e" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/icemoon_hermit)
+"f" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/processor,
 /turf/open/floor/wood,
-/area/space)
-"i" = (
+/area/ruin/powered/icemoon_hermit)
+"g" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/fans/tiny,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
-"j" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/reagent_containers/glass/woodmug,
-/obj/item/reagent_containers/glass/woodmug,
-/obj/item/reagent_containers/glass/woodmug,
+/area/ruin/powered/icemoon_hermit)
+"h" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
-/area/space)
+/area/ruin/powered/icemoon_hermit)
+"i" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/icemoon_hermit)
+"j" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/smartfridge/food,
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
 "k" = (
-/obj/machinery/chem_dispenser/mutagensaltpeter,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/ruin/powered/icemoon_hermit)
 "l" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"m" = (
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"n" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/icemoon_hermit)
+"o" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"p" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"q" = (
+/obj/item/bedsheet,
+/obj/structure/bed,
+/obj/effect/mob_spawn/human/icemoon_hermit,
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"r" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"t" = (
+/turf/open/floor/carpet,
+/area/ruin/powered/icemoon_hermit)
+"u" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"v" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"w" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/mirror{
+	pixel_y = 56
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"x" = (
+/obj/structure/barricade/wooden/crude/snow,
+/obj/structure/window/reinforced/fulltile/ice,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"A" = (
 /obj/structure/fireplace{
 	fuel_added = 1000;
 	lit = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
-/area/space)
-"m" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
-"n" = (
-/turf/open/floor/carpet,
-/area/space)
-"o" = (
-/obj/structure/table/wood,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
-"p" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
-"q" = (
-/obj/machinery/griddle,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
-"r" = (
-/obj/structure/table/wood,
-/obj/item/kitchen/knife/combat/bone,
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
-"s" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/space)
-"t" = (
-/obj/item/bedsheet,
-/obj/structure/bed,
-/turf/open/floor/wood,
-/area/space)
-"u" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
-"x" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
-"A" = (
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
+/area/ruin/powered/icemoon_hermit)
 "B" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/storage/bag/plants/portaseeder,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
-"C" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
 "D" = (
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
+/obj/structure/dresser,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered/icemoon_hermit)
 "E" = (
+/obj/machinery/vending/clothing{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"F" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/icemoon_hermit)
+"H" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"I" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
+"J" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"K" = (
+/obj/structure/curtain,
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"L" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"N" = (
 /obj/machinery/vending/hydronutrients{
 	onstation = 0
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
-"F" = (
-/obj/machinery/biogenerator,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
-"H" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/processor,
-/turf/open/floor/wood,
-/area/space)
-"I" = (
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/underground/explored)
-"K" = (
-/turf/closed/wall/mineral/wood,
-/area/space)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
+/area/ruin/powered/icemoon_hermit)
 "O" = (
-/obj/structure/curtain,
-/turf/open/floor/wood,
-/area/space)
-"Q" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/space)
-"R" = (
-/obj/structure/rack,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
-"S" = (
 /obj/machinery/vending/hydroseeds{
 	onstation = 0
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/space)
+/area/ruin/powered/icemoon_hermit)
+"P" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"Q" = (
+/obj/structure/rack,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"R" = (
+/obj/machinery/chem_dispenser/mutagensaltpeter,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"S" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 30
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/icemoon_hermit)
 "T" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
 "U" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
+"V" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
+"W" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/combat/bone,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/icemoon_hermit)
+"X" = (
 /obj/machinery/oven,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cafeteria,
-/area/space)
-"W" = (
+/area/ruin/powered/icemoon_hermit)
+"Y" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
-/area/space)
-"X" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/wood,
-/turf/open/floor/wood,
-/area/space)
+/area/ruin/powered/icemoon_hermit)
 "Z" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 30
-	},
 /obj/structure/table/wood,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cafeteria,
-/area/space)
+/area/ruin/powered/icemoon_hermit)
 
 (1,1,1) = {"
 L
@@ -238,14 +300,14 @@ T
 c
 u
 u
-K
-x
-K
-K
-K
-K
-K
-K
+n
+M
+n
+n
+n
+n
+n
+n
 T
 T
 T
@@ -258,14 +320,14 @@ T
 T
 T
 T
-K
-A
-A
-K
-a
-a
-a
-K
+n
+P
+P
+n
+E
+U
+m
+n
 T
 T
 T
@@ -278,14 +340,14 @@ T
 u
 T
 u
-K
-R
-R
-K
+n
+b
 Q
-s
-t
-K
+n
+D
+w
+q
+n
 T
 T
 T
@@ -298,14 +360,14 @@ T
 u
 T
 B
+n
+n
+n
+n
+n
 K
-K
-K
-K
-K
-O
-K
-K
+n
+n
 T
 T
 T
@@ -318,14 +380,14 @@ T
 u
 T
 u
-K
 n
-d
-s
-a
-W
-a
-K
+t
+k
+o
+m
+Y
+U
+n
 T
 T
 T
@@ -335,17 +397,17 @@ L
 (9,1,1) = {"
 L
 T
-K
-K
-K
-K
-l
-d
-a
-a
-a
-a
-K
+n
+n
+n
+n
+A
+k
+m
+m
+m
+m
+n
 I
 I
 T
@@ -355,17 +417,17 @@ L
 (10,1,1) = {"
 L
 T
-K
-S
-E
-K
 n
-d
-W
-a
-s
-a
-X
+O
+N
+n
+t
+k
+Y
+m
+H
+m
+h
 I
 T
 T
@@ -375,17 +437,17 @@ L
 (11,1,1) = {"
 L
 T
-K
-A
-A
-K
-j
-a
-a
-a
-s
-s
-K
+n
+l
+P
+n
+J
+m
+m
+m
+H
+H
+n
 I
 I
 I
@@ -395,17 +457,17 @@ L
 (12,1,1) = {"
 L
 T
-i
-A
-A
-K
-D
-o
-r
-a
-a
-K
-K
+g
+P
+P
+n
+Z
+F
+W
+m
+v
+n
+n
 I
 I
 T
@@ -415,16 +477,16 @@ L
 (13,1,1) = {"
 L
 T
-K
-F
-k
-K
-q
-C
+n
+V
+R
+n
+i
+e
+d
 m
-a
-H
-K
+f
+n
 T
 I
 T
@@ -435,16 +497,16 @@ L
 (14,1,1) = {"
 L
 T
-K
-K
-K
-K
-U
+n
+n
+n
+n
+X
+d
+e
 m
-C
 a
-h
-K
+n
 T
 T
 T
@@ -458,13 +520,13 @@ T
 T
 T
 T
-K
-Z
-C
-C
-s
-b
-K
+n
+S
+e
+e
+r
+j
+n
 T
 T
 T
@@ -478,13 +540,13 @@ T
 T
 T
 T
-K
-K
-K
-K
-K
-K
-K
+n
+n
+x
+x
+n
+n
+n
 T
 T
 c
