@@ -895,7 +895,7 @@
 	owner.client?.view_size.resetToDefault()
 	COOLDOWN_START(src, last_toggle, 4 SECONDS)
 
-/datum/action/cooldown/spell/aoe/repulse/frenzied_roar
+/datum/action/cooldown/spell/aoe/repulse/famished_roar
 	name = "Famished Roar"
 	desc = "An AOE roar spell that sends all near by people flying."
 	background_icon_state = "bg_heretic"
@@ -912,7 +912,7 @@
 
 	cooldown_time = 1 MINUTES
 
-/datum/action/cooldown/spell/pointed/projectile/eldritchbolt
+/datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
 	name = "Eldritch Bolt"
 	desc = "Fire a bolt of Eldritch energy. It will jump between targets, but can't knock them down."
 	background_icon_state = "bg_heretic"
@@ -933,33 +933,11 @@
 	deactive_msg = "You let the energy flow out of your hands back into yourself..."
 	projectile_type = /obj/item/projectile/magic/aoe/lightning 
 	
+	bolt_range = 4
+	bolt_power = 25000
+	bolt_flags = TESLA_MOB_DAMAGE
 
-	/// The range the bolt itself (different to the range of the projectile)
-	var/bolt_range = 4
-	/// The power of the bolt itself
-	var/bolt_power = 25000
-	/// The flags the bolt itself takes when zapping someone
-	var/bolt_flags = TESLA_MOB_DAMAGE
-
-/datum/action/cooldown/spell/pointed/projectile/eldritchbolt/Grant(mob/grant_to)
-	. = ..()
-	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, type) //HELL YEAHHH, LIGHTNING BOLT!
-
-/datum/action/cooldown/spell/pointed/projectile/eldritchbolt/Remove(mob/living/remove_from)
-	REMOVE_TRAIT(remove_from, TRAIT_SHOCKIMMUNE, type) //FUCK
-	return ..()
-
-/datum/action/cooldown/spell/pointed/projectile/eldritchbolt/ready_projectile(obj/item/projectile/to_fire, atom/target, mob/user, iteration)
-	. = ..()
-	if(!istype(to_fire, /obj/item/projectile/magic/aoe/lightning))
-		return
-
-	var/obj/item/projectile/magic/aoe/lightning/bolt = to_fire
-	bolt.tesla_range = bolt_range
-	bolt.tesla_power = bolt_power
-	bolt.tesla_flags = bolt_flags
-
-/datum/action/cooldown/spell/pointed/obfuscation
+/datum/action/cooldown/spell/pointed/phase_jump/obfuscation
 	name = "Mental Obfuscation"
 	desc = "A short range targeted teleport."
 	background_icon_state = "bg_heretic"
@@ -977,32 +955,6 @@
 	active_msg = span_notice("You prepare to warp everyone's vision.")
 	deactive_msg = span_notice("You relax your mind.")
 	spell_requirements = NONE
-
-/datum/action/cooldown/spell/pointed/obfuscation/InterceptClickOn(mob/living/user, params, atom/target)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/turf/target_turf = get_turf(target)
-	var/phasein = /obj/effect/temp_visual/dir_setting/cult/phase
-	var/phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
-	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
-	owner.forceMove(target_turf)
-	var/obj/spot2 = new phasein(get_turf(user), user.dir)
-	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
-	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
-	return TRUE
-
-/datum/action/cooldown/spell/pointed/obfuscation/is_valid_target(atom/target)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/turf/T = get_turf(target)
-	var/area/AU = get_area(owner)
-	var/area/AT = get_area(T)
-	if(AT.noteleport || AU.noteleport)
-		owner.balloon_alert(owner, "can't teleport there!")
-		return FALSE
-	return TRUE
 
 /datum/action/cooldown/spell/basic_projectile/assault
 	name = "Amygdala Assault"

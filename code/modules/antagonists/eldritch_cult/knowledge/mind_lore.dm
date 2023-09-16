@@ -23,7 +23,7 @@
 	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
 	desc = "Allows you to teleport a short distance to a targeted destination."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/obfuscation
+	spell_to_add = /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
 	route = PATH_MIND
 	tier = TIER_1
 
@@ -66,7 +66,7 @@
 	gain_text = "Beasts all over the shop. You'll be one of them... Sooner or later... What's that smell? The sweet blood, oh, it sings to me. It's enough to make a man sick..."
 	desc = "An AOE roar spell that sends all near by people and items flying."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/aoe/repulse/frenzied_roar
+	spell_to_add = /datum/action/cooldown/spell/aoe/repulse/famished_roar
 	tier = TIER_2
 
 /datum/eldritch_knowledge/mind_blade_upgrade
@@ -101,7 +101,7 @@
 	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
 	desc = "A strong semi-single target spell, shoot a target with raw energy from another dimension. Bolts of power will arc from the main bolt, shocking those hit by them."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/eldritchbolt
+	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
 	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_final
