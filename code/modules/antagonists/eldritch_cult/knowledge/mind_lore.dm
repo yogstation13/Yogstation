@@ -53,7 +53,7 @@
 	ranged_touch_upgraded.Grant(user)
 
 /datum/eldritch_knowledge/spell/assault
-	name = "Amygdalla Assault"
+	name = "Amygdala Assault"
 	gain_text = "Deep into the dream, you work tirelessly, endlessly. A blighted curse consumes the land, but the scholars of Kos will light the way through the nightmare."
 	desc = "Shoot a single bolt of condesnsed mental power infront of you, dealing large amounts of brute damage to any targets hit."
 	cost = 1
