@@ -29,11 +29,6 @@
 	if(reac_volume >= 1)
 		T.AddComponent(/datum/component/thermite, reac_volume)
 
-/datum/reagent/thermite/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(1, 0)
-	..()
-	return TRUE
-
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
