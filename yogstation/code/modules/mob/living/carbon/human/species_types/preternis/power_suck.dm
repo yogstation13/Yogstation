@@ -78,7 +78,7 @@
 				playsound(A.loc, "sparks", 50, 1)
 				if(prob(75))
 					spark_system.start()
-				var/drained = A.consume_power_from(drain) / 2 //they consume more power than they actually get
+				var/drained = A.consume_power_from(drain) //they consume more power than they actually get
 				if(drained < drain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
