@@ -99,7 +99,7 @@
 /datum/eldritch_knowledge/spell/eldritchbolt
 	name = "Eldritch Bolt"
 	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
-	desc = "A strong semi-single target spell, shoot a target with raw energy from another dimension. Bolts of power will arc from the main bolt, shocking those hit by them."
+	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
 	tier = TIER_3

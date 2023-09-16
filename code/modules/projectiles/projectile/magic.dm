@@ -706,6 +706,20 @@
 	QDEL_NULL(chain)
 	return ..()
 
+/obj/item/projectile/magic/aoe/lightning/eldritch
+	name = "otherwordly power"
+	icon_state = "tesla_projectile"	
+	damage = 25
+	damage_type = BURN
+	nodamage = FALSE
+	speed = 0.3
+	flag = MAGIC
+
+	tesla_power = 9000
+	tesla_range = 7
+	tesla_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	/datum/beam/chain
+
 /obj/item/projectile/magic/fireball
 	name = "bolt of fireball"
 	icon_state = "fireball"
