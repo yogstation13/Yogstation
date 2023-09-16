@@ -110,7 +110,7 @@
 
 //IPC lol, lmao
 /mob/living/carbon/human/can_consume_power_from()
-	return isipc(src) || ispreternis(src)
+	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
 
 /mob/living/carbon/human/consume_power_from(amount)
 	if((nutrition - amount) < NUTRITION_LEVEL_HUNGRY)
