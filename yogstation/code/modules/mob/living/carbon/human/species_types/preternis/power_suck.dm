@@ -114,7 +114,7 @@
 
 /mob/living/carbon/human/consume_power_from(amount)
 	if((nutrition - amount) < NUTRITION_LEVEL_HUNGRY)
-		amount = max(charge - NUTRITION_LEVEL_HUNGRY, 0)
+		amount = max(nutrition - NUTRITION_LEVEL_HUNGRY, 0)
 	adjust_nutrition(-amount)
 	return amount
 
