@@ -64,15 +64,7 @@
 
 /datum/eldritch_transmutation/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a fiery entity of unknown power is quickly escalating the station temperature to unhabitable levels. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-	set_security_level(SEC_LEVEL_GAMMA)
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
-
-	shockwave.transform = matrix().Scale(0.5)
-	shockwave.pixel_x = -240
-	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
-	QDEL_IN(shockwave, 10.5 SECONDS)
-
+	
 	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
 	circle_spell.Grant(user)
 

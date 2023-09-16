@@ -23,19 +23,11 @@
 
 /datum/eldritch_transmutation/final/rust_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/mob/living/carbon/human/H = user
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 	H.physiology.brute_mod *= 0.5
 	H.physiology.burn_mod *= 0.5
 	H.physiology.stamina_mod = 0
 	H.physiology.stun_mod = 0
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report significant and rapid decay of the station's infrastructure with a single entity as its source. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-	set_security_level(SEC_LEVEL_GAMMA)
-
-	shockwave.transform = matrix().Scale(0.5)
-	shockwave.pixel_x = -240
-	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
-	QDEL_IN(shockwave, 10.5 SECONDS)
 
 	new /datum/rust_spread(loc)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)

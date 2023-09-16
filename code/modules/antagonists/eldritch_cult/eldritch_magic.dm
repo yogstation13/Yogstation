@@ -1039,7 +1039,7 @@
 	return TRUE
 
 /datum/action/cooldown/spell/basic_projectile/assault
-	name = "Amygdalla Assault"
+	name = "Amygdala Assault"
 	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"

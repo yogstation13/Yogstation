@@ -17,8 +17,6 @@
 
 /datum/eldritch_transmutation/final/mind_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/mob/living/carbon/human/H = user
-	///do the mind shaker, shake that mind
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 	H.physiology.brute_mod *= 0.75
 	H.physiology.burn_mod *= 0.75
 	H.physiology.stamina_mod = 0
@@ -29,20 +27,13 @@
 	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
 	
 	priority_announce("Immense destabilization of the bluespace veil has been observed. @&#^$&#^@# THE HUNT BEGINS, LET SLIP THE DOGS OF WAR AND HUNT FREE FOREVER MORE!  $&#^@#@&#^ Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-	set_security_level(SEC_LEVEL_GAMMA)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
 	///grants the ascended heretic 12 points to spend
 	if (ascension.ascended == TRUE)
 		var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
 		knowledge?.charge += 9
-	
-	shockwave.transform = matrix().Scale(0.5)
-	shockwave.pixel_x = -240
-	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
-	QDEL_IN(shockwave, 10.5 SECONDS)
-
+		
 	return ..()
 
 	
