@@ -111,4 +111,4 @@
 	name = "Walker Village"
 	id = "walkervillage"
 	description = "A town populated by strange, sapient zombies."
-	suffix = "walker_village.dmm"
+	suffix = "icemoon_underground_walkervillage.dmm"
