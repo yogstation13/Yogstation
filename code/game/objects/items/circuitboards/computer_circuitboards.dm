@@ -357,7 +357,7 @@
 	
 /obj/item/circuitboard/computer/rdconsole/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
-	visible_message("[user] fiddles with [src].", "You fiddle with [src].")
+	user.visible_message(span_notice("[user] fiddles with [src]."), span_notice( "You fiddle with [src]."))
 	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
 		if(build_path == /obj/item/circuitboard/computer/rdconsole/production)
 			to_chat(user, span_danger("[src] sparks! That isn't right."))
