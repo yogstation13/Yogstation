@@ -662,10 +662,10 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	outfit = /datum/outfit/ice_hermit
 	assignedrole = "Ice Hermit"
 
-/datum/outfit/ice_hemit
+/datum/outfit/ice_hermit
 	name = "Icemoon Hermit"
 	uniform = /obj/item/clothing/under/color/grey/glorf
-	suit = obj/item/clothing/suit/hooded/wintercoat
+	suit = /obj/item/clothing/suit/hooded/wintercoat
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	back = /obj/item/storage/backpack/satchel //satchel gang
 	mask = /obj/item/clothing/mask/breath
