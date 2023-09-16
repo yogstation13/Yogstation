@@ -75,9 +75,8 @@
 				if(prob(75))
 					spark_system.start()
 
-				var/cycleDrain = baseDrain
-				var/drained = A.consume_power_from(cycleDrain)
-				if(drained < cycleDrain)
+				var/drained = A.consume_power_from(baseDrain)
+				if(drained < baseDrain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 
