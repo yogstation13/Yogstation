@@ -113,8 +113,8 @@
 	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
 
 /mob/living/carbon/human/consume_power_from(amount)
-	if((nutrition - amount) < NUTRITION_LEVEL_HUNGRY)
-		amount = max(nutrition - NUTRITION_LEVEL_HUNGRY, 0)
+	if((nutrition - amount) < NUTRITION_LEVEL_STARVING)
+		amount = max(nutrition - NUTRITION_LEVEL_STARVING, 0)
 	adjust_nutrition(-amount)
 	return amount
 
