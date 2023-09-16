@@ -49,7 +49,7 @@
 	var/datum/action/cooldown/spell/ranged_touch = locate(/datum/action/cooldown/spell/pointed/mansus_ranged) in user.actions
 	if(ranged_touch)
 		ranged_touch.Remove(user)
-	var/datum/action/cooldown/spell/pointed/mansus_ranged_upgraded/ranged_touch_upgraded = new(user)
+	var/datum/action/cooldown/spell/pointed/mansus_ranged/upgraded/ranged_touch_upgraded = new(user)
 	ranged_touch_upgraded.Grant(user)
 
 /datum/eldritch_knowledge/spell/assault
@@ -95,7 +95,6 @@
 /datum/eldritch_knowledge/cerebral_control/on_gain(mob/user)
 	. = ..()
 	ADD_TRAIT(user, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	///add something here
 
 /datum/eldritch_knowledge/spell/eldritchbolt
 	name = "Eldritch Bolt"
