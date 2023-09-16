@@ -117,7 +117,7 @@
 	id = /datum/reagent/redspace_thermite
 	results = list(/datum/reagent/redspace_thermite = 1)
 	required_reagents = list (/datum/reagent/thermite = 1)
-	required_catalysts = list(/datum/reagent/Redspace = 1)
+	required_catalysts = list(/datum/reagent/redspace = 1)
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
