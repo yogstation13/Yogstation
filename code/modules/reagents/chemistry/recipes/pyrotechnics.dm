@@ -112,6 +112,13 @@
 	results = list(/datum/reagent/thermite = 3)
 	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/iron = 1, /datum/reagent/oxygen = 1)
 
+/datum/chemical_reaction/redspace_thermite
+	name = "Redspace Thermite"
+	id = /datum/reagent/redspace_thermite
+	results = list(/datum/reagent/redspace_thermite = 1)
+	required_reagents = list (/datum/reagent/thermite = 1)
+	required_catalysts = list(/datum/reagent/Redspace = 1)
+
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
 	id = "emp_pulse"
