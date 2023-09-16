@@ -79,6 +79,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
+	addtimer(CALLBACK(src, PROC_REF(delete_fireaxe)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
@@ -184,7 +185,8 @@ GLOBAL_VAR(stormdamage)
 		/area/security/warden, 
 		/area/security/main, 
 		/area/crew_quarters/heads/hos,
-		/area/crew_quarters/heads/captain)
+		/area/crew_quarters/heads/captain//sword
+		)
 
 	for(var/area/place in to_clear)
 		var/area/A = locate(place) in GLOB.areas
@@ -197,6 +199,18 @@ GLOBAL_VAR(stormdamage)
 			if(clowned)
 				for(var/i = 0, i < 20, i++)
 					new /mob/living/simple_animal/hostile/retaliate/clown(clowned)// stop being a clown
+
+/datum/game_mode/fortnite/proc/delete_fireaxe()
+	var/area/to_clear = list(//clear out any place that might have gamer loot that creates a meta of "rush immediately"
+		/area/bridge, //fireaxe
+		typecacheof(/area/engine/atmos) //also fireaxe
+		)
+
+	for(var/area/place in to_clear)
+		var/area/A = locate(place) in GLOB.areas
+		for(var/obj/structure/thing in A)
+			if(istype(thing, /obj/structure/fireaxecabinet))//only target something that is possibly a weapon
+				qdel(thing)
 
 /datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
 	var/mob/selfinsert = new(src)
