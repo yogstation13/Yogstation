@@ -657,6 +657,8 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	name = "Icemoon Hermit"
 	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
 	flavour_text = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
 	outfit = /datum/outfit/ice_hermit
 	assignedrole = "Ice Hermit"
 
