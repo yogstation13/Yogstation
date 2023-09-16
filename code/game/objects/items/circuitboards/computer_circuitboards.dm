@@ -362,7 +362,7 @@
 		if(build_path == /obj/item/circuitboard/computer/rdconsole/production)
 			to_chat(user, span_danger("[src] sparks! That isn't right."))
 			var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
-			p.set_up(12, 1, user)
+			p.set_up(6, 1, user)
 			p.start()
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "R&D Console - Robotics (Computer Board)"
@@ -374,6 +374,12 @@
 			to_chat(user, span_notice("Defaulting access protocols."))
 
 /obj/item/circuitboard/computer/rdconsole/screwdriver_act(mob/living/user, obj/item/I)
+	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+		to_chat(user, span_danger("[src] sparks! That isn't right."))
+		var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+		p.set_up(6, 1, user)
+		p.start()
+		return TRUE
 	if(unlocked)
 		to_chat(user, span_notice("It seems to have a deep groove cutting some traces. Maybe welding it will help?"))
 		return TRUE
@@ -382,7 +388,9 @@
 		to_chat(user, span_notice("You scrape a deep groove into some of the traces, severing them."))
 
 
-/obj/item/circuitboard/computer/rdconsole/welder_act(mob/living/user, obj/item/I)	
+/obj/item/circuitboard/computer/rdconsole/welder_act(mob/living/user, obj/item/I)
+	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+		return
 	if(!unlocked)
 		return TRUE
 	if(!I.tool_start_check(user, amount=0))
