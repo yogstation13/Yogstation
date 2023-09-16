@@ -77,7 +77,9 @@
 "q" = (
 /obj/item/bedsheet,
 /obj/structure/bed,
-/obj/effect/mob_spawn/human/icemoon_hermit,
+/obj/effect/mob_spawn/human/icemoon_hermit{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/icemoon_hermit)
 "r" = (
