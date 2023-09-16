@@ -16,7 +16,7 @@
 	..()
 	return TRUE
 
-/datum/reagent/redspace_thermite
+/datum/reagent/thermite/redspace
 	name = "Redspace Thermite"
 	description = "Redspace Thermite produces an aluminothermic reaction known as a thermite reaction. Using the power of redspace dust, it is stronger than normal. Can be used to melt walls."
 	reagent_state = SOLID
