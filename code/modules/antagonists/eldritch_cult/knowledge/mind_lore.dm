@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_mind
 	name = "Precipice Of Enlightenment"
-	desc = "Pledge yourself to knowledge everlasting. Allows you to transmute a knife and a book into a blade of pure thought. Additionally, Your mansus grasp now functions at a range, marking targets and causing them to hallucinate."
+	desc = "Pledge yourself to knowledge everlasting. Allows you to transmute a knife and a book into a blade of pure thought. Additionally, Your mansus grasp now functions at a range, knocking them down and blurring their vision."
 	gain_text = "The corpse of an ancient God defiled, your fellow scholars enlightened by false knowledge, but you seek true insight. You seek the unknown, the invisible, the truth behind the veil."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
@@ -30,7 +30,7 @@
 /datum/eldritch_knowledge/eldritch_eye
 	name = "Eldritch Eye"
 	gain_text = "One of the many eyes of the defilied god ripped from it's bloated corpse, as you stood on that moonlit beach, you could almost swear you heard a baby crying."
-	desc = "Allows you to craft an eldritch eye by transmuting a flashlight and a pair of eyes. Grants the user a hud type of their choosing. Grants night vision."
+	desc = "Allows you to craft an eldritch eye by transmuting a flashlight and a pair of eyes. Grants the user a hud type of their choosing, additionally also grants night vision but it cannot be removed."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_eye)
 	cost = 1
 	tier = TIER_1
@@ -87,14 +87,15 @@
 /datum/eldritch_knowledge/cerebral_control
 	name = "Full Cerebral Control"
 	gain_text = "Itching on the inside of your skull, like spiders under your skin, runes marked all over your body, etched into your soul. Eyes on the inside to see the truth, to ascend."
-	desc = "Permenantly enhance your brain, allowing you to process information at highs speeds. All actions you take will be quickened."
+	desc = "Rewire your own brain to partially ignore damage slowdown."
 	cost = 1
 	route = PATH_MIND
 	tier = TIER_3
 
 /datum/eldritch_knowledge/cerebral_control/on_gain(mob/user)
 	. = ..()
-	user.next_move_modifier *= 0.6
+	ADD_TRAIT(user, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	///add something here
 
 /datum/eldritch_knowledge/spell/eldritchbolt
 	name = "Eldritch Bolt"
@@ -107,7 +108,7 @@
 /datum/eldritch_knowledge/mind_final
 	name = "Beyond All Knowldege Lies Despair"
 	gain_text = "A beast, a walking corpse, a murderer, a hunter. You are all these and more, and you like it. A hunter is a hunter, even in a dream, and you've made it to the end. It's time to wake from this endless nightmare, the keys to the lock built on a mountain of corpses. "
-	desc = "Transmute three corpses to ascend as a Monarch of Knowledge. Your form twists and shapes into a new being, instantly gaining 12 points of knowledge to use, as well as granting you access to your new bodies full potential, becoming semi-resistant to all damage types and highly resistant to stuns."
+	desc = "Transmute three corpses to ascend as a Monarch of Knowledge. Instantly gain 9 points of knowledge to use, as well as becoming semi-resistant to all damage types. You also gain additional immunity to pressure and no longer need to breath."
 	cost = 3
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/mind_final)
 	route = PATH_MIND

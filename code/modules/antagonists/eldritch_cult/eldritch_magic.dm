@@ -944,7 +944,7 @@
 	spell_requirements = NONE
 	aoe_radius = 3
 
-	cooldown_time = 45 SECONDS
+	cooldown_time = 60 SECONDS
 
 /datum/action/cooldown/spell/pointed/projectile/eldritchbolt
 	name = "Eldritch Bolt"
@@ -956,7 +956,7 @@
 
 	sound = 'sound/magic/lightningbolt.ogg'
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 45 SECONDS
+	cooldown_time = 60 SECONDS
 
 	invocation = "EL'RICH BL'AS'T"
 	invocation_type = INVOCATION_SHOUT
@@ -969,9 +969,9 @@
 	
 
 	/// The range the bolt itself (different to the range of the projectile)
-	var/bolt_range = 6
+	var/bolt_range = 4
 	/// The power of the bolt itself
-	var/bolt_power = 66666
+	var/bolt_power = 40000
 	/// The flags the bolt itself takes when zapping someone
 	var/bolt_flags = TESLA_MOB_DAMAGE
 

@@ -1,6 +1,6 @@
 /datum/eldritch_transmutation/mind_knife
 	name = "Cerebral Blade"
-	required_atoms = list(/obj/item/kitchen/knife,/obj/item/book/random) 
+	required_atoms = list(/obj/item/kitchen/knife,/obj/item/book) 
 	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/mind)
 	required_shit_list = "A book and a knife."
 
@@ -23,6 +23,11 @@
 	H.physiology.burn_mod *= 0.75
 	H.physiology.stamina_mod = 0
 	H.physiology.stun_mod = 0
+	
+	ADD_TRAIT(user, TRAIT_NOBREATH, type)
+	ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
+	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+	
 	priority_announce("Immense destabilization of the bluespace veil has been observed. @&#^$&#^@# THE HUNT BEGINS, LET SLIP THE DOGS OF WAR AND HUNT FREE FOREVER MORE!  $&#^@#@&#^ Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	set_security_level(SEC_LEVEL_GAMMA)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
@@ -30,7 +35,7 @@
 	///grants the ascended heretic 12 points to spend
 	if (ascension.ascended == TRUE)
 		var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-		knowledge?.charge += 12
+		knowledge?.charge += 9
 	
 	shockwave.transform = matrix().Scale(0.5)
 	shockwave.pixel_x = -240
@@ -40,15 +45,5 @@
 
 	return ..()
 
-/datum/eldritch_transmutation/final/mind_final/on_life(mob/user)
-	. = ..()
-	if(!finished)
-		return
-	var/mob/living/carbon/human/human_user = user
-	human_user.adjustBruteLoss(-3, FALSE)
-	human_user.adjustFireLoss(-3, FALSE)
-	human_user.adjustToxLoss(-3, FALSE)
-	human_user.adjustOxyLoss(-1, FALSE)
-	human_user.adjustStaminaLoss(-10)
 	
 
