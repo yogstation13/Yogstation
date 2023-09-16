@@ -656,6 +656,8 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/icemoon_hermit
 	name = "Icemoon Hermit"
 	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	roundstart = FALSE
+	death = FALSE
 	flavour_text = "After becoming disillusioned with society, you chose a life here with the ice and snow."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
