@@ -655,7 +655,7 @@
 	throwforce = 30
 	sharpness = SHARP_EDGED
 	embedding = list("embed_chance" = 0)
-	attack_verb = list("enlightened", "redpilled")
+	attack_verb = list("enlightened", "redpilled", "m'lady'ed")
 	menutab = MENU_CLOTHING
 	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
 
