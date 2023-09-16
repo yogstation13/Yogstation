@@ -27,7 +27,7 @@
 
 /datum/reagent/thermite/redspace/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
-		T.AddComponent(/datum/component/thermite, reac_volume)
+		T.AddComponent(/datum/component/thermite, reac_volume, TRUE)
 
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
