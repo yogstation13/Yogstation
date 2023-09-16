@@ -718,7 +718,6 @@
 	tesla_power = 9000
 	tesla_range = 7
 	tesla_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
-	/datum/beam/chain
 
 /obj/item/projectile/magic/fireball
 	name = "bolt of fireball"
