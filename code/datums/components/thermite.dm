@@ -14,16 +14,19 @@
 		/turf/closed/wall/mineral/diamond,
 		/turf/closed/indestructible,
 		/turf/open/indestructible,
-		/turf/closed/wall/r_wall)
 		)
 	
 	var/static/list/resistlist = typecacheof(
 		/turf/closed/wall/mineral
 		)
 
-/datum/component/thermite/Initialize(_amount)
+/datum/component/thermite/Initialize(_amount, powerful = FALSE)
 	if(!istype(parent, /turf) || blacklist[parent.type])
 		return COMPONENT_INCOMPATIBLE
+
+		if(!powerful)
+		immunelist |= typecacheof(/turf/closed/wall/r_wall)
+		
 	if(immunelist[parent.type])
 		_amount*=0 //Yeah the overlay can still go on it and be cleaned but you arent burning down a diamond wall
 	if(resistlist[parent.type])
