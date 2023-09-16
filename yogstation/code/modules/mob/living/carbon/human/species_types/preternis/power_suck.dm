@@ -53,20 +53,15 @@
 	to_chat(H, span_info("Extracutaneous implants detect viable power source. Initiating CONSUME protocol."))
 
 	var/done = FALSE
-	var/drain = 150 * siemens_coefficient
-
+	var/baseDrain = 150 * siemens_coefficient
 	var/cycle = 0
+
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.attach(A)
 	spark_system.set_up(5, 0, A)
 
 	while(!done)
 		cycle++
-		var/nutritionIncrease = drain * ELECTRICITY_TO_NUTRIMENT_FACTOR
-
-		if(H.nutrition + nutritionIncrease > NUTRITION_LEVEL_FAT)
-			nutritionIncrease = clamp(NUTRITION_LEVEL_FAT - H.nutrition, 0, NUTRITION_LEVEL_FAT) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
-			drain = nutritionIncrease/ELECTRICITY_TO_NUTRIMENT_FACTOR
 
 		if (do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 0.4 SECONDS : 0.5 SECONDS, A))
 			var/can_drain = A.can_consume_power_from()
@@ -74,21 +69,27 @@
 				if(istext(can_drain))
 					to_chat(H, can_drain)
 				done = TRUE
+				
 			else
 				playsound(A.loc, "sparks", 50, 1)
 				if(prob(75))
 					spark_system.start()
-				var/drained = A.consume_power_from(drain) //they consume more power than they actually get
-				if(drained < drain)
+
+				var/cycleDrain = baseDrain
+				var/drained = A.consume_power_from(cycleDrain)
+				if(drained < cycleDrain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
+
+				if(H.nutrition + cycleDrain > NUTRITION_LEVEL_FAT)
+					cycleDrain = clamp(NUTRITION_LEVEL_FAT - H.nutrition, 0, NUTRITION_LEVEL_FAT)
 				
-				if(!H.adjust_nutrition(drained * ELECTRICITY_TO_NUTRIMENT_FACTOR / 2))
+				if(!H.adjust_nutrition(drained * ELECTRICITY_TO_NUTRIMENT_FACTOR))
 					to_chat(H, span_info("CONSUME protocol failed - unable to recharge internal power supply."))
 					return
 
 				if(!done)
-					if(H.nutrition > (NUTRITION_LEVEL_FAT - 25))
+					if(H.nutrition >= NUTRITION_LEVEL_FAT)
 						to_chat(H, span_info("CONSUME protocol complete. Physical nourishment refreshed."))
 						done = TRUE
 					else if(!(cycle % 4))
