@@ -655,7 +655,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/icemoon_hermit
 	name = "Icemoon Hermit"
-	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow.""
+	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
 	flavour_text = "After becoming disillusioned with society, you chose a life here with the ice and snow."
 	outfit = /datum/outfit/ice_hermit
 	assignedrole = "Ice Hermit"
