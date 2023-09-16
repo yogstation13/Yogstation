@@ -1,0 +1,551 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/combat/bone,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"c" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"d" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"e" = (
+/obj/machinery/vending/hydroseeds{
+	onstation = 0
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/processor,
+/turf/open/floor/wood,
+/area/space)
+"i" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"j" = (
+/obj/machinery/oven,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"m" = (
+/obj/structure/curtain,
+/turf/open/floor/wood,
+/area/space)
+"n" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/smartfridge/food,
+/turf/open/floor/wood,
+/area/space)
+"o" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/space)
+"p" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/space)
+"q" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/turf/open/floor/wood,
+/area/space)
+"t" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"u" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/space)
+"v" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/storage/bag/plants/portaseeder,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"w" = (
+/obj/machinery/chem_dispenser/mutagensaltpeter,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"x" = (
+/turf/open/floor/wood,
+/area/space)
+"y" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/space)
+"z" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"D" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"E" = (
+/turf/open/space/basic,
+/area/space)
+"F" = (
+/obj/structure/rack,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"G" = (
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder/kitchen,
+/turf/open/floor/wood,
+/area/space)
+"H" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"I" = (
+/obj/structure/fireplace{
+	fuel_added = 1000;
+	lit = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet,
+/area/space)
+"J" = (
+/turf/open/floor/carpet,
+/area/space)
+"K" = (
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"L" = (
+/turf/closed/wall/mineral/wood,
+/area/space)
+"M" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"N" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 30
+	},
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"O" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"Q" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"R" = (
+/obj/item/bedsheet,
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/space)
+"U" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/space)
+"W" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"X" = (
+/obj/machinery/vending/hydronutrients{
+	onstation = 0
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"Y" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+
+(1,1,1) = {"
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+"}
+(2,1,1) = {"
+E
+E
+t
+t
+t
+t
+t
+t
+M
+t
+t
+t
+t
+t
+t
+t
+E
+E
+"}
+(3,1,1) = {"
+E
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+M
+t
+E
+"}
+(4,1,1) = {"
+E
+t
+M
+O
+O
+L
+c
+L
+L
+L
+L
+L
+L
+t
+t
+t
+t
+E
+"}
+(5,1,1) = {"
+E
+t
+t
+t
+t
+L
+W
+W
+L
+x
+x
+x
+L
+t
+t
+t
+t
+E
+"}
+(6,1,1) = {"
+E
+t
+O
+t
+O
+L
+F
+F
+L
+o
+H
+R
+L
+t
+t
+t
+t
+E
+"}
+(7,1,1) = {"
+E
+t
+O
+t
+v
+L
+L
+L
+L
+L
+m
+L
+L
+t
+t
+t
+t
+E
+"}
+(8,1,1) = {"
+E
+t
+O
+t
+O
+L
+J
+u
+H
+x
+y
+x
+L
+t
+t
+t
+t
+E
+"}
+(9,1,1) = {"
+E
+t
+L
+L
+L
+L
+I
+u
+x
+x
+x
+x
+L
+W
+W
+t
+t
+E
+"}
+(10,1,1) = {"
+E
+t
+L
+e
+X
+L
+J
+u
+y
+x
+H
+x
+p
+W
+t
+t
+t
+E
+"}
+(11,1,1) = {"
+E
+t
+L
+W
+W
+L
+q
+x
+x
+x
+H
+H
+L
+W
+W
+W
+t
+E
+"}
+(12,1,1) = {"
+E
+t
+Y
+W
+W
+L
+K
+D
+b
+x
+x
+L
+L
+W
+W
+t
+t
+E
+"}
+(13,1,1) = {"
+E
+t
+L
+Q
+w
+L
+U
+i
+z
+x
+h
+L
+t
+W
+t
+t
+t
+E
+"}
+(14,1,1) = {"
+E
+t
+L
+L
+L
+L
+j
+z
+i
+x
+G
+L
+t
+t
+t
+t
+t
+E
+"}
+(15,1,1) = {"
+E
+t
+t
+t
+t
+L
+N
+i
+i
+H
+n
+L
+t
+t
+t
+d
+t
+E
+"}
+(16,1,1) = {"
+E
+t
+t
+t
+t
+L
+L
+L
+L
+L
+L
+L
+t
+t
+M
+t
+t
+E
+"}
+(17,1,1) = {"
+E
+t
+t
+M
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+t
+E
+"}
+(18,1,1) = {"
+E
+E
+t
+t
+t
+t
+t
+t
+t
+d
+t
+t
+t
+t
+t
+t
+E
+E
+"}
+(19,1,1) = {"
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+"}
