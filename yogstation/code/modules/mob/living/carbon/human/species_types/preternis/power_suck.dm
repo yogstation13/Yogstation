@@ -81,7 +81,7 @@
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 
-				H.adjust_bodytemperature(drained / ELECTRICITY_TO_NUTRIMENT_FACTOR) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
+				H.adjust_bodytemperature(drained * (1 - ELECTRICITY_TO_NUTRIMENT_FACTOR)) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
 				drained *= ELECTRICITY_TO_NUTRIMENT_FACTOR //loss of efficiency
 
 				if(H.nutrition + drained > NUTRITION_LEVEL_FAT)
