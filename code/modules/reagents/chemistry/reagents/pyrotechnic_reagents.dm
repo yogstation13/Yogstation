@@ -16,6 +16,24 @@
 	..()
 	return TRUE
 
+/datum/reagent/redspace_thermite
+	name = "Redspace Thermite"
+	description = "Redspace Thermite produces an aluminothermic reaction known as a thermite reaction. Using the power of redspace dust, it is stronger than normal. Can be used to melt walls."
+	reagent_state = SOLID
+	color = "#550000"
+	taste_description = "sweet tasting metal and bitter evil"
+	process_flags = ORGANIC | SYNTHETIC
+	can_synth = FALSE
+
+/datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
+	if(reac_volume >= 1)
+		T.AddComponent(/datum/component/thermite, reac_volume)
+
+/datum/reagent/thermite/on_mob_life(mob/living/carbon/M)
+	M.adjustFireLoss(1, 0)
+	..()
+	return TRUE
+
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
