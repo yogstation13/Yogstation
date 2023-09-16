@@ -9,6 +9,11 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
 "c" = (
@@ -112,6 +117,13 @@
 /obj/structure/window/reinforced/fulltile/ice,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
+"z" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/kinetic_crusher,
+/obj/item/gun/energy/kinetic_accelerator,
+/turf/open/floor/wood,
+/area/ruin/powered/icemoon_hermit)
 "A" = (
 /obj/structure/fireplace{
 	fuel_added = 1000;
@@ -125,6 +137,15 @@
 /obj/item/storage/bag/plants/portaseeder,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
+"C" = (
+/obj/structure/rack,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/powered/icemoon_hermit)
 "D" = (
 /obj/structure/dresser,
 /turf/open/floor/wood{
@@ -183,10 +204,6 @@
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
 "P" = (
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/powered/icemoon_hermit)
-"Q" = (
-/obj/structure/rack,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/powered/icemoon_hermit)
 "R" = (
@@ -344,7 +361,7 @@ T
 u
 n
 b
-Q
+C
 n
 D
 w
@@ -448,7 +465,7 @@ m
 m
 m
 H
-H
+z
 n
 I
 I
