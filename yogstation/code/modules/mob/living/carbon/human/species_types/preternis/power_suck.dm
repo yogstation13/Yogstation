@@ -83,7 +83,7 @@
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 				
-				if(!H.adjust_nutrition(drained * ELECTRICITY_TO_NUTRIMENT_FACTOR))
+				if(!H.adjust_nutrition(drained * ELECTRICITY_TO_NUTRIMENT_FACTOR / 2))
 					to_chat(H, span_info("CONSUME protocol failed - unable to recharge internal power supply."))
 					return
 
