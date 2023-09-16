@@ -484,6 +484,8 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/icemoon_walker
 	name = "disturbed grave"
 	desc = "A grave.  It's dirt seems to be churned up, with signs of recent activity."
+	roundstart = FALSE
+	death = FALSE
 	important_info = "Do not board the Nanotrasen station under any circumstances."
 	icon = 'icons/obj/lavaland/misc.dmi'
 	icon_state = "grave"
@@ -504,6 +506,8 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 /obj/effect/mob_spawn/human/icemoon_walker/chieftain
 	name = "immaculate grave"
 	desc = "A grave.  It's dirt is perfectly shaped, as though someone has smoothed it out recently."
+	roundstart = FALSE
+	death = FALSE
 	important_info = "Do not board the Nanotrasen station under any circumstances."
 	icon = 'icons/obj/lavaland/misc.dmi'
 	icon_state = "grave"
