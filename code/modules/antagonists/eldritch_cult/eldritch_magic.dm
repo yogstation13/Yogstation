@@ -930,7 +930,7 @@
 	COOLDOWN_START(src, last_toggle, 4 SECONDS)
 
 /datum/action/cooldown/spell/aoe/repulse/frenzied_roar
-	name = "Frenzied Roar"
+	name = "Famished Roar"
 	desc = "An AOE roar spell that sends all near by people flying."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
