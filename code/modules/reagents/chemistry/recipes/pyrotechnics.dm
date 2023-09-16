@@ -114,8 +114,8 @@
 
 /datum/chemical_reaction/redspace_thermite
 	name = "Redspace Thermite"
-	id = /datum/reagent/redspace_thermite
-	results = list(/datum/reagent/redspace_thermite = 1)
+	id = /datum/reagent/thermite/redspace
+	results = list(/datum/reagent/thermite/redspace = 1)
 	required_reagents = list (/datum/reagent/thermite = 1)
 	required_catalysts = list(/datum/reagent/redspace = 1)
 
