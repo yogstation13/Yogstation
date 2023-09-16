@@ -47,7 +47,7 @@
 	name = "Icemoon Hermit"
 	id = "ice_hermit"
 	description = "The home of a hermit in the ice and snow, you can't possibly imagine who'd want to live here."
-	suffix = "icemoon_hermit.dmm
+	suffix = "icemoon_hermit.dmm"
 
 // above and below ground together
 
