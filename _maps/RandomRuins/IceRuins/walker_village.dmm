@@ -1,0 +1,908 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/space)
+"d" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/combat/bone{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/kitchen/knife/combat/bone,
+/obj/item/kitchen/knife/combat/bone{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/turf/open/floor/wood,
+/area/space)
+"f" = (
+/obj/structure/table/wood,
+/obj/item/melee/spear/bonespear,
+/obj/item/melee/spear/bonespear{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/melee/spear/bonespear{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/space)
+"g" = (
+/turf/closed/mineral/snowmountain/cavern/icemoon,
+/area/space)
+"h" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"j" = (
+/obj/item/fishingrod,
+/obj/structure/rack,
+/obj/item/fishingrod,
+/obj/item/fishingrod,
+/obj/item/reagent_containers/food/snacks/bait/master,
+/obj/item/reagent_containers/food/snacks/bait/master,
+/obj/item/reagent_containers/food/snacks/bait/master,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"k" = (
+/obj/item/pickaxe/bonepickaxe,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"l" = (
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"n" = (
+/obj/structure/flora/bush,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"o" = (
+/obj/structure/table/wood,
+/obj/item/storage/belt/quiver/weaver/ashwalker{
+	pixel_y = 2
+	},
+/obj/item/storage/belt/quiver/weaver/ashwalker{
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/bow/ashen{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/gun/ballistic/bow/ashen{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/space)
+"q" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"r" = (
+/obj/structure/bonfire/dense,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"t" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"u" = (
+/turf/open/floor/plating/ice/icemoon,
+/area/space)
+"w" = (
+/turf/open/water/safe,
+/area/space)
+"x" = (
+/turf/template_noop,
+/area/template_noop)
+"y" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"C" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"D" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/underground/explored)
+"E" = (
+/turf/template_noop,
+/area)
+"F" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"G" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"J" = (
+/turf/closed/wall/mineral/wood,
+/area/space)
+"K" = (
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"L" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"M" = (
+/turf/open/floor/carpet/purple,
+/area/space)
+"P" = (
+/turf/open/floor/plating/asteroid/snow/ice/icemoon,
+/area/space)
+"R" = (
+/obj/structure/fence/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"S" = (
+/obj/structure/fence/corner,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"T" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/space)
+"U" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"V" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+"W" = (
+/obj/structure/chair/bronze{
+	desc = "An ornate throne made of bronze.";
+	name = "chieftain's throne"
+	},
+/turf/open/floor/carpet/purple,
+/area/space)
+"X" = (
+/turf/open/floor/wood,
+/area/space)
+"Y" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"Z" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/space)
+
+(1,1,1) = {"
+E
+x
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+"}
+(2,1,1) = {"
+E
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+U
+K
+K
+K
+y
+K
+K
+K
+K
+K
+K
+E
+"}
+(3,1,1) = {"
+E
+K
+K
+K
+Y
+K
+g
+g
+g
+g
+g
+K
+D
+D
+K
+D
+D
+K
+K
+K
+K
+K
+Y
+K
+K
+E
+"}
+(4,1,1) = {"
+E
+K
+K
+K
+g
+g
+g
+g
+g
+g
+g
+g
+D
+D
+D
+D
+g
+g
+g
+g
+g
+K
+K
+K
+K
+E
+"}
+(5,1,1) = {"
+E
+K
+K
+g
+g
+g
+g
+q
+q
+q
+g
+g
+g
+D
+D
+g
+g
+g
+g
+g
+g
+g
+g
+h
+K
+E
+"}
+(6,1,1) = {"
+E
+K
+g
+g
+g
+q
+L
+q
+V
+q
+L
+g
+g
+C
+C
+g
+g
+q
+T
+q
+g
+g
+g
+g
+K
+E
+"}
+(7,1,1) = {"
+E
+K
+g
+g
+q
+q
+L
+q
+V
+q
+L
+q
+F
+V
+V
+k
+q
+q
+q
+q
+q
+q
+g
+g
+K
+E
+"}
+(8,1,1) = {"
+E
+K
+g
+g
+q
+q
+R
+l
+Z
+l
+S
+q
+q
+G
+V
+q
+n
+J
+J
+J
+J
+J
+g
+g
+K
+E
+"}
+(9,1,1) = {"
+E
+h
+g
+g
+k
+q
+q
+t
+V
+V
+V
+V
+V
+V
+V
+q
+q
+J
+X
+X
+X
+J
+g
+g
+K
+E
+"}
+(10,1,1) = {"
+E
+K
+g
+g
+q
+q
+J
+J
+J
+J
+J
+J
+J
+q
+V
+V
+V
+c
+X
+X
+X
+J
+g
+g
+K
+E
+"}
+(11,1,1) = {"
+E
+K
+g
+g
+q
+q
+J
+X
+X
+X
+X
+X
+J
+q
+V
+q
+q
+J
+X
+X
+X
+J
+g
+g
+K
+E
+"}
+(12,1,1) = {"
+E
+U
+g
+g
+q
+q
+J
+M
+M
+M
+X
+X
+J
+q
+V
+r
+q
+J
+J
+J
+J
+J
+g
+g
+K
+E
+"}
+(13,1,1) = {"
+E
+K
+g
+g
+q
+q
+J
+W
+M
+M
+X
+X
+c
+V
+V
+t
+q
+q
+q
+q
+q
+q
+g
+g
+K
+E
+"}
+(14,1,1) = {"
+E
+K
+g
+g
+q
+q
+J
+M
+M
+M
+X
+X
+J
+q
+V
+V
+V
+V
+V
+q
+G
+q
+g
+g
+K
+E
+"}
+(15,1,1) = {"
+E
+K
+g
+g
+q
+t
+J
+X
+X
+X
+X
+X
+J
+q
+V
+q
+J
+J
+c
+J
+J
+q
+g
+g
+K
+E
+"}
+(16,1,1) = {"
+E
+K
+g
+g
+q
+q
+J
+J
+J
+J
+J
+J
+J
+j
+V
+q
+J
+o
+X
+X
+J
+q
+g
+g
+K
+E
+"}
+(17,1,1) = {"
+E
+K
+g
+g
+q
+q
+q
+q
+q
+q
+P
+P
+P
+q
+V
+q
+J
+f
+X
+X
+J
+q
+g
+g
+K
+E
+"}
+(18,1,1) = {"
+E
+K
+g
+g
+q
+q
+q
+q
+P
+P
+u
+w
+u
+P
+V
+q
+J
+d
+X
+X
+J
+q
+g
+g
+K
+E
+"}
+(19,1,1) = {"
+E
+K
+g
+g
+q
+q
+G
+P
+u
+u
+u
+w
+w
+P
+V
+q
+J
+X
+X
+X
+J
+q
+g
+g
+K
+E
+"}
+(20,1,1) = {"
+E
+K
+g
+g
+q
+q
+P
+u
+u
+u
+w
+w
+w
+u
+P
+q
+J
+J
+J
+J
+J
+q
+g
+g
+K
+E
+"}
+(21,1,1) = {"
+E
+K
+g
+g
+g
+q
+q
+P
+P
+u
+u
+u
+u
+u
+P
+t
+q
+q
+q
+q
+q
+g
+g
+g
+K
+E
+"}
+(22,1,1) = {"
+E
+K
+h
+g
+g
+g
+q
+q
+P
+P
+P
+P
+P
+P
+P
+q
+q
+k
+q
+g
+g
+g
+g
+g
+K
+E
+"}
+(23,1,1) = {"
+E
+K
+K
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+K
+K
+E
+"}
+(24,1,1) = {"
+E
+K
+Y
+K
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+K
+K
+K
+U
+K
+E
+"}
+(25,1,1) = {"
+E
+K
+K
+K
+K
+K
+K
+K
+K
+K
+y
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+Y
+K
+K
+K
+E
+"}
+(26,1,1) = {"
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+"}
