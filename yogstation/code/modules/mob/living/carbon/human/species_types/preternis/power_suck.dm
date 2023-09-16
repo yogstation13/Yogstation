@@ -69,7 +69,7 @@
 				if(istext(can_drain))
 					to_chat(H, can_drain)
 				done = TRUE
-				
+
 			else
 				playsound(A.loc, "sparks", 50, 1)
 				if(prob(75))
@@ -81,10 +81,12 @@
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 
-				if(H.nutrition + cycleDrain > NUTRITION_LEVEL_FAT)
-					cycleDrain = clamp(NUTRITION_LEVEL_FAT - H.nutrition, 0, NUTRITION_LEVEL_FAT)
+				drained *= ELECTRICITY_TO_NUTRIMENT_FACTOR //loss of efficiency
+
+				if(H.nutrition + drained > NUTRITION_LEVEL_FAT)
+					drained = clamp(NUTRITION_LEVEL_FAT - H.nutrition, 0, NUTRITION_LEVEL_FAT)
 				
-				if(!H.adjust_nutrition(drained * ELECTRICITY_TO_NUTRIMENT_FACTOR))
+				if(!H.adjust_nutrition(drained))
 					to_chat(H, span_info("CONSUME protocol failed - unable to recharge internal power supply."))
 					return
 
