@@ -182,8 +182,7 @@
 		/obj/item/stack/ore/titanium = 15,
 		/obj/item/stack/ore/uranium = 15,
 		/obj/item/stack/ore/diamond = 13,
-		/obj/item/stack/ore/bluespace_crystal = 12,
-		/obj/item/stack/ore/bananium = 1, //as rare as possible
+		/obj/item/stack/ore/bluespace_crystal = 12,s
 		/obj/item/stack/ore/plasma = 18,
 		/obj/item/stack/ore/gold = 15,
 		/obj/item/stack/ore/silver = 15
