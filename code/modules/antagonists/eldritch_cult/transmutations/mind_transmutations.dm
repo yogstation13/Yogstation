@@ -15,12 +15,13 @@
 	required_atoms = list(/mob/living/carbon/human)
 	required_shit_list = "Three dead bodies."
 
+/datum/martial_art/Absolute_Spacial_Domination
+	id = MARTIALART_SPACIALLDOMINANCE
+	deflection_chance = 100
+
 /datum/eldritch_transmutation/final/mind_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/mob/living/carbon/human/H = user
-	H.physiology.brute_mod *= 0.75
-	H.physiology.burn_mod *= 0.75
-	H.physiology.stamina_mod = 0
-	H.physiology.stun_mod = 0
+	var/datum/martial_art/Absolute_Spacial_Domination/deflection= new(user)
+	deflection.teach(user)
 	
 	ADD_TRAIT(user, TRAIT_NOBREATH, type)
 	ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
@@ -29,7 +30,7 @@
 	priority_announce("Immense destabilization of the bluespace veil has been observed. @&#^$&#^@# THE HUNT BEGINS, LET SLIP THE DOGS OF WAR AND HUNT FREE FOREVER MORE!  $&#^@#@&#^ Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
-	///grants the ascended heretic 12 points to spend
+	///grants the ascended heretic 9 points to spend
 	if (ascension.ascended == TRUE)
 		var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
 		knowledge?.charge += 9
