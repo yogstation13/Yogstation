@@ -1909,8 +1909,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
-	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a normal MMI, an implant case, a straitjacket, and a muzzle."
+	desc = "A red and black duffel bag containing all surgery tools, a surgical mat, \
+			a normal MMI, an implant case, a straitjacket, and a muzzle. The surgery tools are twice as fast compared to normal surgery tools."
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 2
@@ -2481,7 +2481,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	To activate His Grace, simply unlatch Him."
 	item = /obj/item/his_grace
 	cost = 20
-	restricted_roles = list("Chaplain")
+	restricted_roles = list("Chaplain", "Assistant")
 	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror
