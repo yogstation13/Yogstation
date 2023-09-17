@@ -20,6 +20,7 @@
 	deflection_chance = 100
 
 /datum/eldritch_transmutation/final/mind_final/on_finished_recipe(mob/living/user, list/atoms, loc)
+	var/mob/living/carbon/human/H = user
 	var/datum/martial_art/Absolute_Spacial_Domination/deflection= new(user)
 	deflection.teach(user)
 	
