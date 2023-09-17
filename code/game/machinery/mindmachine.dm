@@ -117,10 +117,14 @@
 			charge -= cost
 		deactivate()
 
-/obj/machinery/mindmachine_hub/proc/try_activate(mob/user, was)
+/obj/machinery/mindmachine_hub/proc/try_activate(mob/user)
 	// No checking here for mind protection/antag to prevent easy antag checking.
 	switch(can_mindswap())
 		if(MINDMACHINE_CAN_SUCCESS)
+			if(transfer_by_delay)
+				log_game("[key_name(user)] initiated a mind machine mindswap process between [key_name(firstPod.occupant)] and [key_name(secondPod.occupant)] (delayed).")
+			else
+				log_game("[key_name(user)] initiated a mind machine mindswap process between [key_name(firstPod.occupant)] and [key_name(secondPod.occupant)].")
 			activate()
 			. = TRUE
 		if(MINDMACHINE_CAN_SRCGONE)
@@ -500,13 +504,13 @@
 			if(should_fail())
 				mindswap_malfunction(sentientOccupant, nonsentientOccupant, MINDMACHINE_SENTIENT_SOLO)
 			else
-				mindswap_sentient(sentientOccupant, nonsentientOccupant, TRUE)
+				mindswap_sentient(sentientOccupant, nonsentientOccupant)
 			return TRUE
 		if(MINDMACHINE_SENTIENT_PAIR)
 			if(should_fail())
 				mindswap_malfunction(firstOccupant, secondOccupant, MINDMACHINE_SENTIENT_PAIR)
 			else
-				mindswap_sentient(firstOccupant, secondOccupant, TRUE)
+				mindswap_sentient(firstOccupant, secondOccupant)
 			return TRUE
 
 /// Switches various factors between two non-sentient animals.
@@ -526,9 +530,10 @@
 	var/list/secondSpeak = secondAnimal.speak.Copy()
 	firstAnimal.speak = secondSpeak
 	secondAnimal.speak = firstSpeak
+	log_game("[firstAnimal] and [secondAnimal] had their faction, speak list, and speak chance swapped by a mind machine.")
 
 /// Mindswaps the two occupants (which one is sentient).
-/obj/machinery/mindmachine_hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant)
+/obj/machinery/mindmachine_hub/proc/mindswap_sentient(mob/living/sentientOccupant, mob/living/otherOccupant, do_log = TRUE)
 	if(!otherOccupant.mind)
 		otherOccupant.mind_initialize()
 
@@ -536,6 +541,8 @@
 	var/datum/mind/otherMind = otherOccupant.mind
 	var/otherKey = otherMind.key
 
+	if(do_log)
+		log_game("[key_name(sentientMind)] and [key_name(otherMind)] was mindswapped by a mind machine.")
 	// It is important that a sentient mind swaps first. If you don't, the non-sentient mind will store the ckey of the sentient mind (and that it is bad)!
 	sentientMind.transfer_to(otherOccupant)
 	otherMind.transfer_to(sentientOccupant)
@@ -555,16 +562,20 @@
 			var/mob/living/simple_animal/secondAnimal = secondOccupant
 			if(!firstAnimal || !secondAnimal)
 				return
+
 			/* 	Failing means factions will be randomized which may cause them to be hostile to nearby people.
 				And since there are a million factions... let us keep it simple: */
 			var/list/random_factions = list("hostile", "neutral", "plants", "spiders")
 			var/random_faction = random_factions[rand(1, random_factions.len)]
 			firstAnimal.faction = list()
 			firstAnimal.faction += random_faction
+			log_game(span_notice("[firstAnimal] got faction [random_faction] due to malfunction mindswapped."))
 
 			random_faction = random_factions[rand(1, random_factions.len)]
 			secondAnimal.faction = list()
 			secondAnimal.faction += random_faction
+			log_game(span_notice("[secondAnimal] got faction [random_faction] due to malfunction mindswapped."))
+
 			return
 		if(MINDMACHINE_SENTIENT_SOLO)
 			if(!firstOccupant)
@@ -592,9 +603,12 @@
 					firstOccupant.adjustOrganLoss(ORGAN_SLOT_BRAIN, 75) // Can die to this.
 					to_chat(firstOccupant, span_danger("Your mind is severely damaged by the feedback!"))
 				return
-			
+
 			selectedMob = pick(acceptableMobs)
-			mindswap_sentient(firstOccupant, selectedMob)
+			log_game("[key_name(firstOccupant)] was mindswapped into [selectedMob] due to malfunctional mind machine.")
+			message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] was malfunctional mindswapped to [ADMIN_LOOKUPFLW(selectedMob)]!"))
+
+			mindswap_sentient(firstOccupant, selectedMob, FALSE) // Already logged, so don't need to log again.
 			selectedMob.emote("gasp") // Hints everyone nearby that something is off about this previously-nonsentient mob.
 			to_chat(selectedMob, span_danger("Your mind is thrown out of the machine and forced into a nearby vessel!"))
 			return
