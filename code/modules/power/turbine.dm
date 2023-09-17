@@ -145,18 +145,14 @@
 /obj/machinery/power/compressor/process_atmos(delta_time)
 	cut_overlays()
 
-	// Linear decay at low RPM
-	if(rpm < 1000)
-		rpm -= 1
-
 	// RPM function to include compression friction - be advised that too low/high of a compfriction value can make things screwy
+	rpm -= 1
 	rpm = (0.9 * rpm) + (0.1 * rpmtarget)
 	rpm = min(rpm, (COMPFRICTION*efficiency)/2)
 	rpm = max(0, rpm - (rpm*rpm)/(COMPFRICTION*efficiency))
 
 	if(!turbine || (turbine.stat & BROKEN))
 		starter = FALSE
-		rpm = 0
 
 	if(stat & BROKEN || panel_open)
 		starter = FALSE
@@ -236,11 +232,12 @@
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) * TURBGENQ * productivity
 
 	var/output_blocked = TRUE
-	for(var/direction in GLOB.cardinals)
-		var/turf/other_turf = get_step(outturf, direction)
-		if(outturf.CanAtmosPass(other_turf))
-			output_blocked = FALSE
-			break
+	if(!isclosedturf(outturf))
+		output_blocked = FALSE
+		for(var/atom/A in outturf)
+			if(!CANATMOSPASS(A, outturf))
+				output_blocked = TRUE
+				break
 
 	if(!output_blocked)
 		var/datum/gas_mixture/environment = outturf.return_air()
