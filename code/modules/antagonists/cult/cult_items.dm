@@ -549,7 +549,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			"The shuttle's transponder is emitting the encoded message 'FEAR THE OLD BLOOD' in lieu of its assigned identification signal.")
 		var/message = pick_n_take(curses)
 		message += " The shuttle will be delayed by three minutes."
-		priority_announce("[message]", "System Failure", 'sound/misc/notice1.ogg')
+		priority_announce("[message]", "System Failure", 'sound/misc/announce2.ogg')
 		GLOB.curselimit++
 
 /obj/item/cult_shift
