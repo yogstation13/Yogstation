@@ -30,6 +30,7 @@
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	CanAtmosPass = ATMOS_PASS_DENSITY
+	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_compressor
 	var/obj/machinery/power/turbine/turbine
 	var/datum/gas_mixture/gas_contained
@@ -40,10 +41,17 @@
 	var/capacity = 1e6
 	var/comp_id = 0
 	var/efficiency
+	var/intake_ratio = 0.1 // might add a way to adjust this in-game later
 
 /obj/machinery/power/compressor/Destroy()
+	SSair.atmos_machinery.Remove(src)
 	if (turbine && turbine.compressor == src)
 		turbine.compressor = null
+	var/turf/T = get_turf(src)
+	if(T)
+		T.assume_air(gas_contained)
+		air_update_turf()
+		playsound(T, 'sound/effects/spray.ogg', 10, 1, -3)
 	turbine = null
 	return ..()
 
@@ -55,14 +63,16 @@
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	CanAtmosPass = ATMOS_PASS_DENSITY
+	use_power = NO_POWER_USE // powered by gas flow
 	circuit = /obj/item/circuitboard/machine/power_turbine
 	var/opened = 0
 	var/obj/machinery/power/compressor/compressor
 	var/turf/outturf
-	var/lastgen
+	var/lastgen = 0
 	var/productivity = 1
 
 /obj/machinery/power/turbine/Destroy()
+	SSair.atmos_machinery.Remove(src)
 	if (compressor && compressor.turbine == src)
 		compressor.turbine = null
 	compressor = null
@@ -81,6 +91,7 @@
 
 /obj/machinery/power/compressor/Initialize(mapload)
 	. = ..()
+	SSair.atmos_machinery += src
 	// The inlet of the compressor is the direction it faces
 	gas_contained = new
 	inturf = get_step(src, dir)
@@ -128,40 +139,41 @@
 
 	default_deconstruction_crowbar(I)
 
-/obj/machinery/power/compressor/process()
-	if(!starter)
-		return
-	if(!turbine || (turbine.stat & BROKEN))
-		starter = FALSE
-	if(stat & BROKEN || panel_open)
-		starter = FALSE
-		return
+/obj/machinery/power/compressor/process(delta_time)
+	return
+
+/obj/machinery/power/compressor/process_atmos(delta_time)
 	cut_overlays()
 
-	rpm = 0.9* rpm + 0.1 * rpmtarget
-	var/datum/gas_mixture/environment = inturf.return_air()
+	// Linear decay at low RPM
+	if(rpm < 1000)
+		rpm -= 1
 
-	// It's a simplified version taking only 1/10 of the moles from the turf nearby. It should be later changed into a better version
-
-	var/transfer_moles = environment.total_moles()/10
-	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
-	gas_contained.merge(removed)
-
-// RPM function to include compression friction - be advised that too low/high of a compfriction value can make things screwy
-
+	// RPM function to include compression friction - be advised that too low/high of a compfriction value can make things screwy
+	rpm = (0.9 * rpm) + (0.1 * rpmtarget)
 	rpm = min(rpm, (COMPFRICTION*efficiency)/2)
 	rpm = max(0, rpm - (rpm*rpm)/(COMPFRICTION*efficiency))
 
+	if(!turbine || (turbine.stat & BROKEN))
+		starter = FALSE
+		rpm = 0
 
-	if(starter && !(stat & NOPOWER))
-		use_power(2800)
-		if(rpm<1000)
-			rpmtarget = 1000
-	else
-		if(rpm<1000)
-			rpmtarget = 0
+	if(stat & BROKEN || panel_open)
+		starter = FALSE
 
+	if(!starter)
+		rpmtarget = 0
+		return
 
+	var/datum/gas_mixture/environment = inturf.return_air()
+	var/external_pressure = environment.return_pressure()
+	var/pressure_delta = external_pressure - gas_contained.return_pressure()
+
+	// Equalize the gas between the environment and the internal gas mix
+	if(pressure_delta > 0)
+		var/datum/gas_mixture/removed = environment.remove_ratio((1 - ((1 - intake_ratio)**delta_time)) * pressure_delta / (external_pressure * 2)) // silly math to keep it consistent with delta_time
+		gas_contained.merge(removed)
+		inturf.air_update_turf()
 
 	if(rpm>50000)
 		add_overlay(mutable_appearance(icon, "comp-o4", FLY_LAYER))
@@ -181,7 +193,8 @@
 
 /obj/machinery/power/turbine/Initialize(mapload)
 	. = ..()
-// The outlet is pointed at the direction of the turbine component
+	SSair.atmos_machinery += src
+	// The outlet is pointed at the direction of the turbine component
 	outturf = get_step(src, dir)
 	locate_machinery()
 	if(!compressor)
@@ -206,14 +219,14 @@
 	if(compressor)
 		compressor.locate_machinery()
 
-/obj/machinery/power/turbine/process()
+/obj/machinery/power/turbine/process(delta_time)
+	add_avail(lastgen) // add power in process() so it doesn't update power output separately from the rest of the powernet (bad)
 
+/obj/machinery/power/turbine/process_atmos(delta_time)
 	if(!compressor)
 		stat = BROKEN
 
 	if((stat & BROKEN) || panel_open)
-		return
-	if(!compressor.starter)
 		return
 	cut_overlays()
 
@@ -222,23 +235,29 @@
 
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) * TURBGENQ * productivity
 
-	add_avail(lastgen)
+	var/output_blocked = TRUE
+	for(var/direction in GLOB.cardinals)
+		var/turf/other_turf = get_step(outturf, direction)
+		if(outturf.CanAtmosPass(other_turf))
+			output_blocked = FALSE
+			break
 
-	// Weird function but it works. Should be something else...
+	if(!output_blocked)
+		var/datum/gas_mixture/environment = outturf.return_air()
+		var/internal_pressure = compressor.gas_contained.return_pressure()
+		var/pressure_delta = internal_pressure - environment.return_pressure()
 
-	var/newrpm = ((compressor.gas_contained.return_temperature()) * compressor.gas_contained.total_moles())/4
+		// Equalize the gas between the internal gas mix and the environment
+		if(pressure_delta > 0)
+			var/datum/gas_mixture/removed = compressor.gas_contained.remove_ratio(pressure_delta / (internal_pressure * 2))
+			outturf.assume_air(removed)
+			outturf.air_update_turf()
 
-	newrpm = max(0, newrpm)
+		compressor.rpmtarget = max(0, pressure_delta * compressor.gas_contained.return_volume() / (R_IDEAL_GAS_EQUATION * 4))
+	else
+		compressor.rpmtarget = 0
 
-	if(!compressor.starter || newrpm > 1000)
-		compressor.rpmtarget = newrpm
-
-	if(compressor.gas_contained.total_moles()>0)
-		var/oamount = min(compressor.gas_contained.total_moles(), (compressor.rpm+100)/35000*compressor.capacity)
-		var/datum/gas_mixture/removed = compressor.gas_contained.remove(oamount)
-		outturf.assume_air(removed)
-
-// If it works, put an overlay that it works!
+	// If it works, put an overlay that it works!
 
 	if(lastgen > 100)
 		add_overlay(mutable_appearance(icon, "turb-o", FLY_LAYER))
@@ -347,6 +366,7 @@
 	data["power"] = DisplayPower(compressor?.turbine?.lastgen)
 	data["rpm"] = compressor?.rpm
 	data["temp"] = compressor?.gas_contained.return_temperature()
+	data["pressure"] = compressor?.gas_contained.return_pressure()
 
 	return data
 
@@ -360,6 +380,9 @@
 				. = TRUE
 		if("reconnect")
 			locate_machinery()
+			. = TRUE
+		if("set_intake")
+
 			. = TRUE
 
 #undef COMPFRICTION
