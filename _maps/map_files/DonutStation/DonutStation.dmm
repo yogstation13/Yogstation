@@ -6630,16 +6630,6 @@
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"cUL" = (
-/obj/structure/table/wood,
-/obj/item/stack/packageWrap,
-/obj/item/stack/packageWrap,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "cUP" = (
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
@@ -24953,6 +24943,15 @@
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
+"lML" = (
+/obj/structure/table/wood,
+/obj/item/stack/packageWrap,
+/obj/item/stack/packageWrap,
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lMT" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -83841,7 +83840,7 @@ icl
 nXP
 gIJ
 gxy
-cUL
+lML
 fmF
 fGO
 odp
