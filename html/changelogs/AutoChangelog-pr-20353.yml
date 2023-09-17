@@ -1,0 +1,4 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - tweak: "Sinful demon form now has 200 health rather than 160, and heals 10 hp per hit rather than 8 as a result."
