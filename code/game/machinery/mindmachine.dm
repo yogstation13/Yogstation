@@ -117,15 +117,15 @@
 			charge -= cost
 		deactivate()
 
-/obj/machinery/mindmachine_hub/proc/try_activate(mob/user)
-	// No checking here for mind protection/antag to prevent easy antag checking.
-	switch(can_mindswap())
+/obj/machinery/mindmachine_hub/proc/try_activate(mob/user, was_delayed = FALSE)
+	delaytransfer_active = FALSE
+	switch(can_mindswap()) // No checking here for mind protection/antag to prevent easy antag checking.
 		if(MINDMACHINE_CAN_SUCCESS)
-			if(transfer_by_delay)
+			if(was_delayed)
 				log_game("[key_name(user)] initiated a mind machine mindswap process between [key_name(firstPod.occupant)] and [key_name(secondPod.occupant)] (delayed).")
 			else
 				log_game("[key_name(user)] initiated a mind machine mindswap process between [key_name(firstPod.occupant)] and [key_name(secondPod.occupant)].")
-			activate()
+			activate(was_delayed)
 			. = TRUE
 		if(MINDMACHINE_CAN_SRCGONE)
 			return
@@ -171,11 +171,10 @@
 			return
 
 /// If not active, activates the hub and locks the pods.
-/obj/machinery/mindmachine_hub/proc/activate()
+/obj/machinery/mindmachine_hub/proc/activate(was_delayed = FALSE)
 	if(!active && firstPod && secondPod)
 		active = TRUE
-		if(delaytransfer_active)
-			delaytransfer_active = FALSE
+		if(was_delayed)
 			transfer_by_delay = TRUE
 		COOLDOWN_START(src, until_completion, completion_time)
 		START_PROCESSING(SSobj, src)
@@ -366,7 +365,7 @@
 			delaytransfer_active = TRUE
 			balloon_alert(usr, "delay active")
 			playsound(src, 'sound/machines/ping.ogg', 50)
-			addtimer(CALLBACK(src, PROC_REF(try_activate), usr), 3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(try_activate), usr, TRUE), 3 SECONDS)
 
 /// Finds the two nearest mind machine pods and use them for `connect_pods` if possible.
 /obj/machinery/mindmachine_hub/proc/try_connect_pods()
