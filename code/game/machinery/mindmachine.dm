@@ -605,7 +605,7 @@
 
 			selectedMob = pick(acceptableMobs)
 			log_game("[key_name(firstOccupant)] was mindswapped into [selectedMob] due to malfunctional mind machine.")
-			message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] was malfunctional mindswapped to [ADMIN_LOOKUPFLW(selectedMob)]!"))
+			message_admins(span_notice("[ADMIN_LOOKUPFLW(firstOccupant)] was malfunctional mindswapped to [ADMIN_LOOKUPFLW(selectedMob)]!"))
 
 			mindswap_sentient(firstOccupant, selectedMob, FALSE) // Already logged, so don't need to log again.
 			selectedMob.emote("gasp") // Hints everyone nearby that something is off about this previously-nonsentient mob.
