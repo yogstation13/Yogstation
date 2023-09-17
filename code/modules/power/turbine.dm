@@ -378,9 +378,6 @@
 		if("reconnect")
 			locate_machinery()
 			. = TRUE
-		if("set_intake")
-
-			. = TRUE
 
 #undef COMPFRICTION
 #undef TURBGENQ
