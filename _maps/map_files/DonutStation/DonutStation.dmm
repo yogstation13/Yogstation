@@ -3394,6 +3394,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"bBh" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/brflowers,
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/tcommsat/computer)
 "bBB" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -4936,12 +4947,6 @@
 	},
 /turf/open/floor/plating/broken/three,
 /area/maintenance/central)
-"chn" = (
-/mob/living/simple_animal/butterfly,
-/obj/structure/window/reinforced,
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
-/area/tcommsat/computer)
 "chA" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Pod Four"
@@ -15964,6 +15969,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"hpb" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/sink/puddle,
+/turf/open/floor/grass,
+/area/tcommsat/computer)
 "hpj" = (
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel,
@@ -24915,16 +24926,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"lFH" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/grass,
-/area/tcommsat/computer)
 "lFL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
@@ -40148,14 +40149,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"syU" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "syW" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 1
@@ -40617,6 +40610,14 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"sIz" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "sIG" = (
 /obj/structure/tank_dispenser,
 /obj/machinery/camera/emp_proof{
@@ -83409,7 +83410,7 @@ ylr
 fTO
 uES
 cdm
-syU
+sIz
 aoP
 cbR
 kVn
@@ -83668,7 +83669,7 @@ kVU
 cdm
 pko
 jls
-chn
+hpb
 oJP
 bnp
 fJT
@@ -83924,7 +83925,7 @@ fTO
 uES
 rpI
 pko
-lFH
+bBh
 aQT
 kKP
 dzQ
