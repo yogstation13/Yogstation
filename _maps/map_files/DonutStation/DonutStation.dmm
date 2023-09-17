@@ -18179,9 +18179,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"itI" = (
-/turf/open/space/basic,
-/area/crew_quarters/theatre)
 "iuk" = (
 /obj/machinery/food_cart,
 /obj/machinery/firealarm{
@@ -86371,7 +86368,7 @@ ylr
 ylr
 ylr
 ylr
-itI
+ylr
 ylr
 ylr
 ylr
