@@ -47342,6 +47342,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"vBX" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "vCb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -91150,7 +91156,7 @@ fJu
 fJu
 nee
 pzc
-mrK
+vBX
 nVy
 mqx
 aXG
