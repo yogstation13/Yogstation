@@ -9446,6 +9446,14 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ecN" = (
+/obj/machinery/camera{
+	c_tag = "Research - Toxins Testing Bay";
+	dir = 1;
+	network = list("ss13","Research")
+	},
+/turf/open/floor/plasteel,
+/area/science/research)
 "ecW" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
@@ -28055,11 +28063,6 @@
 "mPO" = (
 /obj/machinery/doppler_array/research/science{
 	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Research - Toxins Testing Bay";
-	dir = 1;
-	network = list("ss13","Research")
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
@@ -74107,7 +74110,7 @@ ibK
 wxH
 wpc
 mPO
-aaL
+ecN
 hIt
 sGJ
 fTe
