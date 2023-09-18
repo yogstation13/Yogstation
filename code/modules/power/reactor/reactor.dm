@@ -480,7 +480,27 @@
 //Method to handle sound effects, reactor warnings, all that jazz.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/handle_alerts(delta_time)
 	var/alert = FALSE //If we have an alert condition, we'd best let people know.
-	//First alert condition: Overpressurized (the more lethal one), has to be checked first so meltdown doesn't override it
+
+	//First alert condition: Overheat
+	if(temperature >= REACTOR_TEMPERATURE_CRITICAL)
+		alert = TRUE
+		if(!has_hit_emergency)
+			has_hit_emergency = TRUE
+			for(var/i in 1 to min((temperature-REACTOR_TEMPERATURE_CRITICAL)/100, 10))
+				src.fire_nuclear_particle()
+			radio.talk_into(src, "WARNING!! REACTOR CORE OVERHEATING!! NUCLEAR MELTDOWN IMMINENT!!", engi_channel)
+			playsound(src, 'sound/machines/reactor_alert_1.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
+			investigate_log("Reactor reaching critical temperature at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
+			message_admins("Reactor reaching critical temperature at [ADMIN_VERBOSEJMP(src)]")
+		if(temperature >= REACTOR_TEMPERATURE_MELTDOWN)
+			var/temp_damage = min(temperature/300, initial(vessel_integrity)/180) * delta_time	//3 minutes to meltdown from full integrity, worst-case.
+			vessel_integrity -= temp_damage
+	else if(temperature < 73) //That's as cold as I'm letting you get it, engineering.
+		color = COLOR_CYAN
+	else
+		color = null
+	
+	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
 		alert = TRUE
 		if(!has_hit_emergency)
@@ -499,28 +519,12 @@
 			investigate_log("Reactor blowout at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
 			blowout()
 			return
-	//Second alert condition: Overheat
-	if(temperature >= REACTOR_TEMPERATURE_CRITICAL)
-		alert = TRUE
-		if(!has_hit_emergency)
-			has_hit_emergency = TRUE
-			for(var/i in 1 to min((temperature-REACTOR_TEMPERATURE_CRITICAL)/100, 10))
-				src.fire_nuclear_particle()
-			radio.talk_into(src, "WARNING!! REACTOR CORE OVERHEATING!! NUCLEAR MELTDOWN IMMINENT!!", engi_channel)
-			playsound(src, 'sound/machines/reactor_alert_1.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
-			investigate_log("Reactor reaching critical temperature at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
-			message_admins("Reactor reaching critical temperature at [ADMIN_VERBOSEJMP(src)]")
-		if(temperature >= REACTOR_TEMPERATURE_MELTDOWN)
-			var/temp_damage = min(temperature/300, initial(vessel_integrity)/180) * delta_time	//3 minutes to meltdown from full integrity, worst-case.
-			vessel_integrity -= temp_damage
-			if(vessel_integrity <= 0)
-				investigate_log("Reactor melted down at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR) //It wouldn't be able to tank another hit.
-				meltdown() //Oops! All meltdown
-				return
-	else if(temperature < 73) //That's as cold as I'm letting you get it, engineering.
-		color = COLOR_CYAN
-	else
-		color = null
+
+	// Yikes, that's no good
+	if(vessel_integrity <= 0)
+		investigate_log("Reactor melted down at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
+		meltdown() //Oops! All meltdown
+		return
 
 	if(!alert) //Congrats! You stopped the meltdown / blowout.
 		if(!next_warning)
@@ -548,7 +552,9 @@
 	if(get_integrity() < 95)
 		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [get_integrity()]%", engi_channel)
 
-	relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
+	if(get_integrity() < 50) // At this point we should alert the whole station
+		relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
+
 	set_light(0)
 	light_color = LIGHT_COLOR_RED
 	set_light(10)
