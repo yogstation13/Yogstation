@@ -38,8 +38,8 @@
 	maxbodytemp = INFINITY
 	faction = list("hell")
 	attacktext = "wildly tears into"
-	maxHealth = 160
-	health = 160
+	maxHealth = 200
+	health = 200
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
 	melee_damage_lower = 20
@@ -57,7 +57,7 @@
 						span_cult("As \the [W] hits you, you feel holy power blast through your form, tearing it apart!"))
 		adjustBruteLoss(22) //22 extra damage from the nullrod while in your true form. On average this means 40 damage is taken now.
 
-/mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//8 hp healed from landing a hit.
+/mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//10 hp healed from landing a hit.
 	if(isliving(L))
 		if(L.stat != DEAD && !L.anti_magic_check(TRUE, TRUE)) //demons do not gain succor from the dead or holy 
 			adjustHealth(-maxHealth * 0.05)
