@@ -252,6 +252,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 		/obj/item/autosurgeon/cmo = 2,
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
+		/obj/effect/spawner/lootdrop/weakgene = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
@@ -291,11 +292,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/itemspawner/construct = -3,
 		/obj/item/stand_arrow = -3, //possibly OP but it's 50/50 to get dusted
 		/obj/item/book/granter/action/spell/forcewall = -3,
-		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
-		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
 		/obj/item/antag_spawner/slaughter_demon = -3, //why the hell not
 		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //pretty sure it's exactly the same since players dust on death
 		/obj/item/storage/backpack/holding = -3,
+		/obj/effect/spawner/lootdrop/stronggene = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
@@ -305,7 +305,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/book/granter/martial/carp = -4,
 		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
-		/obj/item/necromantic_stone = -4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
@@ -522,4 +521,36 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/ammo_box/magazine/m10mm/rifle,
 		/obj/item/ammo_box/magazine/v38,
 		/obj/item/ammo_box/a357,
+	)
+
+//genetics lootdrops, to avoid flooding the table
+/obj/effect/spawner/lootdrop/weakgene
+	name = "Weak Genetics Spawner"
+	loot = list(
+		/obj/item/dnainjector/dwarf,
+		/obj/item/dnainjector/glow,
+		/obj/item/dnainjector/radproof,
+		/obj/item/dnainjector/radioactive,
+		/obj/item/dnainjector/insulated,
+		/obj/item/dnainjector/telemut,
+		/obj/item/dnainjector/heatmut,
+		/obj/item/dnainjector/cryokinesis,
+		/obj/item/dnainjector/firebreath,
+		/obj/item/dnainjector/strong,
+		/obj/item/dnainjector/fierysweat
+	)
+
+/obj/effect/spawner/lootdrop/stronggene
+	name = "Strong Genetics spawner"
+	loot = list( //to add different colours without adding weight
+		/obj/item/dnainjector/thermal,
+		/obj/item/dnainjector/xraymut,
+		/obj/item/dnainjector/hulkmut,
+		/obj/item/dnainjector/hulkmut/genetics_hulk,
+		/obj/item/dnainjector/shock,
+		/obj/item/dnainjector/lasereyesmut,
+		/obj/item/dnainjector/spacemut,
+		/obj/item/dnainjector/chameleonmut,
+		/obj/item/dnainjector/thickskin,
+		/obj/item/dnainjector/densebones,
 	)
