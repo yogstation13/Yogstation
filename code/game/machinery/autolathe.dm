@@ -184,8 +184,10 @@
 	materials.retrieve_all()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
-		return TRUE
+	if(istype(O, /obj/item/screwdriver))
+		var/choice = tgui_alert(user, "Do you want to open/close the maintenance hatch of the [src]?",,list("Proceed", "Abort"))
+		if(choice=="Proceed" && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
+			return TRUE
 
 	if(default_deconstruction_crowbar(O))
 		return TRUE

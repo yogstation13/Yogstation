@@ -31,6 +31,16 @@ Note: Must be placed within 3 tiles of the R&D Console
 	linked_console.linked_destroy = null
 	..()
 
+/obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	var/choice = tgui_alert(user, "Do you want to open/close the maintenance hatch of the [src]?",,list("Proceed", "Abort"))
+	if(choice=="Proceed")
+		return FALSE
+	else
+		Insert_Item(I, user)
+	return TRUE
+
 /obj/machinery/rnd/destructive_analyzer/Insert_Item(obj/item/O, mob/user)
 	if(user.a_intent != INTENT_HARM)
 		. = 1
