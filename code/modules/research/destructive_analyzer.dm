@@ -34,8 +34,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	var/choice = tgui_alert(user, "Do you want to open/close the maintenance hatch of the [src]?",,list("Proceed", "Abort"))
-	if(choice=="Proceed")
+	if(user.a_intent == INTENT_DISARM)
 		return FALSE
 	else
 		Insert_Item(I, user)
