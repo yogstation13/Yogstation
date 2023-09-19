@@ -113,6 +113,7 @@
 #define PATH_RUST "Rust"
 #define PATH_FLESH "Flesh"
 #define PATH_MIND "Mind"
+#define PATH_VOID "Void"
 
 #define TIER_NONE 0
 #define TIER_PATH 1

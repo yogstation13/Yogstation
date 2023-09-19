@@ -200,6 +200,12 @@
 	icon_state = "mind_blade"
 	item_state = "mind_blade"
 
+	/obj/item/gun/magic/hook/sickly_blade/void
+	name = "void blade"
+	desc = "A monsterously sharp blade made from pure ice. Sharp and acute it's unbreaking edges can rip and tear through bone and sinew with ease."
+	icon_state = "mind_blade"
+	item_state = "mind_blade"
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
