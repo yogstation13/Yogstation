@@ -57,7 +57,7 @@
 	gain_text = "Deep into the dream, you work tirelessly, endlessly. A blighted curse consumes the land, but the scholars of Kos will light the way through the nightmare."
 	desc = "Shoot a single bolt of condensed mental power infront of you, dealing large amounts of brute damage to any targets hit."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/basic_projectile/assault
+	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/assault
 	route = PATH_MIND
 	tier = TIER_2
 
