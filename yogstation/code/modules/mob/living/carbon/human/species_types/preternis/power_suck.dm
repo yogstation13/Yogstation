@@ -16,7 +16,7 @@
 
 	draining = TRUE
 
-	var/siemens_coefficient = 1 //makes power drain speed scale with preternis stats
+	var/siemens_coefficient = 1
 
 	if(H.reagents.has_reagent("teslium"))
 		siemens_coefficient *= 1.5
@@ -74,13 +74,13 @@
 				playsound(A.loc, "sparks", 50, 1)
 				if(prob(75))
 					spark_system.start()
-
-				var/cycleDrain = baseDrain
-				var/drained = A.consume_power_from(cycleDrain)
-				if(drained < cycleDrain)
+          
+				var/drained = A.consume_power_from(baseDrain)
+				if(drained < baseDrain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 
+				H.adjust_bodytemperature(drained * (1 - ELECTRICITY_TO_NUTRIMENT_FACTOR)) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
 				drained *= ELECTRICITY_TO_NUTRIMENT_FACTOR //loss of efficiency
 
 				if(H.nutrition + drained > NUTRITION_LEVEL_FAT)

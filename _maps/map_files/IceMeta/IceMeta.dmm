@@ -59,6 +59,7 @@
 	pixel_x = 8;
 	pixel_y = 7
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "aaU" = (
@@ -3612,6 +3613,10 @@
 /obj/machinery/status_display/supply{
 	pixel_x = 32
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bcx" = (
@@ -3988,6 +3993,10 @@
 /obj/item/folder/white{
 	pixel_x = 4;
 	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet,
 /area/bridge)
@@ -33580,6 +33589,10 @@
 	},
 /obj/item/pen,
 /obj/effect/turf_decal/delivery,
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8;
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "jLX" = (
@@ -37289,6 +37302,17 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8
+	},
 /turf/open/floor/wood,
 /area/library)
 "kQA" = (
@@ -38577,6 +38601,10 @@
 "llW" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
+	},
 /turf/open/floor/carpet,
 /area/bridge)
 "llX" = (
@@ -38983,6 +39011,10 @@
 /obj/item/reagent_containers/food/snacks/pie/cream,
 /obj/machinery/airalarm{
 	pixel_y = 24
+	},
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = -8;
+	pixel_y = 11
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -42537,6 +42569,9 @@
 /obj/item/stamp/hop{
 	pixel_x = -4;
 	pixel_y = 4
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -50272,6 +50307,10 @@
 	pixel_y = -4
 	},
 /obj/item/pen,
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -5;
+	pixel_y = -9
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "ozK" = (
@@ -50501,6 +50540,7 @@
 	pixel_x = -3;
 	pixel_y = 5
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "oDr" = (
@@ -52150,6 +52190,7 @@
 	pixel_x = -8;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plating,
 /area/engine/foyer)
 "phd" = (
@@ -53638,6 +53679,10 @@
 /obj/structure/window/reinforced,
 /obj/item/radio/intercom{
 	pixel_x = 27
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
@@ -57517,6 +57562,10 @@
 	name = "Chief Medical Officer RC";
 	pixel_y = 32
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
+	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
 "qHT" = (
@@ -59486,6 +59535,7 @@
 	pixel_x = 10;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "rnr" = (
@@ -60468,6 +60518,9 @@
 /obj/item/deskbell/preset/med{
 	pixel_x = 9;
 	pixel_y = 8
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -62369,6 +62422,10 @@
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
 /obj/item/paper/monitorkey,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "shB" = (
@@ -62496,6 +62553,10 @@
 /obj/item/cartridge/signal/toxins{
 	pixel_x = 4;
 	pixel_y = 6
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -62900,6 +62961,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/item/storage/pencil_holder/crew/creative,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "srj" = (
@@ -65251,6 +65313,7 @@
 	pixel_x = -7;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "sWw" = (
@@ -71963,6 +72026,7 @@
 	pixel_x = 8;
 	pixel_y = 9
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "uPS" = (
@@ -73647,6 +73711,10 @@
 /obj/item/deskbell/preset/robotics{
 	pixel_x = -8;
 	pixel_y = -4
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -5;
+	pixel_y = -9
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -77716,6 +77784,9 @@
 	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
 	pixel_x = -3;
 	pixel_y = -5
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
