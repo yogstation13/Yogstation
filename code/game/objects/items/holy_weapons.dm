@@ -642,7 +642,7 @@
 |
 ----------------------------------------------------------------------------*/
 
-/obj/item/nullrod/
+/obj/item/nullrod/fedora
 	name = "atheist's fedora"
 	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
 	icon_state = "fedora"
