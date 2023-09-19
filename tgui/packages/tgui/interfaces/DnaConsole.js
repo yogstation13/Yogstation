@@ -830,6 +830,9 @@ const DnaConsoleSequencer = (props, context) => {
         <Section color="bad">
           Genetic sequence corrupted. Subject diagnostic report: TRANSFORMING.
         </Section>
+      ) || (mutation?.Name !== 'Hulk') && (
+        <Section color="bad">
+          Genetic sequence corrupted. Subject diagnostic report: HULK.
       ) || (
         <Section
           title="Genome Sequencer™"
