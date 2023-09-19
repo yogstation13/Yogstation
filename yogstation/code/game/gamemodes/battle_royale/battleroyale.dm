@@ -18,7 +18,7 @@ GLOBAL_VAR(stormdamage)
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
-	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
+	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
@@ -78,6 +78,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
+	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
 
@@ -182,6 +183,33 @@ GLOBAL_VAR(stormdamage)
 		if(thing.anchored)//only target something that is possibly a weapon
 			continue
 		qdel(thing)
+
+	var/area/security/warden/B = locate(/area/security/warden) in GLOB.areas
+	for(var/obj/item/thing in B)
+		if(thing.anchored)//only target something that is possibly a weapon
+			continue
+		qdel(thing)
+
+	var/area/security/main/C = locate(/area/security/main) in GLOB.areas
+	for(var/obj/item/thing in C)
+		if(thing.anchored)//only target something that is possibly a weapon
+			continue
+		qdel(thing)
+
+	var/area/crew_quarters/heads/hos/D = locate(/area/crew_quarters/heads/hos) in GLOB.areas
+	for(var/obj/item/thing in D)
+		if(thing.anchored)//only target something that is possibly a weapon
+			continue
+		qdel(thing)
+
+/datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
+	var/mob/selfinsert = new(src)
+	selfinsert.name = "Molti" //lol it me
+	var/obj/item/aiModule/core/full/gamemaster/lollmaoeven = new(src)
+	for(var/mob/living/silicon/borg in GLOB.silicon_mobs)
+		lollmaoeven.install(borg.laws, selfinsert)
+	qdel(selfinsert) //wait, no, NO, YOU CAN'T DO THIS TO ME, I OWN THIS CODEBASE
+	qdel(lollmaoeven)
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
 	for(var/item in GLOB.battleroyale_armour)

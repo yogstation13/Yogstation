@@ -2199,6 +2199,7 @@
 	persistence_id = "public";
 	pixel_x = -32
 	},
+/obj/item/storage/pencil_holder/crew/creative,
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
 "aqd" = (
@@ -7657,6 +7658,10 @@
 "bdX" = (
 /obj/item/folder/blue,
 /obj/structure/table/wood,
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -8;
+	pixel_y = 10
+	},
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "bea" = (
@@ -9105,9 +9110,11 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/pen,
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -10914,14 +10921,20 @@
 "bFb" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood,
-/obj/item/pen/blue{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/pen/red,
 /obj/item/deskbell/preset/library{
 	pixel_x = -9;
 	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12;
+	pixel_x = 8
+	},
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -17728,21 +17741,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"dzB" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/obj/structure/cable/white,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "dzD" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/tcomms,
@@ -27020,6 +27018,10 @@
 	pixel_x = 8;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -6;
+	pixel_y = -10
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "gYb" = (
@@ -28350,6 +28352,7 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
+/obj/item/storage/pencil_holder/crew/fancy,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
 "hwu" = (
@@ -35419,6 +35422,9 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "khj" = (
@@ -35587,6 +35593,10 @@
 	},
 /obj/item/pen,
 /obj/structure/table/wood,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 10;
+	pixel_x = 8
+	},
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "kjt" = (
@@ -45456,6 +45466,9 @@
 	pixel_x = -7;
 	pixel_y = 8
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/foyer)
 "oaC" = (
@@ -47543,6 +47556,9 @@
 /obj/item/folder/yellow,
 /obj/item/pen/red,
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "oNV" = (
@@ -47928,6 +47944,7 @@
 /obj/structure/table/wood,
 /obj/item/instrument/piano_synth,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "oXp" = (
@@ -48479,6 +48496,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"phR" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "pia" = (
 /obj/effect/turf_decal/stripes{
 	dir = 4
@@ -51422,6 +51453,9 @@
 	pixel_x = 8;
 	pixel_y = 7
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "qkB" = (
@@ -53341,9 +53375,11 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/item/pen,
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -54211,6 +54247,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "rlK" = (
@@ -54687,6 +54726,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
@@ -55445,6 +55487,9 @@
 	pixel_y = -30
 	},
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "rKJ" = (
@@ -57204,6 +57249,10 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 1
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_y = 10;
+	pixel_x = -8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
@@ -61149,6 +61198,9 @@
 	pixel_x = 32;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "tUz" = (
@@ -61490,6 +61542,9 @@
 /obj/item/deskbell/preset/robotics{
 	pixel_x = 9;
 	pixel_y = 8
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -62317,6 +62372,9 @@
 /obj/item/hand_tele,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "utp" = (
@@ -65741,6 +65799,10 @@
 	pixel_y = 8;
 	req_access_txt = "47"
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 10
+	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "vGM" = (
@@ -68475,6 +68537,10 @@
 	},
 /obj/effect/turf_decal/tile/random{
 	dir = 8
+	},
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = 6;
+	pixel_y = 13
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
@@ -115298,7 +115364,7 @@ jcz
 cWY
 lQv
 grq
-dzB
+phR
 tGz
 pyn
 ikV
@@ -115560,7 +115626,7 @@ mFE
 kcr
 cva
 cva
-jXD
+cva
 pEf
 gXs
 gXs
@@ -116063,7 +116129,7 @@ gXs
 gXs
 pEf
 pEf
-jXD
+cva
 cva
 cva
 sAu

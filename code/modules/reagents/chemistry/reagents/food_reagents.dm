@@ -18,7 +18,7 @@
 	current_cycle++
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+		if(!(HAS_TRAIT(H, TRAIT_NOHUNGER) || HAS_TRAIT(H, TRAIT_POWERHUNGRY)))
 			H.adjust_nutrition(nutriment_factor)
 	holder?.remove_reagent(type, metabolization_rate)
 
@@ -753,13 +753,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#97ee63"
 	taste_description = "pure electricity"
-
-/datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, methods=TOUCH, reac_volume) //can't be on life because of the way blood works.
-	if((methods & (INGEST|INJECT|PATCH)) && iscarbon(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
 	if(!istype(T))
@@ -772,7 +766,9 @@
 		B = new(T)
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
-	if(prob(25) && !isethereal(M))
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.adjust_nutrition(nutriment_factor)
+	else if(prob(25))
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
@@ -935,6 +931,13 @@
 	name = "BBQ Sauce"
 	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
-	color = "#78280A" // rgb: 120 40, 10
+	color = "#78280A" // rgb: 120, 40, 10
 	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
 	taste_description = "smokey sweetness"
+
+/datum/reagent/consumable/peanut_butter
+	name = "Peanut Butter"
+	description = "A creamy paste made from ground peanuts."
+	nutriment_factor = 15 * REAGENTS_METABOLISM
+	color = "#D9A066" // rgb: 217, 160, 102
+	taste_description = "peanuts"
