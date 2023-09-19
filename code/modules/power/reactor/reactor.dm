@@ -121,14 +121,14 @@
 		if(get_integrity() <= 50) //Heavily damaged.
 			to_chat(user, span_warning("[src]'s reactor vessel is cracked and worn, you need to repair the cracks with a welder before you can repair the seals."))
 			return FALSE
-		if(do_after(user, 5 SECONDS, target=src))
-			if(vessel_integrity >= 350)	//They might've stacked doafters
-				to_chat(user, span_warning("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
-				return FALSE
+		while(do_after(user, 1 SECONDS, target=src))
 			playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
-			user.visible_message(span_warning("[user] applies sealant to some of [src]'s worn out seals."), span_notice("You apply sealant to some of [src]'s worn out seals."))
 			vessel_integrity += 10
 			vessel_integrity = clamp(vessel_integrity, 0, initial(vessel_integrity))
+			if(vessel_integrity >= 350) // Check if it's done
+				to_chat(user, span_warning("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
+				return FALSE
+			user.visible_message(span_warning("[user] applies sealant to some of [src]'s worn out seals."), span_notice("You apply sealant to some of [src]'s worn out seals."))
 		return TRUE
 	return ..()
 
@@ -196,11 +196,11 @@
 	if(get_integrity() > 50)
 		to_chat(user, span_warning("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 		return TRUE
-	if(I.use_tool(src, user, 0, volume=40))
+	while(I.use_tool(src, user, 1 SECONDS, volume=40))
+		vessel_integrity += 20
 		if(get_integrity() > 50)
 			to_chat(user, span_warning("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 			return TRUE
-		vessel_integrity += 20
 		to_chat(user, span_notice("You weld together some of [src]'s cracks. This'll do for now."))
 	return TRUE
 
