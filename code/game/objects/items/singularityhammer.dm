@@ -107,24 +107,8 @@
 	. = ..()
 	icon_state = "[base_icon_state]0"
 
-//normal hit
-
-/obj/item/mjolnir/proc/shock(mob/living/target)
-	target.Stun(20)
-	target.Knockdown(50)
-	var/datum/effect_system/lightning_spread/s = new /datum/effect_system/lightning_spread
-	s.set_up(5, 1, target.loc)
-	s.start()
-	target.visible_message(span_danger("[target.name] was shocked by [src]!"), \
-		span_userdanger("You feel a powerful shock course through your body sending you flying!"), \
-		span_italics("You hear a heavy electrical crack!"))
-	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
-	target.throw_at(throw_target, 200, 4)
-	return
-
-//throw hit
-
-/obj/item/mjolnir/proc/throwshock(mob/living/target)
+/obj/item/mjolnir/proc/shock(mob/living/target, StunDuration)
+	target.Stun(StunDuration)
 	target.Knockdown(50)
 	var/datum/effect_system/lightning_spread/s = new /datum/effect_system/lightning_spread
 	s.set_up(5, 1, target.loc)
@@ -140,7 +124,7 @@
 	..()
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
 		playsound(loc, "sparks", 50, 1)
-		shock(M)
+		shock(M, 20)
 
 /obj/item/mjolnir/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -155,4 +139,4 @@
 			new /obj/structure/mjollnir(loc)
 			qdel(src)
 		else
-			throwshock(hit_atom)
+			shock(hit_atom, 0)
