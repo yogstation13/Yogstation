@@ -642,7 +642,7 @@
 |
 ----------------------------------------------------------------------------*/
 
-/obj/item/nullrod/fedora
+/obj/item/nullrod/
 	name = "atheist's fedora"
 	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
 	icon_state = "fedora"
@@ -654,8 +654,7 @@
 	throw_range = 7
 	throwforce = 30
 	sharpness = SHARP_EDGED
-	embedding = list("embed_chance" = 0)
-	attack_verb = list("enlightened", "redpilled", "m'lady'ed")
+	attack_verb = list("enlightened", "redpilled")
 	menutab = MENU_CLOTHING
 	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
 
