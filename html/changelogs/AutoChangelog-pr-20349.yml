@@ -1,0 +1,5 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new heretic path to the game! Adjusts ascension on other paths as well to look cooler."
+  - imageadd: "Adds a new heretic blade to go along with the new path."
