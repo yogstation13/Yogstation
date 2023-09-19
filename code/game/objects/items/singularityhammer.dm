@@ -124,7 +124,7 @@
 	..()
 	if(HAS_TRAIT(src, TRAIT_WIELDED))
 		playsound(loc, "sparks", 50, 1)
-		shock(M, 20)
+		shock(M, 2 SECONDS)
 
 /obj/item/mjolnir/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
