@@ -107,23 +107,7 @@
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/fuel_rod))
-		if(slagged)
-			to_chat(user, span_warning("The reactor has been critically damaged"))
-			return FALSE
-		if(temperature > REACTOR_TEMPERATURE_MINIMUM)
-			to_chat(user, span_warning("You cannot insert fuel into [src] with the core temperature above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
-			return FALSE
-		if(fuel_rods.len >= REACTOR_MAX_FUEL_RODS)
-			to_chat(user, span_warning("[src] is already at maximum fuel load."))
-			return FALSE
-		to_chat(user, span_notice("You start to insert [W] into [src]..."))
-		radiation_pulse(src, temperature)
-		if(do_after(user, 5 SECONDS, target=src))
-			fuel_rods += W
-			W.forceMove(src)
-			radiation_pulse(src, temperature) //Wear protective equipment when even breathing near a reactor!
-			investigate_log("Rod added to reactor by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_REACTOR)
-		return TRUE
+		return try_insert_fuel(W, user)
 	if(istype(W, /obj/item/sealant))
 		if(slagged)
 			to_chat(user, span_warning("The reactor has been critically damaged!"))
@@ -147,6 +131,36 @@
 			vessel_integrity = clamp(vessel_integrity, 0, initial(vessel_integrity))
 		return TRUE
 	return ..()
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/MouseDrop_T(atom/A, mob/living/user)
+	if(user.incapacitated())
+		return
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		return
+	if(istype(A, /obj/item/fuel_rod))
+		try_insert_fuel(A, user)
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/try_insert_fuel(obj/item/fuel_rod/rod, mob/user)
+	if(!istype(rod))
+		return FALSE
+	if(slagged)
+		to_chat(user, span_warning("The reactor has been critically damaged"))
+		return FALSE
+	if(temperature > REACTOR_TEMPERATURE_MINIMUM)
+		to_chat(user, span_warning("You cannot insert fuel into [src] with the core temperature above [REACTOR_TEMPERATURE_MINIMUM] kelvin."))
+		return FALSE
+	if(fuel_rods.len >= REACTOR_MAX_FUEL_RODS)
+		to_chat(user, span_warning("[src] is already at maximum fuel load."))
+		return FALSE
+	to_chat(user, span_notice("You start to insert [rod] into [src]..."))
+	radiation_pulse(src, temperature)
+	if(do_after(user, 2 SECONDS, target=src))
+		fuel_rods += rod
+		rod.forceMove(src)
+		radiation_pulse(src, temperature) //Wear protective equipment when even breathing near a reactor!
+		investigate_log("Rod added to reactor by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_REACTOR)
+	return TRUE
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/crowbar_act(mob/living/user, obj/item/I)
 	if(slagged)
