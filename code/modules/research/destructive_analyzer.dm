@@ -34,7 +34,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/rnd/destructive_analyzer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
-	if(user.a_intent == INTENT_DISARM)
+	if(user.a_intent != INTENT_DISARM)
 		return FALSE
 	else
 		Insert_Item(I, user)

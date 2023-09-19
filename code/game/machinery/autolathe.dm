@@ -184,7 +184,7 @@
 	materials.retrieve_all()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
-	if(user.a_intent == INTENT_DISARM && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
+	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
@@ -194,7 +194,7 @@
 		wires.interact(user)
 		return TRUE
 
-	if(user.a_intent == INTENT_HARM) //so we can hit the machine
+	if(user.a_intent == INTENT_HARM || user.a_intent == INTENT_DISARM) //so we can hit the machine or put item in it
 		return ..()
 
 	if(stat)
