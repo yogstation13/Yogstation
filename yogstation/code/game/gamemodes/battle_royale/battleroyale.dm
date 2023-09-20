@@ -105,12 +105,11 @@ GLOBAL_VAR(stormdamage)
 			continue
 		if(player.stat == DEAD)
 			disqualified++
-			player.dust(TRUE, TRUE)
 			continue
 		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
 			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			player.dust(TRUE, TRUE)
+			player.death()
 			continue
 		royalers += player //add everyone not disqualified for one reason or another to the new list
 
@@ -280,16 +279,21 @@ GLOBAL_VAR(stormdamage)
 	var/mob/living/current_mob = mob_override || owner.current
 	handle_clown_mutation(current_mob, mob_override ? null : "Your overwhelming swagness allows you to wield weapons!")
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(gamer_life))
+	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(gamer_death))
 
 /datum/antagonist/battleroyale/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	UnregisterSignal(current_mob, COMSIG_LIVING_DEATH)
 	return ..()
 
 /datum/antagonist/battleroyale/proc/gamer_life(mob/living/source, seconds_per_tick, times_fired)
 	var/mob/living/carbon/human/tfue = source
 	if(tfue && isspaceturf(tfue.loc))
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
+
+/datum/antagonist/battleroyale/proc/gamer_death()//you live by the game, you die by the game
+	current_mob.unequip_everything()
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')

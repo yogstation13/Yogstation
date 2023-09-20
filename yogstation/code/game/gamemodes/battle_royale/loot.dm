@@ -296,6 +296,8 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //pretty sure it's exactly the same since players dust on death
 		/obj/item/storage/backpack/holding = -3,
 		/obj/effect/spawner/lootdrop/stronggene = -3,
+		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
+		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
