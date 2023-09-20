@@ -29,11 +29,6 @@
 		adj += S.nextmove_adjust()
 	next_move = world.time + ((num + adj)*mod)
 
-/mob/living/carbon/changeNext_move(num)
-	var/obj/item/bodypart/arm = get_bodypart((active_hand_index % 2 == 0) ? BODY_ZONE_R_ARM : BODY_ZONE_L_ARM)
-	num += arm.next_move_mod // certain arms like prosthetics aren't as good as normal arms and take longer to perform tasks
-	return ..(num)
-
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
 	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
