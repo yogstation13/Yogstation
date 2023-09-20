@@ -133,7 +133,7 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/humie = target
-	var/chance = humie.getarmor(null,BIO)
+	var/chance = 100 - humie.getarmor(null,BIO)
 	if(prob(max(10,chance * 0.66))) // higher chance than toxic water
 		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
 

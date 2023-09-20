@@ -16,6 +16,7 @@ Temperature: 126.85 °C (400 K)
 	map_generator = /datum/map_generator/jungleland
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = TRUE
+
 /area/jungleland
 	name = "Jungleland"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
@@ -188,16 +189,54 @@ Temperature: 126.85 °C (400 K)
 
 /turf/open/water/toxic_pit/Entered(atom/movable/AM)
 	. = ..()
-	var/mob/living/carbon/human/humie = AM
-	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
-		return
-	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
-		return
 	if(!ishuman(AM))
 		return
-	var/chance = humie.getarmor(null,BIO)
+		
+	var/mob/living/carbon/human/humie = AM
+	var/chance = (100 - humie.getarmor(null,BIO)) * 0.33
+
+	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
+		return
+
+	if(isipc(humie) && prob(chance))
+		humie.adjustFireLoss(33)
+		to_chat(humie,span_danger("the sulphuric solution burns and singes into your plating!"))
+		return 
+
+	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
+		return
+	
 	if(prob(chance * 0.33))
 		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
+
+/turf/open/water/deep_toxic_pit
+	name = "deep sulphuric pit"
+	desc = "Extraordinarly toxic"
+	color = "#004700"
+	slowdown = 4
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/water/deep_toxic_pit
+
+/turf/open/water/deep_toxic_pit/Entered(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+
+	var/mob/living/carbon/human/humie = AM
+	
+	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
+		return
+
+	if(isipc(humie))
+		humie.adjustFireLoss(33)
+		to_chat(humie,span_danger("the sulphuric solution burns and singes into your plating!"))
+		return
+
+	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
+		return
+	
+	humie.apply_status_effect(/datum/status_effect/toxic_buildup)
 
 /turf/open/floor/wood/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
