@@ -226,7 +226,7 @@ Difficulty: Very Hard
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
 	visible_message(span_colossus("[src] disintegrates [L]!"))
-	L.dust()
+	L.dust(drop_items = TRUE)
 
 /obj/effect/temp_visual/at_shield
 	name = "anti-toolbox field"
