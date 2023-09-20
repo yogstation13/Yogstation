@@ -109,7 +109,7 @@
 
 /obj/item/mjolnir/proc/shock(mob/living/target, StunDuration)
 	target.Stun(StunDuration)
-	target.Knockdown(50)
+	target.Knockdown(5 SECONDS)
 	var/datum/effect_system/lightning_spread/s = new /datum/effect_system/lightning_spread
 	s.set_up(5, 1, target.loc)
 	s.start()
