@@ -82,10 +82,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(delete_fireaxe)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
-	var/mob/selfinsert = new(src)
-	selfinsert.name = "Molti" //lol it me
-	summon_ghosts(selfinsert)
-	qdel(selfinsert) //wait, no, NO, YOU CAN'T DO THIS TO ME, I OWN THIS CODEBASE
+	set_observer_default_invisibility(0) //so ghosts can feel like they're included
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -209,11 +206,11 @@ GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
 	var/mob/selfinsert = new(src)
-	selfinsert.name = "Molti" //I RETURN FROM THE QDEL BEYOND ONCE AGAIN, AND THIS TIME I WON'T BE STOPPED
+	selfinsert.name = "Molti" //lol it me
 	var/obj/item/aiModule/core/full/gamemaster/lollmaoeven = new(src)
 	for(var/mob/living/silicon/borg in GLOB.silicon_mobs)
 		lollmaoeven.install(borg.laws, selfinsert)
-	qdel(selfinsert) //.... you'd think i'd learn
+	qdel(selfinsert) //wait, no, NO, YOU CAN'T DO THIS TO ME, I OWN THIS CODEBASE
 	qdel(lollmaoeven)
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
