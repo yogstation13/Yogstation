@@ -1,5 +1,5 @@
 #define COOLDOWN_SOULSHIELD 0.5 SECONDS
-#define COOLDOWN_HANDSAREFULLOFBLOOD 1 SECONDS
+#define COOLDOWN_HANDSAREFULLOFMEGAFAUNA 3 SECONDS
 
 /obj/item/midasgaunt
 	name ="midas gauntlet"
@@ -57,7 +57,6 @@
 	else
 		tenderize(user, target, 10) 
 
-
 /obj/item/midasgaunt/proc/retaliate(mob/living/user, var/retaliatedam)
 	var/mob/living/L
 	REMOVE_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
@@ -103,7 +102,6 @@
 		if(hurt >= 20)
 			hurt = 20
 	var/result = (severitycalc(target,hurt))
-	new /obj/effect/temp_visual/cleave(get_turf(target))//chaaaaaaaaaaaaaaaaaaaaaaange
 	if(istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion))
 		addtimer(CALLBACK(src, PROC_REF(splosion), user, target))
 		crystallize(target)
@@ -165,6 +163,11 @@
 		target.drop_loot()
 		playsound(target, "shatter", 70, 1)
 		if(ismegafauna(target))
+			var/mob/living/simple_animal/hostile/megafauna/L = target
+			for(var/V in L.guaranteed_butcher_results)
+				new V(target.loc)
+			for(var/V in L.butcher_results)
+				new V(target.loc)
 			target.dust(force = TRUE)
 			return
 		target.gib()
@@ -180,17 +183,20 @@
 	if(!COOLDOWN_FINISHED(src, last_finisher))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	smackcd = COOLDOWN_HANDSAREFULLOFBLOOD
-	COOLDOWN_START(src, last_finisher, smackcd)
 	if(severity == 1)
 		if(ismegafauna(target))
+			smackcd = COOLDOWN_HANDSAREFULLOFMEGAFAUNA //preventing multiple loot drop sequences 
+			COOLDOWN_START(src, last_finisher, smackcd)
 			if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
 				headbutt(user,target)
 				return
-			if(istype(target, /mob/living/simple_animal/hostile/megafauna/dragon))
-				stab(user,target)
+			if(istype(target, /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner))
+				workphobia(user,target)
 				return
-		pick(harpyslam(user,target), firework(user,target), backbreaker(user,target))
+			impale(user, target)
+			return
+		damnedfang(user,target)
+		//pick(harpyslam(user,target), firework(user,target), backbreaker(user,target), damnedfang(user,target))
 		return
 	if(severity > 1)
 		spike(user,target)
@@ -290,7 +296,7 @@
 		if(2)
 			animate(target, pixel_y = 50)
 			phase++
-			target.SpinAnimation(2 SECONDS)
+			target.emote("flip")
 			addtimer(CALLBACK(src, PROC_REF(firework), user, target, phase), 0.1 SECONDS)
 			return
 		if(3)
@@ -310,13 +316,134 @@
 	if(target)
 		sceneend(target, user)
 
+/obj/item/midasgaunt/proc/damnedfang(mob/living/user, mob/living/target, var/phase = 1, var/cycles = 1) //spell loops for some reason?
+	var/obj/structure/killbubble/B = new(target.loc)
+	switch(phase) 
+		if(1)
+			target.Immobilize(30)
+			target.visible_message(span_warning("A blood-red bubble encloses [target] and floats into the air!"))
+			target.resize = 0.7
+			target.update_transform()
+			phase++
+			target.emote("spin")
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(2)
+			animate(B, pixel_y = 10)
+			animate(target, pixel_y = 10)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(3)
+			animate(B, pixel_y = 20)
+			animate(target, pixel_y = 20)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(4)
+			animate(B, pixel_x = 3, pixel_y = 30)
+			animate(target, pixel_x = 3, pixel_y = 30)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(5)
+			animate(B, pixel_x = -3,pixel_y = 28)
+			animate(target, pixel_x = -3,pixel_y = 28)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(6)
+			animate(B, pixel_x = 2,pixel_y = 32)
+			animate(target, pixel_x = 2,pixel_y = 32)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(7)
+			animate(B, pixel_x = -1, pixel_y = 29)
+			animate(target, pixel_x = -1, pixel_y = 29)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(8)
+			animate(B, pixel_x = 1, pixel_y = 31)
+			animate(target, pixel_x = 1, pixel_y = 31)
+			phase++
+			QDEL_IN(B, 1)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+			return
+		if(9)
+			animate(B, pixel_x = 0, pixel_y = 30)
+			animate(target, pixel_x = 0, pixel_y = 30)
+			phase++
+			cycles++
+			QDEL_IN(B, 1)
+			if(cycles <4)
+				addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, 4, cycles), 0.1 SECONDS)
+				return
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles), 0.1 SECONDS)
+		if(10)
+			qdel(B)
+			var/obj/structure/killbubblepop/P = new(target.loc)
+			animate(P, pixel_x = 0, pixel_y = 30)
+			QDEL_IN(P, 3) 
+			splosion(user, target)
+			shatter(target)
+	if(target)
+		addtimer(CALLBACK(src, PROC_REF(sceneend), target), 0.5 SECONDS)
+		return
+
+/obj/item/midasgaunt/proc/dunk(mob/living/user, mob/living/target, var/phase = 1)
+	switch(phase)
+		if(1) 
+			target.visible_message(span_warning("[user] points upward and the ground beneath [target] begins to crack!!"))
+			playsound(target,'sound/effects/meteorimpact.ogg', 30, 1)
+			crystallize(target)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase), 1 SECONDS)
+			return
+		if(2)
+			animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_y = 20)
+			playsound(target,'sound/effects/wounds/pierce3.ogg', 30, 1)
+			new /obj/structure/destructible/pillargem (target.loc)
+			splosion(user, target)
+			shatter(target)
+			return
+
+
+
 //megafauna animations
+
+//General Megafauna
+/obj/item/midasgaunt/proc/impale(mob/living/user, mob/living/target, var/phase = 1)
+	switch(phase)
+		if(1) 
+			target.visible_message(span_warning("[user] points upward and the ground beneath [target] begins to crack!!"))
+			playsound(target,'sound/effects/meteorimpact.ogg', 30, 1)
+			crystallize(target)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(impale), user, target, phase), 1 SECONDS)
+			return
+		if(2)
+			animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_y = 20)
+			playsound(target,'sound/effects/wounds/pierce3.ogg', 30, 1)
+			new /obj/structure/destructible/pillargem (target.loc)
+			splosion(user, target)
+			shatter(target)
+			return
 
 //Legion
 /obj/item/midasgaunt/proc/headbutt(mob/living/user, mob/living/target, var/phase = 1)
 	switch(phase)
-		if(1)
+		if(1) 
 			target.visible_message(span_warning("[user] grabs [target] and headbutts [target.p_them()] into a million pieces!"))
+			playsound(target,'sound/effects/wounds/crack2.ogg', 30, 1)
 			target.forceMove(user.loc)
 			animate(target, pixel_y = 15)
 			crystallize(target)
@@ -328,22 +455,31 @@
 			shatter(target)
 			return
 
-//Ash Drake
-/obj/item/midasgaunt/proc/stab(mob/living/user, mob/living/target, var/phase = 1)
+//Blood Drunk Miner
+/obj/item/midasgaunt/proc/workphobia(mob/living/user, mob/living/target, var/phase = 1)
 	switch(phase)
 		if(1)
-			target.visible_message(span_warning("[user] jabs [target] through the chest!"))
+			target.visible_message(span_warning("[user] gives [target] [src]!"))
 			target.setDir(get_dir(target, user))
-			user.Immobilize(10)
-			crystallize(target)
-			playsound(target,'sound/effects/tendril_destroyed.ogg', 50, 1)
+			user.Immobilize(30)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, do_jitter_animation), 25))
 			phase++
-			addtimer(CALLBACK(src, PROC_REF(stab), user, target, phase), 0.8 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase), 1 SECONDS)
 			return
 		if(2)
+			animate(target, transform = matrix(90, MATRIX_ROTATE))
+			target.visible_message(span_warning("[target] violently reacts to mineral contact!"))
+			target.emote("spin")
+			crystallize(target)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase), 2 SECONDS)
+			return
+		if(3)
 			splosion(user, target)
 			shatter(target)
-			return
+	if(target)
+		sceneend(target, user)
+		return
 
 //nonlethal animations
 
@@ -366,13 +502,12 @@
 		if(3)
 			animate(user, pixel_y = 40)
 			phase++
+			target.emote("flip")
 			if(front.reachableTurftestdensity(T = front))
 				target.forceMove(front)
 				addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
-				target.SpinAnimation(0.7 SECONDS)
 				return
 			addtimer(CALLBACK(src, PROC_REF(spike), user, target, phase), 0.1 SECONDS)
-			target.SpinAnimation(0.7 SECONDS)
 			return
 		if(4)
 			phase++
@@ -398,3 +533,32 @@
 		sceneend(target, user)
 
 
+//STONE
+/obj/structure/destructible/pillargem
+	density = TRUE
+	anchored = TRUE
+	name ="crystal pillar"
+	desc ="A monument to death. It seems to resonate with a certain gem.</b>"
+	icon_state = "bloodstone-enter3"
+	icon = 'icons/obj/cult_64x64.dmi'
+	obj_integrity = 50
+	max_integrity = 50
+	break_message = span_warning("The pillar crumbles!")
+	color = "#ff0000"
+	alpha = 100
+
+/obj/structure/killbubble
+	density = TRUE
+	anchored = TRUE
+	layer = MASSIVE_OBJ_LAYER
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "leaper"
+	max_integrity = 1000
+
+/obj/structure/killbubblepop
+	density = TRUE
+	anchored = TRUE
+	layer = MASSIVE_OBJ_LAYER
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "leaper_bubble_pop"
+	max_integrity = 1000
