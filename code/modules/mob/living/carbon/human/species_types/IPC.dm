@@ -265,7 +265,7 @@
 		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 			H.death() // YOU'RE GETTING RUSTY, MACHINE!!
 			return .
-		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
+		H.adjustFireLoss(2) // someone forgor IPCs don't have damage reduction
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")

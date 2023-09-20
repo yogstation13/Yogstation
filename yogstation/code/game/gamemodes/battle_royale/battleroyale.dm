@@ -61,6 +61,7 @@ GLOBAL_VAR(stormdamage)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_STALWART) //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
+		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
@@ -78,6 +79,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
+	addtimer(CALLBACK(src, PROC_REF(delete_fireaxe)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
@@ -178,29 +180,37 @@ GLOBAL_VAR(stormdamage)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/delete_armoury()
-	var/area/ai_monitored/security/armory/A = locate(/area/ai_monitored/security/armory) in GLOB.areas
-	for(var/obj/item/thing in A)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+	var/area/to_clear = list(//clear out any place that might have gamer loot that creates a meta of "rush immediately"
+		/area/ai_monitored/security/armory, 
+		/area/security/warden, 
+		/area/security/main, 
+		/area/crew_quarters/heads/hos,
+		/area/crew_quarters/heads/captain//sword
+		)
 
-	var/area/security/warden/B = locate(/area/security/warden) in GLOB.areas
-	for(var/obj/item/thing in B)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+	for(var/area/place in to_clear)
+		var/area/A = locate(place) in GLOB.areas
+		for(var/obj/item/thing in A)
+			if(thing.anchored)//only target something that is possibly a weapon
+				continue
+			qdel(thing)
+		if(istype(A, /area/crew_quarters/heads/captain))
+			var/obj/structure/closet/secure_closet/captains/clowned = locate(/obj/structure/closet/secure_closet/captains) in A
+			if(clowned)
+				for(var/i = 0, i < 20, i++)
+					new /mob/living/simple_animal/hostile/retaliate/clown(clowned)// stop being a clown
 
-	var/area/security/main/C = locate(/area/security/main) in GLOB.areas
-	for(var/obj/item/thing in C)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+/datum/game_mode/fortnite/proc/delete_fireaxe()
+	var/area/to_clear = list(//clear out any place that might have gamer loot that creates a meta of "rush immediately"
+		/area/bridge, //fireaxe
+		typecacheof(/area/engine/atmos) //also fireaxe
+		)
 
-	var/area/crew_quarters/heads/hos/D = locate(/area/crew_quarters/heads/hos) in GLOB.areas
-	for(var/obj/item/thing in D)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+	for(var/area/place in to_clear)
+		var/area/A = locate(place) in GLOB.areas
+		for(var/obj/structure/thing in A)
+			if(istype(thing, /obj/structure/fireaxecabinet))//only target something that is possibly a weapon
+				qdel(thing)
 
 /datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
 	var/mob/selfinsert = new(src)
@@ -294,7 +304,6 @@ GLOBAL_VAR(stormdamage)
 	ears = /obj/item/radio/headset
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
-	back = /obj/item/storage/backpack
 	id = /obj/item/card/id/captains_spare
 
 /obj/structure/battle_bus
