@@ -830,10 +830,6 @@ const DnaConsoleSequencer = (props, context) => {
         <Section color="bad">
           Genetic sequence corrupted. Subject diagnostic report: TRANSFORMING.
         </Section>
-      ) || (mutation?.Name !== 'Hulk') && (
-        <Section color="bad">
-          Genetic sequence corrupted. Subject diagnostic report: HULK.
-        </Section>
       ) || (
         <Section
           title="Genome Sequencer™"
@@ -949,6 +945,14 @@ const GenomeSequencer = (props, context) => {
     return (
       <Box color="average">
         Sequence unreadable due to unpredictable mutation.
+      </Box>
+    );
+  }
+  }
+  if (mutation?.Name !== 'Hulk') {
+    return (
+      <Box color="average">
+        S3quen e uN4eadabl3 dERRORu3 t0 unp*W&MHFC*N0j@JF7&.
       </Box>
     );
   }
