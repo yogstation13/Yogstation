@@ -193,11 +193,6 @@ GLOBAL_VAR(stormdamage)
 			if(thing.anchored)//only target something that is possibly a weapon
 				continue
 			qdel(thing)
-		if(istype(A, /area/crew_quarters/heads/captain))
-			var/obj/structure/closet/secure_closet/captains/clowned = locate(/obj/structure/closet/secure_closet/captains) in A
-			if(clowned)
-				for(var/i = 0, i < 20, i++)
-					new /mob/living/simple_animal/hostile/retaliate/clown(clowned)// stop being a clown
 
 /datum/game_mode/fortnite/proc/delete_fireaxe()
 	var/area/to_clear = list(//clear out any place that might have gamer loot that creates a meta of "rush immediately"

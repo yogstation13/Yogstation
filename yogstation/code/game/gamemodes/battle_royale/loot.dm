@@ -307,6 +307,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/book/granter/martial/carp = -4,
 		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
+		/obj/item/necromantic_stone = -4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
@@ -381,6 +382,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
+
+	if(prob(0.1)) //0.1% chance of being clowned, probably won't see it every round
+		for(var/i = 0, i < 5, i++)
+			new /mob/living/simple_animal/hostile/retaliate/clown(src)// you've been clowned
 
 /obj/structure/closet/crate/battleroyale/proc/declutter()
 	if(QDELETED(src))
