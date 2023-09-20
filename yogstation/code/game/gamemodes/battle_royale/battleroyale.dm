@@ -82,7 +82,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(delete_fireaxe)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
-	set_observer_default_invisibility(0, span_warning("You can feel your sins crawling up your back.")) //so ghosts can feel like they're included
+	set_observer_default_invisibility(0) //so ghosts can feel like they're included
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -287,6 +287,8 @@ GLOBAL_VAR(stormdamage)
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/proc/gamer_death()//you live by the game, you die by the game
+	to_chat(owner, span_userdanger("Oh dear, you are dead! "))
+	to_chat(owner, span_notice("You may be revived during the events of the round, but you can no longer win."))
 	owner.current.unequip_everything()
 
 /datum/antagonist/battleroyale/greet()
