@@ -399,39 +399,6 @@
 		flash2 = null
 	..()
 
-
-/obj/item/bodypart/l_arm/robot/prosthetic
-	name = "prosthetic left arm"
-	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
-	icon = 'icons/mob/augmentation/surplus_augments.dmi'
-	brute_reduction = 0
-	burn_reduction = 0
-	max_damage = 20
-
-/obj/item/bodypart/r_arm/robot/prosthetic
-	name = "prosthetic right arm"
-	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
-	icon = 'icons/mob/augmentation/surplus_augments.dmi'
-	brute_reduction = 0
-	burn_reduction = 0
-	max_damage = 20
-
-/obj/item/bodypart/l_leg/robot/prosthetic
-	name = "prosthetic left leg"
-	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
-	icon = 'icons/mob/augmentation/surplus_augments.dmi'
-	brute_reduction = 0
-	burn_reduction = 0
-	max_damage = 20
-
-/obj/item/bodypart/r_leg/robot/prosthetic
-	name = "prosthetic right leg"
-	desc = "A skeletal, robotic limb. Much better control and durability than the surplus variety, but has to be surgically attached to the user."
-	icon = 'icons/mob/augmentation/surplus_augments.dmi'
-	brute_reduction = 0
-	burn_reduction = 0
-	max_damage = 20
-
 /obj/item/bodypart/l_arm/robot/surplus
 	name = "surplus prosthetic left arm"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
@@ -439,8 +406,6 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	next_move_mod = 2
-	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/r_arm/robot/surplus
 	name = "surplus prosthetic right arm"
@@ -449,8 +414,6 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	next_move_mod = 2
-	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/l_leg/robot/surplus
 	name = "surplus prosthetic left leg"
@@ -459,8 +422,6 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	movespeed_mod = 0.2
-	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
 
 /obj/item/bodypart/r_leg/robot/surplus
 	name = "surplus prosthetic right leg"
@@ -469,8 +430,7 @@
 	brute_reduction = 0
 	burn_reduction = 0
 	max_damage = 20
-	movespeed_mod = 0.2
-	init_traits = list(TRAIT_LIMBATTACHMENT, TRAIT_EASYDISMEMBER)
+
 
 /obj/item/bodypart/l_leg/ipc
 	status = BODYPART_ROBOTIC
