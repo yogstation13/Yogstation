@@ -9,6 +9,7 @@
 	instability = 50
 	class = MUT_OTHER
 	locked = TRUE
+	mutadone_proof = TRUE
 
 /datum/mutation/human/hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
