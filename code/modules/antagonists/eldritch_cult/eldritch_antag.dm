@@ -208,6 +208,8 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
+		if(is_mind())
+			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
 		if(is_void())
 			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
 		else if(is_flesh())
@@ -452,7 +454,7 @@
 				flavor_message += 	"As your body hits the floor, you expect the sweet release of death to free you from this horrid nightmare, unfortunately as your consciousness slips away, \
 									you feel yourself dragged ever towards a familiar beach, scores of dead fish and crabs litter the shoreline, you step closer to the water's edge inch by inch. \
 									As you make it to the water, you do not slow, and more and more corpses float through the waters of the murky ocean. Those you've killed stare back at you, sacrificed to the endless tide. \
-									You simly look back at them and smile, not quite sure where you're going, or where you'll end up, until finally you arrive at the end of it all, and you're finally ready to wake."
+									You simply look back at them and smile, not quite sure where you're going, or where you'll end up, until finally you arrive at the end of it all, and you're finally ready to wake."
 	
 		else if(cultiewin) //Completed objectives
 			if(escaped)

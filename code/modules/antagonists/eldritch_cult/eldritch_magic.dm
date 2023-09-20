@@ -948,15 +948,15 @@
 
 	school = SCHOOL_FORBIDDEN
 
-	cooldown_time = 20 SECONDS
-	cast_range = 4
+	cooldown_time = 25 SECONDS
+	cast_range = 5
 	invocation = "PH'ASE"
 	invocation_type = INVOCATION_WHISPER
 	active_msg = span_notice("You prepare to warp everyone's vision.")
 	deactive_msg = span_notice("You relax your mind.")
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/basic_projectile/assault
+/datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"
 	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
 	background_icon_state = "bg_heretic"
