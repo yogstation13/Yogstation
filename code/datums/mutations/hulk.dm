@@ -10,6 +10,7 @@
 	class = MUT_OTHER
 	locked = TRUE
 	mutadone_proof = TRUE
+	allow_transfer = FALSE
 
 /datum/mutation/human/hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
