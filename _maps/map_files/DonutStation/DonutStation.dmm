@@ -195,27 +195,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"adT" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12"
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "aen" = (
 /obj/structure/sign/directions/medical{
 	dir = 8;
@@ -49166,6 +49145,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"wiS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Security Maintenance";
+	req_access_txt = "12;63";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "wjm" = (
 /obj/machinery/camera{
 	c_tag = "Research - Xenobiology Cell 2";
@@ -99084,8 +99080,8 @@ byF
 azb
 azb
 ijq
-xbB
-adT
+uJr
+iKZ
 nQq
 xvB
 wCc
@@ -99591,12 +99587,12 @@ vfy
 iEQ
 mmQ
 wzc
-ijq
-ijq
-ijq
-ijq
-ijq
-ijq
+wzc
+wzc
+wzc
+wzc
+wzc
+wzc
 ijq
 uJr
 aGB
@@ -99853,7 +99849,7 @@ uJr
 uJr
 uJr
 uJr
-uJr
+eJH
 uJr
 uJr
 btL
@@ -100110,7 +100106,7 @@ uJr
 dGe
 noR
 noR
-noR
+wiS
 rsR
 faC
 xeE
@@ -100367,10 +100363,10 @@ xbB
 iKZ
 uJr
 uJr
-xbB
+eJH
 ges
 njm
-xbB
+eJH
 nQq
 jHy
 jHy
@@ -100624,7 +100620,7 @@ xbB
 iGK
 sAg
 xbB
-xbB
+eJH
 rOI
 vGO
 cGo
@@ -100881,7 +100877,7 @@ dNe
 xkI
 uJr
 uJr
-xbB
+eJH
 iMD
 cWM
 uke
@@ -101138,10 +101134,10 @@ uJr
 uJr
 uJr
 uJr
-xbB
-xbB
-xbB
-xbB
+eJH
+eJH
+eJH
+eJH
 nQq
 mqS
 dcP
