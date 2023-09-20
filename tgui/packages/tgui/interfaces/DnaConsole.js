@@ -941,18 +941,10 @@ const GenomeSequencer = (props, context) => {
       </Box>
     );
   }
-  if (mutation.Scrambled) {
+  if (mutation.Scrambled || mutation?.Name !== 'Hulk') {
     return (
       <Box color="average">
         Sequence unreadable due to unpredictable mutation.
-      </Box>
-    );
-  }
-  }
-  if (mutation?.Name !== 'Hulk') {
-    return (
-      <Box color="average">
-        S3quen e uN4eadabl3 dERRORu3 t0 unp*W&MHFC*N0j@JF7&.
       </Box>
     );
   }
