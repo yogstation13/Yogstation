@@ -67,7 +67,7 @@
 	desc = "An AOE roar spell that sends all near by people and items flying."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/repulse/famished_roar
-	tier = TIER_2
+	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_blade_upgrade
 	name = "Spine of The Infinite Beast"
@@ -90,7 +90,7 @@
 	desc = "Rewire your own brain to partially ignore damage slowdown."
 	cost = 1
 	route = PATH_MIND
-	tier = TIER_3
+	tier = TIER_2
 
 /datum/eldritch_knowledge/cerebral_control/on_gain(mob/user)
 	. = ..()
