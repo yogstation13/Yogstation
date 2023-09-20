@@ -160,7 +160,7 @@
 	var/datum/wound/blunt/severe/break_it = new
 	///Picks limb to break. People with less limbs have a chance of it grapping at air
 	var/obj/item/bodypart/bone = C.get_bodypart(pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-	if(bone)
+	if(bone && Adjacent(user))
 		to_chat(C,span_userdanger("The manipulator arms grapple after your [bone.name], attempting to break its bone!"))
 		break_it.apply_wound(bone)
 		bone.receive_damage(brute=50, updating_health=TRUE)
@@ -230,7 +230,7 @@
 					sub_category += "Medical"
 				if(module_types & BORG_MODULE_ENGINEERING)
 					sub_category += "Engineering"
-				if(module_types & BORG_MODEL_SERVICE)
+				if(module_types & BORG_MODULE_SERVICE)
 					sub_category += "Service"
 			else
 				sub_category += "All Cyborgs"
@@ -767,15 +767,17 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/emag_act(mob/user)
+/obj/machinery/mecha_part_fabricator/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
-		return
+		return FALSE
 	do_sparks(1, FALSE, src)
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	authorization_override = TRUE
 	obj_flags |= EMAGGED
 	update_static_data(user)
+	return TRUE
+	
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE

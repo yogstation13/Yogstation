@@ -458,7 +458,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "talisman"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/immortality)
-	var/cooldown = 0
+	var/cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(void_cd_index)
 
 /obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
@@ -470,9 +471,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/immortality_talisman/attack_self(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		if(cooldown < world.time)
+		if(COOLDOWN_FINISHED(src, void_cd_index))
 			SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
-			cooldown = world.time + 600
+			COOLDOWN_START(src, void_cd_index, cooldown_time)
 			L.apply_status_effect(STATUS_EFFECT_VOIDED)
 
 		else
@@ -490,6 +491,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
+	if(new_user)
+		vanish(new_user)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -524,8 +527,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/effect/immortality_talisman/Destroy(force)
 	if(!can_destroy && !force)
 		return QDEL_HINT_LETMELIVE
-	else
-		. = ..()
+	return ..()
 
 /obj/effect/immortality_talisman/void
 	vanish_description = "is dragged into the void"

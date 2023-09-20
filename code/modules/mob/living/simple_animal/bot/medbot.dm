@@ -68,6 +68,7 @@
 	var/treatment_virus = /datum/reagent/medicine/spaceacillin
 	var/treat_virus = 1 //If on, the bot will attempt to treat viral infections, curing them if possible.
 	var/shut_up = 0 //self explanatory :)
+	var/holy = FALSE //if it injects holy water
 
 /mob/living/simple_animal/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
@@ -255,7 +256,7 @@
 		if(health < current_health) //if medbot took some damage
 			step_to(src, (get_step_away(src,user)))
 
-/mob/living/simple_animal/bot/medbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/medbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	..()
 	if(emagged == 2)
 		declare_crit = 0
@@ -646,7 +647,7 @@
 			span_userdanger("[src] is trying to inject you!"))
 
 		var/failed = FALSE
-		if(do_mob(src, patient, 30))
+		if(do_after(src, 3 SECONDS, patient))
 			if((get_dist(src, patient) <= 1) && (on) && assess_patient(patient))
 				if(reagent_id == "internal_beaker")
 					if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
@@ -658,6 +659,8 @@
 				else
 					patient.reagents.add_reagent(reagent_id,injection_amount)
 					log_combat(src, patient, "injected", "internal synthesizer", "[reagent_id]:[injection_amount]")
+					if(holy)
+						patient.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
 				C.visible_message(span_danger("[src] injects [patient] with its syringe!"), \
 					span_userdanger("[src] injects you with its syringe!"))
 			else

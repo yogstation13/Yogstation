@@ -66,7 +66,7 @@
 	if(target != user)
 		target.visible_message(span_danger("[user] is trying to inject [target] with [src]!"), \
 			span_userdanger("[user] is trying to inject you with [src]!"))
-		if(!do_mob(user, target) || used)
+		if(!do_after(user, 3 SECONDS, target) || used)
 			return
 		target.visible_message("<span class='danger'>[user] injects [target] with the syringe with [src]!", \
 						span_userdanger("[user] injects you with the syringe with [src]!"))
@@ -473,6 +473,22 @@
 /obj/item/dnainjector/removeantiglow
 	name = "\improper DNA injector (Anti-Antiglowy)"
 	remove_mutations = list(ANTIGLOWY)
+
+/obj/item/dnainjector/fierysweat
+	name = "\improper DNA injector (Fiery Sweat)"
+	add_mutations = list(FIRESWEAT)
+
+/obj/item/dnainjector/strong
+	name = "\improper DNA injector (Strength)"
+	add_mutations = list(STRONG)
+
+/obj/item/dnainjector/thickskin
+	name = "\improper DNA injector (Thick Skin)"
+	add_mutations = list(THICKSKIN)
+
+/obj/item/dnainjector/densebones
+	name = "\improper DNA injector (Bone Densification)"
+	add_mutations = list(DENSEBONES)
 
 /obj/item/dnainjector/timed
 	var/duration = 600

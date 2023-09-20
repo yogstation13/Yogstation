@@ -210,16 +210,6 @@
 //Used as an upper limit for species that continuously gain nutriment
 #define NUTRITION_LEVEL_ALMOST_FULL 535
 
-//Charge levels for Ethereals
-#define ETHEREAL_CHARGE_SCALING_MULTIPLIER 20
-#define ETHEREAL_CHARGE_NONE (0 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_LOWPOWER (20 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_NORMAL (50 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_ALMOSTFULL (75 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_FULL (100 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_OVERLOAD (125 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-#define ETHEREAL_CHARGE_DANGEROUS (150 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-
 //Slime evolution threshold. Controls how fast slimes can split/grow
 #define SLIME_EVOLUTION_THRESHOLD 10
 
@@ -310,7 +300,6 @@
 #define DOOR_CRUSH_DAMAGE	15	//the amount of damage that airlocks deal when they crush you
 
 #define	HUNGER_FACTOR		0.1	//factor at which mob nutrition decreases
-#define	ETHEREAL_CHARGE_FACTOR	0.12 //factor at which ethereal's charge decreases
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
 
@@ -371,10 +360,10 @@
 //this should be in the ai defines, but out ai defines are actual ai, not simplemob ai
 #define IS_DEAD_OR_INCAP(source) (source.incapacitated() || source.stat)
 
-#define INTERACTING_WITH(X, Y) (Y in X.do_afters)
-
-
 #define DOING_INTERACTION(user, interaction_key) (LAZYACCESS(user.do_afters, interaction_key))
+#define DOING_INTERACTION_LIMIT(user, interaction_key, max_interaction_count) ((LAZYACCESS(user.do_afters, interaction_key) || 0) >= max_interaction_count)
+#define DOING_INTERACTION_WITH_TARGET(user, target) (LAZYACCESS(user.do_afters, target))
+#define DOING_INTERACTION_WITH_TARGET_LIMIT(user, target, max_interaction_count) ((LAZYACCESS(user.do_afters, target) || 0) >= max_interaction_count)
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"

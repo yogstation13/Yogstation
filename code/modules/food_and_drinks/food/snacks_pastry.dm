@@ -185,7 +185,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	filling_color = "#FFE4E1"
 	tastes = list("custard" = 1, "egg" = 1)
-	foodtype = GRAIN | MEAT | VEGETABLES
+	foodtype = GRAIN | VEGETABLES | EGG
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -427,6 +427,13 @@
 	foodtype = GRAIN | MEAT
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
+/obj/item/reagent_containers/food/snacks/cookie/peanut_butter
+	name = "peanut butter cookie"
+	desc = "A tasty, chewy peanut butter cookie."
+	icon_state = "peanut_butter_cookie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/peanut_butter = 5)
+	tastes = list("peanut butter" = 2, "cookie" = 1)
+	foodtype = GRAIN | SUGAR | NUTS
 
 /obj/item/reagent_containers/food/snacks/cookie/bacon
 	name = "strip of bacon"
@@ -522,7 +529,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 2)
 	filling_color = "#FFFF4D"
 	tastes = list("bread" = 1, "egg" = 1, "cheese" = 1)
-	foodtype = GRAIN | MEAT | DAIRY
+	foodtype = GRAIN | EGG | DAIRY
 
 /obj/item/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
@@ -608,17 +615,47 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/honey = 5)
 	filling_color = "#F2CE91"
 	tastes = list("pastry" = 1, "sweetness" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/jaffacake
-	name = "jaffacake"
-	desc = "A moreish jaffacke. Is it a cake or is it a biscuit? Who knows."
+	name = "jaffa cake"
+	desc = "A moreish jaffa cake. Is it a cake or is it a biscuit? Who knows."
 	icon_state = "jaffacake"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/coco = 1)
 	filling_color = "#D9833E"
 	tastes = list("orange" = 1, "cake" = 1)
-	foodtype = GRAIN | SUGAR | FRUIT
+	foodtype = GRAIN | SUGAR | FRUIT | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/raw_brownie_batter
+	name = "raw brownie batter"
+	desc = "A sticky mixture of raw brownie batter, cook it in the oven!"
+	icon_state = "raw_brownie_batter"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("raw brownie batter" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE | RAW
+
+/obj/item/reagent_containers/food/snacks/raw_brownie_batter/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/brownie_sheet, rand(20 SECONDS, 30 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/brownie_sheet
+	name = "brownie sheet"
+	desc = "A sheet of cooked brownie, use a knife to cut it!"
+	icon_state = "brownie_sheet"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/sugar = 12)
+	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE
+	burns_in_oven = TRUE
+	slices_num = 4
+	slice_path = /obj/item/reagent_containers/food/snacks/brownie
+
+/obj/item/reagent_containers/food/snacks/brownie
+	name = "brownie"
+	desc = "A square slice of delicious, chewy brownie."
+	icon_state = "brownie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 3)
+	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE
 
 #define PANCAKE_MAX_STACK 10
 
@@ -641,6 +678,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("pancakes" = 1, "blueberries" = 1)
+	foodtype = GRAIN | SUGAR | BREAKFAST | FRUIT
 
 /obj/item/reagent_containers/food/snacks/pancakes/chocolatechip
 	name = "chocolate chip pancake"
@@ -670,6 +708,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("purity" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/churro
 	name = "churro"
@@ -679,6 +718,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/raw_croissant
 	name = "raw croissant"

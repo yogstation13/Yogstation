@@ -59,7 +59,7 @@
 		if(butchering && butchering.butchering_enabled)
 			to_chat(user, span_notice("You begin to butcher [src]..."))
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
-			if(do_mob(user, src, butchering.speed) && Adjacent(I))
+			if(do_after(user, butchering.speed, src) && Adjacent(I))
 				butchering.Butcher(user, src)
 			return TRUE
 		else if(I.is_sharp() && !butchering) //give sharp objects butchering functionality, for consistency

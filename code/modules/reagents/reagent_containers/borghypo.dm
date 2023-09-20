@@ -116,8 +116,8 @@
 	var/charge_cost = 50
 	/// Counts up to the next time we charge
 	var/charge_timer = 0
-	/// Time it takes for shots to recharge (in seconds)
-	var/recharge_time = 10
+	/// Time it takes for shots to recharge (in deciseconds)
+	var/recharge_time = 10 SECONDS
 	/// If the hypospray can go through armor or thick material
 	var/bypass_protection = FALSE
 	/// If this hypospray has been upgraded
@@ -154,7 +154,7 @@
 		regenerate_reagents(default_reagent_types)
 		if(upgraded)
 			regenerate_reagents(expanded_reagent_types)
-		charge_timer = 0
+		charge_timer -= recharge_time //so if delta_time gives a bunch of extra time, it isn't lost by setting it to 0
 	update_appearance(UPDATE_ICON)
 	. = ..()
 	return 1
@@ -187,6 +187,8 @@
 		// Prevents overdosing if they are on help intent.
 		if(user.a_intent == INTENT_HELP)
 			for(var/datum/reagent/reagent as anything in stored_reagents.reagent_list)
+				if(reagent.type != selected_reagent.type)
+					continue
 				if(injectee.reagents.has_reagent(reagent.type) && reagent.overdose_threshold)
 					var/datum/reagent/injectee_reagent = injectee.reagents.get_reagent(reagent.type)
 					if(injectee_reagent.overdosed)
@@ -208,7 +210,7 @@
 			hypospray_injector.trans_to(injectee, amount_per_transfer_from_this, transfered_by = user)
 			log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	else
-		to_chat(user, span_notice("[user]'s [parse_zone(user.zone_selected)] is blocked!"))
+		to_chat(user, span_notice("[injectee]'s [parse_zone(user.zone_selected)] is blocked!"))
 
 /obj/item/reagent_containers/borghypo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -338,7 +340,7 @@
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	charge_cost = 20
-	recharge_time = 2
+	recharge_time = 2 SECONDS
 	default_reagent_types = BASE_SYNDICATE_REAGENTS
 	bypass_protection = TRUE
 
@@ -351,7 +353,7 @@
 	possible_transfer_amounts = list(5, 10, 20, 1) // Starts at 5 on purpose.
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 20
-	recharge_time = 3
+	recharge_time = 3 SECONDS
 	default_reagent_types = BASE_SERVICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/ui_interact(mob/user, datum/tgui/ui)
@@ -427,7 +429,7 @@
 	possible_transfer_amounts = list(5, 10, 20, 1)
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 40 // Costs double the power of the borgshaker due to synthesizing solids.
-	recharge_time = 6 // Double the recharge time too, for the same reason.
+	recharge_time = 6 SECONDS // Double the recharge time too, for the same reason.
 	default_reagent_types = EXPANDED_SERVICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/condiment_synthesizer/ui_interact(mob/user, datum/tgui/ui)

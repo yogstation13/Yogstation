@@ -55,6 +55,15 @@
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
+/obj/item/reagent_containers/food/snacks/bbqribs
+	name = "bbq ribs"
+	desc = "BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist."
+	icon_state = "ribs"
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/bbqsauce = 5)
+	tastes = list("meat" = 3, "smokey sauce" = 1)
+	foodtype = MEAT
+	w_class = WEIGHT_CLASS_NORMAL
+
 /obj/item/reagent_containers/food/snacks/tofu
 	name = "tofu"
 	desc = "We all love tofu."
@@ -317,7 +326,7 @@
 	icon_state = "khinkali"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/garlic = 1)
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | GRAIN | RAW | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/rawkhinkali/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/khinkali, rand(50 SECONDS, 60 SECONDS), TRUE)
@@ -330,8 +339,8 @@
 	bitesize = 3
 	filling_color = "#F0F0F0"
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
-	foodtype = MEAT
 	burns_on_grill = TRUE
+	foodtype = MEAT | GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/enchiladas
 	name = "enchiladas"
@@ -342,7 +351,7 @@
 	filling_color = "#FFA07A"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "tortilla" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | GRAIN | VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/chipsandsalsa
 	name = "chips and salsa"
@@ -405,21 +414,22 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#800000"
-	tastes = list("meat" = 1, "butter" = 1)
+	tastes = list("meat" = 1, "butter" = 2)
+	foodtype = MEAT | DAIRY | GRAIN
 
 /obj/item/reagent_containers/food/snacks/dolphinmeat
-  name = "dolphin fillet"
-  desc = "A fillet of spess dolphin meat."
-  icon_state = "fishfillet"
-  list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-  bitesize = 6
-  filling_color = "#FA8072"
-  tastes = list("fish" = 1,"cruelty" = 2)
-  foodtype = MEAT
+	name = "dolphin fillet"
+	desc = "A fillet of spess dolphin meat."
+	icon_state = "fishfillet"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	bitesize = 6
+	filling_color = "#FA8072"
+	tastes = list("fish" = 1,"cruelty" = 2)
+	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize(mapload)
-  . = ..()
-  eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
+	. = ..()
+	eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
 
 /obj/item/reagent_containers/food/snacks/meatclown
 	name = "meat clown"

@@ -280,15 +280,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return randname
 
 //used to add things to the no_equip list that'll get inherited on species changes
-/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Add(slot)
+/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot, source)
+	if(!("[slot]" in extra_no_equip))
+		extra_no_equip["[slot]"] = list(source)
+	else
+		extra_no_equip["[slot]"] |= list(source)
 	var/obj/item/thing = C.get_item_by_slot(slot)
 	if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
 		C.dropItemToGround(thing)
 
 //removes something from the extra_no_equip list as well as the normal no_equip list
-/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Remove(slot)
+/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot, source)
+	extra_no_equip["[slot]"] -= source
+	if(!length(extra_no_equip["[slot]"]))
+		extra_no_equip -= "[slot]"
 
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)
@@ -410,7 +415,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.gender = FEMALE
 	if((MGENDER in species_traits))
 		C.gender = MALE
-	extra_no_equip.Add(old_species.extra_no_equip)
+	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -1099,7 +1104,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 //Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if((slot in no_equip) || (slot in extra_no_equip))
+	if((slot in no_equip) || ("[slot]" in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -1333,7 +1338,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			REMOVE_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.update_inv_w_uniform()
 			H.update_inv_wear_suit()
-	else
+	else if(!HAS_TRAIT(H, TRAIT_POWERHUNGRY)) // why would you get fat if you run on electricity
 		if(H.overeatduration >= 100)
 			to_chat(H, span_danger("You suddenly feel blubbery!"))
 			ADD_TRAIT(H, TRAIT_FAT, OBESITY)
@@ -1395,6 +1400,23 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	get_hunger_alert(H)
 
 /datum/species/proc/get_hunger_alert(mob/living/carbon/human/H)
+	if(HAS_TRAIT(H, TRAIT_POWERHUNGRY))
+		var/obj/item/organ/cell = H.getorganslot(ORGAN_SLOT_STOMACH)
+		if(!(cell && istype(cell, /obj/item/organ/stomach/cell)))
+			H.throw_alert("nutrition", /atom/movable/screen/alert/nocell)
+			return
+		switch(H.nutrition)
+			if(NUTRITION_LEVEL_FED to INFINITY)
+				H.clear_alert("nutrition")
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 1)
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
+			if(1 to NUTRITION_LEVEL_STARVING)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
+			if(0)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
+		return
 	switch(H.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/fat)
@@ -1451,11 +1473,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/movement_delay(mob/living/carbon/human/H)
 	. = 0	//We start at 0.
 	var/flight = 0	//Check for flight and flying items
-	var/gravity = 0
+	var/gravity = H.has_gravity()
 	if(H.movement_type & FLYING)
 		flight = 1
-
-	gravity = H.has_gravity()
 
 	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && gravity)
 		// Clothing slowdown
@@ -1488,11 +1508,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
-			else if(isethereal(H))
-				var/datum/species/ethereal/E = H.dna.species
-				var/charge = E.get_charge(H)
-				if(charge <= ETHEREAL_CHARGE_NORMAL)
-					. += 1.5 * (1 - charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)
@@ -1515,11 +1530,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_fully_heal(mob/living/carbon/human/H)
 	return
 
+/datum/species/proc/spec_rad_act(mob/living/carbon/human/H, amount, collectable_radiation)
+	return
+
 /datum/species/proc/spec_emp_act(mob/living/carbon/human/H, severity)
 	return
 
-/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	return
+/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	return FALSE
 
 /datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	return
@@ -1531,15 +1549,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			log_combat(user, target, "shaken")
 		return 1
 	else
-		var/we_breathe = !HAS_TRAIT_FROM(user, TRAIT_NOBREATH, SPECIES_TRAIT)
-		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
-
-		if(we_breathe && we_lung)
-			user.do_cpr(target)
-		else if(we_breathe && !we_lung)
-			to_chat(user, span_warning("You have no lungs to breathe with, so you cannot perform CPR."))
-		else
-			to_chat(user, span_notice("You do not breathe, so you cannot perform CPR."))
+		user.do_cpr(target)
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	var/datum/martial_art/M = target.check_block()
@@ -2467,6 +2477,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_species_diet()
 	if(TRAIT_NOHUNGER in inherent_traits)
 		return null
+	
+	if(TRAIT_POWERHUNGRY in inherent_traits)
+		return null
 
 	var/list/food_flags = FOOD_FLAGS
 
@@ -2735,7 +2748,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] limbs are easily readded, and as such do not \
 				require surgery to restore. Simply pick it up and pop it back in, champ!",
 		))
-
+	if(TRAIT_POWERHUNGRY in inherent_traits)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
+			SPECIES_PERK_NAME = "Power-Hungry",
+			SPECIES_PERK_DESC = "[plural_form] run off electricity rather than food.",
+		))
 	if(TRAIT_EASYDISMEMBER in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

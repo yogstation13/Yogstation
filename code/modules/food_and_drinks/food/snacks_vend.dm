@@ -114,7 +114,7 @@
 
 /obj/item/reagent_containers/food/snacks/energybar
 	name = "High-power energy bars"
-	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
+	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you don't run on electricity.."
 	icon_state = "energybar"
 	trash = /obj/item/trash/energybar
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/liquidelectricity = 4)
@@ -177,10 +177,10 @@
 		opened = TRUE
 	else
 		if(!searched)
-			if(INTERACTING_WITH(user, src))
+			if(DOING_INTERACTION(user, src))
 				return
 			to_chat(user, span_warning("You start searching for the toy..."))
-			if(!do_after(user, 1.5 SECONDS, target = src))
+			if(!do_after(user, 1.5 SECONDS, src))
 				return
 			if(prob(50))
 				switch(rand(1,2))

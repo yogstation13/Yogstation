@@ -116,6 +116,14 @@
 	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade
 	fire_sound = 'sound/effects/snap.ogg'
 
+/// Also allows clowns to use the blade without fearing shooting themselves in the foot
+/obj/item/gun/magic/hook/sickly_blade/check_botched(mob/living/user, params)
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
+		var/mob/living/carbon/human/human_user = user
+		human_user.AdjustParalyzed(5 SECONDS)
+		return TRUE
+
 /obj/item/gun/magic/hook/sickly_blade/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
 
@@ -186,6 +194,12 @@
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
+/obj/item/gun/magic/hook/sickly_blade/mind
+	name = "mind blade"
+	desc = "A monsterously sharp blade made from pure knowledge and paper. Endlessly it searches to quench it's thirst, often eviserating the user in the process."
+	icon_state = "mind_blade"
+	item_state = "mind_blade"
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
@@ -215,7 +229,6 @@
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
 
-
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	name = "ominous hood"
 	desc = "A torn, dust-caked hood. You feel it watching you."
@@ -244,3 +257,31 @@
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldrich_flask"
 	list_reagents = list(/datum/reagent/eldritch = 50)
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye
+	name = "An ancient eye of a forgotten god"
+	desc = "Allows the user to swap between three hud types, science, medical, and diagnostic"
+	icon_state = "godeye"
+	item_state = "godeye"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	hud_type = DATA_HUD_SECURITY_BASIC
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_EYES)
+		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/attack_self(mob/user)
+	..()
+	switch (hud_type)
+		if (DATA_HUD_MEDICAL_BASIC)
+			icon_state = "godeye"
+		if (DATA_HUD_SECURITY_BASIC)
+			icon_state = "godeye"
+		if (DATA_HUD_DIAGNOSTIC_BASIC)
+			icon_state = "godeye"
+		else
+			icon_state = "godeye"
+	user.update_inv_glasses()
+	
+	

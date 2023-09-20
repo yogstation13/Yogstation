@@ -68,6 +68,10 @@
 
 #define STATUS_EFFECT_DIAMONDSKIN /datum/status_effect/diamondskin //Increases heat and pressure resistance
 
+#define STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC /datum/status_effect/holylight_antimagic //long-term temporary antimagic that makes you blue
+
+#define STATUS_EFFECT_HOLYLIGHT_HEALBOOST /datum/status_effect/holylight_healboost //short-term heal boost that grants the chaplain favor
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -179,7 +183,7 @@
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
 
-#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade
 
 /////////////
 //  SLIME  //

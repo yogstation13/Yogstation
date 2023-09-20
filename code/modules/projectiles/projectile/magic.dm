@@ -706,6 +706,19 @@
 	QDEL_NULL(chain)
 	return ..()
 
+/obj/item/projectile/magic/aoe/lightning/eldritch
+	name = "otherwordly power"
+	icon_state = "tesla_projectile"	
+	damage = 25
+	damage_type = BURN
+	nodamage = FALSE
+	speed = 0.3
+	flag = MAGIC
+
+	tesla_power = 9000
+	tesla_range = 7
+	tesla_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+
 /obj/item/projectile/magic/fireball
 	name = "bolt of fireball"
 	icon_state = "fireball"
@@ -775,6 +788,17 @@
 	ignored_factions = list("cult")
 	range = 15
 	speed = 7
+
+/obj/item/projectile/heretic_assault
+	name ="mindbolt"
+	icon_state= "chronobolt"
+	damage = 30
+	armour_penetration = 100
+	speed = 4 
+	eyeblur = 0
+	damage_type = BRUTE
+	pass_flags = PASSTABLE
+	range = 5
 
 /obj/item/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
 	. = ..()

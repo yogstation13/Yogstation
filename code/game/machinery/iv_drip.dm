@@ -95,6 +95,11 @@
 		else
 			to_chat(usr, span_warning("There's nothing attached to the IV drip!"))
 
+/obj/machinery/iv_drip/MouseDrop_T(atom/dropping, mob/user)
+	if(is_type_in_typecache(dropping, drip_containers))
+		attackby(dropping, user)
+	else
+		..()
 
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/user, params)
 	if(is_type_in_typecache(W, drip_containers))
@@ -236,7 +241,7 @@
 	. = ..()
 	if(user.is_holding_item_of_type(/obj/item/clothing/mask/breath) && can_convert)
 		visible_message("<span class='warning'>[user] attempts to attach the breath mask to [src].</span>", "<span class='notice'>You attempt to attach the breath mask to [src].</span>")
-		if(!do_after(user, 10 SECONDS, src, FALSE))
+		if(!do_after(user, 10 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 			to_chat(user, "<span class='warning'>You fail to attach the breath mask to [src]!</span>")
 			return
 		var/item = user.is_holding_item_of_type(/obj/item/clothing/mask/breath)
