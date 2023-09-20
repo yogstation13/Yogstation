@@ -1,4 +1,0 @@
-author: "Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed being able to use Last Stand as Changeling to get a null loc. No rubies for you!"
