@@ -290,7 +290,7 @@ GLOBAL_VAR(stormdamage)
 	to_chat(owner, span_userdanger("Oh dear, you are dead! "))
 	to_chat(owner, span_notice("You may be revived during the events of the round, but you can no longer win."))
 	owner.current.unequip_everything()
-	owner.add_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY) //ya blew it
+	owner.current.add_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY) //ya blew it
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
