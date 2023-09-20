@@ -174,6 +174,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/transforming/energy/sword = -1,
 		/obj/item/gun/energy/laser/retro/old = -1,
 		/obj/item/melee/baseball_bat/metal_bat = -1,
+		/obj/item/melee/ghost_sword = -1, //snowballer
 
 		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
 		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
@@ -181,6 +182,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -2,
 		/obj/item/gun/energy/kinetic_accelerator/crossbow = -2,
 		/obj/item/gun/energy/laser = -2,
+		/obj/item/melee/transforming/energy/axe = -2,
 
 		/obj/item/gun/ballistic/revolver = -3,
 		/obj/item/gun/ballistic/bow/energy = -3,
@@ -223,6 +225,7 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		/obj/item/organ/regenerative_core/legion = 3, //These expire after a bit, and take some time to use
 		/obj/item/storage/firstaid/brute = 3,
 		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 3,
+		/obj/item/clothing/mask/cigarette/syndicate = 3,
 		/obj/item/storage/firstaid/advanced = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 2,
 		/obj/item/organ/heart/cursed/wizard = 2, //Rarely used, albiet the healing is incredibly strong
@@ -233,8 +236,15 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		))
 
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
+		/obj/item/storage/backpack = 5,
+		/obj/item/storage/backpack/duffelbag = 5,
+		/obj/item/storage/backpack/satchel = 5,
+
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
+		/obj/item/storage/backpack = 4,
+		/obj/item/storage/backpack/duffelbag = 4,
+		/obj/item/storage/backpack/satchel = 4,
 
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 		/obj/item/nullrod/servoskull = 3,
@@ -246,32 +256,45 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
+		/obj/item/battleroyale/martial/preternis = 1, //arguably a downgrade, maybe not
 
 		/obj/item/teleportation_scroll/apprentice = 0,
 		/obj/effect/spawner/lootdrop/ammobox = 0,
 		/obj/item/slimecross/stabilized/red = 0,
 		/obj/item/slimecross/stabilized/sepia = 0,
-		/obj/item/battleroyale/martial/preternis = 0,
+		/obj/item/warp_whistle = 0,
+		/obj/item/gun/magic/staff/animate = 0, //no clue why you'd want this, but why not
 
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
 		/obj/item/multisurgeon/airshoes = -1,
 		/obj/item/nullrod/hermes = -1,
+		/obj/item/gun/magic/wand/door = -1,
+		/obj/item/gun/magic/staff/door = -1,
+		/obj/item/storage/backpack/duffelbag/syndie = -1,
 
 		/obj/item/storage/box/syndie_kit/augmentation = -2,
 		/obj/item/grenade/syndieminibomb = -2,
 		/obj/item/dragons_blood = -2,
+		/obj/item/dragons_blood/refined = -2,
 		/obj/item/desynchronizer = -2,
 		/obj/item/book/granter/martial/cqc = -2,
 		/obj/item/book/granter/action/spell/smoke = -2,
+		/obj/item/battleroyale/martial/phytosian = -2,
+		/obj/item/battleroyale/martial/plasmaman = -2,
+		/obj/item/battleroyale/martial/lizard = -2,
+		/obj/item/book/granter/action/spell/summonitem = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
-		/obj/item/battleroyale/martial/phytosian = -3,
-		/obj/item/battleroyale/martial/plasmaman = -3,
+		/obj/item/stand_arrow = -3, //possibly OP but it's 50/50 to get dusted
+		/obj/item/book/granter/action/spell/forcewall = -3,
+		/obj/item/antag_spawner/slaughter_demon = -3, //why the hell not
+		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //pretty sure it's exactly the same since players dust on death
+		/obj/item/storage/backpack/holding = -3,
 		/obj/effect/spawner/lootdrop/stronggene = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
@@ -280,18 +303,19 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/guardiancreator/carp/random = -4,
 		/obj/item/bodypart/l_arm/robot/buster = -4, // Buster is strong, but most people aren't too good with it. Especially useful for closing the gap
 		/obj/item/battleroyale/martial/ipc = -4,
-		/obj/item/battleroyale/martial/lizard = -4,
 		/obj/item/book/granter/martial/carp = -4,
+		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
 		/obj/item/stand_arrow/safe = -5,
 		/obj/item/mdrive = -5, //get out of jail free card
-		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		/obj/item/autosurgeon/syndicate/spinalspeed = -5, // No opportunity cost speed boost
 
-		/obj/item/spellbook = -8,
+		/obj/item/storage/belt/wands/full = -7, //not quite spellbook, but some of these wands are FUCKED
+
+		/obj/item/spellbook = -8, //literally auto-win
 		))
 
 /obj/structure/closet/crate/battleroyale
@@ -390,7 +414,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)
-		ADD_TRAIT(user, TRAIT_NOBREATH, name)//because some species can't breathe normally
 		qdel(src)
 
 /obj/item/battleroyale/martial/ipc
@@ -494,7 +517,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	name = "Random ammo boxes"
 	loot = list( //woo i love ammo woooo
 		/obj/item/storage/box/lethalshot,
-		/obj/item/storage/box/rubbershot,
 		/obj/item/ammo_box/magazine/wt550m9,
 		/obj/item/ammo_box/magazine/m10mm/rifle,
 		/obj/item/ammo_box/magazine/v38,
