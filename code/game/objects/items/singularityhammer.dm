@@ -139,4 +139,4 @@
 			new /obj/structure/mjollnir(loc)
 			qdel(src)
 		else
-			shock(hit_atom, 0)
+			shock(hit_atom, 0 SECONDS)
