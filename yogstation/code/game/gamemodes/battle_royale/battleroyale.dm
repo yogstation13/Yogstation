@@ -288,7 +288,7 @@ GLOBAL_VAR(stormdamage)
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/proc/gamer_death()//you live by the game, you die by the game
-	current_mob.unequip_everything()
+	owner.current.unequip_everything()
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
