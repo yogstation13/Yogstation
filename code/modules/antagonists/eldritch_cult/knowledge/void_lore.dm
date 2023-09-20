@@ -39,20 +39,25 @@
 			grasp.next_use_time = min(round(grasp.next_use_time - grasp.cooldown_time * 0.75, 0), 0)
 			grasp.build_all_button_icons()
 
-/datum/eldritch_knowledge/spell/ashen_shift
-	name = "Ashen Shift"
-	gain_text = "Essence is versatile, flexible. It is so easy for grains to blow into all sorts of small crevices."
-	desc = "A very short range jaunt that can help you escape from bad situations or navigate past obstacles."
+/datum/eldritch_knowledge/spell/void_phase
+	name = "Void Phase"
+	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
+		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
+	desc = "Grants you Void Phase, a long range targeted teleport spell. \
+		Additionally causes damage to heathens around your original and target destination."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
+	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
 	route = PATH_VOID
 	tier = TIER_1
 
-/datum/eldritch_knowledge/ashen_eyes
-	name = "Eldritch Medallion"
-	gain_text = "The City Guard wore these amulets when Amgala was beset by the Sanguine Horde. So too shall you be able to see the blood that flows in others."
-	desc = "Allows you to craft an eldritch amulet by transmuting a pair of eyes with a glass shard. When worn, the amulet will give you thermal vision."
-	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
+/datum/eldritch_knowledge/void_cloak
+	name = "Void Cloak"
+	gain_text = "The Owl is the keeper of things that are not quite in practice, but in theory are. Many things are."
+	desc = "Allows you to transmute a glass shard, a bedsheet, and any outer clothing item (such as armor or a suit jacket) \
+		to create a Void Cloak. While the hood is down, the cloak functions as a focus, \
+		and while the hood is up, the cloak is completely invisible. It also provide decent armor and \
+		has pockets which can hold one of your blades, various ritual components (such as organs), and small heretical trinkets."
+	unlocked_transmutations = list(/datum/eldritch_transmutation/void_cloak)
 	cost = 1
 	tier = TIER_1
 
@@ -88,12 +93,14 @@
 	route = PATH_VOID
 	tier = TIER_2
 
-/datum/eldritch_knowledge/corrosion
-	name = "Curse of Corrosion"
-	gain_text = "The night before he was crowned, the Nightwatcher met with each of the City Guard. Through this ritual, only one lived to see the dawn."
-	desc = "Curse someone with two minutes of vomiting and major organ damage by transmuting a wirecutter, a spill of blood, a heart, a left arm, and a right arm with an item that the victim has touched with their bare hands."
+/datum/eldritch_knowledge/spell/void_blast
+	name = "Void Phase"
+	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
+		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
+	desc = "Grants you Void Phase, a long range targeted teleport spell. \
+		Additionally causes damage to heathens around your original and target destination."
 	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/corrosion)
+	spell_to_add = /datum/action/cooldown/spell/cone/staggered/cone_of_cold
 	tier = TIER_2
 
 /datum/eldritch_knowledge/paralysis

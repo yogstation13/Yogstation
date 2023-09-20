@@ -200,7 +200,7 @@
 	icon_state = "mind_blade"
 	item_state = "mind_blade"
 
-	/obj/item/gun/magic/hook/sickly_blade/void
+/obj/item/gun/magic/hook/sickly_blade/void
 	name = "void blade"
 	desc = "A monsterously sharp blade made from pure ice. Sharp and acute it's unbreaking edges can rip and tear through bone and sinew with ease."
 	icon_state = "mind_blade"
@@ -290,4 +290,14 @@
 			icon_state = "godeye"
 	user.update_inv_glasses()
 	
-	
+/obj/item/clothing/suit/cultrobes/void
+	name = "ominous cloak"
+	desc = "A ragged, dusty cloak. Strange eyes line the inside."
+	icon_state = "void_cloak"
+	item_state = "void_cloak"
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
+	slowdown = -0.8
+	resistance_flags = FIRE_PROOF

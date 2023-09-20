@@ -132,6 +132,8 @@
 #define TRAIT_RESTRAINED 		"restrained"
 /// In some kind of critical condition. Is able to succumb.
 #define TRAIT_CRITICAL_CONDITION "critical-condition"
+/// Is frozen in place
+#define TRAIT_FROZEN "frozen"
 /// trait associated to a stat value or range of
 #define STAT_TRAIT 				"stat"
 #define TRAIT_INCAPACITATED 	"incapacitated"
