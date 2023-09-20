@@ -253,6 +253,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/cmo = 2,
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 		/obj/effect/spawner/lootdrop/weakgene = 2,
+		/obj/item/gun/energy/gravity_gun = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
@@ -298,6 +299,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/effect/spawner/lootdrop/stronggene = -3,
 		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
+		/obj/item/scrying = -3, //info, but leaves you open to attack
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
