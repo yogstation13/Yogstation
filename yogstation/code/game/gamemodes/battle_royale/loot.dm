@@ -269,7 +269,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
 		/obj/item/multisurgeon/airshoes = -1,
-		/obj/item/nullrod/hermes = -1,
 		/obj/item/gun/magic/wand/door = -1,
 		/obj/item/gun/magic/staff/door = -1,
 		/obj/item/storage/backpack/duffelbag/syndie = -1,
@@ -285,6 +284,8 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/plasmaman = -2,
 		/obj/item/battleroyale/martial/lizard = -2,
 		/obj/item/book/granter/action/spell/summonitem = -2,
+		/obj/item/nullrod/hermes = -2,
+		/obj/item/nullrod/unrestricted = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,

@@ -82,7 +82,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(delete_fireaxe)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
-	set_observer_default_invisibility(0) //so ghosts can feel like they're included
+	set_observer_default_invisibility(0, span_warning("You can feel your sins crawling up your back.")) //so ghosts can feel like they're included
 	return ..()
 
 /datum/game_mode/fortnite/check_win()

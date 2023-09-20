@@ -24,6 +24,7 @@
 	var/reskinned = FALSE
 	var/menutab = MENU_MISC //that way if someone forgets, it gets put in the tab that isn't specialized
 	var/chaplain_spawnable = TRUE
+	var/chaplain_bypass = FALSE //if people other than chaplain can select the rod
 
 	var/selected_category = MENU_ALL
 	var/list/show_categories = list(MENU_ALL, MENU_WEAPON, MENU_ARM, MENU_CLOTHING, MENU_MISC)
@@ -51,7 +52,7 @@
 	qdel(user, TRUE)
 
 /obj/item/nullrod/attack_self(mob/user)
-	if(user?.mind?.holy_role && check_menu(user))
+	if((chaplain_bypass || user?.mind?.holy_role) && check_menu(user))
 		ui_interact(user)
 
 /obj/item/nullrod/proc/check_menu(mob/user)//check if the person is able to access the menu
@@ -1261,6 +1262,10 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
+
+/obj/item/nullrod/unrestricted //anyone can select the nullrod, not just the chaplain
+	chaplain_bypass = TRUE
+	chaplain_spawnable = FALSE
 
 #undef MENU_WEAPON
 #undef MENU_ARM
