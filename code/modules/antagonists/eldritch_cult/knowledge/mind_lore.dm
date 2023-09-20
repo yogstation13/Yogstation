@@ -90,7 +90,7 @@
 	desc = "Rewire your own brain to partially ignore damage slowdown."
 	cost = 1
 	route = PATH_MIND
-	tier = TIER_2
+	tier = TIER_3
 
 /datum/eldritch_knowledge/cerebral_control/on_gain(mob/user)
 	. = ..()
@@ -102,7 +102,7 @@
 	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
-	tier = TIER_3
+	tier = TIER_2
 
 /datum/eldritch_knowledge/mind_final
 	name = "Beyond All Knowledge Lies Despair"
