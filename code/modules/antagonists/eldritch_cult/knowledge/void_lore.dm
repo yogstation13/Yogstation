@@ -100,7 +100,7 @@
 	desc = "Grants you Void Phase, a long range targeted teleport spell. \
 		Additionally causes damage to heathens around your original and target destination."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/cone/staggered/cone_of_cold
+	spell_to_add = /datum/action/cooldown/spell/cone/staggered/cone_of_cold/void
 	tier = TIER_2
 
 /datum/eldritch_knowledge/paralysis

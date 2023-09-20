@@ -1051,24 +1051,54 @@
 	pixel_y = -32
 
 /datum/action/cooldown/spell/cone/staggered/cone_of_cold/void
-	name = "Cone of Cold"
-	desc = "Shoots out a freezing cone in front of you."
+	name = "Void Blast"
+	desc = "Fires a cone of chilling void in front of you, freezing everything in its path. \
+		Enemies in the cone of the blast will be damaged slightly, slowed, and chilled overtime. \
+		Additionally, objects hit will be frozen and can shatter, and ground hit will be iced over and slippery - \
+		though they may thaw shortly if used in room temperature."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon_state = "icebeam"
 
-	school = SCHOOL_EVOCATION
+	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
-	cooldown_reduction_per_rank = 4 SECONDS
 
-	invocation = "ISAGE!" // What killed the dinosaurs? THE ICE AGE
+	invocation = "FR'ZE!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = NONE
+
+	// In room temperature, the ice won't last very long
+	// ...but in space / freezing rooms, it will stick around
+	turf_freeze_type = TURF_WET_ICE
+	unfreeze_turf_duration = 1 MINUTES
+	// Applies an "infinite" version of basic void chill
+	// (This stacks with mansus grasp's void chill)
+	frozen_status_effect_path = /datum/status_effect/void_chill/lasting
+	unfreeze_mob_duration = 30 SECONDS
+	// Does a smidge of damage
+	on_freeze_brute_damage = 12
+	on_freeze_burn_damage = 10
+	// Also freezes stuff (Which will likely be unfrozen similarly to turfs)
+	unfreeze_object_duration = 30 SECONDS
+
+/datum/action/cooldown/spell/cone/staggered/cone_of_cold/void/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
+	if(IS_HERETIC_OR_MONSTER(target_mob))
+		return
+
+	return ..()
+
+/datum/action/cooldown/spell/aoe/slip/void
+	name = "Call of Ice"
+	desc = "Causes the floor within six tiles to become frozen."
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "slip"
+
+	invocation = "OO'BANAN'A!"
 	invocation_type = INVOCATION_SHOUT
 
-	cone_levels = 4
-	respect_density = TRUE
-	delay_between_level = 0.05 SECONDS
+	cooldown_time = 30 SECONDS
+	aoe_radius = 6
+	spell_requirements = NONE
 
-	turf_freeze_type = TURF_WET_PERMAFROST
-	unfreeze_turf_duration = 45 SECONDS
-	var/datum/status_effect/frozen_status_effect_path = /datum/status_effect/freon/lasting
-	unfreeze_mob_duration = 20 SECONDS
-	on_freeze_brute_damage = 10
-	on_freeze_burn_damage = 20
-	unfreeze_object_duration = 20 SECONDS
+/datum/action/cooldown/spell/aoe/slip/void/cast_on_thing_in_aoe(turf/open/target)
+	target.MakeSlippery(TURF_WET_ICE, 30 SECONDS, 30 SECONDS)
