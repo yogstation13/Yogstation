@@ -298,6 +298,6 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
-	armor = list(MELEE = -5, BULLET = -5, LASER = -5, ENERGY = -5, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
+	armor = list(MELEE = -10, BULLET = -10, LASER = -10, ENERGY = 0, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
 	slowdown = -0.8
 	resistance_flags = FIRE_PROOF

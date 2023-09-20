@@ -2,7 +2,7 @@
 	name = "Principle of Hunger"
 	desc = "Pledges yourself to the path of Flesh. Allows you to transmute a pool of blood with a knife into a flesh blade. Additionally, your Mansus grasp now raises dead humanoids into subservient ghouls if they are not mindshielded or husked. It will husk the person it's used on."
 	gain_text = "The Priest has seduced countless into his flock. He will entice countless more with the Glorious Feast. You knelt before his statue and swore the Red Oath."
-	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_mind,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/mind_final)
+	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_mind,/datum/eldritch_knowledge/base_void,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/void_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/mind_final,/datum/eldritch_knowledge/void_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
 	route = PATH_FLESH
@@ -94,7 +94,7 @@
 	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your flesh blade to detonate the mark, which causes significant bleeding on the target."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/mind_mark)
+	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/void_mark)
 	route = PATH_FLESH
 	tier = TIER_MARK
 

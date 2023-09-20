@@ -22,6 +22,8 @@
 /datum/eldritch_transmutation/final/void_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/mob/living/carbon/human/H = user
 	var/datum/weather/void_storm/storm
+	H.physiology.brute_mod *= 0.5
+	H.physiology.burn_mod *= 0.5
 	
 	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, MAGIC_TRAIT)
 	

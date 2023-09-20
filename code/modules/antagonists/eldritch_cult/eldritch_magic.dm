@@ -1054,7 +1054,7 @@
 	name = "Void Blast"
 	desc = "Fires a cone of chilling void in front of you, freezing everything in its path. \
 		Enemies in the cone of the blast will be damaged slightly, slowed, and chilled overtime. \
-		Additionally, objects hit will be frozen and can shatter, and ground hit will be iced over and slippery - \
+		The ground hit will be iced over and slippery - \
 		though they may thaw shortly if used in room temperature."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"

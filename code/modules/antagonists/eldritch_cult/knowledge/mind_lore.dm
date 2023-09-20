@@ -2,7 +2,7 @@
 	name = "Precipice Of Enlightenment"
 	desc = "Pledge yourself to knowledge everlasting. Allows you to transmute a knife and a book into a blade of pure thought. Additionally, Your mansus grasp now functions at a range, knocking them down and blurring their vision."
 	gain_text = "The corpse of an ancient God defiled, your fellow scholars enlightened by false knowledge, but you seek true insight. You seek the unknown, the invisible, the truth behind the veil."
-	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final)
+	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/base_void,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/void_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final,/datum/eldritch_knowledge/void_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
 	cost = 1
 	route = PATH_MIND
@@ -40,7 +40,7 @@
 	gain_text = "They say the eyes are the gateway to the soul, a way to tell one's true intentions. Show them a single sliver of the truth of this world and their eyes will reject all."
 	desc = "Upgrade your mansus grasp, granting it the ability to blind a target on hit, as well as increasing the range"
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_mark)
+	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/void_mark)
 	route = PATH_MIND
 	tier = TIER_MARK
 
@@ -74,7 +74,7 @@
 	gain_text = "Curse here, Curse there. Curse for he and she, why care? A bottomless curse, a bottomless sea, source of all greatness, all things that be."
 	desc = "Your mind blade will now inject targets hit with mutetoxin, silencing them."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_MIND
 	tier = TIER_BLADE
 

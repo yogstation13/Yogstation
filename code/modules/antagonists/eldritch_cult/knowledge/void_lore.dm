@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_void
 	name = "Glimmer of Winter"
-	desc = "Pledges yourself to the path of the Void. Allows you to transmute a stuff with a knife or its derivatives into a void blade. Additionally, empowers your Mansus grasp to do something. You will also become more resistant to stuff "
+	desc = "Pledges yourself to the path of the Void. Allows you to transmute a stuff with a knife or its derivatives into a void blade. Additionally, empowers your Mansus grasp to chill any target hit."
 	gain_text = "Lore."
 	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/base_mind,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final,/datum/eldritch_knowledge/mind_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_knife)
@@ -54,9 +54,7 @@
 	name = "Void Cloak"
 	gain_text = "The Owl is the keeper of things that are not quite in practice, but in theory are. Many things are."
 	desc = "Allows you to transmute a glass shard, a bedsheet, and any outer clothing item (such as armor or a suit jacket) \
-		to create a Void Cloak. While the hood is down, the cloak functions as a focus, \
-		and while the hood is up, the cloak is completely invisible. It also provide decent armor and \
-		has pockets which can hold one of your blades, various ritual components (such as organs), and small heretical trinkets."
+		to create a Void Cloak. This cloak will greatly increase the user's speed, but will cause them to take significantly more damage."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_cloak)
 	cost = 1
 	tier = TIER_1
@@ -90,7 +88,7 @@
 	name = "Aristocrat's Way"
 	gain_text = "I found a thread of cold breath. It lead me to a strange shrine, all made of crystals. \
 		Translucent and white, a depiction of a nobleman stood before me."
-	desc = "Grants you immunity to cold temperatures, and removes your need to breathe. \
+	desc = "Grants you immunity to cold temperatures, and removes your need to breathe. Gain immunity to slipping on ice. \
 		You can still take damage due to a lack of pressure."
 	cost = 1
 	route = PATH_VOID
@@ -105,21 +103,21 @@
 	user.remove_traits(list(TRAIT_RESISTCOLD, TRAIT_NOBREATH, TRAIT_NOSLIPICE), type)
 
 /datum/eldritch_knowledge/spell/void_blast
-	name = "Void Phase"
-	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
-		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
-	desc = "Grants you Void Phase, a long range targeted teleport spell. \
-		Additionally causes damage to heathens around your original and target destination."
+	name = "Void Blast"
+	gain_text = "Every door I open racks my body. I am afraid of what is behind them. Someone is expecting me, \
+		and my legs start to drag. Is that... snow?"
+	desc = "Grants you Void Blast, a spell that shoots out a freezing blast in a cone in front of you, \
+		freezing the ground and any victims within."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/cone/staggered/cone_of_cold/void
 	tier = TIER_2
 
 /datum/eldritch_knowledge/void_blade_upgrade
-	name = "Blade of the City Guard"
-	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
-	desc = "Your ashen blade will now ignite targets."
+	name = "Shiva's Kiss"
+	gain_text = "Fleeting memories, fleeting feet. I mark my way with frozen blood upon the snow. Covered and forgotten, wandering I lie, too weary to die."
+	desc = "Your blade will now inject a freezing venom into your targets."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
 	route = PATH_VOID
 	tier = TIER_BLADE
 
@@ -131,8 +129,9 @@
 
 /datum/eldritch_knowledge/spell/void_pull
 	name = "Void Pull"
-	gain_text = "Lore"
-	desc = "Pulls people in."
+	gain_text = "All is fleeting, but what else stays? I'm close to ending what was started. \
+		The Aristocrat reveals themselves to me again. They tell me I am late. Their pull is immense, I cannot turn back."
+	desc = "Grants you Void Pull, a spell that pulls all nearby heathens towards you, stunning them briefly."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/void_pull
 	route = PATH_VOID
@@ -140,8 +139,13 @@
 
 /datum/eldritch_knowledge/spell/call_of_ice
 	name = "Diamond Dust"
-	gain_text = "lore"
-	desc = "A powerful spell that will create a large area of ice around you."
+	gain_text = "Staring at death, I take a breath, there's nothing left. \
+	     Now close my eyes, for one last time, and say goodbye \
+		 Lying naked while the snow falls all around me; \
+		 Drifting closer to the edge but She won't have me! \
+		 Wake up in sweat, full of regret, try to forget \
+		 These memories, lurking beneath, lost in a dream..."
+	desc = "A powerful spell that calls forth memories of ice, will create a large area of ice around you."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/slip/void
 	tier = TIER_3
@@ -152,10 +156,10 @@
 		The Aristocrat stands before me, beckoning. We will play a waltz to the whispers of dying reality, \
 		as the world is destroyed before our eyes. The void will return all to nothing, WITNESS MY ASCENSION!"
 	desc = "The ascension ritual of the Path of Void. \
-		Bring 3 corpses to a transmutation rune in sub-zero temperatures to complete the ritual. \
+		Bring 3 corpses to a transmutation rune to complete the ritual. \
 		When completed, causes a violent storm of void snow \
-		to assault the station, freezing and damaging heathens. Those nearby will be silenced and frozen even quicker. \
-		Additionally, you will become immune to the effects of space."
+		to assault the station, freezing and damaging heathens. \
+		Additionally, you will become immune to the effects of space and take reduced damage."
 	cost = 3
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/void_final)
 	route = PATH_VOID
