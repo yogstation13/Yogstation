@@ -8,6 +8,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
+"c" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 "d" = (
 /obj/effect/turf_decal/trimline/green/filled/corner/lower{
 	dir = 1
@@ -23,19 +30,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"g" = (
+"f" = (
+/obj/machinery/camera{
+	c_tag = "Hydroponics North"
+	},
 /obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark,
 /area/template_noop)
 "h" = (
 /turf/template_noop,
@@ -132,6 +132,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
+"A" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 "B" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -139,20 +143,6 @@
 	},
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"C" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -226,23 +216,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"O" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
 "P" = (
 /obj/structure/table/glass,
 /obj/item/stack/packageWrap,
@@ -259,23 +232,6 @@
 /area/template_noop)
 "S" = (
 /obj/machinery/vending/hydronutrients,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"T" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/tile/black{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Hydroponics North"
-	},
 /turf/open/floor/plasteel,
 /area/template_noop)
 "X" = (
@@ -323,46 +279,46 @@ x
 v
 "}
 (3,1,1) = {"
-C
+A
 H
-O
+c
 H
-g
+A
 H
-g
+A
 l
 v
 "}
 (4,1,1) = {"
-T
+f
 H
-O
+c
 M
-g
+A
 H
-g
+A
 l
 h
 "}
 (5,1,1) = {"
-C
+A
 H
-O
+c
 H
-g
+A
 J
-g
+A
 l
 h
 "}
 (6,1,1) = {"
-C
+A
 H
-O
+c
 H
-g
+A
 H
-g
+A
 o
 h
 "}
