@@ -399,6 +399,9 @@
 		flash2 = null
 	..()
 
+
+
+
 /obj/item/bodypart/l_arm/robot/surplus
 	name = "surplus prosthetic left arm"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
