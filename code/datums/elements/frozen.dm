@@ -58,7 +58,7 @@
 	var/obj/obj_target = target
 	obj_target.visible_message(span_danger("[obj_target] shatters into a million pieces!"))
 	obj_target.flags_1 |= NODECONSTRUCT_1	// disable item spawning
-	obj_target.deconstruct(FALSE)			// call pre-deletion specialized code -- internals release gas etc
+	INVOKE_ASYNC(obj_target, TYPE_PROC_REF(/obj, deconstruct), FALSE) // call pre-deletion specialized code -- internals release gas etc
 
 /// signal handler for COMSIG_MOVABLE_MOVED that unfreezes our target if it moves onto an open turf thats hotter than
 /// our melting temperature.

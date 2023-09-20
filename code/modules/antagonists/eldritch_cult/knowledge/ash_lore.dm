@@ -113,7 +113,7 @@
 	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
 	desc = "Your ashen blade will now ignite targets."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_ASH
 	tier = TIER_BLADE
 

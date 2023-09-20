@@ -451,3 +451,11 @@
 
 ///Organ traits
 #define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"
+
+///storm immunity traits
+#define TRAIT_LAVA_IMMUNE "lava_immune" //Used by lava turfs and The Floor Is Lava.
+#define TRAIT_ASHSTORM_IMMUNE "ashstorm_immune"
+#define TRAIT_SNOWSTORM_IMMUNE "snowstorm_immune"
+#define TRAIT_RADSTORM_IMMUNE "radstorm_immune"
+#define TRAIT_VOIDSTORM_IMMUNE "voidstorm_immune"
+#define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.

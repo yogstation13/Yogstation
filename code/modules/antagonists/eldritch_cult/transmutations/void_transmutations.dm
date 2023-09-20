@@ -14,13 +14,38 @@
 	result_atoms = list(/obj/item/clothing/suit/cultrobes/void)
 	required_shit_list = "glass shard, clothing, bedsheet"
 
+/datum/eldritch_transmutation/final/void_final
+	name = "Waltz at the End of Time"
+	required_atoms = list(/mob/living/carbon/human)
+	required_shit_list = "Three dead bodies."
+
 /datum/eldritch_transmutation/final/void_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/mob/living/carbon/human/H = user
+	var/datum/weather/void_storm/storm
 	
-	ADD_TRAIT(user, TRAIT_NOBREATH, type)
-	ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
-	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, MAGIC_TRAIT)
 	
+	SIGNAL_HANDLER
+
+	for(var/mob/living/carbon/close_carbon in view(5, user))
+		if(IS_HERETIC_OR_MONSTER(close_carbon))
+			continue
+		close_carbon.adjust_silence_up_to(2 SECONDS, 20 SECONDS)
+
+	// Telegraph the storm in every area on the station.
+	var/list/station_levels = SSmapping.levels_by_trait(ZTRAIT_STATION)
+	if(!storm)
+		storm = new /datum/weather/void_storm(station_levels)
+		storm.telegraph()
+
+	// When the heretic enters a new area, intensify the storm in the new area,
+	// and lessen the intensity in the former area.
+	var/area/source_area = get_area(user)
+	if(!storm.impacted_areas[source_area])
+		storm.former_impacted_areas |= storm.impacted_areas
+		storm.impacted_areas = list(source_area)
+		storm.update_areas()
+		
 	priority_announce("Immense destabilization of the bluespace veil has been observed. @&#^$&#^@# The nobleman of void [user.real_name] has arrived, stepping along the Waltz that ends worlds!  $&#^@#@&#^ Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE

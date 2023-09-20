@@ -105,7 +105,7 @@
 	gain_text = "By the time her subjects began to rebel, she had given the Blacksmith enough bodies to sate the blades. His own drooled with an intoxicating nectar, which sealed his fate."
 	desc = "Your rusted blade now injects eldritch essence on hit."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_RUST
 	tier = TIER_BLADE
 

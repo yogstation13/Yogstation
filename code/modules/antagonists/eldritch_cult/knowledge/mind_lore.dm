@@ -74,7 +74,7 @@
 	gain_text = "Curse here, Curse there. Curse for he and she, why care? A bottomless curse, a bottomless sea, source of all greatness, all things that be."
 	desc = "Your mind blade will now inject targets hit with mutetoxin, silencing them."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_MIND
 	tier = TIER_BLADE
 

@@ -135,7 +135,7 @@
 	gain_text = "Ebis, the Owl, was the second to take the Red Oath. They still grant the gift of their steel to those powerful enough to resist their incursions."
 	desc = "Your flesh blade will now cause additional bleeding on hit."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_FLESH
 	tier = TIER_BLADE
 

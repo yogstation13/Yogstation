@@ -62,11 +62,13 @@
 	tier = TIER_1
 
 /datum/eldritch_knowledge/void_mark
-	name = "Touch of the Spark"
-	gain_text = "All living things are linked through their sparks. This technique represents a fraction of the Shrouded One's communality."
-	desc = "Your Mansus grasp now applies a mark on hit. Use your ashen blade to detonate the mark, which causes burning that can spread to nearby targets, decreasing in damage with each jump."
+	name = "Mark of The Void"
+	gain_text = "A gust of wind? A shimmer in the air? The presence is overwhelming, \
+		my senses began to betray me. My mind is my own enemy."
+	desc = "Your Mansus Grasp now applies the Mark of Void. The mark is triggered from an attack with your Void Blade. \
+		When triggered, further silences the victim and swiftly lowers the temperature of their body and the air around them."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark)
+	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark)
 	route = PATH_VOID
 	tier = TIER_MARK
 
@@ -82,16 +84,25 @@
 
 	if(isliving(target))
 		var/mob/living/living_target = target
-		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
+		living_target.apply_status_effect(/datum/status_effect/eldritch/void, 1)
 
-/datum/eldritch_knowledge/blindness
-	name = "Curse of Blindness"
-	gain_text = "The Betrayed eternally walks the Kilnplains with a pair of blood-stained needles. She is willing to come to our world, for a price."
-	desc = "Curse someone with two minutes of complete blindness by transmuting a pair of eyes, a screwdriver, and a pool of blood with an object that the victim has touched with their bare hands."
+/datum/eldritch_knowledge/cold_snap
+	name = "Aristocrat's Way"
+	gain_text = "I found a thread of cold breath. It lead me to a strange shrine, all made of crystals. \
+		Translucent and white, a depiction of a nobleman stood before me."
+	desc = "Grants you immunity to cold temperatures, and removes your need to breathe. \
+		You can still take damage due to a lack of pressure."
 	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/blindness)
 	route = PATH_VOID
 	tier = TIER_2
+	
+/datum/eldritch_knowledge/cold_snap/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
+	user.add_traits(list(TRAIT_NOBREATH, TRAIT_RESISTCOLD, TRAIT_NOSLIPICE), type)
+
+/datum/eldritch_knowledge/cold_snap/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
+	user.remove_traits(list(TRAIT_RESISTCOLD, TRAIT_NOBREATH, TRAIT_NOSLIPICE), type)
 
 /datum/eldritch_knowledge/spell/void_blast
 	name = "Void Phase"
@@ -103,15 +114,7 @@
 	spell_to_add = /datum/action/cooldown/spell/cone/staggered/cone_of_cold/void
 	tier = TIER_2
 
-/datum/eldritch_knowledge/paralysis
-	name = "Curse of Paralysis"
-	gain_text = "An acolyte must provide intense envy of another's well-being, which is absorbed with the rite's materials by the Shrouded One to grant opportunity for power."
-	desc = "Curse someone with five minutes of an inability to walk by transmuting a knife, a pool of blood, a left leg, a right leg, and a hatchet with an item that the victim touched with their bare hands."
-	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/paralysis)
-	tier = TIER_2
-
-/datum/eldritch_knowledge/ash_blade_upgrade
+/datum/eldritch_knowledge/void_blade_upgrade
 	name = "Blade of the City Guard"
 	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
 	desc = "Your ashen blade will now ignite targets."
@@ -120,35 +123,40 @@
 	route = PATH_VOID
 	tier = TIER_BLADE
 
-/datum/eldritch_knowledge/ash_blade_upgrade/on_eldritch_blade(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/void_blade_upgrade/on_eldritch_blade(target,user,proximity_flag,click_parameters)
 	. = ..()
 	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		C.adjust_fire_stacks(2)
-		C.ignite_mob()
+		var/mob/living/carbon/carbon_target = target
+		carbon_target.reagents.add_reagent(/datum/reagent/consumable/frostoil, 1)
 
-/datum/eldritch_knowledge/spell/flame_birth
-	name = "Flame Birth"
-	gain_text = "The Nightwatcher was a man of principles, yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
-	desc = "A healing-damage spell that saps the life from those on fire nearby, killing any who are in a critical condition."
+/datum/eldritch_knowledge/spell/void_pull
+	name = "Void Pull"
+	gain_text = "Lore"
+	desc = "Pulls people in."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/aoe/fiery_rebirth
+	spell_to_add = /datum/action/cooldown/spell/aoe/void_pull
 	route = PATH_VOID
 	tier = TIER_3
 
-/datum/eldritch_knowledge/spell/cleave
-	name = "Blood Cleave"
-	gain_text = "The Shrouded One connects all. This technique, a particular favorite of theirs, rips at the bodies of those who hunch too close to permit casuality."
-	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
+/datum/eldritch_knowledge/spell/call_of_ice
+	name = "Diamond Dust"
+	gain_text = "lore"
+	desc = "A powerful spell that will create a large area of ice around you."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/cleave
+	spell_to_add = /datum/action/cooldown/spell/aoe/slip/void
 	tier = TIER_3
 
-/datum/eldritch_knowledge/ash_final
-	name = "Amgala's Ruin"
-	gain_text = "Ash feeds the soil, and fire consumes the plants that grow thereafter. On and on and on. The Nightwatcher consumed the sparks of a whole city, yet you will rise with only three: the first step of many to claim his crown."
-	desc = "Transmute three corpses to ascend as an Ashbringer. You will become immune to environmental hazards and grow more resistant to damage. You will additionally gain a spell that creates a massive burst of fire and another spell that creates a cloak of flames around you."
+/datum/eldritch_knowledge/void_final
+	name = "Waltz at the End of Time"
+	gain_text = "The world falls into darkness. I stand in an empty plane, small flakes of ice fall from the sky. \
+		The Aristocrat stands before me, beckoning. We will play a waltz to the whispers of dying reality, \
+		as the world is destroyed before our eyes. The void will return all to nothing, WITNESS MY ASCENSION!"
+	desc = "The ascension ritual of the Path of Void. \
+		Bring 3 corpses to a transmutation rune in sub-zero temperatures to complete the ritual. \
+		When completed, causes a violent storm of void snow \
+		to assault the station, freezing and damaging heathens. Those nearby will be silenced and frozen even quicker. \
+		Additionally, you will become immune to the effects of space."
 	cost = 3
-	unlocked_transmutations = list(/datum/eldritch_transmutation/final/ash_final)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/final/void_final)
 	route = PATH_VOID
 	tier = TIER_ASCEND

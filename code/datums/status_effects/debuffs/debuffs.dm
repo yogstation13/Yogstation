@@ -1192,6 +1192,15 @@
 			H.adjustOrganLoss(ORGAN_SLOT_TONGUE,10)
 		if(100)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN,20)
+	
+/datum/status_effect/eldritch/void
+	id = "void mark"
+	effect_sprite = "emark4"
+
+/datum/status_effect/eldritch/void/on_effect()
+	owner.apply_status_effect(/datum/status_effect/void_chill/major)
+	owner.adjust_silence(10 SECONDS)
+	return ..()
 
 /datum/status_effect/amok
 	id = "amok"
