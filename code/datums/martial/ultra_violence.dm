@@ -67,7 +67,8 @@
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	check_streak(A,D)
-	handle_style(A, 0.1, STYLE_PUNCH)
+	if(A != D) // why are you hitting yourself
+		handle_style(A, 0.1, STYLE_PUNCH)
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
@@ -85,7 +86,7 @@
 
 /*---------------------------------------------------------------
 
-	start of blood burst section 
+	start of blood burst section
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -110,25 +111,30 @@
 	var/heal_amt = clamp(amount, 0, H.getBruteLoss() + H.getFireLoss() - hard_damage) //now introducing hard damage, a reason to actually dodge and parry things
 	H.heal_ordered_damage(heal_amt / 2, list(BRUTE, BURN), BODYPART_ANY) // splits the damage between brute and burn as evenly as possible
 	H.heal_ordered_damage(heal_amt / 2, list(BURN, BRUTE), BODYPART_ANY)
-	H.adjust_nutrition(amount / 2) // BLOOD IS FUEL
+	H.set_nutrition(min(H.nutrition + (amount / 2), NUTRITION_LEVEL_ALMOST_FULL)) // BLOOD IS FUEL
 
 /*---------------------------------------------------------------
 
-	end of blood burst section 
+	end of blood burst section
 
 ---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 
-	start of pocket pistol section 
+	start of pocket pistol section
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = new /obj/item/gun/ballistic/revolver/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
-	gun.gun_owner = A
+	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = locate() in A // check if they already had one
+	if(gun)
+		to_chat(A, span_notice("You reload your revolver."))
+		gun.magazine.top_off()
+	if(style >= 8 || !gun) // can dual wield at the max style level
+		gun = new(A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+		to_chat(A, span_notice("You whip out your revolver."))
+		gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You whip out your revolver."))	
 	streak = ""
-	
+
 /obj/item/gun/ballistic/revolver/ipcmartial
 	desc = "Your trusty revolver."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
@@ -168,7 +174,7 @@
 	var/mob/living/L = target
 	if(L.stat == DEAD)
 		return . // no using dead bodies to gain style, that's boring and uncool KILL SOME REAL THINGS
-	if(ishuman(firer))
+	if(ishuman(firer) && firer != target) // WHY ARE YOU SHOOTING YOURSELF
 		var/mob/living/carbon/human/H = firer
 		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
@@ -207,13 +213,13 @@
 		qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
-	to_chat(A, span_notice("You stash your revolver away."))	
+	to_chat(A, span_notice("You stash your revolver away."))
 	qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/proc/on_drop()//to let people drop it early with Q rather than attack self
 	var/mob/living/carbon/human/holder = src.loc
 	if(istype(holder))
-		to_chat(holder, span_notice("You relax your gun hand."))	
+		to_chat(holder, span_notice("You relax your gun hand."))
 	qdel(src)
 
 /*---------------------------------------------------------------
@@ -386,11 +392,10 @@
 	to_chat(usr, span_notice("This module has made you a hell-bound killing machine."))
 	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
 	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, releases the energy into anyone nearby."))
-	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
 	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
 	to_chat(usr, span_warning("Your grab has been replaced with the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you, but taking too much damage will build up \"hard damage\" which cannot be healed and decays over time.</b>"))
-	
+
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
 	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
@@ -431,7 +436,7 @@
 	..()
 	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
 	H.dna.species.punchdamagelow -= 4
-	H.dna.species.punchdamagehigh -= 4 
+	H.dna.species.punchdamagehigh -= 4
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)

@@ -24,9 +24,10 @@
 /obj/item/organ/heart/Initialize(mapload)
 	. = ..()
 	icon_base = icon_state
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/heart/update_icon()
+/obj/item/organ/heart/update_icon_state()
+	. = ..()
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
@@ -51,12 +52,12 @@
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/organ/heart/proc/Restart()
 	beating = 1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/organ/heart/prepare_eat()
@@ -92,11 +93,17 @@
 		if(damage >= 80 && beating)
 			if(prob(1))
 				if(owner.stat == CONSCIOUS)
-					owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+					if(owner.get_num_arms(FALSE) >= 1) //gotta have an arm to clutch your chest
+						owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+					else
+						owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]")) //ok you also need eyes
 				owner.set_heartattack(TRUE) //yogs end
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+			if(owner.get_num_arms(FALSE) >= 1)
+				owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+			else
+				owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
 

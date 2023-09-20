@@ -227,7 +227,7 @@
 	name = "holorecord disk"
 	desc = "Stores recorder holocalls."
 	icon_state = "holodisk"
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	var/datum/holorecord/record
 	//Preset variables
 	var/preset_image_type

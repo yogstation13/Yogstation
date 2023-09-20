@@ -39,10 +39,10 @@
 	. = ..()
 	if(!owner)
 		return
-	if(ispreternis(owner) && !powered)
+	if((owner.get_process_flags() & SYNTHETIC) && !powered)
 		powered = TRUE
 		to_chat(owner, span_notice("A battery icon disappears from your vision as your [src] switch to external power."))
-	if(!ispreternis(owner) && powered) //these eyes depend on being inside a preternis for power
+	if(!(owner.get_process_flags() & SYNTHETIC) && powered) //these eyes depend on being inside a preternis for power
 		powered = FALSE
 		to_chat(owner, span_boldwarning("Your [src] flash warnings that they've lost their power source, and are running on emergency power!"))
 	if(powered)
@@ -101,21 +101,19 @@
 	heat_level_3_threshold = 35000 //are you on the fucking surface of the sun or something?
 	heat_level_3_damage = 25 //you should already be dead
 
-/obj/item/organ/stomach/preternis
-	name = "preternis stomach"
-	desc = "Calling it a stomach is perhaps a bit generous. It's better at grinding rocks than dissolving food."
+/obj/item/organ/stomach/cell/preternis
+	name = "preternis cell-stomach"
+	desc = "Calling it a stomach is perhaps a bit generous. It's better at grinding rocks than dissolving food. Also works as a power cell."
 	icon_state = "stomach-c"
-	status = ORGAN_ROBOTIC
-	organ_flags = ORGAN_SYNTHETIC
-	process_flags = ORGANIC | SYNTHETIC // let IPCs eat rocks too!
+	process_flags = ORGANIC | SYNTHETIC // also works as a stomach, so organics can use it too
 
-/obj/item/organ/stomach/preternis/on_life()
+/obj/item/organ/stomach/cell/preternis/on_life()
 	. = ..()
 	var/datum/reagent/nutri = locate(/datum/reagent/consumable/nutriment) in owner.reagents.reagent_list
 	if(nutri)
 		owner.reagents.remove_reagent(/datum/reagent/consumable/nutriment, 1) //worse for actually eating (not that it matters for preterni)
 
-/obj/item/organ/stomach/preternis/emp_act(severity)
-	owner.vomit()
+/obj/item/organ/stomach/cell/preternis/emp_act(severity)
+	owner.vomit(stun=FALSE) // fuck that
 	owner.adjust_disgust(20)
 	to_chat(owner, "<span class='warning'>You feel violently ill as the EMP causes your stomach to kick into high gear.</span>")

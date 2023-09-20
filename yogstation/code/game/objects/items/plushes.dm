@@ -42,14 +42,15 @@
 	target = null
 	visible_message(span_notice("[src] looks disinterested."))
 
-/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user)
-	if (obj_flags&EMAGGED)
+/obj/item/toy/plush/goatplushie/angry/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
 		visible_message(span_notice("[src] already looks angry enough, you shouldn't anger it more."))
-		return
+		return FALSE
 	cooldown_modifier = 5
 	throwforce = 20
 	obj_flags |= EMAGGED
 	visible_message(span_danger("[src] stares at [user] angrily before going docile."))
+	return TRUE
 
 /obj/item/toy/plush/goatplushie/angry/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -159,3 +160,20 @@
 	icon_state = "royalguardgoat"
 	cooldown_modifier = 4
 	throwforce = 15
+
+/obj/item/toy/plush/abductor
+	name = "abductor plushie"
+	desc = "A plushie depicting an alien abductor. The tag on it is in an indecipherable language."
+	icon_state = "abductor"
+	attack_verb = list("abducted", "probed")
+	squeak_override = list('sound/weather/ashstorm/inside/weak_end.ogg' = 1) //very faint sound since abductors are silent as far as "speaking" is concerned.
+
+/obj/item/toy/plush/abductor/agent
+	name = "abductor agent plushie"
+	desc = "A plushie depicting an alien abductor agent. The stun baton is attached to the hand of the plushie, and appears to be inert."
+	icon_state = "abductor_agent"
+	attack_verb = list("abducted", "probed", "stunned")
+	squeak_override = list(
+			'sound/weapons/egloves.ogg' = 2,
+			'sound/weapons/cablecuff.ogg' = 1
+	)

@@ -39,7 +39,7 @@
 
 /mob/living/simple_animal/bot/honkbot/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	auto_patrol = TRUE
 	var/datum/job/clown/J = new/datum/job/clown
 	access_card.access += J.get_access()
@@ -125,15 +125,15 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		addtimer(CALLBACK(src, PROC_REF(react_buzz)), 5)
 	..()
 
-/mob/living/simple_animal/bot/honkbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/honkbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			user << span_danger("You short out [src]'s sound control system. It gives out an evil laugh!!")
 			oldtarget_name = user.name
 		audible_message(span_danger("[src] gives out an evil laugh!"))
 		playsound(src, 'sound/machines/honkbot_evil_laugh.ogg', 75, 1, -1) // evil laughter
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/honkbot/bullet_act(obj/item/projectile/Proj)
 	if((istype(Proj,/obj/item/projectile/beam)) || (istype(Proj,/obj/item/projectile/bullet) && (Proj.damage_type == BURN))||(Proj.damage_type == BRUTE) && (!Proj.nodamage && Proj.damage < health && ishuman(Proj.firer)))

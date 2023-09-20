@@ -20,7 +20,9 @@
 	attack_verb = list("struck", "hit", "bashed")
 	cryo_preserve = TRUE
 	fryable = TRUE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE|KEEP_TOGETHER
 
+	var/automatic = 0 //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
@@ -54,12 +56,10 @@
 
 	var/can_flashlight = FALSE //if a flashlight can be added or removed if it already has one.
 	var/obj/item/flashlight/seclite/gun_light
-	var/mutable_appearance/flashlight_overlay
-	var/datum/action/item_action/toggle_gunlight/alight
+	var/datum/action/item_action/toggle_gunlight/gunlight_toggle
 
 	var/can_bayonet = FALSE //if a bayonet can be added or removed if it already has one.
 	var/obj/item/kitchen/knife/bayonet
-	var/mutable_appearance/knife_overlay
 	var/knife_x_offset = 0
 	var/knife_y_offset = 0
 
@@ -67,7 +67,6 @@
 	var/max_attachments = 0 // How many attachments can this gun hold, recommend not going over 5
 
 	var/list/current_attachments = list()
-	var/list/attachment_overlays = list()
 	var/attachment_flags = 0
 	var/attachment_actions = list()
 
@@ -86,6 +85,8 @@
 
 	var/list/obj/effect/projectile/tracer/current_tracers
 
+	var/gunlight_state = "flight"
+
 /obj/item/gun/Initialize(mapload)
 	. = ..()
 	if(pin)
@@ -93,8 +94,6 @@
 			pin = null
 		else
 			pin = new pin(src)
-	if(gun_light)
-		alight = new(src)
 	current_tracers = list()
 	build_zooming()
 
@@ -121,7 +120,7 @@
 		pin = null
 	if(A == chambered)
 		chambered = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(A == bayonet)
 		clear_bayonet()
 	if(A == gun_light)
@@ -206,7 +205,7 @@
 			w_class -= suppressed.w_class
 			qdel(suppressed)
 			suppressed = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		if(enloudened && enloudened.enloudened_sound)
 			playsound(user, enloudened.enloudened_sound, fire_sound_volume, vary_fire_sound)
@@ -355,7 +354,7 @@
 		firing_burst = FALSE
 		return FALSE
 	process_chamber()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /// cd_override is FALSE or 0 by default (no override), if you want to make a gun have no click cooldown then just make it something small like 0.001
@@ -409,7 +408,7 @@
 			shoot_with_empty_chamber(user)
 			return
 		process_chamber()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		semicd = TRUE
 		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
 
@@ -418,10 +417,6 @@
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
 	recent_shoot = world.time
 	return TRUE
-
-/obj/item/gun/update_icon()
-	..()
-
 
 /obj/item/gun/proc/reset_semicd()
 	semicd = FALSE
@@ -484,15 +479,12 @@
 		if(!can_flashlight)
 			return ..()
 		var/obj/item/flashlight/seclite/S = I
-		if(!gun_light)
-			if(!user.transferItemToLoc(I, src))
-				return
-			to_chat(user, span_notice("You click [S] into place on [src]."))
-			set_gun_light(S)
-			update_gunlight()
-			alight = new(src)
-			if(loc == user)
-				alight.Grant(user)
+		if(gun_light)
+			return
+		if(!user.transferItemToLoc(I, src))
+			return
+		to_chat(user, span_notice("You click [S] into place on [src]."))
+		set_gun_light(S)
 	else if(istype(I, /obj/item/kitchen/knife))
 		var/obj/item/kitchen/knife/K = I
 		if(!can_bayonet || !K.bayonet || bayonet) //ensure the gun has an attachment point available, and that the knife is compatible with it.
@@ -501,14 +493,7 @@
 			return
 		to_chat(user, span_notice("You attach [K] to [src]'s bayonet lug."))
 		bayonet = K
-		var/state = "bayonet"							//Generic state.
-		if(bayonet.icon_state in icon_states('icons/obj/guns/bayonets.dmi'))		//Snowflake state?
-			state = bayonet.icon_state
-		var/icon/bayonet_icons = 'icons/obj/guns/bayonets.dmi'
-		knife_overlay = mutable_appearance(bayonet_icons, state)
-		knife_overlay.pixel_x = knife_x_offset
-		knife_overlay.pixel_y = knife_y_offset
-		add_overlay(knife_overlay, TRUE)
+		update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -567,9 +552,7 @@
 	if(!bayonet)
 		return
 	bayonet = null
-	if(knife_overlay)
-		cut_overlay(knife_overlay, TRUE)
-		knife_overlay = null
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/gun/proc/clear_gunlight()
@@ -577,9 +560,7 @@
 		return
 	var/obj/item/flashlight/seclite/removed_light = gun_light
 	set_gun_light(null)
-	update_gunlight()
 	removed_light.update_brightness()
-	QDEL_NULL(alight)
 	return TRUE
 
 ///Called when gun_light value changes.
@@ -592,14 +573,19 @@
 		gun_light.set_light_flags(gun_light.light_flags | LIGHT_ATTACHED)
 		if(gun_light.loc != src)
 			gun_light.forceMove(src)
+		gunlight_toggle = new(src)
+		add_item_action(gunlight_toggle)
 	else if(.)
 		var/obj/item/flashlight/seclite/old_gun_light = .
 		old_gun_light.set_light_flags(old_gun_light.light_flags & ~LIGHT_ATTACHED)
 		if(old_gun_light.loc == src)
 			old_gun_light.forceMove(get_turf(src))
+		remove_item_action(gunlight_toggle)
+		gunlight_toggle = null
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ui_action_click(mob/user, actiontype)
-	if(istype(actiontype, alight))
+	if(istype(actiontype, gunlight_toggle))
 		toggle_gunlight()
 	else
 		..()
@@ -614,40 +600,33 @@
 	to_chat(user, span_notice("You toggle the gunlight [gun_light.on ? "on":"off"]."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
-	update_gunlight()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/gun/proc/update_gunlight()
+/obj/item/gun/update_overlays()
+	. = ..()
 	if(gun_light)
-		cut_overlay(flashlight_overlay, TRUE)
-		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
-		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
-			state = gun_light.icon_state
-		flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', state)
+		var/mutable_appearance/flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', "[gunlight_state][gun_light.on? "_on":""]")
 		flashlight_overlay.pixel_x = flight_x_offset
 		flashlight_overlay.pixel_y = flight_y_offset
-		add_overlay(flashlight_overlay, TRUE)
-	else
-		cut_overlay(flashlight_overlay, TRUE)
-		flashlight_overlay = null
-	update_icon()
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.build_all_button_icons()
-
-/obj/item/gun/proc/update_attachments()
-	for(var/mutable_appearance/M in attachment_overlays)
-		cut_overlay(M, TRUE)
-	attachment_overlays = list()
-
+		. += flashlight_overlay
+	
+	if(bayonet)
+		var/state = "bayonet" //Generic state.
+		if(bayonet.icon_state in icon_states('icons/obj/guns/bayonets.dmi')) //Snowflake state?
+			state = bayonet.icon_state
+		var/icon/bayonet_icons = 'icons/obj/guns/bayonets.dmi'
+		var/mutable_appearance/knife_overlay = mutable_appearance(bayonet_icons, state)
+		knife_overlay.pixel_x = knife_x_offset
+		knife_overlay.pixel_y = knife_y_offset
+		. += knife_overlay
+	
 	var/att_position = 0
-	for(var/obj/item/attachment/A in current_attachments)
-		var/mutable_appearance/M = mutable_appearance('icons/obj/guns/attachment.dmi', "[A.icon_state]_a")
+	for(var/obj/item/attachment/A as anything in current_attachments)
+		var/mutable_appearance/M = mutable_appearance(A.icon, "[A.icon_state]_a")
 		M.pixel_x = att_position * 6
-		add_overlay(M, TRUE)
-		attachment_overlays += M
-		att_position += 1
+		. += M
+		att_position++
 
-	update_icon(TRUE)
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
@@ -689,7 +668,7 @@
 
 	semicd = TRUE
 
-	if(!bypass_timer && (!do_mob(user, target, 120) || user.zone_selected != BODY_ZONE_PRECISE_MOUTH))
+	if(!bypass_timer && (!do_after(user, 12 SECONDS, target) || user.zone_selected != BODY_ZONE_PRECISE_MOUTH))
 		if(user)
 			if(user == target)
 				user.visible_message(span_notice("[user] decided not to shoot."))

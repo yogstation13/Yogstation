@@ -42,7 +42,7 @@
 /obj/item/organ/regenerative_core/proc/preserved(implanted = 0)
 	inert = FALSE
 	preserved = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	name = "preserved regenerative core"
 	desc = "All that remains of a hivelord. It is preserved, allowing you to use it to heal completely without danger of decay."
 	if(implanted)
@@ -55,7 +55,7 @@
 	name = "decayed regenerative core"
 	desc = "All that remains of a hivelord. It has decayed, and is completely useless."
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "inert"))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/regenerative_core/ui_action_click()
 	if(inert)
@@ -91,7 +91,7 @@
 				else
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
 					balloon_alert(user, "Applying core...")
-					if(!do_mob(user, H, 2 SECONDS)) //come on teamwork bonus?
+					if(!do_after(user, 2 SECONDS, H)) //come on teamwork bonus?
 						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
 					balloon_alert(user, "Core applied!")
@@ -135,16 +135,18 @@
 
 /obj/item/organ/regenerative_core/legion/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/regenerative_core/update_icon()
+/obj/item/organ/regenerative_core/update_icon_state()
+	. = ..()
 	icon_state = inert ? "legion_soul_inert" : "legion_soul"
-	cut_overlays()
-	if(!inert && !preserved)
-		add_overlay("legion_soul_crackle")
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
+
+/obj/item/organ/regenerative_core/update_overlays()
+	. = ..()
+	if(!inert && !preserved)
+		. += "legion_soul_crackle"
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()

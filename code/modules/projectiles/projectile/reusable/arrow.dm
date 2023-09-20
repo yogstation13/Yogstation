@@ -12,6 +12,10 @@
 
 /obj/item/projectile/bullet/reusable/arrow/on_hit(atom/target, blocked = FALSE)
 	..()
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 16))
+
 	if(!isliving(target) || (blocked == 100))
 		return
 		
@@ -37,7 +41,7 @@
 		L.ignite_mob()
 		arrow.flaming = FALSE
 
-	arrow.update_icon()
+	arrow.update_appearance(UPDATE_ICON)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(dropped || !ammo_type)
@@ -289,15 +293,12 @@
 			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		else if((C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE))
 			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), jitter), 5)
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-			if(istype(stomach))
-				stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-				to_chat(C,span_notice("You get charged by [src]."))
+		if(istype(C.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell/ethereal))
+			C.adjust_nutrition(40)
+			to_chat(C,span_notice("You get charged by [src]."))
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
-	damage = 18
+	damage = 20
 	wound_bonus = 5
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/clockbolt

@@ -35,10 +35,9 @@
 	/// See code/modules/projectiles/attachments/laser_sight.dm for example.
 	var/list/actions_list = list()
 
-/obj/item/attachment/update_icon()
-	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
+/obj/item/attachment/update_icon_state()
 	. = ..()
-	attached_gun?.update_attachments()
+	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
 
 /obj/item/attachment/Destroy()
 	if(attached_gun)
@@ -61,7 +60,7 @@
 			pickup_user(user)
 	G.attachment_flags |= attachment_type
 	G.current_attachments += src
-	G.update_attachments()
+	G.update_appearance(UPDATE_ICON)
 	forceMove(G)
 
 	if(user)
@@ -84,7 +83,7 @@
 		drop_user(user)
 	G.attachment_flags ^= attachment_type
 	G.current_attachments -= src
-	G.update_attachments()
+	G.update_appearance(UPDATE_ICON)
 	if(user)
 		user.put_in_hands(src)
 	else

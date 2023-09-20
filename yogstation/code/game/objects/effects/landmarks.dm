@@ -96,16 +96,13 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
-	icon = 'yogstation/icons/rooms/box/bar.dmi'
-	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/bar/load(template_name)
 	GLOB.stationroom_landmarks -= src
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 60, "Engine Singulo And Tesla" = 40, "Engine TEG" = 0)
-	icon = 'yogstation/icons/rooms/box/engine.dmi'
+	template_names = list("Engine SM" = 60, "Engine Singulo And Tesla" = 40)
 
 /obj/effect/landmark/stationroom/box/engine/choose()
 	. = ..()
@@ -117,9 +114,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return "Engine Singulo And Tesla"
 		if(3)
 			return . //We let the normal choose() do the work if we want to have all of them in play
-		if(4)
-			return "Engine TEG"
-
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")

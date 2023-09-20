@@ -81,7 +81,7 @@
 	var/list/compiled_list = list()
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-		if(fingerprints[md5(H.dna.uni_identity)])
+		if(fingerprints[md5(H.dna.unique_identity)])
 			compiled_list |= H
 
 	if(compiled_list.len == 0)
@@ -140,6 +140,15 @@
 	return FALSE
 
 /datum/eldritch_transmutation/final/on_finished_recipe(mob/living/user, list/atoms, loc)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
+	set_security_level(SEC_LEVEL_GAMMA)
+
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	QDEL_IN(shockwave, 10.5 SECONDS)
+
 	finished = TRUE
 	return TRUE
 

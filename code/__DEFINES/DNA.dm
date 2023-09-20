@@ -34,6 +34,7 @@
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
 #define RADIOACTIVE	/datum/mutation/human/radioactive
+#define RADPROOF	/datum/mutation/human/radproof
 #define GLOWY		/datum/mutation/human/glow
 #define ANTIGLOWY	/datum/mutation/human/glow/anti
 #define TELEPATHY	/datum/mutation/human/telepathy
@@ -56,10 +57,13 @@
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 #define CEREBRAL	/datum/mutation/human/cerebral
+#define THICKSKIN	/datum/mutation/human/thickskin
+#define DENSEBONES	/datum/mutation/human/densebones
 
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
+#define UF_CHANGED "uf changed"
 
 #define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 255
 #define CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY 30
@@ -81,6 +85,8 @@
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
 
+#define DNA_BLOCK_SIZE_COLOR DEFAULT_HEX_COLOR_LEN
+
 #define DNA_UNI_IDENTITY_BLOCKS		7
 #define DNA_HAIR_COLOR_BLOCK		1
 #define DNA_FACIAL_HAIR_COLOR_BLOCK	2
@@ -89,6 +95,30 @@
 #define DNA_GENDER_BLOCK			5
 #define DNA_FACIAL_HAIR_STYLE_BLOCK	6
 #define DNA_HAIR_STYLE_BLOCK		7
+
+/// This number needs to equal the total number of DNA blocks
+#define DNA_FEATURE_BLOCKS 19
+
+#define DNA_MUTANT_COLOR_BLOCK 1
+#define DNA_ETHEREAL_COLOR_BLOCK 2
+#define DNA_LIZARD_MARKINGS_BLOCK 3
+#define DNA_LIZARD_TAIL_BLOCK 4
+#define DNA_SNOUT_BLOCK 5
+#define DNA_HORNS_BLOCK 6
+#define DNA_FRILLS_BLOCK 7
+#define DNA_SPINES_BLOCK 8
+#define DNA_HUMAN_TAIL_BLOCK 9
+#define DNA_EARS_BLOCK 10
+#define DNA_MOTH_WINGS_BLOCK 11
+#define DNA_MUSHROOM_CAPS_BLOCK 12
+#define DNA_POD_HAIR_BLOCK 13
+//Yog specific DNA Blocks
+#define DNA_POD_FLOWER_BLOCK 14
+#define DNA_POLY_TAIL_BLOCK 15
+#define DNA_POLY_TEETH_BLOCK 16
+#define DNA_POLY_DOME_BLOCK 17
+#define DNA_POLY_DORSAL_BLOCK 18
+#define DNA_ETHEREAL_MARK_BLOCK 19
 
 #define DNA_SEQUENCE_LENGTH			4
 #define DNA_MUTATION_BLOCKS			8
@@ -148,13 +178,11 @@
 #define HAS_BONE	24
 /// Can't be husked.
 #define NOHUSK			25
-/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
-#define ROBOTIC_LIMBS	26
 /// have no mouth to ingest/eat with
-#define NOMOUTH			27
+#define NOMOUTH			26
 /// has a tail
-#define HAS_TAIL		28
-#define NONANITES		29
+#define HAS_TAIL		27
+#define NONANITES		28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

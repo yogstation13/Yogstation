@@ -8,6 +8,7 @@
 	max_integrity = 1
 	armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20)
 	var/obj/item/holosign_creator/projector
+	resistance_flags = FREEZE_PROOF
 
 /obj/structure/holosign/New(loc, source_projector)
 	if(source_projector)
@@ -122,7 +123,7 @@
 	density = FALSE
 	anchored = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
-	resistance_flags = FIRE_PROOF
+	resistance_flags = FIRE_PROOF | FREEZE_PROOF
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
@@ -217,7 +218,7 @@
 /obj/structure/holobed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
-		success_chance = 0.8, \
+		success_chance = 0.95, \
 	)
 
 /obj/structure/holobed/examine(mob/user)
@@ -227,14 +228,15 @@
 /obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
-/obj/structure/holobed/update_icon()
+/obj/structure/holobed/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
 
 /obj/structure/holobed/AltClick(mob/living/user)
 	if(user.a_intent == INTENT_HELP)
 		stasis = !stasis
 		handle_stasis(occupant)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_warning("You [stasis ? "activate" : "deactivate"] the stasis field."))
 
 /obj/structure/holobed/Exited(atom/movable/AM, atom/newloc)

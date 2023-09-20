@@ -55,7 +55,8 @@
 	playsound(loc, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return (TOXLOSS)
 
-/obj/item/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon_state()
+	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
 		return
@@ -66,7 +67,8 @@
 		icon_state = "[initial(icon_state)]1"
 	else if(contents.len < 21)
 		icon_state = "[initial(icon_state)]2"
-	else icon_state = "[initial(icon_state)]3"
+	else
+		icon_state = "[initial(icon_state)]3"
 
 /obj/item/storage/bag/trash/cyborg
 	insertable = FALSE
@@ -75,7 +77,7 @@
 	if(insertable)
 		J.put_in_cart(src, user)
 		J.mybag=src
-		J.update_icon()
+		J.update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
@@ -247,6 +249,9 @@
 		user.visible_message(span_notice("[user] scoops up the gems beneath [user.p_them()]."), \
 		span_notice("You scoop up the gems beneath you with your [name]."))
 	spam_protection = FALSE
+
+/obj/item/storage/bag/gem/cyborg
+	name = "cyborg gem satchel"
 // -----------------------------
 //          Plant bag
 // -----------------------------
@@ -388,20 +393,20 @@
 	else
 		playsound(M, 'sound/items/trayhit2.ogg', 50, 1)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/bag/tray/update_icon()
-	cut_overlays()
+/obj/item/storage/bag/tray/update_overlays()
+	. = ..()
 	for(var/obj/item/I in contents)
-		add_overlay(new /mutable_appearance(I))
+		. += new /mutable_appearance(I)
 
 /obj/item/storage/bag/tray/Entered()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/Exited()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /*
  *	Chemistry bag
@@ -421,7 +426,7 @@
 	STR.max_combined_w_class = 50
 	STR.max_items = 40
 	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen))
+	STR.set_holdable(list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/medspray, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/gummy))
 
 /*
  *  Biowaste bag (mostly for xenobiologists)

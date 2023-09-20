@@ -4,11 +4,11 @@
 #define ALMOST_DETONATE_COMBO "PD" 	//Sets streak to "Q"
 #define PRE_DETONATE_COMBO "HH" 	//Sets streak to "P"
 
-#define LIFEFORCE_TRADE_COMBO "MG" 
+#define LIFEFORCE_TRADE_COMBO "MG"
 #define ALMOST_LIFEFORCE_TRADE_COMBO "LD" 	//Sets streak to "M"
 #define PRE_LIFEFORCE_TRADE_COMBO "DG" 		//Sets streak to "L"
 
-#define IMMOLATE_COMBO "JG" 
+#define IMMOLATE_COMBO "JG"
 #define ALMOST_IMMOLATE_COMBO "ID"	//Sets streak to "J"
 #define PRE_IMMOLATE_COMBO "DH"  	//Sets strak to "I"
 
@@ -64,13 +64,13 @@
 	if(!can_use(A))
 		return
 	if(findtext(streak, EXPLOSIVE_DISARM_COMBO))
-		streak = "" 
+		streak = ""
 		explosive_disarm(A,D)
 		return TRUE
 	if(findtext(streak, DETONATE_COMBO))	// End Detonate Chain
 		streak = ""
 		detonate(A,D)
-		return TRUE	
+		return TRUE
 	if(findtext(streak, ALMOST_DETONATE_COMBO))
 		streak = "Q"	//Q comes after P
 		almost_detonate(A,D)
@@ -163,7 +163,7 @@
 	D.apply_damage(damage_to_deal + 10, STAMINA, selected_zone, armor_block) 	//Always does at least 10
 
 	D.visible_message(span_danger("[A] activates [D]!"), \
-					span_userdanger("[A] activates you!")) 
+					span_userdanger("[A] activates you!"))
 	log_combat(A, D, "activates(Explosive Fist)")
 	D.adjust_fire_stacks(4)
 
@@ -261,11 +261,11 @@
 		var/obj/item/bodypart/affecting_p = A.get_bodypart(BODY_ZONE_HEAD)
 		var/brute_block_p = A.run_armor_check(affecting_p, MELEE)
 		var/burn_block_p = A.run_armor_check(affecting_p, BOMB)
-		A.apply_damage(5, BRUTE, BODY_ZONE_HEAD, brute_block_p) 
-		A.apply_damage(5, BURN, BODY_ZONE_HEAD, burn_block_p) 
+		A.apply_damage(5, BRUTE, BODY_ZONE_HEAD, brute_block_p)
+		A.apply_damage(5, BURN, BODY_ZONE_HEAD, burn_block_p)
 
 		D.visible_message(span_danger("[A] headbutts [D]!"), \
-						span_userdanger("[A] headbutts you!"))		
+						span_userdanger("[A] headbutts you!"))
 		log_combat(A, D, "headbutts(Explosive Fist)")
 		streak = ""
 	else
@@ -274,7 +274,7 @@
 		if(!(A.pulling == D))
 			D.grabbedby(A, 1)
 		D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), \
-						span_userdanger("[A] violently grabs your neck!"))		
+						span_userdanger("[A] violently grabs your neck!"))
 		log_combat(A, D, "grabs by the neck(Explosive Fist)")
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 		streak = ""
@@ -288,7 +288,7 @@
 /datum/martial_art/explosive_fist/proc/proceed_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)//lifeforce trade loop
 	if(!can_suck_life(A, D))
 		return
-	if(!do_mob(A, D, 1 SECONDS))
+	if(!do_after(A, 1 SECONDS, D))
 		return
 	if(!can_suck_life(A, D))
 		return
@@ -321,7 +321,7 @@
 	D.apply_damage(A.get_punchdamagehigh() * 2 + 6, BURN, selected_zone, armor_block)	//20 burn (vs bomb armor)
 
 	D.visible_message(span_danger("[A] burns [D]!"), \
-					span_userdanger("[A] burns you!"))		
+					span_userdanger("[A] burns you!"))
 	log_combat(A, D, "burns(Explosive Fist)")
 
 	return TRUE
@@ -349,9 +349,9 @@
 	if(A.get_item_by_slot(ITEM_SLOT_HEAD))   //No helmets???
 		streak = ""
 		return FALSE
-	else 
+	else
 		for(var/mob/living/target in view_or_range(2, A, "range"))
-			if(target == A)  
+			if(target == A)
 				continue
 			target.adjustFireLoss(30)
 			target.ignite_mob() 	
@@ -361,7 +361,7 @@
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)
 		D.apply_damage(A.get_punchdamagehigh() + 3, BURN, BODY_ZONE_HEAD, armor_block) 		//10 burn (vs bomb armor)
-		D.emote("scream")		
+		D.emote("scream")
 		D.blur_eyes(4)
 
 		A.apply_damage(10, BURN, BODY_ZONE_CHEST, 0) 	//Take some unblockable damage since you're using your inner flame or something

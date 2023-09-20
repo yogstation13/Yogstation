@@ -8,6 +8,7 @@
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "pet_carrier_open"
 	item_state = "pet_carrier"
+	base_icon_state = "pet_carrier"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	force = 5
@@ -67,7 +68,7 @@
 		to_chat(user, span_notice("You open [src]'s door."))
 		playsound(user, 'sound/effects/bin_open.ogg', 50, TRUE)
 		open = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/pet_carrier/AltClick(mob/living/user)
 	if(open || !user.canUseTopic(src, BE_CLOSE))
@@ -78,7 +79,7 @@
 		playsound(user, 'sound/machines/boltsdown.ogg', 30, TRUE)
 	else
 		playsound(user, 'sound/machines/boltsup.ogg', 30, TRUE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/pet_carrier/attack(mob/living/target, mob/living/user)
 	if(user.a_intent == INTENT_HARM)
@@ -111,7 +112,7 @@
 		loc.visible_message(span_notice("[user] pushes open the door to [src]!"), \
 		span_warning("[user] pushes open the door of [src]!"))
 		open = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	else if(user.client)
 		container_resist(user)
@@ -128,7 +129,7 @@
 		to_chat(user, span_boldannounce("Bingo! The lock pops open!"))
 		locked = FALSE
 		playsound(src, 'sound/machines/boltsup.ogg', 30, TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		loc.visible_message(span_warning("[src] starts rattling as something pushes against the door!"), null, null, null, user)
 		to_chat(user, span_notice("You start pushing out of [src]... (This will take about 20 seconds.)"))
@@ -138,17 +139,20 @@
 		to_chat(user, span_notice("You shove open [src]'s door against the lock's resistance and fall out!"))
 		locked = FALSE
 		open = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		remove_occupant(user)
 
-/obj/item/pet_carrier/update_icon()
-	cut_overlay("unlocked")
-	cut_overlay("locked")
+/obj/item/pet_carrier/update_icon_state()
 	if(open)
-		icon_state = initial(icon_state)
-	else
-		icon_state = "pet_carrier_[!occupants.len ? "closed" : "occupied"]"
-		add_overlay("[locked ? "" : "un"]locked")
+		icon_state = "[base_icon_state]_open"
+		return ..()
+	icon_state = "[base_icon_state]_[!occupants.len ? "closed" : "occupied"]"
+	return ..()
+
+/obj/item/pet_carrier/update_overlays()
+	. = ..()
+	if(!open)
+		. += "[locked ? "" : "un"]locked"
 
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
@@ -165,7 +169,7 @@
 	user.visible_message(span_notice("[user] starts loading [target] into [src]."), \
 	span_notice("You start loading [target] into [src]..."), null, null, target)
 	to_chat(target, span_userdanger("[user] starts loading you into [user.p_their()] [name]!"))
-	if(!do_mob(user, target, 30))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	if(target in occupants)
 		return

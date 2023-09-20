@@ -112,8 +112,8 @@
 	// Pick an exit turf to deposit the jaunter
 	var/turf/found_exit
 	for(var/turf/possible_exit as anything in exit_point_list)
-//		if(possible_exit.is_blocked_turf_ignore_climbable())
-//			continue
+		if(possible_exit.is_blocked_turf_ignore_climbable())
+			continue
 		found_exit = possible_exit
 		break
 
@@ -190,8 +190,8 @@
 	SIGNAL_HANDLER
 
 	var/turf/location = get_turf(source)
-//	if(location.is_blocked_turf_ignore_climbable())
-//		return
+	if(location.is_blocked_turf_ignore_climbable())
+		return
 	exit_point_list.Insert(1, location)
 	if(length(exit_point_list) >= 5)
 		exit_point_list.Cut(5)

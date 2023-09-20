@@ -369,6 +369,19 @@
 	harmful = TRUE
 	ammo_type = "lmg"
 
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
+	name = "\improper BFG-90 \"Graze\" Radioactive Cannon"
+	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
+	icon_state = "mecha_laser"
+	equip_cooldown = 2 SECONDS
+	projectile = /obj/item/projectile/beam/bfg
+	projectiles = 5
+	projectiles_cache = 0
+	projectiles_cache_max = 10
+	harmful = TRUE
+	ammo_type = "bfg"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack
 	name = "\improper SRM-8 missile rack"
 	desc = "A weapon for combat exosuits. Launches light explosive missiles."

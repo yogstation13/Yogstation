@@ -2419,7 +2419,7 @@
 /area/awaymission/BMPship/Aft)
 "hq" = (
 /obj/item/storage/box/matches,
-/obj/item/storage/box/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/plating,
 /area/awaymission/BMPship/Aft)
 "hr" = (

@@ -38,7 +38,7 @@
 /obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/SP)
 	. = ..()
 	SP.weapon = src
-	SP.update_icon()
+	SP.update_appearance(UPDATE_ICON)
 
 /obj/item/spacepod_equipment/weaponry/on_uninstall()
 	. = ..()
@@ -128,7 +128,7 @@
 	if(istype(A, storage_type) && SP.Adjacent(A)) // For loading ore boxes
 		if(!storage)
 			to_chat(user, span_notice("You begin loading [A] into [SP]'s [src]"))
-			if(do_after_mob(user, list(A, SP), 40))
+			if(do_after(user, 4 SECONDS, A))
 				storage = A
 				A.forceMove(src)
 				to_chat(user, span_notice("You load [A] into [SP]'s [src]!"))

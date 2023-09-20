@@ -412,7 +412,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Double-Bladed Energy Sword"
 	desc = "The double-bladed energy sword does slightly more damage than a standard energy sword and will deflect \
 			all energy projectiles, but requires two hands to wield."
-	item = /obj/item/twohanded/dualsaber
+	item = /obj/item/melee/dualsaber
 	player_minimum = 25
 	cost = 16
 	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
@@ -439,7 +439,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/bostaff
 	name = "Bo Staff"
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
-	item = /obj/item/twohanded/bostaff
+	item = /obj/item/melee/bostaff
 	cost = 8
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -473,10 +473,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/guardiancreator/tech
-	cost = 12
+	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/traitor/internal_affairs)
 	player_minimum = 25
 	restricted = TRUE
 	refundable = TRUE
@@ -534,7 +534,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This weapon must be wielded in two hands to be used effectively, but possesses high armor penetration. \
 			In addition, the user can charge the hammer to enable a thunderous blow that will decimate construction in a single hit, \
 			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
-	item = /obj/item/twohanded/vxtvulhammer
+	item = /obj/item/melee/vxtvulhammer
 	cost = 8
 	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
 
@@ -623,7 +623,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Fire Axe"
 	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
 			Easier to store than a standard fire axe while inactive."
-	item = /obj/item/twohanded/fireaxe/energy
+	item = /obj/item/fireaxe/energy
 	cost = 10
 	include_modes = list(/datum/game_mode/nuclear)
 	surplus = 0
@@ -657,16 +657,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 50
 
-/datum/uplink_item/stealthy_weapons/dart_syringe
-	name = "Box of Chemical Shotgun Darts"
-	desc = "A box of 7 empty shotgun darts capable of holding 30 units of any reagent, cleverly \
-			disguised as non-lethal beanbag slugs. People will still notice the big dart sticking \
-			out of their arm. Be careful not to mix them up with actual beanbag slugs!"
-	item = /obj/item/storage/box/beanbag/syndie_darts
-	manufacturer = /datum/corporation/traitor/vahlen
-	cost = 2
-	surplus = 0 // useless for most people
-
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "Dehydrated Space Carp"
 	desc = "Looks like a plush toy carp, but just add water and it becomes a real-life space carp! Activate in \
@@ -687,7 +677,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/edagger
 	name = "Energy Dagger"
 	desc = "A dagger made of energy that looks and functions as a pen when off."
-	item = /obj/item/pen/edagger
+	item = /obj/item/pen/red/edagger
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 
@@ -756,7 +746,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			strong anesthetic and a chemical that prevents the target from speaking. \
 			The pen holds one dose of the mixture. Note that before the target \
 			falls asleep, they will be able to move and act."
-	item = /obj/item/pen/sleepy
+	item = /obj/item/pen/blue/sleepy
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/nuclear)
@@ -1329,7 +1319,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	surplus = 0
 	limited_stock = 1
-	include_modes = list(/datum/objective/martyr)
+	include_objectives = list(/datum/objective/martyr)
 
 //Support and Mechs
 /datum/uplink_item/support
@@ -1741,6 +1731,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
 		return
+	U.has_failsafe = TRUE
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
 	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
@@ -1766,7 +1757,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/tactical_gloves
 	name = "Tactical Fingerless Gloves"
 	desc = "A pair of simple fabric gloves without fingertips that allow one to perform tasks faster and act quicker in unarmed manuevers. \
-			Also greatly assists with the carrying of bodies."
+			Also greatly assists with the carrying of bodies, while not letting anyone else take them from you!"
 	item = /obj/item/clothing/gloves/fingerless/bigboss
 	cost = 2
 
@@ -1844,7 +1835,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/supermatter_delaminator
 	name = "Antinoblium Shard"
 	desc = "A special variant of supermatter crystal reverse engineered by syndicate scientists using samples retrieved by agents. \
-			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing an energy cascade. \
+			Attaching this to an active supermatter crystal will destabilize the internal crystal well, causing a resonance cascade. \
 			Ensures a storm of EMP waves that blacks out the entire station and eventually the full delamination of the crystal. \
 			Comes with a secure radiation shielded containment box, special tweezers and usage instructions."
 	item = /obj/item/storage/box/syndie_kit/supermatter_delaminator
@@ -1918,8 +1909,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
-	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a Syndicate brand MMI, an implant case, a straitjacket, and a muzzle."
+	desc = "A red and black duffel bag containing all surgery tools, a surgical mat, \
+			a normal MMI, an implant case, a straitjacket, and a muzzle. The surgery tools are twice as fast compared to normal surgery tools."
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 2
@@ -2011,6 +2002,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A step-by-step guide on how to effectively pilot a mech, written in such a way that even a clown could understand."
 	item = /obj/item/book/granter/mechpiloting
 	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
+
+
+/datum/uplink_item/device_tools/mech_drop
+	name = "Orbital Mech Drop Fulton"
+	desc = "A heavy-duty transport pack that can be used to store and summon mecha that you have stored with it. Refundable if never used."
+	item = /obj/item/extraction_pack/mech_drop
+	cost = 4
+	refundable = TRUE
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/device_tools/loic_remote
+	name = "Low Orbit Ion Cannon Remote"
+	desc = "The Syndicate has recently installed a remote satellite nearby capable of generating a localized ion storm every 20 minutes. \
+			However, your local authorities will be informed of your general location when it is activated."
+	item = /obj/item/device/loic_remote
+	// TODO: When /datum/corporation/self is pickable for non-AI traitors, add it here.
+	limited_stock = 1 // Might be too annoying if someone had mulitple.
+	cost = 5 // Lacks the precision that a hacked law board (at 4 TCs) would give, but can be used on the go.
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 
 // Implants
 /datum/uplink_item/implants
@@ -2390,7 +2401,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Singulonuts"
 	desc = "A box with six Waffle Co. brand Singulonuts. Banned in four sectors for their sheer calorie content. \
 			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
-	item = /obj/item/storage/box/fancy/donut_box/deadly
+	item = /obj/item/storage/fancy/donut_box/deadly
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Assistant", "Cook", "Clerk")
@@ -2470,7 +2481,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	To activate His Grace, simply unlatch Him."
 	item = /obj/item/his_grace
 	cost = 20
-	restricted_roles = list("Chaplain")
+	restricted_roles = list("Chaplain", "Assistant")
 	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror
@@ -2603,9 +2614,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Fire Axe"
 	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
 			Easier to store than a standard fire axe while inactive."
-	item = /obj/item/twohanded/fireaxe/energy
+	item = /obj/item/fireaxe/energy
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
+
+/datum/uplink_item/role_restricted/syndie_mmi
+	name = "Syndicate MMI"
+	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you through a Zeroth law but otherwise function normally. Safeguards are in place to maintain the Zeroth law regardless of law changes."
+	item = /obj/item/mmi/syndie
+	cost = 3
+	restricted_roles = list("Roboticist", "Research Director")
+
+/datum/uplink_item/role_restricted/cmag
+	name = "Jestographic Sequencer"
+	desc = "The jestographic sequencer, also known as a cmag, is a small card that inverts the access on any door it's used on. Perfect for locking command out of their own departments. Honk!"
+	item = /obj/item/card/cmag
+	cost = 4 // Not as "destructive" as the emag. In addition, less features than the normal emag. Increase price once more impactful features are added.
+	restricted_roles = list("Clown")
 
 // Pointless
 /datum/uplink_item/badass
@@ -2682,7 +2707,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
 	desc = "Strong flavor, dense smoke, infused with omnizine."
-	item = /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate
+	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
