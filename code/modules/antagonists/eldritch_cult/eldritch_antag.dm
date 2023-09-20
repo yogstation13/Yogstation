@@ -208,6 +208,8 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
+		if(is_void())
+			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
@@ -484,6 +486,36 @@
 				flavor_message += 	"Your beaten and battered body lays there, your consciousness still trapped in it like a prison of flesh. \
 									You rally against the cage, fists pounding at the inside of your brain as you beat your fists bloody raw. \
 									Unfortunately, despite all your rage you're still just a rat in a cage. Doomed to be nothing more than a rotten corpse added to the beach at the end of time." 
+	else if(is_void()) //Void epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"Arriving at Centcom you smile, the infinite winds billow behind your back, bringing a new age of Ice to the system."
+			else if(alive)
+				flavor_message += 	"You watch as the shuttle leaves, smirking, you turn your gaze to the planet below, planning your next moves carefully, ready to expand your domain of Ice."
+			else //Dead
+				flavor_message += 	"Your body freezes and shatters, but it is not the end. Your eternal spirit will live on, and the storm you called will never stop in this sector. You have won the war."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"The mission is done, the stage is set, though you did not reach the peak of power, you achieved what many thought impossible."
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"Your success has been noted, and the coming storm will grant you powers of ice beyond all mortal comprehension. You need only wait..."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As your body crumbles to snow, you smile one last toothy grin, knowing the fate of those who will freeze, despite your demise."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You escaped, but at what cost? Your mission a failure, along with you. The coming days will not be kind."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Stepping through the empty halls of the station, you look towards the empty space, and contemplate your failures."
+			else //Dead
+				flavor_message += 	"As your body shatters, the last pieces of your consciousness wonder what you could have done differently, before the spark of life dissipates."
 
 	else //Unpledged epilogues
 
@@ -517,6 +549,7 @@
 			else //Dead
 				flavor_message += 	"Perhaps it is better this way. You chose not to make a plunge into the Mansus, yet your soul returns to it. \
 									You will drift down, deeper, further, until you are forgotten to nothingness."
+				
 
 
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
@@ -582,6 +615,9 @@
 
 /datum/antagonist/heretic/proc/is_mind()
 	return "[lore]" == "Mind"
+
+/datum/antagonist/heretic/proc/is_void()
+	return "[lore]" == "Void"
 
 /datum/antagonist/heretic/proc/is_unpledged()
 	return "[lore]" == "Unpledged"

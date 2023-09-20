@@ -1,8 +1,8 @@
 /datum/eldritch_transmutation/void_knife
-	name = "Cerebral Blade"
-	required_atoms = list(/obj/item/kitchen/knife,/obj/item/book) 
+	name = "Frozen Blade"
+	required_atoms = list(/obj/item/kitchen/knife,/obj/item/shard) 
 	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/void)
-	required_shit_list = "A book and a knife."
+	required_shit_list = "A clear shard of glass and a knife."
 
 /datum/eldritch_transmutation/void_cloak
 	name = "Void Cloak"
