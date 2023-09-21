@@ -79,7 +79,7 @@
 /datum/guardian_stats/proc/weaken(times = 1)//reduces a random stat x times
 	for(var/i = 0; i < times; i++)
 		var/list/reduction = list("damage", "defense", "speed", "potential", "range")
-			shuffle(reduction)
+		shuffle(reduction)
 		var/found = FALSE
 		for(var/option in reduction)
 			switch(option)
