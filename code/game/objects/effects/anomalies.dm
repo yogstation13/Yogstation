@@ -292,7 +292,7 @@
 
 /obj/effect/anomaly/pyro
 	name = "pyroclastic anomaly"
-	icon_state = "at_shield2"
+	icon_state = "mustard"
 	coretype = ANOMALY_PYRO
 	var/ticks = 0
 	/// How many seconds between each gas release
