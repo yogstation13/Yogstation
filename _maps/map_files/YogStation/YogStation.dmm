@@ -10566,6 +10566,16 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
+"bBT" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/security/interrogation)
 "bBV" = (
 /obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'SERVER ROOM'.";
@@ -18205,6 +18215,16 @@
 	},
 /turf/open/space,
 /area/solar/starboard/fore)
+"dHH" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cloth_curtain{
+	color = "#99ccff";
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "dHL" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -20993,12 +21013,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"eIu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "eII" = (
 /obj/machinery/door/airlock/medical{
 	name = "Medbay Reception";
@@ -27443,6 +27457,13 @@
 /obj/effect/turf_decal/trimline/green/filled/corner/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"heN" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "Prosecution"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "hfb" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -27854,13 +27875,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"hlB" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/security/interrogation)
 "hlN" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -27874,6 +27888,13 @@
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom,
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"hlO" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff";
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "hlY" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -33998,6 +34019,14 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison/hallway)
+"jzW" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/security/interrogation)
 "jAv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -34565,16 +34594,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"jNQ" = (
-/obj/structure/cloth_curtain{
-	color = "#99ccff";
-	pixel_x = -32
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "jNT" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 8
@@ -54813,13 +54832,6 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"rye" = (
-/obj/structure/chair{
-	dir = 4;
-	name = "Prosecution"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "ryf" = (
 /obj/structure/sign/departments/minsky/research/research,
 /turf/closed/wall/r_wall,
@@ -63832,6 +63844,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"uVG" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/security/interrogation)
 "uWm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -97764,9 +97781,9 @@ gyZ
 nGm
 qaO
 qaO
-qaO
-qaO
-hlB
+bBT
+jzW
+uVG
 qaO
 qaO
 haD
@@ -98021,9 +98038,9 @@ gyZ
 jAS
 mEe
 fnJ
-eIu
-eIu
-jNQ
+dHH
+hlO
+hlO
 bQS
 qaO
 fJZ
@@ -98278,8 +98295,8 @@ gyZ
 jAS
 bQS
 jry
-rye
-rye
+heN
+heN
 bQS
 bQS
 qaO
