@@ -10926,8 +10926,8 @@
 	pixel_y = -3
 	},
 /obj/item/storage/pencil_holder/crew/fancy{
-	pixel_y = 12;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 12
 	},
 /obj/item/storage/pencil_holder/crew/creative{
 	pixel_x = 8;
@@ -35594,8 +35594,8 @@
 /obj/item/pen,
 /obj/structure/table/wood,
 /obj/item/storage/pencil_holder/crew/fancy{
-	pixel_y = 10;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
@@ -50192,12 +50192,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"pNF" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "pOw" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/port)
@@ -54819,6 +54813,13 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"rye" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "Prosecution"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "ryf" = (
 /obj/structure/sign/departments/minsky/research/research,
 /turf/closed/wall/r_wall,
@@ -57251,8 +57252,8 @@
 	dir = 1
 	},
 /obj/item/storage/pencil_holder/crew{
-	pixel_y = 10;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
@@ -98277,8 +98278,8 @@ gyZ
 jAS
 bQS
 jry
-pNF
-pNF
+rye
+rye
 bQS
 bQS
 qaO
