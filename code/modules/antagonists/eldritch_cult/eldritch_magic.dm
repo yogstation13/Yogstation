@@ -897,7 +897,7 @@
 
 /datum/action/cooldown/spell/aoe/immobilize/famished_roar
 	name = "Famished Roar"
-	desc = "An AOE roar spell that sends all near by people flying."
+	desc = "An AOE roar spell that immobilizes all nearby people."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
