@@ -17,15 +17,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
-"dZ" = (
-/obj/structure/table/glass,
-/obj/effect/spawner/lootdrop/randomdrink,
-/obj/effect/spawner/lootdrop/randomdrink{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "ec" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -70,18 +61,6 @@
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
 	dir = 1
 	},
-/area/shuttle/escape)
-"jy" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/obj/structure/flora/ausbushes/genericbush,
-/mob/living/simple_animal/butterfly,
-/obj/machinery/light/floor,
-/turf/open/floor/grass,
 /area/shuttle/escape)
 "kJ" = (
 /obj/structure/railing,
@@ -172,6 +151,17 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"xb" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/genericbush,
+/obj/machinery/light/floor,
+/turf/open/floor/grass,
 /area/shuttle/escape)
 "xk" = (
 /obj/structure/extinguisher_cabinet{
@@ -339,6 +329,22 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
+"Kg" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -9;
+	pixel_y = 12
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Kp" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -411,6 +417,14 @@
 "Ob" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"Ol" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/bottle/amaretto{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "Or" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -496,18 +510,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"VR" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/ywflowers,
-/mob/living/simple_animal/butterfly,
-/turf/open/floor/grass,
-/area/shuttle/escape)
 "VX" = (
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
@@ -533,6 +535,18 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"Xv" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/mob/living/simple_animal/pet/fox,
+/turf/open/floor/grass,
+/area/shuttle/escape)
 "Xz" = (
 /obj/machinery/light{
 	dir = 8
@@ -545,15 +559,6 @@
 /area/shuttle/escape)
 "Yy" = (
 /obj/structure/curtain,
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"YU" = (
-/obj/structure/table/glass,
-/obj/effect/spawner/lootdrop/randomfood,
-/obj/effect/spawner/lootdrop/randomfood{
-	pixel_x = -4;
-	pixel_y = 7
-	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 
@@ -624,7 +629,7 @@ Kw
 Kw
 pi
 Kw
-YU
+Ol
 wX
 Uy
 Ob
@@ -648,7 +653,7 @@ Lw
 Kw
 SD
 Kw
-dZ
+Kg
 Ek
 Uy
 Ob
@@ -695,8 +700,8 @@ VX
 SP
 Hi
 CN
-jy
-VR
+xb
+Xv
 Kp
 Uy
 Ob
