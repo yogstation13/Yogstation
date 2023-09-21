@@ -11,17 +11,20 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"cC" = (
-/obj/structure/railing/corner{
+"bI" = (
+/obj/structure/railing/corner,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
-"dI" = (
-/obj/machinery/light{
-	dir = 4
+"dT" = (
+/obj/structure/curtain,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "ec" = (
@@ -64,18 +67,10 @@
 /obj/machinery/vending/cigarette/beach,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"iv" = (
-/obj/structure/railing/corner,
-/turf/open/floor/carpet/black,
-/area/shuttle/escape)
 "iY" = (
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
 	dir = 1
 	},
-/area/shuttle/escape)
-"kJ" = (
-/obj/structure/railing,
-/turf/open/floor/carpet/black,
 /area/shuttle/escape)
 "lS" = (
 /obj/structure/railing{
@@ -105,9 +100,6 @@
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"pi" = (
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
 /area/shuttle/escape)
 "pM" = (
 /obj/machinery/status_display/evac,
@@ -171,6 +163,14 @@
 /obj/machinery/light/floor,
 /turf/open/floor/grass,
 /area/shuttle/escape)
+"xg" = (
+/obj/structure/railing,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet/black,
+/area/shuttle/escape)
 "xk" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -180,11 +180,25 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
+"xw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet/black,
+/area/shuttle/escape)
 "xI" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"yo" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "yr" = (
@@ -302,6 +316,13 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"HH" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
+/area/shuttle/escape)
 "HV" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -340,6 +361,17 @@
 /obj/structure/chair/sofa/right{
 	dir = 4
 	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"JE" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
+/area/shuttle/escape)
+"JN" = (
+/obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Ke" = (
@@ -464,14 +496,18 @@
 "PJ" = (
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
+"Qs" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Sc" = (
 /obj/structure/chair/sofa{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"SD" = (
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
 /area/shuttle/escape)
 "SP" = (
 /obj/effect/turf_decal/siding/wood{
@@ -533,6 +569,16 @@
 "VX" = (
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
+"WM" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet/black,
+/area/shuttle/escape)
 "WO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -577,8 +623,11 @@
 /obj/machinery/light,
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"Yy" = (
-/obj/structure/curtain,
+"Zw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 
@@ -594,7 +643,7 @@ Gf
 CN
 Iu
 CN
-xI
+CN
 xI
 xI
 CN
@@ -618,7 +667,7 @@ vj
 OQ
 Kw
 Bq
-hS
+Qs
 hS
 hS
 Kw
@@ -642,12 +691,12 @@ LF
 OQ
 Kw
 Kw
+Qs
 Kw
 Kw
 Kw
 Kw
-Kw
-pi
+JE
 Kw
 Ol
 wX
@@ -664,14 +713,14 @@ ux
 vj
 LF
 OQ
-Kw
+JN
 Hi
 sp
 UJ
 La
 Lw
 Kw
-SD
+HH
 Kw
 Kg
 Ek
@@ -688,7 +737,7 @@ CN
 Ib
 pM
 CN
-sM
+ip
 Kw
 CN
 VX
@@ -711,7 +760,7 @@ nF
 PJ
 PJ
 PJ
-kJ
+xg
 sM
 Kw
 CN
@@ -735,7 +784,7 @@ CN
 yP
 yr
 tG
-cC
+WM
 lS
 Kw
 CN
@@ -759,7 +808,7 @@ CN
 VX
 VX
 HV
-PJ
+xw
 iY
 Hi
 Or
@@ -767,7 +816,7 @@ MF
 ec
 TY
 Kw
-Yy
+dT
 Kw
 Kw
 Kw
@@ -783,15 +832,15 @@ CN
 Fu
 VX
 Xa
-iv
+bI
 gR
 Kw
+Qs
 Kw
 Kw
 Kw
 Kw
-Kw
-Yy
+dT
 Kw
 Kw
 Kw
@@ -807,14 +856,14 @@ CN
 VX
 Hg
 ha
-kJ
-Bq
+xg
+sM
 Kw
+Qs
 vd
 zK
 VH
-dI
-ip
+Zw
 CN
 vi
 Cb
@@ -834,10 +883,10 @@ Xn
 CN
 CN
 CN
-Xn
-Xn
-Xn
 CN
+Xn
+Xn
+yo
 CN
 CN
 Xn
