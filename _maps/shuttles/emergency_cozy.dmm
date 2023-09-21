@@ -95,13 +95,6 @@
 /obj/machinery/computer/emergency_shuttle,
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"sb" = (
-/obj/machinery/door/airlock/wood{
-	name = "Holding Area";
-	req_access_txt = "2"
-	},
-/turf/open/floor/carpet/red,
-/area/shuttle/escape)
 "sp" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/closed/wall/mineral/wood,
@@ -134,17 +127,6 @@
 /area/shuttle/escape)
 "vj" = (
 /turf/open/floor/carpet/red,
-/area/shuttle/escape)
-"wf" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock/wood{
-	name = "Emergency Shuttle Cockpit";
-	req_access_txt = "19"
-	},
-/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "wX" = (
 /obj/structure/chair/sofa{
@@ -317,6 +299,19 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"Jr" = (
+/obj/machinery/door/airlock/wood/glass{
+	name = "Holding Area";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
 "JA" = (
 /obj/structure/chair/sofa/right{
 	dir = 4
@@ -438,6 +433,10 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
+"OY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "PJ" = (
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
@@ -449,6 +448,17 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"RP" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/wood/glass{
+	name = "Emergency Shuttle Cockpit";
+	req_access_txt = "19"
+	},
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Sc" = (
 /obj/structure/chair/sofa{
@@ -595,7 +605,7 @@ CN
 ux
 Xz
 vj
-CN
+OY
 Kw
 Bq
 hS
@@ -619,7 +629,7 @@ CN
 ux
 vj
 LF
-pM
+OY
 Kw
 Kw
 Kw
@@ -643,7 +653,7 @@ CN
 ux
 vj
 LF
-CN
+OY
 Kw
 Hi
 sp
@@ -665,8 +675,8 @@ mp
 Yt
 CN
 CN
-sb
-CN
+Jr
+pM
 CN
 sM
 Kw
@@ -687,7 +697,7 @@ ot
 qA
 mp
 mp
-wf
+RP
 PJ
 PJ
 PJ
