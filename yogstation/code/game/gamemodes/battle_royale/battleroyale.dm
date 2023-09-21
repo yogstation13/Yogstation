@@ -17,7 +17,7 @@ GLOBAL_VAR(stormdamage)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale maint")
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
@@ -79,7 +79,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
-	addtimer(CALLBACK(src, PROC_REF(delete_fireaxe)), 1.5 SECONDS)//so shitters don't immediately rush everything
+	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.6 SECONDS)//do it twice because lockers protect the things inside
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	set_observer_default_invisibility(0) //so ghosts can feel like they're included
@@ -108,7 +108,7 @@ GLOBAL_VAR(stormdamage)
 		if(!is_station_level(place.z) || player.onCentCom() || player.onSyndieBase())
 			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			player.death()
+			player.add_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY) //ya blew it
 			continue
 		royalers += player //add everyone not disqualified for one reason or another to the new list
 
@@ -155,9 +155,7 @@ GLOBAL_VAR(stormdamage)
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
-		if(1)//get them out of maints
-			SSweather.run_weather("royale maint", 2)
-		if(2 to 7)//close off the map
+		if(1 to 7)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
@@ -186,23 +184,13 @@ GLOBAL_VAR(stormdamage)
 		/area/crew_quarters/heads/captain//sword
 		)
 
-	for(var/area/place in to_clear)
-		var/area/A = locate(place) in GLOB.areas
-		for(var/obj/item/thing in A)
-			if(thing.anchored)//only target something that is possibly a weapon
-				continue
-			qdel(thing)
+	to_clear |= typesof(/area/bridge) //fireaxe
+	to_clear |= typesof(/area/engine/atmos) //also fireaxe
 
-/datum/game_mode/fortnite/proc/delete_fireaxe()
-	var/area/to_clear = list(//clear out any place that might have gamer loot that creates a meta of "rush immediately"
-		/area/bridge, //fireaxe
-		typecacheof(/area/engine/atmos) //also fireaxe
-		)
-
-	for(var/area/place in to_clear)
-		var/area/A = locate(place) in GLOB.areas
-		for(var/obj/structure/thing in A)
-			if(istype(thing, /obj/structure/fireaxecabinet))//only target something that is possibly a weapon
+	for(var/place in to_clear)
+		var/area/actual = locate(place) in GLOB.areas
+		for(var/obj/thing in actual)
+			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
 				qdel(thing)
 
 /datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
@@ -266,6 +254,8 @@ GLOBAL_VAR(stormdamage)
 	objectives += O
 	var/mob/living/carbon/human/tfue = owner.current
 	for(var/obj/item/I in tfue.get_equipped_items(TRUE))//remove all clothes before giving the antag clothes
+		qdel(I)
+	for(var/obj/item/I in tfue.held_items)//remove held items (mining medic i'm looking at you)
 		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
