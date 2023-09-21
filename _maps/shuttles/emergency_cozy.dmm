@@ -17,6 +17,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
+"dI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/coffee,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "ec" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -53,6 +60,10 @@
 "ic" = (
 /turf/template_noop,
 /area/template_noop)
+"ip" = (
+/obj/machinery/vending/cigarette/beach,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "iv" = (
 /obj/structure/railing/corner,
 /turf/open/floor/carpet/black,
@@ -75,6 +86,17 @@
 	},
 /area/shuttle/escape)
 "mp" = (
+/turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
+"nF" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/wood/glass{
+	name = "Emergency Shuttle Cockpit";
+	req_access_txt = "19"
+	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "ot" = (
@@ -118,6 +140,10 @@
 "ux" = (
 /obj/structure/chair/comfy,
 /turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"vd" = (
+/obj/structure/chair/comfy/brown,
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "vi" = (
 /obj/machinery/stasis{
@@ -187,10 +213,8 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"zr" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
+"zK" = (
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Am" = (
@@ -284,6 +308,19 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
+"Ib" = (
+/obj/machinery/door/airlock/wood/glass{
+	name = "Holding Area";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
 "Iu" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -298,19 +335,6 @@
 	name = "Cozy emergency shuttle"
 	},
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"Jr" = (
-/obj/machinery/door/airlock/wood/glass{
-	name = "Holding Area";
-	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "JA" = (
 /obj/structure/chair/sofa/right{
@@ -433,32 +457,12 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"OY" = (
+"OQ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "PJ" = (
 /turf/open/floor/carpet/black,
-/area/shuttle/escape)
-"RJ" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"RP" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock/wood/glass{
-	name = "Emergency Shuttle Cockpit";
-	req_access_txt = "19"
-	},
-/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Sc" = (
 /obj/structure/chair/sofa{
@@ -517,6 +521,12 @@
 /obj/structure/chair/sofa/left{
 	dir = 4;
 	pixel_x = -2
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"VH" = (
+/obj/structure/chair/comfy/brown{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -605,7 +615,7 @@ CN
 ux
 Xz
 vj
-OY
+OQ
 Kw
 Bq
 hS
@@ -629,7 +639,7 @@ CN
 ux
 vj
 LF
-OY
+OQ
 Kw
 Kw
 Kw
@@ -653,7 +663,7 @@ CN
 ux
 vj
 LF
-OY
+OQ
 Kw
 Hi
 sp
@@ -675,7 +685,7 @@ mp
 Yt
 CN
 CN
-Jr
+Ib
 pM
 CN
 sM
@@ -697,7 +707,7 @@ ot
 qA
 mp
 mp
-RP
+nF
 PJ
 PJ
 PJ
@@ -800,11 +810,11 @@ ha
 kJ
 Bq
 Kw
-zr
-zr
-zr
-RJ
-Bq
+vd
+zK
+VH
+dI
+ip
 CN
 vi
 Cb
