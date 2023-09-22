@@ -1126,7 +1126,7 @@
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.adjust_disgust(15)
-	L.remove_reagent(type, volume)
+	L.reagents.remove_reagent(type, volume)
 
 #undef REDSPACE_TELEPORT_MINIMUM
 
