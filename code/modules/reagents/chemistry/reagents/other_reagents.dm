@@ -1099,6 +1099,7 @@
 
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
+
 #define REDSPACE_TELEPORT_MINIMUM 5
 //Gateway to traitor chemistry, want a drug to be traitor only? use this
 /datum/reagent/redspace
