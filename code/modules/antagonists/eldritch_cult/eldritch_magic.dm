@@ -903,7 +903,7 @@
 	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "void_magnet"
 	sound = 'yogstation/sound/magic/demented_outburst_scream.ogg'
-
+	var/obj/effect/sparkle_path = /obj/effect/temp_visual/gravpush
 	school = SCHOOL_FORBIDDEN
 	invocation = "GR' RO'AR"
 	invocation_type = INVOCATION_SHOUT
