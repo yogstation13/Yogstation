@@ -261,7 +261,7 @@
 	else if(isarea(A) && src.areastring == null)
 		src.area = A
 
-	if(prob(20))
+	if(prob(15))
 		locked = FALSE
 
 	make_terminal()
