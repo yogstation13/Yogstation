@@ -261,9 +261,6 @@
 	else if(isarea(A) && src.areastring == null)
 		src.area = A
 
-	if(prob(15))
-		locked = FALSE
-
 	make_terminal()
 
 	addtimer(CALLBACK(src, PROC_REF(update)), 5)
@@ -831,7 +828,7 @@
 	else if(stat & (BROKEN|MAINT))
 		to_chat(user, span_warning("Nothing happens!"))
 	else
-		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack)
+		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack && !integration_cog)
 			locked = !locked
 			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the APC interface."))
 			update_appearance(UPDATE_ICON)
