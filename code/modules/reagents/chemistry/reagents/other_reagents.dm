@@ -1113,19 +1113,18 @@
 
 //Teleport like normal telecrystals
 /datum/reagent/redspace/on_mob_metabolize(mob/living/L)
-	if(volume < REDSPACE_TELEPORT_MINIMUM)
-		return
-	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
-	if(!istype(destination))
-		return
-	new /obj/effect/particle_effect/sparks(L.loc)
-	playsound(L.loc, "sparks", 50, 1)
-	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
-		return
-	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.adjust_disgust(15)
+	if(volume >= REDSPACE_TELEPORT_MINIMUM)
+		var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+		if(!istype(destination))
+			return
+		new /obj/effect/particle_effect/sparks(L.loc)
+		playsound(L.loc, "sparks", 50, 1)
+		if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+			return
+		L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.adjust_disgust(15)
 	remove_reagent(type, volume)
 
 #undef REDSPACE_TELEPORT_MINIMUM
