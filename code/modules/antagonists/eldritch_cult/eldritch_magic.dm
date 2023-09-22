@@ -946,7 +946,7 @@
 
 		if(isliving(victim))
 			var/mob/living/victim_living = victim
-			victim_living.Immobilize(5 SECONDS)
+			victim_living.Immobilize(3 SECONDS)
 			victim_living.adjustBruteLoss(5)
 			victim_living.adjustEarDamage(30)
 			to_chat(victim, span_userdanger("You're frozen in fear of [caster]!"))
