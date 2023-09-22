@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "All megafauna leave items when dusting a miner"
-  - tweak: "gibbing always leaves the victim's items"
