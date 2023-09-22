@@ -1404,17 +1404,17 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Nanotrasen cannot take legal responsibility for your actions after imbibing."
 
 /datum/reagent/consumable/ethanol/atomicbomb/on_mob_life(mob/living/carbon/drinker)
-	drinker.set_drugginess(100 * REM)
+	drinker.set_drugginess(100 SECONDS * REM)
 	if(!HAS_TRAIT(drinker, TRAIT_ALCOHOL_TOLERANCE))
 		drinker.adjust_confusion(2 SECONDS * REM)
-	drinker.set_dizzy_if_lower(20 * REM)
+	drinker.set_dizzy_if_lower(20 SECONDS * REM)
 	drinker.adjust_slurring(6 SECONDS * REM)
 	switch(current_cycle)
 		if(51 to 200)
 			drinker.Sleeping(10 SECONDS * REM)
 			. = TRUE
 		if(201 to INFINITY)
-			drinker.AdjustSleeping(4 SECONDS* REM)
+			drinker.AdjustSleeping(4 SECONDS * REM)
 			drinker.adjustToxLoss(2 * REM, FALSE)
 			. = TRUE
 	..()
