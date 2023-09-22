@@ -65,7 +65,7 @@
 
 /obj/item/gem/rupee
 	name = "ruperium crystal"
-	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. While able to be cut into sheets of uranium, the mineral's true value is in its resonating, humming properties, often sought out by ethereal musicians to work into their gem-encrusted instruments. As a result, they fetch a fine price in most exchanges."
+	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. Its soft humming is prized by ethereal musicians, and it is commonly encorporated into their gem-encrusted instruments. With nuclear research stations in competition for its supply of rare radioisotopes, is guaranteed to fetch a high price. In material despeiration, it can be heated into a supply of usable uranium."
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium{amount = 10}
@@ -73,7 +73,7 @@
 
 /obj/item/gem/magma
 	name = "calcified auric"
-	desc = "A hot, lightly glowing mineral born from the inner workings of magmawing watchers. It is most commonly smelted down into deposits of pure gold. However, it also possesses powerful conductivity, leading some to believe it a major power component utilized by the Vxtvul Empire."
+	desc = "A hot, radiant mineral born from the inner workings of magmawing watchers. Valued mainly by archaeologists and researchers due to its powerful conductivity and similar makeup to recovered artifacts from the Vxtvul Empire. The core of the stone holds a deposit of pure gold."
 	icon_state = "magma"
 	materials = list(/datum/material/gold=50000)
 	sheet_type = /obj/item/stack/sheet/mineral/gold{amount = 25}
@@ -84,7 +84,7 @@
 
 /obj/item/gem/fdiamond
 	name = "frost diamond"
-	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore."
+	desc = "A diamond formed in subzero temperatures, found within frostwing watchers. Valuable in material research due to its unique formation, it is also rarely used in traditional marriage bands. It looks like it can be fractured into a usable, if not as valuable supply of diamond."
 	icon_state = "diamond"
 	materials = list(/datum/material/diamond=30000)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond{amount = 15}
@@ -92,7 +92,7 @@
 
 /obj/item/gem/phoron
 	name = "stabilized baroxuldium"
-	desc = "A soft, glowing crystal only found in the deepest veins of plasma. Famed for its exceptional durability and uncommon beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed to extract the condensed materials within."
+	desc = "A softly glowing crystal composed entirely of a rich plasma ore. Prized both for its dense plasma composition and otherworldly beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed into usable material."
 	icon_state = "phoron"
 	materials = list(/datum/material/plasma=80000)
 	point_value = 1200
@@ -102,7 +102,7 @@
 
 /obj/item/gem/purple
 	name = "densified dilithium"
-	desc = "A strange mass of dilithium which pulses to a steady rhythm. Its strange surface exudes a unique radio signal detectable by GPS. It looks like it could be destructively analyzed to extract the condensed materials within."
+	desc = "A mass of rhythmatically pulsing dilithium, with a signal strong enough to be detectable by long-range GPS scanning. It looks like it could be destructively analyzed into usable material."
 	icon_state = "purple"
 	materials = list(/datum/material/dilithium=64000)
 	point_value = 1600
@@ -124,7 +124,7 @@
 
 /obj/item/gem/amber
 	name = "draconic amber"
-	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
+	desc = "A brittle, strange mineral that forms from the rapidly cooling blood of a dying ash drake. Cherished by gemcutters for its faint glow and unique, soft warmth. Rumors within some mining crews whisper of the dragon's strength being bestowed to one that wears a necklace of this amber."
 	icon_state = "amber"
 	point_value = 1600
 	light_range = 2
@@ -133,7 +133,7 @@
 
 /obj/item/gem/void
 	name = "null crystal"
-	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
+	desc = "A shard of crystallized stellar energy. These strange objects rarely appear spontaneously in areas of massive bluespace instaiblity. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
 	icon_state ="void"
 	point_value = 1800
 	light_range = 2
@@ -143,7 +143,7 @@
 
 /obj/item/gem/bloodstone
 	name = "ichorium"
-	desc = "A weird, sticky substance, known to coalesce in the presence of otherworldly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
+	desc = "A weird, sticky substance, known to coalesce in the presence of otherworldly phenomena. This gemstone has unique ties to the occult, with mysterious and highly anonymous buyers paying handsomely whenever one is found on sale."
 	icon_state = "red"
 	point_value = 2000
 	light_range = 2
@@ -152,7 +152,7 @@
 
 /obj/item/gem/dark
 	name = "dark salt lick"
-	desc = "An ominous cylinder that glows with an unnerving aura, seeming to hungrily draw in the space around it. The round edges of the lick are uneven patches of rough texture. Its only known property is that of anti-magic."
+	desc = "An ominous cylinder that glows with an unnerving aura, seeming to hungrily draw in the space around it. The round edges of the stone consist of uneven patches of rough texture. It is only known to produce a null-field, repulsing magical influences targetting the holder."
 	icon_state = "dark"
 	point_value = 3000
 	light_range = 3
