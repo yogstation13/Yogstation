@@ -24,7 +24,9 @@
 	if(!istype(parent, /turf) || blacklist[parent.type])
 		return COMPONENT_INCOMPATIBLE
 
-	if(!powerful)
+	if(powerful)
+		resistlist |= typecacheof(/turf/closed/wall/r_wall)
+	else
 		immunelist |= typecacheof(/turf/closed/wall/r_wall)
 		
 	if(immunelist[parent.type])
