@@ -22,7 +22,7 @@
 	potency = 15
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/orange)
+	mutatelist = list(/obj/item/seeds/orange, /obj/item/seeds/lime_3d)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/citrus/lime
