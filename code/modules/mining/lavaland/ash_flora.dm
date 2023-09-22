@@ -224,7 +224,7 @@
 	genes = list(/datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	growthstages = 2
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/consumable/vitfro = 0.08, /datum/reagent/consumable/ashresin = 0.02,	/datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.02, /datum/reagent/consumable/vitfro = 0.08, /datum/reagent/consumable/ashresin = 0.02)
 
 /obj/item/seeds/lavaland/polypore
 	name = "pack of polypore mycelium"
