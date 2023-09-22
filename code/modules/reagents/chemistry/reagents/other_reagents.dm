@@ -1099,7 +1099,7 @@
 
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
-
+#define REDSPACE_TELEPORT_MINIMUM 5
 //Gateway to traitor chemistry, want a drug to be traitor only? use this
 /datum/reagent/redspace
 	name = "Redspace Dust"
@@ -1113,6 +1113,8 @@
 
 //Teleport like normal telecrystals
 /datum/reagent/redspace/on_mob_metabolize(mob/living/L)
+	if(volume < REDSPACE_TELEPORT_MINIMUM)
+		return
 	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
 	if(!istype(destination))
 		return
@@ -1124,6 +1126,9 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.adjust_disgust(15)
+	remove_reagent(type, volume)
+
+#undef REDSPACE_TELEPORT_MINIMUM
 
 /datum/reagent/aluminium
 	name = "Aluminium"
