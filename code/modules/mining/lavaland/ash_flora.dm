@@ -149,6 +149,7 @@
 //SNACKS
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora
+	seed = /obj/item/seeds/lavaland/polypore
 	name = "mushroom shavings"
 	desc = "Some shavings from a tall mushroom. With enough, might serve as a bowl."
 	icon = 'icons/obj/lavaland/ash_flora.dmi'
@@ -157,7 +158,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
-	seed = /obj/item/seeds/lavaland/polypore
 	distill_reagent = /datum/reagent/consumable/ethanol/polyporepop
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/Initialize(mapload)
@@ -168,26 +168,26 @@
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings //So we can't craft bowls from everything.
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf
+	seed = /obj/item/seeds/lavaland/porcini
 	name = "mushroom leaf"
 	desc = "A leaf, from a mushroom."
 	icon_state = "mushroom_leaf"
-	seed = /obj/item/seeds/lavaland/porcini
 	distill_reagent = /datum/reagent/consumable/ethanol/porcinisap
 	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
+	seed = /obj/item/seeds/lavaland/inocybe
 	name = "mushroom cap"
 	desc = "The cap of a large mushroom."
 	icon_state = "mushroom_cap"
-	seed = /obj/item/seeds/lavaland/inocybe
 	distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
 	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
+	seed = /obj/item/seeds/lavaland/ember
 	name = "mushroom stem"
 	desc = "A long mushroom stem. It's slightly glowing."
 	icon_state = "mushroom_stem"
-	seed = /obj/item/seeds/lavaland/ember
 	distill_reagent = /datum/reagent/consumable/ethanol/embershroomcream
 	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
