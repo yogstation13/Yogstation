@@ -257,7 +257,7 @@
 	//TRITIUM
 	if(breath.get_moles(/datum/gas/tritium))
 		var/tritium_partialpressure = (breath.get_moles(/datum/gas/tritium)/breath.total_moles())*breath_pressure
-		radiation += tritium_partialpressure/10
+		rad_act(tritium_partialpressure/10, internal = TRUE)
 
 	//FREON
 	if(breath.get_moles(/datum/gas/freon))

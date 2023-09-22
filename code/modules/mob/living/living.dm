@@ -1119,15 +1119,18 @@
 		G.Recall()
 		to_chat(G, span_holoparasite("Your summoner has changed form!"))
 
-/mob/living/rad_act(amount, collectable_radiation)
+/mob/living/rad_act(amount, collectable_radiation, internal)
 	. = ..()
 
 	if(!amount || (amount < RAD_MOB_SKIN_PROTECTION) || HAS_TRAIT(src, TRAIT_RADIMMUNE))
 		return
 
+	if(HAS_TRAIT(src, TRAIT_RADSKINRESIST) && !internal)
+		return
+
 	amount -= RAD_BACKGROUND_RADIATION // This will always be at least 1 because of how skin protection is calculated
 
-	var/blocked = getarmor(null, RAD)
+	var/blocked = internal ? 0 : getarmor(null, RAD) //armor only helps if the radiation is external
 
 	if(amount > RAD_BURN_THRESHOLD)
 		apply_damage((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, BURN, null, blocked)

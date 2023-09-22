@@ -449,7 +449,7 @@
 	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
-	M.radiation += radpower
+	M.rad_act(radpower, internal = TRUE)
 	..()
 
 /datum/reagent/toxin/histamine

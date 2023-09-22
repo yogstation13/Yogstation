@@ -36,7 +36,7 @@
 		var/atom/thing = things[k]
 		if(!thing)
 			continue
-		thing.rad_act(intensity)
+		thing.rad_act(intensity, internal = (thing == source))
 
 	var/static/last_huge_pulse = 0
 	if(intensity > 3000 && world.time > last_huge_pulse + 200)

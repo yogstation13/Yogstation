@@ -102,7 +102,7 @@
 			decon_emagged.start()
 			if(mob_occupant)
 				mob_occupant.adjustFireLoss(rand(15, 26))
-				mob_occupant.radiation += 500
+				mob_occupant.rad_act(500)
 				mob_occupant.adjust_fire_stacks(2)
 				mob_occupant.ignite_mob()
 			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)

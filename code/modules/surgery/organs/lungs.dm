@@ -270,9 +270,9 @@
 	// Tritium
 		var/trit_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/tritium))
 		if (trit_pp > 50)
-			H.radiation += trit_pp/2 //If you're breathing in half an atmosphere of radioactive gas, you fucked up.
+			H.rad_act(trit_pp/2) //If you're breathing in half an atmosphere of radioactive gas, you fucked up.
 		else
-			H.radiation += trit_pp/10
+			H.rad_act(trit_pp/10)
 
 	// Nitrium
 		var/nitrium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrium))

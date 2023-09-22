@@ -170,7 +170,8 @@
 #define TRAIT_RESISTHIGHPRESSURE	"resist_high_pressure"
 #define TRAIT_RESISTLOWPRESSURE	"resist_low_pressure"
 #define TRAIT_BOMBIMMUNE		"bomb_immunity"
-#define TRAIT_RADIMMUNE			"rad_immunity"
+#define TRAIT_RADIMMUNE			"rad_immunity"	//covers ALL forms of radiation
+#define TRAIT_RADSKINRESIST		"rad_skin_resist"	//only covers forms of radiation that come from outside of the body
 #define TRAIT_EMPPROOF_SELF		"emp_immunity_self" //for the specific "thing" itself
 #define TRAIT_EMPPROOF_CONTENTS "emp_immunity_contents" //for anything the "thing" is carrying, but not itself
 #define TRAIT_GENELESS  		"geneless"

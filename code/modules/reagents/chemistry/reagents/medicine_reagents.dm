@@ -534,11 +534,19 @@
 	color = "#14FF3C"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 
+/datum/reagent/medicine/potass_iodide/on_mob_metabolize(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_RADSKINRESIST, "potassium iodide")
+
 /datum/reagent/medicine/potass_iodide/on_mob_life(mob/living/carbon/M)
 	if(M.radiation > 0)
 		M.radiation -= min(M.radiation, 8)
 	..()
 
+/datum/reagent/medicine/potass_iodide/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_RADSKINRESIST, "potassium iodide")
+	
 /datum/reagent/medicine/pen_acid
 	name = "Pentetic Acid"
 	description = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body."

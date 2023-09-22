@@ -563,7 +563,8 @@
 	tick_damage_type = TOX
 
 /obj/item/ammo_casing/reusable/arrow/energy/xray/embed_tick(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	tick_damage = HAS_TRAIT(embedde, TRAIT_RADIMMUNE) ? 0 : initial(tick_damage)
+	var/protection = HAS_TRAIT(embedde, TRAIT_RADIMMUNE) || HAS_TRAIT(embedde, TRAIT_RADSKINRESIST)
+	tick_damage = protection ? 0 : initial(tick_damage)
 	return ..()
 
 /obj/item/ammo_casing/reusable/arrow/energy/shock
