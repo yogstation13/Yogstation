@@ -1,0 +1,4 @@
+author: " cark"
+delete-after: true 
+changes: 
+  - mapping: "icemeta station river has been replaced with a chasm which drops into the mining river"
