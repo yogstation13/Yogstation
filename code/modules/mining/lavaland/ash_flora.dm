@@ -153,7 +153,7 @@
 	desc = "Some shavings from a tall mushroom. With enough, might serve as a bowl."
 	icon = 'icons/obj/lavaland/ash_flora.dmi'
 	icon_state = "mushroom_shavings"
-	grind_results = list(/datum/reagent/toxin/mushroom_powder = 5)
+	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
@@ -173,6 +173,7 @@
 	icon_state = "mushroom_leaf"
 	seed = /obj/item/seeds/lavaland/porcini
 	distill_reagent = /datum/reagent/consumable/ethanol/porcinisap
+	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_cap
 	name = "mushroom cap"
@@ -180,6 +181,7 @@
 	icon_state = "mushroom_cap"
 	seed = /obj/item/seeds/lavaland/inocybe
 	distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
+	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
 	name = "mushroom stem"
@@ -187,6 +189,7 @@
 	icon_state = "mushroom_stem"
 	seed = /obj/item/seeds/lavaland/ember
 	distill_reagent = /datum/reagent/consumable/ethanol/embershroomcream
+	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit
 	name = "cactus fruit"
