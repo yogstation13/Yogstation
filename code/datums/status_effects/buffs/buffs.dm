@@ -695,6 +695,7 @@
 		H.physiology.heat_mod /= 0.5
 	
 //holy light specific buffs
+
 /datum/status_effect/holylight_antimagic
 	id = "holy antimagic"
 	duration = 2 MINUTES
