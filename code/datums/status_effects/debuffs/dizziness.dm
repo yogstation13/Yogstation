@@ -1,10 +1,10 @@
 /datum/status_effect/dizziness
 	id = "dizziness"
-	tick_interval = 2 SECONDS
+	tick_interval = 2
 	alert_type = null
 	remove_on_fullheal = TRUE
 
-/datum/status_effect/dizziness/on_creation(mob/living/new_owner, duration = 10 SECONDS)
+/datum/status_effect/dizziness/on_creation(mob/living/new_owner, duration = 10 )
 	src.duration = duration
 	return ..()
 
