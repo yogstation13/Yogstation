@@ -111,6 +111,16 @@
 
 #define MIN_DRAINABLE_POWER 10
 
+//IPC lol, lmao
+/mob/living/carbon/human/can_consume_power_from()
+	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
+
+/mob/living/carbon/human/consume_power_from(amount)
+	if((nutrition - amount) < NUTRITION_LEVEL_STARVING)
+		amount = max(nutrition - NUTRITION_LEVEL_STARVING, 0)
+	adjust_nutrition(-amount)
+	return amount
+
 //CELL//
 /obj/item/stock_parts/cell/can_consume_power_from()
 	if(charge < MIN_DRAINABLE_POWER)
