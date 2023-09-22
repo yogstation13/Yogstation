@@ -57,7 +57,7 @@
 	gain_text = "Deep into the dream, you work tirelessly, endlessly. A blighted curse consumes the land, but the scholars of Kos will light the way through the nightmare."
 	desc = "Shoot a single bolt of condensed mental power infront of you, dealing large amounts of brute damage to any targets hit."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/basic_projectile/assault
+	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/assault
 	route = PATH_MIND
 	tier = TIER_2
 
@@ -67,7 +67,7 @@
 	desc = "An AOE roar spell that sends all near by people and items flying."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/repulse/famished_roar
-	tier = TIER_2
+	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_blade_upgrade
 	name = "Spine of The Infinite Beast"
@@ -102,7 +102,7 @@
 	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
-	tier = TIER_3
+	tier = TIER_2
 
 /datum/eldritch_knowledge/mind_final
 	name = "Beyond All Knowledge Lies Despair"

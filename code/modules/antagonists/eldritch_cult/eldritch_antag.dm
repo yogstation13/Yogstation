@@ -21,13 +21,54 @@
 ///tracks the number of knowledges to next tier, currently 3
 	var/tier_counter = 0
 ///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
-	var/list/knowledges = list(	TIER_PATH = list(/datum/eldritch_knowledge/base_ash, /datum/eldritch_knowledge/base_flesh, /datum/eldritch_knowledge/base_rust, /datum/eldritch_knowledge/base_mind),
-	 							TIER_1 = list(/datum/eldritch_knowledge/spell/ashen_shift, /datum/eldritch_knowledge/ashen_eyes, /datum/eldritch_knowledge/flesh_ghoul, /datum/eldritch_knowledge/rust_regen, /datum/eldritch_knowledge/armor, /datum/eldritch_knowledge/essence, /datum/eldritch_knowledge/spell/mental_obfuscation, /datum/eldritch_knowledge/eldritch_eye),
-	 							TIER_MARK = list(/datum/eldritch_knowledge/ash_mark, /datum/eldritch_knowledge/flesh_mark, /datum/eldritch_knowledge/rust_mark, /datum/eldritch_knowledge/mind_mark),
-	 							TIER_2 = list(/datum/eldritch_knowledge/blindness, /datum/eldritch_knowledge/corrosion, /datum/eldritch_knowledge/paralysis, /datum/eldritch_knowledge/raw_prophet, /datum/eldritch_knowledge/spell/blood_siphon, /datum/eldritch_knowledge/spell/area_conversion, /datum/eldritch_knowledge/spell/assault, /datum/eldritch_knowledge/spell/famished_roar),
-	 							TIER_BLADE = list(/datum/eldritch_knowledge/ash_blade_upgrade, /datum/eldritch_knowledge/flesh_blade_upgrade, /datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade),
-	 							TIER_3 = list(/datum/eldritch_knowledge/spell/flame_birth, /datum/eldritch_knowledge/spell/cleave, /datum/eldritch_knowledge/stalker, /datum/eldritch_knowledge/ashy, /datum/eldritch_knowledge/rusty, /datum/eldritch_knowledge/spell/entropic_plume, /datum/eldritch_knowledge/cerebral_control, /datum/eldritch_knowledge/spell/eldritchbolt),
-	 							TIER_ASCEND = list(/datum/eldritch_knowledge/ash_final, /datum/eldritch_knowledge/flesh_final, /datum/eldritch_knowledge/rust_final,  /datum/eldritch_knowledge/mind_final))
+	var/list/knowledges = list(	
+	TIER_PATH = list(
+		/datum/eldritch_knowledge/base_ash,
+		/datum/eldritch_knowledge/base_flesh,
+		/datum/eldritch_knowledge/base_rust, 
+		/datum/eldritch_knowledge/base_mind),
+	TIER_1 = list(
+		/datum/eldritch_knowledge/spell/ashen_shift,
+		/datum/eldritch_knowledge/ashen_eyes,
+		/datum/eldritch_knowledge/flesh_ghoul,
+		/datum/eldritch_knowledge/rust_regen,
+		/datum/eldritch_knowledge/armor,
+		/datum/eldritch_knowledge/essence,
+		/datum/eldritch_knowledge/spell/mental_obfuscation,
+		/datum/eldritch_knowledge/eldritch_eye),
+	TIER_MARK = list(
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/flesh_mark,
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/mind_mark),
+	TIER_2 = list(
+		/datum/eldritch_knowledge/blindness,
+		/datum/eldritch_knowledge/corrosion,
+		/datum/eldritch_knowledge/paralysis,
+		/datum/eldritch_knowledge/raw_prophet,
+		/datum/eldritch_knowledge/spell/blood_siphon,
+		/datum/eldritch_knowledge/spell/area_conversion,
+		/datum/eldritch_knowledge/spell/assault,
+		/datum/eldritch_knowledge/spell/eldritchbolt),
+	TIER_BLADE = list(
+		/datum/eldritch_knowledge/ash_blade_upgrade,
+		/datum/eldritch_knowledge/flesh_blade_upgrade,
+		/datum/eldritch_knowledge/rust_blade_upgrade,
+		/datum/eldritch_knowledge/mind_blade_upgrade),
+	TIER_3 = list(
+		/datum/eldritch_knowledge/spell/flame_birth,
+		/datum/eldritch_knowledge/spell/cleave,
+		/datum/eldritch_knowledge/stalker,
+		/datum/eldritch_knowledge/ashy,
+		/datum/eldritch_knowledge/rusty,
+		/datum/eldritch_knowledge/spell/entropic_plume,
+		/datum/eldritch_knowledge/cerebral_control,
+		/datum/eldritch_knowledge/spell/famished_roar),
+	TIER_ASCEND = list(
+		/datum/eldritch_knowledge/ash_final,
+		/datum/eldritch_knowledge/flesh_final,
+		/datum/eldritch_knowledge/rust_final, 
+		/datum/eldritch_knowledge/mind_final))
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -208,6 +249,8 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
+		if(is_mind())
+			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
@@ -450,7 +493,7 @@
 				flavor_message += 	"As your body hits the floor, you expect the sweet release of death to free you from this horrid nightmare, unfortunately as your consciousness slips away, \
 									you feel yourself dragged ever towards a familiar beach, scores of dead fish and crabs litter the shoreline, you step closer to the water's edge inch by inch. \
 									As you make it to the water, you do not slow, and more and more corpses float through the waters of the murky ocean. Those you've killed stare back at you, sacrificed to the endless tide. \
-									You simly look back at them and smile, not quite sure where you're going, or where you'll end up, until finally you arrive at the end of it all, and you're finally ready to wake."
+									You simply look back at them and smile, not quite sure where you're going, or where you'll end up, until finally you arrive at the end of it all, and you're finally ready to wake."
 	
 		else if(cultiewin) //Completed objectives
 			if(escaped)

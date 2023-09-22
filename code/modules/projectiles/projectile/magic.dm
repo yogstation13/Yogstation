@@ -794,7 +794,7 @@
 	icon_state= "chronobolt"
 	damage = 30
 	armour_penetration = 100
-	speed = 4 
+	speed = 1
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
