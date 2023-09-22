@@ -671,7 +671,7 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen = 1,
 				/datum/reagent/medicine/epinephrine = 10,
-				/datum/reagent/medicine/Sanguirite = 2)
+				/datum/reagent/medicine/coagulant = 2)
 
 	category = CAT_MEDICAL
 
