@@ -1,5 +1,0 @@
-author: "Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed IPCs with no uniform having IDs that cannot be stolen or removed via the inventory menu"
-  - spellcheck: "In the inventory menu, people who do not need their uniform to hold their belt/ID/etc. now display their inventory slightly differently, hopefully enough to remind you to strip IPCs completely when you need to."

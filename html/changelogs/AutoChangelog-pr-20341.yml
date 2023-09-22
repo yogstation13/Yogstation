@@ -1,6 +1,0 @@
-author: " @Scrambledeggs00 @Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Syndicate medipens have a unique inhand sprite"
-  - tweak: "Gives some medipens new sprites"
-  - soundadd: "Medipen item sprites + syndie medipen inhand"
