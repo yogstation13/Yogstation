@@ -665,7 +665,7 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
-			if(HM.allow_cloning)
+			if(!HM.allow_cloning)
 				say("ERROR: This mutation is anomalous, and cannot be saved.")
 				return
 
