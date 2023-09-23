@@ -133,7 +133,7 @@
 
 /obj/item/gem/void
 	name = "null crystal"
-	desc = "A shard of crystallized stellar energy. These strange objects rarely appear spontaneously in areas of massive bluespace instaiblity. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
+	desc = "A shard of crystallized stellar energy. These strange objects rarely appear spontaneously in areas of massive bluespace instability. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
 	icon_state ="void"
 	point_value = 1800
 	light_range = 2
