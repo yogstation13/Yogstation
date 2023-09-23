@@ -82,6 +82,18 @@
 	dir = 1
 	},
 /area/shuttle/escape)
+"lR" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/cas{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/item/toy/cards/deck/uno{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "lS" = (
 /obj/structure/railing{
 	dir = 8
@@ -268,10 +280,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"zK" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "AP" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -345,12 +353,6 @@
 	req_access_txt = "2"
 	},
 /turf/open/floor/carpet/red,
-/area/shuttle/escape)
-"Hg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
 /area/shuttle/escape)
 "Hi" = (
 /obj/machinery/light,
@@ -565,11 +567,23 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
+"RE" = (
+/obj/item/toy/cards/deck/cas/black{
+	pixel_x = 26;
+	pixel_y = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "Sc" = (
 /obj/structure/chair/sofa{
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"Su" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/store/cake/chocolate,
+/turf/open/floor/carpet/orange,
 /area/shuttle/escape)
 "SP" = (
 /obj/effect/turf_decal/siding/wood{
@@ -611,6 +625,22 @@
 	},
 /obj/structure/shuttle/engine/heater,
 /turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"UD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/jaffacake,
+/obj/item/reagent_containers/food/snacks/jaffacake{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/jaffacake{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/carpet/orange,
 /area/shuttle/escape)
 "UJ" = (
 /obj/effect/turf_decal/siding/wood{
@@ -922,14 +952,14 @@ mp
 Yt
 CN
 Fu
-VX
+Su
 Xa
 bI
 gR
 Kw
 Qs
 Kw
-Kw
+RE
 Kw
 Kw
 dT
@@ -946,14 +976,14 @@ dO
 Ud
 CN
 VX
-Hg
+UD
 ha
 xg
 sM
 Kw
 Qs
 vd
-zK
+lR
 VH
 Zw
 CN
