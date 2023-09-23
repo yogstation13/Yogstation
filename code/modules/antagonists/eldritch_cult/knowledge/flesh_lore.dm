@@ -109,7 +109,6 @@
 	SIGNAL_HANDLER
 
 	if(isliving(target))
-		. = TRUE
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/flesh)
 
