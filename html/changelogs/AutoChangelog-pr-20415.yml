@@ -1,4 +1,0 @@
-author: "Yarinoi"
-delete-after: true 
-changes: 
-  - rscdel: "Hulk isn't buyable anymore until the allow_transfer bug gets fixed, sorry."
