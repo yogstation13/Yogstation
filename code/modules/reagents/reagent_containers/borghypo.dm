@@ -117,7 +117,7 @@
 	/// Counts up to the next time we charge
 	var/charge_timer = 0
 	/// Time it takes for shots to recharge (in deciseconds)
-	var/recharge_time = 20 SECONDS
+	var/recharge_time = 10 SECONDS
 	/// If the hypospray can go through armor or thick material
 	var/bypass_protection = FALSE
 	/// If this hypospray has been upgraded
@@ -340,7 +340,7 @@
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	charge_cost = 20
-	recharge_time = 4 SECONDS
+	recharge_time = 2 SECONDS
 	default_reagent_types = BASE_SYNDICATE_REAGENTS
 	bypass_protection = TRUE
 
@@ -353,7 +353,7 @@
 	possible_transfer_amounts = list(5, 10, 20, 1) // Starts at 5 on purpose.
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 20
-	recharge_time = 6 SECONDS
+	recharge_time = 3 SECONDS
 	default_reagent_types = BASE_SERVICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/borgshaker/ui_interact(mob/user, datum/tgui/ui)
@@ -429,7 +429,7 @@
 	possible_transfer_amounts = list(5, 10, 20, 1)
 	// Lots of reagents all regenerating at once, so the charge cost is lower. They also regenerate faster.
 	charge_cost = 40 // Costs double the power of the borgshaker due to synthesizing solids.
-	recharge_time = 12 SECONDS // Double the recharge time too, for the same reason.
+	recharge_time = 6 SECONDS // Double the recharge time too, for the same reason.
 	default_reagent_types = EXPANDED_SERVICE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/condiment_synthesizer/ui_interact(mob/user, datum/tgui/ui)
