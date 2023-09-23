@@ -2,7 +2,23 @@
 	name = "Glimmer of Winter"
 	desc = "Pledges yourself to the path of the Void. Allows you to transmute a stuff with a knife or its derivatives into a void blade. Additionally, empowers your Mansus grasp to chill any target hit."
 	gain_text = "Lore."
-	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_rust,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/base_mind,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/rust_final,/datum/eldritch_knowledge/flesh_final,/datum/eldritch_knowledge/mind_final)
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/base_ash,
+		/datum/eldritch_knowledge/base_rust,
+		/datum/eldritch_knowledge/base_flesh,
+		/datum/eldritch_knowledge/base_mind,
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/flesh_mark,
+		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/ash_blade_upgrade,
+		/datum/eldritch_knowledge/rust_blade_upgrade,
+		/datum/eldritch_knowledge/flesh_blade_upgrade,
+		/datum/eldritch_knowledge/mind_blade_upgrade,
+		/datum/eldritch_knowledge/ash_final,
+		/datum/eldritch_knowledge/rust_final,
+		/datum/eldritch_knowledge/flesh_final,
+		/datum/eldritch_knowledge/mind_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_knife)
 	cost = 1
 	route = PATH_VOID
@@ -28,16 +44,13 @@
 
 /datum/eldritch_knowledge/base_void/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	if(!iscarbon(target))
-		return
-	var/mob/living/carbon/C = target
-	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh)
-	if(E)
-		// Also refunds 75% of charge!
-		var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in user.actions
-		if(grasp)
-			grasp.next_use_time = min(round(grasp.next_use_time - grasp.cooldown_time * 0.75, 0), 0)
-			grasp.build_all_button_icons()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh) || H.has_status_effect(/datum/status_effect/eldritch/void)
+		if(E)
+			E.on_effect()
+			H.adjust_silence(10)
+			H.adjust_bodytemperature(-10)
 
 /datum/eldritch_knowledge/spell/void_phase
 	name = "Void Phase"
@@ -66,7 +79,11 @@
 	desc = "Your Mansus Grasp now applies the Mark of Void. The mark is triggered from an attack with your Void Blade. \
 		When triggered, further silences the victim and swiftly lowers the temperature of their body and the air around them."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark)
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/flesh_mark,
+		/datum/eldritch_knowledge/mind_mark)
 	route = PATH_VOID
 	tier = TIER_MARK
 
@@ -117,7 +134,11 @@
 	gain_text = "Fleeting memories, fleeting feet. I mark my way with frozen blood upon the snow. Covered and forgotten, wandering I lie, too weary to die."
 	desc = "Your blade will now inject a freezing venom into your targets."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/rust_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/ash_blade_upgrade,
+		/datum/eldritch_knowledge/rust_blade_upgrade,
+		/datum/eldritch_knowledge/flesh_blade_upgrade,
+		/datum/eldritch_knowledge/mind_blade_upgrade)
 	route = PATH_VOID
 	tier = TIER_BLADE
 
