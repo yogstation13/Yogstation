@@ -665,11 +665,14 @@
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
 				return
+			if(HM.allow_cloning)
+				say("ERROR: This mutation is anomalous, and cannot be saved.")
+				return
 
 			var/datum/mutation/human/A = new HM.type()
 			A.copy_mutation(HM)
 			stored_mutations += A
-			to_chat(usr,span_notice("Mutation successfully stored."))
+			to_chat(usr, span_notice("Mutation successfully stored."))
 			return
 
 		// Save a mutation to the diskette's storage buffer.
