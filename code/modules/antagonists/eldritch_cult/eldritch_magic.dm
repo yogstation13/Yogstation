@@ -988,7 +988,7 @@
 	school = SCHOOL_FORBIDDEN
 
 	cooldown_time = 25 SECONDS
-	cast_range = 5
+	cast_range = 7
 	invocation = "PH'ASE"
 	invocation_type = INVOCATION_WHISPER
 	active_msg = span_notice("You prepare to warp everyone's vision.")
@@ -1031,7 +1031,7 @@
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
-	cast_range = 9
+	cast_range = 5
 	/// The minimum range to cast the phase.
 	var/min_cast_range = 3
 	/// The radius of damage around the void bubble
