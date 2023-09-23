@@ -8,9 +8,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "b" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
+/obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
 "c" = (
@@ -53,7 +51,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/underground/explored)
+/area/ruin/powered/seedvault)
 "j" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -116,11 +114,22 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "s" = (
-/turf/closed/mineral/random/snow,
+/turf/template_noop,
 /area/icemoon/underground/explored)
 "u" = (
 /turf/closed/wall/r_wall,
 /area/ruin/powered/seedvault)
+"v" = (
+/obj/structure/flora/bush,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
+"w" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "x" = (
 /obj/effect/mob_spawn/human/seed_vault,
 /turf/open/floor/plasteel/freezer,
@@ -171,6 +180,10 @@
 /obj/item/storage/fancy/rollingpapers,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"E" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "F" = (
 /obj/machinery/door/airlock,
 /obj/machinery/door/firedoor/border_only,
@@ -251,6 +264,10 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"S" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/underground/explored)
 "T" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
@@ -295,53 +312,53 @@
 s
 s
 s
-s
-s
-s
-s
-u
-u
-u
-u
-u
-u
-s
-s
-s
-s
-s
 X
 X
+b
+X
+u
+u
+u
+u
+u
+u
+s
+s
+s
+s
+s
+s
+s
 "}
 (2,1,1) = {"
 s
 s
-s
-s
-s
-s
-s
+E
+X
+X
+X
+X
 u
 x
 x
 x
 x
 u
-s
-s
-s
-s
-s
 X
 X
+b
+X
+X
+s
+s
 "}
 (3,1,1) = {"
+s
 X
-s
-s
-s
-s
-s
+X
+X
+X
+X
 u
 u
 y
@@ -350,17 +367,17 @@ j
 T
 u
 u
-s
-s
-s
+X
+X
+v
 X
 s
-X
+s
 "}
 (4,1,1) = {"
+s
 X
-s
-s
+X
 u
 u
 u
@@ -373,15 +390,15 @@ u
 u
 u
 u
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (5,1,1) = {"
 s
-s
+X
 u
 u
 l
@@ -395,15 +412,15 @@ a
 z
 a
 u
-s
-s
-s
-s
+X
+X
+S
+X
 s
 "}
 (6,1,1) = {"
 s
-s
+X
 u
 D
 j
@@ -417,15 +434,15 @@ j
 j
 e
 u
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (7,1,1) = {"
 s
-s
+X
 u
 O
 j
@@ -439,15 +456,15 @@ C
 j
 Q
 u
-s
-s
-s
-s
+X
+X
+E
+X
 s
 "}
 (8,1,1) = {"
-X
 s
+X
 u
 G
 j
@@ -462,14 +479,14 @@ U
 U
 A
 m
-s
-s
-s
+X
+X
+X
 s
 "}
 (9,1,1) = {"
-X
 s
+X
 u
 n
 j
@@ -483,15 +500,15 @@ L
 j
 l
 u
+w
+X
+X
 b
-s
-s
-s
 s
 "}
 (10,1,1) = {"
 s
-s
+X
 u
 H
 j
@@ -506,14 +523,14 @@ j
 C
 u
 X
-s
-s
-s
+X
+X
+S
 s
 "}
 (11,1,1) = {"
 s
-s
+b
 u
 j
 j
@@ -527,15 +544,15 @@ W
 j
 c
 u
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (12,1,1) = {"
-X
 s
+X
 u
 y
 j
@@ -549,15 +566,15 @@ j
 j
 Q
 u
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (13,1,1) = {"
 s
-s
+X
 u
 p
 j
@@ -571,15 +588,15 @@ j
 j
 g
 u
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (14,1,1) = {"
 s
-s
+X
 u
 u
 p
@@ -593,15 +610,15 @@ J
 R
 f
 u
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (15,1,1) = {"
 s
-s
+X
 X
 u
 u
@@ -615,15 +632,15 @@ u
 u
 u
 u
-s
-s
-s
-s
+X
+S
+X
+X
 s
 "}
 (16,1,1) = {"
-X
 s
+X
 X
 i
 u
@@ -637,21 +654,21 @@ u
 i
 u
 i
-s
-s
-s
-s
+X
+X
+X
+X
 s
 "}
 (17,1,1) = {"
 s
-s
-s
-s
-s
-s
-s
-s
+X
+X
+X
+X
+X
+X
+X
 u
 V
 V
@@ -659,75 +676,75 @@ u
 X
 X
 X
-s
-s
-s
 X
 X
+X
+X
+s
 "}
 (18,1,1) = {"
 s
 s
+S
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
 s
-X
-X
-X
-X
-X
-X
-X
-X
-X
-X
-X
-X
 s
-s
-s
-X
-X
 "}
 (19,1,1) = {"
 s
 s
 s
-s
+X
+v
+X
+X
+b
+X
+X
+X
+X
+X
+X
+E
 X
 X
 s
-X
-X
-X
-X
-X
-X
-X
 s
 s
-s
-X
-X
-X
 "}
 (20,1,1) = {"
 s
 s
 s
-X
-X
-X
-s
-X
-X
-X
-X
-X
-X
-X
 s
 s
 s
-X
-X
+s
+s
+s
+s
+s
+s
+s
+s
+s
+s
+s
+s
+s
 s
 "}
