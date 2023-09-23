@@ -481,6 +481,50 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	implants = list(/obj/item/implant/mindshield) //No revolutionaries, he's MY friend.
 	id = /obj/item/card/id
 
+/obj/effect/mob_spawn/human/icemoon_walker
+	name = "disturbed grave"
+	desc = "A grave.  It's dirt seems to be churned up, with signs of recent activity."
+	roundstart = FALSE
+	death = FALSE
+	important_info = "Do not board the Nanotrasen station under any circumstances."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	mob_species = /datum/species/zombie
+	outfit = /datum/outfit/icemoon_walker
+	short_desc = "You are an Icemoon Walker, created by The Syndicate's early experiments with Romerol."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	assignedrole = "Icemoon Walker"
+
+/datum/outfit/icemoon_walker
+	name = "Icemoon Walker"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/wintercoat
+	shoes = /obj/item/clothing/shoes/winterboots
+	gloves = /obj/item/clothing/gloves/color/black
+	back = /obj/item/storage/backpack
+
+/obj/effect/mob_spawn/human/icemoon_walker/chieftain
+	name = "immaculate grave"
+	desc = "A grave.  It's dirt is perfectly shaped, as though someone has smoothed it out recently."
+	roundstart = FALSE
+	death = FALSE
+	important_info = "Do not board the Nanotrasen station under any circumstances."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	mob_species = /datum/species/zombie
+	outfit = /datum/outfit/icemoon_walker/chieftain
+	short_desc = "You lead a tribe of Icemoon Walkers, zombies created by The Syndicate's early experiments with Romerol."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	assignedrole = "Icemoon Walker Chieftain"
+
+/datum/outfit/icemoon_walker/chieftain
+	name = "Icemoon Walker Chieftain"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/wintercoat/bluecoat
+	shoes = /obj/item/clothing/shoes/winterboots
+	gloves = /obj/item/clothing/gloves/color/black
+	back = /obj/item/storage/backpack
+
 /obj/effect/mob_spawn/human/syndicate
 	name = "Syndicate Operative"
 	roundstart = FALSE
