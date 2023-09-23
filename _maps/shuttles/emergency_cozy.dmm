@@ -1,10 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aB" = (
-/obj/machinery/computer/crew{
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblue,
-/area/shuttle/escape)
 "aJ" = (
 /obj/structure/railing{
 	dir = 4
@@ -18,6 +12,12 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/black,
+/area/shuttle/escape)
+"dO" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "dT" = (
 /obj/structure/curtain,
@@ -37,6 +37,13 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"gr" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "gR" = (
 /obj/structure/railing{
 	dir = 4
@@ -53,6 +60,9 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/black,
+/area/shuttle/escape)
+"hp" = (
+/turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
 "hS" = (
 /obj/structure/chair/comfy/brown{
@@ -80,6 +90,21 @@
 	dir = 1
 	},
 /area/shuttle/escape)
+"mm" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = 3;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
 "mp" = (
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
@@ -105,8 +130,14 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/wood,
 /area/shuttle/escape)
-"qA" = (
-/obj/machinery/computer/emergency_shuttle,
+"rD" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "sp" = (
@@ -146,6 +177,21 @@
 "vj" = (
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
+"vs" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
+"wa" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
 "wX" = (
 /obj/structure/chair/sofa{
 	dir = 1
@@ -170,15 +216,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/black,
-/area/shuttle/escape)
-"xk" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "xw" = (
 /obj/machinery/door/firedoor/border_only{
@@ -221,19 +258,19 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
-"zk" = (
-/obj/machinery/computer/security{
+"yQ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
+	},
+/obj/structure/chair/sofa/left{
+	dir = 8;
+	pixel_x = 2
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "zK" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"Am" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "AP" = (
 /obj/machinery/door/firedoor/border_only{
@@ -247,15 +284,18 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Bj" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblue,
-/area/shuttle/escape)
 "Bq" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"BK" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Cb" = (
 /obj/structure/table,
@@ -374,12 +414,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Ke" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblue,
-/area/shuttle/escape)
 "Kg" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
@@ -421,12 +455,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Lv" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblue,
-/area/shuttle/escape)
 "Lw" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -440,6 +468,16 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"LH" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/chair/sofa/right{
+	dir = 8;
+	pixel_x = 2
+	},
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "MF" = (
 /obj/effect/turf_decal/siding/wood{
@@ -458,16 +496,27 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"Oa" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -29
+"NT" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = -4;
+	pixel_y = 1
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Ob" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"Oh" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Ol" = (
 /obj/structure/table/glass,
@@ -496,12 +545,25 @@
 "PJ" = (
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
+"Qd" = (
+/obj/structure/fireplace{
+	fuel_added = 1000;
+	lit = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/shuttle/escape)
 "Qs" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/shuttle/escape)
+"QE" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
 "Sc" = (
 /obj/structure/chair/sofa{
@@ -569,6 +631,13 @@
 "VX" = (
 /turf/open/floor/carpet/orange,
 /area/shuttle/escape)
+"Wm" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "WM" = (
 /obj/structure/railing/corner{
 	dir = 1
@@ -623,6 +692,21 @@
 /obj/machinery/light,
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
+"Za" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/lighter/gold,
+/turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
 "Zw" = (
 /obj/machinery/light{
 	dir = 4
@@ -630,12 +714,20 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"ZT" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/frenchtoast{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 ic
-ic
-ic
-ic
+CN
+gr
+gr
 CN
 CN
 CN
@@ -656,10 +748,10 @@ CN
 ic
 "}
 (2,1,1) = {"
-ic
 CN
 CN
-CN
+mm
+Ox
 CN
 ux
 Xz
@@ -680,10 +772,10 @@ CN
 CN
 "}
 (3,1,1) = {"
-CN
-CN
-Bj
-aB
+Wm
+NT
+ZT
+mp
 CN
 ux
 vj
@@ -705,9 +797,9 @@ Ob
 "}
 (4,1,1) = {"
 ot
-Am
-Lv
-xk
+BK
+wa
+vs
 CN
 ux
 vj
@@ -728,10 +820,10 @@ Uy
 Ob
 "}
 (5,1,1) = {"
-ot
-Ox
-mp
-Yt
+CN
+hp
+hp
+Oh
 CN
 CN
 Ib
@@ -752,10 +844,10 @@ Uy
 Ob
 "}
 (6,1,1) = {"
-ot
-qA
-mp
-mp
+CN
+Qd
+hp
+Oh
 nF
 PJ
 PJ
@@ -776,10 +868,10 @@ Uy
 Ob
 "}
 (7,1,1) = {"
-ot
-Ox
-mp
-Oa
+CN
+hp
+hp
+rD
 CN
 yP
 yr
@@ -801,9 +893,9 @@ Ob
 "}
 (8,1,1) = {"
 ot
-Am
-Ke
-Ke
+LH
+yQ
+QE
 CN
 VX
 VX
@@ -824,10 +916,10 @@ Uy
 Ob
 "}
 (9,1,1) = {"
-CN
-CN
-zk
-Ud
+Wm
+Za
+mp
+Yt
 CN
 Fu
 VX
@@ -848,10 +940,10 @@ Uy
 Ob
 "}
 (10,1,1) = {"
-ic
 CN
 CN
-CN
+dO
+Ud
 CN
 VX
 Hg
@@ -873,9 +965,9 @@ CN
 "}
 (11,1,1) = {"
 ic
-ic
-ic
-ic
+CN
+yo
+yo
 CN
 Xn
 CN
