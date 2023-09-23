@@ -831,7 +831,7 @@
 	else if(stat & (BROKEN|MAINT))
 		to_chat(user, span_warning("Nothing happens!"))
 	else
-		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack && !integration_cog)
+		if((allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack) || integration_cog)
 			locked = !locked
 			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the APC interface."))
 			update_appearance(UPDATE_ICON)
