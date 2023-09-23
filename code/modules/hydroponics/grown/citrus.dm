@@ -69,6 +69,10 @@
 	for (var/counter = 1 to max)
 		var/obj/item/reagent_containers/food/snacks/grown/citrus/lime/lime = new(get_turf(src))
 		lime.throw_at(pick(oview(7, get_turf(src))), 10, 1)
+		for(var/reagent_id in reagents.reagent_list)
+			var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]
+			R.volume /= 2
+			lime.reagents.reagent_list |= reagents.reagent_list
 
 	audible_message("[src] splits!")
 	qdel(src)
