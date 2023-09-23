@@ -69,7 +69,15 @@
 	for (var/counter = 1 to max)
 		var/obj/item/reagent_containers/food/snacks/grown/citrus/lime/lime = new(get_turf(src))
 		lime.throw_at(pick(oview(7, get_turf(src))), 10, 1)
-		lime.seed = seed
+		lime.seed.lifespan = seed.lifespan
+		lime.seed.endurance = seed.endurance
+		lime.seed.maturation = seed.maturation
+		lime.seed.production = seed.production
+		lime.seed.yield = seed.yield
+		lime.seed.potency = seed.potency
+		lime.seed.weed_rate = seed.weed_rate
+		lime.seed.weed_chance = seed.weed_chance
+		lime.seed.genes |= seed.genes
 		for(var/datum/reagent/R  in reagents.reagent_list)
 			R.volume /= 2
 			lime.reagents.reagent_list |= reagents.reagent_list
