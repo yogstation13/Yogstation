@@ -1,0 +1,8 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "the turbine now generates power from a difference in pressure instead of just moving the gas anyway and making power for free (respect conservation of energy!!!)"
+  - tweak: "turbine computer tgui shows the turbine's internal pressure"
+  - bugfix: "fixed the turbine making free energy from nowhere at low RPM"
+  - bugfix: "fixed the turbine forcing air into the outlet turf when it's blocked"
+  - bugfix: "fixed inlet and outlet turfs not updating air properly"
