@@ -1,0 +1,4 @@
+author: "Kell-E"
+delete-after: true 
+changes: 
+  - bugfix: "Paramedics, Geneticists and Network Admins no longer ignore the existance of jumpskirts."
