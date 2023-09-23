@@ -145,7 +145,7 @@
 			if(covered_locations & HEAD)
 				return 0
 		if(BODY_ZONE_PRECISE_EYES)
-			if(face_covered & HIDEFACE || face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES || eyesmouth_covered & HEADCOVERSEYES)
+			if(face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES || eyesmouth_covered & HEADCOVERSEYES || eyesmouth_covered & MASKCOVERSEYES)
 				return 0
 		if(BODY_ZONE_PRECISE_MOUTH)
 			if(face_covered & HIDEFACE || eyesmouth_covered & MASKCOVERSMOUTH || eyesmouth_covered & HEADCOVERSMOUTH)
