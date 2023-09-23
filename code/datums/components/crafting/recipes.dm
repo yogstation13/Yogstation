@@ -671,7 +671,6 @@
 	time = 2 SECONDS
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen = 1,
 				/datum/reagent/medicine/epinephrine = 10)
-
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/refill_atropine_medipen
