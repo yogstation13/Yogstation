@@ -1,7 +1,9 @@
 import { map } from 'common/collections';
 import { useBackend } from '../backend';
-import {Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section, Table} from '../components';
+import { Box, Button, Collapsible, Grid, Input, LabeledList, NoticeBox, Section, Table } from '../components';
 import { Window } from '../layouts';
+import { resolveAssetOptional } from "../assets";
+import { classes } from "common/react";
 
 export const PandemicBeakerDisplay = (props, context) => {
   const { act, data } = useBackend(context);
@@ -163,11 +165,38 @@ export const PandemicDiseaseDisplay = (props, context) => {
   );
 };
 
+export const PandemicSymptomIcon = (props, ctx) => {
+  const { icon } = props;
+
+  const iconUrl = resolveAssetOptional(icon);
+  const isAnimated = iconUrl !== undefined;
+
+  if (isAnimated) {
+    return (
+      <img src={iconUrl} width="56px" height="56px" style={{
+        'vertical-align': 'middle',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+        }}
+      />);
+  } else {
+    return (
+      <span
+        className={classes(["virology_symptoms56x56", iconUrl])}
+        style={{
+          'vertical-align': 'middle',
+          'horizontal-align': 'middle',
+        }}
+      />
+    );
+  }
+};
+
 export const PandemicSymptomDisplay = (props, context) => {
   const { symptom } = props;
   const {
     name,
     desc,
+    icon,
     stealth,
     resistance,
     stage_speed,
@@ -177,6 +206,7 @@ export const PandemicSymptomDisplay = (props, context) => {
   } = symptom;
   const thresholds = map((desc, label) => ({ desc, label }))(
     symptom.threshold_desc || {});
+
   return (
     <Section
       title={name}
@@ -190,7 +220,7 @@ export const PandemicSymptomDisplay = (props, context) => {
       )}>
       <Grid>
         <Grid.Column size={20}>
-          TODO Sprite Goes Here
+          <PandemicSymptomIcon icon={icon} />
         </Grid.Column>
         <Grid.Column size={80}>
           <Table>

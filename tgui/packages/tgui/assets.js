@@ -11,6 +11,8 @@ export const resolveAsset = name => (
   loadedMappings[name] || name
 );
 
+export const resolveAssetOptional = name => loadedMappings[name];
+
 export const assetMiddleware = store => next => action => {
   const { type, payload } = action;
   if (type === 'asset/stylesheet') {
