@@ -2,7 +2,7 @@
 	name = "Blacksmith's Tale"
 	desc = "Pledges yourself to the path of Rust. Allows you to transmute a piece of trash with a knife into a rusty blade. Additionally, your Mansus grasp now deals 500 damage to inorganic matter, rusts any surface it's used on, while destroying any surface that is already rusty."
 	gain_text = "Outside the Ruined Keep, you drank of the River Krym. Its poison seeped through your body as years shriveled away. Yet, you were spared. Now, your purpose is clear."
-	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/flesh_final)
+	banned_knowledge = list(/datum/eldritch_knowledge/base_ash,/datum/eldritch_knowledge/base_flesh,/datum/eldritch_knowledge/base_mind,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade,/datum/eldritch_knowledge/ash_final,/datum/eldritch_knowledge/flesh_final,/datum/eldritch_knowledge/mind_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/rust_blade)
 	route = PATH_RUST
@@ -73,7 +73,7 @@
 	gain_text = "Ire and envy are universally observable. Where the Drifter went, he saw those who rejoiced with more and those who suffered with less. Only hatred grew in his heart."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your rusty blade to detonate the mark, which has a chance to deal between 0 to 200 damage to 75% of your target's items."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark)
+	banned_knowledge = list(/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/flesh_mark,/datum/eldritch_knowledge/mind_mark)
 	route = PATH_RUST
 	tier = TIER_MARK
 	
@@ -105,7 +105,7 @@
 	gain_text = "By the time her subjects began to rebel, she had given the Blacksmith enough bodies to sate the blades. His own drooled with an intoxicating nectar, which sealed his fate."
 	desc = "Your rusted blade now injects eldritch essence on hit."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade)
+	banned_knowledge = list(/datum/eldritch_knowledge/ash_blade_upgrade,/datum/eldritch_knowledge/flesh_blade_upgrade,/datum/eldritch_knowledge/mind_blade_upgrade)
 	route = PATH_RUST
 	tier = TIER_BLADE
 

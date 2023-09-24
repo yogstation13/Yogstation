@@ -204,19 +204,27 @@
 	else
 		dat += "<tr><td><B>Uniform:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ICLOTHING]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A></td></tr>"
 
-	if((w_uniform == null && !(dna && dna.species.nojumpsuit)) || (ITEM_SLOT_ICLOTHING in obscured))
+	// Yogs start - taking an axe at this stupid handmade-HTML garbo code
+	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST) // This is a lil verbose but the lint demands it
+	var/is_ipc_or_something = (chest?.status == BODYPART_ROBOTIC)
+	var/can_be_nakey = is_ipc_or_something || (dna && dna.species.nojumpsuit)
+	if((ITEM_SLOT_ICLOTHING in obscured) || (w_uniform == null && !can_be_nakey))
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Pockets:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>ID:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Belt:</B></font></td></tr>"
 	else
-		dat += "<tr><td>&nbsp;&#8627;<B>Belt:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_BELT]'>[(belt && !(belt.item_flags & ABSTRACT)) ? belt : "<font color=grey>Empty</font>"]</A>"
+		var/funny_arrow_character = ""
+		if(!can_be_nakey) // The funny arrow only really makes sense if this creature *needs* the uniform in order to hold these things.
+			//               Less so when we're an IPC or something.
+			funny_arrow_character = "&nbsp;&#8627;"
+		dat += "<tr><td>[funny_arrow_character]<B>Belt:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_BELT]'>[(belt && !(belt.item_flags & ABSTRACT)) ? belt : "<font color=grey>Empty</font>"]</A>"
 		if(has_breathable_mask && istype(belt, /obj/item/tank))
-			dat += "&nbsp;<A href='?src=[REF(src)];internal=[ITEM_SLOT_BELT]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+			dat += "&nbsp;<A href='?src=[REF(src)]internal=[ITEM_SLOT_BELT]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 		dat += "</td></tr>"
-		dat += "<tr><td>&nbsp;&#8627;<B>Pockets:</B></td><td><A href='?src=[REF(src)];pockets=left'>[(l_store && !(l_store.item_flags & ABSTRACT)) ? "Left (Full)" : "<font color=grey>Left (Empty)</font>"]</A>"
+		dat += "<tr><td>[funny_arrow_character]<B>Pockets:</B></td><td><A href='?src=[REF(src)];pockets=left'>[(l_store && !(l_store.item_flags & ABSTRACT)) ? "Left (Full)" : "<font color=grey>Left (Empty)</font>"]</A>"
 		dat += "&nbsp;<A href='?src=[REF(src)];pockets=right'>[(r_store && !(r_store.item_flags & ABSTRACT)) ? "Right (Full)" : "<font color=grey>Right (Empty)</font>"]</A></td></tr>"
-		dat += "<tr><td>&nbsp;&#8627;<B>ID:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ID]'>[(wear_id && !(wear_id.item_flags & ABSTRACT)) ? wear_id : "<font color=grey>Empty</font>"]</A></td></tr>"
-
+		dat += "<tr><td>[funny_arrow_character]<B>ID:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ID]'>[(wear_id && !(wear_id.item_flags & ABSTRACT)) ? wear_id : "<font color=grey>Empty</font>"]</A></td></tr>"
+	// Yogs end - garbo code axe
 	// yogs start - show bandaged parts
 	for (var/obj/item/bodypart/org in bodyparts)
 		if (org.bandaged)

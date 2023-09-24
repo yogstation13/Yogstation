@@ -112,6 +112,7 @@
 #define PATH_ASH "Ash"
 #define PATH_RUST "Rust"
 #define PATH_FLESH "Flesh"
+#define PATH_MIND "Mind"
 
 #define TIER_NONE 0
 #define TIER_PATH 1
