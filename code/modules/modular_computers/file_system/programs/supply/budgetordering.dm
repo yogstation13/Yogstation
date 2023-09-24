@@ -77,6 +77,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/obj/item/card/id/id_card = card_slot?.GetID()
 	if(id_card?.registered_account)
+		unlock_budget = TRUE
 		if(id_card?.registered_account?.account_job?.paycheck_department == ACCOUNT_CAR)
 			unlock_budget = FALSE //cargo tech is already using the same budget.
 		if(id_card?.registered_account?.account_job?.paycheck_department && budget_order)
@@ -89,7 +90,6 @@
 			requestonly = TRUE
 			can_approve_requests = FALSE
 			can_send = FALSE
-		unlock_budget = TRUE
 	else
 		requestonly = TRUE
 		unlock_budget = FALSE //none registered account shouldnt be using budget order
@@ -267,9 +267,6 @@
 			var/id = text2num(params["id"])
 			for(var/datum/supply_order/SO in SSshuttle.requestlist)
 				if(SO.id == id)
-					var/obj/item/card/id/id_card = card_slot?.GetID()
-					if(id_card && id_card?.registered_account)
-						SO.paying_account = SSeconomy.get_dep_account(id_card?.registered_account?.account_job.paycheck_department)
 					SSshuttle.requestlist -= SO
 					SSshuttle.shoppinglist += SO
 					. = TRUE
