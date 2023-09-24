@@ -60,8 +60,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
 			for(var/a in T.get_all_contents())
-				var/obj/structure/closet/crate/secure/owned/crate = locate() in a
-				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types) || crate.locked)
+				for(var/obj/structure/closet/crate/secure/owned/crate in a)
+					if(crate.locked)
+						return FALSE
+				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE
 
