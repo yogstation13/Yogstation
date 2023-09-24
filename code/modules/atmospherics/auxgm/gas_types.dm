@@ -2,6 +2,7 @@
 	id = GAS_O2
 	specific_heat = 20
 	name = "Oxygen"
+	ui_color = "blue"
 
 /datum/gas/nitrogen
 	id = GAS_N2
@@ -17,6 +18,7 @@
 			alert_type = /atom/movable/screen/alert/too_much_nitro
 		)
 	)
+	ui_color = "red"
 
 /datum/gas/carbon_dioxide //what the fuck is this?
 	id = GAS_CO2
@@ -33,6 +35,7 @@
 			alert_type = /atom/movable/screen/alert/too_much_co2
 		)
 	)
+	ui_color = "grey"
 
 /datum/gas/plasma
 	id = GAS_PLASMA
@@ -41,6 +44,7 @@
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	ui_color = "orange"
 
 /datum/gas/water_vapor
 	id = GAS_H2O
@@ -50,6 +54,7 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	breath_reagent = /datum/reagent/water
 	fusion_power = 8
+	ui_color = "lightsteelblue"
 
 /datum/gas/hypernoblium
 	id = GAS_HYPERNOB
@@ -58,6 +63,7 @@
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	ui_color = "teal"
 
 /datum/gas/nitrous_oxide
 	id = GAS_NITROUS
@@ -67,6 +73,7 @@
 	moles_visible = MOLES_GAS_VISIBLE * 2
 	fusion_power = 10
 	flags = GAS_FLAG_DANGEROUS
+	ui_color = "bisque"
 
 /datum/gas/nitrium
 	id = GAS_NITRIUM
@@ -76,6 +83,7 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
 	fusion_power = 7
+	ui_color = "brown"
 
 /datum/gas/tritium
 	id = GAS_TRITIUM
@@ -85,6 +93,7 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
 	fusion_power = 1
+	ui_color = "limegreen"
 
 /datum/gas/bz
 	id = GAS_BZ
@@ -92,12 +101,14 @@
 	name = "BZ"
 	flags = GAS_FLAG_DANGEROUS
 	fusion_power = 8
+	ui_color = "mediumpurple"
 
 /datum/gas/pluoxium
 	id = GAS_PLUOXIUM
 	specific_heat = 80
 	name = "Pluoxium"
 	fusion_power = -10
+	ui_color = "mediumslateblue"
 
 /datum/gas/miasma
 	id = GAS_MIASMA
@@ -105,6 +116,7 @@
 	name = "Miasma"
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 60
+	ui_color = "olive"
 
 /datum/gas/freon
 	id = GAS_FREON
@@ -113,12 +125,14 @@
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE *30
 	fusion_power = -5
+	ui_color = "paleturquoise"
 
 /datum/gas/hydrogen
 	id = GAS_H2
 	specific_heat = 15
 	name = "Hydrogen"
 	flags = GAS_FLAG_DANGEROUS
+	ui_color = "white"
 
 /datum/gas/healium
 	id = GAS_HEALIUM
@@ -126,6 +140,7 @@
 	name = "Healium"
 	gas_overlay = "healium"
 	moles_visible = MOLES_GAS_VISIBLE
+	ui_color = "salmon"
 
 /datum/gas/pluonium
 	id = GAS_PLUONIUM
@@ -134,6 +149,7 @@
 	flags = GAS_FLAG_DANGEROUS
 	gas_overlay = "pluonium"
 	moles_visible = MOLES_GAS_VISIBLE
+	ui_color = "greenyellow"
 
 /datum/gas/halon
 	id = GAS_HALON
@@ -142,6 +158,7 @@
 	flags = GAS_FLAG_DANGEROUS
 	gas_overlay = "halon"
 	moles_visible = MOLES_GAS_VISIBLE
+	ui_color = "purple"
 
 /datum/gas/antinoblium
 	id = GAS_ANTINOB
@@ -150,6 +167,7 @@
 	gas_overlay = "antinoblium"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 20
+	ui_color = "maroon"
 
 /datum/gas/zauker
 	id = GAS_ZAUKER
@@ -158,6 +176,7 @@
 	flags = GAS_FLAG_DANGEROUS
 	gas_overlay = "zauker"
 	moles_visible = MOLES_GAS_VISIBLE
+	ui_color = "darkgreen"
 
 /datum/gas/hexane
 	id = GAS_HEXANE
@@ -166,9 +185,11 @@
 	flags = GAS_FLAG_DANGEROUS
 	gas_overlay = "hexane"
 	moles_visible = MOLES_GAS_VISIBLE
+	ui_color = "plum"
 
 /datum/gas/dilithium // Main point is that this helps fusion occur at a significantly lower temperature than normal
 	id = GAS_DILITHIUM
 	specific_heat = 55
 	name = "Dilithium"
 	fusion_power = 1
+	ui_color = "pink"

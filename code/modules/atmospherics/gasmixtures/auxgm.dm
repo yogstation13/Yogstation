@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/list/enthalpies = list()
 	var/list/fire_products = list()
 	var/list/fire_burn_rates = list()
+	var/list/ui_colors = list()
 
 /datum/gas
 	var/id = ""
@@ -55,6 +56,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/enthalpy = 0 // Standard enthalpy of formation in joules, used for fires
 	var/fire_burn_rate = 1 // how many moles are burned per product released
 	var/fire_radiation_released = 0 // How much radiation is released when this gas burns
+	var/ui_color = "white"
 
 /datum/gas/proc/breath(partial_pressure, light_threshold, heavy_threshold, moles, mob/living/carbon/C, obj/item/organ/lungs/lungs)
 	// This is only called on gases with the GAS_FLAG_BREATH_PROC flag. When possible, do NOT use this--
@@ -79,6 +81,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 		ids[g] = g
 		typepaths[g] = gas.type
 		fusion_powers[g] = gas.fusion_power
+		ui_colors[g] = gas.ui_color
 
 		if(gas.breath_alert_info)
 			breath_alert_info[g] = gas.breath_alert_info

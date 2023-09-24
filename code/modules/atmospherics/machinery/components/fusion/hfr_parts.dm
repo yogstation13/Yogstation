@@ -239,12 +239,14 @@
 			fusion_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = round(connected_core.internal_fusion.get_moles(gas_id), 0.01),
+				"color" = GLOB.gas_data.ui_colors[gas_id]
 			)))
 	else
 		for(var/gas_id in connected_core.internal_fusion.get_gases())
 			fusion_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = 0,
+				"color" = GLOB.gas_data.ui_colors[gas_id]
 			)))
 	//Moderator gases
 	var/list/moderator_gasdata = list()
@@ -253,12 +255,14 @@
 			moderator_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = round(connected_core.moderator_internal.get_moles(gas_id), 0.01),
+				"color" = GLOB.gas_data.ui_colors[gas_id]
 			)))
 	else
 		for(var/gas_id in connected_core.moderator_internal.get_gases())
 			moderator_gasdata.Add(list(list(
 				"id"= initial(gas_id),
 				"amount" = 0,
+				"color" = GLOB.gas_data.ui_colors[gas_id]
 			)))
 
 	data["fusion_gases"] = fusion_gasdata

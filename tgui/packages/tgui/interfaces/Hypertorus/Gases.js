@@ -104,6 +104,7 @@ const GasList = (props, context) => {
               </>
             }>
             <ProgressBar
+              color={gas.color}
               value={gas.amount}
               minValue={0}
               maxValue={minimumScale}>

@@ -96,6 +96,7 @@ export const Crystallizer = (props, context) => {
                 key={gas.name}
                 label={gas.name}>
                 <ProgressBar
+                  color={gas.color}
                   value={gas.amount}
                   minValue={0}
                   maxValue={1000}>
