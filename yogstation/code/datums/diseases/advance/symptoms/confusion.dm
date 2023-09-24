@@ -1,6 +1,7 @@
 /datum/symptom/numb
 
 	name = "Analgesia"
+	icon = "analgesia"
 	desc = "The Virus attacks pain receptors in the host making them unable to feel injuries."
 	stealth = 2
 	resistance = -2

@@ -50,6 +50,7 @@
 
 /datum/symptom/heal/starlight
 	name = "Starlight Condensation"
+	icon = "symptom.starlight_condensation.gif"
 	desc = "The virus reacts to direct starlight, producing regenerative chemicals."
 	stealth = -1
 	resistance = -2
@@ -103,6 +104,7 @@
 
 /datum/symptom/heal/chem
 	name = "Toxolysis"
+	icon = "toxolysis"
 	stealth = 0
 	resistance = -2
 	stage_speed = 2
@@ -143,6 +145,7 @@
 
 /datum/symptom/heal/metabolism
 	name = "Metabolic Boost"
+	icon = "metabolic_boost"
 	stealth = -1
 	resistance = -2
 	stage_speed = 2
@@ -181,6 +184,7 @@
 
 /datum/symptom/heal/darkness
 	name = "Nocturnal Regeneration"
+	icon = "symptom.nocturnal_regeneration.gif"
 	desc = "The virus is able to mend the host's flesh when in conditions of low light, repairing physical damage. More effective against brute damage."
 	stealth = 2
 	resistance = -1
@@ -231,6 +235,7 @@
 
 /datum/symptom/heal/coma
 	name = "Regenerative Coma"
+	icon = "symptom.regen_coma.gif"
 	desc = "The virus causes the host to fall into a death-like coma when severely damaged, then rapidly fixes the damage."
 	stealth = 0
 	resistance = 2
@@ -309,6 +314,7 @@
 
 /datum/symptom/heal/water
 	name = "Tissue Hydration"
+	icon = "symptom.tissue_hydration.gif"
 	desc = "The virus uses excess water inside and outside the body to repair damaged tissue cells. More effective when using holy water and against burns."
 	stealth = 0
 	resistance = -1
@@ -368,6 +374,7 @@
 
 /datum/symptom/heal/plasma
 	name = "Plasma Fixation"
+	icon = "symptom.plasma_fixation.gif"
 	desc = "The virus draws plasma from the atmosphere and from inside the body to heal and stabilize body temperature."
 	stealth = 0
 	resistance = 3
@@ -436,6 +443,7 @@
 
 /datum/symptom/heal/radiation
 	name = "Radioactive Resonance"
+	icon = "radioactive_resonance"
 	desc = "The virus uses radiation to fix damage through dna mutations."
 	stealth = -1
 	resistance = -2

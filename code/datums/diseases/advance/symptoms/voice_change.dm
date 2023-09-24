@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/voice_change
 
 	name = "Voice Change"
+	icon = "symptom.voice_change.gif"
 	desc = "The virus alters the pitch and tone of the host's vocal cords, changing how their voice sounds."
 	stealth = -1
 	resistance = -2

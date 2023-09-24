@@ -109,7 +109,7 @@
 	if(!islist(B.data["resistances"]))
 		return
 	var/list/resistances = B.data["resistances"]
-	for(var/id in resistances
+	for(var/id in resistances)
 		var/list/this = list()
 		var/datum/disease/D = SSdisease.archive_diseases[id]
 		if(D)

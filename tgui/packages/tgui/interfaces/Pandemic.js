@@ -176,15 +176,17 @@ export const PandemicSymptomIcon = (props, ctx) => {
       <img src={iconUrl} width="56px" height="56px" style={{
         'vertical-align': 'middle',
         '-ms-interpolation-mode': 'nearest-neighbor',
+        margin: '4px',
         }}
       />);
   } else {
     return (
       <span
-        className={classes(["virology_symptoms56x56", iconUrl])}
+        className={classes(["virology_symptoms56x56", icon])}
         style={{
           'vertical-align': 'middle',
           'horizontal-align': 'middle',
+          margin: '4px',
         }}
       />
     );
@@ -219,32 +221,35 @@ export const PandemicSymptomDisplay = (props, context) => {
         </Box>
       )}>
       <Grid>
-        <Grid.Column size={20}>
+        <Grid.Column style={{ width: '64px' }}>
           <PandemicSymptomIcon icon={icon} />
         </Grid.Column>
-        <Grid.Column size={80}>
+        <Grid.Column style={{
+          width: 'calc(100% - 64px)',
+          'vertical-align': 'baseline',
+        }}>
           <Table>
             <Table.Row header>
-              <Table.Cell header>Level</Table.Cell>
-              <Table.Cell header>Resistance</Table.Cell>
-              <Table.Cell header>Stealth</Table.Cell>
-              <Table.Cell header>Stage Speed</Table.Cell>
-              <Table.Cell header>Transmission</Table.Cell>
+              <Table.Cell header textAlign="center">Level</Table.Cell>
+              <Table.Cell header textAlign="center">Resistance</Table.Cell>
+              <Table.Cell header textAlign="center">Stealth</Table.Cell>
+              <Table.Cell header textAlign="center">Stage Speed</Table.Cell>
+              <Table.Cell header textAlign="center">Transmission</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>
+              <Table.Cell textAlign="center">
                 {level}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell textAlign="center">
                 {resistance}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell textAlign="center">
                 {stealth}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell textAlign="center">
                 {stage_speed}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell textAlign="center">
                 {transmission}
               </Table.Cell>
             </Table.Row>

@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/confusion
 
 	name = "Confusion"
+	icon = "confusion"
 	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
 	stealth = 1
 	resistance = -1
