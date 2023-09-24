@@ -1,5 +1,0 @@
-author: "Therandomhoboo"
-delete-after: true 
-changes: 
-  - rscadd: "Added nutriments to Polypore, Porcini, inocybe & ember so grind results will work"
-  - tweak: "Ash flora, mushroom shavings, stem, cap & leaves now give mushroom powder when you grind them"
