@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Holoparasites no longer dust liches upon death"
+  - tweak: "Holoparasites lose 4 random stats upon revival by a lich"
