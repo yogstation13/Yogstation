@@ -6,7 +6,7 @@
 	/// Basic symptom description
 	var/desc = "If you see this something went very wrong."
 	/// Asset representing this symptom in Pandemic UI
-	var/icon = "invalid.png"
+	var/icon = "symptom.invalid.png"
 	/// Descriptions of threshold effects
 	var/threshold_descs = list()
 	var/stealth = 0

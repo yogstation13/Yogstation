@@ -567,6 +567,7 @@
 
 /datum/asset/simple/virology_symptoms_animated
 	assets = list(
+		"symptom.invalid.png" = 'icons/UI_Icons/symptoms/invalid.png',
 		"symptom.alkali_perspiration.gif" = 'icons/UI_Icons/symptoms/alkali_perspiration.gif',
 		"symptom.autophago_necrosis.gif" = 'icons/UI_Icons/symptoms/autophago_necrosis.gif',
         "symptom.ionizing_cellular_emission.gif" = 'icons/UI_Icons/symptoms/ionizing_cellular_emission.gif',
