@@ -13,6 +13,12 @@
 	description = "How did that get here?"
 	suffix = "icemoon_surface_shuttle_transit.dmm"
 
+/datum/map_template/ruin/icemoon/icemoon_hermit
+	name = "Icemoon Hermit"
+	id = "ice_hermit"
+	description = "The home of a hermit in the ice and snow, you can't possibly imagine who'd want to live here."
+	suffix = "icemoon_hermit.dmm"
+
 /datum/map_template/ruin/icemoon/lust
 	name = "Ruin of Lust"
 	id = "lust"
