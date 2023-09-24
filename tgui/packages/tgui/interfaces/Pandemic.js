@@ -165,7 +165,7 @@ export const PandemicDiseaseDisplay = (props, context) => {
   );
 };
 
-export const PandemicSymptomIcon = (props, ctx) => {
+export const PandemicSymptomIcon = (props) => {
   const { icon } = props;
 
   const iconUrl = resolveAssetOptional(icon);
