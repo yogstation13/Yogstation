@@ -1,0 +1,5 @@
+author: "Therandomhoboo"
+delete-after: true 
+changes: 
+  - bugfix: "Hallucinogen Mushroom & Hippie's delight no longer perma dizzy you"
+  - tweak: "Hippie's delight numbers for how long their effects last (dizzy, druggy, jitter etc) have been sorted out (Thanks to @Moltijoe)"
