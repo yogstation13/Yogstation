@@ -1043,7 +1043,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			to_chat(user, span_cultlarge("\"Foolish.\""))
 			to_chat(user, span_userdanger("A horrible force yanks at your arm!"))
 			user.emote("scream")
-			user.apply_damage(30, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			user.apply_damage(15, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 			user.dropItemToGround(src, TRUE)
 			user.Paralyze(50)
 			return
