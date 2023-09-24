@@ -246,7 +246,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
 	. = ..()
-	var/immune = HAS_TRAIT(user, TRAIT_MADNESS_IMMUNE) || HAS_TRAIT(user.mind, TRAIT_MADNESS_IMMUNE) || HAS_TRAIT(user, TRAIT_MESONS) || HAS_TRAIT(user.mind, TRAIT_MESONS)
+	var/immune = HAS_TRAIT(user, TRAIT_MESONS) || HAS_TRAIT(user.mind, TRAIT_MESONS)
 	if (isliving(user) && !immune && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 		. += "<span class='danger'>You get headaches just from looking at it.</span>"
 

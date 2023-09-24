@@ -326,16 +326,7 @@
 	cooldown_message = "<span class='warning'>The connection is currently out of sync... Recalibrating.</span>"
 	emp_message = "<span class='warning'>You feel the backsurge of a mind pulse.</span>"
 	var/effect_range = 3
-
-/obj/item/clothing/suit/armor/reactive/hallucinating/dropped(mob/user)
-	..()
-	if(istype(user))
-		REMOVE_TRAIT(user, TRAIT_MADNESS_IMMUNE, "reactive_hallucinating_armor")
-
-/obj/item/clothing/suit/armor/reactive/hallucinating/equipped(mob/user, slot)
-	..()
-	if(slot_flags & slot) //Was equipped to a valid slot for this item?
-		ADD_TRAIT(user, TRAIT_MADNESS_IMMUNE, "reactive_hallucinating_armor")
+	clothing_traits = list(TRAIT_MESONS)
 
 /obj/item/clothing/suit/armor/reactive/hallucinating/cooldown_activation(mob/living/carbon/human/owner)
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
