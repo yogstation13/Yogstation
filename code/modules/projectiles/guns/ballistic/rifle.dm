@@ -158,7 +158,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 //////////////////
 
 /obj/item/gun/ballistic/rifle/sniper_rifle
-	name = "\improper anti-materiel sniper rifle"
+	name = "\improper anti-material sniper rifle"
 	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
 	icon_state = "sniper"
 	item_state = "sniper"
