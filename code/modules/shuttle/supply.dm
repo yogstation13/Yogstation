@@ -26,7 +26,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/extraction_point,
 		/obj/machinery/syndicatebomb,
 		/obj/item/hilbertshotel,
-		/obj/structure/closet/crate/secure/owned,
 		/obj/structure/closet/bluespace // yogs - nope nice try
 	)))
 
@@ -61,7 +60,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
 			for(var/a in T.get_all_contents())
-				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
+				var/obj/structure/closet/crate/secure/owned/crate = a
+				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types) || crate.locked)
 					return FALSE
 	return TRUE
 
