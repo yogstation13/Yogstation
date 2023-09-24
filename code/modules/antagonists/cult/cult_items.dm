@@ -1035,3 +1035,23 @@ GLOBAL_VAR_INIT(curselimit, 0)
 					throw_at(D.thrower, 7, 1, null)
 	else
 		..()
+
+/obj/item/shield/mirror/pickup(mob/living/user)
+	. = ..()
+	if(!iscultist(user))
+		if(!is_servant_of_ratvar(user))
+			to_chat(user, span_cultlarge("\"Foolish.\""))
+			to_chat(user, span_userdanger("A horrible force yanks at your arm!"))
+			user.emote("scream")
+			user.apply_damage(30, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			user.dropItemToGround(src, TRUE)
+			user.Paralyze(50)
+			return
+		else
+			to_chat(user, span_cultlarge("\"One of Ratvar's toys is trying to play with things [user.p_they()] shouldn't. Cute.\""))
+			to_chat(user, span_userdanger("A horrible force yanks at your arm!"))
+			user.emote("scream")
+			user.apply_damage(30, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			user.dropItemToGround(src, TRUE)
+			user.Paralyze(50)
+			return
