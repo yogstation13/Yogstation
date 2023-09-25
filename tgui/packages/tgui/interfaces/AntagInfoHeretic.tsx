@@ -130,44 +130,41 @@ const GuideSection = () => {
           - Find reality smashing&nbsp;
           <span style={hereticPurple}>influences</span>
           &nbsp;around the station invisible to the normal eye and&nbsp;
-          <b>right click</b> on them to harvest them for&nbsp;
-          <span style={hereticBlue}>knowledge points</span>. Tapping them makes
-          them visible to all after a short time.
+          <b>use your codex </b> on them to harvest them for&nbsp;
+          <span style={hereticBlue}>knowledge points</span>.
         </Stack.Item>
         <Stack.Item>
           - Use your&nbsp;
-          <span style={hereticRed}>Living Heart action</span>
+          <span style={hereticRed}>Living Heart</span>
           &nbsp;to track down&nbsp;
           <span style={hereticRed}>sacrifice targets</span>, but be careful:
-          Pulsing it will produce a heartbeat sound that nearby people may hear.
+          You are able to target other heretics, so be careful whom you hunt.
           This action is tied to your <b>heart</b> - if you lose it, you must
           complete a ritual to regain it.
         </Stack.Item>
         <Stack.Item>
           - Draw a&nbsp;
           <span style={hereticGreen}>transmutation rune</span> by using a
-          drawing tool (a pen or crayon) on the floor while having&nbsp;
-          <span style={hereticGreen}>Mansus Grasp</span>
-          &nbsp;active in your other hand. This rune allows you to complete
+          your codex on the floor. This rune allows you to complete
           rituals and sacrifices.
         </Stack.Item>
         <Stack.Item>
           - Follow your <span style={hereticRed}>Living Heart</span> to find
           your targets. Bring them back to a&nbsp;
-          <span style={hereticGreen}>transmutation rune</span> in critical or
-          worse condition to&nbsp;
+          <span style={hereticGreen}>transmutation rune</span> once you have killed them&nbsp;
           <span style={hereticRed}>sacrifice</span> them for&nbsp;
           <span style={hereticBlue}>knowledge points</span>. The Mansus{' '}
           <b>ONLY</b> accepts targets pointed to by the&nbsp;
           <span style={hereticRed}>Living Heart</span>.
         </Stack.Item>
         <Stack.Item>
-          - Make yourself a <span style={hereticYellow}>focus</span> to be able
-          to cast various advanced spells to assist you in acquiring harder and
-          harder sacrifices.
+          -  Each <span style={hereticYellow}>Lore-Specific</span> upgrade will be available after gaining three research of the previous tier.
+          This means you need three tier one abilities before you can claim your Grasp Mark,
+          then three tier two abilities before you can claim your Blade Upgrade.
+          As it follows, three tier three abilities are required before you unlock your Ascension Rite.
         </Stack.Item>
         <Stack.Item>
-          - Accomplish all of your objectives to be able to learn the{' '}
+          - Accomplish all of your research to be able to learn the{' '}
           <span style={hereticYellow}>final ritual</span>. Complete the ritual
           to become all powerful!
         </Stack.Item>
