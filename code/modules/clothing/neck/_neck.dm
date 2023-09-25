@@ -181,7 +181,7 @@
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	var/mob/living/carbon/C = M
-	if(C)
+	if(C && !ishuman(C))
 		return FALSE
 	return ..()
 
