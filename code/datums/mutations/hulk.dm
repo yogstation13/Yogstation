@@ -11,6 +11,7 @@
 	locked = TRUE
 	mutadone_proof = TRUE
 	allow_transfer = FALSE
+	allow_cloning = FALSE
 
 /datum/mutation/human/hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
