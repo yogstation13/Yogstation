@@ -500,6 +500,7 @@
 	var/obj/item/accessory_type //If this is null, it won't be spawned.
 	var/obj/item/accessory_instance
 	var/tick_counter = 0
+	var/junkie_warning = ""
 
 /datum/quirk/junkie/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -509,6 +510,7 @@
 		reagent_type = prot_holder.type
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
+	junkie_warning = ("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again...")
 	var/current_turf = get_turf(quirk_holder)
 	if (!drug_container_type)
 		drug_container_type = /obj/item/storage/pill_bottle
@@ -551,7 +553,7 @@
 		if(!in_list)
 			H.reagents.addiction_list += reagent_instance
 			reagent_instance.addiction_stage = 0
-			to_chat(quirk_holder, span_danger("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again..."))
+			to_chat(quirk_holder, span_danger("[junkie_warning]"))
 		tick_counter = 0
 	else
 		++tick_counter
@@ -625,6 +627,7 @@
 	lose_text = span_notice("You no longer feel dependent on alcohol to function.")
 	medical_record_text = "Patient is known to be dependent on alcohol."
 	reagent_type = /datum/reagent/consumable/ethanol
+	junkie_warning = "You suddenly feel like you need another drink..."
 	
 /datum/quirk/junkie/drunkard/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -632,21 +635,6 @@
 	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
 	. = ..()
 
-/datum/quirk/junkie/drunkard/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
-	if (tick_counter == 60) 
-		var/in_list = FALSE
-		for (var/datum/reagent/entry in H.reagents.addiction_list)
-			if(istype(entry, reagent_type))
-				in_list = TRUE
-				break
-		if(!in_list)
-			H.reagents.addiction_list += reagent_instance
-			reagent_instance.addiction_stage = 0
-			to_chat(quirk_holder, span_danger("You suddenly feel like you need another drink..."))
-		tick_counter = 0
-	else
-		++tick_counter
 	
 /datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
