@@ -65,7 +65,7 @@
 
 /obj/item/gem/rupee
 	name = "ruperium crystal"
-	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. Its soft humming is prized by ethereal musicians, and it is commonly encorporated into their gem-encrusted instruments. With nuclear research stations in competition for its supply of rare radioisotopes, is guaranteed to fetch a high price. In material despeiration, it can be heated into a supply of usable uranium."
+	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. Its soft humming is prized by ethereal musicians, and it is commonly encorporated into their gem-encrusted instruments. With nuclear research stations in competition for its supply of rare radioisotopes, is guaranteed to fetch a high price. In material desperation, it can be heated into a supply of usable uranium."
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium{amount = 10}
