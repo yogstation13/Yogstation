@@ -614,6 +614,51 @@
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
 
+
+/datum/quirk/junkie/drunkard
+	name = "Drunkard"
+	desc = "In space there's no such thing as day drinking."
+	icon = "beer" 
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You could really go for a stiff drink right about now.")
+	lose_text = span_notice("You no longer feel dependent on alcohol to function.")
+	medical_record_text = "Patient is known to be dependent on alcohol."
+	reagent_type = /datum/reagent/consumable/ethanol
+	
+/datum/quirk/junkie/drunkard/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	quirk_holder.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
+	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
+	. = ..()
+
+/datum/quirk/junkie/on_process()
+	var/mob/living/carbon/human/H = quirk_holder
+	if (tick_counter == 60) 
+		var/in_list = FALSE
+		for (var/datum/reagent/entry in H.reagents.addiction_list)
+			if(istype(entry, reagent_type))
+				in_list = TRUE
+				break
+		if(!in_list)
+			H.reagents.addiction_list += reagent_instance
+			reagent_instance.addiction_stage = 0
+			to_chat(quirk_holder, span_danger("You suddenly feel like you need another drink..."))
+		tick_counter = 0
+	else
+		++tick_counter
+	
+/datum/quirk/junkie/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = !(species.process_flags & ORGANIC)
+	qdel(species)
+
+	if(disallowed_trait)
+		return "You don't process normal chemicals!"
+	return FALSE
+
 /datum/quirk/unstable
 	name = "Unstable"
 	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
