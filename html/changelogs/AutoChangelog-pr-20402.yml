@@ -1,0 +1,4 @@
+author: "Kell-E"
+delete-after: true 
+changes: 
+  - bugfix: "It's no longer possible to draw infinite sanguirite from an epipen."
