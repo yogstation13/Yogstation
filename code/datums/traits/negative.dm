@@ -632,7 +632,7 @@
 	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
 	. = ..()
 
-/datum/quirk/junkie/on_process()
+/datum/quirk/junkie/drunkard/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
 	if (tick_counter == 60) 
 		var/in_list = FALSE
@@ -648,7 +648,7 @@
 	else
 		++tick_counter
 	
-/datum/quirk/junkie/check_quirk(datum/preferences/prefs)
+/datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
