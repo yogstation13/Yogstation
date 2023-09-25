@@ -1,5 +1,0 @@
-author: "wonderinghost"
-delete-after: true 
-changes: 
-  - soundadd: "adds admin fax sound"
-  - bugfix: "fixes centcom dissapearing from fax list if switching off"
