@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Tanks with devices attached to it now properly remove their appearance when the devices are removed."
