@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 				to_chat(src, span_userdanger("Your summoner has died!"))
 				visible_message(span_bolddanger("[src] dies along with its user!"))
 				death(TRUE)
-				if(!HAS_TRAIT_FROM(summoner.current, TRAIT_NO_SOUL, LICH_TRAIT))//body will be dusted upon revival anyways
+				if(HAS_TRAIT_FROM(summoner.current, TRAIT_NO_SOUL, LICH_TRAIT))//body will be dusted upon revival anyways
 					summoner.current.visible_message(span_bolddanger("[summoner.current]'s body sudders as clashing forces fight for the soul!"))
 				else
 					summoner.current.visible_message(span_bolddanger("[summoner.current]'s body is completely consumed by the strain of sustaining [src]!"))
