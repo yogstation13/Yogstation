@@ -44,7 +44,7 @@
 	/// Avaliable categories
 	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Miscellaneous","Dinnerware","Imported", "Search")
 
-/obj/machinery/autolathe/Initialize()
+/obj/machinery/autolathe/Initialize(mapload)
 	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass), 0, TRUE, null, null, CALLBACK(src, PROC_REF(AfterMaterialInsert)))
 	. = ..()
 
@@ -177,14 +177,14 @@
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/autolathe/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
+	if(user.a_intent == INTENT_DISARM && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
@@ -193,9 +193,6 @@
 	if(panel_open && is_wire_tool(O))
 		wires.interact(user)
 		return TRUE
-
-	if(user.a_intent == INTENT_HARM) //so we can hit the machine
-		return ..()
 
 	if(stat)
 		return TRUE
@@ -307,18 +304,19 @@
 			else
 				stored_research.remove_design(D)
 
-/obj/machinery/autolathe/hacked/Initialize()
+/obj/machinery/autolathe/hacked/Initialize(mapload)
 	. = ..()
 	adjust_hacked(TRUE)
 
-/obj/machinery/autolathe/emag_act(mob/user)
+/obj/machinery/autolathe/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	if(!hacked)
 		adjust_hacked(TRUE)
 	playsound(src, "sparks", 75, TRUE, -1)
 	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
+	return TRUE
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes
@@ -372,7 +370,7 @@
 				A = location
 			if(is_stack) // If its a stack we need to define it as so
 				var/obj/item/stack/N = new D.build_path(A, multiplier)
-				N.update_icon()
+				N.update_appearance(UPDATE_ICON)
 				N.autolathe_crafted(src)
 			else
 				for(var/i=1, i<=multiplier, i++)

@@ -176,7 +176,7 @@
 		to_chat(usr, span_warning("\The [src]'s internal magic supply is still recharging!")) // Yogs -- text macro fix
 		return
 
-	usr.say("Rise, my creation! Off your page into this realm!", forced = "stickman summoning")
+	usr.say("Rise, my creation! Off your page into this realm!", ignore_spam = TRUE, forced = "stickman summoning")
 	playsound(src.loc, 'sound/magic/summon_magic.ogg', 50, 1, 1)
 	var/mob/living/M = new /mob/living/simple_animal/hostile/stickman(get_turf(usr))
 	var/list/factions = usr.faction
@@ -199,7 +199,7 @@
 	armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 20, RAD = 20, FIRE = 100, ACID = 100)
 	slowdown = 0
 	clothing_flags = THICKMATERIAL
-	resistance_flags = FIRE_PROOF | ACID_PROOF
+	resistance_flags = FIRE_PROOF | ACID_PROOF | THICKMATERIAL
 	w_class = WEIGHT_CLASS_BULKY
 	flags_inv = HIDEJUMPSUIT
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -244,7 +244,7 @@
 	to_chat(user, span_notice("You charge \the [W]. It can now absorb [W.current_charges] hits."))
 	qdel(src)
 
-/obj/item/clothing/suit/wizrobe/armor/Initialize()
+/obj/item/clothing/suit/wizrobe/armor/Initialize(mapload)
 	. = ..()
 	if(!allowed)
 		allowed = GLOB.advanced_hardsuit_allowed

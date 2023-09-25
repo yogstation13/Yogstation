@@ -6,7 +6,7 @@
 	icon_state = "goose" // sprites by cogwerks from goonstation, used with permission
 	icon_living = "goose"
 	icon_dead = "goose_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	turns_per_move = 5
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat = 2)
@@ -53,7 +53,7 @@
 	var/vomitTimeBonus = 0
 	var/datum/action/cooldown/vomit/goosevomit
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize(mapload)
 	. = ..()
 	goosevomit = new
 	goosevomit.Grant(src)
@@ -86,7 +86,7 @@
 	else
 		visible_message(span_notice("[src] refuses to eat \the [tasty]."))
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
 	var/turf/T = get_turf(src)
 	var/obj/item/reagent_containers/food/consumed = locate() in contents //Barf out a single food item from our guts
 	if (prob(50) && consumed)
@@ -95,7 +95,7 @@
 		playsound(T, 'sound/effects/splat.ogg', 50, 1)
 		T.add_vomit_floor(src)
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(var/atom/A, var/hard = FALSE)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(atom/A, hard = FALSE)
 	if(!istype(A, /obj/item/reagent_containers/food))
 		return
 	var/turf/currentTurf = get_turf(src)

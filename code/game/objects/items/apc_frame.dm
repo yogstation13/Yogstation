@@ -55,7 +55,7 @@
 
 	qdel(src)
 
-/obj/item/wallframe/proc/after_attach(var/obj/O)
+/obj/item/wallframe/proc/after_attach(obj/O)
 	transfer_fingerprints_to(O)
 
 /obj/item/wallframe/attackby(obj/item/W, mob/user, params)
@@ -123,3 +123,19 @@
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50, /datum/material/glass=50)
 	grind_results = list(/datum/reagent/iron = 10, /datum/reagent/silicon = 10)
+
+/obj/item/electronics/ui_status(mob/user)
+	. = ..()
+	if(issilicon(user))
+		var/mob/living/silicon/robot/robotuser = user
+		var/obj/item/held_item = robotuser.get_active_held_item(TRUE)
+		if(istype(held_item, /obj/item/borg/gripper))
+			var/obj/item/borg/gripper/gripper = held_item
+			if(gripper.wrapped == src)
+				return // Gripper has this electronic held.
+		if(istype(held_item, /obj/item/construction/rcd/borg))
+			var/obj/item/construction/rcd/borg/rcd = held_item
+			if(rcd.airlock_electronics == src)
+				return // RCD is accessing their electronic.
+		. = min(., UI_UPDATE)
+

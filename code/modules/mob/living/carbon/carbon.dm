@@ -1,7 +1,7 @@
 /mob/living/carbon
 	blood_volume = BLOOD_VOLUME_GENERIC
 
-/mob/living/carbon/Initialize()
+/mob/living/carbon/Initialize(mapload)
 	. = ..()
 	create_reagents(1000)
 	assign_bodypart_ownership()
@@ -28,27 +28,27 @@
 /mob/living/carbon/initialize_footstep()
 	AddComponent(/datum/component/footstep, 1, 2)
 
-/mob/living/carbon/swap_hand(held_index)
+/mob/living/carbon/perform_hand_swap(held_index)
+	. = ..()
+	if(!.)
+		return
+
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
+	
+	if(!isnum(held_index))
+		CRASH("You passed [held_index] into swap_hand instead of a number. WTF man")
 
-	var/obj/item/item_in_hand = src.get_active_held_item()
-	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/twohanded/TH = item_in_hand
-		if(istype(TH))
-			if(TH.wielded == 1)
-				to_chat(usr, span_warning("Your other hand is too busy holding [TH]."))
-				return
 	var/oindex = active_hand_index
 	active_hand_index = held_index
 	if(hud_used)
 		var/atom/movable/screen/inventory/hand/H
 		H = hud_used.hand_slots["[oindex]"]
 		if(H)
-			H.update_icon()
+			H.update_appearance(UPDATE_ICON)
 		H = hud_used.hand_slots["[held_index]"]
 		if(H)
-			H.update_icon()
+			H.update_appearance(UPDATE_ICON)
 
 
 /mob/living/carbon/activate_hand(selhand) //l/r OR 1-held_items.len
@@ -218,33 +218,33 @@
 	<HR>
 	<B><FONT size=3>[name]</FONT></B>
 	<HR>
-	<BR><B>Head:</B> <A href='?src=[REF(src)];item=[SLOT_HEAD]'>[(head && !(head.item_flags & ABSTRACT)) ? head : "Nothing"]</A>"}
+	<BR><B>Head:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_HEAD]'>[(head && !(head.item_flags & ABSTRACT)) ? head : "Nothing"]</A>"}
 
 	var/list/obscured = check_obscured_slots()
 
-	if(SLOT_NECK in obscured)
+	if(ITEM_SLOT_NECK in obscured)
 		dat += "<BR><B>Neck:</B> Obscured"
 	else
-		dat += "<BR><B>Neck:</B> <A href='?src=[REF(src)];item=[SLOT_NECK]'>[(wear_neck && !(wear_neck.item_flags & ABSTRACT)) ? (wear_neck) : "Nothing"]</A>"
+		dat += "<BR><B>Neck:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_NECK]'>[(wear_neck && !(wear_neck.item_flags & ABSTRACT)) ? (wear_neck) : "Nothing"]</A>"
 
-	if(SLOT_WEAR_MASK in obscured)
+	if(ITEM_SLOT_MASK in obscured)
 		dat += "<BR><B>Mask:</B> Obscured"
 	else
-		dat += "<BR><B>Mask:</B> <A href='?src=[REF(src)];item=[SLOT_WEAR_MASK]'>[(wear_mask && !(wear_mask.item_flags & ABSTRACT))	? wear_mask	: "Nothing"]</a>"
+		dat += "<BR><B>Mask:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_MASK]'>[(wear_mask && !(wear_mask.item_flags & ABSTRACT))	? wear_mask	: "Nothing"]</a>"
 
 	for(var/i in 1 to held_items.len)
 		var/obj/item/I = get_item_for_held_index(i)
-		dat += "<BR><B>[get_held_index_name(i)]:</B> </td><td><A href='?src=[REF(src)];item=[SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "Nothing"]</a>"
+		dat += "<BR><B>[get_held_index_name(i)]:</B> </td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "Nothing"]</a>"
 
-	dat += "<BR><B>Back:</B> <A href='?src=[REF(src)];item=[SLOT_BACK]'>[back ? back : "Nothing"]</A>"
+	dat += "<BR><B>Back:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_BACK]'>[back ? back : "Nothing"]</A>"
 
 	if(istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank))
 		dat += "<BR><A href='?src=[REF(src)];internal=1'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 
 	if(handcuffed)
-		dat += "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>"
+		dat += "<BR><A href='?src=[REF(src)];item=[ITEM_SLOT_HANDCUFFED]'>Handcuffed</A>"
 	if(legcuffed)
-		dat += "<BR><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A>"
+		dat += "<BR><A href='?src=[REF(src)];item=[ITEM_SLOT_LEGCUFFED]'>Legcuffed</A>"
 
 	dat += {"
 	<BR>
@@ -263,7 +263,7 @@
 		if(ITEM && istype(ITEM, /obj/item/tank) && wear_mask && (wear_mask.clothing_flags & MASKINTERNALS))
 			visible_message(span_danger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."), \
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
-			if(do_mob(usr, src, POCKET_STRIP_DELAY))
+			if(do_after(usr, POCKET_STRIP_DELAY, src, interaction_key = REF(ITEM)))
 				if(internal)
 					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
@@ -283,7 +283,7 @@
 			return
 		var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
 		usr.visible_message(span_warning("[usr] attempts to remove [I] from [usr.p_their()] [L.name]."),span_notice("You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)"))
-		if(do_after(usr, time_taken, needhand = 1, target = src))
+		if(do_after(usr, time_taken, target = src))
 			if(!I || !L || I.loc != src)
 				return
 			var/damage_amount = I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class
@@ -306,11 +306,11 @@
 		last_special = world.time + CLICK_CD_BREAKOUT
 		var/buckle_cd = 600
 		if(handcuffed)
-			var/obj/item/restraints/O = src.get_item_by_slot(SLOT_HANDCUFFED)
+			var/obj/item/restraints/O = src.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 			buckle_cd = O.breakouttime
 		visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"), \
 					span_notice("You attempt to unbuckle yourself... (This will take around [round(buckle_cd/10,1)] second\s, and you need to stay still.)"))
-		if(do_after(src, buckle_cd, src, FALSE))
+		if(do_after(src, buckle_cd, src, timed_action_flags = IGNORE_HELD_ITEM))
 			if(!buckled)
 				return
 			buckled.user_unbuckle_mob(src,src)
@@ -361,7 +361,7 @@
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [I]!"))
 		to_chat(src, span_notice("You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, src, timed_action_flags = IGNORE_HELD_ITEM))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to remove [I]!"))
@@ -370,7 +370,7 @@
 		breakouttime = 5 SECONDS
 		visible_message(span_warning("[src] is trying to break [I]!"))
 		to_chat(src, span_notice("You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, src, timed_action_flags = IGNORE_HELD_ITEM))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to break [I]!"))
@@ -487,58 +487,6 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
-		return TRUE
-
-	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
-		return TRUE
-
-	if(!has_mouth())
-		return TRUE
-
-	if(nutrition < 100 && !blood)
-		if(message)
-			visible_message(span_warning("[src] dry heaves!"), \
-							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
-		if(stun)
-			Paralyze(200)
-		return TRUE
-
-	if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
-		if(message)
-			visible_message(span_danger("[src] throws up all over [p_them()]self!"), \
-							span_userdanger("You throw up all over yourself!"))
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomitself)
-		distance = 0
-	else
-		if(message)
-			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
-			if(!isflyperson(src))
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "vomit", /datum/mood_event/vomit)
-
-	if(stun)
-		Paralyze(80)
-
-	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
-	var/turf/T = get_turf(src)
-	if(!blood)
-		adjust_nutrition(-lost_nutrition)
-		adjustToxLoss(-3)
-	for(var/i=0 to distance)
-		if(blood)
-			if(T)
-				add_splatter_floor(T)
-			if(stun)
-				adjustBruteLoss(3)
-		else
-			if(T)
-				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
-		T = get_step(T, dir)
-		if (is_blocked_turf(T))
-			break
-	return TRUE
-
 /mob/living/carbon/has_mouth()
 	for(var/obj/item/bodypart/head/head in bodyparts)
 		if(head.mouth)
@@ -638,7 +586,7 @@
 		sight |= E.sight_flags
 		if(!isnull(E.lighting_alpha))
 			lighting_alpha = E.lighting_alpha
-	
+
 	for(var/image/I in infra_images)
 		if(client)
 			client.images.Remove(I)
@@ -745,9 +693,13 @@
 		. += INFINITY
 
 // permeability: now slightly more sane and probably functional!
-/mob/living/carbon/get_permeability(def_zone)
+/mob/living/carbon/get_permeability(def_zone, linear = FALSE)
 	if(def_zone)
-		var/permeability = 1 / (2**(getarmor(def_zone, BIO) / 15))
+		if(!can_inject(target_zone = def_zone))
+			return 0
+		if(getarmor(def_zone, BIO) >= 100)
+			return 0
+		var/permeability = linear ? (100 - getarmor(def_zone, BIO)) / 100 : 1 / (2**(getarmor(def_zone, BIO) / 15))
 		if(permeability <= 0.01)
 			return 0
 		return permeability
@@ -756,9 +708,11 @@
 	var/total_permeability = 0
 	for(var/obj/item/bodypart/BP in bodyparts)
 		total_bodyparts++
+		if(!can_inject(target_zone = BP.body_zone))
+			continue
 		var/protection = getarmor(BP.body_zone, BIO)
 		if(protection < 100)
-			total_permeability += 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc)
+			total_permeability += linear ? (100 - protection) / 100 : 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc) unless otherwise specified to use a linear calculation
 
 	var/permeability = clamp(total_permeability / total_bodyparts, 0, 1)
 	if(permeability <= 0.01)
@@ -1002,7 +956,7 @@
 		I.extinguish() //extinguishes our clothes
 	..()
 
-/mob/living/carbon/fakefire(var/fire_icon = "Generic_mob_burning")
+/mob/living/carbon/fakefire(fire_icon = "Generic_mob_burning")
 	var/mutable_appearance/new_fire_overlay = mutable_appearance('icons/mob/OnFire.dmi', fire_icon, -FIRE_LAYER)
 	new_fire_overlay.appearance_flags = RESET_COLOR
 	overlays_standing[FIRE_LAYER] = new_fire_overlay
@@ -1030,7 +984,7 @@
 
 /mob/living/carbon/do_after_coefficent()
 	. = ..()
-	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
+	var/datum/component/mood/mood = GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
 	if(mood)
 		switch(mood.sanity) //Alters do_after delay based on how sane you are
 			if(-INFINITY to SANITY_DISTURBED)
@@ -1038,8 +992,7 @@
 			if(SANITY_NEUTRAL to INFINITY)
 				. *= 0.90
 
-	for(var/i in status_effects)
-		var/datum/status_effect/S = i
+	for(var/datum/status_effect/S as anything in status_effects)
 		. *= S.interact_speed_modifier()
 
 /mob/living/carbon/proc/create_internal_organs()
@@ -1100,11 +1053,11 @@
 						to_chat(usr, span_boldwarning("Only humans can be augmented."))
 		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src]")
 	if(href_list[VV_HK_MODIFY_ORGANS])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		usr.client.manipulate_organs(src)
 	if(href_list[VV_HK_MARTIAL_ART])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/artpaths = subtypesof(/datum/martial_art)
 		var/list/artnames = list()
@@ -1124,7 +1077,7 @@
 			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
 			message_admins(span_notice("[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)]."))
 	if(href_list[VV_HK_GIVE_TRAUMA])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/traumas = subtypesof(/datum/brain_trauma)
 		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in sortList(traumas, /proc/cmp_typepaths_asc)
@@ -1140,13 +1093,13 @@
 			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
 			message_admins(span_notice("[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name]."))
 	if(href_list[VV_HK_CURE_TRAUMA])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
 		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
 		message_admins(span_notice("[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)]."))
 	if(href_list[VV_HK_HALLUCINATION])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/hallucinations = subtypesof(/datum/hallucination)
 		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in sortList(hallucinations, /proc/cmp_typepaths_asc)
@@ -1164,7 +1117,7 @@
 /mob/living/carbon/proc/hypnosis_vulnerable()
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		return FALSE
-	if(hallucinating())
+	if(has_status_effect(/datum/status_effect/hallucination))
 		return TRUE
 	if(IsSleeping())
 		return TRUE
@@ -1328,3 +1281,12 @@
 	our_splatter.blood_dna_info = get_blood_dna_list()
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
 	INVOKE_ASYNC(our_splatter, TYPE_PROC_REF(/obj/effect/decal/cleanable/blood/hitsplatter, fly_towards), targ, splatter_strength)
+
+/**
+ * Clears dynamic stamina regeneration on all limbs, typically used for continuous buildup like chems.
+ *
+ * Make sure it's used AFTER stamina damage is applied.
+ */
+/mob/living/carbon/clear_stamina_regen()
+	for(var/obj/item/bodypart/B in bodyparts)
+		B.stamina_cache = list()

@@ -11,7 +11,7 @@
 	var/codelen = 4
 	tamperproof = 90
 
-/obj/structure/closet/crate/secure/loot/Initialize()
+/obj/structure/closet/crate/secure/loot/Initialize(mapload)
 	. = ..()
 	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 	code = ""
@@ -224,9 +224,11 @@
 			return
 	return ..()
 
-/obj/structure/closet/crate/secure/loot/emag_act(mob/user)
-	if(locked)
-		boom(user)
+/obj/structure/closet/crate/secure/loot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(!locked)
+		return FALSE
+	boom(user) // Did you expect the "anti-tamper system" to not work?
+	return TRUE
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user)
 	if(locked)

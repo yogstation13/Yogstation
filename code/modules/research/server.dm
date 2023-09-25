@@ -19,7 +19,7 @@
 	var/temp_penalty_coefficient = 0.5	//1 = -1 points per degree above high tolerance. 0.5 = -0.5 points per degree above high tolerance.
 	req_access = list(ACCESS_RD) //ONLY THE R&D CAN CHANGE SERVER SETTINGS.
 
-/obj/machinery/rnd/server/Initialize()
+/obj/machinery/rnd/server/Initialize(mapload)
 	. = ..()
 	name += " [num2hex(rand(1,65535), -1)]" //gives us a random four-digit hex number as part of the name. Y'know, for fluff.
 	SSresearch.servers |= src
@@ -27,7 +27,7 @@
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/rdserver(null)
 	B.apply_default_parts(src)
 	current_temp = get_env_temp()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/rnd/server/Destroy()
 	SSresearch.servers -= src
@@ -39,7 +39,8 @@
 		tot_rating += SP.rating
 	heat_gen /= max(1, tot_rating)
 
-/obj/machinery/rnd/server/update_icon()
+/obj/machinery/rnd/server/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "server_t"
 		return
@@ -53,19 +54,18 @@
 
 /obj/machinery/rnd/server/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
 	.=..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/rnd/server/power_change()
 	. = ..()
 	refresh_working()
-	return
 
 /obj/machinery/rnd/server/proc/refresh_working()
 	if(stat & EMPED || research_disabled || stat & NOPOWER)
 		working = FALSE
 	else
 		working = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/rnd/server/emp_act()
 	. = ..()
@@ -201,9 +201,10 @@
 	. = ..()
 	src.updateUsrDialog()
 
-/obj/machinery/computer/rdservercontrol/emag_act(mob/user)
+/obj/machinery/computer/rdservercontrol/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You disable the security protocols."))
+	return TRUE

@@ -7,8 +7,6 @@
 #define TORTURE_BLOOD_HALF_COST 8
 /// Cost to convert someone after successful torture, in blood
 #define TORTURE_CONVERSION_COST 50
-/// Deals with constant processes off of LifeTick()
-#define COMSIG_LIVING_BIOLOGICAL_LIFE "biological_life"
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 112
 /// Once blood is this high, will exit Frenzy
@@ -22,6 +20,8 @@
 #define BLOODSUCKER_DRINK_SNOBBY "bloodsucker_drink_snobby"
 ///Drinks blood from disgusting creatures without Humanity consequences.
 #define BLOODSUCKER_DRINK_INHUMANELY "bloodsucker_drink_imhumanely"
+///Drinks blood only from aggressive or higher grabs, no silent feeding.
+#define BLOODSUCKER_DRINK_PAINFUL "bloodsucker_drink_painful"
 
 ///Controls blood, just like all Bloodsuckers do
 #define BLOODSUCKER_CONTROL_BLOOD 1
@@ -53,6 +53,8 @@
  */
 ///Spam prevention for healing messages.
 #define BLOODSUCKER_SPAM_HEALING (15 SECONDS)
+///Span prevention for Sol Masquerade messages.
+#define BLOODSUCKER_SPAM_MASQUERADE (60 SECONDS)
 ///Span prevention for Sol messages.
 #define BLOODSUCKER_SPAM_SOL (30 SECONDS)
 
@@ -69,6 +71,7 @@
 #define CLAN_GANGREL "Gangrel Clan"
 #define CLAN_LASOMBRA "Lasombra Clan"
 #define CLAN_TZIMISCE "Tzimisce Clan"
+#define CLAN_HECATA "Hecata Clan"
 
 #define TREMERE_VASSAL "tremere_vassal"
 #define FAVORITE_VASSAL "favorite_vassal"
@@ -108,6 +111,8 @@
 #define HUNTER_CAN_BUY (1<<5)
 /// This Power can be purchased by Tzimisce Bloodsuckers
 #define TZIMISCE_CAN_BUY (1<<6)
+/// This Power can be purchased by Hecata Bloodsuckers
+#define HECATA_CAN_BUY (1<<7)
 
 /// This Power is a Toggled Power
 #define BP_AM_TOGGLE (1<<0)

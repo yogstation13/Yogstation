@@ -102,6 +102,7 @@
 
 	school = SCHOOL_RESTORATION
 
+	check_flags = NONE
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE
 
@@ -252,7 +253,7 @@
 				return
 	to_chat(target, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
 	to_chat(user, span_notice("[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
-	if(do_mob(user, target, 40, TRUE)) // 4 seconds...
+	if(do_after(user, 4 SECONDS, target)) // 4 seconds...
 		if(get_dist(user, T) <= 3)
 			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
 			T.SetSleeping(300)
@@ -323,14 +324,13 @@
 	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
 	desc = "Revives you, provided you are not in the chapel!"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	check_flags = NONE
 	button_icon_state = "coffin"
 	background_icon_state = "bg_vampire"
 	overlay_icon_state = "bg_vampire_border"
-	check_flags = NONE
 
 	school = SCHOOL_SANGUINE
 
+	check_flags = NONE
 	cooldown_time = 100 SECONDS
 	vamp_req = TRUE
 
@@ -524,7 +524,7 @@
 			if(3)
 				to_chat(target, span_danger("The world blanks out, and you see a demo- no ange- demon- lil- glory- blessing... Lilith."))
 				to_chat(user, span_notice("Excitement builds up in you as [target] sees the blessing of Lilith."))
-		if(!do_mob(user, target, 70))
+		if(!do_after(user, 7 SECONDS, target))
 			to_chat(user, span_danger("The pact has failed! [target] has not became a vampire."))
 			to_chat(target, span_notice("The visions stop, and you relax."))
 			vamp.usable_blood += blood_used / 2	// Refund half the cost

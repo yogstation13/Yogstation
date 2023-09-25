@@ -17,7 +17,7 @@
 
 	light_color = LIGHT_COLOR_RED
 
-/obj/machinery/computer/camera_advanced/Initialize()
+/obj/machinery/computer/camera_advanced/Initialize(mapload)
 	. = ..()
 	for(var/i in networks)
 		networks -= i
@@ -287,7 +287,7 @@
 	networks = list("ss13", "minisat") //:eye:
 	var/datum/action/innate/servant_warp/warp_action
 
-/obj/machinery/computer/camera_advanced/ratvar/Initialize()
+/obj/machinery/computer/camera_advanced/ratvar/Initialize(mapload)
 	. = ..()
 	warp_action = new(src)
 	ratvar_act()
@@ -387,8 +387,8 @@
 	button_icon_state = "warp_down"
 	owner.update_action_buttons()
 	teleport_turf.visible_message(span_warning("[user] warps in!"))
-	playsound(user, 'sound/magic/magic_missile.ogg', 50, TRUE)
-	playsound(teleport_turf, 'sound/magic/magic_missile.ogg', 50, TRUE)
+	playsound(user, 'sound/magic/magic_missile.ogg', 15, TRUE)
+	playsound(teleport_turf, 'sound/magic/magic_missile.ogg', 15, TRUE)
 	user.forceMove(get_turf(teleport_turf))
 	user.setDir(SOUTH)
 	flash_color(user, flash_color = "#AF0AAF", flash_time = 5)

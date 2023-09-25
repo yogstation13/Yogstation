@@ -3,11 +3,9 @@
 	description = "Supervise research efforts, ensure Robotics is in working \
 		order, make sure the AI and its Cyborgs aren't rogue, replacing them if \
 		they are"
-	flag = RD_JF
 	orbit_icon = "user-graduate"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
-	department_flag = MEDSCI
 	head_announce = list("Science")
 	faction = "Station"
 	total_positions = 1
@@ -17,7 +15,7 @@
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_type_department = EXP_TYPE_SCIENCE
-	exp_requirements = 1200 //20 hours
+	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
 	alt_titles = list("Chief Science Officer", "Head of Research", "Chief Technology Officer")
@@ -27,7 +25,7 @@
 	added_access = list(ACCESS_CAPTAIN)
 	base_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
 			            ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS, ACCESS_MECH_SCIENCE,
-			            ACCESS_RESEARCH, ACCESS_ROBO_CONTROL, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
+			            ACCESS_RESEARCH, ACCESS_RND, ACCESS_ROBO_CONTROL, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
 			            ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM,
 			            ACCESS_TECH_STORAGE, ACCESS_MINISAT, ACCESS_MAINT_TUNNELS, ACCESS_NETWORK)
 	paycheck = PAYCHECK_COMMAND
@@ -74,7 +72,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/analyzer/ranged=1) //yogs - removes sci budget
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/multitool/tricorder=1) //yogs - removes sci budget
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
@@ -88,4 +86,4 @@
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/hardsuit/rd
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_SUIT_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE

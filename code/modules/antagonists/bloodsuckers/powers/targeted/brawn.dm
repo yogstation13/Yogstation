@@ -16,6 +16,7 @@
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(trigger_flags)
 	// Did we break out of our handcuffs?
@@ -49,8 +50,8 @@
 		used = TRUE
 
 	// Remove both Handcuffs & Legcuffs
-	var/obj/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(!used && (istype(cuffs) || istype(legcuffs)))
 		user.visible_message(
 			span_warning("[user] discards their restraints like it's nothing!"),
@@ -62,7 +63,7 @@
 
 	// Remove Straightjackets
 	if(user.wear_suit?.breakouttime && !used)
-		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(SLOT_WEAR_SUIT)
+		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if(!istype(straightjacket))
 			return
 		user.visible_message(
@@ -146,7 +147,7 @@
 	else if(istype(target_atom, /obj/structure/closet) && level_current >= 3)
 		var/obj/structure/closet/target_closet = target_atom
 		to_chat(user, span_warning("You prepare to bash [target_closet] open..."))
-		if(!do_mob(user, target_closet, 2.5 SECONDS))
+		if(!do_after(user, 2.5 SECONDS, target_closet))
 			return FALSE
 		target_closet.visible_message(span_danger("[target_closet] breaks open as [user] bashes it!"))
 		addtimer(CALLBACK(src, PROC_REF(break_closet), user, target_closet), 1)
@@ -156,7 +157,7 @@
 		var/obj/machinery/door/target_airlock = target_atom
 		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
 		to_chat(owner, span_warning("You prepare to tear open [target_airlock]..."))
-		if(!do_mob(user, target_airlock, 2.5 SECONDS))
+		if(!do_after(user, 2.5 SECONDS, target_airlock))
 			return FALSE
 		if(target_airlock.Adjacent(user))
 			target_airlock.visible_message(span_danger("[target_airlock] breaks open as [user] bashes it!"))
@@ -205,6 +206,7 @@
 	button_icon_state = "power_obliterate"
 	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/carbon/human/H = target_atom

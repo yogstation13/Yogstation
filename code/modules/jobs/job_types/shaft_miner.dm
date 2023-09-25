@@ -2,10 +2,8 @@
 	title = "Shaft Miner"
 	description = "Travel to strange lands. Mine ores. \
 		Meet strange creatures. Kill them for their gold."
-	flag = MINER
 	orbit_icon = "digging"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
@@ -15,7 +13,7 @@
 
 	outfit = /datum/outfit/job/miner
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_QM)
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_QM, ACCESS_RESEARCH, ACCESS_RND)
 	base_access = list(ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_CAR
@@ -36,7 +34,7 @@
 		/obj/item/grenade/plastic/miningcharge/mega = 1,
 		/obj/item/card/mining_point_card/fivethousand = 1
 	)
-	
+
 	smells_like = "ash and dust"
 
 /datum/outfit/job/miner
@@ -65,7 +63,6 @@
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	box = /obj/item/storage/box/survival_mining
-	ipc_box = /obj/item/storage/box/ipc/miner
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 
@@ -75,7 +72,7 @@
 	mask = /obj/item/clothing/mask/gas/explorer
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_SUIT_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE
 	backpack_contents = list(
 		/obj/item/storage/bag/ore=1,
 		/obj/item/kitchen/knife/combat/survival=1,

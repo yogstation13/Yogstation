@@ -5,9 +5,9 @@
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,TRAIT_POWERHUNGRY)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
@@ -24,15 +24,20 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.5 //Mass producible labor + robot
-	burnmod = 1.5
-	heatmod = 1
+	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
+	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
+	heatmod = 0.5 // and i yearned for the certainty of steel
+	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing
+	tempmod = 2 // metal is more thermally conductive than flesh, heats up more when on fire
+	acidmod = 2 // go look up "acid etching"
 	brutemod = 1
+	oxymod = 0 // what the fuck?
 	toxmod = 0
 	clonemod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
-	reagent_tag = PROCESS_SYNTHETIC
+	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
+	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
@@ -139,13 +144,6 @@
 
 	return to_add
 
-/datum/species/ipc/create_pref_biotypes_perks()
-	var/list/to_add = list()
-
-	// TODO
-
-	return to_add
-
 /datum/action/innate/change_screen
 	name = "Change Display"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -171,61 +169,56 @@
 	desc = "An internal power cord hooked up to a battery. Useful if you run on electricity. Not so much otherwise."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "wire1"
+	var/charge_sources = list(/obj/machinery/power/apc, /obj/item/stock_parts/cell) // a list of types we can recharge from
 
 /obj/item/apc_powercord/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!istype(target, /obj/machinery/power/apc) || !ishuman(user) || !proximity_flag)
+	if(!is_type_in_list(target, charge_sources) || !ishuman(user) || !proximity_flag)
 		return ..()
 	user.changeNext_move(CLICK_CD_MELEE)
-	var/obj/machinery/power/apc/A = target
+	var/obj/item/stock_parts/cell/C
+	if(istype(target, /obj/item/stock_parts/cell))
+		C = target
+	else if(istype(target, /obj/machinery/power/apc))
+		var/obj/machinery/power/apc/A = target
+		C = A.cell
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/stomach/cell/cell = locate(/obj/item/organ/stomach/cell) in H.internal_organs
 	if(!cell)
-		to_chat(H, "<span class='warning'>You try to siphon energy from the [A], but your power cell is gone!</span>")
+		to_chat(H, "<span class='warning'>You try to siphon energy from the [C], but your power cell is gone!</span>")
 		return
 
-	if(A.cell && A.cell.charge > 0)
+	if(C && C.charge > 0)
 		if(H.nutrition >= NUTRITION_LEVEL_MOSTLY_FULL)
 			to_chat(user, "<span class='warning'>You are already fully charged!</span>")
 			return
 		else
-			powerdraw_loop(A, H)
+			powerdraw_loop(C, H, target)
 			return
 
 	to_chat(user, "<span class='warning'>There is no charge to draw from that APC.</span>")
 
-/obj/item/apc_powercord/proc/powerdraw_loop(obj/machinery/power/apc/A, mob/living/carbon/human/H)
+/obj/item/apc_powercord/proc/powerdraw_loop(obj/item/stock_parts/cell/C, mob/living/carbon/human/H, atom/A)
 	H.visible_message("<span class='notice'>[H] inserts a power connector into the [A].</span>", "<span class='notice'>You begin to draw power from the [A].</span>")
 	while(do_after(H, 1 SECONDS, target = A))
 		if(loc != H)
 			to_chat(H, "<span class='warning'>You must keep your connector out while charging!</span>")
 			break
-		if(A.cell.charge == 0)
+		if(C.charge == 0)
 			to_chat(H, "<span class='warning'>The [A] doesn't have enough charge to spare.</span>")
 			break
 		if(H.nutrition > NUTRITION_LEVEL_MOSTLY_FULL)
 			to_chat(H, "<span class='notice'>You are now fully charged.</span>")
 			break
-		if(A.cell.charge >= 500)
+		if(C.charge >= 500)
 			H.nutrition += 50
-			A.cell.charge -= 250
+			C.charge -= 250
 			to_chat(H, "<span class='notice'>You siphon off some of the stored charge for your own use.</span>")
 		else
-			H.nutrition += A.cell.charge/10
-			A.cell.charge = 0
-			to_chat(H, "<span class='notice'>You siphon off as much as the [A] can spare.</span>")
+			H.nutrition += C.charge/10
+			C.charge = 0
+			to_chat(H, "<span class='notice'>You siphon off as much as the [C] can spare.</span>")
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
-
-/datum/species/ipc/get_hunger_alert(mob/living/carbon/human/H)
-	switch(H.nutrition)
-		if(NUTRITION_LEVEL_FED to INFINITY)
-			H.clear_alert("nutrition")
-		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
-		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
-		if(0 to NUTRITION_LEVEL_STARVING)
-			H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
@@ -269,22 +262,27 @@
 		H.setOxyLoss(0)
 		H.losebreath = 0
 	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHARDCRIT)) // So they die eventually instead of being stuck in crit limbo.
-		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			H.death() // YOU'RE GETTING RUSTY, MACHINE!!
+			return .
+		H.adjustFireLoss(2) // someone forgor IPCs don't have damage reduction
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
 	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
+		var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
 		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
 			H.blood_in_hands = 0
 			H.wash(CLEAN_TYPE_BLOOD)
 			to_chat(H,"You absorb the blood covering you to heal.")
 			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-			var/heal_amt = 30 //heals brute first, then burn with any excess
-			var/brute_before = H.getBruteLoss()
-			H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
-			heal_amt -= max(brute_before - H.getBruteLoss(), 0)
-			H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+			if(UV && istype(UV))
+				UV.blood_heal(H, 30)
+		if(UV.hard_damage > 0)
+			UV.hard_damage -= UV.style // hard damage decays over time, faster if you're cool
+		UV.hard_damage = clamp(round(UV.hard_damage), 0, H.maxHealth - 1)
+		UV.handle_style(H)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -311,14 +309,15 @@
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
-/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	if(H == user)//no emagging yourself
-		return
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	if(H == user) // No emagging yourself. That would be terrible.
+		return FALSE
 	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
-		return
+		return FALSE
 	H.SetUnconscious(10 SECONDS)
 	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
-
+	return TRUE
+	
 /*------------------------
 
 ipc martial arts stuff
@@ -330,8 +329,8 @@ ipc martial arts stuff
 	. = ..()
 	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
 		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
-			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
-			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			UV.blood_heal(H, -25)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
 
 
@@ -340,9 +339,7 @@ ipc martial arts stuff
 		if(H.in_throw_mode)//if countering the emp
 			add_empproof(H)
 			throw_lightning(H)
-		else//if just getting hit
-			addtimer(CALLBACK(src, PROC_REF(add_empproof), H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+			addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 1, TIMER_OVERRIDE | TIMER_UNIQUE)//can't remove it instantly, so they're immune for all of 0.1 seconds
 	else if(severity == EMP_HEAVY)
 		H.emote("warn") // *chuckles* i'm in danger!
 
@@ -352,11 +349,19 @@ ipc martial arts stuff
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
-	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
 
 /datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
-	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
-	if(ipcmartial)
-		ipcmartial.Destroy()
+	REMOVE_TRAIT(H, TRAIT_EMPPROOF_SELF, "IPC_martial")
+
+/datum/species/ipc/apply_damage(damage, damagetype, def_zone, blocked, mob/living/carbon/human/H, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+	if(..())
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			if(istype(UV))
+				UV.hard_damage = min(UV.hard_damage + round(damage / 5), H.maxHealth - 1) // every 10 damage taken temporarily reduces max HP by 1, so try to actually dodge things
+				UV.handle_style(H, damage / -50) // lose 1 style rank for every 50 damage taken
+		return TRUE
+	return FALSE
 
 #undef CONSCIOUSAY

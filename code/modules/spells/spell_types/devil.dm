@@ -8,15 +8,15 @@
 	school = SCHOOL_CONJURATION
 	invocation_type = INVOCATION_NONE
 
-	item_type = /obj/item/twohanded/pitchfork/demonic
+	item_type = /obj/item/pitchfork/demonic
 	cooldown_time = 15 SECONDS
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/conjure_item/summon_pitchfork/greater
-	item_type = /obj/item/twohanded/pitchfork/demonic/greater
+	item_type = /obj/item/pitchfork/demonic/greater
 
 /datum/action/cooldown/spell/conjure_item/summon_pitchfork/ascended
-	item_type = /obj/item/twohanded/pitchfork/demonic/ascended
+	item_type = /obj/item/pitchfork/demonic/ascended
 
 /datum/action/cooldown/spell/conjure_item/violin
 	name = "Summon golden violin"
@@ -114,7 +114,7 @@
 		if(is_jaunting(user))
 			if(valid_location(user))
 				to_chat(user, span_warning("You are now phasing in."))
-				if(do_mob(user,user,150))
+				if(do_after(user, 15 SECONDS))
 					if(valid_location(user))
 						user.infernalphasein()
 					else
@@ -127,7 +127,7 @@
 			user.notransform = TRUE
 			user.fakefire()
 			to_chat(src, span_warning("You begin to phase back into sinful flames."))
-			if(do_mob(user,user,150))
+			if(do_after(user, 15 SECONDS))
 				user.infernalphaseout()
 			else
 				to_chat(user, span_warning("You must remain still while exiting."))

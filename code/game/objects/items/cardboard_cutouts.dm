@@ -10,7 +10,7 @@
 	var/pushed_over = FALSE // If the cutout is pushed over and has to be righted
 	var/deceptive = FALSE // If the cutout actually appears as what it portray and not a discolored version
 
-/obj/item/cardboard_cutout/Initialize()
+/obj/item/cardboard_cutout/Initialize(mapload)
 	. = ..()
 	possible_appearances = sortList(list(
 		"Assistant" = image(icon = src.icon, icon_state = "cutout_greytide"),
@@ -104,7 +104,7 @@
 	var/new_appearance = show_radial_menu(user, src, possible_appearances, custom_check = CALLBACK(src, PROC_REF(check_menu), user, crayon), radius = 36, require_near = TRUE)
 	if(!new_appearance)
 		return FALSE
-	if(!do_after(user, 1 SECONDS, src, FALSE))
+	if(!do_after(user, 1 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 		return FALSE
 	if(!check_menu(user, crayon))
 		return FALSE

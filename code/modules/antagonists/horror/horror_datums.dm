@@ -143,7 +143,7 @@
 		to_chat(user, span_notice("Take a breath before you blow [src] again."))
 		return
 	to_chat(user, span_notice("You take a deep breath and prepare to blow into [src]..."))
-	if(do_mob(user, src, 10 SECONDS))
+	if(do_after(user, 10 SECONDS, src))
 		if(cooldown > world.time)
 			return
 		cooldown = world.time + 10 SECONDS
@@ -287,7 +287,7 @@
 	R = new
 	R.Grant(src)
 
-/mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/captive_brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))

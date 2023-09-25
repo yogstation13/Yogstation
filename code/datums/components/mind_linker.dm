@@ -31,7 +31,7 @@
 	/// An assoc list of [mob/living]s to [datum/action/innate/linked_speech]s. All the mobs that are linked to our network.
 	var/list/mob/living/linked_mobs = list()
 
-/datum/component/mind_linker/Initialize(
+/datum/component/mind_linker/Initialize( 
 	network_name = "Mind Link",
 	chat_color = "#008CA2",
 	linker_action_path,

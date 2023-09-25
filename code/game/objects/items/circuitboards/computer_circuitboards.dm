@@ -245,7 +245,7 @@
 	var/challenge = FALSE
 	var/moved = FALSE
 
-/obj/item/circuitboard/computer/syndicate_shuttle/Initialize()
+/obj/item/circuitboard/computer/syndicate_shuttle/Initialize(mapload)
 	. = ..()
 	GLOB.syndicate_shuttle_boards += src
 
@@ -344,6 +344,7 @@
 	name = "R&D Console (Computer Board)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/rdconsole/core
+	var/unlocked = FALSE
 
 /obj/item/circuitboard/computer/rdconsole/ruin
 	name = "Experimental R&D Console (Computer Board)"
@@ -353,12 +354,16 @@
 /obj/item/circuitboard/computer/rdconsole/production
 	name = "R&D Console Production Only (Computer Board)"
 	build_path = /obj/machinery/computer/rdconsole/production
-
-
-/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(build_path == /obj/machinery/computer/rdconsole/production)
-			return
+	
+/obj/item/circuitboard/computer/rdconsole/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.visible_message(span_notice("[user] fiddles with [src]."), span_notice( "You fiddle with [src]."))
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		if(build_path == /obj/item/circuitboard/computer/rdconsole/production)
+			to_chat(user, span_danger("[src] sparks! That isn't right."))
+			var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+			p.set_up(6, 1, user)
+			p.start()
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "R&D Console - Robotics (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
@@ -367,8 +372,33 @@
 			name = "R&D Console (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/core
 			to_chat(user, span_notice("Defaulting access protocols."))
-	else
-		return ..()
+
+/obj/item/circuitboard/computer/rdconsole/screwdriver_act(mob/living/user, obj/item/I)
+	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+		to_chat(user, span_danger("[src] sparks! That isn't right."))
+		var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+		p.set_up(6, 1, user)
+		p.start()
+		return TRUE
+	if(unlocked)
+		to_chat(user, span_notice("It seems to have a deep groove cutting some traces. Maybe welding it will help?"))
+		return TRUE
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		unlocked = TRUE
+		to_chat(user, span_notice("You scrape a deep groove into some of the traces, severing them."))
+
+
+/obj/item/circuitboard/computer/rdconsole/welder_act(mob/living/user, obj/item/I)
+	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+		return
+	if(!unlocked)
+		return TRUE
+	if(!I.tool_start_check(user, amount=0))
+		return TRUE
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		unlocked = FALSE
+		to_chat(user, span_notice("You melt the solder back into place, restoring the connections in the traces."))	
+	
 
 /obj/item/circuitboard/computer/rdservercontrol
 	name = "R&D Server Control (Computer Board)"
@@ -386,9 +416,13 @@
 	build_path = /obj/machinery/computer/robotics
 
 /obj/item/circuitboard/computer/xenobiology
-	name = "circuit board (Xenobiology Console)"
+	name = "Xenobiology Console (Computer Board)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
+
+/obj/item/circuitboard/computer/xenobiology/syndicateicemoon
+	name = "Syndicate Xenobiology Console (Computer Board)"
+	build_path = /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon
 	
 /obj/item/circuitboard/computer/shuttle/flight_control
 	name = "Shuttle Flight Control (Computer Board)"
@@ -487,12 +521,14 @@
 	else
 		to_chat(user, span_notice("The spectrum chip is unresponsive."))
 
-/obj/item/circuitboard/computer/cargo/emag_act(mob/living/user)
-	if(!(obj_flags & EMAGGED))
-		contraband = TRUE
-		obj_flags |= EMAGGED
-		to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
-
+/obj/item/circuitboard/computer/cargo/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	contraband = TRUE
+	obj_flags |= EMAGGED
+	to_chat(user, span_notice("You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband."))
+	return TRUE
+	
 /obj/item/circuitboard/computer/cargo/express
 	name = "Express Supply Console (Computer Board)"
 	build_path = /obj/machinery/computer/cargo/express
@@ -504,9 +540,12 @@
 		to_chat(user, span_notice("You reset the routing protocols to: \"factory defaults\"."))
 		obj_flags &= ~EMAGGED
 
-/obj/item/circuitboard/computer/cargo/express/emag_act(mob/living/user)
-		to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
-		obj_flags |= EMAGGED
+/obj/item/circuitboard/computer/cargo/express/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	obj_flags |= EMAGGED
+	to_chat(user, span_notice("You change the routing protocols, allowing the Drop Pod to land anywhere on the station."))
+	return TRUE
 
 /obj/item/circuitboard/computer/cargo/request
 	name = "Supply Request Console (Computer Board)"

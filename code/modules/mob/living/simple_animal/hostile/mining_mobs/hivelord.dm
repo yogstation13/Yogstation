@@ -7,7 +7,7 @@
 	icon_aggro = "Hivelord_alert"
 	icon_dead = "Hivelord_dead"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC)
+	mob_biotypes = MOB_ORGANIC
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	move_to_delay = 14
 	ranged = 1
@@ -85,7 +85,7 @@
 	pass_flags = PASSTABLE
 	del_on_death = 1
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(death)), 100)
 
@@ -106,7 +106,7 @@
 	icon_aggro = "legion"
 	icon_dead = "legion"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_UNDEAD
 	mouse_opacity = MOUSE_OPACITY_ICON
 	obj_damage = 60
 	melee_damage_lower = 15
@@ -127,7 +127,7 @@
 	var/dwarf_mob = FALSE
 	var/mob/living/carbon/human/stored_mob
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize(mapload)
 	. = ..()
 	if(prob(5))
 		new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(loc)
@@ -213,7 +213,7 @@
 	icon_aggro = "snowlegion_head"
 	icon_dead = "snowlegion_head"
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
 			if(H.stat == UNCONSCIOUS || (can_infest_dead && H.stat == DEAD))
@@ -283,7 +283,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 
-/mob/living/simple_animal/hostile/big_legion/Initialize()
+/mob/living/simple_animal/hostile/big_legion/Initialize(mapload)
 	.=..()
 	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion), 200, faction, "peels itself off from", 3)
 
@@ -303,7 +303,7 @@
 	. = ..()
 	H.dna.add_mutation(DWARFISM)
 
-/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/Initialize()
+/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/Initialize(mapload)
 	var/type = pickweight(list("Miner" = 66, "Ashwalker" = 10, "Golem" = 10,"Clown" = 10, pick(list("Shadow", "YeOlde","Operative", "Cultist")) = 4))
 	switch(type)
 		if("Miner")
@@ -340,7 +340,7 @@
 				suit = /obj/item/clothing/suit/armor/bone
 				gloves = /obj/item/clothing/gloves/bracer
 			if(prob(5))
-				back = pickweight(list(/obj/item/twohanded/bonespear = 3, /obj/item/twohanded/fireaxe/boneaxe = 2))
+				back = pickweight(list(/obj/item/melee/spear/bonespear = 3, /obj/item/fireaxe/boneaxe = 2))
 			if(prob(10))
 				belt = /obj/item/storage/belt/mining/primitive
 			if(prob(30))
@@ -421,7 +421,7 @@
 	color = "#7422a3"
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/Initialize(mapload)
 	. = ..()
 	GLOB.aide_list += src
 	return
@@ -449,7 +449,7 @@
 	color = "#7422a3"
 	var/fauna_damage_bonus = 10
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L
 	if(isturf(loc))
 		for(var/mob/living/M in view(src,1))

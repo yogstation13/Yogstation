@@ -26,7 +26,7 @@
 	var/mob/living/oldform
 	var/list/devil_overlays[DEVIL_TOTAL_LAYERS]
 
-/mob/living/carbon/true_devil/Initialize()
+/mob/living/carbon/true_devil/Initialize(mapload)
 	create_bodyparts() //initialize bodyparts
 	create_internal_organs()
 	grant_all_languages()
@@ -142,7 +142,7 @@
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /mob/living/carbon/true_devil/attack_ghost(mob/dead/observer/user as mob)
-	if(ascended || user.mind.soulOwner == src.mind)
+	if(ascended || user.mind?.soulOwner == src.mind)
 		var/mob/living/simple_animal/imp/S = new(get_turf(loc))
 		S.key = user.key
 		var/datum/antagonist/imp/A = new()

@@ -68,6 +68,10 @@
 /datum/antagonist/vassal/on_gain()
 	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
+	if(owner.current && HAS_TRAIT(owner.current, TRAIT_MINDSHIELD))
+		for(var/obj/item/implant/mindshield/L in owner.current)
+			if(L)
+				qdel(L)
 	/// Enslave them to their Master
 	if(!master || !istype(master, master))
 		return
@@ -329,7 +333,7 @@
 	mike_ehrmantraut.ex_vassals += src
 	COOLDOWN_START(src, blood_timer, BLOOD_TIMER_REQUIREMENT)
 
-	RegisterSignal(src, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
+	RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
 /datum/antagonist/ex_vassal/proc/on_life(datum/source, delta_time, times_fired)
 	SIGNAL_HANDLER

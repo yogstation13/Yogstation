@@ -448,7 +448,7 @@
 /area/awaymission/centcomAway/hangar)
 "cK" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/centcomAway/hangar)
 "cL" = (
@@ -617,7 +617,7 @@
 /area/awaymission/centcomAway/hangar)
 "dC" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "dE" = (
@@ -1368,7 +1368,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "hW" = (
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/kirbyplants,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "hX" = (
@@ -1949,7 +1949,7 @@
 "lv" = (
 /obj/structure/rack,
 /obj/item/restraints/legcuffs/beartrap,
-/obj/item/twohanded/fireaxe,
+/obj/item/fireaxe,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/thunderdome)
 "lw" = (

@@ -13,7 +13,7 @@
 	var/t_is = p_are()
 	var/obscure_name
 	var/robotic = FALSE //robotic mobs look different under certain circumstances
-	if(MOB_ROBOTIC in mob_biotypes)//please someone tell me this is stupid and i can do it all in one line
+	if(mob_biotypes & MOB_ROBOTIC)//please someone tell me this is stupid and i can do it all in one line
 		robotic = TRUE
 
 	if(isliving(user))
@@ -33,7 +33,7 @@
 	var/list/obscured = check_obscured_slots()
 
 	//uniform
-	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
+	if(w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
 		//accessory
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
@@ -47,9 +47,16 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 		//suit/armor storage
-		if(s_store && !(SLOT_SUIT_STORE in obscured))
+		if(s_store && !(ITEM_SLOT_SUITSTORE in obscured))
 			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
 	//back
 	if(back)
@@ -62,7 +69,7 @@
 
 	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
-	if(gloves && !(SLOT_GLOVES in obscured))
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured))
 		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms(FALSE)
@@ -82,18 +89,18 @@
 		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
 
 	//shoes
-	if(shoes && !(SLOT_SHOES in obscured))
+	if(shoes && !(ITEM_SLOT_FEET in obscured))
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
 
 	//mask
-	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured))
 		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
 
-	if(wear_neck && !(SLOT_NECK in obscured))
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured))
 		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
 
 	//eyes
-	if(!(SLOT_GLASSES in obscured))
+	if(!(ITEM_SLOT_EYES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
@@ -103,7 +110,7 @@
 				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
-	if(ears && !(SLOT_EARS in obscured))
+	if(ears && !(ITEM_SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
 
 	//ID
@@ -131,7 +138,7 @@
 				highest_trauma = 2
 			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
 				highest_trauma = 1
-		
+
 		switch(highest_trauma)
 			if(1)
 				. += span_warning("[t_His] behavior seems a bit off.")
@@ -235,7 +242,7 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-				
+
 	if(surgeries.len)
 		var/surgery_text
 		for(var/datum/surgery/S in surgeries)
@@ -444,7 +451,7 @@
 					var/cyberimp_detect
 					for(var/obj/item/organ/cyberimp/CI in internal_organs)
 						if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)
-							cyberimp_detect += "[name] is modified with a [CI.name]."
+							cyberimp_detect += "[name] is modified with a [CI.name].\n"
 					if(cyberimp_detect)
 						. += "Detected cybernetic modifications:"
 						. += cyberimp_detect
@@ -499,13 +506,13 @@
 	var/t_his = p_their()
 	var/t_has = p_have()
 	var/t_is = p_are()
-	
+
 	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
 
 	//uniform
-	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
+	if(w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
 		//accessory
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
@@ -519,7 +526,14 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 	//back
 	if(back)
 		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."
@@ -530,7 +544,7 @@
 			. += "[t_He] [t_is] holding a [weightclass2text(I.w_class)] item in [t_his] [get_held_index_name(get_held_index_of_item(I))]."
 
 	//gloves
-	if(gloves && !(SLOT_GLOVES in obscured))
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured))
 		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
 
 
@@ -547,18 +561,18 @@
 		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
 
 	//shoes
-	if(shoes && !(SLOT_SHOES in obscured))
+	if(shoes && !(ITEM_SLOT_FEET in obscured))
 		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
 
 	//mask
-	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
+	if(wear_mask && !(ITEM_SLOT_MASK in obscured))
 		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
 
-	if(wear_neck && !(SLOT_NECK in obscured))
+	if(wear_neck && !(ITEM_SLOT_NECK in obscured))
 		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
 
 	//eyes
-	if(!(SLOT_GLASSES in obscured))
+	if(!(ITEM_SLOT_EYES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
@@ -567,7 +581,7 @@
 			else
 				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 	//ears
-	if(ears && !(SLOT_EARS in obscured))
+	if(ears && !(ITEM_SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
 
 

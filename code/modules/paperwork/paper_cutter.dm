@@ -12,10 +12,10 @@
 	pass_flags = PASSTABLE
 
 
-/obj/item/papercutter/Initialize()
+/obj/item/papercutter/Initialize(mapload)
 	. = ..()
 	storedcutter = new /obj/item/hatchet/cutterblade(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/papercutter/suicide_act(mob/user)
@@ -33,14 +33,14 @@
 		playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
 		return (BRUTELOSS)
 
-
-/obj/item/papercutter/update_icon()
-	..()
-	cut_overlays()
+/obj/item/papercutter/update_icon_state()
+	. = ..()
 	icon_state = (storedcutter ? "[initial(icon_state)]-cutter" : "[initial(icon_state)]")
-	if(storedpaper)
-		add_overlay("paper")
 
+/obj/item/papercutter/update_overlays()
+	. = ..()
+	if(storedpaper)
+		. += "paper"
 
 /obj/item/papercutter/attackby(obj/item/P, mob/user, params)
 	if(istype(P, /obj/item/paper) && !storedpaper)
@@ -49,7 +49,7 @@
 		playsound(loc, "pageturn", 60, 1)
 		to_chat(user, span_notice("You place [P] in [src]."))
 		storedpaper = P
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(istype(P, /obj/item/hatchet/cutterblade) && !storedcutter)
 		if(!user.transferItemToLoc(P, src))
@@ -57,7 +57,7 @@
 		to_chat(user, span_notice("You replace [src]'s [P]."))
 		P.forceMove(src)
 		storedcutter = P
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(P.tool_behaviour == TOOL_SCREWDRIVER && storedcutter)
 		P.play_tool_sound(src)
@@ -79,7 +79,7 @@
 		to_chat(user, span_notice("You remove [src]'s [storedcutter]."))
 		user.put_in_hands(storedcutter)
 		storedcutter = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	if(storedpaper)
 		playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1)
@@ -88,7 +88,7 @@
 		qdel(storedpaper)
 		new /obj/item/paperslip(get_turf(src))
 		new /obj/item/paperslip(get_turf(src))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/papercutter/MouseDrop(atom/over_object)
 	. = ..()
@@ -112,7 +112,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 
-/obj/item/paperslip/Initialize()
+/obj/item/paperslip/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)

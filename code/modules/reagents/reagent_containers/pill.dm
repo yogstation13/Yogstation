@@ -15,7 +15,7 @@
 	var/self_delay = 0 //pills are instant, this is because patches inheret their aplication from pills
 	var/dissolvable = TRUE
 
-/obj/item/reagent_containers/pill/Initialize()
+/obj/item/reagent_containers/pill/Initialize(mapload)
 	. = ..()
 	if(!icon_state)
 		icon_state = "pill[rand(1,20)]"
@@ -34,14 +34,14 @@
 	if(M == user)
 		M.visible_message(span_notice("[user] attempts to [apply_method] [src]."))
 		if(self_delay)
-			if(!do_mob(user, M, self_delay))
+			if(!do_after(user, self_delay, M))
 				return FALSE
 		to_chat(M, span_notice("You [apply_method] [src]."))
 
 	else
 		M.visible_message(span_danger("[user] attempts to force [M] to [apply_method] [src]."), \
 							span_userdanger("[user] attempts to force [M] to [apply_method] [src]."))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return FALSE
 		M.visible_message(span_danger("[user] forces [M] to [apply_method] [src]."), \
 							span_userdanger("[user] forces [M] to [apply_method] [src]."))
@@ -263,7 +263,7 @@
 	, "Surely, there's no way this could go bad.")
 	volume = 50
 
-/obj/item/reagent_containers/pill/floorpill/Initialize()
+/obj/item/reagent_containers/pill/floorpill/Initialize(mapload)
 	list_reagents = list(get_random_reagent_id() = rand(10,50))
 	. = ..()
 	name = pick(names)

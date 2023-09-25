@@ -35,6 +35,9 @@
 	customfoodfilling = 1
 	foodtype = GRAIN
 
+/obj/item/reagent_containers/food/snacks/breadslice/plain/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/breadslice/toast, rand(20 SECONDS, 30 SECONDS), TRUE)
+
 /obj/item/reagent_containers/food/snacks/store/bread/meat
 	name = "meat bread"
 	desc = "The culinary base of every self-respecting eloquent gentleman."
@@ -58,7 +61,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("bread" = 10, ACID = 10)
+	tastes = list("bread" = 10, "acid" = 10)
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
@@ -189,7 +192,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/garlic = 2)
 	bitesize = 3
 	tastes = list("bread" = 1, "garlic" = 1, "butter" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/butterbiscuit
 	name = "butter biscuit"
@@ -200,7 +203,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "biscuit" = 1)
-	foodtype = GRAIN | BREAKFAST
+	foodtype = GRAIN | DAIRY | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/butterdog
 	name = "butterdog"
@@ -211,9 +214,10 @@
 	filling_color = "#F1F49A"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("butter", "exotic butter")
+	tastes = list("bread" = 1, "exotic butter" = 1)
+	foodtype = GRAIN | DAIRY
 
-/obj/item/reagent_containers/food/snacks/butterdog/ComponentInitialize()
+/obj/item/reagent_containers/food/snacks/butterdog/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 
@@ -224,7 +228,7 @@
 	icon_state = "frenchtoast"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cinnamon = 2, /datum/reagent/consumable/sugar = 2) //yogs, values differ from tg
 	tastes = list("french toast" = 1, "syrup" = 1, "golden deliciousness" = 1)
-	foodtype = GRAIN | BREAKFAST
+	foodtype = GRAIN | EGG | SUGAR | BREAKFAST
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/frenchtoast/raw
@@ -237,6 +241,26 @@
 
 /obj/item/reagent_containers/food/snacks/frenchtoast/raw/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/frenchtoast, rand(20 SECONDS, 30 SECONDS), TRUE)
+
+/obj/item/reagent_containers/food/snacks/breadstick
+	name = "breadstick"
+	desc = "A delicious, buttery breadstick. Highly addictive, but oh-so worth it."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "breadstick"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("bread" = 1, "butter" = 2)
+	foodtype = GRAIN | DAIRY
+	burns_in_oven = TRUE
+
+/obj/item/reagent_containers/food/snacks/breadstick/raw
+	name = "raw breadstick"
+	desc = "An uncooked strip of dough in the shape of a breadstick."
+	icon_state = "raw_breadstick"
+	tastes = list("raw dough" = 2, "butter" = 1)
+	foodtype = GRAIN | DAIRY | RAW
+
+/obj/item/reagent_containers/food/snacks/breadstick/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/breadstick, rand(20 SECONDS, 30 SECONDS), TRUE)
 
 //DEEP FRYER
 /obj/item/reagent_containers/food/snacks/deepfryholder

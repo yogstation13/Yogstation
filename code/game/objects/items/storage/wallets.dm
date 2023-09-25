@@ -2,6 +2,7 @@
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
 	icon_state = "wallet"
+	base_icon_state = "wallet"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	slot_flags = ITEM_SLOT_ID
@@ -9,7 +10,7 @@
 	var/obj/item/card/id/front_id = null
 	var/list/combined_access
 
-/obj/item/storage/wallet/ComponentInitialize()
+/obj/item/storage/wallet/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
@@ -55,18 +56,18 @@
 		var/mob/living/carbon/human/H = loc
 		if(H.wear_id == src)
 			H.sec_hud_set_ID()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/wallet/Entered(atom/movable/AM)
 	. = ..()
 	refreshID()
 
-/obj/item/storage/wallet/update_icon()
-	var/new_state = "wallet"
+/obj/item/storage/wallet/update_icon_state()
+	. = ..()
 	if(front_id)
-		new_state = "wallet_[front_id.icon_state]"
-	if(new_state != icon_state)		//avoid so many icon state changes.
-		icon_state = new_state
+		icon_state = "[base_icon_state]_[front_id.icon_state]"
+		return
+	icon_state = base_icon_state
 
 /obj/item/storage/wallet/GetID()
 	return front_id
@@ -97,4 +98,4 @@
 
 /obj/item/storage/wallet/random/PopulateContents()
 	new /obj/item/holochip(src, rand(5,30))
-	update_icon()
+	update_appearance(UPDATE_ICON)

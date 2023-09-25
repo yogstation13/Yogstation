@@ -11,7 +11,7 @@
 	icon_state = "ash"
 	mergeable_decal = FALSE
 
-/obj/effect/decal/cleanable/ash/Initialize()
+/obj/effect/decal/cleanable/ash/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/ash, 30)
 	pixel_x = rand(-5, 5)
@@ -25,7 +25,7 @@
 	name = "large pile of ashes"
 	icon_state = "big_ash"
 
-/obj/effect/decal/cleanable/ash/large/Initialize()
+/obj/effect/decal/cleanable/ash/large/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/ash, 30) //double the amount of ash.
 
@@ -35,7 +35,7 @@
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "tiny"
 
-/obj/effect/decal/cleanable/glass/Initialize()
+/obj/effect/decal/cleanable/glass/Initialize(mapload)
 	. = ..()
 	setDir(pick(GLOB.cardinals))
 
@@ -53,7 +53,7 @@
 	smooth = SMOOTH_FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/decal/cleanable/dirt/Initialize()
+/obj/effect/decal/cleanable/dirt/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(T.tiled_dirt)
@@ -83,7 +83,7 @@
 /obj/effect/decal/cleanable/greenglow/ex_act()
 	return
 
-/obj/effect/decal/cleanable/greenglow/Initialize()
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/radioactive, 15, src, 0, FALSE)
 	addtimer(CALLBACK(src, PROC_REF(Decay)), 24 SECONDS)
@@ -97,7 +97,7 @@
 	if(R)
 		R.RemoveComponent()
 
-/obj/effect/decal/cleanable/greenglow/filled/Initialize()
+/obj/effect/decal/cleanable/greenglow/filled/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(pick(/datum/reagent/uranium, /datum/reagent/uranium/radium), 5)
 
@@ -108,6 +108,7 @@
 	layer = WALL_OBJ_LAYER
 	icon_state = "cobweb1"
 	resistance_flags = FLAMMABLE
+	clean_type = CLEAN_TYPE_HARD_DECAL
 
 /obj/effect/decal/cleanable/cobweb/cobweb2
 	icon_state = "cobweb2"
@@ -119,6 +120,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "molten"
 	mergeable_decal = FALSE
+	clean_type = CLEAN_TYPE_HARD_DECAL
 
 /obj/effect/decal/cleanable/molten_object/large
 	name = "big gooey grey mass"
@@ -185,7 +187,7 @@
 	if(severity == 1) //so shreds created during an explosion aren't deleted by the explosion.
 		qdel(src)
 
-/obj/effect/decal/cleanable/shreds/Initialize()
+/obj/effect/decal/cleanable/shreds/Initialize(mapload)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	. = ..()

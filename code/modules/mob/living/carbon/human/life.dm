@@ -18,7 +18,13 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
-/mob/living/carbon/human/Life(times_fired)
+#define ADRENALINE_THRESHOLD 25
+
+/mob/living/carbon/human
+	var/lasthealth
+	COOLDOWN_DECLARE(adrenaline_cooldown)
+
+/mob/living/carbon/human/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set invisibility = 0
 	if (notransform)
 		return
@@ -27,7 +33,7 @@
 
 	if (QDELETED(src))
 		return 0
-	if(LIFETICK_SKIP(src, times_fired))
+	if(SHOULD_LIFETICK(src, times_fired))
 		if(.) //not dead
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
@@ -36,6 +42,11 @@
 		if(stat != DEAD)
 			//heart attack stuff
 			handle_heart()
+
+		if(COOLDOWN_FINISHED(src, adrenaline_cooldown) && ((health+ADRENALINE_THRESHOLD) < lasthealth))
+			apply_status_effect(STATUS_EFFECT_ADRENALINE)
+			COOLDOWN_START(src, adrenaline_cooldown, 10 MINUTES)
+		lasthealth = health
 
 		dna.species.spec_life(src) // for mutantraces
 	else
@@ -51,14 +62,14 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
-	if(stat != DEAD)
-		var/datum/component/mood/moody = GetComponent(/datum/component/mood)
-		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
-			if(prob(50))
-				if(prob(50))
-					heal_bodypart_damage(0.4, 0, 0, TRUE, BODYPART_ORGANIC)
-				else
-					heal_bodypart_damage(0, 0.4, 0, TRUE, BODYPART_ORGANIC)
+	if(stat != DEAD)// heal 0.2hp per second to organic limbs (they are self repairing by virtue of being organic)
+		if(HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_POWERHUNGRY) || (nutrition > NUTRITION_LEVEL_FED && satiety > 80))//either if they don't have hunger at all, or if they're fed enough
+			if(prob(50) && bruteloss)//50/50 to heal brute or burn, but won't heal a damage type if you don't have it
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
+			else if(fireloss)
+				heal_bodypart_damage(0, 0.2, 0, TRUE, BODYPART_ORGANIC)
+			else
+				heal_bodypart_damage(0.2, 0, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 

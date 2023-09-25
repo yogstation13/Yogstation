@@ -33,7 +33,7 @@
 			var/temp_flags = H.status_flags
 			H.status_flags |= GODMODE //Can't die while hatching
 			H.unequip_everything()
-			if(!do_mob(H,H,50,1))
+			if(!do_after(H, 5 SECONDS))
 				return
 			var/turf/shadowturf = get_turf(user)
 			for(var/turf/open/floor/F in orange(1, user))
@@ -43,28 +43,28 @@
 				new /obj/structure/alien/weeds/node(shadowturf) //Dim lighting in the chrysalis -- removes itself afterwards
 			H.visible_message(span_warning("A chrysalis forms around [H], sealing them inside."), \
 							span_shadowling("You create your chrysalis and begin to contort within."))
-			if(!do_mob(H,H,100,1))
+			if(!do_after(H, 10 SECONDS))
 				return
 			H.visible_message(span_warning("<b>The skin on [H]'s back begins to split apart. Black spines slowly emerge from the divide.</b>"), \
 							span_shadowling("Spines pierce your back. Your claws break apart your fingers. You feel excruciating pain as your true form begins its exit."))
-			if(!do_mob(H,H,90,1))
+			if(!do_after(H, 9 SECONDS))
 				return
 			H.visible_message(span_warning("<b>[H], skin shifting, begins tearing at the walls around them.</b>"), \
 							span_shadowling("Your false skin slips away. You begin tearing at the fragile membrane protecting you."))
-			if(!do_mob(H,H,80,1))
+			if(!do_after(H, 8 SECONDS))
 				return
 			playsound(H.loc, 'sound/weapons/slash.ogg', 25, 1)
 			to_chat(H, "<i><b>You rip and slice.</b></i>")
-			if(!do_mob(H,H,10,1))
+			if(!do_after(H, 1 SECONDS))
 				return
 			playsound(H.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
 			to_chat(H, "<i><b>The chrysalis falls like water before you.</b></i>")
-			if(!do_mob(H,H,10,1))
+			if(!do_after(H, 1 SECONDS))
 				return
 			playsound(H.loc, 'sound/weapons/slice.ogg', 25, 1)
 			to_chat(H, "<i><b>You are free!</b></i>")
 			H.status_flags = temp_flags
-			if(!do_mob(H,H,10,1))
+			if(!do_after(H, 1 SECONDS))
 				return
 			playsound(H.loc, 'sound/effects/ghost.ogg', 100, 1)
 			var/newNameId = pick(GLOB.nightmare_names)
@@ -96,12 +96,12 @@
 				antag_datum.show_to_ghosts = TRUE
 			H.LoadComponent(/datum/component/walk/shadow)
 
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), ITEM_SLOT_OCLOTHING)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), ITEM_SLOT_HEAD)
 			H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
 			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 			Remove(H)
-			if(!do_mob(H,H,10,1))
+			if(!do_after(H, 10 SECONDS))
 				return
 			to_chat(H, span_shadowling("<b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i>"))
 
@@ -162,28 +162,28 @@
 							span_shadowling("You rise into the air and get ready for your transformation."))
 			for(var/obj/item/I in H) //drops all items
 				H.unequip_everything(I)
-			if(!do_mob(H,H,50,1))
+			if(!do_after(H, 5 SECONDS))
 				return
 			H.visible_message(span_warning("[H]'s skin begins to crack and harden."), \
 							span_shadowling("Your flesh begins creating a shield around yourself."))
-			if(!do_mob(H,H,100,1))
+			if(!do_after(H, 10 SECONDS))
 				return
 			H.visible_message(span_warning("The small horns on [H]'s head slowly grow and elongate."), \
 								span_shadowling("Your body continues to mutate. Your telepathic abilities grow.")) //y-your horns are so big, senpai...!~
-			if(!do_mob(H,H,90,1))
+			if(!do_after(H, 9 SECONDS))
 				return
 			H.visible_message(span_warning("[H]'s body begins to violently stretch and contort."), \
 								span_shadowling("You begin to rend apart the final barriers to godhood."))
-			if(!do_mob(H,H,40,1))
+			if(!do_after(H, 4 SECONDS))
 				return
 			to_chat(H, "<i><b>Yes!</b></i>")
-			if(!do_mob(H,H,10,1))
+			if(!do_after(H, 1 SECONDS))
 				return
 			to_chat(H, "<i><b>[span_big("YES!!")]</b></i>")
-			if(!do_mob(H,H,10,1))
+			if(!do_after(H, 1 SECONDS))
 				return
 			to_chat(H, "<i><b>[span_reallybig("YE--")]</b></i>")
-			if(!do_mob(H,H,1,1))
+			if(!do_after(H, 0.1 SECONDS))
 				return
 			for(var/mob/living/M in orange(7, H))
 				M.Knockdown(10)

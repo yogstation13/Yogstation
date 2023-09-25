@@ -9,7 +9,6 @@
 	item_state = "jawsoflife"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.7
@@ -67,7 +66,7 @@
 		to_chat(user,span_notice("Your servos whirr as the cutting head reconfigures into a prying head."))
 	else
 		to_chat(user, span_notice("You attach the pry jaws to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/jawsoflife/proc/transform_cutters(mob/user)
 	attack_verb = list("pinched", "nipped")
@@ -81,7 +80,11 @@
 		to_chat(user,span_notice("Your servos whirr as the prying head reconfigures into a cutting head."))
 	else
 		to_chat(user, span_notice("You attach the cutting jaws to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
+
+/obj/item/jawsoflife/cyborg
+	name = "cyborg jaws of life"
+	toolspeed = 0.5 // Same toolspeed as cyborg screwdriver/wrench.
 
 //better handdrill
 /obj/item/handdrill
@@ -139,7 +142,7 @@
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into bolt mode."))
 	else
 		to_chat(user, span_notice("You attach the bolt driver bit to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/handdrill/proc/transform_screwdriver(mob/user)
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
@@ -151,7 +154,11 @@
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into screw mode."))
 	else
 		to_chat(user, span_notice("You attach the screw driver bit to [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
+
+/obj/item/handdrill/cyborg
+	name = "cyborg hand drill"
+	toolspeed = 0.5 // Same toolspeed as cyborg crowbar/wirecutters.
 
 /obj/item/jawsoflife/jimmy
 	name = "airlock jimmy"
@@ -162,6 +169,7 @@
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // Starting minimum value. Pump it up by using it up to the max
 	tool_behaviour = TOOL_CROWBAR
+	w_class = WEIGHT_CLASS_SMALL
 	var/pump_charge = 0
 	var/pump_max = 100
 	var/pump_min = 0
@@ -202,15 +210,15 @@
 /obj/item/jawsoflife/jimmy/proc/pump_cooldown()
 	is_pumping = FALSE
 
-/obj/item/jawsoflife/jimmy/emag_act(mob/user)
+/obj/item/jawsoflife/jimmy/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("Nothing new seems to happen when you swipe the emag."))
-		return
+		return FALSE
 	to_chat(user, span_notice("You swipe the emag on [src]'s pressure gage' enabling you to pump more pressure. "))
 	obj_flags |= EMAGGED
 	pump_max = 150
 	pump_cost = 75
-	. = ..()
+	return TRUE
 
 /obj/item/jawsoflife/jimmy/examine(mob/user)
 	. = ..()

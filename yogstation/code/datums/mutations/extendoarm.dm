@@ -12,6 +12,7 @@
 	name = "Arm"
 	desc = "Stretch your arm to grab or put stuff down."
 	button_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "arm"
 	base_icon_state = "arm"
 
 	cooldown_time = 5 SECONDS
@@ -36,13 +37,28 @@
 
 	return TRUE
 
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/can_cast_spell(feedback = TRUE)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/carbon_user = owner
+	if(!carbon_user.hand_bodyparts[carbon_user.active_hand_index]) //all these checks are here, because we dont want to adjust the spell icon thing in your screen and break it. wich it otherwise does in can_cast
+		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_NODISMEMBER))
+		owner.balloon_alert(owner, "can't dismember limbs!")
+		return FALSE
+	if(!owner.canUnEquip(owner.get_active_held_item()))
+		owner.balloon_alert(owner, "can't drop active item!")
+		return FALSE
+
+	return TRUE
+
 /datum/action/cooldown/spell/pointed/projectile/extendoarm/ready_projectile(obj/item/projectile/bullet/arm/P, atom/target, mob/user, iteration)
+	. = ..()
 	var/mob/living/carbon/C = user
 	var/new_color
-	if(C.dna?.species && !C.dna.species.use_skintones)
-		new_color = C.dna.species.default_features["mcolor"]
-		if(!("#" in new_color))
-			new_color = "#[new_color]"
+	if(C.dna && !C.dna.species.use_skintones)
+		new_color = C.dna.features["mcolor"]
 		P.add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
 
 	P.homing = target
@@ -56,22 +72,6 @@
 	P.arm = C.hand_bodyparts[C.active_hand_index]
 	P.arm.drop_limb()
 	P.arm.forceMove(P)
-
-/datum/action/cooldown/spell/pointed/projectile/extendoarm/InterceptClickOn(mob/living/caller, params, atom/target)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!iscarbon(caller))
-		return FALSE
-	var/mob/living/carbon/carbon_user = caller
-	if(!carbon_user.hand_bodyparts[carbon_user.active_hand_index]) //all these checks are here, because we dont want to adjust the spell icon thing in your screen and break it. wich it otherwise does in can_cast
-		return FALSE
-	if(HAS_TRAIT(caller, TRAIT_NODISMEMBER))
-		return FALSE
-	if(!caller.canUnEquip(caller.get_active_held_item()))
-		return FALSE
-
-	return TRUE
 
 /obj/item/projectile/bullet/arm
 	name = "arm"

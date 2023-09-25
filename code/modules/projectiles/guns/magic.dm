@@ -26,6 +26,34 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi' //not really a gun and some toys use these inhands
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
+/obj/item/gun/magic/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_MAGICALLY_CHARGED, PROC_REF(on_magic_charge))
+
+/**
+ * Signal proc for [COMSIG_ITEM_MAGICALLY_CHARGED]
+ *
+ * Adds uses to wands or staffs.
+ */
+/obj/item/gun/magic/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/charge/spell, mob/living/caster)
+	SIGNAL_HANDLER
+
+	. = COMPONENT_ITEM_CHARGED
+
+	// Non-self charging staves and wands can potentially expire
+	if(!can_charge && max_charges && prob(80))
+		max_charges--
+
+	if(max_charges <= 0)
+		max_charges = 0
+		. |= COMPONENT_ITEM_BURNT_OUT
+
+	charges = max_charges
+	update_appearance(UPDATE_ICON)
+	recharge_newshot()
+
+	return .
+
 /obj/item/gun/magic/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(no_den_usage)
 		var/area/A = get_area(user)
@@ -53,7 +81,7 @@
 		charges--//... drain a charge
 		recharge_newshot()
 
-/obj/item/gun/magic/Initialize()
+/obj/item/gun/magic/Initialize(mapload)
 	. = ..()
 	charges = max_charges
 	chambered = new ammo_type(src)
@@ -80,8 +108,9 @@
 		recharge_newshot()
 	return 1
 
-/obj/item/gun/magic/update_icon()
-	return
+/obj/item/gun/magic/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The [name] whizzles quietly."))

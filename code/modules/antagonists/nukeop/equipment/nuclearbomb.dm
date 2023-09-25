@@ -3,6 +3,7 @@
 	desc = "A stolen NanoTrasen branded nuclear bomb. You probably shouldn't stick around to see if this is armed."
 	icon = 'icons/obj/machines/nuke.dmi'
 	icon_state = "nuclearbomb_base"
+	base_icon_state = "nuclearbomb"
 	anchored = FALSE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -27,19 +28,17 @@
 	var/previous_level = ""
 	var/obj/item/nuke_core/core = null
 	var/deconstruction_state = NUKESTATE_INTACT
-	var/lights = ""
-	var/interior = ""
 	var/proper_bomb = TRUE //Please
 	var/obj/effect/countdown/nuclearbomb/countdown
 
 
-/obj/machinery/nuclearbomb/Initialize()
+/obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 	GLOB.nuke_list += src
 	core = new /obj/item/nuke_core(src)
 	STOP_PROCESSING(SSobj, core)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	GLOB.poi_list |= src
 	previous_level = get_security_level()
 
@@ -65,7 +64,6 @@
 	name = "station self-destruct terminal"
 	desc = "For when it all gets too much to bear. Do not taunt."
 	icon = 'icons/obj/machines/nuke_terminal.dmi'
-	icon_state = "nuclearbomb_base"
 	anchored = TRUE //stops it being moved
 
 /obj/machinery/nuclearbomb/syndicate
@@ -111,7 +109,7 @@
 				if(I.use_tool(src, user, 60, volume=100))
 					deconstruction_state = NUKESTATE_UNSCREWED
 					to_chat(user, span_notice("You remove the screws from [src]'s front panel."))
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				return
 
 		if(NUKESTATE_PANEL_REMOVED)
@@ -122,7 +120,7 @@
 				if(I.use_tool(src, user, 80, volume=100, amount=1))
 					to_chat(user, span_notice("You cut [src]'s inner plate."))
 					deconstruction_state = NUKESTATE_WELDED
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				return
 		if(NUKESTATE_CORE_EXPOSED)
 			if(istype(I, /obj/item/nuke_core_container))
@@ -132,7 +130,7 @@
 					if(core_box.load(core, user))
 						to_chat(user, span_notice("You load the plutonium core into [core_box]."))
 						deconstruction_state = NUKESTATE_CORE_REMOVED
-						update_icon()
+						update_appearance(UPDATE_ICON)
 						core = null
 					else
 						to_chat(user, span_warning("You fail to load the plutonium core into [core_box]. [core_box] has already been used!"))
@@ -146,7 +144,7 @@
 					to_chat(user, span_notice("You repair [src]'s inner metal plate. The radiation is contained."))
 					deconstruction_state = NUKESTATE_PANEL_REMOVED
 					STOP_PROCESSING(SSobj, core)
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				return
 	. = ..()
 
@@ -158,14 +156,14 @@
 			if(tool.use_tool(src, user, 30, volume=100))
 				to_chat(user, span_notice("You remove [src]'s front panel."))
 				deconstruction_state = NUKESTATE_PANEL_REMOVED
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			return TRUE
 		if(NUKESTATE_WELDED)
 			to_chat(user, span_notice("You start prying off [src]'s inner plate..."))
 			if(tool.use_tool(src, user, 30, volume=100))
 				to_chat(user, span_notice("You pry off [src]'s inner plate. You can see the core's green glow!"))
 				deconstruction_state = NUKESTATE_CORE_EXPOSED
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				START_PROCESSING(SSobj, core)
 			return TRUE
 
@@ -179,55 +177,43 @@
 	else
 		return NUKE_OFF_UNLOCKED
 
-/obj/machinery/nuclearbomb/update_icon()
-	if(deconstruction_state == NUKESTATE_INTACT)
-		switch(get_nuke_state())
-			if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
-				icon_state = "nuclearbomb_base"
-				update_icon_interior()
-				update_icon_lights()
-			if(NUKE_ON_TIMING)
-				cut_overlays()
-				icon_state = "nuclearbomb_timing"
-			if(NUKE_ON_EXPLODING)
-				cut_overlays()
-				icon_state = "nuclearbomb_exploding"
-	else
-		icon_state = "nuclearbomb_base"
-		update_icon_interior()
-		update_icon_lights()
+/obj/machinery/nuclearbomb/update_icon_state()
+	if(deconstruction_state != NUKESTATE_INTACT)
+		icon_state = "[base_icon_state]_base"
+		return ..()
 
-/obj/machinery/nuclearbomb/proc/update_icon_interior()
-	cut_overlay(interior)
+	switch(get_nuke_state())
+		if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
+			icon_state = "[base_icon_state]_base"
+		if(NUKE_ON_TIMING)
+			icon_state = "[base_icon_state]_timing"
+		if(NUKE_ON_EXPLODING)
+			icon_state = "[base_icon_state]_exploding"
+
+	return ..()
+
+/obj/machinery/nuclearbomb/update_overlays()
+	. = ..()
+
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
-			interior = "panel-unscrewed"
+			. += "panel-unscrewed"
 		if(NUKESTATE_PANEL_REMOVED)
-			interior = "panel-removed"
+			. += "panel-removed"
 		if(NUKESTATE_WELDED)
-			interior = "plate-welded"
+			. += "plate-welded"
 		if(NUKESTATE_CORE_EXPOSED)
-			interior = "plate-removed"
+			. += "plate-removed"
 		if(NUKESTATE_CORE_REMOVED)
-			interior = "core-removed"
-		if(NUKESTATE_INTACT)
-			return
-	add_overlay(interior)
+			. += "core-removed"
 
-/obj/machinery/nuclearbomb/proc/update_icon_lights()
-	if(lights)
-		cut_overlay(lights)
 	switch(get_nuke_state())
-		if(NUKE_OFF_LOCKED)
-			lights = ""
-			return
 		if(NUKE_OFF_UNLOCKED)
-			lights = "lights-safety"
+			. += "lights-safety"
 		if(NUKE_ON_TIMING)
-			lights = "lights-timing"
+			. += "lights-timing"
 		if(NUKE_ON_EXPLODING)
-			lights = "lights-exploding"
-	add_overlay(lights)
+			. += "lights-exploding"
 
 /obj/machinery/nuclearbomb/process()
 	if(timing && !exploding)
@@ -408,7 +394,7 @@
 		timing = FALSE
 		detonation_timer = null
 		countdown.stop()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/proc/set_active()
 	if(safety)
@@ -429,7 +415,7 @@
 			S.switch_mode_to(initial(S.mode))
 			S.alert = FALSE
 		countdown.stop()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/proc/get_time_left()
 	if(timing)
@@ -456,7 +442,7 @@
 	exploding = TRUE
 	yes_code = FALSE
 	safety = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	if(SSticker && SSticker.mode)
 		SSticker.roundend_check_paused = TRUE
@@ -517,7 +503,7 @@
 	proper_bomb = FALSE
 	var/obj/structure/reagent_dispensers/beerkeg/keg
 
-/obj/machinery/nuclearbomb/beer/Initialize()
+/obj/machinery/nuclearbomb/beer/Initialize(mapload)
 	. = ..()
 	keg = new(src)
 	QDEL_NULL(core)
@@ -563,7 +549,7 @@
 		S.switch_mode_to(initial(S.mode))
 		S.alert = FALSE
 	countdown.stop()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/beer/proc/fizzbuzz()
 	var/datum/reagents/R = new/datum/reagents(1000)
@@ -588,7 +574,7 @@
 /proc/KillEveryoneOnZLevel(z)
 	if(!z)
 		return
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/living/M in GLOB.mob_list)
 		var/turf/t = get_turf(M)
 		if(M.stat != DEAD && t.z == z && !istype(M.loc, /obj/structure/closet/secure_closet/freezer))
 			M.gib()
@@ -637,15 +623,12 @@ This is here to make the tiles around the station mininuke change when it's arme
 	var/turf/lastlocation
 	var/last_disk_move
 
-/obj/item/disk/nuclear/Initialize()
+/obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
 	if(!fake)
 		GLOB.poi_list |= src
 		last_disk_move = world.time
 		START_PROCESSING(SSobj, src)
-
-/obj/item/disk/nuclear/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/stationloving, !fake)
 
 /obj/item/disk/nuclear/process()

@@ -9,7 +9,7 @@
 	delivery_icon = "deliverybox"
 	var/obj/item/tank/internals/emergency_oxygen/tank
 
-/obj/structure/closet/crate/critter/Initialize()
+/obj/structure/closet/crate/critter/Initialize(mapload)
 	. = ..()
 	tank = new
 
@@ -21,14 +21,19 @@
 
 	return ..()
 
-/obj/structure/closet/crate/critter/update_icon()
-	cut_overlays()
+/obj/structure/closet/crate/critter/update_icon_state()
+	SHOULD_CALL_PARENT(FALSE)
+	return
+
+/obj/structure/closet/crate/critter/update_overlays()
+	. = ..()
 	if(opened)
-		add_overlay("crittercrate_door_open")
-	else
-		add_overlay("crittercrate_door")
-		if(manifest)
-			add_overlay("manifest")
+		. += "crittercrate_door_open"
+		return
+
+	. += "crittercrate_door"
+	if(manifest)
+		. += "manifest"
 
 /obj/structure/closet/crate/critter/return_air()
 	if(tank)

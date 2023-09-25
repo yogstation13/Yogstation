@@ -9,7 +9,7 @@
 	var/printer_ready = 0 //cooldown var
 	var/static/datum/bank_account/cargocash
 
-/obj/machinery/computer/bounty/Initialize()
+/obj/machinery/computer/bounty/Initialize(mapload)
 	. = ..()
 	printer_ready = world.time + PRINTER_TIMEOUT
 	cargocash = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -20,10 +20,10 @@
 /obj/item/paper/bounty_printout
 	name = "paper - Bounties"
 
-/obj/item/paper/bounty_printout/Initialize()
+/obj/item/paper/bounty_printout/Initialize(mapload)
 	. = ..()
 	info = "<h2>Nanotrasen Cargo Bounties</h2></br>"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/datum/bounty/B in GLOB.bounties_list)
 		if(B.claimed)
 			continue
@@ -31,12 +31,16 @@
 		<ul><li>Reward: [B.reward_string()]</li>
 		<li>Completed: [B.completion_string()]</li></ul>"}
 
-/obj/machinery/computer/bounty/emag_act(mob/user)
+/obj/machinery/computer/bounty/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
+	if(istype(emag_card, /obj/item/card/emag/improvised)) // We can't have nice things.
+		to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+		return FALSE
 	to_chat(user, span_warning("You adjust the antenna on \The [src], tuning it to a syndicate frequency."))
 	obj_flags |= EMAGGED
 	do_sparks(8, FALSE, loc)
+	return TRUE
 
 /obj/machinery/computer/bounty/proc/get_list_to_use()
 	if(obj_flags & EMAGGED)

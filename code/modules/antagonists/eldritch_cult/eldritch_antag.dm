@@ -21,13 +21,54 @@
 ///tracks the number of knowledges to next tier, currently 3
 	var/tier_counter = 0
 ///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
-	var/list/knowledges = list(	TIER_PATH = list(/datum/eldritch_knowledge/base_ash, /datum/eldritch_knowledge/base_flesh, /datum/eldritch_knowledge/base_rust),
-	 							TIER_1 = list(/datum/eldritch_knowledge/spell/ashen_shift, /datum/eldritch_knowledge/ashen_eyes, /datum/eldritch_knowledge/flesh_ghoul, /datum/eldritch_knowledge/rust_regen, /datum/eldritch_knowledge/armor, /datum/eldritch_knowledge/essence),
-	 							TIER_MARK = list(/datum/eldritch_knowledge/ash_mark, /datum/eldritch_knowledge/flesh_mark, /datum/eldritch_knowledge/rust_mark),
-	 							TIER_2 = list(/datum/eldritch_knowledge/blindness, /datum/eldritch_knowledge/corrosion, /datum/eldritch_knowledge/paralysis, /datum/eldritch_knowledge/raw_prophet, /datum/eldritch_knowledge/spell/blood_siphon, /datum/eldritch_knowledge/spell/area_conversion),
-	 							TIER_BLADE = list(/datum/eldritch_knowledge/ash_blade_upgrade, /datum/eldritch_knowledge/flesh_blade_upgrade, /datum/eldritch_knowledge/rust_blade_upgrade),
-	 							TIER_3 = list(/datum/eldritch_knowledge/spell/flame_birth, /datum/eldritch_knowledge/spell/cleave, /datum/eldritch_knowledge/stalker, /datum/eldritch_knowledge/ashy, /datum/eldritch_knowledge/rusty, /datum/eldritch_knowledge/spell/entropic_plume),
-	 							TIER_ASCEND = list(/datum/eldritch_knowledge/ash_final, /datum/eldritch_knowledge/flesh_final, /datum/eldritch_knowledge/rust_final))
+	var/list/knowledges = list(	
+	TIER_PATH = list(
+		/datum/eldritch_knowledge/base_ash,
+		/datum/eldritch_knowledge/base_flesh,
+		/datum/eldritch_knowledge/base_rust, 
+		/datum/eldritch_knowledge/base_mind),
+	TIER_1 = list(
+		/datum/eldritch_knowledge/spell/ashen_shift,
+		/datum/eldritch_knowledge/ashen_eyes,
+		/datum/eldritch_knowledge/flesh_ghoul,
+		/datum/eldritch_knowledge/rust_regen,
+		/datum/eldritch_knowledge/armor,
+		/datum/eldritch_knowledge/essence,
+		/datum/eldritch_knowledge/spell/mental_obfuscation,
+		/datum/eldritch_knowledge/eldritch_eye),
+	TIER_MARK = list(
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/flesh_mark,
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/mind_mark),
+	TIER_2 = list(
+		/datum/eldritch_knowledge/blindness,
+		/datum/eldritch_knowledge/corrosion,
+		/datum/eldritch_knowledge/paralysis,
+		/datum/eldritch_knowledge/raw_prophet,
+		/datum/eldritch_knowledge/spell/blood_siphon,
+		/datum/eldritch_knowledge/spell/area_conversion,
+		/datum/eldritch_knowledge/spell/assault,
+		/datum/eldritch_knowledge/spell/eldritchbolt),
+	TIER_BLADE = list(
+		/datum/eldritch_knowledge/ash_blade_upgrade,
+		/datum/eldritch_knowledge/flesh_blade_upgrade,
+		/datum/eldritch_knowledge/rust_blade_upgrade,
+		/datum/eldritch_knowledge/mind_blade_upgrade),
+	TIER_3 = list(
+		/datum/eldritch_knowledge/spell/flame_birth,
+		/datum/eldritch_knowledge/spell/cleave,
+		/datum/eldritch_knowledge/stalker,
+		/datum/eldritch_knowledge/ashy,
+		/datum/eldritch_knowledge/rusty,
+		/datum/eldritch_knowledge/spell/entropic_plume,
+		/datum/eldritch_knowledge/cerebral_control,
+		/datum/eldritch_knowledge/spell/famished_roar),
+	TIER_ASCEND = list(
+		/datum/eldritch_knowledge/ash_final,
+		/datum/eldritch_knowledge/flesh_final,
+		/datum/eldritch_knowledge/rust_final, 
+		/datum/eldritch_knowledge/mind_final))
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -101,9 +142,9 @@
 
 /datum/antagonist/heretic/proc/ecult_give_item(obj/item/item_path, mob/living/carbon/human/H)
 	var/list/slots = list(
-		"backpack" = SLOT_IN_BACKPACK,
-		"left pocket" = SLOT_L_STORE,
-		"right pocket" = SLOT_R_STORE
+		"backpack" = ITEM_SLOT_BACKPACK,
+		"left pocket" = ITEM_SLOT_LPOCKET,
+		"right pocket" = ITEM_SLOT_RPOCKET
 	)
 
 	var/T = new item_path(H)
@@ -208,6 +249,8 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
+		if(is_mind())
+			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
@@ -433,6 +476,57 @@
 									were weak. You too, realize you are part of the cycle as your spirit drifts down into the Mansus. Falling from the \
 									Glory, you reflect on your mistakes and your miserable life. In the moments before you become nothing, you understand."
 
+	else if(is_mind()) //Mind epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"Sitting tight in your seat, as you hear the hiss of the shuttle doors open everything begins to grow dark, you hear the crying of a baby and the smell of salt. \
+									Travelling to the Mansus, you find yourself once more upon the moonlit beach, though what you find is not what you expect. \
+									The child of the bloated corpse has risen from it's mother's dead womb, and turns to you with a sickly smile. Your hunt is not yet over."	
+			else if(alive)
+				flavor_message += 	"As you watch the escape shuttle leave with dull eyes, you turn to the others left behind, the sickly smell of blood fills the station's corridors. \
+									You fall quickly into a dream, Mansus calls and the beach is empty, though you see your way out from this nightmare, floating above the sky, a cracked moon. \
+									You swing your blade wildly like a beast more than a man, screams and cries echo down the corridors begging you to stop, but you cannot hear them, your goal is one without end, \
+									as more and more bodies pile, you climb over each and every one piling them up to create a stairway, step by step, slice by slice, climbing towards something ever out of reach."
+			else //Dead
+				flavor_message += 	"As your body hits the floor, you expect the sweet release of death to free you from this horrid nightmare, unfortunately as your consciousness slips away, \
+									you feel yourself dragged ever towards a familiar beach, scores of dead fish and crabs litter the shoreline, you step closer to the water's edge inch by inch. \
+									As you make it to the water, you do not slow, and more and more corpses float through the waters of the murky ocean. Those you've killed stare back at you, sacrificed to the endless tide. \
+									You simply look back at them and smile, not quite sure where you're going, or where you'll end up, until finally you arrive at the end of it all, and you're finally ready to wake."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"Sitting tight in your seat, as you hear the hiss of the shuttle doors open everything begins to grow dark, you hear the crying of a baby and the smell of salt. \
+									Travelling to the Mansus, you find yourself once more upon the moonlit beach, though what you find is not what you expect. \
+									You find scores of others, just like you, gathering around a bloated corpse, smiling and smirking to each other you ready your blades, hacking away at the poor dead beast. \
+									Taking your prizes, you set off for home, you do remember your way home, don't you?"
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"You've survived, not many can claim the same. You wait every night for the dark dream to take you, going back to the beach upon which you expect your end.\
+									Instead your every waking moment is plagued with a hunger, a thirst. You crave the blood, that sweet sickly substance which drives even men of learning to insanity. \
+									You ready yourself once more, picking up your blade with a smile, you'll teach them to fear the old blood, one cut at a time."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As you let out one last gasp of air, the light begins to leave your eyes as a small smile crosses your lips. \
+									You have completed all of the objectives given to you, though as the last neurons flicker in your fleshy dying brain you begin to question everything, \
+									why were you here? Who gave you this mission? Was it really all for nothing? You try to hold on to the last of your thoughts before they slip away, along with you into nothingness."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You've escaped the station, but as the shuttle lands at Centcom it all goes dark, dragged to the Mansus you look around you \
+									a moonlit beach with only one other person, it's like you're starring into a mirror. He raises his blade, and you break into a sprint to run away. \
+									Though you may not make it very far, you take solace in knowing your body finally gets to rest after a long night."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"You step through the ruined halls of the station, the clicking of your soles against the tile your only company. \
+									You have survived, though each night you try to enter the dream, hoping to find a way out of this dying station. \
+									Nothing comes to you, the beach is forever lost, and all that remains is to carve a way out by force."
+			else //Dead
+				flavor_message += 	"Your beaten and battered body lays there, your consciousness still trapped in it like a prison of flesh. \
+									You rally against the cage, fists pounding at the inside of your brain as you beat your fists bloody raw. \
+									Unfortunately, despite all your rage you're still just a rat in a cage. Doomed to be nothing more than a rotten corpse added to the beach at the end of time." 
 
 	else //Unpledged epilogues
 
@@ -528,6 +622,9 @@
 
 /datum/antagonist/heretic/proc/is_rust()
 	return "[lore]" == "Rust"
+
+/datum/antagonist/heretic/proc/is_mind()
+	return "[lore]" == "Mind"
 
 /datum/antagonist/heretic/proc/is_unpledged()
 	return "[lore]" == "Unpledged"

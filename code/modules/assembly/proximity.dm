@@ -9,7 +9,7 @@
 	var/sensitivity = 1
 	var/hearing_range = 3
 
-/obj/item/assembly/prox_sensor/Initialize()
+/obj/item/assembly/prox_sensor/Initialize(mapload)
 	. = ..()
 	proximity_monitor = new(src, 0)
 	START_PROCESSING(SSobj, src)
@@ -29,7 +29,7 @@
 		timing = !timing
 	else
 		scanning = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/assembly/prox_sensor/on_detach()
@@ -50,7 +50,7 @@
 	else
 		START_PROCESSING(SSobj, src)
 		proximity_monitor.SetHost(loc,src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return secured
 
 /obj/item/assembly/prox_sensor/HasProximity(atom/movable/AM as mob|obj)
@@ -84,7 +84,7 @@
 		return FALSE
 	scanning = scan
 	proximity_monitor.SetRange(scanning ? sensitivity : 0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/prox_sensor/proc/sensitivity_change(value)
 	var/sense = min(max(sensitivity + value, 0), 5)
@@ -92,18 +92,20 @@
 	if(scanning && proximity_monitor.SetRange(sense))
 		sense()
 
-/obj/item/assembly/prox_sensor/update_icon()
-	cut_overlays()
+/obj/item/assembly/prox_sensor/update_icon(updates=ALL)
+	. = ..()
+	if(holder)
+		holder.update_icon(updates)
+
+/obj/item/assembly/prox_sensor/update_overlays()
+	. = ..()
 	attached_overlays = list()
 	if(timing)
-		add_overlay("prox_timing")
+		. += "prox_timing"
 		attached_overlays += "prox_timing"
 	if(scanning)
-		add_overlay("prox_scanning")
+		. += "prox_scanning"
 		attached_overlays += "prox_scanning"
-	if(holder)
-		holder.update_icon()
-	return
 
 /obj/item/assembly/prox_sensor/ui_status(mob/user)
 	if(is_secured(user))
@@ -140,7 +142,7 @@
 				. = TRUE
 		if("time")
 			timing = !timing
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("input")
 			var/value = text2num(params["adjust"])

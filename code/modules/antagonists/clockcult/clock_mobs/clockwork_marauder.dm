@@ -6,7 +6,7 @@
 	name = "clockwork marauder"
 	desc = "The stalwart apparition of a soldier, blazing with crimson flames. It's armed with a gladius and shield."
 	icon_state = "clockwork_marauder"
-	mob_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_INORGANIC|MOB_HUMANOID
 	health = 150
 	maxHealth = 150
 	force_threshold = 8
@@ -34,7 +34,7 @@
 	if(!shield_health)
 		return span_warning("Its shield has been destroyed!")
 
-/mob/living/simple_animal/hostile/clockwork/marauder/Life()
+/mob/living/simple_animal/hostile/clockwork/marauder/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(!GLOB.ratvar_awakens && health / maxHealth <= MARAUDER_SLOWDOWN_PERCENTAGE)
 		speed = initial(speed) + 1 //Yes, this slows them down

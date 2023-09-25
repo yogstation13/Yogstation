@@ -21,7 +21,7 @@
 	var/ignore_suit_sensor_level = FALSE // Do we find people even if their suit sensors are turned off
 	var/alert = FALSE // TRUE to display things more seriously
 
-/obj/item/pinpointer/Initialize()
+/obj/item/pinpointer/Initialize(mapload)
 	. = ..()
 	GLOB.pinpointer_list += src
 
@@ -43,40 +43,40 @@
 	else
 		target = null
 		STOP_PROCESSING(SSfastprocess, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/pinpointer/process()
 	if(!active)
 		return PROCESS_KILL
 	scan_for_target()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/pinpointer/proc/scan_for_target()
 	return
 
-/obj/item/pinpointer/update_icon()
-	cut_overlays()
+/obj/item/pinpointer/update_overlays()
+	. = ..()
 	if(!active)
 		return
 	if(!target)
-		add_overlay("pinon[alert ? "alert" : ""]null")
+		. += "pinon[alert ? "alert" : ""]null"
 		return
 	var/turf/here = get_turf_global(src) // yogs - replace get_turf with get_turf_global
 	var/turf/there = get_turf_global(target) // yogs - replace get_turf with get_turf_global
 	if(here.z != there.z)
-		add_overlay("pinon[alert ? "alert" : ""]null")
+		. += "pinon[alert ? "alert" : ""]null"
 		return
 	if(get_dist_euclidian(here,there) <= minimum_range)
-		add_overlay("pinon[alert ? "alert" : ""]direct")
+		. += "pinon[alert ? "alert" : ""]direct"
 	else
 		setDir(get_dir(here, there))
 		switch(get_dist(here, there))
 			if(1 to 8)
-				add_overlay("pinon[alert ? "alert" : "close"]")
+				. += "pinon[alert ? "alert" : "close"]"
 			if(9 to 16)
-				add_overlay("pinon[alert ? "alert" : "medium"]")
+				. += "pinon[alert ? "alert" : "medium"]"
 			if(16 to INFINITY)
-				add_overlay("pinon[alert ? "alert" : "far"]")
+				. += "pinon[alert ? "alert" : "far"]"
 
 /obj/item/pinpointer/crew // A replacement for the old crew monitoring consoles
 	name = "crew pinpointer"

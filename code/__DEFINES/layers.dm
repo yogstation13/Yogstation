@@ -114,7 +114,7 @@
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define ABOVE_LIGHTING_PLANE 120 //things that should render ignoring lightning
+#define ABOVE_LIGHTING_PLANE 200 //things that should render ignoring lightning
 #define ABOVE_LIGHTING_LAYER 17
 #define ABOVE_LIGHTING_RENDER_TARGET "ABOVE_LIGHTING_PLANE"
 
@@ -142,6 +142,7 @@
 #define BLIND_LAYER 20.3
 #define CRIT_LAYER 20.4
 #define CURSE_LAYER 20.5
+#define ECHO_LAYER 20.6
 #define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
 #define HUD_PLANE 21

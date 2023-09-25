@@ -133,72 +133,62 @@
 /obj/item/organ/stomach/cell
 	name = "micro-cell"
 	icon_state = "microcell"
-	w_class = WEIGHT_CLASS_NORMAL
 	zone = "chest"
 	slot = "stomach"
 	attack_verb = list("assault and battery'd")
 	desc = "A micro-cell, for IPC use only. Do not swallow."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC
+	var/stored_charge = NUTRITION_LEVEL_WELL_FED
+	var/emp_message = span_warning("Alert: EMP Detected. Cycling battery.")
 
 /obj/item/organ/stomach/cell/emp_act(severity)
-	switch(severity)
-		if(1)
-			owner.adjust_nutrition(-150)
-			to_chat(owner, "<span class='warning'>Alert: Heavy EMP Detected. Rebooting power cell to prevent damage.</span>")
-		if(2)
-			owner.adjust_nutrition(-50)
-			to_chat(owner, "<span class='warning'>Alert: EMP Detected. Cycling battery.</span>")
+	to_chat(owner, emp_message)
+	charge(amount = owner.nutrition * -0.2 / severity)
 
 /obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		M.nutrition = stored_charge
 	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 /obj/item/organ/stomach/cell/Remove(mob/living/carbon/M, special)
 	. = ..()
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY))
+		stored_charge = M.nutrition
+		M.nutrition = 0
 	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
+	M.dna?.species.handle_digestion(M) // update nutrition stuff
 
 /obj/item/organ/stomach/cell/proc/charge(datum/source, amount, repairs)
-	owner.nutrition = clamp(owner.nutrition + (amount/100), 0, NUTRITION_LEVEL_FULL) // no fat ipcs
+	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
+		return // do nothing in the owner doesn't run on electricity
+	owner.adjust_nutrition(amount/100) // ipcs can't get fat anymore
 
-/obj/item/organ/stomach/ethereal
+/obj/item/organ/stomach/cell/ethereal
 	name = "biological battery"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
-	var/crystal_charge = ETHEREAL_CHARGE_ALMOSTFULL
+	status = ORGAN_ORGANIC
+	organ_flags = NONE
+	process_flags = ORGANIC
 
-/obj/item/organ/stomach/ethereal/on_life()
+/obj/item/organ/stomach/cell/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()
-	var/chargemod = 1
-	if(HAS_TRAIT(owner, TRAIT_EAT_LESS))
-		chargemod *= 0.75 //power consumption rate reduced by about 25%
-	if(HAS_TRAIT(owner, TRAIT_EAT_MORE))
-		chargemod *= 3 //hunger rate tripled
-	if(HAS_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH))
-		crystal_charge = min(crystal_charge, ETHEREAL_CHARGE_ALMOSTFULL) //capped, can never be truly full
-	adjust_charge(-(ETHEREAL_CHARGE_FACTOR * chargemod))
-
-/obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
-	..()
-	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_electrocute))
 
-/obj/item/organ/stomach/ethereal/Remove(mob/living/carbon/M, special = 0)
-	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
+/obj/item/organ/stomach/cell/ethereal/Remove(mob/living/carbon/M, special = 0)
 	UnregisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT)
 	..()
 
-/obj/item/organ/stomach/ethereal/proc/charge(datum/source, amount, repairs)
-	adjust_charge(amount / 70)
-
-/obj/item/organ/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
+/obj/item/organ/stomach/cell/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
 	if(illusion)
 		return
-	adjust_charge(shock_damage * siemens_coeff * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+	if(!HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
+		return
+	owner.adjust_nutrition(shock_damage * siemens_coeff)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
-
-/obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
-	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_DANGEROUS)
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"
@@ -208,8 +198,8 @@
 	actions_types = list(/datum/action/item_action/organ_action/use)
 
 /obj/item/organ/stomach/cursed/ui_action_click() //Stomach that allows you to vomit at will, oh the humanity!
-	if(HAS_TRAIT(owner, TRAIT_NOHUNGER))
-		to_chat(owner, span_notice("You don't hunger, you can't vomit!"))
+	if(HAS_TRAIT(owner, TRAIT_NOHUNGER) || HAS_TRAIT(owner, TRAIT_POWERHUNGRY))
+		to_chat(owner, span_notice("You don't eat food, you can't vomit!"))
 		return
 	if(owner.IsParalyzed())
 		to_chat(owner, span_notice("You can't bring yourself to vomit while stunned!"))

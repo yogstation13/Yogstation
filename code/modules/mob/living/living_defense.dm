@@ -195,7 +195,7 @@
 				log_combat(user, src, "attempted to neck grab", addition="neck grab")
 			if(GRAB_NECK)
 				log_combat(user, src, "attempted to strangle", addition="kill grab")
-		if(!do_mob(user, src, grab_upgrade_time))
+		if(!do_after(user, grab_upgrade_time, src))
 			return FALSE
 		if(!user.pulling || user.pulling != src || user.grab_state != old_grab_state)
 			return FALSE
@@ -213,7 +213,6 @@
 			else
 				visible_message(span_danger("[user] has grabbed [src] aggressively!"), \
 								span_userdanger("[user] has grabbed you aggressively!"))
-				drop_all_held_items()
 			stop_pulling()
 			log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
 		if(GRAB_NECK)

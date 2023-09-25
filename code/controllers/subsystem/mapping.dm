@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(mapping)
 
 	for(var/N in nuke_tiles)
 		var/turf/open/floor/circuit/C = N
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
@@ -319,13 +319,10 @@ SUBSYSTEM_DEF(mapping)
 	// load mining
 	var/minetype = config.minetype
 	if(config.minetype == "random")
-		minetype = pick("lavaland","spaceland")
+		minetype = pick("lavaland", "spaceland")
 	switch(minetype)
 		if("lavaland")
 			LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
-		if("icemoon")
-			LoadGroup(FailedZs, "Ice moon", "map_files/mining", "Icemoon.dmm", default_traits = ZTRAITS_ICEMOON)
-			LoadGroup(FailedZs, "Ice moon Underground", "map_files/mining", "IcemoonUnderground.dmm", default_traits = ZTRAITS_ICEMOON_UNDERGROUND)
 		if("spaceland")
 			LoadGroup(FailedZs, "Spaceland", "map_files/mining", "Spaceland.dmm", default_traits = ZTRAITS_SPACE)
 		else
@@ -417,7 +414,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, span_boldannounce("Map rotation has chosen [VM.map_name] for next round!"))
 
-/datum/controller/subsystem/mapping/proc/changemap(var/datum/map_config/VM)
+/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
 		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")

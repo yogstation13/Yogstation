@@ -159,17 +159,13 @@
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
-	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else. Requires very cold temperatures to properly metabolize, and metabolizes quicker than cryoxadone."
+	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else."
 	color = "#0000C8"
 	taste_description = "muscle"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
-	if(M.bodytemperature < T0C && M.IsSleeping()) //yes you have to be in cryo shut up and drink your corn syrup
-		M.adjustCloneLoss(0.001 * (M.bodytemperature ** 2) - 100, 0)
-		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		. = 1
-	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
+	M.adjustCloneLoss(-4*REM, 0)
 	..()
 
 /datum/reagent/medicine/pyroxadone
@@ -238,9 +234,9 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
-/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
-		if(method in list(INGEST, VAPOR, INJECT))
+		if(!(methods & (PATCH|TOUCH)))
 			M.adjustToxLoss(0.5*reac_volume*permeability)
 			if(show_message && permeability)
 				to_chat(M, span_warning("You don't feel so good..."))
@@ -252,7 +248,7 @@
 				to_chat(M, span_danger("You feel your burns healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-			if(method == TOUCH)
+			if(methods & TOUCH)
 				M.reagents.add_reagent(/datum/reagent/medicine/silver_sulfadiazine, reac_volume * permeability)
 	..()
 
@@ -289,9 +285,9 @@
 	reagent_state = LIQUID
 	color = "#FF9696"
 
-/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
-		if(method in list(INGEST, VAPOR, INJECT))
+		if(!(methods & (PATCH|TOUCH)))
 			M.adjustToxLoss(0.5*reac_volume*permeability)
 			if(show_message && permeability)
 				to_chat(M, span_warning("You don't feel so good..."))
@@ -303,7 +299,7 @@
 				to_chat(M, span_danger("You feel your bruises healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-			if(method == TOUCH)
+			if(methods & TOUCH)
 				M.reagents.add_reagent(/datum/reagent/medicine/styptic_powder, reac_volume * permeability)
 	..()
 
@@ -371,9 +367,9 @@
 	..()
 	return TRUE
 
-/datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
-		if(method in list(INGEST, VAPOR, INJECT))
+		if(!(methods & (PATCH|TOUCH)))
 			M.adjust_nutrition(-5)
 			if(show_message)
 				to_chat(M, span_warning("Your stomach feels empty and cramps!"))
@@ -400,13 +396,13 @@
 	reagent_state = LIQUID
 	color = "#FFEBEB"
 
-/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
+/datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
 	var/can_heal = FALSE
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if (M.stat == DEAD)
 			can_heal = TRUE
-		if((method in list(PATCH, TOUCH)) && can_heal)
+		if((methods & (PATCH|TOUCH)) && can_heal)
 			for(var/i in C.all_wounds)
 				var/datum/wound/iter_wound = i
 				iter_wound.on_synthflesh(reac_volume)
@@ -418,7 +414,7 @@
 				var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX - S?.volume)
 				M.adjustBruteLoss(-2*heal_amt)
 				M.adjustFireLoss(-2*heal_amt)
-				if(method == TOUCH)
+				if(methods & TOUCH)
 					M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume) // no permeability modifier because it only works on dead bodies anyway and would just be an inconvenience
 				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, BURN) && (S?.volume + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT && M.getFireLoss() <= UNHUSK_DAMAGE_THRESHOLD) && M.cure_husk(BURN)) //cure husk will return true if it cures the final husking source
 					M.visible_message(span_notice("The synthflesh soaks into [M]'s burns and they regain their natural color!"))
@@ -448,10 +444,11 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	process_flags = SYNTHETIC
 
-/datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	for(var/thing in L.diseases)//lets it cure viruses from IPC
-		var/datum/disease/D = thing
-		D.cure()
+/datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+	if(!(L.get_process_flags() & ORGANIC))
+		for(var/thing in L.diseases) // can clean viruses from fully synthetic hosts
+			var/datum/disease/D = thing
+			D.cure()
 
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
@@ -469,6 +466,9 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
+	var/obj/item/organ/O = M.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!(O.organ_flags & ORGAN_SYNTHETIC)) // don't heal organic brains in partially synthetic mobs
+		return ..()
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -757,6 +757,10 @@
 		if(24 to INFINITY)
 			M.Sleeping(40, 0)
 			. = 1
+	if(M.stat > CONSCIOUS)
+		M.adjustBruteLoss(-1*REM)
+		M.adjustFireLoss(-1*REM)
+		M.adjustOxyLoss(-1*REM)
 	..()
 
 /datum/reagent/medicine/morphine/overdose_process(mob/living/M)
@@ -904,7 +908,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 
-/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/strange_reagent)
 	if((S?.volume + reac_volume) < REQUIRED_STRANGE_REAGENT_FOR_REVIVAL)
 		M.visible_message(span_warning("[M]'s body shivers slightly, maybe the dose wasn't enough..."))
@@ -1292,6 +1296,7 @@
 	if(prob(20))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
 	M.adjustStaminaLoss(2.5*REM, 0)
+	M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -1432,6 +1437,7 @@
 		if(41 to 80)
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
+			M.clear_stamina_regen()
 			M.adjust_jitter_up_to(1 SECONDS, 20 SECONDS)
 			M.adjust_stutter_up_to(1 SECONDS, 20 SECONDS)
 			M.adjust_dizzy(10)
@@ -1445,10 +1451,12 @@
 			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
+			M.clear_stamina_regen()
 		if(82 to INFINITY)
 			M.Sleeping(100, 0, TRUE)
 			M.adjustOxyLoss(1.5*REM, 0)
 			M.adjustStaminaLoss(1.5*REM, 0)
+			M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -1783,10 +1791,10 @@
 					M.drop_all_held_items() // end IF both drugs present
 	return
 
-/datum/reagent/medicine/burnmix/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
+/datum/reagent/medicine/burnmix/reaction_mob(mob/living/M, methods=TOUCH, reac_volume,show_message = 1)
 	if(iscarbon(M))
 		if (M.stat == DEAD) // If the mob is dead and you apply it via touch. You get to play an RNG healing game.
-			if(method in list(PATCH, TOUCH))
+			if(methods & (PATCH|TOUCH))
 				var/RNG_ROLL = pick(-0.5,-0.25,-0.1,0,0.2)
 				var/RNG_TEXT = "no effect"
 				if(RNG_ROLL == -0.5)
@@ -1821,8 +1829,8 @@
 	taste_description = "metallic dust"
 	self_consuming = TRUE
 
-/datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == TOUCH || method == VAPOR)
+/datum/reagent/medicine/radscrub/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+	if(methods & (TOUCH|VAPOR))
 		M.wash(CLEAN_RAD) //you only get decontaminated if it's spray based, can't spam out 100 1u pills
 
 /datum/reagent/medicine/radscrub/on_mob_life(mob/living/carbon/M)
@@ -1870,6 +1878,7 @@
 	name = "Resurrector Nanite Serum"
 	description = "A serum of nanites capable of restoring corpses to living people in a timely manner."
 	taste_description = "a bunch of tiny robots"
+	can_synth = FALSE
 
 /datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
 	..()
@@ -1893,4 +1902,3 @@
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
 	return ..()
-	

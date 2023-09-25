@@ -10,7 +10,7 @@
 	icon_state = "leaper"
 	icon_living = "leaper"
 	icon_dead = "leaper_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	maxHealth = 300
 	health = 300
 	ranged = TRUE
@@ -60,7 +60,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 3
 
-/obj/effect/temp_visual/leaper_projectile_impact/Initialize()
+/obj/effect/temp_visual/leaper_projectile_impact/Initialize(mapload)
 	. = ..()
 	new /obj/effect/decal/cleanable/leaper_sludge(get_turf(src))
 
@@ -78,7 +78,7 @@
 	max_integrity = 10
 	density = FALSE
 
-/obj/structure/leaper_bubble/Initialize()
+/obj/structure/leaper_bubble/Initialize(mapload)
 	. = ..()
 	float(on = TRUE)
 	QDEL_IN(src, 100)
@@ -126,7 +126,7 @@
 	pixel_y = -32
 	duration = 30
 
-/mob/living/simple_animal/hostile/jungle/leaper/Initialize()
+/mob/living/simple_animal/hostile/jungle/leaper/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 
@@ -165,7 +165,7 @@
 		if(!hopping)
 			Hop()
 
-/mob/living/simple_animal/hostile/jungle/leaper/Life()
+/mob/living/simple_animal/hostile/jungle/leaper/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	update_icons()
 

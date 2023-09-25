@@ -9,7 +9,7 @@
 	tastes = list("leaves" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/salad/Initialize()
+/obj/item/reagent_containers/food/snacks/salad/Initialize(mapload)
 	. = ..()
 	eatverb = pick("devour","nibble","gnaw","gobble","chomp") //who the fuck gnaws and devours on a salad
 
@@ -99,7 +99,7 @@
 	icon_state = "ricepudding"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("rice" = 1, "sweetness" = 1)
-	foodtype = GRAIN | DAIRY
+	foodtype = GRAIN | DAIRY | SUGAR
 
 /obj/item/reagent_containers/food/snacks/salad/ricepork
 	name = "rice and pork"
@@ -111,11 +111,11 @@
 
 /obj/item/reagent_containers/food/snacks/salad/eggbowl
 	name = "egg bowl"
-	desc = "A bowl of rice with a fried egg."
+	desc = "A bowl of rice with a boiled egg."
 	icon_state = "eggbowl"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("rice" = 1, "egg" = 1)
-	foodtype = GRAIN | MEAT | EGG // rip NinjaNomnom
+	foodtype = GRAIN | VEGETABLES | EGG // rip NinjaNomnom
 
 /obj/item/reagent_containers/food/snacks/salad/edensalad
 	name = "\improper Salad of Eden"
@@ -172,7 +172,7 @@
 	foodtype = GRAIN | SEAFOOD
 
 
-/obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp/Initialize()
+/obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		name = "rice fried shrimp"

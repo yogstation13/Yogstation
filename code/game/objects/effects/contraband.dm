@@ -1,5 +1,6 @@
 // This is synced up to the poster placing animation.
 #define PLACE_SPEED 37
+#define isabductorwall(A) (istype(A, /turf/closed/indestructible/abductor))
 
 // The poster item
 
@@ -53,12 +54,13 @@
 	var/ruined = FALSE
 	var/random_basetype
 	var/never_random = FALSE // used for the 'random' subclasses.
+	var/list/blacklisted_types = list() //Exclude posters of these types from being added to the random pool
 
 	var/poster_item_name = "hypothetical poster"
 	var/poster_item_desc = "This hypothetical poster item should not exist, let's be honest here."
 	var/poster_item_icon_state = "rolled_poster"
 
-/obj/structure/sign/poster/Initialize()
+/obj/structure/sign/poster/Initialize(mapload)
 	. = ..()
 	if(random_basetype)
 		randomise(random_basetype)
@@ -69,6 +71,9 @@
 
 /obj/structure/sign/poster/proc/randomise(base_type)
 	var/list/poster_types = subtypesof(base_type)
+	if(length(blacklisted_types))
+		for(var/iterated_type in blacklisted_types)
+			poster_types -= typesof(iterated_type)
 	var/list/approved_types = list()
 	for(var/t in poster_types)
 		var/obj/structure/sign/poster/T = t
@@ -119,7 +124,7 @@
 	return P
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/closed/wall/proc/place_poster(obj/item/poster/P, mob/user)
+/turf/closed/proc/place_poster(obj/item/poster/P, mob/user)
 	if(!P.poster_structure)
 		to_chat(user, span_warning("[P] has no poster... inside it? Inform a coder!"))
 		return
@@ -155,14 +160,14 @@
 		if(!D || QDELETED(D))
 			return
 
-		if(iswallturf(src) && user && user.loc == temp_loc)	//Let's check if everything is still there
+		if((iswallturf(src) || isabductorwall(src)) && user && user.loc == temp_loc)	//Let's check if everything is still there
 			to_chat(user, span_notice("You place the poster!"))
 			return
 
 	to_chat(user, span_notice("The poster falls down!"))
 	D.roll_and_drop(temp_loc)
 
-/turf/closed/wall/proc/place_borg_poster(obj/item/wantedposterposter/P, mob/user)
+/turf/closed/proc/place_borg_poster(obj/item/wantedposterposter/P, mob/user)
 	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
 	if (smooth & SMOOTH_DIAGONAL)
 		for (var/O in overlays)
@@ -209,7 +214,7 @@
 		if(!D || QDELETED(D))
 			return
 
-		if(iswallturf(src) && user && user.loc == temp_loc)	//Let's check if everything is still there
+		if((iswallturf(src) || isabductorwall(src)) && user && user.loc == temp_loc)	//Let's check if everything is still there
 			to_chat(user, span_notice("You place the poster!"))
 			return
 
@@ -229,6 +234,7 @@
 	icon_state = "random_anything"
 	never_random = TRUE
 	random_basetype = /obj/structure/sign/poster
+	blacklisted_types = list(/obj/structure/sign/poster/abductor)
 
 /obj/structure/sign/poster/contraband
 	poster_item_name = "contraband poster"
@@ -407,10 +413,6 @@
 	desc = "The Griffin commands you to be the worst you can be. Will you?"
 	icon_state = "poster33"
 
-/obj/structure/sign/poster/contraband/lizard
-	name = "Lizard"
-	desc = "This lewd poster depicts a lizard preparing to mate."
-	icon_state = "poster34"
 
 /obj/structure/sign/poster/contraband/free_drone
 	name = "Free Drone"
@@ -686,3 +688,4 @@
 		chosen = find_record("name", choice, GLOB.data_core.general)
 
 #undef PLACE_SPEED
+#undef isabductorwall

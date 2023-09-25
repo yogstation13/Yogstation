@@ -11,7 +11,16 @@
 	resistance_flags = FIRE_PROOF
 	mutantrace_variation = MUTANTRACE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
-	
+
+// **** Atmos gas mask ****
+
+/obj/item/clothing/mask/gas/atmos
+	name = "atmospheric gas mask"
+	desc = "Improved gas mask utilized by atmospheric technicians. It's flameproof!"
+	icon_state = "gas_atmos"
+	item_state = "gas_atmos"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 10, FIRE = 100, ACID = 55)
+
 // **** Welding gas mask ****
 
 /obj/item/clothing/mask/gas/welding

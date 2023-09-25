@@ -1,10 +1,10 @@
 /obj/item/gun/energy/e_gun
 	name = "energy gun"
-	desc = "A basic hybrid energy gun with two settings: disable and kill."
+	desc = "Created in 2514, the NT-E3 hybrid energy gun is the newest generation of standardized energy equipment for use by security. This basic hybrid energy gun comes equipped with two settings: disable and kill."
 	icon_state = "energy"
-	item_state = null	//so the human update icon uses the icon_state instead.
+	item_state = null //so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
-	modifystate = 1
+	modifystate = TRUE
 	can_flashlight = TRUE
 	ammo_x_offset = 3
 	flight_x_offset = 15
@@ -17,7 +17,7 @@
 
 /obj/item/gun/energy/e_gun/mini
 	name = "miniature energy gun"
-	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
+	desc = "A small, pistol-sized version of the energy gun with a built-in flashlight. The NT-E2 functions as a popular self defense weapon among the elite due to its small size and cheap price. It has two settings: disable and kill."
 	icon_state = "mini"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -25,15 +25,14 @@
 	ammo_x_offset = 2
 	charge_sections = 3
 	can_flashlight = FALSE // Can't attach or detach the flashlight, and override it's icon update
+	gunlight_state = "mini-light"
+	flight_x_offset = 19
+	flight_y_offset = 13
 
-/obj/item/gun/energy/e_gun/mini/Initialize()
-	set_gun_light(new /obj/item/flashlight/seclite(src))
-	return ..()
-
-/obj/item/gun/energy/e_gun/mini/update_icon()
-	..()
-	if(gun_light && gun_light.on)
-		add_overlay("mini-light")
+/obj/item/gun/energy/e_gun/mini/Initialize(mapload)
+	. = ..()
+	var/obj/item/flashlight/seclite/new_seclite = new()
+	set_gun_light(new_seclite)
 
 /obj/item/gun/energy/e_gun/stun
 	name = "tactical energy gun"
@@ -44,7 +43,7 @@
 
 /obj/item/gun/energy/e_gun/old
 	name = "prototype energy gun"
-	desc = "NT-P:01 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command."
+	desc = "NT-E1 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command. Was quickly made useless by the NT-E2 and NT-E3 Hybrid Energy Guns, which utilized a more efficient power system."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
@@ -56,8 +55,8 @@
 	icon_state = "decloner"
 
 /obj/item/gun/energy/e_gun/hos
-	name = "\improper X-01 MultiPhase Energy Gun"
-	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
+	name = "\improper NT-S02 MultiPhase Energy Gun"
+	desc = "An expensive, modern recreation of the antique laser gun, and the second of the 'S' or special class weapons meant for the use of space station command staff. Like the standard energy gun, it has a stun and kill setting, but due to the increase in demand of portable EMP-based weaponry, this weapon is equipped with an ion mode. Lacks the ability to recharge on its own."
 	icon_state = "hoslaser"
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/ion/hos)
@@ -143,7 +142,6 @@
 	pin = null
 	can_charge = FALSE
 	ammo_x_offset = 1
-	old_ratio = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/xray, /obj/item/ammo_casing/energy/anoxia) //a lot of firemodes so it's really an ADVANCED egun
 	dead_cell = TRUE //Fuel not included, you will have to get irradiated to shoot this gun
 
@@ -163,7 +161,7 @@
 			I.use(1)
 			cell.give(250*charge_multiplier)
 			user.radiation += (75*charge_multiplier) //You are putting you hand into a nuclear reactor to put more uranium in it
-			update_icon(TRUE)
+			update_appearance(UPDATE_ICON)
 		else
 			if(!(previous_loc == user.loc))
 				to_chat(user, span_boldwarning("You move, bumping your hand on [src]'s nulear reactor's core!")) //when I said devoid of ANY safety measures I meant it

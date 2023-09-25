@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		max_integrity = 1000
 		obj_integrity = 1000
 
-/obj/structure/slime_crystal/Initialize()
+/obj/structure/slime_crystal/Initialize(mapload)
 	. = ..()
 	name =  "[colour] slimic pylon"
 	var/itemcolor = "#FFFFFF"
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	light_power = 0.75
 	uses_process = FALSE
 
-/obj/structure/slime_crystal/yellow/Initialize()
+/obj/structure/slime_crystal/yellow/Initialize(mapload)
 	. = ..()
 	set_light(3)
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	///Is it in use?
 	var/in_use = FALSE
 
-/obj/structure/slime_crystal/bluespace/Initialize()
+/obj/structure/slime_crystal/bluespace/Initialize(mapload)
 	. = ..()
 	GLOB.bluespace_slime_crystals += src
 
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	var/stage = 0
 	var/max_stage = 5
 
-/obj/structure/cerulean_slime_crystal/Initialize()
+/obj/structure/cerulean_slime_crystal/Initialize(mapload)
 	. = ..()
 	transform *= 1/(max_stage-1)
 	stage_growth()
@@ -367,7 +367,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/cerulean/process()
 	for(var/turf/T in range(2,src))
-		if(is_blocked_turf(T) || isspaceturf(T)  || T == get_turf(src) || prob(50))
+		if(T.is_blocked_turf() || isspaceturf(T)  || T == get_turf(src) || prob(50))
 			continue
 		var/obj/structure/cerulean_slime_crystal/CSC = locate() in range(1,T)
 		if(CSC)
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	effect_desc = "It causes nearby floor tiles to be randomly colored."
 	uses_process = FALSE
 
-/obj/structure/slime_crystal/pyrite/Initialize()
+/obj/structure/slime_crystal/pyrite/Initialize(mapload)
 	. = ..()
 	change_colour()
 
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	blood_amt -= 50
 	to_chat(user, span_notice("You touch the crystal, and see blood transforming into an organ!"))
 	playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
-	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
+	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/ethereal,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/cell/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
 	new type(get_turf(src))
 
 /obj/structure/slime_crystal/red/attacked_by(obj/item/I, mob/living/user)
@@ -596,7 +596,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	max_integrity = 100 //It would suck destroying this by accident
 	var/list/inserted_cores = list()
 
-/obj/structure/slime_crystal/rainbow/Initialize()
+/obj/structure/slime_crystal/rainbow/Initialize(mapload)
 	. = ..()
 	for(var/X in subtypesof(/obj/item/slimecross/crystalized) - /obj/item/slimecross/crystalized/rainbow)
 		inserted_cores[X] = FALSE

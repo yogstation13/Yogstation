@@ -530,7 +530,7 @@
 
 /datum/status_effect/the_shadow/Destroy()
 	if(owner)
-		owner.cut_overlay(shadow)
+		owner.overlays -= shadow
 	QDEL_NULL(shadow)
 	return ..()
 
@@ -540,9 +540,9 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/mutable_appearance/marked_underlay
-	var/obj/item/twohanded/kinetic_crusher/hammer_synced
+	var/obj/item/kinetic_crusher/hammer_synced
 
-/datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/twohanded/kinetic_crusher/new_hammer_synced)
+/datum/status_effect/crusher_mark/on_creation(mob/living/new_owner, obj/item/kinetic_crusher/new_hammer_synced)
 	. = ..()
 	if(.)
 		hammer_synced = new_hammer_synced
@@ -737,7 +737,7 @@
 /obj/effect/temp_visual/curse
 	icon_state = "curse"
 
-/obj/effect/temp_visual/curse/Initialize()
+/obj/effect/temp_visual/curse/Initialize(mapload)
 	. = ..()
 	deltimer(timerid)
 
@@ -1087,7 +1087,7 @@
 /datum/status_effect/eldritch/on_apply()
 	if(owner.mob_size >= MOB_SIZE_HUMAN)
 		owner.underlays |= marked_underlay
-		//owner.update_icon()
+		//owner.update_appearance(UPDATE_ICON)
 		return TRUE
 	return FALSE
 
@@ -1235,7 +1235,7 @@
 /datum/status_effect/cloudstruck/on_apply()
 	mob_overlay = mutable_appearance('icons/effects/eldritch.dmi', "cloud_swirl", ABOVE_MOB_LAYER)
 	owner.overlays += mob_overlay
-	//owner.update_icon()
+	//owner.update_appearance(UPDATE_ICON)
 	ADD_TRAIT(owner, TRAIT_BLIND, "cloudstruck")
 	return TRUE
 
@@ -1246,7 +1246,7 @@
 	REMOVE_TRAIT(owner, TRAIT_BLIND, "cloudstruck")
 	if(owner)
 		owner.overlays -= mob_overlay
-		//owner.update_icon()
+		//owner.update_appearance(UPDATE_ICON)
 
 /datum/status_effect/cloudstruck/Destroy()
 	. = ..()

@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	pass_flags = LETPASSTHROW
 	can_buckle = TRUE
 	buckle_lying = 90 //we turn to you!
@@ -16,9 +15,7 @@
 /obj/structure/altar_of_gods/Initialize(mapload)
 	. = ..()
 	reflect_sect_in_icons()
-
-/obj/structure/altar_of_gods/ComponentInitialize()
-	. = ..()
+	AddElement(/datum/element/climbable)
 	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, PROC_REF(reflect_sect_in_icons)))
 
 /obj/structure/altar_of_gods/attack_hand(mob/living/user)
@@ -31,7 +28,7 @@
 		to_chat(user, span_warning("[pushed_mob] is buckled to [pushed_mob.buckled]!"))
 		return ..()
 	to_chat(user, span_notice("You try to coax [pushed_mob] onto [src]..."))
-	if(!do_after(user, (5 SECONDS), pushed_mob))
+	if(!do_after(user, 5 SECONDS, pushed_mob))
 		return ..()
 	pushed_mob.forceMove(loc)
 	return ..()
@@ -67,11 +64,12 @@
 	to_chat(user, span_notice("The liquid feels warm and soothing as you touch it. The fountain immediately dries up shortly afterwards."))
 	user.reagents.add_reagent(/datum/reagent/medicine/omnizine/godblood,10) //Hurts your brain and makes you go insane
 	user.reagents.add_reagent(/datum/reagent/toxin/mindbreaker,10) //However, it gives rather potent healing.
-	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), time_between_uses)
+	update_appearance(UPDATE_ICON)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), time_between_uses)
 
 
-/obj/structure/holyfountain/update_icon()
+/obj/structure/holyfountain/update_icon_state()
+	. = ..()
 	if(last_process + time_between_uses > world.time)
 		icon_state = "fountain"
 	else

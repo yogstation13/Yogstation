@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	pass_flags = LETPASSTHROW
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -19,15 +18,17 @@
 	desc = "An ancient anvil rests at this location."
 	invisibility = 100
 
-/obj/structure/world_anvil/Initialize()
+/obj/structure/world_anvil/Initialize(mapload)
 	. = ..()
 	internal = new /obj/item/gps/internal/world_anvil(src)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/world_anvil/Destroy()
 	QDEL_NULL(internal)
 	. = ..()
 
-/obj/structure/world_anvil/update_icon()
+/obj/structure/world_anvil/update_icon(updates=ALL)
+	. = ..()
 	icon_state = forge_charges > 0 ? "anvil_a" : "anvil"
 	if(forge_charges > 0)
 		set_light(4,1,LIGHT_COLOR_ORANGE)
@@ -39,12 +40,12 @@
 	. += "It currently has [forge_charges] forge[forge_charges != 1 ? "s" : ""] remaining."
 
 /obj/structure/world_anvil/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I,/obj/item/twohanded/required/gibtonite))
-		var/obj/item/twohanded/required/gibtonite/placed_ore = I
+	if(istype(I,/obj/item/melee/gibtonite))
+		var/obj/item/melee/gibtonite/placed_ore = I
 		forge_charges = forge_charges + placed_ore.quality
 		to_chat(user,"You place down the gibtonite on the World Anvil, and watch as the gibtonite melts into it. The World Anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
 		qdel(placed_ore)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(forge_charges <= 0)
 		to_chat(user,"The World Anvil is not hot enough to be usable!")
@@ -52,7 +53,7 @@
 	var/success = FALSE
 	switch(I.type)
 		if(/obj/item/magmite)
-			if(do_after(user,10 SECONDS, target = src))
+			if(do_after(user, 10 SECONDS, src))
 				new /obj/item/magmite_parts(get_turf(src))
 				qdel(I)
 				to_chat(user, "You carefully forge the rough plasma magmite into plasma magmite upgrade parts.")
@@ -62,7 +63,7 @@
 			if(!parts.inert)
 				to_chat(user,"The magmite upgrade parts are already glowing and usable!")
 				return
-			if(do_after(user,5 SECONDS, target = src))
+			if(do_after(user, 5 SECONDS, src))
 				parts.restore()
 				to_chat(user, "You successfully reheat the magmite upgrade parts. They are now glowing and usable again.")
 	if(!success)
@@ -70,7 +71,7 @@
 	forge_charges--
 	if(forge_charges <= 0)
 		visible_message("The World Anvil cools down.")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		
 			
 

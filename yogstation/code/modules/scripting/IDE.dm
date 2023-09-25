@@ -232,7 +232,7 @@
 		src << output(null, "tcserror")
 		src << output("<font color = red>Failed to clear memory: Unable to locate machine.</font color>", "tcserror")
 
-/proc/telecomms_check(var/mob/mob)
+/proc/telecomms_check(mob/mob)
 	if(mob && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && in_range(mob.machine, mob) || issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic))
 		return 1
 	return 0

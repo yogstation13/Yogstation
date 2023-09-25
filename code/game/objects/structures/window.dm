@@ -48,6 +48,7 @@
 
 /obj/structure/window/Initialize(mapload, direct)
 	. = ..()
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)), CALLBACK(src, PROC_REF(after_rotation)))
 	if(direct)
 		setDir(direct)
 	if(reinf && anchored)
@@ -63,17 +64,13 @@
 	real_explosion_block = explosion_block
 	explosion_block = EXPLOSION_BLOCK_PROC
 
-/obj/structure/window/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, PROC_REF(can_be_rotated)),CALLBACK(src, PROC_REF(after_rotation)))
-
 /obj/structure/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 5)
 	return FALSE
 
-/obj/structure/window/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+/obj/structure/window/rcd_act(mob/user, obj/item/construction/rcd/the_rcd)
 	if (resistance_flags & INDESTRUCTIBLE)
 		return FALSE
 
@@ -249,7 +246,7 @@
 					return 0
 	return 1
 
-/obj/structure/window/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/structure/window/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.) //received damage
 		update_nearby_icons()
@@ -329,12 +326,13 @@
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(smooth)
 		queue_smooth_neighbors(src)
 
 //merges adjacent full-tile windows into one
-/obj/structure/window/update_icon()
+/obj/structure/window/update_overlays()
+	. = ..()
 	if(!QDELETED(src))
 		if(!fulltile)
 			return
@@ -349,7 +347,7 @@
 		if(ratio > 75)
 			return
 		crack_overlay = mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer+0.1))
-		add_overlay(crack_overlay)
+		. += crack_overlay
 
 /obj/structure/window/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 
@@ -810,7 +808,7 @@
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
 		obj_integrity = max_integrity
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
 	take_damage(rand(25, 75), BRUTE)
@@ -874,9 +872,9 @@
 	var/static/mutable_appearance/torn = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "torn", layer = ABOVE_OBJ_LAYER - 0.1)
 	var/static/mutable_appearance/paper = mutable_appearance('icons/obj/smooth_structures/paperframes.dmi',icon_state = "paper", layer = ABOVE_OBJ_LAYER - 0.1)
 
-/obj/structure/window/paperframe/Initialize()
+/obj/structure/window/paperframe/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
@@ -902,19 +900,32 @@
 		playsound(src, hitsound, 50, 1)
 		if(!QDELETED(src))
 			user.visible_message(span_danger("[user] tears a hole in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
-/obj/structure/window/paperframe/update_icon()
+/obj/structure/window/paperframe/update_overlays()
+	. = ..()
 	if(obj_integrity < max_integrity)
 		cut_overlay(paper)
-		add_overlay(torn)
+		. += torn
 		set_opacity(FALSE)
 	else
 		cut_overlay(torn)
-		add_overlay(paper)
+		. += paper
 		set_opacity(TRUE)
 	queue_smooth(src)
 
+/obj/structure/window/paperframe/update_appearance(updates)
+	. = ..()
+	set_opacity(obj_integrity >= max_integrity)
+
+/obj/structure/window/paperframe/update_icon(updates=ALL)
+	. = ..()
+	if((updates & UPDATE_SMOOTHING) && (smooth & (SMOOTH_TRUE)))
+		queue_smooth(src)
+
+/obj/structure/window/paperframe/update_overlays()
+	. = ..()
+	. += (obj_integrity < max_integrity) ? torn : paper
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/user)
 	if(W.is_hot())
@@ -929,10 +940,10 @@
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
 			if(obj_integrity == max_integrity)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			return
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 
@@ -953,16 +964,16 @@
 
 /obj/structure/cloth_curtain/proc/toggle()
 	open = !open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/cloth_curtain/update_icon()
+/obj/structure/cloth_curtain/update_icon(updates=ALL)
+	. = ..()
 	if(!open)
 		icon_state = "curtain_closed"
 		layer = WALL_OBJ_LAYER
 		density = TRUE
 		open = FALSE
 		opacity = TRUE
-
 	else
 		icon_state = "curtain_open"
 		layer = SIGN_LAYER

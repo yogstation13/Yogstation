@@ -76,6 +76,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	integrity_failure = 100
 	armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	circuit = /obj/item/circuitboard/machine/vendor
+	clicksound = 'sound/machines/pda_button1.ogg'
 	payment_department = ACCOUNT_SRV
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -265,14 +266,16 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else
 		..()
 
-/obj/machinery/vending/update_icon()
+/obj/machinery/vending/update_icon_state()
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+		return
+
+	if(powered())
+		icon_state = initial(icon_state)
 	else
-		if(powered())
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]-off"
 
 
 /obj/machinery/vending/obj_break(damage_flag)
@@ -573,7 +576,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				C.apply_damage(max(0, squish_damage - crit_rebate))
-				C.AddComponent(/datum/element/squish, 18 SECONDS)
+				C.AddElement(/datum/element/squish, 18 SECONDS)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
@@ -657,12 +660,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	update_canister()
 	. = ..()
 
-/obj/machinery/vending/emag_act(mob/user)
+/obj/machinery/vending/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You short out the product lock on [src]."))
-
+	return TRUE
+	
 /obj/machinery/vending/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
@@ -800,13 +804,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 				vend_ready = TRUE
 				return
 
+			var/is_premium = FALSE  // premium products always charge
 			if(coin_records.Find(R) || hidden_records.Find(R))
 				price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+				is_premium = TRUE
 
 			if(LAZYLEN(R.returned_products))
 				price_to_use = 0 //returned items are free
 
-			if(!charge_user(price_to_use, R.name))
+			if(!charge_user(price_to_use, R.name, is_premium))
 				vend_ready = TRUE
 				return
 
@@ -855,7 +861,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			vend_ready = FALSE //One thing at a time!!
 
 			// Charge the user
-			if (!charge_user(chef_price, P.full_name))
+			if (!charge_user(chef_price, P.full_name, FALSE))
 				vend_ready = TRUE
 				return
 
@@ -876,7 +882,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  * Charge the user during a vend
  * Returns false if the user could not buy this item
  */
-/obj/machinery/vending/proc/charge_user(price, item_name)
+/obj/machinery/vending/proc/charge_user(price, item_name, always_charge)
 	var/mob/living/L
 	if(isliving(usr))
 		L = usr
@@ -894,7 +900,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			flick(icon_deny,src)
 			return FALSE
 		var/datum/bank_account/account = C.registered_account
-		if(account.account_job && account.account_job.paycheck_department == payment_department)
+		if(!always_charge && account.account_job && account.account_job.paycheck_department == payment_department)
 			price = 0
 		if(price && !account.adjust_money(-price))
 			say("You do not possess the funds to purchase \the [item_name].")
@@ -971,7 +977,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		stat |= NOPOWER
 
-	update_icon()
+	return ..()
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /**

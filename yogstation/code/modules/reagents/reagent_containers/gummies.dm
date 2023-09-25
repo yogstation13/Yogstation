@@ -14,7 +14,7 @@
 	var/self_delay = 1 SECONDS
 	var/dissolvable = TRUE
 
-/obj/item/reagent_containers/gummy/Initialize()
+/obj/item/reagent_containers/gummy/Initialize(mapload)
 	. = ..()
 	if(prob(1))
 		name = "chubby gummi bear" //le player reference
@@ -40,14 +40,14 @@
 	if(M == user)
 		M.visible_message(span_notice("[user] attempts to [apply_method] [src]."))
 		if(self_delay)
-			if(!do_mob(user, M, self_delay))
+			if(!do_after(user, self_delay, M))
 				return FALSE
 		to_chat(M, span_notice("You [apply_method] [src]."))
 
 	else
 		M.visible_message(span_danger("[user] attempts to force [M] to [apply_method] [src]."), \
 							span_userdanger("[user] attempts to force [M] to [apply_method] [src]."))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return FALSE
 		M.visible_message(span_danger("[user] forces [M] to [apply_method] [src]."), \
 							span_userdanger("[user] forces [M] to [apply_method] [src]."))
@@ -178,7 +178,7 @@
 	, "Surely, there's no way this could go bad.")
 	color = null
 
-/obj/item/reagent_containers/gummy/floorbear/Initialize()
+/obj/item/reagent_containers/gummy/floorbear/Initialize(mapload)
 	list_reagents = list(get_random_reagent_id() = 30)
 	. = ..()
 	name = pick(names2)

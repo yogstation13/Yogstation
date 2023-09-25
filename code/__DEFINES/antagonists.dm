@@ -112,6 +112,7 @@
 #define PATH_ASH "Ash"
 #define PATH_RUST "Rust"
 #define PATH_FLESH "Flesh"
+#define PATH_MIND "Mind"
 
 #define TIER_NONE 0
 #define TIER_PATH 1
@@ -152,3 +153,10 @@
 /// Used in logging spells for roundend results
 #define LOG_SPELL_TYPE "type"
 #define LOG_SPELL_AMOUNT "amount"
+
+//antagonist awaken stages
+#define ANTAG_ASLEEP 0
+#define ANTAG_FIRST_WARNING 1
+#define ANTAG_SECOND_WARNING 2
+#define ANTAG_AWAKE 3
+

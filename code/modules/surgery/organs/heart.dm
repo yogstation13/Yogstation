@@ -1,5 +1,3 @@
-#define ADRENALINE_THRESHOLD 25
-
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
@@ -22,15 +20,14 @@
 	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
-	var/lasthealth
-	COOLDOWN_DECLARE(adrenal_cooldown)
 
-/obj/item/organ/heart/Initialize()
+/obj/item/organ/heart/Initialize(mapload)
 	. = ..()
 	icon_base = icon_state
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/heart/update_icon()
+/obj/item/organ/heart/update_icon_state()
+	. = ..()
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
@@ -55,12 +52,12 @@
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/organ/heart/proc/Restart()
 	beating = 1
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/organ/heart/prepare_eat()
@@ -75,10 +72,6 @@
 		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 		var/mob/living/carbon/H = owner
-		if(COOLDOWN_FINISHED(src, adrenal_cooldown) && ((H.health+ADRENALINE_THRESHOLD) < lasthealth))
-			H.reagents.add_reagent(/datum/reagent/adrenaline, 5)
-			COOLDOWN_START(src, adrenal_cooldown, 10 MINUTES)
-		lasthealth = H.health
 
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
@@ -100,11 +93,17 @@
 		if(damage >= 80 && beating)
 			if(prob(1))
 				if(owner.stat == CONSCIOUS)
-					owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+					if(owner.get_num_arms(FALSE) >= 1) //gotta have an arm to clutch your chest
+						owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+					else
+						owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]")) //ok you also need eyes
 				owner.set_heartattack(TRUE) //yogs end
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
-			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+			if(owner.get_num_arms(FALSE) >= 1)
+				owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
+			else
+				owner.visible_message(span_userdanger("[owner] clenches [owner.p_their()] jaw[owner.getorganslot(ORGAN_SLOT_EYES) ? " and stares off into space." : "."]"))
 		owner.set_heartattack(TRUE)
 		failed = TRUE
 

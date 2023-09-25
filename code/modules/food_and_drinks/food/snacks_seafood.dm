@@ -19,7 +19,7 @@
 	tastes = list("fish" = 1)
 	foodtype = SEAFOOD | GROSS
 
-/obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/carpmeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","gnaw","swallow","chomp")
 
@@ -53,14 +53,14 @@
 	desc = "A fillet of spess fish meat. Coated in crunchy fried beer batter."
 	icon_state = "fishfillet_battered"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cooking_oil = 1) //spontaniously fries because battering code doesn't actually exist yet.
-	foodtype = SEAFOOD | GRAIN
+	foodtype = SEAFOOD | GRAIN | FRIED
 
 /obj/item/reagent_containers/food/snacks/carpmeat/fish/shrimp/battered //change whenever batter-frying code exists pls
 	name = "tempura shrimp"
 	desc = "A shrimp coated in crunchy fried beer batter."
 	icon_state = "shrimp_tempura"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/cooking_oil = 1)
-	foodtype = SEAFOOD | GRAIN
+	foodtype = SEAFOOD | GRAIN | FRIED
 
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "fish fingers"
@@ -116,10 +116,9 @@
 	icon_state = "vegetariansushiroll"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
-	foodtype = VEGETABLES
+	foodtype = VEGETABLES | GRAIN
 	slice_path = /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	slices_num = 4
-
 
 /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	name = "vegetarian sushi slice"
@@ -127,7 +126,7 @@
 	icon_state = "vegetariansushislice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
-	foodtype = VEGETABLES
+	foodtype = VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
@@ -136,7 +135,7 @@
 	icon_state = "spicyfiletroll"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/capsaicin = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
-	foodtype = VEGETABLES | SEAFOOD
+	foodtype = VEGETABLES | SEAFOOD | GRAIN
 	slice_path = /obj/item/reagent_containers/food/snacks/spicyfiletsushislice
 	slices_num = 4
 
@@ -146,8 +145,16 @@
 	icon_state = "spicyfiletslice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
-	foodtype = VEGETABLES | SEAFOOD
+	foodtype = VEGETABLES | SEAFOOD | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/nigiri_sushi
+	name = "nigiri sushi"
+	desc = "A simple nigiri of fish atop a packed rice ball with a seaweed wrapping and a side of soy sauce."
+	icon_state = "nigiri_sushi"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/nutriment/protein = 2)
+	tastes = list("boiled rice" = 4, "fish filet" = 2, "soy sauce" = 2)
+	foodtype = VEGETABLES | SEAFOOD
 
 /obj/item/reagent_containers/food/snacks/dolphincereal
 	name = "dolphin cereal"
@@ -197,6 +204,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("seaweed" = 1)
 	foodtype = VEGETABLES
+	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/sushi
 
 /obj/item/reagent_containers/food/snacks/shrimpcocktail
 	name = "shrimp cocktail"

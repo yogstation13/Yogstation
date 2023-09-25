@@ -40,7 +40,7 @@
 		to_chat(user, span_notice("You pry the modifications out."))
 		I.play_tool_sound(src, 100)
 		for(var/obj/item/borg/upgrade/modkit/M in modkits)
-			M.uninstall(src)
+			M.forceMove(drop_location()) // Uninstallation handled in Exited().
 	else
 		to_chat(user, span_notice("There are no modifications currently installed."))
 
@@ -80,7 +80,7 @@
 	holds_charge = TRUE
 	unique_frequency = TRUE
 
-/obj/item/gun/energy/kinetic_accelerator/Initialize()
+/obj/item/gun/energy/kinetic_accelerator/Initialize(mapload)
 	. = ..()
 	if(!holds_charge)
 		empty()
@@ -101,6 +101,15 @@
 		// calls dropped().
 		addtimer(CALLBACK(src, PROC_REF(empty_if_not_held)), 2)
 
+/obj/item/gun/energy/kinetic_accelerator/Exited(atom/movable/gone, direction)
+	..()
+	if(src.type == /obj/item/gun/energy/kinetic_accelerator/cyborg)
+		return // Cyborg should be handling their own thing: /mob/living/silicon/robot/remove_from_upgrades().
+
+	if(gone in get_modkits())
+		var/obj/item/borg/upgrade/modkit/MK = gone
+		MK.uninstall(src)
+
 /obj/item/gun/energy/kinetic_accelerator/proc/empty_if_not_held()
 	if(!ismob(loc))
 		empty()
@@ -108,7 +117,7 @@
 /obj/item/gun/energy/kinetic_accelerator/proc/empty()
 	if(cell)
 		cell.use(cell.charge)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/energy/kinetic_accelerator/proc/attempt_reload(recharge_time)
 	if(!cell)
@@ -142,15 +151,13 @@
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 	else
 		to_chat(loc, span_warning("[src] silently charges up."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	overheat = FALSE
 
-/obj/item/gun/energy/kinetic_accelerator/update_icon()
-	..()
+/obj/item/gun/energy/kinetic_accelerator/update_overlays()
+	. = ..()
 	if(!can_shoot())
-		add_overlay("[icon_state]_empty")
-	else
-		cut_overlays()
+		. += "[icon_state]_empty"
 
 /obj/item/gun/energy/kinetic_accelerator/mega
 	name = "mega proto-kinetic accelerator"
@@ -201,7 +208,7 @@
 			name = "weakened [name]"
 			damage = damage * pressure_decrease
 			pressure_decrease_active = TRUE
-		else if(is_station_level(z))
+		else if(is_station_level(z) && !is_mining_level(z))
 			pressure_decrease = min(pressure_decrease * 2, 1) //if you have a pressure mod you get to ignore this because uhmmmmmm tc tax
 			name = "destabilized [name]"
 			damage = damage * pressure_decrease
@@ -243,15 +250,16 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
-	require_module = 1
-	module_type = /obj/item/robot_module/miner
+	require_module = TRUE
+	module_types = list(/obj/item/robot_module/miner)
+	module_flags = BORG_MODULE_MINER
+	repeatable = TRUE
 	var/denied_type = null
 	var/maximum_of_type = 1
 	var/cost = 30
 	var/modifier = 1 //For use in any mod kit that has numerical modifiers
 	var/minebot_upgrade = TRUE
 	var/minebot_exclusive = FALSE
-	module_flags = BORG_MODULE_MINER
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
 	. = ..()
@@ -265,9 +273,10 @@
 
 /obj/item/borg/upgrade/modkit/action(mob/living/silicon/robot/R)
 	. = ..()
-	if (.)
-		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/H in R.module.modules)
-			return install(H, usr)
+	if(!.)
+		return FALSE
+	for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/H in R.module.modules)
+		return install(H, usr)
 
 /obj/item/borg/upgrade/modkit/proc/install(obj/item/gun/energy/kinetic_accelerator/KA, mob/user)
 	. = TRUE
@@ -297,20 +306,19 @@
 		else
 			to_chat(user, span_notice("The modkit you're trying to install would conflict with an already installed modkit. Use a crowbar to remove existing modkits."))
 	else
-		to_chat(user, span_notice("You don't have room(<b>[KA.get_remaining_mod_capacity()]%</b> remaining, [cost]% needed) to install this modkit. Use a crowbar to remove existing modkits."))
+		to_chat(user, span_notice("You don't have room (<b>[KA.get_remaining_mod_capacity()]%</b> remaining, [cost]% needed) to install this modkit. Use a crowbar to remove existing modkits."))
 		. = FALSE
 
 /obj/item/borg/upgrade/modkit/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	if (.)
-		for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/KA in R.module.modules)
-			uninstall(KA)
+	if(!.)
+		return FALSE
+
+	for(var/obj/item/gun/energy/kinetic_accelerator/cyborg/KA in R.module.modules)
+		uninstall(KA)
 
 /obj/item/borg/upgrade/modkit/proc/uninstall(obj/item/gun/energy/kinetic_accelerator/KA)
-	forceMove(get_turf(KA))
 	KA.modkits -= src
-
-
 
 /obj/item/borg/upgrade/modkit/proc/modify_projectile(obj/item/projectile/kinetic/K)
 

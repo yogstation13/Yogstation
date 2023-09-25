@@ -25,7 +25,7 @@
 
 /datum/antagonist/obsessed/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/victim_dummy = new
-	victim_dummy.hair_color = "b96" // Brown
+	victim_dummy.hair_color = "#bb9966" // Brown
 	victim_dummy.hair_style = "Messy"
 	victim_dummy.update_hair()
 
@@ -35,7 +35,7 @@
 	var/icon/final_icon = finish_preview_icon(obsessed_icon)
 
 	final_icon.Blend(
-	icon('icons/ui_icons/antags/obsessed.dmi', "obsession"),
+	icon('icons/UI_Icons/antags/obsessed.dmi', "obsession"),
 		ICON_OVERLAY,
 		ANTAGONIST_PREVIEW_ICON_SIZE - 30,
 		20,
@@ -87,7 +87,7 @@
 			to_chat(owner, span_danger("Your need for mental fitness vanishes alongside the voices, mood has been disabled."))
 			C.RemoveComponent()
 
-/datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
+/datum/antagonist/obsessed/proc/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
 	var/datum/quirk/family_heirloom/family_heirloom
 
@@ -314,7 +314,7 @@
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
-				if(P.picture.mobs_seen.Find(owner.current) && P.picture.mobs_seen.Find(target.current) && !P.picture.dead_seen.Find(target.current))//you are in the picture, they are but they are not dead.
+				if(P.picture.minds_seen.Find(owner) && P.picture.minds_seen.Find(target) && !P.picture.dead_seen.Find(target))//you are in the picture, they are but they are not dead.
 					return TRUE
 	return FALSE
 

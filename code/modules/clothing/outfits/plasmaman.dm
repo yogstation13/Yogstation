@@ -254,6 +254,7 @@
 	ears = /obj/item/radio/headset/headset_med
 	suit =  /obj/item/clothing/suit/toggle/labcoat/md
 	l_hand = /obj/item/storage/firstaid/medical
+	belt = /obj/item/storage/belt/medical
 	suit_store = /obj/item/flashlight/pen
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -359,7 +360,7 @@
 	satchel = /obj/item/storage/backpack/satchel/tox
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/engineer
 	name = "Plasmaman Station Engineer"
@@ -381,7 +382,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/atmos
 	name = "Plasmaman Atmospheric Technician"
@@ -402,7 +403,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/mime
 	name = "Plasmaman Mime"
@@ -462,7 +463,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/miningmedic
 	name = "Plasmaman Mining Medic"
@@ -485,12 +486,12 @@
 	uniform = /obj/item/clothing/under/plasmaman/mining
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
 	l_pocket = /obj/item/wormhole_jaunter
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	gloves = /obj/item/clothing/gloves/color/latex/fireproof
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/paramedic
 	name = "Plasmaman Paramedic"
@@ -512,6 +513,7 @@
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/gps
 	backpack = /obj/item/storage/backpack/medic
+	belt = /obj/item/storage/belt/medical
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
@@ -539,6 +541,7 @@
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
+	belt = /obj/item/storage/belt/medical
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
@@ -632,7 +635,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/chief_engineer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/ce
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/atmos/ce
 	belt = /obj/item/storage/belt/utility/chief/full
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng

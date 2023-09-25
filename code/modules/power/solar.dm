@@ -20,8 +20,6 @@
 	var/obj/machinery/power/solar_control/control
 	var/needs_to_turn = TRUE //do we need to turn next tick?
 	var/needs_to_update_solar_exposure = TRUE //do we need to call update_solar_exposure() next tick?
-	var/mutable_appearance/panelstructure
-	var/mutable_appearance/paneloverlay
 	var/multiplier
 	var/panelcolor
 	var/obj/item/stack/sheet/glass_type
@@ -31,10 +29,7 @@
 	Make(S)
 	connect_to_network()
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(queue_update_solar_exposure))
-	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
-	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
-	paneloverlay.color = panelcolor
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
@@ -113,14 +108,19 @@
 			new /obj/item/shard(src.loc)
 	qdel(src)
 
-/obj/machinery/power/solar/update_icon()
-	..()
-	cut_overlays()
+/obj/machinery/power/solar/update_overlays()
+	. = ..()
 	var/matrix/turner = matrix()
 	turner.Turn(azimuth_current)
+
+	var/mutable_appearance/panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	panelstructure.transform = turner
+	. += panelstructure
+
+	var/mutable_appearance/paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.transform = turner
-	add_overlay(list(paneloverlay, panelstructure))
+	paneloverlay.color = panelcolor
+	. += paneloverlay
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
@@ -134,7 +134,7 @@
 	if(azimuth_current != azimuth_target)
 		azimuth_current = azimuth_target
 		occlusion_setup()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		needs_to_update_solar_exposure = TRUE
 
 ///trace towards sun to see if we're in shadow
@@ -193,7 +193,7 @@
 
 
 //Bit of a hack but this whole type is a hack
-/obj/machinery/power/solar/fake/Initialize(turf/loc, obj/item/solar_assembly/S)
+/obj/machinery/power/solar/fake/Initialize(mapload, turf/loc, obj/item/solar_assembly/S)
 	. = ..()
 	UnregisterSignal(SSsun, COMSIG_SUN_MOVED)
 
@@ -337,7 +337,7 @@
 	var/list/connected_panels = list()
 	var/mob/living/carbon/human/last_user // The last guy to open up the console
 
-/obj/machinery/power/solar_control/Initialize()
+/obj/machinery/power/solar_control/Initialize(mapload)
 	. = ..()
 	azimuth_rate = SSsun.base_rotation
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(timed_track))
@@ -349,7 +349,7 @@
 		if(connected_tracker && length(connected_panels))
 			track = SOLAR_TRACK_AUTO
 			connected_tracker.sun_update(SSsun, SSsun.azimuth)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/solar_control/Destroy()
 	for(var/obj/machinery/power/solar/M in connected_panels)
@@ -372,16 +372,16 @@
 					if(!T.control) //i.e unconnected
 						T.set_control(src)
 
-/obj/machinery/power/solar_control/update_icon()
-	cut_overlays()
+/obj/machinery/power/solar_control/update_overlays()
+	. = ..()
 	if(stat & NOPOWER)
-		add_overlay("[icon_keyboard]_off")
+		. += "[icon_keyboard]_off"
 		return
-	add_overlay(icon_keyboard)
+	. += icon_keyboard
 	if(stat & BROKEN)
-		add_overlay("[icon_state]_broken")
+		. += "[icon_state]_broken"
 	else
-		add_overlay(icon_screen)
+		. += icon_screen
 
 
 /obj/machinery/power/solar_control/ui_interact(mob/user, datum/tgui/ui)

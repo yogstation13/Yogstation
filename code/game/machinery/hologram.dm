@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	desc = "It's a floor-mounted device for projecting holographic images. This one will refuse to auto-connect incoming calls."
 	secure = TRUE
 
-obj/machinery/holopad/secure/Initialize()
+obj/machinery/holopad/secure/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/machine/holopad/board = circuit
 	board.secure = TRUE
@@ -128,7 +128,7 @@ obj/machinery/holopad/secure/Initialize()
 	if(!replay_mode && (disk && disk.record))
 		replay_start()
 
-/obj/machinery/holopad/Initialize()
+/obj/machinery/holopad/Initialize(mapload)
 	. = ..()
 	if(!padname)
 		var/area/A = get_area(src)
@@ -388,18 +388,16 @@ obj/machinery/holopad/secure/Initialize()
 			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
 				HC.Answer(src)
 				break
-			if(HC.head_call && secure)
+			if(HC.head_call) //captain is calling: ACCEPT | ACCEPT
 				HC.Answer(src)
 				break
-			if(!secure)
-				HC.Answer(src)
 			if(outgoing_call)
 				HC.Disconnect(src)//can't answer calls while calling
 			else
 				playsound(src, 'sound/machines/twobeep.ogg', 100)	//bring, bring!
 				ringing = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/holopad/proc/activate_holo(mob/living/user)
 	var/mob/living/silicon/ai/AI = user
@@ -467,9 +465,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		set_light_on(TRUE)
 	else
 		set_light_on(FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holopad/update_icon()
+/obj/machinery/holopad/update_icon_state()
+	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"

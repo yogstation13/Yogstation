@@ -178,7 +178,7 @@
 	new /obj/item/clothing/suit/armor/vest/det_suit(src)
 	new /obj/item/storage/belt/holster/full(src)
 	new /obj/item/pinpointer/crew(src)
-	new /obj/item/twohanded/binoculars(src)
+	new /obj/item/binoculars(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/sec/detective(src)
 	new /obj/item/barrier_taperoll/police(src)
 

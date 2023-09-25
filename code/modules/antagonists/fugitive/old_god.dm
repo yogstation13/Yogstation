@@ -12,7 +12,7 @@
 	var/datum/action/cooldown/yalp_heal/heal
 	var/hunters_release_time // Yogs -- making Login() dialogue make more sense
 
-/mob/camera/yalp_elor/Initialize()
+/mob/camera/yalp_elor/Initialize(mapload)
 	. = ..()
 	transmit = new
 	transport = new
@@ -64,7 +64,7 @@
 	forceMove(T)
 	Moved(OldLoc, direct)
 
-/mob/camera/yalp_elor/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/camera/yalp_elor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")

@@ -9,7 +9,7 @@
 	max_charges = 100 //100, 50, 50, 34 (max charge distribution by 25%ths)
 	var/variable_charges = TRUE
 
-/obj/item/gun/magic/wand/Initialize()
+/obj/item/gun/magic/wand/Initialize(mapload)
 	if(prob(75) && variable_charges) //25% chance of listed max charges, 50% chance of 1/2 max charges, 25% chance of 1/3 max charges
 		if(prob(33))
 			max_charges = CEILING(max_charges / 3, 1)
@@ -21,7 +21,8 @@
 	. = ..()
 	. += "Has [charges] charge\s remaining."
 
-/obj/item/gun/magic/wand/update_icon()
+/obj/item/gun/magic/wand/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][charges ? "" : "-drained"]"
 
 /obj/item/gun/magic/wand/attack(atom/target, mob/living/user)
@@ -44,7 +45,7 @@
 		zap_self(user)
 	else
 		. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user)

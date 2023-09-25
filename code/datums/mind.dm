@@ -110,12 +110,12 @@
 
 	return language_holder
 
-/datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
+/datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
 	original_character = null
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
-		if(current.client && current.client.prefs.yogtoggles & PREF_MOOD)
+		if(current.client && current.client.prefs.read_preference(/datum/preference/toggle/mood_enabled))
 			mood_was_enabled = TRUE
 		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood))
 			var/mob/living/carbon/human/H = current

@@ -20,7 +20,7 @@
 	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt
 	var/dug
 
-/turf/open/floor/plating/asteroid/Initialize()
+/turf/open/floor/plating/asteroid/Initialize(mapload)
 	var/proper_name = name
 	. = ..()
 	name = proper_name
@@ -40,6 +40,14 @@
 		return TRUE
 	if(user)
 		to_chat(user, span_notice("Looks like someone has dug here already."))
+
+/turf/open/floor/plating/asteroid/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_FLOORWALL)
+			to_chat(user, span_notice("You build a floor."))
+			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+			return TRUE
+	return FALSE  
 
 /turf/open/floor/plating/asteroid/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
@@ -100,7 +108,7 @@
 /turf/open/floor/plating/asteroid/basalt/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
-/turf/open/floor/plating/asteroid/basalt/Initialize()
+/turf/open/floor/plating/asteroid/basalt/Initialize(mapload)
 	. = ..()
 	set_basalt_light(src)
 
@@ -143,6 +151,11 @@
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
 	digResult = /obj/item/stack/sheet/mineral/snow
+	flammability = -5
+
+/turf/open/floor/plating/asteroid/snow/singularity_act()
+	. = ..() //take the wires n shit out
+	return 0
 
 /turf/open/floor/plating/asteroid/snow/getDug()
 	..()
@@ -160,6 +173,10 @@
 /turf/open/floor/plating/asteroid/snow/icemoon
 	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer
+	light_range = 2
+	light_power = 0.1
 
 /turf/open/lava/plasma/ice_moon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -194,6 +211,10 @@
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
+
+/turf/open/floor/plating/asteroid/snow/ice/icemoon/top_layer
+	light_range = 2
+	light_power = 0.1
 
 /turf/open/floor/plating/asteroid/snow/ice/burn_tile()
 	return FALSE

@@ -287,7 +287,7 @@
 		return FALSE
 
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient
-	if(INTERACTING_WITH(user, victim))
+	if(DOING_INTERACTION_WITH_TARGET(user, victim))
 		to_chat(user, span_warning("You're already interacting with [victim]!"))
 		return TRUE
 
@@ -324,6 +324,8 @@
 
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh
 /datum/wound/proc/on_xadone(power)
+	if(!(wound_flags & ACCEPTS_CRYO))
+		return
 	cryo_progress += power
 	if(cryo_progress > 66 * severity)
 		qdel(src)

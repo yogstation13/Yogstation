@@ -21,7 +21,7 @@
 
 	var/datum/data/record/active_general_record = null
 	var/datum/data/record/active_security_record = null
-	
+
 	//Radio internal
 	var/obj/item/radio/radio
 	var/radio_key = /obj/item/encryptionkey/heads/hos
@@ -135,25 +135,25 @@
 					crime_status = E.fields["criminal"]
 
 			switch(crime_status)
-				if("*Arrest*")
+				if(WANTED_ARREST)
 					record["recordColor"] = "#990000"
 					record["recordIcon"] = "fingerprint"
-				if("Search")
+				if(WANTED_SEARCH)
 					record["recordColor"] = "#5C4949"
 					record["recordIcon"] = "search"
-				if("Incarcerated")
+				if(WANTED_PRISONER)
 					record["recordColor"] = "#181818"
 					record["recordIcon"] = "dungeon"
-				if("Suspected")
+				if(WANTED_SUSPECT)
 					record["recordColor"] = "#CD6500"
 					record["recordIcon"] = "exclamation"
-				if("Paroled")
+				if(WANTED_PAROLE)
 					record["recordColor"] = "#046713"
 					record["recordIcon"] = "unlink"
-				if("Discharged")
+				if(WANTED_DISCHARGED)
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
-				if("None")
+				if(WANTED_NONE)
 					record["recordColor"] = "#740349"
 				if("")
 					crime_status = "No Record."
@@ -218,19 +218,19 @@
 			record["criminal_status"] = active_security_record.fields["criminal"]
 
 			switch(active_security_record.fields["criminal"])
-				if("*Arrest*")
+				if(WANTED_ARREST)
 					record["recordColor"] = "#990000"
-				if("Search")
+				if(WANTED_SEARCH)
 					record["recordColor"] = "#5C4949"
-				if("Incarcerated")
+				if(WANTED_PRISONER)
 					record["recordColor"] = "#181818"
-				if("Suspected")
+				if(WANTED_SUSPECT)
 					record["recordColor"] = "#CD6500"
-				if("Paroled")
+				if(WANTED_PAROLE)
 					record["recordColor"] = "#046713"
-				if("Discharged")
+				if(WANTED_DISCHARGED)
 					record["recordColor"] = "#006699"
-				if("None")
+				if(WANTED_NONE)
 					record["recordColor"] = "#740349"
 
 			record["citations"] = list()
@@ -414,7 +414,7 @@
 					P.info += "<B>Security Record Lost!</B><BR>"
 					P.name = text("SR-[] '[]'", GLOB.data_core.securityPrintCount, "Record Lost")
 				P.info += "</TT>"
-				P.update_icon()
+				P.update_appearance(UPDATE_ICON)
 				printing = FALSE
 
 		if("print_poster")
@@ -487,7 +487,7 @@
 				R.fields["name"] = active_general_record.fields["name"]
 				R.fields["id"] = active_general_record.fields["id"]
 				R.name = text("Security Record #[]", R.fields["id"])
-				R.fields["criminal"] = "None"
+				R.fields["criminal"] = WANTED_NONE
 				R.fields["crimes"] = list()
 				R.fields["comments"] = list()
 				R.fields["notes"] = "No notes."
@@ -518,7 +518,7 @@
 			R.fields["name"] = active_general_record.fields["name"]
 			R.fields["id"] = active_general_record.fields["id"]
 			R.name = text("Security Record #[]", R.fields["id"])
-			R.fields["criminal"] = "None"
+			R.fields["criminal"] = WANTED_NONE
 			R.fields["crimes"] = list()
 			R.fields["comments"] = list()
 			R.fields["notes"] = "No notes."
@@ -755,20 +755,21 @@
 						var/old_field = active_security_record.fields["criminal"]
 						switch(crime)
 							if("None")
-								active_security_record.fields["criminal"] = "None"
+								active_security_record.fields["criminal"] = WANTED_NONE
 							if("Arrest")
-								active_security_record.fields["criminal"] = "*Arrest*"
+								active_security_record.fields["criminal"] = WANTED_ARREST
 							if("Search")
-								active_security_record.fields["criminal"] = "Search"
+								active_security_record.fields["criminal"] = WANTED_SEARCH
 							if("Incarcerated")
-								active_security_record.fields["criminal"] = "Incarcerated"
+								active_security_record.fields["criminal"] = WANTED_PRISONER
 							if("Suspected")
-								active_security_record.fields["criminal"] = "Suspected"
+								active_security_record.fields["criminal"] = WANTED_SUSPECT
 							if("Paroled")
-								active_security_record.fields["criminal"] = "Paroled"
+								active_security_record.fields["criminal"] = WANTED_PAROLE
 							if("Discharged")
-								active_security_record.fields["criminal"] = "Discharged"
+								active_security_record.fields["criminal"] = WANTED_DISCHARGED
 						investigate_log("[active_general_record.fields["name"]] has been set from [old_field] to [active_security_record.fields["criminal"]] by [key_name(usr)].", INVESTIGATE_RECORDS)
+						active_security_record.fields["comments"] |= GLOB.data_core.createCommentEntry("Criminal status set to [active_security_record.fields["criminal"]].", logged_in)
 						for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 							H.sec_hud_set_security_status()
 
@@ -778,7 +779,7 @@
 					if(!issilicon(usr))
 						if(user.wear_id)
 							var/list/access = user.wear_id.GetAccess()
-							if((ACCESS_KEYCARD_AUTH || ACCESS_CAPTAIN || ACCESS_CHANGE_IDS || ACCESS_HOP || ACCESS_HOS) in access)							
+							if((ACCESS_KEYCARD_AUTH || ACCESS_CAPTAIN || ACCESS_CHANGE_IDS || ACCESS_HOP || ACCESS_HOS) in access)
 								changed_rank = input("Select a rank", "Rank Selection") as null|anything in get_all_jobs()
 							else
 								say("You do not have the required access to do this!")
@@ -845,7 +846,9 @@
 			//Cancel silicon alert after 1 minute
 			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,alarmed), 600)
 
-/obj/machinery/computer/secure_data/emag_act(mob/user)
+/obj/machinery/computer/secure_data/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(logged_in) // What was the point then?
+		return FALSE
 	var/name
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -854,19 +857,17 @@
 			name = "[ID.registered_name]"
 		else
 			name = "Unknown"
-			
 	if(issilicon(user))
 		name = "[user.name]"
+	logged_in = TRUE
+	to_chat(user, span_warning("You override [src]'s ID lock."))
+	trigger_alarm()
+	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
+	var/area/A = get_area(loc)
+	radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
+	radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
+	return TRUE
 
-	if(!logged_in)
-		logged_in = TRUE
-		to_chat(user, span_warning("You override [src]'s ID lock."))
-		trigger_alarm()
-		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
-		var/area/A = get_area(loc)
-		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
-		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
-	
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
 
@@ -886,7 +887,7 @@
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)
-					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
+					R.fields["criminal"] = pick(WANTED_NONE, WANTED_ARREST, WANTED_SEARCH, WANTED_PRISONER, WANTED_SUSPECT, WANTED_PAROLE, WANTED_DISCHARGED)
 				if(5)
 					R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 				if(6)

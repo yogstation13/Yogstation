@@ -74,7 +74,7 @@
 	///Bitflags to store boolean conditions, such as whether the light is on or off.
 	var/swarmer_flags = NONE
 
-/mob/living/simple_animal/hostile/swarmer/Initialize()
+/mob/living/simple_animal/hostile/swarmer/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
@@ -232,7 +232,7 @@
 
 	to_chat(src, span_info("Attempting to remove this being from our presence."))
 
-	if(!do_mob(src, target, 30))
+	if(!do_after(src, 3 SECONDS, target))
 		return
 
 	teleport_target(target)
@@ -283,7 +283,7 @@
 		if(last_alert < world.time)
 			last_alert = world.time + 5 SECONDS
 			priority_announce("Connection encryption violation in machine: [target]! Deconstruction projected to complete in: 30 SECONDS")
-	if(do_mob(src, target, dismantle_time))
+	if(do_after(src, dismantle_time, target))
 		balloon_or_message(src, "dismantling complete", \
 			span_info("Dismantling complete."))
 		var/atom/target_loc = target.drop_location()
@@ -338,7 +338,7 @@
 		balloon_or_message(src, "not enough resources", \
 			span_warning("We do not have the resources for this!"))
 		return
-	if(!do_mob(src, src, 1 SECONDS))
+	if(!do_after(src, 1 SECONDS))
 		return
 	Fabricate(/obj/structure/swarmer/blockade, 4)
 
@@ -360,7 +360,7 @@
 		balloon_or_message(src, "not a suitable location", \
 			span_warning("This is not a suitable location for replicating ourselves. We need more room."))
 		return
-	if(!do_mob(src, src, 5 SECONDS))
+	if(!do_after(src, 5 SECONDS))
 		return
 	var/createtype = swarmer_type_to_create()
 	if(!createtype)
@@ -390,7 +390,7 @@
 	if(!isturf(loc))
 		return
 	to_chat(src, span_info("Attempting to repair damage to our body, stand by..."))
-	if(!do_mob(src, src, 10 SECONDS))
+	if(!do_after(src, 10 SECONDS))
 		return
 	adjustHealth(-maxHealth)
 	balloon_or_message(src, "successfully repaired" ,\

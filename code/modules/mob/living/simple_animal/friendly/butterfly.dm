@@ -18,14 +18,14 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | PASSCOMPUTER
 	ventcrawler = VENTCRAWLER_ALWAYS
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
+	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	gold_core_spawnable = FRIENDLY_SPAWN
 	verb_say = "flutters"
 	verb_ask = "flutters inquisitively"
 	verb_exclaim = "flutters intensely"
 	verb_yell = "flutters intensely"
 
-/mob/living/simple_animal/butterfly/Initialize()
+/mob/living/simple_animal/butterfly/Initialize(mapload)
 	. = ..()
 	var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)

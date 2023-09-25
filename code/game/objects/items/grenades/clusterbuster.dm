@@ -7,12 +7,22 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang"
 	var/base_state = "clusterbang"
-	var/payload = /obj/item/grenade/flashbang/cluster
+	var/atom/payload = /obj/item/grenade/flashbang/cluster
 	var/payload_spawner = /obj/effect/payload_spawner
 	var/prime_sound = 'sound/weapons/armbomb.ogg'
 	var/min_spawned = 4
 	var/max_spawned = 8
 	var/segment_chance = 35
+
+/obj/item/grenade/clusterbuster/examine(mob/user)
+	. = ..()
+	if(payload)
+		. += span_info("It has a payload. You can look again to take a closer look...")
+
+/obj/item/grenade/clusterbuster/examine_more(mob/user)
+	. = ..()
+	if(payload)
+		return list(span_info("\The [src] contains [initial(payload.name)]s."))
 
 /obj/item/grenade/clusterbuster/prime()
 	update_mob()
@@ -173,14 +183,14 @@
 /obj/item/grenade/clusterbuster/random
 	icon_state = "random_clusterbang"
 
-/obj/item/grenade/clusterbuster/random/Initialize()
+/obj/item/grenade/clusterbuster/random/Initialize(mapload)
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster))
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
 
 // syndie subtype so syndies dont get something utterly useless
-/obj/item/grenade/clusterbuster/random/syndie/Initialize()
+/obj/item/grenade/clusterbuster/random/syndie/Initialize(mapload)
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster/syndie))
 	new real_type(loc)
@@ -191,6 +201,7 @@
 	name = "Blorble Blorble"
 	icon_state = "slimebang"
 	base_state = "slimebang"
+	payload = null
 	payload_spawner = /obj/effect/payload_spawner/random_slime
 	prime_sound = 'sound/effects/bubbles.ogg'
 

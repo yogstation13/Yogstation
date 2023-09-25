@@ -87,6 +87,7 @@
 		/obj/item/organ/appendix,
 		/obj/item/organ/liver/fly,
 		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/lungs/ethereal,
 		/obj/item/organ/tail/cat,
 		/obj/item/organ/tail/lizard,
 	)
@@ -538,7 +539,7 @@
 /obj/effect/spawner/lootdrop/costume
 	name = "random costume spawner"
 
-/obj/effect/spawner/lootdrop/costume/Initialize()
+/obj/effect/spawner/lootdrop/costume/Initialize(mapload)
 	loot = list()
 	for(var/path in subtypesof(/obj/effect/spawner/bundle/costume))
 		loot[path] = TRUE
@@ -608,7 +609,8 @@
 				/obj/item/aiModule/core/full/construction,
 				/obj/item/aiModule/core/full/researcher,
 				/obj/item/aiModule/core/full/clown,
-				/obj/item/aiModule/core/full/detective
+				/obj/item/aiModule/core/full/detective,
+				/obj/item/aiModule/core/full/wafflehouse
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called
@@ -703,7 +705,8 @@
 				/obj/item/circuitboard/machine/smoke_machine,
 				/obj/item/circuitboard/machine/chem_master,
 				/obj/item/circuitboard/machine/clonescanner,
-				/obj/item/circuitboard/computer/pandemic
+				/obj/item/circuitboard/computer/pandemic,
+				/obj/item/circuitboard/machine/chem_heater
 				)
 
 /obj/effect/spawner/lootdrop/techstorage/AI

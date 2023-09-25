@@ -15,7 +15,8 @@
 	var/imp_type = null
 
 
-/obj/item/implanter/update_icon()
+/obj/item/implanter/update_icon_state()
+	. = ..()
 	if(imp)
 		icon_state = "implanter1"
 	else
@@ -30,7 +31,7 @@
 			M.visible_message(span_warning("[user] is attempting to implant [M]."))
 
 		var/turf/T = get_turf(M)
-		if(T && (M == user || do_mob(user, M, 50)))
+		if(T && (M == user || do_after(user, 5 SECONDS, M)))
 			if(src && imp)
 				if(imp.implant(M, user))
 					if (M == user)
@@ -38,7 +39,7 @@
 					else
 						M.visible_message("[user] has implanted [M].", span_notice("[user] implants you."))
 					imp = null
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				else
 					to_chat(user, span_warning("[src] fails to implant [M]."))
 
@@ -63,4 +64,4 @@
 	. = ..()
 	if(imp_type)
 		imp = new imp_type(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)

@@ -17,21 +17,21 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage
 								)
-/obj/item/modular_computer/tablet/pda/preset/chem/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/chem/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/chemscan
 	)	
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/medical
-/obj/item/modular_computer/tablet/pda/preset/medical/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/medical/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/crew_monitor
 	)	
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/paramed
-/obj/item/modular_computer/tablet/pda/preset/paramed/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/paramed/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/crew_monitor,
 		new /datum/computer_file/program/radar/lifeline
@@ -39,7 +39,7 @@
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/engineering
-/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/alarm_monitor,
 		new /datum/computer_file/program/supermatter_monitor,
@@ -48,21 +48,21 @@
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/warden
-/obj/item/modular_computer/tablet/pda/preset/warden/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/warden/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/secureye,
 	)	
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/robo
-/obj/item/modular_computer/tablet/pda/preset/robo/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/robo/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/robocontrol,
 	)	
 	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/cargo
-/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/bounty_board,
 		new /datum/computer_file/program/budgetorders,
@@ -78,7 +78,7 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage)
 
-/obj/item/modular_computer/tablet/pda/preset/basic/atmos/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/basic/atmos/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/atmosscan,
 		new /datum/computer_file/program/alarm_monitor,
@@ -98,7 +98,7 @@
 	finish_color = "pink"
 	pen_type = /obj/item/toy/crayon/rainbow
 
-/obj/item/modular_computer/tablet/pda/preset/basic/clown/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/basic/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING)
 
@@ -106,7 +106,7 @@
 /obj/item/modular_computer/tablet/pda/preset/basic/syndicate
 	desc = "A standard issue PDA often given to syndicate agents."
 
-/obj/item/modular_computer/tablet/pda/preset/basic/syndicate/Initialize()
+/obj/item/modular_computer/tablet/pda/preset/basic/syndicate/Initialize(mapload)
 	. = ..()
 	obj_flags |= EMAGGED //starts emagged
 	starting_files |= list(

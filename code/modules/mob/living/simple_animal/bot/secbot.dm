@@ -49,7 +49,7 @@
 	desc = "It's Commander Beepsky's smaller, just-as aggressive cousin, Pipsqueak."
 	commissioned = FALSE
 
-/mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize()
+/mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize(mapload)
 	. = ..()
 	resize = 0.8
 	update_transform()
@@ -69,9 +69,9 @@
 	desc = "It's Officer Pingsky! Delegated to satellite guard duty for harbouring anti-human sentiment."
 	radio_channel = RADIO_CHANNEL_AI_PRIVATE
 
-/mob/living/simple_animal/bot/secbot/Initialize()
+/mob/living/simple_animal/bot/secbot/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/datum/job/detective/J = new/datum/job/detective
 	access_card.access += J.get_access()
 	prev_access = access_card.access
@@ -83,11 +83,10 @@
 	if(prob(5))
 		russian = TRUE // imported from Russia
 
-/mob/living/simple_animal/bot/secbot/update_icon()
+/mob/living/simple_animal/bot/secbot/update_icon_state()
+	. = ..()
 	if(mode == BOT_HUNT)
 		icon_state = "[initial(icon_state)]-c"
-		return
-	..()
 
 /mob/living/simple_animal/bot/secbot/turn_off()
 	..()
@@ -201,15 +200,15 @@ Auto Patrol: []"},
 		if(special_retaliate_after_attack(user))
 			return
 
-/mob/living/simple_animal/bot/secbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/secbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			to_chat(user, span_danger("You short out [src]'s target assessment circuits."))
 			oldtarget_name = user.name
 		audible_message(span_danger("[src] buzzes oddly!"))
 		declare_arrests = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/secbot/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj , /obj/item/projectile/beam)||istype(Proj, /obj/item/projectile/bullet))
@@ -264,7 +263,7 @@ Auto Patrol: []"},
 	var/judgement_criteria = judgement_criteria()
 	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
 	icon_state = "secbot-c"
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), 2)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 2)
 	var/threat = 5
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
@@ -414,7 +413,7 @@ Auto Patrol: []"},
 		else
 			continue
 
-/mob/living/simple_animal/bot/secbot/proc/check_for_weapons(var/obj/item/slot_item)
+/mob/living/simple_animal/bot/secbot/proc/check_for_weapons(obj/item/slot_item)
 	if(slot_item && (slot_item.item_flags & NEEDS_PERMIT))
 		return TRUE
 	return FALSE
@@ -440,7 +439,7 @@ Auto Patrol: []"},
 	new /obj/effect/decal/cleanable/oil(loc)
 	..()
 
-/mob/living/simple_animal/bot/secbot/attack_alien(var/mob/living/carbon/alien/user as mob)
+/mob/living/simple_animal/bot/secbot/attack_alien(mob/living/carbon/alien/user as mob)
 	..()
 	if(!isalien(target))
 		target = user
@@ -451,7 +450,7 @@ Auto Patrol: []"},
 		var/mob/living/carbon/C = AM
 		if(!istype(C) || !C || in_range(src, target))
 			return
-		knockOver(C)
+		knock_over(C)
 		return
 	..()
 

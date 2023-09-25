@@ -24,6 +24,7 @@
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+	AddComponent(/datum/component/ntnet_interface)
 	if(set_dir)
 		setDir(set_dir)
 	if(req_access && req_access.len)
@@ -36,10 +37,6 @@
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
 
-/obj/machinery/door/window/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
-
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	QDEL_LIST(debris)
@@ -48,7 +45,8 @@
 	electronics = null
 	return ..()
 
-/obj/machinery/door/window/update_icon()
+/obj/machinery/door/window/update_icon_state()
+	. = ..()
 	if(density)
 		icon_state = base_state
 	else
@@ -67,17 +65,22 @@
 		close()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM)
-	if( operating || !density )
+	if(operating || !density)
 		return
-	if (!( ismob(AM) ))
+	if(!(ismob(AM)))
 		if(ismecha(AM))
 			var/obj/mecha/mecha = AM
-			if(mecha.occupant && allowed(mecha.occupant))
+			var/has_access = (obj_flags & CMAGGED) ? !check_access_list(mecha.operation_req_access) : check_access_list(mecha.operation_req_access)
+			if(mecha.occupant) // If there is an occupant, check their access too.
+				has_access = (obj_flags & CMAGGED) ? cmag_allowed(mecha.occupant) && has_access : allowed(mecha.occupant) || has_access
+			if(has_access)
 				open_and_close()
-			else
-				do_animate("deny")
+				return
+			if(obj_flags & CMAGGED)
+				try_play_cmagsound()
+			do_animate("deny")
 		return
-	if (!( SSticker ))
+	if(!(SSticker))
 		return
 	var/mob/M = AM
 	if(M.restrained() || ((isdrone(M) || iscyborg(M)) && M.stat))
@@ -91,11 +94,13 @@
 	if(!requiresID())
 		user = null
 
-	if(allowed(user))
+	var/allowed = (obj_flags & CMAGGED) ? cmag_allowed(user) : allowed(user)
+	if(allowed)
 		open_and_close()
-	else
-		do_animate("deny")
-	return
+		return
+	if(obj_flags & CMAGGED)
+		try_play_cmagsound()
+	do_animate("deny")
 
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -211,16 +216,28 @@
 		take_damage(round(exposed_volume / 200), BURN, 0, 0)
 	..()
 
-/obj/machinery/door/window/emag_act(mob/user)
-	if(!operating && density && !(obj_flags & EMAGGED))
-		obj_flags |= EMAGGED
-		operating = TRUE
-		flick("[base_state]spark", src)
-		playsound(src, "sparks", 75, 1)
-		sleep(0.6 SECONDS)
-		operating = FALSE
-		desc += "<BR>[span_warning("Its access panel is smoking slightly.")]"
-		open(2)
+/obj/machinery/door/window/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(operating || !density || (obj_flags & CMAGGED))
+		return FALSE
+	obj_flags |= EMAGGED
+	operating = TRUE
+	flick("[base_state]spark", src)
+	playsound(src, "sparks", 75, 1)
+	addtimer(CALLBACK(src, PROC_REF(finish_emag_act), user, emag_card), 0.6 SECONDS)
+	return TRUE
+
+/obj/machinery/door/window/proc/finish_emag_act()
+	if(QDELETED(src))
+		return
+	operating = FALSE
+	open(2)
+
+/obj/machinery/door/window/examine(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		. += span_warning("The access panel is smoking slightly.")
+	if(obj_flags & CMAGGED)
+		. += span_warning("The access panel is coated in yellow ooze...")
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/living/user, params)
 
@@ -264,7 +281,7 @@
 						WA.state= "02"
 						WA.setDir(dir)
 						WA.ini_dir = dir
-						WA.update_icon()
+						WA.update_appearance(UPDATE_ICON)
 						WA.created_name = name
 
 						if(obj_flags & EMAGGED)

@@ -10,6 +10,7 @@
 	var/required_other = 0 // an integer required for the reaction to happen
 
 	var/mob_react = TRUE //Determines if a chemical reaction can occur inside a mob
+	var/noblium_suppression = TRUE //Determines whether or not hypernoblium can stop this reaction
 
 	var/required_temp = 0
 	var/is_cold_recipe = FALSE // Set to TRUE if you want the recipe to only react when it's BELOW the required temp.

@@ -175,7 +175,7 @@
 	icon_state = "petcollar"
 	var/tagname = null
 
-/obj/item/clothing/neck/petcollar/Initialize()
+/obj/item/clothing/neck/petcollar/Initialize(mapload)
 	.= ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
@@ -220,7 +220,7 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		if(C.get_item_by_slot(SLOT_NECK) == src)
+		if(C.get_item_by_slot(ITEM_SLOT_NECK) == src)
 			to_chat(user, span_warning("You can't untie [src] while wearing it!"))
 			return
 		if(user.is_holding(src))
@@ -229,7 +229,7 @@
 			var/oldName = src.name
 			qdel(src)
 			user.put_in_hand(newBand, currentHandIndex)
-			user.visible_message("You untie [oldName] back into a [newBand.name]", "[user] unties [oldName] back into a [newBand.name]")
+			user.visible_message("[user] unties [oldName] back into a [newBand.name].", "You untie [oldName] back into a [newBand.name].")
 		else
 			to_chat(user, span_warning("You must be holding [src] in order to untie it!"))
 
@@ -349,6 +349,27 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "falcon"
 	item_state = "falcon"
+
+/obj/item/clothing/neck/falcon/secconwhistle
+	name = "constable's whistle"
+	desc = "A small cylindrical whistle meant for blowing out crooks' eardrums."
+	icon_state = "secconwhistle"
+	item_state = "secconwhistle"
+	COOLDOWN_DECLARE(recharge_time)
+	var/recharge_rate = 5 SECONDS
+	actions_types = list(/datum/action/item_action/blow_whistle)
+
+/obj/item/clothing/neck/falcon/secconwhistle/ui_action_click(mob/user)
+	if(!COOLDOWN_FINISHED(src, recharge_time))
+		user.balloon_alert(user, "Catch your breath first!")
+		return
+	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
+	user.visible_message(span_warning("[user] blows their whistle!"))
+	COOLDOWN_START(src, recharge_time, recharge_rate)
+
+/datum/action/item_action/blow_whistle
+	name = "Blow Your Whistle"
+
 // Stealth cloaks
 
 /obj/item/clothing/neck/cloak/ranger
@@ -371,7 +392,7 @@
 
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 75, ACID = 75)	//Resistant to the dangers of the natural world or something
 
-/obj/item/clothing/neck/cloak/ranger/Initialize()
+/obj/item/clothing/neck/cloak/ranger/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
 
@@ -390,9 +411,9 @@
 /obj/item/clothing/neck/cloak/ranger/Destroy()
 	set_cloak(0)
 	. = ..()
-	
+
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
-	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(SLOT_NECK) == src)
+	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		return TRUE
 
 	set_cloak(0)
@@ -401,7 +422,7 @@
 		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
 
 	var/mob/new_user = loc
-	if(istype(new_user) && new_user.get_item_by_slot(SLOT_NECK) == src)
+	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		current_user = new_user
 		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
@@ -419,8 +440,8 @@
 	if(!update_signals())
 		return
 	var/mob/user = loc
-	if(!istype(user) || !user.get_item_by_slot(SLOT_NECK) == src)
-		
+	if(!istype(user) || !user.get_item_by_slot(ITEM_SLOT_NECK) == src)
+
 		return
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 

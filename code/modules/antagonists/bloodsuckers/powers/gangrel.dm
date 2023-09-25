@@ -24,7 +24,7 @@
 /datum/action/cooldown/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
-	if(!do_mob(user, user, 10 SECONDS, 1))
+	if(!do_after(user, 10 SECONDS))
 		return
 	var/list/radial_display = list()
 	//get our options, switches are kinda weird here cause wwe ant to stack them
@@ -34,7 +34,7 @@
 		var/icon/icon_to_mix = getFlatIcon(user)
 		icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
 		option.image = icon_to_mix
-		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility and speed, but decreased defense."
+		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility, speed and interaction speed, but decreased defense."
 		radial_display["Lizard/Felinid"] = option //haha yeah
 	if(bloodsuckerdatum.total_blood_drank >= 250)
 		var/datum/radial_menu_choice/option = new
@@ -47,7 +47,7 @@
 		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_chest_m"), ICON_OVERLAY)
 		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_head_m"), ICON_OVERLAY)
 		option.image = body
-		option.info = "Gorilla: Increased durability and strength, but less speed."
+		option.info = "Gorilla: Increased durability and strength, but less speed and interaction speed."
 		radial_display["Gorilla"] = option
 	if(bloodsuckerdatum.total_blood_drank >= 750)
 		var/datum/radial_menu_choice/option = new
@@ -56,7 +56,7 @@
 		radial_display["Bat"] = option
 	var/chosen_transform = show_radial_menu(user, user, radial_display)
 	transform(chosen_transform) //actually transform
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/bloodsucker/gangrel/transform/proc/transform(chosen_transform)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -74,7 +74,7 @@
 				user_species.species_traits += DIGITIGRADE
 				user.dna.species.armor -= 20 //careful
 				user.dna.species.speedmod = -0.5
-				user.dna.species.action_speed_coefficient = 0.7
+				user.dna.species.action_speed_coefficient *= 0.7
 				bloodsuckerdatum.AddBloodVolume(75)
 		if("Gorilla")
 			user.set_species(/datum/species/gorilla)
@@ -84,6 +84,7 @@
 			user.dna.species.punchdamagelow += 10
 			user.dna.species.punchdamagehigh += 10 //very stronk
 			user.dna.species.punchstunthreshold += 10
+			user.dna.species.action_speed_coefficient *= 1.3
 			user.dna.species.armor += 40
 			bloodsuckerdatum.AddBloodVolume(50)
 		if("Bat")
@@ -106,7 +107,7 @@
 					power.Grant(gb)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
 			return  //early to not mess with vampire organs proc
-	
+
 	bloodsuckerdatum.heal_vampire_organs() //regives you the stuff
 
 /datum/action/cooldown/bloodsucker/gangrel/transform_back
@@ -118,12 +119,11 @@
 		Beware you will not be able to transform again until the night passes!"
 
 /datum/action/cooldown/bloodsucker/gangrel/transform_back/ActivatePower()
-	if(!do_mob(owner, owner, 10 SECONDS))
+	if(!do_after(owner, 10 SECONDS))
 		return
-	var/mob/living/simple_animal/hostile/bloodsucker/bs
-	if(istype(owner, bs))
-		qdel(bs)
-	. = ..()
+	if(istype(owner, /mob/living/simple_animal/hostile/bloodsucker))
+		qdel(owner)
+	return ..()
 /*
 ////////////////||\\\\\\\\\\\\\\\\
 \\           Bat Only           //
@@ -211,7 +211,7 @@
 			var/mob/living/carbon/C = target
 			C.Knockdown(0.1)
 		return BULLET_ACT_HIT
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/bloodsucker/gangrel/wingslam
 	name = "Wing Slam"
@@ -227,6 +227,7 @@
 	bloodcost = 0
 
 /datum/action/cooldown/bloodsucker/gangrel/wingslam/ActivatePower()
+	. = ..()
 	var/mob/living/user = owner
 	var/list/choices = list()
 	for(var/mob/living/carbon/C in view(1, user))
@@ -444,7 +445,7 @@
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.visible_message(span_danger("[A] inhales a ton of air!"), span_warning("You prepare to howl!"))
-	if(!do_mob(A, A, 2.5 SECONDS, TRUE))
+	if(!do_after(A, 2.5 SECONDS))
 		return
 	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, TRUE)
 	A.visible_message(span_userdanger("[A] lets out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
@@ -538,12 +539,12 @@
 /datum/action/cooldown/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
 	var/mob/living/carbon/user = owner
 
-	if(!do_mob(user, target, 1 SECONDS))
+	if(!do_after(user, 1 SECONDS, target))
 		return
 
 	var/datum/status_effect/saw_bleed/B = target.has_status_effect(STATUS_EFFECT_SAWBLEED)
 	while(!target.stat)
-		if(!target.Adjacent(user) || !do_mob(user, target, 0.8 SECONDS))
+		if(!target.Adjacent(user) || !do_after(user, 0.8 SECONDS, target))
 			break
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 		user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
@@ -604,7 +605,7 @@
 
 /obj/item/clothing/shoes/wolflegs
 	name = "Wolf Legs"
-	desc = "Atleast they make you go faster."
+	desc = "At least they make you go faster."
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -614,7 +615,7 @@
 
 /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 	name = "Wolf Legs"
-	desc = "Atleast they make you go faster. Oh wait you probably didn't mind anyways..."
+	desc = "At least they make you go faster. Oh wait you probably didn't mind anyways..."
 	icon_state = "digilegs"
 	item_state = "digilegs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
@@ -623,28 +624,25 @@
 	xenoshoe = YES_DIGIT
 	body_parts_covered = GROIN|LEGS|FEET
 
-/obj/item/clothing/neck/wolfcollar/Initialize()
+/obj/item/clothing/neck/wolfcollar/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/radio/headset/wolfears/Initialize()
+/obj/item/radio/headset/wolfears/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 	make_syndie()
 
-/obj/item/radio/headset/wolfears/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
-
-/obj/item/clothing/gloves/wolfclaws/Initialize()
+/obj/item/clothing/gloves/wolfclaws/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/clothing/shoes/wolflegs/Initialize()
+/obj/item/clothing/shoes/wolflegs/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/clothing/shoes/xeno_wraps/wolfdigilegs/Initialize()
+/obj/item/clothing/shoes/xeno_wraps/wolfdigilegs/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
@@ -654,7 +652,7 @@
 		return
 	if(!IS_BLOODSUCKER(user))
 		return
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
 		tearaction.Grant(H)
 
@@ -665,5 +663,5 @@
 	if(!IS_BLOODSUCKER(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_GLOVES) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
 		tearaction.Remove(H)

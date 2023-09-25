@@ -181,7 +181,7 @@
 		var/obj/item/modular_computer/comp = host
 		comp.play_computer_sound(sound, 50, 0)
 	else
-		playsound(get_turf(host), sound, 50, 0, extrarange = -3, falloff = 10)
+		playsound(get_turf(host), sound, 50, 0, extrarange = -3, falloff_exponent = 10)
 
 /datum/minesweeper/proc/vis_msg(msg, local_msg)
 	if(istype(host, /obj/item/modular_computer))

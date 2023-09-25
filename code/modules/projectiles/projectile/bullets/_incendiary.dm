@@ -8,6 +8,9 @@
 		var/mob/living/carbon/M = target
 		M.adjust_fire_stacks(fire_stacks)
 		M.ignite_mob()
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 22))
 
 /obj/item/projectile/bullet/incendiary/Move()
 	. = ..()

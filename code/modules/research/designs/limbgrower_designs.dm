@@ -190,12 +190,20 @@
 	build_path = /obj/item/organ/stomach/plasmaman
 	category = list("plasmaman")
 
+/datum/design/ethereal_lungs
+	name = "Aeration Reticulum"
+	id = "ethereallungs"
+	build_type = LIMBGROWER
+	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
+	build_path = /obj/item/organ/lungs/ethereal
+	category = list("ethereal")
+
 /datum/design/ethereal_stomach
 	name = "Biological Battery"
 	id = "etherealstomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
-	build_path = /obj/item/organ/stomach/ethereal
+	build_path = /obj/item/organ/stomach/cell/ethereal
 	category = list("ethereal")
 
 /datum/design/polysmorph_tail
@@ -254,7 +262,7 @@
 	/// List of all limb designs this disk contains.
 	var/list/limb_designs = list()
 
-/obj/item/disk/design_disk/limbs/Initialize()
+/obj/item/disk/design_disk/limbs/Initialize(mapload)
 	. = ..()
 	max_blueprints = limb_designs.len
 	for(var/design in limb_designs)
@@ -287,7 +295,7 @@
 
 /datum/design/limb_disk/lizard
 	name = "Lizard Limb Design Disk"
-	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail"
+	desc = "Contains designs for lizard bodyparts for the limbgrower - Lizard tongue, and tail."
 	id = "limbdesign_lizard"
 	build_path = /obj/item/disk/design_disk/limbs/lizard
 

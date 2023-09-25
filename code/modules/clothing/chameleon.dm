@@ -63,8 +63,8 @@
 		// it's has TRAIT_NODROP
 		D.dropItemToGround(target, TRUE)
 		qdel(old_headgear)
-		// where is `SLOT_HEAD` defined? WHO KNOWS
-		D.equip_to_slot(new_headgear, SLOT_HEAD)
+		// where is `ITEM_SLOT_HEAD` defined? WHO KNOWS
+		D.equip_to_slot(new_headgear, ITEM_SLOT_HEAD)
 	return 1
 
 
@@ -78,11 +78,9 @@
 	..()
 	initialize_outfits()
 
-/datum/action/chameleon_outfit/IsAvailable(feedback = FALSE)
+/datum/action/chameleon_outfit/Grant(mob/user)
 	if(syndicate)
-		if(!is_syndicate(owner))
-			HideFrom(owner)
-		return is_syndicate(owner)
+		owner_has_control = is_syndicate(user)
 	return ..()
 
 /datum/action/chameleon_outfit/proc/initialize_outfits()
@@ -157,10 +155,13 @@
 		if(!M.chameleon_item_actions)
 			M.chameleon_item_actions = list(src)
 			var/datum/action/chameleon_outfit/O = new /datum/action/chameleon_outfit()
+			O.syndicate = syndicate
 			O.Grant(M)
 		else
 			M.chameleon_item_actions |= src
-	..()
+	if(syndicate)
+		owner_has_control = is_syndicate(M)
+	return ..()
 
 /datum/action/item_action/chameleon/change/Remove(mob/M)
 	if(M && (M == owner))
@@ -168,7 +169,7 @@
 		if(!LAZYLEN(M.chameleon_item_actions))
 			var/datum/action/chameleon_outfit/O = locate(/datum/action/chameleon_outfit) in M.actions
 			qdel(O)
-	..()
+	return ..()
 
 /datum/action/item_action/chameleon/change/proc/initialize_disguises()
 	name = "Change [chameleon_name] Appearance"
@@ -183,14 +184,11 @@
 			var/chameleon_item_name = "[initial(I.name)] ([initial(I.icon_state)])"
 			chameleon_list[chameleon_item_name] = I
 
-
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
-	var/obj/item/picked_item
-	var/picked_name
-	picked_name = input("Select [chameleon_name] to change into", "Chameleon [chameleon_name]", picked_name) as null|anything in chameleon_list
+	var/picked_name = tgui_input_list(user, "Select [chameleon_name] to change into", "Chameleon [chameleon_name]", chameleon_list)
 	if(!picked_name)
 		return
-	picked_item = chameleon_list[picked_name]
+	var/obj/item/picked_item = chameleon_list[picked_name]
 	if(!picked_item)
 		return
 	update_look(user, picked_item)
@@ -243,7 +241,7 @@
 		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
 		I.head_piece.initial_state = initial(helmet.icon_state)
 		update_item(helmet, I.head_piece)
-		I.head_piece.update_icon()
+		I.head_piece.update_appearance(UPDATE_ICON)
 		qdel(helmet)
 		//YOGS END
 	target.icon = initial(picked_item.icon)
@@ -257,7 +255,7 @@
 	select_look(owner)
 	return 1
 
-/datum/action/item_action/chameleon/change/proc/emp_randomise(var/amount = EMP_RANDOMISE_TIME)
+/datum/action/item_action/chameleon/change/proc/emp_randomise(amount = EMP_RANDOMISE_TIME)
 	START_PROCESSING(SSprocessing, src)
 	random_look(owner)
 
@@ -294,7 +292,7 @@
 	icon_state = "engine"
 	item_state = "engi_suit"
 
-/obj/item/clothing/under/chameleon/Initialize()
+/obj/item/clothing/under/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -311,7 +309,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/clothing/under/chameleon/broken/Initialize()
+/obj/item/clothing/under/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 	
@@ -328,7 +326,7 @@
 /obj/item/clothing/under/plasmaman/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/under/plasmaman/chameleon/Initialize()
+/obj/item/clothing/under/plasmaman/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -360,7 +358,7 @@
 /obj/item/clothing/suit/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/suit/chameleon/Initialize()
+/obj/item/clothing/suit/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -377,7 +375,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/clothing/suit/chameleon/broken/Initialize()
+/obj/item/clothing/suit/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -394,7 +392,7 @@
 /obj/item/clothing/glasses/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/glasses/chameleon/Initialize()
+/obj/item/clothing/glasses/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -411,7 +409,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/clothing/glasses/chameleon/broken/Initialize()
+/obj/item/clothing/glasses/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -429,7 +427,7 @@
 /obj/item/clothing/gloves/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/gloves/chameleon/Initialize()
+/obj/item/clothing/gloves/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -446,7 +444,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/clothing/gloves/chameleon/broken/Initialize()
+/obj/item/clothing/gloves/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -463,7 +461,7 @@
 /obj/item/clothing/head/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/head/chameleon/Initialize()
+/obj/item/clothing/head/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -480,7 +478,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/clothing/head/chameleon/broken/Initialize()
+/obj/item/clothing/head/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 	
@@ -496,13 +494,13 @@
 /obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/head/helmet/space/plasmaman/chameleon/Initialize()
+/obj/item/clothing/head/helmet/space/plasmaman/chameleon/Initialize(mapload)
 	. = ..()
-	chameleon_action = new /datum/action/item_action/chameleon/change
+	chameleon_action = new(src)
 	if(syndicate)
 		chameleon_action.syndicate = TRUE
-	chameleon_action.chameleon_type = /obj/item/clothing/head/helmet/space
-	chameleon_action.chameleon_name = "Hat"
+	chameleon_action.chameleon_type = /obj/item/clothing/head
+	chameleon_action.chameleon_name = "Helmet"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/head/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 	add_item_action(chameleon_action)
@@ -519,7 +517,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	// which means it offers no protection, it's just air and light
 
-/obj/item/clothing/head/chameleon/drone/Initialize()
+/obj/item/clothing/head/chameleon/drone/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	chameleon_action.random_look()
@@ -547,7 +545,7 @@
 /obj/item/clothing/mask/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/mask/chameleon/Initialize()
+/obj/item/clothing/mask/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -564,7 +562,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/clothing/mask/chameleon/broken/Initialize()
+/obj/item/clothing/mask/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -583,7 +581,7 @@
 	// Can drones use the voice changer part? Let's not find out.
 	vchange = 0
 
-/obj/item/clothing/mask/chameleon/drone/Initialize()
+/obj/item/clothing/mask/chameleon/drone/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	chameleon_action.random_look()
@@ -608,7 +606,7 @@
 /obj/item/clothing/shoes/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/shoes/chameleon/Initialize()
+/obj/item/clothing/shoes/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -635,7 +633,7 @@
 /obj/item/clothing/shoes/chameleon/noslip/syndicate
 	syndicate = TRUE
 
-/obj/item/clothing/shoes/chameleon/noslip/broken/Initialize()
+/obj/item/clothing/shoes/chameleon/noslip/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -646,7 +644,7 @@
 /obj/item/storage/backpack/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/storage/backpack/chameleon/Initialize()
+/obj/item/storage/backpack/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -662,7 +660,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/storage/backpack/chameleon/broken/Initialize()
+/obj/item/storage/backpack/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -674,9 +672,11 @@
 /obj/item/storage/belt/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/storage/belt/chameleon/Initialize()
+/obj/item/storage/belt/chameleon/Initialize(mapload)
 	. = ..()
 
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.silent = TRUE
 	chameleon_action = new(src)
 	if(syndicate)
 		chameleon_action.syndicate = TRUE
@@ -685,18 +685,13 @@
 	chameleon_action.initialize_disguises()
 	add_item_action(chameleon_action)
 
-/obj/item/storage/belt/chameleon/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.silent = TRUE
-
 /obj/item/storage/belt/chameleon/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/storage/belt/chameleon/broken/Initialize()
+/obj/item/storage/belt/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -707,7 +702,7 @@
 /obj/item/radio/headset/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/radio/headset/chameleon/Initialize()
+/obj/item/radio/headset/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -723,7 +718,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/radio/headset/chameleon/broken/Initialize()
+/obj/item/radio/headset/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -734,7 +729,7 @@
 /obj/item/pda/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/pda/chameleon/Initialize()
+/obj/item/pda/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -751,7 +746,7 @@
 		return
 	chameleon_action.emp_randomise()
 
-/obj/item/pda/chameleon/broken/Initialize()
+/obj/item/pda/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -765,7 +760,7 @@
 /obj/item/stamp/chameleon/syndicate
 	syndicate = TRUE
 
-/obj/item/stamp/chameleon/Initialize()
+/obj/item/stamp/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -775,7 +770,7 @@
 	chameleon_action.initialize_disguises()
 	add_item_action(chameleon_action)
 
-/obj/item/stamp/chameleon/broken/Initialize()
+/obj/item/stamp/chameleon/broken/Initialize(mapload)
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 

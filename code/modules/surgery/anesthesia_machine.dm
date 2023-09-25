@@ -13,23 +13,23 @@
 /obj/machinery/anesthetic_machine/roundstart
 	is_roundstart = TRUE
 
-/obj/machinery/anesthetic_machine/Initialize()
+/obj/machinery/anesthetic_machine/Initialize(mapload)
 	. = ..()
 	attached_mask = new /obj/item/clothing/mask/breath/machine(src)
 	attached_mask.machine_attached = src
 	if(is_roundstart)
 		var/obj/item/tank/T = new /obj/item/tank/internals/anesthetic(src)
 		attached_tank = T
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/anesthetic_machine/update_icon()
-	cut_overlays()
+/obj/machinery/anesthetic_machine/update_overlays()
+	. = ..()
 	if(mask_out)
-		add_overlay("mask_off")
+		. += "mask_off"
 	else
-		add_overlay("mask_on")
+		. += "mask_on"
 	if(attached_tank)
-		add_overlay("tank_on")
+		. += "tank_on"
 
 
 /obj/machinery/anesthetic_machine/attack_hand(mob/living/user)
@@ -44,7 +44,7 @@
 		I.forceMove(src) // Put new tank in, set it as attached tank
 		visible_message("<span class='warning'>[user] inserts [I] into [src].</span>")
 		attached_tank = I
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	. = ..()
 
@@ -54,7 +54,7 @@
 		attached_tank.forceMove(loc)
 		to_chat(user, "<span class='notice'>You remove the [attached_tank].</span>")
 		attached_tank = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(mask_out)
 			retract_mask()
 
@@ -67,7 +67,7 @@
 		else
 			attached_mask.forceMove(src)
 		mask_out = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return FALSE
 
@@ -78,7 +78,7 @@
 	if(src.Adjacent(target) && usr.Adjacent(target))
 		if(attached_tank && !mask_out)
 			usr.visible_message("<span class='warning'>[usr] attempts to attach the [src] to [target].</span>", "<span class='notice'>You attempt to attach the [src] to [target].</span>")
-			if(do_after(usr, 5 SECONDS, target, TRUE))
+			if(do_after(usr, 5 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
 				if(!target.equip_to_appropriate_slot(attached_mask))
 					to_chat(usr, "<span class='warning'>You are unable to attach the [src] to [target]!</span>")
 					return
@@ -87,7 +87,7 @@
 					target.open_internals(attached_tank, TRUE)
 					mask_out = TRUE
 					START_PROCESSING(SSmachines, src)
-					update_icon()
+					update_appearance(UPDATE_ICON)
 		else
 			to_chat(usr, "<span class='warning'>[mask_out ? "The machine is already in use!" : "The machine has no attached tank!"]</span>")
 
@@ -111,7 +111,7 @@
 	var/obj/machinery/anesthetic_machine/machine_attached
 	clothing_flags = MASKINTERNALS | MASKEXTENDRANGE
 
-/obj/item/clothing/mask/breath/machine/Initialize()
+/obj/item/clothing/mask/breath/machine/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 

@@ -20,7 +20,6 @@
 
 /datum/antagonist/brother/on_gain()
 	SSticker.mode.brothers += owner
-	objectives += team.objectives
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
@@ -139,17 +138,15 @@
 	var/datum/antagonist/traitor/tot = new()
 	tot.give_objectives = FALSE
 	
-	for(var/datum/objective/obj in objectives)
+	for(var/datum/objective/obj in team.objectives)
 		var/obj_type = obj.type
 		var/datum/objective/new_obj = new obj_type()
 		new_obj.owner = owner
 		new_obj.copy_target(obj)
 		tot.add_objective(new_obj)
-		qdel(obj)
-	objectives.Cut()
 	
-	owner.add_antag_datum(tot)
 	owner.remove_antag_datum(/datum/antagonist/brother)
+	owner.add_antag_datum(tot)
 
 /datum/antagonist/brother/proc/give_pinpointer()
 	if(owner && owner.current)

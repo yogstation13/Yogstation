@@ -21,7 +21,7 @@
 	forceMove(BB)
 	in_air = TRUE
 
-/obj/item/ammo_casing/reusable/proc/on_land(var/obj/item/projectile/old_projectile)
+/obj/item/ammo_casing/reusable/proc/on_land(obj/item/projectile/old_projectile)
 	if(istype(old_projectile))
 		pixel_x = old_projectile.pixel_x
 		pixel_y = old_projectile.pixel_y
@@ -31,4 +31,4 @@
 	if(!BB)
 		newshot()
 	in_air = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)

@@ -8,7 +8,7 @@
 	tastes = list("tasteless soup" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/soup/Initialize()
+/obj/item/reagent_containers/food/snacks/soup/Initialize(mapload)
 	. = ..()
 	eatverb = pick("slurp","sip","inhale","drink")
 
@@ -19,7 +19,7 @@
 	list_reagents = list(/datum/reagent/water = 10)
 	tastes = list("wishes" = 1)
 
-/obj/item/reagent_containers/food/snacks/soup/wish/Initialize()
+/obj/item/reagent_containers/food/snacks/soup/wish/Initialize(mapload)
 	. = ..()
 	var/wish_true = prob(25)
 	if(wish_true)
@@ -36,7 +36,7 @@
 	icon_state = "meatballsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("meat" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/soup/slime
 	name = "slime soup"
@@ -71,7 +71,7 @@
 	desc = "Not very funny."
 	icon_state = "clownstears"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/consumable/clownstears = 10)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 5, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/consumable/clownstears = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 5, /datum/reagent/lube = 5, /datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/consumable/clownstears = 10)
 	tastes = list("a bad joke" = 1)
 	foodtype = FRUIT | SUGAR
 
@@ -99,7 +99,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("chaos" = 1)
 
-/obj/item/reagent_containers/food/snacks/soup/mystery/Initialize()
+/obj/item/reagent_containers/food/snacks/soup/mystery/Initialize(mapload)
 	. = ..()
 	extra_reagent = pick(/datum/reagent/consumable/capsaicin, /datum/reagent/consumable/frostoil, /datum/reagent/medicine/omnizine, /datum/reagent/consumable/banana, /datum/reagent/blood, /datum/reagent/toxin/slimejelly, /datum/reagent/toxin, /datum/reagent/consumable/banana, /datum/reagent/carbon, /datum/reagent/medicine/oculine)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -113,7 +113,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("hot peppers" = 1)
-	foodtype = VEGETABLES
+	foodtype = VEGETABLES | MEAT
 
 /obj/item/reagent_containers/food/snacks/soup/coldchili
 	name = "cold chili"
@@ -122,7 +122,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/frostoil = 1, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("tomato" = 1, "mint" = 1)
-	foodtype = VEGETABLES
+	foodtype = VEGETABLES | MEAT
 
 /obj/item/reagent_containers/food/snacks/soup/monkeysdelight
 	name = "monkey's delight"
@@ -156,7 +156,7 @@
 	icon_state = "milosoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("milo" = 1) // wtf is milo
-	foodtype = GROSS
+	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/soup/mushroom
 	name = "mushroom soup"
@@ -174,7 +174,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/soup/beet/Initialize()
+/obj/item/reagent_containers/food/snacks/soup/beet/Initialize(mapload)
 	. = ..()
 	name = pick("borsch","bortsch","borstch","borsh","borshch","borscht")
 	tastes = list(name = 1)
@@ -187,7 +187,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/drug/mushroomhallucinogen = 6)
 	tastes = list("jelly" = 1, "mushroom" = 1)
-	foodtype = VEGETABLES
+	foodtype = VEGETABLES | ALCOHOL
 
 /obj/item/reagent_containers/food/snacks/soup/amanitajelly
 	name = "amanita jelly"
@@ -197,7 +197,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/drug/mushroomhallucinogen = 3, /datum/reagent/toxin/amatoxin = 6)
 	tastes = list("jelly" = 1, "mushroom" = 1)
-	foodtype = VEGETABLES | TOXIC
+	foodtype = VEGETABLES | TOXIC | ALCOHOL
 
 /obj/item/reagent_containers/food/snacks/soup/stew
 	name = "stew"
@@ -208,7 +208,7 @@
 	bitesize = 7
 	volume = 100
 	tastes = list("tomato" = 1, "carrot" = 1)
-	foodtype = VEGETABLES
+	foodtype = VEGETABLES | MEAT
 
 /obj/item/reagent_containers/food/snacks/soup/sweetpotato
 	name = "sweet potato soup"
@@ -229,12 +229,11 @@
 /obj/item/reagent_containers/food/snacks/soup/dolphinsoup
 	name = "dolphin soup"
 	desc = "Made with finest dolphin meat, blood and crushed dreams. It's the animal rights activitsts and normal human being's worst nightmare!"
-	icon = 'yogstation/icons/obj/food/soupsalad.dmi'
 	icon_state = "dolphinsoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("dolphin meat" = 1, "the screams of a thousand animal right activists" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/soup/peasoup
 	name = "pea soup"

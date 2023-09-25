@@ -198,6 +198,7 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
+	default_container = /obj/item/reagent_containers/food/condiment/milk
 
 /datum/reagent/consumable/cilk
 	name = "Cilk"
@@ -208,7 +209,7 @@
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
 
-/datum/reagent/consumable/cilk/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/consumable/cilk/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(iscatperson(M))
 		quality = DRINK_GOOD
 	else
@@ -307,6 +308,7 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of soy milk"
 	glass_desc = "White and nutritious soy goodness!"
+	default_container = /obj/item/reagent_containers/food/condiment/soymilk
 
 /datum/reagent/consumable/soymilk/on_mob_life(mob/living/carbon/M)
 	if(M.getBruteLoss() && prob(20))
@@ -787,8 +789,8 @@
 	..()
 	. = TRUE
 
-/datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, method=TOUCH)
-	if(method == INGEST)
+/datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, methods=TOUCH)
+	if(methods & INGEST)
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
@@ -810,8 +812,8 @@
 	..()
 	. = TRUE
 
-/datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=TOUCH)
-	if(method == INGEST)
+/datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, methods=TOUCH)
+	if(methods & INGEST)
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
@@ -833,8 +835,8 @@
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
 
-/datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, method=TOUCH)
-	if(method == INGEST)
+/datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, methods=TOUCH)
+	if(methods & INGEST)
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
@@ -856,8 +858,8 @@
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
 
-/datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, method=TOUCH)
-	if(method == INGEST)
+/datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, methods=TOUCH)
+	if(methods & INGEST)
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
@@ -924,6 +926,9 @@
 	color = "#7D4E29"
 	quality = DRINK_NICE
 	taste_description = "chocolate milk"
+	glass_name = "glass of chocolate milk"
+	glass_desc = "Milk for cool kids."
+	glass_icon_state = "chocolateglass"
 
 /datum/reagent/consumable/menthol
 	name = "Menthol"
@@ -1047,8 +1052,8 @@
 		M.reagents.add_reagent("honey",1)
 	..()
 
-/datum/reagent/consumable/buzz_fuzz/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(iscarbon(M) && (method in list(TOUCH, VAPOR, PATCH)))
+/datum/reagent/consumable/buzz_fuzz/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+	if(iscarbon(M) && (methods & (TOUCH|VAPOR|PATCH)))
 		var/mob/living/carbon/C = M
 		for(var/s in C.surgeries)
 			var/datum/surgery/S = s
@@ -1090,8 +1095,8 @@
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
 
-/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, method=TOUCH)
-	if(method == INGEST)
+/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, methods=TOUCH)
+	if(methods & INGEST)
 		if(islizard(M))
 			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
 	return ..()

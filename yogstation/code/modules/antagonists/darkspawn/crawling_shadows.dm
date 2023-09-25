@@ -59,7 +59,7 @@
 		move_count = 0
 	..()
 
-/mob/living/simple_animal/hostile/crawling_shadows/Life()
+/mob/living/simple_animal/hostile/crawling_shadows/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	var/turf/T = get_turf(src)
 	var/lums = T.get_lumcount()

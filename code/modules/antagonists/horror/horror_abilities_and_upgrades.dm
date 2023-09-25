@@ -209,7 +209,7 @@
 	soul_price = 1
 	var/transferring = FALSE
 
-/datum/action/innate/horror/transfer_host/proc/is_transferring(var/mob/living/carbon/C)
+/datum/action/innate/horror/transfer_host/proc/is_transferring(mob/living/carbon/C)
 	return transferring && C.Adjacent(B.victim)
 
 /datum/action/innate/horror/transfer_host/Activate()
@@ -265,7 +265,7 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C)))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return

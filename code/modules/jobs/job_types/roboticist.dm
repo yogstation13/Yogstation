@@ -1,10 +1,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
 	description = "Build and repair the AI and cyborgs, create mechs."
-	flag = ROBOTICIST
 	orbit_icon = "battery-half"
 	department_head = list("Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -16,7 +14,7 @@
 
 	outfit = /datum/outfit/job/roboticist
 
-	added_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_XENOBIOLOGY, ACCESS_GENETICS)
+	added_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_XENOBIOLOGY, ACCESS_GENETICS, ACCESS_RND)
 	base_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
@@ -54,4 +52,4 @@
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

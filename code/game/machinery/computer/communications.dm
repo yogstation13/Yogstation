@@ -47,7 +47,7 @@
 /obj/machinery/computer/communications/unlocked
 	unlocked = TRUE
 
-/obj/machinery/computer/communications/Initialize()
+/obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	GLOB.shuttle_caller_list += src
 
@@ -81,14 +81,15 @@
 	else
 		return ..()
 
-/obj/machinery/computer/communications/emag_act(mob/user)
-	if (obj_flags & EMAGGED)
-		return
+/obj/machinery/computer/communications/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
 	obj_flags |= EMAGGED
 	if (authenticated)
 		authorize_access = get_all_accesses()
 	to_chat(user, span_danger("You scramble the communication routing circuits!"))
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+	return TRUE
 
 /obj/machinery/computer/communications/ui_act(action, list/params)
 	var/static/list/approved_states = list(STATE_BUYING_SHUTTLE, STATE_CHANGING_STATUS, STATE_MAIN, STATE_MESSAGES)
@@ -136,10 +137,8 @@
 			SSshuttle.requestEvac(usr, reason)
 			post_status("shuttle")
 		if ("changeSecurityLevel")
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
-
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+				to_chat(usr, span_warning("The system is not able to change the security alert level more than once per minute, please wait."))
 				return
 
 			// Check if they have
@@ -150,7 +149,7 @@
 					to_chat(usr, span_warning("You need to swipe your ID!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
-				if (!(ACCESS_CAPTAIN in id_card.access))
+				if (!(ACCESS_HEADS in id_card.access))
 					to_chat(usr, span_warning("You are not authorized to do this!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
@@ -344,8 +343,6 @@
 			state = STATE_MAIN
 			playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
 		if ("toggleEmergencyAccess")
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
 			if (GLOB.emergency_access)
 				if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 					to_chat(usr, span_alert("Maintenance airlock communications relays recharging. Please stand by."))
@@ -377,7 +374,7 @@
 				new /obj/item/paper/ai_control_code(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", RANDOM_REPORT_SOUND)
-				
+
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	var/list/data = list(
@@ -404,8 +401,8 @@
 				data["canRecallShuttles"] = !issilicon(user)
 				data["canRequestNuke"] = FALSE
 				data["canSendToSectors"] = FALSE
-				data["canSetAlertLevel"] = FALSE
-				data["canToggleEmergencyAccess"] = FALSE
+				data["canSetAlertLevel"] = TRUE
+				data["canToggleEmergencyAccess"] = TRUE
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
@@ -493,6 +490,7 @@
 	return data
 
 /obj/machinery/computer/communications/ui_interact(mob/user, datum/tgui/ui)
+	play_click_sound(user)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		ui = new(user, src, "CommunicationsConsole")
@@ -598,7 +596,6 @@
 	if(new_possible_answers)
 		possible_answers = new_possible_answers
 
-#undef IMPORTANT_ACTION_COOLDOWN
 #undef MAX_STATUS_LINE_LENGTH
 #undef STATE_BUYING_SHUTTLE
 #undef STATE_CHANGING_STATUS

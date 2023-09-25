@@ -85,7 +85,7 @@
 			S.End(src)
 	return ..()
 
-/datum/disease/advance/try_infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
 	//see if we are more transmittable than enough diseases to replace them
 	//diseases replaced in this way do not confer immunity
 	var/list/advance_diseases = list()
@@ -296,7 +296,7 @@
 		var/res = clamp(properties["resistance"] - (symptoms.len / 2), 1, advance_cures.len)
 		if(res == oldres)
 			return
-		
+
 		if(prob(82 - (res * 7))) // Double cure
 			var/list/the_cures = advance_cures[res]
 			var/list/not_used = the_cures.Copy()
@@ -310,7 +310,7 @@
 			// Get the cure name from the cure_id
 			var/datum/reagent/D = GLOB.chemical_reagents_list[cures[1]]
 			cure_text = D.name
-		
+
 		oldres = res
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
@@ -391,7 +391,7 @@
 */
 
 // Mix a list of advance diseases and return the mixed result.
-/proc/Advance_Mix(var/list/D_list)
+/proc/Advance_Mix(list/D_list)
 	var/list/diseases = list()
 
 	for(var/datum/disease/advance/A in D_list)

@@ -6,7 +6,7 @@
 
 /obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(hud_type && slot == SLOT_GLASSES)
+	if(hud_type && slot == ITEM_SLOT_EYES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.show_to(user)
 
@@ -23,13 +23,14 @@
 	obj_flags |= EMAGGED
 	desc = "[desc] The display is flickering slightly."
 
-/obj/item/clothing/glasses/hud/emag_act(mob/user)
+/obj/item/clothing/glasses/hud/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("PZZTTPFFFT"))
 	desc = "[desc] The display is flickering slightly."
-
+	return TRUE
+	
 /obj/item/clothing/glasses/hud/health
 	name = "health scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
@@ -54,6 +55,7 @@
 	item_state = "mesonhealth"
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	clothing_traits = list(TRAIT_MESONS)
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
 /obj/item/clothing/glasses/hud/health/sunglasses
@@ -116,7 +118,7 @@
 	// have multiple inheritance, okay?
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
-/obj/item/clothing/glasses/hud/security/chameleon/Initialize()
+/obj/item/clothing/glasses/hud/security/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
