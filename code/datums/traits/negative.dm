@@ -628,7 +628,7 @@
 	
 /datum/quirk/junkie/drunkard/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	quirk_holder.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
+	H.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
 	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
 	. = ..()
 
