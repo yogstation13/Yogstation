@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ae" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -25,8 +25,8 @@
 	id = "labor";
 	name = "labor camp blast door"
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -57,10 +57,10 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "au" = (
@@ -117,7 +117,7 @@
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 5
 	},
 /obj/structure/cable{
@@ -241,7 +241,7 @@
 /obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -348,8 +348,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/trimline/red/filled/corner,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1029,7 +1029,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/onion,
 /obj/machinery/hydroponics/soil,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -1088,7 +1088,7 @@
 	pixel_x = -32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -1320,7 +1320,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/seeds/carrot,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
 	},
 /obj/machinery/hydroponics/soil,
@@ -1425,7 +1425,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -1784,7 +1784,7 @@
 	dir = 4;
 	icon_state = "computer"
 	},
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -1909,7 +1909,7 @@
 	dir = 4
 	},
 /obj/machinery/hydroponics/soil,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -1939,10 +1939,10 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2006,7 +2006,7 @@
 "qr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 6
 	},
 /obj/structure/reagent_dispensers/peppertank{
@@ -2113,7 +2113,7 @@
 /obj/structure/table,
 /obj/machinery/recharger,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "ry" = (
@@ -2270,7 +2270,7 @@
 /obj/machinery/computer/shuttle/labor/one_way{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/red/filled/end{
+/obj/effect/turf_decal/trimline/secred/filled/end{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -2644,7 +2644,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/seed_extractor,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
@@ -3150,10 +3150,10 @@
 /area/mine/explored)
 "AO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -3267,7 +3267,7 @@
 	icon_state = "computer"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3299,7 +3299,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/plant_analyzer,
 /obj/machinery/hydroponics/soil,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
@@ -3346,7 +3346,7 @@
 /area/mine/laborcamp)
 "Cf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -3459,7 +3459,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
@@ -3497,7 +3497,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "Dz" = (
@@ -3513,7 +3513,7 @@
 	dir = 4;
 	network = list("labor")
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3702,10 +3702,10 @@
 /area/mine/explored)
 "Fa" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3854,7 +3854,7 @@
 /obj/item/cultivator,
 /obj/item/seeds/potato,
 /obj/machinery/hydroponics/soil,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -3913,10 +3913,10 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "Gs" = (
@@ -4143,7 +4143,7 @@
 	pixel_y = 9
 	},
 /obj/item/pen,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -4298,7 +4298,7 @@
 "Jh" = (
 /obj/item/seeds/soya,
 /obj/machinery/hydroponics/soil,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -4505,10 +4505,10 @@
 	name = "Labor Camp Maintenance";
 	req_access_txt = "2"
 	},
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
@@ -4702,7 +4702,7 @@
 /area/mine/eva)
 "Mk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/green/filled/line,
+/obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
 "Ms" = (
@@ -4927,10 +4927,10 @@
 	name = "Labor Camp Shuttle Prisoner Airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "OD" = (
@@ -5070,7 +5070,7 @@
 	icon_state = "computer"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -5281,10 +5281,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
 	},
 /obj/structure/cable{
@@ -5312,10 +5312,10 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Labor Camp Shuttle Prisoner Airlock"
 	},
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "RR" = (
@@ -5592,10 +5592,10 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
 /obj/structure/cable{
@@ -5851,10 +5851,10 @@
 	name = "Labor Camp Shuttle Security Airlock";
 	req_access_txt = "2"
 	},
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "Wx" = (
@@ -6077,10 +6077,10 @@
 /area/mine/explored)
 "XU" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/trimline/red/filled/corner{
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "XY" = (
