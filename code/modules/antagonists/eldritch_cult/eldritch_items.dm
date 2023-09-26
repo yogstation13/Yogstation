@@ -215,7 +215,7 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(50)
+		user.Paralyze(8 SECONDS)
 		user.adjustFireLoss(15)
 
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
@@ -242,7 +242,7 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(50)
+		user.Paralyze(8 SECONDS)
 		user.adjustFireLoss(15)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
@@ -273,7 +273,7 @@
 		to_chat(user, span_cultlarge("\"You feel the weight of your sins pulling you down!\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjust_confusion(30)
-		user.Paralyze(50)
+		user.Paralyze(8 SECODNS)
 		user.adjustBruteLoss(15)
 
 /obj/item/reagent_containers/glass/beaker/eldritch
@@ -296,8 +296,8 @@
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user, span_cultlarge("\"The eye stares back into your soul, branding you for your sin!\""))
 		user.dropItemToGround(src, TRUE)
-		user.Paralyze(50)
-		user.blind_eyes(15)
+		user.Paralyze(8 SECONDS)
+		user.blind_eyes(10 SECONDS)
 
 /obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
