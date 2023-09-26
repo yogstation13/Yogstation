@@ -57,6 +57,7 @@
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 #define CEREBRAL	/datum/mutation/human/cerebral
+#define SPEEDY		/datum/mutation/human/speedy
 #define THICKSKIN	/datum/mutation/human/thickskin
 #define DENSEBONES	/datum/mutation/human/densebones
 
