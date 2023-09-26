@@ -273,7 +273,7 @@
 		to_chat(user, span_cultlarge("\"You feel the weight of your sins pulling you down!\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjust_confusion(30)
-		user.Paralyze(8 SECODNS)
+		user.Paralyze(8 SECONDS)
 		user.adjustBruteLoss(15)
 
 /obj/item/reagent_containers/glass/beaker/eldritch
