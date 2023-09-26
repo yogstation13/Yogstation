@@ -38820,6 +38820,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"rEd" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "rEf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -102915,7 +102919,7 @@ sVE
 wPs
 asF
 eMV
-tqC
+rEd
 vHz
 plZ
 tqC
