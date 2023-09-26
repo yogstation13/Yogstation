@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = 0					//currently only used for custom objectives.
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
+	var/optional = FALSE				//Whether the objective should show up as optional in the roundend screen
 
 /datum/objective/New(text)
 	GLOB.objectives += src
@@ -1581,7 +1582,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/capture,
 		/datum/objective/absorb,
 		/datum/objective/minor/pet,
-		/datum/objective/custom
+		/datum/objective/custom,
+		/datum/objective/gimmick //bee port
 	)
 
 	for(var/T in allowed_types)
@@ -1707,3 +1709,42 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		if(locate(target_obj_type) in target_area)
 			return FALSE
 	return TRUE
+
+//Bee port, gimmick objectives
+#define GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/gimmick_objectives.txt"
+#define DEPT_GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/dept_gimmick_objectives.txt"
+#define TARGET_GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/target_gimmick_objectives.txt"
+
+/datum/objective/gimmick
+	name = "gimmick"
+	martyr_compatible = TRUE
+	optional = TRUE
+
+/datum/objective/gimmick/update_explanation_text()
+	var/selected_department = pick(list( //Select a department for department-based objectives
+		DEPT_SCIENCE,
+		DEPT_ENGINEERING,
+		DEPT_SECURITY,
+		DEPT_MEDICAL,
+		DEPT_SERVICE,
+		DEPT_SUPPLY,
+		DEPT_COMMAND
+	))
+
+	var/list/gimmick_list = world.file2list(GIMMICK_OBJ_FILE) //gimmick_objectives.txt is for objectives without a specific target/department/etc
+	gimmick_list.Add(world.file2list(DEPT_GIMMICK_OBJ_FILE))
+	if(target?.current)
+		gimmick_list.Add(world.file2list(TARGET_GIMMICK_OBJ_FILE))
+
+	var/selected_gimmick = pick(gimmick_list)
+	selected_gimmick = replacetext(selected_gimmick, "%DEPARTMENT", selected_department)
+	if(target?.current)
+		selected_gimmick = replacetext(selected_gimmick, "%TARGET", target.name)
+
+	explanation_text = "[selected_gimmick]"
+
+/datum/objective/gimmick/check_completion()
+	return TRUE
+	
+/datum/objective/gimmick/admin_edit(mob/admin)
+	update_explanation_text()

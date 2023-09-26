@@ -114,6 +114,12 @@
 	for(var/i = objective_count, i < toa, i++)
 		forge_single_human_objective()
 
+	var/datum/objective/gimmick/gimmick_objective = new
+	gimmick_objective.owner = owner
+	gimmick_objective.find_target()
+	gimmick_objective.update_explanation_text()
+	add_objective(gimmick_objective) //Does not count towards the number of objectives, to allow hijacking as well
+
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
 		//Start of Yogstation change: adds /datum/objective/sole_survivor
 		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
@@ -357,7 +363,9 @@
 	if(objectives.len)//If the traitor had no objectives, don't need to process this.
 		var/count = 1
 		for(var/datum/objective/objective in objectives)
-			if(objective.check_completion())
+			if(objective.optional)
+				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Optional.")]"
+			else if(objective.check_completion())
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_greentext("Success!")]"
 			else
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [span_redtext("Fail.")]"
