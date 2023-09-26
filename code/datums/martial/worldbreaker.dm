@@ -57,7 +57,7 @@
 
 	if(isitem(target))//don't attack if we're clicking on our inventory
 		var/obj/item/thing = target
-		if(thing.item_flags & IN_INVENTORY)
+		if(thing.item_flags & IN_INVENTORY || thing.loc == H)
 			return
 
 	if(H.a_intent == INTENT_DISARM)
@@ -72,11 +72,11 @@
 		if(get_turf(target) != get_turf(H))
 			throw_start(H, target)
 
-	if(!H.Adjacent(target))
-		return
-
 	if(H.a_intent == INTENT_HARM)//technically can punch yourself, but with how it works, you won't actually hurt yourself
 		pummel(H,target)
+
+	if(!H.Adjacent(target))
+		return
 
 	if(H == target)
 		return
@@ -462,10 +462,12 @@
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
 	user.changeNext_move(COOLDOWN_PUMMEL + 1)//so things don't work weirdly when spamming on windows or whatever
 
-	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
-	playsound(get_turf(target), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
-	playsound(get_turf(target), 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(target))
+	var/center = get_step_towards(user, target)
+
+	user.do_attack_animation(center, ATTACK_EFFECT_SMASH)
+	playsound(get_turf(center), 'sound/effects/gravhit.ogg', 20, TRUE, -1)
+	playsound(get_turf(center), 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(center))
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
@@ -473,18 +475,18 @@
 	animate(shockwave, alpha = 0, transform = matrix().Scale(0.24), time = 3)//the scale of this is VERY finely tuned to range
 	QDEL_IN(shockwave, 4)
 
-	for(var/mob/living/L in range(1, get_turf(target)))
+	for(var/mob/living/L in range(1, get_turf(center)))
 		if(L == user)
 			continue
 		var/damage = 5
-		if(get_turf(L) == get_turf(target))
+		if(get_turf(L) == get_turf(center))
 			damage *= 4 //anyone in the center takes more
 
 		if(L.anchored)
 			L.anchored = FALSE
 		push_away(user, L)
 		hurt(user, L, damage)
-	for(var/obj/obstruction in range(1, get_turf(target)))
+	for(var/obj/obstruction in range(1, get_turf(center)))
 		if(isitem(obstruction))
 			push_away(user, obstruction)
 			continue
@@ -493,7 +495,7 @@
 		var/damage = 10
 		if(isstructure(obstruction) || ismecha(obstruction))
 			damage += 5
-		if(get_turf(obstruction) == get_turf(target))
+		if(get_turf(obstruction) == get_turf(center))
 			damage *= 3
 		obstruction.take_damage(damage, sound_effect = FALSE) //reduced sound from hitting LOTS of things
 
