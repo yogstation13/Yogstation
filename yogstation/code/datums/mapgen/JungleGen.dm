@@ -195,7 +195,7 @@
 			var/y_o = y + rand(-j,j)
 			return_list[world.maxx * y_o + x_o] = ORE_DILITHIUM
 
-	for(var/i in 0 to 32)
+	for(var/i in 0 to 64)
 		var/x = rand(16,239)
 		var/y = rand(16,239)
 		return_list[world.maxx * y + x] = ORE_BLUESPACE
@@ -210,8 +210,6 @@
 	var/start_time = REALTIMEOFDAY
 	var/list/ore_map = generate_ores(turfs)
 	
-	
-
 	var/toxic_seed = rand(0, 50000)
 	var/humid_seed = rand(0, 50000)
 	var/list/density_strings = list()
@@ -235,6 +233,7 @@
 												"[world.maxx]",
 												"1",
 												"2")
+
 	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","75","[world.maxx]","-0.05","1.1")
 	var/list/humid_strings = list()
 	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.1","1.1")

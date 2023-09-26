@@ -34,7 +34,7 @@
 		qdel(src)
 		return //don't know if this is needed...
 	drill_at(location,3)
-	for(var/turf/closed/mineral/rock in circle_range_turfs(location,boom_sizes[3]))
+	for(var/turf/rock in circle_range_turfs(location,boom_sizes[3]))
 		var/distance = get_dist_euclidian(location,rock)
 		if(distance <= boom_sizes[1])
 			drill_at(rock,3) //YOGS EDIT

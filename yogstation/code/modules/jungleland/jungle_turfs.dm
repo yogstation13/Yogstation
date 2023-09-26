@@ -8,7 +8,6 @@ Temperature: 126.85 °C (400 K)
 */
 
 
-
 /area/pregen
 	name = "Pregenerated Space"
 	icon = 'yogstation/icons/turf/floors/jungle.dmi'
