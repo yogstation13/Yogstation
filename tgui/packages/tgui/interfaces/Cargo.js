@@ -151,7 +151,7 @@ export const CargoCatalog = (props, context) => {
             onClick={() => act('toggleprivate')} />}
           {!self_paid && !!unlock_budget && <Button.Checkbox
             ml={2}
-            content="Budget Ordering"
+            content="Departmental Purchasing"
             checked={budget_order}
             onClick={() => act('togglebudget')} />}
         </>
