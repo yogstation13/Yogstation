@@ -83,6 +83,8 @@
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_CAUTERY
 	w_class = WEIGHT_CLASS_TINY
+	force = 2
+	damtype = BURN
 	attack_verb = list("burnt")
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
@@ -459,11 +461,15 @@
 		playsound(get_turf(user),'sound/items/welderdeactivate.ogg',50,1)
 		to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 		tool_behaviour = TOOL_DRILL
+		sharpness = SHARP_POINTY
+		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "surgicaldrill_a"
 	else
 		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
 		to_chat(user, span_notice("You dilate the lenses, setting it to mending mode."))
 		tool_behaviour = TOOL_CAUTERY
+		sharpness = SHARP_NONE
+		force -= 1
 		icon_state = "cautery_a"
 
 /obj/item/cautery/advanced/examine()
