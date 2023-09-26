@@ -210,6 +210,14 @@
 	///What trait do we want to add upon equipiing
 	var/trait = TRAIT_THERMAL_VISION
 
+/obj/item/clothing/neck/eldritch_amulet/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(50)
+		user.adjustFireLoss(15)
+
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
 	..()
 	if(user.mind && (IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
@@ -228,6 +236,14 @@
 	name = "piercing eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
+
+/obj/item/clothing/neck/eldritch_amulet/piercing/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(50)
+		user.adjustFireLoss(15)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	name = "ominous hood"
@@ -251,6 +267,15 @@
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Who knows why it's this good
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
 
+/obj/item/clothing/suit/hooded/cultrobes/eldritch/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"You feel the weight of your sins pulling you down!\""))
+		user.dropItemToGround(src, TRUE)
+		user.adjust_confusion(30)
+		user.Paralyze(50)
+		user.adjustBruteLoss(15)
+
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"
 	desc = "Anathema to the close-minded. Ambrosia to those blessed by the Mansus."
@@ -265,6 +290,14 @@
 	item_state = "godeye"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	hud_type = DATA_HUD_SECURITY_BASIC
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"The eye stares back into your soul, branding you for your sin!\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(50)
+		user.blind_eyes(15)
 
 /obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
