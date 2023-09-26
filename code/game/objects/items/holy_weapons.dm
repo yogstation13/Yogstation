@@ -58,10 +58,11 @@
 		return FALSE
 	if(user.incapacitated() || !user.is_holding(src))
 		return FALSE
-	return TRUE
+	if(chaplain_bypass || user?.mind?.holy_role)
+		return TRUE
 
 /obj/item/nullrod/ui_interact(mob/user, datum/tgui/ui)
-	if(user?.mind?.holy_role && check_menu(user))
+	if(check_menu(user))
 		ui = SStgui.try_update_ui(user, src, ui)
 		if(!ui)
 			ui = new(user, src, "NullRodMenu", name)
