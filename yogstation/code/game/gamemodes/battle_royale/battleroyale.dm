@@ -30,7 +30,7 @@ GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite/pre_setup()
 	GLOB.stormdamage = 2
-	var/turf = find_safe_turf(SSmapping.levels_by_trait(ZTRAIT_STATION)[1]) //Assuming we've gotten this far, let's spawn the battle bus.
+	var/turf = find_safe_turf(SSmapping.levels_by_trait(ZTRAIT_STATION)[1], dense_atoms = FALSE) //Assuming we've gotten this far, let's spawn the battle bus.
 	var/target = get_edge_target_turf(turf, WEST)
 	if(target) //all the way at the left end of the map
 		new /obj/structure/battle_bus(T)
