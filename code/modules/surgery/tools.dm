@@ -83,7 +83,7 @@
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_CAUTERY
 	w_class = WEIGHT_CLASS_TINY
-	force = 2
+	force = 3
 	damtype = BURN
 	attack_verb = list("burnt")
 
