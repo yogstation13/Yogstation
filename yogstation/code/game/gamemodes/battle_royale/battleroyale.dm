@@ -192,6 +192,10 @@ GLOBAL_VAR(stormdamage)
 		for(var/obj/thing in actual)
 			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
 				qdel(thing)
+	
+	for(var/target in GLOB.mob_living_list)
+		if(istype(target, /mob/living/simple_animal/bot))//no beepsky
+			qdel(target)
 
 /datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
 	var/mob/selfinsert = new(src)
@@ -343,8 +347,8 @@ GLOBAL_VAR(stormdamage)
 	if(z != starter_z)
 		for(var/mob/M in contents)
 			to_chat(M, "You feel your insides churn as the battle bus throws you out forcefully!")
-			var/obj/effect/landmark/observer_start/L = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
-			M.forceMove(get_turf(L))
+			var/turf/destination = find_safe_turf(starter_z, dense_atoms = FALSE)
+			M.forceMove(destination)
 		qdel(src) // Thank you for your service
 
 /obj/structure/battle_bus/proc/cleanup()
