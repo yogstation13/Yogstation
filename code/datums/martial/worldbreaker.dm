@@ -57,7 +57,7 @@
 
 	if(isitem(target))//don't attack if we're clicking on our inventory
 		var/obj/item/thing = target
-		if(thing.item_flags & IN_INVENTORY || thing.loc == H)
+		if(thing in H.get_all_contents())
 			return
 
 	if(H.a_intent == INTENT_DISARM)
