@@ -1,0 +1,6 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Added new UI for heretics"
+  - rscdel: "Removed old heretic UI"
+  - tweak: "Adjusted how heretic codex works slightly"
