@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/tgs.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/tgs.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -64,138 +64,138 @@ Before a reboot mode change, extras parameters are the current and new reboot mo
         <tr><th>/<a href="datum.html">datum</a>/tgs_chat_embed/provider/author</th><td>See https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure for details. Must have name set in New().</td></tr>
         <tr><th>/<a href="datum.html">datum</a>/tgs_chat_embed/field</th><td>See https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure for details. Must have name and value set in New().</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/TGS_EVENT_BYOND_ACTIVE_VERSION_CHANGE"><aside class="declaration">#define </aside>TGS_EVENT_BYOND_ACTIVE_VERSION_CHANGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L79">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L79">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 79"/></a>
     </h3>
     <p>When the active BYOND version changes.  Parameters: (Nullable) <a href="datum/tgs_version.html" title="/datum/tgs_version">/datum/tgs_version</a> of the current BYOND, <a href="datum/tgs_version.html" title="/datum/tgs_version">/datum/tgs_version</a> of the new BYOND</p><h3 id="define/TGS_EVENT_BYOND_INSTALL_FAIL"><aside class="declaration">#define </aside>TGS_EVENT_BYOND_INSTALL_FAIL
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L77">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L77">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 77"/></a>
     </h3>
     <p>When a BYOND install operation fails. Parameters: Error message</p><h3 id="define/TGS_EVENT_BYOND_INSTALL_START"><aside class="declaration">#define </aside>TGS_EVENT_BYOND_INSTALL_START
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L75">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L75">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 75"/></a>
     </h3>
     <p>Before a BYOND install operation begins. Parameters: <a href="datum/tgs_version.html" title="/datum/tgs_version">/datum/tgs_version</a> of the installing BYOND</p><h3 id="define/TGS_EVENT_COMPILE_CANCELLED"><aside class="declaration">#define </aside>TGS_EVENT_COMPILE_CANCELLED
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L83">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L83">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 83"/></a>
     </h3>
     <p>When a compile is cancelled. No parameters</p><h3 id="define/TGS_EVENT_COMPILE_COMPLETE"><aside class="declaration">#define </aside>TGS_EVENT_COMPILE_COMPLETE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L87">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L87">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 87"/></a>
     </h3>
     <p>When a compile operation completes. Note, this event fires before the new .dmb is loaded into the watchdog. Consider using the <a href="code/__DEFINES/tgs.html#define/TGS_EVENT_DEPLOYMENT_COMPLETE" title="TGS_EVENT_DEPLOYMENT_COMPLETE">TGS_EVENT_DEPLOYMENT_COMPLETE</a> instead. Parameters: Game directory path</p><h3 id="define/TGS_EVENT_COMPILE_FAILURE"><aside class="declaration">#define </aside>TGS_EVENT_COMPILE_FAILURE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L85">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L85">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 85"/></a>
     </h3>
     <p>When a compile fails. Parameters: Game directory path, [TRUE]/[FALSE] based on if the cause for failure was DMAPI validation</p><h3 id="define/TGS_EVENT_COMPILE_START"><aside class="declaration">#define </aside>TGS_EVENT_COMPILE_START
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L81">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L81">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 81"/></a>
     </h3>
     <p>When the compiler starts running. Parameters: Game directory path, origin commit SHA</p><h3 id="define/TGS_EVENT_DEPLOYMENT_CLEANUP"><aside class="declaration">#define </aside>TGS_EVENT_DEPLOYMENT_CLEANUP
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L112">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L112">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 112"/></a>
     </h3>
     <p>Whenever a deployment folder is deleted from disk. Parameters: Game directory path</p><h3 id="define/TGS_EVENT_DEPLOYMENT_COMPLETE"><aside class="declaration">#define </aside>TGS_EVENT_DEPLOYMENT_COMPLETE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L93">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L93">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 93"/></a>
     </h3>
     <p>When a deployment completes. No Parameters</p><h3 id="define/TGS_EVENT_INSTANCE_AUTO_UPDATE_START"><aside class="declaration">#define </aside>TGS_EVENT_INSTANCE_AUTO_UPDATE_START
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L89">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L89">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 89"/></a>
     </h3>
     <p>When an automatic update for the current instance begins. No parameters</p><h3 id="define/TGS_EVENT_INSTANCE_RENAMED"><aside class="declaration">#define </aside>TGS_EVENT_INSTANCE_RENAMED
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L60">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L60">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 60"/></a>
     </h3>
     <p>Before the instance is renamed, extra parameter is the new name</p><h3 id="define/TGS_EVENT_PORT_SWAP"><aside class="declaration">#define </aside>TGS_EVENT_PORT_SWAP
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L58">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L58">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 58"/></a>
     </h3>
     <p>Before a port change is about to happen, extra parameters is new port</p><h3 id="define/TGS_EVENT_PRE_DREAM_MAKER"><aside class="declaration">#define </aside>TGS_EVENT_PRE_DREAM_MAKER
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L110">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L110">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 110"/></a>
     </h3>
     <p>After CodeModifications are applied, before DreamMaker is run. Parameters: Game directory path, origin commit sha, byond version</p><h3 id="define/TGS_EVENT_REBOOT_MODE_CHANGE"><aside class="declaration">#define </aside>TGS_EVENT_REBOOT_MODE_CHANGE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L56">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L56">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 56"/></a>
     </h3>
     <p>Create this define if you want to do TGS configuration outside of this file.
 Before a reboot mode change, extras parameters are the current and new reboot mode enums</p><h3 id="define/TGS_EVENT_REPO_CHECKOUT"><aside class="declaration">#define </aside>TGS_EVENT_REPO_CHECKOUT
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L67">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L67">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 67"/></a>
     </h3>
     <p>When the repository performs a checkout. Parameters: Checkout git object</p><h3 id="define/TGS_EVENT_REPO_FETCH"><aside class="declaration">#define </aside>TGS_EVENT_REPO_FETCH
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L69">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L69">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 69"/></a>
     </h3>
     <p>When the repository performs a fetch operation. No parameters</p><h3 id="define/TGS_EVENT_REPO_MERGE_CONFLICT"><aside class="declaration">#define </aside>TGS_EVENT_REPO_MERGE_CONFLICT
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L91">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L91">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 91"/></a>
     </h3>
     <p>When the repository encounters a merge conflict: Parameters: Base SHA, target SHA, base reference, target reference</p><h3 id="define/TGS_EVENT_REPO_MERGE_PULL_REQUEST"><aside class="declaration">#define </aside>TGS_EVENT_REPO_MERGE_PULL_REQUEST
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L71">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L71">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 71"/></a>
     </h3>
     <p>When the repository test merges. Parameters: PR Number, PR Sha, (Nullable) Comment made by TGS user</p><h3 id="define/TGS_EVENT_REPO_PRE_SYNCHRONIZE"><aside class="declaration">#define </aside>TGS_EVENT_REPO_PRE_SYNCHRONIZE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L73">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L73">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 73"/></a>
     </h3>
     <p>Before the repository makes a sychronize operation. Parameters: Absolute repostiory path</p><h3 id="define/TGS_EVENT_REPO_RESET_ORIGIN"><aside class="declaration">#define </aside>TGS_EVENT_REPO_RESET_ORIGIN
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L65">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L65">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 65"/></a>
     </h3>
     <p>When the repository is reset to its origin reference. Parameters: Reference name, Commit SHA</p><h3 id="define/TGS_EVENT_REPO_SUBMODULE_UPDATE"><aside class="declaration">#define </aside>TGS_EVENT_REPO_SUBMODULE_UPDATE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L108">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L108">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 108"/></a>
     </h3>
     <p>After a single submodule update is performed. Parameters: Updated submodule name</p><h3 id="define/TGS_EVENT_WATCHDOG_DETACH"><aside class="declaration">#define </aside>TGS_EVENT_WATCHDOG_DETACH
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L97">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L97">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 97"/></a>
     </h3>
     <p>Before the watchdog detaches for a TGS update/restart. No parameters.</p><h3 id="define/TGS_EVENT_WATCHDOG_REATTACH"><aside class="declaration">#define </aside>TGS_EVENT_WATCHDOG_REATTACH
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L62">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L62">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 62"/></a>
     </h3>
     <p>After the watchdog reattaches to DD, extra parameter is the new <a href="datum/tgs_version.html" title="/datum/tgs_version">/datum/tgs_version</a> of the server</p><h3 id="define/TGS_EVENT_WATCHDOG_SHUTDOWN"><aside class="declaration">#define </aside>TGS_EVENT_WATCHDOG_SHUTDOWN
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L95">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L95">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 95"/></a>
     </h3>
     <p>Before the watchdog shuts down. Not sent for graceful shutdowns. No parameters.</p><h3 id="define/TGS_EVENT_WORLD_PRIME"><aside class="declaration">#define </aside>TGS_EVENT_WORLD_PRIME
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L104">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L104">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 104"/></a>
     </h3>
     <p>Watchdog event when TgsInitializationComplete() is called. No parameters.</p><h3 id="define/TGS_REBOOT_MODE_NORMAL"><aside class="declaration">#define </aside>TGS_REBOOT_MODE_NORMAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L117">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L117">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 117"/></a>
     </h3>
     <p>The server will reboot normally.</p><h3 id="define/TGS_REBOOT_MODE_RESTART"><aside class="declaration">#define </aside>TGS_REBOOT_MODE_RESTART
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L121">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L121">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 121"/></a>
     </h3>
     <p>The watchdog will restart on reboot.</p><h3 id="define/TGS_REBOOT_MODE_SHUTDOWN"><aside class="declaration">#define </aside>TGS_REBOOT_MODE_SHUTDOWN
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L119">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L119">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 119"/></a>
     </h3>
     <p>The server will stop running on reboot.</p><h3 id="define/TGS_SECURITY_SAFE"><aside class="declaration">#define </aside>TGS_SECURITY_SAFE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L126">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L126">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 126"/></a>
     </h3>
     <p>DreamDaemon Safe security level.</p><h3 id="define/TGS_SECURITY_TRUSTED"><aside class="declaration">#define </aside>TGS_SECURITY_TRUSTED
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L124">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L124">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 124"/></a>
     </h3>
     <p>DreamDaemon Trusted security level.</p><h3 id="define/TGS_SECURITY_ULTRASAFE"><aside class="declaration">#define </aside>TGS_SECURITY_ULTRASAFE
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L128">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L128">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 128"/></a>
     </h3>
     <p>DreamDaemon Ultrasafe security level.</p><h3 id="define/TGS_TOPIC"><aside class="declaration">#define </aside>TGS_TOPIC
-            <a href="https://github.com/yogstation13/Yogstation/blob/e74551b966a296af22936d4ef00c0a99154aa99e/code/__DEFINES/tgs.dm#L152">
+            <a href="https://github.com/yogstation13/Yogstation/blob/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a/code/__DEFINES/tgs.dm#L152">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;tgs.dm 152"/></a>
     </h3>
     <p>Put this at the start of [/world/proc/Topic].</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/e74551b966a296af22936d4ef00c0a99154aa99e">e74551b</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/10ab1f34c592fafa41c07a07ad7c31e1bd04ad2a">10ab1f3</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
