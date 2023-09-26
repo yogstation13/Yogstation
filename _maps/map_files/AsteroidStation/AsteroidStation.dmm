@@ -747,9 +747,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"agA" = (
-/turf/open/floor/plating,
-/area/medical/storage/backroom)
 "agB" = (
 /turf/closed/wall,
 /area/medical/genetics/cloning)
@@ -1652,8 +1649,8 @@
 	pixel_y = 7
 	},
 /obj/item/storage/pencil_holder/crew{
-	pixel_y = -4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -70365,8 +70362,8 @@
 /obj/item/folder/yellow,
 /obj/item/stamp/ce,
 /obj/item/storage/pencil_holder/crew/fancy{
-	pixel_y = 10;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
@@ -77872,8 +77869,8 @@
 	pixel_x = -1
 	},
 /obj/item/storage/pencil_holder/crew/fancy{
-	pixel_y = 10;
-	pixel_x = 10
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
@@ -77980,8 +77977,8 @@
 	pixel_y = 6
 	},
 /obj/item/storage/pencil_holder/crew{
-	pixel_y = -2;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = -2
 	},
 /turf/open/floor/plating,
 /area/quartermaster/office)
@@ -111884,7 +111881,7 @@ aqH
 mNR
 taH
 jbG
-agA
+wOM
 ebX
 oIA
 hod
