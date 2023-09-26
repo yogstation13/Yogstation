@@ -1711,9 +1711,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return TRUE
 
 //Bee port, gimmick objectives
-#define GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/gimmick_objectives.txt"
-#define DEPT_GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/dept_gimmick_objectives.txt"
-#define TARGET_GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/target_gimmick_objectives.txt"
+#define GIMMICK_OBJ_FILE "string/gimmick_objectives.txt"
+#define DEPT_GIMMICK_OBJ_FILE "string/dept_gimmick_objectives.txt"
+#define TARGET_GIMMICK_OBJ_FILE "string/target_gimmick_objectives.txt"
 
 /datum/objective/gimmick
 	name = "gimmick"
