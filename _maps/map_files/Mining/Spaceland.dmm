@@ -3451,19 +3451,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
-"Dc" = (
-/obj/machinery/biogenerator,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/green/filled/line/lower{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp)
 "Dg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -6120,6 +6107,16 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/mine/storage)
+"Ye" = (
+/obj/machinery/biogenerator,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/green/filled/line/lower{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp)
 "Yi" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/emcloset/anchored,
@@ -22002,7 +21999,7 @@ WF
 bv
 mz
 gP
-Dc
+Ye
 Jh
 pF
 hZ
