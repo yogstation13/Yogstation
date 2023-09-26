@@ -114,11 +114,7 @@
 	for(var/i = objective_count, i < toa, i++)
 		forge_single_human_objective()
 
-	var/datum/objective/gimmick/gimmick_objective = new
-	gimmick_objective.owner = owner
-	gimmick_objective.find_target()
-	gimmick_objective.update_explanation_text()
-	add_objective(gimmick_objective) //Does not count towards the number of objectives, to allow hijacking as well
+	forge_single_human_optional()
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
 		//Start of Yogstation change: adds /datum/objective/sole_survivor
@@ -182,6 +178,12 @@
 	var/datum/objective/survive/exist/exist_objective = new
 	exist_objective.owner = owner
 	add_objective(exist_objective)
+
+/datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
+	var/datum/objective/gimmick/gimmick_objective = new
+	gimmick_objective.owner = owner
+	gimmick_objective.find_target()
+	add_objective(gimmick_objective) //Does not count towards the number of objectives, to allow hijacking as well
 
 /datum/antagonist/traitor/proc/forge_single_human_objective() //Returns how many objectives are added
 	.=1
