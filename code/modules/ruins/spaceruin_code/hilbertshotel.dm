@@ -52,9 +52,9 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if((chosenRoomNumber < 1) || (chosenRoomNumber != round(chosenRoomNumber)))
         to_chat(user, span_warning("That is not a valid room number!"))
         return
-	if(user.incapacitated()) //nuh uh
-		to_chat(user, span_warning("[src] slips out of your hand!"))
-		return
+    if(user.incapacitated()) //nuh uh
+        to_chat(user, span_warning("[src] slips out of your hand!"))
+        return
     if(ismob(loc))
         if(user == loc) //Not always the same as user
             forceMove(get_turf(user))
