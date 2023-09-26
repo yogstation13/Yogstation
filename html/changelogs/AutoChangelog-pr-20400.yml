@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Cogging an APC removes access requirement to locking"
+  - tweak: "Random chance for APCs to be unlocked round start"
