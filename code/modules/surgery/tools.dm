@@ -99,7 +99,6 @@
 	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
-	attack_verb = list("burnt")
 
 
 /obj/item/cautery/bone
