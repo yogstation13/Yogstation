@@ -454,10 +454,10 @@
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
-			itemUser.adjustBruteLoss(-1.5 * efficiency)
-			itemUser.adjustFireLoss(-1.5 * efficiency)
-			itemUser.adjustToxLoss(-1.5 * efficiency, forced = TRUE) //Because Slime People are people too
-			itemUser.adjustOxyLoss(-1.5 * efficiency)
+			itemUser.adjustBruteLoss(-1.5 * efficiency, FALSE, TRUE, BODYPART_ANY)
+			itemUser.adjustFireLoss(-1.5 * efficiency, FALSE, TRUE, BODYPART_ANY)
+			itemUser.adjustToxLoss(-1.5 * efficiency, forced = TRUE, BODYPART_ANY) //Because Slime People are people too
+			itemUser.adjustOxyLoss(-1.5 * efficiency, FALSE, TRUE, BODYPART_ANY)
 			itemUser.adjustStaminaLoss(-1.5 * efficiency)
 			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5 * efficiency)
 			itemUser.adjustCloneLoss(-0.5 * efficiency) //Becasue apparently clone damage is the bastion of all health
