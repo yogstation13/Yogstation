@@ -1,0 +1,7 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "bluespace harvester can now output ores based on weight for 30K points, you will get 70 ores total, with the quantity of each ore type determined by its weight."
+  - tweak: "adjust debug material box diamond counts to 50 like others"
+  - tweak: "bluespace harvester no longer output things on top of the machine"
+  - tweak: "removed some unnecessary metal/glass sheets in cultural tab"
