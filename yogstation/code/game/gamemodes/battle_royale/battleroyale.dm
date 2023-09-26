@@ -29,10 +29,10 @@ GLOBAL_VAR(stormdamage)
 	title_icon = "ss13"
 
 /datum/game_mode/fortnite/pre_setup()
-	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
 	GLOB.stormdamage = 2
-	if(A)
-		var/turf/T = pick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
+	var/turf = find_safe_turf(SSmapping.levels_by_trait(ZTRAIT_STATION)[1], dense_atoms = FALSE) //Assuming we've gotten this far, let's spawn the battle bus.
+	var/target = get_edge_target_turf(turf, WEST)
+	if(target) //all the way at the left end of the map
 		new /obj/structure/battle_bus(T)
 	else //please don't ever happen
 		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
