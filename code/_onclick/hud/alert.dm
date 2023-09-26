@@ -248,7 +248,10 @@ If you're feeling frisky, examine yourself and click the underlined item to pull
 /atom/movable/screen/alert/embeddedobject/Click()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		return C.try_remove_embedded_object(C)
+		if (C.IsSleeping() || C.IsParalyzed())
+			to_chat(C, span_warning("You can't do that while disabled!"))
+		else
+			return C.try_remove_embedded_object(C)
 
 /atom/movable/screen/alert/weightless
 	name = "Weightless"
