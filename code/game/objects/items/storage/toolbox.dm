@@ -111,8 +111,8 @@
 	var/power = 0
 	for (var/obj/item/stack/telecrystal/TC in get_all_contents())
 		power += TC.amount
-	force = 22 + power
-	throwforce = 25 + power
+	force = initial(force) + power
+	throwforce = initial(throwforce) + power
 
 /obj/item/storage/toolbox/mechanical/old/clean/attack(mob/target, mob/living/user)
 	calc_damage()
