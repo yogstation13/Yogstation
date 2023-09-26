@@ -6,7 +6,7 @@
 	program_icon_state = "generic"
 	extended_desc = "This program allows for remote monitoring of station cyborgs."
 	requires_ntnet = TRUE
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_PDA
+	usage_flags = PROGRAM_ALL
 	transfer_access = ACCESS_ROBO_CONTROL
 	network_destination = "cyborg remote monitoring"
 	size = 5
@@ -97,10 +97,12 @@
 		if(R.shell && !R.ckey)
 			shell = TRUE
 
+		var/area/A = get_area(R)
 		var/list/cyborg_data = list(
 			name = R.name,
 			integ = round((R.health + 100) / 2), //mob heath is -100 to 100, we want to scale that to 0 - 100
 			locked_down = R.lockcharge,
+			locstring = "[A.name]",
 			status = R.stat,
 			shell_discon = shell,
 			charge = R.cell ? round(R.cell.percent()) : null,

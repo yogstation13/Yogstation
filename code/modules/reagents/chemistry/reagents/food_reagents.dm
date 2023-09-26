@@ -407,22 +407,23 @@
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	M.set_slurring_if_lower(1 SECONDS)
-
 	switch(current_cycle)
 		if(1 to 5)
 			M.set_dizzy_if_lower(5 SECONDS)
 			M.set_drugginess_if_lower(30 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
-		if(5 to 10)
+
+		if(6 to 10)
 			M.set_jitter_if_lower(20 SECONDS)
 			M.set_dizzy_if_lower(10 SECONDS)
 			M.set_drugginess_if_lower(35 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
-		if (10 to INFINITY)
+
+		if (11 to INFINITY)
 			M.set_jitter_if_lower(40 SECONDS)
-			M.adjust_dizzy(20 SECONDS)
+			M.set_dizzy_if_lower(20 SECONDS)
 			M.set_drugginess_if_lower(40 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
@@ -931,6 +932,13 @@
 	name = "BBQ Sauce"
 	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
-	color = "#78280A" // rgb: 120 40, 10
+	color = "#78280A" // rgb: 120, 40, 10
 	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
 	taste_description = "smokey sweetness"
+
+/datum/reagent/consumable/peanut_butter
+	name = "Peanut Butter"
+	description = "A creamy paste made from ground peanuts."
+	nutriment_factor = 15 * REAGENTS_METABOLISM
+	color = "#D9A066" // rgb: 217, 160, 102
+	taste_description = "peanuts"

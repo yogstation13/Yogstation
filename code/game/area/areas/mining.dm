@@ -7,6 +7,7 @@
 	ambient_buzz = 'sound/ambience/magma.ogg'
 	
 	ambient_buzz_vol = 10
+	mining_speed = TRUE
 
 /area/mine/explored
 	name = "Mine"
@@ -110,6 +111,7 @@
 	flags_1 = NONE
 	area_flags = FLORA_ALLOWED
 	ambient_buzz = 'sound/ambience/magma.ogg'
+	mining_speed = TRUE
 
 /area/lavaland/surface
 	name = "Lavaland"
@@ -163,6 +165,7 @@
 	flags_1 = NONE
 	area_flags = FLORA_ALLOWED
 	blob_allowed = FALSE
+	mining_speed = TRUE
 
 /area/icemoon/top_layer
 	name = "Icemoon Surface"

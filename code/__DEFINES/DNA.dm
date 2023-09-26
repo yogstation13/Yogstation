@@ -57,6 +57,8 @@
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 #define CEREBRAL	/datum/mutation/human/cerebral
+#define THICKSKIN	/datum/mutation/human/thickskin
+#define DENSEBONES	/datum/mutation/human/densebones
 
 
 #define UI_CHANGED "ui changed"

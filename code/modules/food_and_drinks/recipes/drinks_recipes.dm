@@ -938,4 +938,4 @@
 	id = /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	results = list(/datum/reagent/consumable/ethanol/syndicate_screwdriver = 1)
 	required_reagents = list (/datum/reagent/consumable/ethanol/screwdrivercocktail = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5)
-	mix_message = "The mixture sparkles with a meancing red aura"
+	mix_message = "The mixture sparkles with a menacing red aura"
