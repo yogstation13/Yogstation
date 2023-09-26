@@ -342,6 +342,12 @@
 /obj/item/multisurgeon/noslipall //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/noslip, /obj/item/organ/cyberimp/leg/noslip/l)
 
+/obj/item/multisurgeon/jumpboots //for admins
+	starting_organ = list(/obj/item/organ/cyberimp/leg/jumpboots, /obj/item/organ/cyberimp/leg/jumpboots/l)
+
+/obj/item/multisurgeon/wheelies //for admins
+	starting_organ = list(/obj/item/organ/cyberimp/leg/wheelies, /obj/item/organ/cyberimp/leg/wheelies/l)
+
 /obj/item/multisurgeon/magboots //for ce
 	desc = "A single-use multisurgeon that contains magboot implants for each leg."
 	starting_organ = list(/obj/item/organ/cyberimp/leg/magboot, /obj/item/organ/cyberimp/leg/magboot/l)
