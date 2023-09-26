@@ -253,6 +253,24 @@
 		owner.physiology.brute_mod /= 0.8
 		owner.physiology.burn_mod /= 0.9
 
+/datum/mutation/human/speedy //only obtainable through polysmorphs
+	name = "Speedy"
+	desc = "The user's leg muscles dispose of their lactic acid more efficiently and faster, allowing for faster running."
+	text_gain_indication = span_notice("You feel like you can run faster!")
+	text_gain_indication = span_notice("You feel slow again.")
+	quality = POSITIVE
+	difficulty = 18
+	instability = 40
+
+/datum/mutation/human/speedy/on_acquiring(mob/living/carbon/human/owner)
+	. = ..()
+	if(!ispolysmorph(owner)) //polysmorphs "already have the gene" so they can't go even faster
+		owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.1, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/mutation/human/speedy/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	owner.remove_movespeed_modifier(type)
+
 //Makes strong actually useful. Somewhat.
 /datum/mutation/human/strong
 	name = "Strength"
