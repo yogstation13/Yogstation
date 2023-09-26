@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	/// increases as addiction gets worse
 	var/addiction_stage = 0
 	/// Alternative names used for the drug
-	var/addiction_name = ""
+	var/addiction_name = null
 	/// What can process this? ORGANIC, SYNTHETIC, or ORGANIC | SYNTHETIC?. We'll assume by default that it affects organics.
 	var/process_flags = ORGANIC
 	/// How flammable is this material?
@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when addiction hits stage1, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage1(mob/living/M)
-	if(addiction_name == "")
+	if(!addiction_name)
 		addiction_name = name
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, addiction_name)
 	if(prob(30))
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when addiction hits stage2, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage2(mob/living/M)
-	if(addiction_name == "")
+	if(!addiction_name)
 		addiction_name = name
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_medium, addiction_name)
 	if(prob(30))
@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when addiction hits stage3, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage3(mob/living/M)
-	if(addiction_name == "")
+	if(!addiction_name)
 		addiction_name = name
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_severe, addiction_name)
 	if(prob(30))
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when addiction hits stage4, see [/datum/reagents/proc/metabolize]
 /datum/reagent/proc/addiction_act_stage4(mob/living/M)
-	if(addiction_name == "")
+	if(!addiction_name)
 		addiction_name = name
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_critical, addiction_name)
 	if(prob(30))
