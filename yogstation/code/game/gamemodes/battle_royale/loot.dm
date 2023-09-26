@@ -253,6 +253,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/cmo = 2,
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 		/obj/effect/spawner/lootdrop/weakgene = 2,
+		/obj/item/gun/energy/gravity_gun = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
@@ -268,7 +269,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
 		/obj/item/multisurgeon/airshoes = -1,
-		/obj/item/nullrod/hermes = -1,
 		/obj/item/gun/magic/wand/door = -1,
 		/obj/item/gun/magic/staff/door = -1,
 		/obj/item/storage/backpack/duffelbag/syndie = -1,
@@ -284,6 +284,8 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/plasmaman = -2,
 		/obj/item/battleroyale/martial/lizard = -2,
 		/obj/item/book/granter/action/spell/summonitem = -2,
+		/obj/item/nullrod/hermes = -2,
+		/obj/item/nullrod/unrestricted = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
@@ -296,6 +298,9 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //pretty sure it's exactly the same since players dust on death
 		/obj/item/storage/backpack/holding = -3,
 		/obj/effect/spawner/lootdrop/stronggene = -3,
+		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
+		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
+		/obj/item/scrying = -3, //info, but leaves you open to attack
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
@@ -305,6 +310,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/book/granter/martial/carp = -4,
 		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
+		/obj/item/necromantic_stone = -4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
@@ -379,6 +385,10 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
+
+	if(prob(0.1)) //0.1% chance of being clowned, probably won't see it every round
+		for(var/i = 0, i < 5, i++)
+			new /mob/living/simple_animal/hostile/retaliate/clown(src)// you've been clowned
 
 /obj/structure/closet/crate/battleroyale/proc/declutter()
 	if(QDELETED(src))
