@@ -5,6 +5,7 @@
 	antag_moodlet = /datum/mood_event/heretics
 	job_rank = ROLE_HERETIC
 	antag_hud_name = "heretic"
+	ui_name = "AntagInfoHeretic"
 	can_hijack = HIJACK_HIJACKER
 	show_to_ghosts = TRUE
 	preview_outfit = /datum/outfit/heretic
@@ -79,6 +80,86 @@
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
 		/datum/eldritch_knowledge/void_final))
+
+	var/static/list/path_to_ui_color = list(
+		PATH_START = "grey",
+		PATH_SIDE = "green",
+		PATH_RUST = "brown",
+		PATH_FLESH = "red",
+		PATH_ASH = "white",
+		PATH_VOID = "blue",
+		PATH_MIND = "pink",
+		PATH_BLADE = "label", // my favorite color is label
+		PATH_COSMIC = "purple",
+		PATH_KNOCK = "yellow",
+	)
+
+/datum/antagonist/heretic/ui_data(mob/user)
+	var/list/data = list()
+	
+	data["charges"] = charge
+	data["total_sacrifices"] = total_sacrifices
+	data["ascended"] = ascended
+
+	for(var/datum/eldritch_knowledge/knowledge as anything in get_researchable_knowledge())
+		var/list/knowledge_data = list()
+		knowledge_data["path"] = lore
+		knowledge_data["name"] = initial(knowledge.name)
+		knowledge_data["desc"] = initial(knowledge.desc)
+		knowledge_data["gainFlavor"] = initial(knowledge.gain_text)
+		knowledge_data["cost"] = initial(knowledge.cost)
+		knowledge_data["disabled"] = (initial(knowledge.cost) > charge)
+
+		// Final knowledge can't be learned until all objectives are complete.
+		//if(ispath(knowledge, /datum/eldritch_transmutation/final))
+			///knowledge_data["disabled"] = !can_ascend()
+
+		knowledge_data["hereticPath"] = initial(knowledge.route)
+		knowledge_data["color"] = path_to_ui_color[initial(knowledge.route)] || "grey"
+
+		data["learnableKnowledge"] += list(knowledge_data)
+
+	for(var/path in researched_knowledge)
+		var/list/knowledge_data = list()
+		var/datum/eldritch_knowledge/found_knowledge = researched_knowledge[path]
+		knowledge_data["name"] = found_knowledge.name
+		knowledge_data["desc"] = found_knowledge.desc
+		knowledge_data["gainFlavor"] = found_knowledge.gain_text
+		knowledge_data["cost"] = found_knowledge.cost
+		knowledge_data["hereticPath"] = found_knowledge.route
+		knowledge_data["color"] = path_to_ui_color[found_knowledge.route] || "grey"
+
+		data["learnedKnowledge"] += list(knowledge_data)
+
+	return data
+
+/datum/antagonist/heretic/ui_static_data(mob/user)
+	var/list/data = list()
+
+	data["objectives"] = get_objectives()
+
+	
+
+	return data
+
+/datum/antagonist/heretic/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("research")
+			var/ekname = params["name"]
+			for(var/X in get_researchable_knowledge())
+				var/datum/eldritch_knowledge/EK = X
+				if(initial(EK.name) != ekname)
+					continue
+				if(gain_knowledge(EK))
+					return TRUE
+
+/datum/antagonist/heretic/ui_status(mob/user, datum/ui_state/state)
+	if(user.stat == DEAD)
+		return UI_CLOSE
+	return ..()
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
