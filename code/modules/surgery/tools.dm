@@ -462,7 +462,7 @@
 		to_chat(user, span_notice("You focus the lensess, it is now set to drilling mode."))
 		tool_behaviour = TOOL_DRILL
 		sharpness = SHARP_POINTY
-		force += 1 //we don't want to ruin sharpened stuff
+		force += 1
 		icon_state = "surgicaldrill_a"
 	else
 		playsound(get_turf(user),'sound/weapons/tap.ogg',50,1)
