@@ -27736,6 +27736,13 @@
 /obj/structure/closet/lasertag/red,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"mIc" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/computer/bounty,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "mIh" = (
 /obj/structure/closet/wardrobe/mixed,
 /turf/open/floor/plating{
@@ -35181,13 +35188,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
-"pVb" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "pVw" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 10
@@ -48787,6 +48787,12 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
+"vZV" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
 "vZY" = (
 /obj/structure/closet/l3closet/security,
 /obj/machinery/light{
@@ -93350,7 +93356,7 @@ dcG
 bKB
 wvC
 nvl
-pVb
+vZV
 hDH
 udw
 udw
@@ -93606,7 +93612,7 @@ hpj
 dcG
 wLL
 uJQ
-usN
+mIc
 gNx
 bdW
 gNx
