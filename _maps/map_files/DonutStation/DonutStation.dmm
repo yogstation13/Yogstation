@@ -48787,12 +48787,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"vZV" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "vZY" = (
 /obj/structure/closet/l3closet/security,
 /obj/machinery/light{
@@ -93356,7 +93350,7 @@ dcG
 bKB
 wvC
 nvl
-vZV
+udw
 hDH
 udw
 udw
