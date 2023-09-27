@@ -105,6 +105,11 @@
 	desc = "Restores the dragon ancestry."
 	add_mutations = list(FIREBREATH)
 
+/obj/item/dnainjector/speedy
+	name = "\improper DNA injector (Speedy)"
+	desc = "This will make you run faster"
+	add_mutations = list(SPEEDY)
+
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
 	desc = "Finally you can see what the Captain does."
