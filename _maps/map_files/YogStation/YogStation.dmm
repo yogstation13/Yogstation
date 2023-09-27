@@ -26633,6 +26633,16 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port)
+"gRK" = (
+/obj/machinery/papershredder,
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -30
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "gRR" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -41771,13 +41781,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
-"mDx" = (
-/obj/machinery/camera{
-	c_tag = "Detective's Office";
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "mDE" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -67913,13 +67916,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"wth" = (
-/obj/machinery/papershredder,
-/obj/machinery/newscaster/security_unit{
-	pixel_x = -30
-	},
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "wts" = (
 /obj/structure/table,
 /obj/item/storage/fancy/cigarettes{
@@ -71094,6 +71090,17 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/central)
+"xJM" = (
+/obj/machinery/camera{
+	c_tag = "Detective's Office";
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = 26;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "xJP" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
@@ -96008,7 +96015,7 @@ apd
 apd
 apd
 apd
-wth
+gRK
 cjp
 oUl
 aZB
@@ -97297,7 +97304,7 @@ mEu
 ndL
 mSG
 hHQ
-mDx
+xJM
 mmG
 apd
 flr
