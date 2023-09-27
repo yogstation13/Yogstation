@@ -342,4 +342,4 @@
 		user.dropItemToGround(src, TRUE)
 		user.adjust_confusion(30)
 		user.Paralyze(8 SECONDS)
-		user.adjustFireLoss(15)
+		user.adjustFireLoss(10)
