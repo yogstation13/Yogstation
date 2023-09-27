@@ -46,9 +46,9 @@
 	if(!istype(user_loc_turf, /turf/open/floor/plating/rust) || !isliving(user))
 		return
 	var/mob/living/living_user = user
-	living_user.adjustBruteLoss(-2, FALSE)
-	living_user.adjustFireLoss(-2, FALSE)
-	living_user.adjustToxLoss(-2, FALSE, TRUE)
+	living_user.adjustBruteLoss(-2, FALSE, TRUE, BODYPART_ANY)
+	living_user.adjustFireLoss(-2, FALSE, TRUE, BODYPART_ANY)
+	living_user.adjustToxLoss(-2, FALSE, TRUE, BODYPART_ANY)
 	living_user.adjustOxyLoss(-0.5, FALSE)
 	living_user.adjustStaminaLoss(-2)
 
