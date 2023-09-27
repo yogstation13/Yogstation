@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - tweak: "Adjusts Heretic Book Desc"
-  - tweak: "Allows IPC & Pretenis (and robotic limbs) to heal on rust tiles"
-  - tweak: "Allows heretics to gain points w/o needing book in bag"
