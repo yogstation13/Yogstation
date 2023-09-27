@@ -30,19 +30,22 @@ GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite/pre_setup()
 	GLOB.stormdamage = 2
-	var/obj/effect/landmark/observer_start/center = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list //observer start is usually in the middle
-	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(0,20)) //get a random spot above or below the middle
-	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 20) //almost all the way at the edge of the map
-	if(target)
-		new /obj/structure/battle_bus(target)
-	else //please don't ever happen
-		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
+	INVOKE_ASYNC(src, PROC_REF(spawn_bus))//so if a runtime happens with the spawn_bus proc, the rest of pre_setup still happens
 	for(var/mob/L in GLOB.player_list)
 		if(!L.mind || !L.client || isobserver(L))
 			continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
 	return TRUE
+
+/datum/game_mode/fortnite/proc/spawn_bus()
+	var/obj/effect/landmark/observer_start/center = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list //observer start is usually in the middle
+	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(0,30)) //get a random spot above or below the middle
+	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 20) //almost all the way at the edge of the map
+	if(target)
+		new /obj/structure/battle_bus(target)
+	else //please don't ever happen
+		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
 
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
 	GLOB.enter_allowed = FALSE
@@ -191,6 +194,8 @@ GLOBAL_VAR(stormdamage)
 	for(var/place in to_clear)
 		var/area/actual = locate(place) in GLOB.areas
 		for(var/obj/thing in actual)
+			if(QDELETED(thing))
+				continue
 			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
 				QDEL_NULL(thing)
 	

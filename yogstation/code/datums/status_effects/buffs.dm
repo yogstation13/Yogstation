@@ -50,7 +50,7 @@
 
 /datum/status_effect/dodging/battleroyale/on_remove()
 	owner.status_flags &= ~GODMODE
-	owner.visible_message(span_boldwarning("[owner]'s ligma shield has broken!"))
+	owner.visible_message(span_boldwarning("[owner.name]'s ligma shield has broken!"))
 
 /atom/movable/screen/alert/status_effect/dodging/battleroyale
 	name = "Invulnerability"
