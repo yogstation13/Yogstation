@@ -2300,6 +2300,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"aZT" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate,
+/obj/item/toy/figure/cargotech,
+/obj/item/toy/figure/cargotech,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aZU" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -2379,28 +2386,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"bcv" = (
-/obj/machinery/computer/cargo,
-/obj/machinery/button/door{
-	id = "cargoload";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = 7;
-	pixel_y = 24
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	dir = 2;
-	id = "cargounload";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = -7;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bcF" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /obj/effect/turf_decal/trimline/atmos/warning/lower/corner/flip{
@@ -5244,6 +5229,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"cjy" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "cjM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -15463,16 +15454,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/central)
-"gSW" = (
-/obj/machinery/conveyor{
-	dir = 10;
-	id = "cargoleft"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "gTm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -18770,6 +18751,12 @@
 /obj/structure/chair/comfy/beige,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
+"iEc" = (
+/obj/effect/landmark/event_spawn,
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/internals,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "iEe" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -22326,6 +22313,14 @@
 /obj/structure/lattice/catwalk,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"kfa" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 0;
+	id = "cargoright"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "kfe" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Escape Podbay"
@@ -22613,6 +22608,17 @@
 "kkZ" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"klf" = (
+/obj/machinery/door/poddoor{
+	id = "cargoload";
+	name = "supply dock loading door"
+	},
+/obj/machinery/conveyor{
+	dir = 0;
+	id = "cargoright"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "klw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -23740,6 +23746,14 @@
 /obj/effect/turf_decal/trimline/white/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kRN" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargoleft"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "kSa" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull,
@@ -25267,11 +25281,6 @@
 	dir = 8
 	},
 /area/chapel/main)
-"lDo" = (
-/obj/structure/closet/crate/internals,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "lDH" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -27118,13 +27127,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
-"mtx" = (
-/obj/structure/plasticflaps,
-/obj/machinery/conveyor{
-	id = "cargoleft"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "mtA" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28397,16 +28399,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
-"mVG" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "cargoright"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "mVH" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -29782,6 +29774,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"nCs" = (
+/obj/effect/turf_decal/loading_area,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "nCv" = (
 /obj/machinery/light{
 	dir = 4
@@ -30523,16 +30519,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"nPv" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "cargoleft"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "nPH" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -30795,6 +30781,19 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"nWd" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargoleft"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "nWn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -33360,6 +33359,28 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
+"pkf" = (
+/obj/machinery/computer/cargo,
+/obj/machinery/button/door{
+	id = "QMLoaddoor2";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = 7;
+	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	dir = 2;
+	id = "QMLoaddoor";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = -7;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "pko" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/grimy,
@@ -35460,10 +35481,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"qbD" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "qce" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -39039,6 +39056,17 @@
 "rJF" = (
 /turf/closed/wall,
 /area/security/checkpoint/medical)
+"rJL" = (
+/obj/machinery/door/poddoor{
+	id = "cargounload";
+	name = "supply dock unloading door"
+	},
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargoleft"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "rJO" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/disposalpipe/segment{
@@ -39497,13 +39525,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"rTi" = (
-/obj/structure/closet/crate,
-/obj/item/toy/figure/cargotech,
-/obj/item/toy/figure/cargotech,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "rTA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -42815,17 +42836,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"ttd" = (
-/obj/machinery/door/poddoor{
-	id = "cargoload";
-	name = "supply dock loading door"
-	},
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargoright"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "ttj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -44697,14 +44707,6 @@
 	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
-"ufL" = (
-/obj/structure/plasticflaps,
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargoright"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "ufM" = (
 /obj/effect/spawner/lootdrop/tanks/midchance,
 /turf/open/floor/plating,
@@ -44923,16 +44925,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"ulO" = (
-/obj/machinery/door/poddoor{
-	id = "cargounload";
-	name = "supply dock unloading door"
-	},
-/obj/machinery/conveyor{
-	id = "cargoleft"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "ulP" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /obj/effect/turf_decal/tile/green/opposingcorners{
@@ -46240,12 +46232,6 @@
 "uRy" = (
 /turf/open/floor/carpet/black,
 /area/crew_quarters/bar)
-"uRD" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "uRE" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -46616,16 +46602,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"val" = (
-/obj/machinery/conveyor{
-	dir = 9;
-	id = "cargoright"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "vam" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -48158,6 +48134,19 @@
 	},
 /turf/open/space/basic,
 /area/engine/atmos)
+"vMa" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargoleft"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "vMl" = (
 /obj/structure/sign/warning/docking,
 /turf/closed/wall,
@@ -51035,6 +51024,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"xaA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/conveyor{
+	dir = 0;
+	id = "cargoright"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "xaH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -92055,7 +92057,7 @@ ylr
 ylr
 ylr
 wBM
-uRD
+dcG
 gfQ
 xgN
 eui
@@ -92312,7 +92314,7 @@ ylr
 ylr
 ylr
 wBM
-nPv
+dcG
 dcG
 dcG
 dcG
@@ -92569,8 +92571,8 @@ ylr
 wBM
 wBM
 ogN
-nPv
 gOL
+dcG
 dcG
 lcl
 dcG
@@ -92823,12 +92825,12 @@ ylr
 ylr
 ylr
 ylr
-ulO
-mtx
-ulO
-gSW
-dcG
-dcG
+rJL
+kRN
+rJL
+nWd
+vMa
+cjy
 dcG
 dcG
 dcG
@@ -93085,8 +93087,8 @@ dcG
 nXK
 dcG
 dcG
-iPg
 dcG
+iPg
 epb
 hpj
 oBu
@@ -93340,10 +93342,10 @@ ylr
 wBM
 ogN
 wvC
-bcv
+pkf
+dcG
 dcG
 kyL
-dcG
 kyL
 dcG
 dcG
@@ -93599,9 +93601,9 @@ dcG
 nXK
 dcG
 dcG
-kyL
-qbD
-kyL
+dcG
+iEc
+aZT
 hpj
 dcG
 wLL
@@ -93851,14 +93853,14 @@ ylr
 ylr
 ylr
 ylr
-ttd
-ufL
-ttd
-val
+klf
+kfa
+klf
+xaA
+xaA
+nCs
 dcG
-lDo
 dcG
-rTi
 dcG
 qhu
 tue
@@ -94111,8 +94113,8 @@ ylr
 wBM
 wBM
 ogN
-mVG
 gmq
+dcG
 dcG
 dcG
 dcG
@@ -94368,7 +94370,7 @@ ylr
 ylr
 ylr
 wBM
-mVG
+dcG
 dcG
 dcG
 dcG
@@ -94625,7 +94627,7 @@ ylr
 ylr
 ylr
 wBM
-uRD
+dcG
 rjk
 fWP
 fQK
