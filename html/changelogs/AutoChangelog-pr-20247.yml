@@ -1,0 +1,5 @@
+author: " @Moltijoe @Scrambledeggs00"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new nullrod, aspergillum and aspersorium"
+  - soundadd: "Sprites for aspergillum and aspersorium"
