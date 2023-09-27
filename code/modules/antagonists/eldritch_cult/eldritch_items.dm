@@ -200,6 +200,12 @@
 	icon_state = "mind_blade"
 	item_state = "mind_blade"
 
+/obj/item/gun/magic/hook/sickly_blade/void
+	name = "void blade"
+	desc = "A monsterously sharp blade made from pure ice. Sharp and acute it's unbreaking edges can rip and tear through bone and sinew with ease."
+	icon_state = "void_blade"
+	item_state = "void_blade"
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
@@ -317,4 +323,23 @@
 			icon_state = "godeye"
 	user.update_inv_glasses()
 	
-	
+/obj/item/clothing/suit/cultrobes/void
+	name = "ominous cloak"
+	desc = "A ragged, dusty cloak. Strange eyes line the inside."
+	icon_state = "void_cloak"
+	item_state = "void_cloak"
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
+	armor = list(MELEE = -10, BULLET = -10, LASER = -10, ENERGY = 0, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
+	slowdown = -0.8
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/suit/cultrobes/void/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"You feel your bones begin to freeze to their very core!\""))
+		user.dropItemToGround(src, TRUE)
+		user.adjust_confusion(30)
+		user.Paralyze(8 SECONDS)
+		user.adjustFireLoss(10)
