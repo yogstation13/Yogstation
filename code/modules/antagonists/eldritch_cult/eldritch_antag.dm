@@ -780,7 +780,7 @@
 /datum/outfit/heretic
 	name = "Heretic (Preview only)"
 
-	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy
 	r_hand = /obj/item/melee/touch_attack/mansus_fist
 
 /datum/outfit/heretic/post_equip(mob/living/carbon/human/H, visualsOnly)

@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - tweak: "cannot activate luminescent slime core effects while incapacitated"
