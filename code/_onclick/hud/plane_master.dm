@@ -215,9 +215,9 @@
 
 /atom/movable/screen/plane_master/reflective/Initialize(mapload)
 	. = ..()
-	var/matrix/n_transofrm = transform
-	n_transofrm.Translate(0, 32)
-	transform = n_transofrm
+	var/matrix/n_transform = transform
+	n_transform.Translate(0, 32)
+	transform = n_transform
 
 /atom/movable/screen/plane_master/reflective/above
 	name = "reflective plane above master"
