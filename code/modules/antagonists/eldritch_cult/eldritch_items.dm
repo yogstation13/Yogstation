@@ -334,3 +334,12 @@
 	armor = list(MELEE = -10, BULLET = -10, LASER = -10, ENERGY = 0, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
 	slowdown = -0.8
 	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/suit/cultrobes/void/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"You feel your bones begin to freeze to their very core!\""))
+		user.dropItemToGround(src, TRUE)
+		user.adjust_confusion(30)
+		user.Paralyze(8 SECONDS)
+		user.adjustFireLoss(15)
