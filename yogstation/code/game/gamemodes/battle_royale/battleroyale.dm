@@ -79,9 +79,9 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 2 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 2.5 SECONDS)//do it twice because lockers protect the things inside
-	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	set_observer_default_invisibility(0) //so ghosts can feel like they're included
 	return ..()
