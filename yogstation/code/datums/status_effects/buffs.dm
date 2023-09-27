@@ -41,7 +41,7 @@
 /datum/status_effect/dodging/battleroyale
 	id = "dodging_gamer"
 	duration = 1 MINUTES
-	examine_text = span_boldwarning("An inpenetrable ligma shield surrounds the Stalwart!")
+	examine_text = span_boldwarning("An inpenetrable ligma shield surrounds the gamer!")
 	alert_type = /atom/movable/screen/alert/status_effect/dodging/battleroyale
 
 /datum/status_effect/dodging/battleroyale/on_apply()
