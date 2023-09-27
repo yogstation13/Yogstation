@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_void
 	name = "Glimmer of Winter"
 	desc = "Pledges yourself to the path of the Void. Allows you to transmute a stuff with a knife or its derivatives into a void blade. Additionally, empowers your Mansus grasp to chill any target hit."
-	gain_text = "Lore."
+	gain_text = "Wanting, I lie, too weary to die, too lost to the ice for saving. My sins claim me, untame me"
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/base_ash,
 		/datum/eldritch_knowledge/base_rust,
