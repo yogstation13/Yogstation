@@ -91,6 +91,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+	
+	if(shine)
+		make_shiny(shine)
+
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/Initalize_Atmos(times_fired)

@@ -149,6 +149,7 @@
 
 /turf/open/floor/plasteel/showroomfloor
 	icon_state = "showroomfloor"
+	shine = SHINE_REFLECTIVE
 
 /turf/open/floor/plasteel/solarpanel
 	icon_state = "solarpanel"
@@ -158,6 +159,7 @@ turf/open/floor/plasteel/airless/solarpanel
 
 /turf/open/floor/plasteel/freezer
 	icon_state = "freezerfloor"
+	shine = SHINE_REFLECTIVE
 
 /turf/open/floor/plasteel/freezer/airless
 	initial_gas_mix = AIRLESS_ATMOS

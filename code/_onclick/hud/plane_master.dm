@@ -60,6 +60,7 @@
 	plane = GAME_PLANE
 	appearance_flags = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
+	render_target = GAME_PLANE_RENDER_TARGET
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
@@ -69,6 +70,31 @@
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
 	// Should be moved to the world render plate when render plates get ported in
 	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
+
+//reflections
+/atom/movable/screen/plane_master/reflection
+	name = "reflection plane master"
+	plane = REFLECTION_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	render_source = GAME_PLANE_RENDER_TARGET
+	color = "#aaaaaa"
+	///What plane we're masked by
+	var/masking_plane = REFLECTIVE_PLANE_RENDER_TARGET
+
+/atom/movable/screen/plane_master/reflection/above
+	name = "reflection plane above master"
+	plane = REFLECTION_PLANE_ABOVE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	masking_plane = REFLECTIVE_PLANE_ABOVE_RENDER_TARGET
+
+/atom/movable/screen/plane_master/reflection/Initialize(mapload)
+	. = ..()
+	var/matrix/n_transform = transform
+	n_transform.Translate(0, -32)
+	transform = n_transform
+	add_filter("reflections", 1.1, alpha_mask_filter(render_source = masking_plane))
+	add_filter("displacement", 1.2, displacement_map_filter(render_source = REFLECTIVE_DISPLACEMENT_PLANE_RENDER_TARGET, size = 42, y = -16))
+	add_filter("motion_blur", 1.3, motion_blur_filter(y = 0.7))
 
 
 ///Contains all lighting objects
@@ -178,3 +204,28 @@
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
+
+//reflections
+/atom/movable/screen/plane_master/reflective
+	name = "reflective plane master"
+	plane = REFLECTIVE_PLANE
+	appearance_flags = PLANE_MASTER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	render_target = REFLECTIVE_PLANE_RENDER_TARGET
+	render_relay_plane = null
+
+/atom/movable/screen/plane_master/reflective/Initialize(mapload)
+	. = ..()
+	var/matrix/n_transofrm = transform
+	n_transofrm.Translate(0, 32)
+	transform = n_transofrm
+
+/atom/movable/screen/plane_master/reflective/above
+	name = "reflective plane above master"
+	plane = REFLECTIVE_PLANE_ABOVE
+	render_target = REFLECTIVE_PLANE_ABOVE_RENDER_TARGET
+
+/atom/movable/screen/plane_master/reflective/displacement
+	name = "reflective displacement plane master"
+	plane = REFLECTIVE_DISPLACEMENT_PLANE
+	render_target = REFLECTIVE_DISPLACEMENT_PLANE_RENDER_TARGET

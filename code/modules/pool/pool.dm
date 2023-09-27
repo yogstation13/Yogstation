@@ -16,6 +16,16 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	layer = ABOVE_ALL_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/obj/effect/overlay/poolwater/Initialize(mapload)
+	. = ..()
+	var/turf/T  = get_turf(src)
+	T.make_shiny(SHINE_SHINY)
+
+/obj/effect/overlay/poolwater/Destroy(force)
+	. = ..()
+	var/turf/T  = get_turf(src)
+	T.make_unshiny()
+
 /turf/open/indestructible/sound/pool
 	name = "swimming pool"
 	desc = "A fun place where you go to swim! <b>Drag and drop yourself onto it to climb in...</b>"

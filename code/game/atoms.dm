@@ -98,6 +98,12 @@
 	var/list/targeted_by
 
 	var/atom/orbit_target //Reference to atom being orbited
+
+	///Reflective overlay
+	var/mutable_appearance/reflection
+	var/mutable_appearance/reflection_displacement
+	var/shine = SHINE_MATTE
+
 /**
   * Called when an atom is created in byond (built in engine proc)
   *
@@ -177,6 +183,9 @@
 
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
+
+	if(shine)
+		make_shiny(shine)
 
 	if(custom_materials && custom_materials.len)
 		var/temp_list = list()
@@ -1552,3 +1561,32 @@
 		var/mouseparams = list2params(paramslist)
 		usr_client.Click(src, loc, null, mouseparams)
 		return TRUE
+
+//shiny port from bee
+/atom/proc/make_shiny(_shine = SHINE_REFLECTIVE, _relfection_plane = REFLECTIVE_PLANE)
+	if(reflection || reflection_displacement)
+		if(shine != _shine)
+			cut_overlay(reflection)
+			cut_overlay(reflection_displacement)
+		else
+			return
+	var/r_overlay
+	switch(_shine)
+		if(SHINE_MATTE)
+			return
+		if(SHINE_REFLECTIVE)
+			r_overlay = "partialOverlay"
+		if(SHINE_SHINY)
+			r_overlay = "whiteOverlay"
+	reflection = mutable_appearance('icons/turf/overlays.dmi', r_overlay, plane = _relfection_plane)
+	reflection_displacement = mutable_appearance('icons/turf/overlays.dmi', "flip", plane = REFLECTIVE_DISPLACEMENT_PLANE)
+	reflection_displacement.appearance_flags = 0
+	//Have to do this to make map work. Why? IDK, displacements are special like that
+	add_overlay(reflection)
+	add_overlay(reflection_displacement)
+	shine = _shine
+
+/atom/proc/make_unshiny()
+	cut_overlay(reflection)
+	cut_overlay(reflection_displacement)
+	shine = SHINE_MATTE
