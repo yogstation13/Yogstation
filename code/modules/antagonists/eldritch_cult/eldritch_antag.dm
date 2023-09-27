@@ -165,7 +165,7 @@
 	Your book allows you to gain abilities with research points. You cannot undo research, so choose your path wisely!<br>\
 	You gain research points by collecting influences or sacrificing targets by using a living heart and a transmutation rune.<br>\
 	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
-	If you need to quickly check your unlocked transmutation recipes, ALT + CLICK your Codex Cicatrix.")
+	If you need to quickly check your unlocked transmutation recipes, use your Codex Cicatrix in hand with Z.")
 
 /datum/antagonist/heretic/get_preview_icon()
 	var/icon/icon = render_preview_outfit(preview_outfit)
@@ -734,7 +734,7 @@
 /datum/outfit/heretic
 	name = "Heretic (Preview only)"
 
-	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy
 	r_hand = /obj/item/melee/touch_attack/mansus_fist
 
 /datum/outfit/heretic/post_equip(mob/living/carbon/human/H, visualsOnly)

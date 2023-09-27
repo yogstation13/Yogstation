@@ -2301,6 +2301,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
 
+/datum/uplink_item/race_restricted/hulk
+	name = "Hulk Mutator"
+	desc = "Stolen research from a SIC scientist who went postal led to the development of this revolutionary mutator. Causes extreme muscle growth, enough to punch through walls, and practically limitless stamina, at the cost of reduced cognitive ability, and green skin pigmentation."
+	cost = 15
+	manufacturer = /datum/corporation/traitor/vahlen
+	item = /obj/item/dnainjector/hulkmut
+	restricted_species = list("human")
+
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
