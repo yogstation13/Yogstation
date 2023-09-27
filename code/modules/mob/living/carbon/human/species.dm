@@ -1409,10 +1409,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(NUTRITION_LEVEL_FED to INFINITY)
 				H.clear_alert("nutrition")
 			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 1)
 			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
+			if(1 to NUTRITION_LEVEL_STARVING)
 				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
-			if(0 to NUTRITION_LEVEL_STARVING)
+			if(0)
 				H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
 		return
 	switch(H.nutrition)
@@ -1547,15 +1549,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			log_combat(user, target, "shaken")
 		return 1
 	else
-		var/we_breathe = !HAS_TRAIT_FROM(user, TRAIT_NOBREATH, SPECIES_TRAIT)
-		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
-
-		if(we_breathe && we_lung)
-			user.do_cpr(target)
-		else if(we_breathe && !we_lung)
-			to_chat(user, span_warning("You have no lungs to breathe with, so you cannot perform CPR."))
-		else
-			to_chat(user, span_notice("You do not breathe, so you cannot perform CPR."))
+		user.do_cpr(target)
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	var/datum/martial_art/M = target.check_block()

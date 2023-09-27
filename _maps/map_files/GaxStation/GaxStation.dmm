@@ -9905,6 +9905,7 @@
 	pixel_y = -2;
 	req_access_txt = "5"
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "eLA" = (
@@ -12879,6 +12880,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"gfu" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/westleft{
+	dir = 2;
+	name = "Cargo Desk";
+	req_access_txt = "31"
+	},
+/obj/item/deskbell/preset/supply{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/turf/open/floor/plating,
+/area/quartermaster/office)
 "gfF" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -15847,6 +15865,14 @@
 "hBI" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8;
+	pixel_y = 4
+	},
 /turf/open/floor/carpet/exoticblue,
 /area/bridge/meeting_room)
 "hBV" = (
@@ -16996,6 +17022,7 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
+/obj/item/storage/pencil_holder/crew/fancy,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "ihC" = (
@@ -20681,6 +20708,9 @@
 /obj/structure/table/glass,
 /obj/item/folder/white,
 /obj/item/stamp/cmo,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/heads/cmo)
 "kdW" = (
@@ -25510,6 +25540,10 @@
 	departmentType = 5;
 	name = "Head of Security RC";
 	pixel_x = -32
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet/red,
 /area/crew_quarters/heads/hos)
@@ -30724,6 +30758,7 @@
 	pixel_x = 8;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plating,
 /area/engine/foyer)
 "pjL" = (
@@ -35218,6 +35253,10 @@
 	department = "Research Director";
 	name = "Research Director's Fax Machine"
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -10;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "rrG" = (
@@ -35275,6 +35314,10 @@
 	pixel_x = 9;
 	pixel_y = 8
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
+	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "rsT" = (
@@ -35330,6 +35373,9 @@
 /obj/item/folder/yellow,
 /obj/item/paper/monitorkey,
 /obj/item/stamp/ce,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/heads/chief)
 "rtB" = (
@@ -35693,6 +35739,10 @@
 	},
 /obj/item/reagent_containers/food/snacks/baguette,
 /obj/item/toy/dummy,
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = -8;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "rCa" = (
@@ -37013,6 +37063,10 @@
 	},
 /obj/item/folder/blue,
 /obj/item/stamp/hop,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = -4
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "slR" = (
@@ -38211,6 +38265,10 @@
 /obj/item/deskbell/preset/sci{
 	pixel_x = 7;
 	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
 	},
 /turf/open/floor/plating,
 /area/science/lab)
@@ -40320,14 +40378,20 @@
 /area/solar/port/aft)
 "tSm" = (
 /obj/structure/table/wood,
-/obj/item/pen/red,
-/obj/item/pen/blue{
-	pixel_x = 5;
-	pixel_y = 5
-	},
 /obj/item/deskbell/preset/library{
 	pixel_x = -9;
 	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -43830,7 +43894,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/pen,
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "vDA" = (
@@ -45596,6 +45660,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plating,
 /area/security/brig)
 "wxf" = (
@@ -47046,6 +47111,7 @@
 	pixel_x = 10;
 	pixel_y = -3
 	},
+/obj/item/storage/pencil_holder/crew,
 /turf/open/floor/plating,
 /area/security/warden)
 "xhD" = (
@@ -47115,6 +47181,10 @@
 /obj/item/hand_tele{
 	pixel_x = 2;
 	pixel_y = -2
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = -4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
@@ -77301,7 +77371,7 @@ uwH
 jHK
 ivt
 jaW
-nzG
+gfu
 lFh
 qhL
 nkP

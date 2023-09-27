@@ -140,6 +140,15 @@
 	return FALSE
 
 /datum/eldritch_transmutation/final/on_finished_recipe(mob/living/user, list/atoms, loc)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
+	set_security_level(SEC_LEVEL_GAMMA)
+
+	shockwave.transform = matrix().Scale(0.5)
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
+	QDEL_IN(shockwave, 10.5 SECONDS)
+
 	finished = TRUE
 	return TRUE
 
@@ -176,11 +185,8 @@
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
 			EC.total_sacrifices++
-			for(var/X in carbon_user.get_all_gear())
-				if(!istype(X,/obj/item/forbidden_book))
-					continue
-				EC.charge += 2
-				break
+			EC.charge += 2
+			
 
 		if(QDELETED(LH.target))
 			var/datum/objective/A = new

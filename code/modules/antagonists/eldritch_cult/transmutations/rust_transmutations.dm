@@ -28,10 +28,11 @@
 	H.physiology.stamina_mod = 0
 	H.physiology.stun_mod = 0
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report significant and rapid decay of the station's infrastructure with a single entity as its source. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-	set_security_level(SEC_LEVEL_GAMMA)
+
 	new /datum/rust_spread(loc)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
+	
 	return ..()
 
 /datum/eldritch_transmutation/final/rust_final/on_life(mob/user)

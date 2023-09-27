@@ -344,6 +344,7 @@
 	name = "R&D Console (Computer Board)"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/computer/rdconsole/core
+	var/unlocked = FALSE
 
 /obj/item/circuitboard/computer/rdconsole/ruin
 	name = "Experimental R&D Console (Computer Board)"
@@ -353,12 +354,16 @@
 /obj/item/circuitboard/computer/rdconsole/production
 	name = "R&D Console Production Only (Computer Board)"
 	build_path = /obj/machinery/computer/rdconsole/production
-
-
-/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(build_path == /obj/machinery/computer/rdconsole/production)
-			return
+	
+/obj/item/circuitboard/computer/rdconsole/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.visible_message(span_notice("[user] fiddles with [src]."), span_notice( "You fiddle with [src]."))
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		if(build_path == /obj/item/circuitboard/computer/rdconsole/production)
+			to_chat(user, span_danger("[src] sparks! That isn't right."))
+			var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+			p.set_up(6, 1, user)
+			p.start()
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "R&D Console - Robotics (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
@@ -367,8 +372,33 @@
 			name = "R&D Console (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/core
 			to_chat(user, span_notice("Defaulting access protocols."))
-	else
-		return ..()
+
+/obj/item/circuitboard/computer/rdconsole/screwdriver_act(mob/living/user, obj/item/I)
+	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+		to_chat(user, span_danger("[src] sparks! That isn't right."))
+		var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+		p.set_up(6, 1, user)
+		p.start()
+		return TRUE
+	if(unlocked)
+		to_chat(user, span_notice("It seems to have a deep groove cutting some traces. Maybe welding it will help?"))
+		return TRUE
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		unlocked = TRUE
+		to_chat(user, span_notice("You scrape a deep groove into some of the traces, severing them."))
+
+
+/obj/item/circuitboard/computer/rdconsole/welder_act(mob/living/user, obj/item/I)
+	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+		return
+	if(!unlocked)
+		return TRUE
+	if(!I.tool_start_check(user, amount=0))
+		return TRUE
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		unlocked = FALSE
+		to_chat(user, span_notice("You melt the solder back into place, restoring the connections in the traces."))	
+	
 
 /obj/item/circuitboard/computer/rdservercontrol
 	name = "R&D Server Control (Computer Board)"

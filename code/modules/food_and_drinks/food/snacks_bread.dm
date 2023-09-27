@@ -242,6 +242,26 @@
 /obj/item/reagent_containers/food/snacks/frenchtoast/raw/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/frenchtoast, rand(20 SECONDS, 30 SECONDS), TRUE)
 
+/obj/item/reagent_containers/food/snacks/breadstick
+	name = "breadstick"
+	desc = "A delicious, buttery breadstick. Highly addictive, but oh-so worth it."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "breadstick"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("bread" = 1, "butter" = 2)
+	foodtype = GRAIN | DAIRY
+	burns_in_oven = TRUE
+
+/obj/item/reagent_containers/food/snacks/breadstick/raw
+	name = "raw breadstick"
+	desc = "An uncooked strip of dough in the shape of a breadstick."
+	icon_state = "raw_breadstick"
+	tastes = list("raw dough" = 2, "butter" = 1)
+	foodtype = GRAIN | DAIRY | RAW
+
+/obj/item/reagent_containers/food/snacks/breadstick/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/breadstick, rand(20 SECONDS, 30 SECONDS), TRUE)
+
 //DEEP FRYER
 /obj/item/reagent_containers/food/snacks/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
