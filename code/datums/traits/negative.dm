@@ -500,7 +500,7 @@
 	var/obj/item/accessory_type //If this is null, it won't be spawned.
 	var/obj/item/accessory_instance
 	var/tick_counter = 0
-	var/junkie_warning = ""
+	var/junkie_warning = null
 
 /datum/quirk/junkie/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -510,7 +510,8 @@
 		reagent_type = prot_holder.type
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
-	junkie_warning = ("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again...")
+	if (!junkie_warning)
+		junkie_warning = ("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again...")
 	var/current_turf = get_turf(quirk_holder)
 	if (!drug_container_type)
 		drug_container_type = /obj/item/storage/pill_bottle
