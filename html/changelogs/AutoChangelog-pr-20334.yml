@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Give cyborg tablet access to the cyborg monitor program."
-  - bugfix: "Fix the issue of the log file not being downloaded in the cyborg monitor program."
