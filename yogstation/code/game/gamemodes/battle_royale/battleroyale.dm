@@ -31,7 +31,7 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/pre_setup()
 	GLOB.stormdamage = 2
 	var/obj/effect/landmark/observer_start/center = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list //observer start is usually in the middle
-	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(1,30)) //get a random spot above or below the middle
+	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(0,20)) //get a random spot above or below the middle
 	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 20) //almost all the way at the edge of the map
 	if(target)
 		new /obj/structure/battle_bus(target)
