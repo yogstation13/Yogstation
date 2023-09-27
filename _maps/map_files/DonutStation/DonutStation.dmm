@@ -34245,6 +34245,17 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"pBx" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "QMLoad"
+	},
+/obj/machinery/door/poddoor{
+	id = "QMLoaddoor";
+	name = "supply dock loading door"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "pBy" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/engine,
@@ -36145,6 +36156,17 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"qpH" = (
+/obj/machinery/conveyor{
+	dir = 0;
+	id = "QMLoad2"
+	},
+/obj/machinery/door/poddoor{
+	id = "QMLoaddoor2";
+	name = "supply dock loading door"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "qpJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -36731,17 +36753,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"qBM" = (
-/obj/machinery/door/poddoor{
-	id = "cargoload";
-	name = "supply dock loading door"
-	},
-/obj/machinery/conveyor{
-	dir = 0;
-	id = "QMLoad2"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "qCf" = (
 /obj/structure/chair{
 	dir = 1
@@ -48402,17 +48413,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
 /area/medical/medbay/central)
-"vQp" = (
-/obj/machinery/door/poddoor{
-	id = "cargounload";
-	name = "supply dock unloading door"
-	},
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "QMLoad"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "vQv" = (
 /obj/machinery/light_switch{
 	pixel_y = -24
@@ -92914,9 +92914,9 @@ ylr
 ylr
 ylr
 ylr
-vQp
+pBx
 tqF
-vQp
+pBx
 snw
 aZQ
 cjy
@@ -93942,9 +93942,9 @@ ylr
 ylr
 ylr
 ylr
-qBM
+qpH
 wRh
-qBM
+qpH
 wzU
 bkD
 nCs
