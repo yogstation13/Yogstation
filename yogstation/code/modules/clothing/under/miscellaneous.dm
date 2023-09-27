@@ -225,6 +225,7 @@
 	desc = "A suit often worn by those detective types. Now in blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_detective"
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/golddetective
@@ -232,12 +233,14 @@
 	desc = "A suit often worn by those detective types. Now in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_detective"
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
 
 /obj/item/clothing/under/yogs/greydetective
 	name = "grey detective suit"
 	desc = "A suit often worn by those detective types. Now in boring old grey!"
 	icon_state = "grey_detective"
 	item_state = "grey_detective"
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/blackdetective
@@ -245,6 +248,7 @@
 	desc = "A suit often worn by those detective types. Now in black!"
 	icon_state = "black_detective"
 	item_state = "black_detective"
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/whitetuxedo
