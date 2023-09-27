@@ -192,7 +192,7 @@ GLOBAL_VAR(stormdamage)
 		var/area/actual = locate(place) in GLOB.areas
 		for(var/obj/thing in actual)
 			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
-				qdel(thing)
+				QDEL_NULL(thing)
 	
 	for(var/target in GLOB.mob_living_list)
 		if(istype(target, /mob/living/simple_animal/bot))//no beepsky
