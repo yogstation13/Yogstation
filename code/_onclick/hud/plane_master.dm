@@ -212,7 +212,6 @@
 	appearance_flags = PLANE_MASTER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_target = REFLECTIVE_PLANE_RENDER_TARGET
-	render_relay_plane = null
 
 /atom/movable/screen/plane_master/reflective/Initialize(mapload)
 	. = ..()
