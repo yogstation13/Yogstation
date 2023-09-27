@@ -332,6 +332,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "trashcart"
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
+	dense_when_open = FALSE
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()

@@ -316,6 +316,7 @@ GLOBAL_VAR(stormdamage)
 	opacity = FALSE
 	alpha = 185 //So you can see under it when it moves
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	light_power = 1
 	light_range = 10 //light up the darkness, oh battle bus.
 	layer = 4 //Above everything
 	var/starter_z = 0 //What Z level did we start on?
