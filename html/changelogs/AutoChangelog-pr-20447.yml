@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Toolboxes now universally do 3 more damage"
+  - tweak: "Welding tool flames now do 3 less damage"
