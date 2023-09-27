@@ -77,15 +77,13 @@
 			blood_type = "LE"
 		else
 			blood_type = null
-	update_pack_name()
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON | UPDATE_NAME)
 
-/obj/item/reagent_containers/blood/proc/update_pack_name()
-	if(!labelled)
-		if(blood_type)
-			name = "blood pack - [blood_type]"
-		else
-			name = "blood pack"
+/obj/item/reagent_containers/blood/update_name()
+	. = ..()
+	if(labelled)
+		return
+	name = "blood pack[blood_type ? " - [blood_type]" : ""]"
 
 /obj/item/reagent_containers/blood/update_overlays()
 	. = ..()
@@ -148,6 +146,6 @@
 			name = "blood pack - [t]"
 		else
 			labelled = 0
-			update_pack_name()
+			update_appearance(UPDATE_NAME)
 	else
 		return ..()
