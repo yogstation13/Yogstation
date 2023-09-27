@@ -24,7 +24,7 @@
 	. += "Use it on the floor to create a transmutation rune, used to perform rituals."
 	. += "Hit an influence in the black part with it to gain a charge."
 	. += "Hit a transmutation rune to destroy it."
-	. += "Alt+click this book to check the list of currently available transmutations and their ingredients."
+	. += "Use this book in hand with Z to check the list of currently available transmutations and their ingredients."
 
 /obj/item/forbidden_book/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
