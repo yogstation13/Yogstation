@@ -106,7 +106,7 @@
 	add_mutations = list(FIREBREATH)
 
 /obj/item/dnainjector/acidspit
-	name = "\improper DNA injector (Acid Spit.)"
+	name = "\improper DNA injector (Acid Spit)"
 	desc = "Lets you spit acid."
 	add_mutations = list(ACIDSPIT)
 
