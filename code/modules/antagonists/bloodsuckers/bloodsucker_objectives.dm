@@ -1,13 +1,13 @@
-/datum/objective/bloodsucker/monsterhunter
+/datum/objective/monsterhunter
 	name = "destroymonsters"
 
 // EXPLANATION
-/datum/objective/bloodsucker/monsterhunter/update_explanation_text()
+/datum/objective/monsterhunter/update_explanation_text()
 	. = ..()
 	explanation_text = "Destroy all monsters on [station_name()]."
 
 // WIN CONDITIONS?
-/datum/objective/bloodsucker/monsterhunter/check_completion()
+/datum/objective/monsterhunter/check_completion()
 	var/list/datum/mind/monsters = list()
 	for(var/datum/antagonist/monster in GLOB.antagonists)
 		var/datum/mind/brain = monster.owner

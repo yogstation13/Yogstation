@@ -5,7 +5,7 @@
 		However, they are also very different, and place an emphasis on creating zombie like puppets from the dead. \n\
 		They are able to raise the dead as temporary vassals, permanently revive dead vassals, communicate to their vassals from afar, and summon wraiths. \n\
 		Their Favorite Vassal also has inherited a small fraction of their power, being able to call wraiths into the world as well."
-	clan_objective = /datum/objective/bloodsucker/necromance
+	clan_objective = /datum/objective/hecata_clan_objective
 	join_icon_state = "hecata"
 	join_description = "Raise zombie hordes from the dead, and then coordinate them from anywhere anytime."
 	blood_drink_type = BLOODSUCKER_DRINK_PAINFUL
@@ -22,19 +22,19 @@
 	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/hecata/spiritcall)
 
 
-/datum/objective/bloodsucker/necromance
+/datum/objective/hecata_clan_objective
 	name = "necromance"
 
-/datum/objective/bloodsucker/necromance/New()
+/datum/objective/hecata_clan_objective/New()
 	target_amount = rand(4,5)
 	..()
+	update_explanation_text()
 
-
-/datum/objective/bloodsucker/necromance/update_explanation_text()
+/datum/objective/hecata_clan_objective/update_explanation_text()
 	. = ..()
 	explanation_text = "Using Necromancy, revive [target_amount] people."
 
-/datum/objective/bloodsucker/necromance/check_completion()
+/datum/objective/hecata_clan_objective/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!bloodsuckerdatum)
 		return FALSE

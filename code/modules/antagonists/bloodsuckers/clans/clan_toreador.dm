@@ -4,10 +4,28 @@
 		More in touch with their morals, they suffer and benefit more strongly from humanity cost or gain of their actions. \n\
 		Known as 'The most humane kind of vampire', they have an obsession with perfectionism and beauty \n\
 		The Favorite Vassal gains the Mesmerize ability."
+	clan_objective = /datum/objective/toreador_clan_objective
 	join_icon_state = "toreador"
 	join_description = "Powerful Mesmerize, build statues to boost your status and mood, gather a large audience for your performance."
 	blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
 	control_type = BLOODSUCKER_CONTROL_METAL
+
+
+/datum/objective/toreador_clan_objective
+	name = "leader"
+	martyr_compatible = TRUE
+
+/datum/objective/toreador_clan_objective/New()
+	target_amount = rand(2, 3)
+	..()
+	update_explanation_text()
+
+/datum/objective/toreador_clan_objective/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(LAZYLEN(bloodsuckerdatum?.vassals) >= target_amount)
+		return TRUE
+	return FALSE
+
 
 /datum/bloodsucker_clan/toreador/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
