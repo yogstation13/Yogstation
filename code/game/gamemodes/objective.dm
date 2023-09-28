@@ -1560,7 +1560,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/assist,
 		// Fulp edit START - Bloodsuckers
 		// DEFAULT OBJECTIVES //
-		/datum/objective/bloodsucker/lair,
+		/datum/objective/bloodsucker_lair,
 		/datum/objective/survive/bloodsucker,
 		// Fulp edit END
 		/datum/objective/destroy,

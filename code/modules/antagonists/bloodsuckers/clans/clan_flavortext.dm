@@ -39,7 +39,7 @@
 		More ranks can be gained by Vassalizing crewmembers. \n\
 		The Favorite Vassal gains the Batform spell, being able to morph themselves at will."
 	joinable_clan = FALSE
-	clan_objective = /datum/objective/tremere_clan_objective
+//	clan_objective = /datum/objective/tremere_clan_objective
 	join_icon_state = "tremere"
 	join_description = "You will burn if you enter the Chapel, lose all default powers, \
 		but gain Blood Magic instead, powers you level up overtime."
@@ -47,7 +47,7 @@
 /**
  * Clan Objective
  * Tremere's Clan objective is to upgrade a power to max
- */
+ * clan not implemented yet
 /datum/objective/tremere_clan_objective
 	name = "tremerepower"
 	explanation_text = "Upgrade a Blood Magic power to the maximum level, remember that Vassalizing gives more Ranks!"
@@ -60,6 +60,7 @@
 		if(tremere_powers.level_current >= 5)
 			return TRUE
 	return FALSE
+*/
 
 /datum/bloodsucker_clan/nosferatu
 	name = CLAN_NOSFERATU
