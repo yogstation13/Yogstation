@@ -17,15 +17,14 @@
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
 	process_flags = ORGANIC | SYNTHETIC
-	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
+	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
-	heatmod = 2 //Once the heat gets through it's gonna BURN
-	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
+	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.2 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
-	punchdamagehigh = 8 //not built for large high speed acts like punches
-	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
+	punchdamagehigh = 7 //not built for large high speed acts like punches
+	punchstunthreshold = 7 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 	payday_modifier = 0.6 //Highly efficient workers, but significant political tension between SIC and Remnants = next to no protection or people willing to fight the obvious wage cut
 	//mutant_bodyparts = list("head", "body_markings")
@@ -223,19 +222,19 @@
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
-		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 1, blacklisted_movetypes=(FLYING|FLOATING))
+		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
-		H.adjustStaminaLoss(5 - (H.fire_stacks / 3))
+		H.adjustStaminaLoss(4 - (H.fire_stacks / 2))
 		H.clear_stamina_regen()
-		H.adjustFireLoss(2 - (H.fire_stacks / 4))
-		H.set_jitter_if_lower(1 SECONDS)
+		H.adjustFireLoss(1.5 - (H.fire_stacks / 3))
+		H.set_jitter_if_lower(10 SECONDS)
 		H.set_stutter_if_lower(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
 		if(prob(50))
 			playsound(get_turf(H), "sparks", 30, 1)
-			new /obj/effect/particle_effect/sparks(get_turf(H))
+			do_sparks(rand(1,3), FALSE, H)
 		soggy = TRUE
 		H.throw_alert("preternis_wet", /atom/movable/screen/alert/preternis_wet)
 	else if(soggy)
