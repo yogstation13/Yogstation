@@ -96,7 +96,7 @@
 
 /datum/mutation/human/acidspit // polysmorph inert mutation
 	name = "Acid Spit"
-	desc = "An ancient mutation that changes the salivary glands to produce acid"
+	desc = "An ancient mutation derived from xenomorphs that forces the salivary glands to produce acid"
 	instability = 70
 	difficulty = 12
 	locked = TRUE
