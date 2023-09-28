@@ -6,7 +6,7 @@
 	volume = 200
 	var/blood_type = null
 	var/unique_blood = null
-	var/labelled = 0
+	var/labelled = FALSE
 
 #define BLOODBAG_GULP_SIZE 10
 
@@ -142,10 +142,10 @@
 		if(user.get_active_held_item() != I)
 			return
 		if(t)
-			labelled = 1
+			labelled = TRUE
 			name = "blood pack - [t]"
 		else
-			labelled = 0
+			labelled = FALSE
 			update_appearance(UPDATE_NAME)
 	else
 		return ..()
