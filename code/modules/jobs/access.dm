@@ -239,7 +239,7 @@
 		if(ACCESS_RND)
 			return "R&D Lab and Console"
 		if(ACCESS_TOX)
-			return "Toxin Lab"
+			return "Toxins Lab"
 		if(ACCESS_TOX_STORAGE)
 			return "Toxins Lab Storage"
 		if(ACCESS_CHEMISTRY)
