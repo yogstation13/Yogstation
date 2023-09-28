@@ -71,9 +71,9 @@
 /datum/eldritch_knowledge/armor
 	name = "Eldritch Armor"
 	gain_text = "The first of the Blacksmith's creations was a shawl that drew the Empress' attention. The eyes would later whisper to him the secrets to forge sickly, sentient blades."
-	desc = "Allows you to craft a set of eldritch armor by transmuting a table and a gas mask. The robes significantly reduce most incoming damage."
+	desc = "Allows you to craft a set of eldritch armor by transmuting a table and a gas mask. The robes significantly reduce most incoming damage. Also allows you to further upgrade said robes by transmuting a diamond with it."
 	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/armor)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/armor, /datum/eldritch_transmutation/armor/upgrade)
 	tier = TIER_1
 
 /datum/eldritch_knowledge/essence
