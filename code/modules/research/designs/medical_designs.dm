@@ -22,7 +22,7 @@
 	construction_time = 75
 	build_path = /obj/item/mmi/posibrain
 	category = list("Control Interfaces", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespacebeaker
 	name = "Bluespace Beaker"
@@ -800,7 +800,7 @@
 	name = "Revival"
 	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
 	id = "surgery_revival"
-	surgery = list(/datum/surgery/advanced/revival, /datum/surgery/advanced/revival/mechanic)
+	surgery = list(/datum/surgery/revival, /datum/surgery/revival/mechanic)
 	research_icon_state = "revival"
 
 /datum/design/surgery/dna_recovery

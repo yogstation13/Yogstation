@@ -1399,6 +1399,14 @@
 	access_view = ACCESS_MEDICAL
 	crate_type = /obj/structure/closet/crate/medical
 
+/datum/supply_pack/medical/prosphetics
+	name = "Surplus Prosphetic Crate"
+	desc = "Contains four pairs of surplus limbs. finely milled from fools gold."
+	cost = 15000
+	contains = list(/obj/structure/closet/crate/freezer/surplus_limbs)
+	crate_name = "Surplus Prosphetic Crate"
+	crate_type = /obj/structure/closet/crate/freezer/surplus_limbs
+
 /datum/supply_pack/medical/bloodpacks
 	name = "Blood Pack Variety Crate"
 	desc = "Contains eight different blood packs for reintroducing blood to patients."

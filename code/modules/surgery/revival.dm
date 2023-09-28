@@ -1,4 +1,4 @@
-/datum/surgery/advanced/revival
+/datum/surgery/revival
 	name = "Revival"
 	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
 	icon_state = "revival"
@@ -13,7 +13,7 @@
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
 
-/datum/surgery/advanced/revival/can_start(mob/user, mob/living/carbon/target)
+/datum/surgery/revival/can_start(mob/user, mob/living/carbon/target)
 	if(!..())
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_NODEFIB))
@@ -93,7 +93,7 @@
 	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 180)
 	return FALSE
 
-/datum/surgery/advanced/revival/mechanic
+/datum/surgery/revival/mechanic
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/open_hatch,
 				/datum/surgery_step/mechanic_unwrench,
