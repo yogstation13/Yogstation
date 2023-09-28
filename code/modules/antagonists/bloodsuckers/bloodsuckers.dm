@@ -634,6 +634,18 @@
 	lair_objective.owner = owner
 	objectives += lair_objective
 
+	
+	var/list/rolled_objectives = list()
+	if(prob(50)) //Protege Objective
+		rolled_objectives = list(new /datum/objective/vassal/protege)
+	else //Vassal Specific Objective
+		rolled_objectives = list(new /datum/objective/vassal/target)
+		
+	for(var/datum/objective/vassal/objective in rolled_objectives)
+		objective.owner = owner
+		objective.objective_name = "Optional Objective"
+		objectives += objective
+
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
 	return ..() + "([return_full_name(TRUE)])"
