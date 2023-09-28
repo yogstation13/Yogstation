@@ -285,14 +285,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded
 	name = "garnished ominous armor"
 	desc = "An evolved robe, surging with eldritch power. Strange eyes line the inside."
-	icon_state = "eldritch_armor"
-	item_state = "eldritch_armor"
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
-	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //now it has a reason to be strong
-	resistance_flags = FIRE_PROOF // ash heretic go brrr
 	slowdown = 0.20
 
 /obj/item/reagent_containers/glass/beaker/eldritch
