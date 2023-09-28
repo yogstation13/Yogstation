@@ -297,7 +297,7 @@
 /obj/item/multisurgeon/proc/insert_organ(obj/item/I)
 	storedorgan |= I
 	I.forceMove(src)
-	name = "[initial(name)] ([storedorgan[0].name])"
+	name = "[initial(name)] ([I.name])"
 
 /obj/item/multisurgeon/examine(mob/user)
 	. = ..()
