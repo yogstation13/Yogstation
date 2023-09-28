@@ -1109,16 +1109,16 @@
 	// In room temperature, the ice won't last very long
 	// ...but in space / freezing rooms, it will stick around
 	turf_freeze_type = TURF_WET_PERMAFROST
-	unfreeze_turf_duration = 1 MINUTES
+	unfreeze_turf_duration = 15 SECONDS
 	// Applies an "infinite" version of basic void chill
 	// (This stacks with mansus grasp's void chill)
 	frozen_status_effect_path = /datum/status_effect/void_chill/lasting
-	unfreeze_mob_duration = 30 SECONDS
+	unfreeze_mob_duration = 15 SECONDS
 	// Does a smidge of damage
 	on_freeze_brute_damage = 12
 	on_freeze_burn_damage = 10
 	// Also freezes stuff (Which will likely be unfrozen similarly to turfs)
-	unfreeze_object_duration = 30 SECONDS
+	unfreeze_object_duration = 15 SECONDS
 
 /datum/action/cooldown/spell/cone/staggered/cone_of_cold/void/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
 	if(IS_HERETIC_OR_MONSTER(target_mob))
@@ -1138,7 +1138,7 @@
 	invocation_type = INVOCATION_SHOUT
 
 	cooldown_time = 1 MINUTES
-	aoe_radius = 1
+	aoe_radius = 2
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/aoe/slip/void/cast_on_thing_in_aoe(turf/open/target)
