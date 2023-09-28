@@ -434,7 +434,7 @@
 	item_state = "fulldual"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_HUGE
-	force = 10
+	force = 12
 	block_chance = 10
 	wound_bonus = -20
 	attack_verb = list("thwacked")
@@ -539,7 +539,7 @@
 		return
 	user.swap_hand()
 	secondsword.attack(M, user, TRUE)
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_MELEE*1.4)
 
 /obj/item/nullrod/handedsword/dropped(mob/user, silent = TRUE)
 	. = ..()
