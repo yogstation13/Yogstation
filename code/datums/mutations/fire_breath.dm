@@ -112,7 +112,7 @@
 	active_icon_state = "alien_neurotoxin_1"
 	base_icon_state = "alien_neurotoxin_0"
 	active_overlay_icon_state = "bg_spell_border_active_red"
-	cooldown_time = 30 SECONDS
+	cooldown_time = 18 SECONDS
 	spell_requirements = NONE
 	antimagic_flags = NONE
 	school = SCHOOL_EVOCATION
