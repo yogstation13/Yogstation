@@ -236,10 +236,12 @@
 			return "Genetics Lab"
 		if(ACCESS_MORGUE)
 			return "Morgue"
+		if(ACCESS_RND)
+			return "R&D Lab and Console"
 		if(ACCESS_TOX)
-			return "R&D Lab"
+			return "Toxin Lab"
 		if(ACCESS_TOX_STORAGE)
-			return "Toxins Lab"
+			return "Toxins Lab Storage"
 		if(ACCESS_CHEMISTRY)
 			return "Chemistry Lab"
 		if(ACCESS_RD)
