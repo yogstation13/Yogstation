@@ -27,6 +27,6 @@ obj/item/projectile/bullet/acid/on_hit(atom/target, blocked = FALSE)
 		nodamage = TRUE
 	else if(iscarbon(target))
 		target.acid_act(acidpwr = 18, acid_volume = 25) // balanced
-	else if(!isopenturf(target)
+	else if(!isopenturf(target))
 		target.acid_act(acidpwr = 50, acid_volume = 25) // does good damage to objects and structures
 	return ..()
