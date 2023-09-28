@@ -15,10 +15,10 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	dog_fashion = /datum/dog_fashion/back
 	resistance_flags = FIRE_PROOF
-	var/max_water = 500
+	var/max_water = 200
 	var/last_use = 1
 	var/chem = /datum/reagent/water
-	var/chem_amount = 5 //how much of the chem is added to each spray (x5 because of how many sprays per shot)
+	var/chem_amount = 2 //how much of the chem is added to each spray (x5 because of how many sprays per shot)
 	var/safety = TRUE
 	var/refilling = FALSE
 	var/tanktype = /obj/structure/reagent_dispensers/watertank
