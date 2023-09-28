@@ -39,7 +39,7 @@
 obj/item/projectile/bullet/acid/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target)) // shouldn't work on xenos
 		nodamage = TRUE
-	else if(isobj(target) || isclosedturf(target))
+	else if(!isopenturf(target))
 		target.acid_act(50, 25) // does good damage to objects and structures
 	else if(iscarbon(target))
 		target.acid_act(18, 25) // balanced
