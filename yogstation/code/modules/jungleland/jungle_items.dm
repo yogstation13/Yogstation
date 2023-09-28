@@ -683,7 +683,8 @@
 
 /obj/item/demon_core/examine(mob/user)
 	. = ..()
-	. = "You can insert it into any hardsuit to give it a rechargeable shield."
+	. += "You can insert it into any hardsuit to give it a rechargeable shield."
+	. += "You can insert it into the super-matter engine, to double it's rad production."
 
 /obj/item/demon_core/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!proximity_flag)

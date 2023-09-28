@@ -1012,6 +1012,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		empulse(src, 3,6)
 		qdel(W)
 		return
+	if(istype(W, /obj/item/demon_core))
+		investigate_log("[user] has inserted demon core into the SM, doubling it's rad production.")
+		to_chat(user,"<span class='danger'>You insert the demon core into the [src], it begins to glow with dark purple fire, you notice the area around you noticeably heating up...")
+		radmodifier *= 2
+		add_overlay(mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield"))
+		qdel(W)
 	else if(user.dropItemToGround(W))
 		user.visible_message(span_danger("As [user] touches \the [src] with \a [W], silence fills the room..."),\
 			"[span_userdanger("You touch \the [src] with \the [W], and everything suddenly goes silent.")]\n[span_notice("\The [W] flashes into dust as you flinch away from \the [src].")]",\
