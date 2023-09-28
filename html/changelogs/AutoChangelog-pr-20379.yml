@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new heretic path - Void"
-  - soundadd: "Adds new sounds to go with heretic abilities"
-  - imageadd: "Adds new sprites for Void Blade and abilities"
