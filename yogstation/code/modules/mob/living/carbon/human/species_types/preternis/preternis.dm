@@ -219,7 +219,7 @@
 		low_power_warning = FALSE
 
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
-	if(H.fire_stacks <= -1)//putting on a suit helps, but not if you're already wet
+	if(H.fire_stacks <= -1)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
