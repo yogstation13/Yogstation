@@ -56,6 +56,7 @@
 #define EXTRASTUN	/datum/mutation/human/extrastun
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
+#define ACIDSPIT	/datum/mutation/human/acidspit
 #define CEREBRAL	/datum/mutation/human/cerebral
 #define THICKSKIN	/datum/mutation/human/thickskin
 #define DENSEBONES	/datum/mutation/human/densebones
