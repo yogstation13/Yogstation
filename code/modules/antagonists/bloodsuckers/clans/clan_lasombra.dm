@@ -10,6 +10,25 @@
 	join_description = "Heal more on the dark, transform abilties into upgraded ones, become one with the darkness."
 	control_type = BLOODSUCKER_CONTROL_SHADOWS
 
+/datum/objective/bloodsucker/hierarchy
+	name = "hierarchy"
+
+/datum/objective/bloodsucker/hierarchy/New()
+	target_amount = rand(1, 2)
+	..()
+
+/datum/objective/bloodsucker/hierarchy/update_explanation_text()
+	. = ..()
+	explanation_text = "Ascend [target_amount == 1 ? "at least 1 ability" : "2 abilities"] using a Resting Place altar."
+
+/datum/objective/bloodsucker/hierarchy/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
+
 /datum/bloodsucker_clan/lasombra/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
 	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/lasombra)
