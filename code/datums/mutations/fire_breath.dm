@@ -93,3 +93,32 @@
 /datum/action/cooldown/spell/cone/staggered/firebreath/do_obj_cone_effect(obj/target_obj, atom/caster, level)
 	// Further out objects experience less exposed_temperature and exposed_volume
 	target_obj.fire_act(max(500, 900 - (100 * level)), max(50, 200 - (50 * level)))
+
+/datum/mutation/human/acidspit // polysmorph inert mutation
+	name = "Acid Spit"
+	desc = "An ancient mutation that changes the salivary glands to produce acid"
+	instability = 70
+	difficulty = 12
+	locked = TRUE
+	text_gain_indication = span_notice("Your saliva burns your mouth!")
+	text_lose_indication = span_notice("Your saliva cools down.")
+	power_path = /datum/action/cooldown/spell/pointed/projectile/acid_spit
+
+/datum/action/cooldown/spell/pointed/projectile/acid_spit
+	name = "Acid Spit"
+	desc = "You focus your corrosive saliva to spit at your target"
+	button_icon = 'icons/mob/actions/actions_xeno.dmi'
+	button_icon_state = "alien_neurotoxin_0"
+	active_icon_state = "alien_neurotoxin_1"
+	base_icon_state = "alien_neurotoxin_0"
+	active_overlay_icon_state = "bg_spell_border_active_red"
+	cooldown_time = 30 SECONDS
+	spell_requirements = NONE
+	antimagic_flags = NONE
+	school = SCHOOL_EVOCATION
+	spell_requirements = NONE
+	sound = 'sound/effects/alien_spitacid.ogg'
+
+	active_msg = "You focus your acid spit!"
+	deactive_msg = "You relax."
+	projectile_type = /obj/item/projectile/bullet/acid
