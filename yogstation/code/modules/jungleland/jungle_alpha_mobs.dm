@@ -26,6 +26,7 @@
 	ranged = TRUE 
 	ranged_cooldown = 5 SECONDS
 	projectiletype = /obj/item/projectile/jungle/meduracha_spit
+	sentience_type = SENTIENCE_BOSS
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
 	
@@ -109,6 +110,7 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 40
 	crusher_loot = /obj/item/crusher_trophy/jungleland/blob_brain
+	sentience_type = SENTIENCE_BOSS
 	var/stage = 1
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_blobby/attacked_by(obj/item/I, mob/living/user)
@@ -151,7 +153,7 @@
 	ranged_cooldown = 10 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
-
+	sentience_type = SENTIENCE_BOSS
 	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/dryad,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/emeraldspider)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_dryad/OpenFire(atom/A)
@@ -184,6 +186,7 @@
 	move_to_delay = 10
 	pixel_x = -32
 	projectiletype = /obj/item/projectile/jungle/damage_orb
+	sentience_type = SENTIENCE_BOSS
 
 	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
 
@@ -239,7 +242,7 @@
 	melee_damage_upper = 25
 	pixel_x = -16
 	pixel_y = -16
-
+	sentience_type = SENTIENCE_BOSS
 	var/can_charge = TRUE
 	var/cooldown = 5 SECONDS
 	var/charge_ramp_up = 1 SECONDS
@@ -347,6 +350,7 @@
 	crusher_loot = /obj/item/crusher_trophy/jungleland/wasp_head
 	pixel_x = -16 
 	pixel_y = -16
+	sentience_type = SENTIENCE_BOSS
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin/concentrated

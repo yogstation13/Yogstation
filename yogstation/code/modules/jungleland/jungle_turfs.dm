@@ -28,6 +28,7 @@ Temperature: 126.85 °C (400 K)
 	power_light = FALSE
 	requires_power = TRUE
 	outdoors = TRUE
+	mining_speed = TRUE
 
 /area/jungleland/explored
 	name = "Explored Jungle"
