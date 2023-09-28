@@ -19,6 +19,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
+	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.2 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
