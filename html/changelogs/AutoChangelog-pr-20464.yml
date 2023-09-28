@@ -1,0 +1,4 @@
+author: " xPokee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a frog holoform for pAIs."
