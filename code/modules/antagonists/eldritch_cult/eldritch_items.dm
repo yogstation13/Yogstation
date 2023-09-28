@@ -272,6 +272,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Who knows why it's this good
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
+	slowdown = 0.15 //the reign of terror is over
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/equipped(mob/living/user, slot)
 	..()
