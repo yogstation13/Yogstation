@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(708 modules,
-    1905/8993 macros, 21.2%)</aside></h3>
+<aside>(710 modules,
+    1907/9005 macros, 21.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -268,6 +268,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/connect_loc.html" title="code&#x2F;datums&#x2F;elements&#x2F;connect_loc">connect_loc</a></li>
     <li><a href="code/datums/elements/content_barfer.html" title="code&#x2F;datums&#x2F;elements&#x2F;content_barfer">content_barfer</a></li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
+    <li><a href="code/datums/elements/frozen.html" title="code&#x2F;datums&#x2F;elements&#x2F;frozen">frozen</a></li>
     <li><a href="code/datums/elements/life_drain.html" title="code&#x2F;datums&#x2F;elements&#x2F;life_drain">life_drain</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
     <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
@@ -921,7 +922,10 @@ transformations and other events that cause new languages to become available.</
     <li class="has-children"><span title="code&#x2F;modules&#x2F;spells&#x2F;spell_types">spell_types</span><ul class="index-tree">
     <li><span class="no-substance">aoe_spell&#x2F;</span><a href="code/modules/spells/spell_types/aoe_spell/_aoe_spell.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;aoe_spell&#x2F;_aoe_spell">_aoe_spell</a></li>
     <li><span class="no-substance">charged&#x2F;</span><a href="code/modules/spells/spell_types/charged/_charged.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;charged&#x2F;_charged">_charged</a></li>
-    <li><span class="no-substance">cone&#x2F;</span><a href="code/modules/spells/spell_types/cone/_cone.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;cone&#x2F;_cone">_cone</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;cone">cone</span><ul class="index-tree">
+    <li><a href="code/modules/spells/spell_types/cone/_cone.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;cone&#x2F;_cone">_cone</a></li>
+    <li><a href="code/modules/spells/spell_types/cone/cone_of_cold.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;cone&#x2F;cone_of_cold">cone_of_cold</a></li>
+    </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;jaunt">jaunt</span><ul class="index-tree">
     <li><a href="code/modules/spells/spell_types/jaunt/_jaunt.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;jaunt&#x2F;_jaunt">_jaunt</a></li>
     <li><a href="code/modules/spells/spell_types/jaunt/bloodcrawl.html" title="code&#x2F;modules&#x2F;spells&#x2F;spell_types&#x2F;jaunt&#x2F;bloodcrawl">bloodcrawl</a></li>
@@ -1042,7 +1046,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(926 detailed/1735 documented/28335 total, 6.1%)</aside></h3>
+<aside>(933 detailed/1742 documented/28366 total, 6.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1215,6 +1219,7 @@ These spells function off of a cooldown-based system.<ul class="index-tree">
     <li><a href="datum/action/cooldown/spell/aoe/revenant/overload.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;aoe&#x2F;revenant&#x2F;overload">Overload Lights</a></li>
     </ul></li>
     <li><a href="datum/action/cooldown/spell/aoe/sacred_flame.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;aoe&#x2F;sacred_flame">Sacred Flame</a></li>
+    <li><a href="datum/action/cooldown/spell/aoe/void_pull.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;aoe&#x2F;void_pull">Void Pull</a></li>
     </ul></li>
     <li><a href="datum/action/cooldown/spell/apply_mutations.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;apply_mutations">apply_mutations</a> - A spell type that adds mutations to the caster temporarily.</li>
     <li><a href="datum/action/cooldown/spell/basic_heal.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;basic_heal">Lesser Heal</a></li>
@@ -1226,6 +1231,7 @@ These spells function off of a cooldown-based system.<ul class="index-tree">
     </ul></li>
     <li class="has-children"><a href="datum/action/cooldown/spell/cone.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;cone">cone</a><ul class="index-tree">
     <li class="has-children"><a href="datum/action/cooldown/spell/cone/staggered.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;cone&#x2F;staggered">staggered</a><ul class="index-tree">
+    <li><a href="datum/action/cooldown/spell/cone/staggered/cone_of_cold.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;cone&#x2F;staggered&#x2F;cone_of_cold">Cone of Cold</a></li>
     <li><a href="datum/action/cooldown/spell/cone/staggered/fire_breath.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;cone&#x2F;staggered&#x2F;fire_breath">Fire Breath</a></li>
     </ul></li>
     </ul></li>
@@ -1270,6 +1276,7 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><a href="datum/action/cooldown/spell/pointed/projectile/lightningbolt.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;projectile&#x2F;lightningbolt">Lightning Bolt</a></li>
     <li><a href="datum/action/cooldown/spell/pointed/projectile/spell_cards.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;projectile&#x2F;spell_cards">Spell Cards</a></li>
     </ul></li>
+    <li><a href="datum/action/cooldown/spell/pointed/void_phase.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;void_phase">Void Phase</a></li>
     </ul></li>
     <li><a href="datum/action/cooldown/spell/rod_form.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;rod_form">Rod Form</a></li>
     <li class="has-children"><a href="datum/action/cooldown/spell/shapeshift.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;shapeshift">shapeshift</a> - Shapeshift spells.<ul class="index-tree">
@@ -1709,6 +1716,7 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
 When the object moves, it will unhook the signal and rehook it to the new object.</li>
     <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
+    <li><a href="datum/element/frozen.html" title="&#x2F;datum&#x2F;element&#x2F;frozen">frozen</a> - simple element to handle frozen obj's</li>
     <li><a href="datum/element/life_draining.html" title="&#x2F;datum&#x2F;element&#x2F;life_draining">life_draining</a> - Slowly drains HP from a living mob.</li>
     <li><a href="datum/element/squish.html" title="&#x2F;datum&#x2F;element&#x2F;squish">squish</a> - squish.dm</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;update_icon_blocker">update_icon_blocker</span> - Prevents calling anything in update_icon() like update_icon_state() or update_overlays()</li>
@@ -2131,6 +2139,7 @@ Basically is the &quot;drunk but no side effects&quot; stage.</li>
     <li class="has-children"><a href="datum/status_effect/shapechange_mob.html" title="&#x2F;datum&#x2F;status_effect&#x2F;shapechange_mob">shapechange_mob</a><ul class="index-tree">
     <li><a href="datum/status_effect/shapechange_mob/from_spell.html" title="&#x2F;datum&#x2F;status_effect&#x2F;shapechange_mob&#x2F;from_spell">from_spell</a></li>
     </ul></li>
+    <li><a href="datum/status_effect/silenced.html" title="&#x2F;datum&#x2F;status_effect&#x2F;silenced">silenced</a></li>
     <li class="has-children"><a href="datum/status_effect/speech.html" title="&#x2F;datum&#x2F;status_effect&#x2F;speech">speech</a><ul class="index-tree">
     <li><a href="datum/status_effect/speech/slurring.html" title="&#x2F;datum&#x2F;status_effect&#x2F;speech&#x2F;slurring">slurring</a></li>
     <li class="has-children"><a href="datum/status_effect/speech/stutter.html" title="&#x2F;datum&#x2F;status_effect&#x2F;speech&#x2F;stutter">stutter</a><ul class="index-tree">
@@ -2140,6 +2149,7 @@ Basically is the &quot;drunk but no side effects&quot; stage.</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;status_effect&#x2F;stabilized">stabilized</span> - STABILIZED EXTRACTS<ul class="index-tree">
     <li><a href="datum/status_effect/stabilized/purple.html" title="&#x2F;datum&#x2F;status_effect&#x2F;stabilized&#x2F;purple">purple</a></li>
     </ul></li>
+    <li><a href="datum/status_effect/void_chill.html" title="&#x2F;datum&#x2F;status_effect&#x2F;void_chill">void_chill</a></li>
     <li><a href="datum/status_effect/wound.html" title="&#x2F;datum&#x2F;status_effect&#x2F;wound">wound</a></li>
     </ul></li>
     <li><a href="datum/summon_things_controller.html" title="&#x2F;datum&#x2F;summon_things_controller">summon_things_controller</a> - The &quot;Give everyone in the crew and also latejoins a buncha stuff&quot; controller.
@@ -2278,6 +2288,7 @@ and you will only test the check for invalid overlays in appearance building.<ul
     <li><span class="no-substance" title="&#x2F;datum&#x2F;viewData">viewData</span> - Container for client viewsize</li>
     <li><a href="datum/weakref.html" title="&#x2F;datum&#x2F;weakref">weakref</a> - A weakref holds a non-owning reference to a datum.
 The datum can be referenced again using <code>resolve()</code>.</li>
+    <li><span class="no-substance">weather&#x2F;</span><a href="datum/weather/void_storm.html" title="&#x2F;datum&#x2F;weather&#x2F;void_storm">void storm</a></li>
     <li class="has-children"><a href="datum/wires.html" title="&#x2F;datum&#x2F;wires">wires</a><ul class="index-tree">
     <li><a href="datum/wires/mecha_part_fabricator.html" title="&#x2F;datum&#x2F;wires&#x2F;mecha_part_fabricator">mecha_part_fabricator</a></li>
     </ul></li>
@@ -3416,7 +3427,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6e90a08201d041096b1932cfcf8871f623c241e1">6e90a08</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/a5d55c6747a4ada2c09dc674b1f12775b0fe76d3">a5d55c6</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
