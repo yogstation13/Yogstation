@@ -295,15 +295,6 @@
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
 	slowdown = 0.20
 
-/obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded/equipped(mob/living/user, slot)
-	..()
-	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
-		to_chat(user, span_cultlarge("\"You feel the weight of your sins pulling you down!\""))
-		user.dropItemToGround(src, TRUE)
-		user.adjust_confusion(30)
-		user.Paralyze(8 SECONDS)
-		user.adjustBruteLoss(15)
-
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"
 	desc = "Anathema to the close-minded. Ambrosia to those blessed by the Mansus."
