@@ -40,7 +40,7 @@
 		to_chat(user, span_notice("You pry the modifications out."))
 		I.play_tool_sound(src, 100)
 		for(var/obj/item/borg/upgrade/modkit/M in modkits)
-			M.forceMove(drop_location()) // Uninstallation handled in Exited(), or /mob/living/silicon/robot/remove_from_upgrades() for Cyborgs.
+			M.forceMove(drop_location()) // Uninstallation handled in Exited().
 	else
 		to_chat(user, span_notice("There are no modifications currently installed."))
 
@@ -103,9 +103,12 @@
 
 /obj/item/gun/energy/kinetic_accelerator/Exited(atom/movable/gone, direction)
 	..()
+	if(src.type == /obj/item/gun/energy/kinetic_accelerator/cyborg)
+		return // Cyborg should be handling their own thing: /mob/living/silicon/robot/remove_from_upgrades().
+
 	if(gone in get_modkits())
 		var/obj/item/borg/upgrade/modkit/MK = gone
-		MK.uninstall(MK)
+		MK.uninstall(src)
 
 /obj/item/gun/energy/kinetic_accelerator/proc/empty_if_not_held()
 	if(!ismob(loc))

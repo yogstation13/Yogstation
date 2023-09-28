@@ -194,6 +194,18 @@
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
+/obj/item/gun/magic/hook/sickly_blade/mind
+	name = "mind blade"
+	desc = "A monsterously sharp blade made from pure knowledge and paper. Endlessly it searches to quench it's thirst, often eviserating the user in the process."
+	icon_state = "mind_blade"
+	item_state = "mind_blade"
+
+/obj/item/gun/magic/hook/sickly_blade/void
+	name = "void blade"
+	desc = "A monsterously sharp blade made from pure ice. Sharp and acute it's unbreaking edges can rip and tear through bone and sinew with ease."
+	icon_state = "void_blade"
+	item_state = "void_blade"
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
@@ -203,6 +215,14 @@
 	resistance_flags = FIRE_PROOF
 	///What trait do we want to add upon equipiing
 	var/trait = TRAIT_THERMAL_VISION
+
+/obj/item/clothing/neck/eldritch_amulet/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(8 SECONDS)
+		user.adjustFireLoss(15)
 
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
 	..()
@@ -223,6 +243,13 @@
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
 
+/obj/item/clothing/neck/eldritch_amulet/piercing/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"The amulet burns at the touch, searing the skin off your hand!\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(8 SECONDS)
+		user.adjustFireLoss(15)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	name = "ominous hood"
@@ -246,9 +273,73 @@
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Who knows why it's this good
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
 
+/obj/item/clothing/suit/hooded/cultrobes/eldritch/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"You feel the weight of your sins pulling you down!\""))
+		user.dropItemToGround(src, TRUE)
+		user.adjust_confusion(30)
+		user.Paralyze(8 SECONDS)
+		user.adjustBruteLoss(15)
+
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"
 	desc = "Anathema to the close-minded. Ambrosia to those blessed by the Mansus."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldrich_flask"
 	list_reagents = list(/datum/reagent/eldritch = 50)
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye
+	name = "An ancient eye of a forgotten god"
+	desc = "Allows the user to swap between three hud types, science, medical, and diagnostic"
+	icon_state = "godeye"
+	item_state = "godeye"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	hud_type = DATA_HUD_SECURITY_BASIC
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"The eye stares back into your soul, branding you for your sin!\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(8 SECONDS)
+		user.blind_eyes(10 SECONDS)
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_EYES)
+		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+
+/obj/item/clothing/glasses/hud/toggle/eldritch_eye/attack_self(mob/user)
+	..()
+	switch (hud_type)
+		if (DATA_HUD_MEDICAL_BASIC)
+			icon_state = "godeye"
+		if (DATA_HUD_SECURITY_BASIC)
+			icon_state = "godeye"
+		if (DATA_HUD_DIAGNOSTIC_BASIC)
+			icon_state = "godeye"
+		else
+			icon_state = "godeye"
+	user.update_inv_glasses()
+	
+/obj/item/clothing/suit/cultrobes/void
+	name = "ominous cloak"
+	desc = "A ragged, dusty cloak. Strange eyes line the inside."
+	icon_state = "void_cloak"
+	item_state = "void_cloak"
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
+	armor = list(MELEE = -10, BULLET = -10, LASER = -10, ENERGY = 0, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
+	slowdown = -0.8
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/suit/cultrobes/void/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"You feel your bones begin to freeze to their very core!\""))
+		user.dropItemToGround(src, TRUE)
+		user.adjust_confusion(30)
+		user.Paralyze(8 SECONDS)
+		user.adjustFireLoss(10)
