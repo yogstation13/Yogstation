@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed firefighting foam creating stabilized plasma whether or not it actually scrubbed any plasma from the air"

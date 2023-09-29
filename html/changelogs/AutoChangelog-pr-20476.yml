@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "Fix unnable to give rnd console access to ID"
-  - spellcheck: "Changed the \"R&D Access\" desc on id mod to \"Toxins Access\" desc so it wont confuse people"
