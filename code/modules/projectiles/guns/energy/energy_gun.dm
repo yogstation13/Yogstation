@@ -122,6 +122,7 @@
 /obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
 	N.teletarget = teletarget
 	N.teleport_mode = teleport
+
 /obj/item/gun/energy/e_gun/dragnet/snare
 	name = "Energy Snare Launcher"
 	desc = "Fires an energy snare that slows the target down."
