@@ -31,6 +31,8 @@
 	return
 
 /obj/machinery/light_switch/LateInitialize()
+	if(!is_station_level(z))
+		return
 	var/area/source_area = get_area(get_turf(src))
 	if(source_area.lights_always_start_on)
 		return

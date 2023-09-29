@@ -312,15 +312,16 @@
 	update(0)
 
 // create a new lighting fixture
-/obj/machinery/light/Initialize(mapload = TRUE)
+/obj/machinery/light/Initialize(mapload)
 	. = ..()
 
-	maploaded = TRUE
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
 	if(!mapload) //sync up nightshift lighting for player made lights
 		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
+	else
+		maploaded = TRUE
 
 	if(start_with_cell && !no_emergency)
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
@@ -339,7 +340,7 @@
 				if(prob(5))
 					break_light_tube(1)
 		spawn(1)
-			update(0)
+			update(FALSE, TRUE, maploaded)
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -386,18 +387,20 @@
 	update()
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = TRUE)
+/obj/machinery/light/proc/update(trigger = TRUE, quiet = FALSE, instant = FALSE)
 	switch(status)
 		if(LIGHT_BROKEN,LIGHT_BURNED,LIGHT_EMPTY)
 			on = FALSE
 	emergency_mode = FALSE
 	if(on)
-		if(maploaded)
+		if(instant)
+			turn_on(trigger, quiet)
+		else if(maploaded)
 			turn_on(trigger, TRUE)
 			maploaded = FALSE
 		else if(!turning_on)
 			turning_on = TRUE
-			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
+			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, quiet), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = IDLE_POWER_USE
 		emergency_mode = TRUE
@@ -492,7 +495,7 @@
 // will not switch on if broken/burned/empty
 /obj/machinery/light/proc/seton(s)
 	on = (s && status == LIGHT_OK && !forced_off)
-	update()
+	update(FALSE)
 
 /obj/machinery/light/get_cell()
 	return cell
