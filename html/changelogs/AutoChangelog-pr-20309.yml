@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Added 7 new round start lawsets"
+  - tweak: "Modified some existing lawsets to reference things other than specifically humans"
