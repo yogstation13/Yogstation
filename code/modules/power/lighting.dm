@@ -424,14 +424,18 @@
 	turning_on = FALSE
 	if(!on)
 		return FALSE
+
 	var/BR = brightness
 	var/PO = bulb_power
 	var/CO = bulb_colour
 	if(color)
 		CO = color
 	var/area/A = get_area(src)
-	if (A?.fire)
+	if (A && A.fire)
 		CO = bulb_emergency_colour
+	else if (A && A.vacuum)
+		CO = bulb_vacuum_colour
+		BR = bulb_vacuum_brightness
 	else if (nightshift_enabled)
 		BR = nightshift_brightness
 		PO = nightshift_light_power
@@ -442,7 +446,7 @@
 		switchcount++
 		if(rigged)
 			if(status == LIGHT_OK && trigger)
-				plasma_ignition(4)
+				explode()
 		else if( prob( min(60, (switchcount^2)*0.01) ) )
 			if(trigger)
 				burn_out()
