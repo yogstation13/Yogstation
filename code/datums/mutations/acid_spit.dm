@@ -1,7 +1,7 @@
 /datum/mutation/human/acidspit // polysmorph inert mutation
 	name = "Acid Spit"
 	desc = "An ancient mutation from xenomorphs that changes the salivary glands to produce acid"
-	instability = 70
+	instability = 50
 	difficulty = 12
 	locked = TRUE
 	text_gain_indication = span_notice("Your saliva burns your mouth!")
@@ -27,6 +27,18 @@
 	deactive_msg = "You relax."
 	projectile_type = /obj/item/projectile/bullet/acid
 
+/datum/action/cooldown/spell/pointed/projectile/acid_spit/before_cast(atom/cast_on)
+	. = ..()
+	if(!iscarbon(owner))
+		return
+
+	var/mob/living/carbon/spitter = owner
+	if(!spitter.is_mouth_covered())
+		return
+
+	spitter.wear_mask.acid_act(18, 15) //acids the mask
+	to_chat(spitter, span_warning("Something infront of your mouth blocks some of the spit!"))
+
 /obj/item/projectile/bullet/acid
 	name = "acid spit"
 	icon_state = "neurotoxin"
@@ -40,7 +52,7 @@ obj/item/projectile/bullet/acid/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target)) // shouldn't work on xenos
 		nodamage = TRUE
 	else if(!isopenturf(target))
-		target.acid_act(50, 25) // does good damage to objects and structures
+		target.acid_act(50, 15) // does good damage to objects and structures
 	else if(iscarbon(target))
-		target.acid_act(18, 25) // balanced
+		target.acid_act(18, 15) // balanced
 	return ..()
