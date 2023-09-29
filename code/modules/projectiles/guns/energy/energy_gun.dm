@@ -118,12 +118,10 @@
 	. = ..()
 	teleport_mode = !teleport_mode
 	to_chat(user, span_notice("You turn [teleport_mode? "on":"off"] the teleport mode."))
-	modify_projectile()
 
 /obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
 	N.teletarget = teletarget
-	N.teleport_mode = teleport_mode
-
+	N.teleport_mode = teleport
 /obj/item/gun/energy/e_gun/dragnet/snare
 	name = "Energy Snare Launcher"
 	desc = "Fires an energy snare that slows the target down."
