@@ -36,7 +36,7 @@
 	if(!spitter.is_mouth_covered())
 		return
 
-	spitter.wear_mask.acid_act(18, 15) //acids the mask
+	spitter.wear_mask.acid_act(300, 600) //guarantees whatever is blocking it to get destroyed. probably.
 	to_chat(spitter, span_warning("Something infront of your mouth blocks some of the spit!"))
 
 /obj/item/projectile/bullet/acid
