@@ -203,8 +203,8 @@
 	dir = 2;
 	dwidth = 11;
 	height = 22;
-	id = "whiteship_lavaland";
-	name = "lavaland wastes";
+	id = "whiteship_mining";
+	name = "jungleland pits";
 	width = 35
 	},
 /turf/open/indestructible/grass/sand,
@@ -16355,11 +16355,11 @@ ZX
 ZX
 ZX
 QK
-QK
-QK
-QK
-QK
 eR
+QK
+QK
+QK
+QK
 QK
 QK
 QK
