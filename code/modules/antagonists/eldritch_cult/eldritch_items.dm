@@ -338,7 +338,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
 	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
-	slowdown = -0.4
 	resistance_flags = FIRE_PROOF
 	
 	/// The mob currently wearing this
