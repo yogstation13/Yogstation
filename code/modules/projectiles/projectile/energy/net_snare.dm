@@ -1,11 +1,15 @@
 /obj/item/projectile/energy/net
 	name = "energy netting"
 	icon_state = "e_netting"
-	damage = 10
+	damage = 40
 	damage_type = STAMINA
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
 	var/obj/item/beacon/teletarget = null
+	var/teleport_mode = FALSE
+
+/obj/item/projectile/energy/net/scatter
+	damage = 10
 
 /obj/item/projectile/energy/net/Initialize(mapload)
 	. = ..()
@@ -14,7 +18,7 @@
 /obj/item/projectile/energy/net/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/turf/Tloc = get_turf(target)
-		if(!locate(/obj/effect/nettingportal) in Tloc)
+		if(!locate(/obj/effect/nettingportal) in Tloc && teleport_mode)
 			new /obj/effect/nettingportal(Tloc, destination = teletarget)
 	..()
 

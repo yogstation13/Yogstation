@@ -70,11 +70,12 @@
 	item_state = "dragnet"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	ammo_type = list(/obj/item/ammo_casing/energy/net, /obj/item/ammo_casing/energy/trap)
+	ammo_type = list(/obj/item/ammo_casing/energy/net, /obj/item/ammo_casing/energy/net/scatter, /obj/item/ammo_casing/energy/trap)
 	can_flashlight = FALSE
 	ammo_x_offset = 1
 	weapon_weight = WEAPON_MEDIUM
 	var/obj/item/beacon/teletarget = null
+	var/teleport_mode = FALSE
 
 /obj/item/gun/energy/e_gun/dragnet/AltClick(mob/living/user) //stolen from hand teleporter code
 	var/turf/current_location = get_turf(user)//What turf is the user on?
@@ -113,8 +114,14 @@
 		teletarget = T
 		user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
 
+/obj/item/gun/energy/e_gun/dragnet/CtrlClick(mob/user)
+	. = ..()
+	teleport_mode = !teleport_mode
+	to_chat(user, span_notice("You turn [teleport_mode? "on":"off"] the teleport mode."))
+
 /obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
 	N.teletarget = teletarget
+	N.teleport_mode = teleport_mode
 
 /obj/item/gun/energy/e_gun/dragnet/snare
 	name = "Energy Snare Launcher"
