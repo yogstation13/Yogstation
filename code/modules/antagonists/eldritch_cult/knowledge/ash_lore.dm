@@ -109,6 +109,14 @@
 	desc = "Curse someone with two minutes of complete blindness by transmuting a pair of eyes, a screwdriver, and a pool of blood with an object that the victim has touched with their bare hands."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/blindness)
+	tier = TIER_1
+
+/datum/eldritch_knowledge/madness_mask
+	name = "Mask of Madness"
+	gain_text = "Those cursed to walk this forsaken ash covered desert don this masks to protect them from the heat, and to scare away unwanted visitors"
+	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer. Can be forced on a non believer to make him unable to take it off."
+	cost = 1
+	unlocked_transmutations = list(/obj/item/clothing/mask/madness_mask)
 	route = PATH_ASH
 	tier = TIER_2
 

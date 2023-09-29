@@ -39,7 +39,8 @@
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
 		/datum/eldritch_knowledge/eldritch_eye,
 		/datum/eldritch_knowledge/spell/void_phase,
-		/datum/eldritch_knowledge/void_cloak),
+		/datum/eldritch_knowledge/void_cloak,
+		/datum/eldritch_knowledge/blindness),
 	TIER_MARK = list(
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
@@ -47,7 +48,7 @@
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark),
 	TIER_2 = list(
-		/datum/eldritch_knowledge/blindness,
+		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/corrosion,
 		/datum/eldritch_knowledge/paralysis,
 		/datum/eldritch_knowledge/raw_prophet,
