@@ -37,6 +37,16 @@
 		/obj/item/paper/secretrecipe = 1
 	)
 
+	lightup_areas = list(
+		/area/medical/surgery,
+		/area/medical/virology,
+		/area/medical/genetics
+	)
+	minimal_lightup_areas = list(
+		/area/medical/morgue,
+		/area/medical/chemistry
+	)
+
 	smells_like = "chemicals"
 
 /datum/outfit/job/chemist

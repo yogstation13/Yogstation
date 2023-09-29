@@ -53,6 +53,12 @@
 
 	smells_like = "bureaucracy"
 
+	minimal_lightup_areas = list(/area/crew_quarters/heads/hop, /area/security/nuke_storage)
+
+// Special handling to avoid lighting up the entirety of supply whenever there's a HoP.
+/datum/job/head_of_personnel/areas_to_light_up(minimal_access = TRUE)
+	return minimal_lightup_areas | GLOB.command_lightup_areas
+
 //only pet worth reviving
 /datum/job/hop/get_mail_goodies(mob/recipient)
 	. = ..()

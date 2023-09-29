@@ -34,6 +34,8 @@
 		/obj/item/mop/advanced = 5
 	)
 
+	minimal_lightup_areas = list(/area/janitor)
+
 	smells_like = "bleach"
 
 /datum/outfit/job/janitor

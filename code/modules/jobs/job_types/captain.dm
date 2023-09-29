@@ -41,6 +41,12 @@
 		/obj/item/skub = 1,
 		/obj/item/greentext = 1
 	)
+	
+	minimal_lightup_areas = list(
+		/area/crew_quarters/heads/captain,
+		/area/crew_quarters/heads/hop,
+		/area/security
+	)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role

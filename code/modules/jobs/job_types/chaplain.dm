@@ -35,6 +35,12 @@
 		/obj/item/toy/plush/plushvar = 1,
 		/obj/item/grenade/chem_grenade/holy = 1 //holy hand grenade
 	)
+	
+	minimal_lightup_areas = list(
+		/area/chapel,
+		/area/medical/morgue,
+		/area/crew_quarters/theatre
+	)
 
 	smells_like = "zealous fervor"
 

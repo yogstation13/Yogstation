@@ -445,7 +445,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Cafeteria"
 	icon_state = "cafeteria"
 	minimap_color = "#5ac866"
-	lights_always_start_on = FALSE
 
 /area/crew_quarters/kitchen
 	name = "Kitchen"
@@ -467,7 +466,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	mood_message = span_nicegreen("I love being in the bar!\n")
 	airlock_wires = /datum/wires/airlock/service
 	sound_environment = SOUND_AREA_WOODFLOOR
-	lights_always_start_on = FALSE
 
 /area/crew_quarters/bar/Initialize(mapload)
 	. = ..()
@@ -499,6 +497,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/theatre/abandoned
 	name = "Abandoned Theatre"
 	icon_state = "Theatre"
+	lights_always_start_on = FALSE
 
 /area/library
 	name = "Library"
