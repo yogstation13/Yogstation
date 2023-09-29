@@ -756,7 +756,7 @@
 	new /obj/item/clothing/suit/det_suit/tan(src)
 	new /obj/item/clothing/head/fedora/det_hat/grey(src)
 	new /obj/item/clothing/shoes/laceup(src)
-	new /obj/item/clothing/under/yogs/forensictech(src)
+	new /obj/item/clothing/under/rank/det/forensictech(src)
 	new /obj/item/clothing/under/rank/det/bluedetective(src)
 	new /obj/item/clothing/under/rank/det/golddetective(src)
 	new /obj/item/clothing/under/rank/det/greydetective(src)
