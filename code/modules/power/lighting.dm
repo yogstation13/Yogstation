@@ -307,8 +307,19 @@
 	. = ..()
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
+
+	//Setup area colours -pb
+	var/area/A = get_area(src)
+	if(bulb_colour == initial(bulb_colour))
+		if(istype(src, /obj/machinery/light/small))
+			bulb_colour = A.lighting_colour_bulb
+		else
+			bulb_colour = A.lighting_colour_tube
+
+	if(nightshift_light_color == initial(nightshift_light_color))
+		nightshift_light_color = A.lighting_colour_night
+
 	if(!mapload) //sync up nightshift lighting for player made lights
-		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
 
@@ -351,13 +362,15 @@
 			if(emergency_mode || (A && A.fire))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
-				icon_state = "[base_state]_vacuum"
+				icon_state = "[base_state]_nightshift"
+			else if (nightshift_enabled)
+				icon_state = "[base_state]_nightshift"
 			else
 				icon_state = "[base_state]"
-				if(on && !forced_off)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
-					glowybit.alpha = clamp(light_power*250, 30, 200)
-					add_overlay(glowybit)
+			if(on && !forced_off)
+				var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
+				glowybit.alpha = clamp(light_power*250, 30, 200)
+				add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -369,7 +382,11 @@
 /obj/machinery/light/proc/clean_light(O,strength)
 	if(strength < CLEAN_TYPE_BLOOD)
 		return
-	bulb_colour = initial(bulb_colour)
+	var/area/A = get_area(src)
+	if(istype(src, /obj/machinery/light/small))
+		bulb_colour = A.lighting_colour_bulb
+	else
+		bulb_colour = A.lighting_colour_tube
 	update()
 
 // update the icon_state and luminosity of the light depending on its state
