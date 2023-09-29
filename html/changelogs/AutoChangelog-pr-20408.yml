@@ -1,0 +1,6 @@
+author: " warface1234455(code and seed sprite), baiomu (3d lime sprite)"
+delete-after: true 
+changes: 
+  - rscadd: "new plant 3d lime"
+  - tweak: "lime can now be mutated to 3d lime"
+  - tweak: "new 3d lime seed"
