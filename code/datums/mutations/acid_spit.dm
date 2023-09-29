@@ -27,17 +27,14 @@
 	deactive_msg = "You relax."
 	projectile_type = /obj/item/projectile/bullet/acid
 
-/datum/action/cooldown/spell/pointed/projectile/acid_spit/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/projectile/acid_spit/can_cast_spell(feedback)
 	. = ..()
-	if(!iscarbon(owner))
-		return
-
 	var/mob/living/carbon/spitter = owner
 	if(!spitter.is_mouth_covered())
 		return
-
-	spitter.wear_mask.acid_act(300, 600) //guarantees whatever is blocking it to get destroyed. probably.
-	to_chat(spitter, span_warning("Something infront of your mouth blocks some of the spit!"))
+	else
+		to_chat(spitter, span_notice("Something is covering your mouth!"))
+		return FALSE
 
 /obj/item/projectile/bullet/acid
 	name = "acid spit"
