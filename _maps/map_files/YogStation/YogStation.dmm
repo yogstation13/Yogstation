@@ -8414,6 +8414,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
+"bjR" = (
+/obj/machinery/camera{
+	c_tag = "Detective's Office";
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = 26;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "bjS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -71090,17 +71101,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/central)
-"xJM" = (
-/obj/machinery/camera{
-	c_tag = "Detective's Office";
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = 26;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "xJP" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
@@ -97304,7 +97304,7 @@ mEu
 ndL
 mSG
 hHQ
-xJM
+bjR
 mmG
 apd
 flr
