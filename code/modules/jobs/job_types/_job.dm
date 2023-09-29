@@ -240,21 +240,21 @@
 	if(!minimal_access)
 		. |= lightup_areas
 	for(var/department in departments_list)
-		if(istype(department, /datum/job_department))
-			var/datum/job_department/place = department
-			switch(place.department_bitflags)
-				if(DEPARTMENT_BITFLAG_COMMAND)
-					. |= GLOB.command_lightup_areas
-				if(DEPARTMENT_BITFLAG_ENGINEERING)
-					. |= GLOB.engineering_lightup_areas
-				if(DEPARTMENT_BITFLAG_MEDICAL)
-					. |= GLOB.medical_lightup_areas
-				if(DEPARTMENT_BITFLAG_SCIENCE)
-					. |= GLOB.science_lightup_areas
-				if(DEPARTMENT_BITFLAG_CARGO)
-					. |= GLOB.supply_lightup_areas
-				if(DEPARTMENT_BITFLAG_SECURITY)
-					. |= GLOB.security_lightup_areas
+		var/datum/job_department/place = new department()
+		if(istype(place))
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_COMMAND)
+				. |= GLOB.command_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
+				. |= GLOB.engineering_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
+				. |= GLOB.medical_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_SCIENCE)
+				. |= GLOB.science_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_CARGO)
+				. |= GLOB.supply_lightup_areas
+			if(place.department_bitflags & DEPARTMENT_BITFLAG_SECURITY)
+				. |= GLOB.security_lightup_areas
+		qdel(place)
 
 /datum/job/proc/available_in_days(client/C)
 	if(!C)
