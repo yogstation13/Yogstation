@@ -93,50 +93,20 @@
 /turf/open/floor/plasteel/airless/dark
 	icon_state = "darkfull"
 
-/turf/open/floor/plasteel/dark/side
-	icon_state = "dark"
-
-/turf/open/floor/plasteel/dark/corner
-	icon_state = "darkcorner"
-
 /turf/open/floor/plasteel/dark/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-
-/turf/open/floor/plasteel/checker
-	icon_state = "checker"
 
 /turf/open/floor/plasteel/white
 	icon_state = "white"
 
-/turf/open/floor/plasteel/whitegrad
-	icon_state = "whitegreygrad"
-
-/turf/open/floor/plasteel/white/side
-	icon_state = "whitehall"
-
-/turf/open/floor/plasteel/white/corner
-	icon_state = "whitecorner"
-
 /turf/open/floor/plasteel/airless/white
 	icon_state = "white"
-
-/turf/open/floor/plasteel/airless/white/side
-	icon_state = "whitehall"
-
-/turf/open/floor/plasteel/airless/white/corner
-	icon_state = "whitecorner"
 
 /turf/open/floor/plasteel/white/telecomms
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/plasteel/white/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-
-/turf/open/floor/plasteel/yellowsiding
-	icon_state = "yellowsiding"
-
-/turf/open/floor/plasteel/yellowsiding/corner
-	icon_state = "yellowcornersiding"
 
 /turf/open/floor/plasteel/recharge_floor
 	icon_state = "recharge_floor"
