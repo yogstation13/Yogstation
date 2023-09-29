@@ -60,6 +60,9 @@
 		Additionally causes damage to heathens around your original and target destination."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/spell/mental_obfuscation, 
+		/datum/eldritch_knowledge/spell/ashen_shift)
 	route = PATH_VOID
 	tier = TIER_1
 
