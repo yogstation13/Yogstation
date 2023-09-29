@@ -65,6 +65,10 @@
 	desc = "A very short range jaunt that can help you escape from bad situations or navigate past obstacles."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/spell/mental_obfuscation,
+		/datum/eldritch_knowledge/spell/void_phase
+	)
 	route = PATH_ASH
 	tier = TIER_1
 

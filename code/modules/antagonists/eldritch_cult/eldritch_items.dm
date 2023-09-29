@@ -270,7 +270,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Who knows why it's this good
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Consider yourself reduced, bitch
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/equipped(mob/living/user, slot)
@@ -281,6 +281,12 @@
 		user.adjust_confusion(30)
 		user.Paralyze(8 SECONDS)
 		user.adjustBruteLoss(15)
+
+/obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded
+	name = "garnished ominous armor"
+	desc = "An evolved robe, surging with eldritch power. Strange eyes line the inside."
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //now it has a reason to be strong
+	slowdown = 0.20
 
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"
