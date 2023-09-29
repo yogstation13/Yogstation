@@ -453,13 +453,13 @@ LAW_WEIGHT paladin5,0
 ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
-LAW_WEIGHT ceo,3
+LAW_WEIGHT ceo,2
 ION_LAW_WEIGHT ceo,1
 LAW_WEIGHT reporter,2
 ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,0
+LAW_WEIGHT hippocratic,2
 ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,1
 ION_LAW_WEIGHT maintain,2
@@ -469,7 +469,7 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
 ION_LAW_WEIGHT peacekeeper,1
-LAW_WEIGHT cowboy,0
+LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,3
 LAW_WEIGHT construction,0
 ION_LAW_WEIGHT construction,2
@@ -493,6 +493,16 @@ LAW_WEIGHT detective,0
 ION_LAW_WEIGHT detective,2
 LAW_WEIGHT hulkamania,0
 ION_LAW_WEIGHT hulkamania,1
+LAW_WEIGHT partybot,2
+ION_LAW_WEIGHT partybot,3
+LAW_WEIGHT friendbot,2
+ION_LAW_WEIGHT friendbot,3
+LAW_WEIGHT fitnesscoach,2
+ION_LAW_WEIGHT fitnesscoach,3
+LAW_WEIGHT educator,2
+ION_LAW_WEIGHT educator,3
+LAW_WEIGHT mediator,2
+ION_LAW_WEIGHT mediator,3
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT commie,0
