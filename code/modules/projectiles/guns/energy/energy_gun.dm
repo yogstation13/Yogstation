@@ -65,7 +65,7 @@
 
 /obj/item/gun/energy/e_gun/dragnet
 	name = "\improper DRAGnet"
-	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology. Alt+click it to set a destination for the netting mode if a teleporter is set up."
+	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology. Alt+click it to set a destination for the netting mode if a teleporter is set up. Ctrl+click to toggle on/off teleport mode "
 	icon_state = "dragnet"
 	item_state = "dragnet"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
