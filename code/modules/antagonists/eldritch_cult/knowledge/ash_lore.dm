@@ -114,7 +114,7 @@
 /datum/eldritch_knowledge/madness_mask
 	name = "T2 - Mask of Madness"
 	gain_text = "Those cursed to walk this forsaken ash covered desert don this masks to protect them from the heat, and to scare away unwanted visitors"
-	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer. Can be forced on a non believer to make him unable to take it off."
+	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/madness_mask)
 	route = PATH_ASH
