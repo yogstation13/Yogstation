@@ -18,7 +18,7 @@
 /obj/item/projectile/energy/net/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/turf/Tloc = get_turf(target)
-		if(!locate(/obj/effect/nettingportal) in Tloc && teleport_mode)
+		if((!locate(/obj/effect/nettingportal) in Tloc) && teleport_mode)
 			new /obj/effect/nettingportal(Tloc, destination = teletarget)
 	..()
 
