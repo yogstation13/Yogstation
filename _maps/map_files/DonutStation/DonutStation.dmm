@@ -22131,17 +22131,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"kad" = (
-/obj/machinery/camera{
-	c_tag = "Psychiatrist Office";
-	dir = 4;
-	network = list("ss13")
-	},
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "kae" = (
 /obj/machinery/camera{
 	c_tag = "AI Chamber - Port";
@@ -28239,6 +28228,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"mTO" = (
+/obj/machinery/camera{
+	c_tag = "Psychiatrist Office";
+	dir = 4;
+	network = list("ss13")
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "mTT" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
@@ -77315,7 +77316,7 @@ whA
 whA
 wth
 gLB
-kad
+mTO
 gHs
 plB
 xQL
