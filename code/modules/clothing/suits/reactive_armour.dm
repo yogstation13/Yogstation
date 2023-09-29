@@ -61,6 +61,8 @@
 		icon_state = "reactiveoff"
 		item_state = "reactiveoff"
 	add_fingerprint(user)
+	for(var/datum/action/A in actions)
+		A.build_all_button_icons()
 	return
 
 /obj/item/clothing/suit/armor/reactive/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, damage, attack_type)
@@ -354,16 +356,9 @@
 	cooldown_message = "<span class='warning'>The connection is currently out of sync... Recalibrating.</span>"
 	emp_message = "<span class='warning'>You feel the radiation wave within you.</span>"
 	var/effect_range = 3
-
-/obj/item/clothing/suit/armor/reactive/radiation/dropped(mob/user)
-	..()
-	if(istype(user))
-		REMOVE_TRAIT(user, TRAIT_RADIMMUNE, "reactive_radiation_armor")
-
-/obj/item/clothing/suit/armor/reactive/radiation/equipped(mob/user, slot)
-	..()
-	if(slot_flags & slot) //Was equipped to a valid slot for this item?
-		ADD_TRAIT(user, TRAIT_RADIMMUNE, "reactive_radiation_armor")
+	clothing_traits = list(TRAIT_RADIMMUNE)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 100, FIRE = 100, ACID = 100)
+	flags_1 = RAD_PROTECT_CONTENTS_1
 
 /obj/item/clothing/suit/armor/reactive/radiation/cooldown_activation(mob/living/carbon/human/owner)
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread

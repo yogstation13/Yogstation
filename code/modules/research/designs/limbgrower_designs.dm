@@ -203,7 +203,7 @@
 	id = "etherealstomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 10, /datum/reagent/consumable/liquidelectricity = 20)
-	build_path = /obj/item/organ/stomach/ethereal
+	build_path = /obj/item/organ/stomach/cell/ethereal
 	category = list("ethereal")
 
 /datum/design/polysmorph_tail

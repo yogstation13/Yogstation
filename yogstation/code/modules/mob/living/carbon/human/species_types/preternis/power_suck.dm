@@ -16,12 +16,17 @@
 
 	draining = TRUE
 
-	var/siemens_coefficient = H.dna.species.siemens_coeff //makes power drain speed scale with preternis stats
+	var/siemens_coefficient = 1
 
 	if(H.reagents.has_reagent("teslium"))
 		siemens_coefficient *= 1.5
 
-	if (charge >= PRETERNIS_LEVEL_FULL - 25) //just to prevent spam a bit
+	if(!istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+		to_chat(H, span_info("CONSUME protocol failed - missing internal power supply."))
+		draining = FALSE
+		return
+
+	if(H.nutrition >= NUTRITION_LEVEL_FAT - 25) //just to prevent spam a bit
 		to_chat(H, span_notice("CONSUME protocol reports no need for additional power at this time."))
 		draining = FALSE
 		return
@@ -48,20 +53,15 @@
 	to_chat(H, span_info("Extracutaneous implants detect viable power source. Initiating CONSUME protocol."))
 
 	var/done = FALSE
-	var/drain = 150 * siemens_coefficient
-
+	var/baseDrain = 150 * siemens_coefficient
 	var/cycle = 0
+
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.attach(A)
 	spark_system.set_up(5, 0, A)
 
 	while(!done)
 		cycle++
-		var/nutritionIncrease = drain * ELECTRICITY_TO_NUTRIMENT_FACTOR
-
-		if(charge + nutritionIncrease > PRETERNIS_LEVEL_FULL)
-			nutritionIncrease = clamp(PRETERNIS_LEVEL_FULL - charge, PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
-			drain = nutritionIncrease/ELECTRICITY_TO_NUTRIMENT_FACTOR
 
 		if (do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 0.4 SECONDS : 0.5 SECONDS, A))
 			var/can_drain = A.can_consume_power_from()
@@ -69,22 +69,33 @@
 				if(istext(can_drain))
 					to_chat(H, can_drain)
 				done = TRUE
+
 			else
 				playsound(A.loc, "sparks", 50, 1)
 				if(prob(75))
 					spark_system.start()
-				var/drained = A.consume_power_from(drain)
-				if(drained < drain)
+          
+				var/drained = A.consume_power_from(baseDrain)
+				if(drained < baseDrain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
-				charge = clamp(charge + (drained * ELECTRICITY_TO_NUTRIMENT_FACTOR),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+
+				H.adjust_bodytemperature(drained * (1 - ELECTRICITY_TO_NUTRIMENT_FACTOR) /2) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
+				drained *= ELECTRICITY_TO_NUTRIMENT_FACTOR //loss of efficiency
+
+				if(H.nutrition + drained > NUTRITION_LEVEL_FAT)
+					drained = clamp(NUTRITION_LEVEL_FAT - H.nutrition, 0, NUTRITION_LEVEL_FAT)
+				
+				if(!H.adjust_nutrition(drained))
+					to_chat(H, span_info("CONSUME protocol failed - unable to recharge internal power supply."))
+					return
 
 				if(!done)
-					if(charge > (PRETERNIS_LEVEL_FULL - 25))
+					if(H.nutrition >= NUTRITION_LEVEL_FAT)
 						to_chat(H, span_info("CONSUME protocol complete. Physical nourishment refreshed."))
 						done = TRUE
 					else if(!(cycle % 4))
-						var/nutperc = round((charge / PRETERNIS_LEVEL_FULL) * 100)
+						var/nutperc = round((H.nutrition / NUTRITION_LEVEL_FAT) * 100)
 						to_chat(H, span_info("CONSUME protocol continues. Current satiety level: [nutperc]%."))
 		else
 			done = TRUE
@@ -99,6 +110,16 @@
 	return FALSE //return the amount that was drained.
 
 #define MIN_DRAINABLE_POWER 10
+
+//IPC lol, lmao
+/mob/living/carbon/human/can_consume_power_from()
+	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
+
+/mob/living/carbon/human/consume_power_from(amount)
+	if((nutrition - amount) < NUTRITION_LEVEL_STARVING)
+		amount = max(nutrition - NUTRITION_LEVEL_STARVING, 0)
+	adjust_nutrition(-amount)
+	return amount
 
 //CELL//
 /obj/item/stock_parts/cell/can_consume_power_from()

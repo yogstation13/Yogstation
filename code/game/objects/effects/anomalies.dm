@@ -456,7 +456,7 @@
 	if(istype(our_turf))
 		hallucination_pulse(our_turf, 10)
 
-/proc/hallucination_pulse(turf/location, range, strength = 50)
+/proc/hallucination_pulse(turf/location, range, strength = 50) //hallucination pulse is stronger than normal normal hallucination wave
 	for(var/mob/living/carbon/human/near in view(location, range))
 		// If they are immune to hallucinations
 		if (HAS_TRAIT(near, TRAIT_MESONS) || (near.mind && HAS_TRAIT(near.mind, TRAIT_MESONS)))
@@ -469,6 +469,10 @@
 		// Everyone else
 		var/dist = sqrt(1 / max(1, get_dist(near, location)))
 		near.adjust_hallucinations(max(150, strength * dist))
+		near.adjust_jitter(10 SECONDS)
+		near.adjust_confusion(10 SECONDS)
+		near.adjust_dizzy(10 SECONDS)
+		near.adjust_disgust(max(150, strength * dist))
 		var/list/messages = list(
 			"You feel your conscious mind fall apart!",
 			"Reality warps around you!",

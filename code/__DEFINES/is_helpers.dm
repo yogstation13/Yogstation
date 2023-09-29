@@ -15,6 +15,8 @@
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
+#define isinternalorgan(A) (istype(A, /obj/item/organ/internal))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
