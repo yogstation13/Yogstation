@@ -458,7 +458,6 @@
 	. = ..()
 	if(IS_HERETIC_OR_MONSTER(user))
 		. += span_notice("Actively drains the sanity and stamina of nearby non-heretics when worn.")
-		. += span_notice("If forced onto the face of a non-heretic, they will be unable to remove it willingly.")
 	else
 		. += span_danger("The eyes fill you with dread... You best avoid it.")
 
@@ -475,21 +474,9 @@
 	if(IS_HERETIC_OR_MONSTER(user))
 		return
 
-	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-	to_chat(user, span_userdanger("[src] clamps tightly to your face as you feel your soul draining away!"))
-
-/obj/item/clothing/mask/madness_mask/dropped(mob/M)
-	local_user = null
-	STOP_PROCESSING(SSobj, src)
-	REMOVE_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-	return ..()
-
 /obj/item/clothing/mask/madness_mask/process(seconds_per_tick)
 	if(!local_user)
 		return PROCESS_KILL
-
-	if(IS_HERETIC_OR_MONSTER(local_user) && HAS_TRAIT(src, TRAIT_NODROP))
-		REMOVE_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 	for(var/mob/living/carbon/human/human_in_range in view(local_user))
 		if(IS_HERETIC_OR_MONSTER(human_in_range) || is_blind(human_in_range))
