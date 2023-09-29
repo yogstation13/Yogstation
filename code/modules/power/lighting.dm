@@ -454,7 +454,7 @@
 			use_power = ACTIVE_POWER_USE
 			set_light(BR, PO, CO)
 			if(!quiet)
-				playsound(src.loc, 'sound/effects/light_on.ogg', 65)
+				playsound(src.loc, 'sound/effects/light_on.ogg', 50)
 	update_icon()
 	return TRUE
 
