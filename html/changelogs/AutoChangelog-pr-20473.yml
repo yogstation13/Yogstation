@@ -1,0 +1,6 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - tweak: "Adjusts void path spells"
+  - tweak: "Adjusts ominous armor values"
+  - tweak: "Adjusts amount of targets you can choose"
