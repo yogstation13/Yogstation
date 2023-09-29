@@ -1,0 +1,4 @@
+author: "Kell-E"
+delete-after: true 
+changes: 
+  - tweak: "Hallucinations from RDS will now last significantly longer."
