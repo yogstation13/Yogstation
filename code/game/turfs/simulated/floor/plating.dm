@@ -19,7 +19,7 @@
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1\
-	)d
+	)
 
 	var/attachment_holes = TRUE
 
