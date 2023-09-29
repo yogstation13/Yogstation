@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS_DEPARTMENTAL, list(
 	"Engineering" = list("Engineering", "Atmospherics", "CE Office"),
 	"Cargo" = list("Disposals", "Cargo Bay", "QM Office"),
 	"Service" = list("Bar", "Kitchen", "Hydroponics", "Janitor Closet", "HoP Office"),
-	"Civillian" = list("Dormitories", "Theatre", "Chapel", "Law Office", "Library")
+	"Civilian" = list("Dormitories", "Theatre", "Chapel", "Law Office", "Library")
 ))
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
