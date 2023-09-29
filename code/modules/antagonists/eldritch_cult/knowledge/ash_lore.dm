@@ -60,7 +60,7 @@
 			grasp.build_all_button_icons()
 
 /datum/eldritch_knowledge/spell/ashen_shift
-	name = "Ashen Shift"
+	name = "T1 - Ashen Shift"
 	gain_text = "Essence is versatile, flexible. It is so easy for grains to blow into all sorts of small crevices."
 	desc = "A very short range jaunt that can help you escape from bad situations or navigate past obstacles."
 	cost = 1
@@ -73,7 +73,7 @@
 	tier = TIER_1
 
 /datum/eldritch_knowledge/ashen_eyes
-	name = "Eldritch Medallion"
+	name = "T1 - Eldritch Medallion"
 	gain_text = "The City Guard wore these amulets when Amgala was beset by the Sanguine Horde. So too shall you be able to see the blood that flows in others."
 	desc = "Allows you to craft an eldritch amulet by transmuting a pair of eyes with a glass shard. When worn, the amulet will give you thermal vision."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
@@ -81,7 +81,7 @@
 	tier = TIER_1
 
 /datum/eldritch_knowledge/ash_mark
-	name = "Touch of the Spark"
+	name = "Grasp Mark - Touch of the Spark"
 	gain_text = "All living things are linked through their sparks. This technique represents a fraction of the Shrouded One's communality."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your ashen blade to detonate the mark, which causes burning that can spread to nearby targets, decreasing in damage with each jump."
 	cost = 2
@@ -104,7 +104,7 @@
 		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
 
 /datum/eldritch_knowledge/blindness
-	name = "Curse of Blindness"
+	name = "T1 - Curse of Blindness"
 	gain_text = "The Betrayed eternally walks the Kilnplains with a pair of blood-stained needles. She is willing to come to our world, for a price."
 	desc = "Curse someone with two minutes of complete blindness by transmuting a pair of eyes, a screwdriver, and a pool of blood with an object that the victim has touched with their bare hands."
 	cost = 1
@@ -112,16 +112,16 @@
 	tier = TIER_1
 
 /datum/eldritch_knowledge/madness_mask
-	name = "Mask of Madness"
+	name = "T2 - Mask of Madness"
 	gain_text = "Those cursed to walk this forsaken ash covered desert don this masks to protect them from the heat, and to scare away unwanted visitors"
 	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer. Can be forced on a non believer to make him unable to take it off."
 	cost = 1
-	unlocked_transmutations = list(/obj/item/clothing/mask/madness_mask)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/madness_mask)
 	route = PATH_ASH
 	tier = TIER_2
 
 /datum/eldritch_knowledge/corrosion
-	name = "Curse of Corrosion"
+	name = "T2 - Curse of Corrosion"
 	gain_text = "The night before he was crowned, the Nightwatcher met with each of the City Guard. Through this ritual, only one lived to see the dawn."
 	desc = "Curse someone with two minutes of vomiting and major organ damage by transmuting a wirecutter, a spill of blood, a heart, a left arm, and a right arm with an item that the victim has touched with their bare hands."
 	cost = 1
@@ -129,7 +129,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/paralysis
-	name = "Curse of Paralysis"
+	name = "T2 - Curse of Paralysis"
 	gain_text = "An acolyte must provide intense envy of another's well-being, which is absorbed with the rite's materials by the Shrouded One to grant opportunity for power."
 	desc = "Curse someone with five minutes of an inability to walk by transmuting a knife, a pool of blood, a left leg, a right leg, and a hatchet with an item that the victim touched with their bare hands."
 	cost = 1
@@ -137,7 +137,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/ash_blade_upgrade
-	name = "Blade of the City Guard"
+	name = "Blade Upgrade - Blade of the City Guard"
 	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
 	desc = "Your ashen blade will now ignite targets."
 	cost = 2
@@ -153,7 +153,7 @@
 		C.ignite_mob()
 
 /datum/eldritch_knowledge/spell/flame_birth
-	name = "Flame Birth"
+	name = "T3 - Flame Birth"
 	gain_text = "The Nightwatcher was a man of principles, yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
 	desc = "A healing-damage spell that saps the life from those on fire nearby, killing any who are in a critical condition."
 	cost = 1
@@ -162,7 +162,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/spell/cleave
-	name = "Blood Cleave"
+	name = "T3 - Blood Cleave"
 	gain_text = "The Shrouded One connects all. This technique, a particular favorite of theirs, rips at the bodies of those who hunch too close to permit casuality."
 	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
 	cost = 1
@@ -170,7 +170,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/ash_final
-	name = "Amgala's Ruin"
+	name = "Ascension Rite - Amgala's Ruin"
 	gain_text = "Ash feeds the soil, and fire consumes the plants that grow thereafter. On and on and on. The Nightwatcher consumed the sparks of a whole city, yet you will rise with only three: the first step of many to claim his crown."
 	desc = "Transmute three corpses to ascend as an Ashbringer. You will become immune to environmental hazards and grow more resistant to damage. You will additionally gain a spell that creates a massive burst of fire and another spell that creates a cloak of flames around you."
 	cost = 3

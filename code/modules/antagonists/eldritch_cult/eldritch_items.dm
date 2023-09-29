@@ -337,9 +337,98 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
-	armor = list(MELEE = -10, BULLET = -10, LASER = -10, ENERGY = 0, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
-	slowdown = -0.8
+	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
+	slowdown = -0.4
 	resistance_flags = FIRE_PROOF
+	
+	/// The mob currently wearing this
+	var/mob/current_user
+	/// How much the user is cloaked as a percentage, which effects the wearer's transparency and dodge chance (dont edit this)
+	var/cloak = 0
+	/// What cloak is capped to
+	var/max_cloak = 75
+	/// How much the cloak charges per process
+	var/cloak_charge_rate = 20
+	/// How much the cloak decreases when moving
+	var/cloak_move_loss = 5
+	/// How much the cloak decreases on a successful dodge
+	var/cloak_dodge_loss = 40
+
+/obj/item/clothing/suit/cultrobes/void/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
+
+/obj/item/clothing/suit/cultrobes/void/equipped(mob/user, slot)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/suit/cultrobes/void/dropped(mob/user)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/suit/cultrobes/void/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	current_user = null
+	update_signals()
+
+/obj/item/clothing/suit/cultrobes/void/Destroy()
+	set_cloak(0)
+	. = ..()
+
+/obj/item/clothing/suit/cultrobes/void/proc/update_signals(user)
+	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		return TRUE
+
+	set_cloak(0)
+	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+	if(user)
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+
+	var/mob/new_user = loc
+	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		current_user = new_user
+		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/clothing/suit/cultrobes/void/proc/set_cloak(ammount)
+	cloak = clamp(ammount, 0, max_cloak)
+	var/mob/user = loc
+	if(istype(user))
+		animate(user, alpha = round(clamp(255 * (1 - (cloak * 0.01)), 0, 255)), time = 0.5 SECONDS)
+
+/obj/item/clothing/suit/cultrobes/void/process(delta_time)
+	if(!update_signals())
+		return
+	var/mob/user = loc
+	if(!istype(user) || !user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+
+		return
+	set_cloak(cloak + (cloak_charge_rate * delta_time))
+
+/obj/item/clothing/suit/cultrobes/void/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(dodge(owner, hitby, attack_text))
+		return TRUE
+	return ..()
+
+/obj/item/clothing/suit/cultrobes/void/proc/on_move(mob/user, Dir, Forced = FALSE)
+	if(update_signals(user))
+		set_cloak(cloak - cloak_move_loss)
+
+/obj/item/clothing/suit/cultrobes/void/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
+	if(dodge(user, P, "[P]"))
+		return BULLET_ACT_FORCE_PIERCE
+
+/obj/item/clothing/suit/cultrobes/void/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
+	if(!update_signals(user) || current_user.incapacitated() || !prob(cloak))
+		return FALSE
+
+	set_cloak(cloak - cloak_dodge_loss)
+	current_user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
+	current_user.visible_message(span_danger("[current_user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
+	return TRUE
+
 
 /obj/item/clothing/suit/cultrobes/void/equipped(mob/living/user, slot)
 	..()
