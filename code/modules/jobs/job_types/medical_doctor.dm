@@ -40,7 +40,6 @@
 /datum/outfit/job/doctor
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
-	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/headset_med
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/medical
 	uniform = /obj/item/clothing/under/rank/medical
@@ -54,7 +53,6 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	chameleon_extras = /obj/item/gun/syringe
-
 /datum/outfit/job/doctor/dead
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor

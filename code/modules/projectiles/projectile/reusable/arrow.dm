@@ -293,9 +293,12 @@
 			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		else if((C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE))
 			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), jitter), 5)
-		if(istype(C.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell/ethereal))
-			C.adjust_nutrition(40)
-			to_chat(C,span_notice("You get charged by [src]."))
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+			if(istype(stomach))
+				stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+				to_chat(C,span_notice("You get charged by [src]."))
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"

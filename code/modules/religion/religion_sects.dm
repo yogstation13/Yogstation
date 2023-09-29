@@ -19,7 +19,6 @@
 	var/altar_icon // Changes the Altar of Gods icon
 	var/altar_icon_state // Changes the Altar of Gods icon_state
 	var/list/active_rites // Currently Active (non-deleted) rites
-	var/chapel_buff_coeff = 2
 
 /datum/religion_sect/New()
 	. = ..()
@@ -131,8 +130,14 @@
 
 	//first we determine if we can charge them
 	var/did_we_charge = FALSE
-	if(HAS_TRAIT(H, TRAIT_POWERHUNGRY))
-		did_we_charge = H.adjust_nutrition(30)
+	var/obj/item/organ/stomach/ethereal/eth_stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+	if(istype(eth_stomach))
+		eth_stomach.adjust_charge(15 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+		did_we_charge = TRUE
+	if(ispreternis(H))
+		var/datum/species/preternis/preternis = H.dna.species
+		preternis.charge = clamp(preternis.charge + 30, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
+		did_we_charge = TRUE
 
 	var/did_we_heal = FALSE
 	var/heal_amt = 20
@@ -143,7 +148,6 @@
 		var/obj/item/bodypart/BP = X
 		if(BP.status == BODYPART_ROBOTIC)
 			did_we_heal = TRUE
-			break
 
 	if(did_we_heal && H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ROBOTIC))
 		H.update_damage_overlays()
@@ -160,7 +164,7 @@
 		playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
 	else
 		to_chat(user, span_warning("[GLOB.deity] scoffs at the idea of healing such fleshy matter!"))
-
+				
 	return TRUE
 
 /datum/religion_sect/technophile/on_sacrifice(obj/item/I, mob/living/L)
@@ -266,7 +270,7 @@
 			return 0
 
 	var/heal_amt = 40 //it only heals burn
-
+	
 	if(H.getFireLoss() > 0)
 		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
@@ -418,7 +422,7 @@
 /datum/religion_sect/holylight
 	name = "Holy Light"
 	desc = "A sect dedicated to healing."
-	convert_opener = "Welcome to the Holy Light, disciple. <br>Healing people with your bible will increase further healing given to them for a short time, providing favor based on the amount healed."
+	convert_opener = "Welcome to the Holy Light, disciple. Heal others to gain favor."
 	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
 	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
 	altar_icon_state = "convertaltar-heal"
@@ -432,23 +436,25 @@
 /datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return FALSE
-
+	
 	if(!L.client)
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
-		to_chat(user, span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
 		return FALSE
 
 	var/mob/living/carbon/human/H = L
-	var/heal_amt = 10 //no chance to mess up and applies a buff that significantly increases healing, so it heals less than default
+	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
-		H.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
+		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
+
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
-		COOLDOWN_START(src, last_heal, 10 SECONDS)
+		adjust_favor(amount_healed, user)
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)

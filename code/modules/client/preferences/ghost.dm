@@ -68,9 +68,6 @@
 		"ghostian2" = "Ian",
 		"ghostking" = "King",
 		"ghostmoth" = "Moff",
-		"snakeghost" = "Snake",
-		"slugghost" = "Cat Slug",
-		"crabghost" = "Crab",
 		"skeleghost" = "Skeleton",
 	)
 

@@ -607,11 +607,8 @@
 
 /datum/religion_rites/medibot/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	var/altar_turf = get_turf(religious_tool)
-	var/mob/living/simple_animal/bot/medbot/newitem = new (altar_turf)
+	var/atom/newitem = new /mob/living/simple_animal/bot/medbot (altar_turf)
 	newitem.name = "\improper Holy Medibot"
-	newitem.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
-	newitem.holy = TRUE
-	newitem.AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
 	return TRUE
 
@@ -689,7 +686,7 @@
 	man_to_revive.revive(TRUE)
 	if(was_dead) // aheal needs downside
 		man_to_revive.adjustCloneLoss(75) // can be slowly healed with the rod of asclepius anyways
-	man_to_revive.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC)	
+	man_to_revive.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 	to_chat(man_to_revive, span_userdanger("As you rise anew, you forget all that had previously harmed you!"))
 	man_to_revive.emote("smile")
 	man_to_revive.visible_message(span_notice("[man_to_revive] rises, reborn in the Holy Light!"))

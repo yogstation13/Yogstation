@@ -3,7 +3,7 @@
 #define DAGGER_COMBO "HHG"
 ///injection
 #define PRE_INJECTION_COMBO "DG"
-#define INJECTION_COMBO "ID"
+#define INJECTION_COMBO "DGD"
 ///fingergun
 #define FINGERGUN_COMBO "HDD"
 
@@ -46,14 +46,9 @@
 		return
 	if(findtext(streak, PRE_DAGGER_COMBO))
 		return hidden_knife(A,D)
-
 	if(findtext(streak, PRE_INJECTION_COMBO))
-		inject_one(A,D)
+		injection(A,D)
 		return TRUE
-	if(findtext(streak, INJECTION_COMBO))
-		inject_two(A,D)
-		return TRUE
-		
 	if(findtext(streak, FINGERGUN_COMBO))
 		fingergun(A,D)
 		return FALSE
@@ -77,17 +72,16 @@
 		return FALSE //Because it is a stealthy martial art, we need it to work like... a normal shove, so people nearby couldn't understand so easy that you know a martial art.
 
 
-/datum/martial_art/liquidator/proc/inject_one(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	D.reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 8)
-	to_chat(A, span_warning("You inject sodium thiopental into [D]!"))
-	to_chat(D, span_notice("You feel a tiny prick."))
-	streak = "I"
-
-/datum/martial_art/liquidator/proc/inject_two(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	D.reagents.add_reagent(/datum/reagent/toxin/cyanide, 5)
-	to_chat(A, span_warning("You inject cyanide into [D]!"))
-	to_chat(D, span_notice("You feel a tiny prick."))	
-	streak = ""
+/datum/martial_art/liquidator/proc/injection(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(findtext(streak, INJECTION_COMBO))
+		D.reagents.add_reagent(/datum/reagent/toxin/cyanide, 5)
+		to_chat(A, span_warning("You inject cyanide into [D]!"))
+		to_chat(D, span_notice("You feel a tiny prick."))
+		streak = ""
+	else 
+		D.reagents.add_reagent(/datum/reagent/toxin/sodium_thiopental, 8)
+		to_chat(A, span_warning("You inject sodium thiopental into [D]!"))
+		to_chat(D, span_notice("You feel a tiny prick."))		
 
 /*---------------------------------------------------------------
 

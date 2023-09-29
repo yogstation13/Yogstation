@@ -82,10 +82,10 @@
 	ScrapeAway(null, flags)
 	addtimer(CALLBACK(src, PROC_REF(AfterChange)), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
-	if(iscarbon(user)) 	//yogs - rock and stone + diggy diggy hole
+	if(iscarbon(user)) 	//yogs - rock and stone
 		var/mob/living/carbon/C = user
 		if(prob(1) && C.dna?.check_mutation(DWARFISM))
-			var/picked_phrase = pick(list("Rock and stone!","Rock and rollin' stone!","For rock and stone!","Rock solid!","Diggy Diggy Hole!"))
+			var/picked_phrase = pick(list("Rock and stone!","Rock and rollin' stone!","For rock and stone!","Rock solid!"))
 			C.say(picked_phrase)
 
 /turf/closed/mineral/proc/attempt_drill(mob/user,triggered_by_explosion = FALSE, power = 1)
@@ -220,7 +220,6 @@
 
 /turf/closed/mineral/random/high_chance/snow/top_layer
 	light_range = 2
-	light_power = 0.1
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium/ice/icemoon/top_layer = 35, /turf/closed/mineral/diamond/ice/icemoon/top_layer = 25, /turf/closed/mineral/gold/ice/icemoon/top_layer = 40, /turf/closed/mineral/titanium/ice/icemoon/top_layer = 45,
 		/turf/closed/mineral/silver/ice/icemoon/top_layer = 50, /turf/closed/mineral/plasma/ice/icemoon/top_layer = 50, /turf/closed/mineral/bscrystal/ice/icemoon/top_layer = 15, /turf/closed/mineral/dilithium/ice/icemoon/top_layer = 15)
@@ -307,7 +306,6 @@
 
 /turf/closed/mineral/random/snow/top_layer
 	light_range = 2
-	light_power = 0.1
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/uranium/ice/icemoon/top_layer = 5, /turf/closed/mineral/diamond/ice/icemoon/top_layer = 1, /turf/closed/mineral/gold/ice/icemoon/top_layer = 10, /turf/closed/mineral/titanium/ice/icemoon/top_layer = 10,
 		/turf/closed/mineral/silver/ice/icemoon/top_layer = 12, /turf/closed/mineral/plasma/ice/icemoon/top_layer = 19, /turf/closed/mineral/iron/ice/icemoon/top_layer = 40,
@@ -379,7 +377,6 @@
 
 /turf/closed/mineral/iron/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/uranium
 	mineralType = /obj/item/stack/ore/uranium
@@ -420,7 +417,6 @@
 
 /turf/closed/mineral/uranium/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/diamond
 	mineralType = /obj/item/stack/ore/diamond
@@ -461,7 +457,6 @@
 
 /turf/closed/mineral/diamond/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/gold
 	mineralType = /obj/item/stack/ore/gold
@@ -502,7 +497,6 @@
 
 /turf/closed/mineral/gold/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/silver
 	mineralType = /obj/item/stack/ore/silver
@@ -543,7 +537,6 @@
 
 /turf/closed/mineral/silver/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/titanium
 	mineralType = /obj/item/stack/ore/titanium
@@ -584,7 +577,6 @@
 
 /turf/closed/mineral/titanium/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 
 /turf/closed/mineral/plasma
@@ -626,7 +618,6 @@
 
 /turf/closed/mineral/plasma/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/bananium
 	mineralType = /obj/item/stack/ore/bananium
@@ -706,7 +697,6 @@
 
 /turf/closed/mineral/bscrystal/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/volcanic
 	environment_type = "basalt"
@@ -916,7 +906,6 @@
 
 /turf/closed/mineral/gibtonite/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/closed/mineral/magmite
 	mineralType = /obj/item/magmite

@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-20.04
     services:
       mariadb:
-       image: mariadb
+       image: mariadb/server
        ports: 
          - 3306:3306
        env:

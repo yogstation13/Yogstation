@@ -2,6 +2,9 @@
 "a" = (
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"b" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/ruin/powered)
 "c" = (
 /turf/closed/wall/mineral/iron,
 /area/ruin/powered)
@@ -264,9 +267,9 @@ P
 a
 a
 a
+b
 c
-c
-c
+b
 t
 t
 t
@@ -281,8 +284,8 @@ P
 a
 a
 a
-c
-c
+b
+b
 L
 n
 t
@@ -299,7 +302,7 @@ a
 a
 a
 a
-c
+b
 X
 o
 o
@@ -314,9 +317,9 @@ s
 "}
 (8,1,1) = {"
 a
-c
-c
-c
+b
+b
+b
 c
 f
 o
@@ -332,7 +335,7 @@ s
 "}
 (9,1,1) = {"
 a
-c
+b
 f
 i
 g
@@ -350,7 +353,7 @@ s
 "}
 (10,1,1) = {"
 a
-c
+b
 S
 j
 g
@@ -360,7 +363,7 @@ f
 u
 o
 A
-c
+b
 P
 s
 s
@@ -378,7 +381,7 @@ r
 c
 c
 c
-c
+b
 P
 P
 s
@@ -386,14 +389,14 @@ s
 "}
 (12,1,1) = {"
 a
-c
-c
+b
+b
 k
 M
-c
-c
-c
-c
+b
+b
+b
+b
 a
 a
 P
@@ -405,10 +408,10 @@ E
 (13,1,1) = {"
 a
 a
-c
-c
-c
-c
+b
+b
+b
+b
 a
 a
 a

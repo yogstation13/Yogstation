@@ -1,5 +1,4 @@
 /proc/webhook_send(method, data)
-	set waitfor = FALSE
 	if(!CONFIG_GET(string/webhook_address) || !CONFIG_GET(string/webhook_key))
 		return
 

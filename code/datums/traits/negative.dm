@@ -303,13 +303,17 @@
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
 			var/obj/item/bodypart/l_leg/L = H.get_bodypart(BODY_ZONE_L_LEG)
-			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
-			prosthetic.set_digitigrade(L.use_digitigrade)
+			if(L.use_digitigrade)
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
 			var/obj/item/bodypart/r_leg/R = H.get_bodypart(BODY_ZONE_R_LEG)
-			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
-			prosthetic.set_digitigrade(R.use_digitigrade)
+			if(R.use_digitigrade)
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus/digitigrade(quirk_holder)
+			else
+				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
 	qdel(old_part)

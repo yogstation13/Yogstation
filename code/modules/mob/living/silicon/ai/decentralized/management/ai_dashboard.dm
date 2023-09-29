@@ -283,8 +283,6 @@
 	if(total_ram_used > current_ram)
 		for(var/I in ram_usage)
 			var/datum/ai_project/project = get_project_by_name(I)
-			if(!ram_usage[I]) //We only stop the program if it actually has any RAM usage
-				continue
 			total_ram_used -= stop_project(project)
 			reduction_of_resources = TRUE
 			if(total_ram_used <= current_ram)

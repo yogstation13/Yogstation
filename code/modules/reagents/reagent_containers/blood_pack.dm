@@ -14,10 +14,6 @@
 	if(!reagents.total_volume)
 		user.balloon_alert(user, "empty!")
 		return ..()
-	
-	// needed because of how the calculation works on reagents/proc/reaction, 
-	// might change in the future so change this!
-	var/fraction = min(BLOODBAG_GULP_SIZE/reagents.total_volume, 1)
 
 	if(target != user)
 		if(!do_after(user, 5 SECONDS, target))
@@ -26,25 +22,20 @@
 			span_notice("[user] forces [target] to drink from the [src]."),
 			span_notice("You put the [src] up to [target]'s mouth."),
 		)
-		reagents.reaction(user, INGEST, fraction)
+		reagents.reaction(user, INGEST, BLOODBAG_GULP_SIZE)
 		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 		return TRUE
 
 	while(do_after(user, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-		if(!reagents.total_volume)
-			user.balloon_alert(user, "empty!")
-			return ..()
-
 		user.visible_message(
 			span_notice("[user] puts the [src] up to their mouth."),
 			span_notice("You take a sip from the [src]."),
 		)
-		if(is_vampire(user))
-			var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
+		var/datum/antagonist/vampire/V = is_vampire(user)
+		if(V)
 			V.usable_blood += 5
-
-		reagents.reaction(user, INGEST, fraction)
+		reagents.reaction(user, INGEST, BLOODBAG_GULP_SIZE)
 		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 	return TRUE

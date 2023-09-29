@@ -597,7 +597,7 @@
 
 /datum/action/innate/use_extract/Activate()
 	var/mob/living/carbon/human/H = owner
-	if(!is_species(H, /datum/species/jelly/luminescent) || !species || H.incapacitated())
+	if(!is_species(H, /datum/species/jelly/luminescent) || !species)
 		return
 	CHECK_DNA_AND_SPECIES(H)
 

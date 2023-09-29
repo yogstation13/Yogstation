@@ -4,9 +4,6 @@
 	name = "Buried Library"
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/walker_village
-	name = "Walker Village"
-
 /area/ruin/powered/bathhouse
 	name = "Bath House"
 	icon_state = "dk_yellow"
@@ -58,6 +55,3 @@
 /area/ruin/syndicate_icemoon/xenobio
 	name = "Syndicate Research Outpost Xenobiology"
 	xenobiology_compatible = TRUE
-
-/area/ruin/powered/icemoon_hermit
-	name = "Icemoon Hermit"

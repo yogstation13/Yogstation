@@ -418,10 +418,13 @@ Difficulty: Hard
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/devour(mob/living/L)
+	for(var/obj/item/W in L)
+		if(!L.dropItemToGround(W))
+			qdel(W)
 	visible_message("[span_hierophant_warning("\"[pick(kill_phrases)]\"")]")
 	visible_message("[span_hierophant_warning("[src] annihilates [L]!")]",span_userdanger("You annihilate [L], restoring your health!"))
 	adjustHealth(-L.maxHealth*0.5)
-	L.dust(drop_items = TRUE)
+	L.dust()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/CanAttack(atom/the_target)
 	. = ..()

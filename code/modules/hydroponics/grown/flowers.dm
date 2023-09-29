@@ -87,7 +87,7 @@
 	species = "geranium"
 	plantname = "Geranium Plants"
 	product = /obj/item/reagent_containers/food/snacks/grown/poppy/geranium
-	mutatelist = list(/obj/item/seeds/bee_balm)
+	mutatelist = list()
 	rarity = 10
 
 /obj/item/reagent_containers/food/snacks/grown/poppy/geranium
@@ -269,7 +269,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	icon_grow = "bee_balm-grow"
 	icon_dead = "bee_balm-dead"
-	mutatelist = list(/obj/item/seeds/bee_balm/honey)
+	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/bee_balm/honey) //Lower odds of becoming honey
 	reagents_add = list(/datum/reagent/medicine/spaceacillin = 0.1, /datum/reagent/space_cleaner/sterilizine = 0.05)
 	rarity = 20
 

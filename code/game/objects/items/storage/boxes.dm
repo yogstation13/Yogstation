@@ -598,8 +598,17 @@
 	illustration = "pda"
 
 /obj/item/storage/box/PDAs/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/modular_computer/tablet/pda/preset(src)
+	for(var/i in 1 to 4)
+		new /obj/item/pda(src)
+	new /obj/item/cartridge/head(src)
+
+	var/newcart = pick(	/obj/item/cartridge/engineering,
+						/obj/item/cartridge/security,
+						/obj/item/cartridge/medical,
+						/obj/item/cartridge/signal/toxins,
+						/obj/item/cartridge/quartermaster)
+	new newcart(src)
+
 /obj/item/storage/box/silver_ids
 	name = "box of spare silver IDs"
 	desc = "Shiny IDs for important people."
@@ -1296,7 +1305,7 @@
 		/obj/item/stack/sheet/mineral/wood/fifty = 1,
 		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
 		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
-		/obj/item/stack/sheet/mineral/diamond/fifty = 1,
+		/obj/item/stack/sheet/mineral/diamond = 1,
 		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
 		/obj/item/stack/sheet/mineral/gold/fifty = 1,
 		/obj/item/stack/sheet/mineral/silver/fifty = 1,

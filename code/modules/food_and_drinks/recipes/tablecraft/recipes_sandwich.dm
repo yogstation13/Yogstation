@@ -40,26 +40,6 @@
 	result = /obj/item/reagent_containers/food/snacks/notasandwich
 	category = CAT_SANDWICH
 
-/datum/crafting_recipe/food/pbb_sandwich
-	name = "Peanut Butter and Banana Sandwich"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2,
-		/datum/reagent/consumable/peanut_butter = 5,
-		/obj/item/reagent_containers/food/snacks/grown/banana = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/pbb_sandwich
-	category = CAT_SANDWICH
-
-/datum/crafting_recipe/food/pbj_sandwich
-	name = "Peanut Butter and Jelly Sandwich"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/breadslice/plain = 2,
-		/datum/reagent/consumable/peanut_butter = 5,
-		/datum/reagent/consumable/cherryjelly = 5
-	)
-	result = /obj/item/reagent_containers/food/snacks/pbj_sandwich
-	category = CAT_SANDWICH
-
 /datum/crafting_recipe/food/sandwich
 	name = "Sandwich"
 	reqs = list(

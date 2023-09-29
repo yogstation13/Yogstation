@@ -180,7 +180,6 @@
 			If you install this, it will make you incapable of pushing and pulling. \
 			There are no half-measures, either you succeed or you die."
 	cost = 20
-	player_minimum = 25 //maybe we SHOULDNT be giving this to lowpop traitors when theres no sec?
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that

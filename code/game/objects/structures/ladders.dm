@@ -85,16 +85,15 @@
 	if(AM)
 		user.start_pulling(AM)
 
-/obj/structure/ladder/proc/use(mob/user, is_ghost=FALSE, direction)
+/obj/structure/ladder/proc/use(mob/user, is_ghost=FALSE)
 	if (!is_ghost && !in_range(src, user))
 		return
 
 	if (up && down)
-		if(!direction)
-			direction = tgui_alert(user, "Go up or down [src]?", "Ladder", list("Up", "Down", "Cancel"))
+		var/result = tgui_alert(user, "Go up or down [src]?", "Ladder", list("Up", "Down", "Cancel"))
 		if (!is_ghost && !in_range(src, user))
 			return  // nice try
-		switch(direction)
+		switch(result)
 			if("Up")
 				travel(TRUE, user, is_ghost, up)
 			if("Down")
@@ -110,24 +109,6 @@
 
 	if(!is_ghost)
 		add_fingerprint(user)
-
-/obj/structure/ladder/CtrlClick(mob/user)
-	. = ..()
-	if(.)
-		return
-	if(down)
-		use(user, FALSE, "Down")
-	else
-		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
-
-/obj/structure/ladder/AltClick(mob/user)
-	. = ..()
-	if(.)
-		return
-	if(up)
-		use(user, FALSE, "Up")
-	else
-		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
 
 /obj/structure/ladder/attack_hand(mob/user)
 	. = ..()

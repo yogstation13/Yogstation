@@ -1878,7 +1878,6 @@
 	name = "Resurrector Nanite Serum"
 	description = "A serum of nanites capable of restoring corpses to living people in a timely manner."
 	taste_description = "a bunch of tiny robots"
-	can_synth = FALSE
 
 /datum/reagent/medicine/resurrector_nanites/reaction_mob(mob/living/carbon/M)
 	..()

@@ -51,27 +51,6 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donut/meat
 	category = CAT_PASTRY
 
-/datum/crafting_recipe/food/peanut_butter_cookie
-	name = "Peanut Butter Cookie"
-	reqs = list(
-		/datum/reagent/consumable/peanut_butter = 5,
-		/obj/item/reagent_containers/food/snacks/pastrybase = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/cookie/peanut_butter
-	category = CAT_PASTRY
-
-/datum/crafting_recipe/food/raw_brownie_batter
-	name = "Raw Brownie Batter"
-	reqs = list(
-		/datum/reagent/consumable/flour = 5,
-		/datum/reagent/consumable/sugar = 5,
-		/obj/item/reagent_containers/food/snacks/egg = 2,
-		/datum/reagent/consumable/coco = 5,
-		/obj/item/reagent_containers/food/snacks/butterslice = 4
-	)
-	result = /obj/item/reagent_containers/food/snacks/raw_brownie_batter
-	category = CAT_PASTRY
-
 /datum/crafting_recipe/food/slimejellydonut
 	name = "Slime Jelly Donut"
 	reqs = list(

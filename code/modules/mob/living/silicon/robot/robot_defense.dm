@@ -46,15 +46,6 @@
 	adjustBruteLoss(run_armor(damage/2, BRUTE, MELEE)) // Cyborgs receive half damage plus armor.
 	return
 
-/mob/living/silicon/robot/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	. = ..()
-	if(.) // Successfully punched.
-		spark_system.start()
-		spawn(0)
-			step_away(src,user,15)
-			sleep(0.3 SECONDS)
-			step_away(src,user,15)
-
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/silicon/robot/attack_hand(mob/living/carbon/human/user)
 	add_fingerprint(user)
@@ -69,7 +60,12 @@
 			diag_hud_set_borgcell()
 
 	if(!opened)
-		..()
+		if(..()) // hulk attack
+			spark_system.start()
+			spawn(0)
+				step_away(src,user,15)
+				sleep(0.3 SECONDS)
+				step_away(src,user,15)
 
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them

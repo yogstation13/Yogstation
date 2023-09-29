@@ -474,22 +474,6 @@
 	name = "\improper DNA injector (Anti-Antiglowy)"
 	remove_mutations = list(ANTIGLOWY)
 
-/obj/item/dnainjector/fierysweat
-	name = "\improper DNA injector (Fiery Sweat)"
-	add_mutations = list(FIRESWEAT)
-
-/obj/item/dnainjector/strong
-	name = "\improper DNA injector (Strength)"
-	add_mutations = list(STRONG)
-
-/obj/item/dnainjector/thickskin
-	name = "\improper DNA injector (Thick Skin)"
-	add_mutations = list(THICKSKIN)
-
-/obj/item/dnainjector/densebones
-	name = "\improper DNA injector (Bone Densification)"
-	add_mutations = list(DENSEBONES)
-
 /obj/item/dnainjector/timed
 	var/duration = 600
 

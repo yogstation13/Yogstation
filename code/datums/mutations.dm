@@ -5,8 +5,6 @@
 /datum/mutation/human
 	name = "mutation"
 	var/desc = "A mutation."
-	///Whether the mutation is locked, and therefore will not show up in
-	///people's genes randomly.
 	var/locked
 	var/quality
 	var/get_chance = 100
@@ -31,11 +29,7 @@
 	var/scrambled = FALSE //Wheter we can read it if it's active. To avoid cheesing with mutagen
 	var/class           //Decides player accesibility, sorta
 	var/list/conflicts //any mutations that might conflict. put mutation typepath defines in here. make sure to enter it both ways (so that A conflicts with B, and B with A)
-	
-	///Boolean on whether the mutation can be transferred through cloning
-	var/allow_transfer = FALSE
-	///Boolean on whether the mutation can be downloaded onto a DNA console and cloned.
-	var/allow_cloning = TRUE
+	var/allow_transfer  //Do we transfer upon cloning?
 	//MUT_NORMAL - A mutation that can be activated and deactived by completing a sequence
 	//MUT_EXTRA - A mutation that is in the mutations tab, and can be given and taken away through though the DNA console. Has a 0 before it's name in the mutation section of the dna console
 	//MUT_OTHER Cannot be interacted with by players through normal means. I.E. wizards mutate
@@ -195,7 +189,7 @@
 	var/datum/action/cooldown/new_power = new power_path(src)
 	new_power.background_icon_state = "bg_tech_blue"
 	new_power.base_background_icon_state = new_power.background_icon_state
-	new_power.active_background_icon_state = "[new_power.base_background_icon_state]_on"
+	new_power.active_background_icon_state = "[new_power.base_background_icon_state]_active"
 	new_power.overlay_icon_state = "bg_tech_blue_border"
 	new_power.active_overlay_icon_state = null
 	new_power.panel = "Genetic"

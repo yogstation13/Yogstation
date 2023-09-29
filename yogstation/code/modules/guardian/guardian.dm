@@ -197,12 +197,12 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 				forceMove(summoner.current)
 				to_chat(src, span_userdanger("Your summoner has died!"))
 				visible_message(span_bolddanger("[src] dies along with its user!"))
+				summoner.current.visible_message(span_bolddanger("[summoner.current]'s body is completely consumed by the strain of sustaining [src]!"))
+				for (var/obj/item/W in summoner.current)
+					if (!summoner.current.dropItemToGround(W))
+						qdel(W)
 				death(TRUE)
-				if(HAS_TRAIT_FROM(summoner.current, TRAIT_NO_SOUL, LICH_TRAIT))//body will be dusted upon revival anyways
-					summoner.current.visible_message(span_bolddanger("[summoner.current]'s body sudders as clashing forces fight for the soul!"))
-				else
-					summoner.current.visible_message(span_bolddanger("[summoner.current]'s body is completely consumed by the strain of sustaining [src]!"))
-					summoner.current.dust(drop_items = TRUE)
+				summoner.current.dust()
 	else
 		if (transforming)
 			GoBerserk()

@@ -314,7 +314,7 @@
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
-				if(P.picture.minds_seen.Find(owner) && P.picture.minds_seen.Find(target) && !P.picture.dead_seen.Find(target))//you are in the picture, they are but they are not dead.
+				if(P.picture.mobs_seen.Find(owner.current) && P.picture.mobs_seen.Find(target.current) && !P.picture.dead_seen.Find(target.current))//you are in the picture, they are but they are not dead.
 					return TRUE
 	return FALSE
 

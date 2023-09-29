@@ -64,7 +64,8 @@
 
 /datum/eldritch_transmutation/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a fiery entity of unknown power is quickly escalating the station temperature to unhabitable levels. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-	
+	set_security_level(SEC_LEVEL_GAMMA)
+
 	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
 	circle_spell.Grant(user)
 

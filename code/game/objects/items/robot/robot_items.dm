@@ -4,6 +4,7 @@
 /obj/item/borg
 	icon = 'icons/mob/robot_items.dmi'
 
+
 /obj/item/borg/stun
 	name = "electrically-charged arm"
 	icon_state = "elecarm"
@@ -693,41 +694,12 @@
 	SStgui.close_uis(cooking)
 	return ..()
 
-/obj/item/borg/floor_autocleaner
-	name = "floor autocleaner"
-	desc = "Automatically cleans the floor under you!"
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "upgrade"
-	item_flags = NOBLUDGEON
-	var/toggled = FALSE
-
-/obj/item/borg/floor_autocleaner/attack_self(mob/user, modifiers)
-	if(!issilicon(user))
-		return FALSE
-
-	toggled = !toggled
-	if(toggled)
-		user.AddElement(/datum/element/cleaning)
-		user.balloon_alert(user, "cleaning enabled")
-	else
-		user.RemoveElement(/datum/element/cleaning)
-		user.balloon_alert(user, "cleaning disabled")
-
-/obj/item/borg/floor_autocleaner/cyborg_equip(mob/user)
-	if(toggled)
-		user.AddElement(/datum/element/cleaning)
-		user.balloon_alert(user, "cleaning enabled")
-	
-/obj/item/borg/floor_autocleaner/cyborg_unequip(mob/user)
-	if(toggled)
-		user.RemoveElement(/datum/element/cleaning)
-		user.balloon_alert(user, "cleaning disabled")
-
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
 /obj/item/borg/sight
 	var/sight_mode = null
+
 
 /obj/item/borg/sight/xray
 	name = "\proper X-ray vision"
@@ -745,17 +717,12 @@
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
 
+
 /obj/item/borg/sight/meson
 	name = "\proper meson vision"
 	sight_mode = BORGMESON
 	icon_state = "meson"
 
-/obj/item/borg/sight/meson/nightvision
-	name = "\proper night vision meson vision"
-	icon = 'icons/obj/clothing/glasses.dmi'
-	icon_state = "nvgmeson"
-	sight_mode = BORGMESON_NIGHTVISION
-	
 /obj/item/borg/sight/material
 	name = "\proper material vision"
 	sight_mode = BORGMATERIAL
@@ -765,6 +732,7 @@
 	name = "hud"
 	var/obj/item/clothing/glasses/hud/hud = null
 
+
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
 	icon_state = "healthhud"
@@ -772,6 +740,7 @@
 /obj/item/borg/sight/hud/med/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health(src)
+
 
 /obj/item/borg/sight/hud/sec
 	name = "security hud"
@@ -897,7 +866,6 @@
 	. = ..()
 	if(wrapped)
 		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
-		wrapped_appearance.overlays = wrapped.overlays.Copy()
 		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
 		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
 		. += wrapped_appearance
@@ -928,15 +896,6 @@
 		/obj/item/stack/conveyor
 	)
 
-/obj/item/borg/gripper/medical
-	name = "medical gripper"
-	desc = "A simple grasping tool for interacting with various medical related items."
-	can_hold = list(
-		/obj/item/reagent_containers/glass/bottle, // Bottles & Vials
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/blood // Blood Bags.
-	)
-  
 /obj/item/borg/gripper/service
 	name = "service gripper"
 	desc = "A simple grasping tool for interacting with various service related items and food."

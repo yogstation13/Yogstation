@@ -1909,8 +1909,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
-	desc = "A red and black duffel bag containing all surgery tools, a surgical mat, \
-			a normal MMI, an implant case, a straitjacket, and a muzzle. The surgery tools are twice as fast compared to normal surgery tools."
+	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
+			a normal MMI, an implant case, a straitjacket, and a muzzle."
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 2
@@ -2250,6 +2250,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
 /datum/uplink_item/race_restricted/syndilamp
@@ -2300,14 +2301,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
-
-/datum/uplink_item/race_restricted/hulk
-	name = "Hulk Mutator"
-	desc = "Stolen research from a SIC scientist who went postal led to the development of this revolutionary mutator. Causes extreme muscle growth, enough to punch through walls, and practically limitless stamina, at the cost of reduced cognitive ability, and green skin pigmentation."
-	cost = 15
-	manufacturer = /datum/corporation/traitor/vahlen
-	item = /obj/item/dnainjector/hulkmut
-	restricted_species = list("human")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
@@ -2488,7 +2481,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	To activate His Grace, simply unlatch Him."
 	item = /obj/item/his_grace
 	cost = 20
-	restricted_roles = list("Chaplain", "Assistant")
+	restricted_roles = list("Chaplain")
 	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror

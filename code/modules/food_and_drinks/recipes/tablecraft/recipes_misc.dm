@@ -163,18 +163,6 @@
 	result = /obj/item/reagent_containers/food/snacks/fuegoburrito
 	category = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/granola_bar
-	name ="Granola Bar"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/oat = 1,
-		/obj/item/reagent_containers/food/snacks/grown/peanut = 1,
-		/obj/item/reagent_containers/food/snacks/chocolatebar = 1,
-		/obj/item/reagent_containers/food/snacks/no_raisin = 1,
-		/datum/reagent/consumable/sugar = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/granola_bar
-	category = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/honeybar
 	name = "Honey Nut Bar"
 	reqs = list(
@@ -224,15 +212,6 @@
 		/obj/item/reagent_containers/food/snacks/tortilla = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/nachos
-	category = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/onigiri
-	name ="Onigiri"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1,
-		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/onigiri
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/tacoplain

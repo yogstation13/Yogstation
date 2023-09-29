@@ -62,7 +62,7 @@
 		. = TRUE
 	switch(M.a_intent)
 		if(INTENT_HELP)
-			if(buckled_mobs && length(buckled_mobs))
+			if(buckled_mobs)
 				for(var/mob/living/buckled_mob in buckled_mobs)
 					unbuckle_mob(buckled_mob)
 			else

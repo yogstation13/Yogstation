@@ -389,7 +389,7 @@
 	name = "necromance"
 
 /datum/objective/bloodsucker/necromance/New()
-	target_amount = rand(4,5)
+	target_amount = rand(6,8)
 	..()
 
 

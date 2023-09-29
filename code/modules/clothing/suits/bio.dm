@@ -14,7 +14,7 @@
 	name = "bio suit"
 	desc = "A suit that protects against biological contamination."
 	icon_state = "bio"
-	item_state = "bio"
+	item_state = "bio_suit"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	clothing_flags = THICKMATERIAL
@@ -26,7 +26,6 @@
 	strip_delay = 70
 	equip_delay_other = 70
 	resistance_flags = ACID_PROOF
-	mutantrace_variation = MUTANTRACE_VARIATION
 
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general
@@ -86,4 +85,3 @@
 	item_state = "bio_suit"
 	strip_delay = 40
 	equip_delay_other = 20
-	mutantrace_variation = NO_MUTANTRACE_VARIATION

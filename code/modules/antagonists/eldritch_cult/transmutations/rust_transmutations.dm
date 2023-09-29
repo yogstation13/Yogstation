@@ -10,12 +10,6 @@
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch)
 	required_shit_list = "A table and a gas mask."
 
-/datum/eldritch_transmutation/armor/upgrade
-	name = "Enhanced Eldritch Armor"
-	required_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch,/obj/item/stack/sheet/mineral/diamond)
-	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded)
-	required_shit_list = "An existing ominous armor, and a diamond."
-
 /datum/eldritch_transmutation/water
 	name = "Eldritch Essence"
 	required_atoms = list(/obj/structure/reagent_dispensers/watertank)
@@ -34,11 +28,10 @@
 	H.physiology.stamina_mod = 0
 	H.physiology.stun_mod = 0
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report significant and rapid decay of the station's infrastructure with a single entity as its source. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-
+	set_security_level(SEC_LEVEL_GAMMA)
 	new /datum/rust_spread(loc)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)
 	ascension.ascended = TRUE
-	
 	return ..()
 
 /datum/eldritch_transmutation/final/rust_final/on_life(mob/user)

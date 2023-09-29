@@ -98,7 +98,9 @@
 		if(istype(src))
 			var/datum/species/ethereal/eth_species = src.dna?.species
 			if(istype(eth_species))
-				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
+				var/obj/item/organ/stomach/ethereal/stomach = src.getorganslot(ORGAN_SLOT_STOMACH)
+				if(istype(stomach))
+					. += "Crystal Charge: [round((stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER), 0.1)]%"
 
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
@@ -204,27 +206,19 @@
 	else
 		dat += "<tr><td><B>Uniform:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ICLOTHING]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A></td></tr>"
 
-	// Yogs start - taking an axe at this stupid handmade-HTML garbo code
-	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST) // This is a lil verbose but the lint demands it
-	var/is_ipc_or_something = (chest?.status == BODYPART_ROBOTIC)
-	var/can_be_nakey = is_ipc_or_something || (dna && dna.species.nojumpsuit)
-	if((ITEM_SLOT_ICLOTHING in obscured) || (w_uniform == null && !can_be_nakey))
+	if((w_uniform == null && !(dna && dna.species.nojumpsuit)) || (ITEM_SLOT_ICLOTHING in obscured))
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Pockets:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>ID:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Belt:</B></font></td></tr>"
 	else
-		var/funny_arrow_character = ""
-		if(!can_be_nakey) // The funny arrow only really makes sense if this creature *needs* the uniform in order to hold these things.
-			//               Less so when we're an IPC or something.
-			funny_arrow_character = "&nbsp;&#8627;"
-		dat += "<tr><td>[funny_arrow_character]<B>Belt:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_BELT]'>[(belt && !(belt.item_flags & ABSTRACT)) ? belt : "<font color=grey>Empty</font>"]</A>"
+		dat += "<tr><td>&nbsp;&#8627;<B>Belt:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_BELT]'>[(belt && !(belt.item_flags & ABSTRACT)) ? belt : "<font color=grey>Empty</font>"]</A>"
 		if(has_breathable_mask && istype(belt, /obj/item/tank))
-			dat += "&nbsp;<A href='?src=[REF(src)]internal=[ITEM_SLOT_BELT]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+			dat += "&nbsp;<A href='?src=[REF(src)];internal=[ITEM_SLOT_BELT]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 		dat += "</td></tr>"
-		dat += "<tr><td>[funny_arrow_character]<B>Pockets:</B></td><td><A href='?src=[REF(src)];pockets=left'>[(l_store && !(l_store.item_flags & ABSTRACT)) ? "Left (Full)" : "<font color=grey>Left (Empty)</font>"]</A>"
+		dat += "<tr><td>&nbsp;&#8627;<B>Pockets:</B></td><td><A href='?src=[REF(src)];pockets=left'>[(l_store && !(l_store.item_flags & ABSTRACT)) ? "Left (Full)" : "<font color=grey>Left (Empty)</font>"]</A>"
 		dat += "&nbsp;<A href='?src=[REF(src)];pockets=right'>[(r_store && !(r_store.item_flags & ABSTRACT)) ? "Right (Full)" : "<font color=grey>Right (Empty)</font>"]</A></td></tr>"
-		dat += "<tr><td>[funny_arrow_character]<B>ID:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ID]'>[(wear_id && !(wear_id.item_flags & ABSTRACT)) ? wear_id : "<font color=grey>Empty</font>"]</A></td></tr>"
-	// Yogs end - garbo code axe
+		dat += "<tr><td>&nbsp;&#8627;<B>ID:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ID]'>[(wear_id && !(wear_id.item_flags & ABSTRACT)) ? wear_id : "<font color=grey>Empty</font>"]</A></td></tr>"
+
 	// yogs start - show bandaged parts
 	for (var/obj/item/bodypart/org in bodyparts)
 		if (org.bandaged)
@@ -656,6 +650,10 @@
 
 		if (!getorganslot(ORGAN_SLOT_LUNGS))
 			to_chat(src, span_warning("You have no lungs to breathe with, so you cannot perform CPR!"))
+			return FALSE
+
+		if (HAS_TRAIT(src, TRAIT_NOBREATH))
+			to_chat(src, span_warning("You do not breathe, so you cannot perform CPR!"))
 			return FALSE
 
 		visible_message(span_notice("[src] is trying to perform CPR on [target.name]!"), \
@@ -1132,25 +1130,11 @@
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
-	if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
-		if(!istype(getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
-			nutrition = 0
-			dna?.species.get_hunger_alert(src)
-			return FALSE
-		if(nutrition >= NUTRITION_LEVEL_FAT)
-			return FALSE
-		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
 	return ..()
 
 /mob/living/carbon/human/set_nutrition(change) //Seriously fuck you oldcoders.
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
-	if(HAS_TRAIT(src, TRAIT_POWERHUNGRY))
-		if(!istype(getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
-			nutrition = 0
-			dna?.species.get_hunger_alert(src)
-			return FALSE
-		change = min(change, NUTRITION_LEVEL_FULL)
 	return ..()
 
 /mob/living/carbon/human/proc/play_xylophone()

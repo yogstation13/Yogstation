@@ -1,6 +1,5 @@
 import { useBackend } from '../backend';
 import { Button, LabeledList, Section } from '../components';
-import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
 export const TurbineComputer = (props, context) => {
@@ -12,7 +11,7 @@ export const TurbineComputer = (props, context) => {
   return (
     <Window
       width={310}
-      height={180}>
+      height={150}>
       <Window.Content>
         <Section
           title="Status"
@@ -58,9 +57,6 @@ export const TurbineComputer = (props, context) => {
               </LabeledList.Item>
               <LabeledList.Item label="Internal Temp">
                 {data.temp} K
-              </LabeledList.Item>
-              <LabeledList.Item label="Internal Pressure">
-                {formatSiUnit(data.pressure * 1000, 1, 'Pa')}
               </LabeledList.Item>
               <LabeledList.Item label="Generated Power">
                 {data.power}

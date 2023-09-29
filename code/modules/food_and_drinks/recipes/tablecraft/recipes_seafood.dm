@@ -109,17 +109,6 @@
 	result = /obj/item/reagent_containers/food/snacks/fishtaco
 	category = CAT_SEAFOOD
 
-/datum/crafting_recipe/food/nigiri_sushi
-	name ="Nigiri Sushi"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/seaweedsheet = 1,
-		/obj/item/reagent_containers/food/snacks/salad/boiledrice = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1,
-		/datum/reagent/consumable/soysauce = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/nigiri_sushi
-	category = CAT_SEAFOOD
-
 /datum/crafting_recipe/food/shrimpalfredo
 	name = "Seafood Alfredo"
 	reqs = list(

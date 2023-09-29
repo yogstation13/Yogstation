@@ -29,6 +29,7 @@
 
 	var/can_be_pushed = TRUE
 	var/magpulsing = FALSE
+	var/clean_on_move = FALSE
 
 	var/did_feedback = FALSE
 
@@ -468,8 +469,7 @@
 		/obj/item/paint/paint_remover,
 		/obj/item/lightreplacer/cyborg,
 		/obj/item/holosign_creator/janibarrier,
-		/obj/item/reagent_containers/spray/cyborg_drying,
-		/obj/item/borg/floor_autocleaner)
+		/obj/item/reagent_containers/spray/cyborg_drying)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
 	ratvar_modules = list(
@@ -478,6 +478,7 @@
 	cyborg_base_icon = "janitor"
 	moduleselect_icon = "janitor"
 	hat_offset = -5
+	clean_on_move = TRUE
 
 /obj/item/reagent_containers/spray/cyborg_drying
 	name = "drying agent spray"

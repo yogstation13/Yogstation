@@ -3,7 +3,6 @@
 /area/ruin/space
 	has_gravity = FALSE
 	blob_allowed = FALSE //Nope, no winning in space as a blob. Gotta eat the station.
-	mining_speed = FALSE
 
 /area/ruin/space/has_grav
 	has_gravity = STANDARD_GRAVITY
@@ -28,7 +27,6 @@
 	ambient_music_index = AMBIENCE_SPACE
 	ambient_buzz = null
 	sound_environment = SOUND_AREA_SPACE
-	mining_speed = FALSE
 
 /////////////
 

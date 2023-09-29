@@ -86,8 +86,9 @@
 		qdel(air_contents)
 
 	if(tank_assembly)
+		qdel(tank_assembly)
 		tank_assembly.master = null
-		QDEL_NULL(tank_assembly)
+		tank_assembly = null
 
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -316,7 +317,7 @@
 	. = ..()
 	if(tank_assembly)
 		. += tank_assembly.icon_state
-		. += tank_assembly.overlays
+		copy_overlays(tank_assembly)
 		. += "bomb_assembly"
 
 /obj/item/tank/wrench_act(mob/living/user, obj/item/I)

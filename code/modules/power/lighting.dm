@@ -688,12 +688,14 @@
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
-			if(isethereal(H))
+			var/datum/species/ethereal/eth_species = H.dna?.species
+			if(istype(eth_species))
 				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 1 SECONDS, src))
-					if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
+				if(do_after(user, 5 SECONDS, src))
+					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+					if(istype(stomach))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						H.adjust_nutrition(100)
+						stomach.adjust_charge(25 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 					else
 						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
 				return

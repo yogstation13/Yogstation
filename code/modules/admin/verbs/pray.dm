@@ -43,11 +43,11 @@
 	msg = span_adminnotice("[icon2html(cross, GLOB.permissions.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [msg]")
 
 	for(var/client/C in GLOB.permissions.admins)
-		if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX)
+		if(C.prefs.chat_toggles & CHAT_PRAYER)
 			to_chat(C, msg, confidential=TRUE)
-			if(C.prefs.toggles & SOUND_PRAYER_N_FAX)
+			if(C.prefs.toggles & SOUND_PRAYERS)
 				if(usr.job == "Chaplain")
-					SEND_SOUND(C, sound('sound/effects/pray.ogg', volume=40))
+					SEND_SOUND(C, sound('sound/effects/pray.ogg'))
 	to_chat(usr, span_info("You pray to the gods: \"[msg_tmp]\""), confidential=TRUE)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Prayer") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

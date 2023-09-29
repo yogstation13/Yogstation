@@ -5,8 +5,6 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	if(stat != DEAD)
 		death(TRUE)
 
-	unequip_everything()
-
 	if(!prev_lying)
 		gib_animation()
 

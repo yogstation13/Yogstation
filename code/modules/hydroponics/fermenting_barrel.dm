@@ -50,14 +50,8 @@
 		to_chat(user, span_notice("You place [I] into [src] to start the fermentation process."))
 		addtimer(CALLBACK(src, PROC_REF(makeWine), fruit), rand(80, 120) * speed_multiplier)
 		return TRUE
-	if(I.is_refillable())
-		return FALSE
 	else
 		return ..()
-
-/obj/structure/fermenting_barrel/deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/mineral/wood (loc, 10)
-	qdel(src)
 
 /obj/structure/fermenting_barrel/attack_hand(mob/user)
 	open = !open
@@ -81,6 +75,6 @@
 /datum/crafting_recipe/fermenting_barrel
 	name = "Wooden Barrel"
 	result = /obj/structure/fermenting_barrel
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 10)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 30)
 	time = 5 SECONDS
 	category = CAT_STRUCTURES

@@ -24,16 +24,6 @@
 	result = /obj/item/reagent_containers/food/snacks/store/bread/banana
 	category = CAT_BREAD
 
-/datum/crafting_recipe/food/raw_breadstick
-	name = "Raw Breadstick"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/doughslice = 1,
-		/datum/reagent/consumable/sodiumchloride = 3,
-		/obj/item/reagent_containers/food/snacks/butterslice = 2
-	)
-	result = /obj/item/reagent_containers/food/snacks/breadstick/raw
-	category = CAT_BREAD
-
 /datum/crafting_recipe/food/butterbiscuit
 	name = "Butter Biscuit"
 	reqs = list(

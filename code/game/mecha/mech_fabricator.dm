@@ -160,7 +160,7 @@
 	var/datum/wound/blunt/severe/break_it = new
 	///Picks limb to break. People with less limbs have a chance of it grapping at air
 	var/obj/item/bodypart/bone = C.get_bodypart(pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
-	if(bone && Adjacent(user))
+	if(bone)
 		to_chat(C,span_userdanger("The manipulator arms grapple after your [bone.name], attempting to break its bone!"))
 		break_it.apply_wound(bone)
 		bone.receive_damage(brute=50, updating_health=TRUE)
@@ -230,7 +230,7 @@
 					sub_category += "Medical"
 				if(module_types & BORG_MODULE_ENGINEERING)
 					sub_category += "Engineering"
-				if(module_types & BORG_MODULE_SERVICE)
+				if(module_types & BORG_MODEL_SERVICE)
 					sub_category += "Service"
 			else
 				sub_category += "All Cyborgs"

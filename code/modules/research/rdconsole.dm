@@ -28,13 +28,12 @@ Nothing else in the console has ID requirements.
 	var/obj/machinery/rnd/production/protolathe/linked_lathe				//Linked Protolathe
 	var/obj/machinery/rnd/production/circuit_imprinter/linked_imprinter	//Linked Circuit Imprinter
 
-	req_access = list(ACCESS_RND)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+	req_access = list(ACCESS_TOX)	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
 
 	//UI VARS
 	var/screen = RDSCREEN_MENU
 	var/back = RDSCREEN_MENU
-	var/locked = FALSE ///if the actual console is locked down, nobody can access it
-	var/anyone_can_research = FALSE
+	var/locked = FALSE
 	var/tdisk_uple = FALSE
 	var/ddisk_uple = FALSE
 	var/datum/selected_node_id
@@ -96,8 +95,6 @@ Nothing else in the console has ID requirements.
 	stored_research = SSresearch.science_tech
 	stored_research.consoles_accessing[src] = TRUE
 	matching_design_ids = list()
-	var/obj/item/circuitboard/computer/rdconsole/board = circuit
-	anyone_can_research = board.unlocked
 	SyncRDevices()
 
 /obj/machinery/computer/rdconsole/Destroy()
@@ -241,7 +238,7 @@ Nothing else in the console has ID requirements.
 	l += "[sheet.css_tag()][RDSCREEN_NOBREAK]"
 	l += "<div class='statusDisplay'><b>[stored_research.organization] Research and Development Network</b>"
 	l += "Available points: <BR>[techweb_point_display_rdconsole(stored_research.research_points, stored_research.last_bitcoins)]"
-	l += "Security protocols: [obj_flags & EMAGGED ? "<font color='red'>Disabled</font>" : (anyone_can_research ? "<font color='yellow'>Timed Out</font>" : "<font color='green'>Enabled</font>")]"
+	l += "Security protocols: [obj_flags & EMAGGED ? "<font color='red'>Disabled</font>" : "<font color='green'>Enabled</font>"]"
 	l += "<a href='?src=[REF(src)];switch_screen=[RDSCREEN_MENU]'>Main Menu</a> | <a href='?src=[REF(src)];switch_screen=[back]'>Back</a></div>[RDSCREEN_NOBREAK]"
 	l += "[ui_mode == 1? span_linkOn("Normal View") : "<a href='?src=[REF(src)];ui_mode=1'>Normal View</a>"] | [ui_mode == 2? span_linkOn("Expert View") : "<a href='?src=[REF(src)];ui_mode=2'>Expert View</a>"] | [ui_mode == 3? span_linkOn("List View") : "<a href='?src=[REF(src)];ui_mode=3'>List View</a>"]"
 	return l
@@ -709,7 +706,7 @@ Nothing else in the console has ID requirements.
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
 /obj/machinery/computer/rdconsole/proc/can_research(mob/user)
-	if(!locked && (allowed(user) || (obj_flags & EMAGGED) || anyone_can_research))
+	if(!locked && (allowed(user) || (obj_flags & EMAGGED)))
 		return TRUE
 	return FALSE
 
@@ -860,7 +857,7 @@ Nothing else in the console has ID requirements.
 				ui += ui_settings()
 			if(RDSCREEN_DEVICE_LINKING)
 				ui += ui_device_linking()
-
+	
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
@@ -990,7 +987,7 @@ Nothing else in the console has ID requirements.
 		disk_slot_selected = text2num(ls["disk_slot"])
 	if(ls["research_node"])
 		if(!can_research(usr))
-			to_chat(usr, span_danger("Access Denied."))
+			to_chat(usr, "ACCESS DENIED")
 			return
 		if(!research_control)
 			return				//honestly should call them out for href exploiting :^)

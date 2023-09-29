@@ -68,10 +68,6 @@
 /datum/antagonist/vassal/on_gain()
 	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
-	if(owner.current && HAS_TRAIT(owner.current, TRAIT_MINDSHIELD))
-		for(var/obj/item/implant/mindshield/L in owner.current)
-			if(L)
-				qdel(L)
 	/// Enslave them to their Master
 	if(!master || !istype(master, master))
 		return

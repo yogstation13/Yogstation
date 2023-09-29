@@ -210,12 +210,14 @@
 	icon_state = "spaghettiboiled"
 	foodtype = GRAIN
 
+
 /obj/item/reagent_containers/food/snacks/customizable/pie
 	name = "pie"
 	ingMax = 6
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "pie"
 	foodtype = GRAIN | DAIRY
+
 
 /obj/item/reagent_containers/food/snacks/customizable/pizza
 	name = "pizza"
@@ -238,6 +240,7 @@
 /obj/item/reagent_containers/food/snacks/customizable/pizza/raw/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/customizable/pizza, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE, TRUE)
 
+
 /obj/item/reagent_containers/food/snacks/customizable/salad
 	name = "salad"
 	desc = "Very tasty."
@@ -245,6 +248,7 @@
 	ingMax = 6
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "bowl"
+
 
 /obj/item/reagent_containers/food/snacks/customizable/sandwich
 	name = "toast"
@@ -282,6 +286,7 @@
 	else
 		..()
 
+
 /obj/item/reagent_containers/food/snacks/customizable/soup
 	name = "soup"
 	desc = "A bowl with liquid and... stuff in it."
@@ -309,14 +314,6 @@
 	desc = "A slice of sushi."
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "vegetariansushislice"
-	foodtype = VEGETABLES
-
-/obj/item/reagent_containers/food/snacks/customizable/onigiri
-	name = "onigiri"
-	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed."
-	ingMax = 4
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "onigiri"
 	foodtype = VEGETABLES
 
 // Bowl ////////////////////////////////////////////////

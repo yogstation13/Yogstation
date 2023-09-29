@@ -10,7 +10,6 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")

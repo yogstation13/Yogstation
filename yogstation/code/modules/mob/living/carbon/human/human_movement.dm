@@ -5,13 +5,8 @@
 		update_movespeed()
 
 /mob/living/carbon/human/update_move_intent_slowdown()
-	var/turf/player_turf = get_turf(src)
-
-	if(!player_turf || ! is_mining_level(player_turf.z)) // If we can't get the turf, assume it's not on mining.
-		return ..()
-
-	var/area/player_area = get_area(src)
-	if(!player_area.mining_speed)
+	var/turf/T = get_turf(src)
+	if(!T || !is_mining_level(T.z)) // If we can't get the turf, assume it's not on mining.
 		return ..()
 
 	var/mod = 0

@@ -342,8 +342,7 @@
 			to_chat(user, span_warning("Access denied."))
 
 /mob/living/simple_animal/bot/AltClick(mob/user)
-	if(Adjacent(user))
-		togglelock(user)
+	togglelock(user)
 
 /mob/living/simple_animal/bot/bullet_act(obj/item/projectile/Proj)
 	if(Proj && (Proj.damage_type == BRUTE || Proj.damage_type == BURN))

@@ -1,4 +1,11 @@
-#define ELECTRICITY_TO_NUTRIMENT_FACTOR 0.22 //100 power unit to 22 preternis charge, they can suck an apc dry if hungry enough and the apc isn't upgraded
+#define PRETERNIS_LEVEL_FULL 600
+#define PRETERNIS_LEVEL_WELL_FED 450
+#define PRETERNIS_LEVEL_FED 300
+#define PRETERNIS_LEVEL_HUNGRY 200
+#define PRETERNIS_LEVEL_STARVING 100
+#define PRETERNIS_LEVEL_NONE 0
+
+#define ELECTRICITY_TO_NUTRIMENT_FACTOR 0.44 //1 power unit to 44 preternis charge they can uncharge an apc to 50% at most
 
 #define PRETERNIS_NV_OFF 2 //numbers of tile they can see
 #define PRETERNIS_NV_ON 8

@@ -25,9 +25,12 @@
 		else if((C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE))
 			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), jitter), 5)
 		//yogstation edit begin -------------------------------------------
-		if(istype(C.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell/ethereal))
-			C.adjust_nutrition(40)
-			to_chat(C,span_notice("You get charged by [src]."))
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+			if(istype(stomach))
+				stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+				to_chat(C,span_notice("You get charged by [src]."))
 		//yogstation edit end ---------------------------------------------
 
 /obj/item/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet

@@ -217,7 +217,6 @@
 
 /turf/open/floor/plating/ice/icemoon/top_layer
 	light_range = 2
-	light_power = 0.1
 
 /turf/open/floor/plating/snowed
 	name = "snowed-over plating"

@@ -3,15 +3,16 @@
 	duration = 10 SECONDS
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
-	var/obj/effect/immortality_talisman/void_effect
+	var/obj/effect/immortality_talisman/v 
 
 /datum/status_effect/voided/on_apply()
 	. = ..()
-	void_effect = new /obj/effect/immortality_talisman/void(get_turf(owner), owner)
+	v = new /obj/effect/immortality_talisman/void(get_turf(owner), owner)
+	v.vanish(owner)	
 
 /datum/status_effect/voided/on_remove()
 	. = ..()
-	void_effect.unvanish(owner)
+	v.unvanish(owner)
 
 /datum/status_effect/scent_hunter
 	id = "smelly"

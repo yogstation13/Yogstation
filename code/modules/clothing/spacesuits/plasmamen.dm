@@ -60,6 +60,8 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
 	helmet_on = !helmet_on
+	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
+	item_state = icon_state
 	update_appearance(UPDATE_ICON)
 	
 	set_light_on(helmet_on)
@@ -77,8 +79,6 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/update_icon(updates=ALL)
 	. = ..()
-	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
-	item_state = icon_state
 	if(!ismob(loc))
 		return
 	var/mob/loc_mob = loc

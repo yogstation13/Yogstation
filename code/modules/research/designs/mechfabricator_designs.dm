@@ -886,16 +886,6 @@
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_medigripper
-	name = "Cyborg Upgrade (Medical Gripper)"
-	id = "borg_upgrade_medigripper"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/medigripper
-	/// Arbitary price. Took the price of Plasma Cutter Upgrade, replaced plasma with gold, and replaced gold with silver.
-	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000, /datum/material/gold = 2000, /datum/material/silver = 500)
-	construction_time = 8 SECONDS
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/borg_upgrade_defibrillator
 	name = "Cyborg Upgrade (Defibrillator)"
 	id = "borg_upgrade_defibrillator"
@@ -1035,16 +1025,6 @@
 	build_path = /obj/item/borg/upgrade/gemsatchel
 	/// SoH cost cut in half, minus all non-iron materials.
 	materials = list(/datum/material/iron = 5000)
-	construction_time = 4 SECONDS
-	category = list("Cyborg Upgrade Modules")
-
-/datum/design/borg_upgrade_nv_mesons
-	name = "Cyborg Upgrade (Night Vision Mesons)"
-	id = "borg_upgrade_nv_mesons"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/nv_mesons
-	/// Exact cost of NV Mesons for humans.
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000, /datum/material/plastic = 150)
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 

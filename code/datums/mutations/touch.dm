@@ -70,7 +70,6 @@
 			C.dropItemToGround(C.get_inactive_held_item())
 			C.adjust_confusion(15 SECONDS)
 			C.visible_message(span_danger("[user] electrocutes [target]!"),span_userdanger("[user] electrocutes you!"))
-			log_combat(user, target, "[user] electrocuted [target] with shock touch")
 		else
 			user.visible_message(span_warning("[user] fails to electrocute [target]!"))
 	else if(isliving(target))

@@ -111,21 +111,3 @@
 	tastes = list("toast" = 2)
 	foodtype = GRAIN | BREAKFAST
 	burns_on_grill = TRUE
-
-/obj/item/reagent_containers/food/snacks/pbj_sandwich
-	name = "peanut butter and jelly sandwich"
-	desc = "A classic PB&J sandwich, just like your mom used to make."
-	icon = 'icons/obj/food/burgerbread.dmi'
-	icon_state = "pbj_sandwich"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("peanut butter" = 1, "jelly" = 1, "bread" = 2)
-	foodtype = GRAIN | FRUIT | NUTS
-
-/obj/item/reagent_containers/food/snacks/pbb_sandwich
-	name = "peanut butter and banana sandwich"
-	desc = "A peanut butter sandwich with banana slices mixed in, a good high protein treat."
-	icon = 'icons/obj/food/burgerbread.dmi'
-	icon_state = "pbb_sandwich"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("peanut butter" = 1, "banana" = 1, "bread" = 2)
-	foodtype = GRAIN | FRUIT | NUTS

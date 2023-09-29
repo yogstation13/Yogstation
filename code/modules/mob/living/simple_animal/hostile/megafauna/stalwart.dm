@@ -397,4 +397,4 @@
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
 	visible_message(span_danger("[src] atomizes [L]!"))
-	L.dust(drop_items = TRUE)
+	L.dust()

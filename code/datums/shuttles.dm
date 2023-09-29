@@ -217,12 +217,6 @@
 	Has medical facilities."
 	credit_cost = 5000
 
-/datum/map_template/shuttle/emergency/cozy
-	suffix = "cozy"
-	name = "The Cozy Shuttle"
-	description = "A shuttle that throws out integrity for style, it's all wooden frame contains three fireplaces - numerous lounge areas without sacrificing medical facilities or prisoner lodging."
-	credit_cost = 5000
-
 /datum/map_template/shuttle/emergency/triage
 	suffix = "triage"
 	name = "Emergency Triage Shuttle"
