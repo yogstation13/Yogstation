@@ -8,6 +8,7 @@
 	
 	ambient_buzz_vol = 10
 	mining_speed = TRUE
+	lights_always_start_on = TRUE
 
 /area/mine/explored
 	name = "Mine"

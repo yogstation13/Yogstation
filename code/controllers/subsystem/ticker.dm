@@ -329,6 +329,23 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
+//Toggle lightswitches on in occupied departments
+	var/discrete_areas = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		var/area/A = get_area(H)
+		if(!(A in discrete_areas)) //We've already added their department
+			discrete_areas += get_department_areas(H)
+	for(var/area/area in discrete_areas)
+		if(area.lights_always_start_on)
+			continue
+		area.lightswitch = TRUE
+		area.update_appearance()
+
+		for(var/obj/machinery/light_switch/L in area)
+			L.update_appearance()
+
+		area.power_change()
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
