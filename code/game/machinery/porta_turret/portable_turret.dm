@@ -643,8 +643,8 @@
 	always_up = 1
 	use_power = NO_POWER_USE
 	has_cover = 0
-	max_integrity = 320 //double default
-	shot_delay = 1 SECONDS //33% faster than regular one
+	max_integrity = 320 //double default health
+	shot_delay = 8 //almost half the delay
 	req_access = list(ACCESS_SYNDICATE)
 	mode = TURRET_LETHAL
 	stun_projectile = /obj/item/projectile/bullet
@@ -698,8 +698,7 @@
 	lethal_projectile = /obj/item/projectile/bullet/syndicate_turret
 
 /obj/machinery/porta_turret/syndicate/shuttle
-	scan_range = 9
-	shot_delay = 3
+	shot_delay = 2
 	stun_projectile = /obj/item/projectile/bullet/p50/penetrator/shuttle
 	lethal_projectile = /obj/item/projectile/bullet/p50/penetrator/shuttle
 	lethal_projectile_sound = 'sound/weapons/gunshot_smg.ogg'
