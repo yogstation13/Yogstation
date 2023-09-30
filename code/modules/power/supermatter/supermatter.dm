@@ -493,7 +493,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling - 0.05,0, 1)
 		
-		if((!antinoblium_attached && support_integrity >=30) || noblium_suppressed)
+		if((!antinoblium_attached && support_integrity >=10) || noblium_suppressed)
 			powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
 
 		if(matter_power)
@@ -702,11 +702,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					radio.talk_into(src, "DISPERSION SYSTEM ACTIVATION FAILED, BUNDLER NOW FIRING WITHOUT GUIDANCE", engineering_channel)
 				if(30)
 					radio.talk_into(src, "WARNING ENERGY SPIKE IN CRYSTAL WELL DETECTED, ESTIMATED ENERGY OUTPUT EXCEEDS PEAK CHARGE DISPERSION CAPACITY", engineering_channel)
-					priority_announce("SUPERMATTER SURGE DETECTED, VACATE THE AREA IMMEDIATELY.", "Anomaly Alert")
 				if(20)
 					radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES INBOUND, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", common_channel)
 				if(10)
 					radio.talk_into(src, "ELECTROMAGNETIC FIELD CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, RESONANCE CASCADE IMMINENT", common_channel)
+					priority_announce("SUPERMATTER SURGE DETECTED, VACATE THE AREA IMMEDIATELY.", "Anomaly Alert")
 				if(6)
 					radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT", common_channel)
 				if(1) //after those emps, anyone who can hear this must be lucky.
@@ -729,10 +729,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
 					fire_nuclear_particle()
-		if(support_integrity<30)
+		if(support_integrity<10)
 			powerloss_inhibitor = 0.01 //ensure big explosion
 			surging = 10000
-		if(support_integrity<10)
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
