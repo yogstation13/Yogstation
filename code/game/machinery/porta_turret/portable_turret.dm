@@ -643,7 +643,8 @@
 	always_up = 1
 	use_power = NO_POWER_USE
 	has_cover = 0
-	scan_range = 9
+	max_integrity = 320 //double default
+	shot_delay = 1 SECONDS //33% faster than regular one
 	req_access = list(ACCESS_SYNDICATE)
 	mode = TURRET_LETHAL
 	stun_projectile = /obj/item/projectile/bullet
