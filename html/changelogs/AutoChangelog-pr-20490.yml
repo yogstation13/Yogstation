@@ -1,0 +1,8 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Added new heretic transmutation"
+  - tweak: "tweaked heretic UI a tiny bit to have more clarity"
+  - tweak: "tweaked void armor effect + armor values"
+  - tweak: "adjusts void ascension"
+  - imageadd: "added new sprites for mask of madness transmutation"
