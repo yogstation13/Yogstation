@@ -91,6 +91,10 @@
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/AttackingTarget()
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
+		if(istype(target, /obj/item/organ))
+			var/obj/item/organ/thing = target
+			if(thing.status == ORGAN_ROBOTIC)//don't eat robotic organs, they bad for the tummy
+				return ..()
 		udder.generateMilk()
 		regenerate_icons()
 		visible_message(span_notice("[src] slurps up [target]."))
