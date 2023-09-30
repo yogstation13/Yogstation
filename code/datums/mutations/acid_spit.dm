@@ -30,10 +30,8 @@
 /datum/action/cooldown/spell/pointed/projectile/acid_spit/can_cast_spell(feedback)
 	. = ..()
 	var/mob/living/carbon/spitter = owner
-	if(!spitter.is_mouth_covered())
-		return
-	else
-		to_chat(spitter, span_notice("Something is covering your mouth!"))
+	if(!get_location_accessible(owner, BODY_ZONE_PRECISE_MOUTH))
+		to_chat(owner, span_notice("Something is covering your mouth!"))
 		return FALSE
 
 /obj/item/projectile/bullet/acid
