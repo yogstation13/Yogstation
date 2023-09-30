@@ -493,7 +493,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling - 0.05,0, 1)
 		
-		if((!antinoblium_attached && support_integrity >=10) || noblium_suppressed)
+		if(!antinoblium_attached && support_integrity >=10)
 			powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
 
 		if(matter_power)
