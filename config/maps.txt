@@ -19,7 +19,7 @@ endmap
 
 map icemeta
 	minplayers 25
-	votable
+	disabled
 endmap
 
 map gaxstation
