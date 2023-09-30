@@ -20,7 +20,6 @@
 	spell_requirements = NONE
 	antimagic_flags = NONE
 	school = SCHOOL_EVOCATION
-	spell_requirements = NONE
 	sound = 'sound/effects/alien_spitacid.ogg'
 
 	active_msg = "You focus your acid spit!"
