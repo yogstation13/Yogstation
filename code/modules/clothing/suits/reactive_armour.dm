@@ -61,6 +61,9 @@
 		icon_state = "reactiveoff"
 		item_state = "reactiveoff"
 	add_fingerprint(user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.update_inv_wear_suit()
 	for(var/datum/action/A in actions)
 		A.build_all_button_icons()
 	return

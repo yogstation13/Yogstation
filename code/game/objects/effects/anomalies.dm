@@ -472,7 +472,7 @@
 		near.adjust_jitter(10 SECONDS)
 		near.adjust_confusion(10 SECONDS)
 		near.adjust_dizzy(10 SECONDS)
-		near.adjust_disgust(max(150, strength * dist))
+		near.adjust_drowsiness(10 SECONDS)
 		var/list/messages = list(
 			"You feel your conscious mind fall apart!",
 			"Reality warps around you!",
