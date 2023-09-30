@@ -56,6 +56,12 @@
 	REMOVE_TRAIT(chosen_mob,TRAIT_PARALYSIS_R_LEG,MAGIC_TRAIT)
 	chosen_mob.update_mobility()
 
+/datum/eldritch_transmutation/madness_mask
+	name = "Mask of Mandess"
+	required_atoms = list(/obj/item/clothing/mask,/obj/item/organ/liver)
+	result_atoms = list(/obj/item/clothing/mask/madness_mask)
+	required_shit_list = "A mask of any kind, and a fresh liver."
+
 /datum/eldritch_transmutation/final/ash_final
 	name = "Amgala's Ruin"
 	required_atoms = list(/mob/living/carbon/human)
