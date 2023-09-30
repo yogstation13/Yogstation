@@ -8,14 +8,14 @@
 	text_lose_indication = span_notice("That should be enough for now.")
 	instability = 10 //could be an upside maybe, or could force it on some poor sap while stabilized
 
-/datum/mutation/human/space_adaptation/on_acquiring(mob/living/carbon/human/owner)
+/datum/mutation/human/ravenous/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
 	ADD_TRAIT(owner, TRAIT_EAT_MORE, "ravenous")
 	ADD_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH, "ravenous")
 	ADD_TRAIT(owner, TRAIT_VORACIOUS, "ravenous")
 
-/datum/mutation/human/space_adaptation/on_losing(mob/living/carbon/human/owner)
+/datum/mutation/human/ravenous/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	REMOVE_TRAIT(owner, TRAIT_EAT_MORE, "ravenous")
