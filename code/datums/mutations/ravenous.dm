@@ -1,4 +1,3 @@
-//Cold Resistance gives your entire body an orange halo, and makes you immune to the effects of vacuum and cold.
 /datum/mutation/human/ravenous
 	name = "Ravenous"
 	desc = "An inconvenient mutation that greatly increases the host's metabolism to the point of constant hunger."
