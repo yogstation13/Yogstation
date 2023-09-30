@@ -714,6 +714,7 @@
 #include "code\datums\mutations\heat_adaptation.dm"
 #include "code\datums\mutations\hulk.dm"
 #include "code\datums\mutations\olfaction.dm"
+#include "code\datums\mutations\radiantburst.dm"
 #include "code\datums\mutations\radioactive.dm"
 #include "code\datums\mutations\radproof.dm"
 #include "code\datums\mutations\sight.dm"

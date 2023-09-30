@@ -31,7 +31,7 @@
 	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
-	inert_mutation = SHOCKTOUCH
+	inert_mutation = RADIANTBURST
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal

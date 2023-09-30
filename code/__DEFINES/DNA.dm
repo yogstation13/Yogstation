@@ -59,6 +59,7 @@
 #define CEREBRAL	/datum/mutation/human/cerebral
 #define THICKSKIN	/datum/mutation/human/thickskin
 #define DENSEBONES	/datum/mutation/human/densebones
+#define RADIANTBURST	/datum/mutation/human/radiantburst
 
 
 #define UI_CHANGED "ui changed"
