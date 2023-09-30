@@ -542,7 +542,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		// adding enough hypernoblium can save it, but only if it hasn't gotten too bad and it wasn't corrupted using the traitor kit
 		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 10 && damage <= damage_archived)
 			support_integrity += 2
-			surging = 0
 			if(support_integrity >= 100)
 				support_integrity = 100
 				antinoblium_attached = FALSE
