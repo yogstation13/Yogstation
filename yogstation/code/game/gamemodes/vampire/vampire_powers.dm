@@ -225,21 +225,25 @@
 	user.visible_message(span_warning("[user] twirls their finger in a circular motion."),\
 			span_warning("You twirl your finger in a circular motion."))
 
+
 	var/protection = T.get_eye_protection()
+	var/sleep_duration = 30 SECONDS
 	switch(protection)
 		if(INFINITY)
 			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by hypnosis!"))
 			return FALSE
 		if(INFINITY to 1)
-			T.adjust_confusion(5 SECONDS)
-			return TRUE
+			to_chat(user, span_vampirewarning("Your hypnotic powers are dampened by [T]'s eye protection."))
+			sleep_duration = 10 SECONDS
+		if(0)
+			sleep_duration = 30 SECONDS
 
-	to_chat(target, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
-	to_chat(user, span_notice("[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
-	if(do_after(user, 4 SECONDS, target)) // 4 seconds...
+	to_chat(T, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
+	to_chat(user, span_notice("[T] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
+	if(do_after(user, 4 SECONDS, T)) // 4 seconds...
 		if(get_dist(user, T) <= 3)
 			flash_color(T, flash_color="#472040", flash_time=3 SECONDS) // it's the vampires color!
-			T.SetSleeping(30 SECONDS)
+			T.SetSleeping(sleep_duration)
 			to_chat(user, span_warning("[T] has fallen asleep!"))
 		else
 			to_chat(T, span_notice("You feel a whole lot better now."))
