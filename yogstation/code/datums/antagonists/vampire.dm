@@ -41,7 +41,7 @@
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform = 300,
 		/datum/vampire_passive/full = 400,
 		/datum/action/cooldown/spell/summon_coat = 400,
-		/datum/action/cooldown/spell/pointed/vampirize = 500)
+		/datum/action/cooldown/spell/pointed/vampirize = 450)
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE
