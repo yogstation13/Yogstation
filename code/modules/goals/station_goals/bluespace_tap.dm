@@ -237,7 +237,7 @@
 	var/static/product_list = list(
 	new /datum/data/bluespace_tap_product("Unknown Exotic Hat", /obj/effect/spawner/lootdrop/bluespace_tap/hat, 5000),
 	new /datum/data/bluespace_tap_product("Unknown Snack", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
-	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/maintenance, 10000),
+	new /datum/data/bluespace_tap_product("Unknown Refuse", /obj/effect/spawner/lootdrop/bluespace_tap/maintenance, 10000),
 	new /datum/data/bluespace_tap_product("Unknown Cultural Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
 	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000),
 	new /datum/data/bluespace_tap_product("Unknown Materials", /obj/effect/spawner/lootdrop/bluespace_tap/mats, 30000),
