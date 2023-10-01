@@ -7,9 +7,9 @@
 	text_gain_indication = span_notice("Your feel your arteries cloying!")
 	instability = 20
 	/// The bloodiest wound that the patient has will have its blood_flow reduced by this much each tick
-	var/clot_rate = 0.15
+	var/clot_rate = 0.2
 	/// While we have this mutation, we reduce all bleeding by this factor
-	var/passive_bleed_modifier = 0.7
+	var/passive_bleed_modifier = 0.6
 
 /datum/mutation/human/sapblood/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
