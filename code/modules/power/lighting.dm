@@ -362,14 +362,17 @@
 			if(emergency_mode || (A && A.fire))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
-				icon_state = "[base_state]_nightshift"
-			else if (nightshift_enabled)
-				icon_state = "[base_state]_nightshift"
+				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
 			if(on && !forced_off)
-				var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer)
-				glowybit.alpha = clamp(light_power*250, 30, 200)
+				var/glow_state = base_state
+				if(emergency_mode || (A && A.fire))
+					glow_state = "[base_state]_emergency"
+				else if ((A && A.vacuum) || nightshift_enabled)
+					glow_state = "[base_state]_nightshift"
+				var/mutable_appearance/glowybit = mutable_appearance(overlayicon, glow_state, layer)
+				//glowybit.alpha = clamp(light_power*250, 30, 200)
 				add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
