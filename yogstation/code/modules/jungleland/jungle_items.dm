@@ -8,7 +8,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
-	living_user.apply_status_effect(/datum/status_effect/toxic_buildup)
+	living_user.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
 /obj/item/dummy_malaria
 	name = "test dummy"
 	desc = "what"

@@ -135,7 +135,7 @@
 	var/mob/living/carbon/human/humie = target
 	var/chance = 100 - humie.getarmor(null,BIO)
 	if(prob(max(10,chance * 0.66))) // higher chance than toxic water
-		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
+		humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,2.5)
 
 /mob/living/simple_animal/hostile/yog_jungle/meduracha/Goto(target, delay, minimum_distance)
 	update_sulking(TRUE)

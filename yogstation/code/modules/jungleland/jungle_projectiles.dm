@@ -26,6 +26,6 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target 
-	var/chance = ((H.wear_suit ? 100 - H.wear_suit.armor.bio : 100)  +  (H.head ? 100 - H.head.armor.bio : 100) )/2
-	if(prob(chance * 0.5))
-		H.apply_status_effect(/datum/status_effect/toxic_buildup)
+	var/chance = 100 - H.getarmor(null,BIO)
+	if(prob(max(10,chance * 0.75))) // higher chance than toxic water
+		H.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)

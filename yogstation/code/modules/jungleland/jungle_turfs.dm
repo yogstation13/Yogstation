@@ -207,7 +207,7 @@ Temperature: 126.85 °C (400 K)
 		return
 	
 	if(prob(chance * 0.33))
-		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
+		humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,7.5)
 
 /turf/open/water/deep_toxic_pit
 	name = "deep sulphuric pit"
@@ -236,7 +236,7 @@ Temperature: 126.85 °C (400 K)
 	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
 		return
 	
-	humie.apply_status_effect(/datum/status_effect/toxic_buildup)
+	humie.reagents.add_reagent(/datum/reagent/toxic_metabolities,15)
 
 /turf/open/floor/wood/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
