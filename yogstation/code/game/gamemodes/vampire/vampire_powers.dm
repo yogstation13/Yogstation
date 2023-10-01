@@ -167,13 +167,18 @@
 	user.visible_message(span_warning("[user]'s eyes flash red."),\
 					span_warning("your eyes flash red."))
 
-	if(HAS_TRAIT(T, TRAIT_BLIND))
-		to_chat(user, span_vampirewarning("[T] is blind and is unaffected by your gaze!"))
-		return
-
-	to_chat(target, span_userdanger("You are paralyzed with fear!"))
-	to_chat(user, span_notice("You paralyze [T]."))
-	T.Stun(5 SECONDS)
+	var/protection = T.get_eye_protection()
+	switch(protection)
+		if(INFINITY)
+			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by your gaze!"))
+			return FALSE
+		if(INFINITY to 1)
+			T.adjust_confusion(5 SECONDS)
+			return TRUE
+		if(0)
+			to_chat(target, span_userdanger("You are paralyzed with fear!"))
+			to_chat(user, span_notice("You paralyze [T]."))
+			T.Stun(5 SECONDS)
 	return TRUE
 
 
@@ -220,9 +225,14 @@
 	user.visible_message(span_warning("[user] twirls their finger in a circular motion."),\
 			span_warning("You twirl your finger in a circular motion."))
 
-	if(HAS_TRAIT(T, TRAIT_BLIND))
-		to_chat(user, span_vampirewarning("[T] is blind and can't be hypnotized!"))
-		return FALSE
+	var/protection = T.get_eye_protection()
+	switch(protection)
+		if(INFINITY)
+			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by hypnosis!"))
+			return FALSE
+		if(INFINITY to 1)
+			T.adjust_confusion(5 SECONDS)
+			return TRUE
 
 	to_chat(target, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
 	to_chat(user, span_notice("[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
