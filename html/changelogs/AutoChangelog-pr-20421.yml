@@ -1,0 +1,10 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Add an option to toggle between using departmental budget or cargo budget when requesting a package"
+  - tweak: "Using department budget to order now actually show the departmental name to avoid confusion"
+  - bugfix: "Fixes issue when departmental budget amount not appearing on the app"
+  - bugfix: "Fixes NT IRN app not printing requisition paper"
+  - bugfix: "Fixes modular computer's NT IRN app showing buyer as unknown because it doesnt recognize the pda"
+  - tweak: "Refactored code a bit"
+  - tweak: "private crate can now be sent back to CC if unlocked"
