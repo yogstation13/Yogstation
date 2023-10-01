@@ -6,10 +6,17 @@
 
 /obj/item/clothing/mask/gas/sechailer
 	var/obj/item/radio/radio //For engineering alerts.
-	var/radio_key = /obj/item/encryptionkey/headset_sec
-	var/radio_channel = "Security"
+	var/radio_key = /obj/item/encryptionkey/headset_medsec //needs med to in order to request medical help for one of the things
 	var/dispatch_cooldown = 250
 	var/last_dispatch = 0
+	var/list/options = list(
+		"601 (Murder)" = RADIO_CHANNEL_SECURITY, 
+		"101 (Resisting Arrest)" = RADIO_CHANNEL_SECURITY, 
+		"309 (Breaking and entering)" = RADIO_CHANNEL_SECURITY, 
+		"306 (Riot)" = RADIO_CHANNEL_SECURITY, 
+		"401 (Assault, Officer)" = RADIO_CHANNEL_SECURITY,
+		"69 (Injured Civilian)" = RADIO_CHANNEL_MEDICAL
+		)
 
 /obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
 	. = ..()
@@ -29,13 +36,13 @@
 	if(world.time < last_dispatch + dispatch_cooldown)
 		to_chat(user, span_notice("Dispatch radio broadcasting systems are recharging."))
 		return FALSE
-	var/list/options = list()
-	for(var/option in list("601 (Murder)", "101 (Resisting Arrest)", "309 (Breaking and entering)", "306 (Riot)", "401 (Assault, Officer)")) //Just hardcoded for now!
-		options[option] = image(icon = 'yogstation/icons/effects/aiming.dmi', icon_state = option)
-	var/message = show_radial_menu(user, user, options)
+	var/list/display= list()
+	for(var/option in options)
+		display[option] = image(icon = 'yogstation/icons/effects/aiming.dmi', icon_state = option)
+	var/message = show_radial_menu(user, user, display)
 	if(!message)
 		return FALSE
-	radio.talk_into(src, "Dispatch, code [message] in progress in [A], requesting assistance.", radio_channel)
+	radio.talk_into(src, "Dispatch, code [message] in progress in [A], requesting assistance.", options[message])
 	last_dispatch = world.time
 	for(var/atom/movable/hailer in GLOB.sechailers)
 		if(hailer.loc &&ismob(hailer.loc))
