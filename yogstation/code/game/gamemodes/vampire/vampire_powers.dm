@@ -593,6 +593,8 @@
 	possible_shapes = list(/mob/living/simple_animal/hostile/vampire_bat)
 
 /datum/action/cooldown/spell/shapeshift/vampire/can_cast_spell()
+	if(owner.incapacitated(TRUE, TRUE))
+		return FALSE
 	if(ishuman(owner))
 		blood_used = 15
 	else
