@@ -36,7 +36,7 @@
 	if(world.time < last_dispatch + dispatch_cooldown)
 		to_chat(user, span_notice("Dispatch radio broadcasting systems are recharging."))
 		return FALSE
-	var/list/display= list()
+	var/list/display = list()
 	for(var/option in options)
 		display[option] = image(icon = 'yogstation/icons/effects/aiming.dmi', icon_state = option)
 	var/message = show_radial_menu(user, user, display)
