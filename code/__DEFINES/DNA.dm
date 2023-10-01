@@ -35,6 +35,7 @@
 #define ELVIS		/datum/mutation/human/elvis
 #define RADIOACTIVE	/datum/mutation/human/radioactive
 #define RADPROOF	/datum/mutation/human/radproof
+#define SAPBLOOD	/datum/mutation/human/sapblood
 #define GLOWY		/datum/mutation/human/glow
 #define ANTIGLOWY	/datum/mutation/human/glow/anti
 #define TELEPATHY	/datum/mutation/human/telepathy
