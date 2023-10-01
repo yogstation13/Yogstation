@@ -170,7 +170,7 @@
 	custom_price = 10
 
 /obj/item/clothing/neck/petcollar
-	name = "pet collar"
+	name = "collar"
 	desc = "It has a little bell!"
 	icon_state = "petcollar"
 	var/tagname = null
