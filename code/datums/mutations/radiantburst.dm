@@ -54,6 +54,7 @@
 /datum/action/cooldown/spell/aoe/radiantburst/cast(atom/cast_on)
 	. = ..()
 	owner.visible_message(span_warning("[owner] releases a blinding light from within themselves."), span_notice("You release all the light within you."))
+	flash_color(owner, flash_color = LIGHT_COLOR_HOLY_MAGIC, flash_time = 0.5 SECONDS)
 
 /datum/action/cooldown/spell/aoe/radiantburst/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(ishuman(victim))
