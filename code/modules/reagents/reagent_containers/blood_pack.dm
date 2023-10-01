@@ -31,8 +31,8 @@
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)
 		return TRUE
 
-	while(do_after(user, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-		if(reagents.total_volume <= 0)
+	while(do_after(user, 1 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		if(!reagents.total_volume)
 			user.balloon_alert(user, "empty!")
 			return ..()
 
