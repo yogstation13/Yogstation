@@ -32,7 +32,7 @@
 		return TRUE
 
 	while(do_after(user, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
-		if(!reagents.total_volume)
+		if(reagents.total_volume <= 0)
 			user.balloon_alert(user, "empty!")
 			return ..()
 
@@ -42,7 +42,7 @@
 		)
 		if(is_vampire(user))
 			var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
-			V.usable_blood += 5
+			V.usable_blood += BLOODBAG_GULP_SIZE / 4 //they should really be drinking from people, yknow, be antagonistic?
 
 		reagents.reaction(user, INGEST, fraction)
 		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)

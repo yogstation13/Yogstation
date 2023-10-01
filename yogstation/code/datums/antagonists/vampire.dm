@@ -30,18 +30,18 @@
 		/datum/action/cooldown/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
 		/datum/action/cooldown/spell/appearanceshift = 75,
-		/datum/vampire_passive/nostealth = 100,
 		/datum/action/cooldown/spell/cloak = 100,
 		/datum/action/cooldown/spell/revive = 100,
-		/datum/action/cooldown/spell/pointed/disease = 200,
-		/datum/action/cooldown/spell/shapeshift/vampire = 200,
-		/datum/action/cooldown/spell/aoe/screech = 215,
+		/datum/vampire_passive/nostealth = 150, //only lose the ability to stealth once you get a proper way to escape
+		/datum/action/cooldown/spell/shapeshift/vampire = 150,
+		/datum/action/cooldown/spell/aoe/screech = 200,
+		/datum/action/cooldown/spell/pointed/disease = 225,
 		/datum/action/cooldown/spell/bats = 250,
-		/datum/vampire_passive/regen = 255,
+		/datum/vampire_passive/regen = 250,
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform = 300,
-		/datum/vampire_passive/full = 420,
-		/datum/action/cooldown/spell/summon_coat = 420,
-		/datum/action/cooldown/spell/pointed/vampirize = 450)
+		/datum/vampire_passive/full = 400,
+		/datum/action/cooldown/spell/summon_coat = 400,
+		/datum/action/cooldown/spell/pointed/vampirize = 500)
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE
