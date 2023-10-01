@@ -160,33 +160,20 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/target = target_atom
-	var/mob/living/carbon/human/T = target
-	user.visible_message(span_warning("[user]'s eyes flash red."),\
-					span_warning("[user]'s eyes flash red."))
-	if(ishuman(target))
-		var/obj/item/clothing/glasses/G = T.glasses
-		if(G)
-			if(G.flash_protect > 0)
-				to_chat(user,span_warning("[T] has protective sunglasses on!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by your [G]!"))
-				return
-		var/obj/item/clothing/mask/M = T.wear_mask
-		if(M)
-			if(M.flash_protect > 0)
-				to_chat(user,span_warning("[T]'s mask is covering their eyes!"))
-				to_chat(target,span_warning("[user]'s paralyzing gaze is blocked by your [M]!"))
-				return
-		var/obj/item/clothing/head/H = T.head
-		if(H)
-			if(H.flash_protect > 0)
-				to_chat(user, span_vampirewarning("[T]'s helmet is covering their eyes!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [H]!"))
-				return
-		to_chat(target,span_warning("You are paralyzed with fear!"))
-		to_chat(user,span_notice("You paralyze [T]."))
-		T.Stun(50)
+	if(!ishuman(target_atom))
+		return FALSE
 
+	var/mob/living/carbon/human/T = target_atom
+	user.visible_message(span_warning("[user]'s eyes flash red."),\
+					span_warning("your eyes flash red."))
+
+	if(HAS_TRAIT(T, TRAIT_BLIND))
+		to_chat(user, span_vampirewarning("[T] is blind and is unaffected by your gaze!"))
+		return
+
+	to_chat(target, span_userdanger("You are paralyzed with fear!"))
+	to_chat(user, span_notice("You paralyze [T]."))
+	T.Stun(5 SECONDS)
 	return TRUE
 
 
@@ -226,37 +213,23 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!ishuman(target_atom))
+		return FALSE
+	
+	var/mob/living/carbon/human/T = target_atom
 	user.visible_message(span_warning("[user] twirls their finger in a circlular motion."),\
 			span_warning("You twirl your finger in a circular motion."))
-	var/mob/living/target = target_atom
-	var/mob/living/carbon/human/T = target
-	user.visible_message(span_warning("[user]'s eyes flash red."),\
-					span_warning("[user]'s eyes flash red."))
-	if(T)
-		var/obj/item/clothing/glasses/G = T.glasses
-		if(G)
-			if(G.flash_protect > 0)
-				to_chat(user, span_warning("[T] has protective sunglasses on!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [G]!"))
-				return
-		var/obj/item/clothing/mask/M = T.wear_mask
-		if(M)
-			if(M.flash_protect > 0)
-				to_chat(user, span_vampirewarning("[T]'s mask is covering their eyes!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [M]!"))
-				return
-		var/obj/item/clothing/head/H = T.head
-		if(H)
-			if(H.flash_protect > 0)
-				to_chat(user, span_vampirewarning("[T]'s helmet is covering their eyes!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [H]!"))
-				return
+
+	if(HAS_TRAIT(T, TRAIT_BLIND))
+		to_chat(user, span_vampirewarning("[T] is blind and can't be hypnotized!"))
+		return FALSE
+
 	to_chat(target, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
 	to_chat(user, span_notice("[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
 	if(do_after(user, 4 SECONDS, target)) // 4 seconds...
 		if(get_dist(user, T) <= 3)
-			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
-			T.SetSleeping(300)
+			flash_color(T, flash_color="#472040", flash_time=3 SECONDS) // it's the vampires color!
+			T.SetSleeping(30 SECONDS)
 			to_chat(user, span_warning("[T] has fallen asleep!"))
 		else
 			to_chat(T, span_notice("You feel a whole lot better now."))
