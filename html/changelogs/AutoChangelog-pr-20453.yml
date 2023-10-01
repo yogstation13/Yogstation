@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "No longer need to click adjacent tiles to attack using worldbreaker's pummel"
+  - bugfix: "Can no longer use worldbreaker abilities on items in inventory"
