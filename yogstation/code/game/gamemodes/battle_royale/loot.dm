@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -2,
 		/obj/item/gun/energy/kinetic_accelerator/crossbow = -2,
 		/obj/item/gun/energy/laser = -2,
-		/obj/item/melee/transforming/energy/axe = -2,
+		/obj/item/fireaxe/energy = -2, //lol, this is the energy fire axe, not the debug energy axe
 
 		/obj/item/gun/ballistic/revolver = -3,
 		/obj/item/gun/ballistic/bow/energy = -3,
