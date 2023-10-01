@@ -5,7 +5,7 @@
 	difficulty = 16
 	locked = TRUE
 	text_gain_indication = span_notice("Your feel your arteries cloying!")
-	instability = 30
+	instability = 20
 	/// The bloodiest wound that the patient has will have its blood_flow reduced by this much each tick
 	var/clot_rate = 0.15
 	/// While we have this mutation, we reduce all bleeding by this factor
