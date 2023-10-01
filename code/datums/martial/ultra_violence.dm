@@ -30,7 +30,7 @@
 	COOLDOWN_DECLARE(next_parry) // so you can't just spam it
 
 /datum/martial_art/ultra_violence/can_use(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))
+	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))//extra pacifism check because it does weird shit
 		return FALSE
 	return isipc(H)
 
