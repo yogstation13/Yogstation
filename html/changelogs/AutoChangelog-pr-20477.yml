@@ -1,0 +1,8 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Preternis water damage is stronger but starts out weaker"
+  - bugfix: "Preternis water damage now properly makes them spark"
+  - tweak: "Preternis burn mod increased to 1.2"
+  - tweak: "Preterni are worse at punching"
+  - tweak: "Preterni heat up and cool down slightly faster"
