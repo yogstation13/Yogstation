@@ -34,6 +34,7 @@
 	desc = "A reinforced version of the standard Peacekeeper vest with extra padding to protect against melee attacks. Not as strong as riot suits typically issued to NT stations."
 	icon_state = "occriotsuit"
 	item_state = "occriotsuit"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/head/helmet/riot/raised/occupying
 	name = "peacekeeping force riot helmet"
