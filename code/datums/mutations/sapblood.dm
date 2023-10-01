@@ -30,7 +30,7 @@
 
 	var/datum/wound/bloodiest_wound
 
-	for(var/i in M.all_wounds)
+	for(var/i in owner.all_wounds)
 		var/datum/wound/iter_wound = i
 		if(iter_wound.blood_flow)
 			if(iter_wound.blood_flow > bloodiest_wound?.blood_flow)
