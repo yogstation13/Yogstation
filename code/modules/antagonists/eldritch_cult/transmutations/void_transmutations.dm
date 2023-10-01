@@ -24,6 +24,7 @@
 	var/datum/weather/void_storm/storm
 	H.physiology.brute_mod *= 0.5
 	H.physiology.burn_mod *= 0.5
+	H.AddComponent(/datum/component/ice_walk)
 	
 	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, MAGIC_TRAIT)
 	

@@ -517,6 +517,7 @@
 #include "code\datums\components\heal_react.dm"
 #include "code\datums\components\heirloom.dm"
 #include "code\datums\components\hot_ice.dm"
+#include "code\datums\components\ice_walk.dm"
 #include "code\datums\components\igniter.dm"
 #include "code\datums\components\infective.dm"
 #include "code\datums\components\jousting.dm"
