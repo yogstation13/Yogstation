@@ -30,6 +30,8 @@
 	COOLDOWN_DECLARE(next_parry) // so you can't just spam it
 
 /datum/martial_art/ultra_violence/can_use(mob/living/carbon/human/H)
+	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))
+		return FALSE
 	return isipc(H)
 
 /datum/martial_art/ultra_violence/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)//A is user, D is target
@@ -72,8 +74,9 @@
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
-	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || get_turf(H) == get_turf(A))
+	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || !can_use(H) || get_turf(H) == get_turf(A))
 		return FALSE
+
 	H.face_atom(A)
 	if(H.a_intent == INTENT_DISARM)
 		dash(H, A)
