@@ -649,10 +649,10 @@
 
 /datum/martial_art/worldbreaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
+	H.physiology.hunger_mod *= 10 //burn bright my friend
 	var/datum/species/preternis/S = H.dna.species
-	if(istype(S))//burn bright my friend
+	if(istype(S))
 		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
-		H.physiology.hunger_mod *= 5
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -661,6 +661,7 @@
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
+	ADD_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH, type) //they hongry
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
 		linked_stomp = new
@@ -668,10 +669,10 @@
 	linked_stomp.Grant(H)
 
 /datum/martial_art/worldbreaker/on_remove(mob/living/carbon/human/H)
+	H.physiology.hunger_mod /= 10 //but not that bright
 	var/datum/species/preternis/S = H.dna.species
-	if(istype(S))//but not that bright
+	if(istype(S))
 		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING, src)
-		H.physiology.hunger_mod /= 5
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
 	deltimer(plate_timer)
@@ -681,6 +682,7 @@
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
+	REMOVE_TRAIT(H, TRAIT_BOTTOMLESS_STOMACH, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
 	if(linked_stomp)
 		linked_stomp.Remove(H)
