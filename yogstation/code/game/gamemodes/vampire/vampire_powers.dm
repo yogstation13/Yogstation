@@ -217,7 +217,7 @@
 		return FALSE
 	
 	var/mob/living/carbon/human/T = target_atom
-	user.visible_message(span_warning("[user] twirls their finger in a circlular motion."),\
+	user.visible_message(span_warning("[user] twirls their finger in a circular motion."),\
 			span_warning("You twirl your finger in a circular motion."))
 
 	if(HAS_TRAIT(T, TRAIT_BLIND))
