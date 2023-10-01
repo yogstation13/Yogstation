@@ -7,7 +7,7 @@
 /obj/item/clothing/mask/gas/sechailer
 	var/obj/item/radio/radio //For engineering alerts.
 	var/radio_key = /obj/item/encryptionkey/headset_medsec //needs med to in order to request medical help for one of the things
-	var/dispatch_cooldown = 250
+	var/dispatch_cooldown = 25 SECONDS
 	var/last_dispatch = 0
 	var/list/options = list(
 		"601 (Murder)" = RADIO_CHANNEL_SECURITY, 
