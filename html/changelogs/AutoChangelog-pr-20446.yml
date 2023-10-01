@@ -1,4 +1,0 @@
-author: "Kell-E"
-delete-after: true 
-changes: 
-  - bugfix: "It's no longer possible to remove embedded objects from yourself while unconcious or paralyzed."
