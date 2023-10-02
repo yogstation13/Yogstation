@@ -16,7 +16,11 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
+	var/image/wire_vision_img //specifically for wirecrawling
+
 /obj/machinery/power/Destroy()
+	if(wire_vision_img)
+		qdel(wire_vision_img)
 	disconnect_from_network()
 	return ..()
 

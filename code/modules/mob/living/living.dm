@@ -1449,6 +1449,7 @@
 		else
 			clear_fullscreen("remote_view", 0)
 		update_pipe_vision()
+		update_wire_vision()
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)

@@ -3523,6 +3523,7 @@
 #include "code\modules\spells\spell_types\jaunt\bloodcrawl.dm"
 #include "code\modules\spells\spell_types\jaunt\ethereal_jaunt.dm"
 #include "code\modules\spells\spell_types\jaunt\shadow_walk.dm"
+#include "code\modules\spells\spell_types\jaunt\wirecrawl.dm"
 #include "code\modules\spells\spell_types\list_target\_list_target.dm"
 #include "code\modules\spells\spell_types\list_target\telepathy.dm"
 #include "code\modules\spells\spell_types\pointed\_pointed.dm"

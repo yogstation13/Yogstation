@@ -71,6 +71,10 @@
 	ethereal_light = ethereal.mob_light()
 	spec_updatehealth(ethereal)
 
+	if(ishuman(C))
+		var/datum/action/cooldown/spell/jaunt/wirecrawl/dash = new
+		dash.Grant(C)
+
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)
 	C.set_light(0)
