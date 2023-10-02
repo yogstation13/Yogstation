@@ -383,12 +383,6 @@
 /obj/item/storage/fancy/cigarettes,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"ajI" = (
-/obj/effect/turf_decal/bot_white/right,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 9
-	},
-/area/engine/gravity_generator)
 "ajM" = (
 /obj/machinery/status_display,
 /turf/closed/wall,
@@ -1354,12 +1348,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aDv" = (
-/obj/effect/turf_decal/bot_white/right,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 6
-	},
-/area/engine/gravity_generator)
 "aDT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1546,6 +1534,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"aHT" = (
+/obj/effect/turf_decal/bot_white/left,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "aIA" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -2804,6 +2799,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bjy" = (
+/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "bjA" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -2867,12 +2869,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
-"bkw" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 4
-	},
-/area/engine/gravity_generator)
 "bkD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -2931,6 +2927,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"bng" = (
+/obj/effect/turf_decal/bot_white/right,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "bnp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -10097,12 +10100,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"eqU" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 1
-	},
-/area/engine/gravity_generator)
 "eri" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/randomdrink,
@@ -22660,6 +22657,13 @@
 /obj/item/taperecorder,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"kcV" = (
+/obj/effect/turf_decal/bot_white/right,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "kcX" = (
 /obj/structure/mirror{
 	pixel_y = 32
@@ -24839,12 +24843,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"lgJ" = (
-/obj/effect/turf_decal/bot_white/left,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 5
-	},
-/area/engine/gravity_generator)
 "lgO" = (
 /obj/structure/chair/stool,
 /obj/structure/disposalpipe/segment{
@@ -26550,6 +26548,13 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"lTt" = (
+/obj/effect/turf_decal/bot_white/left,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "lTu" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "vacantshop";
@@ -29029,12 +29034,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"mXR" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 8
-	},
-/area/engine/gravity_generator)
 "mXW" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating,
@@ -37278,12 +37277,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"qxN" = (
-/obj/effect/turf_decal/bot_white/left,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 10
-	},
-/area/engine/gravity_generator)
 "qxX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -37834,11 +37827,6 @@
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/solar/starboard/fore)
-"qLP" = (
-/obj/machinery/gravity_generator/main/station,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding,
-/area/engine/gravity_generator)
 "qMv" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -40626,6 +40614,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"sbL" = (
+/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "sbZ" = (
 /obj/machinery/shower{
 	pixel_y = 24
@@ -48228,6 +48223,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"vpf" = (
+/obj/machinery/gravity_generator/main/station,
+/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "vpi" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
@@ -54641,6 +54642,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/server)
+"ybj" = (
+/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/gravity_generator)
 "ybz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -84953,9 +84961,9 @@ gEZ
 nju
 myG
 fQQ
-ajI
-mXR
-qxN
+bng
+ybj
+lTt
 aCy
 myG
 ylr
@@ -85210,9 +85218,9 @@ gEZ
 mhM
 kyG
 dSK
-eqU
+bjy
 gVe
-qLP
+vpf
 jMK
 myG
 ylr
@@ -85467,9 +85475,9 @@ gEZ
 fBj
 myG
 nvW
-lgJ
-bkw
-aDv
+aHT
+sbL
+kcV
 aWc
 myG
 ylr
