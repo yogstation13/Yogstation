@@ -2,7 +2,7 @@
 	cost = 500
 	unit_name = "crate"
 	export_types = list(/obj/structure/closet/crate)
-	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/mail, /obj/structure/closet/crate/coffin)
+	exclude_types = list(/obj/structure/closet/crate/large, /obj/structure/closet/crate/wooden, /obj/structure/closet/crate/mail, /obj/structure/closet/crate/coffin, /obj/structure/closet/crate/secure/cheap, /obj/structure/closet/crate/secure/owned/cheap, /obj/structure/closet/crate/secure/owned/civ/cheap, /obj/structure/closet/crate/secure/owned/engineering/cheap, /obj/structure/closet/crate/secure/owned/gear/cheap, /obj/structure/closet/crate/secure/owned/hydroponics/cheap, /obj/structure/closet/crate/secure/owned/science/cheap, /obj/structure/closet/crate/secure/owned/medical/cheap)
 
 /datum/export/large/crate/total_printout(datum/export_report/ex, notes = TRUE) // That's why a goddamn metal crate costs that much.
 	. = ..()
