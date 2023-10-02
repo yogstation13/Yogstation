@@ -75,13 +75,12 @@
 				if(prob(75))
 					spark_system.start()
           
-				var/cycleDrain = baseDrain
-				var/drained = A.consume_power_from(cycleDrain)
-				if(drained < cycleDrain)
+				var/drained = A.consume_power_from(baseDrain)
+				if(drained < baseDrain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 
-				H.adjust_bodytemperature(drained * (1 - ELECTRICITY_TO_NUTRIMENT_FACTOR)) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
+				H.adjust_bodytemperature(drained * (1 - ELECTRICITY_TO_NUTRIMENT_FACTOR) /2) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
 				drained *= ELECTRICITY_TO_NUTRIMENT_FACTOR //loss of efficiency
 
 				if(H.nutrition + drained > NUTRITION_LEVEL_FAT)
@@ -111,6 +110,16 @@
 	return FALSE //return the amount that was drained.
 
 #define MIN_DRAINABLE_POWER 10
+
+//IPC lol, lmao
+/mob/living/carbon/human/can_consume_power_from()
+	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
+
+/mob/living/carbon/human/consume_power_from(amount)
+	if((nutrition - amount) < NUTRITION_LEVEL_STARVING)
+		amount = max(nutrition - NUTRITION_LEVEL_STARVING, 0)
+	adjust_nutrition(-amount)
+	return amount
 
 //CELL//
 /obj/item/stock_parts/cell/can_consume_power_from()

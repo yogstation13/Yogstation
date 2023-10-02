@@ -215,8 +215,8 @@
 /obj/effect/decal/cleanable/plasma
 	name = "stabilized plasma"
 	desc = "A puddle of stabilized plasma."
-	icon_state = "flour"
-	icon = 'icons/effects/tomatodecal.dmi'
+	icon_state = "molten"
+	icon = 'icons/effects/effects.dmi'
 	color = "#C8A5DC"
 
 /obj/effect/decal/cleanable/insectguts

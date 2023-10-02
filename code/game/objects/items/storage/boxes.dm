@@ -1296,7 +1296,7 @@
 		/obj/item/stack/sheet/mineral/wood/fifty = 1,
 		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
 		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
-		/obj/item/stack/sheet/mineral/diamond = 1,
+		/obj/item/stack/sheet/mineral/diamond/fifty = 1,
 		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
 		/obj/item/stack/sheet/mineral/gold/fifty = 1,
 		/obj/item/stack/sheet/mineral/silver/fifty = 1,

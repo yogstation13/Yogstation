@@ -17,7 +17,7 @@ GLOBAL_VAR(stormdamage)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale maint")
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
@@ -61,6 +61,7 @@ GLOBAL_VAR(stormdamage)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_STALWART) //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
+		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
@@ -78,8 +79,10 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
+	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.6 SECONDS)//do it twice because lockers protect the things inside
 	addtimer(CALLBACK(src, PROC_REF(subvert_ai)), 1.5 SECONDS)//funny gamemaster rules
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
+	set_observer_default_invisibility(0) //so ghosts can feel like they're included
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -98,17 +101,14 @@ GLOBAL_VAR(stormdamage)
 	var/disqualified = 0 //keep track of everyone disqualified for log reasons
 
 	for(var/mob/living/player in GLOB.battleroyale_players)
-		if(QDELETED(player))
+		if(QDELETED(player) || (player.stat == DEAD))
 			disqualified++
 			continue
-		if(player.stat == DEAD)
-			disqualified++
-			player.dust(TRUE, TRUE)
-			continue
-		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
+		var/turf/place = get_turf(player)
+		if(!is_station_level(place.z) || player.onCentCom() || player.onSyndieBase())
 			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			player.dust(TRUE, TRUE)
+			player.add_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY) //ya blew it
 			continue
 		royalers += player //add everyone not disqualified for one reason or another to the new list
 
@@ -155,9 +155,7 @@ GLOBAL_VAR(stormdamage)
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
-		if(1)//get them out of maints
-			SSweather.run_weather("royale maint", 2)
-		if(2 to 7)//close off the map
+		if(1 to 7)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
@@ -178,29 +176,22 @@ GLOBAL_VAR(stormdamage)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/delete_armoury()
-	var/area/ai_monitored/security/armory/A = locate(/area/ai_monitored/security/armory) in GLOB.areas
-	for(var/obj/item/thing in A)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+	var/area/to_clear = list(//clear out any place that might have gamer loot that creates a meta of "rush immediately"
+		/area/ai_monitored/security/armory, 
+		/area/security/warden, 
+		/area/security/main, 
+		/area/crew_quarters/heads/hos,
+		/area/crew_quarters/heads/captain//sword
+		)
 
-	var/area/security/warden/B = locate(/area/security/warden) in GLOB.areas
-	for(var/obj/item/thing in B)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+	to_clear |= typesof(/area/bridge) //fireaxe
+	to_clear |= typesof(/area/engine/atmos) //also fireaxe
 
-	var/area/security/main/C = locate(/area/security/main) in GLOB.areas
-	for(var/obj/item/thing in C)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
-
-	var/area/crew_quarters/heads/hos/D = locate(/area/crew_quarters/heads/hos) in GLOB.areas
-	for(var/obj/item/thing in D)
-		if(thing.anchored)//only target something that is possibly a weapon
-			continue
-		qdel(thing)
+	for(var/place in to_clear)
+		var/area/actual = locate(place) in GLOB.areas
+		for(var/obj/thing in actual)
+			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
+				qdel(thing)
 
 /datum/game_mode/fortnite/proc/subvert_ai()//to do: make spawned borgs follow this law too
 	var/mob/selfinsert = new(src)
@@ -264,22 +255,32 @@ GLOBAL_VAR(stormdamage)
 	var/mob/living/carbon/human/tfue = owner.current
 	for(var/obj/item/I in tfue.get_equipped_items(TRUE))//remove all clothes before giving the antag clothes
 		qdel(I)
+	for(var/obj/item/I in tfue.held_items)//remove held items (mining medic i'm looking at you)
+		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
 /datum/antagonist/battleroyale/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	handle_clown_mutation(current_mob, mob_override ? null : "Your overwhelming swagness allows you to wield weapons!")
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(gamer_life))
+	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(gamer_death))
 
 /datum/antagonist/battleroyale/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	UnregisterSignal(current_mob, COMSIG_LIVING_DEATH)
 	return ..()
 
 /datum/antagonist/battleroyale/proc/gamer_life(mob/living/source, seconds_per_tick, times_fired)
 	var/mob/living/carbon/human/tfue = source
 	if(tfue && isspaceturf(tfue.loc))
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
+
+/datum/antagonist/battleroyale/proc/gamer_death()//you live by the game, you die by the game
+	to_chat(owner, span_userdanger("Oh dear, you are dead! "))
+	to_chat(owner, span_notice("You may be revived during the events of the round, but you can no longer win."))
+	owner.current?.unequip_everything()
+	owner.current?.add_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY) //ya blew it
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
@@ -294,7 +295,6 @@ GLOBAL_VAR(stormdamage)
 	ears = /obj/item/radio/headset
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
-	back = /obj/item/storage/backpack
 	id = /obj/item/card/id/captains_spare
 
 /obj/structure/battle_bus
