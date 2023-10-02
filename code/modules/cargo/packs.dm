@@ -17,10 +17,16 @@
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 	var/small_item = FALSE //Small items can be grouped into a single crate.
+	/**
+	 * var/budget_radioactive = FALSE //Overwrite budget crate into radiation protective crate
+	 */
 
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
 	if(paying_account)
+		//if(budget_radioactive)
+			//C = new /obj/structure/closet/crate/secure/owned/radiation(A, paying_account)
+		//else
 		if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
 			C = new /obj/structure/closet/crate/secure/owned/medical(A, paying_account)
 		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))

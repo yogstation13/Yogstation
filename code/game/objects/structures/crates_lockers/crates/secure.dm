@@ -129,6 +129,10 @@
 
 /obj/structure/closet/crate/secure/owned/civ/cheap
 
+/*/obj/structure/closet/crate/secure/owned/radiation
+	icon_state = "radiation_secure"
+*/
+
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
 	. += span_notice("It's locked with a privacy lock, and can only be unlocked by the buyer's ID.")
