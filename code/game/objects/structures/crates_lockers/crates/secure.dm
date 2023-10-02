@@ -125,7 +125,7 @@
 /obj/structure/closet/crate/secure/owned/gear/cheap
 
 /obj/structure/closet/crate/secure/owned/civ
-	icon_state = "securecrate"
+	icon_state = "plasmacrate"
 
 /obj/structure/closet/crate/secure/owned/civ/cheap
 
