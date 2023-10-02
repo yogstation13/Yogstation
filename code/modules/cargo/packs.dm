@@ -21,7 +21,20 @@
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
 	if(paying_account)
-		C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
+		if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+			C = new /obj/structure/closet/crate/secure/owned/medical(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
+			C = new /obj/structure/closet/crate/secure/owned/engineering(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SCI))
+			C = new /obj/structure/closet/crate/secure/owned/science(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SRV))
+			C = new /obj/structure/closet/crate/secure/owned/hydroponics(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SEC))
+			C = new /obj/structure/closet/crate/secure/owned/gear(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_CIV))
+			C = new /obj/structure/closet/crate/secure/owned/civ(A, paying_account)
+		else
+			C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
 		C.name = "[crate_name] - Purchased by [paying_account.account_holder]"
 	else
 		C = new crate_type(A)
