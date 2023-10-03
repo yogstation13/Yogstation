@@ -68,8 +68,6 @@
 
 /obj/machinery/ai/master_subcontroller/process()
 	update_power()
-	update_icon()
-	
 
 /obj/machinery/ai/master_subcontroller/update_icon_state()
 	. = ..()
@@ -92,6 +90,7 @@
 		on = FALSE
 	else
 		on = TRUE
+	update_icon()
 	
 /obj/machinery/ai/master_subcontroller/disconnect_from_network()
 	if(network.cached_subcontroller == src)
