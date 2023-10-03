@@ -1,5 +1,5 @@
 
-/datum/species/preternis/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
+/datum/species/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
 	if(!istype(H) || !A)
 		return
 
@@ -102,6 +102,7 @@
 	qdel(spark_system)
 	draining = FALSE
 	return
+
 
 /atom/proc/can_consume_power_from()
 	return FALSE //if a string is returned, it will evaluate as false and be output to the person draining.

@@ -55,7 +55,7 @@ export const NtosSynthManager = (props, context) => {
                 width="75%"
                 lineHeight="50px"
                 content={"Medical"}
-                onClick={() => act('grant_medical', {message: "help fire!!!"})} />
+                onClick={() => act('grant_medical')} />
             </Flex.Item>
             )}
             {!!data.hop && (

@@ -207,6 +207,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	var/inherent_slowdown = 0
 
+	//for preternis + synths
+	var/draining = FALSE
+
 ///////////
 // PROCS //
 ///////////
