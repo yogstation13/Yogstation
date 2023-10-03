@@ -48,7 +48,6 @@
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
 	var/tesliumtrip = FALSE
-	var/draining = FALSE
 	var/soggy = FALSE
 	var/low_power_warning = FALSE
 
