@@ -92,6 +92,8 @@
 	
 	inbuilt_cpu = new /obj/item/ai_cpu
 
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
+
 	laws.show_laws(C)
 
 /datum/species/wy_synth/proc/add_synthos(mob/living/carbon/human/C)
