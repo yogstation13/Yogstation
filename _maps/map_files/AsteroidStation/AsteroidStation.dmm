@@ -604,12 +604,6 @@
 /mob/living/simple_animal/cockroach,
 /turf/open/floor/engine,
 /area/maintenance/starboard/fore)
-"afj" = (
-/obj/effect/turf_decal/bot_white/left,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 10
-	},
-/area/engine/gravity_generator)
 "afm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1182,12 +1176,6 @@
 /obj/machinery/atmospherics/miner/carbon_dioxide,
 /turf/open/floor/engine/co2,
 /area/engine/atmos/distro)
-"akP" = (
-/obj/effect/turf_decal/bot_white/right,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 6
-	},
-/area/engine/gravity_generator)
 "akV" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -1559,12 +1547,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"anC" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 1
-	},
-/area/engine/gravity_generator)
 "anD" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -2533,12 +2515,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/holodeck/rec_center)
-"awh" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 8
-	},
-/area/engine/gravity_generator)
 "awn" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -2651,12 +2627,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/ruin/powered)
-"axH" = (
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 4
-	},
-/area/engine/gravity_generator)
 "axP" = (
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
@@ -3705,12 +3675,6 @@
 "aFk" = (
 /turf/template_noop,
 /area/maintenance/starboard/aft)
-"aFo" = (
-/obj/effect/turf_decal/bot_white/right,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 9
-	},
-/area/engine/gravity_generator)
 "aFq" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -4994,11 +4958,6 @@
 "aRI" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
-"aSb" = (
-/obj/machinery/gravity_generator/main/station,
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/yellowsiding,
-/area/engine/gravity_generator)
 "aSh" = (
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -5484,12 +5443,6 @@
 /obj/machinery/rnd/experimentor,
 /turf/open/floor/engine,
 /area/science/explab)
-"aXl" = (
-/obj/effect/turf_decal/bot_white/left,
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 5
-	},
-/area/engine/gravity_generator)
 "aXn" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner/lower{
 	dir = 1
@@ -10266,6 +10219,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"cvz" = (
+/obj/machinery/gravity_generator/main/station,
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/engine/gravity_generator)
 "cvG" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line/lower,
 /turf/open/floor/plasteel,
@@ -31428,6 +31386,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"jdF" = (
+/obj/effect/turf_decal/bot_white/right,
+/turf/open/floor/plasteel/dark,
+/area/engine/gravity_generator)
 "jdG" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -46556,6 +46518,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"nUa" = (
+/obj/effect/turf_decal/bot_white/left,
+/turf/open/floor/plasteel/dark,
+/area/engine/gravity_generator)
 "nUc" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/window/eastright{
@@ -58295,6 +58261,10 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room)
+"rAT" = (
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/engine/gravity_generator)
 "rBs" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -125475,9 +125445,9 @@ eTd
 vUk
 aYa
 vsQ
-aFo
-awh
-afj
+jdF
+rAT
+nUa
 tMO
 qaZ
 aAy
@@ -125732,9 +125702,9 @@ iYL
 sAW
 aYa
 aws
-anC
+rAT
 aVi
-aSb
+cvz
 rYp
 iIw
 hIA
@@ -125989,9 +125959,9 @@ iYL
 thR
 aYa
 aVi
-aXl
-axH
-akP
+nUa
+rAT
+jdF
 oAu
 jRA
 aAy
