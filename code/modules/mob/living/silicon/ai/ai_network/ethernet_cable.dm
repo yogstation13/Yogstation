@@ -86,7 +86,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
-/obj/structure/ethernet_cable/update_icon()
+/obj/structure/ethernet_cable/update_icon_state()
+	. = ..()
 	icon_state = "[d1]-[d2]"
 
 /obj/structure/ethernet_cable/proc/handlecable(obj/item/W, mob/user, params)
@@ -442,7 +443,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	else
 		return ..()
 
-/obj/item/stack/ethernet_coil/update_icon()
+/obj/item/stack/ethernet_coil/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][amount < 3 ? amount : ""]"
 	name = "ethernet cable [amount < 3 ? "piece" : "coil"]"
 

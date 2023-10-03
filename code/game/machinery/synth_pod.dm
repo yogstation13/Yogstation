@@ -34,8 +34,8 @@ GLOBAL_LIST_EMPTY(synth_pods)
 	. = ..()
 	GLOB.synth_pods -= src
 
-/obj/machinery/synth_pod/update_icon()
-	cut_overlays()
+/obj/machinery/synth_pod/update_overlays()
+	. = ..()
 
 	if(stored)
 		add_overlay("uvhuman")

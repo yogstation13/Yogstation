@@ -137,7 +137,7 @@
 	var/mob/living/silicon/ai/AI = usr
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
-		if(!do_after(AI, 1 SECONDS, src, FALSE, stayStill = FALSE))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 			return
 
 	toggle_bolt(usr)
@@ -150,7 +150,7 @@
 	var/mob/living/silicon/ai/AI = usr
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
-		if(!do_after(AI, 1 SECONDS, src, FALSE, stayStill = FALSE))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 			return
 
 	if(!secondsElectrified)
@@ -165,7 +165,7 @@
 	var/mob/living/silicon/ai/AI = usr
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
-		if(!do_after(AI, 1 SECONDS, src, FALSE, stayStill = FALSE))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 			return
 	user_toggle_open(usr)
 	add_hiddenprint(usr)
@@ -177,7 +177,7 @@
 	var/mob/living/silicon/ai/AI = usr
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
-		if(!do_after(AI, 1 SECONDS, src, FALSE, stayStill = FALSE))
+		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE)
 			return
 
 	toggle_emergency(usr)

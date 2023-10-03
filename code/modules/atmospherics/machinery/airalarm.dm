@@ -821,7 +821,7 @@
 		return ..()
 
 	to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
-	if(do_after(AI, 1 SECONDS, src, FALSE, stayStill = FALSE))
+	if(do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
 		return ..()
 
 /obj/machinery/airalarm/AltClick(mob/user)

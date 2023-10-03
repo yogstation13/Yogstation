@@ -21,8 +21,8 @@ GLOBAL_VAR_INIT(decrypted_puzzle_disks, 0)
 	.=..()
 	update_icon()
 
-/obj/item/disk/puzzle/update_icon()
-	cut_overlays()
+/obj/item/disk/puzzle/update_overlays()
+	. = ..()
 	if(detail_color == COLOR_FLOORTILE_GRAY)
 		return
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/card.dmi', "[icon_state]-color")
