@@ -47,8 +47,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		return
 	if(!is_synth(stored))
 		return
-	var/datum/species/wy_synth/S = stored.dna.species
-	S.charge = clamp(S.charge + 10, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
+	stored.adjust_nutrition(10)
 
 
 /obj/machinery/synth_pod/MouseDrop_T(atom/A, mob/living/user)
