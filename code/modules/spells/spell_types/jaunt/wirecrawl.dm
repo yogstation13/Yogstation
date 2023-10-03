@@ -166,7 +166,6 @@
 	var/turf/oldloc = get_turf(user)
 	var/obj/structure/cable/current = locate() in oldloc
 	if(!current || !istype(current) || !travelled)//if someone snips the wire you're currently in, or it gets destroyed in some way, get out
-		user.remove_wirevision()
 		eject_jaunter()
 		return
 
@@ -180,20 +179,24 @@
 
 /obj/effect/dummy/phased_mob/wirecrawl/process(delta_time)//so if the existing wire is destroyed, they are forced out
 	. = ..()
-	var/turf/currentloc = get_turf(user)
-	var/obj/structure/cable/current = locate() in oldloc
+	var/turf/currentloc = get_turf(jaunter)
+	var/obj/structure/cable/current = locate() in currentloc
 	if(!current || !istype(current) || !travelled)//if someone snips the wire you're currently in, or it gets destroyed in some way, get out
-		user.remove_wirevision()
 		eject_jaunter()
 		return
-	
+
+/obj/effect/dummy/phased_mob/wirecrawl/eject_jaunter()
+	var/mob/living/ejected = jaunter
+	ejected.remove_wirevision()
+	. = ..()
 
 //vision
-/mob/living/proc/update_wire_vision(obj/structure/cable/wire)
-	if(!wire)
-		to_chat(src, "Error, @Molti on discord")
-		return
+/mob/living/proc/update_wire_vision(var/obj/structure/cable/wire)
+	if(!wire) //if there's no wire, grab a random one in the location
+		wire = locate() in get_turf(src)
 	remove_wirevision()
+	if(!wire) //if there's STILL no wire, just give up
+		return
 	add_wirevision(wire)
 
 /mob/living/proc/add_wirevision(obj/structure/cable/wire)
