@@ -158,6 +158,7 @@
 	var/turf/oldloc = get_turf(user)
 	var/obj/structure/cable/current = locate() in oldloc
 	if(!current || !istype(current) || !travelled)//if someone snips the wire you're currently in, or it gets destroyed in some way, get out
+		user.remove_wirevision()
 		eject_jaunter()
 		return
 
