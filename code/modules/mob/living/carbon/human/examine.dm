@@ -268,20 +268,21 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 
-	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
-		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= NUTRITION_LEVEL_FAT)
-		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else
-			msg += "[t_He] [t_is] quite chubby.\n"
-	switch(disgust)
-		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
-			msg += "[t_He] look[p_s()] a bit grossed out.\n"
-		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
-			msg += "[t_He] look[p_s()] really grossed out.\n"
-		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
-			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+	if(!HAS_TRAIT(src, TRAIT_POWERHUNGRY)) //robots don't visibly show their hunger
+		if(nutrition < NUTRITION_LEVEL_STARVING - 50)
+			msg += "[t_He] [t_is] severely malnourished.\n"
+		else if(nutrition >= NUTRITION_LEVEL_FAT)
+			if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
+				msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
+			else
+				msg += "[t_He] [t_is] quite chubby.\n"
+		switch(disgust)
+			if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
+				msg += "[t_He] look[p_s()] a bit grossed out.\n"
+			if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
+				msg += "[t_He] look[p_s()] really grossed out.\n"
+			if(DISGUST_LEVEL_DISGUSTED to INFINITY)
+				msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
 
 	var/apparent_blood_volume = blood_volume
@@ -457,7 +458,7 @@
 					var/cyberimp_detect
 					for(var/obj/item/organ/cyberimp/CI in internal_organs)
 						if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)
-							cyberimp_detect += "[name] is modified with a [CI.name]."
+							cyberimp_detect += "[name] is modified with a [CI.name].\n"
 					if(cyberimp_detect)
 						. += "Detected cybernetic modifications:"
 						. += cyberimp_detect

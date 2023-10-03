@@ -1541,8 +1541,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return TRUE
 	var/list/all_items = owner.current.get_all_contents()
 	for(var/obj/item/photo/P in all_items)
-		for(var/mob/M in P.picture.mobs_seen)
-			if(M.real_name == target.name)
+		for(var/datum/mind/M in P.picture.minds_seen)
+			if(M == target)
 				return TRUE
 	return FALSE
 

@@ -747,9 +747,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"agA" = (
-/turf/open/floor/plating,
-/area/medical/storage/backroom)
 "agB" = (
 /turf/closed/wall,
 /area/medical/genetics/cloning)
@@ -1213,7 +1210,10 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/pen,
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 5;
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "akY" = (
@@ -1261,7 +1261,6 @@
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/pen/red,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
@@ -1646,7 +1645,10 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/pen,
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -5;
+	pixel_y = -4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aoq" = (
@@ -17025,6 +17027,10 @@
 	id = "atmos";
 	name = "Atmospherics Blast Door"
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "eBg" = (
@@ -21276,6 +21282,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
+/obj/item/storage/pencil_holder/crew/creative,
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
 "fSR" = (
@@ -27085,6 +27092,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"hMa" = (
+/obj/structure/table/wood,
+/obj/item/storage/pencil_holder/crew,
+/turf/open/floor/carpet/blue,
+/area/bridge/meeting_room)
 "hMd" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -29141,6 +29153,10 @@
 	pixel_x = 9;
 	pixel_y = 8
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8;
+	pixel_y = -4
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "iuq" = (
@@ -30252,6 +30268,9 @@
 "iOo" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck,
+/obj/item/storage/pencil_holder/crew{
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "iOr" = (
@@ -32116,6 +32135,10 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 8
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "jnJ" = (
@@ -33265,6 +33288,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"jHC" = (
+/obj/structure/table/wood,
+/obj/item/storage/pencil_holder/crew/fancy,
+/turf/open/floor/carpet/blue,
+/area/bridge/meeting_room)
 "jHG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -36797,6 +36825,10 @@
 	pixel_x = 8;
 	pixel_y = -5
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "kQS" = (
@@ -36831,6 +36863,9 @@
 /obj/structure/table/wood,
 /obj/item/folder/blue,
 /obj/item/stamp/captain,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
 "kRi" = (
@@ -43506,6 +43541,10 @@
 	pixel_x = 8;
 	pixel_y = -4
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -12;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/warden)
 "mXM" = (
@@ -45045,8 +45084,6 @@
 /area/crew_quarters/fitness)
 "nvK" = (
 /obj/structure/table/wood,
-/obj/item/pen/fountain,
-/obj/item/pen/blue,
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -45054,6 +45091,17 @@
 /obj/item/deskbell/preset/library{
 	pixel_x = -8;
 	pixel_y = -4
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
 	},
 /turf/open/floor/wood,
 /area/library)
@@ -48005,7 +48053,6 @@
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/pen,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -48017,6 +48064,10 @@
 /obj/item/deskbell/preset/xenobio{
 	pixel_x = 9;
 	pixel_y = -5
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -50689,6 +50740,9 @@
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 4
 	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 10
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "pkj" = (
@@ -53059,6 +53113,9 @@
 /obj/item/deskbell/preset/hop{
 	pixel_x = -6;
 	pixel_y = -5
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -63951,6 +64008,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
+"tjP" = (
+/obj/structure/table/wood,
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/turf/open/floor/wood,
+/area/vacant_room)
 "tkm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -66774,6 +66839,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "uet" = (
@@ -68363,6 +68432,10 @@
 /obj/item/deskbell/preset/engi{
 	pixel_x = 8;
 	pixel_y = -3
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -10;
+	pixel_y = 12
 	},
 /turf/open/floor/plating,
 /area/engine/foyer)
@@ -70270,12 +70343,20 @@
 "vpt" = (
 /obj/structure/table,
 /obj/item/toy/figure/rd,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
 "vql" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
 /obj/item/stamp/ce,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 10;
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -74997,6 +75078,10 @@
 	pixel_y = 3
 	},
 /obj/item/phone/banana,
+/obj/item/storage/pencil_holder/crew/creative{
+	pixel_x = 8;
+	pixel_y = 12
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "wLM" = (
@@ -77557,6 +77642,10 @@
 "xBV" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/deputy,
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = -8;
+	pixel_y = 12
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "xCc" = (
@@ -77768,7 +77857,13 @@
 	pixel_x = -2;
 	pixel_y = 5
 	},
-/obj/item/pen/blue,
+/obj/item/pen/blue{
+	pixel_x = -1
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 10;
+	pixel_y = 10
+	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)
 "xHl" = (
@@ -77872,6 +77967,10 @@
 /obj/item/deskbell/preset/supply{
 	pixel_x = 7;
 	pixel_y = 6
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 9;
+	pixel_y = -2
 	},
 /turf/open/floor/plating,
 /area/quartermaster/office)
@@ -100173,7 +100272,7 @@ bxL
 aGM
 oLY
 wFU
-fAC
+hMa
 wzz
 glU
 ssK
@@ -100430,7 +100529,7 @@ bxL
 aGM
 igI
 fAC
-fAC
+jHC
 jWJ
 dcX
 ssK
@@ -100687,7 +100786,7 @@ bxL
 aGM
 onW
 tzn
-fAC
+hMa
 bkf
 gpL
 ssK
@@ -111774,7 +111873,7 @@ aqH
 mNR
 taH
 jbG
-agA
+wOM
 ebX
 oIA
 hod
@@ -120199,7 +120298,7 @@ hqO
 ajF
 jPS
 aGE
-ajF
+tjP
 uWo
 amx
 hoZ
