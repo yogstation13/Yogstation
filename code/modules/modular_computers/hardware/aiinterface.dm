@@ -12,7 +12,7 @@
 
 // Called when component is installed into PC.
 /obj/item/computer_hardware/ai_interface/on_install(obj/item/modular_computer/M, mob/living/user = null)
-	RegisterSignal(M, COMSIG_MOVABLE_MOVED, .proc/parent_moved)
+	RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved))
 
 
 /obj/item/computer_hardware/ai_interface/on_remove(obj/item/modular_computer/M, mob/living/user = null)	

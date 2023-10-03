@@ -298,7 +298,7 @@
 		return
 
 	for(var/mob/living/silicon/ai/AI in get_all_ais())
-		addtimer(CALLBACK(src, .proc/disconnection_switch, AI, new_network), 0)
+		addtimer(CALLBACK(src, PROC_REF(disconnection_switch), AI, new_network), 0)
 		
 			
 

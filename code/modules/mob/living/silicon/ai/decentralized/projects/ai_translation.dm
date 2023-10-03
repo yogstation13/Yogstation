@@ -14,7 +14,7 @@
 	. = ..(force_run)
 	if(!.)
 		return .
-	RegisterSignal(ai, COMSIG_MOVABLE_HEAR, .proc/heard_message)
+	RegisterSignal(ai, COMSIG_MOVABLE_HEAR, PROC_REF(heard_message))
 	dashboard.cpu_usage[name] = 0.1
 
 	

@@ -70,7 +70,7 @@
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
-	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	laws = new /datum/ai_laws/steward
 
 
@@ -115,7 +115,7 @@
 		return ..()
 	H.Stun(4 SECONDS) // No moving either
 	H.update_body()
-	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
+	addtimer(CALLBACK(src, PROC_REF(afterrevive), H), 0)
 	return
 
 /datum/species/wy_synth/proc/afterrevive(mob/living/carbon/human/H)
