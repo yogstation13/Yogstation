@@ -1256,7 +1256,7 @@
 	icon_state = "hardsuit0-synth"
 	item_state = "centcom"
 	w_class = WEIGHT_CLASS_BULKY
-	clothing_flags = THICKMATERIAL
+	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 100, FIRE = 10, ACID = 15)
@@ -1274,7 +1274,7 @@
 	item_state = "centcom"
 	w_class = WEIGHT_CLASS_BULKY
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	clothing_flags = THICKMATERIAL
+	clothing_flags = STOPSPRESSUREDAMAGE | STOPSPRESSUREDAMAGE
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
