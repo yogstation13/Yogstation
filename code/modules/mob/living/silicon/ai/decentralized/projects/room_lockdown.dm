@@ -40,10 +40,10 @@
 	for(var/obj/machinery/door/airlock/D in A.contents)
 		if(istype(D, /obj/machinery/door/airlock/external))
 			continue
-		INVOKE_ASYNC(D, PROC_REF(safe_lockdown))
-		addtimer(CALLBACK(D, PROC_REF(disable_safe_lockdown)), 20 SECONDS)
+		INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door/airlock, safe_lockdown))
+		addtimer(CALLBACK(D, TYPE_PROC_REF(/obj/machinery/door/airlock, disable_safe_lockdown)), 20 SECONDS)
 	A.firealert(usr.loc)
-	addtimer(CALLBACK(A, PROC_REF(firereset)), 20 SECONDS)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/area, firereset)), 20 SECONDS)
 			
 
 
