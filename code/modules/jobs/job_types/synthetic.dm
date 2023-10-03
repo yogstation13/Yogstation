@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 /datum/job/synthetic/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
 
-	addtimer(CALLBACK(src, .proc/synth_name_choose, H, M), 1 SECONDS,)
+	addtimer(CALLBACK(src, .proc/synth_name_choose, H, M), 1 SECONDS)
 
 /datum/job/synthetic/proc/synth_name_choose(mob/living/H, mob/M)
 	var/newname = sanitize_name(reject_bad_text(stripped_input(M, "Please input your name.", "Name change", H.real_name, MAX_NAME_LEN)))
