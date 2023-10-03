@@ -4150,22 +4150,6 @@
 "aBI" = (
 /turf/closed/wall,
 /area/security/checkpoint/auxiliary)
-"aBN" = (
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=1";
-	dir = 1;
-	freq = 1400;
-	location = "Bridge"
-	},
-/obj/structure/plasticflaps{
-	opacity = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/bridge/meeting_room)
 "aBO" = (
 /obj/item/pen{
 	desc = "Writes upside down!";
@@ -4899,12 +4883,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aFE" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "aFF" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -21796,16 +21774,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"eBh" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "eBC" = (
 /obj/machinery/requests_console{
 	department = "Hydroponics";
@@ -30739,19 +30707,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"ieD" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "ifh" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -33436,13 +33391,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
-"jhb" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/start/synthetic,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "jhc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -36108,19 +36056,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"krs" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/central";
-	dir = 1;
-	name = "Central Maintenance APC";
-	pixel_y = 23
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "krO" = (
 /obj/machinery/door/airlock/medical/glass{
 	id_tag = "MedbayFoyer_R";
@@ -51112,22 +51047,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"qFS" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "synthetic closet";
-	req_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "qFU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -56130,10 +56049,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"sLp" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "sLr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -59661,12 +59576,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"udk" = (
-/obj/machinery/vr_sleeper/netmin/synth_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "udm" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -66049,13 +65958,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"wDO" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/oil/synth,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "wEg" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
@@ -96052,10 +95954,10 @@ guI
 hez
 aZM
 aZM
-aZM
-mlj
-qFS
-mlj
+aaa
+aaa
+aaa
+aaa
 mlj
 kIe
 bqu
@@ -96309,10 +96211,10 @@ jjW
 qmf
 xIW
 bfo
-aBN
-eBh
-ieD
-mlj
+aaa
+aaa
+aaa
+aaa
 oiE
 rIo
 gBO
@@ -96566,10 +96468,10 @@ xul
 xul
 kPb
 jwK
-jwK
-wDO
-jhb
-bmr
+aaa
+aaa
+aaa
+aaa
 bmr
 qPS
 czW
@@ -96823,10 +96725,10 @@ jzw
 kji
 kRv
 dBV
-jwK
-krs
-aFE
-dEb
+aaa
+aaa
+aaa
+aaa
 dPP
 bYm
 ptS
@@ -97080,10 +96982,10 @@ pfA
 kjm
 kRv
 lvY
-jwK
-udk
-sLp
-dEb
+aaa
+aaa
+aaa
+aaa
 eaw
 nfX
 nfX
@@ -97337,10 +97239,10 @@ yfL
 bdX
 kUQ
 xul
-jwK
-jwK
-jwK
-dEb
+aaa
+aaa
+aaa
+aaa
 ien
 nfX
 bqy
