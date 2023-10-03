@@ -72,7 +72,6 @@
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
-	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
 	laws = new /datum/ai_laws/steward
 
 
