@@ -40,7 +40,7 @@
 ---------------------------------------------------------------*/
 /datum/martial_art/conduit/harm_act(mob/living/carbon/human/A, mob/living/D)
 	tesla_zap(D, 3, 10000, TESLA_MOB_DAMAGE)
-	D.electrocute_act(5, stun = FALSE)
+	D.electrocute_act(10, stun = FALSE)
 	return FALSE
 
 /*---------------------------------------------------------------
@@ -67,9 +67,9 @@
 	if(hit_atom && isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		L.visible_message("<span class ='danger'>[A] dropkicks [L]!</span>", "<span class ='userdanger'>[A] dropkicks you!</span>")
-		L.Knockdown(10 SECONDS)
 		L.throw_at(get_edge_target_turf(L, get_dir(get_turf(A), get_turf(L))), 5, 3, A, TRUE)
-		L.electrocute_act(10, stun = FALSE)
+		L.Knockdown(5 SECONDS)
+		L.electrocute_act(10)
 		do_sparks(4, FALSE, A)
 		A.SetKnockdown(0)
 		sleep(1)//Runtime prevention (infinite bump() calls on hulks)
