@@ -162,6 +162,8 @@
 	icon_state = "yellow slime extract"
 	granted_action = /datum/action/cooldown/spell/jaunt/wirecrawl
 	action_name = "Wirecrawling"
+	drop_sound = null
+	pickup_sound = null
 	remarks = list("Drain...", "Absorb...", "Shock...", "Zap...", "High Voltage...")
 	book_sounds = list('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg')
 	var/admin = FALSE

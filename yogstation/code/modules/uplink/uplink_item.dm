@@ -174,13 +174,6 @@
 	item = /obj/item/book/granter/martial/explosive_fist
 	restricted_species = list("plasmaman")
 
-/datum/uplink_item/race_restricted/conduit
-	name = "Modified yellow slime extract"
-	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
-	cost = 12
-	item = /obj/item/book/granter/action/conduit
-	restricted_species = list("ethereal")
-
 /datum/uplink_item/race_restricted/ultra_violence
 	name = "Version one upgrade module"
 	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \
@@ -191,6 +184,13 @@
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
+
+/datum/uplink_item/race_restricted/wirecrawl
+	name = "Modified yellow slime extract"
+	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
+	cost = 8
+	item = /obj/item/book/granter/action/wirecrawl
+	restricted_species = list("ethereal")
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
