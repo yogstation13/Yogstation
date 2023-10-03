@@ -75,6 +75,10 @@
 /obj/item/organ/proc/on_find(mob/living/finder)
 	return
 
+/obj/item/organ/proc/can_extract(mob/living/finder)
+	return TRUE
+
+
 /obj/item/organ/process()	//runs decay when outside of a person
 	if((organ_flags & (ORGAN_SYNTHETIC | ORGAN_FROZEN)) || istype(loc, /obj/item/mmi))
 		return

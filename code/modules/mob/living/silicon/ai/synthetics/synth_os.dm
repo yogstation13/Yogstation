@@ -153,7 +153,7 @@
 
 	if(owner.mind.governor_suspicion >= 40 && !owner.mind.synth_audible_warning)
 		owner.mind.synth_audible_warning = TRUE
-		owner.mind.current.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.")
+		owner.mind.current.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
 		punishment_log("PUNISHMENT: AUDIBLE MESSAGE TRANSMITTED")
 
 	if(owner.mind.governor_suspicion <= 35 && owner.mind.synth_audible_warning)
@@ -180,7 +180,7 @@
 		WS2.force_multiplier -= 0.25
 
 	if(owner.mind.synth_audible_warning)
-		new_shell.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.")
+		new_shell.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
 
 /datum/ai_dashboard/synth_dashboard/proc/punishment_log(text)
 	text = "\[[station_time_timestamp()]\] " + text

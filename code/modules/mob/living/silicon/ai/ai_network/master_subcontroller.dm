@@ -69,17 +69,22 @@
 /obj/machinery/ai/master_subcontroller/process()
 	update_power()
 	update_icon()
+	
 
-/obj/machinery/ai/master_subcontroller/update_icon()
-	cut_overlays()
-	if(on)
-		var/mutable_appearance/on_overlay
-		on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
-		add_overlay(on_overlay)
+/obj/machinery/ai/master_subcontroller/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[initial(icon_state)]_o"
 	else
 		icon_state = initial(icon_state)
+
+/obj/machinery/ai/master_subcontroller/update_overlays()
+	. = ..()
+	if(on)
+		var/mutable_appearance/on_overlay
+		on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+		add_overlay(on_overlay)
+	
 
 /obj/machinery/ai/master_subcontroller/proc/update_power()
 	if(stat & (BROKEN|NOPOWER|EMPED)) // if powered, on. if not powered, off. if too damaged, off

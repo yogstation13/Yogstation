@@ -291,6 +291,8 @@
 		if(2)
 			to_chat(owner, span_warning("Alert: Posibrain damaged."))
 
+/obj/item/organ/brain/positron/synth/can_extract()
+	return FALSE
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

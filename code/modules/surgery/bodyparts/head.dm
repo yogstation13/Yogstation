@@ -107,6 +107,8 @@
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
 	for(var/obj/item/I in src)
 		if(I == brain)
+			if(!brain.can_extract())
+				return
 			if(user)
 				user.visible_message(span_warning("[user] saws [src] open and pulls out a brain!"), span_notice("You saw [src] open and pull out a brain."))
 			if(brainmob)

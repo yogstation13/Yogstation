@@ -13,7 +13,7 @@
 	TRAIT_NOHUNGER, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NOGUNS, TRAIT_NO_GRENADES)
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_HEAD, ITEM_SLOT_EYES)
 	inherent_biotypes = list(MOB_ROBOTIC)
-	mutantbrain = /obj/item/organ/brain/positron
+	mutantbrain = /obj/item/organ/brain/positron/synth
 	mutantheart = /obj/item/organ/heart/cybernetic
 	mutanteyes = /obj/item/organ/eyes/robotic/synth
 	mutanttongue = /obj/item/organ/tongue/robot
@@ -42,7 +42,7 @@
 	allow_numbers_in_name = TRUE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	wings_icon = "Robotic"
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE
+	changesource_flags = NONE
 
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/power_drain = 0.25 //probably going to have to tweak this shit
