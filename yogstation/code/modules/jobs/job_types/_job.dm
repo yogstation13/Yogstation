@@ -163,3 +163,46 @@
 		message_admins("RUNTIME IN GIVE_BAR_CHANCE")
 		spawn_bar()
 		throw e
+
+
+
+/datum/job/proc/give_chapel_choice(mob/living/H, mob/M)
+	try
+		var/choice
+
+		var/client/C = M.client
+		if(!C)
+			C = H.client
+			if(!C)
+				choice = "Random"
+
+		if(C)
+			choice = C.prefs.read_preference(/datum/preference/choiced/chapel_choice)
+
+		if(choice != "Random")
+			var/chapel_sanitize = FALSE
+			for(var/A in GLOB.potential_box_chapels)
+				if(choice == A)
+					chapel_sanitize = TRUE
+					break
+
+			if(!chapel_sanitize)
+				choice = "Random"
+
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_chapels)
+
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		if(!template)
+			log_game("chapel FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading chapel 1 as backup.")
+			message_admins("chapel FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading chapel 1 as backup.")
+			template = SSmapping.station_room_templates["Chapel 1"]
+
+		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN GIVE_CHAPEL_CHOICE")
+		spawn_chapel()
+		throw e

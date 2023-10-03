@@ -434,14 +434,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"xO" = (
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
-/area/chapel/main)
 "Ar" = (
-/obj/effect/landmark/start/chaplain,
 /obj/structure/chair,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -571,14 +564,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/chapel/main)
-"MC" = (
-/obj/effect/landmark/start/assistant,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/carpet/purple,
 /area/chapel/main)
 "ML" = (
 /obj/machinery/door/airlock/maintenance{
@@ -1073,7 +1058,7 @@ ZS
 Wy
 ZS
 PM
-xO
+ZS
 PM
 QT
 JH
@@ -1138,7 +1123,7 @@ Tv
 Tv
 rk
 Od
-MC
+Od
 Od
 Od
 Od

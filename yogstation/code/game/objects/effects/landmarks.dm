@@ -133,6 +133,10 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/box/chapel
 	template_names = list("Chapel 1", "Chapel 2")
 
+/obj/effect/landmark/stationroom/box/chapel/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
 /obj/effect/landmark/stationroom/meta/engine
 	template_names = list("Meta Singulo And Tesla" = 40, "Meta SM" = 60, "Meta TEG" = 0)
 

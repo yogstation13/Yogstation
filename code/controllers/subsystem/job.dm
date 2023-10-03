@@ -607,6 +607,8 @@ SUBSYSTEM_DEF(job)
 		irish_override() // Assuming direct control.
 	else if(living_mob.job == "Bartender")
 		job.give_bar_choice(living_mob, M)
+	else if(living_mob.job == "Chaplain")
+		job.give_chapel_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
@@ -615,6 +617,71 @@ SUBSYSTEM_DEF(job)
 	var/datum/map_template/template = SSmapping.station_room_templates["Bar Irish"]
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
+
+
+/datum/controller/subsystem/job/proc/random_chapel_init()
+	try
+		var/list/player_box = list()
+		for(var/mob/H in GLOB.player_list)
+			if(H.client && H.client.prefs) // Prefs was null once and there was no CHAPEL
+				player_box += H.client.prefs.read_preference(/datum/preference/choiced/chapel_choice)
+
+		var/choice
+		if(player_box.len == 0)
+			choice = "Random"
+		else
+			choice = pick(player_box)
+
+		if(choice != "Random")
+			var/chapel_sanitize = FALSE
+			for(var/A in GLOB.potential_box_chapels)
+				if(choice == A)
+					chapel_sanitize = TRUE
+					break
+
+			if(!chapel_sanitize)
+				choice = "Random"
+
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_chapels)
+
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		if(isnull(template))
+			message_admins("WARNING: CHAPEL TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			log_game("WARNING: CHAPEL TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			for(var/backup_chapel in GLOB.potential_box_chapels)
+				template = SSmapping.station_room_templates[backup_chapel]
+				if(!isnull(template))
+					break
+				message_admins("WARNING: CHAPEL TEMPLATE [backup_chapel] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+				log_game("WARNING: CHAPEL TEMPLATE [backup_chapel] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+
+		if(isnull(template))
+			message_admins("WARNING: CHAPEL RECOVERY FAILED! THERE WILL BE NO CHAPEL FOR THIS ROUND!")
+			log_game("WARNING: CHAPEL RECOVERY FAILED! THERE WILL BE NO CHAPEL FOR THIS ROUND!")
+			return
+
+		for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN RANDOM_CHAPEL_INIT")
+		spawn_chapel()
+		throw e
+
+/proc/spawn_chapel()
+	var/datum/map_template/template
+	for(var/backup_chapel in GLOB.potential_box_chapels)
+		template = SSmapping.station_room_templates[backup_chapel]
+		if(!isnull(template))
+			break
+	if(isnull(template))
+		message_admins("UNABLE TO SPAWN CHAPEL")
+
+	for(var/obj/effect/landmark/stationroom/box/chapel/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
 

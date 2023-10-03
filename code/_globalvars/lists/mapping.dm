@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(bar_areas)
 // IF YOU ARE MAKING A NEW BAR TEMPLATE AND WANT IT ROUNDSTART ADD IT TO THIS LIST!
 GLOBAL_LIST_INIT(potential_box_bars, list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Grassy", "Bar Clock", "Bar Arcade"))
-
+GLOBAL_LIST_INIT(potential_box_chapels, list("Chapel 1", "Chapel 2"))
 /// Away missions
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to
 GLOBAL_LIST_EMPTY(vr_spawnpoints)
