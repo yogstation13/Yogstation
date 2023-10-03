@@ -80,6 +80,7 @@
 
 /obj/machinery/ai/master_subcontroller/update_overlays()
 	. = ..()
+	cut_overlays()
 	if(on)
 		var/mutable_appearance/on_overlay
 		on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
