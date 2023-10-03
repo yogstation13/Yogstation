@@ -70,7 +70,7 @@
 
 #define STATUS_EFFECT_HOLYLIGHT_ANTIMAGIC /datum/status_effect/holylight_antimagic //long-term temporary antimagic that makes you blue
 
-#define STATUS_EFFECT_HOLYLIGHT_HEALBOOST /datum/status_effect/holylight_healboost //long-term temporary antimagic that makes you blue
+#define STATUS_EFFECT_HOLYLIGHT_HEALBOOST /datum/status_effect/holylight_healboost //short-term heal boost that grants the chaplain favor
 
 /////////////
 // DEBUFFS //
@@ -152,6 +152,8 @@
 #define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
 
 #define STATUS_EFFECT_CATCHUP /datum/status_effect/catchup //momentarily slows the victim
+
+#define STATUS_EFFECT_VOID_CHILL /datum/status_effect/void_chill
 
 /////////////
 // NEUTRAL //

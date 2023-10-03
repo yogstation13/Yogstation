@@ -8,12 +8,13 @@
 
 /datum/reagent/consumable/ethanol
 	name = "Ethanol"
+	addiction_name = "Alcohol"
 	description = "A well-known alcohol with a variety of applications."
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning	
+	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 	accelerant_quality = 5
 /*
 Boozepwr Chart
@@ -1414,7 +1415,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			drinker.Sleeping(10 SECONDS * REM)
 			. = TRUE
 		if(201 to INFINITY)
-			drinker.AdjustSleeping(4 SECONDS* REM)
+			drinker.AdjustSleeping(4 SECONDS * REM)
 			drinker.adjustToxLoss(2 * REM, FALSE)
 			. = TRUE
 	..()
@@ -1509,26 +1510,26 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.set_slurring_if_lower(1 SECONDS * REM)
 	switch(current_cycle)
 		if(1 to 5)
-			M.adjust_dizzy(10)
-			M.set_drugginess(30)
+			M.set_dizzy_if_lower(1 SECONDS)
+			M.set_drugginess_if_lower(3 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
-		if(5 to 10)
-			M.adjust_jitter(20 SECONDS)
-			M.adjust_dizzy(20)
-			M.set_drugginess(45)
+		if(6 to 10)
+			M.set_jitter_if_lower(20 SECONDS)
+			M.set_dizzy_if_lower(2 SECONDS)
+			M.set_drugginess_if_lower(4.5 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
-		if (10 to 200)
-			M.adjust_jitter(40 SECONDS)
-			M.adjust_dizzy(40)
-			M.set_drugginess(60)
+		if (11 to 200)
+			M.set_jitter_if_lower(40 SECONDS)
+			M.set_dizzy_if_lower(4 SECONDS)
+			M.set_drugginess_if_lower(6 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
-		if(200 to INFINITY)
-			M.adjust_jitter(1 MINUTES)
-			M.adjust_dizzy(60)
-			M.set_drugginess(75)
+		if(201 to INFINITY)
+			M.set_jitter_if_lower(60 SECONDS)
+			M.set_dizzy_if_lower(6 SECONDS)
+			M.set_drugginess_if_lower(7.5 SECONDS)
 			if(prob(40))
 				M.emote(pick("twitch","giggle"))
 			if(prob(30))
@@ -2675,7 +2676,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
-	var/alcoholicspeed = 0.75 //For determining the speed effect\\ 
+	var/alcoholicspeed = 0.75 //For determining the speed effect\\
 	name = "Syndicate Screwdriver"
 	description = "A drink that all greytiders and syndicate enjoy"
 	boozepwr = 115

@@ -120,6 +120,7 @@
 	unconscious_factor = initial(unconscious_factor) * C
 	heat_capacity = initial(heat_capacity) / C
 	conduction_coefficient = initial(conduction_coefficient) * C
+	reagent_transfer = efficiency * 10 - 5 // update pause before injecting the next occupant so it doesnt end up as something ludicrous
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user) //this is leaving out everything but efficiency since they follow the same idea of "better beaker, better results"
 	. = ..()

@@ -539,7 +539,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if(W.GetID())			// trying to unlock the interface with an ID card
+	else if(W.GetID() && user.a_intent == INTENT_HELP)			// trying to unlock the interface with an ID card only on help intent.
 		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
@@ -1181,16 +1181,10 @@
 	else
 		status_flags &= ~CANPUSH
 
-	if(module.clean_on_move)
-		AddElement(/datum/element/cleaning)
-	else
-		RemoveElement(/datum/element/cleaning)
-
 	hat_offset = module.hat_offset
 
 	magpulse = module.magpulsing
 	updatename()
-
 
 /mob/living/silicon/robot/proc/place_on_head(obj/item/new_hat)
 	if(hat)
