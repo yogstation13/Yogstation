@@ -154,6 +154,14 @@
 	///keep track of the powernet we're in
 	var/datum/powernet/travelled
 
+/obj/effect/dummy/phased_mob/wirecrawl/Initialize(mapload, atom/movable/jaunter)
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+	
+/obj/effect/dummy/phased_mob/wirecrawl/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	return ..()
+
 /obj/effect/dummy/phased_mob/wirecrawl/phased_check(mob/living/user, direction)
 	var/turf/oldloc = get_turf(user)
 	var/obj/structure/cable/current = locate() in oldloc
@@ -169,6 +177,16 @@
 		user.update_wire_vision(wire)
 		new /obj/effect/particle_effect/sparks/electricity/short(get_turf(user))
 		return newloc
+
+/obj/effect/dummy/phased_mob/wirecrawl/process(delta_time)//so if the existing wire is destroyed, they are forced out
+	. = ..()
+	var/turf/currentloc = get_turf(user)
+	var/obj/structure/cable/current = locate() in oldloc
+	if(!current || !istype(current) || !travelled)//if someone snips the wire you're currently in, or it gets destroyed in some way, get out
+		user.remove_wirevision()
+		eject_jaunter()
+		return
+	
 
 //vision
 /mob/living/proc/update_wire_vision(obj/structure/cable/wire)
