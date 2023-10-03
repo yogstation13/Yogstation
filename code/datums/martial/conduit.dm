@@ -39,8 +39,8 @@
 	here, have a fancy zap punch i guess
 ---------------------------------------------------------------*/
 /datum/martial_art/conduit/harm_act(mob/living/carbon/human/A, mob/living/D)
-	tesla_zap(D, 3, 20000, TESLA_MOB_DAMAGE)
-	D.electrocute_act(10, stun = FALSE)
+	tesla_zap(D, 3, 10000, TESLA_MOB_DAMAGE)
+	D.electrocute_act(5, stun = FALSE)
 	return FALSE
 
 /*---------------------------------------------------------------
