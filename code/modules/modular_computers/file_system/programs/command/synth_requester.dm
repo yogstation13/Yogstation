@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 					binary_talk("Synthetic assistance no longer required in the Science department", "Synthetic Access Requester")
 					GLOB.synthetic_added_access -= relevant_access
 				else
-					var/reason = params["message"]
+					var/reason = tgui_input_text(user, "Please provide a reason for requesting synthetic assistance.", "Assistance Request")
 					if(!reason)
 						return FALSE
 					binary_talk("Synthetic assistance required in the Science department for the following reason: [reason]", "Synthetic Access Requester")
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 					binary_talk("Synthetic assistance no longer required in the Supply department", "Synthetic Access Requester")
 					GLOB.synthetic_added_access -= relevant_access
 				else
-					var/reason = params["message"]
+					var/reason = tgui_input_text(user, "Please provide a reason for requesting synthetic assistance.", "Assistance Request")
 					if(!reason)
 						return FALSE
 					binary_talk("Synthetic assistance required in the Supply department for the following reason: [reason]", "Synthetic Access Requester")
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 					binary_talk("Synthetic assistance no longer required in the Security department", "Synthetic Access Requester")
 					GLOB.synthetic_added_access -= relevant_access
 				else
-					var/reason = params["message"]
+					var/reason = tgui_input_text(user, "Please provide a reason for requesting synthetic assistance.", "Assistance Request")
 					if(!reason)
 						return FALSE
 					binary_talk("Synthetic assistance required in the Security department for the following reason: [reason]", "Synthetic Access Requester")
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 					binary_talk("Synthetic assistance no longer required in the Medical department", "Synthetic Access Requester")
 					GLOB.synthetic_added_access -= relevant_access
 				else
-					var/reason = params["message"]
+					var/reason = tgui_input_text(user, "Please provide a reason for requesting synthetic assistance.", "Assistance Request")
 					if(!reason)
 						return FALSE
 					binary_talk("Synthetic assistance required in the Medical department for the following reason: [reason]", "Synthetic Access Requester")
