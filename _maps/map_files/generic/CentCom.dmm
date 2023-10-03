@@ -3521,6 +3521,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"aje" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/centcom/supply)
 "ajf" = (
 /obj/machinery/light{
 	dir = 4
@@ -4209,6 +4214,9 @@
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
+"akw" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/centcom/supply)
 "akx" = (
 /obj/structure/filingcabinet/medical,
 /obj/effect/turf_decal/stripes/line{
@@ -6877,6 +6885,17 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"apz" = (
+/obj/structure/rack,
+/obj/item/flashlight{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/flashlight,
+/turf/open/floor/plasteel/dark/side{
+	dir = 10
+	},
+/area/yogs/infiltrator_base)
 "apA" = (
 /obj/machinery/turretid{
 	ailock = 1;
@@ -9179,6 +9198,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/centcom/evac)
+"atT" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
 /area/centcom/evac)
 "atU" = (
 /obj/effect/turf_decal/stripes/line{
@@ -12383,6 +12407,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"aAt" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/centcom/evac)
 "aAu" = (
 /obj/machinery/abductor/experiment{
 	team_number = 3
@@ -15540,6 +15567,25 @@
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/holofloor/asteroid,
 /area/holodeck/rec_center/bunker)
+"aGB" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 9
+	},
+/area/yogs/infiltrator_base)
 "aGC" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin,
@@ -18151,6 +18197,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"aKZ" = (
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/airalarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24;
+	req_access = 150
+	},
+/obj/machinery/turretid{
+	icon_state = "control_kill";
+	lethal = 1;
+	locked = 1;
+	pixel_y = 28;
+	req_access = 150
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 5
+	},
+/area/yogs/infiltrator_base)
 "aLa" = (
 /obj/machinery/stasis{
 	dir = 4
@@ -21589,6 +21660,13 @@
 /obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"aRU" = (
+/obj/structure/rack,
+/obj/item/storage/box/lights/bulbs,
+/turf/open/floor/plasteel/dark/side{
+	dir = 6
+	},
+/area/yogs/infiltrator_base)
 "aRV" = (
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
@@ -23073,6 +23151,15 @@
 /obj/item/stamp/syndiround,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
+"aVc" = (
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/yogs/infiltrator_base)
 "aVd" = (
 /obj/item/cardboard_cutout/chess/white/pawn,
 /turf/open/floor/holofloor{
@@ -25704,23 +25791,6 @@
 /obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"eeP" = (
-/obj/effect/turf_decal/stripes/white/corner{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/warning/securearea{
-	pixel_y = 32
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
 "eiz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/bluespace_locker";
@@ -26044,23 +26114,11 @@
 	icon_state = "info28"
 	},
 /area/centcom/testchamber)
-"kQX" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
 "lnJ" = (
 /turf/closed/indestructible/fakedoor{
 	name = "Shoe Storage"
 	},
 /area/yogs/infiltrator_base/jail)
-"lwS" = (
-/obj/structure/rack,
-/obj/item/storage/box/lights/bulbs,
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
 "lFR" = (
 /obj/machinery/vending/wardrobe/law_wardrobe,
 /turf/open/floor/plasteel/bluespace,
@@ -26069,29 +26127,6 @@
 /obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
-"lVA" = (
-/obj/effect/turf_decal/stripes/white/corner{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/machinery/airalarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24;
-	req_access = 150
-	},
-/obj/machinery/turretid{
-	icon_state = "control_kill";
-	lethal = 1;
-	locked = 1;
-	pixel_y = 28;
-	req_access = 150
-	},
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
 "lVQ" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info5"
@@ -26115,15 +26150,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"mnk" = (
-/obj/structure/rack,
-/obj/item/flashlight{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/flashlight,
-/turf/open/floor/plasteel,
-/area/yogs/infiltrator_base)
 "moB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info12"
@@ -44411,9 +44437,9 @@ aLc
 aSI
 adw
 aSA
-eeP
+aGB
 aLw
-mnk
+apz
 aSA
 aSA
 aWY
@@ -44668,7 +44694,7 @@ aRk
 aTh
 aPn
 aZi
-kQX
+aVc
 azw
 aMt
 adW
@@ -44925,9 +44951,9 @@ aJW
 aeL
 aKN
 aSA
-lVA
+aKZ
 aYF
-lwS
+aRU
 aSA
 adv
 oXi
@@ -67551,7 +67577,7 @@ aaa
 aiG
 aiR
 aiY
-aiY
+aje
 aiO
 aiY
 aiO
@@ -67559,7 +67585,7 @@ aiY
 aiO
 aiY
 aiO
-aiY
+akw
 aiY
 alo
 alJ
@@ -67808,7 +67834,7 @@ aaa
 aiG
 aiR
 aiY
-aiY
+aje
 ajp
 aiY
 ajp
@@ -67816,7 +67842,7 @@ aiY
 ajp
 aiY
 ajp
-aiY
+akw
 aiY
 alo
 aiF
@@ -68065,7 +68091,7 @@ aaa
 aiF
 aiR
 aiY
-aiY
+aje
 ajp
 aiY
 ajp
@@ -68073,7 +68099,7 @@ aiY
 ajp
 aiY
 ajp
-aiY
+akw
 aiY
 alo
 ajE
@@ -68322,7 +68348,7 @@ aaa
 aiG
 aiR
 aiY
-aiY
+aje
 ajp
 aiY
 ajp
@@ -68330,7 +68356,7 @@ aiY
 ajp
 aiY
 ajp
-aiY
+akw
 aiY
 alp
 aiF
@@ -75543,6 +75569,7 @@ aqz
 aqy
 aqx
 asO
+atT
 auB
 auB
 auB
@@ -75552,8 +75579,7 @@ auB
 auB
 auB
 auB
-auB
-auB
+aAt
 aAW
 aqx
 aqz
@@ -75800,7 +75826,7 @@ aqA
 aqy
 aqV
 asP
-auB
+atT
 auB
 ave
 avW
@@ -75810,7 +75836,7 @@ auB
 auB
 auB
 auB
-auB
+aAt
 aAX
 aqV
 aCd
@@ -76057,7 +76083,7 @@ aqy
 aqz
 arS
 asQ
-auB
+atT
 auB
 avf
 avX
@@ -76067,7 +76093,7 @@ auB
 auB
 auB
 auB
-auB
+aAt
 aAY
 arS
 aqy
@@ -76314,7 +76340,7 @@ aqy
 aqz
 aqx
 asQ
-auB
+atT
 auB
 avf
 avY
@@ -76324,7 +76350,7 @@ auB
 auB
 auB
 auB
-auB
+aAt
 aAY
 aqx
 aqV
@@ -76571,7 +76597,7 @@ aqx
 aqV
 aqx
 asR
-auB
+atT
 auB
 ave
 avZ
@@ -76581,7 +76607,7 @@ avZ
 avZ
 ayB
 auB
-auB
+aAt
 aAZ
 aqx
 aCe
@@ -76828,7 +76854,7 @@ aqB
 aqW
 arT
 asO
-auB
+atT
 auB
 avg
 avY
@@ -76838,7 +76864,7 @@ axY
 awa
 azl
 auB
-auB
+aAt
 aAW
 aBN
 aCf
@@ -77085,7 +77111,7 @@ aqC
 aqX
 arU
 aSq
-auB
+atT
 auB
 avh
 avg
@@ -77095,7 +77121,7 @@ avY
 ayB
 avh
 auB
-auB
+aAt
 aBa
 aBO
 aCg
@@ -77342,7 +77368,7 @@ aqD
 aqY
 arV
 asO
-auB
+atT
 auB
 ave
 avZ
@@ -77352,7 +77378,7 @@ avY
 avY
 ayB
 auB
-auB
+aAt
 aAW
 aBP
 aCf
@@ -77599,7 +77625,7 @@ aqx
 aqV
 aqx
 asR
-auB
+atT
 auB
 avg
 awa
@@ -77609,7 +77635,7 @@ awa
 awa
 azl
 auB
-auB
+aAt
 aAZ
 aqx
 aCh
@@ -77856,7 +77882,7 @@ aqz
 aqy
 aqx
 asQ
-auB
+atT
 auB
 auB
 auB
@@ -77866,7 +77892,7 @@ axZ
 avY
 azm
 auB
-auB
+aAt
 aAY
 aqx
 aqV
@@ -78113,7 +78139,7 @@ aqy
 aqz
 arS
 asQ
-auB
+atT
 auB
 auB
 auB
@@ -78123,7 +78149,7 @@ axt
 axZ
 azm
 auB
-auB
+aAt
 aAY
 arS
 aqz
@@ -78370,7 +78396,7 @@ aqA
 aqy
 aqV
 asS
-auB
+atT
 auB
 auB
 auB
@@ -78380,7 +78406,7 @@ auB
 axt
 azl
 auB
-auB
+aAt
 aBb
 aqV
 aCd
@@ -78627,6 +78653,7 @@ aqz
 aqy
 aqx
 asO
+atT
 auB
 auB
 auB
@@ -78636,8 +78663,7 @@ auB
 auB
 auB
 auB
-auB
-auB
+aAt
 aAW
 aqx
 aqy
