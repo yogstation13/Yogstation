@@ -657,7 +657,7 @@
 
 /obj/item/modular_computer/pickup(mob/user)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(parent_moved))
 
 /obj/item/modular_computer/dropped(mob/user)
 	. = ..()
