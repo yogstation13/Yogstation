@@ -1,5 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - bugfix: "mask of madness does not make you mad forever now"
-  - tweak: "mask of madness now lets you use internals w/ it"

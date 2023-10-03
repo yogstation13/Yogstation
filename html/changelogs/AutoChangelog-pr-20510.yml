@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes a bug with bloodsuckers only healing robotic limbs on non robotic species"
