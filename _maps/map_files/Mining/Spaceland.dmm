@@ -216,6 +216,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
+"bC" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/mine/living_quarters)
 "bJ" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -317,16 +322,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"cj" = (
-/obj/machinery/button/door{
-	id = "mining_eva";
-	name = "Mining Dock";
-	pixel_x = -3;
-	pixel_y = -27
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/mine/eva_secondary)
 "ck" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm{
@@ -459,19 +454,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"dn" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mining_eva"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/living_quarters)
 "dr" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/mech_bay_recharge_floor,
@@ -494,18 +476,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"dJ" = (
-/obj/machinery/button/door{
-	id = "mining_eva";
-	name = "Mining Dock";
-	pixel_x = 3;
-	pixel_y = 27
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/living_quarters)
 "dR" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/airalarm{
@@ -708,9 +678,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
-"fy" = (
-/turf/open/genturf,
-/area/space)
 "fE" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/white/side{
@@ -784,21 +751,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/mine/break_room)
-"gv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mining_eva"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/eva_secondary)
 "gz" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/light/broken{
@@ -959,17 +911,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"hA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/light/floor,
-/obj/structure/disposalpipe/junction/yjunction,
-/turf/open/floor/plasteel/dark,
-/area/mine/living_quarters)
 "hB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1651,27 +1592,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/storage)
-"nq" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mining_eva"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/living_quarters)
 "nr" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2240,6 +2160,16 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"sB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/living_quarters)
 "sC" = (
 /obj/structure/rack,
 /obj/item/storage/bag/ore,
@@ -2289,19 +2219,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/white/side,
 /area/mine/explored)
-"tb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/light/floor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/eva_secondary)
 "tg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2378,19 +2295,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel/airless,
 /area/mine/explored)
-"um" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/light/floor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/living_quarters)
 "un" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 8;
@@ -2411,12 +2315,6 @@
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
-/area/mine/eva_secondary)
-"us" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "mining_eva"
-	},
-/turf/open/floor/plating,
 /area/mine/eva_secondary)
 "ut" = (
 /obj/structure/chair/stool,
@@ -3019,19 +2917,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
 /turf/open/floor/plating,
 /area/mine/maintenance)
-"zJ" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mining_eva"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/eva_secondary)
 "zM" = (
 /obj/machinery/door/airlock/public/glass{
 	id_tag = "cellblock1";
@@ -3214,12 +3099,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"Bd" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "mining_eva"
-	},
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "Bh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -3515,27 +3394,6 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/mine/explored)
-"DE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mining_eva"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/eva_secondary)
 "DF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -3921,21 +3779,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"Gw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "mining_eva"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/living_quarters)
 "Gz" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -4534,13 +4377,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
-"KW" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "mining_eva"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/mine/living_quarters)
 "KZ" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -4592,18 +4428,6 @@
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"LF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "mining_eva";
-	name = "Mining Dock";
-	pixel_x = -3;
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/dark,
 /area/mine/living_quarters)
 "LG" = (
 /obj/structure/ore_box,
@@ -5006,6 +4830,16 @@
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
+"Ph" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction/yjunction,
+/turf/open/floor/plasteel/dark,
+/area/mine/living_quarters)
 "Pi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -5770,6 +5604,16 @@
 	dir = 1
 	},
 /area/mine/explored)
+"VJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/eva_secondary)
 "VO" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -5816,16 +5660,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"Wk" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/button/door{
-	id = "mining_eva";
-	name = "Mining Dock";
-	pixel_x = 3;
-	pixel_y = -27
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/eva_secondary)
 "Wq" = (
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria,
@@ -5953,10 +5787,6 @@
 "Xj" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/airless,
-/area/mine/explored)
-"Xl" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plating/asteroid,
 /area/mine/explored)
 "Xp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2,
@@ -10833,7 +10663,7 @@ EH
 EH
 EH
 EH
-fy
+EH
 EH
 EH
 Ad
@@ -28100,7 +27930,7 @@ Yx
 Yx
 NA
 Fi
-Wk
+lR
 Yx
 Yx
 DL
@@ -28355,9 +28185,9 @@ de
 de
 de
 Yx
-gv
-DE
-zJ
+NA
+Fi
+lR
 Yx
 de
 DL
@@ -28612,9 +28442,9 @@ DL
 DL
 de
 Yx
-NA
-tb
-cj
+VJ
+Fi
+lR
 Yx
 mn
 RV
@@ -28868,11 +28698,11 @@ Ad
 Ad
 DL
 de
-us
+CM
 Kt
 jY
 uH
-us
+CM
 de
 Gt
 Ad
@@ -29125,11 +28955,11 @@ Ad
 Ad
 DL
 Ad
-us
+CM
 NA
 Fi
 lR
-us
+CM
 Ad
 Gt
 Ad
@@ -29382,11 +29212,11 @@ Ad
 Ad
 DL
 DL
-Bd
+pl
 Nj
-hA
+Ph
 lK
-KW
+bC
 iW
 Vd
 Ad
@@ -29639,11 +29469,11 @@ Ad
 Ad
 DL
 de
-Bd
+pl
 Nj
 NM
 HW
-Bd
+pl
 de
 DL
 Ad
@@ -29896,11 +29726,11 @@ Ad
 Ad
 DL
 de
-Bd
+pl
 UM
 KF
 wg
-Bd
+pl
 Ad
 DL
 Ad
@@ -30154,8 +29984,8 @@ DL
 DL
 de
 ju
-dJ
-um
+sB
+NM
 HW
 ju
 de
@@ -30411,9 +30241,9 @@ de
 de
 de
 ju
-Gw
-nq
-dn
+Nj
+NM
+HW
 ju
 de
 DL
@@ -30668,7 +30498,7 @@ ju
 ju
 ju
 ju
-LF
+Nj
 NM
 HW
 ju
@@ -53110,8 +52940,8 @@ yl
 ri
 fv
 fv
-Xl
-Xl
+aX
+aX
 fv
 fv
 aX
@@ -53368,7 +53198,7 @@ KI
 ri
 ri
 ri
-Xl
+aX
 fv
 aX
 aX
@@ -53625,9 +53455,9 @@ EW
 fq
 GM
 Jn
-Xl
-Xl
-Xl
+aX
+aX
+aX
 fv
 aX
 kd
@@ -53882,8 +53712,8 @@ BP
 GM
 GM
 UW
-Xl
-Xl
+aX
+aX
 fv
 fv
 aX
@@ -54139,7 +53969,7 @@ To
 gz
 GM
 ml
-Xl
+aX
 fv
 fv
 fv
@@ -54396,7 +54226,7 @@ ri
 KI
 KI
 KI
-Xl
+aX
 fv
 fv
 fv
