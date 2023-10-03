@@ -174,6 +174,13 @@
 	item = /obj/item/book/granter/martial/explosive_fist
 	restricted_species = list("plasmaman")
 
+/datum/uplink_item/race_restricted/conduit
+	name = "Modified yellow slime extract"
+	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
+	cost = 12
+	item = /obj/item/book/granter/martial/conduit
+	restricted_species = list("ethereal")
+
 /datum/uplink_item/race_restricted/ultra_violence
 	name = "Version one upgrade module"
 	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \

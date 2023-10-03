@@ -11,6 +11,8 @@
 	button_icon_state = "electricity2"
 
 	spell_requirements = NONE
+	antimagic_flags = NONE
+	panel = null
 
 	/// The time it takes to enter blood
 	var/enter_blood_time = 3 SECONDS
@@ -20,6 +22,7 @@
 	var/enter_radius = 1
 	/// If TRUE, we equip "wire crawl" hands to the jaunter to prevent using items
 	var/equip_wire_hands = TRUE
+	
 	jaunt_type = /obj/effect/dummy/phased_mob/wirecrawl
 
 /datum/action/cooldown/spell/jaunt/wirecrawl/Grant(mob/grant_to)

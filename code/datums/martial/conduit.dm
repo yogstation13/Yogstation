@@ -36,6 +36,14 @@
 		return TRUE
 
 /*---------------------------------------------------------------
+	here, have a fancy zap punch i guess
+---------------------------------------------------------------*/
+/datum/martial_art/conduit/harm_act(mob/living/carbon/human/A, mob/living/D)
+	tesla_zap(D, 3, 20000, TESLA_MOB_DAMAGE)
+	D.electrocute_act(10, stun = FALSE)
+	return FALSE
+
+/*---------------------------------------------------------------
 	dropkick section
 ---------------------------------------------------------------*/
 /datum/martial_art/conduit/proc/dropkick(mob/living/carbon/human/H, atom/target)
@@ -47,6 +55,7 @@
 
 	COOLDOWN_START(src, dash_cooldown, dropkick_cooldown)
 	H.Knockdown(1 SECONDS, TRUE, TRUE)
+	H.Immobilize(1 SECONDS, TRUE, TRUE)
 	dashing = TRUE
 	new /obj/effect/particle_effect/sparks(get_turf(H))
 	H.throw_at(target, 3, 2, H, FALSE, TRUE)
@@ -59,33 +68,37 @@
 		var/mob/living/L = hit_atom
 		L.visible_message("<span class ='danger'>[A] dropkicks [L]!</span>", "<span class ='userdanger'>[A] dropkicks you!</span>")
 		L.Knockdown(10 SECONDS)
-		L.throw_at(get_edge_target_turf(get_dir(L, A)), 6, 3, A, TRUE, TRUE)
-		A.SetKnockdown(0)
+		L.throw_at(get_edge_target_turf(L, get_dir(get_turf(A), get_turf(L))), 5, 3, A, TRUE, TRUE)
+		L.electrocute_act(10, stun = FALSE)
 		do_sparks(4, FALSE, A)
+		A.SetKnockdown(0)
 		sleep(1)//Runtime prevention (infinite bump() calls on hulks)
-		step_towards(A, L)
+		A.SetImmobilized(0)
 		return TRUE
 	return FALSE
 /*---------------------------------------------------------------
 	training related section
 ---------------------------------------------------------------*/
-/mob/living/carbon/human/proc/conduit_help()
-	set name = "Conduit"
-	set desc = "Imagine all the things you would be capable of with this power."
+/mob/living/carbon/human/proc/conduit_help()//negative flavour, i just wanted to add something to attach wirecrawling to
+	set name = "Focus"
+	set desc = "Remember what you are capable of."
 	set category = "Conduit"
 	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
+	combined_msg +=  "<b><i>You focus your mind.</i></b>"
 
+	combined_msg += span_warning("Your disarm has been replaced with a short cooldown dropkick.")
+	combined_msg += span_warning("Your punches electrocute everyone nearby.")
+	combined_msg += span_notice("<b>You are immune to getting shocked.</b>")
 	combined_msg += span_notice("<b>You can travel through wires using your wirecrawl ability.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 /mob/living/carbon/human/proc/conduit_recalibration()
-	set name = "Flush Circuits"
-	set desc = "Flush 'clogged' circuits in order to regain lost strength."
+	set name = "Flicker"
+	set desc = "Fix click intercepts."
 	set category = "Conduit"
 	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You flush your circuits with excess power to reduce built up strain on your limbs.</i></b>"
+	combined_msg +=  "<b><i>You straighten yourself out, ready for more.</i></b>"
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 	usr.click_intercept = usr.mind.martial_art

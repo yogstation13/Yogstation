@@ -153,3 +153,27 @@
 		var/obj/item/reagent_containers/glass/bottle/vial/empty = new(get_turf(user))
 		qdel(src)
 		user.put_in_active_hand(empty)
+
+
+/obj/item/book/granter/martial/conduit
+	name = "Modified yellow slime extract"
+	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
+	icon = 'icons/mob/slimes.dmi'
+	icon_state = "yellow slime extract"
+	martial = /datum/martial_art/conduit
+	martial_name = "Conduit"
+	greet = span_sciradio("You have absorbed the abilities of a Conduit! You are a walking electrical storm. You can recall your abilites using Focus in the Conduit tab.")
+	remarks = list("Drain...", "Absorb...", "Shock...", "...")
+
+/obj/item/book/granter/martial/conduit/can_learn(mob/user)
+	if(!isethereal(user))
+		to_chat(user, span_warning("Yup, that's a slime extract alright."))
+		return FALSE
+	return ..()
+
+/obj/item/book/granter/martial/conduit/on_reading_finished(mob/living/carbon/user)
+	..()
+	if(!uses)
+		name = "grey slime extract"
+		desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
+		icon_state = "grey slime extract"
