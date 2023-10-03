@@ -67,3 +67,14 @@
 	desc = "A poster depicting an abstract call to the NVS Gax. You wouldn't get it."
 	poster_type = /obj/structure/sign/poster/official/sey_gax
 	icon_state = "rolled_legit"
+
+/obj/structure/sign/poster/official/help
+	name = "Call it out!"
+	desc = "An instructional poster telling you to report any witnessed injuries to medical personnel. The picture used seems to remind you of something."
+	icon_state = "help"
+
+/obj/item/poster/help
+	name = "call it out poster"
+	desc = "A poster depicting instructions to report any injuries."
+	poster_type = /obj/structure/sign/poster/official/help
+	icon_state = "rolled_legit"
