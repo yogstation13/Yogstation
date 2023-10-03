@@ -164,7 +164,7 @@
 	action_name = "Wirecrawling"
 	drop_sound = null
 	pickup_sound = null
-	remarks = list("Shock...", "Zap...", "High Voltage...", "Dissolve...", "Dissipate...", "Red Hot...", "Spiral...", "Electro-magnetic...")
+	remarks = list("Shock...", "Zap...", "High Voltage...", "Dissolve...", "Dissipate...", "Disperse...", "Red Hot...", "Spiral...", "Electro-magnetic...", "Turbo...")
 	book_sounds = list('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg')
 	var/admin = FALSE
 
