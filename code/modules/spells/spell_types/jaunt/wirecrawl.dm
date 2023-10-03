@@ -22,8 +22,6 @@
 	var/enter_radius = 1
 	/// If TRUE, we equip "wire crawl" hands to the jaunter to prevent using items
 	var/equip_wire_hands = TRUE
-	///keep track of the powernet we're in
-	var/datum/powernet/travelled
 	
 	jaunt_type = /obj/effect/dummy/phased_mob/wirecrawl
 
@@ -92,7 +90,7 @@
 
 	// Begin the jaunt
 	jaunter.notransform = TRUE
-	var/obj/effect/dummy/phased_mob/holder = enter_jaunt(jaunter, jaunt_turf)
+	var/obj/effect/dummy/phased_mob/wirecrawl/holder = enter_jaunt(jaunter, jaunt_turf)
 	if(!holder)
 		jaunter.notransform = FALSE
 		return FALSE
@@ -110,8 +108,8 @@
 	jaunter.extinguish_mob()
 
 	jaunter.sight |= (SEE_TURFS|BLIND)
-	jaunter.add_wirevision(jaunt_turf)
-	travelled = wire.powernet
+	jaunter.add_wirevision(wire)
+	holder.travelled = wire.powernet
 	do_sparks(10, FALSE, jaunter)
 
 	jaunter.notransform = FALSE
@@ -153,11 +151,13 @@
 
 /obj/effect/dummy/phased_mob/wirecrawl
 	name = "wire"
+	///keep track of the powernet we're in
+	var/datum/powernet/travelled
 
 /obj/effect/dummy/phased_mob/wirecrawl/phased_check(mob/living/user, direction)
 	var/turf/oldloc = get_turf(user)
 	var/obj/structure/cable/current = locate() in oldloc
-	if(!current || !istype(current))//if someone snips the wire you're currently in, or it gets destroyed in some way, get out
+	if(!current || !istype(current) || !travelled)//if someone snips the wire you're currently in, or it gets destroyed in some way, get out
 		eject_jaunter()
 		return
 
@@ -165,24 +165,19 @@
 	for(var/obj/structure/cable/wire in newloc)
 		if(travelled != wire.powernet) //no jumping to a different powernet
 			continue
-		user.update_wire_vision(newloc)
+		user.update_wire_vision(wire)
 		new /obj/effect/particle_effect/sparks/electricity/short(get_turf(user))
 		return newloc
 
 //vision
-/mob/living/proc/update_wire_vision(atom/new_loc = null)
-	. = loc
-	if(new_loc)
-		. = new_loc
+/mob/living/proc/update_wire_vision(obj/structure/cable/wire)
+	if(!wire)
+		to_chat(src, "Error, @Molti on discord")
+		return
 	remove_wirevision()
-	add_wirevision(.)
+	add_wirevision(wire)
 
-/mob/living/proc/add_wirevision(var/turf/newloc)
-	var/obj/structure/cable/wire
-	for(var/obj/structure/cable/check in newloc)
-		if(travelled != check.powernet) //no jumping to a different powernet
-			continue
-		wire = check
+/mob/living/proc/add_wirevision(obj/structure/cable/wire)
 	if(!wire || !istype(wire) || !wire.powernet)
 		return
 	var/list/totalMembers = list()
