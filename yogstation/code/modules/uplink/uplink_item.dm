@@ -178,7 +178,7 @@
 	name = "Modified yellow slime extract"
 	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
 	cost = 12
-	item = /obj/item/book/granter/martial/conduit
+	item = /obj/item/book/granter/action/conduit
 	restricted_species = list("ethereal")
 
 /datum/uplink_item/race_restricted/ultra_violence
