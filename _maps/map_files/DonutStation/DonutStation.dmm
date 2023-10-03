@@ -9287,10 +9287,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
-"dVj" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/storage/tech)
 "dVn" = (
 /obj/effect/turf_decal/trimline/green/filled/corner/lower{
 	dir = 4
@@ -18852,6 +18848,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"iqR" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/storage/belt/utility,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "iqS" = (
 /turf/open/floor/carpet,
 /area/hallway/primary/central)
@@ -22492,11 +22494,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"jWm" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "jWo" = (
 /obj/machinery/camera{
 	c_tag = "Research - Xenobiology Cell 3";
@@ -29399,6 +29396,15 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/maintenance/aft)
+"ndd" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	pixel_y = -25
+	},
+/obj/item/analyzer,
+/obj/item/healthanalyzer,
+/turf/open/floor/plating,
+/area/storage/tech)
 "ndk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -36858,6 +36864,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"qlE" = (
+/obj/structure/table,
+/obj/item/flashlight{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/flashlight{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/assembly/flash/handheld,
+/obj/item/assembly/flash/handheld,
+/turf/open/floor/plating,
+/area/storage/tech)
 "qlQ" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -38762,6 +38782,12 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
+"rfq" = (
+/obj/structure/table,
+/obj/item/aicard,
+/obj/item/aiModule/reset,
+/turf/open/floor/plating,
+/area/storage/tech)
 "rfr" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/machinery/light{
@@ -40463,11 +40489,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"rRs" = (
-/obj/structure/table,
-/obj/item/aicard,
-/turf/open/floor/plating,
-/area/storage/tech)
 "rRz" = (
 /obj/machinery/gulag_item_reclaimer{
 	pixel_x = -32
@@ -51190,13 +51211,6 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/fore)
-"wBi" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	pixel_y = -25
-	},
-/turf/open/floor/plating,
-/area/storage/tech)
 "wBp" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -74807,7 +74821,7 @@ jnA
 qgC
 qgC
 qgC
-jWm
+iqR
 tEL
 eac
 hOw
@@ -97922,7 +97936,7 @@ jPZ
 ksy
 sxI
 jVS
-rRs
+rfq
 ksy
 iny
 eKG
@@ -98179,7 +98193,7 @@ vnr
 ksy
 vUJ
 lCv
-wBi
+ndd
 ksy
 ksy
 ewp
@@ -98950,7 +98964,7 @@ mCs
 ksy
 cre
 hmF
-dVj
+qlE
 mnG
 anb
 ksy
