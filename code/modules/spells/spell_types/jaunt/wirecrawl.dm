@@ -22,6 +22,8 @@
 	var/enter_radius = 1
 	/// If TRUE, we equip "wire crawl" hands to the jaunter to prevent using items
 	var/equip_wire_hands = TRUE
+	///keep track of the powernet we're in
+	var/datum/powernet/travelled
 	
 	jaunt_type = /obj/effect/dummy/phased_mob/wirecrawl
 
@@ -109,6 +111,7 @@
 
 	jaunter.sight |= (SEE_TURFS|BLIND)
 	jaunter.add_wirevision(jaunt_turf)
+	travelled = wire.powernet
 	do_sparks(10, FALSE, jaunter)
 
 	jaunter.notransform = FALSE
@@ -160,7 +163,7 @@
 
 	var/turf/newloc = ..()
 	for(var/obj/structure/cable/wire in newloc)
-		if(current.powernet != wire.powernet) //no jumping from one powernet to another
+		if(travelled != wire.powernet) //no jumping to a different powernet
 			continue
 		user.update_wire_vision(newloc)
 		new /obj/effect/particle_effect/sparks/electricity/short(get_turf(user))
@@ -175,7 +178,11 @@
 	add_wirevision(.)
 
 /mob/living/proc/add_wirevision(var/turf/newloc)
-	var/obj/structure/cable/wire = locate() in newloc
+	var/obj/structure/cable/wire
+	for(var/obj/structure/cable/check in newloc)
+		if(travelled != check.powernet) //no jumping to a different powernet
+			continue
+		wire = check
 	if(!wire || !istype(wire) || !wire.powernet)
 		return
 	var/list/totalMembers = list()
