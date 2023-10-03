@@ -156,7 +156,7 @@
 
 
 /obj/item/book/granter/action/wirecrawl
-	name = "Modified yellow slime extract"
+	name = "modified yellow slime extract"
 	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"

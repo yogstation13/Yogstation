@@ -13,6 +13,7 @@
 	spell_requirements = NONE
 	antimagic_flags = NONE
 	panel = null
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 
 	/// The time it takes to enter blood
 	var/enter_blood_time = 3 SECONDS
