@@ -44,7 +44,6 @@
 	wings_icon = "Robotic"
 	changesource_flags = NONE
 
-	var/draining = FALSE
 	var/datum/action/innate/undeployment_synth/undeployment_action = new
 	///For transferring back and forth to an AI body when it's the AI deploying
 	var/mob/living/silicon/ai/mainframe
