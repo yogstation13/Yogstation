@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(granted_synthetic_access, list())
 		// AIs are loud and ugly
 		spans += " [SPAN_COMMAND]"
 
-	var/quoted_message = "<span class='[spans]'states, \"[message]\"</span>"
+	var/quoted_message = "<span class='[spans]'>states, \"[message]\"</span>"
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.binarycheck())
