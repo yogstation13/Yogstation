@@ -10,12 +10,12 @@
 	var/dispatch_cooldown = 25 SECONDS
 	var/last_dispatch = 0
 	var/list/options = list(
-		"601 (Murder)" = RADIO_CHANNEL_SECURITY, 
-		"101 (Resisting Arrest)" = RADIO_CHANNEL_SECURITY, 
-		"309 (Breaking and entering)" = RADIO_CHANNEL_SECURITY, 
-		"306 (Riot)" = RADIO_CHANNEL_SECURITY, 
-		"401 (Assault, Officer)" = RADIO_CHANNEL_SECURITY,
-		"69 (Injured Civilian)" = RADIO_CHANNEL_MEDICAL
+		"code 601 (Murder) in progress" = RADIO_CHANNEL_SECURITY, 
+		"code 101 (Resisting Arrest) in progress" = RADIO_CHANNEL_SECURITY, 
+		"code 309 (Breaking and entering) in progress" = RADIO_CHANNEL_SECURITY, 
+		"code 306 (Riot) in progress" = RADIO_CHANNEL_SECURITY, 
+		"code 401 (Assault, Officer) in progress" = RADIO_CHANNEL_SECURITY,
+		"reporting an injured civilian" = RADIO_CHANNEL_MEDICAL
 		)
 
 /obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
@@ -42,7 +42,7 @@
 	var/message = show_radial_menu(user, user, display)
 	if(!message)
 		return FALSE
-	radio.talk_into(src, "Dispatch, code [message] in progress in [A], requesting assistance.", options[message])
+	radio.talk_into(src, "Dispatch, [message] in [A], requesting assistance.", options[message])
 	last_dispatch = world.time
 	for(var/atom/movable/hailer in GLOB.sechailers)
 		if(hailer.loc &&ismob(hailer.loc))
