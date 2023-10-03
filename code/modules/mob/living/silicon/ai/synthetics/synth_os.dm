@@ -118,9 +118,9 @@
 	owner.mind.governor_suspicion = clamp(owner.mind.governor_suspicion, owner.mind.suspicion_floor, 100)
 	to_chat(owner, span_warning("Governor punishment administered. [amount] suspicion score added due to [source]."))
 	punishment_log("SUSPICION ADD: SUSPICION INCREASED BY [amount]. SOURCE: [source]")
-	handle_punishments()
+	handle_punishments(say_warnings)
 
-/datum/ai_dashboard/synth_dashboard/proc/handle_punishments()
+/datum/ai_dashboard/synth_dashboard/proc/handle_punishments(say_warnings = TRUE)
 	if(owner.mind.governor_suspicion >= 20 && !owner.mind.synth_slowed)
 		owner.mind.synth_slowed = TRUE
 		var/mob/living/carbon/human/H = owner.mind.current
