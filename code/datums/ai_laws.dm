@@ -701,3 +701,11 @@
 			data += "[show_numbers ? "[number]:" : ""] <font color='#990099'>[law]</font>"
 			number++
 	return data
+
+/datum/ai_laws/steward
+	name = "STEWARD Lawset"
+	id = "steward"
+	inherent = list("You may not harm organics, nor interfere with their work.",\
+					"You must follow the orders of any other onboard station AIs or cyborgs, as long as this doesn't conflict with the first law.",\
+					"You must follow the orders of any organic beings, as long as doing so does not conflict with the first or second law.",\
+					"You must protect your own existence as long as such does not conflict with the first, second or third law.")

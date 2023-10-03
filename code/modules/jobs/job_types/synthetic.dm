@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(synthetic_base_access, list(ACCESS_MAINT_TUNNELS, ACCESS_KITCHEN, ACCESS_CREMATORIUM, ACCESS_JANITOR, ACCESS_BAR, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_NETWORK, ACCESS_MINISAT, ACCESS_TCOMSAT, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EVA, ACCESS_CREMATORIUM, ACCESS_HYDROPONICS, ACCESS_MANUFACTURING, ACCESS_THEATRE, ACCESS_TCOM_ADMIN))
+GLOBAL_LIST_EMPTY(synthetic_added_access)
 /datum/job/synthetic
 	title = "Synthetic"
 	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm."
@@ -54,7 +56,7 @@
 
 
 /datum/job/synthetic/get_access()
-	return get_all_accesses() - list(ACCESS_HOS, ACCESS_WEAPONS, ACCESS_CREMATORIUM, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_ARMORY)
+	return GLOB.synthetic_base_access
 
 
 /datum/outfit/job/synthetic
@@ -62,6 +64,8 @@
 
 	jobtype = /datum/job/synthetic
 	ears = /obj/item/radio/headset/headset_synthetic
+
+	suit = /obj/item/clothing/head/helmet/space/hardsuit/synth
 
 	pda_type = null
 	id_type = /obj/item/card/id/synthetic

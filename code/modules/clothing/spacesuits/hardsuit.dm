@@ -1248,3 +1248,53 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	slowdown = 0
+
+/obj/item/clothing/head/helmet/space/hardsuit/synth
+	name = "\improper synthetic worksuit helmet"
+	desc = "An integrated helmet that provides some level of resistance, to assist in hostile environments."
+	icon = 'icons/mob/clothing/head/head.dmi'
+	icon_state = "hardsuit0-synth"
+	item_state = "centcom"
+	w_class = WEIGHT_CLASS_BULKY
+	clothing_flags = THICKMATERIAL
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 100, FIRE = 10, ACID = 15)
+	hardsuit_type = "synth"
+
+/obj/item/clothing/head/helmet/space/hardsuit/synth/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
+/obj/item/clothing/suit/space/hardsuit/synth
+	name = "\improper synthetic worksuit"
+	desc = "An integrated suit that provides some level of resistance, to assist in hostile environments."
+	icon = 'icons/mob/clothing/suit/suit.dmi'
+	icon_state = "synth_suit"
+	item_state = "centcom"
+	w_class = WEIGHT_CLASS_BULKY
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	clothing_flags = THICKMATERIAL
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	armor = list(MELEE = 30, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 25, RAD = 100, FIRE = 10, ACID = 25)
+	var/evil = FALSE
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/synth
+
+/obj/item/clothing/suit/space/hardsuit/synth/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
+
+/obj/item/clothing/suit/space/hardsuit/synth/update_icon_state()
+	. = ..()
+	if(evil)
+		icon_state = "synth_suit_evil"
+	else
+		icon_state = "synth_suit"
+
+	var/mob/living/carbon/human/user = loc
+	if(user && istype(user))
+		user.update_inv_wear_suit()

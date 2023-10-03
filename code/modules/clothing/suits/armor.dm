@@ -536,3 +536,4 @@
 	slowdown_set = 0.4 // Very slow
 	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 65, ACID = 75, WOUND = 50)	//Walking tank
 	partial_coverage = LEGS|ARMS
+

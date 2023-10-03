@@ -53,6 +53,7 @@
 
 	inherent_slowdown = 0.65
 	var/datum/action/innate/synth_os/os_button = new
+	var/datum/action/innate/synth_laws/show_laws = new
 
 
 	///Original synth number designation for when this shell becomes uninhabited
@@ -67,11 +68,14 @@
 
 	var/last_warned
 
+	var/datum/ai_laws/laws = null
+
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+	laws = new /datum/ai_laws/steward
 
 
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
@@ -83,12 +87,15 @@
 	C.real_name = "Synthetic Unit #[original_numbers]"
 	C.name = C.real_name
 	os_button.Grant(C)
+	show_laws.Grant(C)
 	add_synthos(C)
 	
 	if(!C.ai_network)
 		C.ai_network = new(C)
 	
 	inbuilt_cpu = new /obj/item/ai_cpu
+
+	laws.show_laws(C)
 
 /datum/species/wy_synth/proc/add_synthos(mob/living/carbon/human/C)
 	if(C.mind && !C.mind.synth_os)
@@ -393,6 +400,23 @@
 	
 	return FALSE
 
+/datum/action/innate/synth_laws
+	name = "Recall Laws"
+	desc = "Click to be reminded of your laws."
+	button_icon = 'icons/obj/modular_laptop.dmi'
+	button_icon_state = "command"
+
+/datum/action/innate/synth_laws/IsAvailable(feedback = FALSE)
+	. = ..()
+	if(!is_synth(owner))
+		return
+
+/datum/action/innate/synth_laws/Trigger()
+	var/mob/living/carbon/human/H = owner
+	var/datum/species/wy_synth/WS = H?.dna?.species
+	if(WS && istype(WS))
+		WS.laws.show_laws(owner)
+		return TRUE
 
 #undef CONCIOUSAY
 

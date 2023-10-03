@@ -543,3 +543,4 @@
 	w_class = WEIGHT_CLASS_BULKY
 	// Does not cover additional limbs like vest does
 	plating = K
+

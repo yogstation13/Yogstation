@@ -3018,6 +3018,7 @@
 #include "code\modules\modular_computers\file_system\programs\command\card.dm"
 #include "code\modules\modular_computers\file_system\programs\command\crewmanifest.dm"
 #include "code\modules\modular_computers\file_system\programs\command\jobmanagement.dm"
+#include "code\modules\modular_computers\file_system\programs\command\synth_requester.dm"
 #include "code\modules\modular_computers\file_system\programs\engineering\alarm.dm"
 #include "code\modules\modular_computers\file_system\programs\engineering\atmosscan.dm"
 #include "code\modules\modular_computers\file_system\programs\engineering\energyharvestercontrol.dm"

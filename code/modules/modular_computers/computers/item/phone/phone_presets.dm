@@ -33,7 +33,8 @@
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
-							new /datum/computer_file/program/card_mod)
+							new /datum/computer_file/program/card_mod,
+							new /datum/computer_file/program/synth_requester)
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/pda,
@@ -53,7 +54,8 @@
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
-							new /datum/computer_file/program/cargobounty)
+							new /datum/computer_file/program/cargobounty,
+							new /datum/computer_file/program/synth_requester)
 	finish_color = "brown"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hos
@@ -70,18 +72,21 @@
 
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
-							new /datum/computer_file/program/alarm_monitor)
+							new /datum/computer_file/program/alarm_monitor,
+							new /datum/computer_file/program/synth_requester)
 	finish_color = "orange"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
-							new /datum/computer_file/program/robocontrol)
+							new /datum/computer_file/program/robocontrol,
+							new /datum/computer_file/program/synth_requester)
 	finish_color = "purple"
 	pen_type = /obj/item/pen/fountain
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
-							new /datum/computer_file/program/crew_monitor)
+							new /datum/computer_file/program/crew_monitor,
+							new /datum/computer_file/program/synth_requester)
 	finish_color = "white"

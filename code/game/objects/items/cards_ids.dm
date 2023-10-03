@@ -606,7 +606,7 @@ update_label("John Doe", "Clowny")
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.mind)
-			return access
+			return GLOB.synthetic_base_access + GLOB.synthetic_added_access
 	return list()
 
 /obj/item/card/id/syndicate
