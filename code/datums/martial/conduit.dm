@@ -68,7 +68,7 @@
 		var/mob/living/L = hit_atom
 		L.visible_message("<span class ='danger'>[A] dropkicks [L]!</span>", "<span class ='userdanger'>[A] dropkicks you!</span>")
 		L.Knockdown(10 SECONDS)
-		L.throw_at(get_edge_target_turf(L, get_dir(get_turf(A), get_turf(L))), 5, 3, A, TRUE, TRUE)
+		L.throw_at(get_edge_target_turf(L, get_dir(get_turf(A), get_turf(L))), 5, 3, A, TRUE)
 		L.electrocute_act(10, stun = FALSE)
 		do_sparks(4, FALSE, A)
 		A.SetKnockdown(0)
