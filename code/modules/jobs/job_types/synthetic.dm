@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	jobtype = /datum/job/synthetic
 	ears = /obj/item/radio/headset/headset_synthetic
 
-	suit = /obj/item/clothing/head/helmet/space/hardsuit/synth
+	suit = /obj/item/clothing/suit/space/hardsuit/synth
 
 	pda_type = null
 	id_type = /obj/item/card/id/synthetic

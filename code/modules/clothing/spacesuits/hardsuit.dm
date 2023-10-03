@@ -1283,6 +1283,7 @@
 	armor = list(MELEE = 30, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 25, RAD = 100, FIRE = 10, ACID = 25)
 	var/evil = FALSE
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/synth
+	slowdown = 0
 
 /obj/item/clothing/suit/space/hardsuit/synth/Initialize(mapload)
 	. = ..()
