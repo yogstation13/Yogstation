@@ -13,9 +13,9 @@
 	spell_requirements = NONE
 
 	/// The time it takes to enter blood
-	var/enter_blood_time = 2 SECONDS
+	var/enter_blood_time = 3 SECONDS
 	/// The time it takes to exit blood
-	var/exit_blood_time = 1 SECONDS
+	var/exit_blood_time = 0 SECONDS
 	/// The radius around us that we look for wires in
 	var/enter_radius = 1
 	/// If TRUE, we equip "wire crawl" hands to the jaunter to prevent using items
