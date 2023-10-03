@@ -212,7 +212,7 @@
 	item_flags = DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/obj/item/radio/headset/headset_synthetic/Initialize()
+/obj/item/radio/headset/headset_synthetic/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, SYNTHETIC_TRAIT)

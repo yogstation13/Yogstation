@@ -100,7 +100,7 @@
 	name = "smoke"
 	desc = "Very hot!"
 
-/obj/ai_smoke/Initialize()
+/obj/ai_smoke/Initialize(mapload)
 	. = ..()
 	particles = new /particles/smoke/ai()
 

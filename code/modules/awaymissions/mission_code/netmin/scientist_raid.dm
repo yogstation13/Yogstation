@@ -40,7 +40,7 @@
 /obj/item/storage/secure/safe/scientist_raid
 	name = "secure safe"
 
-/obj/item/storage/secure/safe/scientist_raid/Initialize()
+/obj/item/storage/secure/safe/scientist_raid/Initialize(mapload)
 	. = ..()
 	l_code = "7295"
 	l_set = TRUE

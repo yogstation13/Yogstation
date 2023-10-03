@@ -131,7 +131,7 @@
 	translate_binary = TRUE
 	item_flags = DROPDEL
 
-/obj/item/encryptionkey/headset_synthetic/Initialize()
+/obj/item/encryptionkey/headset_synthetic/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 

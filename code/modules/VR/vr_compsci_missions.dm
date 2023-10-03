@@ -22,7 +22,7 @@
 	var/id = "debug_mission"
 	vr_outfit = /datum/outfit/vr/mission
 
-/obj/effect/landmark/vr_spawn/vr_mission/Initialize()
+/obj/effect/landmark/vr_spawn/vr_mission/Initialize(mapload)
 	. = ..()
 	LAZYADD(GLOB.compsci_mission_markers[id], src)
 	LAZYREMOVE(GLOB.vr_spawnpoints[vr_category], src)

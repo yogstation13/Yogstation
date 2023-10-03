@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 	density = TRUE
 	pass_flags = PASSTABLE
 	
-/obj/machinery/compsci_reciever/Initialize()
+/obj/machinery/compsci_reciever/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(is_station_level(T.z))

@@ -17,7 +17,7 @@ GLOBAL_VAR_INIT(decrypted_puzzle_disks, 0)
 	. = ..()
 	. += "The disk seems to be [decrypted ? "decrypted" : "encrypted"]."
 
-/obj/item/disk/puzzle/Initialize()
+/obj/item/disk/puzzle/Initialize(mapload)
 	.=..()
 	update_icon()
 

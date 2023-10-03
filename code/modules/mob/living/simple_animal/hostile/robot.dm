@@ -43,7 +43,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/hostile/robot/Initialize()
+/mob/living/simple_animal/hostile/robot/Initialize(mapload)
 	. = ..()
 	deathmessage = "[src] blows apart!"
 
@@ -97,7 +97,7 @@
 	retreat_distance = 5
 	minimum_distance = 5
 
-/mob/living/simple_animal/hostile/robot/advanced/Initialize()
+/mob/living/simple_animal/hostile/robot/advanced/Initialize(mapload)
 	. = ..()
 	add_overlay("eyes-hosborg")
 

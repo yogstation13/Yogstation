@@ -42,7 +42,7 @@
 	allow_numbers_in_name = TRUE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	wings_icon = "Robotic"
-	changesource_flags = NONE
+	changesource_flags = MIRROR_BADMIN
 
 	var/datum/action/innate/undeployment_synth/undeployment_action = new
 	///For transferring back and forth to an AI body when it's the AI deploying
