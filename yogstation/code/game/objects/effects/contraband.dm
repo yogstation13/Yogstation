@@ -74,7 +74,7 @@
 	icon_state = "help"
 
 /obj/item/poster/help
-	name = "call it out poster"
+	name = "\"call it out\" poster"
 	desc = "A poster depicting instructions to report any injuries."
 	poster_type = /obj/structure/sign/poster/official/help
 	icon_state = "rolled_legit"
