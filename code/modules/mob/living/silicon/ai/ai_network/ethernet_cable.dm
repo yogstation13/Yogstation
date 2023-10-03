@@ -359,7 +359,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	network.remove_cable(src) //remove the cut cable from its ai network
 	
 
-	addtimer(CALLBACK(O,PROC_REF(auto_propogate_cut_cable, O)), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+	addtimer(CALLBACK(O,PROC_REF(auto_propogate_cut_cable), O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable
