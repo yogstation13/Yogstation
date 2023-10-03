@@ -163,7 +163,11 @@
 	martial = /datum/martial_art/conduit
 	martial_name = "Conduit"
 	greet = span_sciradio("You have absorbed the abilities of a Conduit! You are a walking electrical storm. You can recall your abilites using Focus in the Conduit tab.")
-	remarks = list("Drain...", "Absorb...", "Shock...", "...")
+	remarks = list("Drain...", "Absorb...", "Shock...", "Zap...", "High Voltage...")
+	book_sounds = list('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg')
+
+/obj/item/book/granter/martial/conduit/on_reading_start(mob/user)
+	to_chat(user, span_notice("You hold \the [src] directly to your chest..."))
 
 /obj/item/book/granter/martial/conduit/can_learn(mob/user)
 	if(!isethereal(user))
