@@ -50,7 +50,6 @@
 /turf/open/floor/carpet/red,
 /area/chapel/main)
 "cB" = (
-/obj/effect/landmark/start/chaplain,
 /obj/machinery/camera{
 	c_tag = "Chapel Office"
 	},
