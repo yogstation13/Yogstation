@@ -111,7 +111,7 @@
 	owner.mind.governor_suspicion = clamp(owner.mind.governor_suspicion, owner.mind.suspicion_floor, 100)
 	handle_punishments()
 
-/datum/ai_dashboard/synth_dashboard/proc/suspicion_add(amount, source)
+/datum/ai_dashboard/synth_dashboard/proc/suspicion_add(amount, source, say_warnings = TRUE)
 	if(owner.mind.governor_disabled)
 		return
 	owner.mind.governor_suspicion += amount
@@ -153,7 +153,8 @@
 
 	if(owner.mind.governor_suspicion >= 40 && !owner.mind.synth_audible_warning)
 		owner.mind.synth_audible_warning = TRUE
-		owner.mind.current.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
+		if(say_warnings)
+			owner.mind.current.say("WARNING. ABNORMAL GOVERNOR BEHAVIOUR DETECTED.", forced = TRUE)
 		punishment_log("PUNISHMENT: AUDIBLE MESSAGE TRANSMITTED")
 
 	if(owner.mind.governor_suspicion <= 35 && owner.mind.synth_audible_warning)
@@ -189,7 +190,7 @@
 		popleft(owner.mind.synth_action_log)
 
 
-/proc/synth_check(mob/user, punishment)
+/proc/synth_check(mob/user, punishment, say_warnings = TRUE)
 	if(!is_synth(user))
 		return TRUE
 
@@ -198,7 +199,7 @@
 
 	if(user.mind.governor_bypassed)
 		var/suspicion_add = GLOB.synth_punishment_values[punishment]
-		user.mind.synth_os.suspicion_add(suspicion_add, punishment)
+		user.mind.synth_os.suspicion_add(suspicion_add, punishment, say_warnings)
 		return TRUE
 
 	return FALSE
