@@ -525,11 +525,15 @@
 	if(!(required_status == BODYPART_ANY) && (required_status && status != required_status) ) //So we can only heal certain kinds of limbs, ie robotic vs organic.
 		return
 
+
 	if(brute)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(brute, brute_dam), BRUTE, body_zone)
 		set_brute_dam(round(max(brute_dam - brute, 0), DAMAGE_PRECISION))
 	if(burn)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(burn, burn_dam), BURN, body_zone)
 		set_burn_dam(round(max(burn_dam - burn, 0), DAMAGE_PRECISION))
 	if(stamina)
+		SEND_SIGNAL(owner, COMSIG_BODYPART_HEALED, min(stamina, stamina_dam), STAMINA, body_zone)
 		set_stamina_dam(round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION))
 
 	if(owner)

@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	blood_amt -= 50
 	to_chat(user, span_notice("You touch the crystal, and see blood transforming into an organ!"))
 	playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
-	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
+	var/type = pick(/obj/item/reagent_containers/food/snacks/meat/slab,/obj/item/organ/heart,/obj/item/organ/heart/freedom,/obj/item/organ/lungs,/obj/item/organ/lungs/plasmaman,/obj/item/organ/lungs/ethereal,/obj/item/organ/lungs/slime,/obj/item/organ/liver,/obj/item/organ/liver/plasmaman,/obj/item/organ/liver/alien,/obj/item/organ/eyes,/obj/item/organ/eyes/night_vision/alien,/obj/item/organ/eyes/night_vision,/obj/item/organ/eyes/night_vision/mushroom,/obj/item/organ/tongue,/obj/item/organ/stomach,/obj/item/organ/stomach/plasmaman,/obj/item/organ/stomach/ethereal,/obj/item/organ/ears,/obj/item/organ/ears/cat,/obj/item/organ/ears/penguin)
 	new type(get_turf(src))
 
 /obj/structure/slime_crystal/red/attacked_by(obj/item/I, mob/living/user)

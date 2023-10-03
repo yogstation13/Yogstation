@@ -1,0 +1,5 @@
+author: " @cuackles, @SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds pride jackets to hacked clothing vendors"
+  - imageadd: "pride jackets"

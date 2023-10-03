@@ -19,6 +19,7 @@
 	var/altar_icon // Changes the Altar of Gods icon
 	var/altar_icon_state // Changes the Altar of Gods icon_state
 	var/list/active_rites // Currently Active (non-deleted) rites
+	var/chapel_buff_coeff = 2
 
 /datum/religion_sect/New()
 	. = ..()
@@ -98,6 +99,10 @@
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return FALSE
 
+/datum/religion_sect/proc/holy_water_start(mob/living/L)
+
+/datum/religion_sect/proc/holy_water_end(mob/living/L)
+
 /datum/religion_sect/puritanism
 	name = "Puritanism (Default)"
 	desc = "Nothing special."
@@ -164,7 +169,7 @@
 		playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
 	else
 		to_chat(user, span_warning("[GLOB.deity] scoffs at the idea of healing such fleshy matter!"))
-				
+
 	return TRUE
 
 /datum/religion_sect/technophile/on_sacrifice(obj/item/I, mob/living/L)
@@ -270,7 +275,7 @@
 			return 0
 
 	var/heal_amt = 40 //it only heals burn
-	
+
 	if(H.getFireLoss() > 0)
 		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
@@ -422,7 +427,7 @@
 /datum/religion_sect/holylight
 	name = "Holy Light"
 	desc = "A sect dedicated to healing."
-	convert_opener = "Welcome to the Holy Light, disciple. Heal others to gain favor."
+	convert_opener = "Welcome to the Holy Light, disciple. <br>Your holy water will now bless people with improved healing, which provides favor. Additionally, your bible heal is significantly stronger, at the cost of favor and an increased cooldown."
 	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
 	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
 	altar_icon_state = "convertaltar-heal"
@@ -436,28 +441,44 @@
 /datum/religion_sect/holylight/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return FALSE
-	
+
 	if(!L.client)
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
-		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		to_chat(user, span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
 		return FALSE
 
 	var/mob/living/carbon/human/H = L
 	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
+	var/heal_cost = 40
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
-		COOLDOWN_START(src, last_heal, 12 SECONDS)
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
+		heal_cost *= amount_healed/heal_amt
+		if(L.GetComponent(/datum/component/heal_react/boost/holylight)) //we don't heal any more with holy water, but we do get a small favor boost from it
+			heal_amt *= 0.8
+			heal_cost *= 0.15
+
+		if(favor < heal_cost)
+			user.balloon_alert(user, "not enough favor!")
+			return FALSE
 
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
-		adjust_favor(amount_healed, user)
+		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		adjust_favor(-heal_cost, user)
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		return TRUE
 	return FALSE
+
+/datum/religion_sect/holylight/holy_water_start(mob/living/L)
+	L.AddComponent(/datum/component/heal_react/boost/holylight)
+
+/datum/religion_sect/holylight/holy_water_end(mob/living/L)
+	var/datum/component/heal_react/boost/holylight/healing = L.GetComponent(/datum/component/heal_react/boost/holylight)
+	healing?.RemoveComponent()

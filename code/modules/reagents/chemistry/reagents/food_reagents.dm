@@ -209,7 +209,7 @@
 	color = "#792300" // rgb: 121, 35, 0
 	taste_description = "umami"
 	default_container = /obj/item/reagent_containers/food/condiment/soysauce
-	
+
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
@@ -930,3 +930,11 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_FAT))
 		affected_mob.gib()
 	return ..()
+
+/datum/reagent/consumable/bbqsauce
+	name = "BBQ Sauce"
+	description = "Sweet, smokey, savory, and gets everywhere. Perfect for grilling."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#78280A" // rgb: 120 40, 10
+	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
+	taste_description = "smokey sweetness"

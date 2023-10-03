@@ -87,6 +87,7 @@
 		/obj/item/organ/appendix,
 		/obj/item/organ/liver/fly,
 		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/lungs/ethereal,
 		/obj/item/organ/tail/cat,
 		/obj/item/organ/tail/lizard,
 	)

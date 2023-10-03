@@ -19,11 +19,8 @@
 		pipe_interference_group = "atmos-[piping_layer]"\
 	)
 
-	var/mutable_appearance/center
-
 /obj/machinery/atmospherics/pipe/manifold4w/New()
 	icon_state = ""
-	center = mutable_appearance(icon, "manifold4w_center")
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/SetInitDirections()
@@ -31,8 +28,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_overlays()
 	. = ..()
-	if(!center)
-		center = mutable_appearance(icon, "manifold_center")
+	var/mutable_appearance/center = mutable_appearance(icon, "manifold4w_center")
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)
 	. += center
 
