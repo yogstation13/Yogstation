@@ -1786,6 +1786,11 @@
 	},
 /turf/open/floor/plating/asteroid,
 /area/awaymission/vr/abandoned_mine)
+"oY" = (
+/obj/structure/table,
+/obj/item/paper/pamphlet/away/safety_pamphlet,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "pc" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -4451,11 +4456,6 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Mf" = (
-/obj/structure/table,
-/obj/item/paper/fluff/awaymissions/safety_pamphlet,
-/turf/open/floor/plasteel,
-/area/awaymission/vr/abandoned_mine)
 "Mh" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/grimy,
@@ -5844,10 +5844,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"Wk" = (
-/obj/machinery/door/airlock/external,
-/turf/open/space/basic,
-/area/awaymission/vr/abandoned_mine)
 "Wm" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave,
@@ -10071,7 +10067,7 @@ TQ
 TQ
 jD
 jD
-IS
+jD
 jD
 TQ
 TQ
@@ -11368,7 +11364,7 @@ jD
 Hw
 Xf
 iJ
-Wk
+OK
 xl
 Im
 eH
@@ -11625,7 +11621,7 @@ jD
 Hw
 iJ
 iJ
-Wk
+OK
 xl
 Im
 Im
@@ -11897,8 +11893,8 @@ Hw
 Hw
 Hw
 nY
-Mf
-Mf
+oY
+oY
 eH
 XF
 yy
@@ -12155,7 +12151,7 @@ ZV
 Hw
 xl
 vr
-Mf
+oY
 Im
 sd
 Hw
@@ -18057,7 +18053,7 @@ Hw
 iJ
 iJ
 iJ
-hr
+OK
 mo
 mo
 aE
@@ -18314,7 +18310,7 @@ Hw
 Xf
 iJ
 iJ
-hr
+OK
 Qz
 Qz
 Qz
@@ -19082,8 +19078,8 @@ TQ
 jD
 jD
 Hw
-hr
-hr
+OK
+OK
 Hw
 IS
 IS
