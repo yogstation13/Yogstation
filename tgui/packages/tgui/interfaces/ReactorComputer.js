@@ -21,17 +21,11 @@ export const ReactorComputer = (props, context) => {
           <Tabs.Tab
             selected={tabIndex === 2}
             onClick={() => setTabIndex(2)}>
-            Control Rods
-          </Tabs.Tab>
-          <Tabs.Tab
-            selected={tabIndex === 3}
-            onClick={() => setTabIndex(3)}>
-            Fuel Rods
+            Control
           </Tabs.Tab>
         </Tabs>
         {tabIndex === 1 && <ReactorStatsSection />}
         {tabIndex === 2 && <ReactorControlRodControl />}
-        {tabIndex === 3 && <ReactorFuelControl />}
       </Window.Content>
     </Window>
   );

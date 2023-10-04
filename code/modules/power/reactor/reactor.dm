@@ -43,10 +43,8 @@
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
 	var/last_heat_delta = 0 //For administrative cheating only. Knowing the delta lets you know EXACTLY what to set K at.
-	var/no_coolant_ticks = 0	//How many times in succession did we not have enough coolant? Decays twice as fast as it accumulates.
 	var/last_user = null
 	var/current_desired_k = null
-	var/datum/powernet/powernet = null
 	var/obj/item/radio/radio
 	var/key_type = /obj/item/encryptionkey/headset_eng
 	//Which channels should it broadcast to?
@@ -235,12 +233,8 @@
 	radio.canhear_range = 0
 	radio.recalculateChannels()
 
-	STOP_PROCESSING(SSmachines, src) //We'll handle this one ourselves.
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/LateInitialize()
-	. = ..()
 	connect_to_network()
+	STOP_PROCESSING(SSmachines, src) //We'll handle this one ourselves.
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/Crossed(atom/movable/AM, oldloc)
 	. = ..()
@@ -249,13 +243,12 @@
 		L.adjust_bodytemperature(clamp(temperature, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/process()
-	// Make some power!
-	var/turf/T = get_turf(src)
-	var/obj/structure/cable/C = T.get_cable_node()
-	if(C?.powernet)
-		add_avail(last_power_produced)
-	else
+	// Find a powernet
+	if(!powernet)
 		connect_to_network()
+
+	// Make some power!
+	add_avail(last_power_produced)
 
 	// You're overloading the reactor. Give a more subtle warning that power is getting out of control.
 	if(power >= 100 && world.time >= next_flicker)
@@ -305,6 +298,9 @@
 	var/depletion_modifier = 0.035 //How rapidly do your rods decay
 	gas_absorption_effectiveness = gas_absorption_constant
 	last_power_produced = 0
+
+	//Make absolutely sure that pipe connections are updated
+	update_parents()
 
 	//First up, handle moderators!
 	if(active && moderator_input.total_moles() >= minimum_coolant_level)
@@ -373,7 +369,6 @@
 				K += FR.fuel_power
 				fuel_power += FR.fuel_power
 				FR.deplete(depletion_modifier)
-			K += power / REACTOR_CRITICALITY_POWER_FACTOR
 			radioactivity_spice_multiplier += fuel_power
 
 	// Firstly, find the difference between the two numbers.
@@ -420,15 +415,6 @@
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
 		coolant_input.clear() //Clear out anything left in the input gate.
 		color = null
-		no_coolant_ticks = max(0, no_coolant_ticks-2)	//Needs half as much time to recover the ticks than to acquire them
-	else
-		if(active && has_fuel())
-			no_coolant_ticks++
-			if(no_coolant_ticks > REACTOR_NO_COOLANT_TOLERANCE)
-				temperature += temperature * delta_time / 500 //This isn't really harmful early game, but when your reactor is up to full power, this can get out of hand quite quickly.
-				vessel_integrity -= temperature * delta_time / 200 //Think fast loser.
-				color = "[COLOR_RED]"
-				investigate_log("Reactor taking damage from the lack of coolant", INVESTIGATE_REACTOR)
 
 	// And finally, set our pressure.
 	last_output_temperature = coolant_output.return_temperature()
@@ -498,15 +484,9 @@
 	//First alert condition: Overheat
 	if(temperature >= REACTOR_TEMPERATURE_CRITICAL)
 		alert = TRUE
-		if(!has_hit_emergency)
-			has_hit_emergency = TRUE
-			for(var/i in 1 to min((temperature-REACTOR_TEMPERATURE_CRITICAL)/100, 10))
-				src.fire_nuclear_particle()
-			radio.talk_into(src, "WARNING!! REACTOR CORE OVERHEATING!! NUCLEAR MELTDOWN IMMINENT!!", engi_channel)
-			playsound(src, 'sound/machines/reactor_alert_1.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
-			investigate_log("Reactor reaching critical temperature at [temperature] kelvin with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
-			message_admins("Reactor reaching critical temperature at [ADMIN_VERBOSEJMP(src)]")
-		if(temperature >= REACTOR_TEMPERATURE_MELTDOWN)
+		for(var/i in 1 to min((temperature-REACTOR_TEMPERATURE_CRITICAL)/100, 10))
+			src.fire_nuclear_particle()
+		if(temperature >= REACTOR_TEMPERATURE_MELTDOWN || prob(10))
 			var/temp_damage = min(temperature/300, initial(vessel_integrity)/180) * delta_time	//3 minutes to meltdown from full integrity, worst-case.
 			vessel_integrity -= temp_damage
 	else if(temperature < 73) //That's as cold as I'm letting you get it, engineering.
@@ -517,12 +497,6 @@
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
 		alert = TRUE
-		if(!has_hit_emergency)
-			has_hit_emergency = TRUE
-			radio.talk_into(src, "WARNING!! REACTOR CORE OVERPRESSURIZED!! BLOWOUT IMMINENT!!", engi_channel)
-			playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
-			investigate_log("Reactor reaching critical pressure at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_REACTOR)
-			message_admins("Reactor reaching critical pressure at [ADMIN_VERBOSEJMP(src)]")
 		Shake(6, 6, (delta_time/2) SECONDS)
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
 		var/turf/T = get_turf(src)
@@ -548,7 +522,6 @@
 		set_light(0)
 		light_color = LIGHT_COLOR_CYAN
 		set_light(10)
-		has_hit_emergency = FALSE
 		var/msg = "Reactor returning to safe operating parameters."
 		if(vessel_integrity <= 350)
 			msg += " Maintenance required."
@@ -563,21 +536,23 @@
 		return
 
 	next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
-	if(get_integrity() < 95)
-		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [get_integrity()]%", engi_channel)
 
-	if(get_integrity() < 50) // At this point we should alert the whole station
+	if(get_integrity() < 40 && !evacuation_procedures)
+		evacuation_procedures = TRUE
+		radio.talk_into(src, "WARNING: Reactor failure imminent. Integrity: [get_integrity()]%", engi_channel)
+		radio.talk_into(src, "Reactor failure imminent. Please remain calm and evacuate the facility immediately.", crew_channel)
+		playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
 		relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
+	else if(get_integrity() < 95)
+		radio.talk_into(src, "WARNING: Reactor structural integrity faltering. Integrity: [get_integrity()]%", engi_channel)
+		playsound(src, 'sound/machines/reactor_alert_1.ogg', 75, extrarange=50, pressure_affected=FALSE, ignore_walls=TRUE)
 
 	set_light(0)
 	light_color = LIGHT_COLOR_RED
 	set_light(10)
 
 	//PANIC
-	if(vessel_integrity <= initial(vessel_integrity)/4 && !evacuation_procedures)
-		evacuation_procedures = TRUE
-		radio.talk_into(src, "Reactor failure imminent. Please remain calm and evacuate the facility immediately.", crew_channel)
-		playsound(src, 'sound/machines/reactor_alert_3.ogg', 100, extrarange=100, pressure_affected=FALSE, ignore_walls=TRUE)
+	
 
 //Failure condition 1: Meltdown. Achieved by having heat go over tolerances. This is less devastating because it's easier to achieve.
 //Results: Engineering becomes unusable and your engine irreparable
@@ -792,11 +767,11 @@
 		for(var/obj/item/fuel_rod/rod in reactor.fuel_rods)
 			cur_index++
 			rod_data.Add(
-				list(list(
+				list(
 					"name" = rod.name,
 					"depletion" = rod.depletion,
 					"rod_index" = cur_index
-				))
+				)
 			)
 	data["rods"] = rod_data
 	return data
@@ -1022,33 +997,6 @@
 
 /area/engineering/main/reactor_control
 	name = "Reactor Control Room"
-
-
-//Procs shamelessly taken from machinery/power
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/connect_to_network()
-	var/turf/T = src.loc
-	if(!T || !istype(T))
-		return FALSE
-
-	var/obj/structure/cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
-	if(!C || !C.powernet)
-		return FALSE
-
-	C.powernet.add_machine(src)
-	return TRUE
-
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/disconnect_from_network()
-	if(!powernet)
-		return FALSE
-	powernet.remove_machine(src)
-	return TRUE
-
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/add_avail(amount)
-	if(powernet)
-		powernet.newavail += amount
-		return TRUE
-	else
-		return FALSE
 
 // Guide for setting this up, best to put one of these somewhere in the engine room so engineers know what to do
 /obj/item/paper/guides/jobs/engi/agcnr

@@ -13,16 +13,12 @@
 #define REACTOR_HEAT_EXPONENT 1.5 // The exponent used for the function for K heating
 #define REACTOR_HEAT_FACTOR (20 / (REACTOR_HEAT_EXPONENT**2)) //How much heat from K
 
-#define REACTOR_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
-
 #define REACTOR_MODERATOR_DECAY_RATE 0.1 //Don't use up ALL of the moderator, engineers need it to last a full round
 
 #define REACTOR_PRESSURE_OPERATING 6000 //Kilopascals
 #define REACTOR_PRESSURE_CRITICAL 10000
 
 #define REACTOR_MAX_CRITICALITY 5 //No more criticality than N for now.
-#define REACTOR_CRITICALITY_POWER_FACTOR 3000 // affects criticality from high power
-
 #define REACTOR_MAX_FUEL_RODS 5 //Maximum number of fuel rods that can fit in the reactor
 
 #define REACTOR_POWER_FLAVOURISER 1000 //To turn those KWs into something usable
