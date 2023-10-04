@@ -103,13 +103,13 @@
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
 
-/datum/eldritch_knowledge/blindness
-	name = "T1 - Curse of Blindness"
-	gain_text = "The Betrayed eternally walks the Kilnplains with a pair of blood-stained needles. She is willing to come to our world, for a price."
-	desc = "Curse someone with two minutes of complete blindness by transmuting a pair of eyes, a screwdriver, and a pool of blood with an object that the victim has touched with their bare hands."
-	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/blindness)
-	tier = TIER_1
+// /datum/eldritch_knowledge/blindness
+	// name = "T1 - Curse of Blindness"
+	// gain_text = "The Betrayed eternally walks the Kilnplains with a pair of blood-stained needles. She is willing to come to our world, for a price."
+	// desc = "Curse someone with two minutes of complete blindness by transmuting a pair of eyes, a screwdriver, and a pool of blood with an object that the victim has touched with their bare hands."
+	// cost = 1
+	// unlocked_transmutations = list(/datum/eldritch_transmutation/curse/blindness)
+	// tier = TIER_1
 
 /datum/eldritch_knowledge/madness_mask
 	name = "T2 - Mask of Madness"
@@ -120,21 +120,21 @@
 	route = PATH_ASH
 	tier = TIER_2
 
-/datum/eldritch_knowledge/corrosion
-	name = "T2 - Curse of Corrosion"
-	gain_text = "The night before he was crowned, the Nightwatcher met with each of the City Guard. Through this ritual, only one lived to see the dawn."
-	desc = "Curse someone with two minutes of vomiting and major organ damage by transmuting a wirecutter, a spill of blood, a heart, a left arm, and a right arm with an item that the victim has touched with their bare hands."
-	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/corrosion)
-	tier = TIER_2
+// /datum/eldritch_knowledge/corrosion
+	//name = "T2 - Curse of Corrosion"
+	//gain_text = "The night before he was crowned, the Nightwatcher met with each of the City Guard. Through this ritual, only one lived to see the dawn."
+	//desc = "Curse someone with two minutes of vomiting and major organ damage by transmuting a wirecutter, a spill of blood, a heart, a left arm, and a right arm with an item that the victim has touched with their bare hands."
+	//cost = 1
+	//unlocked_transmutations = list(/datum/eldritch_transmutation/curse/corrosion)
+	//tier = TIER_2
 
-/datum/eldritch_knowledge/paralysis
-	name = "T2 - Curse of Paralysis"
-	gain_text = "An acolyte must provide intense envy of another's well-being, which is absorbed with the rite's materials by the Shrouded One to grant opportunity for power."
-	desc = "Curse someone with five minutes of an inability to walk by transmuting a knife, a pool of blood, a left leg, a right leg, and a hatchet with an item that the victim touched with their bare hands."
-	cost = 1
-	unlocked_transmutations = list(/datum/eldritch_transmutation/curse/paralysis)
-	tier = TIER_2
+// /datum/eldritch_knowledge/paralysis
+	//name = "T2 - Curse of Paralysis"
+	//gain_text = "An acolyte must provide intense envy of another's well-being, which is absorbed with the rite's materials by the Shrouded One to grant opportunity for power."
+	//desc = "Curse someone with five minutes of an inability to walk by transmuting a knife, a pool of blood, a left leg, a right leg, and a hatchet with an item that the victim touched with their bare hands."
+	//cost = 1
+	//unlocked_transmutations = list(/datum/eldritch_transmutation/curse/paralysis)
+	//tier = TIER_2
 
 /datum/eldritch_knowledge/ash_blade_upgrade
 	name = "Blade Upgrade - Blade of the City Guard"
