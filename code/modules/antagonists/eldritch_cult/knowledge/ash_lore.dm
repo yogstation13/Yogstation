@@ -103,6 +103,8 @@
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
 
+// WILL COME BACK TO CURSES AT A LATER DATE 
+
 // /datum/eldritch_knowledge/blindness
 	// name = "T1 - Curse of Blindness"
 	// gain_text = "The Betrayed eternally walks the Kilnplains with a pair of blood-stained needles. She is willing to come to our world, for a price."
