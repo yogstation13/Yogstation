@@ -9,8 +9,7 @@
 	damage_overlay_type = "synth"
 
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,
-	TRAIT_NOHUNGER, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NOGUNS, TRAIT_NO_GRENADES)
+	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NOGUNS, TRAIT_NO_GRENADES)
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES)
 	inherent_biotypes = list(MOB_ROBOTIC)
 	mutantbrain = /obj/item/organ/brain/positron/synth
@@ -259,7 +258,7 @@
 		if(user.mind)
 			to_chat(attacker, span_warning("[user] is currently occupied by a different personality!"))
 			return ..()
-		var/response = tgui_alert(user, "Are you sure you want to transfer into this unit?", "Synthetic Personality Transfer", list("Yes", "No"))
+		var/response = tgui_alert(attacker, "Are you sure you want to transfer into this unit?", "Synthetic Personality Transfer", list("Yes", "No"))
 		if(response != "Yes")
 			return ..()
 		transfer(attacker, user)
