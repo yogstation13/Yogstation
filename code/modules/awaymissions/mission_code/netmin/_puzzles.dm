@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(button_puzzles)
 	index = 1
 
 /datum/button_puzzle_holder/proc/button_pressed(obj/machinery/button_puzzle/button)
-	if(index >= buttons.len)
+	if(index > buttons.len)
 		open_doors()
 		return
 
@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(button_puzzles)
 	else
 		reset()
 
-	if(index >= buttons.len)
+	if(index > buttons.len)
 		open_doors()
 		return
 
