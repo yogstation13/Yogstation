@@ -18678,12 +18678,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"dWL" = (
-/obj/machinery/vr_sleeper/netmin/synth_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "dXn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -22104,6 +22098,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
+"fgJ" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "fgV" = (
 /obj/effect/turf_decal/arrows/white,
 /turf/open/floor/plasteel/dark,
@@ -52569,13 +52570,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"qHF" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/landmark/start/synthetic,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "qHL" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -56294,12 +56288,6 @@
 /obj/machinery/light,
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/secondarydatacore)
-"rZG" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "rZU" = (
 /obj/machinery/light{
 	dir = 8;
@@ -58627,6 +58615,12 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"sVt" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "sVz" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -65931,10 +65925,6 @@
 /obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"vCy" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "vCE" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -67841,6 +67831,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"wlb" = (
+/obj/machinery/vr_sleeper/netmin/synth_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "wlc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -69052,6 +69048,10 @@
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"wLB" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "wLC" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/miner/carbon_dioxide,
@@ -99369,7 +99369,7 @@ xul
 kPb
 jwK
 jwK
-rZG
+sVt
 nkd
 bmr
 bmr
@@ -99627,7 +99627,7 @@ kRv
 dBV
 jwK
 mJX
-qHF
+fgJ
 dEb
 dPP
 bYm
@@ -99883,8 +99883,8 @@ kjm
 kRv
 lvY
 jwK
-dWL
-vCy
+wlb
+wLB
 dEb
 eaw
 nfX

@@ -2118,12 +2118,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"apq" = (
-/obj/machinery/vr_sleeper/netmin/synth_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "apt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -19086,10 +19080,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"efs" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "efw" = (
 /obj/machinery/button/door{
 	desc = "A remote control-switch for the engineering security doors.";
@@ -24081,13 +24071,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"fNG" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/landmark/start/synthetic,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "fNQ" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/stripes/corner{
@@ -26427,6 +26410,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"gNW" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "gOa" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -41295,6 +41284,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"muw" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "muY" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 6
@@ -43571,12 +43567,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
-"nkd" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "nkw" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -49388,6 +49378,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"pwj" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "pwq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -59751,6 +59748,12 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
+"toM" = (
+/obj/machinery/vr_sleeper/netmin/synth_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "toV" = (
 /obj/machinery/door/poddoor{
 	id = "turbinevent";
@@ -64287,12 +64290,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uYZ" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "uZh" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 5
@@ -66448,6 +66445,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"vJZ" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "vKb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -99369,8 +99370,8 @@ xul
 kPb
 jwK
 jwK
-uYZ
-nkd
+gNW
+muw
 bmr
 bmr
 qPS
@@ -99627,7 +99628,7 @@ kRv
 dBV
 jwK
 mJX
-fNG
+pwj
 dEb
 dPP
 bYm
@@ -99883,8 +99884,8 @@ kjm
 kRv
 lvY
 jwK
-apq
-efs
+toM
+vJZ
 dEb
 eaw
 nfX
