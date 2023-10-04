@@ -185,17 +185,14 @@
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
 			EC.total_sacrifices++
-			for(var/X in carbon_user.get_all_gear())
-				if(!istype(X,/obj/item/forbidden_book))
-					continue
-				EC.charge += 2
-				break
+			EC.charge += 2
+			
 
 		if(QDELETED(LH.target))
 			var/datum/objective/A = new
 			A.owner = user.mind
 			var/list/targets = list()
-			for(var/i in 0 to 3)
+			for(var/i in 0 to 4)
 				var/list/BR = list()
 				var/datum/mind/targeted =  A.find_target(blacklist = BR)//easy way, i dont feel like copy pasting that entire block of code
 				if(!targeted)
