@@ -268,7 +268,7 @@
 			O.set_species(/datum/species/wy_synth)
 			O.invisibility = 0
 			O.job = "Synthetic"
-			var/datum/outfit/job/synthetic/naked/SO = new()
+			var/datum/outfit/job/synthetic/SO = new()
 			SO.equip(O)
 			W.forceMove(O)
 			var/datum/species/wy_synth/S = O.dna.species
