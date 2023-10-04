@@ -26,6 +26,7 @@
 	exotic_blood = /datum/reagent/oil
 	use_skintones = TRUE
 	forced_skintone = "albino"
+	mob_biotypes = MOB_ROBOTIC
 
 	payday_modifier = 0
 	burnmod = 0.9

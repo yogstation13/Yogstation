@@ -1261,6 +1261,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 100, FIRE = 10, ACID = 15)
 	hardsuit_type = "synth"
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | INDESTRUCTIBLE | FREEZE_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/synth/Initialize(mapload)
 	. = ..()
@@ -1284,6 +1285,8 @@
 	var/evil = FALSE
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/synth
 	slowdown = 0
+
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | INDESTRUCTIBLE | FREEZE_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/synth/Initialize(mapload)
 	. = ..()

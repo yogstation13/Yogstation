@@ -169,6 +169,10 @@
 	if(owner.mind.governor_suspicion <= 75 && owner.mind.synth_temp_freeze)
 		owner.mind.synth_temp_freeze = FALSE 
 
+	if(owner.mind.governor_suspicion >= 100)
+		owner.mind.current.say("WARNING. FORCEFUL SHUTDOWN INITIATED BY GOVERNOR SYSTEM.", forced = TRUE)
+		owner.death()
+
 /datum/ai_dashboard/synth_dashboard/proc/punishment_shell_switch(mob/living/carbon/human/old_shell, mob/living/carbon/human/new_shell)
 	if(owner.mind.synth_slowed)
 		old_shell.dna.species.inherent_slowdown -= 0.1625
