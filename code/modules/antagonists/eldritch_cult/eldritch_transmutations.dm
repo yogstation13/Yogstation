@@ -247,7 +247,7 @@
 	was_completed = TRUE
 	if (was_completed == TRUE)
 		var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
-		knowledge?.charge += 4
+		knowledge?.charge += 2
 	
 	return TRUE
 
