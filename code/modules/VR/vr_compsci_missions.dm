@@ -5,12 +5,18 @@
 	}; \
 
 
+GLOBAL_LIST_EMPTY(compsci_flags)
+
+#define MINE_FLAG "mine"
+
 /datum/compsci_mission
 	var/name
 	var/desc
 	var/id
 	var/completion_item
 	var/tags
+
+	var/delete_completion_item = FALSE
 
 /datum/compsci_mission/proc/complete()
 	return
@@ -49,3 +55,16 @@ VR_SPAWNER(scientist_raid, /datum/outfit/vr/mission)
 	completion_item = /obj/item/ai_cpu/self_aware
 
 VR_SPAWNER(combat_robot_factory, /datum/outfit/vr/mission)
+
+/datum/compsci_mission/abandoned_mine
+	name = "Abandoned Mine"
+	desc = "The records for an old abandoned robot factory have been lost. You've been sent to remake the report."
+	id = "abandoned_mine"
+	completion_item = /obj/item/paper/fluff/awaymissions/mine_coordinates
+	delete_completion_item = TRUE
+
+/datum/compsci_mission/abandoned_mine/complete()
+	. = ..()
+	GLOB.compsci_flags[MINE_FLAG] = TRUE 
+
+VR_SPAWNER(abandoned_mine, /datum/outfit/vr/mission)

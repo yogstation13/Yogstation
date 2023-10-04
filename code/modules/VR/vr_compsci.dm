@@ -9,7 +9,8 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 
 	var/roundstart_missions = list(
 		/datum/compsci_mission/scientist_raid,
-		/datum/compsci_mission/combat_robot_factory
+		/datum/compsci_mission/combat_robot_factory,
+		/datum/compsci_mission/abandoned_mine
 	)
 
 
@@ -144,6 +145,8 @@ GLOBAL_LIST_EMPTY(last_used_transmuter)
 	if(GLOB.compsci_vr.current_mission && istype(I, GLOB.compsci_vr.current_mission.completion_item))
 		var/obj/machinery/compsci_reciever/station_machine = GLOB.compsci_vr_mission_reciever
 		I.forceMove(station_machine.drop_location())
+		if(GLOB.compsci_vr.current_mission.delete_completion_item)
+			qdel(I)
 		GLOB.compsci_vr.complete_mission()
 		to_chat(user, span_notice("Successfully transferred artifact. Now reverting to reality.."))
 		qdel(user)
