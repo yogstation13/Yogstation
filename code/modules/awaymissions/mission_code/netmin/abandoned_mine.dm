@@ -4,7 +4,7 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 
-/obj/item/paper/fluff/awaymissions/safety_pamphlet
+/obj/item/paper/pamphlet/away/safety_pamphlet
 	name = "safety instructions"
 	icon_state = "pamphlet"
 	info = {"Welcome aboard Mining Installation 13 - "Paradiso", the largest producer of high-quality iron in this sector! <br> We're glad to have you onboard, but before you can start work there's a few important safety instructions we have to inform you about: <br>
