@@ -25,7 +25,7 @@
 	Degrading the quality of food for the works has earned us a 7% decrease in operating costs.<br>
 	Shipment destinations:<br>
 	Space Station 13: 125.000 tons<br>
-	REDACTED Factory: 500.000 tons<br>
+	REDACTED Facility: 500.000 tons<br>
 	Central Command: 125.000 tons<br>
 	"}
 
@@ -52,4 +52,4 @@
 
 /obj/item/paper/fluff/awaymissions/mine_coordinates
 	name = "coordinate readout"
-	info = {"Coordinates attached. Return to transmuter to upload coordinates."}
+	info = {"Coordinates of REDACTED facility attached. Return to transmuter to upload coordinates."}

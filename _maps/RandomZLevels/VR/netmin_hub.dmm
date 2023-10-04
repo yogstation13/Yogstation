@@ -36,6 +36,16 @@
 "ai" = (
 /turf/closed/wall/mineral/titanium,
 /area/awaymission/vr/hub)
+"am" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
+"an" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "ao" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
@@ -67,6 +77,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"az" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "aA" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -76,14 +92,14 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "aE" = (
-/turf/closed/indestructible/vault,
-/area/space)
-"aI" = (
-/obj/structure/toilet{
-	dir = 4
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
 	},
-/turf/open/floor/plasteel/freezer,
-/area/space)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "aJ" = (
 /obj/structure/showcase/cyborg{
 	desc = "A stand with a deactivated combat robot attached. This seems to be an earlier model. Weren't these made illegal a long time ago?";
@@ -97,16 +113,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"aK" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plating/asteroid,
-/area/space)
-"aL" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "aM" = (
 /obj/machinery/door/poddoor{
 	id = "nothing";
@@ -114,30 +120,10 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
-"aR" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/button_puzzle{
-	id = "mine_button";
-	pixel_x = -23;
-	pixel_y = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 9
-	},
+"aV" = (
+/obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel,
-/area/space)
-"aU" = (
-/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob{
-	loot = list(/obj/item/clothing/mask/gas/clown_hat,/obj/effect/gibspawner/xeno/bodypartless,/obj/effect/particle_effect/fluid/foam,/obj/item/soap,/obj/effect/gibspawner/generic,/obj/effect/gibspawner/generic/animal,/obj/effect/gibspawner/human/bodypartless,/obj/effect/gibspawner/human,/obj/item/holo/esword)
-	},
-/turf/open/floor/plating/asteroid,
-/area/space)
-"aW" = (
-/turf/open/floor/plating,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "aY" = (
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating,
@@ -167,30 +153,17 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"bl" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/storage/belt/bandolier,
-/turf/open/floor/plasteel/dark,
-/area/space)
-"bm" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "bn" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 9
+	},
+/obj/machinery/button_puzzle{
+	id = "mine_button";
+	pixel_x = -23;
+	pixel_y = 1
 	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "bo" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/carpet/royalblue,
@@ -201,6 +174,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"br" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "bt" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
@@ -229,17 +208,19 @@
 "by" = (
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
-"bC" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"bD" = (
-/obj/structure/table,
-/obj/item/paper/fluff/awaymissions/safety_pamphlet,
+"bA" = (
+/obj/effect/landmark/vr_spawn/vr_mission/abandoned_mine,
+/obj/machinery/light/small,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"bD" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 5
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "bF" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -288,21 +269,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
-"ci" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"ck" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/stack/sheet/metal/ten,
-/turf/open/floor/plasteel,
-/area/space)
 "cl" = (
 /obj/structure/toilet{
 	dir = 4
@@ -319,13 +285,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"cq" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "cu" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -336,19 +295,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"cE" = (
-/obj/structure/alien/weeds/node,
-/turf/open/floor/plating/asteroid,
-/area/space)
-"cH" = (
+"cD" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 4
+	dir = 10
 	},
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "cJ" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/fancy/cigarettes/cigars/havana,
@@ -358,27 +311,12 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/combat_robot_factory)
-"cN" = (
-/obj/item/disk/puzzle{
-	id = "mine_armory"
-	},
-/turf/open/floor/plating/asteroid,
-/area/space)
 "cO" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"cP" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "cS" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/plasteel,
@@ -390,6 +328,31 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/combat_robot_factory)
+"cX" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/button_puzzle{
+	id = "mine_button";
+	pixel_x = -23;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"cY" = (
+/obj/item/chair/stool,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/spider/cocoon,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
+"cZ" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "db" = (
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
@@ -412,10 +375,10 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"dl" = (
-/obj/machinery/door/airlock/external,
+"dj" = (
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "dn" = (
 /mob/living/simple_animal/hostile/boss/robot_leader{
 	del_on_death = 1;
@@ -436,6 +399,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"dp" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
+"dq" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "dw" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
@@ -457,25 +435,20 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
 "dE" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck{
+	pixel_x = 7
 	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
+/obj/item/stack/spacecash/c200{
+	pixel_x = -3;
+	pixel_y = 10
 	},
-/turf/open/floor/plasteel,
-/area/space)
-"dG" = (
-/obj/item/bedsheet,
-/obj/structure/bed,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
+/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag{
+	pixel_x = -4;
+	pixel_y = -5
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "dJ" = (
 /obj/machinery/door/window/brigdoor/security/holding/westleft,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -484,25 +457,17 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"dM" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"dP" = (
-/mob/living/simple_animal/hostile/robot/advanced,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "dS" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"dT" = (
+/obj/effect/decal/remains/human,
+/obj/effect/gibspawner/human,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "dZ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -512,6 +477,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"ee" = (
+/obj/item/disk/puzzle{
+	id = "mine_floppy"
+	},
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "ef" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -536,6 +507,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/awaymission/vr/combat_robot_factory)
+"el" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"en" = (
+/obj/machinery/door/airlock{
+	name = "Living Quarters"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "er" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
@@ -552,10 +536,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
-"ey" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/space)
 "eA" = (
 /obj/structure/closet/crate,
 /obj/item/flashlight/flare,
@@ -580,6 +560,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"eH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"eI" = (
+/obj/item/gem/fdiamond,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "eJ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -589,6 +577,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"eQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 9
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/metal/ten,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "eR" = (
 /obj/effect/decal/cleanable/robot_debris/gib,
 /turf/open/floor/wood,
@@ -621,6 +618,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"fc" = (
+/obj/item/disk/puzzle{
+	id = "mine_armory"
+	},
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "fd" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -651,11 +654,13 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "fp" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/space)
+/obj/structure/rack,
+/obj/item/fireaxe,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "fq" = (
 /obj/structure/table/reinforced,
 /obj/item/wrench,
@@ -685,13 +690,10 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"fB" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
+"fE" = (
+/obj/item/shield/riot,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "fG" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate,
@@ -706,15 +708,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"fM" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
+"fL" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "fN" = (
 /obj/structure/chair{
 	dir = 1
@@ -727,9 +725,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"fX" = (
-/turf/open/floor/plating/asteroid,
-/area/space)
+"gb" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "gf" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -745,21 +744,6 @@
 /mob/living/simple_animal/hostile/robot/burst,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"gj" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/paper/fluff/awaymissions/mine_contract{
-	pixel_x = 7;
-	pixel_y = -1
-	},
-/obj/item/storage/firstaid{
-	pixel_x = -7;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "gn" = (
 /obj/machinery/door/window/southright,
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -821,12 +805,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"gP" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+"gM" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/space)
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "gQ" = (
 /obj/machinery/papershredder,
 /obj/item/shreddedpaper,
@@ -861,17 +845,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"gZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/suit_storage_unit/open,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "hc" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"hj" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
 "hm" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -884,14 +872,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"ho" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "hq" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light{
@@ -899,6 +879,16 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
+"hr" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"ht" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "hu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -911,16 +901,6 @@
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"hw" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 10
-	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/stack/sheet/metal/twenty,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "hy" = (
 /obj/structure/table,
 /obj/effect/turf_decal/trimline/purple/filled/line,
@@ -939,12 +919,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"hA" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "hB" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
@@ -954,6 +928,15 @@
 /obj/item/clothing/shoes/sneakers/orange,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"hC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "hE" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 6
@@ -961,21 +944,21 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"hG" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 4
+"hF" = (
+/obj/effect/spawner/structure/window/reinforced/indestructable,
+/turf/open/floor/plating,
+/area/awaymission/vr/abandoned_mine)
+"hH" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
 	},
-/obj/structure/table,
-/obj/item/stack/cable_coil/random/thirty,
-/obj/machinery/light{
-	dir = 4
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
-/turf/open/floor/plasteel,
-/area/space)
-"hI" = (
-/obj/structure/spider/cocoon,
-/turf/open/floor/plating/asteroid,
-/area/space)
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "hM" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -985,6 +968,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"hO" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "hS" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
@@ -1002,21 +991,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"id" = (
-/obj/machinery/door/airlock{
-	name = "Living Quarters"
+"hZ" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"ia" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "ih" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"ii" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel,
-/area/space)
 "ij" = (
 /mob/living/simple_animal/hostile/robot/advanced/ranged,
 /turf/open/floor/plasteel/dark,
@@ -1030,13 +1023,14 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "in" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/space)
-"ip" = (
-/mob/living/simple_animal/hostile/poison/giant_spider,
-/turf/open/floor/plating/asteroid,
-/area/space)
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "iv" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/effect/turf_decal/trimline/green/filled/line,
@@ -1053,12 +1047,10 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "iB" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
-/turf/open/floor/plasteel,
-/area/space)
+/obj/structure/curtain,
+/obj/machinery/shower,
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "iD" = (
 /obj/machinery/door/airlock{
 	name = "Personal Quarters"
@@ -1077,14 +1069,28 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"iJ" = (
+/turf/open/floor/plating,
+/area/awaymission/vr/abandoned_mine)
 "iM" = (
 /obj/structure/shuttle/engine/propulsion/burst/right,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/scientist_raid)
+"iN" = (
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "iP" = (
-/obj/structure/table,
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/button_puzzle{
+	id = "mine_button";
+	pixel_x = 24;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "iQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/centcom,
@@ -1115,14 +1121,15 @@
 /obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating,
 /area/awaymission/vr/scientist_raid)
-"ja" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower,
+"jb" = (
+/turf/closed/indestructible/riveted,
+/area/awaymission/vr/abandoned_mine)
+"jg" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
-/area/space)
-"jf" = (
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower,
-/turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "ji" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -1153,10 +1160,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"js" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+"jt" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "ju" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 2;
@@ -1167,6 +1175,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"jx" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "jy" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/light,
@@ -1203,15 +1215,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"jD" = (
+/turf/closed/indestructible/rock,
+/area/awaymission/vr/abandoned_mine)
 "jE" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"jF" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/turf/open/floor/plasteel,
-/area/space)
 "jG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -1219,6 +1230,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"jO" = (
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "jT" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex,
@@ -1229,13 +1243,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"kd" = (
-/obj/structure/chair/office/dark{
-	dir = 1
+"ka" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 9
 	},
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "kl" = (
 /obj/effect/landmark/vr_spawn/vr_mission/scientist_raid,
 /turf/open/floor/mineral/titanium/blue,
@@ -1275,9 +1288,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"kt" = (
-/turf/open/floor/plasteel,
-/area/space)
 "kv" = (
 /obj/machinery/autolathe{
 	name = "main processing assembly"
@@ -1297,25 +1307,21 @@
 /obj/effect/mapping_helpers/dead_body_placer,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/scientist_raid)
+"kI" = (
+/obj/item/bedsheet,
+/obj/structure/bed,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "kJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"kM" = (
-/obj/machinery/door/airlock/security{
-	name = "Cell "
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"kP" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel,
-/area/space)
 "kR" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -1338,18 +1344,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"kV" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/button_puzzle{
-	id = "mine_button";
-	pixel_x = 24;
-	pixel_y = 1
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel,
-/area/space)
 "kW" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1
@@ -1381,12 +1375,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
-"lh" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "lk" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -1412,6 +1400,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"lI" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/obj/structure/rack,
+/obj/item/storage/box/lethalshot,
+/obj/item/storage/box/lethalshot,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "lL" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 2;
@@ -1429,10 +1426,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"lZ" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "ma" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Quality Assurance"
@@ -1462,27 +1455,32 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
+"mo" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "mp" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
-"ms" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
-	dir = 1
+"mq" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/space)
-"mt" = (
-/obj/item/clothing/suit/armor/riot/knight{
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
-	},
-/turf/open/floor/plating/asteroid,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "mu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"mv" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "my" = (
 /turf/closed/indestructible/riveted,
 /area/awaymission/vr/hub)
@@ -1495,9 +1493,17 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/vr/combat_robot_factory)
-"mH" = (
-/turf/open/floor/plasteel/white,
-/area/space)
+"mE" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"mG" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "mI" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1507,22 +1513,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
-"mJ" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/closed/wall,
-/area/space)
-"mM" = (
-/obj/machinery/light{
+"mL" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "mO" = (
 /obj/structure/table/glass,
 /obj/item/folder/white,
@@ -1562,44 +1558,29 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"mZ" = (
-/obj/machinery/door/password/floppy_disk{
-	id = "mine_armory";
-	name = "Armory"
+"mW" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"mX" = (
+/obj/item/bedsheet,
+/obj/structure/bed,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
 	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"na" = (
-/obj/machinery/door/airlock/security{
-	name = "Worker Protection Centre"
-	},
-/turf/open/floor/plating,
-/area/space)
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "nc" = (
 /obj/machinery/autolathe{
 	name = "tool mounting"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"nd" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel/white,
-/area/space)
 "nj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small,
 /turf/open/floor/carpet,
 /area/awaymission/vr/combat_robot_factory)
-"nm" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "nq" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets/donkpocketpizza,
@@ -1610,6 +1591,15 @@
 /obj/machinery/shower,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
+"ny" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "nD" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/table,
@@ -1626,6 +1616,13 @@
 "nF" = (
 /turf/closed/indestructible/riveted,
 /area/awaymission/vr/scientist_raid)
+"nH" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "nI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/freezer/blood,
@@ -1634,15 +1631,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"nM" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11;
-	pixel_y = 1
+"nK" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/space)
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "nN" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -1661,6 +1655,15 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/vr/combat_robot_factory)
+"nY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "oa" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /obj/effect/decal/cleanable/blood,
@@ -1683,12 +1686,19 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
 "oi" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"oj" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "om" = (
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
@@ -1701,26 +1711,28 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
-"ov" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Sickbay"
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"ow" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 10
+"ot" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
 	},
 /obj/item/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/space)
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"oE" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "oG" = (
-/obj/item/pickaxe,
-/turf/open/floor/plating/asteroid,
-/area/space)
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "oH" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -1746,11 +1758,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"oL" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Uplink Access"
+"oM" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 10
 	},
-/area/space)
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "oP" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark,
@@ -1766,6 +1780,12 @@
 "oT" = (
 /turf/closed/wall,
 /area/awaymission/vr/scientist_raid)
+"oU" = (
+/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob{
+	loot = list(/obj/item/clothing/mask/gas/clown_hat,/obj/effect/gibspawner/xeno/bodypartless,/obj/effect/particle_effect/fluid/foam,/obj/item/soap,/obj/effect/gibspawner/generic,/obj/effect/gibspawner/generic/animal,/obj/effect/gibspawner/human/bodypartless,/obj/effect/gibspawner/human,/obj/item/holo/esword)
+	},
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "pc" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -1774,15 +1794,10 @@
 /obj/structure/bed,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"pd" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
+"pe" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "pg" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
@@ -1814,10 +1829,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"ps" = (
-/obj/effect/mob_spawn/human/corpse/cargo_tech,
-/turf/open/floor/plasteel/white,
-/area/space)
 "pt" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
@@ -1828,11 +1839,19 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
 "pv" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
+/obj/effect/decal/remains/human,
+/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"pw" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/metal/ten,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "py" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
@@ -1846,6 +1865,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"pF" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/metal/five,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "pJ" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -1868,6 +1899,10 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"pQ" = (
+/mob/living/simple_animal/hostile/alien/queen/large,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "pU" = (
 /obj/machinery/conveyor{
 	id = "QMLoad"
@@ -1885,18 +1920,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"pW" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "pZ" = (
 /obj/effect/decal/cleanable/robot_debris,
 /obj/machinery/light{
@@ -1904,14 +1927,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"qa" = (
-/obj/item/bedsheet,
-/obj/structure/bed,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "qd" = (
 /obj/machinery/light{
 	dir = 1
@@ -1934,9 +1949,16 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/vr/combat_robot_factory)
+"qi" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "qj" = (
 /turf/closed/wall,
 /area/awaymission/vr/combat_robot_factory)
+"qk" = (
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "qp" = (
 /obj/machinery/light{
 	dir = 4
@@ -1964,26 +1986,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"qB" = (
-/obj/effect/landmark/vr_spawn/vr_mission/abandoned_mine,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"qE" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"qF" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_one_access_txt = "0"
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "qI" = (
 /obj/structure/table,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -1995,21 +1997,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"qL" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag{
-	pixel_x = -4;
-	pixel_y = -5
-	},
-/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag{
-	pixel_x = -3;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "qP" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -2031,6 +2018,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"rb" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"rd" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "re" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 4
@@ -2068,24 +2070,26 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"rn" = (
-/obj/effect/mob_spawn/human/clown/corpse,
-/turf/open/floor/plating/asteroid,
-/area/space)
+"rk" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/machinery/light,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "rs" = (
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"ru" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "rw" = (
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
 /area/awaymission/vr/scientist_raid)
-"rC" = (
-/obj/item/shield/riot,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "rE" = (
 /obj/machinery/light,
 /turf/open/floor/grass,
@@ -2097,6 +2101,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"rH" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "rJ" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -2113,6 +2122,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"rO" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 10
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "rQ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -2126,31 +2142,31 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
-"rX" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/obj/machinery/light,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel,
-/area/space)
+"rT" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "rZ" = (
 /mob/living/simple_animal/hostile/robot/range,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"sb" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"sd" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "sg" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/structure/table/reinforced,
 /obj/item/melee/baton/loaded,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"sk" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "sm" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -2162,6 +2178,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"sq" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/button_puzzle{
+	id = "mine_button";
+	pixel_x = -23;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"sx" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/metal/ten,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "sC" = (
 /mob/living/simple_animal/hostile/robot,
 /obj/machinery/conveyor{
@@ -2183,12 +2222,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"sG" = (
-/obj/machinery/door/airlock/security{
-	name = "Cell 1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "sH" = (
 /obj/machinery/door/password{
 	name = "Emergency Supplies";
@@ -2201,18 +2234,22 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/awaymission/vr/scientist_raid)
-"sN" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "sO" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Sickbay"
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"sQ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "sU" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel/dark,
@@ -2252,15 +2289,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"tg" = (
-/obj/effect/gibspawner/human,
-/turf/open/floor/plating/asteroid,
-/area/space)
+"th" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "tj" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/scalpel,
 /turf/open/floor/wood,
 /area/awaymission/vr/combat_robot_factory)
+"tz" = (
+/obj/machinery/door/password/button_puzzle{
+	id = "mine_button"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"tA" = (
+/obj/machinery/door/airlock/security{
+	name = "Cell 1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "tB" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 4
@@ -2281,32 +2336,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"tI" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/flashlight,
-/turf/open/floor/plasteel,
-/area/space)
 "tL" = (
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"tM" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"tN" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "tO" = (
 /obj/structure/closet,
 /obj/item/paper/crumpled/bloody/fluff/awaymissions/scientist_raid/report5,
@@ -2335,20 +2367,29 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"tS" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 4
+"tW" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Uplink Access"
 	},
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/brute{
-	pixel_x = 3;
-	pixel_y = 3
+/area/awaymission/vr/abandoned_mine)
+"tX" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
+"tZ" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
 	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 1
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"ua" = (
+/obj/structure/chair/office/dark{
+	dir = 1
 	},
-/turf/open/floor/plasteel/white,
-/area/space)
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "ud" = (
 /obj/structure/toilet{
 	dir = 4
@@ -2358,6 +2399,15 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
+"ue" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/door/airlock/mining{
+	name = "Storage"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "uf" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
@@ -2379,6 +2429,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"up" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/paper/fluff/awaymissions/mine_contract{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/obj/item/storage/firstaid{
+	pixel_x = -7;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "ut" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -2403,6 +2468,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"uF" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "uG" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
@@ -2410,32 +2479,20 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"uH" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/space)
 "uI" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "uK" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"uM" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/space)
-"uO" = (
-/obj/item/paper/fluff/awaymissions/button_puzzle{
-	id = "mine_button";
-	pixel_y = -1
-	},
+/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife,
 /turf/open/floor/plating/asteroid,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"uT" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "uV" = (
 /obj/machinery/vending/snack/random,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -2443,17 +2500,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"uW" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/button_puzzle{
-	id = "mine_button";
-	pixel_x = 24;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "uZ" = (
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -2473,6 +2519,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"vj" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "vk" = (
 /obj/machinery/anesthetic_machine/roundstart,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -2502,6 +2554,12 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/scientist_raid)
+"vr" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "vt" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Corporate Liason Office"
@@ -2525,19 +2583,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"vF" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "vH" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "crew maintenance compartment"
 	},
 /turf/open/floor/plating,
 /area/awaymission/vr/hub)
-"vK" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 10
-	},
-/obj/structure/ore_box,
-/turf/open/floor/plasteel,
-/area/space)
 "vP" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -2573,31 +2631,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"vX" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "vY" = (
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/turf/open/floor/plasteel/freezer,
-/area/space)
-"vZ" = (
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/machinery/compsci_reciever,
 /obj/structure/table,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 10;
-	pixel_y = 4
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"vZ" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 10;
-	pixel_y = 16
+/obj/machinery/light{
+	dir = 8
 	},
-/turf/open/floor/plating/asteroid,
-/area/space)
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "wa" = (
 /obj/machinery/door/airlock/mining{
 	name = "Cargo"
@@ -2605,32 +2652,37 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"wb" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mining{
-	name = "Storage"
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"wg" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel,
-/area/space)
 "wh" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
-"wj" = (
-/obj/item/ammo_box/magazine/m45,
-/turf/open/floor/plating/asteroid,
-/area/space)
+"wi" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"wk" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/paper/fluff/awaymissions/button_puzzle{
+	id = "mine_button";
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"wm" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/stack/cable_coil/random/thirty,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "ws" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -2654,12 +2706,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
-"wF" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "wJ" = (
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
@@ -2683,24 +2729,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"wR" = (
-/obj/structure/table,
-/obj/item/paper/fluff/awaymissions/mine_coordinates,
+"xa" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
 /turf/open/floor/plasteel,
-/area/space)
-"wV" = (
-/mob/living/simple_animal/hostile/alien/drone,
-/turf/open/floor/plating/asteroid,
-/area/space)
-"wZ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "xd" = (
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
@@ -2723,6 +2759,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"xl" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "xm" = (
 /mob/living/simple_animal/hostile/robot,
 /turf/open/floor/plasteel,
@@ -2743,13 +2785,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/vr/scientist_raid)
-"xq" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel,
-/area/space)
 "xs" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room"
@@ -2769,18 +2804,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"xz" = (
-/obj/structure/chair/office/dark{
-	dir = 1
+"xx" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/space)
-"xH" = (
-/obj/item/disk/puzzle{
-	id = "mine_floppy"
-	},
-/turf/open/floor/plating/asteroid,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "xJ" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -2797,6 +2827,24 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"xP" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"xU" = (
+/obj/structure/closet/crate,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/weldingtool,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "xY" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
@@ -2805,39 +2853,32 @@
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
-"yb" = (
+"yf" = (
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /obj/structure/table,
-/obj/item/ammo_box/magazine/m45,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 10;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 10;
+	pixel_y = 16
+	},
 /turf/open/floor/plating/asteroid,
-/area/space)
-"yc" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/suit_storage_unit/open,
-/turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "yh" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"yj" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "yy" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 6
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "yA" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -2881,10 +2922,6 @@
 /obj/item/reagent_containers/food/snacks/badrecipe,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"yH" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "yI" = (
 /obj/structure/closet/crate,
 /obj/effect/turf_decal/bot,
@@ -2892,6 +2929,11 @@
 /obj/item/trash/energybar,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"yJ" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "yQ" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 9
@@ -2904,9 +2946,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"yT" = (
-/turf/closed/indestructible/rock,
-/area/space)
 "yU" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel/grimy,
@@ -2925,6 +2964,11 @@
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"ze" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "zg" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
@@ -2948,23 +2992,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"zj" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"zl" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/paper/fluff/awaymissions/mine_robot_order,
-/turf/open/floor/plasteel,
-/area/space)
 "zo" = (
 /obj/item/ammo_casing/n762{
 	pixel_x = -6;
@@ -2972,6 +2999,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"zw" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/table,
+/obj/item/weldingtool/largetank,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "zx" = (
 /obj/structure/table,
 /turf/open/floor/mineral/titanium/white,
@@ -2991,26 +3026,20 @@
 /obj/item/paper/fluff/awaymissions/scientist_raid/report3,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"zF" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "zI" = (
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"zK" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "zO" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"zP" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "zR" = (
 /obj/structure/bed,
 /obj/item/bedsheet/cmo{
@@ -3028,10 +3057,8 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "zZ" = (
-/obj/structure/chair/office/dark,
-/mob/living/simple_animal/hostile/robot/advanced,
-/turf/open/floor/plasteel,
-/area/space)
+/turf/closed/mineral,
+/area/awaymission/vr/abandoned_mine)
 "Aa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -3049,10 +3076,6 @@
 /obj/machinery/compsci_reciever,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/scientist_raid)
-"Ag" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
-/area/space)
 "Ah" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
@@ -3095,12 +3118,6 @@
 /obj/structure/shuttle/engine/propulsion/burst/left,
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/scientist_raid)
-"Av" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "Ax" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rd,
@@ -3124,12 +3141,12 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
-"AG" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
-	dir = 4
+"AF" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "AH" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 6
@@ -3178,6 +3195,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"AV" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "AW" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
@@ -3190,25 +3213,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Ba" = (
-/obj/effect/decal/cleanable/blood/tracks{
+"Bb" = (
+/obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"Bd" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/space)
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "Bf" = (
 /mob/living/simple_animal/hostile/robot/advanced,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"Bg" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel,
-/area/space)
 "Bm" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel,
@@ -3225,6 +3239,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Br" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Bx" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -3253,15 +3276,6 @@
 "BE" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/scientist_raid)
-"BI" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
-/obj/structure/rack,
-/obj/item/storage/box/lethalshot,
-/obj/item/storage/box/lethalshot,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "BK" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -3324,39 +3338,12 @@
 /obj/item/storage/bag/trash,
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
-"BW" = (
-/obj/machinery/vending/snack,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"BY" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"BZ" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/space)
 "Cc" = (
 /obj/machinery/door/airlock/medical{
 	name = "Recovery Room"
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"Cd" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "Ce" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
@@ -3364,35 +3351,13 @@
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"Cf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"Cg" = (
-/obj/item/bedsheet,
-/obj/structure/bed,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 5
+"Cn" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Engineering";
+	req_one_access_txt = "0"
 	},
 /turf/open/floor/plasteel,
-/area/space)
-"Cj" = (
-/obj/machinery/door/airlock/external,
-/turf/open/floor/plasteel,
-/area/space)
-"Co" = (
-/obj/item/bedsheet,
-/obj/structure/bed,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "Cv" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
@@ -3404,21 +3369,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Cw" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating/asteroid,
-/area/space)
-"CC" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 9
-	},
-/obj/machinery/button_puzzle{
-	id = "mine_button";
-	pixel_x = -23;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "CD" = (
 /obj/machinery/light{
 	dir = 4
@@ -3432,6 +3382,14 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/awaymission/vr/hub)
+"CH" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 10
+	},
+/obj/structure/table,
+/obj/item/storage/box/flashbangs,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "CJ" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -3439,16 +3397,6 @@
 /obj/machinery/ai/server_cabinet,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"CK" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel/dark,
-/area/space)
-"CO" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "CR" = (
 /obj/structure/showcase/horrific_experiment,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -3481,10 +3429,6 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
-"Db" = (
-/mob/living/simple_animal/hostile/alien/queen/large,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "Dd" = (
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
@@ -3505,11 +3449,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
-"Dl" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/space)
 "Dn" = (
 /obj/structure/rack,
 /obj/item/latexballon,
@@ -3522,6 +3461,15 @@
 /obj/item/trash/can,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"Dp" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "Dr" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 8
@@ -3536,40 +3484,72 @@
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Dt" = (
+/mob/living/simple_animal/hostile/alien/drone,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Dw" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"DC" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "DE" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/awaymission/vr/scientist_raid)
 "DF" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 9
-	},
-/obj/structure/table,
-/obj/item/paper/fluff/awaymissions/button_puzzle{
-	id = "mine_button"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
+/mob/living/simple_animal/hostile/poison/giant_spider,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "DG" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"DI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
+"DL" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"DP" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "DS" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"DT" = (
+/obj/machinery/door/password/floppy_disk{
+	id = "mine_floopy";
+	name = "Command Centre"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ee" = (
 /turf/open/space/basic,
 /area/awaymission/vr/combat_robot_factory)
+"Eg" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "Eh" = (
 /obj/structure/table/glass,
 /obj/item/paper_bin{
@@ -3579,19 +3559,21 @@
 /obj/item/pen,
 /turf/open/floor/carpet/royalblue,
 /area/awaymission/vr/combat_robot_factory)
-"Ek" = (
-/turf/open/floor/plasteel/dark,
-/area/space)
-"Ep" = (
-/obj/machinery/computer/slot_machine,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "Eq" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Command Room"
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Er" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Eu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -3606,14 +3588,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"EJ" = (
-/obj/structure/flora/rock,
-/turf/open/floor/plating/asteroid,
-/area/space)
-"EK" = (
-/obj/item/gem/fdiamond,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "EM" = (
 /obj/machinery/computer{
 	dir = 4;
@@ -3640,11 +3614,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"EY" = (
-/obj/effect/decal/remains/human,
-/obj/effect/gibspawner/human,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "EZ" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel,
@@ -3691,6 +3660,28 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Fk" = (
+/obj/item/bedsheet,
+/obj/structure/bed,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"Fm" = (
+/obj/structure/spider/cocoon,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
+"Fp" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 10
+	},
+/obj/structure/ore_box,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Fq" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -3729,15 +3720,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Fy" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 5
-	},
-/obj/structure/table,
-/obj/item/storage/box/handcuffs,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "FB" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute{
@@ -3761,8 +3743,14 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "FF" = (
-/turf/open/floor/plasteel/freezer,
-/area/space)
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 5
+	},
+/obj/structure/table,
+/obj/item/fireaxe,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "FI" = (
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 2;
@@ -3784,15 +3772,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"FO" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
+"FS" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
+/obj/structure/table,
+/obj/item/flashlight,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ga" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood,
@@ -3805,11 +3792,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"Gi" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "Gl" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "storage compartment"
@@ -3817,6 +3799,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"Gu" = (
+/mob/living/simple_animal/hostile/robot/advanced,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Gw" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -3826,31 +3812,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"Gx" = (
-/obj/item/bedsheet,
-/obj/structure/bed,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel,
-/area/space)
-"GD" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 10
-	},
-/obj/structure/table,
-/obj/item/storage/box/flashbangs,
-/turf/open/floor/plasteel/dark,
-/area/space)
-"GE" = (
-/obj/machinery/vending/coffee,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel,
-/area/space)
 "GF" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Doctor's Office"
@@ -3870,15 +3831,6 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"GM" = (
-/obj/machinery/door/password/button_puzzle{
-	id = "mine_button"
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "GN" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -3887,35 +3839,31 @@
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"GO" = (
+/obj/structure/table,
+/obj/item/paper/fluff/awaymissions/mine_coordinates,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "GP" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/table,
 /obj/machinery/compsci_reciever,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"GS" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/paper/fluff/awaymissions/button_puzzle{
-	id = "mine_button";
-	pixel_x = -9;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "GU" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
-"GW" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
 	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/stack/sheet/metal/ten,
-/turf/open/floor/plasteel,
-/area/space)
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
+"GY" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "Ha" = (
 /turf/open/floor/carpet,
 /area/awaymission/vr/combat_robot_factory)
@@ -3933,6 +3881,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Hn" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Sickbay"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
+"Ho" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Hr" = (
 /obj/structure/closet/crate/large,
 /obj/effect/turf_decal/delivery,
@@ -3946,6 +3909,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"Hw" = (
+/turf/closed/wall,
+/area/awaymission/vr/abandoned_mine)
+"Hy" = (
+/obj/item/clothing/suit/armor/riot/knight{
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "wound" = 30)
+	},
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Hz" = (
 /obj/structure/closet,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -3953,6 +3925,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"HA" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "HB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -3980,21 +3959,31 @@
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"HN" = (
+/obj/effect/landmark/vr_spawn/vr_mission/abandoned_mine,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "HO" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"HQ" = (
-/obj/effect/landmark/vr_spawn/vr_mission/abandoned_mine,
-/obj/machinery/light/small,
-/turf/open/floor/plasteel,
-/area/space)
 "HS" = (
 /obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/wood/broken/two,
 /area/awaymission/vr/combat_robot_factory)
+"HT" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 10
+	},
+/obj/structure/guncase/shotgun,
+/obj/item/gun/ballistic/shotgun/doublebarrel/lethal,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "HU" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -4008,20 +3997,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"Ic" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/button_puzzle{
-	id = "mine_button";
-	pixel_x = -23;
-	pixel_y = 1
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "Ig" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/table,
@@ -4030,12 +4005,21 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
-"Ii" = (
-/obj/item/chair/stool,
-/obj/effect/decal/cleanable/blood,
-/obj/structure/spider/cocoon,
-/turf/open/floor/plating/asteroid,
-/area/space)
+"Ih" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/button_puzzle{
+	id = "mine_button";
+	pixel_x = 24;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"Im" = (
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ip" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/syringe/lethal/choral,
@@ -4093,25 +4077,6 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"IH" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/suit_storage_unit/open,
-/turf/open/floor/plasteel,
-/area/space)
-"IJ" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"IL" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "IN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -4119,6 +4084,9 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"IS" = (
+/turf/open/space/basic,
+/area/awaymission/vr/abandoned_mine)
 "IW" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -4147,19 +4115,9 @@
 /obj/machinery/door/airlock/security,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Jd" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "Je" = (
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Jg" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/structure/ore_box,
-/turf/open/floor/plasteel,
-/area/space)
 "Ji" = (
 /obj/machinery/door/password{
 	name = "Factory Floor Access";
@@ -4168,6 +4126,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Jj" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
+"Jl" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "Jm" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -4176,9 +4150,9 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
 "Jq" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/plasteel/dark,
-/area/space)
+/obj/item/ammo_box/magazine/m45,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Jt" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -4187,6 +4161,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Ju" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "Jv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
@@ -4197,21 +4177,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"JA" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck{
-	pixel_x = 7
-	},
-/obj/item/stack/spacecash/c200{
-	pixel_x = -3;
-	pixel_y = 10
-	},
-/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag{
-	pixel_x = -4;
-	pixel_y = -5
-	},
-/turf/open/floor/plating/asteroid,
-/area/space)
 "JE" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
@@ -4229,13 +4194,11 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
 "JM" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 5
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 9
 	},
-/obj/structure/rack,
-/turf/open/floor/plasteel/dark,
-/area/space)
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "JN" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/plasteel,
@@ -4245,12 +4208,32 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "JT" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+/obj/item/bedsheet,
+/obj/structure/bed,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"JY" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 10
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/metal/twenty,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"JZ" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
 	dir = 1
 	},
-/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "Kf" = (
 /turf/open/floor/wood,
 /area/awaymission/vr/combat_robot_factory)
@@ -4264,6 +4247,13 @@
 /obj/item/gun/ballistic/shotgun/doublebarrel/lethal,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Kl" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 9
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Km" = (
 /mob/living/simple_animal/pet/dog/bullterrier{
 	dir = 4;
@@ -4271,10 +4261,6 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/vr/combat_robot_factory)
-"Ko" = (
-/mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "Kp" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -4293,22 +4279,13 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "Kr" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 6
-	},
+/obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "Kt" = (
 /obj/structure/chair/office/light,
 /turf/open/floor/carpet/royalblue,
 /area/awaymission/vr/combat_robot_factory)
-"Ku" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "Kz" = (
 /obj/item/ammo_casing/n762{
 	pixel_x = -7;
@@ -4349,21 +4326,6 @@
 /obj/machinery/light/small/broken,
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
-"KS" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"KT" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "KW" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -4375,13 +4337,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Lc" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 10
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/space)
+"KX" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Ld" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plasteel,
@@ -4389,35 +4348,6 @@
 "Le" = (
 /turf/open/floor/carpet/royalblue,
 /area/awaymission/vr/combat_robot_factory)
-"Lj" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"Ll" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11;
-	pixel_y = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/space)
-"Ln" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/stack/sheet/metal/five,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "Lq" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -4448,11 +4378,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"LA" = (
-/obj/effect/decal/remains/human,
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "LF" = (
 /obj/machinery/light{
 	dir = 4
@@ -4470,21 +4395,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"LM" = (
-/obj/structure/curtain,
-/obj/machinery/shower,
-/turf/open/floor/plasteel/freezer,
-/area/space)
-"LP" = (
-/turf/closed/mineral,
-/area/space)
-"LR" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/space)
+"LK" = (
+/obj/structure/table,
+/obj/item/ammo_box/magazine/m45,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "LS" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/large,
@@ -4493,16 +4408,6 @@
 /obj/item/stack/sheet/mineral/gold,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"LU" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "LV" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
@@ -4529,13 +4434,11 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
 "LZ" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
+/obj/machinery/door/airlock/security{
+	name = "Cell "
 	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/turf/open/floor/plasteel,
-/area/space)
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "Md" = (
 /obj/machinery/door/airlock{
 	name = "Worker's Quarters"
@@ -4548,14 +4451,28 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Mf" = (
+/obj/structure/table,
+/obj/item/paper/fluff/awaymissions/safety_pamphlet,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Mh" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"Mm" = (
-/mob/living/simple_animal/hostile/alien/sentinel,
-/turf/open/floor/plating/asteroid,
-/area/space)
+"Mn" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 9
+	},
+/obj/structure/table,
+/obj/item/paper/fluff/awaymissions/button_puzzle{
+	id = "mine_button"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Mo" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -4570,12 +4487,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"Mp" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/space)
 "Mr" = (
 /turf/open/space/basic,
 /area/awaymission/vr/hub)
@@ -4588,6 +4499,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Mv" = (
+/obj/item/paper/fluff/awaymissions/button_puzzle{
+	id = "mine_button";
+	pixel_y = -1
+	},
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "My" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/bed,
@@ -4595,29 +4513,20 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
+"MA" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "MC" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/scientist_raid)
-"ME" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/space)
 "MF" = (
 /obj/structure/chair/comfy/brown,
 /turf/open/floor/carpet/blue,
 /area/awaymission/vr/combat_robot_factory)
-"MJ" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "ML" = (
 /obj/item/gun/ballistic/automatic/pistol/m1911,
 /obj/effect/decal/cleanable/dirt,
@@ -4702,35 +4611,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
-"Np" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "Ns" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"Nt" = (
-/obj/machinery/compsci_reciever,
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/space)
 "Nw" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
-"Nx" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "NC" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
@@ -4738,13 +4629,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"ND" = (
-/obj/machinery/door/password/floppy_disk{
-	id = "mine_floopy";
-	name = "Command Centre"
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "NF" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
@@ -4758,6 +4642,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/hub)
+"NI" = (
+/obj/effect/mob_spawn/human/corpse/cargo_tech,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "NJ" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -4778,13 +4666,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"NP" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/space)
 "NR" = (
 /mob/living/simple_animal/hostile/robot,
 /turf/open/floor/plasteel/dark,
@@ -4815,9 +4696,14 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/hub)
 "Og" = (
-/obj/structure/barricade/wooden/crude,
-/turf/open/floor/plating/asteroid,
-/area/space)
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Oi" = (
 /mob/living/simple_animal/hostile/robot{
 	health = 25;
@@ -4825,6 +4711,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Om" = (
+/obj/structure/table,
+/obj/item/razor,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/paper/fluff/awaymissions/button_puzzle{
+	id = "mine_button";
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "On" = (
 /obj/structure/curtain,
 /obj/machinery/shower{
@@ -4833,10 +4732,12 @@
 /obj/item/soap/deluxe,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"Oq" = (
-/obj/machinery/door/airlock/external,
-/turf/open/space/basic,
-/area/space)
+"Ou" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ov" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle{
@@ -4858,19 +4759,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"OA" = (
-/obj/structure/table,
-/obj/item/razor,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/paper/fluff/awaymissions/button_puzzle{
-	id = "mine_button";
-	pixel_x = -9;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/freezer,
-/area/space)
 "OC" = (
 /obj/machinery/shower{
 	dir = 1
@@ -4896,15 +4784,10 @@
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"OJ" = (
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/space)
+"OK" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating,
+/area/awaymission/vr/abandoned_mine)
 "OL" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
@@ -4915,15 +4798,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"OM" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "OO" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -4943,20 +4817,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/vr/combat_robot_factory)
-"OW" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 9
-	},
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/stack/sheet/metal/ten,
-/turf/open/floor/plasteel,
-/area/space)
-"OX" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/obj/effect/mob_spawn/human/corpse/assistant,
-/turf/open/floor/plasteel,
-/area/space)
 "Pa" = (
 /obj/machinery/holopad/tutorial,
 /turf/open/floor/plasteel,
@@ -4979,9 +4839,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"Pg" = (
-/turf/closed/wall,
-/area/space)
 "Pl" = (
 /obj/machinery/autolathe{
 	name = "main body fabrication"
@@ -5016,25 +4873,53 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
+"Pw" = (
+/obj/structure/chair/office/dark,
+/mob/living/simple_animal/hostile/robot/advanced,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Px" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 4
 	},
-/obj/machinery/sleeper{
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"Py" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"Py" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 6
+/obj/structure/table,
+/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag{
+	pixel_x = -4;
+	pixel_y = -5
 	},
-/obj/item/kirbyplants/random,
+/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
+"Pz" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
+"PB" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
-/area/space)
-"PA" = (
-/turf/closed/indestructible/riveted,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "PI" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -5048,6 +4933,10 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"PK" = (
+/obj/effect/gibspawner/human,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "PN" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Armory";
@@ -5072,6 +4961,17 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/vr/combat_robot_factory)
+"PV" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/button_puzzle{
+	id = "mine_button";
+	pixel_x = 24;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "PX" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
@@ -5079,6 +4979,14 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"PY" = (
+/obj/item/bedsheet,
+/obj/structure/bed,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "PZ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -5089,12 +4997,9 @@
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
 "Qa" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Qb" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light{
@@ -5116,6 +5021,20 @@
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"Qk" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/suit_storage_unit/open,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"Qn" = (
+/obj/machinery/door/password/floppy_disk{
+	id = "mine_armory";
+	name = "Armory"
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "Qq" = (
 /obj/structure/table_frame,
 /obj/machinery/light{
@@ -5154,25 +5073,40 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/scientist_raid)
+"Qz" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"QC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "QF" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
+"QK" = (
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
+/obj/structure/table,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "QO" = (
 /obj/machinery/door/airlock{
 	name = "Worker's Quarters"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"QP" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "QQ" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -5198,6 +5132,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"QW" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "QY" = (
 /obj/machinery/door/password/floppy_disk{
 	id = "corporate_dorm";
@@ -5218,10 +5158,13 @@
 "Rc" = (
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"Rh" = (
-/mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,
-/turf/open/floor/plating/asteroid,
-/area/space)
+"Re" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 6
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ri" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/spray/cleaner{
@@ -5235,11 +5178,26 @@
 /obj/item/soap/nanotrasen,
 /turf/open/floor/plating,
 /area/awaymission/vr/combat_robot_factory)
+"Rj" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/paper/fluff/awaymissions/mine_robot_order,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Rl" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Rp" = (
+/mob/living/simple_animal/hostile/alien/sentinel,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Rr" = (
 /turf/open/space/basic,
 /area/space)
@@ -5273,12 +5231,6 @@
 /obj/item/bikehorn/rubberducky,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"RI" = (
-/obj/structure/closet/crate,
-/obj/item/pickaxe,
-/obj/item/pickaxe,
-/turf/open/floor/plasteel,
-/area/space)
 "RJ" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -5288,6 +5240,13 @@
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"RK" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "RL" = (
 /obj/machinery/light{
 	dir = 1
@@ -5317,19 +5276,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"RT" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/space)
-"RU" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "RV" = (
 /obj/machinery/holopad/tutorial,
 /turf/open/floor/plasteel/white,
@@ -5358,22 +5304,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Sb" = (
-/obj/structure/closet/crate,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/weldingtool,
-/obj/item/flashlight/flare,
-/obj/item/flashlight/flare,
-/turf/open/floor/plasteel,
-/area/space)
-"Sd" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 9
+"Sc" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"Sf" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
+	},
+/obj/structure/table,
+/obj/item/storage/box/handcuffs,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
+"Sj" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Sl" = (
 /obj/item/twohanded/required/kirbyplants/dead,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -5381,6 +5330,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"Sn" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "Sq" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -5388,36 +5341,48 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
 "Sr" = (
-/obj/item/ammo_box/magazine/m45,
-/obj/item/ammo_box/magazine/m45,
-/obj/structure/table,
-/turf/open/floor/plating/asteroid,
-/area/space)
+/obj/machinery/vending/snack,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ss" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"SF" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
-	dir = 4
+"St" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
+"SA" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"SL" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "SM" = (
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/scientist_raid)
-"SN" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "SS" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"ST" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "SU" = (
 /obj/machinery/door/airlock/command{
 	name = "Head Researcher"
@@ -5437,13 +5402,6 @@
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"Ta" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "Tf" = (
 /obj/structure/closet/crate/large,
 /obj/effect/turf_decal/delivery,
@@ -5451,16 +5409,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Ti" = (
+/mob/living/simple_animal/hostile/robot/advanced,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Tm" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/awaymission/vr/hub)
-"Tn" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/space)
 "To" = (
 /obj/structure/table,
 /obj/item/camera,
@@ -5507,6 +5465,13 @@
 /obj/structure/table/optable,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/hub)
+"Tz" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "TA" = (
 /obj/effect/landmark/vr_spawn,
 /obj/effect/vr_clean_master,
@@ -5540,6 +5505,9 @@
 /obj/item/storage/belt/bandolier,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"TQ" = (
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "TR" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/titanium/white,
@@ -5548,22 +5516,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/combat_robot_factory)
-"TZ" = (
+"TY" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
+"Ue" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/toxin,
-/turf/open/floor/plasteel/white,
-/area/space)
-"Ug" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/fireaxe,
-/turf/open/floor/plasteel/dark,
-/area/space)
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Uk" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
@@ -5593,6 +5558,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"Us" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "Uw" = (
 /obj/structure/bodycontainer/morgue,
 /obj/machinery/light{
@@ -5636,16 +5610,35 @@
 "UH" = (
 /turf/closed/wall/mineral/titanium/interior,
 /area/awaymission/vr/scientist_raid)
+"UI" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "UK" = (
-/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife,
-/turf/open/floor/plating/asteroid,
-/area/space)
+/obj/machinery/door/airlock/security{
+	name = "Worker Protection Centre"
+	},
+/turf/open/floor/plating,
+/area/awaymission/vr/abandoned_mine)
+"UL" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "UN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"UO" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "UP" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -5665,19 +5658,6 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"UT" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/space)
-"UV" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 5
-	},
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel,
-/area/space)
 "UW" = (
 /obj/structure/table,
 /obj/item/razor,
@@ -5699,10 +5679,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Vc" = (
-/mob/living/simple_animal/hostile/robot/advanced,
-/turf/open/floor/plasteel,
-/area/space)
 "Ve" = (
 /mob/living/simple_animal/hostile/robot{
 	AIStatus = 3
@@ -5713,7 +5689,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Vg" = (
+"Vf" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
 	},
@@ -5721,7 +5697,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "Vh" = (
 /obj/machinery/ai/server_cabinet,
 /turf/open/floor/plasteel/white,
@@ -5777,11 +5753,21 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"VM" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/decal/cleanable/blood/gibs,
+"VJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
+"VL" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/awaymission/vr/abandoned_mine)
 "VO" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -5804,12 +5790,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
-"VR" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/obj/item/stack/sheet/metal/ten,
-/turf/open/floor/plasteel,
-/area/space)
 "VZ" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -5845,6 +5825,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Wh" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Wi" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -5855,6 +5844,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Wk" = (
+/obj/machinery/door/airlock/external,
+/turf/open/space/basic,
+/area/awaymission/vr/abandoned_mine)
 "Wm" = (
 /obj/structure/table/wood,
 /obj/machinery/microwave,
@@ -5863,6 +5856,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"Wt" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"Wv" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/metal/ten,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "Ww" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -5870,13 +5875,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"Wx" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "WA" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -5892,6 +5890,15 @@
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/vr/hub)
+"WB" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "WC" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -5917,18 +5924,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"WJ" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/button_puzzle{
-	id = "mine_button";
-	pixel_x = 24;
-	pixel_y = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/space)
 "WL" = (
 /obj/structure/showcase/horrific_experiment,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -5936,15 +5931,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
-"WP" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 5
-	},
-/obj/structure/table,
-/obj/item/fireaxe,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
+"WQ" = (
+/obj/structure/closet/crate,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "WS" = (
 /obj/effect/mob_spawn/human/corpse/charredskeleton,
 /obj/effect/decal/cleanable/ash/large,
@@ -5953,12 +5945,6 @@
 	},
 /turf/open/floor/wood/broken,
 /area/awaymission/vr/combat_robot_factory)
-"WT" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/space)
 "WW" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -5979,31 +5965,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
-"WZ" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/door/airlock/mining{
-	name = "Storage"
-	},
-/turf/open/floor/plasteel,
-/area/space)
-"Xa" = (
+"Xc" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/turf/closed/wall,
+/area/awaymission/vr/abandoned_mine)
+"Xe" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"Xf" = (
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plasteel/white,
-/area/space)
-"Xb" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plasteel/dark,
-/area/space)
+/turf/open/floor/plating,
+/area/awaymission/vr/abandoned_mine)
 "Xg" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -6034,6 +6011,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"Xw" = (
+/obj/machinery/door/airlock{
+	name = "Restroom"
+	},
+/turf/open/floor/plasteel/freezer,
+/area/awaymission/vr/abandoned_mine)
 "Xx" = (
 /obj/machinery/shower{
 	dir = 8
@@ -6056,12 +6039,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"XF" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "XG" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/scientist_raid)
+"XJ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mining{
+	name = "Storage"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "XK" = (
 /obj/structure/table/optable,
 /obj/effect/decal/cleanable/blood/gibs/core,
@@ -6076,6 +6072,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"XO" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
 "XQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/conveyor{
@@ -6083,16 +6085,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"XR" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/machinery/light{
-	dir = 4
-	},
+"XT" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/structure/ore_box,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "XU" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -6141,10 +6138,12 @@
 /area/awaymission/vr/combat_robot_factory)
 "Yh" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
+	dir = 1
 	},
+/obj/structure/rack,
+/obj/item/storage/belt/bandolier,
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "Ym" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
@@ -6191,6 +6190,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/awaymission/vr/combat_robot_factory)
+"Yz" = (
+/obj/effect/mob_spawn/human/clown/corpse,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "YB" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -6212,6 +6215,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/scientist_raid)
+"YM" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
 "YR" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
@@ -6224,6 +6231,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
+"YS" = (
+/turf/closed/indestructible/vault,
+/area/awaymission/vr/abandoned_mine)
 "YW" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 8
@@ -6246,10 +6256,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"Zd" = (
-/obj/item/stack/ore/iron,
-/turf/open/floor/plating/asteroid,
-/area/space)
 "Zm" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -6260,15 +6266,12 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "Zn" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/space)
-"Zt" = (
-/obj/structure/chair/office/dark{
-	dir = 8
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
 	},
+/obj/structure/table,
 /turf/open/floor/plasteel,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 "Zv" = (
 /obj/machinery/light{
 	dir = 4
@@ -6285,6 +6288,20 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/vr/scientist_raid)
+"ZA" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/item/storage/firstaid/brute{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "ZC" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -6292,13 +6309,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"ZD" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/obj/effect/mob_spawn/human/corpse/assistant,
-/turf/open/floor/plasteel,
-/area/space)
 "ZE" = (
 /turf/closed/wall/mineral/titanium,
 /area/awaymission/vr/scientist_raid)
@@ -6309,32 +6319,16 @@
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
 "ZJ" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/space)
-"ZK" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 9
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 5
 	},
-/turf/open/floor/plasteel,
-/area/space)
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/white,
+/area/awaymission/vr/abandoned_mine)
 "ZN" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/combat_robot_factory)
-"ZP" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 6
-	},
-/obj/structure/table,
-/obj/item/weldingtool/largetank,
-/turf/open/floor/plasteel,
-/area/space)
-"ZR" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
-/obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/plasteel,
-/area/space)
 "ZU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -6342,14 +6336,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/vr/combat_robot_factory)
-"ZX" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+"ZV" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 10
 	},
-/obj/structure/guncase/shotgun,
-/obj/item/gun/ballistic/shotgun/doublebarrel/lethal,
+/turf/open/floor/plasteel,
+/area/awaymission/vr/abandoned_mine)
+"ZX" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,
+/turf/open/floor/plating/asteroid,
+/area/awaymission/vr/abandoned_mine)
+"ZZ" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/awaymission/vr/abandoned_mine)
 
 (1,1,1) = {"
 Rr
@@ -6447,66 +6450,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
 WG
 WG
 WG
@@ -6704,66 +6707,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Rr
-yT
-yT
-yT
-yT
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+IS
+jD
+jD
+jD
+jD
+jD
 WG
 Ee
 Ee
@@ -6961,66 +6964,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-fX
-lZ
-yT
-yT
-yT
-fX
-fX
-fX
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+TQ
+KX
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
 WG
 qj
 qj
@@ -7218,66 +7221,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-fX
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+TQ
+jD
 WG
 qj
 Ir
@@ -7475,66 +7478,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-aU
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-Pg
-Zn
-Pg
-Zn
-Pg
-fX
-yT
-yT
-yT
-fX
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+oU
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+Hw
+dj
+Hw
+dj
+Hw
+TQ
+jD
+jD
+jD
+TQ
+jD
 WG
 qj
 BP
@@ -7732,66 +7735,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-EJ
-fX
-Zn
-qB
-Nt
-RI
-Zn
-fX
-yT
-Ep
-vZ
-fX
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+MA
+TQ
+dj
+HN
+vY
+WQ
+dj
+TQ
+jD
+qi
+yf
+TQ
+jD
 WG
 qj
 HE
@@ -7989,66 +7992,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-aW
-kt
-kt
-kt
-aW
-fX
-yT
-fX
-fX
-fX
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+iJ
+Im
+Im
+Im
+iJ
+TQ
+jD
+TQ
+TQ
+TQ
+jD
 WG
 qj
 vn
@@ -8246,66 +8249,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-LP
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-Zn
-Sb
-kt
-HQ
-Zn
-fX
-yT
-Ii
-JA
-aK
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+zZ
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+dj
+xU
+Im
+bA
+dj
+TQ
+jD
+cY
+dE
+jx
+jD
 WG
 qj
 qj
@@ -8503,66 +8506,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-Rr
-Rr
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-Pg
-Zn
-aW
-Zn
-Pg
-fX
-yT
-yH
-aK
-fX
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+IS
+IS
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+Hw
+dj
+iJ
+dj
+Hw
+TQ
+jD
+Sn
+jx
+TQ
+jD
 WG
 Ee
 qj
@@ -8760,66 +8763,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-tg
-rn
-fX
-yb
-yT
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-LP
-yT
-hI
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+PK
+Yz
+TQ
+LK
+jD
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+zZ
+jD
+Fm
+jD
 WG
 Ee
 qj
@@ -9017,66 +9020,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-yT
-Rr
-yT
-Rr
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-Rr
-Rr
-Rr
-yT
-Sr
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-yT
-yT
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+jD
+IS
+jD
+IS
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+IS
+IS
+IS
+jD
+QK
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
 WG
 Ee
 qj
@@ -9274,66 +9277,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-Rh
-fX
-fX
-yT
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-LP
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-ip
-fX
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-Cw
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+ZX
+TQ
+TQ
+jD
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+zZ
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+DF
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+cZ
+jD
 WG
 Ee
 qj
@@ -9531,66 +9534,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-ip
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-Rr
-Rr
-yT
-fX
-ip
-fX
-fX
-fX
-fX
-fX
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-mt
-EK
-yT
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+DF
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+IS
+IS
+jD
+TQ
+DF
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+Hy
+eI
+jD
+jD
 WG
 Ee
 qj
@@ -9788,66 +9791,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-xH
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-Rr
-Rr
-yT
-yT
-yT
-LP
-yT
-yT
-Pg
-Pg
-Pg
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+ee
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+IS
+IS
+jD
+jD
+jD
+zZ
+jD
+jD
+Hw
+Hw
+Hw
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
 WG
 Ee
 qj
@@ -10045,66 +10048,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-Rr
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-aI
-Pg
-aI
-Pg
-LM
-Pg
-Zn
-Cj
-Zn
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+IS
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Bb
+Hw
+Bb
+Hw
+iB
+Hw
+dj
+hr
+dj
+Hw
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 qj
@@ -10302,66 +10305,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-UK
-Rh
-fX
-fX
-fX
-fX
-fX
-Og
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-Pg
-OW
-fp
-Ln
-fp
-GW
-QP
-hw
-Pg
-ey
-Pg
-ey
-Pg
-ey
-Pg
-ZK
-cq
-fp
-vK
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+uK
+ZX
+TQ
+TQ
+TQ
+TQ
+TQ
+Qa
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+Hw
+eQ
+mL
+pF
+mL
+pw
+ny
+JY
+Hw
+uF
+Hw
+uF
+Hw
+uF
+Hw
+ht
+SL
+mL
+Fp
+Hw
+Hw
+IS
+IS
+IS
+IS
 WG
 Ee
 qj
@@ -10559,66 +10562,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-Pg
-yj
-kt
-kt
-GU
-kt
-kt
-Tn
-Pg
-FF
-ey
-FF
-FF
-FF
-Pg
-Ta
-kt
-kt
-Jg
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+Hw
+xl
+Im
+Im
+eH
+Im
+Im
+sd
+Hw
+iN
+uF
+iN
+iN
+iN
+Hw
+nH
+Im
+Im
+XT
+Hw
+Hw
+IS
+IS
+IS
+IS
 WG
 qj
 qj
@@ -10816,66 +10819,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-Pg
-dl
-dl
-Pg
-ck
-GU
-GS
-kt
-VR
-ja
-LZ
-Pg
-OA
-FF
-ey
-nM
-Ll
-Pg
-IH
-yc
-AG
-zP
-BY
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+Hw
+OK
+OK
+Hw
+sx
+eH
+wk
+Im
+Wv
+XF
+xa
+Hw
+Om
+iN
+uF
+in
+dp
+Hw
+Qk
+gZ
+br
+Ho
+DL
+Hw
+IS
+IS
+IS
+IS
 WG
 qj
 JO
@@ -11073,66 +11076,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-ip
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-yT
-yT
-Pg
-aW
-aW
-Pg
-yj
-kt
-kt
-GU
-GU
-Tn
-Pg
-Pg
-Pg
-mJ
-vY
-Pg
-Pg
-Pg
-Pg
-Pg
-yj
-GU
-Tn
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+DF
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+jD
+jD
+Hw
+iJ
+iJ
+Hw
+xl
+Im
+Im
+eH
+eH
+sd
+Hw
+Hw
+Hw
+Xc
+Xw
+Hw
+Hw
+Hw
+Hw
+Hw
+xl
+eH
+sd
+Hw
+IS
+IS
+IS
+IS
 WG
 qj
 Aq
@@ -11330,66 +11333,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-Ko
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-Pg
-Mp
-aW
-Oq
-yj
-kt
-GU
-kt
-kt
-zP
-WZ
-fp
-cq
-fp
-fp
-fp
-fp
-fp
-fp
-fp
-ms
-GU
-Tn
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+Sj
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+Hw
+Xf
+iJ
+Wk
+xl
+Im
+eH
+Im
+Im
+Ho
+ue
+mL
+SL
+mL
+mL
+mL
+mL
+mL
+mL
+mL
+QW
+eH
+sd
+Hw
+IS
+IS
+IS
+IS
 WG
 qj
 ZG
@@ -11587,66 +11590,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Pg
-aW
-aW
-Oq
-yj
-kt
-kt
-kt
-GU
-ja
-wb
-sk
-WT
-WT
-WT
-Qa
-WT
-oi
-kt
-GU
-kt
-GU
-Bd
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+Hw
+iJ
+iJ
+Wk
+xl
+Im
+Im
+Im
+eH
+XF
+XJ
+hC
+zK
+zK
+zK
+oj
+zK
+Tz
+Im
+eH
+Im
+eH
+jt
+Hw
+IS
+IS
+IS
+IS
 WG
 qj
 JO
@@ -11844,66 +11847,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-aW
-aW
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Pg
-aW
-aW
-Pg
-tM
-kt
-GU
-kt
-kt
-UT
-Pg
-Pg
-Pg
-id
-Pg
-Pg
-Pg
-pd
-bD
-bD
-GU
-ja
-Py
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+iJ
+iJ
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+Hw
+iJ
+iJ
+Hw
+Wh
+Im
+eH
+Im
+Im
+rd
+Hw
+Hw
+Hw
+en
+Hw
+Hw
+Hw
+nY
+Mf
+Mf
+eH
+XF
+yy
+Hw
+IS
+IS
+IS
+IS
 WG
 qj
 qj
@@ -12101,66 +12104,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-aW
-aW
-aW
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Pg
-Pg
-Pg
-Pg
-yj
-kt
-kt
-GU
-kt
-Tn
-Pg
-Co
-cq
-fp
-bn
-Wx
-Pg
-yj
-Zt
-bD
-kt
-Tn
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+iJ
+iJ
+iJ
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+Hw
+Hw
+Hw
+Hw
+xl
+Im
+Im
+eH
+Im
+sd
+Hw
+PY
+SL
+mL
+xx
+ZV
+Hw
+xl
+vr
+Mf
+Im
+sd
+Hw
+Hw
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -12358,66 +12361,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-aW
-aW
-aW
-aW
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-yT
-Pg
-Ta
-kt
-GU
-kt
-kt
-Ku
-Pg
-dG
-GU
-kt
-kt
-Tn
-Pg
-Ta
-GU
-kt
-kt
-Tn
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+iJ
+iJ
+iJ
+iJ
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+jD
+Hw
+nH
+Im
+eH
+Im
+Im
+el
+Hw
+Fk
+eH
+Im
+Im
+sd
+Hw
+nH
+eH
+Im
+Im
+sd
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -12615,66 +12618,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-fX
-aE
-aW
-aW
-aW
-aW
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-Pg
-XR
-WT
-WT
-tI
-RT
-LU
-Pg
-Gx
-gj
-WT
-oi
-ME
-Pg
-LR
-kt
-kt
-GU
-Tn
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+TQ
+YS
+iJ
+iJ
+iJ
+iJ
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+Hw
+rb
+zK
+zK
+FS
+Zn
+sQ
+Hw
+kI
+up
+zK
+Tz
+ia
+Hw
+ot
+Im
+Im
+eH
+sd
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -12872,66 +12875,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-fX
-fX
-oL
-aW
-aW
-aW
-aW
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-Pg
-Pg
-Pg
-Pg
-qF
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Ta
-Tn
-Pg
-GE
-BW
-sk
-WT
-kP
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+TQ
+TQ
+tW
+iJ
+iJ
+iJ
+iJ
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+Hw
+Hw
+Hw
+Hw
+Cn
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+nH
+sd
+Hw
+oG
+Sr
+hC
+zK
+vF
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -13129,66 +13132,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-aE
-aW
-aW
-aW
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-Pg
-Sd
-Lj
-Lj
-vX
-Pg
-lh
-bm
-IJ
-IJ
-bm
-Lc
-Pg
-Cg
-qa
-Pg
-Pg
-Pg
-Pg
-iB
-Jd
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+YS
+iJ
+iJ
+iJ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+Hw
+Kl
+Ou
+Ou
+an
+Hw
+ka
+Br
+ST
+ST
+Br
+oM
+Hw
+JT
+mX
+Hw
+Hw
+Hw
+Hw
+oi
+sb
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -13386,66 +13389,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-dP
-fX
-fX
-aE
-aE
-aE
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-Pg
-UV
-SF
-kt
-ZJ
-Pg
-yy
-kt
-kt
-kt
-kt
-js
-Pg
-Pg
-Pg
-Pg
-DF
-MJ
-Pg
-fB
-rX
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+Gu
+TQ
+TQ
+YS
+YS
+YS
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+Hw
+bD
+Sc
+Im
+wi
+Hw
+AF
+Im
+Im
+Im
+Im
+gb
+Hw
+Hw
+Hw
+Hw
+Mn
+cD
+Hw
+th
+rk
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -13643,66 +13646,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-dP
-fX
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-Pg
-WP
-hG
-ZP
-Pg
-yy
-kt
-Vc
-Vc
-kt
-js
-Pg
-CC
-aR
-Ic
-hA
-ii
-Pg
-JT
-js
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+Gu
+TQ
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+Hw
+FF
+wm
+zw
+Hw
+AF
+Im
+Ti
+Ti
+Im
+gb
+Hw
+bn
+cX
+sq
+vj
+uT
+Hw
+RK
+gb
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -13900,66 +13903,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-dP
-fX
-fX
-dP
-fX
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-Pg
-Pg
-Pg
-Pg
-yy
-zZ
-wR
-iP
-xz
-js
-Pg
-yy
-CO
-jF
-GU
-js
-Pg
-wg
-OX
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+Gu
+TQ
+TQ
+Gu
+TQ
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+Hw
+Hw
+Hw
+Hw
+AF
+Pw
+GO
+DC
+PB
+gb
+Hw
+AF
+nK
+mW
+eH
+gb
+Hw
+tZ
+rH
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -14157,66 +14160,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-Og
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-yy
-zZ
-iP
-iP
-kd
-Np
-GM
-Cd
-nm
-Bg
-kt
-js
-ND
-KT
-js
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+Qa
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+AF
+Pw
+DC
+DC
+ua
+mG
+tz
+Er
+Ue
+aV
+Im
+gb
+DT
+JZ
+gb
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -14414,66 +14417,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-Og
-ip
-fX
-fX
-ip
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-yy
-kt
-Vc
-Vc
-kt
-js
-Pg
-yy
-VM
-kt
-GU
-js
-Pg
-wg
-ZR
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+Qa
+DF
+TQ
+TQ
+DF
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+AF
+Im
+Ti
+Ti
+Im
+gb
+Hw
+AF
+UI
+Im
+eH
+gb
+Hw
+tZ
+ze
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -14671,66 +14674,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-Cw
-yT
-yT
-yT
-yT
-Pg
-xq
-sN
-kt
-kt
-kt
-js
-Pg
-kV
-uW
-WJ
-zl
-NP
-Pg
-fM
-js
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+cZ
+jD
+jD
+jD
+jD
+Hw
+oE
+XO
+Im
+Im
+Im
+gb
+Hw
+Ih
+PV
+iP
+Rj
+Re
+Hw
+Og
+gb
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -14928,66 +14931,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-LP
-LP
-yT
-fX
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-ip
-fX
-ip
-fX
-yT
-yT
-yT
-yT
-Pg
-Pg
-OM
-gP
-gP
-cH
-Av
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-fM
-OX
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+jD
+jD
+jD
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+zZ
+zZ
+jD
+TQ
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+DF
+TQ
+DF
+TQ
+jD
+jD
+jD
+jD
+Hw
+Hw
+WB
+UO
+UO
+Px
+mq
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Og
+rH
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -15185,66 +15188,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-yT
-yT
-yT
-fX
-fX
-Mm
-fX
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-uO
-yT
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-qE
-IL
-IL
-IL
-ZD
-mM
-OJ
-in
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+jD
+TQ
+jD
+jD
+jD
+TQ
+TQ
+Rp
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+Mv
+jD
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+UL
+Xe
+Xe
+Xe
+HA
+QC
+hZ
+ru
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -15442,66 +15445,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-wV
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-ip
-yT
-yT
-Pg
-BI
-FO
-ZX
-Pg
-pv
-Yh
-FO
-qL
-GD
-Pg
-wF
-jf
-tN
-tN
-tN
-dM
-tN
-zj
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+jD
+jD
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+Dt
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+DF
+jD
+jD
+Hw
+lI
+vZ
+HT
+Hw
+Eg
+ZZ
+vZ
+Py
+CH
+Hw
+Wt
+Kr
+AV
+AV
+AV
+xP
+AV
+az
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -15699,66 +15702,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-cE
-fX
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-uO
-Ag
-bl
-Ek
-CK
-Pg
-uK
-Ek
-Ek
-Ek
-CK
-Pg
-dE
-uH
-Pg
-Pg
-Pg
-ov
-Pg
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+St
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+Mv
+hF
+Yh
+qk
+tX
+Hw
+rT
+qk
+qk
+qk
+tX
+Hw
+VJ
+mE
+Hw
+Hw
+Hw
+Hn
+Hw
+Hw
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -15956,66 +15959,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-yT
-cE
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-Og
-Og
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-yT
-fX
-Ko
-Ag
-uK
-Ek
-CK
-mZ
-uK
-Ek
-Ek
-Ek
-CK
-Pg
-aL
-uH
-Pg
-ci
-Xa
-wZ
-hj
-ow
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+jD
+St
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+Qa
+Qa
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+jD
+TQ
+Sj
+hF
+rT
+qk
+tX
+Qn
+rT
+qk
+qk
+qk
+tX
+Hw
+jg
+mE
+Hw
+JM
+hH
+Us
+TY
+rO
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -16213,66 +16216,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-ip
-fX
-fX
-fX
-fX
-fX
-Ag
-Ug
-Ek
-CK
-Pg
-uK
-Ek
-Ek
-Ek
-CK
-na
-aL
-uH
-Pg
-KS
-mH
-Ba
-mH
-uM
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+DF
+TQ
+TQ
+TQ
+TQ
+TQ
+hF
+fp
+qk
+tX
+Hw
+rT
+qk
+qk
+qk
+tX
+UK
+jg
+mE
+Hw
+Ju
+jO
+GY
+jO
+dq
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -16470,66 +16473,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-Mm
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-ip
-yT
-Pg
-JM
-Vg
-Nx
-Pg
-Fy
-bC
-pW
-bC
-Nx
-Pg
-aL
-uH
-Pg
-Cf
-mH
-ps
-mH
-Dl
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+Rp
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+DF
+jD
+Hw
+GU
+Vf
+VL
+Hw
+Sf
+gM
+Pz
+gM
+VL
+Hw
+jg
+mE
+Hw
+DI
+jO
+NI
+jO
+DP
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -16727,66 +16730,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-Db
-fX
-fX
-fX
-cE
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-sG
-Pg
-kM
-Pg
-Pg
-aL
-uH
-Pg
-nd
-Px
-tS
-Px
-TZ
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+pQ
+TQ
+TQ
+TQ
+St
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+tA
+Hw
+LZ
+Hw
+Hw
+jg
+mE
+Hw
+ZJ
+Dp
+ZA
+Dp
+Jj
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -16984,66 +16987,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-cE
-fX
-fX
-fX
-fX
-fX
-Mm
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-Jq
-Jq
-Pg
-EY
-Gi
-Pg
-aL
-BZ
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+St
+TQ
+TQ
+TQ
+TQ
+TQ
+Rp
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+pe
+pe
+Hw
+dT
+fL
+Hw
+jg
+yJ
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -17241,66 +17244,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-wV
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-Og
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-EY
-LA
-Pg
-ho
-EY
-Pg
-aL
-uH
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+Dt
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+Qa
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+dT
+pv
+Hw
+Jl
+dT
+Hw
+jg
+mE
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -17498,66 +17501,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-Rr
-Rr
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-Xb
-EY
-Pg
-Jq
-Jq
-Pg
-aL
-uH
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+IS
+IS
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+mv
+dT
+Hw
+pe
+pe
+Hw
+jg
+mE
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -17755,66 +17758,66 @@ Rr
 Rr
 Rr
 Rr
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-cE
-fX
-fX
-fX
-fX
-cE
-fX
-fX
-yT
-Rr
-Rr
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-aL
-uH
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+jD
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+St
+TQ
+TQ
+TQ
+TQ
+St
+TQ
+TQ
+jD
+IS
+IS
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+jg
+mE
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -18012,66 +18015,66 @@ Rr
 Rr
 Rr
 Rr
-yT
-yT
-yT
-fX
-fX
-yT
-fX
-fX
-fX
-wV
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-Rr
-Rr
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-Pg
-aW
-aW
-aW
-Cj
-RU
-RU
-cP
-SN
-uH
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+jD
+jD
+TQ
+TQ
+jD
+TQ
+TQ
+TQ
+Dt
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+IS
+IS
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+Hw
+iJ
+iJ
+iJ
+hr
+mo
+mo
+aE
+hO
+mE
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -18269,66 +18272,66 @@ Rr
 Rr
 Rr
 Rr
-yT
-yT
-uO
-fX
-fX
-Og
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-Pg
-Mp
-aW
-aW
-Cj
-zF
-zF
-zF
-zF
-Kr
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+jD
+Mv
+TQ
+TQ
+Qa
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+Hw
+Xf
+iJ
+iJ
+hr
+Qz
+Qz
+Qz
+Qz
+SA
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -18526,66 +18529,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-yT
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-fX
-fX
-yT
-yT
-yT
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-Pg
-aW
-aW
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+jD
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+TQ
+TQ
+jD
+jD
+jD
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+Hw
+iJ
+iJ
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -18783,66 +18786,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-fX
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Pg
-aW
-aW
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+Hw
+iJ
+iJ
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -19040,66 +19043,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-yT
-yT
-yT
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-fX
-LP
-fX
-fX
-yT
-yT
-Pg
-Cj
-Cj
-Pg
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+jD
+jD
+jD
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+TQ
+zZ
+TQ
+TQ
+jD
+jD
+Hw
+hr
+hr
+Hw
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -19297,66 +19300,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-rC
-fX
-wj
-LP
-oG
-fX
-yT
-yT
-yT
-fX
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+fE
+TQ
+Jq
+zZ
+YM
+TQ
+jD
+jD
+jD
+TQ
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -19554,66 +19557,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-yT
-yT
-cN
-Cw
-Zd
-fX
-yT
-fX
-fX
-fX
-fX
-yT
-fX
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+jD
+jD
+fc
+cZ
+am
+TQ
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+TQ
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -19811,66 +19814,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-Og
-Og
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-yT
-yT
-wj
-fX
-Zd
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+Qa
+Qa
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+jD
+jD
+Jq
+TQ
+am
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -20068,66 +20071,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-yT
-yT
-Zd
-Cw
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+jD
+jD
+am
+cZ
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -20325,66 +20328,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yH
-Zd
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+Sn
+am
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -20582,66 +20585,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-yT
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -20839,66 +20842,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -21096,66 +21099,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -21353,66 +21356,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-yT
-yT
-fX
-fX
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+jD
+jD
+TQ
+TQ
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -21610,66 +21613,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-fX
-fX
-fX
-fX
-yT
-fX
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+TQ
+TQ
+TQ
+TQ
+jD
+TQ
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -21867,66 +21870,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-fX
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-yT
-yT
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+TQ
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+jD
+jD
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -22124,66 +22127,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -22381,66 +22384,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -22638,66 +22641,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-yT
-yT
-yT
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+jD
+jD
+jD
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
+IS
 WG
 Ee
 Ee
@@ -22895,66 +22898,66 @@ Rr
 Rr
 Rr
 Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
-Rr
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
+jb
 WG
 WG
 WG
