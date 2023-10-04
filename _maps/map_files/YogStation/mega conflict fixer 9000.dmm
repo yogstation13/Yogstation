@@ -7951,10 +7951,6 @@
 "bhr" = (
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"bhs" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "bhy" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 8
@@ -8404,10 +8400,6 @@
 /mob/living/simple_animal/butterfly,
 /turf/open/floor/grass,
 /area/hallway/primary/fore)
-"bkT" = (
-/obj/structure/closet/wardrobe/black,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "blb" = (
 /obj/effect/landmark/stationroom/maint/tenxfive,
 /turf/template_noop,
@@ -18686,6 +18678,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"dWL" = (
+/obj/machinery/vr_sleeper/netmin/synth_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "dXn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -43630,13 +43628,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"nlC" = (
-/obj/effect/landmark/blobstart,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "nlE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -52578,6 +52569,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"qHF" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "qHL" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -56296,6 +56294,12 @@
 /obj/machinery/light,
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/secondarydatacore)
+"rZG" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "rZU" = (
 /obj/machinery/light{
 	dir = 8;
@@ -65927,6 +65931,10 @@
 /obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vCy" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "vCE" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -99361,7 +99369,7 @@ xul
 kPb
 jwK
 jwK
-bhs
+rZG
 nkd
 bmr
 bmr
@@ -99619,7 +99627,7 @@ kRv
 dBV
 jwK
 mJX
-nlC
+qHF
 dEb
 dPP
 bYm
@@ -99875,8 +99883,8 @@ kjm
 kRv
 lvY
 jwK
-bhs
-bkT
+dWL
+vCy
 dEb
 eaw
 nfX
