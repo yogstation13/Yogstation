@@ -198,6 +198,9 @@
 	if(!is_synth(user))
 		return TRUE
 
+	if(is_away_level(user.z))
+		return TRUE
+
 	if(user.mind.governor_disabled)
 		return TRUE
 
