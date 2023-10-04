@@ -50,6 +50,8 @@
 	. = ..()
 	if(!density || !voice_activated || radio_freq)
 		return
+	if(!ishuman(speaker))
+		return
 	if(findtext(raw_message,password))
 		open()
 
