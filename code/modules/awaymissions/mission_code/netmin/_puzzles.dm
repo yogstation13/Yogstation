@@ -1,4 +1,6 @@
 GLOBAL_VAR_INIT(decrypted_puzzle_disks, 0)
+GLOBAL_LIST_EMPTY(button_puzzles)
+
 
 /obj/item/disk/puzzle
 	name = "encrypted floppy drive"
@@ -28,4 +30,135 @@ GLOBAL_VAR_INIT(decrypted_puzzle_disks, 0)
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/card.dmi', "[icon_state]-color")
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
+
+
+/datum/button_puzzle_holder
+	var/id
+	var/list/buttons = list()
+	var/list/doors = list()
+	var/list/papers = list()
+	var/index = 1
+
+
+/datum/button_puzzle_holder/New()
+	addtimer(CALLBACK(src, PROC_REF(generate_order)), 5 SECONDS)
+
+/datum/button_puzzle_holder/proc/generate_order()
+	shuffle_inplace(buttons)
+
+	var/number = 1
+	for(var/obj/item/paper/fluff/awaymissions/button_puzzle/paper in papers)
+		var/obj/machinery/button_puzzle/button = buttons[number]
+		paper.generate(number, button.name)
+		number++
+	
+/datum/button_puzzle_holder/proc/reset()
+	index = 1
+
+/datum/button_puzzle_holder/proc/button_pressed(obj/machinery/button_puzzle/button)
+	if(index >= buttons.len)
+		open_doors()
+		return
+
+	if(buttons[index] == button)
+		index++
+	else
+		reset()
+
+	if(index >= buttons.len)
+		open_doors()
+		return
+
+/datum/button_puzzle_holder/proc/open_doors()
+	for(var/obj/machinery/door/password/button_puzzle/door in doors)
+		door.open()
+
+/obj/item/paper/fluff/awaymissions/button_puzzle
+	name = "MEMORY DUMP"
+	info = "<b>MEMORY DUMPED. CONTENTS:</b> <br>49EA+<b></b>g4cF"
+	var/id
+
+/obj/item/paper/fluff/awaymissions/button_puzzle/proc/generate(number, order)
+	info = "<b>MEMORY DUMPED. CONTENTS:</b> <br>49EA+<b>[number] - [order]</b>g4cF"
+
+/obj/item/paper/fluff/awaymissions/button_puzzle/Initialize(mapload)
+	. = ..()
+	var/found_datum = FALSE
+	for(var/datum/button_puzzle_holder/holder in GLOB.button_puzzles)
+		if(holder.id == id)
+			holder.papers += src
+			found_datum = TRUE
+			break
+	if(!found_datum)
+		var/datum/button_puzzle_holder/H = new()
+		H.id = id
+		H.papers += src
+		GLOB.button_puzzles += H
+
+
+/obj/machinery/button_puzzle
+	name = "button"
+	desc = "A remote control switch."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "doorctrl"
+	var/skin = "doorctrl"
+	var/id = null
+	var/order
+
+	var/datum/button_puzzle_holder/manager
+
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/machinery/button_puzzle/Initialize(mapload)
+	. = ..()
+
+	name = "[initial(name)] - [random_nukecode(4)]"
+	if(id)
+		var/found_datum = FALSE
+		for(var/datum/button_puzzle_holder/holder in GLOB.button_puzzles)
+			if(holder.id == id)
+				holder.buttons += src
+				manager = holder
+				found_datum = TRUE
+				break
+
+		if(!found_datum)
+			var/datum/button_puzzle_holder/H = new()
+			H.id = id
+			H.buttons += src
+			manager = H
+			GLOB.button_puzzles += H
+	
+
+/obj/machinery/button_puzzle/update_icon_state()
+	. = ..()
+	if(panel_open)
+		icon_state = "button-open"
+	else
+		if(stat & (NOPOWER|BROKEN))
+			icon_state = "[skin]-p"
+		else
+			icon_state = skin
+
+
+/obj/machinery/button_puzzle/attackby(obj/item/W, mob/user, params)
+	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
+		return attack_hand(user)
+	else
+		return ..()
+
+
+/obj/machinery/button_puzzle/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(user)
+	play_click_sound("button")
+
+
+	use_power(5)
+	icon_state = "[skin]1"
+
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 15)
+	manager.button_pressed(src)
 

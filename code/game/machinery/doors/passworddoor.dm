@@ -41,6 +41,31 @@
 	if(density)
 		do_animate("deny")
 
+/obj/machinery/door/password/button_puzzle
+	desc = "This door has no obvious way to be opened."
+	var/id
+
+/obj/machinery/door/password/button_puzzle/Initialize(mapload)
+	. = ..()
+	for(var/datum/button_puzzle_holder/H in GLOB.button_puzzles)
+		if(H.id == id)
+			H.doors += src
+	var/datum/button_puzzle_holder/H = new()
+	H.id = id
+	H.doors += src
+	GLOB.button_puzzles += H
+
+/obj/machinery/door/password/button_puzzle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	to_chat(user, span_warning("You're not sure how to open this door! Maybe look around?"))
+
+/obj/machinery/door/password/button_puzzle/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating)
+		return
+	if(density)
+		do_animate("deny")
+
 /obj/machinery/door/password/Initialize(mapload)
 	. = ..()
 	if(voice_activated)
