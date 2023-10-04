@@ -2,6 +2,7 @@
 	name = "Abandoned Mine"
 	icon_state = "awaycontent5"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	pacifist = FALSE
 
 
 /obj/item/paper/pamphlet/away/safety_pamphlet
