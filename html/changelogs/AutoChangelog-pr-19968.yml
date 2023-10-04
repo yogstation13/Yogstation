@@ -1,0 +1,5 @@
+author: " @SapphicOverload, @redmoogle, @maxion12345, @Kmc2000"
+delete-after: true 
+changes: 
+  - experiment: "added the Advanced Gas-Cooled Nuclear Reactor"
+  - bugfix: "slightly improved radiation subsystem performance"
