@@ -326,7 +326,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /obj/item/reagent_containers/food/snacks/deadmouse/fat
 	name = "dead fat mouse"
 	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5) //more food, but it's not healthy
 	foodtype = MICE | JUNKFOOD
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
 
