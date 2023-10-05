@@ -107,6 +107,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	critical_machine = TRUE
 	light_range = 4
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	appearance_flags = PIXEL_SCALE
 
 	//NTNet Related Variables
 	var/uid = 1
@@ -221,6 +222,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/damage_mod = 1
 	var/heal_mod = 1
 
+	var/atom/movable/distortion_effect/distort
+	var/last_status
+	
+
+/atom/movable/distortion_effect
+	plane = SINGULARITY_EFFECT_PLANE
+	//plane = GHOST_LAYER
+	appearance_flags = PIXEL_SCALE | RESET_TRANSFORM
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "SM_base"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
@@ -233,6 +245,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	radio.keyslot = new radio_key
 	radio.listening = 0
 	radio.recalculateChannels()
+	distort = new(src)
+	add_overlay(distort)
+	add_emitter(/obj/emitter/sparkle, "supermatter_sparkle")
 	investigate_log("has been created.", INVESTIGATE_SUPERMATTER)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
@@ -248,6 +263,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
+	distort.icon = 'icons/effects/32x32.dmi'
+	distort.icon_state = "SM_remnant"
+	distort.pixel_x = 0
+	distort.pixel_y = 0
+	distort.forceMove(get_turf(src))
+	distort = null
 	return ..()
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
@@ -304,6 +325,37 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/proc/get_fake_integrity()
 	return max(min(support_integrity + round(rand() * 10, 0.01)-5,99.99),0.01) //never give 100 or 0 as that would be too suspicious.
 
+// Switches the overlay based on the supermatter's current state; only called when the status has changed
+/obj/machinery/power/supermatter_crystal/proc/update_displacement()
+	cut_overlay(distort)
+	switch(last_status)
+		if(SUPERMATTER_INACTIVE)
+			distort.icon = 'icons/effects/96x96.dmi'
+			distort.icon_state = "SM_base"
+			distort.pixel_x = -32
+			distort.pixel_y = -32
+		if(SUPERMATTER_NORMAL, SUPERMATTER_NOTIFY, SUPERMATTER_WARNING)
+			distort.icon = 'icons/effects/96x96.dmi'
+			distort.icon_state = "SM_base_active"
+			distort.pixel_x = -32
+			distort.pixel_y = -32
+		if(SUPERMATTER_DANGER)
+			distort.icon = 'icons/effects/160x160.dmi'
+			distort.icon_state = "SM_delam_1"
+			distort.pixel_x = -64
+			distort.pixel_y = -64
+		if(SUPERMATTER_EMERGENCY)
+			distort.icon = 'icons/effects/224x224.dmi'
+			distort.icon_state = "SM_delam_2"
+			distort.pixel_x = -96
+			distort.pixel_y = -96
+		if(SUPERMATTER_DELAMINATING)
+			distort.icon = 'icons/effects/288x288.dmi'
+			distort.icon_state = "SM_delam_3"
+			distort.pixel_x = -128
+			distort.pixel_y = -128
+
+	add_overlay(distort)
 /obj/machinery/power/supermatter_crystal/proc/countdown()
 	set waitfor = FALSE
 
@@ -642,7 +694,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				hallucination_duration = power * 0.1,
 				hallucination_max_duration = 400 SECONDS,
 			)
-
+	
+	var/current_status = get_status()
+	if(current_status != last_status)
+		last_status = current_status
+		update_displacement()
+	
 	power -= ((power/500)**3) * powerloss_inhibitor
 
 	if(power > POWER_PENALTY_THRESHOLD || damage > damage_penalty_point)

@@ -615,7 +615,7 @@ Class Procs:
 		if(prob(60))
 			ex_act(EXPLODE_DEVASTATE)
 		else if (prob(50))
-			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
+			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
 		take_damage(power/2000, BURN, ENERGY)
 		if(prob(40))
