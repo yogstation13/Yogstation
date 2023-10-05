@@ -15,6 +15,7 @@
 	opacity = 0
 	CanAtmosPass = ATMOS_PASS_PROC
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
+	open_speed = 0.25 SECONDS
 	var/obj/item/electronics/airlock/electronics = null
 	var/reinf = 0
 	var/shards = 2
@@ -155,7 +156,7 @@
 	do_animate("opening")
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
 	icon_state ="[base_state]open"
-	sleep(1 SECONDS)
+	sleep(open_speed+0.1 SECONDS)
 
 	density = FALSE
 	air_update_turf(1)
@@ -182,7 +183,7 @@
 	density = TRUE
 	air_update_turf(1)
 	update_freelook_sight()
-	sleep(1 SECONDS)
+	sleep(open_speed+0.1 SECONDS)
 
 	operating = FALSE
 	return 1
