@@ -17,17 +17,14 @@
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 	var/small_item = FALSE //Small items can be grouped into a single crate.
-	/**
-	 * var/budget_radioactive = FALSE //Overwrite budget crate into radiation protective crate
-	 */
+	var/budget_radioactive = FALSE //Overwrite budget crate into radiation protective crate
 
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
 	if(paying_account)
-		//if(budget_radioactive)
-			//C = new /obj/structure/closet/crate/secure/owned/radiation(A, paying_account)
-		//else
-		if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+		if(budget_radioactive)
+			C = new /obj/structure/closet/crate/secure/owned/radiation(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
 			C = new /obj/structure/closet/crate/secure/owned/medical(A, paying_account)
 		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
 			C = new /obj/structure/closet/crate/secure/owned/engineering(A, paying_account)
@@ -1264,6 +1261,7 @@
 					/obj/item/fuel_rod)
 	crate_name = "Uranium-235 Fuel Rods"
 	crate_type = /obj/structure/closet/crate/radiation
+	budget_radioactive = TRUE
 
 /datum/supply_pack/engine/fuel_rod_plutonium
 	name = "Plutonium-239 Fuel Rods Crate"
@@ -1276,6 +1274,7 @@
 					/obj/item/fuel_rod/plutonium)
 	crate_name = "Plutonium-239 Fuel Rods"
 	crate_type = /obj/structure/closet/crate/radiation
+	budget_radioactive = TRUE
 
 /datum/supply_pack/engine/fuel_rod_bananium
 	name = "Bananium Fuel Rods Crate"
@@ -1289,6 +1288,7 @@
 					/obj/item/fuel_rod/material/bananium)
 	crate_name = "Bananium Fuel Rods"
 	crate_type = /obj/structure/closet/crate/radiation
+	budget_radioactive = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////

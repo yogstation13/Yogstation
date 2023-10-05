@@ -130,9 +130,8 @@
 
 /obj/structure/closet/crate/secure/owned/civ/cheap
 
-/*/obj/structure/closet/crate/secure/owned/radiation
+/obj/structure/closet/crate/secure/owned/radiation
 	icon_state = "radiation_secure"
-*/
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
