@@ -126,7 +126,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if(SO.pack.small_item) //small_item means it gets piled in the miscbox
 			if(SO.paying_account)
 				if(!miscboxes.len || !miscboxes[D.account_holder]) //if there's no miscbox for this person
-					if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+					if(SO.pack.budget_radioactive)
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/radiation(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
 						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/medical(pick_n_take(empty_turfs), SO.paying_account)
 					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
 						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/engineering(pick_n_take(empty_turfs), SO.paying_account)
@@ -147,7 +149,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				misc_order_num[D.account_holder] = "[misc_order_num[D.account_holder]]#[SO.id]  "
 			else //No private payment, so we just stuff it all into a generic crate
 				if(!miscboxes.len || !miscboxes["Cargo"])
-					miscboxes["Cargo"] = new /obj/structure/closet/crate/secure(pick_n_take(empty_turfs))
+					miscboxes["Cargo"] = new /obj/structure/closet/crate/secure/cheap(pick_n_take(empty_turfs))
 					miscboxes["Cargo"].name = "small items crate"
 					misc_contents["Cargo"] = list()
 					miscboxes["Cargo"].req_access = list()
