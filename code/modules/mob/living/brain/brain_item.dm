@@ -186,13 +186,14 @@
 
 	var/target_has_brain = C.getorgan(/obj/item/organ/brain)
 
-	if(!target_has_brain && C.is_eyes_covered() && user.zone_selected == BODY_ZONE_HEAD)
-		to_chat(user, span_warning("You're going to need to remove [C.p_their()] head cover first!"))
-		return
 
 	// This should be a better check but this covers 99.9% of cases
 	if((C?.dna?.species?.inherent_biotypes & MOB_ROBOTIC && status != ORGAN_ROBOTIC) || (C?.dna?.species?.inherent_biotypes & MOB_ORGANIC && status != ORGAN_ORGANIC))
 		to_chat(user, span_warner("This brain is incompatiable with this beings biology!"))
+		return
+
+	if(!target_has_brain && C.is_eyes_covered() && user.zone_selected == BODY_ZONE_HEAD)
+		to_chat(user, span_warning("You're going to need to remove [C.p_their()] head cover first!"))
 		return
 
 //since these people will be dead M != usr
@@ -202,7 +203,7 @@
 			return
 		var/msg = "[C] has [src] inserted into [C.p_their()] by [user]."
 		if(C == user)
-			msg = "[user] inserts [src] into [user.p_their()]!"
+			msg = "[user] inserts [src] into [user.p_them()]!"
 
 		C.visible_message(span_danger(msg), span_userdanger(msg))
 
