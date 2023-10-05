@@ -75,8 +75,9 @@
 	icon_state = "engi_secure_crate"
 
 /obj/structure/closet/crate/secure/radiation
-	desc = "A crate with a lock and is painted with a radiation sign on it."
-	name = "secure engineering crate"
+	desc = "A crate with a lock and is painted with a radiation sign on it. This crate is design 
+ed to prevent radiation from leaking outside of the crate."
+	name = "secure radiation crate"
 	icon_state = "radiation_secure"
 	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
 
