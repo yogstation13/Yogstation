@@ -103,41 +103,47 @@
 	///Is the crate being bought by a person, or a budget card?
 	var/department_purchase = FALSE
 
-/obj/structure/closet/crate/secure/owned/cheap
-
 /obj/structure/closet/crate/secure/owned/hydroponics
 	icon_state = "hydrosecurecrate"
-
-/obj/structure/closet/crate/secure/owned/hydroponics/cheap
 
 /obj/structure/closet/crate/secure/owned/engineering
 	icon_state = "engi_secure_crate"
 
-/obj/structure/closet/crate/secure/owned/engineering/cheap
-
 /obj/structure/closet/crate/secure/owned/science
 	icon_state = "scisecurecrate"
-
-/obj/structure/closet/crate/secure/owned/science/cheap
 
 /obj/structure/closet/crate/secure/owned/medical
 	icon_state = "medsecurecrate"
 
-/obj/structure/closet/crate/secure/owned/medical/cheap
-
 /obj/structure/closet/crate/secure/owned/gear
 	icon_state = "secgearcrate"
-
-/obj/structure/closet/crate/secure/owned/gear/cheap
 
 /obj/structure/closet/crate/secure/owned/civ
 	icon_state = "plasmacrate"
 
-/obj/structure/closet/crate/secure/owned/civ/cheap
-
 /obj/structure/closet/crate/secure/owned/radiation
 	icon_state = "radiation_secure"
 	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
+
+/obj/structure/closet/crate/secure/owned/cheap
+
+/obj/structure/closet/crate/secure/owned/cheap/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/cheap/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/civ
+	icon_state = "plasmacrate"
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
