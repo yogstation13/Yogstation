@@ -367,7 +367,7 @@
 
 //same as above
 /mob/living/pointed(atom/A as mob|obj|turf in view())
-	var/obj/item/clothing/suit/straightjacket = src.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/straightjacket/straightjacket = src.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(straightjacket))
 		return FALSE
 	if(incapacitated(ignore_restraints = TRUE))
