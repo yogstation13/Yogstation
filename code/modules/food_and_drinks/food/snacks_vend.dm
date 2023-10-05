@@ -208,11 +208,11 @@
 	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
 	foodtype = MEAT
 	/// What animal does the snack contain?
-	var/mob/living/simple_animal/mouse/contained_animal
+	var/mob/living/simple_animal/mouse/fat/contained_animal
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	contained_animal = new /mob/living/simple_animal/mouse(get_turf(src))
+	contained_animal = new /mob/living/simple_animal/mouse/fat(get_turf(src))
 	to_chat(user, span_warning("You pry open the [src]. A [contained_animal.name] falls out from inside!"))
 	qdel(src)
 
