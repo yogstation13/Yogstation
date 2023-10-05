@@ -186,9 +186,12 @@
 
 	var/target_has_brain = C.getorgan(/obj/item/organ/brain)
 
+	if(target_has_brain)
+		to_chat(user, span_warning("This being already has a brain!"))
+		return
 
 	// This should be a better check but this covers 99.9% of cases
-	if((C?.dna?.species?.inherent_biotypes & MOB_ROBOTIC && status != ORGAN_ROBOTIC) || (C?.dna?.species?.inherent_biotypes & MOB_ORGANIC && status != ORGAN_ORGANIC))
+	if(!(process_flags & C.get_process_flags()))
 		to_chat(user, span_warner("This brain is incompatiable with this beings biology!"))
 		return
 
@@ -198,24 +201,21 @@
 
 //since these people will be dead M != usr
 
-	if(!target_has_brain)
-		if(!C.get_bodypart(zone) || !user.temporarilyRemoveItemFromInventory(src))
-			return
-		var/msg = "[C] has [src] inserted into [C.p_their()] by [user]."
-		if(C == user)
-			msg = "[user] inserts [src] into [user.p_them()]!"
+	if(!C.get_bodypart(zone) || !user.temporarilyRemoveItemFromInventory(src))
+		return
+	var/msg = "[C] has [src] inserted into [C.p_them()] by [user]."
+	if(C == user)
+		msg = "[user] inserts [src] into [user.p_them()]!"
 
-		C.visible_message(span_danger(msg), span_userdanger(msg))
+	C.visible_message(span_danger(msg), span_userdanger(msg))
 
-		if(C != user)
-			to_chat(C, span_notice("[user] inserts [src] into you."))
-			to_chat(user, span_notice("You insert [src] into [C]."))
-		else
-			to_chat(user, span_notice("You insert [src] into yourself."))
-
-		Insert(C)
+	if(C != user)
+		to_chat(C, span_notice("[user] inserts [src] into you."))
+		to_chat(user, span_notice("You insert [src] into [C]."))
 	else
-		..()
+		to_chat(user, span_notice("You insert [src] into yourself."))
+
+	Insert(C)
 
 /obj/item/organ/brain/Destroy() //copypasted from MMIs.
 	if(brainmob)
