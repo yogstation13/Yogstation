@@ -1260,7 +1260,7 @@
 					/obj/item/fuel_rod,
 					/obj/item/fuel_rod)
 	crate_name = "Uranium-235 Fuel Rods"
-	crate_type = /obj/structure/closet/crate/radiation
+	crate_type = /obj/structure/closet/crate/secure/radiation
 	budget_radioactive = TRUE
 
 /datum/supply_pack/engine/fuel_rod_plutonium
@@ -1273,7 +1273,7 @@
 					/obj/item/fuel_rod/plutonium,
 					/obj/item/fuel_rod/plutonium)
 	crate_name = "Plutonium-239 Fuel Rods"
-	crate_type = /obj/structure/closet/crate/radiation
+	crate_type = /obj/structure/closet/crate/secure/radiation
 	budget_radioactive = TRUE
 
 /datum/supply_pack/engine/fuel_rod_bananium
@@ -1287,7 +1287,7 @@
 					/obj/item/fuel_rod/material/bananium,
 					/obj/item/fuel_rod/material/bananium)
 	crate_name = "Bananium Fuel Rods"
-	crate_type = /obj/structure/closet/crate/radiation
+	crate_type = /obj/structure/closet/crate/secure/radiation
 	budget_radioactive = TRUE
 
 //////////////////////////////////////////////////////////////////////////////

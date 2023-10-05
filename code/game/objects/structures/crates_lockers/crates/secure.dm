@@ -73,6 +73,11 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
 	name = "secure engineering crate"
 	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/radiation
+	desc = "A crate with a lock and is painted with a radiation sign on it."
+	name = "secure engineering crate"
+	icon_state = "radiation_secure"
 	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
 
 /obj/structure/closet/crate/secure/science
@@ -132,6 +137,7 @@
 
 /obj/structure/closet/crate/secure/owned/radiation
 	icon_state = "radiation_secure"
+	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
