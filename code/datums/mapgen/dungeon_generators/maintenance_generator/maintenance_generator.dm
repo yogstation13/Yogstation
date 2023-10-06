@@ -1,8 +1,5 @@
 /datum/map_generator/dungeon_generator/maintenance
-	weighted_open_turf_types = list(
-		/turf/open/floor/plating = 10, 
-		/turf/open/floor/plating/rust = 1,
-		)
+	weighted_open_turf_types = list(/turf/open/floor/plating = 5)
 	weighted_closed_turf_types = list(/turf/closed/wall = 5, /turf/closed/wall/rust = 2 )
 	room_datum_path = /datum/dungeon_room/maintenance
 	room_theme_path = /datum/dungeon_room_theme/maintenance

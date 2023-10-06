@@ -51,6 +51,10 @@ map runtimestation
 	disabled 
 endmap
 
+map multiz_debug
+
+endmap
+
 
 
 
