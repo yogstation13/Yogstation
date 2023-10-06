@@ -183,6 +183,16 @@
 /obj/structure/window,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/inn)
+"ek" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/item/soap/deluxe,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
 "eT" = (
 /obj/machinery/computer/teleporter{
 	dir = 8
@@ -255,20 +265,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 2
 	},
-/turf/open/floor/wood,
-/area/ruin/powered/inn)
-"jJ" = (
-/obj/structure/table/wood/bar,
-/obj/machinery/paystand/register{
-	dir = 1;
-	pixel_x = 5;
-	pixel_y = -3
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = -9;
-	pixel_y = 15
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
 "jK" = (
@@ -373,6 +369,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood/broken/five,
 /area/ruin/powered/inn)
+"mW" = (
+/obj/machinery/door/window/southright{
+	req_access_txt = "25"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
 "nd" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -465,6 +471,18 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
+"qm" = (
+/obj/machinery/door/airlock/wood/glass{
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
 "qq" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
@@ -474,6 +492,16 @@
 /obj/machinery/light,
 /obj/structure/dresser,
 /turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"qT" = (
+/obj/structure/closet/secure_closet/personal/cabinet{
+	req_access = list(25)
+	},
+/obj/item/clothing/suit/hooded/wintercoat,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/flashlight/lantern,
+/turf/open/floor/carpet/red,
 /area/ruin/powered/inn)
 "rb" = (
 /obj/structure/mineral_door/wood,
@@ -550,16 +578,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/ruin/powered/inn)
-"uC" = (
-/obj/machinery/door/airlock/wood/glass,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/inn)
 "uR" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken/seven,
@@ -598,14 +616,6 @@
 "wl" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/mineral/wood,
-/area/ruin/powered/inn)
-"wv" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/hooded/wintercoat,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/flashlight/lantern,
-/turf/open/floor/carpet/red,
 /area/ruin/powered/inn)
 "wy" = (
 /obj/effect/turf_decal/tile/green{
@@ -800,16 +810,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/ruin/powered/inn)
-"II" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/structure/cloth_curtain{
-	color = "#99ccff"
-	},
-/obj/item/soap/deluxe,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/inn)
 "IO" = (
 /obj/structure/cloth_curtain{
 	color = "#99ccff"
@@ -873,6 +873,19 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/inn/shed)
+"LE" = (
+/obj/machinery/door/airlock/wood{
+	name = "Personal Quarters";
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/powered/inn)
 "LU" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/machinery/light{
@@ -929,19 +942,6 @@
 "OE" = (
 /turf/open/floor/wood/broken/four,
 /area/ruin/powered/inn)
-"OF" = (
-/obj/machinery/door/airlock/wood,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/inn)
 "Py" = (
 /turf/open/floor/wood/broken/three,
 /area/ruin/powered/inn)
@@ -963,14 +963,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ruin/powered/inn)
-"QF" = (
-/obj/machinery/door/window/southright,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood,
-/area/ruin/powered/inn)
 "Rl" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
@@ -986,6 +978,15 @@
 "SC" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/red,
+/area/ruin/powered/inn)
+"Tb" = (
+/obj/structure/table/wood/bar,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -9;
+	pixel_y = 15
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/wood,
 /area/ruin/powered/inn)
 "Tg" = (
 /obj/structure/dresser,
@@ -1014,18 +1015,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered/inn)
-"UM" = (
-/obj/machinery/door/airlock/wood{
-	name = "Personal Quarters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet/red,
 /area/ruin/powered/inn)
 "Vh" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1092,6 +1081,21 @@
 	},
 /turf/open/floor/plating,
 /area/icemoon/underground/explored)
+"Xs" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
 "XK" = (
 /obj/machinery/light{
 	dir = 8
@@ -1331,7 +1335,7 @@ af
 lC
 aD
 aD
-jJ
+Tb
 Nu
 aD
 nd
@@ -1381,7 +1385,7 @@ am
 am
 am
 af
-wv
+qT
 ai
 SC
 af
@@ -1414,7 +1418,7 @@ af
 af
 af
 af
-UM
+LE
 af
 af
 jK
@@ -1453,7 +1457,7 @@ af
 af
 af
 af
-uC
+qm
 af
 af
 hG
@@ -1491,7 +1495,7 @@ IO
 NE
 aD
 aD
-QF
+mW
 aD
 Py
 aD
@@ -1578,7 +1582,7 @@ af
 af
 af
 af
-OF
+Xs
 af
 af
 af
@@ -1710,7 +1714,7 @@ NA
 Cw
 aU
 aU
-II
+ek
 af
 aD
 aD
