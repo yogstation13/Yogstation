@@ -179,5 +179,5 @@
 		add_fingerprint(user)
 	locked = !locked
 	user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
-					span_notice("You [locked ? null : "un"]lock [src]."))
+	span_notice("You [locked ? null : "un"]lock [src]."))
 	update_appearance(UPDATE_ICON)
