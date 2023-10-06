@@ -21,6 +21,7 @@
 	var/energy_to_lower = -20
 	var/max_balls = 10
 	var/zap_range = 7
+	var/hypercharged = FALSE //if true, will not lose energy and tesla zap will dust you
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
@@ -59,7 +60,11 @@
 		pixel_x = 0
 		pixel_y = 0
 
-		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
+		if(hypercharged)
+			color = "#ffe800"
+			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, dust = TRUE)
+		else
+			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
 		pixel_x = -32
 		pixel_y = -32
@@ -72,7 +77,10 @@
 		for (var/ball in orbiting_balls)
 			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
 				continue
-			tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
+			if(hypercharged)
+				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER, dust = TRUE)
+			else
+				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
 
@@ -123,7 +131,7 @@
 		var/Orchiectomy_target = pick(orbiting_balls)
 		qdel(Orchiectomy_target)
 
-	else if(orbiting_balls.len)
+	else if(orbiting_balls.len && !hypercharged)
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
@@ -136,6 +144,7 @@
 
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
 
+	EB.color = color
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
 
@@ -198,7 +207,7 @@
 	var/mob/living/carbon/C = A
 	C.dust()
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets)
+/proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets, dust = FALSE)
 	. = source.dir
 	if(power < 1000)
 		return
@@ -321,6 +330,8 @@
 	else if(closest_mob)
 		var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE)? (min(round(power/600), 90) + rand(-5, 5)) : 0
 		closest_mob.electrocute_act(shock_damage, source, 1, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN))
+		if(dust)
+			closest_mob.dust(TRUE)
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))
