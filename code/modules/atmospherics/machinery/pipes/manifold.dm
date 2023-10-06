@@ -20,8 +20,6 @@
 		pipe_interference_group = "atmos-[piping_layer]"\
 	)
 
-	var/mutable_appearance/center
-
 /* We use New() instead of Initialize(mapload) because these values are used in update_appearance(UPDATE_ICON)
  * in the mapping subsystem init before Initialize(mapload) is called in the atoms subsystem init.
  * This is true for the other manifolds (the 4 ways and the heat exchanges) too.
@@ -37,6 +35,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold/update_overlays()
 	. = ..()
+	var/mutable_appearance/center = mutable_appearance(icon, "manifold_center")
 	if(!center)
 		center = mutable_appearance(icon, "manifold_center")
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)

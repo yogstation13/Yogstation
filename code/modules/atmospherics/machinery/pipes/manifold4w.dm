@@ -31,8 +31,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_overlays()
 	. = ..()
-	if(!center)
-		center = mutable_appearance(icon, "manifold_center")
+	var/mutable_appearance/center = mutable_appearance(icon, "manifold4w_center")
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)
 	. += center
 

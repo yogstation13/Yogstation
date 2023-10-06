@@ -261,6 +261,9 @@
 	else if(isarea(A) && src.areastring == null)
 		src.area = A
 
+	if(prob(10))
+		locked = FALSE
+
 	make_terminal()
 
 	addtimer(CALLBACK(src, PROC_REF(update)), 5)
@@ -828,7 +831,7 @@
 	else if(stat & (BROKEN|MAINT))
 		to_chat(user, span_warning("Nothing happens!"))
 	else
-		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack)
+		if((allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack) || integration_cog)
 			locked = !locked
 			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the APC interface."))
 			update_appearance(UPDATE_ICON)
@@ -1520,30 +1523,28 @@
 
 /obj/machinery/power/apc/proc/ethereal_act(mob/living/user)
 	if(!ishuman(user))
-		to_chat(user, span_warning("You aren't a human!"))	//this shouldn't ever trigger
+		to_chat(user, span_warning("You can't comprehend how this thing works!"))	//this shouldn't ever trigger
 		return FALSE
 	var/mob/living/carbon/human/ethereal = user
 	var/obj/item/organ/stomach/maybe_stomach = ethereal.getorganslot(ORGAN_SLOT_STOMACH)
-	if(!istype(maybe_stomach, /obj/item/organ/stomach/ethereal))
+	if(!istype(maybe_stomach, /obj/item/organ/stomach/cell/ethereal))
 		to_chat(ethereal, span_warning("You don't have the correct stomach for this!"))
 		return FALSE
-	var/obj/item/organ/stomach/ethereal/stomach = maybe_stomach
-	if(cell.charge >= cell.maxcharge - APC_POWER_GAIN)
-		to_chat(ethereal, span_warning("The APC can't receive anymore power!"))
-		return TRUE
-	if(stomach.crystal_charge < ETHEREAL_CHARGE_FULL)
+	if(ethereal.nutrition < NUTRITION_LEVEL_MOSTLY_FULL)
 		to_chat(ethereal, span_warning("You don't have any excess power to channel into the APC!"))
 		return TRUE
 	to_chat(ethereal, span_notice("You start channeling power through your body into the APC."))
-	if(!do_after(user, 5 SECONDS, target = src))
+	if(!do_after(user, 1 SECONDS, target = src))
 		return FALSE
-	if((cell.charge >= (cell.maxcharge - APC_POWER_GAIN)) || (stomach.crystal_charge < ETHEREAL_CHARGE_FULL))
-		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
+	if(ethereal.nutrition < NUTRITION_LEVEL_MOSTLY_FULL)
+		to_chat(ethereal, span_warning("You don't have any excess power to transfer to the APC!"))
 		return FALSE
-	if(istype(stomach))
+	if(istype(maybe_stomach))
 		to_chat(ethereal, span_notice("You transfer some power to the APC."))
-		stomach.adjust_charge(-APC_POWER_GAIN)
-		cell.give(APC_POWER_GAIN)
+		ethereal.adjust_nutrition(APC_POWER_GAIN / -2.5) // nutrition and cell charges use different scales
+		var/cellamount = clamp(cell.maxcharge - cell.charge, 0, APC_POWER_GAIN)
+		cell.give(cellamount)
+		add_avail(APC_POWER_GAIN - cellamount)
 	else
 		to_chat(ethereal, span_warning("You can't transfer power to the APC!"))
 	

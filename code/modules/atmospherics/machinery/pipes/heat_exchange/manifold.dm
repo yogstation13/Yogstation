@@ -29,6 +29,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/update_overlays()
 	. = ..()
 
+	var/mutable_appearance/center = mutable_appearance(icon, "manifold_center")
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)
 	. += center
 

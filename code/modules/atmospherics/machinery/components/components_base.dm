@@ -10,6 +10,7 @@
 
 	var/list/datum/pipeline/parents
 	var/list/datum/gas_mixture/airs
+	var/startingvolume = 200
 
 	var/custom_reconcilation = FALSE
 
@@ -23,7 +24,7 @@
 		if(airs[i])
 			continue
 		var/datum/gas_mixture/component_mixture = new
-		component_mixture.set_volume(200)
+		component_mixture.set_volume(startingvolume)
 		airs[i] = component_mixture
 
 // Iconnery

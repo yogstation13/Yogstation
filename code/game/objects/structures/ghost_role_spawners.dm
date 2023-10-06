@@ -481,6 +481,50 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	implants = list(/obj/item/implant/mindshield) //No revolutionaries, he's MY friend.
 	id = /obj/item/card/id
 
+/obj/effect/mob_spawn/human/icemoon_walker
+	name = "disturbed grave"
+	desc = "A grave.  It's dirt seems to be churned up, with signs of recent activity."
+	roundstart = FALSE
+	death = FALSE
+	important_info = "Do not board the Nanotrasen station under any circumstances."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	mob_species = /datum/species/zombie
+	outfit = /datum/outfit/icemoon_walker
+	short_desc = "You are an Icemoon Walker, created by The Syndicate's early experiments with Romerol."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	assignedrole = "Icemoon Walker"
+
+/datum/outfit/icemoon_walker
+	name = "Icemoon Walker"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/wintercoat
+	shoes = /obj/item/clothing/shoes/winterboots
+	gloves = /obj/item/clothing/gloves/color/black
+	back = /obj/item/storage/backpack
+
+/obj/effect/mob_spawn/human/icemoon_walker/chieftain
+	name = "immaculate grave"
+	desc = "A grave.  It's dirt is perfectly shaped, as though someone has smoothed it out recently."
+	roundstart = FALSE
+	death = FALSE
+	important_info = "Do not board the Nanotrasen station under any circumstances."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	mob_species = /datum/species/zombie
+	outfit = /datum/outfit/icemoon_walker/chieftain
+	short_desc = "You lead a tribe of Icemoon Walkers, zombies created by The Syndicate's early experiments with Romerol."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	assignedrole = "Icemoon Walker Chieftain"
+
+/datum/outfit/icemoon_walker/chieftain
+	name = "Icemoon Walker Chieftain"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/wintercoat/bluecoat
+	shoes = /obj/item/clothing/shoes/winterboots
+	gloves = /obj/item/clothing/gloves/color/black
+	back = /obj/item/storage/backpack
+
 /obj/effect/mob_spawn/human/syndicate
 	name = "Syndicate Operative"
 	roundstart = FALSE
@@ -552,6 +596,127 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	head = /obj/item/clothing/head/HoS/syndicate
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
+
+//Icemoon Syndicate. Players become research agents working under a Syndicate research station.
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
+	name = "Syndicate Outpost Agent"
+	short_desc = "You are an agent at the Syndicate icemoon outpost."
+	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base
+	assignedrole = "Icemoon Syndicate"
+
+/datum/outfit/syndicate_empty/icemoon_base
+	name = "Generic Syndicate Icemoon Outpost Agent"
+	uniform = /obj/item/clothing/under/syndicate/coldres
+	suit = /obj/item/clothing/suit/armor/vest
+	l_pocket = /obj/item/gun/ballistic/automatic/pistol
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
+	mask = /obj/item/clothing/mask/gas/syndicate
+	id = /obj/item/card/id/syndicate/anyone
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
+	name = "Syndicate Outpost Security Officer"
+	short_desc = "You are a security officer at the Syndicate icemoon outpost."
+	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/security
+
+/datum/outfit/syndicate_empty/icemoon_base/security
+	name = "Syndicate Icemoon Outpost Security Guard"
+	r_hand = /obj/item/gun/ballistic/automatic/c20r/ultrasecure //get fucked in every single comprehensible way.
+	head = /obj/item/clothing/head/helmet/swat
+	mask = /obj/item/clothing/mask/gas //i want them to look like the generic operative NPC
+	belt = /obj/item/storage/belt/security/full //take like one guy alive
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
+	name = "Syndicate Outpost Researcher"
+	short_desc = "You are a researcher at the Syndicate icemoon outpost."
+	flavour_text = "Perform research for the sake of the Syndicate and advance technology."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
+
+/datum/outfit/syndicate_empty/icemoon_base/scientist
+	name = "Syndicate Icemoon Outpost Scientist"
+	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure //get fucked in every single comprehensible way.
+	suit = /obj/item/clothing/suit/toggle/labcoat/science
+	accessory = /obj/item/clothing/accessory/armband/science
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
+	name = "Syndicate Outpost Engineer"
+	short_desc = "You are an engineer at the Syndicate icemoon outpost."
+	flavour_text = "Maintain and upgrade the base's systems and equipment."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
+
+/datum/outfit/syndicate_empty/icemoon_base/engineer
+	name = "Syndicate Icemoon Outpost Engineer"
+	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin that's TM'd at the time of the ruin gives its engis this
+	suit = /obj/item/clothing/suit/hazardvest
+	head = /obj/item/clothing/head/hardhat
+	accessory = /obj/item/clothing/accessory/armband/engine
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/medic
+	name = "Syndicate Outpost Doctor"
+	short_desc = "You are a medical officer at the Syndicate icemoon outpost."
+	flavour_text = "Provide medical aid to the crew of the outpost and keep them all alive."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/medic
+
+/datum/outfit/syndicate_empty/icemoon_base/medic
+	name = "Syndicate Icemoon Outpost Medical Officer"
+	r_hand = /obj/item/storage/firstaid/hypospray/deluxe/cmo //rapid un-hurt
+	suit = /obj/item/clothing/suit/toggle/labcoat/md //I AM A SURGEON!!
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo //rapid hurt and chemical identification
+	accessory = /obj/item/clothing/accessory/armband/medblue
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
+	name = "Syndicate Outpost Commander"
+	short_desc = "You are the commander of the Syndicate icemoon outpost."
+	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/captain
+	id_access_list = list(150,151)
+
+/datum/outfit/syndicate_empty/icemoon_base/captain
+	name = "Syndicate Icemoon Outpost Commander"
+	glasses = /obj/item/clothing/glasses/sunglasses/big //big man get big sunglasses
+	ears = /obj/item/radio/headset/syndicate/alt/leader //big voice
+	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
+	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
+	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
+	head = /obj/item/clothing/head/HoS/beret/syndicate
+	back = /obj/item/storage/backpack/satchel/leather //LUXURY AT ITS FINEST
+	suit_store = /obj/item/gun/ballistic/revolver
+	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/a357=2, /obj/item/melee/classic_baton/telescopic=1)
+
+//Icemoon Hermit. Player becomes a individual who sook out shelter from society by running away.
+
+/obj/effect/mob_spawn/human/icemoon_hermit
+	name = "Icemoon Hermit"
+	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	roundstart = FALSE
+	death = FALSE
+	flavour_text = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	outfit = /datum/outfit/ice_hermit
+	assignedrole = "Ice Hermit"
+
+/datum/outfit/ice_hermit
+	name = "Icemoon Hermit"
+	uniform = /obj/item/clothing/under/color/grey/glorf
+	suit = /obj/item/clothing/suit/hooded/wintercoat
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	back = /obj/item/storage/backpack/satchel //satchel gang
+	mask = /obj/item/clothing/mask/breath
+	l_pocket = /obj/item/tank/internals/emergency_oxygen
+	r_pocket = /obj/item/flashlight/glowstick
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
 /obj/effect/mob_spawn/human/oldsec
@@ -732,3 +897,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	id = /obj/item/card/id/syndicate
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
+	implants = list(/obj/item/implant/weapons_auth)
+
+/datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
+	H.faction |= ROLE_SYNDICATE

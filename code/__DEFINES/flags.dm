@@ -47,6 +47,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RAD_PROTECT_CONTENTS_1 (1 << 15)
 /// should this object be allowed to be contaminated
 #define RAD_NO_CONTAMINATE_1 (1 << 16)
+/// Prevents most radiation on this turf from leaving it
+#define RAD_CONTAIN_CONTENTS (1<<17)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -56,7 +58,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Blocks lava rivers being generated on the turf
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<10)
+#define NO_RUINS_1					(1<<18)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.

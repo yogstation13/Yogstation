@@ -162,6 +162,7 @@
 	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
 	cost = 20
 	player_minimum = 25 //basically a fuckin megafauna
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //too much collateral damage with it's AOEs
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
@@ -179,8 +180,10 @@
 			If you install this, it will make you incapable of pushing and pulling. \
 			There are no half-measures, either you succeed or you die."
 	cost = 20
+	player_minimum = 25 //maybe we SHOULDNT be giving this to lowpop traitors when theres no sec?
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"

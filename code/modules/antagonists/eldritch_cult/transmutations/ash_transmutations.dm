@@ -56,6 +56,12 @@
 	REMOVE_TRAIT(chosen_mob,TRAIT_PARALYSIS_R_LEG,MAGIC_TRAIT)
 	chosen_mob.update_mobility()
 
+/datum/eldritch_transmutation/madness_mask
+	name = "Mask of Mandess"
+	required_atoms = list(/obj/item/clothing/mask,/obj/item/organ/liver)
+	result_atoms = list(/obj/item/clothing/mask/madness_mask)
+	required_shit_list = "A mask of any kind, and a fresh liver."
+
 /datum/eldritch_transmutation/final/ash_final
 	name = "Amgala's Ruin"
 	required_atoms = list(/mob/living/carbon/human)
@@ -64,8 +70,7 @@
 
 /datum/eldritch_transmutation/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a fiery entity of unknown power is quickly escalating the station temperature to unhabitable levels. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
-	set_security_level(SEC_LEVEL_GAMMA)
-
+	
 	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)
 	circle_spell.Grant(user)
 

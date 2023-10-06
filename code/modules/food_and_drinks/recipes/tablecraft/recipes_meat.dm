@@ -57,6 +57,15 @@
 	category = CAT_MEAT
 
 ////////////////////////////////////////////////OTHER////////////////////////////////////////////////
+/datum/crafting_recipe/food/ribs
+	name = "BBQ Ribs"
+	reqs = list(
+		/obj/item/stack/rods = 2,
+		/datum/reagent/consumable/bbqsauce = 5,
+		/obj/item/reagent_containers/food/snacks/meat/steak = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/bbqribs
+	category = CAT_MEAT
 
 /datum/crafting_recipe/food/nugget
 	name = "Chicken Nugget"

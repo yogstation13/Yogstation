@@ -180,6 +180,7 @@
 
 /turf/open/floor/plating/asteroid/snow/icemoon/top_layer
 	light_range = 2
+	light_power = 0.1
 
 /turf/open/lava/plasma/ice_moon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -217,6 +218,7 @@
 
 /turf/open/floor/plating/asteroid/snow/ice/icemoon/top_layer
 	light_range = 2
+	light_power = 0.1
 
 /turf/open/floor/plating/asteroid/snow/ice/burn_tile()
 	return FALSE

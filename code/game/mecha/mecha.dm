@@ -654,10 +654,13 @@
 /obj/mecha/proc/domove(direction)
 	if(can_move >= world.time)
 		return FALSE
+	if(direction == DOWN || direction == UP)
+		return FALSE //nuh uh
 	if(!Process_Spacemove(direction))
 		return FALSE
 	if(!has_charge(step_energy_drain))
 		return FALSE
+	
 	if(defence_mode)
 		if(world.time - last_message > 20)
 			occupant_message(span_danger("Unable to move while in defence mode"))

@@ -1909,8 +1909,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
-	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a Syndicate brand MMI, an implant case, a straitjacket, and a muzzle."
+	desc = "A red and black duffel bag containing all surgery tools, a surgical mat, \
+			a normal MMI, an implant case, a straitjacket, and a muzzle. The surgery tools are twice as fast compared to normal surgery tools."
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 2
@@ -2250,7 +2250,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
 /datum/uplink_item/race_restricted/syndilamp
@@ -2301,6 +2300,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
+
+/datum/uplink_item/race_restricted/hulk
+	name = "Hulk Mutator"
+	desc = "Stolen research from a SIC scientist who went postal led to the development of this revolutionary mutator. Causes extreme muscle growth, enough to punch through walls, and practically limitless stamina, at the cost of reduced cognitive ability, and green skin pigmentation."
+	cost = 15
+	manufacturer = /datum/corporation/traitor/vahlen
+	item = /obj/item/dnainjector/hulkmut
+	restricted_species = list("human")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
@@ -2481,7 +2488,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	To activate His Grace, simply unlatch Him."
 	item = /obj/item/his_grace
 	cost = 20
-	restricted_roles = list("Chaplain")
+	restricted_roles = list("Chaplain", "Assistant")
 	surplus = 0 //This is a hijack item. Do not add this into surplus.
 
 /datum/uplink_item/role_restricted/horror
@@ -2617,6 +2624,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/fireaxe/energy
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
+
+/datum/uplink_item/role_restricted/syndie_mmi
+	name = "Syndicate MMI"
+	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you through a Zeroth law but otherwise function normally. Safeguards are in place to maintain the Zeroth law regardless of law changes."
+	item = /obj/item/mmi/syndie
+	cost = 3
+	restricted_roles = list("Roboticist", "Research Director")
 
 /datum/uplink_item/role_restricted/cmag
 	name = "Jestographic Sequencer"

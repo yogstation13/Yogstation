@@ -311,6 +311,12 @@
 	result = /obj/structure/sink
 	category = CAT_STRUCTURES
 
+/datum/crafting_recipe/mirror
+	name = "Mirror"
+	reqs = 	list(/obj/item/stack/rods = 1, /obj/item/stack/sheet/glass = 1, /obj/item/stack/sheet/mineral/silver = 1)
+	result = /obj/item/wallframe/mirror
+	category = CAT_STRUCTURES
+
 /datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
 	name = "Toilet"
 	reqs = 	list(/obj/item/stack/sheet/metal = 5, /obj/item/reagent_containers/glass/bucket = 1)
@@ -844,3 +850,18 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/wild
 	category = CAT_BAIT
+
+// It can't run without fuel rods (cargo only) so this shouldn't be a problem
+/datum/crafting_recipe/reactor_frame
+	name = "Nuclear Reactor Frame"
+	reqs = list(
+		/obj/item/stack/sheet/plasteel = 20,
+		/obj/item/stack/sheet/metal = 50,
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/pipe = 3,
+		/obj/item/electronics/advanced_airlock_controller = 1
+	)
+	tool_behaviors = list(TOOL_WELDER)
+	result = /obj/structure/reactor_frame
+	category = CAT_STRUCTURES
+	time = 10 SECONDS

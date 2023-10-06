@@ -68,6 +68,7 @@
 	var/treatment_virus = /datum/reagent/medicine/spaceacillin
 	var/treat_virus = 1 //If on, the bot will attempt to treat viral infections, curing them if possible.
 	var/shut_up = 0 //self explanatory :)
+	var/holy = FALSE //if it injects holy water
 
 /mob/living/simple_animal/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
@@ -658,6 +659,8 @@
 				else
 					patient.reagents.add_reagent(reagent_id,injection_amount)
 					log_combat(src, patient, "injected", "internal synthesizer", "[reagent_id]:[injection_amount]")
+					if(holy)
+						patient.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
 				C.visible_message(span_danger("[src] injects [patient] with its syringe!"), \
 					span_userdanger("[src] injects you with its syringe!"))
 			else
