@@ -59,16 +59,17 @@
 		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 
 /datum/supermatter_delamination/proc/setup_delamination_type()
-	call_explosion()
 	if(supermatter_cascading)
 		call_cascading()
 		call_cascadetesla()
+		call_explosion()
 		return
 	if(supermatter_gas_amount > MOLE_PENALTY_THRESHOLD && !supermatter_cascading)
 		call_singulo()
 		return
 	if(supermatter_power > POWER_PENALTY_THRESHOLD && !supermatter_cascading)
 		call_tesla()
+		call_explosion()
 		return
 
 /datum/supermatter_delamination/proc/shockwave() //borrowed ynot's code
