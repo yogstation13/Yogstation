@@ -131,7 +131,9 @@
 		var/Orchiectomy_target = pick(orbiting_balls)
 		qdel(Orchiectomy_target)
 
-	else if(orbiting_balls.len && !hypercharged)
+	else if(orbiting_balls.len)
+		if(hypercharged)
+			dissipate_strength = 0
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
