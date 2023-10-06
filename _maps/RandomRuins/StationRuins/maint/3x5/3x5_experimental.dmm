@@ -11,42 +11,29 @@
 /obj/item/wirecutters/caravan,
 /obj/item/wrench/caravan,
 /obj/item/screwdriver/caravan,
-/obj/structure/closet/crate/secure{
-	req_access_txt = "19"
+/obj/structure/safe{
+	number_of_tumblers = 6
 	},
-/turf/open/floor/plating,
-/area/template_noop)
-"Q" = (
-/obj/effect/spawner/lootdrop/maintenance/four,
-/obj/structure/closet/crate/secure{
-	req_access_txt = "19"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
-"Y" = (
-/obj/effect/spawner/lootdrop/maintenance/eight,
-/obj/structure/closet/crate/secure{
-	req_access_txt = "19"
-	},
+/obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
-Y
+a
 a
 t
 a
-Q
+a
 "}
 (2,1,1) = {"
-a
+t
 a
 w
 a
 a
 "}
 (3,1,1) = {"
-Q
+a
 a
 a
 a
