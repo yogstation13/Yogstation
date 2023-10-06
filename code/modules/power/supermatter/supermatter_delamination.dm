@@ -124,10 +124,6 @@
 
 /datum/supermatter_delamination/proc/call_cascadetesla()
 	if(supermatter_turf)
-		var/obj/singularity/energy_ball/E = new(supermatter_turf)
-		E.name = "supermatter energy ball"
+		var/obj/singularity/energy_ball/supermatter/E = new(supermatter_turf)
 		E.energy = supermatter_power*100 // god
-		E.hypercharged = TRUE //doom
-		E.max_balls = 20
-		E.zap_range = 20
 		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(E)].")

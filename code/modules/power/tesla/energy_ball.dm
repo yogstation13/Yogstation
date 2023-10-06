@@ -29,6 +29,13 @@
 	if(!is_miniball)
 		set_light(10, 7, "#EEEEFF")
 
+/obj/singularity/energy_ball/supermatter
+	name = "supermatter energy ball"
+	color = "#ffe800"
+	hypercharged = TRUE //doom
+	max_balls = 20
+	zap_range = 20
+
 /obj/singularity/energy_ball/ex_act(severity, target)
 	return
 
@@ -61,7 +68,6 @@
 		pixel_y = 0
 
 		if(hypercharged)
-			color = "#ffe800"
 			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, dust = TRUE)
 		else
 			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
@@ -74,7 +80,8 @@
 			if(!E.miniball && E != src)
 				collide(E)
 
-		for (var/ball in orbiting_balls)
+		for (var/obj/singularity/energy_ball/ball in orbiting_balls)
+			ball.color = color
 			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
 				continue
 			if(hypercharged)
@@ -146,7 +153,6 @@
 
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
 
-	EB.color = color
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
 
