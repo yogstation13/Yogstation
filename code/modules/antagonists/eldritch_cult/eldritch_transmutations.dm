@@ -228,3 +228,30 @@
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/stack/sheet/animalhide/human,/obj/item/storage/book/bible,/obj/item/pen)
 	result_atoms = list(/obj/item/forbidden_book)
 	required_shit_list = "A bible, a sheet of human skin, a pen, and a pair of eyes."
+
+
+/datum/eldritch_transmutation/proc/can_be_invoked(datum/antagonist/heretic/invoker)
+	return !!LAZYLEN(required_atoms)
+
+/datum/eldritch_transmutation/knowledge_ritual
+	name = "Ritual of Knowledge"
+	required_atoms = list(/obj/item/organ/heart, /obj/item/storage/book/bible, /obj/item/reagent_containers/food/snacks/grown/poppy)
+	required_shit_list = "A heart, a bible, and a poppy"
+	/// Whether we've done the ritual. Only doable once.
+	var/was_completed = FALSE
+
+/datum/eldritch_transmutation/knowledge_ritual/can_be_invoked(datum/antagonist/heretic/invoker)
+	return !was_completed
+
+/datum/eldritch_transmutation/knowledge_ritual/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+	return !was_completed
+
+/datum/eldritch_transmutation/knowledge_ritual/on_finished_recipe(mob/living/user, list/atoms, loc)
+	
+	was_completed = TRUE
+	if (was_completed == TRUE)
+		var/datum/antagonist/heretic/knowledge = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+		knowledge?.charge += 2
+	
+	return TRUE
+

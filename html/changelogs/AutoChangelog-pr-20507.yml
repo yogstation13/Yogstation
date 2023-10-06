@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes fringe cases where certain ultraviolence or worldbreaker abilities could be used when they shouldn't be"
