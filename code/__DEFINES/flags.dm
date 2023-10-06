@@ -49,7 +49,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RAD_NO_CONTAMINATE_1 (1<<16)
 /// Can players recolor this in-game via vendors (and maybe more if support is added)?
 #define IS_PLAYER_COLORABLE_1 (1<<17)
-
+/// Prevents most radiation on this turf from leaving it
+#define RAD_CONTAIN_CONTENTS (1<18)
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
 #define UNUSED_RESERVATION_TURF_1	(1<<1)
@@ -58,7 +59,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Blocks lava rivers being generated on the turf
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<17)
+#define NO_RUINS_1					(1<<18)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.

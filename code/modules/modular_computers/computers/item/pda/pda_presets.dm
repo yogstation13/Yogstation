@@ -90,6 +90,7 @@
 	starting_files |= list(
 		new /datum/computer_file/program/alarm_monitor,
 		new /datum/computer_file/program/supermatter_monitor,
+		new /datum/computer_file/program/nuclear_monitor,
 		new /datum/computer_file/program/power_monitor
 	)	
 	return ..()
@@ -108,7 +109,8 @@
 	starting_files |= list(
 		new /datum/computer_file/program/atmosscan,
 		new /datum/computer_file/program/alarm_monitor,
-		new /datum/computer_file/program/supermatter_monitor
+		new /datum/computer_file/program/supermatter_monitor,
+		new /datum/computer_file/program/nuclear_monitor
 	)	
 	return ..()
 

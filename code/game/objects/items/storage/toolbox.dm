@@ -6,8 +6,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 12
-	throwforce = 12
+	force = 15
+	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
@@ -88,7 +88,7 @@
 /obj/item/storage/toolbox/mechanical/old/heirloom
 	name = "toolbox" //this will be named "X family toolbox"
 	desc = "It's seen better days."
-	force = 5
+	force = 8
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/mechanical/old/heirloom/PopulateContents()
@@ -100,15 +100,15 @@
 	icon_state = "oldtoolboxclean"
 	item_state = "toolbox_blue"
 	has_latches = FALSE
-	force = 19
-	throwforce = 22
+	force = 22
+	throwforce = 25
 
 /obj/item/storage/toolbox/mechanical/old/clean/proc/calc_damage()
 	var/power = 0
 	for (var/obj/item/stack/telecrystal/TC in get_all_contents())
 		power += TC.amount
-	force = 19 + power
-	throwforce = 22 + power
+	force = initial(force) + power
+	throwforce = initial(throwforce) + power
 
 /obj/item/storage/toolbox/mechanical/old/clean/attack(mob/target, mob/living/user)
 	calc_damage()
@@ -149,8 +149,8 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	force = 15
-	throwforce = 18
+	force = 18
+	throwforce = 21
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/syndicate/Initialize(mapload)
