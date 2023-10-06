@@ -171,9 +171,10 @@
 		if(!id_card || !id_card.registered_account)
 			to_chat(user, span_notice("No bank account found!"))
 			return
-		if((id_card.registered_account != buyer_account) && !(department_purchase && (id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id)))
-			to_chat(user, span_notice("Bank account does not match with buyer!"))
-			return
+		if(!(ACCESS_HEADS in id_card.access))
+			if((id_card.registered_account != buyer_account) && !(department_purchase && (id_card.registered_account?.account_job?.paycheck_department) == (department_account.department_id)))
+				to_chat(user, span_notice("Bank account does not match with buyer!"))
+				return
 	if(iscarbon(user))
 		add_fingerprint(user)
 	locked = !locked
