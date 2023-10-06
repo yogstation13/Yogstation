@@ -8,7 +8,7 @@
 	sound = null
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 20 SECONDS
+	cooldown_time = 15 SECONDS
 
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
@@ -18,13 +18,13 @@
 	jaunt_out_time = 0.6 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
-
-/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/before_cast(atom/cast_on) //removes all stuns before jaunting
+	
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/can_cast_spell(feedback)
 	. = ..()
-	var/mob/living/jaunter = owner
-	jaunter.SetAllImmobility(0)
-	jaunter.setStaminaLoss(0)
-	jaunter.clear_stamina_regen()	
+	var/mob/living/carbon/caster = owner
+	if(caster.incapacitated())
+		to_chat(caster, span_warning("You are incapacitated!"))
+		return FALSE
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
@@ -1002,6 +1002,13 @@
 	deactive_msg = span_notice("You relax your mind.")
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
+/datum/action/cooldown/spell/pointed/phase_jump/can_cast_spell(feedback)
+	. = ..()
+	var/mob/living/carbon/caster = owner
+	if(caster.incapacitated())
+		to_chat(caster, span_warning("You are incapacitated!"))
+		return FALSE
+
 /datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"
 	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
@@ -1043,6 +1050,13 @@
 	var/min_cast_range = 3
 	/// The radius of damage around the void bubble
 	var/damage_radius = 1
+
+/datum/action/cooldown/spell/pointed/void_phase/can_cast_spell(feedback)
+	. = ..()
+	var/mob/living/carbon/caster = owner
+	if(caster.incapacitated())
+		to_chat(caster, span_warning("You are incapacitated!"))
+		return FALSE
 
 /datum/action/cooldown/spell/pointed/void_phase/before_cast(atom/cast_on)
 	. = ..()
