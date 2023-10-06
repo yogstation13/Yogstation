@@ -205,8 +205,8 @@
 				targets[targeted] = targeted
 				icons[targeted] = targeted.current
 			var/entry_name = show_radial_menu(user, user, icons, tooltips = TRUE)
-			var/mob/living/H = targets[entry_name].current
-			LH.target = H
+			var/datum/mind/M = targets[entry_name]
+			LH.target = M.current
 			qdel(A)
 			if(LH.target)
 				to_chat(user,span_warning("Your new target has been selected, go and sacrifice [LH.target.real_name]!"))
