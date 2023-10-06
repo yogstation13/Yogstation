@@ -558,7 +558,7 @@
 //Results: Engineering becomes unusable and your engine irreparable
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/meltdown()
 	set waitfor = FALSE
-	SSair.atmos_machinery -= src //Annd we're now just a useless brick.
+	SSair_machinery.stop_processing_machine(src)
 	vessel_integrity = null // this makes it show up weird on the monitor to even further emphasize something's gone horribly wrong
 	slagged = TRUE
 	color = null

@@ -615,7 +615,7 @@
 	name = "aeration reticulum"
 	desc = "These exotic lungs seem crunchier than most."
 	icon_state = "lungs-ethereal"
-	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/water_vapor = 1)
+	breathing_class = /datum/breathing_class/oxygen_vapor
 
 /obj/item/organ/lungs/ethereal/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 	. = ..()

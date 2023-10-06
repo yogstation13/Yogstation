@@ -62,3 +62,15 @@
 	low_alert_datum = /atom/movable/screen/alert/not_enough_tox
 	high_alert_category = "too_much_tox"
 	high_alert_datum = /atom/movable/screen/alert/too_much_tox
+
+
+/datum/breathing_class/oxygen_vapor
+	gases = list(
+		GAS_O2 = 1,
+		GAS_PLUOXIUM = 8,
+		GAS_CO2 = -0.7, // CO2 isn't actually toxic, just an asphyxiant
+		GAS_H2O = 1,
+	)
+	products = list(
+		GAS_CO2 = 1,
+	)

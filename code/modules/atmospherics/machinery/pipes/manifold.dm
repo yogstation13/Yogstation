@@ -20,6 +20,8 @@
 		pipe_interference_group = "atmos-[piping_layer]"\
 	)
 
+	var/mutable_appearance/center
+
 /* We use New() instead of Initialize(mapload) because these values are used in update_appearance(UPDATE_ICON)
  * in the mapping subsystem init before Initialize(mapload) is called in the atoms subsystem init.
  * This is true for the other manifolds (the 4 ways and the heat exchanges) too.
