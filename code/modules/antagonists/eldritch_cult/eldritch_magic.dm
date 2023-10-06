@@ -8,7 +8,7 @@
 	sound = null
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 15 SECONDS
+	cooldown_time = 20 SECONDS
 
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
@@ -18,7 +18,13 @@
 	jaunt_out_time = 0.6 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
-	
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/before_cast(atom/cast_on) //removes all stuns before jaunting
+	. = ..()
+	var/mob/living/jaunter = owner
+	jaunter.SetAllImmobility(0)
+	jaunter.setStaminaLoss(0)
+	jaunter.clear_stamina_regen()	
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
