@@ -125,7 +125,7 @@
 /datum/supermatter_delamination/proc/call_cascadetesla()
 	if(supermatter_turf)
 		var/obj/singularity/energy_ball/E = new(supermatter_turf)
-		E.name = "supermassive hypercharged energy ball"
+		E.name = "supermatter energy ball"
 		E.energy = supermatter_power*100 // god
 		E.hypercharged = TRUE //doom
 		E.max_balls = 20
