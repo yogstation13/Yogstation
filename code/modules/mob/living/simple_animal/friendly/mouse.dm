@@ -305,6 +305,8 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/fat
 	name = "fat mouse"
 	desc = "This cute \"little\" guy seems to have been snacking on too much cheddar. Isn't he adorable?"
+	body_color = "fat" //what colour are you? FAT
+	icon_state = "mouse_fat"
 	turns_per_move = 10
 	maxHealth = 10
 	health = 10
@@ -326,6 +328,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /obj/item/reagent_containers/food/snacks/deadmouse/fat
 	name = "dead fat mouse"
 	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
+	icon_state = "mouse_fat_dead"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5) //more food, but it's not healthy
 	foodtype = MICE | JUNKFOOD
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
