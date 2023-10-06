@@ -282,9 +282,6 @@
 				closest_atom = A
 				closest_dist = dist
 
-		else if(closest_mob)
-			continue
-
 		else if(ismachinery(A))
 			var/obj/machinery/M = A
 			if(dist <= zap_range && (dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
@@ -292,18 +289,12 @@
 				closest_atom = A
 				closest_dist = dist
 
-		else if(closest_mob)
-			continue
-
 		else if(istype(A, /obj/structure/blob))
 			var/obj/structure/blob/B = A
 			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
 				closest_blob = B
 				closest_atom = A
 				closest_dist = dist
-
-		else if(closest_blob)
-			continue
 
 		else if(isstructure(A))
 			var/obj/structure/S = A
