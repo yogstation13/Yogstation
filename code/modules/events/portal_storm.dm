@@ -154,14 +154,13 @@
 		/mob/living/simple_animal/hostile/asteroid/marrowweaver = 25
 	)
 	var/list/anomaly_types = list(
-		ANOMALY_FLUX = 50,
-		ANOMALY_FLUX_EXPLOSIVE = 100,
-		ANOMALY_RADIATION = 30,
+		ANOMALY_FLUX_EXPLOSIVE = 150,
+		ANOMALY_RADIATION = 130,
 		ANOMALY_RADIATION_X = 5,
-		ANOMALY_VORTEX = 30,
-		ANOMALY_PYRO = 40,
-		ANOMALY_HALLUCINATION = 40,
-		ANOMALY_GRAVITATIONAL = 60
+		ANOMALY_VORTEX = 130,
+		ANOMALY_PYRO = 140,
+		ANOMALY_HALLUCINATION = 140,
+		ANOMALY_GRAVITATIONAL = 160
 	)
 	endWhen = INFINITY // keep going until it's done
 
