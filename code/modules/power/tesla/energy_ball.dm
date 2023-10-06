@@ -336,7 +336,12 @@
 			var/mob/living/silicon/S = closest_mob
 			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))
 				S.emp_act(EMP_LIGHT)
-			tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets) // metallic folks bounce it further
+			if(dust)
+				tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets, TRUE)
+			else
+				tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets) // metallic folks bounce it further
+		else if(dust)
+			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, TRUE)
 		else
 			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets)
 
