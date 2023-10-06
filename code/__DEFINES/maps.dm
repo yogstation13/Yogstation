@@ -77,6 +77,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define ZTRAIT_STATION "Station"
 #define ZTRAIT_MINING "Mining"
 #define ZTRAIT_REEBE "Reebe"
+#define ZTRAIT_PROCEDURAL_MAINTS "Random Maints"
 #define ZTRAIT_RESERVED "Transit/Reserved"
 #define ZTRAIT_AWAY "Away Mission"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
@@ -142,6 +143,14 @@ Always compile, always use that verb, and always make sure that it works for wha
     ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.60)
+
+#define ZTRAITS_BACKROOM_MAINTS list(\
+	ZTRAIT_PROCEDURAL_MAINTS = TRUE, \
+	ZTRAIT_LINKAGE = SELFLOOPING, \
+	ZTRAIT_GRAVITY = TRUE, \
+	ZTRAIT_NOPHASE = TRUE, \
+	ZTRAIT_NOXRAY = TRUE, \
+    ZTRAIT_BASETURF = /turf/open/floor/plating)
 
 ///Z level traits for Away Missions
 #define ZTRAITS_AWAY list(ZTRAIT_AWAY = TRUE)

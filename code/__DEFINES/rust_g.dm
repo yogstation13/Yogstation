@@ -92,6 +92,20 @@
 #define rustg_acreplace_with_replacements(key, text, replacements) RUSTG_CALL(RUST_G, "acreplace_with_replacements")(key, text, json_encode(replacements))
 
 /**
+ * This proc generates rooms in a specified area of random size and placement. Currently just so I can make a procedural maintenance generator.
+ *
+ * Returns a json list of room data to be processed by json_decode in byond and further processed there.
+ *
+ * Arguments:
+ * * width: The chance of a turf starting closed
+ * * height: The amount of iterations the cellular automata simulates before returning the results
+ * * hash: If the number of neighboring cells is higher than this amount, a cell is born
+ * * mandetory_elements: If the number of neighboring cells is lower than this amount, a cell dies
+ */
+#define rustg_bsp_generate(width, height, hash, map_subsection_min_size, map_subsection_min_room_width, map_subsection_min_room_height) \
+	RUSTG_CALL(RUST_G, "bsp_generate")(width, height, hash, map_subsection_min_size, map_subsection_min_room_width, map_subsection_min_room_height)
+
+/**
  * This proc generates a cellular automata noise grid which can be used in procedural generation methods.
  *
  * Returns a single string that goes row by row, with values of 1 representing an alive cell, and a value of 0 representing a dead cell.
@@ -127,6 +141,13 @@
 #define rustg_dmi_strip_metadata(fname) RUSTG_CALL(RUST_G, "dmi_strip_metadata")(fname)
 #define rustg_dmi_create_png(path, width, height, data) RUSTG_CALL(RUST_G, "dmi_create_png")(path, width, height, data)
 #define rustg_dmi_resize_png(path, width, height, resizetype) RUSTG_CALL(RUST_G, "dmi_resize_png")(path, width, height, resizetype)
+
+/**
+ * input: must be a path, not an /icon; you have to do your own handling if it is one, as icon objects can't be directly passed to rustg.
+ *
+ * output: json_encode'd list. json_decode to get a flat list with icon states in the order they're in inside the .dmi
+ */
+#define rustg_dmi_icon_states(fname) RUSTG_CALL(RUST_G, "dmi_icon_states")(fname)
 
 #define rustg_file_read(fname) RUSTG_CALL(RUST_G, "file_read")(fname)
 #define rustg_file_exists(fname) RUSTG_CALL(RUST_G, "file_exists")(fname)
@@ -184,6 +205,19 @@
 #define rustg_noise_get_at_coordinates(seed, x, y) RUSTG_CALL(RUST_G, "noise_get_at_coordinates")(seed, x, y)
 
 /**
+ * This proc generates rooms in a specified area of random size and placement. Currently just so I can make a procedural maintenance generator.
+ *
+ * Returns a json list of room data to be processed by json_decode in byond and further processed there.
+ *
+ * Arguments:
+ * * width: The chance of a turf starting closed
+ * * height: The amount of iterations the cellular automata simulates before returning the results
+ * * hash: If the number of neighboring cells is higher than this amount, a cell is born
+ */
+#define rustg_random_room_generate(width, height, desired_room_count, hash) \
+	RUSTG_CALL(RUST_G, "random_room_generate")(width, height, desired_room_count, hash)
+
+/**
  * Register a list of nodes into a rust library. This list of nodes must have been serialized in a json.
  * Node {// Index of this node in the list of nodes
  *  	  unique_id: usize,
@@ -235,6 +269,7 @@
 #define rustg_time_milliseconds(id) text2num(RUSTG_CALL(RUST_G, "time_milliseconds")(id))
 #define rustg_time_reset(id) RUSTG_CALL(RUST_G, "time_reset")(id)
 
+/// Returns the timestamp as a string
 /proc/rustg_unix_timestamp()
 	return text2num(RUSTG_CALL(RUST_G, "unix_timestamp")())
 

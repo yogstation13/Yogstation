@@ -44,7 +44,7 @@ endmap
 # Debug-only maps.
 
 map multiz_debug
-	disabled 
+	disabled
 endmap
 
 map runtimestation

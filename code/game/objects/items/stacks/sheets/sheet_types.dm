@@ -308,6 +308,8 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	if(!wood_stack && replace)
 		user.put_in_hands(new_item)
 
+/obj/item/stack/sheet/mineral/wood/ten
+	amount = 10
 /obj/item/stack/sheet/mineral/wood/fifty
 	amount = 50
 
