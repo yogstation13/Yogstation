@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(air_machinery)
 		currentrun.len--
 		if(M == null)
 			atmos_machinery.Remove(M)
-		if(!M || (M.process_atmos() == PROCESS_KILL))
+		if(!M || (M.process_atmos(wait / (1 SECONDS)) == PROCESS_KILL))
 			stop_processing_machine(M)
 		if(MC_TICK_CHECK)
 			return
