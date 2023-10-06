@@ -10,7 +10,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	exit_jaunt_sound = null
 	jaunt_duration = 1.1 SECONDS
@@ -18,6 +18,7 @@
 	jaunt_out_time = 0.6 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
+	
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
@@ -174,7 +175,7 @@
 
 	invocation = "A'GRSV SPR'D"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	aoe_radius = 3
 
@@ -215,7 +216,7 @@
 
 	invocation = "FL'MS O'ET'RN'ITY"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 6
 
@@ -283,7 +284,7 @@
 
 	invocation = "SPR'D TH' WO'D"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	projectile_type = /obj/item/projectile/magic/aoe/rust_wave
 
@@ -340,7 +341,7 @@
 	invocation = "CL'VE"
 	invocation_type = INVOCATION_WHISPER
 
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 4
 
@@ -397,7 +398,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 	invocation_type = INVOCATION_NONE
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 /datum/action/cooldown/spell/touch/mad_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
@@ -434,7 +435,7 @@
 	invocation_type = INVOCATION_WHISPER
 	
 	cooldown_time = 30 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// The length of the flame line spit out.
 	var/flame_line_length = 15
@@ -496,7 +497,7 @@
 	school = SCHOOL_FORBIDDEN
 	invocation = "SH'PE"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	possible_shapes = list(
 		/mob/living/simple_animal/mouse,\
@@ -519,7 +520,7 @@
 
 	invocation = "E'P"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	emp_heavy = 6
 	emp_light = 10
@@ -539,7 +540,7 @@
 	invocation_type = INVOCATION_WHISPER
 
 	cooldown_time = 30 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// The radius the flames will go around the caster.
 	var/flame_radius = 4
@@ -567,7 +568,7 @@
 	school = SCHOOL_FORBIDDEN
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	invocation_type = INVOCATION_NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 /// Creates a constant Ring of Fire around the caster for a set duration of time, which follows them.
@@ -584,7 +585,7 @@
 	
 	invocation = "FL'MS"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// The radius of the fire ring
 	var/fire_radius = 1
@@ -643,7 +644,7 @@
 	cooldown_time = 15 SECONDS
 
 	invocation_type = INVOCATION_NONE
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 /datum/action/cooldown/spell/worm_contract/cast(mob/living/user)
 	. = ..()
@@ -678,7 +679,7 @@
 
 	invocation = "GL'RY T' TH' N'GHT'W'TCH'ER"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 /datum/action/cooldown/spell/aoe/fiery_rebirth/cast(mob/living/carbon/human/cast_on)
 	cast_on.extinguish_mob()
@@ -730,7 +731,7 @@
 
 	invocation = "PI'RC' TH' M'ND."
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 7
 
@@ -788,7 +789,7 @@
 
 	school = SCHOOL_FORBIDDEN
 	invocation = "E'E'S"
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 10
 
@@ -838,7 +839,7 @@
 
 	invocation = "'NTR'P'C PL'M'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	
 	cone_levels = 5
 	respect_density = TRUE
@@ -907,7 +908,7 @@
 	school = SCHOOL_FORBIDDEN
 	invocation = "GR' RO'AR"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	aoe_radius = 4
 
 	cooldown_time = 1 MINUTES
@@ -966,7 +967,7 @@
 
 	invocation = "EL'RICH BL'AS'T"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	base_icon_state = "lightning"
 	active_msg = "You energize your hands with raw power!"
@@ -993,7 +994,7 @@
 	invocation_type = INVOCATION_WHISPER
 	active_msg = span_notice("You prepare to warp everyone's vision.")
 	deactive_msg = span_notice("You relax your mind.")
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 /datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"
@@ -1006,7 +1007,7 @@
 	sound = 'sound/weapons/resonator_blast.ogg'
 	cast_range = 7
 	cooldown_time = 25 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	invocation = "D'O'DGE TH'IS!"
 	invocation_type = INVOCATION_SHOUT
@@ -1029,7 +1030,7 @@
 
 	invocation = "RE'L'TY PH'S'E."
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 5
 	/// The minimum range to cast the phase.
@@ -1104,7 +1105,7 @@
 
 	invocation = "FR'ZE!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	// In room temperature, the ice won't last very long
 	// ...but in space / freezing rooms, it will stick around
@@ -1128,7 +1129,7 @@
 
 /datum/action/cooldown/spell/aoe/slip/void
 	name = "Diamond Dust"
-	desc = "Causes the floor within six tiles to become frozen."
+	desc = "Causes the floor within 2 tiles to become frozen."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
@@ -1137,12 +1138,12 @@
 	invocation = "OBL'VION!"
 	invocation_type = INVOCATION_SHOUT
 
-	cooldown_time = 1 MINUTES
+	cooldown_time = 50 SECONDS
 	aoe_radius = 2
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 /datum/action/cooldown/spell/aoe/slip/void/cast_on_thing_in_aoe(turf/open/target)
-	target.MakeSlippery(TURF_WET_PERMAFROST, 30 SECONDS, 30 SECONDS)
+	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)
 
 /datum/action/cooldown/spell/aoe/void_pull
 	name = "Void Pull"
@@ -1159,7 +1160,7 @@
 
 	invocation = "BR'NG F'RTH TH'M T' M'."
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	aoe_radius = 7
 	/// The radius of the actual damage circle done before cast
