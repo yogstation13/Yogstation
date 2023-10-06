@@ -21,11 +21,11 @@
 	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE)
 	mutant_bodyparts = list("ethereal_mark")
-	default_features = list("ethereal_mark" = "Eyes")
+	default_features = list("ethereal_mark" = "Eyes", "mcolor" = "#ffffff")
 	species_language_holder = /datum/language_holder/ethereal
 	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
 	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
@@ -64,7 +64,7 @@
 		return
 
 	var/mob/living/carbon/human/ethereal = C
-	default_color = ethereal.dna.features["ethcolor"]
+	default_color = ethereal.dna.features["mcolor"]
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
@@ -88,8 +88,8 @@
 	. = ..()
 	if(!ethereal_light)
 		return
-	if(default_color != ethereal.dna.features["ethcolor"])
-		var/new_color = ethereal.dna.features["ethcolor"]
+	if(default_color != ethereal.dna.features["mcolor"])
+		var/new_color = ethereal.dna.features["mcolor"]
 		r1 = GETREDPART(new_color)
 		g1 = GETGREENPART(new_color)
 		b1 = GETBLUEPART(new_color)
