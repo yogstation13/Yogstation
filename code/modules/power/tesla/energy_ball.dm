@@ -237,6 +237,7 @@
 	var/static/blacklisted_tesla_types = typecacheof(list(
 										/obj/machinery/power/emitter,
 										/obj/machinery/field/generator,
+										/mob/living/simple_animal/hostile,
 										/obj/machinery/particle_accelerator/control_box,
 										/obj/structure/particle_accelerator/fuel_chamber,
 										/obj/structure/particle_accelerator/particle_emitter/center,
@@ -286,7 +287,7 @@
 
 		else if(isliving(A))
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && !(L.flags_1 & TESLA_IGNORE_1))
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist
