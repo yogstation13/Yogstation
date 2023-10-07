@@ -188,7 +188,7 @@
 			valid_targets += LH.target
 
 			
-			if(valid_targets.assigned_role in GLOB.command_positions)
+			if(LH.target.mind.assigned_role in GLOB.command_positions)
 				EC.total_sacrifices++
 				EC.charge += 2
 			
