@@ -51,7 +51,7 @@
 		return ..()
 
 /obj/item/modular_computer/laptop/verb/open_computer()
-	set name = "Toggle Open"
+	set name = "Toggle Laptop"
 	set category = "Object"
 	set src in view(1)
 
@@ -94,7 +94,7 @@
 	else
 		return ..()
 
-/obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
+/obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user)
 	if(screen_on)
 		to_chat(user, span_notice("You close \the [src]."))
 		slowdown = initial(slowdown)
@@ -113,6 +113,7 @@
 
 	screen_on = !screen_on
 	update_appearance(UPDATE_ICON)
+	user.update_inv_hands()
 
 
 
