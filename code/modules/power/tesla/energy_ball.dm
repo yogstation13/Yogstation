@@ -23,7 +23,7 @@
 	var/zap_range = 7
 	var/hypercharged = FALSE //if true, will not lose energy and tesla zap will dust you
 
-/obj/singularity/energy_ball/Initialize(mapload, energy, is_miniball = FALSE)
+/obj/singularity/energy_ball/Initialize(mapload, starting_energy = energy, is_miniball = FALSE)
 	miniball = is_miniball
 	. = ..()
 	if(!is_miniball)
@@ -342,7 +342,6 @@
 					W.throw_at(get_edge_target_turf(closest_mob,pick(GLOB.alldirs)),rand(1,3),5)
 			ADD_TRAIT(closest_mob, TRAIT_DISFIGURED, TRAIT_GENERIC)
 			closest_mob.gib_animation()
-			sleep(0.3 SECONDS)
 			closest_mob.adjustFireLoss(1000)
 			closest_mob.spawn_gibs()
 			closest_mob.spill_organs()
