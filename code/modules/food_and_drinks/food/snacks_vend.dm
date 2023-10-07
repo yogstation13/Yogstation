@@ -205,6 +205,7 @@
 	name = "vermin bites"
 	desc = "A small can with a cartoon mouse on the label. A noise that sounds suspiciously like squeaking can be heard coming from inside."
 	icon_state = "verminbites"
+	trash = /obj/item/trash/vermin
 	/// What animal does the snack contain?
 	var/mob/living/simple_animal/mouse/fat/contained_animal
 
