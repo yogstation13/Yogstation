@@ -192,7 +192,7 @@
 				EC.total_sacrifices++
 				EC.charge += 3
 
-			if(LH.target.mind.assigned_role in GLOB.security_positions)
+			else if(LH.target.mind.assigned_role in GLOB.security_positions)
 				EC.total_sacrifices++
 				EC.charge += 3
 			
