@@ -4082,17 +4082,6 @@
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
 /area/space)
-"bIT" = (
-/obj/machinery/door/airlock/command{
-	name = "Captain's Quarters";
-	req_access_txt = "20"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "bIW" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 4
@@ -6686,6 +6675,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"cKq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "MiniSat Access";
+	req_one_access_txt = "32;19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "cLh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -38580,22 +38585,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"qOx" = (
-/obj/machinery/door/airlock/command{
-	name = "Captain's Quarters";
-	req_access_txt = "20"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "qOM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -41602,6 +41591,17 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"sjh" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/hatch{
+	name = "MiniSat Access";
+	req_one_access_txt = "32;19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "sjn" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 4
@@ -103813,7 +103813,7 @@ fSc
 mfu
 wYy
 dcX
-qOx
+cKq
 tGQ
 sfV
 ttj
@@ -104070,7 +104070,7 @@ fSc
 mqJ
 uuD
 eRv
-bIT
+sjh
 hBS
 eRv
 cFn
