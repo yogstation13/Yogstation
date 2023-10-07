@@ -175,23 +175,30 @@
 /datum/eldritch_transmutation/basic/on_finished_recipe(mob/living/user, list/atoms, loc)
 	. = TRUE
 	var/mob/living/carbon/carbon_user = user
-	var/list/datum/mind/valid_targets = list()
 	for(var/obj/item/living_heart/LH in atoms)
 
-		if(LH.target && (LH.target.stat == DEAD || LH.target.stat == SOFT_CRIT))
+		if(LH.target && (LH.target.stat == DEAD || LH.target.stat == SOFT_CRIT || LH.target.stat == UNCONSCIOUS))
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
 			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
-			valid_targets += LH.target
+			if(LH.target.mind.has_antag_datum(/datum/antagonist/heretic))
+				EC.total_sacrifices++
+				EC.charge += 4
 
-			
 			if(LH.target.mind.assigned_role in GLOB.command_positions)
 				EC.total_sacrifices++
-				EC.charge += 2
+				EC.charge += 3
+
+			if(LH.target.mind.assigned_role in GLOB.security_positions)
+				EC.total_sacrifices++
+				EC.charge += 3
 			
+			else
+				EC.total_sacrifices++
+				EC.charge += 2
 
 		if(QDELETED(LH.target))
 			var/datum/objective/A = new
