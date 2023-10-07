@@ -100,7 +100,7 @@
 		return
 	var/obj/singularity/created_singularity = new(supermatter_turf)
 	created_singularity.energy = 2400
-	created_singularity.consume(src)
+	created_singularity.consumedSupermatter = 1
 	message_admins("The Supermatter Crystal has created a singularity [ADMIN_JMP(created_singularity)].")
 
 /datum/supermatter_delamination/proc/call_explosion()
@@ -126,5 +126,5 @@
 /datum/supermatter_delamination/proc/call_cascadetesla()
 	if(supermatter_turf)
 		var/obj/singularity/energy_ball/supermatter/E = new(supermatter_turf)
-		E.energy = supermatter_power*100 // god
+		E.energy += supermatter_power*100 // god
 		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(E)].")

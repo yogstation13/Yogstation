@@ -32,6 +32,7 @@
 /obj/singularity/energy_ball/supermatter
 	name = "supermatter energy ball"
 	color = "#ffe800"
+	energy = 10000
 	hypercharged = TRUE //doom
 	max_balls = 20
 	zap_range = 20
@@ -68,7 +69,7 @@
 		pixel_y = 0
 
 		if(hypercharged)
-			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, dust = TRUE)
+			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
 		else
 			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
@@ -82,12 +83,11 @@
 
 		for (var/obj/singularity/energy_ball/ball in orbiting_balls)
 			ball.color = color
-			if(prob(80))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
-				continue
-			if(hypercharged)
-				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER, dust = TRUE)
-			else
+			if(prob(20) && !hypercharged)  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
 				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
+			else
+				tesla_zap(ball, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
+
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
 
@@ -140,7 +140,7 @@
 
 	else if(orbiting_balls.len)
 		if(hypercharged)
-			dissipate_strength = 0
+			dissipate = 0
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
@@ -151,8 +151,13 @@
 	if(orbiting_balls.len >= max_balls)
 		return
 
-	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
+	var/obj/singularity/energy_ball/EB
+	if(hypercharged)
+		EB = new /obj/singularity/energy_ball/supermatter(loc, 0, TRUE)
+	else
+		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
 
+	EB.color = color
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
 
@@ -215,7 +220,7 @@
 	var/mob/living/carbon/C = A
 	C.dust()
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets, dust = FALSE)
+/proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets, zap_gib = FALSE)
 	. = source.dir
 	if(power < 1000)
 		return
@@ -329,17 +334,31 @@
 	else if(closest_mob)
 		var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE)? (min(round(power/600), 90) + rand(-5, 5)) : 0
 		closest_mob.electrocute_act(shock_damage, source, 1, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN))
-		if(dust)
-			closest_mob.dust(TRUE)
+		if(zap_gib)
+			//no gib() because if body is gibbed it cannot transfer tesla to other mobs
+			for(var/obj/item/W in closest_mob)
+			closest_mob.dropItemToGround(W)
+			if(prob(50))
+				W.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+			ADD_TRAIT(closest_mob, TRAIT_DISFIGURED, TRAIT_GENERIC)
+			for(var/i in closest_mob.bodyparts)
+				var/obj/item/bodypart/BP = i
+				BP.generic_bleedstacks += 5
+			closest_mob.gib_animation()
+			sleep(0.3 SECONDS)
+			closest_mob.adjustBruteLoss(1000)
+			closest_mob.spawn_gibs()
+			closest_mob.spill_organs()
+			closest_mob.spread_bodyparts()
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))
 				S.emp_act(EMP_LIGHT)
-			if(dust)
+			if(zap_gib)
 				tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets, TRUE)
 			else
 				tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets) // metallic folks bounce it further
-		else if(dust)
+		else if(zap_gib)
 			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, TRUE)
 		else
 			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets)
