@@ -343,7 +343,7 @@
 			ADD_TRAIT(closest_mob, TRAIT_DISFIGURED, TRAIT_GENERIC)
 			closest_mob.gib_animation()
 			sleep(0.3 SECONDS)
-			closest_mob.adjustFireLoss(shock_damage)
+			closest_mob.adjustFireLoss(1000)
 			closest_mob.spawn_gibs()
 			closest_mob.spill_organs()
 			var/obj/item/organ/brain/B = closest_mob.getorganslot(ORGAN_SLOT_BRAIN)
