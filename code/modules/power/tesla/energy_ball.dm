@@ -337,9 +337,9 @@
 		if(zap_gib)
 			//no gib() because if body is gibbed it cannot transfer tesla to other mobs
 			for(var/obj/item/W in closest_mob)
-			closest_mob.dropItemToGround(W)
-			if(prob(50))
-				W.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+				closest_mob.dropItemToGround(W)
+				if(prob(50))
+					W.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 			ADD_TRAIT(closest_mob, TRAIT_DISFIGURED, TRAIT_GENERIC)
 			for(var/i in closest_mob.bodyparts)
 				var/obj/item/bodypart/BP = i
