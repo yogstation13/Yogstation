@@ -234,10 +234,11 @@
 	var/obj/structure/closest_structure
 	var/obj/structure/blob/closest_blob
 	var/static/things_to_shock = typecacheof(list(/obj/machinery, /mob/living, /obj/structure))
-	var/static/blacklisted_tesla_types = typecacheof(list(
+	var/static/blacklisted_tesla_types = typecacheof(list(/obj/machinery/atmospherics/pipe,
 										/obj/machinery/power/emitter,
 										/obj/machinery/field/generator,
 										/mob/living/simple_animal/hostile,
+										/mob/living/simple_animal/slime,
 										/obj/machinery/particle_accelerator/control_box,
 										/obj/structure/particle_accelerator/fuel_chamber,
 										/obj/structure/particle_accelerator/particle_emitter/center,
