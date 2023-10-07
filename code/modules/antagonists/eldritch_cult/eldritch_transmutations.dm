@@ -188,7 +188,7 @@
 				EC.total_sacrifices++
 				EC.charge += 4
 
-			if(LH.target.mind.assigned_role in GLOB.command_positions)
+			else if(LH.target.mind.assigned_role in GLOB.command_positions)
 				EC.total_sacrifices++
 				EC.charge += 3
 
