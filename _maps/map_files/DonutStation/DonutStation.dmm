@@ -6675,22 +6675,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"cKq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "MiniSat Access";
-	req_one_access_txt = "32;19"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "cLh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -23294,6 +23278,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"kfs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "MiniSat Access";
+	req_one_access_txt = "32;19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "kfu" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -33781,6 +33781,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
+"oKU" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/hatch{
+	name = "MiniSat Access";
+	req_one_access_txt = "32;19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "oLn" = (
 /obj/machinery/vending/games,
 /turf/open/floor/wood,
@@ -41591,17 +41602,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"sjh" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/hatch{
-	name = "MiniSat Access";
-	req_one_access_txt = "32;19"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "sjn" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 4
@@ -44453,12 +44453,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"tsz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "ttj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -50802,6 +50796,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
+"weL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "weM" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal,
@@ -103572,7 +103576,7 @@ ujq
 mTw
 wDi
 oiV
-tsz
+weL
 jEc
 cOi
 cjM
@@ -103813,7 +103817,7 @@ fSc
 mfu
 wYy
 dcX
-cKq
+kfs
 tGQ
 sfV
 ttj
@@ -104070,7 +104074,7 @@ fSc
 mqJ
 uuD
 eRv
-sjh
+oKU
 hBS
 eRv
 cFn
