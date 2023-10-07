@@ -234,10 +234,9 @@
 	var/obj/structure/closest_structure
 	var/obj/structure/blob/closest_blob
 	var/static/things_to_shock = typecacheof(list(/obj/machinery, /mob/living, /obj/structure))
-	var/static/blacklisted_tesla_types = typecacheof(list(/obj/machinery/atmospherics,
+	var/static/blacklisted_tesla_types = typecacheof(list(
 										/obj/machinery/power/emitter,
 										/obj/machinery/field/generator,
-										/mob/living/simple_animal,
 										/obj/machinery/particle_accelerator/control_box,
 										/obj/structure/particle_accelerator/fuel_chamber,
 										/obj/structure/particle_accelerator/particle_emitter/center,
@@ -253,7 +252,6 @@
 										/obj/structure/sign,
 										/obj/machinery/gateway,
 										/obj/structure/lattice,
-										/obj/structure/grille,
 										/obj/machinery/the_singularitygen/tesla,
 										/obj/structure/frame/machine))
 
@@ -288,7 +286,7 @@
 
 		else if(isliving(A))
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.flags_1 & TESLA_IGNORE_1))
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && !(L.flags_1 & TESLA_IGNORE_1))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist
@@ -366,9 +364,17 @@
 
 	else if(closest_machine)
 		closest_machine.tesla_act(power, tesla_flags, shocked_targets)
+		if(zap_gib)
+			tesla_zap(closest_machine, 5, power / 1.1, tesla_flags, shocked_targets, TRUE)
+		else
+			tesla_zap(closest_machine, 5, power / 1.1, tesla_flags, shocked_targets)
 
 	else if(closest_blob)
 		closest_blob.tesla_act(power, tesla_flags, shocked_targets)
 
 	else if(closest_structure)
 		closest_structure.tesla_act(power, tesla_flags, shocked_targets)
+		if(zap_gib)
+			tesla_zap(closest_structure, 5, power / 2, tesla_flags, shocked_targets, TRUE)
+		else
+			tesla_zap(closest_structure, 5, power / 2, tesla_flags, shocked_targets)
