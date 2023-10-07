@@ -288,7 +288,7 @@
 
 		else if(isliving(A))
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.status_flags & GODMODE) && !(L.flags_1 & TESLA_IGNORE_1))
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.status_flags & GODMODE) && !(L.mob_biotypes & MOB_SPIRIT) && !(L.flags_1 & TESLA_IGNORE_1))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist
