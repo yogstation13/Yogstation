@@ -185,20 +185,18 @@
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
 			if(LH.target.mind.has_antag_datum(/datum/antagonist/heretic))
-				EC.total_sacrifices++
 				EC.charge += 4
 
 			else if(LH.target.mind.assigned_role in GLOB.command_positions)
-				EC.total_sacrifices++
+
 				EC.charge += 3
 
 			else if(LH.target.mind.assigned_role in GLOB.security_positions)
-				EC.total_sacrifices++
 				EC.charge += 3
 			
 			else
-				EC.total_sacrifices++
 				EC.charge += 2
+			EC.total_sacrifices++
 
 		if(QDELETED(LH.target))
 			var/datum/objective/A = new
