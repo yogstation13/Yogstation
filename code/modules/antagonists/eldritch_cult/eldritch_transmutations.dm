@@ -177,7 +177,7 @@
 	var/mob/living/carbon/carbon_user = user
 	for(var/obj/item/living_heart/LH in atoms)
 
-		if(LH.target && LH.target.stat != CONSCIOUS)
+		if(LH.target && LH.target.stat != CONSCIOUS) ///wow this works
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
 			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
