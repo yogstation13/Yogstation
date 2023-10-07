@@ -10,7 +10,7 @@
 	grav_pull = 0
 	contained = 0
 	density = TRUE
-	energy = 0
+	energy = 50
 	dissipate = 1
 	dissipate_delay = 5
 	dissipate_strength = 1
@@ -23,7 +23,7 @@
 	var/zap_range = 7
 	var/hypercharged = FALSE //if true, will not lose energy and tesla zap will dust you
 
-/obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
+/obj/singularity/energy_ball/Initialize(mapload, energy, is_miniball = FALSE)
 	miniball = is_miniball
 	. = ..()
 	if(!is_miniball)
