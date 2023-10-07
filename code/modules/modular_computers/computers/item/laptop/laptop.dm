@@ -7,6 +7,9 @@
 	icon_state_powered = "laptop"
 	icon_state_unpowered = "laptop-off"
 	icon_state_menu = "menu"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	item_state = "laptop-closed"
 
 	hardware_flag = PROGRAM_LAPTOP
 	max_hardware_size = WEIGHT_CLASS_NORMAL
@@ -39,6 +42,7 @@
 		return
 	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
 	icon_state = icon_state_closed
+	item_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
 	if(!screen_on)
@@ -96,10 +100,12 @@
 		slowdown = initial(slowdown)
 		w_class = initial(w_class)
 		icon_state = icon_state_closed
+		item_state = icon_state_closed
 	else
 		to_chat(user, span_notice("You open \the [src]."))
 		slowdown = slowdown_open
 		w_class = w_class_open
+		item_state = icon_state_powered //there's no way to see the screen from the inhand sprite, so just uses the "powered" name
 		if(enabled)
 			icon_state = icon_state_powered
 		else
