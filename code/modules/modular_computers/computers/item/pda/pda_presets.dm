@@ -1,9 +1,11 @@
 /obj/item/modular_computer/tablet/pda/preset
-	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
-								/obj/item/stock_parts/cell/computer/micro,
-								/obj/item/computer_hardware/hard_drive/small/pda,
-								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot)
+	starting_components = list(
+		/obj/item/computer_hardware/processor_unit/pda,
+		/obj/item/stock_parts/cell/computer/micro,
+		/obj/item/computer_hardware/hard_drive/small/pda,
+		/obj/item/computer_hardware/network_card,
+		/obj/item/computer_hardware/card_slot,
+	)
 
 // This is literally the worst possible cheap tablet
 /obj/item/modular_computer/tablet/pda/preset/basic
@@ -23,29 +25,31 @@
 
 /obj/item/modular_computer/tablet/pda/preset/medical/Initialize(mapload)
 	starting_files |= list(
-		new /datum/computer_file/program/crew_monitor
+		new /datum/computer_file/program/crew_monitor,
 	)	
 	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/medical/chem
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#355FAC#EA6400"
-	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
-								/obj/item/stock_parts/cell/computer/micro,
-								/obj/item/computer_hardware/hard_drive/small/pda,
-								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
-								/obj/item/computer_hardware/sensorpackage
-								)
+	starting_components = list( 
+		/obj/item/computer_hardware/processor_unit/pda,
+		/obj/item/stock_parts/cell/computer/micro,
+		/obj/item/computer_hardware/hard_drive/small/pda,
+		/obj/item/computer_hardware/network_card,
+		/obj/item/computer_hardware/card_slot,
+		/obj/item/computer_hardware/sensorpackage,
+	)
+
 /obj/item/modular_computer/tablet/pda/preset/medical/chem/Initialize(mapload)
 	starting_files |= list(
-		new /datum/computer_file/program/chemscan
+		new /datum/computer_file/program/chemscan,
 	)	
 	return ..()
 
 /obj/item/modular_computer/tablet/pda/preset/medical/paramed/Initialize(mapload)
 	starting_files |= list(
-		new /datum/computer_file/program/radar/lifeline
+		new /datum/computer_file/program/radar/lifeline,
 	)	
 	return ..()
 
@@ -70,7 +74,7 @@
 	starting_files |= list(
 		new /datum/computer_file/program/bounty_board,
 		new /datum/computer_file/program/budgetorders,
-		new /datum/computer_file/program/cargobounty
+		new /datum/computer_file/program/cargobounty,
 	)	
 	return ..()
 
@@ -98,12 +102,14 @@
 /obj/item/modular_computer/tablet/pda/preset/atmos
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#EEDC43#727272#00E5DA"
-	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
-								/obj/item/stock_parts/cell/computer/micro,
-								/obj/item/computer_hardware/hard_drive/small/pda,
-								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/card_slot,
-								/obj/item/computer_hardware/sensorpackage)
+	starting_components = list( 
+		/obj/item/computer_hardware/processor_unit/pda,
+		/obj/item/stock_parts/cell/computer/micro,
+		/obj/item/computer_hardware/hard_drive/small/pda,
+		/obj/item/computer_hardware/network_card,
+		/obj/item/computer_hardware/card_slot,
+		/obj/item/computer_hardware/sensorpackage,
+	)
 
 /obj/item/modular_computer/tablet/pda/preset/atmos/Initialize(mapload)
 	starting_files |= list(
@@ -200,6 +206,6 @@
 	. = ..()
 	obj_flags |= EMAGGED //starts emagged
 	starting_files |= list(
-		new /datum/computer_file/program/bomberman
+		new /datum/computer_file/program/bomberman,
 	)	
 	
