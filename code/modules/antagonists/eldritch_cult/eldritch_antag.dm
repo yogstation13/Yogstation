@@ -40,8 +40,7 @@
 		/datum/eldritch_knowledge/void_cloak,
 		/datum/eldritch_knowledge/ashen_eyes,
 		/datum/eldritch_knowledge/essence,
-		/datum/eldritch_knowledge/eldritch_eye,
-		/datum/eldritch_knowledge/blindness),
+		/datum/eldritch_knowledge/eldritch_eye),
 	TIER_MARK = list(
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
@@ -54,8 +53,6 @@
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
 		/datum/eldritch_knowledge/cold_snap,
-		/datum/eldritch_knowledge/corrosion,
-		/datum/eldritch_knowledge/paralysis,
 		/datum/eldritch_knowledge/spell/blood_siphon,
 		/datum/eldritch_knowledge/spell/eldritchbolt,
 		/datum/eldritch_knowledge/spell/void_blast),

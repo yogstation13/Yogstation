@@ -34,6 +34,7 @@
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
 #define RADIOACTIVE	/datum/mutation/human/radioactive
+#define RAVENOUS	/datum/mutation/human/ravenous
 #define RADPROOF	/datum/mutation/human/radproof
 #define SAPBLOOD	/datum/mutation/human/sapblood
 #define GLOWY		/datum/mutation/human/glow
@@ -57,9 +58,11 @@
 #define EXTRASTUN	/datum/mutation/human/extrastun
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
+#define ACIDSPIT	/datum/mutation/human/acidspit
 #define CEREBRAL	/datum/mutation/human/cerebral
 #define THICKSKIN	/datum/mutation/human/thickskin
 #define DENSEBONES	/datum/mutation/human/densebones
+#define RADIANTBURST	/datum/mutation/human/radiantburst
 
 
 #define UI_CHANGED "ui changed"
