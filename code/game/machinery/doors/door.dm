@@ -3,7 +3,7 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = OPEN_DOOR_LAYER
@@ -103,7 +103,7 @@
 	else
 		layer = initial(layer)
 
-/obj/machinery/door/Destroy()
+/obj/machinery/door/Destroy(force=FALSE)
 	update_freelook_sight()
 	GLOB.airlocks -= src
 	if(spark_system)

@@ -19,7 +19,7 @@
 	stepsound = null
 	turnsound = null
 	meleesound = FALSE
-	opacity = 0
+	opacity = FALSE
 
 /obj/mecha/combat/reticence/Initialize(mapload)
 	. = ..()

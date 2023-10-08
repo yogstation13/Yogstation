@@ -18,7 +18,7 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
+	opacity = TRUE ///opaque. Menacing.
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG //no pulling around.
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	layer = BELOW_MOB_LAYER//icon draw layer
