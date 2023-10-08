@@ -206,6 +206,16 @@
 	desc = "Gives you space adaptation."
 	add_mutations = list(SPACEMUT)
 
+/obj/item/dnainjector/antiradiant
+	name = "\improper DNA injector (Anti-Radiant Burst)"
+	desc = "Cures radiant burst."
+	remove_mutations = list(RADIANTBURST)
+
+/obj/item/dnainjector/radiantburst
+	name = "\improper DNA injector (Radiant Burst)"
+	desc = "Gives you radiant burst."
+	add_mutations = list(RADIANTBURST)
+
 /obj/item/dnainjector/antiheat
 	name = "\improper DNA injector (Anti-Heat Adaptation)"
 	desc = "Cures heat adaptation."
