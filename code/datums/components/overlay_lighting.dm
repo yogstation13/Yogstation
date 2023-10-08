@@ -27,7 +27,7 @@
 	///Ceiling of range, integer without decimal entries.
 	var/lumcount_range = 0
 	///How much this light affects the dynamic_lumcount of turfs.
-	VAR_FINAL/real_lum_power = 0.5
+	var/real_lum_power = 0.5
 	///The lum power being used
 	var/used_lum_power = 0.5
 	///Transparency value.
@@ -51,7 +51,7 @@
 		)
 
 	///Overlay effect to cut into the darkness and provide light.
-	var/obj/effect/overlay/light_visible/visible_mask
+	var/image/visible_mask
 	///Lazy list to track the turfs being affected by our light, to determine their visibility.
 	var/list/turf/affected_turfs
 	///Movable atom currently holding the light. Parent might be a flashlight, for example, but that might be held by a mob or something else.
@@ -74,7 +74,10 @@
 		return COMPONENT_INCOMPATIBLE
 
 	. = ..()
-	visible_mask = new()
+	visible_mask = image('icons/effects/light_overlays/light_32.dmi', icon_state = "light")
+	visible_mask.plane = O_LIGHTING_VISUAL_PLANE
+	visible_mask.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	visible_mask.alpha = 0
 	if(!isnull(range))
 		movable_parent.set_light_range(range)
 	set_range(parent, movable_parent.light_range)
@@ -130,14 +133,14 @@
 	set_parent_attached_to(null)
 	set_holder(null)
 	clean_old_turfs()
-	QDEL_NULL(visible_mask)
+	visible_mask = null
 	return ..()
 
 
 ///Clears the affected_turfs lazylist, removing from its contents the effects of being near the light.
 /datum/component/overlay_lighting/proc/clean_old_turfs()
 	for(var/turf/lit_turf as anything in affected_turfs)
-		lit_turf.dynamic_lumcount -= used_lum_power
+		lit_turf.dynamic_lumcount -= real_lum_power
 	affected_turfs = null
 
 
@@ -147,7 +150,7 @@
 		return
 	. = list()
 	for(var/turf/lit_turf in view(lumcount_range, get_turf(current_holder)))
-		lit_turf.dynamic_lumcount += used_lum_power
+		lit_turf.dynamic_lumcount += real_lum_power
 		. += lit_turf
 	if(length(.))
 		affected_turfs = .
@@ -163,16 +166,16 @@
 
 ///Adds the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/add_dynamic_lumi(atom/movable/affected_movable)
-	LAZYSET(affected_movable.affected_dynamic_lights, src, lumcount_range + 1)
-	affected_movable.vis_contents += visible_mask
-	affected_movable.update_dynamic_luminosity()
+	LAZYSET(current_holder.affected_dynamic_lights, src, lumcount_range + 1)
+	current_holder.underlays += visible_mask
+	current_holder.update_dynamic_luminosity()
 
 
 ///Removes the luminosity and source for the afected movable atoms to keep track of their visibility.
-/datum/component/overlay_lighting/proc/remove_dynamic_lumi(atom/movable/affected_movable)
-	LAZYREMOVE(affected_movable.affected_dynamic_lights, src)
-	affected_movable.vis_contents -= visible_mask
-	affected_movable.update_dynamic_luminosity()
+/datum/component/overlay_lighting/proc/remove_dynamic_lumi()
+	LAZYREMOVE(current_holder.affected_dynamic_lights, src)
+	current_holder.underlays -= visible_mask
+	current_holder.update_dynamic_luminosity()
 
 
 ///Called to change the value of parent_attached_to.
@@ -203,13 +206,13 @@
 		if(current_holder != parent && current_holder != parent_attached_to)
 			UnregisterSignal(current_holder, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
 		if(overlay_lighting_flags & LIGHTING_ON)
-			remove_dynamic_lumi(current_holder)
+			remove_dynamic_lumi()
 	current_holder = new_holder
 	if(new_holder == null)
 		clean_old_turfs()
 		return
 	if(overlay_lighting_flags & LIGHTING_ON)
-		add_dynamic_lumi(new_holder)
+		add_dynamic_lumi()
 	if(new_holder != parent && new_holder != parent_attached_to)
 		RegisterSignal(new_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_holder_qdel))
 		RegisterSignal(new_holder, COMSIG_MOVABLE_MOVED, PROC_REF(on_holder_moved))
@@ -282,6 +285,8 @@
 	range = clamp(CEILING(new_range, 0.5), 1, 6)
 	var/pixel_bounds = ((range - 1) * 64) + 32
 	lumcount_range = CEILING(range, 1)
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
 	visible_mask.icon = light_overlays["[pixel_bounds]"]
 	if(pixel_bounds == 32)
 		visible_mask.transform = null
@@ -290,6 +295,8 @@
 	var/matrix/transform = new
 	transform.Translate(-offset, -offset)
 	visible_mask.transform = transform
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
 	if(overlay_lighting_flags & LIGHTING_ON)
 		make_luminosity_update()
 
@@ -298,17 +305,23 @@
 /datum/component/overlay_lighting/proc/set_power(atom/source, old_power)
 	SIGNAL_HANDLER
 	var/new_power = source.light_power
-	to_chat(world, "OLD [old_power] NEW [new_power]")
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
 	visible_mask.alpha = set_alpha
-
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
 
 ///Changes the light's color, pretty straightforward.
 /datum/component/overlay_lighting/proc/set_color(atom/source, old_color)
 	SIGNAL_HANDLER
 	var/new_color = source.light_color
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
 	visible_mask.color = new_color
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
 
 
 ///Toggles the light on and off.
@@ -353,7 +366,7 @@
 		return
 	overlay_lighting_flags |= LIGHTING_ON
 	if(current_holder)
-		add_dynamic_lumi(current_holder)
+		add_dynamic_lumi()
 	get_new_turfs()
 
 
@@ -362,7 +375,7 @@
 	if(!(overlay_lighting_flags & LIGHTING_ON))
 		return
 	if(current_holder)
-		remove_dynamic_lumi(current_holder)
+		remove_dynamic_lumi()
 	overlay_lighting_flags &= ~LIGHTING_ON
 	clean_old_turfs()
 
@@ -389,10 +402,8 @@
 	//Calculate the difference
 	var/difference = old_lum_power - used_lum_power
 	//Apply it to any turf we are affecting
-	for(var/t in affected_turfs)
-		var/turf/lit_turf = t
+	for(var/turf/lit_turf as anything in affected_turfs)
 		lit_turf.dynamic_lumcount -= difference
-
 
 #undef LIGHTING_ON
 #undef LIGHTING_ATTACHED
