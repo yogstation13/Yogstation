@@ -105,6 +105,16 @@
 	desc = "Restores the dragon ancestry."
 	add_mutations = list(FIREBREATH)
 
+/obj/item/dnainjector/acidspit
+	name = "\improper DNA injector (Acid Spit)"
+	desc = "Lets you spit acid."
+	add_mutations = list(ACIDSPIT)
+
+/obj/item/dnainjector/antispit
+	name ="\improper DNA injector (Anti-Acid Spit)"
+	desc = "Cures your corrosive saliva"
+	remove_mutations = list(ACIDSPIT)
+
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
 	desc = "Finally you can see what the Captain does."
