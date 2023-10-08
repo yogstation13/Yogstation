@@ -9,8 +9,12 @@
 ///Light made by masking the lighting darkness plane, and is a directionally focused beam.
 #define MOVABLE_LIGHT_BEAM 4
 
+#define NONSENSICAL_VALUE -99999
+
 ///Is a movable light source attached to another movable (its loc), meaning that the lighting component should go one level deeper.
 #define LIGHT_ATTACHED (1<<0)
+/// Freezes a light in its current state, blocking any attempts at modification
+#define LIGHT_FROZEN (1<<1)
 
 //Bay lighting engine shit, not in /code/modules/lighting because BYOND is being shit about it
 /// frequency, in 1/10ths of a second, of the lighting process
