@@ -34,6 +34,7 @@
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
 #define RADIOACTIVE	/datum/mutation/human/radioactive
+#define RAVENOUS	/datum/mutation/human/ravenous
 #define RADPROOF	/datum/mutation/human/radproof
 #define GLOWY		/datum/mutation/human/glow
 #define ANTIGLOWY	/datum/mutation/human/glow/anti

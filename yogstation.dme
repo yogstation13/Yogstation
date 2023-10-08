@@ -720,6 +720,7 @@
 #include "code\datums\mutations\radiantburst.dm"
 #include "code\datums\mutations\radioactive.dm"
 #include "code\datums\mutations\radproof.dm"
+#include "code\datums\mutations\ravenous.dm"
 #include "code\datums\mutations\sight.dm"
 #include "code\datums\mutations\space_adaptation.dm"
 #include "code\datums\mutations\speech.dm"
