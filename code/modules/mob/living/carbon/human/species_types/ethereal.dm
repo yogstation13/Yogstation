@@ -37,7 +37,7 @@
 	swimming_component = /datum/component/swimming/ethereal
 
 	var/max_range = 5
-	var/max_power = 0.5
+	var/max_power = 2
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
@@ -70,6 +70,14 @@
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
+
+	var/list/hsl = rgb2hsl(r1, g1, b1)
+	hsl[2] *= 0.5
+	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
+	r1 = rgb[1]
+	g1 = rgb[2]
+	b1 = rgb[3]
+
 	ethereal_light = ethereal.mob_light()
 	spec_updatehealth(ethereal)
 
@@ -91,10 +99,17 @@
 	if(!ethereal_light)
 		return
 	if(default_color != ethereal.dna.features["mcolor"])
-		var/new_color = ethereal.dna.features["mcolor"]
+		default_color = ethereal.dna.features["mcolor"]
 		r1 = GETREDPART(new_color)
 		g1 = GETGREENPART(new_color)
 		b1 = GETBLUEPART(new_color)
+		var/list/hsl = rgb2hsl(r1, g1, b1)
+		hsl[2] *= 0.5
+		var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3])
+		r1 = rgb[1]
+		g1 = rgb[2]
+		b1 = rgb[3]
+
 	if(ethereal.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(ethereal.health, 0) / ethereal.maxHealth//scale with the lower of health and hunger
 		var/hungerpercent = min((ethereal.nutrition / NUTRITION_LEVEL_FED), 1)//scale only when below a certain hunger threshold
