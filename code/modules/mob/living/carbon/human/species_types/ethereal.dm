@@ -97,7 +97,7 @@
 		b1 = GETBLUEPART(new_color)
 	if(ethereal.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(ethereal.health, 0) / ethereal.maxHealth//scale with the lower of health and hunger
-		var/hungerpercent = min((ethereal.nutrition / NUTRITION_LEVEL_WELL_FED), 1)
+		var/hungerpercent = min((ethereal.nutrition / NUTRITION_LEVEL_FED), 1)//scale only when below a certain hunger threshold
 		var/light_range = max_range * min(healthpercent, hungerpercent)
 		var/light_power = max_power * min(healthpercent, hungerpercent)
 		if(!emageffect)
