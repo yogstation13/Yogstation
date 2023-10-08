@@ -1,5 +1,5 @@
 /datum/weather/royale
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from the edge!</i>")
+	telegraph_message = null //don't clutter chat at the start
 	weather_message = null
 	protected_areas = list(/area/shuttle/arrival)
 	area_type = /area
