@@ -66,17 +66,7 @@
 		return
 
 	var/mob/living/carbon/human/ethereal = C
-	default_color = ethereal.dna.features["mcolor"]
-	r1 = GETREDPART(default_color)
-	g1 = GETGREENPART(default_color)
-	b1 = GETBLUEPART(default_color)
-
-	var/list/hsl = rgb2hsl(r1, g1, b1)
-	hsl[2] *= 0.5
-	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
-	r1 = rgb[1]
-	g1 = rgb[2]
-	b1 = rgb[3]
+	setup_color(ethereal)
 
 	ethereal_light = ethereal.mob_light()
 	spec_updatehealth(ethereal)
@@ -94,21 +84,24 @@
 
 	return randname
 
+/datum/species/ethereal/proc/setup_color(mob/living/carbon/human/ethereal)
+	default_color = ethereal.dna.features["mcolor"]
+	r1 = GETREDPART(default_color)
+	g1 = GETGREENPART(default_color)
+	b1 = GETBLUEPART(default_color)
+	var/list/hsl = rgb2hsl(r1, g1, b1)
+	hsl[2] *= 0.6
+	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
+	r1 = rgb[1]
+	g1 = rgb[2]
+	b1 = rgb[3]
+
 /datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/ethereal)
 	. = ..()
 	if(!ethereal_light)
 		return
 	if(default_color != ethereal.dna.features["mcolor"])
-		default_color = ethereal.dna.features["mcolor"]
-		r1 = GETREDPART(new_color)
-		g1 = GETGREENPART(new_color)
-		b1 = GETBLUEPART(new_color)
-		var/list/hsl = rgb2hsl(r1, g1, b1)
-		hsl[2] *= 0.5
-		var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3])
-		r1 = rgb[1]
-		g1 = rgb[2]
-		b1 = rgb[3]
+		setup_color(ethereal)
 
 	if(ethereal.stat != DEAD && !EMPeffect)
 		var/healthpercent = max(ethereal.health, 0) / ethereal.maxHealth//scale with the lower of health and hunger
@@ -132,11 +125,7 @@
 	EMPeffect = TRUE
 	spec_updatehealth(H)
 	to_chat(H, span_notice("You feel the light of your body leave you."))
-	switch(severity)
-		if(EMP_LIGHT)
-			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 100, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 seconds
-		if(EMP_HEAVY)
-			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
+	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200 / severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 to 20 seconds depending on severity
 
 /datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
 	if(emageffect)
