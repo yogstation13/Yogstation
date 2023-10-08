@@ -157,11 +157,11 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
+	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.process_flags & ORGANIC)// Cant drink or process alcohol
 	qdel(species)
 
 	if(disallowed_trait)
-		return "You don't have the ability to drink!"
+		return "You don't have the ability to consume alcohol!"
 	return FALSE
 
 /datum/quirk/nearsighted //t. errorage
