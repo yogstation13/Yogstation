@@ -96,9 +96,10 @@
 		g1 = GETGREENPART(new_color)
 		b1 = GETBLUEPART(new_color)
 	if(ethereal.stat != DEAD && !EMPeffect)
-		var/healthpercent = min((max(ethereal.health, 0) / ethereal.maxHealth), min((ethereal.nutrition / NUTRITION_LEVEL_FULL), 1))//scale with the lower of health and hunger
-		var/light_range = max_range * healthpercent
-		var/light_power = max_range * healthpercent
+		var/healthpercent = max(ethereal.health, 0) / ethereal.maxHealth//scale with the lower of health and hunger
+		var/hungerpercent = min((ethereal.nutrition / NUTRITION_LEVEL_FULL), 1)
+		var/light_range = max_range * min(healthpercent, hungerpercent)//only power and range scale with hunger, not colour
+		var/light_power = max_range * min(healthpercent, hungerpercent)
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
 		ethereal.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
