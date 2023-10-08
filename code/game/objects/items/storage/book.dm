@@ -43,9 +43,6 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
-/obj/item/storage/book/bible/Initialize(mapload)
-	. = ..()
-
 /obj/item/storage/book/bible/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is offering [user.p_them()]self to [deity_name]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
