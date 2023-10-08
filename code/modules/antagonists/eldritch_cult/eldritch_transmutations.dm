@@ -192,17 +192,21 @@
 			var/datum/objective/A = new
 			A.owner = user.mind
 			var/list/targets = list()
+			var/list/icons = list()
 			for(var/i in 0 to 4)
 				var/list/BR = list()
-				var/datum/mind/targeted =  A.find_target(blacklist = BR)//easy way, i dont feel like copy pasting that entire block of code
+				var/datum/mind/targeted = A.find_target(blacklist = BR)//easy way, i dont feel like copy pasting that entire block of code
 				if(!targeted)
 					break
 				if(targeted.current?.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)) //stops people from being selected while afk in the shadow realm
 					BR |= targeted
 					i--
 					continue
-				targets[targeted.current.real_name] = targeted.current
-			LH.target = targets[input(user,"Choose your next target","Target") in targets]
+				targets[targeted] = targeted
+				icons[targeted] = targeted.current
+			var/entry_name = show_radial_menu(user, user, icons, tooltips = TRUE)
+			var/datum/mind/M = targets[entry_name]
+			LH.target = M.current
 			qdel(A)
 			if(LH.target)
 				to_chat(user,span_warning("Your new target has been selected, go and sacrifice [LH.target.real_name]!"))
