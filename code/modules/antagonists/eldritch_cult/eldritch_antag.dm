@@ -229,6 +229,7 @@
 		return
 	. += ecult_give_item(/obj/item/forbidden_book, H)
 	. += ecult_give_item(/obj/item/living_heart, H)
+	. += ecult_give_item(/obj/item/seeds/poppy, H)
 
 /datum/antagonist/heretic/proc/ecult_give_item(obj/item/item_path, mob/living/carbon/human/H)
 	var/list/slots = list(
