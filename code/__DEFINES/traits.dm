@@ -281,6 +281,8 @@
 #define TRAIT_BALD "bald"
 /// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
 #define TRAIT_FARADAYCAGE "faraday_cage"
+/// You can't see color!
+#define TRAIT_COLORBLIND "color_blind"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
