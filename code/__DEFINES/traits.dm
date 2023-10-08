@@ -165,7 +165,7 @@
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
 /// Prevents you from leaving your corpse
-#define TRAIT_CORPSELOCKED "corpselocked"
+#define TRAIT_CORPSELOCKED 		"corpselocked"
 #define TRAIT_STABLEHEART		"stable_heart"
 #define TRAIT_STABLELIVER		"stable_liver"
 #define TRAIT_RESISTHEAT		"resist_heat"

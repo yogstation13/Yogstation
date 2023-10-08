@@ -1,6 +1,5 @@
 #define CRYSTALIZE_COOLDOWN_LENGTH 5 MINUTES
-#define CRYSTALIZE_PRE_WAIT_TIME 3 MINUTES
-#define CRYSTALIZE_DISARM_WAIT_TIME 3 MINUTES
+#define CRYSTALIZE_PRE_WAIT_TIME 5 MINUTES
 #define CRYSTALIZE_HEAL_TIME 60 SECONDS
 
 #define BRUTE_DAMAGE_REQUIRED_TO_STOP_CRYSTALIZATION 30
@@ -68,8 +67,6 @@
 
 	to_chat(victim, span_nicegreen("Crystals start forming around your dead body."))
 	victim.visible_message(span_notice("Crystals start forming around [victim]."), ignored_mobs = victim)
-
-	ADD_TRAIT(victim, TRAIT_CORPSELOCKED, SPECIES_TRAIT)
 
 	crystalize_timer_id = addtimer(CALLBACK(src, PROC_REF(crystalize), victim), CRYSTALIZE_PRE_WAIT_TIME, TIMER_STOPPABLE)
 
@@ -154,6 +151,9 @@
 	if(!COOLDOWN_FINISHED(src, crystalize_cooldown) || ethereal.stat != DEAD)
 		return //Should probably not happen, but lets be safe.
 
+	ethereal.grab_ghost()//pull them in and LOCK THEM
+	ADD_TRAIT(ethereal, TRAIT_CORPSELOCKED, SPECIES_TRAIT)
+
 	if(ismob(location) || isitem(location) || iseffect(location) || HAS_TRAIT_FROM(src, TRAIT_HUSK, CHANGELING_DRAIN)) //Stops crystallization if they are eaten by a dragon, turned into a legion, consumed by his grace, etc.
 		to_chat(ethereal, span_warning("You were unable to finish your crystallization, for obvious reasons."))
 		stop_crystalization_process(ethereal, FALSE)
@@ -230,14 +230,11 @@
 		. += shine
 
 /obj/structure/ethereal_crystal/proc/heal_ethereal()
-	var/datum/brain_trauma/picked_trauma
-	switch(rand(1,100))
-		if(1) //1% chance for a special trauma (yogs)
-			picked_trauma = pick(subtypesof(/datum/brain_trauma/special))
-		if(2 to 10) //9% chance for a severe trauma
-			picked_trauma = pick(subtypesof(/datum/brain_trauma/severe))
-		if(11 to 100)
-			picked_trauma = pick(subtypesof(/datum/brain_trauma/mild))
+	var/datum/brain_trauma/picked_trauma = pick(subtypesof(/datum/brain_trauma/mild))
+	if(prob(1))
+		picked_trauma = pick(subtypesof(/datum/brain_trauma/special))
+	else if(prob(10))
+		picked_trauma = pick(subtypesof(/datum/brain_trauma/severe))
 
 	// revive will regenerate organs, so our heart refence is going to be null'd. Unreliable
 	var/mob/living/carbon/regenerating = ethereal_heart.owner
