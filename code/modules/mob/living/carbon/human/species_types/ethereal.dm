@@ -37,7 +37,7 @@
 	swimming_component = /datum/component/swimming/ethereal
 
 	var/max_range = 5
-	var/max_power = 1
+	var/max_power = 1.5
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
