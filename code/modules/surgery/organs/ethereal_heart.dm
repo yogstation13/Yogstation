@@ -55,21 +55,6 @@
 
 	QDEL_NULL(current_crystal) //Kicks out the ethereal
 
-///Ran when examined while crystalizing, gives info about the amount of time left
-/obj/item/organ/heart/ethereal/proc/on_examine(mob/living/carbon/human/examined_human, mob/user, list/examine_list)
-	SIGNAL_HANDLER
-
-	if(!crystalize_timer_id)
-		return
-
-	switch(timeleft(crystalize_timer_id))
-		if(0 to CRYSTALIZE_STAGE_ENGULFING)
-			examine_list += span_warning("Crystals are almost engulfing [examined_human]! ")
-		if(CRYSTALIZE_STAGE_ENGULFING to CRYSTALIZE_STAGE_ENCROACHING)
-			examine_list += span_notice("Crystals are starting to cover [examined_human]. ")
-		if(CRYSTALIZE_STAGE_SMALL to INFINITY)
-			examine_list += span_notice("Some crystals are coming out of [examined_human]. ")
-
 ///On stat changes, if the victim is no longer dead but they're crystalizing, cancel it, if they become dead, start the crystalizing process if possible
 /obj/item/organ/heart/ethereal/proc/on_stat_change(mob/living/victim, new_stat)
 	SIGNAL_HANDLER
@@ -97,6 +82,21 @@
 	RegisterSignal(victim, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_take_damage))
 
+///Ran when examined while crystalizing, gives info about the amount of time left
+/obj/item/organ/heart/ethereal/proc/on_examine(atom/A, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+
+	if(!crystalize_timer_id)
+		return
+
+	switch(timeleft(crystalize_timer_id))
+		if(0 to CRYSTALIZE_STAGE_ENGULFING)
+			examine_list += span_warning("Crystals are almost engulfing [owner]! ")
+		if(CRYSTALIZE_STAGE_ENGULFING to CRYSTALIZE_STAGE_ENCROACHING)
+			examine_list += span_notice("Crystals are starting to cover [owner]. ")
+		if(CRYSTALIZE_STAGE_SMALL to INFINITY)
+			examine_list += span_notice("Some crystals are coming out of [owner]. ")
+
 ///Ran when disarmed, prevents the ethereal from reviving
 /obj/item/organ/heart/ethereal/proc/reset_crystalizing(mob/living/defender, mob/living/attacker, zone)
 	SIGNAL_HANDLER
@@ -107,21 +107,25 @@
 	deltimer(crystalize_timer_id)
 	crystalize_timer_id = addtimer(CALLBACK(src, PROC_REF(crystalize), defender), CRYSTALIZE_DISARM_WAIT_TIME, TIMER_STOPPABLE) //Lets us restart the timer on disarm
 
-///Actually spawns the crystal which puts the ethereal in it.
-/obj/item/organ/heart/ethereal/proc/crystalize(mob/living/ethereal)
-
-	var/location = ethereal.loc
-
-	if(!COOLDOWN_FINISHED(src, crystalize_cooldown) || ethereal.stat != DEAD)
-		return //Should probably not happen, but lets be safe.
-
-	if(ismob(location) || isitem(location) || iseffect(location) || HAS_TRAIT_FROM(src, TRAIT_HUSK, CHANGELING_DRAIN)) //Stops crystallization if they are eaten by a dragon, turned into a legion, consumed by his grace, etc.
-		to_chat(ethereal, span_warning("You were unable to finish your crystallization, for obvious reasons."))
-		stop_crystalization_process(ethereal, FALSE)
+///Lets you stop the process with enough brute damage
+/obj/item/organ/heart/ethereal/proc/on_take_damage(datum/source, damage, damagetype, def_zone)
+	SIGNAL_HANDLER
+	if(damagetype != BRUTE)
 		return
-	COOLDOWN_START(src, crystalize_cooldown, INFINITY) //Prevent cheeky double-healing until we get out, this is against stupid admemery
-	current_crystal = new(get_turf(ethereal), src)
-	stop_crystalization_process(ethereal, TRUE)
+
+	crystalization_process_damage += damage
+
+	if(crystalization_process_damage < BRUTE_DAMAGE_REQUIRED_TO_STOP_CRYSTALIZATION)
+		return
+
+	var/mob/living/carbon/human/ethereal = source
+
+	ethereal.visible_message(
+		span_notice("The crystals on [ethereal] are completely shattered and stopped growing."),
+		span_warning("The crystals on your body have completely broken."),
+	)
+
+	stop_crystalization_process(ethereal)
 
 ///Stop the crystalization process, unregistering any signals and resetting any variables.
 /obj/item/organ/heart/ethereal/proc/stop_crystalization_process(mob/living/ethereal, succesful = FALSE)
@@ -145,25 +149,21 @@
 	stop_crystalization_process(owner)
 	return
 
-///Lets you stop the process with enough brute damage
-/obj/item/organ/heart/ethereal/proc/on_take_damage(datum/source, damage, damagetype, def_zone)
-	SIGNAL_HANDLER
-	if(damagetype != BRUTE)
+///Actually spawns the crystal which puts the ethereal in it.
+/obj/item/organ/heart/ethereal/proc/crystalize(mob/living/ethereal)
+
+	var/location = ethereal.loc
+
+	if(!COOLDOWN_FINISHED(src, crystalize_cooldown) || ethereal.stat != DEAD)
+		return //Should probably not happen, but lets be safe.
+
+	if(ismob(location) || isitem(location) || iseffect(location) || HAS_TRAIT_FROM(src, TRAIT_HUSK, CHANGELING_DRAIN)) //Stops crystallization if they are eaten by a dragon, turned into a legion, consumed by his grace, etc.
+		to_chat(ethereal, span_warning("You were unable to finish your crystallization, for obvious reasons."))
+		stop_crystalization_process(ethereal, FALSE)
 		return
-
-	crystalization_process_damage += damage
-
-	if(crystalization_process_damage < BRUTE_DAMAGE_REQUIRED_TO_STOP_CRYSTALIZATION)
-		return
-
-	var/mob/living/carbon/human/ethereal = source
-
-	ethereal.visible_message(
-		span_notice("The crystals on [ethereal] are completely shattered and stopped growing."),
-		span_warning("The crystals on your body have completely broken."),
-	)
-
-	stop_crystalization_process(ethereal)
+	COOLDOWN_START(src, crystalize_cooldown, INFINITY) //Prevent cheeky double-healing until we get out, this is against stupid admemery
+	current_crystal = new(get_turf(ethereal), src)
+	stop_crystalization_process(ethereal, TRUE)
 
 /obj/structure/ethereal_crystal
 	name = "ethereal resurrection crystal"
