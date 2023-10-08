@@ -68,6 +68,10 @@
 		return TRUE
 
 	if(isobj(the_target) && is_type_in_typecache(the_target, wanted_objects))
+		if(isorgan(the_target))
+			var/obj/item/organ/thing = the_target
+			if(thing.status == ORGAN_ROBOTIC)//don't eat robotic organs, they bad for the tummy
+				return FALSE
 		return TRUE
 
 	return FALSE
