@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -2,
 		/obj/item/gun/energy/kinetic_accelerator/crossbow = -2,
 		/obj/item/gun/energy/laser = -2,
-		/obj/item/melee/transforming/energy/axe = -2,
+		/obj/item/fireaxe/energy = -2, //lol, this is the energy fire axe, not the debug energy axe
 
 		/obj/item/gun/ballistic/revolver = -3,
 		/obj/item/gun/ballistic/bow/energy = -3,
@@ -254,15 +254,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 		/obj/effect/spawner/lootdrop/weakgene = 2,
 		/obj/item/gun/energy/gravity_gun = 2,
+		/obj/item/multisurgeon/jumpboots = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
 		/obj/item/battleroyale/martial/preternis = 1, //arguably a downgrade, maybe not
+		/obj/item/multisurgeon/wheelies = 1,
 
 		/obj/item/teleportation_scroll/apprentice = 0,
 		/obj/effect/spawner/lootdrop/ammobox = 0,
 		/obj/item/slimecross/stabilized/red = 0,
-		/obj/item/slimecross/stabilized/sepia = 0,
 		/obj/item/warp_whistle = 0,
 		/obj/item/gun/magic/staff/animate = 0, //no clue why you'd want this, but why not
 
@@ -301,6 +302,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
 		/obj/item/scrying = -3, //info, but leaves you open to attack
+		/obj/item/battleroyale/extraarm = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
@@ -311,6 +313,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/martial/carp = -4,
 		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
 		/obj/item/necromantic_stone = -4,
+		/obj/item/slimecross/stabilized/sepia = -4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
@@ -329,6 +332,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "trashcart"
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
+	dense_when_open = FALSE
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
@@ -564,3 +568,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/dnainjector/thickskin,
 		/obj/item/dnainjector/densebones,
 	)
+
+/obj/item/battleroyale/extraarm
+	name = "Spare arm"
+	desc = "Why don't we you give you a hand."
+	icon = 'yogstation/icons/mob/human_parts.dmi'
+	icon_state = "default_human_l_arm"
+
+/obj/item/battleroyale/extraarm/attack_self(mob/user)
+	. = ..()
+	var/limbs = user.held_items.len
+	user.change_number_of_hands(limbs+1)
+	to_chat(user, "You feel more dexterous")
+	qdel(src)

@@ -1,0 +1,4 @@
+author: "LoliconSlayer"
+delete-after: true 
+changes: 
+  - rscdel: "Removed redundant maint loot file"

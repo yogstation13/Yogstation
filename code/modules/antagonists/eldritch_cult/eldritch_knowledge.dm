@@ -107,5 +107,9 @@
 	gain_text = "Gates to the Mansus open in your mind's passion."
 	cost = 0
 	spell_to_add = /datum/action/cooldown/spell/touch/mansus_grasp
-	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix)
+	unlocked_transmutations = list(
+		/datum/eldritch_transmutation/basic, 
+		/datum/eldritch_transmutation/living_heart, 
+		/datum/eldritch_transmutation/codex_cicatrix,
+		/datum/eldritch_transmutation/knowledge_ritual)
 	route = "Start"

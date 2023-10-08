@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "colorblind people can't tell the color of wires"
+  - tweak: "colorblind quirk is -4 instead of -2"

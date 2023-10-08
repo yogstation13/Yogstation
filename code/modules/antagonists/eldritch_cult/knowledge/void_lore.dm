@@ -70,7 +70,7 @@
 	name = "T1 - Void Cloak"
 	gain_text = "The Owl is the keeper of things that are not quite in practice, but in theory are. Many things are."
 	desc = "Allows you to transmute a glass shard, a bedsheet, and any outer clothing item (such as armor or a suit jacket) \
-		to create a Void Cloak. This cloak will greatly increase the user's speed, but will cause them to take significantly more damage."
+		to create a Void Cloak. This cloak will make the wearer partially invisible over time, and allow them to temporarily dodge attacks."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_cloak)
 	cost = 1
 	tier = TIER_1
