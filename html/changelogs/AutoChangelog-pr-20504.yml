@@ -1,0 +1,5 @@
+author: " @Scrambledeggs00 @Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new sechailer signal dispatch for requesting medical to an injured civilian"
+  - imageadd: "doesn't add a new sprite yet because no one has sprited it"
