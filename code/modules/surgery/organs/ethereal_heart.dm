@@ -1,14 +1,9 @@
-
-#define CRYSTALIZE_COOLDOWN_LENGTH (120 SECONDS)
-#define CRYSTALIZE_PRE_WAIT_TIME (40 SECONDS)
-#define CRYSTALIZE_DISARM_WAIT_TIME (120 SECONDS)
-#define CRYSTALIZE_HEAL_TIME (60 SECONDS)
+#define CRYSTALIZE_COOLDOWN_LENGTH 5 MINUTES
+#define CRYSTALIZE_PRE_WAIT_TIME 3 MINUTES
+#define CRYSTALIZE_DISARM_WAIT_TIME 3 MINUTES
+#define CRYSTALIZE_HEAL_TIME 60 SECONDS
 
 #define BRUTE_DAMAGE_REQUIRED_TO_STOP_CRYSTALIZATION 30
-
-#define CRYSTALIZE_STAGE_ENGULFING 100 //Cant use second defines
-#define CRYSTALIZE_STAGE_ENCROACHING 300 //In switches
-#define CRYSTALIZE_STAGE_SMALL 600 //Because they're not static
 
 /obj/item/organ/heart/ethereal
 	name = "crystal core"
@@ -88,13 +83,15 @@
 
 	if(!crystalize_timer_id)
 		return
+	
+	var/remaining = timeleft(crystalize_timer_id)
 
-	switch(timeleft(crystalize_timer_id))
-		if(0 to CRYSTALIZE_STAGE_ENGULFING)
+	switch(remaining)
+		if(0 to (CRYSTALIZE_PRE_WAIT_TIME/3))
 			examine_list += span_warning("Crystals are almost engulfing [owner]! ")
-		if(CRYSTALIZE_STAGE_ENGULFING to CRYSTALIZE_STAGE_ENCROACHING)
+		if((CRYSTALIZE_PRE_WAIT_TIME/3) to (2*(CRYSTALIZE_PRE_WAIT_TIME/3)))
 			examine_list += span_notice("Crystals are starting to cover [owner]. ")
-		if(CRYSTALIZE_STAGE_SMALL to INFINITY)
+		if((2*(CRYSTALIZE_PRE_WAIT_TIME/3)) to INFINITY)
 			examine_list += span_notice("Some crystals are coming out of [owner]. ")
 
 ///Ran when disarmed, prevents the ethereal from reviving
@@ -105,7 +102,7 @@
 		span_notice("The crystals on your corpse are gently broken off, and will need some time to recover."),
 	)
 	deltimer(crystalize_timer_id)
-	crystalize_timer_id = addtimer(CALLBACK(src, PROC_REF(crystalize), defender), CRYSTALIZE_DISARM_WAIT_TIME, TIMER_STOPPABLE) //Lets us restart the timer on disarm
+	crystalize_timer_id = addtimer(CALLBACK(src, PROC_REF(crystalize), defender), CRYSTALIZE_PRE_WAIT_TIME, TIMER_STOPPABLE) //Lets us restart the timer on disarm
 
 ///Lets you stop the process with enough brute damage
 /obj/item/organ/heart/ethereal/proc/on_take_damage(datum/source, damage, damagetype, def_zone)
@@ -234,10 +231,13 @@
 
 /obj/structure/ethereal_crystal/proc/heal_ethereal()
 	var/datum/brain_trauma/picked_trauma
-	if(prob(10)) //10% chance for a severe trauma
-		picked_trauma = pick(subtypesof(/datum/brain_trauma/severe))
-	else
-		picked_trauma = pick(subtypesof(/datum/brain_trauma/mild))
+	switch(rand(1,100))
+		if(1) //1% chance for a special trauma (yogs)
+			picked_trauma = pick(subtypesof(/datum/brain_trauma/special))
+		if(2 to 10) //9% chance for a severe trauma
+			picked_trauma = pick(subtypesof(/datum/brain_trauma/severe))
+		if(11 to 100)
+			picked_trauma = pick(subtypesof(/datum/brain_trauma/mild))
 
 	// revive will regenerate organs, so our heart refence is going to be null'd. Unreliable
 	var/mob/living/carbon/regenerating = ethereal_heart.owner
