@@ -132,59 +132,75 @@
 /turf/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = COLOR_WHITE, _duration = FLASH_LIGHT_DURATION)
 	if(!_duration)
 		stack_trace("Lighting FX obj created on a turf without a duration")
-	new /obj/effect/dummy/lighting_obj (src, _range, _power, _color, _duration)
+	new /obj/effect/dummy/lighting_obj(src, _range, _power, _color, _duration)
 
 /obj/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = COLOR_WHITE, _duration = FLASH_LIGHT_DURATION)
 	if(!_duration)
 		stack_trace("Lighting FX obj created on a obj without a duration")
-	new /obj/effect/dummy/lighting_obj (get_turf(src), _range, _power, _color, _duration)
+	new /obj/effect/dummy/lighting_obj(get_turf(src), _range, _power, _color, _duration)
 
 
 /mob/living/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = COLOR_WHITE, _duration = FLASH_LIGHT_DURATION)
 	mob_light(_range, _power, _color, _duration)
 
 
-/mob/living/proc/mob_light(_range, _power, _color, _duration)
-	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = new (src, _range, _power, _color, _duration)
+/mob/living/proc/mob_light(range, power, color, duration, light_type = /obj/effect/dummy/lighting_obj/moblight)
+	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = new light_type(src, range, power, color, duration)
 	return mob_light_obj
 
-
+/// Setter for the light range of this atom.
 /atom/proc/set_light_range(new_range)
 	if(new_range == light_range)
 		return
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_RANGE, new_range)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_RANGE, new_range) & COMPONENT_BLOCK_LIGHT_UPDATE)
+		return
 	. = light_range
 	light_range = new_range
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_RANGE, .)
+	return .
 
 
+/// Setter for the light power of this atom.
 /atom/proc/set_light_power(new_power)
 	if(new_power == light_power)
 		return
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_POWER, new_power)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_POWER, new_power) & COMPONENT_BLOCK_LIGHT_UPDATE)
+		return
 	. = light_power
 	light_power = new_power
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_POWER, .)
+	return .
 
-
+/// Setter for the light color of this atom.
 /atom/proc/set_light_color(new_color)
 	if(new_color == light_color)
 		return
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_COLOR, new_color)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_COLOR, new_color) & COMPONENT_BLOCK_LIGHT_UPDATE)
+		return
 	. = light_color
 	light_color = new_color
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_COLOR, .)
+	return .
 
-
+/// Setter for whether or not this atom's light is on.
 /atom/proc/set_light_on(new_value)
 	if(new_value == light_on)
 		return
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value) & COMPONENT_BLOCK_LIGHT_UPDATE)
+		return
 	. = light_on
 	light_on = new_value
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_ON, .)
+	return .
 
-
+/// Setter for the light flags of this atom.
 /atom/proc/set_light_flags(new_value)
 	if(new_value == light_flags)
 		return
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_FLAGS, new_value)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_FLAGS, new_value) & COMPONENT_BLOCK_LIGHT_UPDATE)
+		return
 	. = light_flags
 	light_flags = new_value
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_FLAGS, .)
+	return .
 

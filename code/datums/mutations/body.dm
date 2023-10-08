@@ -195,40 +195,41 @@
 	quality = POSITIVE
 	text_gain_indication = span_notice("Your skin begins to glow softly.")
 	instability = 5
-	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
-	var/glow = 3.5
-	var/range = 2.5
-	var/glow_color
-	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti, /datum/mutation/human/radiantburst)
+
+	var/glow_power = 3.5
+	var/glow_range = 2.5
+	var/glow_color
+	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
+
+	var/obj/effect/dummy/lighting_obj/moblight/glow
 
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
 	if(.)
 		return
 	glow_color = owner.dna.features["mcolor"]
-	glowth = new(owner)
+	glow = owner.mob_light()
 	modify()
 
 // Override modify here without a parent call, because we don't actually give an action.
 /datum/mutation/human/glow/modify()
-	if(!glowth)
+	if(!glow)
 		return
-	var/power = GET_MUTATION_POWER(src)
-	glowth.set_light_range_power_color(range * power, glow * power, glow_color)
+	glow.set_light_range_power_color(glow_range * GET_MUTATION_POWER(src), glow_power, glow_color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()
 	if(.)
 		return
-	QDEL_NULL(glowth)
+	QDEL_NULL(glow)
 
 /datum/mutation/human/glow/anti
 	name = "Anti-Glow"
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
-	glow = -3.5
+	glow_power = -3.5
 	conflicts = list(/datum/mutation/human/glow, /datum/mutation/human/radiantburst)
 	locked = TRUE
 

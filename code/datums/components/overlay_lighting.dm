@@ -27,7 +27,7 @@
 	///Ceiling of range, integer without decimal entries.
 	var/lumcount_range = 0
 	///How much this light affects the dynamic_lumcount of turfs.
-	var/real_lum_power = 0.5
+	VAR_FINAL/real_lum_power = 0.5
 	///The lum power being used
 	var/used_lum_power = 0.5
 	///Transparency value.
@@ -60,26 +60,29 @@
 	var/atom/movable/parent_attached_to
 
 
-/datum/component/overlay_lighting/Initialize(_range, _power, _color, starts_on)
+/datum/component/overlay_lighting/Initialize(
+	range,
+	power,
+	color,
+	starts_on,
+)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-
 	var/atom/movable/movable_parent = parent
 	if(movable_parent.light_system != MOVABLE_LIGHT)
 		stack_trace("[type] added to [parent], with [movable_parent.light_system] value for the light_system var. Use [MOVABLE_LIGHT] instead.")
 		return COMPONENT_INCOMPATIBLE
 
 	. = ..()
-
 	visible_mask = new()
-	if(!isnull(_range))
-		movable_parent.set_light_range(_range)
+	if(!isnull(range))
+		movable_parent.set_light_range(range)
 	set_range(parent, movable_parent.light_range)
-	if(!isnull(_power))
-		movable_parent.set_light_power(_power)
+	if(!isnull(power))
+		movable_parent.set_light_power(power)
 	set_power(parent, movable_parent.light_power)
-	if(!isnull(_color))
-		movable_parent.set_light_color(_color)
+	if(!isnull(color))
+		movable_parent.set_light_color(color)
 	set_color(parent, movable_parent.light_color)
 	if(!isnull(starts_on))
 		movable_parent.set_light_on(starts_on)
@@ -88,11 +91,11 @@
 /datum/component/overlay_lighting/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_parent_moved))
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_RANGE, PROC_REF(set_range))
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_POWER, PROC_REF(set_power))
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_COLOR, PROC_REF(set_color))
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_ON, PROC_REF(on_toggle))
-	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_FLAGS, PROC_REF(on_light_flags_change))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_LIGHT_RANGE, PROC_REF(set_range))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_LIGHT_POWER, PROC_REF(set_power))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_LIGHT_COLOR, PROC_REF(set_color))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_LIGHT_ON, PROC_REF(on_toggle))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_LIGHT_FLAGS, PROC_REF(on_light_flags_change))
 	var/atom/movable/movable_parent = parent
 	if(movable_parent.light_flags & LIGHT_ATTACHED)
 		overlay_lighting_flags |= LIGHTING_ATTACHED
@@ -112,11 +115,11 @@
 	clean_old_turfs()
 	UnregisterSignal(parent, list(
 		COMSIG_MOVABLE_MOVED,
-		COMSIG_ATOM_SET_LIGHT_RANGE,
-		COMSIG_ATOM_SET_LIGHT_POWER,
-		COMSIG_ATOM_SET_LIGHT_COLOR,
-		COMSIG_ATOM_SET_LIGHT_ON,
-		COMSIG_ATOM_SET_LIGHT_FLAGS,
+		COMSIG_ATOM_UPDATE_LIGHT_RANGE,
+		COMSIG_ATOM_UPDATE_LIGHT_POWER,
+		COMSIG_ATOM_UPDATE_LIGHT_COLOR,
+		COMSIG_ATOM_UPDATE_LIGHT_ON,
+		COMSIG_ATOM_UPDATE_LIGHT_FLAGS,
 		))
 	if(overlay_lighting_flags & LIGHTING_ON)
 		turn_off()
@@ -142,9 +145,12 @@
 /datum/component/overlay_lighting/proc/get_new_turfs()
 	if(!current_holder)
 		return
+	. = list()
 	for(var/turf/lit_turf in view(lumcount_range, get_turf(current_holder)))
 		lit_turf.dynamic_lumcount += used_lum_power
-		LAZYADD(affected_turfs, lit_turf)
+		. += lit_turf
+	if(length(.))
+		affected_turfs = .
 
 
 ///Clears the old affected turfs and populates the new ones.
@@ -266,10 +272,12 @@
 
 
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
-/datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
+/datum/component/overlay_lighting/proc/set_range(atom/source, old_range)
+	SIGNAL_HANDLER
+	var/new_range = source.light_range
 	if(range == new_range)
 		return
-	if(range == 0)
+	if(new_range == 0)
 		turn_off()
 	range = clamp(CEILING(new_range, 0.5), 1, 6)
 	var/pixel_bounds = ((range - 1) * 64) + 32
@@ -287,19 +295,26 @@
 
 
 ///Changes the intensity/brightness of the light by altering the visual object's alpha.
-/datum/component/overlay_lighting/proc/set_power(atom/source, new_power)
+/datum/component/overlay_lighting/proc/set_power(atom/source, old_power)
+	SIGNAL_HANDLER
+	var/new_power = source.light_power
+	to_chat(world, "OLD [old_power] NEW [new_power]")
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
 	visible_mask.alpha = set_alpha
 
 
 ///Changes the light's color, pretty straightforward.
-/datum/component/overlay_lighting/proc/set_color(atom/source, new_color)
+/datum/component/overlay_lighting/proc/set_color(atom/source, old_color)
+	SIGNAL_HANDLER
+	var/new_color = source.light_color
 	visible_mask.color = new_color
 
 
 ///Toggles the light on and off.
-/datum/component/overlay_lighting/proc/on_toggle(atom/source, new_value)
+/datum/component/overlay_lighting/proc/on_toggle(atom/source, old_value)
+	SIGNAL_HANDLER
+	var/new_value = source.light_on
 	if(new_value) //Truthy value input, turn on.
 		turn_on()
 		return
@@ -307,9 +322,12 @@
 
 
 ///Triggered right before the parent light flags change.
-/datum/component/overlay_lighting/proc/on_light_flags_change(atom/source, new_value)
+/datum/component/overlay_lighting/proc/on_light_flags_change(atom/source, old_flags)
+	SIGNAL_HANDLER
+	var/new_flags = source.light_flags
 	var/atom/movable/movable_parent = parent
-	if(new_value & LIGHT_ATTACHED)
+
+	if(new_flags & LIGHT_ATTACHED)
 		if(!(movable_parent.light_flags & LIGHT_ATTACHED)) //Gained the LIGHT_ATTACHED property.
 			overlay_lighting_flags |= LIGHTING_ATTACHED
 			if(ismovable(movable_parent.loc))
@@ -318,7 +336,7 @@
 		overlay_lighting_flags &= ~LIGHTING_ATTACHED
 		set_parent_attached_to(null)
 	
-	if(new_value & LIGHT_NO_LUMCOUNT)
+	if(new_flags & LIGHT_NO_LUMCOUNT)
 		if(!(movable_parent.light_flags & LIGHT_NO_LUMCOUNT)) //Gained the NO_LUMCOUNT property
 			overlay_lighting_flags |= LIGHT_NO_LUMCOUNT
 			//Recalculate affecting
@@ -333,9 +351,9 @@
 /datum/component/overlay_lighting/proc/turn_on()
 	if(overlay_lighting_flags & LIGHTING_ON)
 		return
+	overlay_lighting_flags |= LIGHTING_ON
 	if(current_holder)
 		add_dynamic_lumi(current_holder)
-	overlay_lighting_flags |= LIGHTING_ON
 	get_new_turfs()
 
 
