@@ -27,9 +27,7 @@
 	///Ceiling of range, integer without decimal entries.
 	var/lumcount_range = 0
 	///How much this light affects the dynamic_lumcount of turfs.
-	var/real_lum_power = 0.5
-	///The lum power being used
-	var/used_lum_power = 0.5
+	var/lum_power = 0.5
 	///Transparency value.
 	var/set_alpha = 0
 	///For light sources that can be turned on and off.
@@ -48,7 +46,7 @@
 		"288" = 'icons/effects/light_overlays/light_288.dmi',
 		"320" = 'icons/effects/light_overlays/light_320.dmi',
 		"352" = 'icons/effects/light_overlays/light_352.dmi',
-		)
+	)
 
 	///Overlay effect to cut into the darkness and provide light.
 	var/image/visible_mask
@@ -103,9 +101,6 @@
 	if(movable_parent.light_flags & LIGHT_ATTACHED)
 		overlay_lighting_flags |= LIGHTING_ATTACHED
 		set_parent_attached_to(ismovable(movable_parent.loc) ? movable_parent.loc : null)
-	if(movable_parent.light_flags & LIGHT_NO_LUMCOUNT)
-		overlay_lighting_flags |= LIGHT_NO_LUMCOUNT
-		set_lum_power(real_lum_power)
 	check_holder()
 	if(movable_parent.light_on)
 		turn_on()
@@ -140,7 +135,7 @@
 ///Clears the affected_turfs lazylist, removing from its contents the effects of being near the light.
 /datum/component/overlay_lighting/proc/clean_old_turfs()
 	for(var/turf/lit_turf as anything in affected_turfs)
-		lit_turf.dynamic_lumcount -= real_lum_power
+		lit_turf.dynamic_lumcount -= lum_power
 	affected_turfs = null
 
 
@@ -150,7 +145,7 @@
 		return
 	. = list()
 	for(var/turf/lit_turf in view(lumcount_range, get_turf(current_holder)))
-		lit_turf.dynamic_lumcount += real_lum_power
+		lit_turf.dynamic_lumcount += lum_power
 		. += lit_turf
 	if(length(.))
 		affected_turfs = .
@@ -339,26 +334,16 @@
 	SIGNAL_HANDLER
 	var/new_flags = source.light_flags
 	var/atom/movable/movable_parent = parent
+	if(!((new_flags ^ old_flags) & LIGHT_ATTACHED))
+		return
 
-	if(new_flags & LIGHT_ATTACHED)
-		if(!(movable_parent.light_flags & LIGHT_ATTACHED)) //Gained the LIGHT_ATTACHED property.
-			overlay_lighting_flags |= LIGHTING_ATTACHED
-			if(ismovable(movable_parent.loc))
-				set_parent_attached_to(movable_parent.loc)
-	else if(movable_parent.light_flags & LIGHT_ATTACHED) //Lost the LIGHT_ATTACHED property.
+	if(new_flags & LIGHT_ATTACHED) // Gained the [LIGHT_ATTACHED] property
+		overlay_lighting_flags |= LIGHTING_ATTACHED
+		if(ismovable(movable_parent.loc))
+			set_parent_attached_to(movable_parent.loc)
+	else // Lost the [LIGHT_ATTACHED] property
 		overlay_lighting_flags &= ~LIGHTING_ATTACHED
 		set_parent_attached_to(null)
-	
-	if(new_flags & LIGHT_NO_LUMCOUNT)
-		if(!(movable_parent.light_flags & LIGHT_NO_LUMCOUNT)) //Gained the NO_LUMCOUNT property
-			overlay_lighting_flags |= LIGHT_NO_LUMCOUNT
-			//Recalculate affecting
-			set_lum_power(real_lum_power)
-	else if(movable_parent.light_flags & LIGHT_NO_LUMCOUNT)	//Lost the NO_LUMCOUNT property
-		overlay_lighting_flags &= ~LIGHT_NO_LUMCOUNT
-		//Recalculate affecting
-		set_lum_power(real_lum_power)
-
 
 ///Toggles the light on.
 /datum/component/overlay_lighting/proc/turn_on()
@@ -382,26 +367,11 @@
 
 ///Here we append the behavior associated to changing lum_power.
 /datum/component/overlay_lighting/proc/set_lum_power(new_lum_power)
-	//Get the simulated luminosity count (If we have no lumcount, this is set to 0)
-	var/simulated_lum_power = new_lum_power
-	if(overlay_lighting_flags & LIGHT_NO_LUMCOUNT)
-		simulated_lum_power = 0
-	//The new lum power is the same
-	if(used_lum_power == simulated_lum_power)
-		//This light doesn't affect lumcount, but lum_power must be updated regardless
-		if(new_lum_power != simulated_lum_power)
-			. = real_lum_power
-			real_lum_power = new_lum_power
+	if(lum_power == new_lum_power)
 		return
-	//Set the return value to the old lum power
-	. = real_lum_power
-	real_lum_power = new_lum_power
-	//Get the old used lum power
-	var/old_lum_power = used_lum_power
-	used_lum_power = simulated_lum_power
-	//Calculate the difference
-	var/difference = old_lum_power - used_lum_power
-	//Apply it to any turf we are affecting
+	. = lum_power
+	lum_power = new_lum_power
+	var/difference = . - lum_power
 	for(var/turf/lit_turf as anything in affected_turfs)
 		lit_turf.dynamic_lumcount -= difference
 
