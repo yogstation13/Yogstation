@@ -2,8 +2,6 @@
 #define CRYSTALIZE_PRE_WAIT_TIME 5 MINUTES
 #define CRYSTALIZE_HEAL_TIME 60 SECONDS
 
-#define BRUTE_DAMAGE_REQUIRED_TO_STOP_CRYSTALIZATION 30
-
 /obj/item/organ/heart/ethereal
 	name = "crystal core"
 	icon_state = "ethereal_heart" //Welp. At least it's more unique in functionaliy.
@@ -16,6 +14,8 @@
 	var/crystalize_timer_id
 	///The current crystal the ethereal is in, if any
 	var/obj/structure/ethereal_crystal/current_crystal
+	///The damage that needs to be dealt to the target
+	var/brute_damage_to_stop_crystal = 30
 	///Damage taken during crystalization, resets after it ends
 	var/crystalization_process_damage = 0
 	///Color of the heart, is set by the species on gain
@@ -27,6 +27,10 @@
 
 /obj/item/organ/heart/ethereal/Insert(mob/living/carbon/heart_owner, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
+	if(!isethereal(heart_owner))
+		brute_damage_to_stop_crystal = 5
+	else
+		brute_damage_to_stop_crystal = initial(brute_damage_to_stop_crystal)
 	RegisterSignal(heart_owner, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 	RegisterSignal(heart_owner, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(on_owner_fully_heal))
 	RegisterSignal(heart_owner, COMSIG_PARENT_QDELETING, PROC_REF(owner_deleted))
@@ -109,7 +113,7 @@
 
 	crystalization_process_damage += damage
 
-	if(crystalization_process_damage < BRUTE_DAMAGE_REQUIRED_TO_STOP_CRYSTALIZATION)
+	if(crystalization_process_damage < brute_damage_to_stop_crystal)
 		return
 
 	var/mob/living/carbon/human/ethereal = source
