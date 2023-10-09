@@ -15,7 +15,7 @@
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
-#define isinternalorgan(A) (istype(A, /obj/item/organ/internal))
+//#define isinternalorgan(A) (istype(A, /obj/item/organ/internal)) uncomment if we port tg organ code
 
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.

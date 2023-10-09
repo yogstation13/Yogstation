@@ -1,5 +1,4 @@
 #define ANTAG_DATUM_VAMPIRE			/datum/antagonist/vampire
-#define ANTAG_DATUM_THRALL			/datum/antagonist/thrall
 #define ANTAG_DATUM_DARKSPAWN		/datum/antagonist/darkspawn
 #define ANTAG_DATUM_VEIL			/datum/antagonist/veil
 #define ANTAG_DATUM_INFILTRATOR		/datum/antagonist/infiltrator
