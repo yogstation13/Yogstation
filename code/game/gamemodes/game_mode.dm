@@ -140,6 +140,16 @@
 		replacementmode.make_antag_chance(character)
 	return
 
+//replace someone that's job banned
+/datum/game_mode/proc/replace_jobbaned_player(mob/living/M, role_type, pref)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [role_type]?", "[role_type]", null, pref, 50, M)
+	var/mob/dead/observer/theghost = null
+	if(candidates.len)
+		theghost = pick(candidates)
+		to_chat(M, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+		message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(M)]) to replace a jobbaned player.")
+		M.ghostize(0)
+		M.key = theghost.key
 
 /// Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
 /datum/game_mode/proc/convert_roundtype()
