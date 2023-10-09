@@ -290,9 +290,10 @@
 				var/obj/structure/showmeteor/B = new(target.loc)
 				B.name = "portal"
 				B.icon = 'icons/obj/stationobjs.dmi'	
-				B.icon_state = "portal1"
 				animate(B, pixel_y = 120, transform = matrix().Scale(1, 0.7))
 				portals |= B
+			for(var/obj/elevatorshaft in portals)
+				elevatorshaft.icon_state = "portal1"
 			portals[1].icon_state = "portal"
 			animate(portals[1], pixel_y = 0)
 			animate(target, pixel_y = 110)
@@ -665,7 +666,7 @@
 			phase++
 			for(var/mob/L in view(10, target))
 				shake_camera(L, 2, 2)
-			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, first, second, third, pillarlist), 0.4 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, first, second, third, pillarlist), 0.1 SECONDS)
 		if(5)
 			splosion(user, target)
 			shatter(target)
