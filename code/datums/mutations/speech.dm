@@ -54,8 +54,8 @@
 	name = "Smile"
 	desc = "Causes the user to be in constant mania."
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("You feel so happy. Nothing can be wrong with anything. :)")
-	text_lose_indication = span_notice("Everything is terrible again. :(")
+	text_gain_indication = span_notice("You feel so happy. Nothing can be wrong with anything.")
+	text_lose_indication = span_notice("Everything is terrible again.")
 
 /datum/mutation/human/smile/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -104,7 +104,6 @@
 		message = replacetext(message," drink "," water ")
 		message = replacetext(message," feminist "," empowered woman ")
 		message = replacetext(message," i hate you "," you're mean ")
-		message = replacetext(message," black "," african american ") //YOGS - Bigotry rule
 		message = replacetext(message," jew "," jewish ")
 		message = replacetext(message," shit "," shiz ")
 		message = replacetext(message," crap "," poo ")
