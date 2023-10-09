@@ -38,8 +38,8 @@
 			AL["name"] = selection.name
 			AL["desc"] = selection.desc
 			AL["psi_cost"] = selection.psi_cost
-			AL["lucidity_cost"] = selection.lucidity_price
-			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_price
+			AL["lucidity_cost"] = selection.lucidity_cost
+			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_cost
 			AL["type_path"] = selection.type
 			
 			if(category == selection.menutab)
@@ -47,7 +47,7 @@
 
 			qdel(selection)
 
-		categorydata["upgrades"] = upgrades
+		category_data["upgrades"] = upgrades
 		data["categories"] += list(category_data)
 
 	return data

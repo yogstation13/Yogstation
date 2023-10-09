@@ -196,7 +196,7 @@
 
 /datum/antagonist/darkspawn/proc/divulge(forced = FALSE)
 	if(darkspawn_state >= DIVULGED)
-		return
+		return FALSE
 	if(forced)
 		owner.current.visible_message(
 			span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), 
@@ -211,9 +211,8 @@
 	shadow_store_action = new(shadow_store)
 	shadow_store_action.Grant(owner.current)
 	shadow_store_action.darkspawn = src
-	if(/datum/action/innate/darkspawn/divulge in upgrades)
-		upgrades[/datum/action/innate/darkspawn/divulge].remove
 	darkspawn_state = DIVULGED
+	return TRUE
 
 /datum/antagonist/darkspawn/proc/sacrament()
 	var/mob/living/carbon/human/user = owner.current
