@@ -1,0 +1,4 @@
+author: " @JohnFulpWillard @Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "Bloodsuckers can no longer get an objective to either drink blood or collect hearts"
