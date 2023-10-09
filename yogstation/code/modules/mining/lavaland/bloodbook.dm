@@ -128,7 +128,7 @@
 	return
 
 /obj/item/bloodbook/proc/splosion(mob/living/user, mob/living/target)
-	var/magnitude = ((target.maxHealth/100) + 1)
+	var/magnitude = ((target.maxHealth/120) + 1)
 	for(var/turf/closed/mineral/mine in range(target, magnitude))
 		mine.attempt_drill()
 	for(var/mob/living/collateral in view(target, magnitude))
