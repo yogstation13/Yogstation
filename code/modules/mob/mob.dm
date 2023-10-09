@@ -1049,7 +1049,7 @@
 			span_warning("[src] starts to glow as [ismob(antimagic_source) ? p_they() : antimagic_source] emits a halo of light!"),
 			span_userdanger("A feeling of warmth washes over [ismob(antimagic_source) ? "you" : antimagic_source] as rays of light surround your body and protect you!"),
 		)
-		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
+		antimagic_effect = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 		antimagic_color = LIGHT_COLOR_HOLY_MAGIC
 		playsound(src, 'sound/magic/magic_block_holy.ogg', 50, TRUE)
 
@@ -1058,7 +1058,7 @@
 			span_warning("[src] forehead shines as [ismob(antimagic_source) ? p_they() : antimagic_source] repulses magic from their mind!"),
 			span_userdanger("A feeling of cold splashes on [ismob(antimagic_source) ? "you" : antimagic_source] as your forehead reflects magic usering your mind!"),
 		)
-		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "telekinesishead", MOB_SHIELD_LAYER)
+		antimagic_effect = mutable_appearance('icons/effects/genetics.dmi', "telekinesishead", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_DARK_BLUE
 		playsound(src, 'sound/magic/magic_block_mind.ogg', 50, TRUE)
 
