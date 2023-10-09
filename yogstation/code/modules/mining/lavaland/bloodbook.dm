@@ -165,6 +165,8 @@
 		target.adjustBruteLoss(target.health)
 		return
 	if(isanimal(target))
+		target.drop_loot()
+		target.loot = null
 		playsound(target, "shatter", 70, 1)
 		if(ismegafauna(target))
 			var/mob/living/simple_animal/hostile/megafauna/L = target
@@ -178,8 +180,6 @@
 				target.gib()
 				return //no double dipping
 			target.dust(force = TRUE)
-		target.drop_loot()
-		target.loot = null
 			return
 	target.gib()
 

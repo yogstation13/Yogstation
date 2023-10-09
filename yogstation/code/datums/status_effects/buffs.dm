@@ -77,7 +77,7 @@
 	shield.pixel_y = -owner.pixel_y
 	owner.overlays += shield
 	for(var/traits in grimoire_traits)
-		ADD_TRAIT(owner, traits, GAUNTLET_TRAIT)
+		ADD_TRAIT(owner, traits, GRIMOIRE_TRAIT)
 	return ..()
 
 /datum/status_effect/soulshield/on_remove()
@@ -93,7 +93,7 @@
 		owner.adjustFireLoss(-5)
 	if(owner)
 		for(var/traits in grimoire_traits)
-			REMOVE_TRAIT(owner, traits, GAUNTLET_TRAIT)
+			REMOVE_TRAIT(owner, traits, GRIMOIRE_TRAIT)
 		owner.overlays -= shield
 		owner.extinguish_mob()
 		owner.AdjustStun(-200)
