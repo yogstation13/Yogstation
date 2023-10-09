@@ -182,7 +182,7 @@ GLOBAL_VAR(stormdamage)
 	if(borderstage <= 9)
 		var/remainingpercent = LAZYLEN(GLOB.battleroyale_players) / original_num
 		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
-		loot_interval = min(stage_interval / 2, loot_interval) //loot spawns faster as more die, but won't ever take longer than base
+		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
 		loot_deviation = loot_interval / 2 //less deviation as time goes on
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
