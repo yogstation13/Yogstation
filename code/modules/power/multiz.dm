@@ -10,7 +10,7 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/machinery/power/deck_relay/Initialize()
+/obj/machinery/power/deck_relay/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(find_relays)), 30)
 	//Wait a bit so we can find the one below, then get powering
