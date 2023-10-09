@@ -10,7 +10,7 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/machinery/power/deck_relay/Initialize(mapload)
+/obj/machinery/power/deck_relay/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(find_relays)), 30)
 	//Wait a bit so we can find the one below, then get powering
@@ -76,8 +76,8 @@
 	if(C && C.powernet)
 		C.powernet.add_machine(src) //Nice we're in.
 		powernet = C.powernet
-	below = locate(/obj/machinery/power/deck_relay) in (GET_TURF_BELOW(T))
-	above = locate(/obj/machinery/power/deck_relay) in (GET_TURF_ABOVE(T))
+	below = locate(/obj/machinery/power/deck_relay) in(SSmapping.get_turf_below(T))
+	above = locate(/obj/machinery/power/deck_relay) in(SSmapping.get_turf_above(T))
 	if(below || above)
 		icon_state = "cablerelay-on"
 	return TRUE
