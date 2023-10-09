@@ -87,9 +87,6 @@
 	if(M.stat)
 		to_chat(user, span_warning("[target] must be conscious!"))
 		return
-	if(is_shadow_or_thrall(M))
-		to_chat(user, span_warning("You cannot glare at allies!"))
-		return
 	user.visible_message(span_warning("<b>[user]'s eyes flash a bright red!</b>"))
 	target.visible_message(span_danger("[target] suddendly looks dizzy and nauseous..."))
 	if(in_range(target, user))

@@ -34,11 +34,7 @@
 	if(!darkspawn || eating || L == user) //no eating urself ;)))))))
 		return
 	if(!istype(L, /mob/living/carbon))
-		to_chat(user, "<span calss='warning'>[L]'s mind is not powerful enough to be of use.</span>")
-		return
-	linked_ability = darkspawn.has_ability("devour_will")
-	if(!linked_ability) //how did you even get this?
-		qdel(src)
+		to_chat(user, span_warning("[L]'s mind is not powerful enough to be of use."))
 		return
 	if(!L.mind || isdarkspawn(L))
 		to_chat(user, span_warning("You cannot drain allies or the mindless."))

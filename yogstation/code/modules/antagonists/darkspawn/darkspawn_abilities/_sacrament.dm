@@ -14,15 +14,6 @@
 	if(!darkspawn || darkspawn.lucidity_drained < SSticker.mode.required_succs)
 		to_chat(usr, span_warning("You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])"))
 		return
-	var/list/unpurchased_upgrades = list()
-	for(var/V in subtypesof(/datum/darkspawn_upgrade))
-		var/datum/darkspawn_upgrade/D = V
-		if(!darkspawn.has_upgrade(initial(D.id)))
-			unpurchased_upgrades += initial(D.name)
-	if(unpurchased_upgrades.len)
-		var/upgrade_string = unpurchased_upgrades.Join(", ")
-		to_chat(usr, "[span_warning("You have not purchased all passive upgrades! You are missing:")] [span_danger("[upgrade_string].")]")
-		return
 	if(alert(usr, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
 		return
 	in_use = TRUE

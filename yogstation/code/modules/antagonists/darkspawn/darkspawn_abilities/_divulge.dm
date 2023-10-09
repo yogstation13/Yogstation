@@ -88,4 +88,4 @@
 		var/mob/M = T
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 	if(darkspawn.divulge())
-		user.Remove(src)//they don't need it anymore
+		Remove(user)//they don't need it anymore

@@ -219,10 +219,6 @@
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
-	for(var/A in upgrades)
-		var/datum/shadow_store/upgrade = upgrades[A]
-		if(upgrade)
-			upgrade.remove(owner.current)
 	for(var/datum/action/innate/darkspawn/leftover_ability in user.actions)
 		leftover_ability.Remove(user)
 		QDEL_NULL(leftover_ability)
