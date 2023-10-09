@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/ghost_role/nightmare
 	max_occurrences = 1
 	min_players = 30
-	weight = 5
 	earliest_start = 45 MINUTES
 	dynamic_should_hijack = TRUE
 
