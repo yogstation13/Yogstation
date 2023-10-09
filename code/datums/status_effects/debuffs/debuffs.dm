@@ -378,7 +378,7 @@
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
 	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.can_block_magic(chargecost = 0) && number_legs)
+	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.can_block_magic(charge_cost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
@@ -467,7 +467,7 @@
 		owner.remove_status_effect(/datum/status_effect/drowsiness)
 		owner.remove_status_effect(/datum/status_effect/confusion)
 		severity = 0
-	else if(!owner.can_block_magic(chargecost = 0) && owner.stat != DEAD && severity)
+	else if(!owner.can_block_magic(charge_cost = 0) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))

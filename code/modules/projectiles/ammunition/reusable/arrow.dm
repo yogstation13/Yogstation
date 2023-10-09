@@ -273,7 +273,7 @@
 	else
 		BB.set_homing_target(target)
 		var/mob/M = target
-		if(istype(M) && M.can_block_magic(chargecost = 0))
+		if(istype(M) && M.can_block_magic(charge_cost = 0))
 			BB.homing_away = TRUE // And there it goes!
 
 /obj/item/ammo_casing/reusable/arrow/magic/on_land(obj/item/projectile/old_projectile)

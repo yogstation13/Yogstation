@@ -63,7 +63,7 @@
 			if(last_process + time_between_shots < world.time)
 				if(isliving(target))
 					var/mob/living/L = target
-					if(!L.can_block_magic(chargecost = 0))
+					if(!L.can_block_magic(charge_cost = 0))
 						if(isrevenant(L))
 							var/mob/living/simple_animal/revenant/R = L
 							if(R.revealed)
