@@ -375,7 +375,7 @@
 			target.Immobilize(30)
 			B.buckle_mob(target)
 			B.anchored = TRUE
-			playsound(target, 'sound/effects/bubbleblender.ogg', 40)
+			playsound(target, 'yogstation/sound/effects/bubbleblender.ogg', 40)
 			target.visible_message(span_warning("A blood-red bubble encloses [target] and floats into the air!"))
 			target.resize = 0.7
 			target.update_transform()
