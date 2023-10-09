@@ -76,6 +76,7 @@
 					/obj/item/seeds/grape = 2,
 					/obj/item/seeds/grass = 2,
 					/obj/item/seeds/orange = 2,
+					/obj/item/seeds/poppy = 2,
 					/obj/item/seeds/watermelon = 2,
 					/obj/item/seeds/wheat = 2)
 	contraband = list(/obj/item/seeds/cannabis = 1)
