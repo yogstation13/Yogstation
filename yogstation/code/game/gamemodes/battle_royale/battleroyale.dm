@@ -338,6 +338,7 @@ GLOBAL_VAR(stormdamage)
 	desc = "Totally not just here for keeping track of kills."
 	var/datum/antagonist/battleroyale/last_hit
 	clothing_traits = (TRAIT_NODROP)
+	resistance_flags = INDESTRUCTIBLE //no escaping
 
 /obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
 	. = ..()
