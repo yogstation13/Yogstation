@@ -147,7 +147,6 @@
 #define span_servradio(str) ("<span class='servradio'>" + str + "</span>")
 #define span_sevtug(str) ("<span class='sevtug'>" + str + "</span>")
 #define span_sevtug_small(str) ("<span class='sevtug_small'>" + str + "</span>")
-#define span_shadowling(str) ("<span class='shadowling'>" + str + "</span>")
 #define span_singing(str) ("<span class='singing'>" + str + "</span>")
 #define span_slime(str) ("<span class='slime'>" + str + "</span>")
 #define span_small(str) ("<span class='small'>" + str + "</span>")
