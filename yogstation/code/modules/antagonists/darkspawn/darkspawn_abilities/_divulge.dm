@@ -79,7 +79,6 @@
 		L.flash_act(1, 1)
 		L.Knockdown(5 SECONDS)
 	var/old_name = user.real_name
-	darkspawn.divulge()
 	var/processed_message = span_velvet("<b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b>")
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
@@ -88,3 +87,5 @@
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
+	if(darkspawn.divulge())
+		user.Remove(src)//they don't need it anymore
