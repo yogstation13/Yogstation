@@ -86,7 +86,7 @@
 	var/stamchange = (owner.getStaminaLoss() - startingstamina)
 	difference = (brutechange + burnchange + stamchange)
 	if(difference)
-		grimoire.blocks++
+		grimoire.shieldcharge()
 		grimoire.blowback(owner)
 		owner.SetImmobilized(0) 
 		owner.adjustBruteLoss(-5)

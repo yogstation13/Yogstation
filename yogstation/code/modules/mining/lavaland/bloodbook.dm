@@ -1,3 +1,5 @@
+#define COOLDOWN_MEGAFAUNAFINISHER 5 SECONDS
+
 /obj/item/bloodbook
 	name ="philosopher's tome"
 	desc ="A grisly book that only opens to spit out magic when it detects a flickering life. These reactions send out a wave of pain whose size and strength is based on \
@@ -11,8 +13,8 @@
 	attack_verb = list("bashed", "schooled", "chopped")
 	var/normaldam = 10
 	var/otherwisedam = 40
+	COOLDOWN_DECLARE(last_bigfinish)
 	var/list/orelist = list(/obj/item/stack/ore/iron, /obj/item/stack/ore/uranium, /obj/item/stack/ore/gold, /obj/item/stack/ore/silver, /obj/item/stack/ore/diamond, /obj/item/stack/ore/bluespace_crystal, /obj/item/stack/ore/glass, /obj/item/stack/ore/plasma, /obj/item/stack/ore/titanium)
-
 
 /obj/item/bloodbook/attack_self(mob/living/user)
 	if(blocks <= 0)
@@ -164,23 +166,23 @@
 	if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
 		target.adjustBruteLoss(target.health)
 		return
+		playsound(target, "shatter", 70, 1)
+	if(ismegafauna(target))
+		var/mob/living/simple_animal/hostile/megafauna/L = target
+		for(var/V in L.guaranteed_butcher_results)
+			new V(target.loc)
+		L.guaranteed_butcher_results = null
+		for(var/V in L.butcher_results)
+			new V(target.loc)
+		L.butcher_results = null
+		if(target.stat == DEAD)
+			target.gib()
+			return //no double dipping
+		target.dust(TRUE, FALSE, TRUE)
+		return
 	if(isanimal(target))
 		target.drop_loot()
 		target.loot = null
-		playsound(target, "shatter", 70, 1)
-		if(ismegafauna(target))
-			var/mob/living/simple_animal/hostile/megafauna/L = target
-			for(var/V in L.guaranteed_butcher_results)
-				new V(target.loc)
-			L.guaranteed_butcher_results = null
-			for(var/V in L.butcher_results)
-				new V(target.loc)
-			L.butcher_results = null
-			if(target.stat == DEAD)
-				target.gib()
-				return //no double dipping
-			target.dust(force = TRUE)
-			return
 	target.gib()
 
 //animation stuff
