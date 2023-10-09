@@ -3,7 +3,7 @@
 	if(!istype(H) || !A)
 		return
 
-	if(!A.can_consume_power_from())
+	if(!A.can_consume_power_from(H))
 		return
 	
 	if(get_dist(H, A) > 1)
@@ -64,7 +64,7 @@
 		cycle++
 
 		if (do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 0.4 SECONDS : 0.5 SECONDS, A))
-			var/can_drain = A.can_consume_power_from()
+			var/can_drain = A.can_consume_power_from(H)
 			if(!can_drain || istext(can_drain))
 				if(istext(can_drain))
 					to_chat(H, can_drain)
@@ -75,12 +75,11 @@
 				if(prob(75))
 					spark_system.start()
           
-				var/drained = A.consume_power_from(baseDrain)
+				var/drained = A.consume_power_from(baseDrain, H)
 				if(drained < baseDrain)
 					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 
-				H.adjust_bodytemperature(drained * (1 - ELECTRICITY_TO_NUTRIMENT_FACTOR) /2) //the extra electricity becomes heat, they aren't suited to charging from non-vxtrin power sources
 				drained *= ELECTRICITY_TO_NUTRIMENT_FACTOR //loss of efficiency
 
 				if(H.nutrition + drained > NUTRITION_LEVEL_FAT)
@@ -103,72 +102,97 @@
 	draining = FALSE
 	return
 
-/atom/proc/can_consume_power_from()
+/atom/proc/can_consume_power_from(mob/user)
 	return FALSE //if a string is returned, it will evaluate as false and be output to the person draining.
 
-/atom/proc/consume_power_from(amount)
+/atom/proc/consume_power_from(amount, mob/user)
 	return FALSE //return the amount that was drained.
 
 #define MIN_DRAINABLE_POWER 10
 
+//IPC lol, lmao
+/mob/living/carbon/human/can_consume_power_from(mob/user)
+	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
+
+/mob/living/carbon/human/consume_power_from(amount, mob/user)
+	if((nutrition - amount) < NUTRITION_LEVEL_STARVING)
+		amount = max(nutrition - NUTRITION_LEVEL_STARVING, 0)
+	adjust_nutrition(-amount)
+	return amount
+
 //CELL//
-/obj/item/stock_parts/cell/can_consume_power_from()
+/obj/item/stock_parts/cell/can_consume_power_from(mob/user)
 	if(charge < MIN_DRAINABLE_POWER)
 		return span_info("Power cell depleted, cannot consume power.")
 	return TRUE
 
-/obj/item/stock_parts/cell/consume_power_from(amount)
+/obj/item/stock_parts/cell/consume_power_from(amount, mob/user)
 	if((charge - amount) < MIN_DRAINABLE_POWER)
 		amount = max(charge - MIN_DRAINABLE_POWER, 0)
 	use(amount)
 	return amount
 
 //APC//
-/obj/machinery/power/apc/can_consume_power_from()
-	if(!cell)
-		return span_info("APC cell absent, cannot consume power.")
+/obj/machinery/power/apc/can_consume_power_from(mob/user)
 	if(stat & BROKEN)
 		return span_info("APC is damaged, cannot consume power.")
 	if(!operating || shorted)
 		return span_info("APC main breaker is off, cannot consume power.")
+	if(HAS_TRAIT(user, TRAIT_BOTTOMLESS_STOMACH))
+		return TRUE
+	if(!cell)
+		return span_info("APC cell absent, cannot consume power.")
 	if(cell.charge < MIN_DRAINABLE_POWER)
 		return span_info("APC cell depleted, cannot consume power.")
 	return TRUE
 
-/obj/machinery/power/apc/consume_power_from(amount)
+/obj/machinery/power/apc/consume_power_from(amount, mob/user)
+	var/newamount = amount
 	if((cell.charge - amount) < MIN_DRAINABLE_POWER)
-		amount = max(cell.charge - MIN_DRAINABLE_POWER, 0)
-	cell.use(amount)
+		newamount = max(cell.charge - MIN_DRAINABLE_POWER, 0)
+	cell.use(newamount)
 	if(charging == 2)
 		charging = 0 //if we do not do this here, the APC can get stuck thinking it is fully charged.
 	update()
+
+	if(newamount < amount && HAS_TRAIT(user, TRAIT_BOTTOMLESS_STOMACH))
+		add_load(amount - newamount) //GIVE ME THAT EXTRA POWER
+		newamount = amount
 	return amount
 
 //SMES//
-/obj/machinery/power/smes/can_consume_power_from()
+/obj/machinery/power/smes/can_consume_power_from(mob/user)
 	if(stat & BROKEN)
 		return span_info("SMES is damaged, cannot consume power.")
+	if(HAS_TRAIT(user, TRAIT_BOTTOMLESS_STOMACH))
+		return TRUE
 	if(!output_attempt)
 		return span_info("SMES is not outputting power, cannot consume power.")
 	if(charge < MIN_DRAINABLE_POWER)
 		return span_info("SMES cells depleted, cannot consume power.")
 	return TRUE
 
-/obj/machinery/power/smes/consume_power_from(amount)
+/obj/machinery/power/smes/consume_power_from(amount, mob/user)
+	var/newamount = amount
 	if((charge - amount) < MIN_DRAINABLE_POWER)
-		amount = max(charge - MIN_DRAINABLE_POWER, 0)
-	charge -= amount
-	return amount
+		newamount = max(charge - MIN_DRAINABLE_POWER, 0)
+	charge -= newamount
+	
+	if(newamount < amount && HAS_TRAIT(user, TRAIT_BOTTOMLESS_STOMACH))
+		add_load(amount - newamount) //GIVE ME THAT EXTRA POWER
+		newamount = amount
+
+	return newamount
 
 //MECH//
-/obj/mecha/can_consume_power_from()
+/obj/mecha/can_consume_power_from(mob/user)
 	if(!cell)
 		return span_info("Mech power cell absent, cannot consume power.")
 	if(cell.charge < MIN_DRAINABLE_POWER)
 		return span_info("Mech power cell depleted, cannot consume power.")
 	return TRUE
 
-/obj/mecha/consume_power_from(amount)
+/obj/mecha/consume_power_from(amount, mob/user)
 	occupant_message(span_danger("Warning: Unauthorized access through sub-route 4, block H, detected."))
 	if((cell.charge - amount) < MIN_DRAINABLE_POWER)
 		amount = max(cell.charge - MIN_DRAINABLE_POWER, 0)
@@ -176,14 +200,14 @@
 	return amount
 
 //BORG//
-/mob/living/silicon/robot/can_consume_power_from()
+/mob/living/silicon/robot/can_consume_power_from(mob/user)
 	if(!cell)
 		return span_info("Cyborg power cell absent, cannot consume power.")
 	if(cell.charge < MIN_DRAINABLE_POWER)
 		return span_info("Cyborg power cell depleted, cannot consume power.")
 	return TRUE
 
-/mob/living/silicon/robot/consume_power_from(amount)
+/mob/living/silicon/robot/consume_power_from(amount, mob/user)
 	src << span_danger("Warning: Unauthorized access through sub-route 12, block C, detected.")
 	if((cell.charge - amount) < MIN_DRAINABLE_POWER)
 		amount = max(cell.charge - MIN_DRAINABLE_POWER, 0)

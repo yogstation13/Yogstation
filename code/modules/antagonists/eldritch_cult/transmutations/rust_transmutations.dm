@@ -10,6 +10,12 @@
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch)
 	required_shit_list = "A table and a gas mask."
 
+/datum/eldritch_transmutation/armor/upgrade
+	name = "Enhanced Eldritch Armor"
+	required_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch,/obj/item/stack/sheet/mineral/diamond)
+	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded)
+	required_shit_list = "An existing ominous armor, and a diamond."
+
 /datum/eldritch_transmutation/water
 	name = "Eldritch Essence"
 	required_atoms = list(/obj/structure/reagent_dispensers/watertank)

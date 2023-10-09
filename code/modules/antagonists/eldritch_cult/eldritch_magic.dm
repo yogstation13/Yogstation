@@ -10,7 +10,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	exit_jaunt_sound = null
 	jaunt_duration = 1.1 SECONDS
@@ -18,6 +18,7 @@
 	jaunt_out_time = 0.6 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
+	
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
@@ -157,7 +158,7 @@
 	cast_range = 4
 
 	eye_blur_duration = 2 SECONDS
-	eye_blind_duration = 2 SECONDS
+	eye_blind_duration = 1 SECONDS
 
 
 /datum/action/cooldown/spell/aoe/rust_conversion
@@ -174,7 +175,7 @@
 
 	invocation = "A'GRSV SPR'D"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	aoe_radius = 3
 
@@ -215,7 +216,7 @@
 
 	invocation = "FL'MS O'ET'RN'ITY"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 6
 
@@ -283,7 +284,7 @@
 
 	invocation = "SPR'D TH' WO'D"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	projectile_type = /obj/item/projectile/magic/aoe/rust_wave
 
@@ -340,7 +341,7 @@
 	invocation = "CL'VE"
 	invocation_type = INVOCATION_WHISPER
 
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 4
 
@@ -397,7 +398,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 	invocation_type = INVOCATION_NONE
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 /datum/action/cooldown/spell/touch/mad_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
@@ -434,7 +435,7 @@
 	invocation_type = INVOCATION_WHISPER
 	
 	cooldown_time = 30 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// The length of the flame line spit out.
 	var/flame_line_length = 15
@@ -496,7 +497,7 @@
 	school = SCHOOL_FORBIDDEN
 	invocation = "SH'PE"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	possible_shapes = list(
 		/mob/living/simple_animal/mouse,\
@@ -519,7 +520,7 @@
 
 	invocation = "E'P"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	emp_heavy = 6
 	emp_light = 10
@@ -539,7 +540,7 @@
 	invocation_type = INVOCATION_WHISPER
 
 	cooldown_time = 30 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// The radius the flames will go around the caster.
 	var/flame_radius = 4
@@ -567,7 +568,7 @@
 	school = SCHOOL_FORBIDDEN
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
-	invocation_type = INVOCATION_NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
 /// Creates a constant Ring of Fire around the caster for a set duration of time, which follows them.
@@ -584,7 +585,7 @@
 	
 	invocation = "FL'MS"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// The radius of the fire ring
 	var/fire_radius = 1
@@ -643,7 +644,7 @@
 	cooldown_time = 15 SECONDS
 
 	invocation_type = INVOCATION_NONE
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 /datum/action/cooldown/spell/worm_contract/cast(mob/living/user)
 	. = ..()
@@ -678,7 +679,7 @@
 
 	invocation = "GL'RY T' TH' N'GHT'W'TCH'ER"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_REQUIRES_HUMAN
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 /datum/action/cooldown/spell/aoe/fiery_rebirth/cast(mob/living/carbon/human/cast_on)
 	cast_on.extinguish_mob()
@@ -730,7 +731,7 @@
 
 	invocation = "PI'RC' TH' M'ND."
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 7
 
@@ -788,7 +789,7 @@
 
 	school = SCHOOL_FORBIDDEN
 	invocation = "E'E'S"
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	cast_range = 10
 
@@ -838,7 +839,7 @@
 
 	invocation = "'NTR'P'C PL'M'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 	
 	cone_levels = 5
 	respect_density = TRUE
@@ -895,22 +896,61 @@
 	owner.client?.view_size.resetToDefault()
 	COOLDOWN_START(src, last_toggle, 4 SECONDS)
 
-/datum/action/cooldown/spell/aoe/repulse/famished_roar
+/datum/action/cooldown/spell/aoe/immobilize/famished_roar
 	name = "Famished Roar"
-	desc = "An AOE roar spell that sends all near by people flying."
+	desc = "An AOE roar spell that immobilizes all nearby people."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "void_magnet"
 	sound = 'yogstation/sound/magic/demented_outburst_scream.ogg'
-
+	var/obj/effect/sparkle_path = /obj/effect/temp_visual/gravpush
 	school = SCHOOL_FORBIDDEN
 	invocation = "GR' RO'AR"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
-	aoe_radius = 3
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	aoe_radius = 4
 
 	cooldown_time = 1 MINUTES
+
+/datum/action/cooldown/spell/aoe/immobilize/famished_roar/get_things_to_cast_on(atom/center)
+	var/list/things = list()
+	for(var/atom/movable/nearby_movable in view(aoe_radius, center))
+		if(nearby_movable == owner || nearby_movable == center)
+			continue
+		if(nearby_movable.anchored)
+			continue
+
+		things += nearby_movable
+
+	return things
+
+/datum/action/cooldown/spell/aoe/immobilize/famished_roar/cast_on_thing_in_aoe(atom/movable/victim, atom/caster)
+	if(ismob(victim))
+		var/mob/victim_mob = victim
+		if(victim_mob.can_block_magic(antimagic_flags))
+			return
+
+	var/dist_from_caster = get_dist(victim, caster)
+
+	if(dist_from_caster == 0)
+		if(isliving(victim))
+			var/mob/living/victim_living = victim
+			victim_living.Immobilize(6 SECONDS)
+			victim_living.adjustBruteLoss(25)
+			victim_living.adjustEarDamage(30)
+			to_chat(victim, span_userdanger("Your body shakes with fear infront of [caster]!"))
+	else
+		if(sparkle_path)
+			// Created sparkles will disappear on their own
+			new sparkle_path(get_turf(victim), get_dir(caster, victim))
+
+		if(isliving(victim))
+			var/mob/living/victim_living = victim
+			victim_living.Immobilize(3 SECONDS)
+			victim_living.adjustBruteLoss(5)
+			victim_living.adjustEarDamage(30)
+			to_chat(victim, span_userdanger("You're frozen in fear of [caster]!"))
 
 /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
 	name = "Eldritch Bolt"
@@ -923,11 +963,11 @@
 
 	sound = 'sound/magic/lightningbolt.ogg'
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 1 MINUTES
+	cooldown_time = 30 SECONDS
 
 	invocation = "EL'RICH BL'AS'T"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	base_icon_state = "lightning"
 	active_msg = "You energize your hands with raw power!"
@@ -948,15 +988,15 @@
 
 	school = SCHOOL_FORBIDDEN
 
-	cooldown_time = 20 SECONDS
-	cast_range = 4
+	cooldown_time = 25 SECONDS
+	cast_range = 7
 	invocation = "PH'ASE"
 	invocation_type = INVOCATION_WHISPER
 	active_msg = span_notice("You prepare to warp everyone's vision.")
 	deactive_msg = span_notice("You relax your mind.")
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
-/datum/action/cooldown/spell/basic_projectile/assault
+/datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"
 	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
 	background_icon_state = "bg_heretic"
@@ -965,11 +1005,205 @@
 	button_icon_state = "ward-red"
 
 	sound = 'sound/weapons/resonator_blast.ogg'
-
-	cooldown_time = 45 SECONDS
-	spell_requirements = NONE
+	cast_range = 7
+	cooldown_time = 25 SECONDS
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	invocation = "D'O'DGE TH'IS!"
 	invocation_type = INVOCATION_SHOUT
 
 	projectile_type = /obj/item/projectile/heretic_assault
+
+/datum/action/cooldown/spell/pointed/void_phase
+	name = "Void Phase"
+	desc = "Let's you blink to your pointed destination, causes 3x3 aoe damage bubble \
+		around your pointed destination and your current location. \
+		It has a minimum range of 3 tiles and a maximum range of 9 tiles."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "voidblink"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 30 SECONDS
+
+	invocation = "RE'L'TY PH'S'E."
+	invocation_type = INVOCATION_WHISPER
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	cast_range = 5
+	/// The minimum range to cast the phase.
+	var/min_cast_range = 3
+	/// The radius of damage around the void bubble
+	var/damage_radius = 1
+
+/datum/action/cooldown/spell/pointed/void_phase/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) < min_cast_range)
+		cast_on.balloon_alert(owner, "too close!")
+		return . | SPELL_CANCEL_CAST
+
+/datum/action/cooldown/spell/pointed/void_phase/cast(atom/cast_on)
+	. = ..()
+	var/turf/source_turf = get_turf(owner)
+	var/turf/targeted_turf = get_turf(cast_on)
+
+	cause_aoe(source_turf, /obj/effect/temp_visual/voidin)
+	cause_aoe(targeted_turf, /obj/effect/temp_visual/voidout)
+
+	do_teleport(
+		owner,
+		targeted_turf,
+		precision = 1,
+		no_effects = TRUE,
+		channel = TELEPORT_CHANNEL_MAGIC,
+	)
+
+/// Does the AOE effect of the blink at the passed turf
+/datum/action/cooldown/spell/pointed/void_phase/proc/cause_aoe(turf/target_turf, effect_type = /obj/effect/temp_visual/voidin)
+	new effect_type(target_turf)
+	playsound(target_turf, 'sound/magic/voidblink.ogg', 60, FALSE)
+	for(var/mob/living/living_mob in range(damage_radius, target_turf))
+		if(IS_HERETIC_OR_MONSTER(living_mob) || living_mob == owner)
+			continue
+		if(living_mob.can_block_magic(antimagic_flags))
+			continue
+		living_mob.apply_damage(40, BRUTE, wound_bonus = CANT_WOUND)
+
+/obj/effect/temp_visual/voidin
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "void_blink_in"
+	alpha = 150
+	duration = 6
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/temp_visual/voidout
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "void_blink_out"
+	alpha = 150
+	duration = 6
+	pixel_x = -32
+	pixel_y = -32
+
+/datum/action/cooldown/spell/cone/staggered/cone_of_cold/void
+	name = "Void Blast"
+	desc = "Fires a cone of chilling void in front of you, freezing everything in its path. \
+		Enemies in the cone of the blast will be damaged slightly, slowed, and chilled overtime. \
+		The ground hit will be iced over and slippery - \
+		though they may thaw shortly if used in room temperature."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon_state = "icebeam"
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 30 SECONDS
+
+	invocation = "FR'ZE!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	// In room temperature, the ice won't last very long
+	// ...but in space / freezing rooms, it will stick around
+	turf_freeze_type = TURF_WET_PERMAFROST
+	unfreeze_turf_duration = 15 SECONDS
+	// Applies an "infinite" version of basic void chill
+	// (This stacks with mansus grasp's void chill)
+	frozen_status_effect_path = /datum/status_effect/void_chill/lasting
+	unfreeze_mob_duration = 15 SECONDS
+	// Does a smidge of damage
+	on_freeze_brute_damage = 12
+	on_freeze_burn_damage = 10
+	// Also freezes stuff (Which will likely be unfrozen similarly to turfs)
+	unfreeze_object_duration = 15 SECONDS
+
+/datum/action/cooldown/spell/cone/staggered/cone_of_cold/void/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
+	if(IS_HERETIC_OR_MONSTER(target_mob))
+		return
+
+	return ..()
+
+/datum/action/cooldown/spell/aoe/slip/void
+	name = "Diamond Dust"
+	desc = "Causes the floor within 2 tiles to become frozen."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon_state = "blind"
+
+	invocation = "OBL'VION!"
+	invocation_type = INVOCATION_SHOUT
+
+	cooldown_time = 50 SECONDS
+	aoe_radius = 2
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+/datum/action/cooldown/spell/aoe/slip/void/cast_on_thing_in_aoe(turf/open/target)
+	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)
+
+/datum/action/cooldown/spell/aoe/void_pull
+	name = "Void Pull"
+	desc = "Calls the void, damaging, knocking down, and stunning people nearby. \
+		Distant foes are also pulled closer to you (but not damaged)."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "voidpull"
+	sound = 'sound/magic/voidblink.ogg'
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 40 SECONDS
+
+	invocation = "BR'NG F'RTH TH'M T' M'."
+	invocation_type = INVOCATION_WHISPER
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	aoe_radius = 7
+	/// The radius of the actual damage circle done before cast
+	var/damage_radius = 1
+	/// The radius of the stun applied to nearby people on cast
+	var/stun_radius = 4
+
+// Before the cast, we do some small AOE damage around the caster
+/datum/action/cooldown/spell/aoe/void_pull/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return
+
+	new /obj/effect/temp_visual/voidin(get_turf(cast_on))
+
+	// Before we cast the actual effects, deal AOE damage to anyone adjacent to us
+	for(var/mob/living/nearby_living as anything in get_things_to_cast_on(cast_on, damage_radius))
+		nearby_living.apply_damage(30, BRUTE, wound_bonus = CANT_WOUND)
+
+/datum/action/cooldown/spell/aoe/void_pull/get_things_to_cast_on(atom/center, radius_override = 1)
+	var/list/things = list()
+	for(var/mob/living/nearby_mob in view(radius_override || aoe_radius, center))
+		if(nearby_mob == owner || nearby_mob == center)
+			continue
+		// Don't grab people who are tucked away or something
+		if(!isturf(nearby_mob.loc))
+			continue
+		if(IS_HERETIC_OR_MONSTER(nearby_mob))
+			continue
+		if(nearby_mob.can_block_magic(antimagic_flags))
+			continue
+
+		things += nearby_mob
+
+	return things
+
+// For the actual cast, we microstun people nearby and pull them in
+/datum/action/cooldown/spell/aoe/void_pull/cast_on_thing_in_aoe(mob/living/victim, atom/caster)
+	// If the victim's within the stun radius, they're stunned / knocked down
+	if(get_dist(victim, caster) < stun_radius)
+		victim.AdjustKnockdown(3 SECONDS)
+		victim.AdjustParalyzed(0.5 SECONDS)
+
+	// Otherwise, they take a few steps closer
+	for(var/i in 1 to 3)
+		victim.forceMove(get_step_towards(victim, caster))
