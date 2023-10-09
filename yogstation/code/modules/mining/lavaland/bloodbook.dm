@@ -285,21 +285,15 @@
 /obj/item/bloodbook/proc/falling(mob/living/user, mob/living/target, var/phase = 1, var/obj/portalb, var/obj/portalo)
 	switch(phase)
 		if(1)
-			var/list/portals = list()
-			for(var/i = 1 to 2)
-				var/obj/structure/showmeteor/B = new(target.loc)
-				B.name = "portal"
-				B.icon = 'icons/obj/stationobjs.dmi'	
-				animate(B, pixel_y = 120, transform = matrix().Scale(1, 0.7))
-				portals |= B
-			for(var/obj/elevatorshaft in portals)
-				elevatorshaft.icon_state = "portal1"
-			portals[1].icon_state = "portal"
-			animate(portals[1], pixel_y = 0)
+			var/obj/structure/propportal/O = new(target.loc)
+			O.icon_state = "portal1"
+			animate(O, pixel_y = 120, transform = matrix().Scale(1, 0.7))
+			var/obj/structure/propportal/B = new(target.loc)
+			animate(B, transform = matrix().Scale(1, 0.7))
 			animate(target, pixel_y = 110)
 			target.visible_message(span_warning("Portals appear above and below [target]!"))
 			phase++
-			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase, portals[1], portals[2]), 0.3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase, B, O), 0.3 SECONDS)
 			return
 		if(2)
 			target.forceMove(portalo.loc)
@@ -1029,3 +1023,10 @@
 	pixel_x = -32
 	pixel_y = -32
 	max_integrity = 500
+
+/obj/structure/propportal
+	name = "portal"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "portal"
+	density = FALSE
+	anchored = TRUE
