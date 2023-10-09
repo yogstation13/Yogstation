@@ -191,6 +191,7 @@
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
 #define TRAIT_EASILY_WOUNDED		"easy_limb_wound"
 #define TRAIT_HARDLY_WOUNDED		"hard_limb_wound"
+#define TRAIT_SPECIESLOCK		"species_lock" //prevent species from changing while they have the trait
 #define TRAIT_TOXINLOVER		"toxinlover"
 #define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"

@@ -3,11 +3,16 @@
 #define FIGHTER (1<<1)
 #define WARLOCK (1<<2)
 
+#define STORE_OFFENSE "offense" //things that you use and it fucks someone up
+#define STORE_UTILITY "utility" //things that you use and it does something less straightforward
+#define STORE_PASSIVE "passives" //things that always happen all the time
+
 //Used to access the Psi Web to buy abilities.
 //Accesses the Psi Web, which darkspawn use to purchase abilities using lucidity. Lucidity is drained from people using the Devour Will ability.
 /datum/antag_menu/shadow_store
 	name = "psi web"
 	ui_name = "PsiWeb"
+	var/list/show_categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
 
 /datum/antag_menu/shadow_store/ui_data(mob/user)
 	var/list/data = list()
@@ -18,24 +23,32 @@
 
 	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [darkspawn.lucidity_needed] unique drained total"
 
-	var/list/upgrades = list()
+	for(var/category in show_categories)
+		var/list/category_data = list()
+		category_data["name"] = category
 
-	for(var/path in subtypesof(/datum/shadow_store))
-		var/datum/shadow_store/selection = path
+		var/list/upgrades = list()
+		for(var/path in subtypesof(/datum/shadow_store))
+			var/datum/shadow_store/selection = new path
 
-		if(!selection.check_show(user))
-			continue
+			if(!selection.check_show(user))
+				continue
 
-		var/list/AL = list()
-		AL["name"] = initial(selection.name)
-		AL["desc"] = initial(selection.desc)
-		AL["psi_cost"] = initial(selection.psi_cost)
-		AL["lucidity_cost"] = initial(selection.lucidity_price)
-		AL["can_purchase"] = darkspawn.lucidity >= initial(selection.lucidity_price)
+			var/list/AL = list()
+			AL["name"] = selection.name
+			AL["desc"] = selection.desc
+			AL["psi_cost"] = selection.psi_cost
+			AL["lucidity_cost"] = selection.lucidity_price
+			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_price
+			AL["type_path"] = selection.type
+			
+			if(category == selection.menutab)
+				upgrades += list(AL)
 
-		upgrades += list(AL)
+			qdel(selection)
 
-	data["upgrades"] = upgrades
+		categorydata["upgrades"] = upgrades
+		data["categories"] += list(category_data)
 
 	return data
 
@@ -43,11 +56,15 @@
 	if(..())
 		return
 	var/datum/antagonist/darkspawn/darkspawn = antag_datum
+	if(!istype(darkspawn))
+		return
 	switch(action)
 		if("purchase")
-			if(istype(params["id"], /datum/shadow_store))
-				var/datum/shadow_store/selected = params["id"]
-				selected.on_purchase(darkspawn?.owner?.current)
+			var/upgradePath = text2path(params["upgradePath"])
+			if(!ispath(upgradePath, /datum/shadow_store))
+				return FALSE
+			var/datum/shadow_store/selected = new upgradePath
+			selected.on_purchase(darkspawn?.owner?.current)
 
 //ability for using the shadow store
 /datum/action/innate/darkspawn/shadow_store
@@ -96,54 +113,50 @@
 	var/learned_ability
 	///what is printed when learned
 	var/learn_text
+	///what tab of the antag menu does it fall under
+	var/menutab
+	///The antag datum of the owner(used for modifying)
+	var/datum/antagonist/darkspawn/owner
 
 ///Check to see if they should be shown the ability
 /datum/shadow_store/proc/check_show(mob/user)
-	SHOULD_CALL_PARENT(TRUE) //for now
-	var/datum/antagonist/darkspawn/edgy= user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!edgy)
+	if(!menutab)
 		return FALSE
-	if(!(edgy.specialization & shadow_flags))
+	owner = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(!owner)
 		return FALSE
-	if(edgy.has_upgrade(name))//if they already have it
+	if(shadow_flags && !(owner.specialization & shadow_flags))
+		return FALSE
+	if(locate(type) in owner.upgrades)//if they already have it
 		return FALSE
 	return TRUE
 
 ///When the button to purchase is clicked
 /datum/shadow_store/proc/on_purchase(mob/user)
-	var/datum/antagonist/darkspawn/edgy= user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!edgy)
+	owner = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(!owner)
 		return FALSE
-	if(!(edgy.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
+	if(shadow_flags && !(owner.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
 		return FALSE
-	if(edgy.lucidity < lucidity_cost)
+	if(owner.lucidity < lucidity_cost)
 		return FALSE
 
 	if(learn_text)
 		to_chat(user, span_velvet(learn_text))
-	edgy.lucidity -= lucidity_cost
+	owner.lucidity -= lucidity_cost
 	activate(user)
 	return TRUE
 
 ///If the purchase goes through, this gets called
 /datum/shadow_store/proc/activate(mob/user)
-	var/datum/antagonist/darkspawn/edgy= user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!edgy)
+	if(!owner)//no clue how it got here, but alright
 		return
-	edgy.add_upgrade(src)
+	owner.upgrades |= src //add it to the list
+	if(learn_text)
+		to_chat(user, learn_text)
 	if(learned_ability)
 		var/datum/action/innate/darkspawn/action = new learned_ability
 		action.Grant(user)
-
-///if for whatever reason the ability needs to be removed
-/datum/shadow_store/proc/remove(mob/user)
-	var/datum/antagonist/darkspawn/edgy= user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!edgy)
-		return
-	edgy.remove_upgrade(src)
-	if(learned_ability)
-		var/datum/action/innate/darkspawn/action = new learned_ability
-		action.Remove(user)
 
 /*
 	Purchases to select spec
@@ -155,25 +168,18 @@
 /datum/shadow_store/scout/activate(mob/user)
 	user.LoadComponent(/datum/component/walk/shadow)
 	user.AddComponent(/datum/component/shadow_step)
-	var/datum/antagonist/darkspawn/edgy = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(edgy)//there's NO way they get here without it
-		edgy.specialization = SCOUT
-
+	owner.specialization = SCOUT
 
 /datum/shadow_store/fighter
-	name = "shadow step"
-	desc = "shadow step"
+	name = "fighter"
+	desc = "fighter"
 
 /datum/shadow_store/fighter/activate(mob/user)
-	var/datum/antagonist/darkspawn/edgy = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(edgy)//there's NO way they get here without it
-		edgy.specialization = FIGHTER
+	owner.specialization = FIGHTER
 
 /datum/shadow_store/warlock
-	name = "shadow step"
-	desc = "shadow step"
+	name = "warlock"
+	desc = "warlock"
 
 /datum/shadow_store/warlock/activate(mob/user)
-	var/datum/antagonist/darkspawn/edgy = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(edgy)//there's NO way they get here without it ... right?
-		edgy.specialization = WARLOCK
+	owner.specialization = WARLOCK
