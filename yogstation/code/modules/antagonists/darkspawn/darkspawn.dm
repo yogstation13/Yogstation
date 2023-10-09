@@ -74,7 +74,7 @@
 	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/mind/dark_mind = DM
 		if(istype(dark_mind))
-			if((dark_mind) && (dark_mind.current.stat != DEAD) && ishuman(dark_mind.current))
+			if((dark_mind?.current?.stat != DEAD) && ishuman(dark_mind.current))
 				return FALSE
 	return TRUE
 
@@ -167,28 +167,6 @@
 	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = ANTAG_MAPTEXT(psi, COLOR_DARKSPAWN_PSI)
 
-/datum/antagonist/darkspawn/proc/regain_upgrades()
-	for(var/A in upgrades)
-		var/datum/shadow_store/upgrade = upgrades[A]
-		if(upgrade)
-			upgrade.remove(owner.current)
-			upgrade.activate(owner.current)
-
-/datum/antagonist/darkspawn/proc/has_upgrade(id)
-	return upgrades[id]
-
-/datum/antagonist/darkspawn/proc/add_upgrade(id)
-	if(has_upgrade(id))
-		return FALSE
-	upgrades[id] = id
-	return TRUE
-
-/datum/antagonist/darkspawn/proc/remove_upgrade(id)
-	if(!has_upgrade(id))
-		return FALSE
-	upgrades -= id
-	return TRUE
-
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
 	if(darkspawn_state != MUNDANE)
 		return
@@ -227,6 +205,7 @@
 	to_chat(user, "<span class='velvet bold'>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</span>")
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
+	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	show_to_ghosts = TRUE
 	shadow_store = new(src)
 	shadow_store_action = new(shadow_store)
