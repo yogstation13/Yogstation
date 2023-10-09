@@ -42,14 +42,14 @@
 	id = "soulshield"
 	duration = 0.5 SECONDS
 	var/mutable_appearance/shield
-	examine_text = span_notice("They're deftly dodging all incoming attacks!")
-	alert_type = /atom/movable/screen/alert/status_effect/dodging
+	examine_text = span_notice("There's a shield absorbing all incoming attacks!")
+	alert_type = /atom/movable/screen/alert/status_effect/soulshield
 	var/startingbrute = 0
 	var/startingburn = 0
 	var/startingstamina = 0
 	var/difference = 0
-	var/obj/item/midasgaunt/gauntlet = null
-	var/static/list/gauntlet_traits = list(
+	var/obj/item/bloodbook/grimoire = null
+	var/static/list/grimoire_traits = list(
 		TRAIT_RESISTHEAT,
 		TRAIT_NOBREATH,
 		TRAIT_RESISTCOLD,
@@ -60,13 +60,14 @@
 		TRAIT_NOHARDCRIT,
 	)
 
-/datum/status_effect/soulshield/on_creation(mob/living/owner, obj/item/melee/gaunty)
+/datum/status_effect/soulshield/on_creation(mob/living/owner, obj/item/melee/grim)
 	. = ..()
 	if(!.)
 		return
-	gauntlet = gaunty
+	grimoire = grim
 
 /datum/status_effect/soulshield/on_apply()
+	owner.visible_message(span_warning("[owner] braces [owner.p_them()]self!"))
 	startingbrute = owner.getBruteLoss()
 	startingburn = owner.getFireLoss()
 	startingstamina = owner.getStaminaLoss()
@@ -75,7 +76,7 @@
 	shield.pixel_x = -owner.pixel_x
 	shield.pixel_y = -owner.pixel_y
 	owner.overlays += shield
-	for(var/traits in gauntlet_traits)
+	for(var/traits in grimoire_traits)
 		ADD_TRAIT(owner, traits, GAUNTLET_TRAIT)
 	return ..()
 
@@ -85,26 +86,24 @@
 	var/stamchange = (owner.getStaminaLoss() - startingstamina)
 	difference = (brutechange + burnchange + stamchange)
 	if(difference)
-		gauntlet.blocks++
-		gauntlet.blowback(owner)
+		grimoire.blocks++
+		grimoire.blowback(owner)
 		owner.SetImmobilized(0) 
 		owner.adjustBruteLoss(-5)
 		owner.adjustFireLoss(-5)
 	if(owner)
-		for(var/traits in gauntlet_traits)
+		for(var/traits in grimoire_traits)
 			REMOVE_TRAIT(owner, traits, GAUNTLET_TRAIT)
 		owner.overlays -= shield
 		owner.extinguish_mob()
 		owner.AdjustStun(-200)
 		owner.AdjustParalyzed(-200)
 		owner.visible_message(span_warning("[owner] returns to a neutral stance."))
-		addtimer(CALLBACK(gauntlet, TYPE_PROC_REF(/obj/item/midasgaunt, retaliate), owner, difference))
-	owner.adjustBruteLoss(-brutechange, BRUTE)
-	owner.adjustFireLoss(-burnchange, BURN)
-	owner.adjustStaminaLoss(-stamchange, STAMINA)
+		addtimer(CALLBACK(grimoire, TYPE_PROC_REF(/obj/item/bloodbook, retaliate), owner, difference))
+	owner.heal_overall_damage(brutechange, burnchange, stamchange)
 	
 
 /atom/movable/screen/alert/status_effect/soulshield
 	name = "Deflecting"
-	desc = "You're sure to win because your speed is superior!"
-	icon_state = "evading"
+	desc = "You're preparing for a counterattack!"
+	icon_state = "stun"
