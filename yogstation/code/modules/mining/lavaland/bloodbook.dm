@@ -1,6 +1,6 @@
 /obj/item/bloodbook
 	name ="philosopher's tome"
-	desc ="A grisly book that only opens to spit out malice when it detects a flickering life. These reactions send out a wave of pain whose size and strength is based on \
+	desc ="A grisly book that only opens to spit out magic when it detects a flickering life. These reactions send out a wave of pain whose size and strength is based on \
 	the strength of the original target, and can cause chain reactions. The gem on the cover is enchanted to take damaged sustained in a moment and redirect it \
 	to whoever is closest."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
