@@ -1560,15 +1560,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/assist,
 		// Fulp edit START - Bloodsuckers
 		// DEFAULT OBJECTIVES //
-		/datum/objective/bloodsucker/lair,
+		/datum/objective/bloodsucker_lair,
 		/datum/objective/survive/bloodsucker,
-		/datum/objective/bloodsucker/protege,
-		/datum/objective/bloodsucker/heartthief,
-		/datum/objective/bloodsucker/vassalhim,
-		/datum/objective/bloodsucker/gourmand,
-		// MISC OBJECTIVES //
-		/datum/objective/bloodsucker/monsterhunter,
-		/datum/objective/bloodsucker/frenzy,
 		// Fulp edit END
 		/datum/objective/destroy,
 		/datum/objective/hijack,

@@ -445,6 +445,7 @@
 	item_state = "mad_mask"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_cover = MASKCOVERSEYES
+	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	resistance_flags = FLAMMABLE
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	///Who is wearing this
@@ -473,6 +474,11 @@
 
 	if(IS_HERETIC_OR_MONSTER(user))
 		return
+
+/obj/item/clothing/mask/madness_mask/dropped(mob/M)
+	local_user = null
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/clothing/mask/madness_mask/process(seconds_per_tick)
 	if(!local_user)
