@@ -29,7 +29,7 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(712 modules,
+<aside>(713 modules,
     1910/9053 macros, 21.1%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
@@ -461,9 +461,12 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_frenzy.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_frenzy">bloodsucker_frenzy</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_hud.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_hud">bloodsucker_hud</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_mobs.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_mobs">bloodsucker_mobs</a></li>
-    <li><a href="code/modules/antagonists/bloodsuckers/bloodsucker_objectives.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsucker_objectives">bloodsucker_objectives</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/bloodsuckers_objects.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;bloodsuckers_objects">bloodsuckers_objects</a></li>
-    <li><span class="no-substance">clans&#x2F;</span><a href="code/modules/antagonists/bloodsuckers/clans/_clan.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;clans&#x2F;_clan">_clan</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;clans">clans</span><ul class="index-tree">
+    <li><a href="code/modules/antagonists/bloodsuckers/clans/_clan.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;clans&#x2F;_clan">_clan</a></li>
+    <li><a href="code/modules/antagonists/bloodsuckers/clans/clan_flavortext.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;clans&#x2F;clan_flavortext">clan_flavortext</a></li>
+    <li><a href="code/modules/antagonists/bloodsuckers/clans/clan_gangrel.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;clans&#x2F;clan_gangrel">clan_gangrel</a></li>
+    </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers">powers</span><ul class="index-tree">
     <li><a href="code/modules/antagonists/bloodsuckers/powers/fortitude.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;fortitude">fortitude</a></li>
     <li><a href="code/modules/antagonists/bloodsuckers/powers/gohome.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;gohome">gohome</a></li>
@@ -1048,7 +1051,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(937 detailed/1747 documented/28435 total, 6.1%)</aside></h3>
+<aside>(938 detailed/1741 documented/28433 total, 6.1%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1393,7 +1396,9 @@ The namespace folder's name will change if any of the assets change. (excluding 
     <li><span class="no-substance" title="&#x2F;datum&#x2F;atom_hud&#x2F;alternate_appearance&#x2F;basic&#x2F;has_antagonist">has_antagonist</span> - An alternate appearance that will only show if you have the antag datum</li>
     </ul></li>
     </ul></li>
-    <li><a href="datum/bloodsucker_clan.html" title="&#x2F;datum&#x2F;bloodsucker_clan">Caitiff</a> - Bloodsucker clans</li>
+    <li class="has-children"><a href="datum/bloodsucker_clan.html" title="&#x2F;datum&#x2F;bloodsucker_clan">Caitiff</a> - Bloodsucker clans<ul class="index-tree">
+    <li><a href="datum/bloodsucker_clan/nosferatu.html" title="&#x2F;datum&#x2F;bloodsucker_clan&#x2F;nosferatu">Nosferatu Clan</a></li>
+    </ul></li>
     <li><span class="no-substance">brain_trauma&#x2F;severe&#x2F;split_personality&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;brain_trauma&#x2F;severe&#x2F;split_personality&#x2F;brainwashing">Split Personality</span> - BRAINWASHING</li>
     <li><a href="datum/callback.html" title="&#x2F;datum&#x2F;callback">Callback Datums</a> - A datum that holds a proc to be called on another object, used to track proccalls to other objects</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;callback_select">callback_select</span> - Helper datum for the select callbacks proc</li>
@@ -1887,22 +1892,8 @@ Used for some batteries and in atmospherics to lower the required temperature fo
     </ul></li>
     <li class="has-children"><a href="datum/objective.html" title="&#x2F;datum&#x2F;objective">generic objective</a><ul class="index-tree">
     <li><span class="no-substance">assassinate&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;assassinate&#x2F;obsessed">obsessed</span> - CREEPY objectives (few chosen per obsession)</li>
-    <li class="has-children"><a href="datum/objective/bloodsucker.html" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker">bloodsucker</a><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;desecrate">desecrate</span> - Defile a facility with blood</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;frenzy">frenzy</span> - Enter Frenzy repeatedly</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;gourmand">gourmand</span> - Eat blood from a lot of people</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;heartthief">IMPORTANT NOTE!!</span> - Look for Job Values on mobs! This is assigned at the start, but COULD be changed via the HoP
-ALSO - Search through all jobs (look for prefs earlier that look for all jobs, and search through all jobs to see if their head matches the head listed, or it IS the head)
-ALSO - registered_account in _vending.dm for banks, and assigning new ones.
-Steal hearts. You just really wanna have some hearts.</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;leader">leader</span> - Mutilate a certain amount of Vassals
-Convert a certain amount of vassals</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;necromance">necromance</span> - Necromance X amount of people (Hecata)</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;protege">vassalization</span> - Vassalize someone in charge (Head of Staff + QM)</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;solars">solars</span> - Destroy the Solar Arrays</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;bloodsucker&#x2F;vassalhim">vassalhim</span> - Vassalize a target.</li>
-    </ul></li>
     <li><a href="datum/objective/break_machinery.html" title="&#x2F;datum&#x2F;objective&#x2F;break_machinery">Destroy some machines</a> - Break shit - the objective</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;gangrel_clan_objective">frenzy</span> - Enter Frenzy repeatedly</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;objective&#x2F;minor">Minor Objectives</span> - Objectives given to traitors without hijack or martyr, just small flavour things that shouldn't be too hard or impactful.<ul class="index-tree">
     <li><a href="datum/objective/minor/deadpics.html" title="&#x2F;datum&#x2F;objective&#x2F;minor&#x2F;deadpics">Take a picture of your target&#x27;s dead body</a> - Escape with a picture of their dead body</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;minor&#x2F;mindshield">Mindshielding</span> - get mindshielded</li>
@@ -1910,8 +1901,13 @@ Convert a certain amount of vassals</li>
     <li><a href="datum/objective/minor/secrecords.html" title="&#x2F;datum&#x2F;objective&#x2F;minor&#x2F;secrecords">Delete your security records</a> - Just delete the original record. For now, you don't have to prevent other records being made of your identity</li>
     <li><a href="datum/objective/minor/staffpics.html" title="&#x2F;datum&#x2F;objective&#x2F;minor&#x2F;staffpics">Photograph a head of staff</a> - photograph a head of staff</li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;nosferatu_clan_objective">steal kindred</span> - Clan objective
+Nosferatu's objective is to steal the Curator's Archives of the Kindred.</li>
     <li><a href="datum/objective/sacrifice.html" title="&#x2F;datum&#x2F;objective&#x2F;sacrifice">sacrifice</a></li>
-    <li><span class="no-substance">survive&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;survive&#x2F;bloodsucker">bloodsuckersurvive</span> - Space_Station_13_areas.dm  &lt;--- all the areas</li>
+    <li><a href="datum/objective/vassal.html" title="&#x2F;datum&#x2F;objective&#x2F;vassal">vassalization</a></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;objective&#x2F;ventrue_clan_objective">embrace</span> - Clan Objective
+Ventrue's Clan objective is to upgrade the Favorite Vassal
+enough to make them a Bloodsucker.</li>
     </ul></li>
     <li class="has-children"><a href="datum/outfit.html" title="&#x2F;datum&#x2F;outfit">Outfit datums</a> - This is a clean system of applying outfits to mobs, if you need to equip someone in a uniform
 this is the way to do it cleanly and properly.<ul class="index-tree">
@@ -3437,7 +3433,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/9305f21a3c64ecbc91f30c132dc3b0294ef09a21">9305f21</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/2c21dc0b4ed748c613fc03d6bd3a4149700df74d">2c21dc0</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
