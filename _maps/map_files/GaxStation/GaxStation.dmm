@@ -20857,12 +20857,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"kjt" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "kju" = (
 /turf/closed/wall/r_wall,
 /area/science/mixing)
@@ -25905,15 +25899,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"mJX" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "medpriv_shutters";
-	name = "Privacy Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/storage)
 "mKe" = (
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 10
@@ -26643,6 +26628,18 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
+"ndD" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "nel" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -26785,10 +26782,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
-"nhu" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "nhO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -28808,30 +28801,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"ohM" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -2;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 9;
-	pixel_y = 11
-	},
-/obj/item/wrench/medical{
-	pixel_x = -5;
-	pixel_y = -2
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "ohU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
@@ -29279,18 +29248,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"oul" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/department/medical/central";
-	dir = 4;
-	name = "Medbay Central Maintenance APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/medical/central)
 "ovx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -29397,6 +29354,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"ozh" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/medical/storage)
 "ozp" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
@@ -31209,6 +31178,15 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/aft)
+"ptJ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "ptM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -32519,13 +32497,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"pZb" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "pZd" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/science/test_area)
@@ -33634,6 +33605,19 @@
 "qBn" = (
 /turf/closed/wall/r_wall,
 /area/security/brig)
+"qBB" = (
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/department/medical/central";
+	dir = 4;
+	name = "Medbay Central Maintenance APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plating,
+/area/maintenance/department/medical/central)
 "qCJ" = (
 /obj/machinery/light/floor,
 /turf/open/floor/engine/vacuum,
@@ -36855,16 +36839,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"sfB" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/turf/open/floor/plasteel,
-/area/medical/storage)
 "sfE" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
@@ -38530,22 +38504,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"sUk" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	name = "Connector Port (Air Supply)"
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "sUu" = (
 /obj/machinery/door/airlock/public/glass{
 	id_tag = "permabolt1";
@@ -41590,13 +41548,6 @@
 "uBb" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/supply)
-"uBc" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "uBP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -43443,6 +43394,17 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/aft)
+"vpH" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/wrench/medical{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "vpP" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -76837,7 +76799,7 @@ jWt
 pWm
 mbY
 nzc
-oul
+qBB
 ewM
 nam
 lCr
@@ -77862,10 +77824,10 @@ iww
 kIT
 rWu
 qGM
-sfB
-mJX
-ohM
-kjt
+ozh
+gnc
+vpH
+rjs
 szZ
 edn
 hvC
@@ -78121,8 +78083,8 @@ apD
 apD
 apD
 nXR
-sUk
-nhu
+ndD
+rjs
 rjs
 edn
 xVn
@@ -78378,8 +78340,8 @@ voD
 rEQ
 div
 nXR
-pZb
-nhu
+ptJ
+rjs
 mFg
 sbk
 rjs
@@ -78635,8 +78597,8 @@ weE
 asv
 kqo
 bmm
-pZb
-uBc
+ptJ
+paE
 lxh
 lPG
 oXr
