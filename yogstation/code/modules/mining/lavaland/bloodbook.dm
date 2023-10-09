@@ -166,7 +166,7 @@
 	if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
 		target.adjustBruteLoss(target.health)
 		return
-		playsound(target, "shatter", 70, 1)
+	playsound(target, "shatter", 70, 1)
 	if(ismegafauna(target))
 		var/mob/living/simple_animal/hostile/megafauna/L = target
 		for(var/V in L.guaranteed_butcher_results)
