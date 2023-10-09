@@ -842,50 +842,6 @@
 
 //////////////////////////////////////////////
 //                                          //
-//               SHADOWLINGS                //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/roundstart/shadowling
-	name = "Shadowling"
-	antag_flag = ROLE_SHADOWLING
-	antag_datum = /datum/antagonist/shadowling
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
-	required_candidates = 3
-	weight = 3
-	cost = 30
-	requirements = list(90,80,80,70,60,40,30,30,20,10)
-	flags = HIGH_IMPACT_RULESET
-	minimum_players = 30
-	antag_cap = 3
-	minimum_players = 32
-
-/datum/dynamic_ruleset/roundstart/shadowling/ready(population, forced = FALSE)
-	required_candidates = get_antag_cap(population)
-	. = ..()
-
-/datum/dynamic_ruleset/roundstart/shadowling/pre_execute(population) /// DON'T BREAK PLEASE - Xoxeyos 3/13/2021
-	. = ..()
-	var/shadowlings = get_antag_cap(population)
-	for(var/shadowling_number = 1 to shadowlings)
-		if(candidates.len <= 0)
-			break
-		var/mob/M = pick_n_take(candidates)
-		assigned += M.mind
-		M.mind.special_role = ROLE_SHADOWLING
-		M.mind.restricted_roles = restricted_roles
-		log_game("[key_name(M)] has been selected as a Shadowling")
-	return TRUE
-
-/datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
-	return FALSE
-
-//Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made
-//feel free to make changes, if it crashes, or just doesn't give anyone roles.
-
-//////////////////////////////////////////////
-//                                          //
 //                VAMPIRE                   //
 //                                          //
 //////////////////////////////////////////////

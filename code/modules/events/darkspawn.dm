@@ -4,7 +4,7 @@
 	max_occurrences = 0 //Disabled
 	min_players = 30
 	dynamic_should_hijack = TRUE
-	gamemode_blacklist = list("darkspawn", "shadowling")
+	gamemode_blacklist = list("darkspawn")
 
 /datum/round_event/ghost_role/darkspawn
 	minimum_required = 1

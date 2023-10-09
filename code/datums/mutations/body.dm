@@ -199,7 +199,6 @@
 	var/glow = 3.5
 	var/range = 2.5
 	var/glow_color
-	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti, /datum/mutation/human/radiantburst)
 

@@ -93,7 +93,7 @@
 	id = 13
 
 /datum/achievement/greentext/slingascend
-	name = "The Dark Shadow"
+	name = "The Dark Shadow (retired)"
 	desc = "As a shadowling, ascend successfully"
 	id = 14
 

@@ -1492,7 +1492,6 @@
         /datum/antagonist/cult,
         /datum/antagonist/darkspawn,
         /datum/antagonist/rev,
-        /datum/antagonist/shadowling,
         /datum/antagonist/veil
     )
     for(var/antagcheck in bad_antags)
