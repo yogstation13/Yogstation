@@ -1234,7 +1234,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/melee/knuckles(src)
+			new /obj/item/bloodbook(src)
 		if(2)
 			new /obj/item/clothing/gloves/bracer/cuffs(src)
 
