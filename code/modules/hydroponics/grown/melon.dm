@@ -64,10 +64,16 @@
 
 /obj/item/reagent_containers/food/snacks/grown/holymelon/Initialize(mapload)
 	. = ..()
-	var/uses = 1
-	if(seed)
-		uses = round(seed.potency / 20)
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, uses, TRUE, CALLBACK(src, PROC_REF(block_magic)), CALLBACK(src, PROC_REF(expire))) //deliver us from evil o melon god //speedport of TG's 44584 remove this yogs tag if that gets merged
+	if(!seed)
+		return
+	var/uses = round(seed.potency / 20)
+	AddComponent(
+		/datum/component/anti_magic, \
+		antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, \
+		charges = uses, \
+		drain_antimagic = CALLBACK(src, PROC_REF(block_magic)), \
+		expiration = CALLBACK(src, PROC_REF(expire)) \
+	)
 
 /obj/item/reagent_containers/food/snacks/grown/holymelon/proc/block_magic(mob/user, major)
 	if(major)

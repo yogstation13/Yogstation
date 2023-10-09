@@ -194,7 +194,8 @@
 #define TRAIT_TOXINLOVER		"toxinlover"
 #define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
-#define TRAIT_ANTIMAGIC			"anti_magic"
+/// This mob is antimagic, and immune to spells / cannot cast spells
+#define TRAIT_ANTIMAGIC "anti_magic"
 #define TRAIT_HOLY				"holy"
 #define TRAIT_DEPRESSION		"depression"
 #define TRAIT_JOLLY				"jolly"
