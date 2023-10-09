@@ -611,7 +611,7 @@
 	newitem.name = "\improper Holy Medibot"
 	newitem.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 	newitem.holy = TRUE
-	AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY)
+	newitem.AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY)
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
 	return TRUE
 

@@ -64,9 +64,10 @@
 
 /obj/item/reagent_containers/food/snacks/grown/holymelon/Initialize(mapload)
 	. = ..()
-	if(!seed)
-		return
-	var/uses = round(seed.potency / 20)
+	var/uses = 1
+	if(seed)
+		uses = round(seed.potency / 20)
+
 	AddComponent(
 		/datum/component/anti_magic, \
 		antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY, \
