@@ -1006,19 +1006,18 @@
 	if(casted_magic_flags == NONE) // magic with the NONE flag is immune to blocking
 		return FALSE
 
-	var/list/protection_was_used = list() // this is a janky way of interrupting signals using lists
-	var/is_magic_blocked = SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, casted_magic_flags, charge_cost, protection_was_used) & COMPONENT_MAGIC_BLOCKED
+	// A list of all things which are providing anti-magic to us
+	var/list/antimagic_sources = list()
+	var/is_magic_blocked = FALSE
 
-	if(casted_magic_flags && HAS_TRAIT(src, TRAIT_ANTIMAGIC))
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, casted_magic_flags, charge_cost, antimagic_sources) & COMPONENT_MAGIC_BLOCKED)
+		is_magic_blocked = TRUE
+	if(HAS_TRAIT(src, TRAIT_ANTIMAGIC))
 		is_magic_blocked = TRUE
 	if((casted_magic_flags & MAGIC_RESISTANCE_HOLY) && HAS_TRAIT(src, TRAIT_HOLY))
 		is_magic_blocked = TRUE
 
 	return is_magic_blocked
-
-///Return any anti magic atom on this mob that matches the magic type
-/mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE) //new system above, kept cause this is not the aim of the PR but to 
-	return																								//be changed later
 
 /**
   * Buckle to another mob

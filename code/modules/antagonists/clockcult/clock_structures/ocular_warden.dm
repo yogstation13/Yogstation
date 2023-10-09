@@ -63,7 +63,7 @@
 			if(last_process + time_between_shots < world.time)
 				if(isliving(target))
 					var/mob/living/L = target
-					if(!L.anti_magic_check(chargecost = 0))
+					if(!L.can_block_magic(chargecost = 0))
 						if(isrevenant(L))
 							var/mob/living/simple_animal/revenant/R = L
 							if(R.revealed)
@@ -109,7 +109,7 @@
 /obj/structure/destructible/clockwork/ocular_warden/proc/acquire_nearby_targets()
 	. = list()
 	for(var/mob/living/L in viewers(sight_range, src)) //Doesn't attack the blind
-		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
+		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND))
 			continue
 		var/obj/item/storage/book/bible/B = L.bible_check()
 		if(B)

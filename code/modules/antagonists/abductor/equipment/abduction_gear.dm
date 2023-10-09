@@ -339,7 +339,7 @@
 		if(QDELETED(G))
 			return
 
-		if(C.anti_magic_check(FALSE, FALSE, TRUE, 0))
+		if(C.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			to_chat(user, span_warning("Your target seems to have some sort of tinfoil protection on, blocking the message from being sent!"))
 			return
 
@@ -516,7 +516,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 
 /obj/item/abductor/baton/proc/SleepAttack(mob/living/L,mob/living/user)
 	if(L.incapacitated(TRUE, TRUE))
-		if(L.anti_magic_check(FALSE, FALSE, TRUE))
+		if(L.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			to_chat(user, span_warning("The specimen's tinfoil protection is interfering with the sleep inducement!"))
 			L.visible_message(span_danger("[user] tried to induced sleep in [L] with [src], but [L.p_their()] tinfoil protection [L.p_them()]!"), \
 								span_userdanger("You feel a strange wave of heavy drowsiness wash over you, but your tinfoil protection deflects most of it!"))
@@ -528,7 +528,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		L.Sleeping(30 SECONDS)
 		log_combat(user, L, "put to sleep")
 	else
-		if(L.anti_magic_check(FALSE, FALSE, TRUE, 0))
+		if(L.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 			to_chat(user, span_warning("The specimen's tinfoil protection is completely blocking our sleep inducement methods!"))
 			L.visible_message(span_danger("[user] tried to induce sleep in [L] with [src], but [L.p_their()] tinfoil protection completely protected [L.p_them()]!"), \
 								span_userdanger("Any sense of drowsiness is quickly diminished as your tinfoil protection deflects the effects!"))

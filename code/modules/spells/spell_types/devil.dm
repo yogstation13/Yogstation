@@ -198,7 +198,7 @@
 		return
 	if(target_carbon.mind.has_antag_datum(/datum/antagonist/sintouched))
 		return
-	if(target_carbon.anti_magic_check(FALSE, TRUE))
+	if(target_carbon.can_block_magic(MAGIC_RESISTANCE_HOLY))
 		return
 	target_carbon.mind.add_antag_datum(/datum/antagonist/sintouched)
 	target_carbon.Paralyze(40 SECONDS)

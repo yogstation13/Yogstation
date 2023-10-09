@@ -105,7 +105,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 /obj/effect/rune/attack_animal(mob/living/simple_animal/M)
 	if(istype(M, /mob/living/simple_animal/shade) || istype(M, /mob/living/simple_animal/hostile/construct) || istype(M, /mob/living/simple_animal/hostile/guardian))
-		if(istype(M, /mob/living/simple_animal/hostile/construct/wraith/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/armored/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/builder/angelic) || (istype(M, /mob/living/simple_animal/hostile/guardian) && M.anti_magic_check(TRUE, FALSE)))
+		if(istype(M, /mob/living/simple_animal/hostile/construct/wraith/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/armored/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/builder/angelic) || (istype(M, /mob/living/simple_animal/hostile/guardian) && M.can_block_magic()))
 			to_chat(M, span_warning("You purge the rune!"))
 			qdel(src)
 		else if(construct_invoke || !iscultist(M)) //if you're not a cult construct we want the normal fail message
@@ -268,7 +268,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, span_danger("You need at least two invokers to convert [convertee]!"))
 		log_game("Offer rune failed - tried conversion with one invoker")
 		return 0
-	if(convertee.anti_magic_check(TRUE, TRUE, FALSE, 0)) //Not chargecost because it can be spammed
+	if(convertee.can_block_magic((MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND), charge_cost = 0)) //Not chargecost because it can be spammed
 		for(var/M in invokers)
 			to_chat(M, span_warning("Something is shielding [convertee]'s mind!"))
 		log_game("Offer rune failed - convertee had anti-magic")
@@ -841,7 +841,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	set_light(6, 1, color)
 	for(var/mob/living/L in viewers(T))
 		if(!iscultist(L) && L.blood_volume)
-			var/atom/I = L.anti_magic_check(chargecost = 0)
+			var/atom/I = L.can_block_magic(chargecost = 0)
 			if(I)
 				if(isitem(I))
 					to_chat(L, span_userdanger("[I] suddenly burns hotly before returning to normal!"))
@@ -871,7 +871,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	set_light(6, 1, color)
 	for(var/mob/living/L in viewers(T))
 		if(!iscultist(L) && L.blood_volume)
-			if(L.anti_magic_check(chargecost = 0))
+			if(L.can_block_magic(chargecost = 0))
 				continue
 			L.take_overall_damage(0, tick_damage*multiplier) //yogs: only burn damage since these like all runes can be placed and activated near freely
 			if(is_servant_of_ratvar(L))

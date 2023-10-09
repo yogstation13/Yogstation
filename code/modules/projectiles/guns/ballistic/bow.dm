@@ -399,7 +399,7 @@
 		return
 
 	var/mob/holder = loc
-	if(istype(holder) && holder.anti_magic_check(TRUE, FALSE, FALSE, 0))
+	if(istype(holder) && holder.can_cast_magic())
 		to_chat(holder, span_notice("You feel [src] tugging on you."))
 		return
 

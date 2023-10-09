@@ -1134,19 +1134,6 @@
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 
-///Return any anti magic atom on this mob that matches the magic type
-/mob/living/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
-	if(!magic && !holy && !tinfoil)
-		return
-	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_MAGIC_BLOCKED)
-		if(protection_sources.len)
-			return pick(protection_sources)
-		else
-			return src
-	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
-		return src
-
 /mob/living/proc/fakefireextinguish()
 	return
 
