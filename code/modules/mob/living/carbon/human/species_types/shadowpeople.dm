@@ -1,5 +1,6 @@
 #define HEART_RESPAWN_THRESHHOLD 40
 #define HEART_SPECIAL_SHADOWIFY 2
+#define DARKSPAWN_REFLECT_COOLDOWN 15 SECONDS
 
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
@@ -14,17 +15,52 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
 	mutanteyes = /obj/item/organ/eyes/night_vision
+	var/shadow_charges = 0
+	var/charge_time = DARKSPAWN_REFLECT_COOLDOWN
+	var/last_charge = 0
+	var/powerful_heal = FALSE
+	var/dark_healing = 1
+	var/light_burning = 1
 
+/datum/species/shadow/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	if(prob(50) && shadow_charges > 0)
+		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
+		playsound(H, "bullet_miss", 75, 1)
+		shadow_charges = min(shadow_charges - 1, 0)
+		return -1
+	return 0
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
+	H.bubble_icon = "darkspawn"
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
-
-		if(light_amount > SHADOW_SPECIES_LIGHT_THRESHOLD) //if there's enough light, start dying
-			H.take_overall_damage(1,1, 0, BODYPART_ORGANIC)
-		else if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
-			H.heal_overall_damage(1,1, 0, BODYPART_ORGANIC)
+		switch(light_amount)
+			if(0 to SHADOW_SPECIES_DIM_LIGHT) //rapid healing and stun reduction in the darkness
+				H.adjustBruteLoss(-dark_healing)
+				H.adjustFireLoss(-dark_healing)
+				H.adjustCloneLoss(-dark_healing)
+				if(powerful_heal) //only darkspawn and nightmare get this
+					H.adjustToxLoss(-dark_healing)
+					H.adjustStaminaLoss(-dark_healing * 20)
+					H.AdjustStun(-dark_healing * 40)
+					H.AdjustKnockdown(-dark_healing * 40)
+					H.AdjustUnconscious(-dark_healing * 40)
+					H.SetSleeping(0)
+					H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
+			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
+				if(!H.has_status_effect(STATUS_EFFECT_CREEP))
+					to_chat(H, span_userdanger("The light singes you!"))
+					H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
+					H.adjustCloneLoss(light_burning * 0.2)
+			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
+				if(!H.has_status_effect(STATUS_EFFECT_CREEP))
+					to_chat(H, span_userdanger("The light burns you!"))
+					H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
+					H.adjustCloneLoss(light_burning)
+	if(world.time >= charge_time+last_charge)
+		shadow_charges = min(shadow_charges + 1, 3)
+		last_charge = world.time
 
 /datum/species/shadow/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -80,6 +116,7 @@
 
 	return to_add
 
+//////////////////////////////////////////////////////////////////////////////////
 /datum/species/shadow/nightmare
 	name = "Nightmare"
 	plural_form = null
@@ -92,6 +129,8 @@
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutantbrain = /obj/item/organ/brain/nightmare
+
+	var/shadow_charges = 1
 	
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
@@ -102,21 +141,56 @@
 
 	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
 
-/datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
-	var/turf/T = H.loc
-	if(istype(T))
-		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
-			H.visible_message(span_danger("[H] dances in the shadows, evading [P]!"))
-			playsound(T, "bullet_miss", 75, 1)
-			return BULLET_ACT_FORCE_PIERCE
-	return ..()
-
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE
 
-//Organs
+///////////////////////////ANTAG////////////////////////////////////////
+/datum/species/shadow/darkspawn
+	name = "Darkspawn"
+	id = "darkspawn"
+	limbs_id = "darkspawn"
+	sexes = FALSE
+	nojumpsuit = TRUE
+	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | WABBAJACK | ERT_SPAWN //never put this in the pride pool because they look super valid
+	siemens_coeff = 0
+	brutemod = 0.9
+	heatmod = 1.5
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD)
+	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
+	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER)
+	mutanteyes = /obj/item/organ/eyes/night_vision/alien
 
+	powerful_heal = TRUE
+	shadow_charges = 3
+	dark_healing = 5
+	light_burning = 7
+
+/datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	C.real_name = "[pick(GLOB.nightmare_names)]"
+	C.name = C.real_name
+	if(C.mind)
+		C.mind.name = C.real_name
+	C.dna.real_name = C.real_name
+
+/datum/species/shadow/darkspawn/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	C.bubble_icon = initial(C.bubble_icon)
+
+/datum/species/shadow/spec_life(mob/living/carbon/human/H)
+	H.bubble_icon = "darkspawn"
+	. = ..()
+
+/datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
+	if(H.mind?.has_antag_datum(ROLE_DARKSPAWN))
+		var/datum/antagonist/darkspawn/antag = H.mind.has_antag_datum(ROLE_DARKSPAWN)
+		dark_healing = antag.dark_healing
+		light_burning = antag.light_burning
+
+/datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
+	playsound(H, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, FALSE)
+
+/////////////////////////////Organs/////////////////////////////////////
 /obj/item/organ/brain/nightmare
 	name = "tumorous mass"
 	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
@@ -190,7 +264,7 @@
 
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
-		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
 			respawn_progress++
 			playsound(owner,'sound/effects/singlebeat.ogg',40,1)
 	if(respawn_progress >= HEART_RESPAWN_THRESHHOLD)
