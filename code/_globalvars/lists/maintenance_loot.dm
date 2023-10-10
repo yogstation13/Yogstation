@@ -603,6 +603,8 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/reagent_containers/food/snacks/soup/blood = W_RARE,
 	/obj/item/reagent_containers/food/snacks/soup/clownstears = W_MYTHICAL,
 	/obj/item/reagent_containers/food/snacks/egg/loaded = W_RARE,
+	/obj/item/seeds/poppy = W_COMMON,
+	/obj/item/reagent_containers/food/snacks/grown/poppy = W_UNCOMMON,
 	/obj/item/stack/spacecash/c1 = W_UNCOMMON,
 	/obj/item/stack/spacecash/c10 = W_ESSENTIAL,
 	/obj/item/stack/spacecash/c100 = W_RARE,
