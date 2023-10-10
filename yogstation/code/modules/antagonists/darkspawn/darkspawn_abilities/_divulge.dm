@@ -16,7 +16,7 @@
 	if(isethereal(user))//disable the light for long enough to start divulge
 		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 			
-	if(spot.get_lumcount() > DARKSPAWN_DIM_LIGHT)
+	if(spot.get_lumcount() > SHADOW_SPECIES_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
 	if(alert(user, "You are ready to divulge. Are you sure?", name, "Yes", "No") == "No")

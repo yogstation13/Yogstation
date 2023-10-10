@@ -17,7 +17,7 @@
 /datum/component/shadow_step/proc/apply_darkness_speed()
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
-	if(light_amount > DARKSPAWN_BRIGHT_LIGHT)
+	if(light_amount > SHADOW_SPECIES_BRIGHT_LIGHT)
 		owner.remove_movespeed_modifier(type)
 	else
 		owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=speedboost, blacklisted_movetypes=(FLYING|FLOATING))

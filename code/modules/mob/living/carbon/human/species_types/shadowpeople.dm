@@ -251,6 +251,8 @@
 	..()
 	if(special != HEART_SPECIAL_SHADOWIFY)
 		blade = new/obj/item/light_eater
+		blade.force = 25
+		blade.armour_penetration = 35
 		M.put_in_hands(blade)
 	START_PROCESSING(SSobj, src)
 
@@ -295,8 +297,8 @@
 	icon = 'icons/obj/changeling.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
-	force = 25
-	armour_penetration = 35
+	force = 15
+	armour_penetration = 20
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
@@ -312,7 +314,6 @@
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
 	AddComponent(/datum/component/light_eater)
-
 
 #undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY
