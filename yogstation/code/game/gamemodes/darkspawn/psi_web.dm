@@ -22,7 +22,9 @@
 		CRASH("darkspawn menu started with wrong datum.")
 
 	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [darkspawn.lucidity_needed] unique drained total"
-	data["specialization"] = darkspawn.specialization
+	data["specialization"] = darkspawn.specialization //whether or not they've picked their specialization
+
+
 	for(var/category in show_categories)
 		var/list/category_data = list()
 		category_data["name"] = category
@@ -37,7 +39,6 @@
 			var/list/AL = list()
 			AL["name"] = selection.name
 			AL["desc"] = selection.desc
-			AL["psi_cost"] = selection.psi_cost
 			AL["lucidity_cost"] = selection.lucidity_cost
 			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_cost
 			AL["type_path"] = selection.type
@@ -105,8 +106,6 @@
 	var/icon = ""
 	///Cost of to learn this
 	var/lucidity_cost = 0
-	///Cost of to cast this
-	var/psi_cost = 0
 	///What specialization can buy this
 	var/shadow_flags = NONE
 	///what ability is granted if any

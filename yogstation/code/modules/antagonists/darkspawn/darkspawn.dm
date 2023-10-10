@@ -26,11 +26,14 @@
 	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
 	var/lucidity_needed = 20 //how much lucidity is needed to win
 
+	//Default light damage variables (modified by some abilities)
+	var/dark_healing = 5
+	var/light_burning = 7
+
 	//upgrade variables
-	var/list/upgrades = list() //An associative list ("id" = null or TRUE) containing the passive upgrades the darkspawn has
+	var/list/upgrades = list() //A list of all the upgrades we currently have (actual objects, not just typepaths)
 	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
 	var/datum/action/innate/darkspawn/psi_web/psi_web_action //Used to link the menu with our antag datum
-
 	var/specialization = NONE
 
 // Antagonist datum things like assignment //
