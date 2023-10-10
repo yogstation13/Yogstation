@@ -53,7 +53,7 @@
 	if(!darkspawn)
 		return
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
-			target.attackby(twin, user)
+		target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
 			if(isopenturf(target))
