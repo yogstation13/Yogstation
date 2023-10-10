@@ -37,7 +37,6 @@
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
-	var/forcered = FALSE
 	var/vacuum = null //yogs- yellow vacuum lights
 	var/mining_speed = FALSE
 
