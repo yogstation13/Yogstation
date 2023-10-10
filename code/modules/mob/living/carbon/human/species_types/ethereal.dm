@@ -68,9 +68,11 @@
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
 	ethereal_light = ethereal.mob_light()
+	RegisterSignal(ethereal, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	spec_updatehealth(ethereal)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	UnregisterSignal(C, COMSIG_LIGHT_EATER_ACT)
 	QDEL_NULL(ethereal_light)
 	C.set_light(0)
 	return ..()
@@ -109,6 +111,12 @@
 		ethereal_light.set_light_on(FALSE)
 		fixed_mut_color = rgb(128,128,128)
 	ethereal.update_body()
+
+/// Special handling for getting hit with a light eater
+/datum/species/ethereal/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
+	SIGNAL_HANDLER
+	source.emp_act(EMP_LIGHT)
+	return COMPONENT_BLOCK_LIGHT_EATER
 
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
 	.=..()

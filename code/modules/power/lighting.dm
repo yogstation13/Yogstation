@@ -332,6 +332,8 @@
 		spawn(1)
 			update(0)
 
+	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+
 /obj/machinery/light/Destroy()
 	GLOB.lights.Remove(src)
 	var/area/A = get_area(src)
@@ -598,8 +600,6 @@
 			break_light_tube()
 
 
-
-
 /obj/machinery/light/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
@@ -613,6 +613,15 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
+
+/obj/machinery/light/proc/on_light_eater(obj/machinery/light/source, datum/light_eater)
+	SIGNAL_HANDLER
+	. = COMPONENT_BLOCK_LIGHT_EATER
+	if(status == LIGHT_EMPTY)
+		return
+	var/obj/item/light/tube = drop_light_tube()
+	tube?.burn()
+	return
 // returns if the light has power /but/ is manually turned off
 // if a light is turned off, it won't activate emergency power
 /obj/machinery/light/proc/turned_off()
