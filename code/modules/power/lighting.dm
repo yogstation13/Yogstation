@@ -235,6 +235,8 @@
 
 	var/rigged = FALSE			// true if rigged to explode
 
+	var/force_red               // force red light
+
 	var/obj/item/stock_parts/cell/cell
 	var/start_with_cell = TRUE	// if true, this fixture generates a very weak cell at roundstart
 
@@ -387,7 +389,7 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.fire)
+		if (A && (A.fire || force_red))
 			CO = bulb_emergency_colour
 		else if (A && A.vacuum)
 			CO = bulb_vacuum_colour

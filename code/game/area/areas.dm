@@ -37,6 +37,7 @@
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
+	var/forcered = FALSE
 	var/vacuum = null //yogs- yellow vacuum lights
 	var/mining_speed = FALSE
 
@@ -511,13 +512,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/set_fire_alarm_effect(active_fire=TRUE) //if active_fire = FALSE, it will only change the lights to red and not the whole fire alarm systems
-	fire = active_fire
+/area/proc/set_fire_alarm_effect(delta_active=FALSE) //if active_fire = TRUE, it will only change the lights to red and not the whole fire alarm systems
+	fire = !delta_active
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(TRUE)
 	for(var/obj/machinery/light/L in src)
+		if(delta_active)
+			L.force_red = TRUE
 		L.update()
 
 /**
@@ -525,13 +528,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/unset_fire_alarm_effects()
+/area/proc/unset_fire_alarm_effects(delta_inactive=FALSE)
 	fire = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(fire)
+		F.update_fire_light(FALSE)
 	for(var/obj/machinery/light/L in src)
+		if(L.force_red && delta_inactive)
+			L.force_red = FALSE
 		L.update()
 
 /area/proc/set_vacuum_alarm_effect() //Just like fire alarm but blue

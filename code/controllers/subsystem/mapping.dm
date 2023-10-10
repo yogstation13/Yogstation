@@ -210,13 +210,13 @@ SUBSYSTEM_DEF(mapping)
 	nuke_threats[nuke] = TRUE
 	check_nuke_threats()
 	for(var/area/A in nuke_areas)
-		A.set_fire_alarm_effect(FALSE)
+		A.set_fire_alarm_effect(TRUE)
 
 /datum/controller/subsystem/mapping/proc/remove_nuke_threat(datum/nuke)
 	nuke_threats -= nuke
 	check_nuke_threats()
 	for(var/area/A in nuke_areas)
-		A.unset_fire_alarm_effects()
+		A.unset_fire_alarm_effects(TRUE)
 
 /datum/controller/subsystem/mapping/proc/check_nuke_threats()
 	for(var/datum/d in nuke_threats)
