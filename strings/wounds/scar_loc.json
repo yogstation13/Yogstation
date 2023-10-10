@@ -19,7 +19,7 @@
 		"lower back"
 	],
 
-	"left arm": [
+	"l_arm": [
 		"@pick(inner_outer)left forearm",
 		"@pick(inner_outer)left wrist",
 		"left elbow",
@@ -28,7 +28,7 @@
 		"left hand"
 	],
 
-	"right arm": [
+	"r_arm": [
 		"@pick(inner_outer)right forearm",
 		"@pick(inner_outer)right wrist",
 		"right elbow",
@@ -37,7 +37,7 @@
 		"right hand"
 	],
 
-	"left leg": [
+	"l_leg": [
 		"@pick(inner_outer)left thigh",
 		"@pick(free_move)left calf",
 		"@pick(free_move)left hip",
@@ -45,7 +45,7 @@
 		"@pick(free_move)left shin"
 	],
 
-	"right leg": [
+	"r_leg": [
 		"@pick(inner_outer)right thigh",
 		"@pick(free_move)right calf",
 		"@pick(free_move)right hip",
