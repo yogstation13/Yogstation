@@ -193,7 +193,7 @@
 /datum/psi_web/fightertest
 	name = "fighter ability"
 	desc = "me no think so good"
-	shadow_flags = SCOUT
+	shadow_flags = FIGHTER
 
 /datum/psi_web/scouttest
 	name = "scout ability (dark speed)"
