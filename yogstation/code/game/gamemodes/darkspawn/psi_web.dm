@@ -162,7 +162,7 @@
 */
 /datum/psi_web/scout
 	name = "shadow step"
-	desc = "shadow step"
+	desc = "GO FAST, TOUCH GRASS"
 
 /datum/psi_web/scout/activate(mob/user)
 	user.LoadComponent(/datum/component/walk/shadow)
@@ -171,14 +171,14 @@
 
 /datum/psi_web/fighter
 	name = "fighter"
-	desc = "fighter"
+	desc = "me no think so good"
 
 /datum/psi_web/fighter/activate(mob/user)
 	owner.specialization = FIGHTER
 
 /datum/psi_web/warlock
 	name = "warlock"
-	desc = "warlock"
+	desc = "apartment \"complex\"... really? I find it quite simple"
 
 /datum/psi_web/warlock/activate(mob/user)
 	owner.specialization = WARLOCK
