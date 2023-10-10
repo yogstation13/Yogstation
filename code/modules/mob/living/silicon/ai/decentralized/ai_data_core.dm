@@ -105,6 +105,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			to_chat(user, span_warning("This core is currently unable to host an AI due to being offline."))
 			return
 		dead_ai_blackbox = O
+		dead_ai_blackbox.forceMove(src)
 		network.reviving_ais |= src
 		return TRUE
 	if(O.tool_behaviour == TOOL_SCREWDRIVER)

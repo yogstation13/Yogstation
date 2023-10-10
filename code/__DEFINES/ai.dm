@@ -5,7 +5,7 @@
 #define AI_TEMP_LIMIT 288.15 //15C, much hotter than a normal server room for leniency :)
 
 ///How long the AI can stay in the black-box before it's fully destroyed
-#define AI_BLACKBOX_LIFETIME 5 MINUTES
+#define AI_BLACKBOX_LIFETIME 300
 ///How much CPU we need to use to revive the AI
 #define AI_BLACKBOX_PROCESSING_REQUIREMENT 2500
 
