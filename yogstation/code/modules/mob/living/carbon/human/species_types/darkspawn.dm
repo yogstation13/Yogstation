@@ -45,6 +45,12 @@
 	. = ..()
 	C.bubble_icon = initial(C.bubble_icon)
 
+/datum/species/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
+	if(H.mind?.has_antag_datum(ROLE_DARKSPAWN))
+		var/datum/antagonist/darkspawn/antag = H.mind.has_antag_datum(ROLE_DARKSPAWN)
+		dark_healing = antag.dark_healing
+		light_burning = antag.light_burning
+
 /datum/species/darkspawn/spec_life(mob/living/carbon/human/H)
 	H.bubble_icon = "darkspawn"
 	var/turf/T = H.loc
