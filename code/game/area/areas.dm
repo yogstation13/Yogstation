@@ -32,7 +32,7 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
-	var/fire = null
+	var/fire = FALSE
 	var/atmos = TRUE
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
 
 	if(is_station_level(src.z))
-		SSmapping.nuke_areas += src
+		GLOB.nuke_areas += src
 
 	if(!ambientsounds && ambience_index)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
@@ -514,8 +514,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
 /area/proc/set_fire_alarm_effect(delta_alert=FALSE)
-	delta_light = delta_alert
-	if(!delta_alert)
+	if(delta_alert)
+		delta_light = TRUE
+	else
 		fire = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
@@ -530,13 +531,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
 /area/proc/unset_fire_alarm_effects(delta_alert=FALSE)
-	delta_light = delta_alert
-	if(!delta_alert)
+	if(delta_alert)
+		delta_light = FALSE
+	else
 		fire = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(FALSE)
+		if(!delta_light)
+			F.update_fire_light(FALSE)
 	for(var/obj/machinery/light/L in src)
 		L.update()
 

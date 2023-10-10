@@ -95,6 +95,13 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 
+		if(level == SEC_LEVEL_DELTA)
+			for(var/area/A in GLOB.nuke_areas)
+				A.set_fire_alarm_effect(TRUE)
+		else
+			for(var/area/A in GLOB.nuke_areas)
+				A.unset_fire_alarm_effects(TRUE)
+
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 			SSshuttle.emergency.modTimer(modTimer)
 
