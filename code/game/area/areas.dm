@@ -73,6 +73,8 @@
 	var/unique = TRUE
 	/// If false, then this area will show up as gibberish on suit sensors.
 	var/show_on_sensors = TRUE
+	/// a simple check to determine whether the lights in an area should go red during delta alert
+	var/delta_light = FALSE
 
 	var/no_air = null
 
@@ -511,15 +513,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/set_fire_alarm_effect(delta_active=FALSE) //if active_fire = TRUE, it will only change the lights to red and not the whole fire alarm systems
-	fire = !delta_active
+/area/proc/set_fire_alarm_effect(delta_alert=FALSE)
+	delta_light = delta_alert
+	if(!delta_alert)
+		fire = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(TRUE)
 	for(var/obj/machinery/light/L in src)
-		if(delta_active)
-			L.force_red = TRUE
 		L.update()
 
 /**
@@ -527,15 +529,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/unset_fire_alarm_effects(delta_inactive=FALSE)
-	fire = FALSE
+/area/proc/unset_fire_alarm_effects(delta_alert=FALSE)
+	delta_light = delta_alert
+	if(!delta_alert)
+		fire = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(FALSE)
 	for(var/obj/machinery/light/L in src)
-		if(L.force_red && delta_inactive)
-			L.force_red = FALSE
 		L.update()
 
 /area/proc/set_vacuum_alarm_effect() //Just like fire alarm but blue
