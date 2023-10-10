@@ -98,7 +98,6 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(list(/area/engin
 		thing.change_area(old_area, newA)
 
 	newA.reg_in_areas_in_z()
-	newA.add_areas_to_nuke()
 
 	var/list/firedoors = oldA.firedoors
 	for(var/door in firedoors)
