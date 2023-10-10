@@ -209,7 +209,7 @@ GLOBAL_VAR(stormdamage)
 		for(var/obj/thing in actual)
 			if(QDELETED(thing))
 				continue
-			if(!thing.anchored || is_type_in_typecache(thing, /obj/structure/fireaxecabinet))//only target something that is possibly a weapon or gear
+			if(!thing.anchored || is_type_in_typecache(thing, removals))//only target something that is possibly a weapon or gear
 				QDEL_NULL(thing)
 	
 	for(var/target in GLOB.mob_living_list)
