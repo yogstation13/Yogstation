@@ -186,8 +186,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	map_name = name // Save the initial (the name set in the map) name of the area.
 	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
 
-	if(is_station_level(src.z))
-		GLOB.nuke_areas += src
+	add_areas_to_nuke()
 
 	if(!ambientsounds && ambience_index)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
@@ -282,6 +281,10 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		areas_in_z["[z]"] = list()
 	areas_in_z["[z]"] += src
 
+/area/proc/add_delta_areas()
+	if(is_station_level(z) && !istype(src, /area/shuttle))
+		GLOB.delta_areas += src
+
 /**
   * Destroy an area and clean it up
   *
@@ -295,6 +298,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		GLOB.areas_by_type[type] = null
 	GLOB.sortedAreas -= src
 	GLOB.areas -= src
+	GLOB.delta_areas -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
