@@ -184,6 +184,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	map_name = name // Save the initial (the name set in the map) name of the area.
 	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
 
+	if(is_station_level(src.z))
+		SSmapping.nuke_areas += src
 
 	if(!ambientsounds && ambience_index)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
@@ -509,12 +511,12 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/set_fire_alarm_effect()
-	fire = TRUE
+/area/proc/set_fire_alarm_effect(active_fire=TRUE) //if active_fire = FALSE, it will only change the lights to red and not the whole fire alarm systems
+	fire = active_fire
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(fire)
+		F.update_fire_light(TRUE)
 	for(var/obj/machinery/light/L in src)
 		L.update()
 
