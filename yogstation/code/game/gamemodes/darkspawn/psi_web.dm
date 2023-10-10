@@ -172,6 +172,7 @@
 /datum/psi_web/fighter
 	name = "fighter"
 	desc = "me no think so good"
+	learned_ability = /datum/action/innate/darkspawn/pass
 
 /datum/psi_web/fighter/activate(mob/user)
 	owner.specialization = FIGHTER
