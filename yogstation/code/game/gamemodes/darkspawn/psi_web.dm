@@ -182,3 +182,25 @@
 
 /datum/psi_web/warlock/activate(mob/user)
 	owner.specialization = WARLOCK
+
+
+
+/datum/psi_web/castertest
+	name = "warlock ability"
+	desc = "apartment \"complex\"... really? I find it quite simple"
+	shadow_flags = WARLOCK
+
+/datum/psi_web/fightertest
+	name = "fighter ability"
+	desc = "me no think so good"
+	shadow_flags = SCOUT
+
+/datum/psi_web/scouttest
+	name = "scout ability"
+	desc = "GO FAST, TOUCH GRASS"
+	shadow_flags = SCOUT
+
+/datum/psi_web/everyone
+	name = "universal ability"
+	desc = "everyone should see this"
+	shadow_flags = SCOUT | WARLOCK | FIGHTER
