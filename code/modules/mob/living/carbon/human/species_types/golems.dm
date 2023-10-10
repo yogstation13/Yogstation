@@ -402,7 +402,7 @@
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown) && user != H)
 		radiation_emission(H)
 
-/datum/species/golem/uranium/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/uranium/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown))
 		radiation_emission(H)
@@ -431,7 +431,7 @@
 		new /obj/item/stack/ore/glass(get_turf(H))
 	qdel(H)
 
-/datum/species/golem/sand/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/sand/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H))
 		if(P.flag == BULLET || P.flag == BOMB)
 			playsound(H, 'sound/effects/shovel_dig.ogg', 70, 1)
@@ -466,7 +466,7 @@
 		new /obj/item/shard(get_turf(H))
 	qdel(H)
 
-/datum/species/golem/glass/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/glass/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H)) //self-shots don't reflect
 		if(P.flag == LASER || P.flag == ENERGY)
 			H.visible_message(span_danger("The [P.name] gets reflected by [H]'s glass skin!"), \
@@ -525,7 +525,7 @@
 	if(world.time > last_teleport + teleport_cooldown && user != H)
 		reactive_teleport(H)
 
-/datum/species/golem/bluespace/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bluespace/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_teleport + teleport_cooldown)
 		reactive_teleport(H)
@@ -624,7 +624,7 @@
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
 		last_banana = world.time
 
-/datum/species/golem/bananium/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bananium/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_banana + banana_cooldown)
 		new/obj/item/grown/bananapeel/specialpeel(get_turf(H))
@@ -927,7 +927,7 @@
 	var/last_gong_time = 0
 	var/gong_cooldown = 150
 
-/datum/species/golem/bronze/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bronze/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(world.time > last_gong_time + gong_cooldown))
 		return BULLET_ACT_HIT
 	if(P.flag == BULLET || P.flag == BOMB)
@@ -949,7 +949,7 @@
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
 
-/datum/species/golem/bronze/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/bronze/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	..()
 	if(world.time > last_gong_time + gong_cooldown)
 		gong(H)
@@ -1570,9 +1570,9 @@
 	qdel(I)
 	
 
-/datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	. = ..()
-	if(istype(P, /obj/item/projectile/magic) || P.flag == LASER || P.flag == ENERGY)
+	if(istype(P, /obj/projectile/magic) || P.flag == LASER || P.flag == ENERGY)
 		return .
 	H.visible_message(span_danger("[P] melts on collision with [H]!"))
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)

@@ -95,7 +95,7 @@
 	cast_range = 2
 	spell_requirements = NONE
 
-	projectile_type = /obj/item/projectile/magic/fireball/infernal
+	projectile_type = /obj/projectile/magic/fireball/infernal
 
 /datum/action/cooldown/spell/jaunt/infernal_jaunt
 	name = "Infernal Jaunt"

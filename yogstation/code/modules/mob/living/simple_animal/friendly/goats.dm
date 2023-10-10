@@ -180,14 +180,14 @@
 	var/datum/action/cooldown/spell/conjure/radiation_anomaly/radiation_anomaly
 	var/rad_emit = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
 		P.damage = 0 //No damaging goat
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/retaliate/goat/radioactive/on_hit(obj/projectile/P)
 	. = ..()
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
 		// abosrbs nuclear particle to heal
 		adjustBruteLoss(-1)
 		adjustFireLoss(-1)

@@ -118,9 +118,9 @@
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
 	harmful = FALSE
-	projectile_type = /obj/item/projectile/bullet/c22hl
+	projectile_type = /obj/projectile/bullet/c22hl
 
-/obj/item/projectile/bullet/c22hl //.22 HL
+/obj/projectile/bullet/c22hl //.22 HL
 	name = "hardlight beam"
 	icon_state = "disabler_bullet"
 	flag = ENERGY
@@ -151,9 +151,9 @@
 /obj/item/ammo_casing/caseless/c22ls
 	caliber = LASER
 	harmful = TRUE
-	projectile_type = /obj/item/projectile/bullet/c22ls
+	projectile_type = /obj/projectile/bullet/c22ls
 
-/obj/item/projectile/bullet/c22ls //.22 LS
+/obj/projectile/bullet/c22ls //.22 LS
 	name = "laser beam"
 	icon_state = "disabler_bullet"
 	flag = LASER

@@ -24,7 +24,7 @@
 
 	active_msg = "You focus your acid spit!"
 	deactive_msg = "You relax."
-	projectile_type = /obj/item/projectile/bullet/acid
+	projectile_type = /obj/projectile/bullet/acid
 
 /datum/action/cooldown/spell/pointed/projectile/acid_spit/can_cast_spell(feedback)
 	. = ..()
@@ -32,7 +32,7 @@
 		to_chat(owner, span_notice("Something is covering your mouth!"))
 		return FALSE
 
-/obj/item/projectile/bullet/acid
+/obj/projectile/bullet/acid
 	name = "acid spit"
 	icon_state = "neurotoxin"
 	damage = 2
@@ -41,7 +41,7 @@
 	range = 7
 	speed = 1.8 // spit is not very fast
 
-obj/item/projectile/bullet/acid/on_hit(atom/target, blocked = FALSE)
+obj/projectile/bullet/acid/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target)) // shouldn't work on xenos
 		nodamage = TRUE
 	else if(!isopenturf(target))

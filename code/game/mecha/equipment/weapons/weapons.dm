@@ -45,7 +45,7 @@
 
 	set_ready_state(0)
 	for(var/i=1 to get_shot_amount())
-		var/obj/item/projectile/A = new projectile(curloc)
+		var/obj/projectile/A = new projectile(curloc)
 		A.firer = chassis.occupant
 		A.original = target
 		if(!A.suppressed && firing_effect_type)
@@ -89,7 +89,7 @@
 	desc = "A weapon for combat exosuits. Shoots basic lasers."
 	icon_state = "mecha_laser"
 	energy_drain = 30
-	projectile = /obj/item/projectile/beam/laser
+	projectile = /obj/projectile/beam/laser
 	fire_sound = 'sound/weapons/laser.ogg'
 	harmful = TRUE
 
@@ -99,7 +99,7 @@
 	desc = "A weapon for combat exosuits. Shoots basic disablers."
 	icon_state = "mecha_disabler"
 	energy_drain = 30
-	projectile = /obj/item/projectile/beam/disabler
+	projectile = /obj/projectile/beam/disabler
 	fire_sound = 'sound/weapons/taser2.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
@@ -108,7 +108,7 @@
 	desc = "A weapon for combat exosuits. Shoots heavy lasers."
 	icon_state = "mecha_laser"
 	energy_drain = 60
-	projectile = /obj/item/projectile/beam/laser/heavylaser
+	projectile = /obj/projectile/beam/laser/heavylaser
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
@@ -117,7 +117,7 @@
 	desc = "A weapon for combat exosuits. Shoots concentrated X-ray blasts."
 	icon_state = "mecha_xray"
 	energy_drain = 60
-	projectile = /obj/item/projectile/beam/xray
+	projectile = /obj/projectile/beam/xray
 	fire_sound = 'sound/weapons/laser3.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -126,7 +126,7 @@
 	desc = "A weapon for combat exosuits. Shoots technology-disabling ion beams. Don't catch yourself in the blast!"
 	icon_state = "mecha_ion"
 	energy_drain = 200
-	projectile = /obj/item/projectile/ion/heavy	//Big boy 2/2 EMP bolts
+	projectile = /obj/projectile/ion/heavy	//Big boy 2/2 EMP bolts
 	fire_sound = 'sound/weapons/laser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/tesla
@@ -135,7 +135,7 @@
 	desc = "A weapon for combat exosuits. Fires bolts of electricity similar to the experimental tesla engine."
 	icon_state = "mecha_ion"
 	energy_drain = 500
-	projectile = /obj/item/projectile/energy/tesla/cannon
+	projectile = /obj/projectile/energy/tesla/cannon
 	fire_sound = 'sound/magic/lightningbolt.ogg'
 	harmful = TRUE
 
@@ -145,7 +145,7 @@
 	desc = "A weapon for combat exosuits. Shoots powerful destructive blasts capable of demolishing obstacles."
 	icon_state = "mecha_pulse"
 	energy_drain = 120
-	projectile = /obj/item/projectile/beam/pulse/heavy
+	projectile = /obj/projectile/beam/pulse/heavy
 	fire_sound = 'sound/weapons/marauder.ogg'
 	harmful = TRUE
 
@@ -158,7 +158,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	energy_drain = 30
-	projectile = /obj/item/projectile/plasma/adv/mech
+	projectile = /obj/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	harmful = FALSE
 
@@ -177,7 +177,7 @@
 	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
 	icon_state = "mecha_kineticgun"
 	energy_drain = 30
-	projectile = /obj/item/projectile/kinetic/mech
+	projectile = /obj/projectile/kinetic/mech
 	fire_sound = 'sound/weapons/kenetic_accel.ogg'
 	harmful = FALSE
 
@@ -197,7 +197,7 @@
 	icon_state = "mecha_taser"
 	energy_drain = 20
 	equip_cooldown = 8
-	projectile = /obj/item/projectile/energy/electrode
+	projectile = /obj/projectile/energy/electrode
 	fire_sound = 'sound/weapons/taser.ogg'
 
 
@@ -321,7 +321,7 @@
 	desc = "A weapon for combat exosuits. Shoots incendiary bullets."
 	icon_state = "mecha_carbine"
 	equip_cooldown = 10
-	projectile = /obj/item/projectile/bullet/incendiary/fnx99
+	projectile = /obj/projectile/bullet/incendiary/fnx99
 	projectiles = 24
 	projectiles_cache = 24
 	projectiles_cache_max = 96
@@ -334,7 +334,7 @@
 	fire_sound = null
 	icon_state = "mecha_mime"
 	equip_cooldown = 30
-	projectile = /obj/item/projectile/bullet/mime
+	projectile = /obj/projectile/bullet/mime
 	projectiles = 6
 	projectile_energy_cost = 50
 	harmful = TRUE
@@ -344,7 +344,7 @@
 	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
-	projectile = /obj/item/projectile/bullet/scattershot
+	projectile = /obj/projectile/bullet/scattershot
 	projectiles = 72
 	projectiles_cache = 72
 	projectiles_cache_max = 288
@@ -358,7 +358,7 @@
 	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
-	projectile = /obj/item/projectile/bullet/lmg
+	projectile = /obj/projectile/bullet/lmg
 	projectiles = 300
 	projectiles_cache = 300
 	projectiles_cache_max = 1200
@@ -374,7 +374,7 @@
 	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
 	icon_state = "mecha_laser"
 	equip_cooldown = 2 SECONDS
-	projectile = /obj/item/projectile/beam/bfg
+	projectile = /obj/projectile/beam/bfg
 	projectiles = 5
 	projectiles_cache = 0
 	projectiles_cache_max = 10
@@ -386,7 +386,7 @@
 	name = "\improper SRM-8 missile rack"
 	desc = "A weapon for combat exosuits. Launches light explosive missiles."
 	icon_state = "mecha_missilerack"
-	projectile = /obj/item/projectile/bullet/a84mm_he
+	projectile = /obj/projectile/bullet/a84mm_he
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 8
 	projectiles_cache = 0
@@ -400,7 +400,7 @@
 	name = "\improper BRM-6 missile rack"
 	desc = "A weapon for combat exosuits. Launches low-explosive breaching missiles designed to explode only when striking a sturdy target."
 	icon_state = "mecha_missilerack_six"
-	projectile = /obj/item/projectile/bullet/a84mm_br
+	projectile = /obj/projectile/bullet/a84mm_br
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	projectiles = 6
 	projectiles_cache = 0

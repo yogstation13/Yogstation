@@ -94,17 +94,17 @@
 	ammo_x_offset = 3
 
 /obj/item/ammo_casing/energy/laser/accelerator
-	projectile_type = /obj/item/projectile/beam/laser/accelerator
+	projectile_type = /obj/projectile/beam/laser/accelerator
 	select_name = "accelerator"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
-/obj/item/projectile/beam/laser/accelerator
+/obj/projectile/beam/laser/accelerator
 	name = "accelerator laser"
 	icon_state = "scatterlaser"
 	range = 255
 	damage = 6
 
-/obj/item/projectile/beam/laser/accelerator/Range()
+/obj/projectile/beam/laser/accelerator/Range()
 	..()
 	damage += 7
 	transform *= 1 + ((damage/7) * 0.2)//20% larger per tile
@@ -166,22 +166,22 @@
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
-	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle
+	projectile_type = /obj/projectile/beam/laser/makeshiftlasrifle
 	select_name = "strong"
 	variance = 2
 
-/obj/item/projectile/beam/laser/makeshiftlasrifle
+/obj/projectile/beam/laser/makeshiftlasrifle
 	damage = 17
 
 /obj/item/ammo_casing/energy/laser/makeshiftlasrifle/weak
 	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
-	projectile_type = /obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+	projectile_type = /obj/projectile/beam/laser/makeshiftlasrifle/weak
 	select_name = "weak"
 	fire_sound = 'sound/weapons/laser2.ogg'
 
-/obj/item/projectile/beam/laser/makeshiftlasrifle/weak
+/obj/projectile/beam/laser/makeshiftlasrifle/weak
 	name = "weak laser"
 	damage = 5
 
-/obj/item/projectile/beam/laser/buckshot
+/obj/projectile/beam/laser/buckshot
 	damage = 10

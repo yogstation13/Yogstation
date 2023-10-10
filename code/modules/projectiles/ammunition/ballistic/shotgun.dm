@@ -5,33 +5,33 @@
 	desc = "A 12-gauge lead slug."
 	icon_state = "blshell"
 	caliber = "shotgun"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug
+	projectile_type = /obj/projectile/bullet/shotgun/slug
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/syndie
 	name = "syndicate shotgun slug"
 	desc = "An illegal 12-gauge slug produced by the Syndicate."
 	icon_state = "sblshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/syndie
+	projectile_type = /obj/projectile/bullet/shotgun/slug/syndie
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/beanbag
+	projectile_type = /obj/projectile/bullet/shotgun/slug/beanbag
 	materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/incendiary
 	name = "incendiary slug"
 	desc = "An incendiary-coated shotgun slug."
 	icon_state = "ishell"
-	projectile_type = /obj/item/projectile/bullet/incendiary/shotgun
+	projectile_type = /obj/projectile/bullet/incendiary/shotgun
 
 /obj/item/ammo_casing/shotgun/dragonsbreath
 	name = "dragonsbreath shell"
 	desc = "A shotgun shell which fires a spread of incendiary pellets."
 	icon_state = "ishell2"
-	projectile_type = /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
+	projectile_type = /obj/projectile/bullet/incendiary/shotgun/dragonsbreath
 	pellets = 5
 	variance = 30
 
@@ -39,14 +39,14 @@
 	name = "taser slug"
 	desc = "A stunning taser slug."
 	icon_state = "stunshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/stun
+	projectile_type = /obj/projectile/bullet/shotgun/slug/stun
 	materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/meteorslug
 	name = "meteorslug shell"
 	desc = "A shotgun shell rigged with CMC technology, which launches a massive slug when fired."
 	icon_state = "mshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/meteor
+	projectile_type = /obj/projectile/bullet/shotgun/slug/meteor
 
 /obj/item/ammo_casing/shotgun/pulseslug
 	name = "pulse slug"
@@ -54,19 +54,19 @@
 	energy blast. While the heat and power drain limit it to one use, it can still allow an operator to engage targets that ballistic ammunition \
 	would have difficulty with."
 	icon_state = "pshell"
-	projectile_type = /obj/item/projectile/beam/pulse/shotgun
+	projectile_type = /obj/projectile/beam/pulse/shotgun
 
 /obj/item/ammo_casing/shotgun/frag12
 	name = "FRAG-12 slug"
 	desc = "A high-explosive breaching round for a 12 gauge shotgun."
 	icon_state = "heshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/frag12
+	projectile_type = /obj/projectile/bullet/shotgun/slug/frag12
 
 /obj/item/ammo_casing/shotgun/buckshot
 	name = "buckshot shell"
 	desc = "A 12-gauge buckshot shell."
 	icon_state = "gshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
 	variance = 20
 
@@ -74,13 +74,13 @@
 	name = "syndicate buckshot shell"
 	desc = "An illegal 12-gauge buckshot shell produced by the Syndicate."
 	icon_state = "sgshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/syndie
 
 /obj/item/ammo_casing/shotgun/flechette
 	name = "flechette shell"
 	desc = "A 12-gauge flechette shell."
 	icon_state = "flshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_flechette
 	pellets = 6
 	variance = 10
 
@@ -88,7 +88,7 @@
 	name = "buckshot shell..?"
 	desc = "This feels a little light for a buckshot shell."
 	icon_state = "gshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_clownshot
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_clownshot
 	pellets = 20
 	variance = 35
 
@@ -96,7 +96,7 @@
 	name = "rubber shot"
 	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
 	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_rubbershot
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
 	variance = 20
 	materials = list(/datum/material/iron=4000)
@@ -105,7 +105,7 @@
 	name = "improvised shell"
 	desc = "An extremely weak shotgun shell with multiple small pellets made out of metal shards."
 	icon_state = "improvshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_improvised
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_improvised
 	materials = list(/datum/material/iron=250)
 	pellets = 10
 	variance = 20
@@ -115,7 +115,7 @@
 	desc = "An advanced shotgun shell which uses a subspace ansible crystal to produce an effect similar to a standard ion rifle. \
 	The unique properties of the crystal split the pulse into a spread of individually weaker bolts."
 	icon_state = "ionshell"
-	projectile_type = /obj/item/projectile/ion/weak
+	projectile_type = /obj/projectile/ion/weak
 	pellets = 4
 	variance = 30
 
@@ -123,7 +123,7 @@
 	name = "laser buckshot"
 	desc = "An advanced shotgun shell that uses  micro lasers to replicate the effects of a laser weapon in a ballistic package."
 	icon_state = "lshell"
-	projectile_type = /obj/item/projectile/beam/laser/buckshot
+	projectile_type = /obj/projectile/beam/laser/buckshot
 	pellets = 5
 	variance = 30
 
@@ -132,14 +132,14 @@
 	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
 	very impressive armor penetration capabilities."
 	icon_state = "dushell" 
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/uranium
+	projectile_type = /obj/projectile/bullet/shotgun/slug/uranium
 
 /obj/item/ammo_casing/shotgun/cryoshot
 	name = "cryoshot shell"
 	desc = "A state-of-the-art shell which uses the cooling power of Rhigoxane to snap freeze a target, without causing \
 	them much harm."
 	icon_state = "fshell" 
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_cryoshot
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_cryoshot
 	pellets = 4
 	variance = 30
 
@@ -153,7 +153,7 @@
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 30 units of any chemical."
 	icon_state = "cshell"
-	projectile_type = /obj/item/projectile/bullet/reusable/dart
+	projectile_type = /obj/projectile/bullet/reusable/dart
 	var/reagent_amount = 30
 	var/no_react = FALSE
 
@@ -167,7 +167,7 @@
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/reusable/dart/hidden
+	projectile_type = /obj/projectile/bullet/reusable/dart/hidden
 
 /obj/item/ammo_casing/shotgun/dart/hidden/Initialize(mapload)
 	. = ..()
@@ -178,7 +178,7 @@
 		return
 	if(reagents.total_volume < 0)
 		return
-	var/obj/item/projectile/bullet/reusable/dart/D = BB
+	var/obj/projectile/bullet/reusable/dart/D = BB
 	var/obj/item/reagent_containers/syringe/dart/temp/new_dart = new(D)
 
 	new_dart.volume = reagents.total_volume
@@ -206,7 +206,7 @@
 	name = "breaching slug"
 	desc = "A 12-gauge anti-material slug. Great for breaching airlocks and windows with minimal shots. Only fits in tactical breaching shotguns."
 	icon_state = "breacher"
-	projectile_type = /obj/item/projectile/bullet/shotgun/slug/breaching
+	projectile_type = /obj/projectile/bullet/shotgun/slug/breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
 
@@ -217,13 +217,13 @@
 	icon_state = "Thshell"
 	pellets = 3
 	variance = 25
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_thundershot
 
 /obj/item/ammo_casing/shotgun/hardlight
 	name = "hardlight shell"
 	desc = "An advanced shotgun shell that fires a hardlight beam and scatters it."
 	icon_state = "hshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
+	projectile_type = /obj/projectile/bullet/pellet/hardlight
 	harmful = FALSE
 	pellets = 6
 	variance = 20

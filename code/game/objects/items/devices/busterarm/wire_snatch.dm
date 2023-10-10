@@ -94,12 +94,12 @@
 /obj/item/ammo_casing/magic/wire
 	name = "hook"
 	desc = "A hook."
-	projectile_type = /obj/item/projectile/wire
+	projectile_type = /obj/projectile/wire
 	caliber = "hook"
 	icon_state = "hook"
 
 /// Projectile
-/obj/item/projectile/wire
+/obj/projectile/wire
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -113,19 +113,19 @@
 	knockdown = 0
 	var/wire
 
-/obj/item/projectile/wire/fire(setAngle)
+/obj/projectile/wire/fire(setAngle)
 	if(firer)
 		wire = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
 	..()
 
 /// Helper proc exclusively used for pulling the buster arm USER towards something anchored
-/obj/item/projectile/wire/proc/zip(mob/living/user, turf/open/target)
+/obj/projectile/wire/proc/zip(mob/living/user, turf/open/target)
 	to_chat(user, span_warning("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.Immobilize(0.2 SECONDS)//so it's not cut short by walking
 	user.forceMove(get_step_towards(target, user))
 
-/obj/item/projectile/wire/on_hit(atom/target)
+/obj/projectile/wire/on_hit(atom/target)
 	var/mob/living/carbon/human/H = firer
 	if(!H)
 		return
@@ -177,6 +177,6 @@
 		var/turf/W = target
 		zip(H, W)
 
-/obj/item/projectile/wire/Destroy()
+/obj/projectile/wire/Destroy()
 	qdel(wire) // Cleans up the beam that we generate once we hit something
 	return ..()

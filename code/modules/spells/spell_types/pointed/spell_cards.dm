@@ -13,7 +13,7 @@
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 40
-	projectile_type = /obj/item/projectile/magic/spellcard
+	projectile_type = /obj/projectile/magic/spellcard
 	projectile_amount = 5
 	projectiles_per_fire = 7
 
@@ -60,7 +60,7 @@
 	. = ..()
 	QDEL_NULL(lockon_component)
 
-/datum/action/cooldown/spell/pointed/projectile/spell_cards/ready_projectile(obj/item/projectile/to_fire, atom/target, mob/user, iteration)
+/datum/action/cooldown/spell/pointed/projectile/spell_cards/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
 	. = ..()
 	if(current_target_weakref)
 		var/atom/real_target = current_target_weakref?.resolve()

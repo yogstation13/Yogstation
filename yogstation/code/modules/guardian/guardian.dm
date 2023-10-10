@@ -353,7 +353,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	if (QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from)
 		return
 	var/turf/startloc = get_turf(targets_from)
-	var/obj/item/projectile/guardian/emerald_splash = new(startloc)
+	var/obj/projectile/guardian/emerald_splash = new(startloc)
 	playsound(src, projectilesound, 50, TRUE)
 	if (namedatum)
 		emerald_splash.color = namedatum.color
@@ -788,7 +788,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 						jojo.reset(TRUE, "host mind transfer")
 				to_chat(jojo, span_notice("You manifest into existence, as your master's soul appears in a new body!"))
 
-/obj/item/projectile/guardian
+/obj/projectile/guardian
 	name = "crystal bolt"
 	icon_state = "greyscale_bolt"
 	damage = 10

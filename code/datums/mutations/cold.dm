@@ -41,5 +41,5 @@
 
 	active_msg = "You focus your cryokinesis!"
 	deactive_msg = "You relax."
-	projectile_type = /obj/item/projectile/temp/cryo
+	projectile_type = /obj/projectile/temp/cryo
 

@@ -25,7 +25,7 @@
 	active_msg = "You draw your fingers!"
 	deactive_msg = "You put your fingers at ease. Another time."
 	cast_range = 20
-	projectile_type = /obj/item/projectile/bullet/mime
+	projectile_type = /obj/projectile/bullet/mime
 	projectile_amount = 3
 
 /datum/action/cooldown/spell/pointed/projectile/finger_guns/can_cast_spell(feedback = TRUE)

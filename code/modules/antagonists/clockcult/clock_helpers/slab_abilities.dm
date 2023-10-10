@@ -158,13 +158,13 @@
 		clockwork_say(caller, text2ratvar("Purge all untruths and honor Engine!"))
 		log_combat(caller, U, "fired at with Kindle")
 		playsound(caller, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
-		var/obj/item/projectile/kindle/A = new(T)
+		var/obj/projectile/kindle/A = new(T)
 		A.preparePixelProjectile(clicked_on, caller, params)
 		A.fire()
 
 	return TRUE
 
-/obj/item/projectile/kindle
+/obj/projectile/kindle
 	name = "kindled flame"
 	icon_state = "pulse0"
 	nodamage = TRUE
@@ -174,11 +174,11 @@
 	range = 3
 	log_override = TRUE
 
-/obj/item/projectile/kindle/Destroy()
+/obj/projectile/kindle/Destroy()
 	visible_message(span_warning("[src] flickers out!"))
 	. = ..()
 
-/obj/item/projectile/kindle/on_hit(atom/clicked_on, blocked = FALSE)
+/obj/projectile/kindle/on_hit(atom/clicked_on, blocked = FALSE)
 	if(isliving(clicked_on))
 		var/mob/living/L = clicked_on
 		if(is_servant_of_ratvar(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))

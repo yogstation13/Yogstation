@@ -1,4 +1,4 @@
-/obj/item/projectile/magic
+/obj/projectile/magic
 	name = "bolt of nothing"
 	icon_state = "energy"
 	damage = 0
@@ -13,7 +13,7 @@
 	/// determines the drain cost on the antimagic item
 	var/antimagic_charge_cost = 1
 
-/obj/item/projectile/magic/prehit(atom/target)
+/obj/projectile/magic/prehit(atom/target)
 	if(isliving(target))
 		var/mob/living/victim = target
 		if(victim.can_block_magic(antimagic_flags, antimagic_charge_cost))
@@ -31,17 +31,17 @@
 			return FALSE
 	return ..()
 
-/obj/item/projectile/magic/death
+/obj/projectile/magic/death
 	name = "bolt of death"
 	icon_state = "pulse1_bl"
 
-/obj/item/projectile/magic/death/on_hit(target)
+/obj/projectile/magic/death/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/M = target
 		M.death(0)
 
-/obj/item/projectile/magic/spellcard
+/obj/projectile/magic/spellcard
 	name = "enchanted card"
 	desc = "A piece of paper enchanted to give it extreme durability and stiffness, along with a very hot burn to anyone unfortunate enough to get hit by a charged one."
 	icon_state = "spellcard"
@@ -50,14 +50,14 @@
 	nodamage = FALSE
 	antimagic_charge_cost = 0 // since the cards gets spammed like a shotgun
 
-/obj/item/projectile/magic/resurrection
+/obj/projectile/magic/resurrection
 	name = "bolt of resurrection"
 	icon_state = "ion"
 	damage = 0
 	damage_type = OXY
 	nodamage = TRUE
 
-/obj/item/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
+/obj/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
 	. = ..()
 	if(isliving(target))
 		if(target.hellbound)
@@ -72,7 +72,7 @@
 		else if(target.stat != DEAD)
 			to_chat(target, span_notice("You feel great!"))
 
-/obj/item/projectile/magic/teleport
+/obj/projectile/magic/teleport
 	name = "bolt of teleportation"
 	icon_state = "bluespace"
 	damage = 0
@@ -81,7 +81,7 @@
 	var/inner_tele_radius = 0
 	var/outer_tele_radius = 6
 
-/obj/item/projectile/magic/teleport/on_hit(mob/target)
+/obj/projectile/magic/teleport/on_hit(mob/target)
 	. = ..()
 	var/teleammount = 0
 	var/teleloc = target
@@ -96,14 +96,14 @@
 				smoke.set_up(smoke_range, location = stuff.loc) //Smoke drops off if a lot of stuff is moved for the sake of sanity
 				smoke.start()
 
-/obj/item/projectile/magic/safety
+/obj/projectile/magic/safety
 	name = "bolt of safety"
 	icon_state = "bluespace"
 	damage = 0
 	damage_type = OXY
 	nodamage = TRUE
 
-/obj/item/projectile/magic/safety/on_hit(atom/target)
+/obj/projectile/magic/safety/on_hit(atom/target)
 	. = ..()
 	if(isturf(target))
 		return BULLET_ACT_HIT
@@ -117,7 +117,7 @@
 			smoke.set_up(0, location = t)
 			smoke.start()
 
-/obj/item/projectile/magic/door
+/obj/projectile/magic/door
 	name = "bolt of door creation"
 	icon_state = "energy"
 	damage = 0
@@ -125,7 +125,7 @@
 	nodamage = TRUE
 	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/uranium, /obj/structure/mineral_door/sandstone, /obj/structure/mineral_door/transparent/plasma, /obj/structure/mineral_door/transparent/diamond)
 
-/obj/item/projectile/magic/door/on_hit(atom/target)
+/obj/projectile/magic/door/on_hit(atom/target)
 	. = ..()
 	if(istype(target, /obj/machinery/door))
 		open_door(target)
@@ -134,26 +134,26 @@
 		if(isclosedturf(T) && !isindestructiblewall(T))
 			CreateDoor(T)
 
-/obj/item/projectile/magic/door/proc/CreateDoor(turf/T)
+/obj/projectile/magic/door/proc/CreateDoor(turf/T)
 	var/door_type = pick(door_types)
 	var/obj/structure/mineral_door/D = new door_type(T)
 	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
 
-/obj/item/projectile/magic/door/proc/open_door(obj/machinery/door/D)
+/obj/projectile/magic/door/proc/open_door(obj/machinery/door/D)
 	if(istype(D, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/A = D
 		A.locked = FALSE
 	D.open()
 
-/obj/item/projectile/magic/change
+/obj/projectile/magic/change
 	name = "bolt of change"
 	icon_state = "ice_1"
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
 
-/obj/item/projectile/magic/change/on_hit(atom/change)
+/obj/projectile/magic/change/on_hit(atom/change)
 	. = ..()
 	wabbajack(change)
 	qdel(src)
@@ -302,14 +302,14 @@
 	qdel(M)
 	return new_mob
 
-/obj/item/projectile/magic/cheese
+/obj/projectile/magic/cheese
 	name = "bolt of cheese"
 	icon_state = "cheese"
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
 
-/obj/item/projectile/magic/cheese/on_hit(mob/living/M)
+/obj/projectile/magic/cheese/on_hit(mob/living/M)
 	. = ..()
 	cheeseify(M, FALSE)
 
@@ -344,14 +344,14 @@
 	to_chat(B, "<span class='big bold'>You are a cheesewheel!</span><b> You're a harmless wheel of parmesan that is remarkably tasty. Careful of people that want to eat you.</b>")
 	return B
 
-/obj/item/projectile/magic/animate
+/obj/projectile/magic/animate
 	name = "bolt of animation"
 	icon_state = "red_1"
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
 
-/obj/item/projectile/magic/animate/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/animate/on_hit(atom/target, blocked = FALSE)
 	target.animate_atom_living(firer)
 	..()
 
@@ -389,7 +389,7 @@
 		if(owner)
 			C.ChangeOwner(owner)
 
-/obj/item/projectile/magic/spellblade
+/obj/projectile/magic/spellblade
 	name = "blade energy"
 	icon_state = "lavastaff"
 	damage = 20
@@ -398,23 +398,23 @@
 	dismemberment = 50
 	nodamage = FALSE
 
-/obj/item/projectile/magic/spellblade/weak
+/obj/projectile/magic/spellblade/weak
 	damage = 15
 	dismemberment = 20
 	
-/obj/item/projectile/magic/spellblade/beesword
+/obj/projectile/magic/spellblade/beesword
 	name = "stinger"
 	icon_state = "bee"
 	damage = 1
 	damage_type = BRUTE
 	dismemberment = 0
 	
-/obj/item/projectile/magic/spellblade/beesword/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/spellblade/beesword/on_hit(atom/target, blocked = FALSE)
 	..()
 	if(ishuman(target))
 		target.reagents.add_reagent(/datum/reagent/toxin/venom, 2)
 
-/obj/item/projectile/magic/arcane_barrage
+/obj/projectile/magic/arcane_barrage
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
 	damage = 40
@@ -424,7 +424,7 @@
 	flag = MAGIC 
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
-/obj/item/projectile/magic/locker
+/obj/projectile/magic/locker
 	name = "locker bolt"
 	icon_state = "locker"
 	nodamage = TRUE
@@ -433,7 +433,7 @@
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
 
-/obj/item/projectile/magic/locker/prehit(atom/A)
+/obj/projectile/magic/locker/prehit(atom/A)
 	if(ismob(A) && locker_suck)
 		var/mob/M = A
 		if(M.anchored)
@@ -442,7 +442,7 @@
 		return FALSE
 	return ..()
 
-/obj/item/projectile/magic/locker/on_hit(target)
+/obj/projectile/magic/locker/on_hit(target)
 	if(created)
 		return ..()
 	var/obj/structure/closet/decay/C = new(get_turf(src))
@@ -454,7 +454,7 @@
 	created = TRUE
 	return ..()
 
-/obj/item/projectile/magic/locker/Destroy()
+/obj/projectile/magic/locker/Destroy()
 	locker_suck = FALSE
 	for(var/atom/movable/AM in contents)
 		AM.forceMove(get_turf(src))
@@ -501,42 +501,42 @@
 	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 	icon_welded = "welded"
 
-/obj/item/projectile/magic/flying
+/obj/projectile/magic/flying
 	name = "bolt of flying"
 	icon_state = "flight"
 
-/obj/item/projectile/magic/flying/on_hit(target)
+/obj/projectile/magic/flying/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
 		var/atom/throw_target = get_edge_target_turf(L, angle2dir(Angle))
 		L.throw_at(throw_target, 200, 4)
 
-/obj/item/projectile/magic/bounty
+/obj/projectile/magic/bounty
 	name = "bolt of bounty"
 	icon_state = "bounty"
 
-/obj/item/projectile/magic/bounty/on_hit(target)
+/obj/projectile/magic/bounty/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
 		L.apply_status_effect(STATUS_EFFECT_BOUNTY, firer)
 
-/obj/item/projectile/magic/antimagic
+/obj/projectile/magic/antimagic
 	name = "bolt of antimagic"
 	icon_state = "antimagic"
 
-/obj/item/projectile/magic/antimagic/on_hit(target)
+/obj/projectile/magic/antimagic/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
 		L.apply_status_effect(STATUS_EFFECT_ANTIMAGIC)
 
-/obj/item/projectile/magic/fetch
+/obj/projectile/magic/fetch
 	name = "bolt of fetching"
 	icon_state = "fetch"
 
-/obj/item/projectile/magic/fetch/on_hit(target)
+/obj/projectile/magic/fetch/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
@@ -546,21 +546,21 @@
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, firer))
 		L.throw_at(throw_target, 200, 4)
 
-/obj/item/projectile/magic/sapping
+/obj/projectile/magic/sapping
 	name = "bolt of sapping"
 	icon_state = "sapping"
 
-/obj/item/projectile/magic/sapping/on_hit(target)
+/obj/projectile/magic/sapping/on_hit(target)
 	. = ..()
 	if(ismob(target))
 		var/mob/M = target
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, REF(src), /datum/mood_event/sapped)
 
-/obj/item/projectile/magic/necropotence
+/obj/projectile/magic/necropotence
 	name = "bolt of necropotence"
 	icon_state = "necropotence"
 
-/obj/item/projectile/magic/necropotence/on_hit(target)
+/obj/projectile/magic/necropotence/on_hit(target)
 	. = ..()
 	if(!isliving(target))
 		return
@@ -573,11 +573,11 @@
 
 	qdel(tap)
 
-/obj/item/projectile/magic/wipe
+/obj/projectile/magic/wipe
 	name = "bolt of possession"
 	icon_state = "wipe"
 
-/obj/item/projectile/magic/wipe/on_hit(target)
+/obj/projectile/magic/wipe/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
@@ -589,7 +589,7 @@
 		possession_test(M)
 		return BULLET_ACT_HIT
 
-/obj/item/projectile/magic/wipe/proc/possession_test(mob/living/carbon/target)
+/obj/projectile/magic/wipe/proc/possession_test(mob/living/carbon/target)
 	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = target.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
 	var/poll_message = "Do you want to play as [target.real_name]?"
 	if(target.mind)
@@ -618,7 +618,7 @@
 		qdel(trauma)
 
 /// Gives magic projectiles an area of effect radius that will bump into any nearby mobs
-/obj/item/projectile/magic/aoe
+/obj/projectile/magic/aoe
 	damage = 0
 
 	/// The AOE radius that the projectile will trigger on people.
@@ -636,7 +636,7 @@
 	var/trail_icon_state = "trail"
 
 
-/obj/item/projectile/magic/aoe/Range()
+/obj/projectile/magic/aoe/Range()
 	if(trigger_range >= 1)
 		for(var/mob/living/nearby_guy in range(trigger_range, get_turf(src)))
 			if(nearby_guy.stat == DEAD)
@@ -648,18 +648,18 @@
 
 	return ..()
 
-/obj/item/projectile/magic/aoe/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
+/obj/projectile/magic/aoe/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
 	if(can_only_hit_target && target != original)
 		return FALSE
 	return ..()
 
-/obj/item/projectile/magic/aoe/Moved(atom/OldLoc, Dir)
+/obj/projectile/magic/aoe/Moved(atom/OldLoc, Dir)
 	. = ..()
 	if(trail)
 		create_trail()
 
 /// Creates and handles the trail that follows the projectile.
-/obj/item/projectile/magic/aoe/proc/create_trail()
+/obj/projectile/magic/aoe/proc/create_trail()
 	if(!trajectory)
 		return
 
@@ -674,7 +674,7 @@
 	trail.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	QDEL_IN(trail, trail_lifespan)
 
-/obj/item/projectile/magic/aoe/lightning
+/obj/projectile/magic/aoe/lightning
 	name = "lightning bolt"
 	icon_state = "tesla_projectile"	//Better sprites are REALLY needed and appreciated!~
 	damage = 25
@@ -692,21 +692,21 @@
 	/// A reference to the chain beam between the caster and the projectile
 	var/datum/beam/chain
 
-/obj/item/projectile/magic/aoe/lightning/fire(setAngle)
+/obj/projectile/magic/aoe/lightning/fire(setAngle)
 	if(firer)
 		chain = firer.Beam(src, icon_state = "lightning[rand(1, 12)]")
 	return ..()
 
-/obj/item/projectile/magic/aoe/lightning/on_hit(target)
+/obj/projectile/magic/aoe/lightning/on_hit(target)
 	. = ..()
 	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
 	qdel(src)
 
-/obj/item/projectile/magic/aoe/lightning/Destroy()
+/obj/projectile/magic/aoe/lightning/Destroy()
 	QDEL_NULL(chain)
 	return ..()
 
-/obj/item/projectile/magic/aoe/lightning/eldritch
+/obj/projectile/magic/aoe/lightning/eldritch
 	name = "otherwordly power"
 	icon_state = "tesla_projectile"	
 	damage = 25
@@ -719,7 +719,7 @@
 	tesla_range = 7
 	tesla_flags = TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 
-/obj/item/projectile/magic/fireball
+/obj/projectile/magic/fireball
 	name = "bolt of fireball"
 	icon_state = "fireball"
 	damage = 10
@@ -735,7 +735,7 @@
 	/// Flash radius of the fireball
 	var/exp_flash = 3
 
-/obj/item/projectile/magic/fireball/on_hit(atom/target, blocked = FALSE, pierce_hit)
+/obj/projectile/magic/fireball/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/mob_target = target
@@ -756,7 +756,7 @@
 	)
 
 
-/obj/item/projectile/magic/aoe/magic_missile
+/obj/projectile/magic/aoe/magic_missile
 	name = "magic missile"
 	icon_state = "magicm"
 	range = 20
@@ -771,11 +771,11 @@
 	trail_lifespan = 0.5 SECONDS
 	trail_icon_state = "magicmd"
 
-/obj/item/projectile/magic/aoe/magic_missile/lesser
+/obj/projectile/magic/aoe/magic_missile/lesser
 	color = "red" //Looks more culty this way
 	range = 10
 
-/obj/item/projectile/magic/aoe/juggernaut
+/obj/projectile/magic/aoe/juggernaut
 	name = "Gauntlet Echo"
 	icon_state = "cultfist"
 	alpha = 180
@@ -789,7 +789,7 @@
 	range = 15
 	speed = 7
 
-/obj/item/projectile/heretic_assault
+/obj/projectile/heretic_assault
 	name ="mindbolt"
 	icon_state= "chronobolt"
 	damage = 30
@@ -800,7 +800,7 @@
 	pass_flags = PASSTABLE
 	range = 5
 
-/obj/item/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
+/obj/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
 	. = ..()
 	var/turf/target_turf = get_turf(src)
 	playsound(target_turf, 'sound/weapons/resonator_blast.ogg', 100, FALSE)
@@ -814,14 +814,14 @@
 		adjacent_object.take_damage(90, BRUTE, MELEE, 0)
 		new /obj/effect/temp_visual/cult/turf/floor(get_turf(adjacent_object))
 
-/obj/item/projectile/magic/fireball/infernal
+/obj/projectile/magic/fireball/infernal
 	name = "infernal fireball"
 	exp_heavy = -1
 	exp_light = -1
 	exp_flash = 4
 	exp_fire= 5
 
-/obj/item/projectile/magic/fireball/infernal/on_hit(target)
+/obj/projectile/magic/fireball/infernal/on_hit(target)
 	. = ..()
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
@@ -829,7 +829,7 @@
 
 //still magic related, but a different path
 
-/obj/item/projectile/temp/chill
+/obj/projectile/temp/chill
 	name = "bolt of chills"
 	icon_state = "ice_2"
 	damage = 0
@@ -840,27 +840,27 @@
 	flag = MAGIC
 
 
-/obj/item/projectile/temp/runic_icycle
+/obj/projectile/temp/runic_icycle
 	name = "Icicle"
 	icon_state = "runic_icycle"
 	damage = 6
 	flag = MAGIC
 	temperature = 80
 
-/obj/item/projectile/temp/runic_icycle/on_hit(target)
+/obj/projectile/temp/runic_icycle/on_hit(target)
 	.=..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.adjustBruteLoss(5)
 
-/obj/item/projectile/magic/runic_tentacle
+/obj/projectile/magic/runic_tentacle
 	name = "Tentacle"
 	icon_state = "tentacle_end"
 	damage = 6
 	flag = MAGIC
 
 
-/obj/item/projectile/magic/runic_tentacle/on_hit(target)
+/obj/projectile/magic/runic_tentacle/on_hit(target)
 	if(ismob(target))
 		new /obj/effect/temp_visual/goliath_tentacle/original(target)
 	.=..()
@@ -871,12 +871,12 @@
 		X.adjustBruteLoss(6)
 		new /obj/effect/temp_visual/goliath_tentacle/original(target)
 
-/obj/item/projectile/magic/runic_heal
+/obj/projectile/magic/runic_heal
 	name = "Runic Heal"
 	icon_state = "runic_heal"
 	flag = MAGIC
 	nodamage = TRUE
-/obj/item/projectile/magic/runic_heal/on_hit(target)
+/obj/projectile/magic/runic_heal/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -894,13 +894,13 @@
 
 
 
-/obj/item/projectile/magic/runic_fire
+/obj/projectile/magic/runic_fire
 	name = "Runic Fire"
 	icon_state = "lava"
 	flag = MAGIC
 	nodamage = FALSE
 
-/obj/item/projectile/magic/runic_fire/on_hit(target)
+/obj/projectile/magic/runic_fire/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -908,7 +908,7 @@
 		X.ignite_mob()
 
 
-/obj/item/projectile/magic/runic_honk
+/obj/projectile/magic/runic_honk
 	name = "Runic Peel"
 	icon_state = "runic_honk"
 	flag = MAGIC
@@ -918,14 +918,14 @@
 	ricochet_chance = 100
 	ricochets_max = 66
 
-/obj/item/projectile/magic/runic_honk/on_hit(target)
+/obj/projectile/magic/runic_honk/on_hit(target)
 	. = ..()
 	var/mob/X = target
 	if(istype(X))
 		X.slip(75, X.loc, GALOSHES_DONT_HELP|SLIDE, 0, FALSE)
 
 
-/obj/item/projectile/magic/runic_bomb
+/obj/projectile/magic/runic_bomb
 	name = "Runic Bomb"
 	icon_state = "runic_bomb"
 	flag = MAGIC
@@ -933,7 +933,7 @@
 	speed = 4
 	var/boom = 1
 
-/obj/item/projectile/magic/runic_bomb/on_hit(target)
+/obj/projectile/magic/runic_bomb/on_hit(target)
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		ADD_TRAIT(X, TRAIT_NODISMEMBER, type)
@@ -948,7 +948,7 @@
 		var/mob/M = target
 		explosion(M, -1, 0, boom, 0, 0)
 
-/obj/item/projectile/magic/runic_toxin
+/obj/projectile/magic/runic_toxin
 	name = "Runic Toxin"
 	icon_state = "syringeproj"
 	flag = MAGIC
@@ -957,7 +957,7 @@
 	nodamage = FALSE
 	eyeblur = 10
 
-/obj/item/projectile/magic/runic_toxin/on_hit(target)
+/obj/projectile/magic/runic_toxin/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -976,13 +976,13 @@
 						X.reagents.add_reagent(/datum/reagent/toxin/plasma, 10)
 
 
-/obj/item/projectile/magic/runic_death
+/obj/projectile/magic/runic_death
 	name = "Runic Death"
 	icon_state = "antimagic"
 	flag = MAGIC
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
-/obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
+/obj/projectile/magic/runic_death/on_hit(mob/living/target)
 	. = ..()
 	if(iszombie(target))
 		target.gib()
@@ -992,26 +992,26 @@
 		target.adjustBruteLoss(40)
 
 
-/obj/item/projectile/magic/shotgun/slug
+/obj/projectile/magic/shotgun/slug
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
 	flag = MAGIC
 
-/obj/item/projectile/magic/shotgun/slug/on_hit(target)
+/obj/projectile/magic/shotgun/slug/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.adjustBruteLoss(10)
 
-/obj/item/projectile/magic/incediary_slug
+/obj/projectile/magic/incediary_slug
 	name = "Incendiary shotgun slug"
 	icon_state = "bullet"
 	damage = 5
 	flag = MAGIC
 
 
-/obj/item/projectile/magic/incediary_slug/on_hit(target)
+/obj/projectile/magic/incediary_slug/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -1019,13 +1019,13 @@
 		X.ignite_mob()
 		X.adjustBruteLoss(5)
 
-/obj/item/projectile/magic/runic_mutation
+/obj/projectile/magic/runic_mutation
 	name = "Runic Mutation"
 	icon_state = "toxin"
 	flag = MAGIC
 	irradiate = 12
 
-/obj/item/projectile/magic/runic_mutation/on_hit(target)
+/obj/projectile/magic/runic_mutation/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
@@ -1035,13 +1035,13 @@
 			X.easy_random_mutate(MINOR_NEGATIVE)
 
 
-/obj/item/projectile/magic/runic_resizement
+/obj/projectile/magic/runic_resizement
 	name = "Runic Resizement"
 	flag = MAGIC
 	icon_state = "cursehand1"
 
 
-/obj/item/projectile/magic/runic_resizement/on_hit(target)
+/obj/projectile/magic/runic_resizement/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/X = target
@@ -1078,7 +1078,7 @@
 							X.update_transform()
 		.=..()
 
-/obj/item/projectile/magic/ion //magic version of ion rifle bullets
+/obj/projectile/magic/ion //magic version of ion rifle bullets
 	name = "ion bolt"
 	icon_state = "ion"
 	damage = 0
@@ -1089,7 +1089,7 @@
 	var/light_emp_radius = 3
 	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles
 
-/obj/item/projectile/magic/ion/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/ion/on_hit(atom/target, blocked = FALSE)
 	..()
 	empulse(target, heavy_emp_radius, light_emp_radius)
 	return BULLET_ACT_HIT

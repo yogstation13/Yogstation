@@ -1,5 +1,5 @@
 #define COLOSSUS_SLEEP(X) sleep(X); if(QDELETED(src)) return;
-/obj/item/projectile/colossus
+/obj/projectile/colossus
 	name ="death bolt"
 	icon_state= "chronobolt"
 	damage = 20 //Yogs - Down from 25

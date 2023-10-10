@@ -1,4 +1,4 @@
-/obj/item/projectile/plasma
+/obj/projectile/plasma
 	name = "plasma blast"
 	icon_state = "plasmacutter"
 	damage_type = BRUTE
@@ -11,7 +11,7 @@
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
 
-/obj/item/projectile/plasma/weak
+/obj/projectile/plasma/weak
 	name = "weak plasma blast"
 	icon_state = "plasmacutter_weak"
 	damage = 3
@@ -19,7 +19,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	mine_range = 0
 
-/obj/item/projectile/plasma/on_hit(atom/target)
+/obj/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
@@ -30,35 +30,35 @@
 		if(range > 0)
 			return BULLET_ACT_FORCE_PIERCE
 
-/obj/item/projectile/plasma/scatter/adv/on_hit(atom/target)
+/obj/projectile/plasma/scatter/adv/on_hit(atom/target)
 	if(istype(target, /turf/closed/mineral/gibtonite))
 		var/turf/closed/mineral/gibtonite/gib = target
 		gib.defuse()
 	. = ..()
 
-/obj/item/projectile/plasma/adv
+/obj/projectile/plasma/adv
 	damage = 7
 	range = 5
 	mine_range = 5
 
-/obj/item/projectile/plasma/adv/malf
+/obj/projectile/plasma/adv/malf
 	damage = 20
 
-/obj/item/projectile/plasma/adv/mega
+/obj/projectile/plasma/adv/mega
 	range = 7
 	mine_range = 7
 
-/obj/item/projectile/plasma/scatter
+/obj/projectile/plasma/scatter
 	damage = 2
 	range = 5
 	mine_range = 2
 	dismemberment = 0
 
 // Same as the scatter but with automatic defusing
-/obj/item/projectile/plasma/scatter/adv
+/obj/projectile/plasma/scatter/adv
 
 // Megafauna loot, possibly best cutter?
-/obj/item/projectile/plasma/scatter/adv/stalwart
+/obj/projectile/plasma/scatter/adv/stalwart
 	name = "plasma beam"
 	icon_state = "plasmacutter_stalwart"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -73,7 +73,7 @@
 	var/fauna_damage_bonus = 10
 	var/fauna_damage_type = BRUTE
 
-/obj/item/projectile/plasma/scatter/adv/stalwart/on_hit(atom/target)
+/obj/projectile/plasma/scatter/adv/stalwart/on_hit(atom/target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
@@ -82,16 +82,16 @@
 			playsound(L, 'sound/weapons/resonator_blast.ogg', 100, 1)
 
 //mega plasma shotgun auto defuses
-/obj/item/projectile/plasma/scatter/adv/mega
+/obj/projectile/plasma/scatter/adv/mega
 	range = 7
 	mine_range = 3
 
-/obj/item/projectile/plasma/adv/mech
+/obj/projectile/plasma/adv/mech
 	damage = 10
 	range = 9
 	mine_range = 3
 
-/obj/item/projectile/plasma/turret
+/obj/projectile/plasma/turret
 	//Between normal and advanced for damage, made a beam so not the turret does not destroy glass
 	name = "plasma beam"
 	damage = 24

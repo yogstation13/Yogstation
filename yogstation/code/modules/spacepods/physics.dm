@@ -284,7 +284,7 @@
 			this_y += 32
 		if(!T)
 			continue
-		var/obj/item/projectile/proj = new proj_type(T)
+		var/obj/projectile/proj = new proj_type(T)
 		proj.starting = T
 		proj.firer = usr
 		proj.def_zone = "chest"

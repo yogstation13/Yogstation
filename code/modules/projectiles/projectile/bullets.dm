@@ -1,4 +1,4 @@
-/obj/item/projectile/bullet
+/obj/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
 	damage = 60
@@ -11,6 +11,6 @@
 	wound_falloff_tile = -5
 	speed = 0.4
 
-/obj/item/projectile/bullet/smite
+/obj/projectile/bullet/smite
 	name = "divine retribution"
 	damage = 10

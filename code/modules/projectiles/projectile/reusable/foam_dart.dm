@@ -1,4 +1,4 @@
-/obj/item/projectile/bullet/reusable/foam_dart
+/obj/projectile/bullet/reusable/foam_dart
 	name = "foam dart"
 	desc = "I hope you're wearing eye protection."
 	damage = 0 // It's a damn toy.
@@ -10,7 +10,7 @@
 	range = 10
 
 /// Apply stamina damage to other toy gun users
-/obj/item/projectile/bullet/reusable/foam_dart/on_hit(atom/target, blocked)
+/obj/projectile/bullet/reusable/foam_dart/on_hit(atom/target, blocked)
 	. = ..()
 
 	if(stamina > 0) // NO RIOT DARTS!!!
@@ -36,7 +36,7 @@
 	
 	C.adjustStaminaLoss(25) // ARMOR IS CHEATING!!!
 
-/obj/item/projectile/bullet/reusable/foam_dart/riot
+/obj/projectile/bullet/reusable/foam_dart/riot
 	name = "riot foam dart"
 	icon_state = "foamdart_riot_proj"
 	ammo_type = /obj/item/ammo_casing/reusable/foam_dart/riot

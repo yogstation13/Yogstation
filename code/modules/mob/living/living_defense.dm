@@ -48,16 +48,16 @@
 /mob/living/proc/is_eyes_covered(check_glasses = 1, check_head = 1, check_mask = 1)
 	return FALSE
 
-/mob/living/proc/on_hit(obj/item/projectile/P)
+/mob/living/proc/on_hit(obj/projectile/P)
 	return BULLET_ACT_HIT
 
-/mob/living/bullet_act(obj/item/projectile/P, def_zone)
+/mob/living/bullet_act(obj/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
 
 	// "Projectiles now ignore the holopara's master or any of their other holoparas."
 	var/guardian_pass = FALSE
-	if(istype(P, /obj/item/projectile/guardian))
-		var/obj/item/projectile/guardian/G = P
+	if(istype(P, /obj/projectile/guardian))
+		var/obj/projectile/guardian/G = P
 		var/datum/mind/guardian_master = G.guardian_master
 		if(guardian_master?.current)
 			var/list/safe = list(guardian_master.current)
@@ -72,11 +72,11 @@
 	
 	if(!P.nodamage)
 		last_damage = P.name
-		if((istype(P, /obj/item/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
+		if((istype(P, /obj/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
 			P.damage = 0
 		else
 			var/attack_direction = get_dir(P.starting, src)
-			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness(), attack_direction = attack_direction)
+			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.sharpness, attack_direction = attack_direction)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
 	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
@@ -84,7 +84,7 @@
 		return P.on_hit(src, armor) && BULLET_ACT_FORCE_PIERCE
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
-/mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
+/mob/living/proc/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	return 0
 
 /obj/item/proc/get_volume_by_throwforce_and_or_w_class()

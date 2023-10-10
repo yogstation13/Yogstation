@@ -140,9 +140,9 @@
 		return
 	H.adjust_nutrition(min(amount / 2500, 5) * rad_percent)
 
-/datum/species/ethereal/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/ethereal/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	. = ..()
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
 		H.visible_message(span_warning("[H] absorbs [P]!"), span_userdanger("You absorb [P]!"))
 		H.adjust_nutrition(P.damage * (1 - (H.getarmor(null, RAD) / 100)))
 		return TRUE

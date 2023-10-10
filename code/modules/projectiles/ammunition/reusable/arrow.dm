@@ -1,7 +1,7 @@
 /obj/item/ammo_casing/reusable/arrow
 	name = "arrow"
 	desc = "An arrow, typically fired from a bow."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow
+	projectile_type = /obj/projectile/bullet/reusable/arrow
 	caliber = "arrow"
 	icon_state = "arrow"
 	item_state = "arrow"
@@ -79,7 +79,7 @@
 	return ..()
 
 /obj/item/ammo_casing/reusable/arrow/wirecutter_act(mob/living/user, obj/item/I)
-	var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+	var/obj/projectile/bullet/reusable/arrow/arrow = BB
 	if(!istype(arrow))
 		return
 	if(!LAZYLEN(attached_parts))
@@ -162,7 +162,7 @@
 /obj/item/ammo_casing/reusable/arrow/wood
 	name = "wooden arrow"
 	desc = "A wooden arrow, quickly made."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/wood
+	projectile_type = /obj/projectile/bullet/reusable/arrow/wood
 
 /obj/item/ammo_casing/reusable/arrow/ash
 	name = "ashen arrow"
@@ -172,7 +172,7 @@
 	force = 7
 	throwforce = 7
 	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/ash
+	projectile_type = /obj/projectile/bullet/reusable/arrow/ash
 
 /obj/item/ammo_casing/reusable/arrow/bone_tipped
 	name = "bone-tipped arrow"
@@ -181,7 +181,7 @@
 	item_state = "bonetippedarrow"
 	force = 9
 	throwforce = 9
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bone_tipped
+	projectile_type = /obj/projectile/bullet/reusable/arrow/bone_tipped
 
 /obj/item/ammo_casing/reusable/arrow/bone
 	name = "bone arrow"
@@ -191,7 +191,7 @@
 	force = 4
 	throwforce = 4
 	embedding = list("embed_chance" = 20, "embedded_fall_chance" = 0)
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bone
+	projectile_type = /obj/projectile/bullet/reusable/arrow/bone
 
 /obj/item/ammo_casing/reusable/arrow/chitin
 	name = "chitin-tipped arrow"
@@ -199,7 +199,7 @@
 	icon_state = "chitinarrow"
 	item_state = "chitinarrow"
 	armour_penetration = 25 //Ah yes the 25 AP on a 5 force hit
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/chitin
+	projectile_type = /obj/projectile/bullet/reusable/arrow/chitin
 
 /obj/item/ammo_casing/reusable/arrow/bamboo
 	name = "bamboo arrow"
@@ -211,7 +211,7 @@
 	armour_penetration = -10
 	embedding = list("embed_chance" = 35, "embedded_fall_chance" = 0)
 	variance = 10
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bamboo
+	projectile_type = /obj/projectile/bullet/reusable/arrow/bamboo
 
 /obj/item/ammo_casing/reusable/arrow/bronze
 	name = "bronze arrow"
@@ -219,7 +219,7 @@
 	icon_state = "bronzearrow"
 	item_state = "bronzearrow"
 	armour_penetration = 10 
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/bronze
+	projectile_type = /obj/projectile/bullet/reusable/arrow/bronze
 
 /obj/item/ammo_casing/reusable/arrow/glass
 	name = "glass arrow"
@@ -230,7 +230,7 @@
 	throwforce = 4
 	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
 	variance = 5
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass
+	projectile_type = /obj/projectile/bullet/reusable/arrow/glass
 
 /obj/item/ammo_casing/reusable/arrow/glass/plasma
 	name = "plasmaglass arrow"
@@ -240,14 +240,14 @@
 	armour_penetration = 40 //Ah yes the 40 AP on a 4 force hit
 	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 	variance = 5
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/glass/plasma
+	projectile_type = /obj/projectile/bullet/reusable/arrow/glass/plasma
 
 /obj/item/ammo_casing/reusable/arrow/magic
 	name = "magic arrow"
 	desc = "An arrow made of magic that can track targets, though it can't track those under the effects of anti-magic. Can make a good throwing weapon in a pinch!"
 	icon_state = "arrow_magic"
 	item_state = "arrow_magic"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/magic
+	projectile_type = /obj/projectile/bullet/reusable/arrow/magic
 	force = 12
 	throwforce = 20
 	embedding = list("embed_chance" = 50, "embedded_fall_chance" = 0)
@@ -267,7 +267,7 @@
 	if(dulled)
 		BB.damage = 20
 		BB.armour_penetration = -25
-		var/obj/item/projectile/bullet/reusable/arrow/arrow = BB
+		var/obj/projectile/bullet/reusable/arrow/arrow = BB
 		if(!istype(arrow))
 			arrow.embed_chance = 0
 	else
@@ -276,7 +276,7 @@
 		if(istype(M) && M.anti_magic_check(chargecost = 0))
 			BB.homing_away = TRUE // And there it goes!
 
-/obj/item/ammo_casing/reusable/arrow/magic/on_land(obj/item/projectile/old_projectile)
+/obj/item/ammo_casing/reusable/arrow/magic/on_land(obj/projectile/old_projectile)
 	dulled = TRUE
 	force = 3
 	throwforce = 0
@@ -289,7 +289,7 @@
 /obj/item/ammo_casing/reusable/arrow/toy
 	name = "toy arrow"
 	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits."
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy
 	force = 0
 	throwforce = 0
 	sharpness = SHARP_NONE
@@ -301,42 +301,42 @@
 	desc = "A deceiving arrow that looks to be lethal, but is a velcro-tipped toy. For use with toy bows."
 	icon_state = "arrow_energy"
 	item_state = "arrow_toy_energy"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/energy
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy/energy
 
 /obj/item/ammo_casing/reusable/arrow/toy/disabler
 	name = "toy disabler bolt"
 	desc = "A toy arrow that looks like a disabler bolt fabricated from a hardlight bow. Tipped with velcro to allow it to stick to targets."
 	icon_state = "arrow_disable"
 	item_state = "arrow_toy_disable"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/disabler
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy/disabler
 
 /obj/item/ammo_casing/reusable/arrow/toy/pulse
 	name = "toy pulse bolt"
 	desc = "A plastic, fake arrow that looks like a pulse bolt. A velcro head lets it stick to targets."
 	icon_state = "arrow_pulse"
 	item_state = "arrow_toy_pulse"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/pulse
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy/pulse
 
 /obj/item/ammo_casing/reusable/arrow/toy/xray
 	name = "toy X-ray bolt"
 	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a X-ray bolt from a hardlight bow."
 	icon_state = "arrow_xray"
 	item_state = "arrow_toy_xray"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/xray
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy/xray
 
 /obj/item/ammo_casing/reusable/arrow/toy/shock
 	name = "toy shock bolt"
 	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a shock bolt from a hardlight bow."
 	icon_state = "arrow_shock"
 	item_state = "arrow_toy_shock"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/shock
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy/shock
 
 /obj/item/ammo_casing/reusable/arrow/toy/magic
 	name = "toy magic arrow"
 	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a magic arrow used by wizards."
 	icon_state = "arrow_magic"
 	item_state = "arrow_magic"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/magic
+	projectile_type = /obj/projectile/bullet/reusable/arrow/toy/magic
 
 
 // Utility //
@@ -362,7 +362,7 @@
 	desc = "An arrow made of a hypernoblium-tipped rod, a shard of supermatter, and poor decision making."
 	icon_state = "supermatterarrow"
 	item_state = "supermatterarrow"
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/supermatter
+	projectile_type = /obj/projectile/bullet/reusable/arrow/supermatter
 
 /obj/item/ammo_casing/reusable/arrow/supermatter/proc/disintigrate(atom/dusting)
 	if(isliving(dusting))
@@ -414,7 +414,7 @@
 	throwforce = 4
 	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
 	variance = 5
-	projectile_type = /obj/item/projectile/bullet/reusable/arrow/singulo
+	projectile_type = /obj/projectile/bullet/reusable/arrow/singulo
 	/// The shard currently in the arrow
 	var/obj/item/singularity_shard/shard
 
@@ -508,7 +508,7 @@
 	icon_state = "arrow_energy"
 	item_flags = DROPDEL
 	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_pain_multiplier" = 0, "embedded_fall_chance" = 0, "embedded_bleed_rate" = 0)
-	projectile_type = /obj/item/projectile/energy/arrow
+	projectile_type = /obj/projectile/energy/arrow
 
 	// Embed tick damage vars //
 	/// How many embed ticks have passed
@@ -544,7 +544,7 @@
 	name = "disabler bolt"
 	desc = "An arrow made from hardlight. This one stuns the victim in a non-lethal way."
 	icon_state = "arrow_disable"
-	projectile_type = /obj/item/projectile/energy/arrow/disabler
+	projectile_type = /obj/projectile/energy/arrow/disabler
 	harmful = FALSE
 	tick_damage_type = STAMINA
 	
@@ -552,14 +552,14 @@
 	name = "pulse bolt"
 	desc = "An arrow made from hardlight. This one eliminates any obstructions it hits."
 	icon_state = "arrow_pulse"
-	projectile_type = /obj/item/projectile/energy/arrow/pulse
+	projectile_type = /obj/projectile/energy/arrow/pulse
 	tick_damage = 5
 
 /obj/item/ammo_casing/reusable/arrow/energy/xray
 	name = "X-ray bolt"
 	desc = "An arrow made from hardlight. This one can pass through obstructions."
 	icon_state = "arrow_xray"
-	projectile_type = /obj/item/projectile/energy/arrow/xray
+	projectile_type = /obj/projectile/energy/arrow/xray
 	tick_damage_type = TOX
 
 /obj/item/ammo_casing/reusable/arrow/energy/xray/embed_tick(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
@@ -570,11 +570,11 @@
 	name = "shock bolt"
 	desc = "An arrow made from hardlight. This one shocks the victim with harmless energy capable of stunning them."
 	icon_state = "arrow_shock"
-	projectile_type = /obj/item/projectile/energy/arrow/shock
+	projectile_type = /obj/projectile/energy/arrow/shock
 	harmful = FALSE
 	tick_damage_type = STAMINA
 
 /obj/item/ammo_casing/reusable/arrow/energy/clockbolt
 	name = "redlight bolt"
 	desc = "An arrow made from a strange energy."
-	projectile_type = /obj/item/projectile/energy/arrow/clockbolt
+	projectile_type = /obj/projectile/energy/arrow/clockbolt

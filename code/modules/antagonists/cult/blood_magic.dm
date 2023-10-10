@@ -173,7 +173,7 @@
 
 	user.visible_message(span_warning("[user]'s hand flashes a bright blue!"), \
 						 span_cultitalic("You speak the cursed words, emitting an EMP blast from your hand."))
-	var/obj/item/projectile/magic/ion/A = new /obj/item/projectile/magic/ion(user.loc)
+	var/obj/projectile/magic/ion/A = new /obj/projectile/magic/ion(user.loc)
 	A.firer = user
 	A.preparePixelProjectile(target, user, params)
 	A.fire()
