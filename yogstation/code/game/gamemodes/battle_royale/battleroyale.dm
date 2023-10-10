@@ -198,12 +198,18 @@ GLOBAL_VAR(stormdamage)
 	to_clear |= typesof(/area/bridge) //fireaxe
 	to_clear |= typesof(/area/engine/atmos) //also fireaxe
 
+	var/list/removals = typecacheof(list( //remove non-standard things in this list
+		/obj/structure/fireaxecabinet, 
+		/obj/machinery/suit_storage_unit, 
+		/obj/machinery/atmospherics/miner/toxins, //no plasmaflood, sleepflood is fine because no one needs to breathe
+		))
+
 	for(var/place in to_clear)
 		var/area/actual = locate(place) in GLOB.areas
 		for(var/obj/thing in actual)
 			if(QDELETED(thing))
 				continue
-			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
+			if(!thing.anchored || is_type_in_typecache(thing, /obj/structure/fireaxecabinet))//only target something that is possibly a weapon or gear
 				QDEL_NULL(thing)
 	
 	for(var/target in GLOB.mob_living_list)
