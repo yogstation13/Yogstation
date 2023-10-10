@@ -15,20 +15,10 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
 	mutanteyes = /obj/item/organ/eyes/night_vision
-	var/shadow_charges = 0
-	var/charge_time = DARKSPAWN_REFLECT_COOLDOWN
-	var/last_charge = 0
 	var/powerful_heal = FALSE
 	var/dark_healing = 1
 	var/light_burning = 1
 
-/datum/species/shadow/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
-	if(prob(50) && shadow_charges > 0)
-		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
-		playsound(H, "bullet_miss", 75, 1)
-		shadow_charges = min(shadow_charges - 1, 0)
-		return -1
-	return 0
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	H.bubble_icon = "darkspawn"
@@ -58,9 +48,6 @@
 					to_chat(H, span_userdanger("The light burns you!"))
 					H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
 					H.adjustCloneLoss(light_burning)
-	if(world.time >= charge_time+last_charge)
-		shadow_charges = min(shadow_charges + 1, 3)
-		last_charge = world.time
 
 /datum/species/shadow/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -129,11 +116,19 @@
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
 	mutant_organs = list(/obj/item/organ/heart/nightmare)
 	mutantbrain = /obj/item/organ/brain/nightmare
-
-	var/shadow_charges = 1
 	
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
+
+/datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	var/turf/T = H.loc
+	if(istype(T))
+		var/light_amount = T.get_lumcount()
+		if(light_amount < SHADOW_SPECIES_DIM_LIGHT)
+			H.visible_message(span_danger("[H] dances in the shadows, evading [P]!"))
+			playsound(T, "bullet_miss", 75, 1)
+			return BULLET_ACT_FORCE_PIERCE
+	return ..()
 
 /datum/species/shadow/nightmare/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -160,10 +155,23 @@
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien
 
+	var/shadow_charges = 3
 	powerful_heal = TRUE
 	shadow_charges = 3
 	dark_healing = 5
 	light_burning = 7
+
+/datum/species/shadow/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	if(prob(50) && shadow_charges > 0)
+		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
+		playsound(H, "bullet_miss", 75, 1)
+		shadow_charges = min(shadow_charges - 1, 0)
+		addtimer(CALLBACK(src, PROC_REF(regen_shadow)), DARKSPAWN_REFLECT_COOLDOWN)//so they regen on different timers
+		return BULLET_ACT_BLOCK
+	return 0
+
+/datum/species/shadow/darkspawn/proc/regen_shadow()
+	shadow_charges = min(shadow_charges++, initial(shadow_charges))
 
 /datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -189,6 +197,7 @@
 
 /datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
 	playsound(H, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, FALSE)
+
 
 /////////////////////////////Organs/////////////////////////////////////
 /obj/item/organ/brain/nightmare
@@ -281,7 +290,6 @@
 		respawn_progress = 0
 
 //Weapon
-
 /obj/item/light_eater
 	name = "light eater" //as opposed to heavy eater
 	icon = 'icons/obj/changeling.dmi'
@@ -303,44 +311,9 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
+	AddComponent(/datum/component/light_eater)
 
-/obj/item/light_eater/afterattack(atom/movable/AM, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	if(isopenturf(AM)) //So you can actually melee with it
-		return
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(isethereal(AM))
-			AM.emp_act(EMP_LIGHT)
 
-		else if(iscyborg(AM))
-			var/mob/living/silicon/robot/borg = AM
-			if(borg.lamp_enabled)
-				borg.smash_headlamp()
-		else if(ishuman(AM))
-			for(var/obj/item/O in AM.get_all_contents())
-				if(O.light_range && O.light_power)
-					disintegrate(O)
-		if(L.pulling && L.pulling.light_range && isitem(L.pulling))
-			disintegrate(L.pulling)
-	else if(isitem(AM))
-		var/obj/item/I = AM
-		if(I.light_range && I.light_power)
-			disintegrate(I)
-
-/obj/item/light_eater/proc/disintegrate(obj/item/O)
-	if(istype(O, /obj/item/pda))
-		var/obj/item/pda/PDA = O
-		PDA.set_light_on(FALSE)
-		PDA.set_light_range(0) //It won't be turning on again.
-		PDA.update_appearance(UPDATE_ICON)
-		visible_message(span_danger("The light in [PDA] shorts out!"))
-	else
-		visible_message(span_danger("[O] is disintegrated by [src]!"))
-		O.burn()
-	playsound(src, 'sound/items/welder.ogg', 50, 1)
-
+#undef DARKSPAWN_REFLECT_COOLDOWN
 #undef HEART_SPECIAL_SHADOWIFY
 #undef HEART_RESPAWN_THRESHHOLD
