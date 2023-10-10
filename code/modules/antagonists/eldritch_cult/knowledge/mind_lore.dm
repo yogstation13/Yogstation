@@ -86,7 +86,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/spell/famished_roar
-	name = "T2 - Famished Roar"
+	name = "T3 - Famished Roar"
 	gain_text = "Beasts all over the shop. You'll be one of them... Sooner or later... What's that smell? The sweet blood, oh, it sings to me. It's enough to make a man sick..."
 	desc = "An AOE roar spell that freezes all nearby people with sheer terror."
 	cost = 1
@@ -125,7 +125,7 @@
 	ADD_TRAIT(user, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/eldritch_knowledge/spell/eldritchbolt
-	name = "T3 - Eldritch Bolt"
+	name = "T2 - Eldritch Bolt"
 	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
 	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
 	cost = 1
