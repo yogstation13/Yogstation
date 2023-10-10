@@ -166,7 +166,6 @@
 
 /datum/psi_web/scout/activate(mob/user)
 	user.LoadComponent(/datum/component/walk/shadow)
-	user.AddComponent(/datum/component/shadow_step)
 	owner.specialization = SCOUT
 
 /datum/psi_web/fighter
@@ -197,9 +196,12 @@
 	shadow_flags = SCOUT
 
 /datum/psi_web/scouttest
-	name = "scout ability"
+	name = "scout ability (dark speed)"
 	desc = "GO FAST, TOUCH GRASS"
 	shadow_flags = SCOUT
+
+/datum/psi_web/scouttest/activate(mob/user)
+	user.AddComponent(/datum/component/shadow_step)
 
 /datum/psi_web/everyone
 	name = "universal ability"
