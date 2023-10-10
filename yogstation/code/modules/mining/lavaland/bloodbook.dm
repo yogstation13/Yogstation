@@ -802,6 +802,7 @@
 		if(17)
 			for(var/mob/living/L in view(9, target))
 				shake_camera(L, 4, 5)
+			playsound(target,'sound/effects/explosion3.ogg', 50, 1)
 			qdel(genkidama)
 			qdel(sky)
 			qdel(floor)
