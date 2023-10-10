@@ -203,7 +203,7 @@
 					return
 			pick(mash(user, target), spiritbomb(user, target))
 			return
-		pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target))
+		pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
 		return
 	if(severity > 1)
 		pick(inducingemission(user,target), concavehead(user,target))
@@ -480,6 +480,42 @@
 	if(target)
 		sceneend(target, user, TRUE)
 		return
+
+/obj/item/bloodbook/proc/vortex(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/bed/killbubble/hole)
+	switch(phase) 
+		if(1)
+			user.setDir(get_dir(user, target))
+			var/obj/structure/bed/killbubble/B = new(get_step(get_turf(target), (user.dir)))
+			B.icon = 'icons/obj/singularity.dmi'
+			B.name = "vortex"
+			B.desc = "A bottomless maw."
+			B.icon_state = "singularity_s1"
+			animate(B, transform = matrix().Scale(0.3))
+			target.Immobilize(15)
+			target.visible_message(span_warning("A miniature black hole appears behind [target]!"))
+			target.update_transform()
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase, B), 0.5 SECONDS)
+			return
+		if(2)
+			hole.vacuum(user)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase, hole), 0.5 SECONDS)
+			return
+		if(3)
+			hole.vacuum(user)
+			phase++
+			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase, hole), 0.2 SECONDS)
+			return
+		if(4)
+			target.visible_message(span_warning("[target] is torn asunder!"))
+			QDEL_IN(hole, 1)
+			splosion(user, target)
+			shatter(target)
+	if(target)
+		sceneend(target, user, TRUE)
+		return
+
 
 /obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, var/phase = 1, var/obj/hoop, var/turf/second)
 	switch(phase)
@@ -926,6 +962,13 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "leaper"
 	max_integrity = 500
+
+/obj/structure/bed/killbubble/proc/vacuum(mob/living/user)
+	for(var/mob/living/A in range(src, 5))
+		if(A == user)
+			continue
+		var/shove_dir = get_dir(A, src)
+		A.Move(get_step(A, shove_dir), shove_dir)
 
 /obj/structure/killrock
 	name = "ruby spire"
