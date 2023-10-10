@@ -1,7 +1,6 @@
 #define SLEEPER_TEND		"Treat Injuries"
 #define SLEEPER_ORGANS		"Repair Organs"
 #define SLEEPER_CHEMPURGE	"Purge Toxins"
-#define SLEEPER_CLONE		"Repair Cells"
 #define SLEEPER_HEAL_RATE 2
 
 /obj/machinery/sleep_console
@@ -30,8 +29,8 @@
 	///treatments unlocked by manipulator by tier
 	var/list/treatments = list(
 		list(SLEEPER_TEND),
-		list(SLEEPER_CLONE, SLEEPER_CHEMPURGE),
 		list(SLEEPER_ORGANS),
+		list(SLEEPER_CHEMPURGE),
 		list()
 	)
 	///the current active treatment
@@ -207,7 +206,7 @@
 			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1.5 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
-				C.heal_bodypart_damage(SLEEPER_HEAL_RATE * efficiency,SLEEPER_HEAL_RATE * efficiency)
+				C.heal_bodypart_damage(SLEEPER_HEAL_RATE + efficiency, SLEEPER_HEAL_RATE + efficiency)
 			if(SLEEPER_ORGANS)
 				var/heal_reps = efficiency * 2
 				var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
@@ -223,7 +222,7 @@
 						if(healed)
 							break
 			if(SLEEPER_CHEMPURGE)
-				C.adjustToxLoss(-SLEEPER_HEAL_RATE * efficiency)
+				C.adjustToxLoss(-SLEEPER_HEAL_RATE + efficiency)
 				if(obj_flags & EMAGGED)
 					return
 				var/purge_rate = 0.5 * efficiency
@@ -232,8 +231,6 @@
 						C.reagents.remove_reagent(R.type,purge_rate)
 					if(R.overdosed)
 						C.reagents.remove_reagent(R.type,purge_rate)
-			if(SLEEPER_CLONE)
-				C.adjustCloneLoss(-SLEEPER_HEAL_RATE * efficiency)
 			else
 				active_treatment = null
 
