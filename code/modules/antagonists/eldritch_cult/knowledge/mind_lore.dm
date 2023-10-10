@@ -91,7 +91,7 @@
 	desc = "An AOE roar spell that freezes all nearby people with sheer terror."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/immobilize/famished_roar
-	tier = TIER_2
+	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_blade_upgrade
 	name = "Blade Upgrade - Spine of The Infinite Beast"
