@@ -69,7 +69,7 @@
 	sleep(4.5 SECONDS)
 	user.Shake(5, 5, 11 SECONDS)
 	for(var/i in 1 to 20)
-		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", "<i>THINK</i>")]</span>")
+		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", "<i>THINK!!!</i>")]</span>")
 		sleep(0.1 SECONDS) //Spooky flavor message spam
 	user.visible_message(span_userdanger("A tremendous shockwave emanates from [user]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
 	playsound(user, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
