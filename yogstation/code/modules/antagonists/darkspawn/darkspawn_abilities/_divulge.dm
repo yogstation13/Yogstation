@@ -13,8 +13,9 @@
 	if(!ishuman(user))
 		to_chat(user, span_warning("You need to be human-er to do that!"))
 		return
-	if(isethereal(user))
-		user.set_light(0)
+	if(isethereal(user))//disable the light for long enough to start divulge
+		user.dna.species.spec_emp_act(user, EMP_HEAVY)
+			
 	if(spot.get_lumcount() > DARKSPAWN_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
@@ -68,8 +69,8 @@
 	sleep(4.5 SECONDS)
 	user.Shake(5, 5, 11 SECONDS)
 	for(var/i in 1 to 20)
-		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-")]</span>")
-		sleep(0.11 SECONDS) //Spooky flavor message spam
+		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", "<i>THINK</i>")]</span>")
+		sleep(0.1 SECONDS) //Spooky flavor message spam
 	user.visible_message(span_userdanger("A tremendous shockwave emanates from [user]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
 	playsound(user, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 3 SECONDS)

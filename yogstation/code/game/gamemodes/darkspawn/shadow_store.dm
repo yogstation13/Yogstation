@@ -9,12 +9,12 @@
 
 //Used to access the Psi Web to buy abilities.
 //Accesses the Psi Web, which darkspawn use to purchase abilities using lucidity. Lucidity is drained from people using the Devour Will ability.
-/datum/antag_menu/shadow_store
+/datum/antag_menu/psi_web
 	name = "psi web"
 	ui_name = "PsiWeb"
 	var/list/show_categories = list(STORE_OFFENSE, STORE_UTILITY, STORE_PASSIVE)
 
-/datum/antag_menu/shadow_store/ui_data(mob/user)
+/datum/antag_menu/psi_web/ui_data(mob/user)
 	var/list/data = list()
 	var/datum/antagonist/darkspawn/darkspawn = antag_datum
 
@@ -28,8 +28,8 @@
 		category_data["name"] = category
 
 		var/list/upgrades = list()
-		for(var/path in subtypesof(/datum/shadow_store))
-			var/datum/shadow_store/selection = new path
+		for(var/path in subtypesof(/datum/psi_web))
+			var/datum/psi_web/selection = new path
 
 			if(!selection.check_show(user))
 				continue
@@ -52,7 +52,7 @@
 
 	return data
 
-/datum/antag_menu/shadow_store/ui_act(action, params)
+/datum/antag_menu/psi_web/ui_act(action, params)
 	if(..())
 		return
 	var/datum/antagonist/darkspawn/darkspawn = antag_datum
@@ -61,42 +61,42 @@
 	switch(action)
 		if("purchase")
 			var/upgradePath = text2path(params["upgradePath"])
-			if(!ispath(upgradePath, /datum/shadow_store))
+			if(!ispath(upgradePath, /datum/psi_web))
 				return FALSE
-			var/datum/shadow_store/selected = new upgradePath
+			var/datum/psi_web/selected = new upgradePath
 			selected.on_purchase(darkspawn?.owner?.current)
 
 //ability for using the shadow store
-/datum/action/innate/darkspawn/shadow_store
+/datum/action/innate/darkspawn/psi_web
 	name = "Psi Web"
 	id = "psi_web"
 	desc = "Access the Mindlink directly to unlock and upgrade your supernatural powers."
 	button_icon_state = "psi_web"
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 0
-	var/datum/antag_menu/shadow_store/shadow_store
+	var/datum/antag_menu/psi_web/psi_web
 
-/datum/action/innate/darkspawn/shadow_store/New(our_target)
+/datum/action/innate/darkspawn/psi_web/New(our_target)
 	. = ..()
-	if(istype(our_target, /datum/antag_menu/shadow_store))
-		shadow_store = our_target
+	if(istype(our_target, /datum/antag_menu/psi_web))
+		psi_web = our_target
 	else
 		CRASH("psi_web action created with non web.")
 
-/datum/action/innate/darkspawn/shadow_store/Destroy()
-	shadow_store = null
+/datum/action/innate/darkspawn/psi_web/Destroy()
+	psi_web = null
 	return ..()
 
-/datum/action/innate/darkspawn/shadow_store/Activate()
+/datum/action/innate/darkspawn/psi_web/Activate()
 	if(!darkspawn)
 		return
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
-	shadow_store.ui_interact(usr)
+	psi_web.ui_interact(usr)
 	return TRUE
 
 
 //shadow store datums (upgrades and abilities)
-/datum/shadow_store
+/datum/psi_web
 	///Name of the effect
 	var/name = "Basic knowledge"
 	///Description of the effect
@@ -110,7 +110,7 @@
 	///What specialization can buy this
 	var/shadow_flags = NONE
 	///what ability is granted if any
-	var/learned_ability
+	var/datum/action/innate/darkspawn/learned_ability
 	///what is printed when learned
 	var/learn_text
 	///what tab of the antag menu does it fall under
@@ -119,7 +119,7 @@
 	var/datum/antagonist/darkspawn/owner
 
 ///Check to see if they should be shown the ability
-/datum/shadow_store/proc/check_show(mob/user)
+/datum/psi_web/proc/check_show(mob/user)
 	if(!menutab)
 		return FALSE
 	owner = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
@@ -132,7 +132,7 @@
 	return TRUE
 
 ///When the button to purchase is clicked
-/datum/shadow_store/proc/on_purchase(mob/user)
+/datum/psi_web/proc/on_purchase(mob/user)
 	owner = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!owner)
 		return FALSE
@@ -148,7 +148,7 @@
 	return TRUE
 
 ///If the purchase goes through, this gets called
-/datum/shadow_store/proc/activate(mob/user)
+/datum/psi_web/proc/activate(mob/user)
 	if(!owner)//no clue how it got here, but alright
 		return
 	owner.upgrades |= src //add it to the list
@@ -161,25 +161,25 @@
 /*
 	Purchases to select spec
 */
-/datum/shadow_store/scout
+/datum/psi_web/scout
 	name = "shadow step"
 	desc = "shadow step"
 
-/datum/shadow_store/scout/activate(mob/user)
+/datum/psi_web/scout/activate(mob/user)
 	user.LoadComponent(/datum/component/walk/shadow)
 	user.AddComponent(/datum/component/shadow_step)
 	owner.specialization = SCOUT
 
-/datum/shadow_store/fighter
+/datum/psi_web/fighter
 	name = "fighter"
 	desc = "fighter"
 
-/datum/shadow_store/fighter/activate(mob/user)
+/datum/psi_web/fighter/activate(mob/user)
 	owner.specialization = FIGHTER
 
-/datum/shadow_store/warlock
+/datum/psi_web/warlock
 	name = "warlock"
 	desc = "warlock"
 
-/datum/shadow_store/warlock/activate(mob/user)
+/datum/psi_web/warlock/activate(mob/user)
 	owner.specialization = WARLOCK

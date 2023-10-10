@@ -28,8 +28,8 @@
 
 	//upgrade variables
 	var/list/upgrades = list() //An associative list ("id" = null or TRUE) containing the passive upgrades the darkspawn has
-	var/datum/antag_menu/shadow_store/shadow_store //Antag menu used for opening the UI
-	var/datum/action/innate/darkspawn/shadow_store/shadow_store_action //Used to link the menu with our antag datum
+	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
+	var/datum/action/innate/darkspawn/psi_web/psi_web_action //Used to link the menu with our antag datum
 
 	var/specialization = NONE
 
@@ -207,10 +207,10 @@
 	user.set_species(/datum/species/darkspawn)
 	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	show_to_ghosts = TRUE
-	shadow_store = new(src)
-	shadow_store_action = new(shadow_store)
-	shadow_store_action.Grant(owner.current)
-	shadow_store_action.darkspawn = src
+	psi_web = new(src)
+	psi_web_action = new(psi_web)
+	psi_web_action.Grant(owner.current)
+	psi_web_action.darkspawn = src
 	darkspawn_state = DIVULGED
 	return TRUE
 

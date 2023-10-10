@@ -67,7 +67,7 @@
 					to_chat(H, span_userdanger("The light singes you!"))
 					H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
 					H.adjustCloneLoss(light_burning * 0.2)
-			if(DARKSPAWN_BRIGHT_LIGHT to DARKSPAWN_BRIGHT_LIGHT) //but quick death in the light
+			if(DARKSPAWN_BRIGHT_LIGHT to INFINITY) //but quick death in the light
 				if(!H.has_status_effect(STATUS_EFFECT_CREEP))
 					to_chat(H, span_userdanger("The light burns you!"))
 					H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
