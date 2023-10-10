@@ -2,7 +2,7 @@
 /obj/item/umbral_tendrils
 	name = "umbral tendrils"
 	desc = "A mass of pulsing, chitonous tendrils with exposed violet flesh."
-	force = 15
+	force = 30
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
 	item_state = "umbral_tendrils"
@@ -23,8 +23,8 @@
 		if(U != src)
 			twin = U
 			U.twin = src
-			force = 12
-			U.force = 12
+			force *= 0.8
+			U.force *= 0.8
 
 /obj/item/umbral_tendrils/Destroy()
 	if(!QDELETED(twin))
@@ -52,9 +52,7 @@
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
 	if(!darkspawn)
 		return
-	if(proximity)
-		// Double hit structures if duality
-		if(!QDELETED(target) && (isstructure(target) || ismachinery(target)) && twin && user.get_active_held_item() == src)
+	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 			target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)

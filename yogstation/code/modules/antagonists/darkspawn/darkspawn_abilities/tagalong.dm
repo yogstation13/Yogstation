@@ -29,7 +29,7 @@
 	var/turf/T
 	for(var/mob/living/L in range(7, owner) - owner)
 		T = get_turf(L)
-		if(!isdarkspawn(L) && L.stat != DEAD && T.get_lumcount() >= DARKSPAWN_DIM_LIGHT)
+		if(!isdarkspawn(L) && L.stat != DEAD && T.get_lumcount() >= SHADOW_SPECIES_DIM_LIGHT)
 			targets += L
 	if(!targets.len)
 		to_chat(owner, span_warning("There is nobody nearby in any lit areas!"))

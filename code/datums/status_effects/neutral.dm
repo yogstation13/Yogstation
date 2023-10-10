@@ -172,7 +172,7 @@
 		qdel(src)
 		return
 	cached_location = get_turf(shadowing)
-	if(cached_location.get_lumcount() < DARKSPAWN_DIM_LIGHT)
+	if(cached_location.get_lumcount() < SHADOW_SPECIES_DIM_LIGHT)
 		owner.forceMove(cached_location)
 		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
 		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
