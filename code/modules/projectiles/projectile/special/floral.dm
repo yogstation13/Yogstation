@@ -4,7 +4,7 @@
 	damage = 0
 	damage_type = TOX
 	nodamage = TRUE
-	flag = ENERGY
+	armor_flag = ENERGY
 
 /obj/projectile/energy/florayield
 	name = "beta somatoray"
@@ -12,4 +12,4 @@
 	damage = 0
 	damage_type = TOX
 	nodamage = TRUE
-	flag = ENERGY
+	armor_flag = ENERGY

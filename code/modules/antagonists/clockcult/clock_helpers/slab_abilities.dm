@@ -170,7 +170,7 @@
 	nodamage = TRUE
 	damage = 0 //We're just here for the stunning!
 	damage_type = BURN
-	flag = BOMB
+	armor_flag = BOMB
 	range = 3
 	log_override = TRUE
 

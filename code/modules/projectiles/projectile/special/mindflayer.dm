@@ -3,7 +3,7 @@
 	icon_state = "flayerlaser"
 	damage = 8
 	damage_type = OXY //stop oxygen from being correctly processed by your cells.
-	flag = ENERGY
+	armor_flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	light_color = LIGHT_COLOR_LAVENDER

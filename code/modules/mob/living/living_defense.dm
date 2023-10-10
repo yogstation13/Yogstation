@@ -52,7 +52,7 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone)
-	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
+	var/armor = run_armor_check(def_zone, P.armor_flag, "","",P.armour_penetration)
 
 	// "Projectiles now ignore the holopara's master or any of their other holoparas."
 	var/guardian_pass = FALSE

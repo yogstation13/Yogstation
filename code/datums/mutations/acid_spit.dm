@@ -37,7 +37,7 @@
 	icon_state = "neurotoxin"
 	damage = 2
 	damage_type = BURN
-	flag = BIO
+	armor_flag = BIO
 	range = 7
 	speed = 1.8 // spit is not very fast
 

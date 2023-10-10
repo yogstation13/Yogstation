@@ -5,7 +5,7 @@
 	damage_type = OXY
 	nodamage = TRUE
 	armour_penetration = 100
-	flag = MAGIC
+	armor_flag = MAGIC
 	var/tile_dropoff = 0
 	var/tile_dropoff_s = 0
 	/// determines what type of antimagic can block the spell projectile
@@ -394,7 +394,7 @@
 	icon_state = "lavastaff"
 	damage = 20
 	damage_type = BURN
-	flag = MAGIC
+	armor_flag = MAGIC
 	dismemberment = 50
 	nodamage = FALSE
 
@@ -421,14 +421,14 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 20
-	flag = MAGIC 
+	armor_flag = MAGIC 
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/projectile/magic/locker
 	name = "locker bolt"
 	icon_state = "locker"
 	nodamage = TRUE
-	flag = MAGIC
+	armor_flag = MAGIC
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
@@ -681,7 +681,7 @@
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
-	flag = MAGIC
+	armor_flag = MAGIC
 
 	/// The power of the zap itself when it electrocutes someone
 	var/tesla_power = 20000
@@ -713,7 +713,7 @@
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
-	flag = MAGIC
+	armor_flag = MAGIC
 
 	tesla_power = 9000
 	tesla_range = 7
@@ -837,14 +837,14 @@
 	nodamage = TRUE
 	armour_penetration = 100
 	temperature = 50
-	flag = MAGIC
+	armor_flag = MAGIC
 
 
 /obj/projectile/temp/runic_icycle
 	name = "Icicle"
 	icon_state = "runic_icycle"
 	damage = 6
-	flag = MAGIC
+	armor_flag = MAGIC
 	temperature = 80
 
 /obj/projectile/temp/runic_icycle/on_hit(target)
@@ -857,7 +857,7 @@
 	name = "Tentacle"
 	icon_state = "tentacle_end"
 	damage = 6
-	flag = MAGIC
+	armor_flag = MAGIC
 
 
 /obj/projectile/magic/runic_tentacle/on_hit(target)
@@ -874,7 +874,7 @@
 /obj/projectile/magic/runic_heal
 	name = "Runic Heal"
 	icon_state = "runic_heal"
-	flag = MAGIC
+	armor_flag = MAGIC
 	nodamage = TRUE
 /obj/projectile/magic/runic_heal/on_hit(target)
 	. = ..()
@@ -897,7 +897,7 @@
 /obj/projectile/magic/runic_fire
 	name = "Runic Fire"
 	icon_state = "lava"
-	flag = MAGIC
+	armor_flag = MAGIC
 	nodamage = FALSE
 
 /obj/projectile/magic/runic_fire/on_hit(target)
@@ -911,7 +911,7 @@
 /obj/projectile/magic/runic_honk
 	name = "Runic Peel"
 	icon_state = "runic_honk"
-	flag = MAGIC
+	armor_flag = MAGIC
 	range = 200
 	movement_type = FLYING
 	reflectable = REFLECT_NORMAL
@@ -928,7 +928,7 @@
 /obj/projectile/magic/runic_bomb
 	name = "Runic Bomb"
 	icon_state = "runic_bomb"
-	flag = MAGIC
+	armor_flag = MAGIC
 	range = 10
 	speed = 4
 	var/boom = 1
@@ -951,7 +951,7 @@
 /obj/projectile/magic/runic_toxin
 	name = "Runic Toxin"
 	icon_state = "syringeproj"
-	flag = MAGIC
+	armor_flag = MAGIC
 	damage = 1
 	damage_type = BRUTE
 	nodamage = FALSE
@@ -979,7 +979,7 @@
 /obj/projectile/magic/runic_death
 	name = "Runic Death"
 	icon_state = "antimagic"
-	flag = MAGIC
+	armor_flag = MAGIC
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
 /obj/projectile/magic/runic_death/on_hit(mob/living/target)
@@ -996,7 +996,7 @@
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
-	flag = MAGIC
+	armor_flag = MAGIC
 
 /obj/projectile/magic/shotgun/slug/on_hit(target)
 	. = ..()
@@ -1008,7 +1008,7 @@
 	name = "Incendiary shotgun slug"
 	icon_state = "bullet"
 	damage = 5
-	flag = MAGIC
+	armor_flag = MAGIC
 
 
 /obj/projectile/magic/incediary_slug/on_hit(target)
@@ -1022,7 +1022,7 @@
 /obj/projectile/magic/runic_mutation
 	name = "Runic Mutation"
 	icon_state = "toxin"
-	flag = MAGIC
+	armor_flag = MAGIC
 	irradiate = 12
 
 /obj/projectile/magic/runic_mutation/on_hit(target)
@@ -1037,7 +1037,7 @@
 
 /obj/projectile/magic/runic_resizement
 	name = "Runic Resizement"
-	flag = MAGIC
+	armor_flag = MAGIC
 	icon_state = "cursehand1"
 
 
@@ -1084,7 +1084,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	flag = ENERGY
+	armor_flag = ENERGY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
 	var/light_emp_radius = 3
 	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles

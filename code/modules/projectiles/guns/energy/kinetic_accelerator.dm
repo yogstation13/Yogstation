@@ -185,7 +185,7 @@
 	icon_state = null
 	damage = 40
 	damage_type = BRUTE
-	flag = BOMB
+	armor_flag = BOMB
 	range = 3
 	log_override = TRUE
 	var/power = 1
@@ -424,7 +424,7 @@
 				M.attempt_drill(K.firer)
 	if(modifier)
 		for(var/mob/living/L in range(1, target_turf) - K.firer - target)
-			var/armor = L.run_armor_check(K.def_zone, K.flag, "", "", K.armour_penetration)
+			var/armor = L.run_armor_check(K.def_zone, K.armor_flag, "", "", K.armour_penetration)
 			var/effective_modifier = modifier
 			if(K.pressure_decrease_active)
 				effective_modifier *= K.pressure_decrease
@@ -533,7 +533,7 @@
 			var/kill_modifier = 1
 			if(K.pressure_decrease_active)
 				kill_modifier *= K.pressure_decrease
-			var/armor = L.run_armor_check(K.def_zone, K.flag, "", "", K.armour_penetration)
+			var/armor = L.run_armor_check(K.def_zone, K.armor_flag, "", "", K.armour_penetration)
 			L.apply_damage(bounties_reaped[L.type]*kill_modifier, K.damage_type, K.def_zone, armor)
 
 /obj/item/borg/upgrade/modkit/bounty/proc/get_kill(mob/living/L)

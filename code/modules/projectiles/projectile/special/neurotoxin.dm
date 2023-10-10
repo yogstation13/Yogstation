@@ -3,7 +3,7 @@
 	icon_state = "neurotoxin"
 	damage = 5
 	damage_type = TOX
-	flag = BIO // why was this bullet protection
+	armor_flag = BIO // why was this bullet protection
 
 /obj/projectile/bullet/neurotoxin/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target))

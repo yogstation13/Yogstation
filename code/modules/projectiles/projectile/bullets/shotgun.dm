@@ -189,7 +189,7 @@
 	name = "scattered hardlight beam"
 	icon_state = "disabler_bullet"
 	damage = 10 // Less damage than buckshot or rubbershot
-	flag = ENERGY
+	armor_flag = ENERGY
 	damage_type = STAMINA // Doesn't do "real" damage
 	sharpness = SHARP_NONE
 	armour_penetration = -40 // Energy armor is usually very low so uhh

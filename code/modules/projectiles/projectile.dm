@@ -92,7 +92,7 @@
 	///Determines if the projectile will skip any damage inflictions
 	var/nodamage = FALSE
 	///Defines what armor to use when it hits things.  Must be set to bullet, laser, energy, or bomb
-	var/flag = BULLET
+	var/armor_flag = BULLET
 	///How much armor this projectile pierces.
 	var/armour_penetration = 0
 	///How much armor this projectile pierces.

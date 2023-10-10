@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
+	if(P.armor_flag != LASER && P.armor_flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 
 	if(cooldown >= world.time || istype(P, /obj/projectile/bullet/ipcmartial))//we ricochet the projectile

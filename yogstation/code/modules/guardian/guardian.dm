@@ -793,6 +793,6 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	icon_state = "greyscale_bolt"
 	damage = 10
 	damage_type = BRUTE
-	flag = ENERGY
+	armor_flag = ENERGY
 	hitsound = 'sound/weapons/pierce_slow.ogg'
 	var/datum/mind/guardian_master

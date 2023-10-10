@@ -4,7 +4,7 @@
 	damage = 35
 	armour_penetration = -25 //Melee armor tends to be much higher, so this hurts
 	speed = 0.6
-	flag = MELEE
+	armor_flag = MELEE
 	icon_state = "arrow"
 	var/embed_chance = 0.4
 	var/break_chance = 0
@@ -59,7 +59,7 @@
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
 		var/obj/item/ammo_casing/reusable/arrow/arrow = ammo_type
-		if(!(istype(arrow) && arrow.explosive) && prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(ammo_type, part, TRUE))
+		if(!(istype(arrow) && arrow.explosive) && prob(embed_chance * clamp((100 - (embede.getarmor(part, armor_flag) - armour_penetration)), 0, 100)) && embede.embed_object(ammo_type, part, TRUE))
 			arrow.on_land(src)
 			dropped = TRUE
 	return ..()
@@ -232,7 +232,7 @@
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
-		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)))
+		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, armor_flag) - armour_penetration)), 0, 100)))
 			embede.embed_object(new embed_type(), part, FALSE)
 	return ..()
 

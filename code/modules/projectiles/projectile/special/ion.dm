@@ -4,7 +4,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	flag = ENERGY
+	armor_flag = ENERGY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
 	var/light_emp_radius = 1
 	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles
