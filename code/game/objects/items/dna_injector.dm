@@ -112,7 +112,7 @@
 
 /obj/item/dnainjector/antispit
 	name ="\improper DNA injector (Anti-Acid Spit)"
-	desc = "Cures your corrosive saliva"
+	desc = "Cures your corrosive saliva."
 	remove_mutations = list(ACIDSPIT)
 
 /obj/item/dnainjector/xraymut
