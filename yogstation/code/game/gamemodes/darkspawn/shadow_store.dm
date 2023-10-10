@@ -22,7 +22,7 @@
 		CRASH("darkspawn menu started with wrong datum.")
 
 	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [darkspawn.lucidity_needed] unique drained total"
-
+	data["specialization"] = darkspawn.specialization
 	for(var/category in show_categories)
 		var/list/category_data = list()
 		category_data["name"] = category
