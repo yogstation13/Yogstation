@@ -27,11 +27,6 @@
 	if(proximity) //no telekinetic hulk attack
 		return target.attack_hulk(owner)
 
-/datum/mutation/human/hulk/on_life()
-	if(owner.health < 0)
-		on_losing(owner)
-		to_chat(owner, span_danger("You suddenly feel very weak."))
-
 /datum/mutation/human/hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
