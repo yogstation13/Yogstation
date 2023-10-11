@@ -1,6 +1,6 @@
 /datum/mutation/human/radiantburst
 	name = "Radiant Burst"
-	desc = "An mutation hidden deep within ethereal genetic code that."
+	desc = "A mutation hidden deep within ethereal genetic code that allows you to blind people nearby."
 	quality = POSITIVE
 	difficulty = 12
 	locked = TRUE
@@ -28,7 +28,7 @@
 
 /datum/action/cooldown/spell/aoe/radiantburst
 	name = "Radiant Burst"
-	desc = "You release all the light that is within you"
+	desc = "You release all the light that is within you."
 	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "Kindle"
 	active_icon_state = "Kindle"
@@ -40,7 +40,7 @@
 	cooldown_time = 15 SECONDS
 	sound = 'sound/magic/blind.ogg'
 	var/safe = FALSE
-	
+
 
 /datum/action/cooldown/spell/aoe/radiantburst/get_things_to_cast_on(atom/center)
 	var/list/things = list()
