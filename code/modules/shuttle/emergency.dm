@@ -229,7 +229,7 @@
 		var/security_num = seclevel2num(get_security_level())
 		switch(security_num)
 			if(SEC_LEVEL_GREEN)
-				set_coefficient = 2
+				set_coefficient = 1.5
 			if(SEC_LEVEL_BLUE)
 				set_coefficient = 1
 			else
