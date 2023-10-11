@@ -466,3 +466,6 @@
 #define TRAIT_RADSTORM_IMMUNE "radstorm_immune"
 #define TRAIT_VOIDSTORM_IMMUNE "voidstorm_immune"
 #define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.
+
+///Darkspawn traits
+#define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
