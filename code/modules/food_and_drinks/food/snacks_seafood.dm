@@ -152,7 +152,7 @@
 	name = "nigiri sushi"
 	desc = "A simple nigiri of fish atop a packed rice ball with a seaweed wrapping and a side of soy sauce."
 	icon_state = "nigiri_sushi"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/nutriment/protein = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nutriment/protein = 2)
 	tastes = list("boiled rice" = 4, "fish filet" = 2, "soy sauce" = 2)
 	foodtype = VEGETABLES | SEAFOOD
 

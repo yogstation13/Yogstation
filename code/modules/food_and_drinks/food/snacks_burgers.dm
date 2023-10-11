@@ -257,8 +257,8 @@
 	name = "super bite burger"
 	desc = "This is a mountain of a burger. FOOD!"
 	icon_state = "superbiteburger"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 10)
-	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 40, /datum/reagent/consumable/nutriment/vitamin = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 12)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 40, /datum/reagent/consumable/nutriment/vitamin = 10)
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 7
 	volume = 100
