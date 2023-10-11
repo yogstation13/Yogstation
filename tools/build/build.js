@@ -76,6 +76,7 @@ export const DmTarget = new Juke.Target({
     'icons/**',
     'interface/**',
     'yogstation/**',
+    'modular_dripstation/**',
     `${DME_NAME}.dme`,
     NamedVersionFile,
   ],
