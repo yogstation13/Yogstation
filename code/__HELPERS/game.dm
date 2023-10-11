@@ -794,7 +794,7 @@
 	// I hate /area
 	var/atom/movable/lies_to_children = src
 	lies_to_children.vis_contents += visual
-	QDEL_IN(visual, duration)
+	QDEL_IN_CLIENT_TIME(visual, duration)
 	return visual
 
 /area/flick_overlay_view(mutable_appearance/display, duration)
