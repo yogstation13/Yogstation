@@ -85,6 +85,9 @@
 	/// The amount of smoke to create on cast. This is a range, so a value of 5 will create enough smoke to cover everything within 5 steps.
 	var/smoke_amt = 0
 
+	///used for darkspawn, if there is a psi cost, it will try to check for a darkspawn datum
+	var/psi_cost = 0 //can var edit psi_cost to 0 to make darkspawn abilities usable by non-darkspawns
+
 /datum/action/cooldown/spell/Grant(mob/grant_to)
 	// If our spell is mind-bound, we only wanna grant it to our mind
 	if(istype(target, /datum/mind))
@@ -130,7 +133,15 @@
 	if(!can_cast_spell())
 		return FALSE
 
-	return ..()
+	. = ..()
+
+	// Add this after the parent call so psi is only consumed when the ability WILL happen
+	if(psi_cost && .)
+		if(owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))//sanity check
+			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+			darkspawn.psi -= psi_cost
+			return TRUE
+		return FALSE
 
 /datum/action/cooldown/spell/set_click_ability(mob/on_who)
 	if(SEND_SIGNAL(on_who, COMSIG_MOB_SPELL_ACTIVATED, src) & SPELL_CANCEL_CAST)
@@ -170,6 +181,19 @@
 		if(feedback)
 			to_chat(owner, span_warning("You must dedicate yourself to silence first!"))
 		return FALSE
+
+	//used for darkspawn spells
+	if(psi_cost)
+		if(owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))
+			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+			if(darkspawn.psi < psi_cost)
+				if(feedback)
+					owner.balloon_alert(owner, span_warning("Not enough psi!"))
+				return FALSE
+		else
+			if(feedback)
+				to_chat(owner, span_warning("Your mind is incapable of comprehending this ability!"))
+			return FALSE
 
 	// If the spell requires the user has no antimagic equipped, and they're holding antimagic
 	// that corresponds with the spell's antimagic, then they can't actually cast the spell

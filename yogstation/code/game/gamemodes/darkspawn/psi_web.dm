@@ -68,7 +68,7 @@
 			selected.on_purchase(darkspawn?.owner?.current)
 
 //ability for using the shadow store
-/datum/action/innate/darkspawn/psi_web
+/datum/action/innate/psi_web
 	name = "Psi Web"
 	id = "psi_web"
 	desc = "Access the Mindlink directly to unlock and upgrade your supernatural powers."
@@ -77,20 +77,18 @@
 	psi_cost = 0
 	var/datum/antag_menu/psi_web/psi_web
 
-/datum/action/innate/darkspawn/psi_web/New(our_target)
+/datum/action/innate/psi_web/New(our_target)
 	. = ..()
 	if(istype(our_target, /datum/antag_menu/psi_web))
 		psi_web = our_target
 	else
 		CRASH("psi_web action created with non web.")
 
-/datum/action/innate/darkspawn/psi_web/Destroy()
+/datum/action/innate/psi_web/Destroy()
 	psi_web = null
 	return ..()
 
-/datum/action/innate/darkspawn/psi_web/Activate()
-	if(!darkspawn)
-		return
+/datum/action/innate/psi_web/Activate()
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
 	psi_web.ui_interact(usr)
 	return TRUE
