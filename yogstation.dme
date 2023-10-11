@@ -4014,8 +4014,6 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\psionic_barrier.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\simulacrum.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\umbral_tendrils.dm"
-#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\light_resistance.dm"
-#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\twin_tendrils.dm"
 #include "yogstation\code\modules\antagonists\gang\gang.dm"
 #include "yogstation\code\modules\antagonists\gang\gang_datums.dm"
 #include "yogstation\code\modules\antagonists\gang\gang_hud.dm"

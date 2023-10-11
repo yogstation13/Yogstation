@@ -5,6 +5,7 @@
 	desc = "Twists an active arm into tendrils with many important uses. Examine the tendrils to see a list of uses."
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
+	var/twin = FALSE
 
 /datum/action/innate/darkspawn/pass/IsAvailable(feedback = FALSE)
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows) || istype(owner, /mob/living/simple_animal/hostile/darkspawn_progenitor) || !owner.get_empty_held_indexes() && !active)
@@ -14,7 +15,7 @@
 /datum/action/innate/darkspawn/pass/process()
 	..()
 	active = locate(/obj/item/umbral_tendrils) in owner
-	if(darkspawn.upgrades["twin_tendrils"])
+	if(twin)
 		name = "Twinned Pass"
 		desc = "Twists one or both of your arms into tendrils with many uses."
 
@@ -24,7 +25,7 @@
 		to_chat(owner, span_warning("Stand up first!"))
 		return
 	var/list/hands_free = owner.get_empty_held_indexes()
-	if(!darkspawn.upgrades["twin_tendrils"] || hands_free.len < 2)
+	if(!twin || hands_free.len < 2)
 		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), "<span class='velvet bold'>ikna</span><br>\
 		[span_notice("You transform your arm into umbral tendrils. Examine them to see possible uses.")]")
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)

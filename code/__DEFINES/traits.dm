@@ -484,3 +484,4 @@
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
 ///Darkspawn traits
 #define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
+#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" //lets darkspawns spacewalk safely

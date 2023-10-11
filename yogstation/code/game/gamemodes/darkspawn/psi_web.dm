@@ -218,9 +218,22 @@
 	desc = "The Atlwjz sigils, representing Psi, are etched onto the forehead. Unlocking these sigils increases your maximum Psi by 25."
 	lucidity_price = 2
 	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
 
 /datum/psi_web/psi_cap/activate(mob/user)
 	darkspawn.psi_cap += 25
+
+//Decreases the Psi regeneration delay by 3 ticks and increases Psi regeneration threshold to 25.
+/datum/psi_web/psi_regen
+	name = "\'Recovery\' Sigil"
+	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate 3 ticks sooner, and you will regenerate up to 25 Psi instead of 20."
+	lucidity_price = 1
+	menu_tab = STORE_PASSIVE
+	shadow_flags = WARLOCK
+
+/datum/psi_web/psi_regen/activate(mob/user)
+	darkspawn.psi_regen += 5
+	darkspawn.psi_regen_delay -= 3
 
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
@@ -229,9 +242,22 @@
 	desc = "The Naykranu sigil, representing perseverence, is etched onto the back. Unlocking this sigil increases your healing in darkness by 25%."
 	lucidity_price = 1
 	menu_tab = STORE_PASSIVE
+	shadow_flags = FIGHTER | SCOUT
 
 /datum/psi_web/dark_healing/activate(mob/user)
 	darkspawn.dark_healing *= 1.25
+
+//Halves lightburn damage and gives resistance to dim light.
+/datum/psi_web/light_resistance
+	name = "\'Lightward\' Sigil"
+	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil halves light damage taken and protects from dim light."
+	lucidity_price = 2
+	menu_tab = STORE_PASSIVE
+	shadow_flags = FIGHTER
+
+/datum/psi_web/light_resistance/activate(mob/user)
+	darkspawn.light_damage /= 2
+	ADD_TRAIT(user, TRAIT_DARKSPAWN_LIGHTRES, "lightward sigils")
 
 //Provides immunity to starlight.
 /datum/psi_web/spacewalking
@@ -239,17 +265,23 @@
 	desc = "The Jaxqhw sigils, representing the void, are etched multiple times across the body. Unlocking these sigils provides the ability to walk freely in space without fear of starlight."
 	lucidity_price = 3
 	menu_tab = STORE_PASSIVE
+	shadow_flags = FIGHTER | SCOUT
 
 /datum/psi_web/spacewalking/activate(mob/user)
 	ADD_TRAIT(user, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
 
-//Decreases the Psi regeneration delay by 3 ticks and increases Psi regeneration threshold to 25.
-/datum/psi_web/psi_regen
-	name = "\'Recovery\' Sigil"
-	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate 3 ticks sooner, and you will regenerate up to 25 Psi instead of 20."
+//Using Pass will now form two tendrils if possible.
+//Attacking with one set of tendrils will attack with the other.
+//This also speeds up most actions they have.
+//Check pass.dm and umbral_tendrils.dm for effects.
+/datum/psi_web/twin_tendrils
+	name = "\'Duality\' Sigils"
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes Pass to form tendrils in both hands if possible, which empowers both."
 	lucidity_price = 1
+	shadow_flags = FIGHTER
 	menu_tab = STORE_PASSIVE
 
-/datum/psi_web/psi_regen/activate(mob/user)
-	darkspawn.psi_regen += 5
-	darkspawn.psi_regen_delay -= 3
+/datum/psi_web/twin_tendrils/activate(mob/user)
+	var/datum/action/innate/darkspawn/pass/spell = locate() in darkspawn.upgrades
+	if(spell)
+		spell.twin = TRUE
