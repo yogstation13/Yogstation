@@ -65,7 +65,7 @@
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE
 	var/mob/living/carbon/human/holder
-	var/obj/item/gun/magic/hook/sickly_blade/sword
+	var/obj/item/melee/sickly_blade/sword
 
 /datum/action/innate/heretic_shatter/Grant(mob/user, obj/object)
 	sword = object
@@ -91,7 +91,7 @@
 	do_teleport(holder,safe_turf,forceMove = TRUE)
 	qdel(sword)
 
-/obj/item/gun/magic/hook/sickly_blade
+/obj/item/melee/sickly_blade
 	name = "sickly blade"
 	desc = "A sickly, green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
 	icon = 'icons/obj/eldritch.dmi'
@@ -110,55 +110,20 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	var/datum/action/innate/heretic_shatter/linked_action
-	/// Hook stuff
-	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
-	recharge_rate = 3 // seconds
-	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade
-	fire_sound = 'sound/effects/snap.ogg'
 
-/// Also allows clowns to use the blade without fearing shooting themselves in the foot
-/obj/item/gun/magic/hook/sickly_blade/check_botched(mob/living/user, params)
-	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
-		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
-		var/mob/living/carbon/human/human_user = user
-		human_user.AdjustParalyzed(5 SECONDS)
-		return TRUE
-
-/obj/item/gun/magic/hook/sickly_blade/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
-
-/obj/item/ammo_casing/magic/hook/sickly_blade
-	projectile_type = /obj/item/projectile/hook/sickly_blade
-
-/obj/item/projectile/hook/sickly_blade
-	damage = 0
-	knockdown = 0
-	immobilize = 2 // there's no escape
-	range = 5 // hey now cowboy
-	armour_penetration = 0 // no piercing shields
-	hitsound = 'sound/effects/gravhit.ogg'
-
-/obj/item/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
-	. = ..()
-	if(iscarbon(target) && blocked != 100)
-		var/mob/living/carbon/C = target
-		for(var/obj/item/shield/riot/R in C.get_all_gear())
-			R.shatter() // Shield :b:roke
-			qdel(R)
-
-/obj/item/gun/magic/hook/sickly_blade/Initialize(mapload)
+/obj/item/melee/sickly_blade/Initialize(mapload)
 	. = ..()
 	linked_action = new(src)
 
-/obj/item/gun/magic/hook/sickly_blade/pickup(mob/user)
+/obj/item/melee/sickly_blade/pickup(mob/user)
 	. = ..()
 	linked_action.Grant(user, src)
 
-/obj/item/gun/magic/hook/sickly_blade/dropped(mob/user, silent)
+/obj/item/melee/sickly_blade/dropped(mob/user, silent)
 	. = ..()
 	linked_action.Remove(user, src)
 
-/obj/item/gun/magic/hook/sickly_blade/attack(mob/living/M, mob/living/user)
+/obj/item/melee/sickly_blade/attack(mob/living/M, mob/living/user)
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
 		var/mob/living/carbon/human/human_user = user
@@ -166,7 +131,7 @@
 		return FALSE
 	return ..()
 
-/obj/item/gun/magic/hook/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	if(!cultie || !proximity_flag || target == user)
@@ -176,31 +141,31 @@
 		var/datum/eldritch_knowledge/eldritch_knowledge_datum = knowledge[X]
 		eldritch_knowledge_datum.on_eldritch_blade(target,user,proximity_flag,click_parameters)
 
-/obj/item/gun/magic/hook/sickly_blade/rust
+/obj/item/melee/sickly_blade/rust
 	name = "rusted blade"
 	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth. A strange liquid oozes from its points."
 	icon_state = "rust_blade"
 	item_state = "rust_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/ash
+/obj/item/melee/sickly_blade/ash
 	name = "ashen blade"
 	desc = "A hunk of molten metal warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is as it shears soot-filled wounds."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/flesh
+/obj/item/melee/sickly_blade/flesh
 	name = "flesh blade"
 	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating pain it has endured from dread origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/mind
+/obj/item/melee/sickly_blade/mind
 	name = "mind blade"
 	desc = "A monsterously sharp blade made from pure knowledge and paper. Endlessly it searches to quench it's thirst, often eviserating the user in the process."
 	icon_state = "mind_blade"
 	item_state = "mind_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/void
+/obj/item/melee/sickly_blade/void
 	name = "void blade"
 	desc = "A monsterously sharp blade made from pure ice. Sharp and acute it's unbreaking edges can rip and tear through bone and sinew with ease."
 	icon_state = "void_blade"
@@ -268,7 +233,7 @@
 	item_state = "eldritch_armor"
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
+	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Consider yourself reduced, bitch
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
@@ -336,7 +301,7 @@
 	item_state = "void_cloak"
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
+	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
 	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
 	resistance_flags = FIRE_PROOF
 	

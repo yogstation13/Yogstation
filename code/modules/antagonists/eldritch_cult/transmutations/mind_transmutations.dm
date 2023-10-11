@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/mind_knife
 	name = "Cerebral Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/item/book) 
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/mind)
+	result_atoms = list(/obj/item/melee/sickly_blade/mind)
 	required_shit_list = "A book and a knife."
 
 /datum/eldritch_transmutation/eldritch_eye

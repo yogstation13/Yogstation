@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/ash_knife
 	name = "Ashen Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/ash)
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/ash)
+	result_atoms = list(/obj/item/melee/sickly_blade/ash)
 	required_shit_list = "A pile of ash and a knife."
 
 /datum/eldritch_transmutation/ashen_eyes

@@ -26,7 +26,7 @@
 
 /datum/eldritch_knowledge/base_void/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/void
+	var/obj/realknife = new /obj/item/melee/sickly_blade/void
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 

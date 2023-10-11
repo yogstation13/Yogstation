@@ -29,7 +29,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.physiology.heat_mod *= 0.6
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/ash
+	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 

@@ -23,6 +23,7 @@
 	var/route = PATH_SIDE
 	///transmutation recipes unlocked by this knowledge
 	var/list/unlocked_transmutations = list()
+	
 
 /** The Lores and their Thematic Representation
  * 
@@ -71,6 +72,7 @@
 	var/datum/action/cooldown/spell/spell_to_add
 	/// The spell we actually created.
 	var/datum/weakref/created_spell_ref
+	///Spell path we add to the heretic to add a second spell (the first one only lets you add 1 lol!) this is such shit code
 
 /datum/eldritch_knowledge/spell/Destroy()
 	QDEL_NULL(created_spell_ref)
@@ -80,7 +82,7 @@
 	// Added spells are tracked on the body, and not the mind,
 	// because we handle heretic mind transfers
 	// via the antag datum (on_gain and on_lose).
-	var/datum/action/cooldown/spell/created_spell = created_spell_ref?.resolve() || new spell_to_add(user)
+	var/datum/action/cooldown/spell/created_spell = created_spell_ref?.resolve() || new spell_to_add(user) 
 	created_spell.Grant(user)
 	created_spell_ref = WEAKREF(created_spell)
 	. = ..()
@@ -112,4 +114,12 @@
 		/datum/eldritch_transmutation/living_heart, 
 		/datum/eldritch_transmutation/codex_cicatrix,
 		/datum/eldritch_transmutation/knowledge_ritual)
+	route = "Start"
+
+/datum/eldritch_knowledge/spell/basic_jaunt
+	name = "Rising Sun"
+	desc = "As your journey begins, you'll need a way to shift between realms easily, this movement ability will allow you to travel a small range and assist in escaping emergencies"
+	gain_text = "Your body's connection to this realm feels weakened, for better or worse."
+	cost = 0
+	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
 	route = "Start"

@@ -26,7 +26,7 @@
 	
 /datum/eldritch_knowledge/base_mind/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/mind
+	var/obj/realknife = new /obj/item/melee/sickly_blade/mind
 	user.put_in_hands(realknife)
 	var/datum/action/cooldown/spell/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
 	if(mansus_touch)
