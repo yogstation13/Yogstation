@@ -107,7 +107,7 @@
 	///What specialization can buy this
 	var/shadow_flags = NONE
 	///what ability is granted if any
-	var/datum/action/innate/darkspawn/learned_ability
+	var/datum/action/learned_ability
 	///what is printed when learned
 	var/learn_text
 	///what tab of the antag menu does it fall under
@@ -152,7 +152,7 @@
 	if(learn_text)
 		to_chat(user, learn_text)
 	if(learned_ability)
-		var/datum/action/innate/darkspawn/action = new learned_ability
+		var/datum/action/action = new learned_ability
 		action.Grant(user)
 
 /*
@@ -169,7 +169,7 @@
 /datum/psi_web/fighter
 	name = "fighter"
 	desc = "me no think so good"
-	learned_ability = /datum/action/innate/darkspawn/pass
+	learned_ability = /datum/action/innate/pass
 
 /datum/psi_web/fighter/activate(mob/user)
 	darkspawn.specialization = FIGHTER
@@ -280,6 +280,6 @@
 	menu_tab = STORE_PASSIVE
 
 /datum/psi_web/twin_tendrils/activate(mob/user)
-	var/datum/action/innate/darkspawn/pass/spell = locate() in darkspawn.upgrades
+	var/datum/action/innate/pass/spell = locate() in darkspawn.upgrades
 	if(spell)
 		spell.twin = TRUE

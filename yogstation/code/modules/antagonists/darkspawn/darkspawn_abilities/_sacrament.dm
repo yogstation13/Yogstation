@@ -1,5 +1,5 @@
 //Turns the darkspawn into a progenitor.
-/datum/action/innate/darkspawn/sacrament
+/datum/action/innate/sacrament
 	name = "Sacrament"
 	id = "sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
@@ -7,7 +7,7 @@
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	var/datum/looping_sound/sacrament/soundloop
 
-/datum/action/innate/darkspawn/sacrament/Activate()
+/datum/action/innate/sacrament/Activate()
 	if(SSticker.mode.sacrament_done)
 		darkspawn.sacrament()
 		return
@@ -65,11 +65,11 @@
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
 	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
 
-/datum/action/innate/darkspawn/sacrament/proc/unleashed_psi(turf/T)
+/datum/action/innate/sacrament/proc/unleashed_psi(turf/T)
 	playsound(T, 'yogstation/sound/magic/divulge_end.ogg', 25, FALSE)
 	new/obj/effect/temp_visual/revenant/cracks(T)
 
-/datum/action/innate/darkspawn/sacrament/proc/shatter_lights()
+/datum/action/innate/sacrament/proc/shatter_lights()
 	if(SSticker.mode.sacrament_done)
 		return
 	for(var/obj/machinery/light/light in SSmachines.processing)

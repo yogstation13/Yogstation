@@ -1,12 +1,12 @@
 //A channeled ability that turns the darkspawn into their main form.
-/datum/action/innate/darkspawn/divulge
+/datum/action/innate/divulge
 	name = "Divulge"
 	id = "divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 
-/datum/action/innate/darkspawn/divulge/Activate()
+/datum/action/innate/divulge/Activate()
 	set waitfor = FALSE
 	var/mob/living/carbon/human/user = usr
 	var/turf/spot = get_turf(user)

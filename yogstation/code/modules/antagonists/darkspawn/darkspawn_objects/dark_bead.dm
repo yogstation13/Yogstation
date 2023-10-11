@@ -12,7 +12,7 @@
 	light_power = 0.3
 	light_range = 2
 	var/eating = FALSE //If we're devouring someone's will
-	var/datum/action/innate/darkspawn/devour_will/linked_ability //The ability that keeps data for us
+	var/datum/action/cooldown/spell/devour_will/linked_ability //The ability that keeps data for us
 	var/full_restore = TRUE
 
 /obj/item/dark_bead/Initialize(mapload)
@@ -105,6 +105,6 @@
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
-	addtimer(CALLBACK(linked_ability, TYPE_PROC_REF(/datum/action/innate/darkspawn/devour_will, make_eligible), L), 600)
+	addtimer(CALLBACK(linked_ability, TYPE_PROC_REF(/datum/action/cooldown/spell/devour_will, make_eligible), L), 600)
 	qdel(src, force = TRUE)
 	return TRUE

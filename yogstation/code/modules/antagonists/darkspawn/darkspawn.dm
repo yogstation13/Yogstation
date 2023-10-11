@@ -33,7 +33,7 @@
 	//upgrade variables
 	var/list/upgrades = list() //A list of all the upgrades we currently have (actual objects, not just typepaths)
 	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
-	var/datum/action/innate/darkspawn/psi_web/psi_web_action //Used to link the menu with our antag datum
+	var/datum/action/innate/psi_web/psi_web_action //Used to link the menu with our antag datum
 	var/specialization = NONE
 
 // Antagonist datum things like assignment //
@@ -43,7 +43,7 @@
 	owner.special_role = "darkspawn"
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
-	var/datum/action/innate/darkspawn/divulge/action = new()
+	var/datum/action/innate/divulge/action = new()
 	action.Grant(owner.current)
 	action.darkspawn = src
 	upgrades += action
@@ -221,9 +221,6 @@
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
-	for(var/datum/action/innate/darkspawn/leftover_ability in user.actions)
-		leftover_ability.Remove(user)
-		QDEL_NULL(leftover_ability)
 	// Spawn the cosmic progenitor
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	user.status_flags |= GODMODE
