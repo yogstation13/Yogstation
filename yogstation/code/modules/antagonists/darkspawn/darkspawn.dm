@@ -213,7 +213,6 @@
 	psi_web = new(src)
 	psi_web_action = new(psi_web)
 	psi_web_action.Grant(owner.current)
-	psi_web_action.darkspawn = src
 	darkspawn_state = DIVULGED
 	return TRUE
 
