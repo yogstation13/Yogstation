@@ -469,3 +469,4 @@
 
 ///Darkspawn traits
 #define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
+#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" //lets darkspawns spacewalk safely

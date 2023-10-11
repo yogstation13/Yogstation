@@ -39,19 +39,23 @@
 					H.SetSleeping(0)
 					H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim
-				if(HAS_TRAIT(H, TRAIT_SPACEWALK) && isspaceturf(T))
-					return
-				if(!H.has_status_effect(STATUS_EFFECT_CREEP))
-					to_chat(H, span_userdanger("The light singes you!"))
-					H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
-					H.adjustCloneLoss(light_burning * 0.2)
+				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
+					break
+				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_LIGHTRES))
+					break
+				if(H.has_status_effect(STATUS_EFFECT_CREEP))
+					break
+				to_chat(H, span_userdanger("The light singes you!"))
+				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
+				H.adjustCloneLoss(light_burning * 0.2)
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
-				if(HAS_TRAIT(H, TRAIT_SPACEWALK) && isspaceturf(T))
-					return
-				if(!H.has_status_effect(STATUS_EFFECT_CREEP))
-					to_chat(H, span_userdanger("The light burns you!"))
-					H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
-					H.adjustCloneLoss(light_burning)
+				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
+					break
+				if(H.has_status_effect(STATUS_EFFECT_CREEP))
+					break
+				to_chat(H, span_userdanger("The light burns you!"))
+				H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)
+				H.adjustCloneLoss(light_burning)
 
 /datum/species/shadow/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
