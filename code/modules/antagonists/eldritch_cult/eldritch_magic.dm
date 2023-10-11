@@ -1305,7 +1305,7 @@
 			continue
 		if(IS_HERETIC_OR_MONSTER(to_check))
 			continue
-		if(!length(get_path_to(center, to_check, max_distance = target_radius, simulated_only = FALSE)))
+		if(!length(get_path_to(center, to_check, target_radius, simulated_only = FALSE)))
 			continue
 
 		possibles += to_check
