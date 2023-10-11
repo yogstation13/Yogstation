@@ -115,42 +115,42 @@
 	///what tab of the antag menu does it fall under
 	var/menutab
 	///The antag datum of the owner(used for modifying)
-	var/datum/antagonist/darkspawn/owner
+	var/datum/antagonist/darkspawn/darkspawn
 
 ///Check to see if they should be shown the ability
 /datum/psi_web/proc/check_show(mob/user)
-	if(!menutab)
+	if(!menutab && shadow_flags)
 		return FALSE
-	owner = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!owner)
+	darkspawn = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(!darkspawn)
 		return FALSE
-	if(shadow_flags && !(owner.specialization & shadow_flags))
+	if(shadow_flags && !(darkspawn.specialization & shadow_flags))
 		return FALSE
-	if(locate(type) in owner.upgrades)//if they already have it
+	if(locate(type) in darkspawn.upgrades)//if they already have it
 		return FALSE
 	return TRUE
 
 ///When the button to purchase is clicked
 /datum/psi_web/proc/on_purchase(mob/user)
-	owner = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!owner)
+	darkspawn = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+	if(!darkspawn)
 		return FALSE
-	if(shadow_flags && !(owner.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
+	if(shadow_flags && !(darkspawn.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
 		return FALSE
-	if(owner.lucidity < lucidity_cost)
+	if(darkspawn.lucidity < lucidity_cost)
 		return FALSE
 
 	if(learn_text)
 		to_chat(user, span_velvet(learn_text))
-	owner.lucidity -= lucidity_cost
+	darkspawn.lucidity -= lucidity_cost
 	activate(user)
 	return TRUE
 
 ///If the purchase goes through, this gets called
 /datum/psi_web/proc/activate(mob/user)
-	if(!owner)//no clue how it got here, but alright
+	if(!darkspawn)//no clue how it got here, but alright
 		return
-	owner.upgrades |= src //add it to the list
+	darkspawn.upgrades |= src //add it to the list
 	if(learn_text)
 		to_chat(user, learn_text)
 	if(learned_ability)
@@ -166,7 +166,7 @@
 
 /datum/psi_web/scout/activate(mob/user)
 	user.LoadComponent(/datum/component/walk/shadow)
-	owner.specialization = SCOUT
+	darkspawn.specialization = SCOUT
 
 /datum/psi_web/fighter
 	name = "fighter"
@@ -174,14 +174,14 @@
 	learned_ability = /datum/action/innate/darkspawn/pass
 
 /datum/psi_web/fighter/activate(mob/user)
-	owner.specialization = FIGHTER
+	darkspawn.specialization = FIGHTER
 
 /datum/psi_web/warlock
 	name = "warlock"
 	desc = "apartment \"complex\"... really? I find it quite simple"
 
 /datum/psi_web/warlock/activate(mob/user)
-	owner.specialization = WARLOCK
+	darkspawn.specialization = WARLOCK
 
 
 
@@ -207,3 +207,28 @@
 	name = "universal ability"
 	desc = "everyone should see this"
 	shadow_flags = SCOUT | WARLOCK | FIGHTER
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Passive Upgrades--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+//Increases max Psi by 25.
+/datum/psi_web/psi_cap
+	name = "\'Psi\' Sigils"
+	desc = "The Atlwjz sigils, representing Psi, are etched onto the forehead. Unlocking these sigils increases your maximum Psi by 25."
+	lucidity_price = 2
+	menu_tab = STORE_PASSIVE
+
+/datum/psi_web/psi_cap/activate(mob/user)
+	darkspawn.psi_cap += 25
+
+//Increases healing in darkness by 25%.
+/datum/psi_web/dark_healing
+	name = "\'Mending\' Sigil"
+	id = "dark_healing"
+	desc = "The Naykranu sigil, representing perseverence, is etched onto the back. Unlocking this sigil increases your healing in darkness by 25%."
+	lucidity_price = 1
+	menu_tab = STORE_PASSIVE
+
+/datum/psi_web/dark_healing/activate(mob/user)
+	darkspawn.dark_healing *= 1.25
