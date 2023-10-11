@@ -270,7 +270,7 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	if(GLOB.security_level < SEC_LEVEL_EPSILON)
+	if(GLOB.security_level < SEC_LEVEL_GAMMA)
 		change_areas_lights_alarm(FALSE)
 
 	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLERECALLED, "Priority")

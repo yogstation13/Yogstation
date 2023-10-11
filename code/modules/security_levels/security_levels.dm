@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 
-		if(level == SEC_LEVEL_DELTA || level == SEC_LEVEL_EPSILON)
+		if(level >= SEC_LEVEL_GAMMA)
 			change_areas_lights_alarm()
 		else if(SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL && level >= SEC_LEVEL_RED)
 			change_areas_lights_alarm()
