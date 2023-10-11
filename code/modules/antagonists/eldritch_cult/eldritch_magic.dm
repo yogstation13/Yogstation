@@ -13,6 +13,7 @@
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	exit_jaunt_sound = null
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	jaunt_duration = 1.1 SECONDS
 	jaunt_in_time = 1.3 SECONDS
 	jaunt_out_time = 0.6 SECONDS
@@ -22,6 +23,10 @@
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/end_jaunt(mob/living/cast_on, obj/effect/dummy/phased_mob/spell_jaunt/holder, turf/final_point)
+	. = ..()
+	cast_on.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 1 SECONDS, "ash jaunt")
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/long
 	name = "Ashen Walk"

@@ -738,3 +738,32 @@
 /datum/status_effect/holylight_healboost/on_remove()
 	var/datum/component/heal_react/boost/holylight/healing = owner.GetComponent(/datum/component/heal_react/boost/holylight)
 	healing?.RemoveComponent()
+
+
+/datum/status_effect/speedboost
+	id = "speedboost"
+	duration = 30 SECONDS
+	tick_interval = -1
+	status_type = STATUS_EFFECT_MULTIPLE
+	alert_type = /atom/movable/screen/alert/status_effect/speedboost
+	var/speedstrength
+	var/id //id for the speed boost
+
+/atom/movable/screen/alert/status_effect/speedboost
+	name = "Speedboost"
+	desc = "Move fast."
+	icon_state = "evading" //again, i'm a coder, not a spriter
+
+/datum/status_effect/speedboost/on_creation(mob/living/new_owner, strength, length, identifier)
+	duration = length
+	speedstrength = strength
+	id = id
+	. = ..()
+
+/datum/status_effect/speedboost/on_apply()
+	. = ..()
+	if(. && speedstrength && id)
+		owner.add_movespeed_modifier(id, multiplicative_slowdown = speedstrength)
+
+/datum/status_effect/speedboost/on_remove()
+	owner.remove_movespeed_modifier(id)
