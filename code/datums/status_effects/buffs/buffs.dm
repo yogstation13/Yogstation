@@ -747,7 +747,7 @@
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = /atom/movable/screen/alert/status_effect/speedboost
 	var/speedstrength
-	var/id //id for the speed boost
+	var/identifier //id for the speed boost
 
 /atom/movable/screen/alert/status_effect/speedboost
 	name = "Speedboost"
@@ -757,13 +757,13 @@
 /datum/status_effect/speedboost/on_creation(mob/living/new_owner, strength, length, identifier)
 	duration = length
 	speedstrength = strength
-	id = id
+	src.identifier = identifier
 	. = ..()
 
 /datum/status_effect/speedboost/on_apply()
 	. = ..()
-	if(. && speedstrength && id)
-		owner.add_movespeed_modifier(id, multiplicative_slowdown = speedstrength)
+	if(. && speedstrength && identifier)
+		owner.add_movespeed_modifier(identifier, multiplicative_slowdown = speedstrength)
 
 /datum/status_effect/speedboost/on_remove()
-	owner.remove_movespeed_modifier(id)
+	owner.remove_movespeed_modifier(identifier)
