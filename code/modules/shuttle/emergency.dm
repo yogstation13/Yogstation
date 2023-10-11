@@ -251,7 +251,7 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	if(SEC_LEVEL_RED <= GLOB.security_level < SEC_LEVEL_EPSILON)
+	if(GLOB.security_level >= SEC_LEVEL_RED)
 		change_areas_lights_alarm()
 
 	priority_announce("The emergency shuttle has been called. [GLOB.security_level >= SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
