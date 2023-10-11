@@ -8,6 +8,15 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 
 //config.alert_desc_blue_downto
 
+//set all area lights on station level to red if true, do otherwise if false
+/proc/change_areas_lights_alarm(red=TRUE)
+	if(red)
+		for(var/area/A in GLOB.delta_areas)
+			A.set_fire_alarm_effect(TRUE)
+	else
+		for(var/area/A in GLOB.delta_areas)
+			A.unset_fire_alarm_effects(TRUE)
+
 /proc/set_security_level(level)
 	switch(level)
 		if("green")
@@ -95,12 +104,12 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					D.visible_message(span_notice("[D] whirrs as it automatically lifts access requirements!"))
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 
-		if(level == SEC_LEVEL_DELTA)
-			for(var/area/A in GLOB.delta_areas)
-				A.set_fire_alarm_effect(TRUE)
+		if(level == SEC_LEVEL_DELTA || level == SEC_LEVEL_EPSILON)
+			change_areas_lights_alarm()
+		else if(SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL && level >= SEC_LEVEL_RED)
+			change_areas_lights_alarm()
 		else
-			for(var/area/A in GLOB.delta_areas)
-				A.unset_fire_alarm_effects(TRUE)
+			change_areas_lights_alarm(FALSE)
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 			SSshuttle.emergency.modTimer(modTimer)
