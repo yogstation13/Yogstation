@@ -37,7 +37,7 @@
 		to_chat(user, "<span class='velvet bold'>Functions:<span>")
 		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
 		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
-		to_chat(user, span_velvet("<b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
+		to_chat(user, span_velvet("<b>Grab intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
 		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
 		to_chat(user, span_velvet("The tendrils will shatter light fixtures instantly, as opposed to in several attacks."))
 		to_chat(user, span_velvet("Also functions to pry open depowered airlocks on any intent other than harm."))
@@ -58,7 +58,7 @@
 		if(INTENT_HELP)
 			if(isopenturf(target))
 				tendril_jump(user, target)
-		if(INTENT_HARM)
+		if(INTENT_GRAB)
 			tendril_swing(user, target)
 
 /obj/item/umbral_tendrils/proc/tendril_jump(mob/living/user, turf/open/target) //throws the user towards the target turf
