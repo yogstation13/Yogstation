@@ -482,3 +482,5 @@
 #define TRAIT_NO_FLOATING_ANIM "no-floating-animation"
 /// Used to prevent multiple floating blades from triggering over the same target
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
+///Darkspawn traits
+#define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely

@@ -232,3 +232,24 @@
 
 /datum/psi_web/dark_healing/activate(mob/user)
 	darkspawn.dark_healing *= 1.25
+
+//Provides immunity to starlight.
+/datum/psi_web/spacewalking
+	name = "\'Starlight\' Sigils"
+	desc = "The Jaxqhw sigils, representing the void, are etched multiple times across the body. Unlocking these sigils provides the ability to walk freely in space without fear of starlight."
+	lucidity_price = 3
+	menu_tab = STORE_PASSIVE
+
+/datum/psi_web/spacewalking/activate(mob/user)
+	ADD_TRAIT(user, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
+
+//Decreases the Psi regeneration delay by 3 ticks and increases Psi regeneration threshold to 25.
+/datum/psi_web/psi_regen
+	name = "\'Recovery\' Sigil"
+	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate 3 ticks sooner, and you will regenerate up to 25 Psi instead of 20."
+	lucidity_price = 1
+	menu_tab = STORE_PASSIVE
+
+/datum/psi_web/psi_regen/activate(mob/user)
+	darkspawn.psi_regen += 5
+	darkspawn.psi_regen_delay -= 3
