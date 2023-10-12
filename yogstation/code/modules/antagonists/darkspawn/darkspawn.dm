@@ -23,7 +23,6 @@
 	//Lucidity variables
 	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
 	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
-	var/lucidity_needed = 20 //how much lucidity is needed to win
 
 	//Default light damage variables (modified by some abilities)
 	var/dark_healing = 5

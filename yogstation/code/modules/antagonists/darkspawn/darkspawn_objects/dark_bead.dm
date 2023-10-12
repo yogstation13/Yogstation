@@ -95,8 +95,10 @@
 		to_chat(user, "<span class ='warning'> You have already drained this individual previously, and their lucidity will not contribute any more to the sacrament!</span>")
 	else
 		to_chat(user, "<span class ='velvet'> This individual's lucidity brings you one step closer to the sacrament...</span>")
-		darkspawn.lucidity++ 
-		darkspawn.lucidity_drained++
+		for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
+			var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+			teammate.lucidity++ 
+			teammate.lucidity_drained++
 	darkspawn.update_psi_hud()
 	linked_ability.victims[L] = TRUE
 	linked_ability.last_victim = L.ckey
