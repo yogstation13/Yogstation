@@ -1080,13 +1080,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
-			H.eye_color = "fee5a3"
-			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-			H.updateappearance()
-		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(2)
@@ -1096,6 +1089,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
+			H.weather_immunities |= "ash"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
