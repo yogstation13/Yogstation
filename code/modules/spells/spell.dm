@@ -139,7 +139,7 @@
 	if(psi_cost && .)
 		if(owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))//sanity check
 			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
-			darkspawn.psi -= psi_cost
+			darkspawn.use_psi(psi_cost)
 			return TRUE
 		return FALSE
 
@@ -184,9 +184,9 @@
 
 	//used for darkspawn spells
 	if(psi_cost)
-		if(owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))
+		if(isdarkspawn(owner))
 			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
-			if(darkspawn.psi < psi_cost)
+			if(darkspawn.has_psi(psi_cost))
 				if(feedback)
 					owner.balloon_alert(owner, span_warning("Not enough psi!"))
 				return FALSE

@@ -2,6 +2,10 @@
 /datum/action/innate/pass
 	name = "Pass"
 	desc = "Twists an active arm into tendrils with many important uses. Examine the tendrils to see a list of uses."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
 	var/twin = FALSE

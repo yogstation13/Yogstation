@@ -71,6 +71,10 @@
 /datum/action/innate/psi_web
 	name = "Psi Web"
 	desc = "Access the Mindlink directly to unlock and upgrade your supernatural powers."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "psi_web"
 	check_flags = AB_CHECK_CONSCIOUS
 	var/datum/antag_menu/psi_web/psi_web

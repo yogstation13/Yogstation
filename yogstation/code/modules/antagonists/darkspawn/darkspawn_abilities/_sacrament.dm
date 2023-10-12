@@ -2,6 +2,10 @@
 /datum/action/innate/sacrament
 	name = "Sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "sacrament"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	var/datum/looping_sound/sacrament/soundloop
