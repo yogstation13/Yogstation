@@ -18,7 +18,7 @@
 	. = ..()
 	if(!isdarkspawn(owner))
 		Remove(owner)
-	darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+	darkspawn = isdarkspawn(owner)
 
 /datum/action/cooldown/spell/sacrament/IsAvailable(feedback)
 	if(in_use)
