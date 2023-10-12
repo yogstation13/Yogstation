@@ -1,5 +1,3 @@
-#define ETHEREAL_COLORS list("#00ffff", "#ffc0cb", "#9400D3", "#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000")
-
 /datum/species/ethereal
 	name = "Ethereal"
 	id = "ethereal"
@@ -8,7 +6,7 @@
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
 	mutantlungs = /obj/item/organ/lungs/ethereal
-	mutantstomach = /obj/item/organ/stomach/ethereal
+	mutantstomach = /obj/item/organ/stomach/cell/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
@@ -21,17 +19,17 @@
 	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER)
+	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE)
 	mutant_bodyparts = list("ethereal_mark")
-	default_features = list("ethereal_mark" = "Eyes")
+	default_features = list("ethereal_mark" = "Eyes", "mcolor" = "#ffffff")
 	species_language_holder = /datum/language_holder/ethereal
 	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
 	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
-	inert_mutation = SHOCKTOUCH
+	inert_mutation = RADIANTBURST
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
@@ -39,6 +37,7 @@
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
+	var/emag_speed = 4 //how many deciseconds between each colour cycle
 	var/r1
 	var/g1
 	var/b1
@@ -64,7 +63,7 @@
 		return
 
 	var/mob/living/carbon/human/ethereal = C
-	default_color = ethereal.dna.features["ethcolor"]
+	default_color = ethereal.dna.features["mcolor"]
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
@@ -88,8 +87,8 @@
 	. = ..()
 	if(!ethereal_light)
 		return
-	if(default_color != ethereal.dna.features["ethcolor"])
-		var/new_color = ethereal.dna.features["ethcolor"]
+	if(default_color != ethereal.dna.features["mcolor"])
+		var/new_color = ethereal.dna.features["mcolor"]
 		r1 = GETREDPART(new_color)
 		g1 = GETGREENPART(new_color)
 		b1 = GETBLUEPART(new_color)
@@ -99,9 +98,11 @@
 		var/light_power = 1 + healthpercent
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
-		ethereal.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
-		ethereal_light.set_light_range_power_color(light_range, light_power, current_color)
+			ethereal_light.set_light_color(current_color) //emag effect handles colour changes
+		ethereal_light.set_light_range(light_range)
+		ethereal_light.set_light_power(light_power)
 		ethereal_light.set_light_on(TRUE)
+		ethereal.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
 		fixed_mut_color = current_color
 	else
 		ethereal.set_light(0)
@@ -120,57 +121,81 @@
 		if(EMP_HEAVY)
 			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
 
-/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
-	if(emageffect)
-		return FALSE
-	emageffect = TRUE
-	to_chat(user, span_notice("You tap [H] on the back with your card."))
-	H.visible_message(span_danger("[H] starts flickering in an array of colors!"))
-	handle_emag(H)
-	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
-	return TRUE
-
-/datum/species/ethereal/spec_life(mob/living/carbon/human/H)
-	.=..()
-	if(H.stat == DEAD)
-		return
-	handle_charge(H)
-
-
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE
 	spec_updatehealth(H)
 	to_chat(H, span_notice("You feel more energized as your shine comes back."))
 
+/datum/species/ethereal/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	if(emageffect)
+		return FALSE
+	to_chat(user, span_notice("You tap [H] on the back with your card."))
+	H.visible_message(span_danger("[H] starts pulsing random colors!"))
+	current_color = rgb(255,255,255)
+	spec_updatehealth(H)//set the colour to white for the duration
+	current_color = rgb(255,0,0)
+	emageffect = TRUE
+	handle_emag(H)
+	addtimer(CALLBACK(src, PROC_REF(stop_emag), H), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //Disco mode for 30 seconds! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
+	return TRUE
 
-/datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/H)
+/datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/H)//please change this to use animate() if you ever figure out how to animate light colours
 	if(!emageffect)
 		return
-	current_color = pick(ETHEREAL_COLORS)
-	spec_updatehealth(H)
-	addtimer(CALLBACK(src, PROC_REF(handle_emag), H), 5) //Call ourselves every 0.5 seconds to change color
+	current_color = HSVtoRGB(RotateHue(RGBtoHSV(current_color), 75)) //rotate through the colours
+	var/datum/component/overlay_lighting/light = ethereal_light.GetComponent(/datum/component/overlay_lighting)
+	if(light?.visible_mask)
+		animate(light.visible_mask, emag_speed, color = current_color)
+	animate(H, emag_speed, color = current_color)
+	addtimer(CALLBACK(src, PROC_REF(handle_emag), H), emag_speed) //Call ourselves every 0.4 seconds to continue the animation
 
 /datum/species/ethereal/proc/stop_emag(mob/living/carbon/human/H)
 	emageffect = FALSE
 	spec_updatehealth(H)
-	H.visible_message(span_danger("[H] stops flickering and goes back to their normal state!"))
+	var/datum/component/overlay_lighting/light = ethereal_light.GetComponent(/datum/component/overlay_lighting)
+	if(light?.visible_mask)
+		animate(light.visible_mask, emag_speed, color = current_color)
+	animate(H, emag_speed, color = null) //back to boring
+	H.visible_message(span_danger("[H]'s light goes back to it's normal state!"))
 
-/datum/species/ethereal/proc/handle_charge(mob/living/carbon/human/H)
-	switch(get_charge(H))
-		if(ETHEREAL_CHARGE_NONE)
+/datum/species/ethereal/spec_rad_act(mob/living/carbon/human/H, amount, collectable_radiation)
+	if(!collectable_radiation)
+		return
+	if(amount <= RAD_BACKGROUND_RADIATION)
+		return
+	var/rad_percent = 1 - (H.getarmor(null, RAD) / 100)
+	if(!rad_percent)
+		return
+	H.adjust_nutrition(min(amount / 2500, 5) * rad_percent)
+
+/datum/species/ethereal/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	. = ..()
+	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+		H.visible_message(span_warning("[H] absorbs [P]!"), span_userdanger("You absorb [P]!"))
+		H.adjust_nutrition(P.damage * (1 - (H.getarmor(null, RAD) / 100)))
+		return TRUE
+
+/datum/species/ethereal/spec_life(mob/living/carbon/human/H)
+	.=..()
+	if(H.stat == DEAD)
+		return
+	if(H.nutrition > NUTRITION_LEVEL_FULL && prob(10))//10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
+		discharge_process(H)
+	else if(H.nutrition < NUTRITION_LEVEL_STARVING && H.health > 10.5)
+		apply_damage(0.65, TOX, null, 0, H)
+
+/datum/species/ethereal/get_hunger_alert(mob/living/carbon/human/H)
+	switch(H.nutrition)
+		if(0)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
-		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
+		if(0 to NUTRITION_LEVEL_STARVING)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
-			if(H.health > 10.5)
-				apply_damage(0.65, TOX, null, null, H)
-		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
+		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
-		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
+		if(NUTRITION_LEVEL_MOSTLY_FULL to NUTRITION_LEVEL_FULL)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
-		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
+		if(NUTRITION_LEVEL_FULL to NUTRITION_LEVEL_FAT)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
-			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
-				discharge_process(H)
 		else
 			H.clear_alert("ethereal_charge")
 			H.clear_alert("ethereal_overcharge")
@@ -183,22 +208,14 @@
 	H.add_overlay(overcharge)
 	if(do_after(H, 5 SECONDS, timed_action_flags = IGNORE_ALL))
 		H.flash_lighting_fx(5, 7, current_color)
-		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
 		H.cut_overlay(overcharge)
-		tesla_zap(H, 2, (stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER) * 20, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
-		if(istype(stomach))
-			stomach.adjust_charge(ETHEREAL_CHARGE_FULL - stomach.crystal_charge)
+		tesla_zap(H, 2, H.nutrition * 5, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
+		H.nutrition = NUTRITION_LEVEL_MOSTLY_FULL
 		to_chat(H, "<span class='warning'>You violently discharge energy!</span>")
 		H.visible_message("<span class='danger'>[H] violently discharges energy!</span>")
-		H.Paralyze(100)
+		H.electrocute_act(0, "discharge bolt", override = TRUE, stun = TRUE)
 		return
-
-/datum/species/ethereal/proc/get_charge(mob/living/carbon/H) //this feels like it should be somewhere else. Eh?
-	var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-	if(istype(stomach))
-		return stomach.crystal_charge
-	return ETHEREAL_CHARGE_NONE
 
 /datum/species/ethereal/get_features()
 	var/list/features = ..()
@@ -241,15 +258,15 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Shockingly Tasty",
-			SPECIES_PERK_DESC = "Ethereals can feed on electricity from APCs, and do not otherwise need to eat.",
-		),
-		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "lightbulb",
 			SPECIES_PERK_NAME = "Disco Ball",
 			SPECIES_PERK_DESC = "Ethereals passively generate their own light.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "bolt",
+			SPECIES_PERK_NAME = "Nuclear-Powered",
+			SPECIES_PERK_DESC = "Ethereals can gain charge when absorbing certain kinds of radiation.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

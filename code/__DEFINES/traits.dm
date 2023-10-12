@@ -132,6 +132,8 @@
 #define TRAIT_RESTRAINED 		"restrained"
 /// In some kind of critical condition. Is able to succumb.
 #define TRAIT_CRITICAL_CONDITION "critical-condition"
+/// Is frozen in place
+#define TRAIT_FROZEN "frozen"
 /// trait associated to a stat value or range of
 #define STAT_TRAIT 				"stat"
 #define TRAIT_INCAPACITATED 	"incapacitated"
@@ -177,11 +179,13 @@
 #define TRAIT_VIRUSIMMUNE		"virus_immunity"
 #define TRAIT_PIERCEIMMUNE		"pierce_immunity"
 #define TRAIT_NODISMEMBER		"dismember_immunity"
+#define TRAIT_SAFEWELD		"safe_welding" //prevents blinding from welding without giving actual flash immunity
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
 #define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons" //prevents use of commonly available instant or near instant stun weapons
 #define TRAIT_NOINTERACT		"no_interact" //Not allowed to touch anything (even with TK) or use things in hand
 #define TRAIT_NOHUNGER			"no_hunger"
+#define TRAIT_POWERHUNGRY		"power_hungry" // uses electricity instead of food
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
@@ -277,6 +281,8 @@
 #define TRAIT_BALD "bald"
 /// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
 #define TRAIT_FARADAYCAGE "faraday_cage"
+/// You can't see color!
+#define TRAIT_COLORBLIND "color_blind"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
@@ -448,3 +454,11 @@
 
 ///Organ traits
 #define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"
+
+///storm immunity traits
+#define TRAIT_LAVA_IMMUNE "lava_immune" //Used by lava turfs and The Floor Is Lava.
+#define TRAIT_ASHSTORM_IMMUNE "ashstorm_immune"
+#define TRAIT_SNOWSTORM_IMMUNE "snowstorm_immune"
+#define TRAIT_RADSTORM_IMMUNE "radstorm_immune"
+#define TRAIT_VOIDSTORM_IMMUNE "voidstorm_immune"
+#define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.

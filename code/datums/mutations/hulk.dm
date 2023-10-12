@@ -1,6 +1,6 @@
 //Hulk turns your skin green, and allows you to punch through walls.
 /datum/mutation/human/hulk
-	name = "Mutation"
+	name = "Hulk"
 	desc = "A poorly understood genome that causes the holder's muscles to expand, inhibit speech and gives the person a bad skin condition."
 	quality = POSITIVE
 	difficulty = 16
@@ -9,6 +9,9 @@
 	instability = 50
 	class = MUT_OTHER
 	locked = TRUE
+	mutadone_proof = TRUE
+	allow_transfer = FALSE
+	allow_cloning = FALSE
 
 /datum/mutation/human/hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -23,11 +26,6 @@
 /datum/mutation/human/hulk/on_attack_hand(atom/target, proximity)
 	if(proximity) //no telekinetic hulk attack
 		return target.attack_hulk(owner)
-
-/datum/mutation/human/hulk/on_life()
-	if(owner.health < 0)
-		on_losing(owner)
-		to_chat(owner, span_danger("You suddenly feel very weak."))
 
 /datum/mutation/human/hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())

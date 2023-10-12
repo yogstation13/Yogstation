@@ -66,7 +66,7 @@
 		else
 			temp = master.zeroth
 
-		if(!mmi.syndicate_mmi)
+		if(!mmi?.syndicate_mmi)
 			laws.zeroth = temp
 
 		laws.inherent.len = master.inherent.len
@@ -98,7 +98,7 @@
 
 /mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE)
 	laws_sanity_check()
-	if(mmi.syndicate_mmi)
+	if(mmi?.syndicate_mmi)
 		syndiemmi_override()
 		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return
@@ -106,7 +106,7 @@
 
 /mob/living/silicon/robot/clear_zeroth_law(force, announce = TRUE)
 	laws_sanity_check()
-	if(mmi.syndicate_mmi)
+	if(mmi?.syndicate_mmi)
 		syndiemmi_override()
 		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return

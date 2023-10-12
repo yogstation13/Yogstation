@@ -11,6 +11,7 @@
 	can_suppress = TRUE
 	clumsy_check = 0
 	item_flags = NONE
+	obj_flags = UNIQUE_RENAME
 	casing_ejector = FALSE
 
 /obj/item/gun/ballistic/automatic/toy/update_overlays()
@@ -53,6 +54,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy
 	clumsy_check = FALSE
 	item_flags = NONE
+	obj_flags = UNIQUE_RENAME
 	casing_ejector = FALSE
 	can_suppress = FALSE
 

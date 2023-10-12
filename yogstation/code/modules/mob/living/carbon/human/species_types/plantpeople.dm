@@ -30,6 +30,7 @@
 	species_language_holder = /datum/language_holder/pod
 	wings_icon = "Plant"
 	wings_detail = "Plantdetails"
+	inert_mutation = SAPBLOOD
 
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
@@ -109,7 +110,7 @@
 					H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
-					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
+					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier, required_status = BODYPART_ORGANIC)
 					//podpeople shouldn't be able to outheal radiation damage, making them functionally immune
 					if(H.radiation < 500)
 						H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
@@ -121,7 +122,7 @@
 					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
-					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier)
+					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier, required_status = BODYPART_ORGANIC)
 					if(H.radiation < 500)
 						H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 	else

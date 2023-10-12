@@ -400,7 +400,7 @@
 	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 60)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
-	var/current_charges = 3
+	var/shielded = TRUE
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
 
 /obj/item/clothing/head/hooded/cult_hoodie
@@ -428,19 +428,26 @@
 			user.dropItemToGround(src, TRUE)
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(current_charges)
+	if(shielded)
 		owner.visible_message(span_danger("\The [attack_text] is deflected in a burst of blood-red sparks!"))
-		current_charges--
+		shielded = FALSE
 		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
-		if(!current_charges)
-			owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
-			owner.update_inv_wear_suit()
+		owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
+		owner.update_inv_wear_suit()
+		addtimer(CALLBACK(src, PROC_REF(reshield)), 45 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		return 1
 	return 0
 
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/proc/reshield()
+	shielded = TRUE
+	if(isliving(loc))
+		var/mob/living/holder = loc
+		holder.visible_message(span_danger("A runed shield surges from the robe, surrounding [holder]!"))
+		holder.update_inv_wear_suit()
+
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/worn_overlays(isinhands)
 	. = list()
-	if(!isinhands && current_charges)
+	if(!isinhands && shielded)
 		. += mutable_appearance('icons/effects/cult_effects.dmi', "shield-cult", MOB_LAYER + 0.01)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker
@@ -553,7 +560,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			"The shuttle's transponder is emitting the encoded message 'FEAR THE OLD BLOOD' in lieu of its assigned identification signal.")
 		var/message = pick_n_take(curses)
 		message += " The shuttle will be delayed by three minutes."
-		priority_announce("[message]", "System Failure", 'sound/misc/notice1.ogg')
+		priority_announce("[message]", "System Failure", 'sound/misc/announce2.ogg')
 		GLOB.curselimit++
 
 /obj/item/cult_shift
@@ -680,6 +687,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	armour_penetration = 20
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
+	w_class = WEIGHT_CLASS_HUGE
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/datum/action/innate/cult/spear/spear_act
@@ -938,7 +946,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
-	var/illusions = 5
+	var/illusions = 4
 
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(iscultist(owner))
@@ -961,16 +969,17 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 				illusions--
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
-				if(prob(60))
-					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
-					M.faction = list("cult")
-					M.Copy_Parent(owner, 70, 10, 5)
-					M.move_to_delay = owner.movement_delay()
-				else
-					var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
-					E.Copy_Parent(owner, 70, 10)
-					E.GiveTarget(owner)
-					E.Goto(owner, owner.movement_delay(), E.minimum_distance)
+				if(illusions >= 0)//should make sure shotgun doesn't spawn 90 bajillion illusions in a single shot
+					if(prob(60))
+						var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
+						M.faction = list("cult")
+						M.Copy_Parent(owner, 70, 1)
+						M.move_to_delay = owner.movement_delay()
+					else
+						var/mob/living/simple_animal/hostile/illusion/escape/E = new(owner.loc)
+						E.Copy_Parent(owner, 70, 1)
+						E.GiveTarget(owner)
+						E.Goto(owner, owner.movement_delay(), E.minimum_distance)
 			else
 				var/turf/T = get_turf(owner)
 				T.visible_message(span_warning("[src] shatters as it blocks [hitby]!"))

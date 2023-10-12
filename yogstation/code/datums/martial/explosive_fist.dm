@@ -52,7 +52,11 @@
 	var/burn_block = D.run_armor_check(affecting, BOMB, 0)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	playsound(get_turf(D), get_sfx("explosion"), 50, TRUE, -1)
-	new /obj/effect/hotspot(get_turf(D)) //for the flashy
+	
+	if(isopenturf(get_turf(D)))
+		var/turf/open/flashy = get_turf(D)
+		flashy.IgniteTurf(rand(5, 10)) //for the flashy
+
 	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
 	D.apply_damage(A.get_punchdamagehigh() + 3, BURN, selected_zone, burn_block) 	//10 burn (vs bomb armor)
@@ -356,7 +360,7 @@
 			target.adjustFireLoss(30)
 			target.ignite_mob() 	
 		for(var/turf/open/flashy in view_or_range(2, A, "range"))
-			new /obj/effect/hotspot(flashy) //for the flashy
+			flashy.IgniteTurf(15)
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)
