@@ -95,7 +95,6 @@
 		to_chat(user, "<span class ='warning'> You have already drained this individual previously, and their lucidity will not contribute any more to the sacrament!</span>")
 	else
 		to_chat(user, "<span class ='velvet'> This individual's lucidity brings you one step closer to the sacrament...</span>")
-		
 		darkspawn.lucidity++ 
 		darkspawn.lucidity_drained++
 	darkspawn.update_psi_hud()
