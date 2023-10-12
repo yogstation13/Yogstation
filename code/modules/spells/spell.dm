@@ -183,7 +183,7 @@
 	//used for darkspawn spells
 	if(psi_cost)
 		if(isdarkspawn(owner))
-			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+			var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 			if(!darkspawn.has_psi(psi_cost))
 				if(feedback)
 					owner.balloon_alert(owner, span_warning("Not enough psi!"))
@@ -273,7 +273,7 @@
 		
 	//sanity check, they shouldn't be able to get here without being darkspawn if it has a psi cost
 	if(psi_cost && isdarkspawn(owner))
-		var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.use_psi(psi_cost)
 
 	// Spell is officially being cast

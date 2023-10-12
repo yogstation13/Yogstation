@@ -107,6 +107,6 @@
 		var/mob/M = T
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
 	if(isdarkspawn(owner))//sanity check
-		var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		if(darkspawn.divulge())
 			Remove(user)//they don't need it anymore
