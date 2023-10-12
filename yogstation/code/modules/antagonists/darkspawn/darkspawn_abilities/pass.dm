@@ -13,7 +13,7 @@
 	var/twin = FALSE
 
 /datum/action/cooldown/spell/toggle/pass/process()
-	..()
+	. = ..()
 	active = locate(/obj/item/umbral_tendrils) in owner
 	if(twin)
 		name = "Twinned Pass"
