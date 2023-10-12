@@ -1,2 +1,5 @@
 #include "code\game\turfs\simulated\floor.dm"
 #include "code\game\turfs\open.dm"
+#include "code\game\objects\structures\table_racks.dm"
+#include "code\game\machinery\computer\_computer.dm"
+#include "code\modules\paperwork\folders.dm"
