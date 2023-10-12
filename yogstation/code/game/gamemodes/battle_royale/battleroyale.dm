@@ -64,10 +64,12 @@ GLOBAL_VAR(stormdamage)
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		original_num ++
-		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_GAMER) //to prevent space from hurting
+		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
+		ADD_TRAIT(virgin.current, TRAIT_NOSOFTCRIT, "KEEP GOING, FIGHT MORE") //because no sleepy
+		ADD_TRAIT(virgin.current, TRAIT_NOHARDCRIT, "Son always remember, dying is gay. @margot") //fight fight fight
 		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i get pacifists get to fight too
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
