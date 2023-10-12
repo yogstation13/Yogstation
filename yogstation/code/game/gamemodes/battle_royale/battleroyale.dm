@@ -146,9 +146,9 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/set_round_result()
 	..()
 	if(winner)
-		SSticker.mode_result = "win - [winner] won the battle royale"
+		SSticker.mode_result = span_green(span_extremelybig("win - [winner] won the battle royale"))
 	else
-		SSticker.mode_result = "loss - nobody won the battle royale!"
+		SSticker.mode_result = span_narsiesmall("loss - nobody won the battle royale!")
 
 /datum/game_mode/fortnite/proc/shrinkborders()
 	switch(borderstage)//to keep it seperate and not fuck with weather selection
