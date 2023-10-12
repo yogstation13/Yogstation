@@ -755,6 +755,22 @@
 		adminlog = FALSE,
 	)
 
+/obj/item/projectile/magic/fireball/eldritch
+	name = "bolt of soul fire"
+	icon_state = "fireball"
+
+	damage = 15
+	damage_type = BURN
+	nodamage = FALSE
+
+	/// Heavy explosion range of the fireball
+	exp_heavy = 0
+	/// Light explosion range of the fireball
+	exp_light = 0
+	/// Fire radius of the fireball
+	exp_fire = 3
+	/// Flash radius of the fireball
+	exp_flash = 0
 
 /obj/item/projectile/magic/aoe/magic_missile
 	name = "magic missile"

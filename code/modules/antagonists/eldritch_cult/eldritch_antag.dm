@@ -31,7 +31,7 @@
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void),
 	TIER_1 = list(
-		/datum/eldritch_knowledge/spell/ashen_shift,
+		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
 		/datum/eldritch_knowledge/rust_regen,
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
@@ -48,7 +48,7 @@
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark),
 	TIER_2 = list(
-		/datum/eldritch_knowledge/madness_mask,
+		/datum/eldritch_knowledge/spell/volcano_blast,
 		/datum/eldritch_knowledge/raw_prophet,
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
