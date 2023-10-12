@@ -25,6 +25,7 @@ GLOBAL_VAR(stormdamage)
 	var/weightcull = 5 //anything above this gets culled
 	var/can_end = FALSE //so it doesn't end during setup somehow
 	var/finished = FALSE
+	var/original_num = 0
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
 
@@ -62,6 +63,7 @@ GLOBAL_VAR(stormdamage)
 			log_game("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
+		original_num ++
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_GAMER) //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
@@ -176,8 +178,12 @@ GLOBAL_VAR(stormdamage)
 
 	if(borderstage % 2 == 0) //so it scales, but not too hard
 		GLOB.stormdamage *= 1.5
-
+	
 	if(borderstage <= 9)
+		var/remainingpercent = LAZYLEN(GLOB.battleroyale_players) / original_num
+		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
+		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
+		loot_deviation = loot_interval / 2 //less deviation as time goes on
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/delete_armoury()
@@ -192,12 +198,18 @@ GLOBAL_VAR(stormdamage)
 	to_clear |= typesof(/area/bridge) //fireaxe
 	to_clear |= typesof(/area/engine/atmos) //also fireaxe
 
+	var/list/removals = typecacheof(list( //remove non-standard things in this list
+		/obj/structure/fireaxecabinet, 
+		/obj/machinery/suit_storage_unit, 
+		/obj/machinery/atmospherics/miner/toxins, //no plasmaflood, sleepflood is fine because no one needs to breathe
+		))
+
 	for(var/place in to_clear)
 		var/area/actual = locate(place) in GLOB.areas
 		for(var/obj/thing in actual)
 			if(QDELETED(thing))
 				continue
-			if(!thing.anchored || istype(thing, /obj/structure/fireaxecabinet) || istype(thing, /obj/machinery/suit_storage_unit))//only target something that is possibly a weapon or gear
+			if(!thing.anchored || is_type_in_typecache(thing, removals))//only target something that is possibly a weapon or gear
 				QDEL_NULL(thing)
 	
 	for(var/target in GLOB.mob_living_list)
@@ -257,6 +269,7 @@ GLOBAL_VAR(stormdamage)
 	job_rank = "Battle Royale Contestant"
 	show_name_in_check_antagonists = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	var/killed = 0
 
 /datum/antagonist/battleroyale/on_gain()
 	. = ..()
@@ -299,14 +312,63 @@ GLOBAL_VAR(stormdamage)
 	to_chat(owner.current, "<span_class='danger'>You have been entered into Nanotrasen's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE! Attempting to leave the station will disqualify you from the round!</span>")
 	owner.announce_objectives()
 
+/datum/antagonist/battleroyale/roundend_report()
+	var/list/report = list()
+
+	if(!owner)
+		CRASH("antagonist datum without owner")
+
+	report += printplayer(owner)	
+	report += "They killed a total of [killed ? killed : "0" ] competitors"
+
+	return report.Join("<br>")
+
 /datum/outfit/battleroyale
 	name = "Default Skin"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset
+	neck = /obj/item/clothing/neck/tie/gamer //glorified kill tracker
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
 	id = /obj/item/card/id/captains_spare
+
+/obj/item/clothing/neck/tie/gamer
+	name = "very cool tie (do not remove)"
+	desc = "Totally not just here for keeping track of kills."
+	var/datum/antagonist/battleroyale/last_hit
+	clothing_traits = (TRAIT_NODROP)
+	resistance_flags = INDESTRUCTIBLE //no escaping
+
+/obj/item/clothing/neck/tie/gamer/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(death))
+
+/obj/item/clothing/neck/tie/gamer/proc/death()
+	if(last_hit)
+		last_hit.killed++
+	qdel(src)//so reviving them doesn't give the necklace back
+
+/obj/item/clothing/neck/tie/gamer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
+	. = ..()
+	var/mob/living/culprit
+
+	if(isprojectile(hitby))//get the person that shot the projectile
+		var/obj/item/projectile/thing
+		if(isliving(thing.firer))
+			culprit = thing.firer
+	else if(isitem(hitby))//get the person holding the item
+		var/obj/item/thing = hitby
+		if(isliving(thing.loc))
+			culprit = thing.loc
+	else if(isliving(hitby))//get the person
+		culprit = hitby
+
+	if(!culprit)
+		return
+	if(culprit.mind?.has_antag_datum(/datum/antagonist/battleroyale))
+		last_hit = culprit.mind.has_antag_datum(/datum/antagonist/battleroyale)
+
 
 /obj/structure/battle_bus
 	name = "The battle bus"
@@ -317,7 +379,7 @@ GLOBAL_VAR(stormdamage)
 	opacity = FALSE
 	alpha = 185 //So you can see under it when it moves
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
-	light_power = 1
+	light_system = MOVABLE_LIGHT
 	light_range = 10 //light up the darkness, oh battle bus.
 	layer = 4 //Above everything
 	var/starter_z = 0 //What Z level did we start on?
