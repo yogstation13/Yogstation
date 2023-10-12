@@ -60,6 +60,9 @@
 #define SPELL_REQUIRES_MIND (1 << 6)
 /// Whether the spell requires the caster have a mime vow (mindless mobs will succeed this check regardless).
 #define SPELL_REQUIRES_MIME_VOW (1 << 7)
+/// Whether the spell requires the caster be a darkspawn.
+#define SPELL_REQUIRES_DARKSPAWN (1 << 8)
+
 /// Whether the spell can be cast, even if the caster is unable to speak the invocation
 /// (effectively making the invocation flavor, instead of required).
 #define SPELL_CASTABLE_WITHOUT_INVOCATION (1 << 8)

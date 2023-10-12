@@ -50,13 +50,14 @@
 		twin.attack(target, user, FALSE)
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
+	. = ..()
 	if(!darkspawn)
 		return
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
-			if(isopenturf(target))
+			if(!target.density && isopenturf(get_turf(target)))
 				tendril_jump(user, target)
 		if(INTENT_GRAB)
 			tendril_swing(user, target)
@@ -114,7 +115,7 @@
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(!iscyborg(target))
+		if(iscarbon(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)
 				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
@@ -136,4 +137,6 @@
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
 			R.Paralyze(40) //this is the only real anti-borg spell  get
 			R.adjustBruteLoss(10)
+		else
+			return BULLET_ACT_FORCE_PIERCE //ignore things that don't matter
 

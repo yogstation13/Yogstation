@@ -78,7 +78,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "psi_web"
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = NONE
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/datum/antag_menu/psi_web/psi_web
 
 /datum/action/cooldown/spell/psi_web/New(our_target)
@@ -177,6 +177,9 @@
 
 /datum/psi_web/fighter/activate(mob/user)
 	darkspawn.specialization = FIGHTER
+	var/datum/action/cooldown/spell/toggle/light_eater/spell = locate() in darkspawn.upgrades
+	if(spell)
+		spell.Remove(user)
 
 /datum/psi_web/warlock
 	name = "warlock"

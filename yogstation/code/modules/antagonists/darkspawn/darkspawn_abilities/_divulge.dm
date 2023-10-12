@@ -9,12 +9,10 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = NONE
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/in_use = FALSE
 
 /datum/action/cooldown/spell/divulge/IsAvailable(feedback)
-	if(!isdarkspawn(owner))
-		return FALSE
 	if(in_use)
 		if (feedback)
 			owner.balloon_alert(owner, "already in use!")
@@ -22,8 +20,8 @@
 	. = ..()
 
 /datum/action/cooldown/spell/divulge/cast(atom/cast_on)
-	. = ..()
 	set waitfor = FALSE
+	. = ..()
 	var/mob/living/carbon/human/user = usr
 	var/turf/spot = get_turf(user)
 	if(!ishuman(user))
