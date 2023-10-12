@@ -1,7 +1,8 @@
 //Turns the darkspawn into a progenitor.
-/datum/action/innate/sacrament
+/datum/action/cooldown/spell/sacrament
 	name = "Sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
+	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -12,20 +13,20 @@
 	var/datum/antagonist/darkspawn/darkspawn
 	var/in_use
 
-/datum/action/innate/sacrament/New(Target)
+/datum/action/cooldown/spell/sacrament/New(Target)
 	. = ..()
 	if(!isdarkspawn(owner))
 		Remove(owner)
 	darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
 
-/datum/action/innate/sacrament/IsAvailable(feedback)
+/datum/action/cooldown/spell/sacrament/IsAvailable(feedback)
 	if(in_use)
 		if (feedback)
 			owner.balloon_alert(owner, "already in use!")
 		return
 	. = ..()
 
-/datum/action/innate/sacrament/Activate()
+/datum/action/cooldown/spell/sacrament/Activate()
 	if(SSticker.mode.sacrament_done)
 		darkspawn.sacrament()
 		return
@@ -83,11 +84,11 @@
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
 	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
 
-/datum/action/innate/sacrament/proc/unleashed_psi(turf/T)
+/datum/action/cooldown/spell/sacrament/proc/unleashed_psi(turf/T)
 	playsound(T, 'yogstation/sound/magic/divulge_end.ogg', 25, FALSE)
 	new/obj/effect/temp_visual/revenant/cracks(T)
 
-/datum/action/innate/sacrament/proc/shatter_lights()
+/datum/action/cooldown/spell/sacrament/proc/shatter_lights()
 	if(SSticker.mode.sacrament_done)
 		return
 	for(var/obj/machinery/light/light in SSmachines.processing)

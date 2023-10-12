@@ -68,9 +68,10 @@
 			selected.on_purchase(darkspawn?.owner?.current)
 
 //ability for using the shadow store
-/datum/action/innate/psi_web
+/datum/action/cooldown/spell/psi_web
 	name = "Psi Web"
 	desc = "Access the Mindlink directly to unlock and upgrade your supernatural powers."
+	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -79,18 +80,18 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	var/datum/antag_menu/psi_web/psi_web
 
-/datum/action/innate/psi_web/New(our_target)
+/datum/action/cooldown/spell/psi_web/New(our_target)
 	. = ..()
 	if(istype(our_target, /datum/antag_menu/psi_web))
 		psi_web = our_target
 	else
 		CRASH("psi_web action created with non web.")
 
-/datum/action/innate/psi_web/Destroy()
+/datum/action/cooldown/spell/psi_web/Destroy()
 	psi_web = null
 	return ..()
 
-/datum/action/innate/psi_web/Activate()
+/datum/action/cooldown/spell/psi_web/Activate()
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
 	psi_web.ui_interact(usr)
 	return TRUE
@@ -171,7 +172,7 @@
 /datum/psi_web/fighter
 	name = "fighter"
 	desc = "me no think so good"
-	learned_ability = /datum/action/innate/pass
+	learned_ability = /datum/action/cooldown/spell/toggle/pass
 
 /datum/psi_web/fighter/activate(mob/user)
 	darkspawn.specialization = FIGHTER
@@ -281,6 +282,6 @@
 	menu_tab = STORE_PASSIVE
 
 /datum/psi_web/twin_tendrils/activate(mob/user)
-	var/datum/action/innate/pass/spell = locate() in darkspawn.upgrades
+	var/datum/action/cooldown/spell/toggle/pass/spell = locate() in darkspawn.upgrades
 	if(spell)
 		spell.twin = TRUE

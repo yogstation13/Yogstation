@@ -1,7 +1,8 @@
 //Equips umbral tendrils with many uses.
-/datum/action/innate/pass
+/datum/action/cooldown/spell/toggle/pass
 	name = "Pass"
 	desc = "Twists an active arm into tendrils with many important uses. Examine the tendrils to see a list of uses."
+	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -10,19 +11,19 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
 	var/twin = FALSE
 
-/datum/action/innate/pass/IsAvailable(feedback = FALSE)
+/datum/action/cooldown/spell/toggle/pass/IsAvailable(feedback = FALSE)
 	if(!isdarkspawn(owner))
 		return FALSE
 	return ..()
 
-/datum/action/innate/pass/process()
+/datum/action/cooldown/spell/toggle/pass/process()
 	..()
 	active = locate(/obj/item/umbral_tendrils) in owner
 	if(twin)
 		name = "Twinned Pass"
 		desc = "Twists one or both of your arms into tendrils with many uses."
 
-/datum/action/innate/pass/Activate()
+/datum/action/cooldown/spell/toggle/pass/Enable()
 	var/mob/living/carbon/C = owner
 	if(!(C.mobility_flags & MOBILITY_STAND))
 		to_chat(owner, span_warning("Stand up first!"))
@@ -44,7 +45,7 @@
 			owner.put_in_hands(T)
 	return TRUE
 
-/datum/action/innate/pass/Deactivate()
+/datum/action/cooldown/spell/toggle/pass/Disable()
 	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), "<span class='velvet bold'>haoo</span><br>\
 	[span_notice("You dispel the tendrils.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)

@@ -1,7 +1,8 @@
 //A channeled ability that turns the darkspawn into their main form.
-/datum/action/innate/divulge
+/datum/action/cooldown/spell/divulge
 	name = "Divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
+	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -10,7 +11,7 @@
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	var/in_use = FALSE
 
-/datum/action/innate/divulge/IsAvailable(feedback)
+/datum/action/cooldown/spell/divulge/IsAvailable(feedback)
 	if(!isdarkspawn(owner))
 		return FALSE
 	if(in_use)
@@ -19,7 +20,7 @@
 		return
 	. = ..()
 
-/datum/action/innate/divulge/Activate()
+/datum/action/cooldown/spell/divulge/Activate()
 	set waitfor = FALSE
 	var/mob/living/carbon/human/user = usr
 	var/turf/spot = get_turf(user)

@@ -32,7 +32,7 @@
 	//upgrade variables
 	var/list/upgrades = list() //A list of all the upgrades we currently have (actual objects, not just typepaths)
 	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
-	var/datum/action/innate/psi_web/psi_web_action //Used to link the menu with our antag datum
+	var/datum/action/cooldown/spell/psi_web/psi_web_action //Used to link the menu with our antag datum
 	var/specialization = NONE
 
 // Antagonist datum things like assignment //
@@ -42,7 +42,7 @@
 	owner.special_role = "darkspawn"
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
-	var/datum/action/innate/divulge/action = new()
+	var/datum/action/cooldown/spell/divulge/action = new()
 	action.Grant(owner.current)
 	upgrades += action
 	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
