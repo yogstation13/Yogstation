@@ -75,8 +75,13 @@
 	if(!istype(S, /obj/item/organ/stomach/cell/preternis))//need a fancy stomach for it
 		return ..()
 
+	if(!get_location_accessible(H, BODY_ZONE_PRECISE_MOUTH))
+		to_chat(H, span_notice("You can't eat with your mouth covered!"))
+		return
+
 	if(!eaten(H))
-		return ..()
+		to_chat(H, span_notice("You don't feel like eating this ore."))
+		return
 
 	use(1)//only eat one at a time
 

@@ -42,6 +42,7 @@
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
 	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/machine
+	inert_mutation = RAVENOUS
 	//new variables
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
