@@ -42,7 +42,7 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/proc/spawn_bus()
 	var/obj/effect/landmark/observer_start/center = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list //observer start is usually in the middle
 	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(0,30)) //get a random spot above or below the middle
-	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 20) //almost all the way at the edge of the map
+	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 15) //almost all the way at the edge of the map
 	if(target)
 		new /obj/structure/battle_bus(target)
 	else //please don't ever happen
@@ -395,10 +395,11 @@ GLOBAL_VAR(stormdamage)
 	icon_state = "battlebus"
 	density = FALSE
 	opacity = FALSE
-	alpha = 185 //So you can see under it when it moves
+	alpha = 170 //So you can see under it when it moves
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	light_system = MOVABLE_LIGHT
-	light_range = 10 //light up the darkness, oh battle bus.
+	light_range = 20 //light up the darkness, oh battle bus.
+	light_power = 2
 	layer = 4 //Above everything
 	var/starter_z = 0 //What Z level did we start on?
 	var/can_leave = FALSE //so people don't immediately walk out into space by accident
