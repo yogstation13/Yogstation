@@ -9,6 +9,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
+	spell_requirements = NONE
 	var/twin = FALSE
 
 /datum/action/cooldown/spell/toggle/pass/IsAvailable(feedback = FALSE)

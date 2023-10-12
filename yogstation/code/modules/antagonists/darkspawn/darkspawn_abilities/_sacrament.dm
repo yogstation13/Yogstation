@@ -9,6 +9,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "sacrament"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
+	spell_requirements = NONE
 	var/datum/looping_sound/sacrament/soundloop
 	var/datum/antagonist/darkspawn/darkspawn
 	var/in_use
