@@ -340,17 +340,17 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
-		if(is_mind())
+		else if(is_mind())
 			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
-		if(is_void())
+		else if(is_void())
 			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
+		else if(is_rust())
+			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
 			else
 				parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
-		else //Rust
-			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The [lowertext(lore)] heretic was successful!")
