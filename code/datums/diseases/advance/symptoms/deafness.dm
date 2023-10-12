@@ -32,6 +32,7 @@ Bonus
 		"Resistance 9" = "Causes permanent deafness, instead of intermittent.",
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/deafness/Start(datum/disease/advance/A)
 	. = ..()
