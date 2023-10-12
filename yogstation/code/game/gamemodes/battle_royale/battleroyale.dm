@@ -184,6 +184,8 @@ GLOBAL_VAR(stormdamage)
 		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
 		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
 		loot_deviation = loot_interval / 2 //less deviation as time goes on
+		if(borderstage == 8)//final collapse takes the full time but still spawns loot faster
+			stage_interval = initial(stage_interval)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/delete_armoury()
