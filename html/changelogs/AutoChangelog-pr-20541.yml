@@ -1,0 +1,4 @@
+author: " cark"
+delete-after: true 
+changes: 
+  - mapping: "Replaces the 3x3 engines on the freeminer ship with the normal variant"
