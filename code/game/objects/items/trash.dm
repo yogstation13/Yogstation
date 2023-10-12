@@ -97,3 +97,8 @@
 	name = "top kakes"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "topkakesded"
+
+/obj/item/trash/vermin
+	name = "vermin bites"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "verminded"

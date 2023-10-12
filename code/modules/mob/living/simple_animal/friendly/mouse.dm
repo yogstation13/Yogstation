@@ -52,6 +52,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/eating = FALSE
 	var/cheesed = FALSE
 	var/cheese_time = 0
+	var/food_type = /obj/item/reagent_containers/food/snacks/deadmouse
 
 /mob/living/simple_animal/mouse/Initialize(mapload)
 	. = ..()
@@ -81,7 +82,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if(!ckey)
 		..(1)
 		if(!gibbed)
-			var/obj/item/reagent_containers/food/snacks/deadmouse/M = new(loc)
+			var/obj/item/reagent_containers/food/snacks/deadmouse/M = new food_type(loc)
 			M.icon_state = icon_dead
 			M.name = name
 			if(toast)
@@ -306,6 +307,17 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	response_harm   = "splats"
 	gold_core_spawnable = NO_SPAWN
 
+/mob/living/simple_animal/mouse/fat
+	name = "fat mouse"
+	desc = "This cute \"little\" guy seems to have been snacking on too much cheddar. Isn't he adorable?"
+	body_color = "fat" //what colour are you? FAT
+	icon_state = "mouse_fat"
+	turns_per_move = 10
+	maxHealth = 10
+	health = 10
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat = 1)
+	food_type = /obj/item/reagent_containers/food/snacks/deadmouse/fat
+
 /obj/item/reagent_containers/food/snacks/deadmouse
 	name = "dead mouse"
 	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
@@ -316,11 +328,21 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtype = MICE
 	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/liquidgibs = 5)
+	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse
+
+/obj/item/reagent_containers/food/snacks/deadmouse/fat
+	name = "dead fat mouse"
+	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
+	icon_state = "mouse_fat_dead"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5) //same amount of food, but it's not healthy
+	junkiness = 25
+	foodtype = MICE | JUNKFOOD
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
 
 /obj/item/reagent_containers/food/snacks/deadmouse/attackby(obj/item/I, mob/user, params)
 	if(I.is_sharp() && user.a_intent == INTENT_HARM)
 		if(isturf(loc))
-			new /obj/item/reagent_containers/food/snacks/meat/slab/mouse(loc)
+			new meat_type(loc)
 			to_chat(user, span_notice("You butcher [src]."))
 			qdel(src)
 		else

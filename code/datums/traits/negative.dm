@@ -157,11 +157,11 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
+	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.process_flags & ORGANIC)// Cant drink or process alcohol
 	qdel(species)
 
 	if(disallowed_trait)
-		return "You don't have the ability to drink!"
+		return "You don't have the ability to consume alcohol!"
 	return FALSE
 
 /datum/quirk/nearsighted //t. errorage
@@ -823,7 +823,8 @@
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
 	icon = "palette"
-	value = -2
+	value = -4
+	mob_trait = TRAIT_COLORBLIND
 	medical_record_text = "Patient is afflicted with almost complete color blindness."
 
 /datum/quirk/monochromatic/add()

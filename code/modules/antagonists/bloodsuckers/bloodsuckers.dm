@@ -626,32 +626,18 @@
 
 /datum/antagonist/bloodsucker/proc/forge_bloodsucker_objectives()
 
-	// Claim a Lair Objective
-	var/datum/objective/bloodsucker/lair/lair_objective = new
-	lair_objective.owner = owner
-	objectives += lair_objective
-
-	// Survive Objective
 	var/datum/objective/survive/bloodsucker/survive_objective = new
 	survive_objective.owner = owner
 	objectives += survive_objective
 
-	// Objective 1: Vassalize a Head/Command, or a specific target
-	var/list/rolled_objectives = list()
-	switch(rand(1, 4))
-		if(1) //Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/gourmand)
-		if(2) //Protege Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege)
-		if(3) //Heart Thief Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief)
-		if(4) //Vassal Specific Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/vassalhim)
+	var/datum/objective/bloodsucker_lair/lair_objective = new
+	lair_objective.owner = owner
+	objectives += lair_objective
 
-	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-		objective.owner = owner
-		objective.objective_name = "Optional Objective"
-		objectives += objective
+	var/datum/objective/vassal/vassalize = new
+	vassalize.owner = owner
+	objectives += vassalize
+
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
