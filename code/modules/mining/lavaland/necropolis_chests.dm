@@ -1101,14 +1101,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/dragons_blood/refined/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
+
 	var/mob/living/carbon/human/H = user
-	to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-	H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+	to_chat(user, span_danger("You feel warmth spread through you, paired with an odd desire to burn down a village. You're suddenly a very small, humanoid ash dragon!"))
 	H.set_species(/datum/species/lizard/draconid)
-	H.eye_color = "fee5a3"
-	H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-	H.updateappearance()
-	
+
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
