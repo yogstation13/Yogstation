@@ -15,6 +15,13 @@
 	var/list/victims = list()//A list of people we've used the bead on recently; we can't drain them again so soon
 	var/last_victim
 
+/datum/action/cooldown/spell/devour_will/can_cast_spell(feedback)
+	if(!owner.get_empty_held_indexes())
+		if(feedback)
+			to_chat(owner, span_warning("You need an empty hand for this!"))
+		return FALSE
+	. = ..()
+
 /datum/action/cooldown/spell/devour_will/cast(atom/cast_on)
 	. = ..()
 	owner.visible_message(span_warning("A glowing black orb appears in [owner]'s hand!"), "<span class='velvet'><b>pwga...iejz</b><br>\
