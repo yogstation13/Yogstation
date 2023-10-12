@@ -220,27 +220,27 @@
 	item_state = "cowboy"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/bluedetective
+/obj/item/clothing/under/rank/det/bluedetective
 	name = "blue detective suit"
 	desc = "A suit often worn by those detective types. Now in blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_detective"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/golddetective
+/obj/item/clothing/under/rank/det/golddetective
 	name = "gold detective suit"
 	desc = "A suit often worn by those detective types. Now in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_detective"
 
-/obj/item/clothing/under/yogs/greydetective
+/obj/item/clothing/under/rank/det/greydetective
 	name = "grey detective suit"
 	desc = "A suit often worn by those detective types. Now in boring old grey!"
 	icon_state = "grey_detective"
 	item_state = "grey_detective"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/blackdetective
+/obj/item/clothing/under/rank/det/blackdetective
 	name = "black detective suit"
 	desc = "A suit often worn by those detective types. Now in black!"
 	icon_state = "black_detective"
@@ -392,7 +392,7 @@
 	item_state = "hop_suit"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/yogs/forensictech
+/obj/item/clothing/under/rank/det/forensictech
 	name = "forensic technician suit"
 	desc = "Hmm, this bloody toolbox has insulated fibers on it..."
 	icon_state = "forensic_tech"
