@@ -78,7 +78,7 @@
 	name = "Nitrogen canister"
 	desc = "Nitrogen gas. Reportedly useful for something."
 	greyscale_config = /datum/greyscale_config/canister
-	greyscale_colors = "#3fcd40"
+	greyscale_colors = "#1b6d1b"
 	gas_type = /datum/gas/nitrogen
 
 /obj/machinery/portable_atmospherics/canister/oxygen
@@ -113,7 +113,7 @@
 	name = "Nitrous oxide canister"
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
-	greyscale_colors = "#3fcd40#f7d5d3"
+	greyscale_colors = "#1b6d1b#f7d5d3"
 	gas_type = /datum/gas/nitrous_oxide
 
 /obj/machinery/portable_atmospherics/canister/air
