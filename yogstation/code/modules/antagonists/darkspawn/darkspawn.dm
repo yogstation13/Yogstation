@@ -205,6 +205,12 @@
 	psi_web = new(src)
 	psi_web_action = new(psi_web)
 	psi_web_action.Grant(owner.current)
+	var/datum/action/cooldown/spell/devour_will/devour = new(src)
+	upgrades |= devour
+	devour.Grant(owner.current)
+	var/datum/action/cooldown/spell/toggle/light_eater/eater = new(src)
+	upgrades |= eater
+	eater.Grant(owner.current)
 	darkspawn_state = DIVULGED
 	return TRUE
 

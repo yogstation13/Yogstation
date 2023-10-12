@@ -50,13 +50,14 @@
 		twin.attack(target, user, FALSE)
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
+	. = ..()
 	if(!darkspawn)
 		return
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
-			if(isopenturf(target))
+			if(!target.density && isopenturf(get_turf(target)))
 				tendril_jump(user, target)
 		if(INTENT_GRAB)
 			tendril_swing(user, target)
@@ -114,7 +115,7 @@
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(!iscyborg(target))
+		if(iscarbon(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)
 				target.visible_message(span_warning("[firer]'s [name] slam into [target], knocking them off their feet!"), \
@@ -127,7 +128,7 @@
 				span_userdanger("You're suddenly dragged across the floor!"))
 				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
 				addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
-		else
+		else if(issilicon(target))
 			var/mob/living/silicon/robot/R = target
 			R.toggle_headlamp(TRUE) //disable headlamps
 			target.visible_message(span_warning("[firer]'s [name] smashes into [target]'s chassis!"), \
@@ -136,4 +137,6 @@
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
 			R.Paralyze(40) //this is the only real anti-borg spell  get
 			R.adjustBruteLoss(10)
+		else
+			return BULLET_ACT_FORCE_PIERCE //ignore things that don't matter
 
