@@ -104,10 +104,6 @@
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
-// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
-#define ORGANIC (1<<0)
-#define SYNTHETIC (1<<1)
-
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
 #define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
