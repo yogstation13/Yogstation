@@ -330,8 +330,8 @@ GLOBAL_VAR(stormdamage)
 				text += " [span_greentext("won")]"
 			else
 				text += " [span_redtext("lost")]"
-		if(ply.current.real_name != ply.name)
-			text += " as <b>[ply.current.real_name]</b>"
+		if(owner.current.real_name != owner.name)
+			text += " as <b>[owner.current.real_name]</b>"
 	else
 		text += " [span_redtext("lost while having their body destroyed")]"
 
