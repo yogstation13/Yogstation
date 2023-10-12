@@ -27,7 +27,8 @@
 		return
 	. = ..()
 
-/datum/action/cooldown/spell/sacrament/Activate()
+/datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
+	. = ..()
 	if(SSticker.mode.sacrament_done)
 		darkspawn.sacrament()
 		return

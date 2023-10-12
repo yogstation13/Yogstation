@@ -21,7 +21,8 @@
 		return
 	. = ..()
 
-/datum/action/cooldown/spell/divulge/Activate()
+/datum/action/cooldown/spell/divulge/cast(atom/cast_on)
+	. = ..()
 	set waitfor = FALSE
 	var/mob/living/carbon/human/user = usr
 	var/turf/spot = get_turf(user)

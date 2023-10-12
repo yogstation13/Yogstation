@@ -7,15 +7,12 @@
 	if(!..())
 		return FALSE
 
-	// We're not a click action (we're a toggle or otherwise)
-	var/active_status = active
-	if(active_status)
-		Enable()
-	else
+	if(active)
 		Disable()
+	else
+		Enable()
 
-	if(active != active_status)
-		build_all_button_icons(UPDATE_BUTTON_STATUS)
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 	return TRUE
 

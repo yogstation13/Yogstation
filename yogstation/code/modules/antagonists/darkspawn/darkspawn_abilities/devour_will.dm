@@ -15,15 +15,15 @@
 	var/list/victims = list()//A list of people we've used the bead on recently; we can't drain them again so soon
 	var/last_victim
 
-/datum/action/cooldown/spell/devour_will/Activate()
-	if(..())
-		owner.visible_message(span_warning("A glowing black orb appears in [owner]'s hand!"), "<span class='velvet'><b>pwga...iejz</b><br>\
-		You form a dark bead in your hand.</span>")
-		playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
-		var/obj/item/dark_bead/B = new
-		owner.put_in_hands(B)
-		B.linked_ability = src
-		return TRUE
+/datum/action/cooldown/spell/devour_will/cast(atom/cast_on)
+	. = ..()
+	owner.visible_message(span_warning("A glowing black orb appears in [owner]'s hand!"), "<span class='velvet'><b>pwga...iejz</b><br>\
+	You form a dark bead in your hand.</span>")
+	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
+	var/obj/item/dark_bead/B = new
+	owner.put_in_hands(B)
+	B.linked_ability = src
+	return TRUE
 
 /datum/action/cooldown/spell/devour_will/proc/make_eligible(mob/living/L)
 	if(!L || !victims[L])
