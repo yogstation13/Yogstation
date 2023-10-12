@@ -10,6 +10,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "devour_will"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	spell_requirements = NONE
 	psi_cost = 5
 	var/list/victims = list()//A list of people we've used the bead on recently; we can't drain them again so soon
 	var/last_victim
