@@ -43,7 +43,7 @@
 			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_cost
 			AL["type_path"] = selection.type
 			
-			if(category == selection.menutab)
+			if(category == selection.menu_tab)
 				upgrades += list(AL)
 
 			qdel(selection)
@@ -70,11 +70,9 @@
 //ability for using the shadow store
 /datum/action/innate/psi_web
 	name = "Psi Web"
-	id = "psi_web"
 	desc = "Access the Mindlink directly to unlock and upgrade your supernatural powers."
 	button_icon_state = "psi_web"
 	check_flags = AB_CHECK_CONSCIOUS
-	psi_cost = 0
 	var/datum/antag_menu/psi_web/psi_web
 
 /datum/action/innate/psi_web/New(our_target)
@@ -111,13 +109,13 @@
 	///what is printed when learned
 	var/learn_text
 	///what tab of the antag menu does it fall under
-	var/menutab
+	var/menu_tab
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
 
 ///Check to see if they should be shown the ability
 /datum/psi_web/proc/check_show(mob/user)
-	if(!menutab && shadow_flags)
+	if(!menu_tab && shadow_flags)
 		return FALSE
 	darkspawn = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!darkspawn)
@@ -214,7 +212,7 @@
 /datum/psi_web/psi_cap
 	name = "\'Psi\' Sigils"
 	desc = "The Atlwjz sigils, representing Psi, are etched onto the forehead. Unlocking these sigils increases your maximum Psi by 25."
-	lucidity_price = 2
+	lucidity_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -225,7 +223,7 @@
 /datum/psi_web/psi_regen
 	name = "\'Recovery\' Sigil"
 	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate 3 ticks sooner, and you will regenerate up to 25 Psi instead of 20."
-	lucidity_price = 1
+	lucidity_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -236,9 +234,8 @@
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
 	name = "\'Mending\' Sigil"
-	id = "dark_healing"
 	desc = "The Naykranu sigil, representing perseverence, is etched onto the back. Unlocking this sigil increases your healing in darkness by 25%."
-	lucidity_price = 1
+	lucidity_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
@@ -249,19 +246,19 @@
 /datum/psi_web/light_resistance
 	name = "\'Lightward\' Sigil"
 	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil halves light damage taken and protects from dim light."
-	lucidity_price = 2
+	lucidity_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
 
 /datum/psi_web/light_resistance/activate(mob/user)
-	darkspawn.light_damage /= 2
+	darkspawn.light_burning /= 2
 	ADD_TRAIT(user, TRAIT_DARKSPAWN_LIGHTRES, "lightward sigils")
 
 //Provides immunity to starlight.
 /datum/psi_web/spacewalking
 	name = "\'Starlight\' Sigils"
 	desc = "The Jaxqhw sigils, representing the void, are etched multiple times across the body. Unlocking these sigils provides the ability to walk freely in space without fear of starlight."
-	lucidity_price = 3
+	lucidity_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
@@ -275,7 +272,7 @@
 /datum/psi_web/twin_tendrils
 	name = "\'Duality\' Sigils"
 	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes Pass to form tendrils in both hands if possible, which empowers both."
-	lucidity_price = 1
+	lucidity_cost = 1
 	shadow_flags = FIGHTER
 	menu_tab = STORE_PASSIVE
 

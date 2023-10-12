@@ -45,7 +45,6 @@
 	update_psi_hud()
 	var/datum/action/innate/divulge/action = new()
 	action.Grant(owner.current)
-	action.darkspawn = src
 	upgrades += action
 	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)

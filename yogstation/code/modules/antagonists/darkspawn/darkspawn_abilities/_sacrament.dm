@@ -1,11 +1,25 @@
 //Turns the darkspawn into a progenitor.
 /datum/action/innate/sacrament
 	name = "Sacrament"
-	id = "sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
 	button_icon_state = "sacrament"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	var/datum/looping_sound/sacrament/soundloop
+	var/datum/antagonist/darkspawn/darkspawn
+	var/in_use
+
+/datum/action/innate/sacrament/New(Target)
+	. = ..()
+	if(!isdarkspawn(owner))
+		Remove(owner)
+	darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+
+/datum/action/innate/sacrament/IsAvailable(feedback)
+	if(in_use)
+		if (feedback)
+			owner.balloon_alert(owner, "already in use!")
+		return
+	. = ..()
 
 /datum/action/innate/sacrament/Activate()
 	if(SSticker.mode.sacrament_done)

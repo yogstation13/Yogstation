@@ -1,9 +1,12 @@
 //After a brief charge-up, equips a temporary dark bead that can be used on a human to knock them out and drain their will, making them vulnerable to conversion.
 /datum/action/cooldown/spell/devour_will
 	name = "Devour Will"
-	id = "devour_will"
 	desc = "Creates a dark bead that can be used on a human to fully recharge Psi, gain one lucidity, and knock them unconscious. The victim will be stunned for the duration of the channel, being interrupted \
 	will knock both you and the victim down. Costs 5 Psi."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "devour_will"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	psi_cost = 5
