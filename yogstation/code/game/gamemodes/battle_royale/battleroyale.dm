@@ -320,7 +320,20 @@ GLOBAL_VAR(stormdamage)
 	if(!owner)
 		CRASH("antagonist datum without owner")
 
-	report += printplayer(owner)	
+	var/text = "<b>[owner.key]</b> was <b>[owner.name]</b> and"
+	if(owner.current)
+		var/datum/game_mode/fortnite/fortnut = SSticker.mode 
+		if(istype(fortnut))
+			if(owner?.current == fortnut.winner)
+				text += " [span_greentext("won")]"
+			else
+				text += " [span_redtext("lost")]"
+		if(ply.current.real_name != ply.name)
+			text += " as <b>[ply.current.real_name]</b>"
+	else
+		text += " [span_redtext("lost while having their body destroyed")]"
+
+	report += text
 	report += "They killed a total of [killed ? killed : "0" ] competitors"
 
 	return report.Join("<br>")
