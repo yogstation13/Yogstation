@@ -7,8 +7,8 @@
 	var/twin = FALSE
 
 /datum/action/innate/pass/IsAvailable(feedback = FALSE)
-	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows) || istype(owner, /mob/living/simple_animal/hostile/darkspawn_progenitor) || !owner.get_empty_held_indexes() && !active)
-		return
+	if(!isdarkspawn(owner))
+		return FALSE
 	return ..()
 
 /datum/action/innate/pass/process()
@@ -28,7 +28,7 @@
 		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), "<span class='velvet bold'>ikna</span><br>\
 		[span_notice("You transform your arm into umbral tendrils. Examine them to see possible uses.")]")
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
-		var/obj/item/umbral_tendrils/T = new(owner, darkspawn)
+		var/obj/item/umbral_tendrils/T = new(owner, owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))
 		owner.put_in_hands(T)
 	else
 		owner.visible_message(span_warning("[owner]'s arms contort into tentacles!"), "<span class='velvet'><b>ikna ikna</b><br>\
@@ -36,7 +36,7 @@
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE)
 		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE), 1)
 		for(var/i in 1 to 2)
-			var/obj/item/umbral_tendrils/T = new(owner, darkspawn)
+			var/obj/item/umbral_tendrils/T = new(owner, owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))
 			owner.put_in_hands(T)
 	return TRUE
 

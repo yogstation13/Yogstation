@@ -1,10 +1,19 @@
 //A channeled ability that turns the darkspawn into their main form.
 /datum/action/innate/divulge
 	name = "Divulge"
-	id = "divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
+	var/in_use = FALSE
+
+/datum/action/innate/divulge/IsAvailable(feedback)
+	if(!isdarkspawn(owner))
+		return FALSE
+	if(in_use)
+		if (feedback)
+			owner.balloon_alert(owner, "already in use!")
+		return
+	. = ..()
 
 /datum/action/innate/divulge/Activate()
 	set waitfor = FALSE
@@ -92,5 +101,7 @@
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T
 		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
-	if(darkspawn.divulge())
-		Remove(user)//they don't need it anymore
+	if(isdarkspawn(owner))//sanity check
+		var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+		if(darkspawn.divulge())
+			Remove(user)//they don't need it anymore
