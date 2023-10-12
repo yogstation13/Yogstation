@@ -78,6 +78,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "psi_web"
 	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = NONE
 	var/datum/antag_menu/psi_web/psi_web
 
 /datum/action/cooldown/spell/psi_web/New(our_target)
@@ -91,10 +92,10 @@
 	psi_web = null
 	return ..()
 
-/datum/action/cooldown/spell/psi_web/Activate()
+/datum/action/cooldown/spell/psi_web/cast(atom/cast_on)
+	. = ..()
 	to_chat(usr, "<span class='velvet bold'>You retreat inwards and touch the Mindlink...</span>")
 	psi_web.ui_interact(usr)
-	return TRUE
 
 
 //shadow store datums (upgrades and abilities)
