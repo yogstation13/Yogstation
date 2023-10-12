@@ -2,6 +2,10 @@
 /datum/action/innate/divulge
 	name = "Divulge"
 	desc = "Sheds your human disguise. This is obvious and so should be done in a secluded area. You cannot reverse this."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "divulge"
 	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	var/in_use = FALSE
