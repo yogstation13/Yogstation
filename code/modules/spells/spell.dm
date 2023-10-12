@@ -133,15 +133,7 @@
 	if(!can_cast_spell())
 		return FALSE
 
-	. = ..()
-
-	// Add this after the parent call so psi is only consumed when the ability WILL happen
-	if(psi_cost && .)
-		if(owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))//sanity check
-			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
-			darkspawn.use_psi(psi_cost)
-			return TRUE
-		return FALSE
+	return ..()
 
 /datum/action/cooldown/spell/set_click_ability(mob/on_who)
 	if(SEND_SIGNAL(on_who, COMSIG_MOB_SPELL_ACTIVATED, src) & SPELL_CANCEL_CAST)
@@ -186,7 +178,7 @@
 	if(psi_cost)
 		if(isdarkspawn(owner))
 			var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
-			if(darkspawn.has_psi(psi_cost))
+			if(!darkspawn.has_psi(psi_cost))
 				if(feedback)
 					owner.balloon_alert(owner, span_warning("Not enough psi!"))
 				return FALSE
@@ -272,6 +264,11 @@
 	var/precast_result = before_cast(cast_on)
 	if(precast_result & SPELL_CANCEL_CAST)
 		return FALSE
+		
+	//sanity check, they shouldn't be able to get here without being darkspawn if it has a psi cost
+	if(psi_cost && isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
+		darkspawn.use_psi(psi_cost)
 
 	// Spell is officially being cast
 	if(!(precast_result & SPELL_NO_FEEDBACK))
