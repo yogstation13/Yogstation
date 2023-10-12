@@ -30,8 +30,6 @@
 	var/lumcount_range = 0
 	///How much this light affects the dynamic_lumcount of turfs.
 	var/lum_power = 0.5
-	///Transparency value.
-	var/set_alpha = 0
 	///For light sources that can be turned on and off.
 	var/overlay_lighting_flags = NONE
 
@@ -51,7 +49,7 @@
 		)
 
 	///Overlay effect to cut into the darkness and provide light.
-	var/image/visible_mask
+	var/obj/effect/overlay/light_visible/visible_mask
 	///Lazy list to track the turfs being affected by our light, to determine their visibility.
 	var/list/turf/affected_turfs
 	///Movable atom currently holding the light. Parent might be a flashlight, for example, but that might be held by a mob or something else.
@@ -63,7 +61,7 @@
 	///Whether we're a beam light
 	var/beam = FALSE
 	///A cone overlay for directional light, it's alpha and color are dependant on the light
-	var/image/cone
+	var/obj/effect/overlay/light_visible/cone/cone
 	///Current tracked direction for the directional cast behaviour
 	var/current_direction
 	///Tracks current directional x offset so we dont update unecessarily
@@ -82,16 +80,10 @@
 		return COMPONENT_INCOMPATIBLE
 
 	. = ..()
-	visible_mask = image('icons/effects/light_overlays/light_32.dmi', icon_state = "light")
-	visible_mask.plane = O_LIGHTING_VISUAL_PLANE
-	visible_mask.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-	visible_mask.alpha = 0
+	visible_mask = new(src)
 	if(is_directional)
 		directional = TRUE
-		cone = image('icons/effects/light_overlays/light_cone.dmi', icon_state = "light")
-		cone.plane = O_LIGHTING_VISUAL_PLANE
-		cone.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-		cone.alpha = 110
+		cone = new(src)
 		cone.transform = cone.transform.Translate(-32, -32)
 		set_direction(movable_parent.dir)
 	if(is_beam)
@@ -372,18 +364,17 @@
 /datum/component/overlay_lighting/proc/set_power(atom/source, old_power)
 	SIGNAL_HANDLER
 	var/new_power = source.light_power
-	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
-	set_alpha = min(230, (abs(new_power) * 120) + 30)
+	set_lum_power(new_power)
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays -= visible_mask
-	visible_mask.alpha = set_alpha
+	visible_mask.alpha = min(230, (abs(new_power) * 120) + 30)
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays += visible_mask
 	if(!directional)
 		return
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays -= cone
-	cone.alpha = min(200, (abs(new_power) * 90)+20)
+	cone.alpha = min(200, (abs(new_power) * 90) + 20)
 	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
 		current_holder.underlays += cone
 
