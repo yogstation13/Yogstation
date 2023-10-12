@@ -355,7 +355,7 @@ GLOBAL_VAR(stormdamage)
 
 	if(isprojectile(hitby))//get the person that shot the projectile
 		var/obj/item/projectile/thing
-		if(isliving(thing.firer))
+		if(thing?.firer && isliving(thing.firer))
 			culprit = thing.firer
 	else if(isitem(hitby))//get the person holding the item
 		var/obj/item/thing = hitby
