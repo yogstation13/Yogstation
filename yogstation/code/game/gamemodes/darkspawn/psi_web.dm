@@ -21,7 +21,7 @@
 	if(!istype(darkspawn))
 		CRASH("darkspawn menu started with wrong datum.")
 
-	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [darkspawn.lucidity_needed] unique drained total"
+	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [SSticker.mode.required_succs] unique drained total"
 	data["specialization"] = darkspawn.specialization //whether or not they've picked their specialization
 
 

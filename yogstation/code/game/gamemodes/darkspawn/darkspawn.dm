@@ -1,8 +1,7 @@
-/datum/game_mode
+/datum/game_mode //this is a mess, to-do, rework darkspawns to use teams
 	var/list/datum/mind/darkspawn = list()
 	var/list/datum/mind/veils = list()
 	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
-	var/succ_ratio = 1
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
 
 /datum/game_mode/darkspawn
@@ -34,9 +33,7 @@
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
-	var/succ_scaling = round(num_players() / 3)
-	required_succs = clamp(succ_scaling, 15, 30)
-	succ_ratio = required_succs / 15
+	required_succs = clamp(round(num_players() / 3), 15, 30)
 	return TRUE
 
 /datum/game_mode/darkspawn/generate_report()
