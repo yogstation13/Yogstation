@@ -328,6 +328,7 @@ GLOBAL_VAR(stormdamage)
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	neck = /obj/item/clothing/neck/tie/gamer //glorified kill tracker
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
