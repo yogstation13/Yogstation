@@ -79,6 +79,9 @@
 #define MOB_REPTILE		(1<<8)
 #define MOB_SPIRIT		(1<<9)
 
+/// All the biotypes that matter
+#define ALL_BIOTYPES (MOB_ORGANIC|MOB_INORGANIC|MOB_ROBOTIC|MOB_UNDEAD)
+
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2

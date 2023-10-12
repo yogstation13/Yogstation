@@ -1426,4 +1426,5 @@
 	id = "lasting_void_chill"
 	duration = -1
 
-
+/datum/status_effect/magnet
+	

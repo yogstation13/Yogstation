@@ -29,7 +29,7 @@
 	var/neutered = FALSE
 	var/list/thresholds
 	var/naturally_occuring = TRUE //if this symptom can appear from /datum/disease/advance/GenerateSymptoms()
-	var/process_flags = ORGANIC //some symptoms don't affect robotic mobs
+	var/compatible_biotypes = MOB_ORGANIC //most symptoms only affect organic mobs
 
 /datum/symptom/New()
 	var/list/S = SSdisease.list_symptoms
@@ -57,7 +57,7 @@
 		return FALSE
 	if(world.time < next_activation)
 		return FALSE
-	if(process_flags & A.affected_mob.get_process_flags())
+	if(compatible_biotypes & A.affected_mob.mob_biotypes)
 		next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
 		return TRUE
 
