@@ -318,13 +318,7 @@ GLOBAL_VAR(stormdamage)
 	if(!owner)
 		CRASH("antagonist datum without owner")
 
-	report += printplayer(owner)
-
-	if(owner.current?.stat != DEAD)
-		report += "<span class='greentext big'>The [name] was successful!</span>"
-	else
-		report += "<span class='redtext big'>The [name] has failed!</span>"
-	
+	report += printplayer(owner)	
 	report += "They killed a total of [killed ? killed : "0" ] competitors"
 
 	return report.Join("<br>")
