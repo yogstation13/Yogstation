@@ -172,7 +172,7 @@
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
 	status = ORGAN_ORGANIC
 	organ_flags = NONE
-	compatible_biotypes = MOB_ROBOTIC
+	compatible_biotypes = ALL_NON_ROBOTIC
 
 /obj/item/organ/stomach/cell/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()

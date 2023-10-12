@@ -60,8 +60,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_stage = 0
 	/// Alternative names used for the drug
 	var/addiction_name = null
-	/// What biotypes can process this? We'll assume by default that it affects organics and undead (for plasmemes).
-	var/compatible_biotypes = MOB_ORGANIC|MOB_UNDEAD
+	/// What biotypes can process this? We'll assume by default that it affects organics (and undead, for plasmemes)
+	var/compatible_biotypes = ALL_NON_ROBOTIC
 	/// How flammable is this material?
 	var/accelerant_quality = 0
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
