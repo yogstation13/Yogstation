@@ -1,7 +1,7 @@
 //Equips umbral tendrils with many uses.
 /datum/action/cooldown/spell/toggle/pass
 	name = "Pass"
-	desc = "Twists an active arm into tendrils with many important uses. Examine the tendrils to see a list of uses."
+	desc = "Twists an active arm into a mass of tendrils with many important uses. Examine the tendrils to see a list of uses."
 	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -32,7 +32,7 @@
 		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), "<span class='velvet bold'>ikna</span><br>\
 		[span_notice("You transform your arm into umbral tendrils. Examine them to see possible uses.")]")
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
-		var/obj/item/umbral_tendrils/T = new(owner, owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))
+		var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner))
 		owner.put_in_hands(T)
 	else
 		owner.visible_message(span_warning("[owner]'s arms contort into tentacles!"), "<span class='velvet'><b>ikna ikna</b><br>\
@@ -40,7 +40,7 @@
 		playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE)
 		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(playsound), owner, 'yogstation/sound/magic/pass_create.ogg', 50, TRUE), 1)
 		for(var/i in 1 to 2)
-			var/obj/item/umbral_tendrils/T = new(owner, owner.mind?.has_antag_datum(ANTAG_DATUM_DARKSPAWN))
+			var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner) )
 			owner.put_in_hands(T)
 
 /datum/action/cooldown/spell/toggle/pass/Disable()
