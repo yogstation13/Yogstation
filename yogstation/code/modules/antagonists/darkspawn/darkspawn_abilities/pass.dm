@@ -13,11 +13,11 @@
 	var/twin = FALSE
 
 /datum/action/cooldown/spell/toggle/pass/process()
-	. = ..()
-	active = locate(/obj/item/umbral_tendrils) in owner
+	active = owner.is_holding_item_of_type(/obj/item/umbral_tendrils)
 	if(twin)
 		name = "Twinned Pass"
 		desc = "Twists one or both of your arms into tendrils with many uses."
+	. = ..()
 
 /datum/action/cooldown/spell/toggle/pass/Enable()
 	var/list/hands_free = owner.get_empty_held_indexes()
