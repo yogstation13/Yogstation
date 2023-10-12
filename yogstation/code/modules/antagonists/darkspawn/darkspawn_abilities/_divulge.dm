@@ -43,6 +43,8 @@
 	for(var/turf/T in RANGE_TURFS(1, user))
 		new/obj/structure/psionic_barrier(T, 500)
 	for(var/stage in 1 to 3)
+		if(isethereal(user))//keep the light disabled
+			user.dna.species.spec_emp_act(user, EMP_HEAVY)
 		switch(stage)
 			if(1)
 				user.visible_message(span_userdanger("Vibrations pass through the air. [user]'s eyes begin to glow a deep violet."), \
@@ -63,6 +65,8 @@
 			animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 1 SECONDS)
 			in_use = FALSE
 			return
+	if(isethereal(user))//keep the light disabled
+		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 	playsound(user, 'yogstation/sound/magic/divulge_ending.ogg', 50, 0)
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>Your mind...! can't--- THINK--</span>")
 	animate(user, pixel_y = user.pixel_y + 8, time = 6 SECONDS)
