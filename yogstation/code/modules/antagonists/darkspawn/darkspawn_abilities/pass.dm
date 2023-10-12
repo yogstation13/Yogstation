@@ -12,6 +12,13 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/twin = FALSE
 
+/datum/action/cooldown/spell/toggle/pass/can_cast_spell(feedback)
+	if(!owner.get_empty_held_indexes())
+		if(feedback)
+			to_chat(owner, span_warning("You need an empty hand for this!"))
+		return FALSE
+	. = ..()
+
 /datum/action/cooldown/spell/toggle/pass/process()
 	active = owner.is_holding_item_of_type(/obj/item/umbral_tendrils)
 	if(twin)

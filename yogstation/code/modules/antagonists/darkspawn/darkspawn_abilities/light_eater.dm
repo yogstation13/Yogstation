@@ -10,8 +10,15 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 
-/datum/action/cooldown/spell/toggle/pass/process()
+/datum/action/cooldown/spell/toggle/light_eater/process()
 	active = owner.is_holding_item_of_type(/obj/item/light_eater)
+	. = ..()
+
+/datum/action/cooldown/spell/toggle/light_eater/can_cast_spell(feedback)
+	if(!owner.get_empty_held_indexes())
+		if(feedback)
+			to_chat(owner, span_warning("You need an empty hand for this!"))
+		return FALSE
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/Enable()
