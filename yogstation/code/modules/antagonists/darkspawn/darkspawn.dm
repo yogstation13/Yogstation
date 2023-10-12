@@ -202,6 +202,9 @@
 	user.set_species(/datum/species/shadow/darkspawn)
 	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	show_to_ghosts = TRUE
+	var/datum/action/cooldown/spell/sacrament/final = new(src)
+	final.Grant(owner.current)
+	final.darkspawn = src
 	psi_web = new(src)
 	psi_web_action = new(psi_web)
 	psi_web_action.Grant(owner.current)

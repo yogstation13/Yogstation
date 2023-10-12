@@ -14,16 +14,16 @@
 	var/datum/antagonist/darkspawn/darkspawn
 	var/in_use
 
-/datum/action/cooldown/spell/sacrament/New(Target)
-	. = ..()
-	if(!isdarkspawn(owner))
-		Remove(owner)
-	darkspawn = owner.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN)
-
 /datum/action/cooldown/spell/sacrament/IsAvailable(feedback)
 	if(in_use)
 		if (feedback)
 			owner.balloon_alert(owner, "already in use!")
+		return
+	if(!darkspawn)
+		return
+	if(darkspawn.lucidity_drained < darkspawn.lucidity_needed)
+		if (feedback)
+			owner.balloon_alert(owner, "not enough lucidity drained!")
 		return
 	. = ..()
 
