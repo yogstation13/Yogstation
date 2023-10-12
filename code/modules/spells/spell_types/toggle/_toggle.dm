@@ -15,6 +15,7 @@
 	build_all_button_icons(ALL) //so as to be consistent with situational requirements, keep the button updated
 
 /datum/action/cooldown/spell/toggle/cast(atom/cast_on)
+	. = ..()
 	active = !active
 	if(active)
 		Enable()

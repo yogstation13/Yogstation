@@ -135,7 +135,7 @@
 /// Special handling for getting hit with a light eater
 /datum/species/ethereal/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
 	SIGNAL_HANDLER
-	source.emp_act(EMP_LIGHT)
+	spec_emp_act(source, EMP_LIGHT)
 	return COMPONENT_BLOCK_LIGHT_EATER
 
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
