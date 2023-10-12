@@ -70,7 +70,7 @@ GLOBAL_VAR(stormdamage)
 		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
 		ADD_TRAIT(virgin.current, TRAIT_NOSOFTCRIT, "KEEP GOING, FIGHT MORE") //because no sleepy
 		ADD_TRAIT(virgin.current, TRAIT_NOHARDCRIT, "Son always remember, dying is gay. @margot") //fight fight fight
-		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i get pacifists get to fight too
+		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i guess pacifists get to fight too
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
