@@ -680,7 +680,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
-	var/turf/T = get_turf()
+	var/turf/T = get_turf(src)
 	if(T)
 		for(var/obj/item/coin/C in T.contents)
 			add_to_stack(C, null, FALSE)
