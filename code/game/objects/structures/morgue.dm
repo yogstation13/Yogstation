@@ -232,6 +232,9 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
+	if(mapload && prob(1))
+		var/obj/structure/bodycontainer/crematorium/creamatorium/cream = new(get_turf(src))
+		qdel(src)
 
 /obj/structure/bodycontainer/crematorium/update_icon_state()
 	. = ..()
