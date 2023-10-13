@@ -80,16 +80,9 @@
 	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
 	QDEL_IN(shockwave, 10.5 SECONDS)
 
-/datum/supermatter_delamination/proc/gravitypull()
-	for(var/tile in spiral_range_turfs(40, supermatter_turf))
-		var/turf/T = tile
-		for(var/atom/movable/thing as anything in T)
-			thing.singularity_pull(supermatter_turf, 40)
-
 /datum/supermatter_delamination/proc/call_cascading()
 	sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
 	shockwave() //a pulse when sm is blown up
-	gravitypull() //will pull everything back once sm explodes
 	var/datum/round_event_control/resonance_cascade/xen = new
 	xen.runEvent()
 	message_admins("The Supermatter Crystal has caused a resonance cascade.")
