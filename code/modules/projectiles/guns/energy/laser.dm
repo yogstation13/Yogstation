@@ -15,6 +15,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = 0
 	item_flags = NONE
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/gun/energy/laser/retro
 	name ="retro laser gun"

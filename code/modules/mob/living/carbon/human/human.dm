@@ -1140,7 +1140,10 @@
 		if(nutrition >= NUTRITION_LEVEL_FAT)
 			return FALSE
 		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
-	return ..()
+	..()
+	if(HAS_TRAIT(src, TRAIT_BOTTOMLESS_STOMACH)) //so they never cap out EVER
+		nutrition = min(nutrition, NUTRITION_LEVEL_MOSTLY_FULL)
+	return nutrition
 
 /mob/living/carbon/human/set_nutrition(change) //Seriously fuck you oldcoders.
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -1172,10 +1175,6 @@
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
-
-/// Returns the type of organs, reagents, and symptoms this mob is compatible with
-/mob/living/carbon/human/get_process_flags()
-	return dna?.species?.process_flags // uses the process flags of whichever species we are
 
 /mob/living/carbon/human/species
 	var/race = null
