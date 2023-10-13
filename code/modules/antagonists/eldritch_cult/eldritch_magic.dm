@@ -1223,6 +1223,6 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 25 SECONDS
 
-	invocation = "BURN"
+	invocation = "TA'STE F'LAM'E!"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
