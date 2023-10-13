@@ -19,6 +19,12 @@
 		"Glub...",
 	)
 
+/obj/item/book/granter/martial/carp/can_learn(mob/user)
+	if(!ishumanbasic(user))
+		to_chat(user, span_warning("You fail to decipher the meaning of the strange markings."))
+		return FALSE
+	return ..()
+
 /obj/item/book/granter/martial/carp/on_reading_finished(mob/living/carbon/user)
 	. = ..()
 	update_appearance()

@@ -689,15 +689,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
 
-/datum/uplink_item/stealthy_weapons/martialarts
-	name = "Martial Arts Scroll"
-	desc = "This scroll contains the secrets of an ancient martial arts technique known as Sleeping Carp. You will master unarmed combat, \
-			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
-	item = /obj/item/book/granter/martial/carp
-	cost = 14
-	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
-
 /datum/uplink_item/stealthy_weapons/crossbow
 	name = "Miniature Energy Crossbow"
 	desc = "A short bow mounted across a tiller in miniature. \
@@ -2307,6 +2298,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 12
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/dnainjector/hulkmut
+	restricted_species = list("human")
+
+/datum/uplink_item/race_restricted/martialarts
+	name = "Martial Arts Scroll"
+	desc = "This scroll contains the secrets of an ancient martial arts technique known as Sleeping Carp. You will master unarmed combat, \
+			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
+	item = /obj/item/book/granter/martial/carp
+	cost = 14
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 	restricted_species = list("human")
 
 // Role-specific items
