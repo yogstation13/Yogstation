@@ -4,7 +4,7 @@
 /area/clerk)
 "b" = (
 /obj/structure/rack,
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "c" = (
 /obj/structure/rack,
@@ -34,7 +34,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "g" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -91,7 +91,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "giftshop_ext"
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "q" = (
 /obj/structure/table/wood/fancy/black,
@@ -135,7 +135,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "u" = (
 /obj/structure/table/wood,
@@ -149,7 +149,7 @@
 	c_tag = "Gift Shop";
 	dir = 4
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "v" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -158,7 +158,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "w" = (
 /mob/living/simple_animal/spiffles,
@@ -217,7 +217,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/bikehorn/rubberducky,
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "D" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -283,7 +283,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "L" = (
 /obj/structure/rack,
@@ -293,7 +293,7 @@
 /turf/open/floor/plasteel/dark,
 /area/clerk)
 "M" = (
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "N" = (
 /obj/structure/rack,
@@ -335,7 +335,7 @@
 	doorOpen = 'sound/machines/defib_success.ogg';
 	name = "Gift Shop"
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "Q" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
@@ -388,7 +388,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 "W" = (
 /obj/machinery/vending/autodrobe,
@@ -420,7 +420,7 @@
 	pixel_x = 26
 	},
 /obj/structure/rack,
-/turf/open/indestructible/carpet/black,
+/turf/open/floor/carpet/black,
 /area/clerk)
 
 (1,1,1) = {"
