@@ -519,8 +519,8 @@
 	. = new_slime
 	qdel(src)
 
-/mob/proc/become_overmind(starting_points = 60, pointmodifier = 1, announcement_time = 6000)
-	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier, announcement_time)
+/mob/proc/become_overmind(starting_points = 60, pointmodifier = 1, announcement_delay = 6000)
+	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(src), starting_points, pointmodifier, announcement_delay)
 	B.key = key
 	. = B
 	qdel(src)
