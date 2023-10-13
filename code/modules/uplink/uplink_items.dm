@@ -2185,8 +2185,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 12
-	surplus = 0
-	limited_stock = 1
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/implants/spinal/nukie
+	cost = 20
+	exclude_modes = list()
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"
