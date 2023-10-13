@@ -2184,7 +2184,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
-	cost = 14
+	cost = 12
 	surplus = 0
 	limited_stock = 1
 
