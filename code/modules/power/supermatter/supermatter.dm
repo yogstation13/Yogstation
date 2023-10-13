@@ -63,6 +63,8 @@
 #define DAMAGE_HARDCAP 0.002
 #define DAMAGE_INCREASE_MULTIPLIER 0.25
 
+#define MIASMA_DELAM_PERCENTAGE 50			///The percentage of miasma before it is classed as a miasma delamination, causing a blob to spawn.
+
 #define THERMAL_RELEASE_MODIFIER 5         //Higher == less heat released during reaction, not to be confused with the above values
 #define PLASMA_RELEASE_MODIFIER 750        //Higher == less plasma released by reaction
 #define OXYGEN_RELEASE_MODIFIER 325        //Higher == less oxygen released at high temperature/power
@@ -384,7 +386,23 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
 			to_chat(M, span_boldannounce("You feel reality distort for a moment..."))
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
+	
+	if (T)
+		var/datum/gas_mixture/air = T.return_air()
+		if (air)
+			if (((air.get_moles(/datum/gas/miasma) / air.total_moles()) * 100) > MIASMA_DELAM_PERCENTAGE && air.total_moles() > 5000)
+				var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Supermatter Blob?", ROLE_BLOB, null, ROLE_BLOB)
+				if(candidates.len)
+					var/mob/dead/observer/new_blob = pick(candidates)
+					var/mob/camera/blob/BC = new_blob.become_overmind(200, 1.3, 1)
+					BC.forceMove(T)
+					BC.place_blob_core(BLOB_FORCE_PLACEMENT)
 
+					message_admins("[src] has created a blob. [ADMIN_JMP(src)].")
+					investigate_log("has created a blob.", INVESTIGATE_SUPERMATTER)
+					qdel(src)
+					return
+					
 	if(resonance_cascading)
 		sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
 		var/datum/round_event_control/resonance_cascade/xen = new
