@@ -15,10 +15,10 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 
 	mutanteyes = /obj/item/organ/eyes/night_vision
+	species_language_holder = /datum/language_holder/darkspawn
 	var/powerful_heal = FALSE
 	var/dark_healing = 1
 	var/light_burning = 1
-
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	H.bubble_icon = "darkspawn"
@@ -168,7 +168,6 @@
 	shadow_charges = 3
 	dark_healing = 5
 	light_burning = 7
-	//owner.current.remove_language(/datum/language/darkspawn)
 
 /datum/species/shadow/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(prob(50) && shadow_charges > 0)
@@ -207,7 +206,8 @@
 /datum/species/shadow/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
 	playsound(H, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, FALSE)
 
-
+/datum/species/shadow/darkspawn/check_roundstart_eligible()
+	return FALSE
 /////////////////////////////Organs/////////////////////////////////////
 /obj/item/organ/brain/nightmare
 	name = "tumorous mass"

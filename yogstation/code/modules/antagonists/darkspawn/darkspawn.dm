@@ -35,7 +35,6 @@
 	var/specialization = NONE
 
 // Antagonist datum things like assignment //
-
 /datum/antagonist/darkspawn/on_gain()
 	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
@@ -92,7 +91,6 @@
 		return "<span class='redtext big'>The darkspawn have failed!</span><br>"
 
 //Admin panel stuff
-
 /datum/antagonist/darkspawn/antag_panel_data()
 	. = "<b>Upgrades:</b><br>"
 	for(var/V in upgrades)
