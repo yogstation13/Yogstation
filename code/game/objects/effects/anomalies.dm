@@ -292,7 +292,8 @@
 
 /obj/effect/anomaly/pyro
 	name = "pyroclastic anomaly"
-	icon_state = "mustard"
+	icon_state = "pyro"
+	color = "#ffa952"
 	coretype = ANOMALY_PYRO
 	var/ticks = 0
 	/// How many seconds between each gas release

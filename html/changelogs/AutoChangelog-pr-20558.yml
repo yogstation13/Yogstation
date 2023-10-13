@@ -1,0 +1,5 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - tweak: "tweaked heretics sac point cost"
+  - tweak: "allows heretics to sac soft/hard crit targets"
