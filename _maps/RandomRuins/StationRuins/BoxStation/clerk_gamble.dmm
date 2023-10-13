@@ -1,0 +1,431 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/wood,
+/area/space)
+"d" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"e" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/space)
+"f" = (
+/obj/machinery/camera{
+	c_tag = "Clerk's Gambling Hall"
+	},
+/turf/open/floor/wood,
+/area/space)
+"g" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop_ext"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock{
+	name = "Gambling Hall"
+	},
+/turf/open/floor/wood,
+/area/clerk)
+"h" = (
+/obj/item/storage/secure/safe{
+	pixel_x = 5;
+	pixel_y = -25
+	},
+/turf/open/floor/wood,
+/area/space)
+"i" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/space)
+"j" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood,
+/area/space)
+"k" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"l" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/space)
+"m" = (
+/obj/structure/chair,
+/turf/open/floor/wood,
+/area/space)
+"n" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/space)
+"o" = (
+/obj/machinery/power/apc{
+	areastring = "/area/clerk";
+	dir = 1;
+	name = "Gift Shop APC";
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"p" = (
+/obj/structure/table/wood/poker,
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/turf/open/floor/wood,
+/area/space)
+"q" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/wood,
+/area/space)
+"s" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"t" = (
+/turf/template_noop,
+/area/template_noop)
+"w" = (
+/turf/closed/wall,
+/area/space)
+"x" = (
+/obj/structure/table/wood,
+/obj/item/coinstack,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/plasma,
+/obj/item/coin/uranium,
+/obj/item/coin/diamond,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/turf/open/floor/wood,
+/area/space)
+"y" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/space)
+"z" = (
+/obj/structure/table/wood,
+/obj/item/a_gift{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/a_gift{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"A" = (
+/obj/machinery/vending/gifts,
+/turf/open/floor/wood,
+/area/space)
+"B" = (
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"C" = (
+/obj/machinery/door/airlock{
+	name = "Gambling Hall";
+	req_access_txt = "36"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/clerk)
+"D" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"E" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop_ext"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/clerk)
+"F" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock{
+	name = "Gambling Hall";
+	req_access_txt = "36"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/space)
+"G" = (
+/obj/structure/chair/stool,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"H" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop_ext"
+	},
+/turf/open/floor/plating,
+/area/clerk)
+"I" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop_ext"
+	},
+/obj/machinery/door/airlock{
+	name = "Gambling Hall"
+	},
+/turf/open/floor/wood,
+/area/clerk)
+"J" = (
+/obj/machinery/vending/games,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"K" = (
+/obj/structure/chair/stool,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/turf/open/floor/wood,
+/area/space)
+"L" = (
+/mob/living/simple_animal/spiffles,
+/turf/open/floor/wood,
+/area/space)
+"N" = (
+/obj/structure/chair/stool,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/space)
+"P" = (
+/obj/structure/chair/stool,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"Q" = (
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/wood,
+/area/space)
+"R" = (
+/turf/closed/wall,
+/area/clerk)
+"S" = (
+/obj/structure/table/wood/poker,
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/obj/item/toy/cards/deck,
+/turf/open/floor/wood,
+/area/space)
+"T" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/wood,
+/area/space)
+"U" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"V" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/space)
+"W" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/turf/open/floor/wood,
+/area/space)
+"Y" = (
+/obj/structure/table/wood,
+/obj/machinery/paystand/register{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"Z" = (
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/space)
+
+(1,1,1) = {"
+t
+R
+R
+R
+R
+R
+R
+R
+R
+"}
+(2,1,1) = {"
+t
+R
+z
+Y
+w
+q
+i
+j
+R
+"}
+(3,1,1) = {"
+t
+R
+a
+s
+w
+f
+D
+a
+E
+"}
+(4,1,1) = {"
+t
+C
+l
+T
+F
+y
+V
+a
+g
+"}
+(5,1,1) = {"
+t
+R
+B
+h
+w
+P
+k
+a
+E
+"}
+(6,1,1) = {"
+R
+R
+o
+a
+S
+p
+G
+a
+I
+"}
+(7,1,1) = {"
+R
+A
+n
+a
+m
+p
+N
+d
+H
+"}
+(8,1,1) = {"
+R
+J
+L
+a
+p
+p
+Z
+W
+R
+"}
+(9,1,1) = {"
+R
+Q
+Z
+x
+w
+K
+U
+e
+R
+"}
+(10,1,1) = {"
+R
+R
+R
+R
+R
+R
+R
+R
+R
+"}
