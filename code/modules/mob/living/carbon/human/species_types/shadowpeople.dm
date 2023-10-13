@@ -168,6 +168,7 @@
 	shadow_charges = 3
 	dark_healing = 5
 	light_burning = 7
+	//owner.current.remove_language(/datum/language/darkspawn)
 
 /datum/species/shadow/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(prob(50) && shadow_charges > 0)
