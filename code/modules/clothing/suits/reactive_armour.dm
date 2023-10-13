@@ -11,9 +11,9 @@
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
 		/obj/effect/anomaly/pyro	  			    = /obj/item/clothing/suit/armor/reactive/fire,
-		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport,
-		/obj/effect/anomaly/radiation				= /obj/item/clothing/suit/armor/reactive/radiation,
-		/obj/effect/anomaly/hallucination 			= /obj/item/clothing/suit/armor/reactive/hallucinating
+		/obj/effect/anomaly/bluespace = /obj/item/clothing/suit/armor/reactive/teleport,
+		/obj/effect/anomaly/radiation = /obj/item/clothing/suit/armor/reactive/radiation,
+		/obj/effect/anomaly/hallucination = /obj/item/clothing/suit/armor/reactive/hallucinating,
 		)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
