@@ -520,7 +520,6 @@
 		siemens_coeff = total_coeff
 		if(flags_1 & TESLA_IGNORE_1)
 			siemens_coeff = 0
-		siemens_coeff_amt(siemens_coeff)
 	else if(!safety)
 		var/gloves_siemens_coeff = 1
 		if(gloves)
@@ -537,6 +536,7 @@
 			if(stat == CONSCIOUS)
 				to_chat(src, span_notice("You feel your heart beating again!"))
 	siemens_coeff *= physiology.siemens_coeff
+    siemens_coeff_amt(siemens_coeff)
 
 	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
 	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
