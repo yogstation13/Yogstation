@@ -123,11 +123,11 @@
 /obj/item/clothing/suit/armor/reactive/teleport
 	name = "reactive teleport armor"
 	desc = "Someone separated our Research Director from his own head!"
-	var/tele_range = 6
-	var/rad_amount= 15
 	emp_message = span_warning("The reactive armor's teleportation calculations begin spewing errors!")
 	cooldown_message = span_danger("The reactive teleport system is still recharging! It fails to activate!")
 	reactivearmor_cooldown_duration = 10 SECONDS
+	var/tele_range = 6
+	var/rad_amount= 15
 
 /obj/item/clothing/suit/armor/reactive/teleport/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("The reactive teleport system flings [owner] clear of [attack_text], shutting itself off in the process!"))
