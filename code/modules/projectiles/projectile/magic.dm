@@ -759,7 +759,7 @@
 	name = "bolt of soul fire"
 	icon_state = "fireball"
 
-	damage = 15
+	damage = 10
 	damage_type = BURN
 	nodamage = FALSE
 
@@ -768,7 +768,7 @@
 	/// Light explosion range of the fireball
 	exp_light = 0
 	/// Fire radius of the fireball
-	exp_fire = 3
+	exp_fire = 2
 	/// Flash radius of the fireball
 	exp_flash = 0
 
