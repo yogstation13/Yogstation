@@ -5,7 +5,7 @@
 	reagent_state = SOLID
 	color = "#550000"
 	taste_description = "sweet tasting metal"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -37,7 +37,7 @@
 	metabolization_rate = 4
 	taste_description = "burning"
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -139,7 +139,7 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -163,7 +163,7 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
@@ -181,7 +181,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
@@ -217,7 +217,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/shock_timer = 0
 
 /datum/reagent/teslium/on_mob_metabolize(mob/living/L)
@@ -302,7 +302,7 @@ datum/reagent/frigorific_mixture
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 
 /datum/reagent/frigorific_mixture/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube

@@ -1018,7 +1018,7 @@
 	name = "Void Phase"
 	desc = "Let's you blink to your pointed destination, causes 3x3 aoe damage bubble \
 		around your pointed destination and your current location. \
-		It has a minimum range of 3 tiles and a maximum range of 9 tiles."
+		It has a minimum range of 3 tiles and a maximum range of 5 tiles."
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'

@@ -1036,10 +1036,6 @@
 /mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
 
-/// Returns the type of organs, reagents, and symptoms this mob is compatible with
-/mob/living/proc/get_process_flags()
-	return (mob_biotypes & MOB_ROBOTIC) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
-
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
 

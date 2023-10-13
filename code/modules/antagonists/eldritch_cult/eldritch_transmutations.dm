@@ -177,16 +177,26 @@
 	var/mob/living/carbon/carbon_user = user
 	for(var/obj/item/living_heart/LH in atoms)
 
-		if(LH.target && LH.target.stat == DEAD)
+		if(LH.target?.stat) ///wow this works
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
 			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
 			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
-			EC.total_sacrifices++
-			EC.charge += 2
+			if(LH.target.mind.has_antag_datum(/datum/antagonist/heretic))
+				EC.charge += 4
+
+			else if(LH.target.mind.assigned_role in GLOB.command_positions)
+
+				EC.charge += 3
+
+			else if(LH.target.mind.assigned_role in GLOB.security_positions)
+				EC.charge += 3
 			
+			else
+				EC.charge += 2
+			EC.total_sacrifices++
 
 		if(QDELETED(LH.target))
 			var/datum/objective/A = new

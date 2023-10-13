@@ -16,7 +16,6 @@
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
-	process_flags = ORGANIC | SYNTHETIC
 	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
