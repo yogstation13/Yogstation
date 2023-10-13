@@ -282,7 +282,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	areas_in_z["[z]"] += src
 
 /area/proc/add_delta_areas()
-	if(is_station_level(z) && !istype(src, /area/shuttle) && !istype(src, /area/ruin))
+	if(is_station_level(z) && !istype(src, /area/shuttle) && !istype(src, /area/ruin) && !istype(src, /area/space))
 		GLOB.delta_areas += src
 
 /**
