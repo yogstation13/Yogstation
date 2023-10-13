@@ -157,7 +157,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.process_flags & ORGANIC)// Cant drink or process alcohol
+	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.inherent_biotypes & MOB_ORGANIC)// Cant drink or process alcohol
 	qdel(species)
 
 	if(disallowed_trait)
@@ -572,7 +572,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = !(species.process_flags & ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
 	qdel(species)
 
 	if(disallowed_trait)
@@ -641,7 +641,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = !(species.process_flags & ORGANIC)
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC)
 	qdel(species)
 
 	if(disallowed_trait)
@@ -734,7 +734,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = !(species.process_flags & ORGANIC) // why would robots be allergic to things
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) // why would robots be allergic to things
 	qdel(species)
 
 	if(disallowed_trait)
