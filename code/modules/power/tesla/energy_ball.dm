@@ -83,10 +83,10 @@
 
 		for (var/obj/singularity/energy_ball/ball in orbiting_balls)
 			ball.color = color
-			if(prob(20) && !hypercharged)  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
-				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
-			else
+			if(istype(ball, /obj/singularity/energy_ball/supermatter))
 				tesla_zap(ball, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
+			else if(prob(20))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
+				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
 
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
@@ -334,8 +334,8 @@
 	else if(closest_mob)
 		var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE)? (min(round(power/600), 90) + rand(-5, 5)) : 0
 		closest_mob.electrocute_act(shock_damage, source, 1, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN))
-		if(zap_gib)
-			//no gib() because if body is gibbed it cannot transfer tesla to other mobs
+		if(zap_gib && closest_mob.mob_siemens_coeff_amount > 0)
+			//no gib() because if chest is gone it cannot transfer tesla to other mobs
 			for(var/obj/item/W in closest_mob)
 				closest_mob.dropItemToGround(W)
 				if(prob(50))

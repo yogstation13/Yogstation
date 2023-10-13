@@ -496,6 +496,9 @@
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	apply_damage(5, BRUTE, affecting, run_armor_check(affecting, MELEE))
 
+//return siemens_coeff :)
+/mob/living/carbon/human/proc/siemens_coeff_amt(amount)
+	mob_siemens_coeff_amount = amount
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
@@ -517,6 +520,7 @@
 		siemens_coeff = total_coeff
 		if(flags_1 & TESLA_IGNORE_1)
 			siemens_coeff = 0
+		siemens_coeff_amt(siemens_coeff)
 	else if(!safety)
 		var/gloves_siemens_coeff = 1
 		if(gloves)

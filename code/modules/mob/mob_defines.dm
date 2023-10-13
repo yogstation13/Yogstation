@@ -98,6 +98,9 @@
 
 	/// How many ticks this mob has been over reating
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
+	
+	// if is above 0, supermatter energy ball tesla zap can gib this mob
+	var/mob_siemens_coeff_amount = 1
 
 	/// The current intent of the mob
 	var/a_intent = INTENT_HELP//Living
