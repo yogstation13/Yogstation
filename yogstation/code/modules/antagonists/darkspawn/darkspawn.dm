@@ -120,8 +120,9 @@
 		return TRUE
 	return (SSticker.mode.sacrament_done)
 
-// Darkspawn-related things like Psi //
-
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Psi regen and usage-------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/process() //This is here since it controls most of the Psi stuff
 	psi = min(psi, psi_cap)
 	if(psi != psi_cap && COOLDOWN_FINISHED(src, psi_cooldown))
@@ -161,6 +162,9 @@
 	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
 	counter.maptext = ANTAG_MAPTEXT(psi, COLOR_DARKSPAWN_PSI)
 
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------------Divulge------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
 	if(darkspawn_state != MUNDANE)
 		return
@@ -213,6 +217,9 @@
 	darkspawn_state = DIVULGED
 	return TRUE
 
+////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------Sacrament------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/sacrament()
 	var/mob/living/carbon/human/user = owner.current
 	if(!SSticker.mode.sacrament_done)
@@ -220,6 +227,7 @@
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
 	// Spawn the cosmic progenitor
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
+	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
 	var/datum/action/cooldown/spell/list_target/progenitor_curse/curse = new(progenitor)
