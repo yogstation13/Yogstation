@@ -247,12 +247,11 @@
 	
 	return parsed_rooms
 
+/**
+ * Designate behavior for whether or not you want the rooms kept or discarded here. At base this will just ensure the center of the room falls within the workable area
+ * the generator has access to
+ */
 /datum/map_generator/dungeon_generator/proc/valid_room_check(datum/dungeon_room/room_to_check)
-	// var/valid = TRUE
-
-	// if(!working_turfs.Find(room_to_check.center))
-	// 	valid = FALSE
-	
 	return working_turfs.Find(room_to_check.center)
 
 /datum/map_generator/dungeon_generator/proc/rooms_intersect(datum/dungeon_room/room_to_check, datum/dungeon_room/other_room)
@@ -260,6 +259,16 @@
 	
 	return intersect
 
+/**
+ * Toggle the AI setting of all mobs in the generator. If the assistant starts crying like a child lost in a haunted house, you can turn off the mobs and escort them
+ * to their parent. 
+ * 
+ * For quick refence the commands are:
+ * * 1: Turn mob AI on
+ * * 2: Set mob AI to idle
+ * * 3: Turn mob AI off completely
+ * * 4: Turn mob AI off until a player enters the z-level which will cause them to flip back to on
+ */
 /datum/map_generator/dungeon_generator/proc/toggle_owned_mob_ai(togglestatus)
 	if(!togglestatus)
 		return togglestatus
