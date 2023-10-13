@@ -394,7 +394,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Supermatter Blob?", ROLE_BLOB, null, ROLE_BLOB)
 				if(candidates.len)
 					var/mob/dead/observer/new_blob = pick(candidates)
-					var/mob/camera/blob/BC = new_blob.become_overmind(200, 1.3, 1)
+					var/mob/camera/blob/BC = new_blob.become_overmind(350, 1.5, 1)
 					BC.forceMove(T)
 					BC.place_blob_core(BLOB_FORCE_PLACEMENT)
 
