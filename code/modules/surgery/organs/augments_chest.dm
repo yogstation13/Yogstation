@@ -299,7 +299,7 @@
 	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
 	if(!hsv)
 		hsv = RGBtoHSV(rgb(255, 0, 0))
-	hsv = RotateHue(hsv, max(world.time - last_step, 1) * 15)
+	hsv = RotateHue(hsv, world.time - last_step * 15)
 	last_step = world.time
 	F.color = HSVtoRGB(hsv)	//gotta add the flair
 
