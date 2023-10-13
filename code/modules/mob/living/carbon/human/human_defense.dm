@@ -536,7 +536,7 @@
 			if(stat == CONSCIOUS)
 				to_chat(src, span_notice("You feel your heart beating again!"))
 	siemens_coeff *= physiology.siemens_coeff
-    siemens_coeff_amt(siemens_coeff)
+	siemens_coeff_amt(siemens_coeff)
 
 	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
 	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
