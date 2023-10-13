@@ -112,7 +112,7 @@
 		explosion_mod = max(explosion_mod, 0.5)
 	else
 		message_admins("[src] has exploded")
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, supermatter_turf, supermatter_explosion_power * explosion_mod, (supermatter_explosion_power * explosion_mod * 2) + (supermatter_explosion_power/4), TRUE, FALSE, FALSE, TRUE)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(empulse), supermatter_turf, supermatter_explosion_power * explosion_mod, (supermatter_explosion_power * explosion_mod * 2) + (supermatter_explosion_power/4), TRUE, FALSE, FALSE, TRUE)
 	explosion(supermatter_turf, supermatter_explosion_power * explosion_mod * 0.5, supermatter_explosion_power * explosion_mod + 2, supermatter_explosion_power * explosion_mod + 4, supermatter_explosion_power * explosion_mod + 6, 1, 1)
 	radiation_pulse(supermatter_turf, (supermatter_radiation + 2400) * supermatter_explosion_power)
 
