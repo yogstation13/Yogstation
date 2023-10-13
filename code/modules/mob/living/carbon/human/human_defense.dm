@@ -496,9 +496,6 @@
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	apply_damage(5, BRUTE, affecting, run_armor_check(affecting, MELEE))
 
-//return siemens_coeff :)
-/mob/living/carbon/human/proc/siemens_coeff_amt(amount)
-	mob_siemens_coeff_amount = amount
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
@@ -536,7 +533,7 @@
 			if(stat == CONSCIOUS)
 				to_chat(src, span_notice("You feel your heart beating again!"))
 	siemens_coeff *= physiology.siemens_coeff
-	siemens_coeff_amt(siemens_coeff)
+	mob_siemens_coeff_amount = siemens_coeff
 
 	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
 	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
