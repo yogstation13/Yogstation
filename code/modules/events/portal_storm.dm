@@ -197,7 +197,22 @@
 /datum/round_event/portal_storm/resonance_cascade/announce(fake)
 	if(fake) // no point in trying to fake it, has much more impact if it's only the real thing
 		return
-	priority_announce("Attention all personnel, this is an emergency announcement on [station_name()]. An evacuation is immediately underway due to abnormal hostile activity detected on the premises. A distress signal has been sent to Central Command to alert them of the situation. In addition to that, we have observed a substantial number of meteors approaching the station on a large scale. Please remain calm and follow the evacuation procedures provided. Proceed to the designated evacuation points swiftly and orderly, To ensure your safety, please avoid areas with abnormal activity and refrain from going outside the station to minimize the risk of collisions with meteors. Security personnel are present to assist and ensure your safety. Cooperate with their instructions and refrain from engaging with any hostiles. Central Command is actively responding and coordinating a comprehensive emergency response. Your safety is our utmost priority during this evacuation. Stay vigilant, report any suspicious activity, and await further instructions at the designated evacuation points. Assistance is on the way.", "Central Command Higher Dimensional Affairs", sound='sound/misc/evacuate.ogg')
+	priority_announce("Attention all personnel, this is an emergency announcement on [station_name()]. \
+		An evacuation is immediately underway due to abnormal hostile activity detected on the premises. \
+		A distress signal has been sent to Central Command to alert them of the situation. In addition to that, \
+		we have observed a substantial number of meteors approaching the station on a large scale. \
+		Please remain calm and follow the evacuation procedures provided. \
+		Proceed to the designated evacuation points swiftly and orderly, To ensure your safety, \
+		please avoid areas with abnormal activity and refrain from going outside the station to minimize the risk of collisions with meteors. \
+		Security personnel are present to assist and ensure your safety. \
+		Cooperate with their instructions and refrain from engaging with any hostiles. \
+		Central Command is actively responding and coordinating a comprehensive emergency response. \
+		Your safety is our utmost priority during this evacuation. \
+		Stay vigilant, report any suspicious activity, and await further instructions at the designated evacuation points. \
+		Assistance is on the way.",
+		title = "Central Command Higher Dimensional Affairs",
+		sound = 'sound/misc/evacuate.ogg',
+	)
 
 /datum/round_event/portal_storm/resonance_cascade/tick()
 	var/turf/T = get_safe_random_station_turf()
