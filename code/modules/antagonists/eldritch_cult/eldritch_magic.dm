@@ -816,6 +816,7 @@
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "small_rune_1"
 	layer = LOW_SIGIL_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/glowing_rune/Initialize(mapload)
 	. = ..()
