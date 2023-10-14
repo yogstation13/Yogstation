@@ -341,11 +341,13 @@
 			animate(target,  pixel_y = 30, transform = matrix().Scale(0.7),  time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(2)
+			target.forceMove(orb.loc)
 			orb.shred()
 			phase++
 			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, orb), 1.5 SECONDS)
 			return
 		if(3)
+			target.forceMove(orb.loc)
 			qdel(orb)
 			splosion(user, target)
 			shatter(target)
@@ -366,6 +368,7 @@
 			return
 		if(2)
 			phase++
+			target.forceMove(orb.loc)
 			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase, orb), 0.5 SECONDS)
 			animate(orb,  transform = matrix().Scale(1.0), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			animate(target,  transform = matrix().Scale(0.8), time = 0.5 SECONDS, easing = ELASTIC_EASING)
@@ -377,6 +380,7 @@
 			animate(target,  transform = matrix().Scale(0.6), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(4)
+			target.forceMove(orb.loc)
 			phase++
 			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase, orb), 0.5 SECONDS)
 			animate(orb,  transform = matrix().Scale(0.6), time = 0.5 SECONDS, easing = ELASTIC_EASING)
@@ -640,6 +644,7 @@
 			forming.desc = "An extremely unstable reaction waiting to blow."
 			animate(forming, pixel_y = 120)
 			animate(forming, transform = matrix().Scale(4), time = 2 SECONDS, easing = ELASTIC_EASING)
+			target.forceMove(forming.loc)
 			phase++
 			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase, floor, sky, forming), 1 SECONDS)
 			return
