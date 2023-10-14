@@ -45,7 +45,7 @@
 #define QDELING(X) (X.gc_destroyed)
 #define QDELETED(X) (isnull(X) || QDELING(X))
 #define QDESTROYING(X) (!X || X.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
-///moved this because I need it to faster
+///moved this because I need it to be above everything else that will ever actually call it
 #define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), item), time, TIMER_STOPPABLE)
 #define QDEL_IN_CLIENT_TIME(item, time) addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), item), time, TIMER_STOPPABLE | TIMER_CLIENT_TIME)
 #define QDEL_NULL(item) qdel(item); item = null
