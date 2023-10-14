@@ -195,6 +195,7 @@
 			
 			else
 				EC.charge += 2
+			LH.target = null
 			EC.total_sacrifices++
 
 		if(QDELETED(LH.target))
