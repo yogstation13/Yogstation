@@ -13,7 +13,7 @@
 	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
 	if(!rust_overlay)
-		rust_overlay = image(rust_icon, rust_icon_state)
+		rust_overlay = image(rust_icon, rust_icon_state, -0.9)//above -1 so it draws over smoothing overlays
 	ADD_TRAIT(target, TRAIT_RUSTY, ELEMENT_TRAIT(type))
 	RegisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(apply_rust_overlay))
 	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(handle_examine))
@@ -49,15 +49,14 @@
 
 /// We call this from secondary_tool_act because we sleep with do_after
 /datum/element/rust/proc/handle_tool_use(atom/source, mob/user, obj/item/item)
-	switch(item.tool_behaviour)
-		if(TOOL_WELDER)
-			if(!item.tool_start_check(user, amount=1))
-				return
-
-			user.balloon_alert(user, "burning off rust...")
-
-			if(!item.use_tool(source, user, 5 SECONDS))
-				return
-			user.balloon_alert(user, "burned off rust")
-			Detach(source)
+	if(item.tool_behaviour == TOOL_WELDER)
+		if(!item.tool_start_check(user, amount=1))
 			return
+
+		user.balloon_alert(user, "burning off rust...")
+
+		if(!item.use_tool(source, user, 5 SECONDS))
+			return
+		user.balloon_alert(user, "burned off rust")
+		Detach(source)
+		return
