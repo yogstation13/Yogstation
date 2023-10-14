@@ -275,6 +275,21 @@
 	suffix = "chapel2.dmm"
 	name = "Chapel 2"
 
+/datum/map_template/ruin/station/box/clerk/box
+	id = "clerk_box"
+	suffix = "clerk_box.dmm"
+	name = "Clerk Box"
+
+/datum/map_template/ruin/station/box/clerk/pod
+	id = "clerk_pod"
+	suffix = "clerk_pod.dmm"
+	name = "Clerk Pod"
+
+/datum/map_template/ruin/station/box/clerk/meta
+	id = "clerk_meta"
+	suffix = "clerk_meta.dmm"
+	name = "Clerk Meta"
+
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 

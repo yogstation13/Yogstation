@@ -2071,6 +2071,7 @@
 #include "code\modules\client\preferences\auto_fit_viewport.dm"
 #include "code\modules\client\preferences\balloon_alerts.dm"
 #include "code\modules\client\preferences\bar_choice.dm"
+#include "code\modules\client\preferences\clerk_choice.dm"
 #include "code\modules\client\preferences\clothing.dm"
 #include "code\modules\client\preferences\credits.dm"
 #include "code\modules\client\preferences\donor.dm"
