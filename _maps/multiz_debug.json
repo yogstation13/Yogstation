@@ -1,5 +1,5 @@
 {
-    "map_name": "MultiZ Yogs",
+    "map_name": "MultiZ Debug",
     "map_path": "map_files/debug",
     "map_file": "multiz.dmm",
 	"ignored_unit_tests": [
