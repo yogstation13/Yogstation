@@ -181,7 +181,6 @@
 			to_chat(carbon_user,span_danger("Your patrons accepts your offer.."))
 			var/mob/living/carbon/human/H = LH.target
 			H.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
-			LH.target = null
 			var/datum/antagonist/heretic/EC = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 
 			if(LH.target.mind.has_antag_datum(/datum/antagonist/heretic))
@@ -196,6 +195,7 @@
 			
 			else
 				EC.charge += 2
+			LH.target = null
 			EC.total_sacrifices++
 
 		if(QDELETED(LH.target))
