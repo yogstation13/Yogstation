@@ -36,15 +36,16 @@
 /datum/eldritch_knowledge/base_rust/proc/on_mansus_grasp(mob/living/source, atom/target)
 	SIGNAL_HANDLER
 
+	if(isitem(target))//items have no rust_heretic_act()
+		return COMPONENT_BLOCK_HAND_USE
+
 	if(isopenturf(target))//prevent use on tiles unless you use harm intent
 		if(source.a_intent == INTENT_HARM)
 			target.rust_heretic_act()
 		else
 			return COMPONENT_BLOCK_HAND_USE
-	else if(!isobj(target))//objects have no rust_heretic_act()
+	else 
 		target.rust_heretic_act()
-	else
-		return COMPONENT_BLOCK_HAND_USE
 
 /datum/eldritch_knowledge/base_rust/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

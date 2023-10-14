@@ -36,7 +36,7 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_flesh/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER so this one just sorta explodes if i uncomment it, no clue why
 
 	if(!ishuman(target) || target == source)
 		return COMPONENT_BLOCK_HAND_USE
