@@ -36,7 +36,7 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_flesh/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-//	SIGNAL_HANDLER godammit
+	SIGNAL_HANDLER
 
 	if(!ishuman(target) || target == source)
 		return COMPONENT_BLOCK_HAND_USE
