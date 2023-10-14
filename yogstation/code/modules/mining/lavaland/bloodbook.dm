@@ -346,7 +346,7 @@
 			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, orb), 1.5 SECONDS)
 			return
 		if(3)
-			QDEL_IN(orb, 3) 
+			qdel(orb)
 			splosion(user, target)
 			shatter(target)
 	if(target)
@@ -921,3 +921,4 @@
 /obj/structure/slash/Initialize(mapload)
 	. = ..()
 	animate(src,  pixel_y = 30, transform = matrix(rand(1, 360), MATRIX_ROTATE).Scale(1.5))
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 0.7 SECONDS)
