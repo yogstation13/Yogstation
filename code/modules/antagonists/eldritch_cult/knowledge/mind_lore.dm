@@ -28,12 +28,23 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/mind
 	user.put_in_hands(realknife)
-	var/datum/action/cooldown/spell/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
+	var/datum/action/cooldown/spell/touch/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
 	if(mansus_touch)
-		mansus_touch.Remove(user)
-	var/datum/action/cooldown/spell/pointed/mansus_ranged/ranged_touch = new(user)
-	ranged_touch.Grant(user)
-		
+		mansus_touch.hand_path = /obj/item/melee/touch_attack/mansus_fist/mind //longer range version
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/base_mind/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/base_mind/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
+	if(!ishuman(target))
+		return COMPONENT_BLOCK_HAND_USE
+	var/mob/living/carbon/human/human_target = target
+	human_target.blur_eyes(1 SECONDS)
+	human_target.Knockdown(2 SECONDS)
+
 /datum/eldritch_knowledge/spell/mental_obfuscation
 	name = "T1 - Mental Obfuscation"
 	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
@@ -70,11 +81,19 @@
 
 /datum/eldritch_knowledge/mind_mark/on_gain(mob/user)
 	. = ..()
-	var/datum/action/cooldown/spell/ranged_touch = locate(/datum/action/cooldown/spell/pointed/mansus_ranged) in user.actions
-	if(ranged_touch)
-		ranged_touch.Remove(user)
-	var/datum/action/cooldown/spell/pointed/mansus_ranged/upgraded/ranged_touch_upgraded = new(user)
-	ranged_touch_upgraded.Grant(user)
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/mind_mark/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/mind_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
+	if(!ishuman(target))
+		return COMPONENT_BLOCK_HAND_USE
+	var/mob/living/carbon/human/human_target = target
+	human_target.blur_eyes(1 SECONDS)
+	human_target.blind_eyes(1 SECONDS)
 
 /datum/eldritch_knowledge/spell/assault
 	name = "T2 - Amygdala Assault"

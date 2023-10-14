@@ -39,29 +39,29 @@
 //	SIGNAL_HANDLER godammit
 
 	if(!ishuman(target) || target == source)
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
-		return
+		return COMPONENT_BLOCK_HAND_USE
 
 	human_target.grab_ghost()
 
 	if(!human_target.mind || !human_target.client)
 		to_chat(source, span_warning("There is no soul connected to this body..."))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
 		to_chat(source, span_warning("The body is too damaged to be revived this way!"))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 
 	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
 		to_chat(source, span_warning("Their will cannot be malformed to obey your own!"))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
 		to_chat(source, span_warning("Your Oath cannot support more ghouls on this plane!"))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 
 	LAZYADD(spooky_scaries, human_target)
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [source.real_name]")
