@@ -101,6 +101,9 @@
 /obj/item/melee/touch_attack/mansus_fist/mind //ranged
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 
+/obj/item/melee/touch_attack/mansus_fist/mind/upgraded //more ranged
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 4, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+
 /datum/action/cooldown/spell/aoe/rust_conversion
 	name = "Aggressive Spread"
 	desc = "Spread rust onto nearby turfs, possibly destroying rusted walls."

@@ -81,6 +81,9 @@
 
 /datum/eldritch_knowledge/mind_mark/on_gain(mob/user)
 	. = ..()
+	var/datum/action/cooldown/spell/touch/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
+	if(mansus_touch)
+		mansus_touch.hand_path = /obj/item/melee/touch_attack/mansus_fist/mind/upgraded //even longer range version
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/mind_mark/on_lose(mob/user)
