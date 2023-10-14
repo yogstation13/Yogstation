@@ -276,10 +276,10 @@
 	
 	if(victim.type == /turf/closed/wall && prob(15))
 		new /obj/effect/temp_visual/revenant(victim)
-		victim.ChangeTurf(/turf/closed/wall/rust)
+		victim.AddElement(/datum/element/rust)
 	if(victim.type == /turf/closed/wall/r_wall && prob(10))
 		new /obj/effect/temp_visual/revenant(victim)
-		victim.ChangeTurf(/turf/closed/wall/r_wall/rust)
+		victim.AddElement(/datum/element/rust)
 	for(var/obj/effect/decal/cleanable/food/salt/salt in victim)
 		new /obj/effect/temp_visual/revenant(victim)
 		qdel(salt)
