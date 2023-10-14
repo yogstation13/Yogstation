@@ -203,7 +203,7 @@
 					return
 			pick(mash(user, target), spiritbomb(user, target))
 			return
-		damnedfang(user,target)
+		shrink(user,target)
 		//pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
 		return
 	if(severity > 1)
@@ -216,7 +216,7 @@
 	switch(phase)
 		if(1)
 			var/list/wrecking = list()
-			var/obj/structure/killhand/B = new(target.loc)
+			var/obj/structure/prop/killhand/B = new(target.loc)
 			B.setDir(get_dir(user, target))
 			animate(B, transform = matrix(90, MATRIX_ROTATE))
 			wrecking |= B
@@ -280,10 +280,10 @@
 /obj/item/bloodbook/proc/falling(mob/living/user, mob/living/target, var/phase = 1, var/obj/portalb, var/obj/portalo)
 	switch(phase)
 		if(1)
-			var/obj/structure/propportal/O = new(target.loc)
+			var/obj/structure/prop/propportal/O = new(target.loc)
 			O.icon_state = "portal1"
 			animate(O, pixel_y = 120, transform = matrix().Scale(1, 0.7))
-			var/obj/structure/propportal/B = new(target.loc)
+			var/obj/structure/prop/propportal/B = new(target.loc)
 			animate(B, transform = matrix().Scale(1, 0.7))
 			animate(target, pixel_y = 120)
 			target.visible_message(span_warning("Portals appear above and below [target]!"))
@@ -323,39 +323,30 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/damnedfang(mob/living/user, mob/living/target, var/phase = 1, var/cycles = 1, var/obj/orb) //finish
+/obj/item/bloodbook/proc/damnedfang(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/bed/killbubble/orb) //finish
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
 			target.Immobilize(30)
 			B.buckle_mob(target)
-			B.color = "#1a1111ff"
+			B.icon_state = "gumball"
+			B.color = "#ffffffd2"
+			B.desc = "Thicker than oil."
+			B.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 			playsound(target, 'yogstation/sound/effects/bubbleblender.ogg', 40)
 			target.visible_message(span_warning("A blood-red bubble encloses [target] and floats into the air!"))
 			phase++
 			target.emote("spin")
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles, B), 0.5 SECONDS)
-			animate(B,  pixel_y = 30, time = 0.5 SECONDS, easing = ELASTIC_EASING)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, B), 0.5 SECONDS)
+			animate(B,  pixel_y = 30, time = 0.5 SECONDS, transform = matrix().Scale(2.5), easing = ELASTIC_EASING)
 			animate(target,  pixel_y = 30, transform = matrix().Scale(0.7),  time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(2)
+			orb.shred()
 			phase++
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles, orb), 0.5 SECONDS)
-			animate(orb, transform = matrix().Scale(1.5), time = 0.5 SECONDS, easing = ELASTIC_EASING)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, orb), 1.5 SECONDS)
 			return
 		if(3)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles, orb), 0.5 SECONDS)
-			animate(orb, transform = matrix().Scale(0.5), time = 0.5 SECONDS, easing = ELASTIC_EASING)
-			animate(target, transform = matrix().Scale(0.3),  time = 0.5 SECONDS, easing = ELASTIC_EASING)
-			return
-		if(4)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, cycles, orb), 0.5 SECONDS)
-			animate(orb, transform = matrix().Scale(1), time = 0.5 SECONDS, easing = ELASTIC_EASING)
-			return
-		if(5)
-			orb.icon_state = "leaper_bubble_pop"
 			QDEL_IN(orb, 3) 
 			splosion(user, target)
 			shatter(target)
@@ -511,12 +502,12 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/killight/red)
+/obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/prop/killight/red)
 	switch(phase)
 		if(1) 
 			user.Immobilize(5)
 			target.Immobilize(30)
-			var/obj/structure/killight/B = new(user.loc)
+			var/obj/structure/prop/killight/B = new(user.loc)
 			B.icon_state = "red_1"
 			animate(B, pixel_x = 8)
 			target.visible_message(span_warning("A small orb appears in front of [user]!"))
@@ -590,9 +581,9 @@
 		if(2)
 			user.setDir(get_dir(user, target))
 			var/list/rocks = list()
-			var/obj/structure/killrock/left = new(get_step(get_step(get_turf(target), turn(target.dir, 270)), turn(target.dir, 270)))
-			var/obj/structure/killrock/behind = new(get_step(get_step(get_turf(target), turn(target.dir, 180)), turn(target.dir, 180)))
-			var/obj/structure/killrock/right = new(get_step(get_step(get_turf(target), turn(target.dir, 90)), turn(target.dir, 90)))
+			var/obj/structure/prop/killrock/left = new(get_step(get_step(get_turf(target), turn(target.dir, 270)), turn(target.dir, 270)))
+			var/obj/structure/prop/killrock/behind = new(get_step(get_step(get_turf(target), turn(target.dir, 180)), turn(target.dir, 180)))
+			var/obj/structure/prop/killrock/right = new(get_step(get_step(get_turf(target), turn(target.dir, 90)), turn(target.dir, 90)))
 			phase++
 			rocks |= left
 			rocks |= behind
@@ -600,12 +591,12 @@
 			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, right, behind, left, rocks), 0.4 SECONDS)
 			for(var/mob/L in view(10, target))
 				shake_camera(L, 1, 1)
-			for(var/obj/structure/killrock/V in rocks)
+			for(var/obj/structure/prop/killrock/V in rocks)
 				V.stagechange()
 			return
 		if(3)
 			var/degree = 90
-			for(var/obj/structure/killrock/V in pillarlist)
+			for(var/obj/structure/prop/killrock/V in pillarlist)
 				V.forceMove(get_step(get_turf(target), turn(target.dir, degree)))
 				degree = degree + 90
 				V.stagechange()
@@ -615,7 +606,7 @@
 			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, first, second, third, pillarlist), 0.4 SECONDS)
 			return
 		if(4)
-			for(var/obj/structure/killrock/V in pillarlist)
+			for(var/obj/structure/prop/killrock/V in pillarlist)
 				V.forceMove(get_turf(target))
 				V.stagechange()
 			phase++
@@ -631,12 +622,12 @@
 		sceneend(target, user)
 		return
 
-/obj/item/bloodbook/proc/spiritbomb(mob/living/user, mob/living/target, var/phase = 1, var/obj/floor, var/obj/sky, var/obj/structure/killight/genkidama)
+/obj/item/bloodbook/proc/spiritbomb(mob/living/user, mob/living/target, var/phase = 1, var/obj/floor, var/obj/sky, var/obj/structure/prop/killight/genkidama)
 	switch(phase)
 		if(1) 
 			target.visible_message(span_warning("Runes appear above and below [target]!"))
-			var/obj/structure/rune/up = new(target.loc)
-			var/obj/structure/rune/down = new(target.loc)
+			var/obj/structure/prop/rune/up = new(target.loc)
+			var/obj/structure/prop/rune/down = new(target.loc)
 			animate(up, pixel_y = 150, transform = matrix().Scale(1, 0.6))
 			down.SpinAnimation(0.5 SECONDS, 1)
 			playsound(target,'sound/effects/empulse.ogg', 50, 1)
@@ -644,7 +635,7 @@
 			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase, down, up), 0.5 SECONDS)
 			return
 		if(2)
-			var/obj/structure/killight/forming = new(floor.loc)
+			var/obj/structure/prop/killight/forming = new(floor.loc)
 			forming.icon_state = "plasma"
 			forming.name = "quivering energy"
 			forming.desc = "An extremely unstable reaction waiting to blow."
@@ -678,7 +669,7 @@
 /obj/item/bloodbook/proc/headmassage(mob/living/user, var/mob/living/simple_animal/hostile/megafauna/legion/target, var/phase = 1, obj/hand)
 	switch(phase)
 		if(1) 
-			var/obj/structure/killhand/left = new(target.loc)
+			var/obj/structure/prop/killhand/left = new(target.loc)
 			animate(left, transform = matrix().Scale(target.size))
 			playsound(target,'sound/effects/wounds/crack2.ogg', 30, 1)
 			crystallize(target)
@@ -728,10 +719,10 @@
 
 //nonlethal animations
 
-/obj/item/bloodbook/proc/inducingemission(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/killight/geometry)
+/obj/item/bloodbook/proc/inducingemission(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/prop/killight/geometry)
 	switch(phase) 
 		if(1)
-			var/obj/structure/killight/B = new(user.loc)
+			var/obj/structure/prop/killight/B = new(user.loc)
 			target.Immobilize(5)
 			B.icon_state = "wipe"
 			B.light_range = 0
@@ -745,7 +736,6 @@
 		if(2)
 			geometry.forceMove(target.loc)
 			target.resize = 0.6
-			target.update_transform()
 			phase++
 			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase, geometry), 0.1 SECONDS)
 			return
@@ -783,7 +773,7 @@
 			return
 		if(2)
 			target.forceMove(rend.loc)
-			var/obj/structure/showmeteor/B = new(target.loc)		
+			var/obj/structure/prop/showmeteor/B = new(target.loc)		
 			target.visible_message(span_warning("A meteor appears from the opening!"))
 			animate(B, pixel_y = 30)
 			B.SpinAnimation(0.15 SECONDS)
@@ -814,6 +804,16 @@
 	icon_state = "leaper"
 	max_integrity = 500
 
+/obj/structure/bed/killbubble/proc/shred(var/times = 0)
+	if(times > 14)
+		return
+	var/obj/structure/slash/P = new(src.loc)
+	times++
+	addtimer(CALLBACK(src, PROC_REF(shred), times), 0.1 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), P), 1.5 SECONDS)
+	return
+
+
 /obj/structure/bed/killbubble/proc/vacuum(mob/living/user)
 	for(var/atom/movable/A in range(src, 5))
 		if(A == user)
@@ -822,22 +822,27 @@
 			var/shove_dir = get_dir(A, src)
 			A.Move(get_step(A, shove_dir), shove_dir)
 
-/obj/structure/killrock
+/obj/structure/prop
+	anchored = TRUE
+	density = FALSE
+	layer = MASSIVE_OBJ_LAYER
+	max_integrity = 500
+
+/obj/structure/prop/killrock
 	name = "ruby spire"
 	desc = "An unrelenting claw."
 	anchored = TRUE
 	layer = MASSIVE_OBJ_LAYER
 	icon = 'icons/obj/cult_64x64.dmi'
 	icon_state = "bloodstone-enter1"
-	max_integrity = 500
 	var/stage = 1
 
-/obj/structure/killrock/proc/stageupdate(var/stagechange = 0)
+/obj/structure/prop/killrock/proc/stageupdate(var/stagechange = 0)
 	stage = stage + stagechange
 	icon_state = "bloodstone-enter[stage]"
 	return
 
-/obj/structure/killrock/proc/stagechange(var/phase = 0)
+/obj/structure/prop/killrock/proc/stagechange(var/phase = 0)
 	switch(phase)
 		if(0)
 			++phase
@@ -859,19 +864,14 @@
 			addtimer(CALLBACK(src, PROC_REF(stagechange), phase), 0.1 SECONDS)
 			return
 
-/obj/structure/killhand
+/obj/structure/prop/killhand
 	name = "malevolent hand"
-	layer = MASSIVE_OBJ_LAYER
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "cursehand0"
 	color = "#ff0000"
-	max_integrity = 500
 
-/obj/structure/killight
+/obj/structure/prop/killight
 	name = "crimson light"
-	density = FALSE
-	anchored = TRUE
-	layer = MASSIVE_OBJ_LAYER
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "red_laser"
 	light_range = 2
@@ -879,7 +879,7 @@
 	light_color = "#ff2828"
 	max_integrity = 500
 
-/obj/structure/killight/proc/checknextspace(mob/living/L)
+/obj/structure/prop/killight/proc/checknextspace(mob/living/L)
 	var/turf/front = get_step(L.loc, (src.dir))
 	if(ismineralturf(front))
 		var/turf/closed/mineral/M = front
@@ -890,40 +890,35 @@
 	L.forceMove(front)
 	return TRUE
 
-/obj/structure/killight/proc/crashingdown(mob/living/L, var/morphin = 0,var/ymovement = 0)
-	L.forceMove(src.loc)
-	if(ymovement)
-		animate(src, pixel_y = ymovement)
-	if(morphin)
-		animate(src, transform = matrix().Scale(morphin))
-
-/obj/structure/showmeteor
+/obj/structure/prop/showmeteor
 	name = "meteor"
-	density = FALSE
 	icon = 'icons/obj/meteor.dmi'	
-	max_integrity = 500
 
-
-/obj/structure/showmeteor/Initialize(mapload)
+/obj/structure/prop/showmeteor/Initialize(mapload)
 	. = ..()
 	icon_state = pick("dust", "small", "large", "glowing", "flaming", "sharp")
 
-
-/obj/structure/rune
+/obj/structure/prop/rune
 	name = "giant rune"
 	desc = "It radiates a scalding heat."
 	icon = 'icons/effects/96x96.dmi'
-	density = FALSE
-	anchored = TRUE
 	icon_state = "rune_large"
 	color = RUNE_COLOR_DARKRED
 	pixel_x = -32
 	pixel_y = -32
 	max_integrity = 500
 
-/obj/structure/propportal
+/obj/structure/prop/propportal
 	name = "portal"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
-	density = FALSE
-	anchored = TRUE
+
+/obj/structure/slash
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "slash"
+	layer = POINT_LAYER
+	color =  "#ffa600"
+
+/obj/structure/slash/Initialize(mapload)
+	. = ..()
+	animate(src,  pixel_y = 30, transform = matrix(rand(1, 360), MATRIX_ROTATE).Scale(1.5))
