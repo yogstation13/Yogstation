@@ -185,7 +185,7 @@
 /obj/item/assembly/signaler/anomaly
 	name = "anomaly core"
 	desc = "The neutralized core of an anomaly. It'd probably be valuable for research."
-	icon_state = "anomaly core"
+	icon_state = "anomaly_core"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
@@ -246,13 +246,13 @@
 /obj/item/assembly/signaler/anomaly/hallucination
 	name = "\improper hallucination anomaly core"
 	desc = "The neutralized core of a hallucination anomaly. It seems to be moving, but it's probably your imagination. It'd probably be valuable for research."
-	icon_state = "hallucination core"
+	icon_state = "hallucination_core"
 	anomaly_type = /obj/effect/anomaly/hallucination
 
 /obj/item/assembly/signaler/anomaly/radiation
 	name = "\improper radiation anomaly core"
 	desc = "The neutralized core of a radiation anomaly. It keeps pulsing an ominous green. It'd probably be valuable for research."
-	icon_state = "radiation core"
+	icon_state = "radiation_core"
 	anomaly_type = /obj/effect/anomaly/radiation
 
 /obj/item/assembly/signaler/cyborg
