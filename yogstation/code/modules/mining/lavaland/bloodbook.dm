@@ -203,8 +203,7 @@
 					return
 			pick(mash(user, target), spiritbomb(user, target))
 			return
-		shrink(user,target)
-		//pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
+		pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
 		return
 	if(severity > 1)
 		pick(inducingemission(user,target), concavehead(user,target))
@@ -331,7 +330,7 @@
 			B.buckle_mob(target)
 			B.icon_state = "gumball"
 			B.color = "#ffffffd2"
-			B.desc = "Thicker than oil."
+			B.desc = "A prismatic blender."
 			B.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 			playsound(target, 'yogstation/sound/effects/bubbleblender.ogg', 40)
 			target.visible_message(span_warning("A blood-red bubble encloses [target] and floats into the air!"))
