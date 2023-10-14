@@ -333,11 +333,11 @@
 			B.desc = "A prismatic blender."
 			B.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 			playsound(target, 'yogstation/sound/effects/bubbleblender.ogg', 40)
-			target.visible_message(span_warning("A blood-red bubble encloses [target] and floats into the air!"))
+			target.visible_message(span_warning("A bubble surrounds [target] and floats into the air!"))
 			phase++
 			target.emote("spin")
 			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, B), 0.5 SECONDS)
-			animate(B,  pixel_y = 30, time = 0.5 SECONDS, transform = matrix().Scale(2.5), easing = ELASTIC_EASING)
+			animate(B,  pixel_y = 30, time = 0.5 SECONDS, transform = matrix().Scale(2.7), easing = ELASTIC_EASING)
 			animate(target,  pixel_y = 30, transform = matrix().Scale(0.7),  time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(2)
