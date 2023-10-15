@@ -727,7 +727,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	. = ..()
 	if(.)
 		return
-	if(!L.anti_magic_check())
+	if(!L.can_block_magic())
 		if(is_servant_of_ratvar(L))
 			L.Paralyze(20)
 		else
@@ -1018,7 +1018,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			else
 				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
 		else if(!..())
-			if(!L.anti_magic_check())
+			if(!L.can_block_magic())
 				if(L.buckled)
 					L.buckled.unbuckle_mob(L)
 

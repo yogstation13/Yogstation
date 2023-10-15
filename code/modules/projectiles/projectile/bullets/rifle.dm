@@ -89,7 +89,7 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.anti_magic_check())
+		if(L.can_block_magic())
 			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
 			qdel(src)
 			return FALSE

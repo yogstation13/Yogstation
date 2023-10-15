@@ -468,7 +468,7 @@
 			break
 
 		for(var/mob/living/L in T.contents)
-			if(L.anti_magic_check())
+			if(L.can_block_magic())
 				L.visible_message(span_danger("The fire parts in front of [L]!"),span_danger("As the fire approaches it splits off to avoid contact with you!"))
 				continue
 			if(L in hit_list || L == source)
@@ -853,7 +853,7 @@
 
 /datum/action/cooldown/spell/cone/staggered/entropic_plume/do_mob_cone_effect(mob/living/victim, atom/caster, level)
 	. = ..()
-	if(victim.anti_magic_check() || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
+	if(victim.can_block_magic() || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
 		return
 	victim.apply_status_effect(STATUS_EFFECT_AMOK)
 	victim.apply_status_effect(STATUS_EFFECT_CLOUDSTRUCK, (level * 1 SECONDS))

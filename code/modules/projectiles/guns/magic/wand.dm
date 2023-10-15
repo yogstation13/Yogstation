@@ -100,7 +100,7 @@
 		return
 	..()
 	charges--
-	if(user.anti_magic_check())
+	if(user.can_block_magic())
 		user.visible_message(span_warning("[src] has no effect on [user]!"))
 		return
 	user.revive(full_heal = 1)

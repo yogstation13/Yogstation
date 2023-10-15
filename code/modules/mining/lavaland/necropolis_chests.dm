@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
+	AddComponent(/datum/component/anti_magic, ALL)
 
 /datum/action/item_action/immortality
 	name = "Immortality"

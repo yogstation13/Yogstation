@@ -183,7 +183,7 @@
 		var/mob/living/L = clicked_on
 		if(is_servant_of_ratvar(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))
 			return BULLET_ACT_HIT
-		var/atom/O = L.anti_magic_check()
+		var/atom/O = L.can_block_magic()
 		playsound(L, 'sound/magic/fireball.ogg', 50, TRUE, frequency = 1.25)
 		if(O)
 			if(isitem(O))
