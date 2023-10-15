@@ -166,7 +166,7 @@
  * - angle: The angle the target was struck at
  * - hit_limb: The limb that was hit, if the target was a carbon
  */
-/datum/element/light_eater/proc/on_projectile_self_hit(obj/item/projectile/source, atom/movable/firer, atom/target, angle, hit_limb)
+/datum/element/light_eater/proc/on_projectile_self_hit(obj/projectile/source, atom/movable/firer, atom/target, angle, hit_limb)
 	SIGNAL_HANDLER
 	eat_lights(target, source)
 	return NONE
