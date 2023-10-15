@@ -1,6 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Cloaker belt now loses charge when you move"
-  - tweak: "Cloaker belt drains slightly slower in light"
-  - tweak: "Adds a couple tweakable variables"
