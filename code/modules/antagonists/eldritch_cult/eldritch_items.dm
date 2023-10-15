@@ -128,9 +128,9 @@
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
 
 /obj/item/ammo_casing/magic/hook/sickly_blade
-	projectile_type = /obj/item/projectile/hook/sickly_blade
+	projectile_type = /obj/projectile/hook/sickly_blade
 
-/obj/item/projectile/hook/sickly_blade
+/obj/projectile/hook/sickly_blade
 	damage = 0
 	knockdown = 0
 	immobilize = 2 // there's no escape
@@ -138,7 +138,7 @@
 	armour_penetration = 0 // no piercing shields
 	hitsound = 'sound/effects/gravhit.ogg'
 
-/obj/item/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
+/obj/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
 	. = ..()
 	if(iscarbon(target) && blocked != 100)
 		var/mob/living/carbon/C = target
@@ -415,7 +415,7 @@
 	if(update_signals(user))
 		set_cloak(cloak - cloak_move_loss)
 
-/obj/item/clothing/suit/cultrobes/void/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
+/obj/item/clothing/suit/cultrobes/void/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
 	if(dodge(user, P, "[P]"))
 		return BULLET_ACT_FORCE_PIERCE
 

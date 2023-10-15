@@ -195,7 +195,7 @@
 			if (stat != DEAD)
 				adjustBruteLoss(run_armor(30, BRUTE, BOMB))
 
-/mob/living/silicon/robot/bullet_act(obj/item/projectile/Proj, def_zone)
+/mob/living/silicon/robot/bullet_act(obj/projectile/Proj, def_zone)
 	. = ..()
 	updatehealth()
 	if(prob(75) && Proj.damage > 0)

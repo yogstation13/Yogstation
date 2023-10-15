@@ -412,11 +412,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/ammo_casing/magic/hook
 	name = "hook"
 	desc = "A hook."
-	projectile_type = /obj/item/projectile/hook
+	projectile_type = /obj/projectile/hook
 	caliber = "hook"
 	icon_state = "hook"
 
-/obj/item/projectile/hook
+/obj/projectile/hook
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -428,13 +428,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	knockdown = 30
 	var/chain
 
-/obj/item/projectile/hook/fire(setAngle)
+/obj/projectile/hook/fire(setAngle)
 	if(firer)
 		chain = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target, blocked)
+/obj/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		//TODO: keep the chain beamed to A
 		//TODO: needs a callback to delete the chain
 
-/obj/item/projectile/hook/Destroy()
+/obj/projectile/hook/Destroy()
 	qdel(chain)
 	return ..()
 
@@ -1407,8 +1407,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
 
-/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/colossus))
+/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/colossus))
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 

@@ -730,7 +730,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
@@ -757,7 +757,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/progenitor/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 

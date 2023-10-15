@@ -286,9 +286,9 @@
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
-	projectile_type = /obj/item/projectile/magic/aoe/rust_wave
+	projectile_type = /obj/projectile/magic/aoe/rust_wave
 
-/obj/item/projectile/magic/aoe/rust_wave
+/obj/projectile/magic/aoe/rust_wave
 	name = "Patron's Reach"
 	icon_state = "eldritch_projectile"
 	alpha = 180
@@ -300,7 +300,7 @@
 	range = 15
 	speed = 1
 
-/obj/item/projectile/magic/aoe/rust_wave/Moved(atom/OldLoc, Dir)
+/obj/projectile/magic/aoe/rust_wave/Moved(atom/OldLoc, Dir)
 	. = ..()
 	playsound(src, 'sound/items/welder.ogg', 75, TRUE)
 	var/list/turflist = list()
@@ -320,9 +320,9 @@
 
 /datum/action/cooldown/spell/basic_projectile/rust_wave/short
 	name = "Lesser Patron's Reach"
-	projectile_type = /obj/item/projectile/magic/aoe/rust_wave/short
+	projectile_type = /obj/projectile/magic/aoe/rust_wave/short
 
-/obj/item/projectile/magic/aoe/rust_wave/short
+/obj/projectile/magic/aoe/rust_wave/short
 	range = 7
 	speed = 2
 
@@ -972,7 +972,7 @@
 	base_icon_state = "lightning"
 	active_msg = "You energize your hands with raw power!"
 	deactive_msg = "You let the energy flow out of your hands back into yourself..."
-	projectile_type = /obj/item/projectile/magic/aoe/lightning/eldritch
+	projectile_type = /obj/projectile/magic/aoe/lightning/eldritch
 	
 	bolt_range = 7
 	bolt_power = 1000
@@ -1012,7 +1012,7 @@
 	invocation = "D'O'DGE TH'IS!"
 	invocation_type = INVOCATION_SHOUT
 
-	projectile_type = /obj/item/projectile/heretic_assault
+	projectile_type = /obj/projectile/heretic_assault
 
 /datum/action/cooldown/spell/pointed/void_phase
 	name = "Void Phase"
