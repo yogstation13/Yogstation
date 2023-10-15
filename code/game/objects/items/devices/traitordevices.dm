@@ -210,6 +210,9 @@ effective or pretty fucking useless.
 	var/max_charge = 300
 	var/on = FALSE
 	var/old_alpha = 0
+	var/charge_speed = 25
+	var/decay_speed = 7.5
+	var/move_loss = 100
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/storage/belt/military/shadowcloak/ui_action_click(mob/user)
@@ -230,6 +233,7 @@ effective or pretty fucking useless.
 	to_chat(user, span_notice("You activate [src]."))
 	src.user = user
 	START_PROCESSING(SSobj, src)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	old_alpha = user.alpha
 	on = TRUE
 
@@ -238,6 +242,7 @@ effective or pretty fucking useless.
 	STOP_PROCESSING(SSobj, src)
 	if(user)
 		user.alpha = old_alpha
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	on = FALSE
 	user = null
 
@@ -254,11 +259,13 @@ effective or pretty fucking useless.
 	if(on)
 		var/lumcount = T.get_lumcount()
 		if(lumcount > 0.3)
-			charge = max(0,charge - 12.5 * delta_time)//Quick decrease in light
+			charge = max(0,charge - decay_speed * delta_time)//Slow decreas in light
 		else
-			charge = min(max_charge,charge + 25 * delta_time) //Charge in the dark
+			charge = min(max_charge,charge + charge_speed * delta_time) //Charge in the dark
 		animate(user,alpha = clamp(255 - charge,0,255),time = 1 SECONDS)
 
+/obj/item/storage/belt/military/shadowcloak/proc/on_move(mob/user, Dir, Forced = FALSE)
+	charge = max(0,charge - move_loss)	//You can creep in the dark but not run
 
 /obj/item/jammer
 	name = "signal jammer"
