@@ -251,9 +251,6 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	if(GLOB.security_level >= SEC_LEVEL_RED)
-		change_areas_lights_alarm()
-
 	priority_announce("The emergency shuttle has been called. [GLOB.security_level >= SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLECALLED, "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
@@ -269,9 +266,6 @@
 		SSshuttle.emergencyLastCallLoc = signalOrigin
 	else
 		SSshuttle.emergencyLastCallLoc = null
-
-	if(GLOB.security_level < SEC_LEVEL_GAMMA)
-		change_areas_lights_alarm(FALSE)
 
 	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, ANNOUNCER_SHUTTLERECALLED, "Priority")
 
