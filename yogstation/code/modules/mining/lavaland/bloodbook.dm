@@ -441,7 +441,7 @@
 /obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, var/phase = 1, var/obj/hoop, var/turf/second)
 	switch(phase)
 		if(1) 
-			user.Immobilize(15)
+			user.Immobilize(9)
 			target.Immobilize(15)
 			var/turf/secondspot = target.loc
 			var/turf/front = get_step(get_turf(target), (user.dir))
