@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes regular dragon blood being able to turn you into a draconid"
-  - tweak: "dragon blood also gives ash immunity when it gives lava immunity"

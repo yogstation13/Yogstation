@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Bibles now protect against unholy stuff again."
-  - bugfix: "Antimagic protection now works properly and more consistently."
