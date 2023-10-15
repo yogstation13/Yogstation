@@ -128,7 +128,7 @@
 	var/info_text = "You are a <span class='danger'>Nightmare</span>. The ability <span class='warning'>shadow walk</span> allows unlimited, unrestricted movement in the dark while activated. \
 					Your <span class='warning'>light eater</span> will destroy any light producing objects you attack, as well as destroy any lights a living creature may be holding. You will automatically dodge gunfire and melee attacks when on a dark tile. If killed, you will eventually revive if left in darkness."
 
-/datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
@@ -169,7 +169,7 @@
 	dark_healing = 5
 	light_burning = 7
 
-/datum/species/shadow/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/darkspawn/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(prob(50) && shadow_charges > 0)
 		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
 		playsound(H, "bullet_miss", 75, 1)
