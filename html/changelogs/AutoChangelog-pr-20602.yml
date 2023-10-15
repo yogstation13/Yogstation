@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "Icon conflict resolver is fixed again"

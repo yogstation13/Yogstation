@@ -166,7 +166,7 @@
 				to_chat(H, span_notice("[victim] doesn't have blood!"))
 				return
 			V.drain_cooldown = world.time + 30
-			if(victim.anti_magic_check(FALSE, TRUE, FALSE, 0))
+			if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
 				to_chat(victim, span_warning("[H] tries to bite you, but stops before touching you!"))
 				to_chat(H, span_warning("[victim] is blessed! You stop just in time to avoid catching fire."))
 				return

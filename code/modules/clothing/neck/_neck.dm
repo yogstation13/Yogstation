@@ -453,7 +453,7 @@
 	if(update_signals(user))
 		set_cloak(cloak - cloak_move_loss)
 
-/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
+/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
 	if(dodge(user, P, "[P]"))
 		return BULLET_ACT_FORCE_PIERCE
 
