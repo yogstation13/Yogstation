@@ -1218,7 +1218,7 @@
 	active_msg = "You prepare to cast your fireball spell!"
 	deactive_msg = "You extinguish your fireball... for now."
 	cast_range = 8
-	projectile_type = /obj/item/projectile/magic/fireball/eldritch
+	projectile_type = /obj/projectile/magic/fireball/eldritch
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 25 SECONDS

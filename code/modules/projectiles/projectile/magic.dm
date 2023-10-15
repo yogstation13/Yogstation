@@ -755,7 +755,7 @@
 		adminlog = FALSE,
 	)
 
-/obj/item/projectile/magic/fireball/eldritch
+/obj/projectile/magic/fireball/eldritch
 	name = "bolt of soul fire"
 	icon_state = "fireball"
 
