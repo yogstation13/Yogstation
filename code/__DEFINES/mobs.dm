@@ -79,6 +79,10 @@
 #define MOB_REPTILE		(1<<8)
 #define MOB_SPIRIT		(1<<9)
 
+/// All the biotypes that matter
+#define ALL_NON_ROBOTIC (MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD)
+#define ALL_BIOTYPES (MOB_ORGANIC|MOB_INORGANIC|MOB_ROBOTIC|MOB_UNDEAD)
+
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2
@@ -100,10 +104,6 @@
 #define LARVA_BODYPART "larva"
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
-
-// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
-#define ORGANIC (1<<0)
-#define SYNTHETIC (1<<1)
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3

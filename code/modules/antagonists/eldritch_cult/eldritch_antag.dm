@@ -31,7 +31,7 @@
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void),
 	TIER_1 = list(
-		/datum/eldritch_knowledge/spell/ashen_shift,
+		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
 		/datum/eldritch_knowledge/rust_regen,
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
@@ -48,7 +48,7 @@
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark),
 	TIER_2 = list(
-		/datum/eldritch_knowledge/madness_mask,
+		/datum/eldritch_knowledge/spell/volcano_blast,
 		/datum/eldritch_knowledge/raw_prophet,
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
@@ -188,7 +188,7 @@
 	// This makes the image 64x64.
 	icon.Crop(-15, -15, 48, 48)
 
-	var/obj/item/gun/magic/hook/sickly_blade/blade = new
+	var/obj/item/melee/sickly_blade/blade = new
 	icon.Blend(icon(blade.lefthand_file, blade.item_state), ICON_OVERLAY)
 	qdel(blade)
 
@@ -201,6 +201,7 @@
 	if(ishuman(owner.current))
 		forge_primary_objectives()
 		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
+		gain_knowledge(/datum/eldritch_knowledge/spell/basic_jaunt)
 	owner.current.log_message("has been made a student of the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -339,17 +340,17 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
-		if(is_mind())
+		else if(is_mind())
 			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
-		if(is_void())
+		else if(is_void())
 			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
+		else if(is_rust())
+			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
 			else
 				parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
-		else //Rust
-			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The [lowertext(lore)] heretic was successful!")

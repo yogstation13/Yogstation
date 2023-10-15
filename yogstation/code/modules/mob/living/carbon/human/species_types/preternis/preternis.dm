@@ -16,7 +16,6 @@
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
-	process_flags = ORGANIC | SYNTHETIC
 	burnmod = 1.2 //The plasteel has a really high heat capacity, however, it's not great at dispersing the heat to concentrated heat is gonna burn
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
@@ -248,9 +247,9 @@
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
 
-/datum/species/preternis/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/preternis/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
 		H.fire_nuclear_particle()
 		H.visible_message(span_danger("[P] deflects off of [H]!"), span_userdanger("[P] deflects off of you!"))
 		return 1

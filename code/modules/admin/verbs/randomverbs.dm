@@ -1392,7 +1392,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!target.get_bodypart(body_zone))
 		return
 	playsound(target, 'sound/weapons/revolver357shot.ogg', 100)
-	var/obj/item/projectile/bullet/smite/divine_wrath = new(source_turf)
+	var/obj/projectile/bullet/smite/divine_wrath = new(source_turf)
 	divine_wrath.damage = damage
 	divine_wrath.wound_bonus = wound_bonus
 	divine_wrath.original = target

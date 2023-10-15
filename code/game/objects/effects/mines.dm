@@ -115,7 +115,7 @@
 			if(!(MM.movement_type & FLYING))
 				checksmartmine(AM)
 		else
-			if(istype(AM, /obj/item/projectile))
+			if(istype(AM, /obj/projectile))
 				return
 			triggermine(AM)
 
