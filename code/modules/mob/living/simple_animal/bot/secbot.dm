@@ -200,8 +200,8 @@ Auto Patrol: []"},
 		if(special_retaliate_after_attack(user))
 			return
 
-/mob/living/simple_animal/bot/secbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/secbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			to_chat(user, span_danger("You short out [src]'s target assessment circuits."))
@@ -210,8 +210,8 @@ Auto Patrol: []"},
 		declare_arrests = FALSE
 		update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/secbot/bullet_act(obj/item/projectile/Proj)
-	if(istype(Proj , /obj/item/projectile/beam)||istype(Proj, /obj/item/projectile/bullet))
+/mob/living/simple_animal/bot/secbot/bullet_act(obj/projectile/Proj)
+	if(istype(Proj , /obj/projectile/beam)||istype(Proj, /obj/projectile/bullet))
 		if((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE))
 			if(!Proj.nodamage && Proj.damage < src.health && ishuman(Proj.firer))
 				retaliate(Proj.firer)

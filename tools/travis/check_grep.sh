@@ -48,7 +48,7 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
 fi;
 if grep -i 'balloon_alert\(.*?, ?"[A-Z]'; then
 	echo
-	echo "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
+	echo "ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT()."
 	st=1
 fi;
 if grep '\.proc/' code/**/*.dm | grep -v 'code/__byond_version_compat.dm'; then
@@ -60,7 +60,7 @@ if ls _maps/*.json | grep -P "[A-Z]"; then
 	st=1
 fi;
 if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' code/**/*.dm; then
-	echo "ERROR: Initialize override without 'mapload' argument.${NC}"
+	echo "ERROR: Initialize override without 'mapload' argument."
 	st=1
 fi;
 for json in _maps/*.json

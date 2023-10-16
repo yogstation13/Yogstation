@@ -11,7 +11,7 @@
 		/obj/docking_port,
 		/obj/structure/lattice,
 		/obj/structure/stone_tile,
-		/obj/item/projectile,
+		/obj/projectile,
 		/obj/effect/projectile,
 		/obj/effect/portal,
 		/obj/effect/abstract,
@@ -213,7 +213,7 @@
 	if(!HAS_TRAIT(rod, TRAIT_WIELDED))
 		to_chat(user, span_warning("You need to wield the rod in both hands before you can fish in the chasm!"))
 		return
-	if(do_after(user, 3 SECONDS, src.parent))
+	if(do_after(user, 3 SECONDS, parent))
 		if(!HAS_TRAIT(rod, TRAIT_WIELDED))
 			return
 

@@ -87,6 +87,7 @@
 		/obj/item/organ/appendix,
 		/obj/item/organ/liver/fly,
 		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/lungs/ethereal,
 		/obj/item/organ/tail/cat,
 		/obj/item/organ/tail/lizard,
 	)
@@ -704,7 +705,8 @@
 				/obj/item/circuitboard/machine/smoke_machine,
 				/obj/item/circuitboard/machine/chem_master,
 				/obj/item/circuitboard/machine/clonescanner,
-				/obj/item/circuitboard/computer/pandemic
+				/obj/item/circuitboard/computer/pandemic,
+				/obj/item/circuitboard/machine/chem_heater
 				)
 
 /obj/effect/spawner/lootdrop/techstorage/AI

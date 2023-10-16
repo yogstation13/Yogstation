@@ -369,7 +369,7 @@
 
 /obj/item/stock_parts/cell/emproof/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
 
 /obj/item/stock_parts/cell/emproof/empty/Initialize(mapload)
 	. = ..()

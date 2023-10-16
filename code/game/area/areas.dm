@@ -38,6 +38,7 @@
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
 	var/vacuum = null //yogs- yellow vacuum lights
+	var/mining_speed = FALSE
 
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize(mapload).

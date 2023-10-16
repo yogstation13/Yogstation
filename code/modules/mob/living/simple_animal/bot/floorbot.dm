@@ -128,8 +128,8 @@
 	else
 		..()
 
-/mob/living/simple_animal/bot/floorbot/emag_act(mob/user)
-	..()
+/mob/living/simple_animal/bot/floorbot/emag_act(mob/user, obj/item/card/emag/emag_card)
+	. = ..()
 	if(emagged == 2)
 		if(user)
 			to_chat(user, span_danger("[src] buzzes and beeps."))

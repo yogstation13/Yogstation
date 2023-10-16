@@ -8,7 +8,7 @@
 	icon_state = "detective"
 	item_state = "gun"
 	flags_1 =  CONDUCT_1
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	slot_flags = ITEM_SLOT_BELT
 	materials = list(/datum/material/iron=2000)
 	w_class = WEIGHT_CLASS_NORMAL
@@ -668,7 +668,7 @@
 
 	semicd = TRUE
 
-	if(!bypass_timer && (!do_mob(user, target, 120) || user.zone_selected != BODY_ZONE_PRECISE_MOUTH))
+	if(!bypass_timer && (!do_after(user, 12 SECONDS, target) || user.zone_selected != BODY_ZONE_PRECISE_MOUTH))
 		if(user)
 			if(user == target)
 				user.visible_message(span_notice("[user] decided not to shoot."))

@@ -510,10 +510,18 @@
 	allow_duplicates = FALSE
 	cost = 6
 
-/datum/map_template/ruin/lavaland/forgottenkitchen
+/datum/map_template/ruin/lavaland/chasmcornmaze
 	name = "Lavaland Corn Maze"
 	id = "cornmaze"
 	description = "A maze filled with chasms. Don't slip!"
 	suffix = "lavaland_surface_maze.dmm"
 	allow_duplicates = FALSE
 	cost = 6
+
+/datum/map_template/ruin/lavaland/heralddeathtrap
+	name = "Herald's Death Trap"
+	id = "heralddtrap"
+	description = "Herald decided they wanted that Nanotransen Mining Outpost."
+	suffix = "lavaland_surface_heralddtrap.dmm"
+	allow_duplicates = FALSE
+	cost = 10

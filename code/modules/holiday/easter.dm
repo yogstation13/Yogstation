@@ -146,6 +146,7 @@
 	name = "hot-cross bun"
 	desc = "The Cross represents the Assistants that died for your sins."
 	icon_state = "hotcrossbun"
+	foodtype = GRAIN
 
 /datum/crafting_recipe/food/hotcrossbun
 	name = "Hot-Cross Bun"
@@ -164,6 +165,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/brioche
 	slices_num = 6
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
+	foodtype = GRAIN | SUGAR
 
 /obj/item/reagent_containers/food/snacks/cakeslice/brioche
 	name = "brioche cake slice"
@@ -188,6 +190,7 @@
 	bitesize = 3
 	filling_color = "#FFFFF0"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+	foodtype = EGG | MEAT
 
 /datum/crafting_recipe/food/scotchegg
 	name = "Scotch egg"
@@ -206,6 +209,7 @@
 	icon_state = "mammi"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 1)
+	foodtype = GRAIN | CHOCOLATE | DAIRY
 
 /datum/crafting_recipe/food/mammi
 	name = "Mammi"
@@ -224,6 +228,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
+	foodtype = CHOCOLATE | SUGAR
 
 /datum/crafting_recipe/food/chocolatebunny
 	name = "Chocolate bunny"

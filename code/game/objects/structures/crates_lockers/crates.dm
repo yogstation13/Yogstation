@@ -339,7 +339,7 @@
 		if(16)
 			new /mob/living/simple_animal/hostile/retaliate/goat/pixel(loc)
 		if(17)
-			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
+			new /mob/living/simple_animal/hostile/retaliate/goat/radioactive(loc)
 		if(18)
 			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(19)

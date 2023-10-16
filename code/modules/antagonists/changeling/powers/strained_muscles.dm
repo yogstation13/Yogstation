@@ -11,6 +11,8 @@
 	req_human = 1
 	var/stacks = 0 //Increments every 5 seconds; damage increases over time
 	active = FALSE //Whether or not you are a hedgehog
+	conflicts = list(/datum/action/changeling/adrenaline)
+
 
 /datum/action/changeling/strained_muscles/sting_action(mob/living/carbon/user)
 	..()

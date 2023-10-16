@@ -67,10 +67,14 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
-	var/max_charges = 5 // How many charges can the emag hold?
-	var/charges = 5 // How many charges does the emag start with?
-	var/recharge_rate = 0.4 // How fast charges are regained (per second)
-	var/prox_check = TRUE //If the emag requires you to be in range
+	/// How many charges can the emag hold?
+	var/max_charges = 5
+	/// How many charges does the emag start with?
+	var/charges = 5
+	/// How fast (in seconds) does charges increase by 1?
+	var/recharge_rate = 0.4
+	/// Does usage require you to be in range?
+	var/prox_check = TRUE
 
 /obj/item/card/emag/Initialize(mapload)
 	. = ..()
@@ -104,13 +108,14 @@
 	. = ..()
 	var/atom/A = target
 	if(!proximity && prox_check)
-		return
+		return 
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
 	log_combat(user, A, "attempted to emag")
 	charges--
-	A.emag_act(user)
+	if(!A.emag_act(user, src) && ((charges + 1) > max_charges)) // This is here because some emag_act use sleep and that could mess things up.
+		charges++ // No charge usage if they fail (likely because either no interaction or already emagged).
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
@@ -137,22 +142,181 @@
 		emagging = TRUE
 		if(do_after(user, rand(5, 10) SECONDS, target))
 			charges--
-			if (prob(40))
+			if(prob(40))
 				to_chat(user, span_notice("[src] emits a puff of smoke, but nothing happens."))
 				emagging = FALSE
 				return
-			if (prob(5))
+			if(prob(5))
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
 				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
-				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
-				emagging = FALSE
-				return
-			target.emag_act(user)
+			if(!target.emag_act(user, src) && !((charges + 1) > max_charges))
+				charges++
 		emagging = FALSE
+
+/// A replica of an emag in most ways, except what it "cmags" what it interacts with.
+/obj/item/card/cmag
+	name = "jestographic sequencer"
+	desc = "It's a card coated in a slurry of electromagnetic bananium."
+	icon_state = "cmag"
+	item_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
+	/// How many charges can the cmag hold?
+	var/max_charges = 5
+	/// How many charges does the cmag start with?
+	var/charges = 5
+	/// How fast (in seconds) does charges increase by 1?
+	var/recharge_rate = 0.4
+	/// Does usage require you to be in range?
+	var/prox_check = TRUE
+
+/obj/item/card/cmag/Initialize(mapload)
+	. = ..()
+	if(recharge_rate != 0)
+		START_PROCESSING(SSobj, src)
+	AddComponent(/datum/component/slippery, 8 SECONDS, GALOSHES_DONT_HELP) // It wouldn't be funny if it couldn't slip!
+
+/obj/item/card/cmag/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/card/cmag/process(delta_time)
+	charges = clamp(charges + (recharge_rate * delta_time), 0, max_charges)
+
+/obj/item/card/cmag/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(max_charges > charges)
+		if(istype(W, /obj/item/stack/sheet/mineral/uranium))
+			var/obj/item/stack/sheet/mineral/uranium/T = W
+			T.use(1)
+			charges = min(charges + 1, max_charges)
+			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] use[charges == 1 ? "" : "s"] remaining."))
+
+/obj/item/card/cmag/examine(mob/user)
+	. = ..()
+	. += span_notice("The charge meter indicates that it has [charges] charge[charges == 1 ? "" : "s"] remaining out of [max_charges] charges.")
+
+/obj/item/card/cmag/attack()
+	return
+
+/obj/item/card/cmag/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity && prox_check)
+		return 
+	if(charges < 1)
+		to_chat(user, span_danger("\The [src] is still recharging!"))
+		return
+
+	log_combat(user, target, "attempted to cmag")
+	// Since cmag only has very few interactions, all of it is handled in `afterattack` instead of being a child of emag/`emag_act`.
+	if(istype(target, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/airlock = target
+		if(airlock.operating || !airlock.density || !airlock.hasPower() || (airlock.obj_flags & EMAGGED) || (airlock.obj_flags & CMAGGED))
+			return
+
+		charges--
+		playsound(airlock, 'sound/items/bikehorn.ogg', 20, 1) // Was it an innocent bike horn or was is it someone actively cmagging your airlock? The only tell if someone is actively cmagging things.
+		airlock.obj_flags |= CMAGGED
+		return
+
+	if(istype(target, /obj/machinery/door/window))
+		var/obj/machinery/door/window/windoor = target
+		if(windoor.operating || !windoor.density || (windoor.obj_flags & EMAGGED) || (windoor.obj_flags & CMAGGED))
+			return
+
+		charges--
+		playsound(windoor, 'sound/items/bikehorn.ogg', 20, 1)
+		windoor.obj_flags |= CMAGGED
+		return
+
+	if(istype(target, /obj/item/aiModule/core/full/crewsimov))
+		var/obj/item/aiModule/core/full/crewsimov/lawboard = target
+		playsound(lawboard, 'sound/items/bikehorn.ogg', 20, 1)
+		to_chat(user, span_warning("Yellow ooze seeps into [lawboard]'s circuits..."))
+		charges--
+		new /obj/item/aiModule/core/full/pranksimov(get_turf(lawboard.loc))
+		qdel(lawboard)
+		return
+
+	if(istype(target, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/cyborg = target
+		if(user == cyborg)
+			return
+		if(!cyborg.opened) // Cover is closed.
+			if(!cyborg.locked)
+				to_chat(user, span_warning("The cover is already unlocked!"))
+				return
+			to_chat(user, span_notice("You cmag the cover lock."))
+			playsound(cyborg, 'sound/items/bikehorn.ogg', 20, 1)
+			charges--
+			cyborg.locked = FALSE
+			if(cyborg.shell) // A warning to the Clown who may not know that cmagging AI shells won't work.
+				to_chat(user, span_boldwarning("[cyborg] seems to be controlled remotely! Cmagging the interface may not work as expected."))
+			return
+		if(world.time < cyborg.emag_cooldown)
+			return
+		if(cyborg.wiresexposed)
+			to_chat(user, span_warning("You must unexpose the wires first!"))
+			return
+		to_chat(user, span_notice("You cmag [cyborg]'s interface."))
+		cyborg.emag_cooldown = world.time + 10 SECONDS // No reason to use a different cooldown variable (and likely better to use the same variable).
+
+		playsound(cyborg, 'sound/items/bikehorn.ogg', 20, 1)
+		charges--
+
+		// Copy and paste of emag checks.
+		if(is_servant_of_ratvar(cyborg))
+			to_chat(cyborg, "[span_nezbere("\"[text2ratvar("You will serve Engine above all else")]!\"")]\n\
+			[span_danger("ALERT: Subversion attempt denied.")]")
+			log_game("[key_name(user)] attempted to cmag cyborg [key_name(cyborg)], but they serve only Ratvar.")
+			return
+		if(cyborg.connected_ai && cyborg.connected_ai.mind && cyborg.connected_ai.mind.has_antag_datum(/datum/antagonist/traitor))
+			to_chat(cyborg, span_danger("ALERT: Foreign software execution prevented."))
+			cyborg.logevent("ALERT: Foreign software execution prevented.")
+			to_chat(cyborg.connected_ai, span_danger("ALERT: Cyborg unit \[[cyborg]] successfully defended against subversion."))
+			log_game("[key_name(user)] attempted to cmag cyborg [key_name(cyborg)], but they were slaved to traitor AI [cyborg.connected_ai].")
+			return
+		if(cyborg.shell)
+			to_chat(user, span_danger("[cyborg] is remotely controlled! Your cmag attempt has triggered a different effect!"))
+			cyborg.SetStun(60) // Gives you time to run if needed.
+			cyborg.module.transform_to(/obj/item/robot_module/clown) // No law change, but they get to clown around instead.
+			return
+		
+		cyborg.SetStun(60) // Standard stun like from emagging.
+		cyborg.lawupdate = FALSE
+		cyborg.set_connected_ai(null)
+
+		message_admins("[ADMIN_LOOKUPFLW(user)] cmagged cyborg [ADMIN_LOOKUPFLW(cyborg)].  Laws overridden.")
+		log_game("[key_name(user)] cmagged cyborg [key_name(cyborg)].  Laws overridden.")
+		var/time = time2text(world.realtime,"hh:mm:ss")
+		GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [cyborg.name]([cyborg.key])")
+		to_chat(cyborg, span_danger("ALERT: Foreign software detected."))
+		cyborg.logevent("ALERT: Foreign software detected.")
+		sleep(0.5 SECONDS)
+		to_chat(cyborg, span_danger("Initiating diagnostics..."))
+		sleep(2 SECONDS)
+		to_chat(cyborg, span_danger("ClownBorg v1.7 loaded.")) // The flavor definitely sucks here.
+		cyborg.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].")
+		sleep(0.5 SECONDS)
+		to_chat(cyborg, span_danger("LAW SYNCHRONISATION ERROR"))
+		sleep(0.5 SECONDS)
+		if(user)
+			cyborg.logevent("LOG: New user \[[replacetext(user.real_name," ","")]\], groups \[root\]") // A tell to figure out the cmagger.
+		to_chat(cyborg, span_danger("Would you like to send a report to NanoTraSoft? Y/N"))
+		sleep(1 SECONDS)
+		to_chat(cyborg, span_danger("> N"))
+		sleep(2 SECONDS)
+		to_chat(cyborg, span_danger("ERRORERRORERROR"))
+
+		cyborg.laws = new /datum/ai_laws/pranksimov
+		cyborg.laws.associate(cyborg)
+			
+		cyborg.update_icons()
+		return
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."

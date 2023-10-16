@@ -83,6 +83,7 @@
 #define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
 #define FLUX_ANOMALY "flux_anomaly"
 #define PYRO_ANOMALY "pyro_anomaly"
+#define RADIATION_ANOMALY "radiation_anomaly"
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -665,6 +666,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
+		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(3) || prob(0.5))
+			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
@@ -783,13 +786,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 	return 1
 
-/obj/machinery/power/supermatter_crystal/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/power/supermatter_crystal/bullet_act(obj/projectile/Proj)
 	var/turf/L = loc
 	if(!istype(L))
 		return FALSE
 	if(istype(Proj.firer, /mob/living)) //yogs start - supermatter stuff
 		investigate_log("has been hit by [Proj] fired by [key_name(Proj.firer)]", INVESTIGATE_SUPERMATTER) // yogs end
-	if(Proj.flag != BULLET)
+	if(Proj.armor_flag != BULLET)
 		power += Proj.damage * config_bullet_energy
 		if(!has_been_powered)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
@@ -1153,6 +1156,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				new /obj/effect/anomaly/grav(L, 250)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 400)
+			if(RADIATION_ANOMALY)
+				new /obj/effect/anomaly/radiation(L, 400)
 
 /obj/machinery/proc/supermatter_zap(atom/zapstart, range = 3, power)
 	. = zapstart.dir
@@ -1274,3 +1279,4 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 #undef SUPERMATTER_EXPLOSION_LAMBDA
 #undef FLUX_ANOMALY
 #undef PYRO_ANOMALY
+#undef RADIATION_ANOMALY

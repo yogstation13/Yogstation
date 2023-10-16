@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed emagged emitters firing strong nuclear particles instead of their intended projectile"

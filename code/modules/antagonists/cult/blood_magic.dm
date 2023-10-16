@@ -76,7 +76,7 @@
 	else
 		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
 		return
-	if(do_after(owner, 100 - rune*60, target = owner))
+	if(do_after(owner, (100 - rune * 60), owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.bleed(40 - rune*32)
@@ -173,7 +173,7 @@
 
 	user.visible_message(span_warning("[user]'s hand flashes a bright blue!"), \
 						 span_cultitalic("You speak the cursed words, emitting an EMP blast from your hand."))
-	var/obj/item/projectile/magic/ion/A = new /obj/item/projectile/magic/ion(user.loc)
+	var/obj/projectile/magic/ion/A = new /obj/projectile/magic/ion(user.loc)
 	A.firer = user
 	A.preparePixelProjectile(target, user, params)
 	A.fire()
@@ -425,7 +425,7 @@
 
 		user.mob_light(_range = 3, _color = LIGHT_COLOR_BLOOD_MAGIC, _duration = 0.2 SECONDS)
 
-		var/anti_magic_source = L.anti_magic_check()
+		var/anti_magic_source = L.can_block_magic()
 		if(anti_magic_source)
 
 			L.mob_light(_range = 2, _color = LIGHT_COLOR_HOLY_MAGIC, _duration = 10 SECONDS)
@@ -559,7 +559,7 @@
 		playsound(loc, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 		C.visible_message(span_danger("[user] begins restraining [C] with dark magic!"), \
 								span_userdanger("[user] begins shaping dark magic shackles around your wrists!"))
-		if(do_mob(user, C, 30))
+		if(do_after(user, 3 SECONDS, C))
 			if(!C.handcuffed)
 				C.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult/used(C))
 				C.update_handcuffed()

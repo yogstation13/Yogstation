@@ -10,6 +10,7 @@
 					/obj/item/reagent_containers/food/condiment/pack/ketchup = 5,
 					/obj/item/reagent_containers/food/condiment/pack/hotsauce = 5,
 					/obj/item/reagent_containers/food/condiment/pack/astrotame = 5,
+					/obj/item/reagent_containers/food/condiment/pack/bbqsauce = 2,
 					/obj/item/reagent_containers/food/condiment/saltshaker = 5,
 					/obj/item/reagent_containers/food/condiment/peppermill = 5,
 					/obj/item/kitchen/rollingpin = 2,

@@ -373,10 +373,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			return FALSE
 
 	var/list/things = src_object.contents()
-	var/datum/progressbar/progress = new(user, things.len, src)
-	while (do_after(usr, 1 SECONDS, src, TRUE, FALSE, CALLBACK(src_object, TYPE_PROC_REF(/datum/component/storage, mass_remove_from_storage), src, things, progress)))
+	while (do_after(usr, 1 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src_object, TYPE_PROC_REF(/datum/component/storage, mass_remove_from_storage), src, things)))
 		stoplag(1)
-	qdel(progress)
 
 	return TRUE
 
@@ -608,7 +606,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/Melt()
 	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
-/turf/bullet_act(obj/item/projectile/P)
+/turf/bullet_act(obj/projectile/P)
 	. = ..()
 	if(. != BULLET_ACT_FORCE_PIERCE)
 		. =  BULLET_ACT_TURF

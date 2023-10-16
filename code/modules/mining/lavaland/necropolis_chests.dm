@@ -412,11 +412,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/ammo_casing/magic/hook
 	name = "hook"
 	desc = "A hook."
-	projectile_type = /obj/item/projectile/hook
+	projectile_type = /obj/projectile/hook
 	caliber = "hook"
 	icon_state = "hook"
 
-/obj/item/projectile/hook
+/obj/projectile/hook
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -428,13 +428,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	knockdown = 30
 	var/chain
 
-/obj/item/projectile/hook/fire(setAngle)
+/obj/projectile/hook/fire(setAngle)
 	if(firer)
 		chain = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target, blocked)
+/obj/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		//TODO: keep the chain beamed to A
 		//TODO: needs a callback to delete the chain
 
-/obj/item/projectile/hook/Destroy()
+/obj/projectile/hook/Destroy()
 	qdel(chain)
 	return ..()
 
@@ -458,11 +458,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "talisman"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/immortality)
-	var/cooldown = 0
+	var/cooldown_time = 1 MINUTES
+	COOLDOWN_DECLARE(void_cd_index)
 
 /obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
+	AddComponent(/datum/component/anti_magic, ALL)
 
 /datum/action/item_action/immortality
 	name = "Immortality"
@@ -470,9 +471,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/immortality_talisman/attack_self(mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		if(cooldown < world.time)
+		if(COOLDOWN_FINISHED(src, void_cd_index))
 			SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
-			cooldown = world.time + 600
+			COOLDOWN_START(src, void_cd_index, cooldown_time)
 			L.apply_status_effect(STATUS_EFFECT_VOIDED)
 
 		else
@@ -490,6 +491,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
+	if(new_user)
+		vanish(new_user)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -524,8 +527,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/effect/immortality_talisman/Destroy(force)
 	if(!can_destroy && !force)
 		return QDEL_HINT_LETMELIVE
-	else
-		. = ..()
+	return ..()
 
 /obj/effect/immortality_talisman/void
 	vanish_description = "is dragged into the void"
@@ -701,7 +703,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "Flight Potion"
 	description = "Strange mutagenic compound of unknown origins."
 	reagent_state = LIQUID
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
@@ -1078,13 +1080,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
-			H.eye_color = "fee5a3"
-			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-			H.updateappearance()
-		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(2)
@@ -1094,6 +1089,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
+			H.weather_immunities |= "ash"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
@@ -1405,8 +1401,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
 
-/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/colossus))
+/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/colossus))
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 

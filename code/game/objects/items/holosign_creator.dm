@@ -68,7 +68,7 @@
 
 /obj/item/holosign_creator/janibarrier
 	name = "custodial holobarrier projector"
-	desc = "A holographic projector that creates hard light wet floor barriers."
+	desc = "A holographic projector that creates hard light wet floor barriers. Only works on wet floors."
 	holosign_type = /obj/structure/holosign/barrier/wetsign
 	creation_time = 0.5 SECONDS
 	max_signs = 25

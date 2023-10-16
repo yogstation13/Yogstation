@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "export scanners no longer export things from reality when scanning them sometimes"

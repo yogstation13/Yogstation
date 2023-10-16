@@ -608,6 +608,14 @@ GENE SCANNER
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
 
+/obj/item/analyzer/afterattack(atom/target as obj, mob/user, proximity)
+	if(!proximity)
+		return
+	add_fingerprint(user)
+	if(istype(target, /turf))
+		var/turf/U = get_turf(target)
+		atmosanalyzer_scan(user, U)
+
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()
 	//yogs stop

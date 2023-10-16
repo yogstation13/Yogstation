@@ -6,7 +6,7 @@
 /obj/machinery/power/emitter/energycannon/magical
 	name = "wabbajack statue"
 	desc = "Who am I? What is my purpose in life? What do I mean by who am I?"
-	projectile_type = /obj/item/projectile/magic/change
+	projectile_type = /obj/projectile/magic/change
 	icon = 'icons/obj/machines/magic_emitter.dmi'
 	icon_state = "wabbajack_statue"
 	icon_state_on = "wabbajack_statue_on"
@@ -48,7 +48,7 @@
 /obj/machinery/power/emitter/energycannon/magical/ex_act(severity)
 	return
 
-/obj/machinery/power/emitter/energycannon/magical/emag_act(mob/user)
+/obj/machinery/power/emitter/energycannon/magical/emag_act(mob/user, obj/item/card/emag/emag_card)
 	return
 
 /obj/structure/table/abductor/wabbajack
@@ -251,7 +251,7 @@
 /obj/machinery/scanner_gate/luxury_shuttle/attackby(obj/item/W, mob/user, params)
 	return
 
-/obj/machinery/scanner_gate/luxury_shuttle/emag_act(mob/user)
+/obj/machinery/scanner_gate/luxury_shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
 	return
 
 #define LUXURY_MESSAGE_COOLDOWN 100

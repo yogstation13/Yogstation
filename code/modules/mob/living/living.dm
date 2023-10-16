@@ -461,7 +461,7 @@
 	if(!resting)
 		set_resting(TRUE, FALSE)
 	else
-		if(do_after(src, 1 SECONDS, src, stayStill = FALSE))
+		if(do_after(src, 1 SECONDS, src, timed_action_flags = IGNORE_USER_LOC_CHANGE))
 			set_resting(FALSE, FALSE)
 		else
 			to_chat(src, span_notice("You fail to get up."))
@@ -877,7 +877,7 @@
 					span_userdanger("[src] tries to remove [who]'s [what.name]."))
 	what.add_fingerprint(src)
 	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
-	if(do_mob(src, who, what.strip_delay))
+	if(do_after(src, what.strip_delay, who, interaction_key = REF(what)))
 		if(what && Adjacent(who))
 			if(islist(where))
 				var/list/L = where
@@ -915,7 +915,7 @@
 			return
 
 		visible_message(span_notice("[src] tries to put [what] on [who]."))
-		if(do_mob(src, who, what.equip_delay_other))
+		if(do_after(src, what.equip_delay_other, who))
 			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
 					if(where_list)
@@ -981,7 +981,7 @@
 	return 1
 
 /mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
+	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_POWERHUNGRY) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
 		return TRUE
 
 	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
@@ -1035,10 +1035,6 @@
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
-
-/// Returns the type of organs, reagents, and symptoms this mob is compatible with
-/mob/living/proc/get_process_flags()
-	return (mob_biotypes & MOB_ROBOTIC) ? SYNTHETIC : ORGANIC // makes assumptions, override if you want something specific
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
@@ -1133,19 +1129,6 @@
 		apply_damage((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, BURN, null, blocked)
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
-
-///Return any anti magic atom on this mob that matches the magic type
-/mob/living/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
-	if(!magic && !holy && !tinfoil)
-		return
-	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_MAGIC_BLOCKED)
-		if(protection_sources.len)
-			return pick(protection_sources)
-		else
-			return src
-	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
-		return src
 
 /mob/living/proc/fakefireextinguish()
 	return

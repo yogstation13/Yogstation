@@ -95,7 +95,7 @@
 	cast_range = 2
 	spell_requirements = NONE
 
-	projectile_type = /obj/item/projectile/magic/fireball/infernal
+	projectile_type = /obj/projectile/magic/fireball/infernal
 
 /datum/action/cooldown/spell/jaunt/infernal_jaunt
 	name = "Infernal Jaunt"
@@ -114,7 +114,7 @@
 		if(is_jaunting(user))
 			if(valid_location(user))
 				to_chat(user, span_warning("You are now phasing in."))
-				if(do_mob(user,user,150))
+				if(do_after(user, 15 SECONDS))
 					if(valid_location(user))
 						user.infernalphasein()
 					else
@@ -127,7 +127,7 @@
 			user.notransform = TRUE
 			user.fakefire()
 			to_chat(src, span_warning("You begin to phase back into sinful flames."))
-			if(do_mob(user,user,150))
+			if(do_after(user, 15 SECONDS))
 				user.infernalphaseout()
 			else
 				to_chat(user, span_warning("You must remain still while exiting."))
@@ -198,7 +198,7 @@
 		return
 	if(target_carbon.mind.has_antag_datum(/datum/antagonist/sintouched))
 		return
-	if(target_carbon.anti_magic_check(FALSE, TRUE))
+	if(target_carbon.can_block_magic(MAGIC_RESISTANCE_HOLY))
 		return
 	target_carbon.mind.add_antag_datum(/datum/antagonist/sintouched)
 	target_carbon.Paralyze(40 SECONDS)

@@ -257,7 +257,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/raincoat
 	flags_inv = HIDEGLOVES|HIDESUITSTORAGE|HIDENECK|HIDEJUMPSUIT
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
-	
+
 /obj/item/clothing/head/hooded/raincoat
 	name = "raincoat hood"
 	desc = "A lightweight but protective hood that will keep all manner of fluids off you."
@@ -335,7 +335,7 @@
 	clothing_flags = THICKMATERIAL
 	flags_inv = HIDEHAIR|HIDEEARS
 	dynamic_hair_suffix = ""
-	
+
 /obj/item/clothing/suit/hooded/bee_costume/authentic
 	name = "bee costume"
 	desc = "Bee the true Queen! Smells like honey..."
@@ -591,6 +591,7 @@
 	armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 25, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 35)
 	allowed = list(
 		/obj/item/melee/classic_baton,
+		/obj/item/stamp
 	)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/hop
 
@@ -739,6 +740,7 @@
 	icon_state = "coatcargo"
 	item_state = "coatcargo"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/cargo
+	allowed = list(/obj/item/stamp)
 
 /obj/item/clothing/head/hooded/winterhood/cargo
 	icon_state = "winterhood_cargo"
@@ -798,5 +800,12 @@
 	icon_state = "eldritch_armor"
 	item_state = "eldritch_armor"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book, /obj/item/toy/eldritch_book) //gonna make it work with this the real stuff as a "fashion statement"
+	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book, /obj/item/toy/eldritch_book) //gonna make it work with this the real stuff as a "fashion statement"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie_toy/eldritch_toy
+
+/obj/item/clothing/suit/pocketcat
+	name = "peculiar clothes"
+	desc = "These clothes make you uneasy"
+	icon_state = "pocketcat"
+	item_state = "pocketcat"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS

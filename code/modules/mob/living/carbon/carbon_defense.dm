@@ -34,7 +34,7 @@
 	if(check_glasses && glasses && (glasses.flags_cover & GLASSESCOVERSEYES))
 		return glasses
 
-/mob/living/carbon/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
+/mob/living/carbon/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	var/obj/item/bodypart/affecting = get_bodypart(def_zone)
 	if(affecting && affecting.dismemberable && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
 		affecting.dismember(P.damtype)
@@ -155,7 +155,7 @@
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
 	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
-	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
+	if(!do_after(user, time_taken, target = src) && !(choice in body_part.embedded_objects))
 		return
 	if(remove_embedded_object(choice, get_turf(src), unsafe = TRUE) && !QDELETED(choice))
 		user.put_in_hands(choice)

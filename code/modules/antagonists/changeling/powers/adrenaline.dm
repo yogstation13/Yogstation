@@ -7,6 +7,7 @@
 	dna_cost = 2
 	req_human = 1
 	req_stat = UNCONSCIOUS
+	conflicts = list(/datum/action/changeling/strained_muscles)
 
 //Recover from stuns.
 /datum/action/changeling/adrenaline/sting_action(mob/living/user)

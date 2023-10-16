@@ -197,7 +197,7 @@
 	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
 	icon = "toolbox"
 	value = 0
-	mood_quirk = FALSE
+	mood_quirk = TRUE
 	var/obj/item/heirloom
 	var/where
 	medical_record_text = "Patient demonstrates an unnatural attachment to a family heirloom."

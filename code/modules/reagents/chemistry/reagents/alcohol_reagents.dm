@@ -8,6 +8,7 @@
 
 /datum/reagent/consumable/ethanol
 	name = "Ethanol"
+	addiction_name = "Alcohol"
 	description = "A well-known alcohol with a variety of applications."
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
@@ -15,7 +16,6 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 	accelerant_quality = 5
-
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -827,10 +827,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
 	if(isethereal(M))
-		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(M.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/manhattan_proj) * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+		M.adjust_nutrition(volume*REM)
 	return ..()
 
 /datum/reagent/consumable/ethanol/manhattan_proj/reaction_mob(mob/living/M, methods=TOUCH)
@@ -1418,7 +1415,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			drinker.Sleeping(10 SECONDS * REM)
 			. = TRUE
 		if(201 to INFINITY)
-			drinker.AdjustSleeping(4 SECONDS* REM)
+			drinker.AdjustSleeping(4 SECONDS * REM)
 			drinker.adjustToxLoss(2 * REM, FALSE)
 			. = TRUE
 	..()
@@ -1513,26 +1510,26 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.set_slurring_if_lower(1 SECONDS * REM)
 	switch(current_cycle)
 		if(1 to 5)
-			M.adjust_dizzy(10)
-			M.set_drugginess(30)
+			M.set_dizzy_if_lower(1 SECONDS)
+			M.set_drugginess_if_lower(3 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
-		if(5 to 10)
-			M.adjust_jitter(20 SECONDS)
-			M.adjust_dizzy(20)
-			M.set_drugginess(45)
+		if(6 to 10)
+			M.set_jitter_if_lower(20 SECONDS)
+			M.set_dizzy_if_lower(2 SECONDS)
+			M.set_drugginess_if_lower(4.5 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
-		if (10 to 200)
-			M.adjust_jitter(40 SECONDS)
-			M.adjust_dizzy(40)
-			M.set_drugginess(60)
+		if (11 to 200)
+			M.set_jitter_if_lower(40 SECONDS)
+			M.set_dizzy_if_lower(4 SECONDS)
+			M.set_drugginess_if_lower(6 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
-		if(200 to INFINITY)
-			M.adjust_jitter(1 MINUTES)
-			M.adjust_dizzy(60)
-			M.set_drugginess(75)
+		if(201 to INFINITY)
+			M.set_jitter_if_lower(60 SECONDS)
+			M.set_dizzy_if_lower(6 SECONDS)
+			M.set_drugginess_if_lower(7.5 SECONDS)
 			if(prob(40))
 				M.emote(pick("twitch","giggle"))
 			if(prob(30))
@@ -2676,3 +2673,31 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "moscow_mule"
 	glass_name = "Moscow Mule"
 	glass_desc = "A chilly drink that reminds you of the Derelict."
+
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver
+	var/alcoholicspeed = 0.75 //For determining the speed effect\\
+	name = "Syndicate Screwdriver"
+	description = "A drink that all greytiders and syndicate enjoy"
+	boozepwr = 115
+	metabolization_rate = 1.5
+	color = "#2E6671"
+	quality = DRINK_GOOD
+	taste_description = "a tangy taste mixed with liquified Robustness"
+	glass_icon_state = "syndicate_screwdriver"
+	glass_name = "Syndicate Screwdriver"
+	glass_desc = "A glass full of spite, haste and the need to greytide"
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		if(holder.has_reagent(/datum/reagent/drug/red_eye))
+			holder.remove_reagent(/datum/reagent/drug/red_eye, 5)
+		M.physiology.do_after_speed *= alcoholicspeed
+		M.next_move_modifier *= alcoholicspeed
+	return ..()
+
+/datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_end_metabolize(mob/living/carbon/human/M)
+	if(is_syndicate(M))
+		M.physiology.do_after_speed /= alcoholicspeed
+		M.next_move_modifier /= alcoholicspeed
+	return ..()

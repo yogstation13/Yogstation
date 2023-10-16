@@ -49,6 +49,7 @@
 	light_on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	flash_protect = 0
+	clothing_traits = list(TRAIT_SAFEWELD)
 	var/helmet_on = FALSE
 	///Boolean on whether the item will be modified by player's "plasmaman helmet style pref"
 	var/pref_alteration = TRUE
@@ -60,8 +61,6 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
 	helmet_on = !helmet_on
-	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
-	item_state = icon_state
 	update_appearance(UPDATE_ICON)
 	
 	set_light_on(helmet_on)
@@ -79,6 +78,8 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/update_icon(updates=ALL)
 	. = ..()
+	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
+	item_state = icon_state
 	if(!ismob(loc))
 		return
 	var/mob/loc_mob = loc

@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		if(empty_mixes == device_type)
 			empty_pipe = TRUE
 			
-	if(!(int_air.total_moles() > 0))
+	if(!(int_air.total_moles() > MINIMUM_MOLE_COUNT || unsafe_wrenching))
 		empty_pipe = TRUE
 
 	if(!empty_pipe)
@@ -327,6 +327,8 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	if(target_move)
 		if(target_move.can_crawl_through())
 			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
+				if(!do_after(user, 2 SECONDS, get_turf(target_move)))
+					return
 				user.forceMove(target_move.loc) //handle entering and so on.
 				user.visible_message(span_notice("You hear something squeezing through the ducts..."), "<span class='notice'>You climb out the ventilation system.")
 			else

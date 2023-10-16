@@ -115,7 +115,7 @@
 	update_appearance(UPDATE_ICON)
 	return
 
-/mob/living/simple_animal/bot/mulebot/emag_act(mob/user)
+/mob/living/simple_animal/bot/mulebot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(emagged < 1)
 		emagged = TRUE
 	if(!open)
@@ -151,7 +151,7 @@
 			wires.cut_random()
 	return
 
-/mob/living/simple_animal/bot/mulebot/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/bot/mulebot/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(.)
 		if(prob(50) && !isnull(load))

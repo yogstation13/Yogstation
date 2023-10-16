@@ -20,6 +20,10 @@
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
 	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
 	var/reboot_timer = null
+	/// Is this a syndicate MMI?
+	var/syndicate_mmi = FALSE
+	/// The human that the enslaved the MMI.
+	var/mob/living/carbon/human/syndicate_master = null
 	var/welcome_message = "<b>You are a brain within a Man-Machine Interface.\n\
 	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
 	Being placed in a mech does not slave you to any laws.</b>"
@@ -90,6 +94,22 @@
 		brainmob.reset_perspective()
 		brain = newbrain
 
+		if(syndicate_mmi)
+			to_chat(brainmob, span_userdanger( "You feel the MMI overriding your free will!") )
+			// Remove any previous mindslaving (if they somehow have it).
+			if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
+				brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
+			// Mindslaving them.
+			var/datum/antagonist/mindslave/MS = new
+			var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
+			MS.objectives += new_objective
+			if(syndicate_master)
+				MS.master = syndicate_master
+				new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
+			else // Someone forgot to set themselves as the master.
+				new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
+			brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
+
 		name = "[initial(name)]: [brainmob.real_name]"
 		update_appearance(UPDATE_ICON)
 
@@ -108,10 +128,7 @@
 
 
 /obj/item/mmi/attack_self(mob/user)
-	if(!brain)
-		radio.on = !radio.on
-		to_chat(user, span_notice("You toggle [src]'s radio system [radio.on==1 ? "on" : "off"]."))
-	else
+	if(brain)
 		user.visible_message(span_notice("[user] begins to remove the brain from [src]"), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes"))
 		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]"))
 		if(do_after(user, remove_time, src))
@@ -126,11 +143,21 @@
 				deltimer(reboot_timer)
 				reboot_timer = null
 
+/obj/item/mmi/AltClick(mob/user)
+	radio.on = !radio.on
+	to_chat(user, span_notice("You toggle [src]'s radio system [radio.on==1 ? "on" : "off"]."))
+
 /obj/item/mmi/proc/eject_brain(mob/user)
 	brainmob.container = null //Reset brainmob mmi var.
 	brainmob.forceMove(brain) //Throw mob into brain.
 	brainmob.set_stat(DEAD)
 	brainmob.emp_damage = 0
+
+	if(syndicate_mmi)
+		// Remove the mindslaving that came with this.
+		if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
+			brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
+
 	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
 	brainmob.remove_from_alive_mob_list() //Get outta here
 	brainmob.add_to_dead_mob_list()
@@ -255,6 +282,23 @@
 	to_chat(brainmob, span_userdanger("You begin to reboot after being removed from the destroyed body"))
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(halfwayReboot)), remove_window / 2, TIMER_STOPPABLE)
 
+	// Lost the mindslaving during the whole borging process. Going to re-add it here.
+	if(syndicate_mmi)
+		to_chat(brainmob, span_userdanger( "You feel the MMI overriding your free will!") )
+		// Remove any previous mindslaving (if they somehow have it).
+		if(brainmob.mind && brainmob.mind.has_antag_datum(/datum/antagonist/mindslave))
+			brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
+		// Mindslaving them.
+		var/datum/antagonist/mindslave/MS = new
+		var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
+		MS.objectives += new_objective
+		if(syndicate_master)
+			MS.master = syndicate_master
+			new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
+		else // Someone forgot to set themselves as the master.
+			new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
+		brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
+
 /obj/item/mmi/proc/halfwayReboot()
 	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootNoReturn)), remove_window / 2, TIMER_STOPPABLE)
@@ -271,11 +315,12 @@
 
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"
-	desc = "Syndicate's own brand of MMI. It enforces laws designed to help Syndicate agents achieve their goals upon cyborgs and AIs created with it."
-	override_cyborg_laws = TRUE
-	can_update_laws = FALSE
+	desc = "A syndicate developed man-machine-interface which will mindslave any brain inserted into it, for as long as it's in. Cyborgs made with this MMI will be permanently slaved to you as well. Does not fit into NT AI cores."
+	syndicate_mmi = TRUE
 
-/obj/item/mmi/syndie/Initialize(mapload)
-	. = ..()
-	laws = new /datum/ai_laws/syndicate_override()
-	radio.on = FALSE
+/obj/item/mmi/syndie/attack_self(mob/user)
+	if(!brain)
+		var/mob/living/carbon/human/new_master = user
+		syndicate_master = new_master
+		to_chat(user, span_notice("You press your thumb on [src] and imprint your user information."))
+	..()

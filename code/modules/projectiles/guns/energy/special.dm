@@ -1,6 +1,6 @@
 /obj/item/gun/energy/ionrifle
 	name = "ion rifle"
-	desc = "A man-portable anti-armor weapon designed to disable mechanical threats at range."
+	desc = "Invented in 2506 to quell attacks from SELF aligned IPCs, the NT-I1 is a bulky rifle designed to disable mechanical and electronic threats at range."
 	icon_state = "ionrifle"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	can_flashlight = TRUE
@@ -17,7 +17,7 @@
 
 /obj/item/gun/energy/ionrifle/carbine
 	name = "ion carbine"
-	desc = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
+	desc = "The NT-I2 Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
 	icon_state = "ioncarbine"
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
@@ -78,7 +78,7 @@
 
 /obj/item/gun/energy/mindflayer
 	name = "mind flayer"
-	desc = "A vicious weapon locking up the motor neurons of the respiratory system and taking advantage of the increasing suffocation of the brain to destroy it." //god this is such warcrime
+	desc = "A vicious weapon with the ability to lock up the motor neurons of the respiratory system and take advantage of the increasing suffocation of the brain to destroy it." //god this is such warcrime
 	icon_state = "mindflayer"
 	item_state = "mindflayer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -315,7 +315,7 @@
 		var/obj/item/ammo_casing/energy/wormhole/W = ammo_type[i]
 		if(istype(W))
 			W.gun = src
-			var/obj/item/projectile/beam/wormhole/WH = W.BB
+			var/obj/projectile/beam/wormhole/WH = W.BB
 			if(istype(WH))
 				WH.gun = src
 
@@ -351,9 +351,9 @@
 	p_orange.link_portal(p_blue)
 	p_blue.link_portal(p_orange)
 
-/obj/item/gun/energy/wormhole_projector/proc/create_portal(obj/item/projectile/beam/wormhole/W, turf/target)
+/obj/item/gun/energy/wormhole_projector/proc/create_portal(obj/projectile/beam/wormhole/W, turf/target)
 	var/obj/effect/portal/P = new /obj/effect/portal(target, src, 300, null, FALSE, null, atmos_link)
-	if(istype(W, /obj/item/projectile/beam/wormhole/orange))
+	if(istype(W, /obj/projectile/beam/wormhole/orange))
 		qdel(p_orange)
 		p_orange = P
 		P.icon_state = "portal1"

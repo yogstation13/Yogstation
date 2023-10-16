@@ -397,6 +397,7 @@ SUBSYSTEM_DEF(ticker)
 	var/captainless = TRUE
 	var/no_cyborgs = TRUE
 	var/no_bartender = TRUE
+	var/no_clerk = TRUE
 
 	for(var/mob/dead/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
@@ -407,6 +408,8 @@ SUBSYSTEM_DEF(ticker)
 				no_cyborgs = FALSE
 			if(player.mind.assigned_role == "Bartender")
 				no_bartender = FALSE
+			if(player.mind.assigned_role == "Clerk")
+				no_clerk = FALSE
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, FALSE)
 				if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
@@ -429,11 +432,13 @@ SUBSYSTEM_DEF(ticker)
 	if(captainless)
 		for(var/mob/dead/new_player/N in GLOB.player_list)
 			if(N.new_character)
-				to_chat(N, "Captainship not forced on anyone.")
+				to_chat(N, "<FONT color='red'>No Captain is present at the start of shift. Please follow the SOP available <b><a href='https://wiki.yogstation.net/wiki/Official:Disk_Procedure'>here</a></b> to secure the disk and assign an Acting Captain.")
 			CHECK_TICK
 
 	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
 		SSjob.random_bar_init()
+	if(no_clerk)
+		SSjob.random_clerk_init()
 
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()

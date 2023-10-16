@@ -33,6 +33,7 @@
 	var/list/coinvalues = list()
 	var/list/reels = list(list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0)
 	var/list/symbols = list(SEVEN = 1, "<font color='orange'>&</font>" = 2, "<font color='yellow'>@</font>" = 2, "<font color='green'>$</font>" = 2, "<font color='blue'>?</font>" = 2, "<font color='grey'>#</font>" = 2, "<font color='white'>!</font>" = 2, "<font color='fuchsia'>%</font>" = 2) //if people are winning too much, multiply every number in this list by 2 and see if they are still winning too much.
+	var/static/list/ray_filter = list(type = "rays", y = 16, size = 40, density = 4, color = COLOR_RED_LIGHT, factor = 15, flags = FILTER_OVERLAY)
 
 	light_color = LIGHT_COLOR_BROWN
 
@@ -119,14 +120,15 @@
 	else
 		return ..()
 
-/obj/machinery/computer/slot_machine/emag_act()
+/obj/machinery/computer/slot_machine/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(4, 0, src.loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
+	return TRUE
 
 /obj/machinery/computer/slot_machine/ui_interact(mob/living/user)
 	. = ..()
@@ -234,6 +236,8 @@
 
 /obj/machinery/computer/slot_machine/proc/toggle_reel_spin(value, delay = 0) //value is 1 or 0 aka on or off
 	for(var/list/reel in reels)
+		if(!value)
+			playsound(src, 'sound/machines/ding_short.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		reels[reel] = value
 		sleep(delay)
 
@@ -247,6 +251,7 @@
 
 /obj/machinery/computer/slot_machine/proc/give_prizes(usrname, mob/user)
 	var/linelength = get_lines()
+	var/did_player_win = TRUE
 
 	if(reels[1][2] + reels[2][2] + reels[3][2] + reels[4][2] + reels[5][2] == "[SEVEN][SEVEN][SEVEN][SEVEN][SEVEN]")
 		visible_message("<b>[src]</b> says, 'JACKPOT! You win [money] credits!'")
@@ -261,6 +266,8 @@
 				cointype = pick(subtypesof(/obj/item/coin))
 				var/obj/item/coin/C = new cointype(loc)
 				random_step(C, 2, 50)
+				playsound(src, pick(list('sound/machines/coindrop.ogg', 'sound/machines/coindrop2.ogg')), 50, TRUE)
+				sleep(REEL_DEACTIVATE_DELAY)
 
 	else if(linelength == 5)
 		visible_message("<b>[src]</b> says, 'Big Winner! You win a thousand credits!'")
@@ -277,6 +284,13 @@
 
 	else
 		to_chat(user, span_warning("No luck!"))
+		did_player_win = FALSE
+
+	if(did_player_win)
+		add_filter("jackpot_rays", 3, ray_filter)
+		animate(get_filter("jackpot_rays"), offset = 10, time = 3 SECONDS, loop = -1)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, remove_filter), "jackpot_rays"), 3 SECONDS)
+		playsound(src, 'sound/machines/roulettejackpot.ogg', 50, TRUE)
 
 /obj/machinery/computer/slot_machine/proc/get_lines()
 	var/amountthesame
@@ -334,6 +348,7 @@
 			if(throwit && target)
 				C.throw_at(target, 3, 10)
 			else
+				playsound(src, pick(list('sound/machines/coindrop.ogg', 'sound/machines/coindrop2.ogg')), 50, TRUE)
 				random_step(C, 2, 40)
 
 	return amount

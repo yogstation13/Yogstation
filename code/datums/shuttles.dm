@@ -217,6 +217,12 @@
 	Has medical facilities."
 	credit_cost = 5000
 
+/datum/map_template/shuttle/emergency/cozy
+	suffix = "cozy"
+	name = "The Cozy Shuttle"
+	description = "A shuttle that throws out integrity for style, it's all wooden frame contains three fireplaces - numerous lounge areas without sacrificing medical facilities or prisoner lodging."
+	credit_cost = 5000
+
 /datum/map_template/shuttle/emergency/triage
 	suffix = "triage"
 	name = "Emergency Triage Shuttle"
@@ -376,6 +382,15 @@
 		Seats and a brig space have been retrofitted to help on its current mission of saving you from the station. \
 		The higher ups complain this shuttle is very \"\ meta\"\ and \"\ increases greytide levels\"\ whatever that means."
 	admin_notes = "Has a chance to have (traitor) maint loot, you can always delete it when its at CC"
+	credit_cost = 7000
+
+/datum/map_template/shuttle/emergency/foureightsixfourone
+	suffix = "48641"
+	name = "Crowd-Sourced Emergency Shuttle"
+	description = "The Crowd-Sourced Emergency Shuttle is the product of a Centcom initiative to have crews design their own emergency shuttles. \
+		Due to its strange construction, this shuttle offers some amenities not available on other shuttles. \
+		The most notable additions are: An electrified arena, A fully functional cargo bay, and a club."
+	admin_notes = "The emergency shuttled created during Round 48641. "
 	credit_cost = 7000
 
 /datum/map_template/shuttle/emergency/mafia
@@ -659,3 +674,6 @@
 	suffix = "gax"
 	name = "ai ship shuttle (Gax)"
 
+/datum/map_template/shuttle/arrival/donut
+	suffix = "donut"
+	name = "arrival shuttle (Donut)"

@@ -14,7 +14,7 @@
 		"Transmission 5" = "Increases the virus' growth rate while nanites are present.",
 		"Stage Speed 7" = "Increases the replication boost."
 	)
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/nano_boost/Start(datum/disease/advance/A)
 	. = ..()
@@ -51,7 +51,7 @@
 		"Stage Speed 5" = "Increases the virus' growth rate while nanites are present.",
 		"Resistance 7" = "Severely increases the rate at which the nanites are destroyed."
 	)
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/nano_destroy/Start(datum/disease/advance/A)
 	. = ..()

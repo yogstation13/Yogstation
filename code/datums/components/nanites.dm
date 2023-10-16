@@ -182,8 +182,7 @@
 	host_mob.set_hud_image_active(DIAG_NANITE_FULL_HUD)
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
-	var/datum/component/empprotection/empproof = host_mob.GetExactComponent(/datum/component/empprotection)
-	if(empproof && (empproof.getEmpFlags() & EMP_PROTECT_SELF))
+	if(HAS_TRAIT(host_mob, TRAIT_EMPPROOF_SELF))
 		return // don't do EMP effects if they're protected from EMPs
 	if(HAS_TRAIT(host_mob, TRAIT_FARADAYCAGE))
 		severity++

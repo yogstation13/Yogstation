@@ -7,7 +7,6 @@
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-
 /obj/effect/particle_effect/water/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 70)

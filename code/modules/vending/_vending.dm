@@ -660,12 +660,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	update_canister()
 	. = ..()
 
-/obj/machinery/vending/emag_act(mob/user)
+/obj/machinery/vending/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You short out the product lock on [src]."))
-
+	return TRUE
+	
 /obj/machinery/vending/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))

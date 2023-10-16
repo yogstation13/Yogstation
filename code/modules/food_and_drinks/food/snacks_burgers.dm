@@ -225,7 +225,7 @@
 	icon_state = "spellburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("bun" = 4, "magic" = 2)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/burger/bigbite
 	name = "big bite burger"
@@ -263,7 +263,7 @@
 	bitesize = 7
 	volume = 100
 	tastes = list("bun" = 4, "type two diabetes" = 10)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | MEAT | DAIRY | EGG | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/burger/fivealarm
 	name = "five alarm burger"
@@ -271,7 +271,7 @@
 	icon_state = "fivealarmburger"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 5)
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/condensedcapsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
-	foodtype = GRAIN | MEAT
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/burger/rat
 	name = "rat burger"

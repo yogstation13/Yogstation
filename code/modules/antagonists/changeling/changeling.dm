@@ -225,6 +225,11 @@
 	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
+	//this checks for conflicting abilities that you dont want players to have at the same time (movement speed abilities for example)
+	for(var/conflictingpower in thepower.conflicts) 
+		if(has_sting(conflictingpower))
+			to_chat(owner.current, "This power conflicts with another power we currently have!")
+			return
 
 	geneticpoints -= thepower.dna_cost
 	purchasedpowers += thepower

@@ -61,9 +61,9 @@
 		tickets[screenNum].audible_message(span_rose("\the [tickets[screenNum]] dings!"),hearing_distance=1)
 		playsound(tickets[screenNum], 'sound/machines/twobeep_high.ogg', 10, 0 ,1-world.view) //The sound travels world.view+extraRange tiles. This last value is the extra range, which means the total range will be 1.
 
-/obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
+/obj/machinery/ticket_machine/emag_act(mob/user, obj/item/card/emag/emag_card) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HOP's mind.
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_warning("You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting."))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)
@@ -71,6 +71,7 @@
 	screenNum = rand(0,ticketNumMax)
 	update_appearance(UPDATE_ICON)
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
 	. = ..()

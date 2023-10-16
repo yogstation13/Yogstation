@@ -48,7 +48,6 @@
 		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
 	return
 
-
 /datum/chemical_reaction/chocolate_bar2
 	name = "Chocolate Bar"
 	id = "chocolate_bar"
@@ -190,6 +189,12 @@
 	new /obj/item/reagent_containers/food/snacks/salad/ricebowl(location)
 	if(holder && holder.my_atom)
 		qdel(holder.my_atom)
+
+/datum/chemical_reaction/bbqsauce
+	name = "BBQ Sauce"
+	id = /datum/reagent/consumable/bbqsauce
+	results = list(/datum/reagent/consumable/bbqsauce = 5)
+	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/medicine/salglu_solution = 3, /datum/reagent/consumable/blackpepper = 1)
 
 ////////////////////////////////////////////CHEESEMILK////////////////////////////////////////////
 /datum/chemical_reaction/bluemilk

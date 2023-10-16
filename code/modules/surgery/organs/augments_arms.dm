@@ -214,7 +214,7 @@
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
 	. = ..()
 
-/obj/item/organ/cyberimp/arm/toolset/emag_act()
+/obj/item/organ/cyberimp/arm/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
 		items_list += new /obj/item/kitchen/knife/combat/cyborg(src)
@@ -424,7 +424,7 @@
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
 	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 	zone = BODY_ZONE_CHEST
 
 /obj/item/organ/cyberimp/arm/power_cord/SetSlotFromZone() // don't swap the zone

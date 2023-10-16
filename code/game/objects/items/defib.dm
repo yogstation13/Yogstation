@@ -140,13 +140,14 @@
 	else
 		return ..()
 
-/obj/item/defibrillator/emag_act(mob/user)
+/obj/item/defibrillator/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(safety)
 		safety = FALSE
 		to_chat(user, span_warning("You silently disable [src]'s safety protocols with the cryptographic sequencer."))
 	else
 		safety = TRUE
 		to_chat(user, span_notice("You silently enable [src]'s safety protocols with the cryptographic sequencer."))
+	return TRUE
 
 /obj/item/defibrillator/emp_act(severity)
 	. = ..()

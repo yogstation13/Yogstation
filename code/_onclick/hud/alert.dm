@@ -248,7 +248,10 @@ If you're feeling frisky, examine yourself and click the underlined item to pull
 /atom/movable/screen/alert/embeddedobject/Click()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		return C.try_remove_embedded_object(C)
+		if (C.incapacitated())
+			to_chat(C, span_warning("You can't do that while disabled!"))
+		else
+			return C.try_remove_embedded_object(C)
 
 /atom/movable/screen/alert/weightless
 	name = "Weightless"
@@ -715,9 +718,6 @@ so as to remain in compliance with the most up-to-date laws."
 		alert.screen_loc = .
 		mymob?.client?.screen |= alert
 	return 1
-
-/mob
-	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
 
 /atom/movable/screen/alert/Click(location, control, params)
 	if(!usr || !usr.client)

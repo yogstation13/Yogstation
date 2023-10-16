@@ -133,14 +133,15 @@
 	else
 		return ..()
 
-/obj/machinery/button/emag_act(mob/user)
+/obj/machinery/button/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, 1)
 	obj_flags |= EMAGGED
-
+	return TRUE
+	
 /obj/machinery/button/attack_ai(mob/user)
 	if(!panel_open)
 		return attack_hand(user)

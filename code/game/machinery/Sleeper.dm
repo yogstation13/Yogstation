@@ -118,11 +118,12 @@
 	if(is_operational() && occupant)
 		open_machine()
 
-/obj/machinery/sleeper/emag_act(mob/user)
+/obj/machinery/sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_danger("You disable the chemical injection inhibitors on the sleeper..."))
 	obj_flags |= EMAGGED
+	return TRUE
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())

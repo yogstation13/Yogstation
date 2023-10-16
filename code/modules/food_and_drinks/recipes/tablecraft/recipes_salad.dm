@@ -52,11 +52,9 @@
 	name = "Jungle Salad"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/reagent_containers/food/snacks/grown/apple = 1,
-		/obj/item/reagent_containers/food/snacks/grown/grapes = 1,
-		/obj/item/reagent_containers/food/snacks/grown/banana = 2,
-		/obj/item/reagent_containers/food/snacks/watermelonslice = 2
-
+		/obj/item/reagent_containers/food/snacks/grown/apple = 2,
+		/obj/item/reagent_containers/food/snacks/grown/grapes = 2,
+		/obj/item/reagent_containers/food/snacks/grown/banana = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/salad/jungle
 	category = CAT_SALAD

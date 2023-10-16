@@ -109,7 +109,7 @@
 		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
 		user.visible_message(span_warning("[user] flicks the hammer on, tilting [user.p_their()] head down as if in thought."))
 		spark_system.start() //Generates sparks when you charge
-		if(!do_mob(user, user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
+		if(!do_after(user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
 			if(!charging) //So no duplicate messages
 				return
 			to_chat(user, span_notice("You flip the switch off as you lose your focus."))

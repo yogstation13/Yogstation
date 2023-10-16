@@ -44,7 +44,7 @@
 		else
 			if(!C.force_drink_text(src, C, user))
 				return
-			if(!do_mob(user, M))
+			if(!do_after(user, 3 SECONDS, M))
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding
@@ -272,6 +272,10 @@
 	name = "Carp Lite"
 	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
+
+/obj/item/reagent_containers/food/drinks/beer/light/plastic
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 15)
+	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/ale
 	name = "Magm-Ale"

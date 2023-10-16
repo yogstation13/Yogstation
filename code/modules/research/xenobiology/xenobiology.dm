@@ -953,7 +953,7 @@
 		return
 	if(user != L)
 		L.visible_message(span_notice("[user] tries to feed [src] to [L]..."), span_boldwarning("[user] tries to feed [src] to you!"))
-		if(!do_mob(user, L, 10 SECONDS))
+		if(!do_after(user, 10 SECONDS, L))
 			return
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L

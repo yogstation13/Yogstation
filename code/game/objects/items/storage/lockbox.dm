@@ -50,15 +50,16 @@
 		to_chat(user, span_danger("Access Denied."))
 		return
 
-/obj/item/storage/lockbox/emag_act(mob/user)
-	if(!broken)
-		broken = TRUE
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
-		desc += "It appears to be broken."
-		icon_state = src.icon_broken
-		if(user)
-			visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
-			return
+/obj/item/storage/lockbox/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(broken)
+		return FALSE
+	broken = TRUE
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
+	desc += "It appears to be broken."
+	icon_state = src.icon_broken
+	if(user)
+		visible_message(span_warning("\The [src] has been broken by [user] with an electromagnetic card!"))
+	return TRUE
 
 /obj/item/storage/lockbox/Entered()
 	. = ..()

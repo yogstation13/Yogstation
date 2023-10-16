@@ -12,7 +12,7 @@
 /obj/item/clothing/suit/fire
 	name = "emergency firesuit"
 	desc = "A suit that helps protect against fire and heat."
-	icon_state = "fire"
+	icon_state = "firesuit"
 	item_state = "ro_suit"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.9
@@ -21,7 +21,7 @@
 	slowdown = 1
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 10, RAD = 20, FIRE = 100, ACID = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	clothing_flags = STOPSHIGHPRESSURE | THICKMATERIAL
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -48,6 +48,7 @@
 	icon_state = "atmos_firesuit"
 	item_state = "firesuit_atmos"
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 
 /*
  * Bomb protection

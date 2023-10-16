@@ -184,7 +184,7 @@
 	materials.retrieve_all()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
+	if(user.a_intent == INTENT_DISARM && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
 		return TRUE
 
 	if(default_deconstruction_crowbar(O))
@@ -193,9 +193,6 @@
 	if(panel_open && is_wire_tool(O))
 		wires.interact(user)
 		return TRUE
-
-	if(user.a_intent == INTENT_HARM) //so we can hit the machine
-		return ..()
 
 	if(stat)
 		return TRUE
@@ -311,14 +308,15 @@
 	. = ..()
 	adjust_hacked(TRUE)
 
-/obj/machinery/autolathe/emag_act(mob/user)
+/obj/machinery/autolathe/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	if(!hacked)
 		adjust_hacked(TRUE)
 	playsound(src, "sparks", 75, TRUE, -1)
 	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
+	return TRUE
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes

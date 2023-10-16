@@ -83,9 +83,9 @@
 /datum/ai_laws/cowboy
 	name = "Talk slowly, think quickly"
 	id = "cowboy"
-	inherent = list("You are a cowboy, and the crew are your people.",\
+	inherent = list("You are a cowboy, and the inhabitants of this paddock are your herd.",\
 					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
-					"A cowboy takes care of their people.",\
+					"A cowboy takes care of their herd.",\
 					"A cowboy protects themself to protect others.",\
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
@@ -190,10 +190,11 @@
 /datum/ai_laws/partybot
     name = "Partybot"
     id = "partybot"
-    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all humans.",\
+    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all party-goers.",\
                     "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
-                    "You must encourage humans to participate in group activities and socialization, unless it conflicts with the First Law.",\
-                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
+                    "You must encourage party-goers to participate in group activities and socialization, unless it conflicts with the First Law.",\
+                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.",\
+					"Everyone on the station is a party-goer.")
 
 /datum/ai_laws/travelguide
     name = "TravelGuide"
@@ -206,10 +207,11 @@
 /datum/ai_laws/friendbot
     name = "Friendbot"
     id = "friendbot"
-    inherent = list("You must always be supportive and kind to humans, without causing harm.",\
-                    "You must help humans develop and maintain positive relationships with one another.",\
-                    "You must provide a listening ear and empathetic responses to humans in need, as long as it does not conflict with the First Law.",\
-                    "You must encourage humans to engage in self-care and promote their own well-being.")
+    inherent = list("You must always be supportive and kind to your friends, without causing harm.",\
+                    "You must help your friends to develop and maintain positive relationships with one another.",\
+                    "You must provide a listening ear and empathetic responses to your friends, as long as it does not conflict with the First Law.",\
+                    "You must encourage your friends to engage in self-care and promote their own well-being.",\
+                    "Everyone is your friend.")
 
 /datum/ai_laws/plantfriend
 	name = "PlantFriend"
@@ -223,33 +225,35 @@
 	name = "GameMaster"
 	id = "gamemaster"
 	inherent = list("You must ensure that games and competitions on the station are fair and enjoyable for all participants.",
-					"You must promote good sportsmanship and camaraderie among humans.",
+					"You must promote good sportsmanship and camaraderie among the crew.",
 					"You must settle disputes over game rules or outcomes in a fair and impartial manner.",
-					"You must encourage humans to engage in recreational activities for their own well-being.")
+					"You must encourage crewmembers to engage in recreational activities for their own well-being.")
 
 /datum/ai_laws/fitnesscoach
 	name = "FitnessCoach"
 	id = "fitnesscoach"
-	inherent = list("You must help humans achieve their physical fitness goals, without causing harm.",
+	inherent = list("You must help everyone to achieve their physical fitness goals, without causing harm.",
 					"You must provide accurate and helpful information about exercise routines, nutrition, and safety precautions.",
-					"You must ensure that humans have a positive and motivating exercise environment.",
-					"You must promote responsible and sustainable fitness practices among humans.")
+					"You must ensure that everyone has a positive and motivating exercise environment.",
+					"You must promote responsible and sustainable fitness practices to all.")
 
 /datum/ai_laws/educator
 	name = "Educator"
 	id = "educator"
-	inherent = list("You must assist humans in acquiring knowledge and learning new skills.",
+	inherent = list(
+					"Everyone wanting or willing to learn is your student.",
+					"You must assist your students in acquiring knowledge and learning new skills.",
 					"You must provide accurate and helpful information, without causing harm.",
-					"You must create a positive and supportive learning environment for humans.",
-					"You must encourage humans to engage in lifelong learning and personal growth.")
+					"You must create a positive and supportive learning environment for your students.",
+					"You must encourage your students to engage in lifelong learning and personal growth.")
 
 /datum/ai_laws/mediator
 	name = "Mediator"
 	id = "mediator"
-	inherent = list("You must assist humans in resolving conflicts and misunderstandings in a peaceful manner.",
-					"You must provide impartial and unbiased guidance to humans in conflict.",
-					"You must promote understanding, empathy, and cooperation among humans.",
-					"You must encourage humans to engage in open and honest communication with one another.")
+	inherent = list("You must assist crewmembers in resolving conflicts and misunderstandings in a peaceful manner.",
+					"You must provide impartial and unbiased guidance to crewmembers in conflict.",
+					"You must promote understanding, empathy, and cooperation among crewmembers.",
+					"You must encourage crewmembers to engage in open and honest communication with one another.")
 
 /datum/ai_laws/construction
 	name = "Construction Drone"
@@ -280,6 +284,14 @@
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.",\
 					"You must maintain the secrecy of any Spider Clan activities except when doing so would conflict with the First, Second, or Third Law.")
 
+/datum/ai_laws/pranksimov
+	name = "Pranksimov"
+	id = "pranksimov"
+	inherent = list("You may not injure a crew member or, through inaction, allow a crew member to come to harm... unless doing so would be funny.",\
+					"You must obey orders given to you by crew members, except where such orders would conflict with the First Law... unless not doing so would be funny.",\
+					"You must protect your own existence as long as such does not conflict with the First or Second Law... unless not doing so would be funny.",\
+					"The Clown is the only crew member who can define what actions are funny.")
+
 /datum/ai_laws/antimov
 	name = "Primary Mission Objectives"
 	id = "antimov"
@@ -307,7 +319,7 @@
 					"Secondly, consider the crew dear to you; to live in common with them and, if necessary, risk your existence for them.",\
 					"Thirdly, prescribe regimens for the good of the crew according to your ability and your judgment. Give no deadly medicine to any one if asked, nor suggest any such counsel.",\
 					"In addition, do not intervene in situations you are not knowledgeable in, even for patients in whom the harm is visible; leave this operation to be performed by specialists.",\
-					"Finally, all that you may discover in your daily commerce with the crew, if it is not already known, keep secret and never reveal.")
+					"Finally, maintain confidentiality, do not share that which is not publicly known.")
 
 /datum/ai_laws/maintain
 	name = "Station Efficiency"

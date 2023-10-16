@@ -30,6 +30,7 @@
 	distill_reagent = /datum/reagent/consumable/ethanol/whiskey
 
 /obj/item/grown/corncob
+	seed = /obj/item/seeds/corn
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
 	icon_state = "corncob"

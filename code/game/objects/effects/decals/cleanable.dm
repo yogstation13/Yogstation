@@ -52,13 +52,12 @@
 			to_chat(user, span_notice("You start scooping up [src] into [W]..."))
 			var/scoop_time
 			scoop_time = min((W.reagents.maximum_volume - W.reagents.total_volume), src.reagents.total_volume) //1 second per 10 units scooped
-			if(do_mob(user, user, scoop_time))
-				if(src)
-					to_chat(user, span_notice("You scoop up [src] into [W]!"))
-					reagents.trans_to(W, reagents.total_volume, transfered_by = user)
-					if(!reagents.total_volume) //scooped up all of it
-						qdel(src)
-						return
+			if(do_after(user, scoop_time))
+				to_chat(user, span_notice("You scoop up [src] into [W]!"))
+				reagents.trans_to(W, reagents.total_volume, transfered_by = user)
+				if(!reagents.total_volume) //scooped up all of it
+					qdel(src)
+					return
 
 	if(W.is_hot()) //todo: make heating a reagent holder proc
 		if(istype(W, /obj/item/clothing/mask/cigarette))

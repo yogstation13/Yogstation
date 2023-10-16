@@ -216,3 +216,7 @@
 	var/create_area_cooldown
 
 	var/sound_environment_override = SOUND_ENVIRONMENT_NONE
+
+	var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
+
+	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly

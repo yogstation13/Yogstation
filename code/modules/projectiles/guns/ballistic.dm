@@ -408,7 +408,6 @@
 ///Installs a new suppressor, assumes that the suppressor is already in the contents of src
 /obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
 	suppressed = S
-	w_class += S.w_class //so pistols do not fit in pockets when suppressed
 	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/proc/install_enloudener(obj/item/enloudener/E)
@@ -425,7 +424,6 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [suppressed.name] from \the [src]."))
 			user.put_in_hands(suppressed)
-			w_class -= suppressed.w_class
 			suppressed = null
 			update_appearance(UPDATE_ICON)
 			return
@@ -434,7 +432,6 @@
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [enloudened.name] from \the [src]."))
 			user.put_in_hands(enloudened)
-			w_class -= enloudened.w_class
 			enloudened = null
 			update_appearance(UPDATE_ICON)
 			return

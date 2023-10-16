@@ -112,6 +112,8 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!disassembled)
 			new /obj/item/shard( src.loc )
+			new /obj/item/stack/sheet/mineral/silver( src.loc )
+			new /obj/item/stack/rods( src.loc )
 	qdel(src)
 
 /obj/structure/mirror/welder_act(mob/living/user, obj/item/I)
@@ -140,6 +142,13 @@
 		if(BURN)
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 
+/obj/item/wallframe/mirror
+	name = "mirror"
+	desc = "a mirror on your hand, what are you gonna do?"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "mirror"
+	result_path = /obj/structure/mirror
+	pixel_shift = -30
 
 /obj/structure/mirror/magic
 	name = "magic mirror"

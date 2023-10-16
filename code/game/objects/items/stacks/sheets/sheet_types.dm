@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 		span_hear("You hear wood carving."),
 	)
 	// 5 Second Timer
-	if(!do_after(user, 5 SECONDS, src, NONE, TRUE))
+	if(!do_after(user, 5 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 		return
 	// Make Stake
 	var/obj/item/stake/new_item = new(user.loc)

@@ -24,7 +24,7 @@
 		"sound_instruments" = SOUND_INSTRUMENTS,
 		"sound_lobby" = SOUND_LOBBY,
 		"sound_midi" = SOUND_MIDI,
-		"sound_prayers" = SOUND_PRAYERS,
+		"sound_prayer_fax" = SOUND_PRAYER_N_FAX,
 		"sound_ship_ambience" = SOUND_SHIP_AMBIENCE,
 		"sound_jukebox" = SOUND_JUKEBOX,
 	)
@@ -44,7 +44,7 @@
 		"chat_ghostwhisper" = CHAT_GHOSTWHISPER,
 		"chat_looc" = CHAT_LOOC,
 		"chat_ooc" = CHAT_OOC,
-		"chat_prayer" = CHAT_PRAYER,
+		"chat_prayer" = CHAT_PRAYER_N_FAX,
 		"chat_pullr" = CHAT_PULLR,
 		"chat_typing_indicator" = CHAT_TYPING_INDICATOR,
 		"ghost_ckey" = GHOST_CKEY,

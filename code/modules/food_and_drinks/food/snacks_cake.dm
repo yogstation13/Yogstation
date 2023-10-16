@@ -252,7 +252,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/slimecake
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("cake" = 5, "sweetness" = 1, "slime" = 1)
-	foodtype = GRAIN | DAIRY | SUGAR
+	foodtype = GRAIN | DAIRY | SUGAR | TOXIC
 
 /obj/item/reagent_containers/food/snacks/cakeslice/slimecake
 	name = "slime cake slice"

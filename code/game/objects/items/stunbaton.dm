@@ -160,12 +160,9 @@
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return
 	//yogs edit begin ---------------------------------
-	if(status && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-		if(istype(stomach))
-			stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
-			to_chat(M,span_notice("You get charged by [src]."))
+	if(status && isethereal(M))
+		M.adjust_nutrition(40)
+		to_chat(M,span_notice("You get charged by [src]."))
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
@@ -293,8 +290,18 @@
 /obj/item/melee/baton/cattleprod/tactical
 	name = "tactical stunprod"
 	desc = "A cost-effective, mass-produced, tactical stun prod."
+	icon_state = "tacprod"
+	item_state = "tacprod"
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
-	color = "#aeb08c" // super tactical
+
+/obj/item/melee/baton/cattleprod/tactical/update_icon_state()
+	. = ..()
+	if(status)
+		item_state = "[initial(item_state)]_active"
+	else if(!cell)
+		item_state = "[initial(item_state)]_nocell"
+	else
+		item_state = "[initial(item_state)]"
 
 /obj/item/batonupgrade
 	name = "baton power upgrade"

@@ -8,10 +8,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aj" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "aH" = (
 /obj/structure/table,
 /obj/effect/turf_decal/delivery,
@@ -41,11 +37,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"aN" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "aW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -61,13 +52,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"bz" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "bX" = (
 /obj/machinery/power/emitter/anchored{
 	dir = 1;
@@ -110,6 +94,9 @@
 /obj/structure/cable/orange,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"dO" = (
+/turf/closed/mineral/random/snow/top_layer,
+/area/icemoon/top_layer/outdoors)
 "dU" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -139,11 +126,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"eP" = (
-/obj/structure/lattice,
-/obj/structure/girder/reinforced,
-/turf/open/space/basic,
-/area/space/nearstation)
 "eS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -153,13 +135,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"fq" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "fw" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/machinery/power/rad_collector/anchored,
@@ -250,10 +225,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"ik" = (
-/obj/structure/lattice,
-/turf/closed/wall/r_wall,
-/area/space/nearstation)
 "iW" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/binary/pump{
@@ -308,21 +279,17 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"kC" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
+"kb" = (
 /obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
+/obj/structure/grille,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "le" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "li" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -391,12 +358,14 @@
 /obj/item/pipe_dispenser,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"mn" = (
-/turf/open/space/basic,
-/area/space)
+"mC" = (
+/obj/structure/lattice,
+/obj/structure/grille/broken,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "mG" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/engine/engineering)
 "mH" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -447,6 +416,9 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"mU" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "mX" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -465,13 +437,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"mY" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
+"nA" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
 "nB" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -617,6 +586,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"qA" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "qE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -640,6 +616,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"qR" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "qV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -766,13 +746,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"uw" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "vc" = (
 /obj/structure/cable/orange{
 	icon_state = "2-8"
@@ -832,6 +805,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"vJ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "vU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -851,14 +830,6 @@
 /obj/item/wrench,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"we" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "wj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -889,6 +860,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"xf" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/turf/closed/wall,
+/area/engine/engineering)
 "xN" = (
 /obj/structure/cable/orange,
 /turf/open/floor/plating,
@@ -1007,6 +982,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Bg" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "Bn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1048,27 +1029,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Cr" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "Cs" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"CD" = (
-/obj/structure/lattice,
-/obj/structure/grille/broken,
-/turf/open/space,
-/area/space/nearstation)
-"CQ" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "CZ" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 1
@@ -1098,13 +1062,6 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"DR" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "Et" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1169,6 +1126,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"Fk" = (
+/obj/structure/lattice,
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/asteroid/snow/icemoon/top_layer,
+/area/icemoon/top_layer/outdoors)
+"Fp" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "Fz" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -1183,18 +1151,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"FJ" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
-"FR" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/turf/open/space,
-/area/space/nearstation)
 "Gr" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel/dark,
@@ -1225,11 +1181,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"Hi" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
 /area/engine/engineering)
 "Hj" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1264,13 +1215,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"HQ" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "HU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1349,17 +1293,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"JO" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space/basic,
-/area/space/nearstation)
-"Kt" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/turf/open/space,
-/area/space/nearstation)
 "KF" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -1402,6 +1335,10 @@
 "LU" = (
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
+"LX" = (
+/obj/structure/lattice,
+/turf/closed/wall/r_wall,
+/area/icemoon/top_layer/outdoors)
 "Mw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -1454,12 +1391,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Ot" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/turf/open/space,
-/area/space/nearstation)
 "Ov" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -1493,6 +1424,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"Pm" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "Pz" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -1519,6 +1456,13 @@
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"PK" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/top_layer/outdoors)
 "Qa" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
@@ -1594,13 +1538,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Rx" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/space/nearstation)
 "RP" = (
 /obj/machinery/power/emitter/anchored{
 	state = 2
@@ -1676,11 +1613,6 @@
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/engine,
-/area/engine/engineering)
-"UW" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/plating,
 /area/engine/engineering)
 "Vc" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -1761,20 +1693,9 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Ye" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "YF" = (
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"Za" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
 "Zy" = (
 /obj/structure/cable/orange{
 	icon_state = "1-8"
@@ -2074,9 +1995,9 @@ LU
 MT
 mI
 Ju
-UW
-JO
-uw
+xf
+qR
+Bg
 OD
 OD
 OD
@@ -2101,16 +2022,16 @@ oX
 li
 aK
 mS
-mn
-fq
-Ot
-HQ
-aj
+mU
+le
+vJ
+Bg
+mU
 "}
 (13,1,1) = {"
-mn
-Ye
-aj
+dO
+nA
+mU
 mG
 rB
 QE
@@ -2126,18 +2047,18 @@ aW
 UM
 Et
 fK
-Hi
-aN
-we
-we
-we
-Rx
+xf
+qR
+PK
+PK
+PK
+Bg
 "}
 (14,1,1) = {"
-mn
-Ye
-aj
-aj
+dO
+nA
+mU
+mU
 jp
 SM
 jg
@@ -2153,17 +2074,17 @@ SM
 vl
 SM
 jp
-Ot
-kC
-Za
-kC
-mY
+vJ
+PK
+PK
+PK
+Pm
 "}
 (15,1,1) = {"
-mn
-Ye
-Ye
-Ye
+dO
+nA
+nA
+nA
 jp
 KF
 qV
@@ -2179,17 +2100,17 @@ hL
 Zz
 KF
 jp
-Kt
-kC
-Za
-kC
-Rx
+Fp
+PK
+PK
+PK
+Bg
 "}
 (16,1,1) = {"
-mn
-mn
-mn
-mn
+dO
+dO
+dO
+dO
 jp
 qm
 Xo
@@ -2205,17 +2126,17 @@ hr
 NY
 Rt
 jp
-DR
-we
-we
-we
-mY
+vJ
+PK
+PK
+PK
+Pm
 "}
 (17,1,1) = {"
-mn
-mn
-mn
-mn
+dO
+dO
+dO
+dO
 jp
 oN
 vc
@@ -2231,17 +2152,17 @@ bX
 jZ
 wb
 jp
-Kt
-kC
-Za
-kC
-Rx
+Fp
+PK
+PK
+PK
+Bg
 "}
 (18,1,1) = {"
-mn
-mn
-mn
-mn
+dO
+dO
+dO
+dO
 jp
 Cs
 Ta
@@ -2257,17 +2178,17 @@ Vz
 Zy
 KF
 jp
-FJ
-kC
-kC
-kC
-mY
+vJ
+PK
+PK
+PK
+Pm
 "}
 (19,1,1) = {"
-Ye
-mn
-mn
-mn
+nA
+dO
+dO
+dO
 jp
 jp
 jp
@@ -2283,137 +2204,137 @@ jp
 jp
 jp
 jp
-Kt
-CQ
-le
-CQ
-Rx
+Fp
+qA
+qA
+qA
+Bg
 "}
 (20,1,1) = {"
-Ye
-mn
-mn
-mn
-mn
-Ye
-mn
-Ye
-mn
-mn
-Ye
-mn
-Ye
-mn
-Ye
-mn
-Ye
-Ye
-aj
-aj
-bz
-mY
-bz
-mY
+nA
+dO
+dO
+dO
+dO
+nA
+dO
+nA
+dO
+dO
+nA
+dO
+nA
+dO
+nA
+dO
+nA
+nA
+mU
+mU
+Fp
+Pm
+Fp
+Pm
 "}
 (21,1,1) = {"
-Ye
-mn
-mn
-mn
-mn
-Ye
-mn
-Ye
-mn
-mn
-Ye
-mn
-Ye
-mn
-Ye
-mn
-mn
-Ye
-Ye
-mn
+nA
+dO
+dO
+dO
+dO
+nA
+dO
+nA
+dO
+dO
+nA
+dO
+nA
+dO
+nA
+dO
+dO
+nA
+nA
+dO
 OD
 OD
 OD
 OD
 "}
 (22,1,1) = {"
-Ye
-FR
-FR
-FR
-FR
-Ye
-FR
-FR
-FR
-FR
-FR
-FR
-CD
-FR
-FR
-FR
-FR
-FR
-CD
-mn
+nA
+kb
+kb
+kb
+kb
+nA
+kb
+kb
+kb
+kb
+kb
+kb
+mC
+kb
+kb
+kb
+kb
+kb
+mC
+dO
 OD
 OD
 OD
 OD
 "}
 (23,1,1) = {"
-mn
-mn
-mn
-Ye
-mn
-mn
-ik
-ik
-ik
-ik
-eP
-ik
-ik
-ik
-ik
-eP
-Cr
-mn
-mn
-mn
+dO
+dO
+dO
+nA
+dO
+dO
+LX
+LX
+LX
+LX
+Fk
+nA
+nA
+nA
+nA
+Fk
+nA
+dO
+dO
+dO
 OD
 OD
 OD
 OD
 "}
 (24,1,1) = {"
-mn
-mn
-mn
-Ye
-Ye
-Ye
-FR
-FR
-FR
-FR
-CD
-FR
-FR
-FR
-FR
-CD
-FR
-FR
-FR
-mn
+dO
+dO
+dO
+nA
+nA
+nA
+kb
+kb
+kb
+kb
+mC
+kb
+kb
+kb
+kb
+mC
+kb
+kb
+kb
+dO
 OD
 OD
 OD
@@ -2421,25 +2342,25 @@ OD
 "}
 (25,1,1) = {"
 OD
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-OD
-OD
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
 OD
 OD
 OD
@@ -2448,21 +2369,21 @@ OD
 (26,1,1) = {"
 OD
 OD
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
-mn
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
 OD
 OD
 OD

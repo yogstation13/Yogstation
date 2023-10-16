@@ -42,6 +42,7 @@
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network
 	uniform = /obj/item/clothing/under/yogs/rank/network_admin
+	uniform_skirt = /obj/item/clothing/under/yogs/rank/network_admin/skirt
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots

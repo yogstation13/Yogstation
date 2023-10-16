@@ -86,12 +86,14 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
 #define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"
+///from adjust procs and bodypart heal_damage(): (amount, damtype)
+#define COMSIG_MOB_APPLY_HEALING "mob_apply_healing"
 ///from base of /mob/living/attack_alien(): (user)
 #define COMSIG_MOB_ATTACK_ALIEN "mob_attack_alien"
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /obj/structure/table_place() and table_push(): (mob/living/user, mob/living/pushed_mob)
-#define COMSIG_MOB_TABLING "mob_tabling"						
+#define COMSIG_MOB_TABLING "mob_tabling"
 ///from base of /mob/verb/examinate(): (atom/target)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 ///from /mob/living/handle_eye_contact(): (mob/living/other_mob)
