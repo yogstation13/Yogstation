@@ -260,7 +260,6 @@
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
 
-
 		if("gang_boss")
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
@@ -269,6 +268,9 @@
 			new /obj/item/storage/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
+
+		if("scav_boss")
+			// hammer (when added, but better and can break non-rwalls instantly), plated mask, jumpsuit, some kinda mobility item?, syndi chestrig, utility gadget? 
 
 #undef CARP_CARP_CARP
 
