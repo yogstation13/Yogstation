@@ -284,7 +284,7 @@
 
 /obj/item/storage/pill_bottle/synaptizine
 	name = "bottle of synaptizine pills"
-	desc = "Contains synaptizine pills to help with managing the psychological drawbacks of your implants. Someone hastily wrote 'DOES NOT MITIGATE OVERCLOCKER OVERUSAGE' on it with sharpie."
+	desc = "Contains synaptizine pills to help with managing the psychological drawbacks of having numerous implants. Someone hastily wrote 'DOES NOT MITIGATE OVERCLOCKER OVERUSAGE' on it with sharpie."
 
 /obj/item/storage/pill_bottle/charcoal/PopulateContents()
 	for(var/i in 1 to 7)
@@ -292,7 +292,7 @@
 
 /obj/item/reagent_containers/pill/synaptizine
 	name = "synaptizine pill"
-	desc = "Helps with some of the side effects of your various implants."
+	desc = "Helps with some of the side effects of having various implants."
 	icon_state = "pill19"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 10)
 	rename_with_volume = TRUE
