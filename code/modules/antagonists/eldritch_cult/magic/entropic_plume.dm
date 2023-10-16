@@ -1,0 +1,44 @@
+// Shoots out in a wave-like, what rust heretics themselves get
+/datum/action/cooldown/spell/cone/staggered/entropic_plume
+	name = "Entropic Plume"
+	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them(increasing with range) and poisons them(decreasing with range), while also spreading rust in the path of the plume."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "entropic_plume"
+	sound = 'sound/magic/forcewall.ogg'
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 30 SECONDS
+
+	invocation = "'NTR'P'C PL'M'"
+	invocation_type = INVOCATION_WHISPER
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	
+	cone_levels = 5
+	respect_density = TRUE
+
+/datum/action/cooldown/spell/cone/staggered/entropic_plume/cast(atom/cast_on)
+	. = ..()
+	new /obj/effect/temp_visual/dir_setting/entropic(get_step(cast_on, cast_on.dir), cast_on.dir)
+
+/datum/action/cooldown/spell/cone/staggered/entropic_plume/do_turf_cone_effect(turf/target_turf, atom/caster, level)
+	target_turf.rust_heretic_act()
+
+/datum/action/cooldown/spell/cone/staggered/entropic_plume/do_mob_cone_effect(mob/living/victim, atom/caster, level)
+	. = ..()
+	if(victim.can_block_magic() || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
+		return
+	victim.apply_status_effect(STATUS_EFFECT_AMOK)
+	victim.apply_status_effect(STATUS_EFFECT_CLOUDSTRUCK, (level * 1 SECONDS))
+	if(iscarbon(victim))
+		var/mob/living/carbon/carbon_victim = victim
+		carbon_victim.reagents?.add_reagent(/datum/reagent/eldritch, min(1, 6 - level))
+
+/datum/action/cooldown/spell/cone/staggered/entropic_plume/calculate_cone_shape(current_level)
+	if(current_level == cone_levels)
+		return 5
+	else if(current_level == cone_levels - 1)
+		return 3
+	else
+		return 2
