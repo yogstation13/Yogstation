@@ -64,8 +64,8 @@
 		if(COOLDOWN_FINISHED(src, regen_cooldown))
 			COOLDOWN_START(src, regen_cooldown, blood_regen_delay)
 			var/datum/antagonist/vampire/vampire = is_vampire(user)
-			if (vampire.total_blood >= 5 && vampire.usable_blood < vampire.total_blood * 0.25)
-				vampire.usable_blood = min(vampire.usable_blood + 5, vampire.total_blood * 0.25) // 5 units every 10 seconds
+			if (vampire.total_blood >= 5 && vampire.usable_blood < vampire.total_blood)
+				vampire.usable_blood = min(vampire.usable_blood + 5, vampire.total_blood) // 5 units every 10 seconds
 
 /mob/living/carbon/human/handle_fire()
 	. = ..()

@@ -518,7 +518,7 @@
 
 /datum/action/cooldown/spell/summon_coat
 	name = "Summon Dracula Coat (100)"
-	desc = "Allows you to summon a Vampire Coat providing passive usable blood restoration when your usable blood is very low."
+	desc = "Allows you to summon a Vampire Coat providing passive usable blood restoration."
 	gain_desc = "Now that you have reached full power, you can now pull a vampiric coat out of thin air!"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coat"
