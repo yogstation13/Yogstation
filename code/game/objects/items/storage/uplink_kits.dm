@@ -271,13 +271,13 @@
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
 		if("solo")
-			new /obj/item/autosurgeon/syndicate/spinalspeed
-			new /obj/item/clothing/suit/toggle/cyberpunk/solo
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis
-			new /obj/item/storage/box/syndie_kit/emp_shield
-			new /obj/item/autosurgeon/upgraded_cyberlungs //this is to remain true to the source material ok
-			new /obj/item/storage/pill_bottle/synaptizine //take your drugs david
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src)
+			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src)
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src)
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src)
+			new /obj/item/storage/box/syndie_kit/emp_shield(src)
+			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
+			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david
 			
 
 #undef CARP_CARP_CARP
