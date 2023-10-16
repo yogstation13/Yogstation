@@ -52,23 +52,23 @@
 /datum/vampire_passive/New()
 	. = ..()
 	if(!gain_desc)
-		gain_desc = "You have gained \the [src] ability."
+		gain_desc = span_notice("You have gained \the [src] ability.")
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/vampire_passive/nostealth
-	gain_desc = "You are no longer able to conceal yourself while sucking blood."
+	gain_desc = span_warning("You are no longer able to conceal yourself while sucking blood.") //gets a warning span because it's a downgrade
 
 /datum/vampire_passive/regen
-	gain_desc = "Your rejuvenation abilities have improved and will now heal you over time when used."
+	gain_desc = span_notice("Your innate regenerative abilities have been improved, granting passive healing. Rejuvenate now also helps to reduce disabling effects.")
 
 /datum/vampire_passive/vision
-	gain_desc = "Your vampiric vision has improved."
+	gain_desc = span_notice("Your vampiric vision has improved.")
 
 /datum/vampire_passive/full
-	gain_desc = "You have reached your full potential and are no longer weak to the effects of anything holy and your vision has been improved greatly."
+	gain_desc = span_notice("You have reached your full potential and are no longer weak to the effects of anything holy and your vision has been improved greatly.")
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,14 +87,26 @@
 
 /datum/action/cooldown/spell/vampire_help/cast(mob/living/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.\n\
-			Your bloodsucking speed depends on grab strength, you can <i>stealthily</i> extract blood by initiating without a grab, and can suck more blood per cycle by <b>having a neck grab or stronger</b>. Both of these modify the amount of blood taken by 50%; less for stealth, more for strong grabs.</span>")
+	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
+	if(!V) //sanity check
+		return
+	var/stealth = TRUE
+	if(V.get_ability(/datum/vampire_passive/nostealth))//different help text if you no longer have stealth
+		stealth = FALSE
 
+	to_chat(user, span_notice("You can consume blood from humanoid life by [span_red("punching their head while on the harm intent")]"))
+	to_chat(user, span_notice("Your bloodsucking speed depends on grab strength."))
+	to_chat(user, span_notice("Having a <b>neck grab or stronger</b> increases blood drain rate by 50%."))
+	to_chat(user, span_notice("This [span_red("WILL")] alert everyone who can see it, as well as make a noise."))
+	if(stealth)
+		to_chat(user, span_notice("You can extract blood [span_red("<i>stealthily</i>")] by initiating without a grab."))
+		to_chat(user, span_notice("This will reduce the amount of blood taken by 50%."))
+	to_chat(user, span_notice("Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>."))
 	return TRUE
 
 /datum/action/cooldown/spell/rejuvenate
-	name = "Rejuvenate"
-	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
+	name = "Rejuvenate (20)"
+	desc= "Flush your system with some spare blood to restore stamina over time."
 	button_icon_state = "rejuv"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_vampire"
@@ -104,23 +116,28 @@
 
 	check_flags = NONE
 	cooldown_time = 20 SECONDS
+	blood_used = 20
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/rejuvenate/cast(mob/living/user)
 	. = ..()
+	if(!iscarbon(user))
+		return FALSE
 	var/mob/living/carbon/U = user
-	U.remove_status_effect(/datum/status_effect/speech/stutter)
+	heal(U)
 
-	var/datum/antagonist/vampire/V = U.mind.has_antag_datum(/datum/antagonist/vampire)
+/datum/action/cooldown/spell/rejuvenate/proc/heal(mob/living/carbon/user, iterations = 1)
+	if(iterations > 5)//1 2 3 4 5 return, 5 total instances of stam heal each split by 1 second
+		return
+	user.remove_status_effect(/datum/status_effect/speech/stutter)
+
+	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V) //sanity check
 		return
-	for(var/i = 1 to 5)
-		U.adjustStaminaLoss(-50)
-		if(V.get_ability(/datum/vampire_passive/regen))
-			U.adjustBruteLoss(-1)
-			U.adjustOxyLoss(-2.5)
-			U.adjustToxLoss(-1, TRUE, TRUE)
-			U.adjustFireLoss(-1)
+	user.adjustStaminaLoss(-50)
+	if(V.get_ability(/datum/vampire_passive/regen))
+		user.AdjustAllImmobility(-0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(heal), user, iterations + 1), 1 SECONDS)
 
 /datum/action/cooldown/spell/pointed/gaze
 	name = "Vampiric Gaze"
@@ -321,7 +338,7 @@
 
 /datum/action/cooldown/spell/revive
 	name = "Revive"
-	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
+	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintegrate if you're in the chapel and not yet strong enough!"
 	desc = "Revives you, provided you are not in the chapel!"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coffin"
@@ -346,9 +363,17 @@
 		return
 	var/mob/living/L = user
 	if(istype(get_area(L.loc), /area/chapel))
-		L.visible_message(span_warning("[L] disintergrates into dust!"), span_userdanger("Holy energy seeps into our very being, disintergrating us instantly!"), "You hear sizzling.")
-		new /obj/effect/decal/remains/human(L.loc)
-		L.dust()
+		var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
+		if(!V) //sanity check
+			return
+		if(V.get_ability(/datum/vampire_passive/full)) //full blooded vampire doesn't get dusted if they try to res, it still doesn't work though
+			to_chat(user, span_danger("The holy energies of this place prevent our revival!"))
+			return
+		else //yes yes, it's an else after a return, it just feels wrong without it though
+			L.visible_message(span_warning("[L] disintegrates into dust!"), span_userdanger("Holy energy seeps into our very being, disintegrating us instantly!"), "You hear sizzling.")
+			new /obj/effect/decal/remains/human(L.loc)
+			L.dust()
+			return
 	to_chat(L, span_notice("We begin to reanimate... this will take 1 minute."))
 	addtimer(CALLBACK(src, PROC_REF(revive), L), 1 MINUTES)
 
@@ -361,39 +386,6 @@
 		user.regenerate_organs()
 	user.revive(full_heal = TRUE)
 	user.visible_message(span_warning("[user] reanimates from death!"), span_notice("We get back up."))
-
-
-/datum/action/cooldown/spell/pointed/disease
-	name = "Diseased Touch (50)"
-	desc = "Touches your victim with infected blood giving them Grave Fever, which will, left untreated, causes toxic building and frequent collapsing."
-	gain_desc = "You have gained the Diseased Touch ability which causes those you touch to become weak unless treated medically."
-	button_icon_state = "disease"
-	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_vampire"
-	overlay_icon_state = "bg_vampire_border"
-
-	school = SCHOOL_SANGUINE
-
-	blood_used = 50
-	vamp_req = TRUE
-
-/datum/action/cooldown/spell/pointed/disease/InterceptClickOn(mob/living/user, params, atom/target_atom)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!iscarbon(target_atom))
-		return FALSE
-	if(is_vampire(target_atom))
-		to_chat(user, span_warning("They seem to be unaffected."))
-		return FALSE
-
-	var/mob/living/carbon/target = target_atom
-	to_chat(user, span_warning("You stealthily infect [target] with your diseased touch."))
-	target.help_shake_act(user)
-	var/datum/disease/D = new /datum/disease/vampire
-	target.ForceContractDisease(D)
-
-	return TRUE
 
 
 /datum/action/cooldown/spell/aoe/screech
@@ -527,7 +519,7 @@
 		if(!do_after(user, 7 SECONDS, target))
 			to_chat(user, span_danger("The pact has failed! [target] has not became a vampire."))
 			to_chat(target, span_notice("The visions stop, and you relax."))
-			vamp.usable_blood += blood_used / 2	// Refund half the cost
+			vamp.usable_blood += blood_used	// Refund the cost
 			return FALSE
 	if(!QDELETED(user) && !QDELETED(target))
 		to_chat(user, span_notice(". . ."))

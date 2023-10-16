@@ -35,12 +35,11 @@
 		/datum/vampire_passive/nostealth = 150, //only lose the ability to stealth once you get a proper way to escape
 		/datum/action/cooldown/spell/shapeshift/vampire = 150,
 		/datum/action/cooldown/spell/aoe/screech = 200,
-		/datum/action/cooldown/spell/pointed/disease = 225,
 		/datum/action/cooldown/spell/bats = 250,
 		/datum/vampire_passive/regen = 250,
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform = 300,
-		/datum/vampire_passive/full = 400,
 		/datum/action/cooldown/spell/summon_coat = 400,
+		/datum/vampire_passive/full = 450,
 		/datum/action/cooldown/spell/pointed/vampirize = 450)
 
 /datum/antagonist/vampire/new_blood
@@ -239,10 +238,14 @@
 		C.hud_used.vamp_blood_display.invisibility = FALSE
 		C.hud_used.vamp_blood_display.maptext = ANTAG_MAPTEXT(usable_blood, COLOR_CHANGELING_CHEMICALS)
 	handle_vampire_cloak()
+	if(get_ability(/datum/vampire_passive/regen))
+		C.heal_overall_damage(1, 1, 0, BODYPART_ANY) //advanced vampire powers give regen to even robotic limbs
+		C.adjustToxLoss(-1, TRUE, TRUE)
+		C.adjustOxyLoss(-2.5)
+
 	if(istype(C.loc, /obj/structure/closet/crate/coffin))
-		C.adjustBruteLoss(-4)
-		C.adjustFireLoss(-4)
-		C.adjustToxLoss(-4)
+		C.heal_overall_damage(4, 4, 0, BODYPART_ORGANIC) //sleepy in coffin doesn't
+		C.adjustToxLoss(-4, TRUE, TRUE)
 		C.adjustOxyLoss(-4)
 		C.adjustCloneLoss(-4)
 		return
@@ -370,7 +373,7 @@
 				to_chat(owner.current, span_notice("[power.gain_desc]"))
 			else if(istype(p, /datum/vampire_passive))
 				var/datum/vampire_passive/power = p
-				to_chat(owner, span_notice("[power.gain_desc]"))
+				to_chat(owner, power.gain_desc)
 
 /datum/antagonist/vampire/proc/handle_vampire_cloak()
 	if(!ishuman(owner.current))
