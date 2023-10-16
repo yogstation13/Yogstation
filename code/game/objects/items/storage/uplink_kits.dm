@@ -272,7 +272,7 @@
 
 		if("solo")
 			new /obj/item/autosurgeon/syndicate/spinalspeed
-			new /obj/item/clothing/suit/hooded/wintercoat/ripoffdavid
+			new /obj/item/clothing/suit/toggle/cyberpunk/solo
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 			new /obj/item/storage/box/syndie_kit/emp_shield
@@ -297,16 +297,9 @@
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 10)
 	rename_with_volume = TRUE
 
-/obj/item/clothing/suit/hooded/wintercoat/ripoffdavid
-	name = "Solo's Jacket"
+/obj/item/clothing/suit/toggle/cyberpunk/solo
+	name = "David's Jacket"
 	desc = "A jacket once owned by a legendary edgerunner, or so they say. Armored."
-	icon_state = "coatatmos"
-	item_state = "coatatmos"
-	armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
-	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/atmos
-
-/obj/item/clothing/head/hooded/winterhood/ripoffdavid
-	icon_state = "winterhood_atmos"
 	armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 
 /obj/item/stand_arrow/boss
