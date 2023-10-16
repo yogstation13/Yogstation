@@ -112,18 +112,6 @@
 		/obj/item/clothing/gloves/combat,
 	)
 
-/obj/effect/spawner/lootdrop/bluespace_tap/alien_objects
-	name = "alien objects"
-	loot = list(
-		/obj/item/weldingtool/abductor,
-		/obj/item/screwdriver/abductor,
-		/obj/item/multitool/abductor,
-		/obj/item/wirecutters/abductor,
-		/obj/item/crowbar/abductor,
-		/obj/item/wrench/abductor,
-		/obj/item/stack/sheet/mineral/abductor,
-	)
-
 /obj/effect/spawner/lootdrop/bluespace_tap/organic
 	name = "organic objects"
 	loot = list(
@@ -188,6 +176,19 @@
 		/obj/item/stack/ore/silver = 6
 	)
 
+/obj/effect/spawner/lootdrop/bluespace_tap/maintenance
+	name = "assorted trash"
+	loot = list(
+		/obj/effect/spawner/lootdrop/maintenance = 8,
+		/obj/effect/spawner/lootdrop/maintenance/two = 7,
+		/obj/effect/spawner/lootdrop/maintenance/three = 6,
+		/obj/effect/spawner/lootdrop/maintenance/four = 5,
+		/obj/effect/spawner/lootdrop/maintenance/five = 4,
+		/obj/effect/spawner/lootdrop/maintenance/six = 3,
+		/obj/effect/spawner/lootdrop/maintenance/seven = 2,
+		/obj/effect/spawner/lootdrop/maintenance/eight = 1
+	)
+
 #define kW *1000
 #define MW kW *1000
 #define GW MW *1000
@@ -224,10 +225,10 @@
 	var/static/product_list = list(
 	new /datum/data/bluespace_tap_product("Unknown Exotic Hat", /obj/effect/spawner/lootdrop/bluespace_tap/hat, 5000),
 	new /datum/data/bluespace_tap_product("Unknown Snack", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
+	new /datum/data/bluespace_tap_product("Unknown Refuse", /obj/effect/spawner/lootdrop/bluespace_tap/maintenance, 10000),
 	new /datum/data/bluespace_tap_product("Unknown Cultural Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
 	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000),
 	new /datum/data/bluespace_tap_product("Unknown Materials", /obj/effect/spawner/lootdrop/bluespace_tap/mats, 30000),
-	new /datum/data/bluespace_tap_product("Unknown Alien Objects", /obj/effect/spawner/lootdrop/bluespace_tap/alien_objects, 250000),
 	)
 
 	/// The level the machine is currently mining at. 0 means off

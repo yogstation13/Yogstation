@@ -22,6 +22,7 @@
 ///tracks the number of knowledges to next tier, currently 3
 	var/tier_counter = 0
 ///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
+///order these from main path ability (will choose the color in the UI) to minor abilities below them (will once again, make sense if you look at the in game UI)
 	var/list/knowledges = list(	
 	TIER_PATH = list(
 		/datum/eldritch_knowledge/base_ash,
@@ -30,16 +31,16 @@
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void),
 	TIER_1 = list(
-		/datum/eldritch_knowledge/spell/ashen_shift,
-		/datum/eldritch_knowledge/ashen_eyes,
+		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
 		/datum/eldritch_knowledge/rust_regen,
-		/datum/eldritch_knowledge/armor,
-		/datum/eldritch_knowledge/essence,
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
-		/datum/eldritch_knowledge/eldritch_eye,
 		/datum/eldritch_knowledge/spell/void_phase,
-		/datum/eldritch_knowledge/void_cloak),
+		/datum/eldritch_knowledge/armor,
+		/datum/eldritch_knowledge/void_cloak,
+		/datum/eldritch_knowledge/ashen_eyes,
+		/datum/eldritch_knowledge/essence,
+		/datum/eldritch_knowledge/eldritch_eye),
 	TIER_MARK = list(
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
@@ -47,15 +48,13 @@
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark),
 	TIER_2 = list(
-		/datum/eldritch_knowledge/blindness,
-		/datum/eldritch_knowledge/corrosion,
-		/datum/eldritch_knowledge/paralysis,
+		/datum/eldritch_knowledge/spell/volcano_blast,
 		/datum/eldritch_knowledge/raw_prophet,
-		/datum/eldritch_knowledge/spell/blood_siphon,
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
-		/datum/eldritch_knowledge/spell/eldritchbolt,
 		/datum/eldritch_knowledge/cold_snap,
+		/datum/eldritch_knowledge/spell/blood_siphon,
+		/datum/eldritch_knowledge/spell/eldritchbolt,
 		/datum/eldritch_knowledge/spell/void_blast),
 	TIER_BLADE = list(
 		/datum/eldritch_knowledge/ash_blade_upgrade,
@@ -65,14 +64,14 @@
 		/datum/eldritch_knowledge/void_blade_upgrade),
 	TIER_3 = list(
 		/datum/eldritch_knowledge/spell/flame_birth,
-		/datum/eldritch_knowledge/spell/cleave,
 		/datum/eldritch_knowledge/stalker,
-		/datum/eldritch_knowledge/ashy,
-		/datum/eldritch_knowledge/rusty,
 		/datum/eldritch_knowledge/spell/entropic_plume,
 		/datum/eldritch_knowledge/cerebral_control,
-		/datum/eldritch_knowledge/spell/famished_roar,
 		/datum/eldritch_knowledge/spell/void_pull,
+		/datum/eldritch_knowledge/ashy,
+		/datum/eldritch_knowledge/rusty,
+		/datum/eldritch_knowledge/spell/cleave,
+		/datum/eldritch_knowledge/spell/famished_roar,
 		/datum/eldritch_knowledge/spell/call_of_ice),
 	TIER_ASCEND = list(
 		/datum/eldritch_knowledge/ash_final,
@@ -189,7 +188,7 @@
 	// This makes the image 64x64.
 	icon.Crop(-15, -15, 48, 48)
 
-	var/obj/item/gun/magic/hook/sickly_blade/blade = new
+	var/obj/item/melee/sickly_blade/blade = new
 	icon.Blend(icon(blade.lefthand_file, blade.item_state), ICON_OVERLAY)
 	qdel(blade)
 
@@ -202,6 +201,7 @@
 	if(ishuman(owner.current))
 		forge_primary_objectives()
 		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
+		gain_knowledge(/datum/eldritch_knowledge/spell/basic_jaunt)
 	owner.current.log_message("has been made a student of the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -340,17 +340,17 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
-		if(is_mind())
+		else if(is_mind())
 			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
-		if(is_void())
+		else if(is_void())
 			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
+		else if(is_rust())
+			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
 			else
 				parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
-		else //Rust
-			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The [lowertext(lore)] heretic was successful!")

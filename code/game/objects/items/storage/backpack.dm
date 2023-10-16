@@ -756,14 +756,14 @@
 	new /obj/item/clothing/suit/det_suit/tan(src)
 	new /obj/item/clothing/head/fedora/det_hat/grey(src)
 	new /obj/item/clothing/shoes/laceup(src)
-	new /obj/item/clothing/under/yogs/forensictech(src)
-	new /obj/item/clothing/under/yogs/bluedetective(src)
-	new /obj/item/clothing/under/yogs/golddetective(src)
-	new /obj/item/clothing/under/yogs/greydetective(src)
-	new /obj/item/clothing/under/yogs/blackdetective(src)
-	new /obj/item/clothing/suit/yogs/golddetective(src)
-	new /obj/item/clothing/suit/yogs/detectivecoat(src)
-	new /obj/item/clothing/suit/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs(src)
+	new /obj/item/clothing/under/rank/det/yogs/forensictech(src)
+	new /obj/item/clothing/under/rank/det/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/golddetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/greydetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs(src)
+	new /obj/item/clothing/suit/det_suit/yogs/golddetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs/bluedetective(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/warden
 	name = "Warden's clothing duffelbag"

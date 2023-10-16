@@ -122,10 +122,10 @@
 			M.visible_message(span_boldwarning("[M] is thrown off of [src]!"))
 	flash_act(affect_silicon = 1)
 
-/mob/living/silicon/bullet_act(obj/item/projectile/Proj, def_zone)
+/mob/living/silicon/bullet_act(obj/projectile/Proj, def_zone)
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, Proj, def_zone)
 	if((Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		var/damage = run_armor(Proj.damage, Proj.damage_type, Proj.flag, Proj.armour_penetration)
+		var/damage = run_armor(Proj.damage, Proj.damage_type, Proj.armor_flag, Proj.armour_penetration)
 		adjustBruteLoss(damage)
 		if(prob(damage*1.5))
 			for(var/mob/living/M in buckled_mobs)

@@ -139,7 +139,7 @@
 	desc = "A micro-cell, for IPC use only. Do not swallow."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 	var/stored_charge = NUTRITION_LEVEL_WELL_FED
 	var/emp_message = span_warning("Alert: EMP Detected. Cycling battery.")
 
@@ -172,7 +172,7 @@
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
 	status = ORGAN_ORGANIC
 	organ_flags = NONE
-	process_flags = ORGANIC
+	compatible_biotypes = ALL_NON_ROBOTIC
 
 /obj/item/organ/stomach/cell/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()

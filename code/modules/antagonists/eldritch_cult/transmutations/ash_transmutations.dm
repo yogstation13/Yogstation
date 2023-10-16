@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/ash_knife
 	name = "Ashen Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/ash)
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/ash)
+	result_atoms = list(/obj/item/melee/sickly_blade/ash)
 	required_shit_list = "A pile of ash and a knife."
 
 /datum/eldritch_transmutation/ashen_eyes
@@ -55,6 +55,12 @@
 	REMOVE_TRAIT(chosen_mob,TRAIT_PARALYSIS_L_LEG,MAGIC_TRAIT)
 	REMOVE_TRAIT(chosen_mob,TRAIT_PARALYSIS_R_LEG,MAGIC_TRAIT)
 	chosen_mob.update_mobility()
+
+/datum/eldritch_transmutation/madness_mask
+	name = "Mask of Mandess"
+	required_atoms = list(/obj/item/clothing/mask,/obj/item/organ/liver)
+	result_atoms = list(/obj/item/clothing/mask/madness_mask)
+	required_shit_list = "A mask of any kind, and a fresh liver."
 
 /datum/eldritch_transmutation/final/ash_final
 	name = "Amgala's Ruin"

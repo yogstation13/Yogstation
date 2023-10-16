@@ -65,7 +65,7 @@
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE
 	var/mob/living/carbon/human/holder
-	var/obj/item/gun/magic/hook/sickly_blade/sword
+	var/obj/item/melee/sickly_blade/sword
 
 /datum/action/innate/heretic_shatter/Grant(mob/user, obj/object)
 	sword = object
@@ -91,7 +91,7 @@
 	do_teleport(holder,safe_turf,forceMove = TRUE)
 	qdel(sword)
 
-/obj/item/gun/magic/hook/sickly_blade
+/obj/item/melee/sickly_blade
 	name = "sickly blade"
 	desc = "A sickly, green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
 	icon = 'icons/obj/eldritch.dmi'
@@ -110,55 +110,20 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	var/datum/action/innate/heretic_shatter/linked_action
-	/// Hook stuff
-	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
-	recharge_rate = 3 // seconds
-	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade
-	fire_sound = 'sound/effects/snap.ogg'
 
-/// Also allows clowns to use the blade without fearing shooting themselves in the foot
-/obj/item/gun/magic/hook/sickly_blade/check_botched(mob/living/user, params)
-	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
-		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
-		var/mob/living/carbon/human/human_user = user
-		human_user.AdjustParalyzed(5 SECONDS)
-		return TRUE
-
-/obj/item/gun/magic/hook/sickly_blade/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
-
-/obj/item/ammo_casing/magic/hook/sickly_blade
-	projectile_type = /obj/item/projectile/hook/sickly_blade
-
-/obj/item/projectile/hook/sickly_blade
-	damage = 0
-	knockdown = 0
-	immobilize = 2 // there's no escape
-	range = 5 // hey now cowboy
-	armour_penetration = 0 // no piercing shields
-	hitsound = 'sound/effects/gravhit.ogg'
-
-/obj/item/projectile/hook/sickly_blade/on_hit(atom/target, blocked)
-	. = ..()
-	if(iscarbon(target) && blocked != 100)
-		var/mob/living/carbon/C = target
-		for(var/obj/item/shield/riot/R in C.get_all_gear())
-			R.shatter() // Shield :b:roke
-			qdel(R)
-
-/obj/item/gun/magic/hook/sickly_blade/Initialize(mapload)
+/obj/item/melee/sickly_blade/Initialize(mapload)
 	. = ..()
 	linked_action = new(src)
 
-/obj/item/gun/magic/hook/sickly_blade/pickup(mob/user)
+/obj/item/melee/sickly_blade/pickup(mob/user)
 	. = ..()
 	linked_action.Grant(user, src)
 
-/obj/item/gun/magic/hook/sickly_blade/dropped(mob/user, silent)
+/obj/item/melee/sickly_blade/dropped(mob/user, silent)
 	. = ..()
 	linked_action.Remove(user, src)
 
-/obj/item/gun/magic/hook/sickly_blade/attack(mob/living/M, mob/living/user)
+/obj/item/melee/sickly_blade/attack(mob/living/M, mob/living/user)
 	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user,span_danger("You feel a pulse of some alien intellect lash out at your mind!"))
 		var/mob/living/carbon/human/human_user = user
@@ -166,7 +131,7 @@
 		return FALSE
 	return ..()
 
-/obj/item/gun/magic/hook/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/melee/sickly_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	var/datum/antagonist/heretic/cultie = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	if(!cultie || !proximity_flag || target == user)
@@ -176,31 +141,31 @@
 		var/datum/eldritch_knowledge/eldritch_knowledge_datum = knowledge[X]
 		eldritch_knowledge_datum.on_eldritch_blade(target,user,proximity_flag,click_parameters)
 
-/obj/item/gun/magic/hook/sickly_blade/rust
+/obj/item/melee/sickly_blade/rust
 	name = "rusted blade"
 	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth. A strange liquid oozes from its points."
 	icon_state = "rust_blade"
 	item_state = "rust_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/ash
+/obj/item/melee/sickly_blade/ash
 	name = "ashen blade"
 	desc = "A hunk of molten metal warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is as it shears soot-filled wounds."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/flesh
+/obj/item/melee/sickly_blade/flesh
 	name = "flesh blade"
 	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating pain it has endured from dread origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/mind
+/obj/item/melee/sickly_blade/mind
 	name = "mind blade"
 	desc = "A monsterously sharp blade made from pure knowledge and paper. Endlessly it searches to quench it's thirst, often eviserating the user in the process."
 	icon_state = "mind_blade"
 	item_state = "mind_blade"
 
-/obj/item/gun/magic/hook/sickly_blade/void
+/obj/item/melee/sickly_blade/void
 	name = "void blade"
 	desc = "A monsterously sharp blade made from pure ice. Sharp and acute it's unbreaking edges can rip and tear through bone and sinew with ease."
 	icon_state = "void_blade"
@@ -268,7 +233,7 @@
 	item_state = "eldritch_armor"
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
+	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Consider yourself reduced, bitch
 	resistance_flags = FIRE_PROOF // ash heretic go brrr
@@ -336,10 +301,98 @@
 	item_state = "void_cloak"
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
-	armor = list(MELEE = -10, BULLET = -10, LASER = -10, ENERGY = 0, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //slightly more fair than the other version
-	slowdown = -0.8
+	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
 	resistance_flags = FIRE_PROOF
+	
+	/// The mob currently wearing this
+	var/mob/current_user
+	/// How much the user is cloaked as a percentage, which effects the wearer's transparency and dodge chance (dont edit this)
+	var/cloak = 0
+	/// What cloak is capped to
+	var/max_cloak = 75
+	/// How much the cloak charges per process
+	var/cloak_charge_rate = 20
+	/// How much the cloak decreases when moving
+	var/cloak_move_loss = 5
+	/// How much the cloak decreases on a successful dodge
+	var/cloak_dodge_loss = 40
+
+/obj/item/clothing/suit/cultrobes/void/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
+
+/obj/item/clothing/suit/cultrobes/void/equipped(mob/user, slot)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/suit/cultrobes/void/dropped(mob/user)
+	. = ..()
+	update_signals()
+
+/obj/item/clothing/suit/cultrobes/void/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	current_user = null
+	update_signals()
+
+/obj/item/clothing/suit/cultrobes/void/Destroy()
+	set_cloak(0)
+	. = ..()
+
+/obj/item/clothing/suit/cultrobes/void/proc/update_signals(user)
+	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		return TRUE
+
+	set_cloak(0)
+	UnregisterSignal(current_user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+	if(user)
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
+
+	var/mob/new_user = loc
+	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+		current_user = new_user
+		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/clothing/suit/cultrobes/void/proc/set_cloak(ammount)
+	cloak = clamp(ammount, 0, max_cloak)
+	var/mob/user = loc
+	if(istype(user))
+		animate(user, alpha = round(clamp(255 * (1 - (cloak * 0.01)), 0, 255)), time = 0.5 SECONDS)
+
+/obj/item/clothing/suit/cultrobes/void/process(delta_time)
+	if(!update_signals())
+		return
+	var/mob/user = loc
+	if(!istype(user) || !user.get_item_by_slot(ITEM_SLOT_OCLOTHING) == src)
+
+		return
+	set_cloak(cloak + (cloak_charge_rate * delta_time))
+
+/obj/item/clothing/suit/cultrobes/void/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(dodge(owner, hitby, attack_text))
+		return TRUE
+	return ..()
+
+/obj/item/clothing/suit/cultrobes/void/proc/on_move(mob/user, Dir, Forced = FALSE)
+	if(update_signals(user))
+		set_cloak(cloak - cloak_move_loss)
+
+/obj/item/clothing/suit/cultrobes/void/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
+	if(dodge(user, P, "[P]"))
+		return BULLET_ACT_FORCE_PIERCE
+
+/obj/item/clothing/suit/cultrobes/void/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
+	if(!update_signals(user) || current_user.incapacitated() || !prob(cloak))
+		return FALSE
+
+	set_cloak(cloak - cloak_dodge_loss)
+	current_user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
+	current_user.visible_message(span_danger("[current_user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
+	return TRUE
+
 
 /obj/item/clothing/suit/cultrobes/void/equipped(mob/living/user, slot)
 	..()
@@ -349,3 +402,66 @@
 		user.adjust_confusion(30)
 		user.Paralyze(8 SECONDS)
 		user.adjustFireLoss(10)
+
+/obj/item/clothing/mask/madness_mask
+	name = "Abyssal Mask"
+	desc = "A mask created from the suffering of existence. Looking down it's eyes, you notice something gazing back at you."
+	icon_state = "mad_mask"
+	item_state = "mad_mask"
+	w_class = WEIGHT_CLASS_SMALL
+	flags_cover = MASKCOVERSEYES
+	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
+	resistance_flags = FLAMMABLE
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
+	///Who is wearing this
+	var/mob/living/carbon/human/local_user
+
+/obj/item/clothing/mask/madness_mask/Destroy()
+	local_user = null
+	return ..()
+
+/obj/item/clothing/mask/madness_mask/examine(mob/user)
+	. = ..()
+	if(IS_HERETIC_OR_MONSTER(user))
+		. += span_notice("Actively drains the sanity and stamina of nearby non-heretics when worn.")
+	else
+		. += span_danger("The eyes fill you with dread... You best avoid it.")
+
+/obj/item/clothing/mask/madness_mask/equipped(mob/user, slot)
+	. = ..()
+	if(!(slot & ITEM_SLOT_MASK))
+		return
+	if(!ishuman(user) || !user.mind)
+		return
+
+	local_user = user
+	START_PROCESSING(SSobj, src)
+
+	if(IS_HERETIC_OR_MONSTER(user))
+		return
+
+/obj/item/clothing/mask/madness_mask/dropped(mob/M)
+	local_user = null
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/clothing/mask/madness_mask/process(seconds_per_tick)
+	if(!local_user)
+		return PROCESS_KILL
+		
+	for(var/mob/living/carbon/human/human_in_range in view(local_user))
+		if(IS_HERETIC_OR_MONSTER(human_in_range) || is_blind(human_in_range))
+			continue
+
+		if(DT_PROB(60, seconds_per_tick))
+			human_in_range.adjust_hallucinations_up_to(10 SECONDS, 240 SECONDS)
+
+		if(DT_PROB(40, seconds_per_tick))
+			human_in_range.set_jitter_if_lower(10 SECONDS)
+
+		if(human_in_range.getStaminaLoss() <= 85 && DT_PROB(30, seconds_per_tick))
+			human_in_range.emote(pick("giggle", "laugh"))
+			human_in_range.adjustStaminaLoss(10)
+
+		if(DT_PROB(25, seconds_per_tick))
+			human_in_range.set_dizzy_if_lower(10 SECONDS)

@@ -590,6 +590,7 @@
 	convert_damage_type = STAMINA
 	blood_used = 15
 	vamp_req = TRUE
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	possible_shapes = list(/mob/living/simple_animal/hostile/vampire_bat)
 
 /datum/action/cooldown/spell/shapeshift/vampire/can_cast_spell()

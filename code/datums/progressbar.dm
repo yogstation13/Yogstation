@@ -35,7 +35,8 @@
 	goal = goal_number
 	bar_loc = target
 	bar = image('icons/effects/progessbar.dmi', bar_loc, "prog_bar_0")
-	bar.plane = ABOVE_HUD_PLANE //SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, User) //comment in when we port TG planes
+	bar.plane = ABOVE_HUD_PLANE + 1 //yogs change, increased so it draws ontop of ventcrawling overlays
+	//SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, User) //comment in when we port TG planes
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = User
 

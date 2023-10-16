@@ -1,0 +1,7 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Added new heretic spell: Volcano Blast"
+  - rscdel: "Removed hookshot from heretic blade"
+  - bugfix: "Fixed a few things with heretic ascension text"
+  - tweak: "Tweaked some heretic spell paths for purchase"

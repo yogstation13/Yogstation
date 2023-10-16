@@ -8,6 +8,7 @@
 
 /datum/reagent/consumable/ethanol
 	name = "Ethanol"
+	addiction_name = "Alcohol"
 	description = "A well-known alcohol with a variety of applications."
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
