@@ -211,7 +211,7 @@
 		Stay vigilant, report any suspicious activity, and await further instructions at the designated evacuation points. \
 		Assistance is on the way.",
 		title = "Central Command Higher Dimensional Affairs",
-		sound = 'sound/misc/evacuate.ogg',
+		sound = 'sound/misc/announce2.ogg',
 	)
 
 /datum/round_event/portal_storm/resonance_cascade/tick()
