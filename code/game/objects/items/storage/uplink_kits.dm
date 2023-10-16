@@ -276,7 +276,7 @@
 			new /obj/item/ammo_box/magazine/m12g(src) // a single spare mag. 2 TC.
 			// new /obj/item/melee/sledgehammer/elite(src) // not coded in yet. Less than an energy axe for sure.
 			new /obj/item/clothing/under/pants/blackjeans(src) // 0 TC. Style is free.
-			// new /obj/item/clothing/suit/armor/vest/rig(src) // Security armor vest but resprited. 0 TC they are literally everywhere.
+			new /obj/item/clothing/suit/armor/vest/rig(src) //2 TC? Worse captain carapace, and only protects chest, not balls. Also needed to hold the shotgun in the vest slot.
 
 #undef CARP_CARP_CARP
 
