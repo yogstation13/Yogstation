@@ -53,7 +53,7 @@
 		return FALSE
 	COOLDOWN_START(src, dodge_cooldown, dodge_delay)
 
-	user.balloon_alert_to_viewers("Dodged!", "Dodged!", COMBAT_MESSAGE_RANGE)
+	user.balloon_alert_to_viewers("dodged!", "dodged!", COMBAT_MESSAGE_RANGE)
 	user.visible_message(span_danger("With inhuman speed [user] dodges [attack_text]!"), span_userdanger("You dodge [attack_text]"), null, COMBAT_MESSAGE_RANGE)
 	playsound(user, 'sound/effects/space_wind_big.ogg', 50, 1)
 	return TRUE

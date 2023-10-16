@@ -94,14 +94,16 @@
 	if(V.get_ability(/datum/vampire_passive/nostealth))//different help text if you no longer have stealth
 		stealth = FALSE
 
-	to_chat(user, span_notice("You can consume blood from humanoid life by [span_red("punching their head while on the harm intent")]"))
-	to_chat(user, span_notice("Your bloodsucking speed depends on grab strength."))
-	to_chat(user, span_notice("Having a <b>neck grab or stronger</b> increases blood drain rate by 50%."))
-	to_chat(user, span_notice("This [span_red("WILL")] alert everyone who can see it, as well as make a noise."))
+	var/list/string = list()
+	string += span_notice("You can consume blood from humanoid life by [span_red("punching their head while on the harm intent")]")
+	string += span_notice("Your bloodsucking speed depends on grab strength.")
+	string += span_notice("Having a <b>neck grab or stronger</b> increases blood drain rate by 50%.")
+	string += span_notice("This [span_red("WILL")] alert everyone who can see it, as well as make a noise.")
 	if(stealth)
-		to_chat(user, span_notice("You can extract blood [span_red("<i>stealthily</i>")] by initiating without a grab."))
-		to_chat(user, span_notice("This will reduce the amount of blood taken by 50%."))
-	to_chat(user, span_notice("Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>."))
+		string += span_notice("You can extract blood [span_red("<i>stealthily</i>")] by initiating without a grab.")
+		string += span_notice("This will reduce the amount of blood taken by 50%.")
+	string += span_notice("Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.")
+	to_chat(user, string.Join("<br>"))
 	return TRUE
 
 /datum/action/cooldown/spell/rejuvenate
