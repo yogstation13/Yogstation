@@ -14,7 +14,6 @@
 	throwforce = 18
 	throw_range = 3 /// Doesn't throw very far
 	sharpness = SHARP_NONE
-	armour_penetration = -20
 	hitsound = 'sound/weapons/smash.ogg' /// Hitsound when thrown at someone
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
 	materials = list(/datum/material/iron=6000)
@@ -61,10 +60,12 @@
 		R.Paralyze(0.4 SECONDS) /// Mostly flavor
 
 	else if(isstructure(target) || ismachinery(target))
-		if(!isnull(target))
+		if(!QDELETED(target))
 			var/obj/structure/S = target
-			/// Essentially deal double damage to structures
-			S.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
+			if(istype(S, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
+				S.take_damage(S.max_integrity/2, BRUTE, MELEE, FALSE, null, armour_penetration)
+			else // Sledgehammer can kill airlocks in 17-23 hits, against most other things it's almost as good as a fireaxe
+				S.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/item/melee/sledgehammer/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
