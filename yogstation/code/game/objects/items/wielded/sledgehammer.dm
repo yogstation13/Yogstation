@@ -63,8 +63,8 @@
 	else if(isstructure(target) || ismachinery(target))
 		if(!isnull(target))
 			var/obj/structure/S = target
-			/// Essentially deal triple damage to structures
-			S.take_damage(force*3, BRUTE, MELEE, FALSE, null, armour_penetration)
+			/// Essentially deal double damage to structures
+			S.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 
 /obj/item/melee/sledgehammer/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
