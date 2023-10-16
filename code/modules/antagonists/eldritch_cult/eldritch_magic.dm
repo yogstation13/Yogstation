@@ -286,9 +286,9 @@
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
-	projectile_type = /obj/item/projectile/magic/aoe/rust_wave
+	projectile_type = /obj/projectile/magic/aoe/rust_wave
 
-/obj/item/projectile/magic/aoe/rust_wave
+/obj/projectile/magic/aoe/rust_wave
 	name = "Patron's Reach"
 	icon_state = "eldritch_projectile"
 	alpha = 180
@@ -300,7 +300,7 @@
 	range = 15
 	speed = 1
 
-/obj/item/projectile/magic/aoe/rust_wave/Moved(atom/OldLoc, Dir)
+/obj/projectile/magic/aoe/rust_wave/Moved(atom/OldLoc, Dir)
 	. = ..()
 	playsound(src, 'sound/items/welder.ogg', 75, TRUE)
 	var/list/turflist = list()
@@ -320,9 +320,9 @@
 
 /datum/action/cooldown/spell/basic_projectile/rust_wave/short
 	name = "Lesser Patron's Reach"
-	projectile_type = /obj/item/projectile/magic/aoe/rust_wave/short
+	projectile_type = /obj/projectile/magic/aoe/rust_wave/short
 
-/obj/item/projectile/magic/aoe/rust_wave/short
+/obj/projectile/magic/aoe/rust_wave/short
 	range = 7
 	speed = 2
 
@@ -468,7 +468,7 @@
 			break
 
 		for(var/mob/living/L in T.contents)
-			if(L.anti_magic_check())
+			if(L.can_block_magic())
 				L.visible_message(span_danger("The fire parts in front of [L]!"),span_danger("As the fire approaches it splits off to avoid contact with you!"))
 				continue
 			if(L in hit_list || L == source)
@@ -853,7 +853,7 @@
 
 /datum/action/cooldown/spell/cone/staggered/entropic_plume/do_mob_cone_effect(mob/living/victim, atom/caster, level)
 	. = ..()
-	if(victim.anti_magic_check() || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
+	if(victim.can_block_magic() || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
 		return
 	victim.apply_status_effect(STATUS_EFFECT_AMOK)
 	victim.apply_status_effect(STATUS_EFFECT_CLOUDSTRUCK, (level * 1 SECONDS))
@@ -972,7 +972,7 @@
 	base_icon_state = "lightning"
 	active_msg = "You energize your hands with raw power!"
 	deactive_msg = "You let the energy flow out of your hands back into yourself..."
-	projectile_type = /obj/item/projectile/magic/aoe/lightning/eldritch
+	projectile_type = /obj/projectile/magic/aoe/lightning/eldritch
 	
 	bolt_range = 7
 	bolt_power = 1000
@@ -1012,7 +1012,7 @@
 	invocation = "D'O'DGE TH'IS!"
 	invocation_type = INVOCATION_SHOUT
 
-	projectile_type = /obj/item/projectile/heretic_assault
+	projectile_type = /obj/projectile/heretic_assault
 
 /datum/action/cooldown/spell/pointed/void_phase
 	name = "Void Phase"
@@ -1207,3 +1207,22 @@
 	// Otherwise, they take a few steps closer
 	for(var/i in 1 to 3)
 		victim.forceMove(get_step_towards(victim, caster))
+
+/datum/action/cooldown/spell/pointed/projectile/fireball/eldritch
+	name = "Volcano Blast"
+	desc = "Fire a ball of raw volcanic magma at a target."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	sound = 'sound/magic/fireball.ogg'
+
+	active_msg = "You prepare to cast your fireball spell!"
+	deactive_msg = "You extinguish your fireball... for now."
+	cast_range = 8
+	projectile_type = /obj/projectile/magic/fireball/eldritch
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 25 SECONDS
+
+	invocation = "FIR'AGA!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
