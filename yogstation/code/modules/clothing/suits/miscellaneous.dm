@@ -243,19 +243,21 @@
     icon_state = "caretakerhood"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
-/obj/item/clothing/suit/det_suit/golddetective
+/obj/item/clothing/suit/det_suit/yogs
+	name = "detective long coat"
+	desc = "For those detectives that value fashion over function."
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon_state = "detective_coat"
+	item_state = "detective_item"
+
+/obj/item/clothing/suit/det_suit/yogs/golddetective
 	name = "gold detective jacket"
 	desc = "A detective jacket, in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_item"
 
-/obj/item/clothing/suit/det_suit/detectivecoat
-	name = "detective long coat"
-	desc = "For those detectives that value fashion over function."
-	icon_state = "detective_coat"
-	item_state = "detective_item"
-
-/obj/item/clothing/suit/det_suit/bluedetective
+/obj/item/clothing/suit/det_suit/yogs/bluedetective
 	name = "blue detective jacket"
 	desc = "A detective jacket that is blue!"
 	icon_state = "blue_detective"

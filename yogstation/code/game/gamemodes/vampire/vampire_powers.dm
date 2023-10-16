@@ -160,33 +160,25 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/target = target_atom
-	var/mob/living/carbon/human/T = target
-	user.visible_message(span_warning("[user]'s eyes flash red."),\
-					span_warning("[user]'s eyes flash red."))
-	if(ishuman(target))
-		var/obj/item/clothing/glasses/G = T.glasses
-		if(G)
-			if(G.flash_protect > 0)
-				to_chat(user,span_warning("[T] has protective sunglasses on!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by your [G]!"))
-				return
-		var/obj/item/clothing/mask/M = T.wear_mask
-		if(M)
-			if(M.flash_protect > 0)
-				to_chat(user,span_warning("[T]'s mask is covering their eyes!"))
-				to_chat(target,span_warning("[user]'s paralyzing gaze is blocked by your [M]!"))
-				return
-		var/obj/item/clothing/head/H = T.head
-		if(H)
-			if(H.flash_protect > 0)
-				to_chat(user, span_vampirewarning("[T]'s helmet is covering their eyes!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [H]!"))
-				return
-		to_chat(target,span_warning("You are paralyzed with fear!"))
-		to_chat(user,span_notice("You paralyze [T]."))
-		T.Stun(50)
+	if(!ishuman(target_atom))
+		return FALSE
 
+	var/mob/living/carbon/human/T = target_atom
+	user.visible_message(span_warning("[user]'s eyes flash red."),\
+					span_warning("your eyes flash red."))
+
+	var/protection = T.get_eye_protection()
+	switch(protection)
+		if(INFINITY)
+			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by your gaze!"))
+			return FALSE
+		if(INFINITY to 1)
+			T.adjust_confusion(5 SECONDS)
+			return TRUE
+		if(0)
+			to_chat(target, span_userdanger("You are paralyzed with fear!"))
+			to_chat(user, span_notice("You paralyze [T]."))
+			T.Stun(5 SECONDS)
 	return TRUE
 
 
@@ -226,37 +218,30 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	user.visible_message(span_warning("[user] twirls their finger in a circlular motion."),\
+	if(!ishuman(target_atom))
+		return FALSE
+	
+	var/mob/living/carbon/human/T = target_atom
+	user.visible_message(span_warning("[user] twirls their finger in a circular motion."),\
 			span_warning("You twirl your finger in a circular motion."))
-	var/mob/living/target = target_atom
-	var/mob/living/carbon/human/T = target
-	user.visible_message(span_warning("[user]'s eyes flash red."),\
-					span_warning("[user]'s eyes flash red."))
-	if(T)
-		var/obj/item/clothing/glasses/G = T.glasses
-		if(G)
-			if(G.flash_protect > 0)
-				to_chat(user, span_warning("[T] has protective sunglasses on!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [G]!"))
-				return
-		var/obj/item/clothing/mask/M = T.wear_mask
-		if(M)
-			if(M.flash_protect > 0)
-				to_chat(user, span_vampirewarning("[T]'s mask is covering their eyes!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [M]!"))
-				return
-		var/obj/item/clothing/head/H = T.head
-		if(H)
-			if(H.flash_protect > 0)
-				to_chat(user, span_vampirewarning("[T]'s helmet is covering their eyes!"))
-				to_chat(target, span_warning("[user]'s paralyzing gaze is blocked by [H]!"))
-				return
-	to_chat(target, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
-	to_chat(user, span_notice("[target] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
-	if(do_after(user, 4 SECONDS, target)) // 4 seconds...
+
+
+	var/protection = T.get_eye_protection()
+	var/sleep_duration = 30 SECONDS
+	switch(protection)
+		if(INFINITY)
+			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by hypnosis!"))
+			return FALSE
+		if(INFINITY to 1)
+			to_chat(user, span_vampirewarning("Your hypnotic powers are dampened by [T]'s eye protection."))
+			sleep_duration = 10 SECONDS
+
+	to_chat(T, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
+	to_chat(user, span_notice("[T] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
+	if(do_after(user, 4 SECONDS, T)) // 4 seconds...
 		if(get_dist(user, T) <= 3)
-			flash_color(T, flash_color="#472040", flash_time=30) // it's the vampires color!
-			T.SetSleeping(300)
+			flash_color(T, flash_color="#472040", flash_time=3 SECONDS) // it's the vampires color!
+			T.SetSleeping(sleep_duration)
 			to_chat(user, span_warning("[T] has fallen asleep!"))
 		else
 			to_chat(T, span_notice("You feel a whole lot better now."))
@@ -590,6 +575,7 @@
 	convert_damage_type = STAMINA
 	blood_used = 15
 	vamp_req = TRUE
+	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	possible_shapes = list(/mob/living/simple_animal/hostile/vampire_bat)
 
 /datum/action/cooldown/spell/shapeshift/vampire/can_cast_spell()

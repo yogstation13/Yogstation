@@ -374,7 +374,7 @@
 			to_chat(user, span_notice("Defaulting access protocols."))
 
 /obj/item/circuitboard/computer/rdconsole/screwdriver_act(mob/living/user, obj/item/I)
-	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+	if(build_path != /obj/machinery/computer/rdconsole/production)
 		to_chat(user, span_danger("[src] sparks! That isn't right."))
 		var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
 		p.set_up(6, 1, user)
@@ -389,7 +389,7 @@
 
 
 /obj/item/circuitboard/computer/rdconsole/welder_act(mob/living/user, obj/item/I)
-	if(build_path != /obj/item/circuitboard/computer/rdconsole/production)
+	if(build_path != /obj/machinery/computer/rdconsole/production)
 		return
 	if(!unlocked)
 		return TRUE

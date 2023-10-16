@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Vampire hypnosis and gaze are now reduced rather than negated by eye protection"
+  - bugfix: "Vampire and Abomination no longer have two different abilities overwriting eachother"

@@ -60,7 +60,7 @@
 	color = "#8228A0"
 	toxpwr = 3
 	accelerant_quality = 10
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
@@ -445,7 +445,7 @@
 	color = "#787878"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
@@ -797,7 +797,7 @@
 	metabolization_rate = 1.2 * REAGENTS_METABOLISM
 	toxpwr = 0.5
 	taste_description = "spinning"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/rotatium/on_mob_life(mob/living/carbon/M)
 	return ..() //dont forget to reenable this
@@ -848,7 +848,7 @@
 	var/acidpwr = 10 //the amount of protection removed from the armour
 	taste_description = "acid"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(C))

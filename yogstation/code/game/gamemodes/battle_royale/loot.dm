@@ -117,7 +117,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/space/hardsuit/swat = -2,
 		/obj/item/clothing/head/helmet/space/hostile_environment = -2,
 		/obj/item/clothing/suit/space/hostile_environment = -2,
-		/obj/item/clothing/neck/cloak/ranger/syndie = -2, //Useful, less so than the wizard variant, allows dodging
 		//Weight of -3 - strong suits with additional utility
 		/obj/item/clothing/suit/space/hardsuit/shielded = -3,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -3,
@@ -129,7 +128,6 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		//Weight of -5 - ERT level shit
 		/obj/item/shield/energy/bananium = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/sec = -5,
-		/obj/item/clothing/neck/cloak/ranger = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/engi = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/med = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/jani = -5,
@@ -146,43 +144,43 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/kitchen/knife/combat/survival = 4,
 		/obj/item/melee/baseball_bat = 4,
 		/obj/item/melee/spear = 4,
+		/obj/item/melee/spear/bonespear = 4,
 
-		/obj/item/pen/red/edagger = 3,
 		/obj/item/bigspoon = 3,
+		/obj/item/kitchen/knife/combat = 3,
+		/obj/item/nullrod/hammer = 3,
+		/obj/item/nullrod/tribal_knife = 3,
+		/obj/item/nullrod/vibro = 3,
 
-		/obj/item/kitchen/knife/combat = 2,
-		/obj/item/melee/spear/bonespear = 2,
-		/obj/item/nullrod/hammer = 2,
-		/obj/item/nullrod/tribal_knife = 2,
-		/obj/item/nullrod/vibro = 2,
+		/obj/item/pen/red/edagger = 2,
+		/obj/item/flamethrower/full/tank = 2,
+		/obj/item/melee/chainsaw = 2,
+		/obj/item/fireaxe/metal_h2_axe = 2,
+		/obj/item/nullrod/whip = 2,
 
-		/obj/item/flamethrower/full/tank = 1,
-		/obj/item/melee/chainsaw = 1,
-		/obj/item/fireaxe/metal_h2_axe = 1,
-		/obj/item/nullrod/whip = 1,
+		/obj/item/gun/ballistic/shotgun/riot = 1,
+		/obj/item/gun/ballistic/revolver/detective = 1,
+		/obj/item/melee/baseball_bat/homerun = 1,
+		/obj/item/fireaxe = 1,
+		/obj/item/nullrod/talking = 1,
+		/obj/item/melee/powerfist = 1,
 
-		/obj/item/gun/ballistic/shotgun/riot = 0,
-		/obj/item/gun/ballistic/revolver/detective = 0,
-		/obj/item/melee/baseball_bat/homerun = 0,
-		/obj/item/fireaxe = 0,
-		/obj/item/nullrod/talking = 0,
+		/obj/item/melee/vxtvulhammer = 0,
+		/obj/item/gun/ballistic/automatic/pistol = 0,
+		/obj/item/gun/ballistic/shotgun/doublebarrel = 0,
+		/obj/item/melee/transforming/energy/sword = 0,
+		/obj/item/gun/energy/laser/retro/old = 0,
 
-		/obj/item/melee/powerfist = -1,
-		/obj/item/melee/vxtvulhammer = -1,
-		/obj/item/gun/ballistic/automatic/pistol = -1,
-		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
-		/obj/item/melee/transforming/energy/sword = -1,
-		/obj/item/gun/energy/laser/retro/old = -1,
 		/obj/item/melee/baseball_bat/metal_bat = -1,
 		/obj/item/melee/ghost_sword = -1, //snowballer
+		/obj/item/gun/ballistic/shotgun/automatic/combat = -1,
+		/obj/item/gun/energy/laser = -1,
 
-		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
 		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
 		/obj/item/gun/ballistic/automatic/wt550 = -2,
 		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -2,
 		/obj/item/gun/energy/kinetic_accelerator/crossbow = -2,
-		/obj/item/gun/energy/laser = -2,
-		/obj/item/melee/transforming/energy/axe = -2,
+		/obj/item/fireaxe/energy = -2, //lol, this is the energy fire axe, not the debug energy axe
 
 		/obj/item/gun/ballistic/revolver = -3,
 		/obj/item/gun/ballistic/bow/energy = -3,
@@ -206,6 +204,8 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/his_grace = -5,
 		/obj/item/melee/chainsaw/doomslayer = -5,
 		/obj/item/gun/ballistic/bow/energy/ert = -5,
+		/obj/item/minigunpack = -5,
+		/obj/item/minigunbackpack = -5,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
@@ -254,15 +254,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 		/obj/effect/spawner/lootdrop/weakgene = 2,
 		/obj/item/gun/energy/gravity_gun = 2,
+		/obj/item/multisurgeon/jumpboots = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
 		/obj/item/battleroyale/martial/preternis = 1, //arguably a downgrade, maybe not
+		/obj/item/multisurgeon/wheelies = 1,
 
 		/obj/item/teleportation_scroll/apprentice = 0,
 		/obj/effect/spawner/lootdrop/ammobox = 0,
 		/obj/item/slimecross/stabilized/red = 0,
-		/obj/item/slimecross/stabilized/sepia = 0,
 		/obj/item/warp_whistle = 0,
 		/obj/item/gun/magic/staff/animate = 0, //no clue why you'd want this, but why not
 
@@ -301,6 +302,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
 		/obj/item/antag_spawner/contract = -3, //might be a terrible idea to add this
 		/obj/item/scrying = -3, //info, but leaves you open to attack
+		/obj/item/battleroyale/extraarm = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
 		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
@@ -311,6 +313,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/martial/carp = -4,
 		/obj/item/battleroyale/martial/worldbreaker = -4, // Shaking the ground of Moria
 		/obj/item/necromantic_stone = -4,
+		/obj/item/slimecross/stabilized/sepia = -4,
 
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
@@ -329,6 +332,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "trashcart"
 	light_range = 10
 	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
+	dense_when_open = FALSE
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
 	. = ..()
@@ -564,3 +568,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/dnainjector/thickskin,
 		/obj/item/dnainjector/densebones,
 	)
+
+/obj/item/battleroyale/extraarm
+	name = "Spare arm"
+	desc = "Why don't we you give you a hand."
+	icon = 'yogstation/icons/mob/human_parts.dmi'
+	icon_state = "default_human_l_arm"
+
+/obj/item/battleroyale/extraarm/attack_self(mob/user)
+	. = ..()
+	var/limbs = user.held_items.len
+	user.change_number_of_hands(limbs+1)
+	to_chat(user, "You feel more dexterous")
+	qdel(src)

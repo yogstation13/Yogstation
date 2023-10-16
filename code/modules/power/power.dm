@@ -11,7 +11,6 @@
 	icon = 'icons/obj/power.dmi'
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	var/datum/powernet/powernet = null
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -33,46 +32,46 @@
 // Machines should use add_load(), surplus(), avail()
 // Non-machines should use add_delayedload(), delayed_surplus(), newavail()
 
-/obj/machinery/power/proc/add_avail(amount)
+/obj/machinery/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 		return TRUE
 	else
 		return FALSE
 
-/obj/machinery/power/proc/add_load(amount)
+/obj/machinery/proc/add_load(amount)
 	if(powernet)
 		powernet.load += amount
 
-/obj/machinery/power/proc/surplus()
+/obj/machinery/proc/surplus()
 	if(powernet)
 		return clamp(powernet.avail-powernet.load, 0, powernet.avail)
 	else
 		return 0
 
-/obj/machinery/power/proc/avail()
+/obj/machinery/proc/avail()
 	if(powernet)
 		return powernet.avail
 	else
 		return 0
 
-/obj/machinery/power/proc/add_delayedload(amount)
+/obj/machinery/proc/add_delayedload(amount)
 	if(powernet)
 		powernet.delayedload += amount
 
-/obj/machinery/power/proc/delayed_surplus()
+/obj/machinery/proc/delayed_surplus()
 	if(powernet)
 		return clamp(powernet.newavail - powernet.delayedload, 0, powernet.newavail)
 	else
 		return 0
 
-/obj/machinery/power/proc/newavail()
+/obj/machinery/proc/newavail()
 	if(powernet)
 		return powernet.newavail
 	else
 		return 0
 
-/obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
+/obj/machinery/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 
 // returns true if the area has power on given channel (or doesn't require power).
@@ -132,7 +131,7 @@
 	update_appearance(UPDATE_ICON)
 
 // connect the machine to a powernet if a node cable is present on the turf
-/obj/machinery/power/proc/connect_to_network()
+/obj/machinery/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
 		return FALSE
@@ -145,7 +144,7 @@
 	return TRUE
 
 // remove and disconnect the machine from its current powernet
-/obj/machinery/power/proc/disconnect_from_network()
+/obj/machinery/proc/disconnect_from_network()
 	if(!powernet)
 		return FALSE
 	powernet.remove_machine(src)
@@ -172,7 +171,7 @@
 
 //returns all the cables WITHOUT a powernet in neighbors turfs,
 //pointing towards the turf the machine is located at
-/obj/machinery/power/proc/get_connections()
+/obj/machinery/proc/get_connections()
 
 	. = list()
 
@@ -192,7 +191,7 @@
 
 //returns all the cables in neighbors turfs,
 //pointing towards the turf the machine is located at
-/obj/machinery/power/proc/get_marked_connections()
+/obj/machinery/proc/get_marked_connections()
 
 	. = list()
 
@@ -209,7 +208,7 @@
 	return .
 
 //returns all the NODES (O-X) cables WITHOUT a powernet in the turf the machine is located at
-/obj/machinery/power/proc/get_indirect_connections()
+/obj/machinery/proc/get_indirect_connections()
 	. = list()
 	for(var/obj/structure/cable/C in loc)
 		if(C.powernet)

@@ -40,7 +40,7 @@
 	var/currentplate = 0 //how much damage the current plate has taken
 
 /datum/martial_art/worldbreaker/can_use(mob/living/carbon/human/H)
-	if(H.stat || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
+	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))//extra pacifism check because it does weird shit
 		return FALSE
 	return ispreternis(H)
 

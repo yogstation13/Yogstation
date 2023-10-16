@@ -12,7 +12,7 @@
 	cast_range = 20
 	cooldown_time = 6 SECONDS
 	cooldown_reduction_per_rank = 1 SECONDS
-	projectile_type = /obj/item/projectile/magic/animate
+	projectile_type = /obj/projectile/magic/animate
 	active_msg = "You prepare to cast your animation spell!"
 	deactive_msg = "You stop casting your animation spell... for now."
 	spell_requirements = NONE

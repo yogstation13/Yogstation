@@ -37,7 +37,7 @@
 		return FALSE
 
 	user.visible_message("<span class='danger'>[user] spits neurotoxin!", span_alertalien("You spit neurotoxin."))
-	var/obj/item/projectile/bullet/neurotoxin/spitter/A = new /obj/item/projectile/bullet/neurotoxin/spitter(user.loc)
+	var/obj/projectile/bullet/neurotoxin/spitter/A = new /obj/projectile/bullet/neurotoxin/spitter(user.loc)
 	A.preparePixelProjectile(target, user, params)
 	A.fire()
 	user.newtonian_move(get_dir(U, T))
@@ -45,14 +45,14 @@
 
 	return TRUE
 
-/obj/item/projectile/bullet/neurotoxin/spitter
+/obj/projectile/bullet/neurotoxin/spitter
 	name = "neurotoxin spit"
 	icon_state = "neurotoxin"
 	damage = 2
 	damage_type = TOX
 	paralyze = 50
 
-/obj/item/projectile/bullet/neurotoxin/spitter/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/neurotoxin/spitter/on_hit(atom/target, blocked = FALSE)
 	if(isinfected(target))
 		paralyze = 0
 		nodamage = TRUE
