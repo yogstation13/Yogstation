@@ -42,7 +42,12 @@
 		TC.use(TC.amount)
 		return
 	var/list/radial_menu = list()
+	//Dripstation EDIT START - icon change
+	/*
 	radial_menu["Syndicate Uplink"] = image(icon = 'icons/obj/radio.dmi', icon_state = "radio")
+	*/
+	radial_menu["Syndicate Uplink"] = image(icon = 'modular_dripstation/icons/obj/radio.dmi', icon_state = "radio")
+	//Dripstation EDIT END
 	radial_menu["Change Pinpointer Target"] = image(icon = icon = 'icons/obj/device.dmi', icon_state = "pinpointer_syndicate")
 	var/obj/docking_port/mobile/cutter = SSshuttle.getShuttle("syndicatecutter")
 	var/obj/docking_port/stationary/homePort = SSshuttle.getDock("syndicatecutter_home")
