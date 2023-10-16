@@ -277,12 +277,12 @@
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 			new /obj/item/storage/box/syndie_kit/emp_shield
 			new /obj/item/autosurgeon/upgraded_cyberlungs //this is to remain true to the source material ok
-			new /obj/item/storage/pill_bottle/synaptzine //take your drugs david
+			new /obj/item/storage/pill_bottle/synaptizine //take your drugs david
 			
 
 #undef CARP_CARP_CARP
 
-/obj/item/storage/pill_bottle/synaptzine
+/obj/item/storage/pill_bottle/synaptizine
 	name = "bottle of synaptizine pills"
 	desc = "Contains synaptizine pills to help with managing the psychological drawbacks of your implants. Someone hastily wrote 'DOES NOT MITIGATE OVERCLOCKER OVERUSAGE' on it with sharpie."
 
@@ -291,7 +291,7 @@
 		new /obj/item/reagent_containers/pill/synaptizine(src)
 
 /obj/item/reagent_containers/pill/synaptizine
-	name = "synaptzine pill"
+	name = "synaptizine pill"
 	desc = "Helps with some of the side effects of your various implants."
 	icon_state = "pill19"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 10)
