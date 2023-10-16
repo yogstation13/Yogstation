@@ -280,28 +280,6 @@
 
 	return TRUE
 
-/datum/action/cooldown/spell/appearanceshift
-	name = "Shapeshift (50)"
-	desc = "Changes your name and appearance at the cost of 50 blood and has a cooldown of 3 minutes."
-	gain_desc = "You have gained the shapeshifting ability, at the cost of stored blood you can change your form permanently."
-	button_icon_state = "genetic_poly"
-	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_vampire"
-	overlay_icon_state = "bg_vampire_border"
-
-	school = SCHOOL_TRANSMUTATION
-
-	blood_used = 50
-	vamp_req = TRUE
-
-/datum/action/cooldown/spell/appearanceshift/cast(mob/living/user)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		user.visible_message(span_warning("[H] transforms!"))
-		randomize_human(H)
-	user.regenerate_icons()
-
 /datum/action/cooldown/spell/cloak
 	name = "Cloak of Darkness"
 	desc = "Toggles whether you are currently cloaking yourself in darkness."
