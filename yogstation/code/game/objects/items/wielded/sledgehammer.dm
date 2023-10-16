@@ -14,6 +14,7 @@
 	throwforce = 18
 	throw_range = 3 /// Doesn't throw very far
 	sharpness = SHARP_NONE
+	armour_penetration = -20
 	hitsound = 'sound/weapons/smash.ogg' /// Hitsound when thrown at someone
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
 	materials = list(/datum/material/iron=6000)
