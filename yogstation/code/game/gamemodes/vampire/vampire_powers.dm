@@ -136,7 +136,7 @@
 		return
 	user.adjustStaminaLoss(-50)
 	if(V.get_ability(/datum/vampire_passive/regen))
-		user.AdjustAllImmobility(-0.5 SECONDS)
+		user.AdjustAllImmobility(-1 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(heal), user, iterations + 1), 1 SECONDS)
 
 /datum/action/cooldown/spell/pointed/gaze
