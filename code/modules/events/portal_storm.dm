@@ -190,9 +190,12 @@
 			else
 				A.visible_message(span_userdanger("[A] overloads and makes a huge arc!"))
 				tesla_zap(A, 5, 10000) // woe
-	SSshuttle.emergency.request(null) // can't call the shuttle if all the APCs blew up, so give the crew some help
 	message_centcom("Alert, a large scale of abnormal activity has been detected on [station_name()]. Investigate and send the special forces to the station immediately.", "Central Command Higher Dimensional Affairs")
 	priority_announce("Unknown anomalous portals detected on a large scale of the station. There is no additional data.", "Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
+	addtimer(CALLBACK(src, PROC_REF(call_shuttle)), 4 SECONDS) //Wait till the annoucement finishes till the the next one so the sounds dont overlap each other
+
+/datum/round_event/portal_storm/resonance_cascade/proc/call_shuttle()
+	SSshuttle.emergency.request(null, reason = "Shuttle has been automatically called due to the event, standing by.") // can't call the shuttle if all the APCs blew up, so give the crew some help
 
 /datum/round_event/portal_storm/resonance_cascade/announce(fake)
 	if(fake) // no point in trying to fake it, has much more impact if it's only the real thing
