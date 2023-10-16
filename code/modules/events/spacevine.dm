@@ -358,6 +358,11 @@
 	user_unbuckle_mob(user, user)
 	. = ..()
 
+/obj/structure/spacevine/attack_animal(mob/living/simple_animal/M)
+	if(istype(user, /mob/living/simple_animal/hostile/venus_human_trap))
+		return //no accidentally hurting your own team
+	. = ..()
+	
 /obj/structure/spacevine/attack_paw(mob/living/user)
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_hit(src, user)
