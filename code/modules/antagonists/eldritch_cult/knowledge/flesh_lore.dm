@@ -42,8 +42,11 @@
 		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
 
-	// if(QDELETED(human_target) || human_target.stat != DEAD)
-	// 	return COMPONENT_BLOCK_HAND_USE
+	INVOKE_ASYNC(src, PROC_REF(add_ghoul), source, human_target)
+
+/datum/eldritch_knowledge/base_flesh/proc/add_ghoul(mob/living/source, /mob/living/carbon/human/human_target)
+	if(QDELETED(human_target) || human_target.stat != DEAD)
+		return COMPONENT_BLOCK_HAND_USE
 
 	human_target.grab_ghost()
 
@@ -63,9 +66,6 @@
 		to_chat(source, span_warning("Your Oath cannot support more ghouls on this plane!"))
 		return COMPONENT_BLOCK_HAND_USE
 
-	add_ghoul(source, human_target)
-
-/datum/eldritch_knowledge/base_flesh/proc/add_ghoul(mob/living/source, /mob/living/carbon/human/human_target)
 	LAZYADD(spooky_scaries, human_target)
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [source.real_name]")
 	//we change it to true only after we know they passed all the checks
