@@ -270,14 +270,14 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("solo")
-			new /obj/item/autosurgeon/syndicate/spinalspeed(src)
-			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src)
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src)
-			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src)
-			new /obj/item/storage/box/syndie_kit/emp_shield(src)
+		if("solo") //14 + 6x4 + 1 = 3 tc = 39 tc, or 37 if molti's pr gets merged. wow thats really costly this is probably going to busted. eh
+			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //14 tc as of writing, 12 if molti's pr gets merged
+			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
+			new /obj/item/storage/box/syndie_kit/emp_shield(src) //6 tc
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
-			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david
+			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
 
 #undef CARP_CARP_CARP
