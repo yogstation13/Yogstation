@@ -38,14 +38,13 @@
 	desc = "A modified welding mask with loads of extra plating. Could probably shrug off a bullet, or twenty."
 	item_state = "weldingarmored"
 	icon_state = "weldingarmored"
-	var/datum/language/russian/L = new
 
 /obj/item/clothing/head/welding/armored/attack_self(mob/user)
 	..()
 	if(up)
 		armor = list(MELEE = 50, BULLET = 50, LASER = 10,ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 60) // you WILL leg meta the antag
 	else //cant keep you safe if you arent wearing it
-		aror = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 60)
+		armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 60)
 
 /obj/item/clothing/head/welding/armored/equipped(mob/user, slot)
 	. = ..()
