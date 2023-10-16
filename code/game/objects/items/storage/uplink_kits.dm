@@ -286,7 +286,7 @@
 	name = "bottle of synaptizine pills"
 	desc = "Contains synaptizine pills to help with managing the psychological drawbacks of having numerous implants. Someone hastily wrote 'DOES NOT MITIGATE OVERCLOCKER OVERUSAGE' on it with sharpie."
 
-/obj/item/storage/pill_bottle/charcoal/PopulateContents()
+/obj/item/storage/pill_bottle/synaptizine/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/synaptizine(src)
 
