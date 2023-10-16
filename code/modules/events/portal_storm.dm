@@ -192,7 +192,7 @@
 				tesla_zap(A, 5, 10000) // woe
 	SSshuttle.emergency.request(null) // can't call the shuttle if all the APCs blew up, so give the crew some help
 	message_centcom("Alert, a large scale of abnormal activity has been detected on [station_name()]. Investigate and send the special forces to the station immediately.", "Central Command Higher Dimensional Affairs")
-	sound_to_playing_players('sound/misc/airraid.ogg')
+	priority_announce("Unknown anomalous portals detected on a large scale of the station. There is no additional data.", "Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
 
 /datum/round_event/portal_storm/resonance_cascade/announce(fake)
 	if(fake) // no point in trying to fake it, has much more impact if it's only the real thing
@@ -211,7 +211,7 @@
 		Stay vigilant, report any suspicious activity, and await further instructions at the designated evacuation points. \
 		Assistance is on the way.",
 		title = "Central Command Higher Dimensional Affairs",
-		sound = 'sound/misc/notice1.ogg',
+		sound = 'sound/misc/airraid.ogg',
 	)
 
 /datum/round_event/portal_storm/resonance_cascade/tick()
