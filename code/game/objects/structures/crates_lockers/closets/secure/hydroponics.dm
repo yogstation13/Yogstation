@@ -12,3 +12,4 @@
 	new /obj/item/hatchet(src)
 	new /obj/item/storage/box/disks_plantgene(src)
 	new /obj/item/scythe(src)
+	new /obj/item/grenade/chem_grenade/antiweed(src)
