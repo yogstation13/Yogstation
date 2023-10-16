@@ -31,7 +31,7 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 		require_twohands = TRUE, \
-		wielded_stats = list(SWING_SPEED = 1.5, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 1 SECONDS, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+		wielded_stats = list(SWING_SPEED = 1.5, ENCUMBRANCE = 0.5, ENCUMBRANCE_TIME = 1 SECONDS, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
 
 /obj/item/melee/sledgehammer/proc/on_wield(atom/source, mob/living/user)
@@ -50,17 +50,7 @@
 	if(!proximity_flag)
 		return
 
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		C.add_movespeed_modifier(SLEDGEHAMMER_HIT_STAGGER, update=TRUE, priority=101, multiplicative_slowdown=1) //Slows the target because big whack
-		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), SLEDGEHAMMER_HIT_STAGGER), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
-		to_chat(target, span_danger("You are staggered from the blow!"))
-
-	else if(iscyborg(target))
-		var/mob/living/silicon/robot/R = target
-		R.Paralyze(0.4 SECONDS) /// Mostly flavor
-
-	else if(isstructure(target) || ismachinery(target))
+	if(isstructure(target) || ismachinery(target))
 		if(!QDELETED(target))
 			var/obj/structure/S = target
 			if(istype(S, /obj/structure/window)) // Sledgehammer really good at smashing windows. 2-7 hits to kill a window
