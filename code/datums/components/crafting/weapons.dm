@@ -138,7 +138,7 @@
 	name = "Makeshift Bow"
 	result = /obj/item/gun/ballistic/bow/maint
 	reqs = list(/obj/item/pipe = 5,
-           		/obj/item/stack/tape = 3, 
+           		/obj/item/stack/tape = 3,
 				/obj/item/stack/cable_coil = 10)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
@@ -187,6 +187,17 @@
 	result = /obj/item/gun/ballistic/gauss
 	time = 12
 	category = CAT_WEAPON_RANGED
+
+/datum/crafting_recipe/sledgehammer
+	name = "Sledgehammer"
+	result = /obj/item/melee/sledgehammer
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 4,
+				/obj/item/stack/sheet/plasteel = 3,
+				/obj/item/stack/sheet/metal = 1)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	result = /obj/item/melee/sledgehammer
+	time = 8 SECONDS
+	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
@@ -487,8 +498,8 @@
 	name = "Glass Arrow"
 	result = /obj/item/ammo_casing/reusable/arrow/glass
 	time = 1.5 SECONDS
-	reqs = list(/obj/item/shard = 1, 
-				/obj/item/stack/rods = 1, 
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
 				/obj/item/stack/cable_coil = 3)
 	category = CAT_WEAPON_AMMO
 
@@ -497,6 +508,6 @@
 	result = /obj/item/ammo_casing/reusable/arrow/glass/plasma
 	time = 1.5 SECONDS
 	reqs = list(/obj/item/shard/plasma = 1,
-				/obj/item/stack/rods = 1, 
+				/obj/item/stack/rods = 1,
 				/obj/item/stack/cable_coil = 3)
 	category = CAT_WEAPON_AMMO
