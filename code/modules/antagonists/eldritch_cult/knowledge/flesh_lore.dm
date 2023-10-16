@@ -42,8 +42,8 @@
 		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
 
-	if(QDELETED(human_target) || human_target.stat != DEAD)
-		return COMPONENT_BLOCK_HAND_USE
+	// if(QDELETED(human_target) || human_target.stat != DEAD)
+	// 	return COMPONENT_BLOCK_HAND_USE
 
 	human_target.grab_ghost()
 
