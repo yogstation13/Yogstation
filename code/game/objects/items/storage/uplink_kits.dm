@@ -269,8 +269,14 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("scav_boss")
-			// hammer (when added, but better and can break non-rwalls instantly), plated mask, jumpsuit, some kinda mobility item?, syndi chestrig, utility gadget? 
+		if("scav_boss") // Mmm Tagilla my beloved. 30~ TC
+			new /obj/item/storage/belt/military(src) // 0 armor (for now, maybe) 0 TC its drippin.
+			new /obj/item/clothing/head/welding/armored(src) // Silly mask. GREAT armor, but only protects the head. Some TC, ill do the calulation later
+			new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src) // unfortunatley no AP-20s. 8 TC.
+			new /obj/item/ammo_box/magazine/m12g(src) // a single spare mag. 2 TC.
+			// new /obj/item/melee/sledgehammer/elite(src) // not coded in yet. Less than an energy axe for sure.
+			new /obj/item/clothing/under/pants/blackjeans(src) // 0 TC. Style is free.
+			// new /obj/item/clothing/suit/armor/vest/rig(src) // Security armor vest but resprited. 0 TC they are literally everywhere.
 
 #undef CARP_CARP_CARP
 
