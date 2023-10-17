@@ -36,7 +36,7 @@
 /obj/item/storage/pencil_holder/crew
 //THE POPULATED CAN FOR CREW
 	name = "pencil holder"
-	desc = "a holder for writing utensils"
+	desc = "A container for writing utensils."
 	icon_state = "pencilholder_0"
 
 /obj/item/storage/pencil_holder/crew/PopulateContents()
