@@ -710,7 +710,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		power += 5000
 		if(prob(30))
 			radiation_pulse(src, 5000, 4)
-			empulse(src, 10, 5)
 			pulsewave()
 			T.hotspot_expose(max(500+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,T.return_air().return_temperature()), 100)
 			playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
@@ -719,6 +718,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				fire_nuclear_particle()
 		if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 			damage += DAMAGE_HARDCAP * explosion_point
+		if(prob(2))
+			empulse(src, 10, 5)
 
 	//emagged SM go BRRRRRRR here
 	if(antinoblium_attached && !noblium_suppressed)
