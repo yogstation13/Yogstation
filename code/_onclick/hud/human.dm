@@ -78,6 +78,13 @@
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
 
+/atom/movable/screen/qte
+	name = "quick time event"
+	icon_state = "selector"
+	screen_loc = "CENTER,CENTER"
+	color = COLOR_BLUE
+	mouse_opacity = 0 // Don't want to be blocking clicks on more important things (like the person you're fighting)
+
 /datum/hud/human/New(mob/living/carbon/human/owner)
 	..()
 	owner.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)

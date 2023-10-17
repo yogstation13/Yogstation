@@ -1,3 +1,6 @@
+#define BLOCKING_RNG 1 // Default RNG blocking
+#define BLOCKING_QTE 2 // Quick time event blocking
+
 GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/effects/fire.dmi', FIRE))
 
 GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
@@ -104,6 +107,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/toolspeed = 1
 
 	var/block_chance = 0
+	var/blocking_behavior = BLOCKING_RNG
 	var/hit_reaction_chance = 0 //If you want to have something unrelated to blocking/armour piercing etc. Maybe not needed, but trying to think ahead/allow more freedom
 
 	//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
@@ -469,6 +473,52 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
+
+	/// Quick Time Event blocking
+	if(owner?.client && final_block_chance > 0 && final_block_chance < 100 && blocking_behavior == BLOCKING_QTE)
+		var/datum/hud/owner_hud = owner.hud_used
+		var/list/mouse_control = params2list(owner.client.mouseParams)
+		if(owner_hud && mouse_control["screen-loc"])
+			// Size multiplier
+			var/block_size = (final_block_chance/33)
+			/// This grabs the mouse's location for use in both the HUD and comparing it later
+			//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
+			var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
+			//Split X+Pixel_X up into list(X, Pixel_X)
+			var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+			//Split Y+Pixel_Y up into list(Y, Pixel_Y)
+			var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
+
+			var/atom/movable/screen/qte/new_qte = new(owner_hud) // Create the QTE HUD element
+			// Randomize the position to up to 64 pixels (2 tiles) away from the mouse's current position
+			var/near_mouse_screen_loc = "[screen_loc_X[1]]:[text2num(screen_loc_X[2])+rand(-64,64)],[screen_loc_Y[1]]:[text2num(screen_loc_Y[2])+rand(-64,64)]"
+			// Set up the QTE to be invisible and ready to be animated
+			new_qte.screen_loc = near_mouse_screen_loc // Position
+			new_qte.transform = matrix()*0
+			new_qte.alpha = 0 // Invisible
+			owner_hud.infodisplay += new_qte // Add it to the HUD
+			INVOKE_ASYNC(owner_hud, TYPE_PROC_REF(/datum/hud/, show_hud),owner_hud.hud_version) // Wake the HUD up
+			animate(new_qte, transform = matrix()*block_size*0.9, alpha = 255, time = 0.75 SECONDS, easing = CUBIC_EASING | EASE_OUT)
+			if(isprojectile(hitby)) // We don't want the projectile to go through them, so make it "go away"
+				STOP_PROCESSING(SSprojectiles, hitby)
+				hitby.loc = null
+			sleep(0.75 SECONDS) // Wait for the animation to be finished
+			if(!QDELETED(owner_hud) && !QDELETED(owner?.client) && !QDELETED(new_qte)) // Make sure nothing catastrophic happened
+				owner_hud.infodisplay -= new_qte // Remove the QTE from the HUD
+				QDEL_NULL(new_qte) // Delete the QTE
+				// Get the current position of the mouse
+				var/datum/position/mouse_position = mouse_absolute_datum_map_position_from_client(owner.client)
+				// Get the position of the QTE
+				var/datum/position/qte_position = absolute_datum_map_position_from_screen_loc(owner.client, near_mouse_screen_loc)
+				// Combine tiles (32px) and pixels and correct for icon positioning
+				var/total_pixels_qte_x = (qte_position.x * 32) + qte_position.pixel_x + 16*block_size
+				var/total_pixels_qte_y = (qte_position.y * 32) + qte_position.pixel_y + 16*block_size
+				var/total_pixels_mouse_x = (mouse_position.x * 32) + mouse_position.pixel_x
+				var/total_pixels_mouse_y = (mouse_position.y * 32) + mouse_position.pixel_y
+				// Whether the mouse was within the boundaries of the visible box
+				var/successful_block = abs(total_pixels_qte_x - total_pixels_mouse_x) < 16*block_size && abs(total_pixels_qte_y - total_pixels_mouse_y) < 16*block_size
+				final_block_chance = successful_block * 100
+
 	if(prob(final_block_chance))
 		owner.visible_message(span_danger("[owner] blocks [attack_text] with [src]!"))
 		return 1

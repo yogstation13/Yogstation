@@ -103,6 +103,7 @@
 	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
 	armour_penetration = 35
 	block_chance = 50
+	blocking_behavior = BLOCKING_QTE
 	saber_color = "green"
 
 /obj/item/melee/transforming/energy/sword/attackby(obj/item/I, mob/living/user, params)
