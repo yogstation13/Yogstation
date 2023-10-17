@@ -15,8 +15,10 @@
 	var/supermatter_cascading = FALSE
 	///Radiation amount
 	var/supermatter_radiation = 0
+	///Blob shit
+	var/supermatter_blob = FALSE
 
-/datum/supermatter_delamination/New(supermatter_power, supermatter_gas_amount, turf/supermatter_turf, supermatter_explosion_power, supermatter_gasmix_power_ratio, supermatter_antinoblium, supermatter_cascading, supermatter_radiation)
+/datum/supermatter_delamination/New(supermatter_power, supermatter_gas_amount, turf/supermatter_turf, supermatter_explosion_power, supermatter_gasmix_power_ratio, supermatter_antinoblium, supermatter_cascading, supermatter_radiation, supermatter_blob)
 	. = ..()
 
 	src.supermatter_power = supermatter_power
@@ -27,6 +29,7 @@
 	src.supermatter_antinoblium = supermatter_antinoblium
 	src.supermatter_cascading = supermatter_cascading
 	src.supermatter_radiation = supermatter_radiation
+	src.supermatter_blob = supermatter_blob
 
 	setup_mob_interaction()
 	setup_delamination_type()
@@ -59,15 +62,18 @@
 		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 
 /datum/supermatter_delamination/proc/setup_delamination_type()
-	if(supermatter_cascading)
+	if(supermatter_blob)
+		call_blob()
+		return
+	if(supermatter_cascading && !supermatter_blob)
 		call_cascading()
 		call_cascadetesla()
 		call_explosion()
 		return
-	if(supermatter_gas_amount > MOLE_PENALTY_THRESHOLD && !supermatter_cascading)
+	if(supermatter_gas_amount > MOLE_PENALTY_THRESHOLD && !supermatter_cascading && !supermatter_blob)
 		call_singulo()
 		return
-	if(supermatter_power > POWER_PENALTY_THRESHOLD && !supermatter_cascading)
+	if(supermatter_power > POWER_PENALTY_THRESHOLD && !supermatter_cascading && !supermatter_blob)
 		call_tesla()
 		call_explosion()
 		return
@@ -120,3 +126,24 @@
 		var/obj/singularity/energy_ball/supermatter/E = new(supermatter_turf)
 		E.energy += supermatter_power*100 // god
 		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(E)].")
+
+/datum/supermatter_delamination/proc/call_blob()
+	var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Supermatter Blob?", ROLE_BLOB, null, ROLE_BLOB)
+	if(candidates.len)
+		var/mob/dead/observer/new_blob = pick(candidates)
+		var/mob/camera/blob/BC = new_blob.become_overmind(350, 1.5, 1)
+		var/explosion_mod = clamp((1.001**supermatter_power) / ((1.001**supermatter_power) + SUPERMATTER_EXPLOSION_LAMBDA), 0.1, 1)
+		BC.forceMove(supermatter_turf)
+		BC.place_blob_core(BLOB_FORCE_PLACEMENT)
+		var/datum/gas_mixture/GM = new
+		for(var/turf/open/F in range(1,supermatter_turf)) //change the air around the blob back to normal so it doesnt fuck the blob
+			if(F.blocks_air)
+				continue
+			GM.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
+			F.copy_air(GM)
+			F.update_visuals()
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(empulse), supermatter_turf, supermatter_explosion_power * explosion_mod, (supermatter_explosion_power * explosion_mod * 2) + (supermatter_explosion_power/4), TRUE, FALSE, FALSE, TRUE)
+		message_admins("Supermatter has created a blob. [ADMIN_JMP(BC)].")
+	else
+		supermatter_blob = FALSE
+		setup_delamination_type()
