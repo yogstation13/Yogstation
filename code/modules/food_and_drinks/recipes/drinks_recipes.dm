@@ -933,9 +933,21 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5, /datum/reagent/consumable/ethanol/grappa = 2, /datum/reagent/consumable/lemonjuice = 2, /datum/reagent/gold = 1)
 	mix_message = "The mixture turns a deep golden hue."
 
+/datum/chemical_reaction/gin_garden
+	name = "Gin Garden"
+	id = /datum/reagent/consumable/ethanol/gin_garden
+	results = list(/datum/reagent/consumable/ethanol/gin_garden = 15)
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/ethanol/gin = 3, /datum/reagent/consumable/cucumberjuice = 3, /datum/reagent/consumable/sol_dry = 5, /datum/reagent/consumable/ice = 2)
+
+/datum/chemical_reaction/cucumberlemonade
+	name = "Cucumber Lemonade"
+	id = /datum/reagent/consumable/cucumberlemonade
+	results = list(/datum/reagent/consumable/cucumberlemonade = 5)
+	required_reagents = list(/datum/reagent/consumable/lemon_lime = 3, /datum/reagent/consumable/cucumberjuice = 2, /datum/reagent/consumable/ice = 1)
+
 /datum/chemical_reaction/syndicate_screwdriver
 	name = "Syndicate Screwdriver"
 	id = /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	results = list(/datum/reagent/consumable/ethanol/syndicate_screwdriver = 1)
 	required_reagents = list (/datum/reagent/consumable/ethanol/screwdrivercocktail = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5)
-	mix_message = "The mixture sparkles with a menacing red aura"
+	mix_message = "The mixture sparkles with a menacing red aura."
