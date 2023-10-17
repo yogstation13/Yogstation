@@ -553,9 +553,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("[src] has reached criticial antinoblium concentration and started a resonance cascade.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has reached criticial antinoblium concentration and started a resonance cascade.")
 			antinoblium_attached = TRUE // oh god oh fuck
+			radio.use_command = TRUE
 
 		if (miasmacomp >= 0.5 && miasmol > 500 && !supermatter_blob) //requires around 4500 mol of miasma for the blob
 			supermatter_blob = TRUE // you are fucked
+			radio.use_command = TRUE
 
 		// adding enough hypernoblium can save it, but only if it hasn't gotten too bad and it wasn't corrupted using the traitor kit
 		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 10 && damage <= damage_archived)
@@ -705,7 +707,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//blob SM HAMMM
 	if(supermatter_blob)
-		radio.use_command = TRUE
 		powerloss_inhibitor = 0.01
 		power += 5000
 		if(prob(30))
@@ -716,6 +717,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_zap(src, 5, power)
 			for(var/i = 1 to 20)
 				fire_nuclear_particle()
+			radio.talk_into(src, "DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.", common_channel)
 		if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 			damage += DAMAGE_HARDCAP * explosion_point
 		if(prob(2))
@@ -723,7 +725,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//emagged SM go BRRRRRRR here
 	if(antinoblium_attached && !noblium_suppressed)
-		radio.use_command = TRUE
 		if(prob(10+round(damage/(explosion_point/20),1)*3) & support_integrity>0)//radio chatter to make people panic
 			switch(support_integrity)
 				if(100)
