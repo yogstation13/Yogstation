@@ -2353,7 +2353,8 @@
 					/obj/item/seeds/sunflower,
 					/obj/item/seeds/chanter,
 					/obj/item/seeds/potato,
-					/obj/item/seeds/sugarcane)
+					/obj/item/seeds/sugarcane,
+					/obj/item/seeds/cucumber)
 	crate_name = "seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2368,7 +2369,8 @@
 					/obj/item/reagent_containers/food/snacks/grown/carrot,
 					/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 					/obj/item/reagent_containers/food/snacks/grown/onion,
-					/obj/item/reagent_containers/food/snacks/grown/pumpkin)
+					/obj/item/reagent_containers/food/snacks/grown/pumpkin,
+					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/vending/hydro_refills
