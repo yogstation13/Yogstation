@@ -92,6 +92,7 @@
 		owner.SetImmobilized(0) 
 		owner.adjustBruteLoss(-5)
 		owner.adjustFireLoss(-5)
+		playsound(owner.loc, 'sound/weapons/ricochet.ogg', 40, 1)
 	if(owner)
 		for(var/traits in grimoire_traits)
 			REMOVE_TRAIT(owner, traits, GRIMOIRE_TRAIT)
