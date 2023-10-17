@@ -249,10 +249,21 @@
 	pellets = 2
 	variance = 3 // the tight spread
 
-/obj/item/ammo_casing/shotgun/mindshatter
-	name = "mindshatter shell"
-	desc = "An advanced shotgun shell that has low impact damage, but splashes the target with nanites that eat away at them on a cellular level."
-	icon_state = "msshell"
-	projectile_type = /obj/projectile/bullet/pellet/shotgun_mindshatter
-	pellets = 4
-	variance = 40
+/obj/item/ammo_casing/shotgun/anarchy
+	name = "anarchy shell"
+	desc = "An advanced shotgun shell that has low impact damage, wide spread, and loads of pellets that bounce everywhere. Good luck"
+	icon_state = "anashell"
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_anarchy
+	pellets = 10 // AWOOGA!!
+	variance = 50
+	ricochets_max = 3
+	reflect_range_decrease = 5
+	multiple_hit = TRUE
+
+/obj/item/ammo_casing/shotgun/anarchy/check_ricochet(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
+/obj/item/ammo_casing/shotgun/anarchy/check_ricochet_flag(atom/A)
+	return TRUE

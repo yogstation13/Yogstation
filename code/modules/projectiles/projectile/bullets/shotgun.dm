@@ -167,10 +167,9 @@
 	if(damage < 0 && stamina < 0)
 		qdel(src)
 
-/obj/projectile/bullet/pellet/shotgun_mindshatter
-	name = "mindshatter pellet"
-	damage_type = CLONE
-	damage = 8 // 8x4 at point blank, otherwise probably 8x2
+/obj/projectile/bullet/pellet/shotgun_anarchy
+	name = "anarchy pellet"
+	damage = 4 // 4x10 at point blank
 	sharpness = SHARP_NONE
 
 /obj/projectile/bullet/shotgun/slug/rip

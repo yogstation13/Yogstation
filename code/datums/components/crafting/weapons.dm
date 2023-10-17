@@ -425,12 +425,12 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO	
 
-/datum/crafting_recipe/mindshatter
-	name = "Mindshatter Shell"
-	result = /obj/item/ammo_casing/shotgun/mindshatter
+/datum/crafting_recipe/anarchy
+	name = "Anarchy Shell"
+	result = /obj/item/ammo_casing/shotgun/anarchy
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
-				/datum/reagent/medicine/rezadone = 5,// Rezadone because then it garuntees that the damage is fixable. 
-				/datum/reagent/medicine/sal_acid = 2) // because its... melting them?
+				/obj/item/stack/sheet/plastic = 5, // uhh because we dont have rubber and this is as close as i can get?
+				/obj/item/stack/sheet/mineral/silver = 5) // mirrors are inlaid with silver so light reflects, so clearly it helps them reflect too, right?
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
