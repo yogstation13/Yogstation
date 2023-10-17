@@ -171,6 +171,17 @@
 	name = "anarchy pellet"
 	damage = 4 // 4x10 at point blank
 	sharpness = SHARP_NONE
+	ricochets_max = 3
+	reflect_range_decrease = 5
+	ricochet_chance = 100
+
+/obj/projectile/bullet/pellet/shotgun_anarchy/check_ricochet(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
+/obj/projectile/bullet/pellet/shotgun_anarchy/check_ricochet_flag(atom/A)
+	return TRUE
 
 /obj/projectile/bullet/shotgun/slug/rip
 	name = "ripslug"

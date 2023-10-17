@@ -256,14 +256,3 @@
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_anarchy
 	pellets = 10 // AWOOGA!!
 	variance = 50
-	ricochets_max = 3
-	reflect_range_decrease = 5
-	multiple_hit = TRUE
-
-/obj/item/ammo_casing/shotgun/anarchy/check_ricochet(atom/A)
-	if(istype(A, /turf/closed))
-		return TRUE
-	return FALSE
-
-/obj/item/ammo_casing/shotgun/anarchy/check_ricochet_flag(atom/A)
-	return TRUE
