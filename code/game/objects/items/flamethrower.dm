@@ -330,7 +330,7 @@
 	create_with_tank = TRUE
 
 /obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	var/obj/item/projectile/P = hitby
+	var/obj/projectile/P = hitby
 	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(5))
 		owner.visible_message(span_danger("\The [attack_text] hits the fueltank on [owner]'s [name], rupturing it! What a shot!"))
 		var/target_turf = get_turf(owner)
@@ -348,13 +348,13 @@
 ///////////////////// Flamethrower as an energy weapon /////////////////////
 // Currently used exclusively in /obj/item/gun/energy/printer/flamethrower
 /obj/item/ammo_casing/energy/flamethrower
-	projectile_type = /obj/item/projectile/bullet/incendiary/flamethrower
+	projectile_type = /obj/projectile/bullet/incendiary/flamethrower
 	select_name = "fire"
 	fire_sound = null
 	firing_effect_type = null
 	e_cost = 50
 
-/obj/item/projectile/bullet/incendiary/flamethrower
+/obj/projectile/bullet/incendiary/flamethrower
 	name = "waft of flames"
 	icon_state = null
 	damage = 0

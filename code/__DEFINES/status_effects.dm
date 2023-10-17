@@ -153,6 +153,8 @@
 
 #define STATUS_EFFECT_CATCHUP /datum/status_effect/catchup //momentarily slows the victim
 
+#define STATUS_EFFECT_VOID_CHILL /datum/status_effect/void_chill
+
 /////////////
 // NEUTRAL //
 /////////////

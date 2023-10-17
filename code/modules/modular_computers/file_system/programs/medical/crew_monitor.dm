@@ -8,7 +8,7 @@
 	requires_ntnet = FALSE
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_INTEGRATED | PROGRAM_PDA
+	usage_flags = PROGRAM_ALL
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosCrewMonitor"

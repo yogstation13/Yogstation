@@ -5,10 +5,30 @@
 		They appear to be in search of a station with a veil weakness to be able to channel their shadow's abyssal powers. \n\
 		Thanks to this, they have also evolved a dark liquid in their veins, which makes them able to manipulate shadows. \n\
 		Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows."
-	clan_objective = /datum/objective/bloodsucker/hierarchy
+	clan_objective = /datum/objective/lasombra_clan_objective
 	join_icon_state = "lasombra"
 	join_description = "Heal more on the dark, transform abilties into upgraded ones, become one with the darkness."
 	control_type = BLOODSUCKER_CONTROL_SHADOWS
+
+/datum/objective/lasombra_clan_objective
+	name = "hierarchy"
+
+/datum/objective/lasombra_clan_objective/New()
+	target_amount = rand(1, 2)
+	..()
+	update_explanation_text()
+
+/datum/objective/lasombra_clan_objective/update_explanation_text()
+	. = ..()
+	explanation_text = "Ascend [target_amount == 1 ? "at least 1 ability" : "2 abilities"] using a Resting Place altar."
+
+/datum/objective/lasombra_clan_objective/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
 
 /datum/bloodsucker_clan/lasombra/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()

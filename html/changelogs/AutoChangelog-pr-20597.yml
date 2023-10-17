@@ -1,0 +1,9 @@
+author: " Vishenka0704, Ying-The-Pando, ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Cucumbers. Seeds found in the seed vendor. Can be juiced to make cucumber juice."
+  - rscadd: "Pickles. Crafted with 5u water, 2u salt and 1 cucumber."
+  - tweak: "Super bite burger now needs a pickle to craft."
+  - rscadd: "Danish hotdog. Crafted with 1 bun, 1 sausage, 1 pickle, 5u ketchup and 1 onion slice."
+  - rscadd: "Gin Garden drink. Made with 1 part lemon juice, 1 part sugar, 3 parts gin, 3 parts cucumber juice, 5 parts sol dry and 2 parts ice."
+  - rscadd: "Cucumber Lemonade. Made with 3 parts spite, 2 parts cucumber juice and 1 part ice."

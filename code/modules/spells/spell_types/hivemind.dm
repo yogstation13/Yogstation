@@ -74,7 +74,7 @@
 	if(!target.mind || !target.client || target.stat == DEAD)
 		to_chat(owner, span_notice("We detect no neural activity in this body."))
 	var/shielded = HAS_TRAIT(target, TRAIT_MINDSHIELD)
-	var/foiled = target.anti_magic_check(FALSE, FALSE, TRUE, 0)
+	var/foiled = target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0)
 	if(shielded && !bruteforce)
 		to_chat(owner, span_warning("Powerful technology protects [target.name]'s mind."))
 		return
@@ -93,7 +93,7 @@
 	hive.add_to_hive(target)
 	hive.threat_level = max(0, hive.threat_level-0.1)
 	if(bruteforce)
-		if(target.anti_magic_check(FALSE, FALSE, TRUE, 6))
+		if(target.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 6))
 			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 		to_chat(owner, span_warning("We are briefly exhausted by the effort required by our enhanced assimilation abilities."))
 		caster.Immobilize(5 SECONDS)
@@ -101,7 +101,7 @@
 		for(var/obj/item/implant/mindshield/M in target.implants)
 			qdel(M)
 	else
-		target.anti_magic_check(FALSE, FALSE, TRUE)
+		target.can_block_magic(MAGIC_RESISTANCE_MIND)
 
 /datum/action/cooldown/spell/aoe/target_hive/hive_remove
 	name = "Release Vessel"
@@ -151,7 +151,7 @@
 	if(!active)
 		vessel = victim
 		if(vessel)
-			if(vessel.anti_magic_check(FALSE, FALSE, TRUE, 0))
+			if(vessel.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
 				if(get_dist(src, vessel) > 42)
 					to_chat(owner, span_warning("We were unable to link our view with [vessel.name]. A barrier of tinfoil prevents us to do so at this distance."))
 					return
@@ -207,7 +207,7 @@
 	var/mob/living/carbon/target = targets[1]
 	to_chat(owner, span_notice("We increase the psionic bandwidth between ourself and the target!"))
 	var/power = 1
-	if(target.anti_magic_check(FALSE, FALSE, TRUE))
+	if(target.can_block_magic(MAGIC_RESISTANCE_MIND))
 		power *= 0.5
 	if(!hive.is_carbon_member(target))
 		power *= 0.5
@@ -257,7 +257,7 @@
 		if(owner.z != L.z || L.stat == DEAD)
 			message += " could not be found."
 		else
-			var/multiplier = L.anti_magic_check(FALSE, FALSE, TRUE) ? rand(0.6, 1.4) : 1
+			var/multiplier = L.can_block_magic(MAGIC_RESISTANCE_MIND) ? rand(0.6, 1.4) : 1
 			switch(distance*multiplier)
 				if(0 to 2)
 					message += " is right next to us!"
@@ -275,14 +275,14 @@
 		var/mob/living/carbon/C = enemy.owner?.current
 		if(!C)
 			continue
-		var/multiplier = C.anti_magic_check(FALSE, FALSE, TRUE) ? rand(0.6, 1.4) : 1
+		var/multiplier = C.can_block_magic(MAGIC_RESISTANCE_MIND) ? rand(0.6, 1.4) : 1
 		var/mob/living/real_enemy = C.get_real_hivehost()
 		distance = get_dist(owner, real_enemy)
 		message = "A host that we can track for [(hive.individual_track_bonus[enemy])/10] extra seconds"
 		if(owner.z != real_enemy.z || real_enemy.stat == DEAD)
 			message += " could not be found."
 		else
-			multiplier = real_enemy.anti_magic_check(FALSE, FALSE, TRUE) ? rand(0.6, 1.4) : 1
+			multiplier = real_enemy.can_block_magic(MAGIC_RESISTANCE_MIND) ? rand(0.6, 1.4) : 1
 			switch(distance*multiplier)
 				if(0 to 2)
 					message += " is right next to us!"
@@ -332,7 +332,7 @@
 		if(!target)
 			to_chat(owner, span_warning("We have run out of vessels to drain."))
 			break
-		var/regen = target.anti_magic_check(FALSE, FALSE, TRUE) ? 5 : 10
+		var/regen = target.can_block_magic(MAGIC_RESISTANCE_MIND) ? 5 : 10
 		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, regen/2)
 		if(owner.getBruteLoss() > owner.getFireLoss())
 			owner.heal_ordered_damage(regen, list(CLONE, BRUTE, BURN, STAMINA))
@@ -423,7 +423,7 @@
 		vessel = victim
 		to_chat(owner, span_notice("We begin merging our mind with [vessel.name]."))
 		var/timely = 50
-		if(vessel.anti_magic_check(FALSE, FALSE, TRUE))
+		if(vessel.can_block_magic(MAGIC_RESISTANCE_MIND))
 			timely = 100
 			restricted_range = TRUE
 		if(!do_after(owner, timely, owner, timed_action_flags = IGNORE_HELD_ITEM))
@@ -526,7 +526,7 @@
 			continue
 		target.adjust_jitter(14 SECONDS)
 		target.apply_damage(35 + rand(0,15), STAMINA, target.get_bodypart(BODY_ZONE_HEAD))
-		if(target.is_real_hivehost() || target.anti_magic_check(FALSE, FALSE, TRUE))
+		if(target.is_real_hivehost() || target.can_block_magic(MAGIC_RESISTANCE_MIND))
 			continue
 		if(prob(20))
 			var/text = pick(":h Help!!",":h Run!",":h They're here!",":h Get out!",":h Hide!",":h Kill them!",":h Cult!",":h Changeling!",":h Traitor!",":h Nuke ops!",":h Revolutionaries!",":h Wizard!",":h Zombies!",":h Ghosts!",":h AI rogue!",":h Borgs emagged!",":h Maint!!",":h Dying!!",":h AI lock down the borgs law 1!",":h I'm losing control of the situation!!")
@@ -610,7 +610,7 @@
 		to_chat(owner, span_notice("Our concentration has been broken!"))
 		return
 	to_chat(target, span_ownerdanger("You see dark smoke swirling around you!"))
-	if(target.anti_magic_check(FALSE, FALSE, TRUE))
+	if(target.can_block_magic(MAGIC_RESISTANCE_MIND))
 		to_chat(owner, span_notice("We begin bruteforcing the tinfoil barriers of [target.name] and pulling out their nightmares."))
 		if(!do_after(owner, 3 SECONDS, owner, timed_action_flags = IGNORE_HELD_ITEM) || !(target in view(aoe_radius)))
 			to_chat(owner, span_notice("Our concentration has been broken!"))
@@ -683,7 +683,7 @@
 
 	to_chat(owner, span_notice("We begin probing [target.name]'s mind!"))
 	if(do_after(owner, 10 SECONDS, target, timed_action_flags = IGNORE_HELD_ITEM))
-		var/foiled = target.anti_magic_check(FALSE, FALSE, TRUE)
+		var/foiled = target.can_block_magic(MAGIC_RESISTANCE_MIND)
 		if(!in_hive || foiled)
 			var/timely = !in_hive ? 200 : 100
 			to_chat(owner, span_notice("Their mind slowly opens up to us."))
@@ -796,7 +796,7 @@
 	var/list/valid_targets = list()
 	for(var/datum/mind/M in hive.hivemembers)
 		var/mob/living/carbon/C = M.current
-		if(!C || is_hivehost(C) || C.is_wokevessel() || C.stat == DEAD || C.InCritical() || C.anti_magic_check(FALSE, FALSE, TRUE, 4))
+		if(!C || is_hivehost(C) || C.is_wokevessel() || C.stat == DEAD || C.InCritical() || C.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 4))
 			continue
 		valid_targets += C
 
@@ -951,7 +951,8 @@
 			continue
 		C.adjust_jitter(15 SECONDS)
 		C.Unconscious(150)
-		C.anti_magic_check(FALSE, FALSE, TRUE, 6)
+		if(C.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 6))
+			continue
 		to_chat(C, span_boldwarning("Something's wrong..."))
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_boldwarning("...your memories are becoming fuzzy.")), 45)
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_boldwarning("You try to remember who you are...")), 90)

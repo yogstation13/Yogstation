@@ -642,7 +642,7 @@
 /obj/item/storage/box/firingpins/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/firing_pin(src)
-	
+
 /obj/item/storage/box/firingpins/syndicate
 	name = "box of syndicate firing pins"
 	desc = "A box full of Syndicate-issue secure firing pins, to allow newly-developed firearms to operate."
@@ -1063,7 +1063,8 @@
 							  /obj/item/reagent_containers/food/snacks/grown/soybeans,
 							  /obj/item/reagent_containers/food/snacks/grown/corn,
 							  /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
-							  /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle)
+							  /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
+							  /obj/item/reagent_containers/food/snacks/grown/cucumber)
 		new randomFood(src)
 
 /obj/item/storage/box/ingredients/fiesta
@@ -1296,7 +1297,7 @@
 		/obj/item/stack/sheet/mineral/wood/fifty = 1,
 		/obj/item/stack/sheet/mineral/titanium/fifty = 1,
 		/obj/item/stack/sheet/mineral/uranium/fifty = 1,
-		/obj/item/stack/sheet/mineral/diamond = 1,
+		/obj/item/stack/sheet/mineral/diamond/fifty = 1,
 		/obj/item/stack/sheet/mineral/plasma/fifty = 1,
 		/obj/item/stack/sheet/mineral/gold/fifty = 1,
 		/obj/item/stack/sheet/mineral/silver/fifty = 1,

@@ -481,6 +481,50 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	implants = list(/obj/item/implant/mindshield) //No revolutionaries, he's MY friend.
 	id = /obj/item/card/id
 
+/obj/effect/mob_spawn/human/icemoon_walker
+	name = "disturbed grave"
+	desc = "A grave.  It's dirt seems to be churned up, with signs of recent activity."
+	roundstart = FALSE
+	death = FALSE
+	important_info = "Do not board the Nanotrasen station under any circumstances."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	mob_species = /datum/species/zombie
+	outfit = /datum/outfit/icemoon_walker
+	short_desc = "You are an Icemoon Walker, created by The Syndicate's early experiments with Romerol."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	assignedrole = "Icemoon Walker"
+
+/datum/outfit/icemoon_walker
+	name = "Icemoon Walker"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/wintercoat
+	shoes = /obj/item/clothing/shoes/winterboots
+	gloves = /obj/item/clothing/gloves/color/black
+	back = /obj/item/storage/backpack
+
+/obj/effect/mob_spawn/human/icemoon_walker/chieftain
+	name = "immaculate grave"
+	desc = "A grave.  It's dirt is perfectly shaped, as though someone has smoothed it out recently."
+	roundstart = FALSE
+	death = FALSE
+	important_info = "Do not board the Nanotrasen station under any circumstances."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	mob_species = /datum/species/zombie
+	outfit = /datum/outfit/icemoon_walker/chieftain
+	short_desc = "You lead a tribe of Icemoon Walkers, zombies created by The Syndicate's early experiments with Romerol."
+	flavour_text = "You suffer from an eternal hunger, due to a curse bestowed upon you by Syndicate scientists. The snowy wastes are filled with meat, including that of Nanotrasen miners. Your feast awaits."
+	assignedrole = "Icemoon Walker Chieftain"
+
+/datum/outfit/icemoon_walker/chieftain
+	name = "Icemoon Walker Chieftain"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/hooded/wintercoat/bluecoat
+	shoes = /obj/item/clothing/shoes/winterboots
+	gloves = /obj/item/clothing/gloves/color/black
+	back = /obj/item/storage/backpack
+
 /obj/effect/mob_spawn/human/syndicate
 	name = "Syndicate Operative"
 	roundstart = FALSE
@@ -650,6 +694,29 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	suit_store = /obj/item/gun/ballistic/revolver
 	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/a357=2, /obj/item/melee/classic_baton/telescopic=1)
+
+//Icemoon Hermit. Player becomes a individual who sook out shelter from society by running away.
+
+/obj/effect/mob_spawn/human/icemoon_hermit
+	name = "Icemoon Hermit"
+	short_desc = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	roundstart = FALSE
+	death = FALSE
+	flavour_text = "After becoming disillusioned with society, you chose a life here with the ice and snow."
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	outfit = /datum/outfit/ice_hermit
+	assignedrole = "Ice Hermit"
+
+/datum/outfit/ice_hermit
+	name = "Icemoon Hermit"
+	uniform = /obj/item/clothing/under/color/grey/glorf
+	suit = /obj/item/clothing/suit/hooded/wintercoat
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	back = /obj/item/storage/backpack/satchel //satchel gang
+	mask = /obj/item/clothing/mask/breath
+	l_pocket = /obj/item/tank/internals/emergency_oxygen
+	r_pocket = /obj/item/flashlight/glowstick
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
 /obj/effect/mob_spawn/human/oldsec

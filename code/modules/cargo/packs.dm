@@ -1234,6 +1234,43 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
+/datum/supply_pack/engine/fuel_rod_basic
+	name = "Uranium-235 Fuel Rods Crate"
+	desc = "Contains 5 Enriched Uranium Control Rods."
+	cost = 5000
+	contains = list(/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod)
+	crate_name = "Uranium-235 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/radiation
+
+/datum/supply_pack/engine/fuel_rod_plutonium
+	name = "Plutonium-239 Fuel Rods Crate"
+	desc = "Contains 5 Plutonium-239 Control Rods."
+	cost = 15000
+	contains = list(/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium)
+	crate_name = "Plutonium-239 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/radiation
+
+/datum/supply_pack/engine/fuel_rod_bananium
+	name = "Bananium Fuel Rods Crate"
+	desc = "Contains 5 Bananium Control Rods."
+	cost = 15000
+	contraband = TRUE
+	contains = list(/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium)
+	crate_name = "Bananium Fuel Rods"
+	crate_type = /obj/structure/closet/crate/radiation
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -2316,7 +2353,8 @@
 					/obj/item/seeds/sunflower,
 					/obj/item/seeds/chanter,
 					/obj/item/seeds/potato,
-					/obj/item/seeds/sugarcane)
+					/obj/item/seeds/sugarcane,
+					/obj/item/seeds/cucumber)
 	crate_name = "seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2331,7 +2369,8 @@
 					/obj/item/reagent_containers/food/snacks/grown/carrot,
 					/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 					/obj/item/reagent_containers/food/snacks/grown/onion,
-					/obj/item/reagent_containers/food/snacks/grown/pumpkin)
+					/obj/item/reagent_containers/food/snacks/grown/pumpkin,
+					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/vending/hydro_refills

@@ -105,6 +105,16 @@
 	desc = "Restores the dragon ancestry."
 	add_mutations = list(FIREBREATH)
 
+/obj/item/dnainjector/acidspit
+	name = "\improper DNA injector (Acid Spit)"
+	desc = "Lets you spit acid."
+	add_mutations = list(ACIDSPIT)
+
+/obj/item/dnainjector/antispit
+	name ="\improper DNA injector (Anti-Acid Spit)"
+	desc = "Cures your corrosive saliva."
+	remove_mutations = list(ACIDSPIT)
+
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
 	desc = "Finally you can see what the Captain does."
@@ -156,6 +166,16 @@
 	desc = "It's a small world after all."
 	add_mutations = list(DWARFISM)
 
+/obj/item/dnainjector/antiravenous
+	name = "\improper DNA injector (Anti-Ravenous)"
+	desc = "Cures ravenous."
+	remove_mutations = list(RAVENOUS)
+
+/obj/item/dnainjector/ravenous
+	name = "\improper DNA injector (Ravenous)"
+	desc = "Gives you ravenous."
+	add_mutations = list(RAVENOUS)
+
 /obj/item/dnainjector/clumsymut
 	name = "\improper DNA injector (Clumsy)"
 	desc = "Makes clown minions."
@@ -195,6 +215,16 @@
 	name = "\improper DNA injector (Space Adaptation)"
 	desc = "Gives you space adaptation."
 	add_mutations = list(SPACEMUT)
+
+/obj/item/dnainjector/antiradiant
+	name = "\improper DNA injector (Anti-Radiant Burst)"
+	desc = "Cures radiant burst."
+	remove_mutations = list(RADIANTBURST)
+
+/obj/item/dnainjector/radiantburst
+	name = "\improper DNA injector (Radiant Burst)"
+	desc = "Gives you radiant burst."
+	add_mutations = list(RADIANTBURST)
 
 /obj/item/dnainjector/antiheat
 	name = "\improper DNA injector (Anti-Heat Adaptation)"

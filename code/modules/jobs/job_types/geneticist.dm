@@ -43,7 +43,7 @@
 
 	ears = /obj/item/radio/headset/headset_medsci
 	uniform = /obj/item/clothing/under/rank/geneticist
-	uniform_skirt = /obj/item/clothing/under/rank/geneticist
+	uniform_skirt = /obj/item/clothing/under/rank/geneticist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/genetics
 	suit_store =  /obj/item/flashlight/pen

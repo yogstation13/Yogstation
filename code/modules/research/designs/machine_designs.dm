@@ -771,6 +771,14 @@
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/reactor_control
+	name = "Computer Design (Reactor Control)"
+	desc = "The circuit board for a reactor control console."
+	id = "reactor_control"
+	build_path = /obj/item/circuitboard/computer/reactor
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+  
 /datum/design/board/mindmachine_hub
 	name = "Machine Design (Mind Machine Hub)"
 	desc = "The circuit board for a mind machine hub."

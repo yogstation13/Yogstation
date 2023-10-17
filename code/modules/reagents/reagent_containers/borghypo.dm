@@ -149,7 +149,7 @@
 
 /// Every [recharge_time] seconds, recharge some reagents for the cyborg
 /obj/item/reagent_containers/borghypo/process(delta_time)
-	charge_timer += delta_time
+	charge_timer += (delta_time SECONDS)
 	if(charge_timer >= recharge_time)
 		regenerate_reagents(default_reagent_types)
 		if(upgraded)

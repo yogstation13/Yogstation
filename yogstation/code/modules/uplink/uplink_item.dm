@@ -180,9 +180,17 @@
 			If you install this, it will make you incapable of pushing and pulling. \
 			There are no half-measures, either you succeed or you die."
 	cost = 20
+	player_minimum = 25 //maybe we SHOULDNT be giving this to lowpop traitors when theres no sec?
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
+
+/datum/uplink_item/race_restricted/wirecrawl
+	name = "Modified yellow slime extract"
+	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
+	cost = 8
+	item = /obj/item/book/granter/action/wirecrawl
+	restricted_species = list("ethereal")
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"

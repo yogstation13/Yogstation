@@ -30,6 +30,7 @@
 	desc = "A stationary computer. This one comes preloaded with engineering programs."
 	starting_files = list(	new /datum/computer_file/program/power_monitor,
 							new /datum/computer_file/program/alarm_monitor,
+							new /datum/computer_file/program/nuclear_monitor,
 							new /datum/computer_file/program/supermatter_monitor)
 	initial_program = /datum/computer_file/program/power_monitor
 
@@ -145,6 +146,7 @@
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/power_monitor,
 							new /datum/computer_file/program/alarm_monitor,
+							new /datum/computer_file/program/nuclear_monitor,
 							new /datum/computer_file/program/supermatter_monitor,
 							new /datum/computer_file/program/energy_harvester_control)
 

@@ -38,7 +38,7 @@
 	if(owner.reagents.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
 		owner.remove_status_effect(/datum/status_effect/hallucination)
 	else if(prob(2))
-		owner.adjust_hallucinations(rand(10, 25))
+		owner.adjust_hallucinations(rand(30, 90))
 	..()
 
 /datum/brain_trauma/mild/reality_dissociation/on_lose()
