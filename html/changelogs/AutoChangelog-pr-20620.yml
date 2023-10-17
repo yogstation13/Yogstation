@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Can no longer have your click blocked by glowing heretic runes"
-  - tweak: "Clicking on pierced reality is no longer annoyingly precise"

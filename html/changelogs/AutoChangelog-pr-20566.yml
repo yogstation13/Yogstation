@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Ethereal brightness and range now scales with hunger in addition to health"
-  - tweak: "Ethereal lights are slightly less overpowering"
