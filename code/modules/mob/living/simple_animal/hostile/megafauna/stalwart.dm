@@ -123,7 +123,7 @@
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/stalpike(startloc)
+	var/obj/projectile/P = new /obj/projectile/stalpike(startloc)
 	P.preparePixelProjectile(marker, startloc)
 	P.firer = src
 	if(target)
@@ -135,7 +135,7 @@
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/stalpike/spiral(startloc)
+	var/obj/projectile/P = new /obj/projectile/stalpike/spiral(startloc)
 	P.preparePixelProjectile(marker, startloc)
 	P.firer = src
 	if(target)
@@ -147,7 +147,7 @@
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/stalnade(startloc)
+	var/obj/projectile/P = new /obj/projectile/stalnade(startloc)
 	P.preparePixelProjectile(marker, startloc)
 	P.firer = src
 	if(target)
@@ -202,7 +202,7 @@
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/stalnade(startloc)
+	var/obj/projectile/P = new /obj/projectile/stalnade(startloc)
 	P.preparePixelProjectile(marker, startloc)
 	P.firer = src
 	if(target)
@@ -321,7 +321,7 @@
 	move_to_delay = 2
 	speed = 1
 	ranged_cooldown_time = 30
-	projectiletype = /obj/item/projectile/stalpike/weak
+	projectiletype = /obj/projectile/stalpike/weak
 	projectilesound = 'sound/weapons/ionrifle.ogg'
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged/GiveTarget(new_target)
@@ -335,7 +335,7 @@
 	desc = "Bzz bizzop boop blip beep"
 	invisibility = 100
 
-/obj/item/projectile/stalpike
+/obj/projectile/stalpike
 	name = "energy pike"
 	icon_state = "arcane_barrage_greyscale"
 	damage = 30
@@ -349,7 +349,7 @@
 	light_power = 6
 	light_color = "#00e1ff"
 
-/obj/item/projectile/stalpike/spiral
+/obj/projectile/stalpike/spiral
 	name = "resonant energy pike"
 	icon_state = "arcane_barrage_greyscale"
 	damage = 30
@@ -363,7 +363,7 @@
 	light_power = 6
 	light_color = "#4851ce"
 
-/obj/item/projectile/stalpike/weak
+/obj/projectile/stalpike/weak
 	name = "lesser energy pike"
 	icon_state = "arcane_barrage_greyscale"
 	damage = 10
@@ -377,7 +377,7 @@
 	light_power = 6
 	light_color = "#9a9fdb"
 
-/obj/item/projectile/stalnade
+/obj/projectile/stalnade
 	name = "volatile orb"
 	icon_state = "wipe"
 	damage = 40
@@ -390,7 +390,7 @@
 	light_power = 10
 	light_color = "#0077ff"
 
-/obj/item/projectile/stalnade/on_hit(target)
+/obj/projectile/stalnade/on_hit(target)
 	if(!iscarbon(target))
 		return BULLET_ACT_PENETRATE
 	. = ..()

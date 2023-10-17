@@ -101,6 +101,13 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	GLOB.stationroom_landmarks -= src
 	return TRUE
 
+/obj/effect/landmark/stationroom/box/clerk
+	template_names = list("Clerk Box", "Clerk Pod", "Clerk Meta")
+
+/obj/effect/landmark/stationroom/box/clerk/load(template_name)
+	GLOB.stationroom_landmarks -= src
+	return TRUE
+
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine Nuclear Reactor" = 20)
 

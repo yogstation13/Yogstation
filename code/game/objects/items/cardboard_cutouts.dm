@@ -83,8 +83,8 @@
 		if(prob(I.force))
 			push_over()
 
-/obj/item/cardboard_cutout/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/bullet/reusable))
+/obj/item/cardboard_cutout/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/bullet/reusable))
 		P.on_hit(src, 0)
 	visible_message(span_danger("[src] has been hit by [P]!"))
 	playsound(src, 'sound/weapons/slice.ogg', 50, 1)

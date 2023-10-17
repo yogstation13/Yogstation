@@ -26,7 +26,7 @@
 
 /datum/eldritch_knowledge/base_void/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/void
+	var/obj/realknife = new /obj/item/melee/sickly_blade/void
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
@@ -61,8 +61,7 @@
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
 	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/mental_obfuscation, 
-		/datum/eldritch_knowledge/spell/ashen_shift)
+		/datum/eldritch_knowledge/spell/mental_obfuscation)
 	route = PATH_VOID
 	tier = TIER_1
 

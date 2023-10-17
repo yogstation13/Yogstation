@@ -195,7 +195,7 @@ Made by Xhuis
 		shadow_charges = min(shadow_charges + 1, 3)
 		last_charge = world.time
 
-/datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/ling/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T) && shadow_charges > 0)
 		var/light_amount = T.get_lumcount()

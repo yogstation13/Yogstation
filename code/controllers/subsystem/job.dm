@@ -607,6 +607,8 @@ SUBSYSTEM_DEF(job)
 		irish_override() // Assuming direct control.
 	else if(living_mob.job == "Bartender")
 		job.give_bar_choice(living_mob, M)
+	else if(living_mob.job == "Clerk")
+		job.give_clerk_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
@@ -679,6 +681,71 @@ SUBSYSTEM_DEF(job)
 		message_admins("UNABLE TO SPAWN BAR")
 	
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
+
+
+/datum/controller/subsystem/job/proc/random_clerk_init()
+	try
+		var/list/player_box = list()
+		for(var/mob/H in GLOB.player_list)
+			if(H.client && H.client.prefs) // Prefs was null once and there was no clerk
+				player_box += H.client.prefs.read_preference(/datum/preference/choiced/clerk_choice)
+
+		var/choice
+		if(player_box.len == 0)
+			choice = "Random"
+		else
+			choice = pick(player_box)
+
+		if(choice != "Random")
+			var/clerk_sanitize = FALSE
+			for(var/A in GLOB.potential_box_clerk)
+				if(choice == A)
+					clerk_sanitize = TRUE
+					break
+		
+			if(!clerk_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_clerk)
+
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		if(isnull(template))
+			message_admins("WARNING: CLERK TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			log_game("WARNING: CLERK TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			for(var/backup_clerk in GLOB.potential_box_clerk)
+				template = SSmapping.station_room_templates[backup_clerk]
+				if(!isnull(template))
+					break
+				message_admins("WARNING: CLERK TEMPLATE [backup_clerk] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+				log_game("WARNING: CLERK TEMPLATE [backup_clerk] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+
+		if(isnull(template))
+			message_admins("WARNING: CLERK RECOVERY FAILED! THERE WILL BE NO CLERK SHOP FOR THIS ROUND!")
+			log_game("WARNING: CLERK RECOVERY FAILED! THERE WILL BE NO CLERK SHOP FOR THIS ROUND!")
+			return
+
+		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN RANDOM_CLERK_INIT")
+		spawn_clerk()
+		throw e
+
+/proc/spawn_clerk()
+	var/datum/map_template/template
+	for(var/backup_clerk in GLOB.potential_box_clerk)
+		template = SSmapping.station_room_templates[backup_clerk]
+		if(!isnull(template))
+			break
+	if(isnull(template))
+		message_admins("UNABLE TO SPAWN CLERK")
+	
+	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
 

@@ -428,6 +428,11 @@
 		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
 
+/datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
+	. = ..()
+	if(!.)
+		return (dd == 13 && ddd == FRIDAY)
+	
 /datum/holiday/halloween/greet()
 	return "Have a spooky Halloween!"
 
