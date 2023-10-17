@@ -553,11 +553,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("[src] has reached criticial antinoblium concentration and started a resonance cascade.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has reached criticial antinoblium concentration and started a resonance cascade.")
 			antinoblium_attached = TRUE // oh god oh fuck
-			radio.use_command = TRUE
 
 		if (miasmacomp >= 0.5 && miasmol > 500 && !supermatter_blob) //requires around 4500 mol of miasma for the blob
 			supermatter_blob = TRUE // you are fucked
-			radio.use_command = TRUE
 
 		// adding enough hypernoblium can save it, but only if it hasn't gotten too bad and it wasn't corrupted using the traitor kit
 		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 10 && damage <= damage_archived)
@@ -569,6 +567,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			noblium_suppressed = TRUE
 		else
 			noblium_suppressed = FALSE
+
+		if((supermatter_blob || antinoblium_attached) && !radio.use_command)
+			radio.use_command = TRUE
 
 		var/device_energy = power * REACTION_POWER_MODIFIER
 
