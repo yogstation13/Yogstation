@@ -167,6 +167,17 @@
 	if(damage < 0 && stamina < 0)
 		qdel(src)
 
+/obj/projectile/bullet/pellet/shotgun_mindshatter
+	name = "mindshatter pellet"
+	damage_type = CLONE
+	damage = 8 // 8x4 at point blank, otherwise probably 8x2
+	sharpness = SHARP_NONE
+
+/obj/projectile/bullet/shotgun/slug/rip
+	name = "ripslug"
+	armour_penetration = -50 // aim for the legs :)
+	damage =  30 //x2 because two slugs at once, on par with syndi slugs but with negative AP out the whazoo, and more drop off
+	
 // Mech Scattershot
 
 /obj/projectile/bullet/scattershot

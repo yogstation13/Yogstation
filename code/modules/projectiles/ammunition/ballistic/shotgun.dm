@@ -239,3 +239,20 @@
 /obj/item/ammo_casing/shotgun/hardlight/proc/remove_emp()
 	variance = initial(variance)
 	pellets = initial(pellets)
+
+/obj/item/ammo_casing/shotgun/rip //two pellet slug bc why not
+	name = "ripslug shell"
+	desc = "An advanced shotgun shell that uses a narrow choke in the shell to split the slug in two.\
+	This makes them less able to break through armor, but really hurts everywhere else."
+	icon_state = "rsshell"
+	projectile_type = /obj/projectile/bullet/shotgun/slug/rip
+	pellets = 2
+	variance = 3 // the tight spread
+
+/obj/item/ammo_casing/shotgun/mindshatter
+	name = "mindshatter shell"
+	desc = "An advanced shotgun shell that has low impact damage, but splashes the target with nanites that eat away at them on a cellular level."
+	icon_state = "msshell"
+	projectile_type = /obj/projectile/bullet/pellet/shotgun_mindshatter
+	pellets = 4
+	variance = 40

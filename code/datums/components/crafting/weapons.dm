@@ -415,7 +415,27 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
 
-/datum/crafting_recipe/laserslug
+/datum/crafting_recipe/ripslug
+	name = "Ripslug Shell"
+	result = /obj/item/ammo_casing/shotgun/rip
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stack/sheet/mineral/plastitanium = 5,
+				/obj/item/stock_parts/micro_laser/quadultra = 1) // to split the slug duh
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPON_AMMO	
+
+/datum/crafting_recipe/mindshatter
+	name = "Mindshatter Shell"
+	result = /obj/item/ammo_casing/shotgun/mindshatter
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/reagent/medicine/rezadone = 5,// Rezadone because then it garuntees that the damage is fixable. 
+				/datum/reagent/medicine/sal_acid = 2) // because its... melting them?
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPON_AMMO
+
+/datum/crafting_recipe/bolts
 	name = "Bolts"
 	result = /obj/item/ammo_casing/caseless/bolts
 	reqs = list(/obj/item/stack/rods = 1)
