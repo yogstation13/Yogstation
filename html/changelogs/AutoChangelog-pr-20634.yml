@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Cyberpunk jacket can now toggle the symbol on the back"
+  - tweak: "Cyberpunk jacket is no longer Cuackle's donator item, can instead be found in the clothesmate"
