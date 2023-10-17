@@ -35,7 +35,7 @@
 /turf/cordon/ScrapeAway(amount, flags)
 	return src // :devilcat:
 
-/turf/cordon/bullet_act(obj/item/projectile/hitting_projectile, def_zone, piercing_hit)
+/turf/cordon/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
 	return BULLET_ACT_HIT
 
 /turf/cordon/Adjacent(atom/neighbor, atom/target, atom/movable/mover)

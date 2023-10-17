@@ -2674,11 +2674,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Moscow Mule"
 	glass_desc = "A chilly drink that reminds you of the Derelict."
 
+/datum/reagent/consumable/ethanol/gin_garden
+	name = "Gin Garden"
+	description = "Excellent cooling alcoholic drink with a not so ordinary taste."
+	boozepwr = 30
+	color = "#6cd87a"
+	quality = DRINK_GOOD
+	taste_description = "light gin with sweet ginger and cucumber"
+	glass_icon_state = "gin_garden"
+	glass_name = "Gin Garden"
+	glass_desc = "Hey, someone forgot the herb and... the cucumber in my cocktail!"
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver
 	var/alcoholicspeed = 0.75 //For determining the speed effect\\
 	name = "Syndicate Screwdriver"
-	description = "A drink that all greytiders and syndicate enjoy"
+	description = "A drink that all greytiders and syndicate enjoy."
 	boozepwr = 115
 	metabolization_rate = 1.5
 	color = "#2E6671"
@@ -2686,7 +2696,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "a tangy taste mixed with liquified Robustness"
 	glass_icon_state = "syndicate_screwdriver"
 	glass_name = "Syndicate Screwdriver"
-	glass_desc = "A glass full of spite, haste and the need to greytide"
+	glass_desc = "A glass full of spite, haste and the need to greytide."
 
 /datum/reagent/consumable/ethanol/syndicate_screwdriver/on_mob_metabolize(mob/living/carbon/human/M)
 	if(is_syndicate(M))

@@ -63,6 +63,8 @@
 #define DAMAGE_HARDCAP 0.002
 #define DAMAGE_INCREASE_MULTIPLIER 0.25
 
+#define MIASMA_DELAM_PERCENTAGE 50			///The percentage of miasma before it is classed as a miasma delamination, causing a blob to spawn.
+
 #define THERMAL_RELEASE_MODIFIER 5         //Higher == less heat released during reaction, not to be confused with the above values
 #define PLASMA_RELEASE_MODIFIER 750        //Higher == less plasma released by reaction
 #define OXYGEN_RELEASE_MODIFIER 325        //Higher == less oxygen released at high temperature/power
@@ -747,13 +749,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 	return 1
 
-/obj/machinery/power/supermatter_crystal/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/power/supermatter_crystal/bullet_act(obj/projectile/Proj)
 	var/turf/L = loc
 	if(!istype(L))
 		return FALSE
 	if(istype(Proj.firer, /mob/living)) //yogs start - supermatter stuff
 		investigate_log("has been hit by [Proj] fired by [key_name(Proj.firer)]", INVESTIGATE_SUPERMATTER) // yogs end
-	if(Proj.flag != BULLET)
+	if(Proj.armor_flag != BULLET)
 		power += Proj.damage * config_bullet_energy
 		if(!has_been_powered)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)

@@ -26,7 +26,7 @@
 	
 /datum/eldritch_knowledge/base_mind/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/mind
+	var/obj/realknife = new /obj/item/melee/sickly_blade/mind
 	user.put_in_hands(realknife)
 	var/datum/action/cooldown/spell/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
 	if(mansus_touch)
@@ -41,9 +41,7 @@
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
 	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/ashen_shift,
-		/datum/eldritch_knowledge/spell/void_phase
-	)
+		/datum/eldritch_knowledge/spell/void_phase)
 	route = PATH_MIND
 	tier = TIER_1
 
