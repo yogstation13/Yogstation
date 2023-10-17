@@ -76,6 +76,7 @@
 	shield.pixel_x = -owner.pixel_x
 	shield.pixel_y = -owner.pixel_y
 	owner.overlays += shield
+	owner.weather_immunities |= WEATHER_ASH //no free charges/heals
 	for(var/traits in grimoire_traits)
 		ADD_TRAIT(owner, traits, GRIMOIRE_TRAIT)
 	return ..()
@@ -94,6 +95,7 @@
 	if(owner)
 		for(var/traits in grimoire_traits)
 			REMOVE_TRAIT(owner, traits, GRIMOIRE_TRAIT)
+		owner.weather_immunities -= WEATHER_ASH
 		owner.overlays -= shield
 		owner.extinguish_mob()
 		owner.AdjustStun(-200)
