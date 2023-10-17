@@ -58,9 +58,8 @@
 	if(isanimal(target))
 		var/mob/living/simple_animal/L = target
 		L.toggle_ai(AI_ON)
-	else
-		if(target != user)
-			tenderize(user, target, 10)
+	if(target != user)
+		tenderize(user, target, 10)
 
 /obj/item/bloodbook/proc/retaliate(mob/living/user, var/retaliatedam)
 	var/mob/living/L
@@ -85,7 +84,7 @@
 
 /obj/item/bloodbook/proc/severitycalc(mob/living/target, var/feedback)
 	if((target.health - feedback) <= (0))
-		if(iscarbon(target) && (target.stat == DEAD))
+		if(iscarbon(target) && (target.stat > 0))
 			return FALSE
 		return 1
 	if(target.health >= target.maxHealth*0.6)
@@ -113,15 +112,15 @@
 		target.Immobilize(1)
 		addtimer(CALLBACK(src, PROC_REF(shatter), target), 0.1 SECONDS)
 		return
+	if(result != 1)
+		tenderize(user, target, hurt) 
 	if(result && abouttobeslammed == TRUE)
 		addtimer(CALLBACK(src, PROC_REF(animatepick), user, target, result))
+		return
 	if((result == 1) && (!abouttobeslammed))
 		crystallize(target)
 		addtimer(CALLBACK(src, PROC_REF(shatter), target), 0.2 SECONDS)
 		return
-	if(result != 1)
-		tenderize(user, target, hurt) 
-	return
 
 /obj/item/bloodbook/proc/shieldcharge()
 	if(blocks < 1)
@@ -211,7 +210,7 @@
 
 //kill animations
 
-/obj/item/bloodbook/proc/tantrum(mob/living/user, mob/living/target, var/phase = 1, obj/hand, list/slamming)
+/obj/item/bloodbook/proc/tantrum(mob/living/user, mob/living/target, phase = 1, obj/hand, list/slamming)
 	switch(phase)
 		if(1)
 			var/list/wrecking = list()
@@ -221,53 +220,46 @@
 			wrecking |= B
 			wrecking |= target
 			target.visible_message(span_warning("A grisly hand latches around [target]!"))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, B, wrecking), 0.2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, B, wrecking), 0.2 SECONDS)
 			return
 		if(2)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, hand, slamming), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, hand, slamming), 0.1 SECONDS)
 			for(var/atom/movable/S in slamming)
 				animate(S,  pixel_y = 15, time = 0.1 SECONDS, easing = LINEAR_EASING)
 			target.forceMove(hand.loc)
 			return
 		if(3)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, hand, slamming), 0.3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, hand, slamming), 0.3 SECONDS)
 			for(var/atom/movable/S in slamming)
 				animate(S,  pixel_y = 0, time = 0.1 SECONDS, easing = LINEAR_EASING)
-			playsound(target,'sound/effects/meteorimpact.ogg', 10, 1)
+			playsound(target,'sound/effects/meteorimpact.ogg', 40, 1)
 			animate(target, transform = matrix(rand(1, 360), MATRIX_ROTATE))
 			return
 		if(4)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, hand, slamming), 0.2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, hand, slamming), 0.2 SECONDS)
 			for(var/atom/movable/S in slamming)
 				animate(S,  pixel_y = 25, time = 0.1 SECONDS, easing = LINEAR_EASING)
 			target.forceMove(hand.loc)
 			return
 		if(5)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, hand, slamming), 0.3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, hand, slamming), 0.3 SECONDS)
 			animate(target, transform = matrix(rand(1, 360), MATRIX_ROTATE))
 			for(var/atom/movable/S in slamming)
 				animate(S,  pixel_y = 0, time = 0.1 SECONDS, easing = LINEAR_EASING)
-			playsound(target,'sound/effects/meteorimpact.ogg', 20, 1)
+			playsound(target,'sound/effects/meteorimpact.ogg', 40, 1)
 			animate(target, transform = matrix(rand(1, 360), MATRIX_ROTATE))
 			return
 		if(6)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, hand, slamming), 0.2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, hand, slamming), 0.2 SECONDS)
 			for(var/atom/movable/S in slamming)
 				animate(S,  pixel_y = 35, time = 0.1 SECONDS, easing = LINEAR_EASING)
 			target.forceMove(hand.loc)
 			return
 		if(7)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase, hand, slamming), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(tantrum), user, target, phase+1, hand, slamming), 0.1 SECONDS)
 			for(var/atom/movable/S in slamming)
 				animate(S,  pixel_y = 0, time = 0.1 SECONDS, easing = LINEAR_EASING)
-			playsound(target,'sound/effects/meteorimpact.ogg', 10, 1)
+			playsound(target,'sound/effects/meteorimpact.ogg', 40, 1)
 			return
 		if(8)
 			splosion(user, target)
@@ -276,7 +268,7 @@
 	if(target)
 		sceneend(target, user, TRUE)
 
-/obj/item/bloodbook/proc/falling(mob/living/user, mob/living/target, var/phase = 1, var/obj/portalb, var/obj/portalo)
+/obj/item/bloodbook/proc/falling(mob/living/user, mob/living/target, phase = 1, var/obj/portalb, var/obj/portalo)
 	switch(phase)
 		if(1)
 			var/obj/structure/prop/propportal/O = new(target.loc)
@@ -286,28 +278,24 @@
 			animate(B, transform = matrix().Scale(1, 0.7))
 			animate(target, pixel_y = 120)
 			target.visible_message(span_warning("Portals appear above and below [target]!"))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase, B, O), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase+1, B, O), 0.1 SECONDS)
 			return
 		if(2)
 			target.forceMove(portalo.loc)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase, portalb, portalo), 0.45 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase+1, portalb, portalo), 0.45 SECONDS)
 			animate(target, transform = matrix(rand(1, 360), MATRIX_ROTATE))
 			animate(target,  pixel_y = 0, time = 0.45 SECONDS, easing = LINEAR_EASING)
 			return
 		if(3)
 			target.forceMove(portalo.loc)
 			animate(target, pixel_y = 120, transform = matrix(rand(1, 360), MATRIX_ROTATE))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase, portalb, portalo), 0.3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase+1, portalb, portalo), 0.3 SECONDS)
 			animate(target,  pixel_y = 0, time = 0.3 SECONDS, easing = LINEAR_EASING)
 			return
 		if(4)
 			target.forceMove(portalo.loc)
 			animate(target, pixel_y = 120, transform = matrix(rand(1, 360), MATRIX_ROTATE))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase, portalb, portalo), 0.15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(falling), user, target, phase+1, portalb, portalo), 0.15 SECONDS)
 			animate(target,  pixel_y = 0, time = 0.15 SECONDS, easing = LINEAR_EASING)
 			return
 		if(5)
@@ -322,7 +310,7 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/damnedfang(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/bed/killbubble/orb) //finish
+/obj/item/bloodbook/proc/damnedfang(mob/living/user, mob/living/target, phase = 1, var/obj/structure/bed/killbubble/orb) //finish
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
@@ -334,17 +322,15 @@
 			B.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 			playsound(target, 'yogstation/sound/effects/bubbleblender.ogg', 40)
 			target.visible_message(span_warning("A bubble surrounds [target] and floats into the air!"))
-			phase++
 			target.emote("spin")
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, B), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase+1, B), 0.5 SECONDS)
 			animate(B,  pixel_y = 30, time = 0.5 SECONDS, transform = matrix().Scale(2.7), easing = ELASTIC_EASING)
 			animate(target,  pixel_y = 30, transform = matrix().Scale(0.7),  time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(2)
 			target.forceMove(orb.loc)
 			orb.shred()
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase, orb), 1.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase+1, orb), 1.5 SECONDS)
 			return
 		if(3)
 			target.forceMove(orb.loc)
@@ -355,7 +341,7 @@
 		addtimer(CALLBACK(src, PROC_REF(sceneend), target, user, TRUE), 0.5 SECONDS)
 		return
 
-/obj/item/bloodbook/proc/shrink(mob/living/user, mob/living/target, var/phase = 1, var/obj/orb)
+/obj/item/bloodbook/proc/shrink(mob/living/user, mob/living/target, phase = 1, var/obj/orb)
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
@@ -363,26 +349,22 @@
 			B.buckle_mob(target)
 			target.visible_message(span_warning("A blood-red bubble forms around [target]!"))
 			animate(B, transform = matrix().Scale(1.5))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase, B), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase+1, B), 0.5 SECONDS)
 			return
 		if(2)
-			phase++
 			target.forceMove(orb.loc)
-			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase, orb), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase+1, orb), 0.5 SECONDS)
 			animate(orb,  transform = matrix().Scale(1.0), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			animate(target,  transform = matrix().Scale(0.8), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(3)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase, orb), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase+1, orb), 0.5 SECONDS)
 			animate(orb,  transform = matrix().Scale(0.8), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			animate(target,  transform = matrix().Scale(0.6), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
 		if(4)
 			target.forceMove(orb.loc)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase, orb), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(shrink), user, target, phase+1, orb), 0.5 SECONDS)
 			animate(orb,  transform = matrix().Scale(0.6), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			animate(target,  transform = matrix().Scale(0.4), time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			return
@@ -396,7 +378,7 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/vortex(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/bed/killbubble/hole, atom/visual)
+/obj/item/bloodbook/proc/vortex(mob/living/user, mob/living/target, phase = 1, var/obj/structure/bed/killbubble/hole, atom/visual)
 	switch(phase) 
 		if(1)
 			user.setDir(get_dir(user, target))
@@ -413,19 +395,16 @@
 			shockwave.transform = matrix().Scale(0.5)
 			shockwave.pixel_x = -240
 			shockwave.pixel_y = -240
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase, B, shockwave), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase+1, B, shockwave), 0.5 SECONDS)
 			animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
 			return
 		if(2)
 			hole.vacuum(user)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase, hole, visual), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase+1, hole, visual), 0.5 SECONDS)
 			return
 		if(3)
 			hole.vacuum(user)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase, hole, visual), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(vortex), user, target, phase+1, hole, visual), 0.5 SECONDS)
 			return
 		if(4)
 			target.visible_message(span_warning("[target] is torn asunder!"))
@@ -438,7 +417,7 @@
 		return
 
 
-/obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, var/phase = 1, var/obj/hoop, var/turf/second)
+/obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, phase = 1, var/obj/hoop, var/turf/second)
 	switch(phase)
 		if(1) 
 			user.Immobilize(9)
@@ -451,49 +430,41 @@
 			H.color = "#ff0000"
 			target.visible_message(span_warning("A crystalline hoop appears behind [target]!"))
 			playsound(target,'sound/effects/meteorimpact.ogg', 30, 1)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, H, secondspot), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, H, secondspot), 0.1 SECONDS)
 			return
 		if(2)
-			phase++
 			target.forceMove(user.loc)
 			animate(target, pixel_x = 8)
 			crystallize(target)
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop, second), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop, second), 0.1 SECONDS)
 			return
 		if(3)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop, second), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop, second), 0.1 SECONDS)
 			animate(user, pixel_y = 20, time = 0.5 SECONDS, easing = ELASTIC_EASING)
 			animate(target, pixel_x = 2, pixel_y = 7)
 			return
 		if(4)
-			phase++
 			user.forceMove(second)
 			target.forceMove(second)
 			animate(target, pixel_x = 2, pixel_y = 12)
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop), 0.1 SECONDS)
 			return
 		if(5)
-			phase++
 			animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_y = 8)
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop), 0.1 SECONDS)
 			return
 		if(6)
-			phase++
 			animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_x = -10, pixel_y = 18)
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop), 0.1 SECONDS)
 			return
 		if(7)
-			phase++
 			animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_x = 0, pixel_y = 26)
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop), 0.1 SECONDS)
 			return
 		if(8)
-			phase++
 			user.setDir(turn(user.dir,180))
 			animate(target, transform = matrix(90, MATRIX_ROTATE), pixel_x = 0, pixel_y = 15)
-			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase, hoop), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(dunk), user, target, phase+1, hoop), 0.1 SECONDS)
 			target.visible_message(span_warning("[user] obliterates the hoop by reverse dunking [target]!"))
 			return
 		if(9)
@@ -505,7 +476,7 @@
 		sceneend(target, user, TRUE)
 		return
 
-/obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/prop/killight/red)
+/obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, phase = 1, var/obj/structure/prop/killight/red)
 	switch(phase)
 		if(1) 
 			user.Immobilize(5)
@@ -516,51 +487,44 @@
 			target.visible_message(span_warning("A small orb appears in front of [user]!"))
 			user.setDir(get_dir(user, target))
 			B.setDir(get_dir(B, target))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, B), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, B), 0.5 SECONDS)
 			return
 		if(2)
 			playsound(target,'sound/effects/gravhit.ogg', 30, 1)
-			phase++
 			red.forceMove(target.loc)
 			red.icon_state = "red_laser"
 			animate(red, alpha = 220, pixel_x = 0, transform = matrix().Scale(4))
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 			return
 		if(3)
 			if(!red.checknextspace(target))
 				addtimer(CALLBACK(src, PROC_REF(redshot), user, target, 8, red), 0.1 SECONDS)
 				return
-			++phase
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 			return
 		if(4)
 			if(!red.checknextspace(target))
 				addtimer(CALLBACK(src, PROC_REF(redshot), user, target, 8, red), 0.1 SECONDS)
 				return
-			++phase
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 			return
 		if(5)
 			if(!red.checknextspace(target))
 				addtimer(CALLBACK(src, PROC_REF(redshot), user, target, 8, red), 0.1 SECONDS)
 				return
-			++phase
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 			return
 		if(6)
 			if(!red.checknextspace(target))
 				addtimer(CALLBACK(src, PROC_REF(redshot), user, target, 8, red), 0.1 SECONDS)
 				return
-			++phase
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 			return
 		if(7)
-			++phase
 			if(!red.checknextspace(target))
-				addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 				return
-			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase, red), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(redshot), user, target, phase+1, red), 0.1 SECONDS)
 			return
 		if(8)
 			QDEL_IN(red, 1)
@@ -572,14 +536,13 @@
 //megafauna animations
 
 //General Megafauna
-/obj/item/bloodbook/proc/mash(mob/living/user, mob/living/target, var/phase = 1, var/obj/first, var/obj/second, var/obj/third, list/pillarlist)
+/obj/item/bloodbook/proc/mash(mob/living/user, mob/living/target, phase = 1, var/obj/first, var/obj/second, var/obj/third, list/pillarlist)
 	switch(phase)
 		if(1) 
 			target.visible_message(span_warning("[user] points upward and the ground around [target] begins to crack!"))
 			playsound(target,'sound/effects/meteorimpact.ogg', 30, 1)
 			target.setDir(get_dir(target, user))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase+1), 0.1 SECONDS)
 			return
 		if(2)
 			user.setDir(get_dir(user, target))
@@ -587,11 +550,10 @@
 			var/obj/structure/prop/killrock/left = new(get_step(get_step(get_turf(target), turn(target.dir, 270)), turn(target.dir, 270)))
 			var/obj/structure/prop/killrock/behind = new(get_step(get_step(get_turf(target), turn(target.dir, 180)), turn(target.dir, 180)))
 			var/obj/structure/prop/killrock/right = new(get_step(get_step(get_turf(target), turn(target.dir, 90)), turn(target.dir, 90)))
-			phase++
 			rocks |= left
 			rocks |= behind
 			rocks |= right
-			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, right, behind, left, rocks), 0.4 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase+1, right, behind, left, rocks), 0.4 SECONDS)
 			for(var/mob/L in view(10, target))
 				shake_camera(L, 1, 1)
 			for(var/obj/structure/prop/killrock/V in rocks)
@@ -605,17 +567,16 @@
 				V.stagechange()
 			for(var/mob/L in view(10, target))
 				shake_camera(L, 1, 1)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, first, second, third, pillarlist), 0.4 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase+1, first, second, third, pillarlist), 0.4 SECONDS)
 			return
 		if(4)
 			for(var/obj/structure/prop/killrock/V in pillarlist)
 				V.forceMove(get_turf(target))
 				V.stagechange()
-			phase++
 			for(var/mob/L in view(10, target))
 				shake_camera(L, 2, 2)
-			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase, first, second, third, pillarlist), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mash), user, target, phase+1, first, second, third, pillarlist), 0.1 SECONDS)
+			return
 		if(5)
 			splosion(user, target)
 			shatter(target)
@@ -625,7 +586,7 @@
 		sceneend(target, user)
 		return
 
-/obj/item/bloodbook/proc/spiritbomb(mob/living/user, mob/living/target, var/phase = 1, var/obj/floor, var/obj/sky, var/obj/structure/prop/killight/genkidama)
+/obj/item/bloodbook/proc/spiritbomb(mob/living/user, mob/living/target, phase = 1, var/obj/floor, var/obj/sky, var/obj/structure/prop/killight/genkidama)
 	switch(phase)
 		if(1) 
 			target.visible_message(span_warning("Runes appear above and below [target]!"))
@@ -634,8 +595,7 @@
 			animate(up, pixel_y = 150, transform = matrix().Scale(1, 0.6))
 			down.SpinAnimation(0.5 SECONDS, 1)
 			playsound(target,'sound/effects/empulse.ogg', 50, 1)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase, down, up), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase+1, down, up), 0.5 SECONDS)
 			return
 		if(2)
 			var/obj/structure/prop/killight/forming = new(floor.loc)
@@ -645,12 +605,10 @@
 			animate(forming, pixel_y = 120)
 			animate(forming, transform = matrix().Scale(4), time = 2 SECONDS, easing = ELASTIC_EASING)
 			target.forceMove(forming.loc)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase, floor, sky, forming), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase+1, floor, sky, forming), 1 SECONDS)
 			return
 		if(3)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase, floor, sky, genkidama), 0.15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(spiritbomb), user, target, phase+1, floor, sky, genkidama), 0.15 SECONDS)
 			target.forceMove(floor.loc)
 			animate(genkidama, pixel_y = 0, time = 2 SECONDS, easing = ELASTIC_EASING)
 			genkidama.icon_state = "seedling"
@@ -670,20 +628,19 @@
 		return
 
 //Legion
-/obj/item/bloodbook/proc/headmassage(mob/living/user, var/mob/living/simple_animal/hostile/megafauna/legion/target, var/phase = 1, obj/hand)
+/obj/item/bloodbook/proc/headmassage(mob/living/user, var/mob/living/simple_animal/hostile/megafauna/legion/target, phase = 1, obj/hand)
 	switch(phase)
 		if(1) 
 			var/obj/structure/prop/killhand/left = new(target.loc)
 			animate(left, transform = matrix().Scale(target.size))
 			playsound(target,'sound/effects/wounds/crack2.ogg', 30, 1)
 			crystallize(target)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(headmassage), user, target, phase, left), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(headmassage), user, target, phase+1, left), 0.5 SECONDS)
 			return
 		if(2)
 			target.forceMove(hand.loc)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(headmassage), user, target, phase, hand), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(headmassage), user, target, phase+1, hand), 0.5 SECONDS)
+			return
 		if(3)
 			target.visible_message(span_warning("[target] is crushed in a vise grip!"))
 			target.forceMove(hand.loc)
@@ -696,23 +653,21 @@
 		return
 
 //Blood Drunk Miner
-/obj/item/bloodbook/proc/workphobia(mob/living/user, mob/living/target, var/phase = 1)
+/obj/item/bloodbook/proc/workphobia(mob/living/user, mob/living/target, phase = 1)
 	switch(phase)
 		if(1)
 			target.visible_message(span_warning("[user] gives [target] [src]!"))
 			target.setDir(get_dir(target, user))
 			user.Immobilize(30)
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, do_jitter_animation), 25))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase+1), 1 SECONDS)
 			return
 		if(2)
 			animate(target, transform = matrix(90, MATRIX_ROTATE))
 			target.visible_message(span_warning("[target] violently reacts to the processed mineral on the book's cover!"))
 			target.emote("spin")
 			crystallize(target)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase+1), 2 SECONDS)
 			return
 		if(3)
 			splosion(user, target)
@@ -723,7 +678,7 @@
 
 //nonlethal animations
 
-/obj/item/bloodbook/proc/inducingemission(mob/living/user, mob/living/target, var/phase = 1, var/obj/structure/prop/killight/geometry)
+/obj/item/bloodbook/proc/inducingemission(mob/living/user, mob/living/target, phase = 1, var/obj/structure/prop/killight/geometry)
 	switch(phase) 
 		if(1)
 			var/obj/structure/prop/killight/B = new(user.loc)
@@ -734,28 +689,24 @@
 			B.color = "#3d0050"
 			target.visible_message(span_warning("The tome spits a strange shape at [target]!"))
 			B.setDir(get_dir(B, target))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase, B), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase+1, B), 0.1 SECONDS)
 			return
 		if(2)
 			geometry.forceMove(target.loc)
 			target.resize = 0.6
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase, geometry), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase+1, geometry), 0.1 SECONDS)
 			return
 		if(3)
 			if(!geometry.checknextspace(target))
 				addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, 5, geometry), 0.1 SECONDS)
 				return
-			++phase
-			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase, geometry), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase+1, geometry), 0.1 SECONDS)
 			return
 		if(4)
-			++phase
 			if(!geometry.checknextspace(target))
-				addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase, geometry), 0.1 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase+1, geometry), 0.1 SECONDS)
 				return
-			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase, geometry), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(inducingemission), user, target, phase+1, geometry), 0.1 SECONDS)
 			return
 		if(5)
 			qdel(geometry)
@@ -763,7 +714,7 @@
 	if(target)
 		sceneend(target, user)
 
-/obj/item/bloodbook/proc/concavehead(mob/living/user, mob/living/target, var/phase = 1, obj/rend, obj/bowlingball)
+/obj/item/bloodbook/proc/concavehead(mob/living/user, mob/living/target, phase = 1, obj/rend, obj/bowlingball)
 	switch(phase)
 		if(1)
 			var/obj/effect/temp_visual/cult/portal/P = new(target.loc)
@@ -772,8 +723,7 @@
 			target.forceMove(P.loc)
 			target.Immobilize(20)
 			target.visible_message(span_warning("A rift appears above [target]!"))
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase, P), 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase+1, P), 0.5 SECONDS)
 			return
 		if(2)
 			target.forceMove(rend.loc)
@@ -781,8 +731,7 @@
 			target.visible_message(span_warning("A meteor appears from the opening!"))
 			animate(B, pixel_y = 30)
 			B.SpinAnimation(0.15 SECONDS)
-			phase++
-			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase, rend, B), 0.15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase+1, rend, B), 0.15 SECONDS)
 			animate(B,  pixel_y = 0, time = 0.2 SECONDS, easing = LINEAR_EASING)
 			return
 		if(3)
@@ -846,26 +795,22 @@
 	icon_state = "bloodstone-enter[stage]"
 	return
 
-/obj/structure/prop/killrock/proc/stagechange(var/phase = 0)
+/obj/structure/prop/killrock/proc/stagechange(phase = 0)
 	switch(phase)
 		if(0)
-			++phase
 			stageupdate(1)
-			addtimer(CALLBACK(src, PROC_REF(stagechange), phase), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(stagechange), phase+1), 0.1 SECONDS)
+			return
 		if(1)
-			++phase
 			stageupdate(1)
-			addtimer(CALLBACK(src, PROC_REF(stagechange), phase), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(stagechange), phase+1), 0.1 SECONDS)
 			return
 		if(2)
-			++phase
 			stageupdate(-1)
-			addtimer(CALLBACK(src, PROC_REF(stagechange), phase), 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(stagechange), phase+1), 0.1 SECONDS)
 			return
 		if(3)
-			++phase
 			stageupdate(-1)
-			addtimer(CALLBACK(src, PROC_REF(stagechange), phase), 0.1 SECONDS)
 			return
 
 /obj/structure/prop/killhand
