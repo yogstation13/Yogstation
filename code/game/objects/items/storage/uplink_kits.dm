@@ -272,7 +272,7 @@
 
 		if("solo") //14 + 6x4 + 1 = 3 tc = 39 tc, or 37 if molti's pr gets merged. wow thats really costly this is probably going to busted. eh
 			new /obj/item/autosurgeon/syndicate/spinalspeed(src) //14 tc as of writing, 12 if molti's pr gets merged
-			new /obj/item/clothing/suit/toggle/cyberpunk/solo(src) //dont know what this costs, vague guesstimate says 6tc
+			new /obj/item/clothing/suit/armor/vest/woopsyouneedtoputthecdinyourcomputer(src) //dont know what this costs, vague guesstimate says 6tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //6 tc
 			new /obj/item/storage/box/syndie_kit/emp_shield(src) //6 tc
@@ -296,6 +296,10 @@
 	icon_state = "pill19"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 10)
 	rename_with_volume = TRUE
+
+/obj/item/clothing/suit/armor/vest/woopsyouneedtoputthecdinyourcomputer
+	desc = "You feel like there's supposed to be something in place of this vest. Slightly better-armored."
+	armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 
 /obj/item/clothing/suit/toggle/cyberpunk/solo
 	name = "David's Jacket"
