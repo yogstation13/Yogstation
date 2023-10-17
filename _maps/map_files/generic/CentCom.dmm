@@ -6954,7 +6954,7 @@
 "apF" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Auxillary Dock";
-	req_access_txt = ""
+	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership/control)
@@ -9273,7 +9273,7 @@
 "aud" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Primary Hangar";
-	req_access_txt = ""
+	req_access_txt = "150"
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
@@ -26179,10 +26179,9 @@
 "gUH" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Hangar Maintenance";
-	req_access_txt = ""
+	req_access_txt = "150"
 	},
-/obj/effect/turf_decal/tile/neutral/fourcorners,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/syndicate_mothership)
 "hcE" = (
 /obj/machinery/door/airlock/centcom{
@@ -27688,8 +27687,7 @@
 /area/syndicate_mothership)
 "xou" = (
 /obj/machinery/door/airlock/centcom{
-	name = "Auxillary Dock";
-	req_access_txt = ""
+	name = "Auxillary Dock"
 	},
 /turf/open/floor/plasteel/dark,
 /area/syndicate_mothership)
