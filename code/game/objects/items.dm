@@ -295,6 +295,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/examine(mob/user) //This might be spammy. Remove?
 	. = ..()
 
+	if(blocking_behavior == BLOCKING_QTE)
+		. += span_notice("This item utilizes quick time events to block. \
+			When you are attacked, you will have to place your mouse inside of the blue square in order to block.")
+
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weightclass2text(w_class)] item."
 
 	if(HAS_TRAIT(src, TRAIT_NO_STORAGE))
