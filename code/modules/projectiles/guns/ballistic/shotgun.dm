@@ -214,6 +214,7 @@
 	if(prob(10))
 		playsound(src, dry_fire_sound, 30, TRUE)
 		if(prob(25))
+			explosion(src, 0, 0, 1, 1)
 			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
 			to_chat(M, span_warning("The round explodes in the chamber!"))
 			qdel(src)
