@@ -817,9 +817,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
 	cost = 12 //Instead of 18
 
+/datum/uplink_item/ammo/shotgun/bag/random
+	name = "Randomized 12g Ammo Duffel Bag"
+	desc = "A duffel bag containing 10 random drum mags for the Bulldog shotgun, bundled together at a big discount."
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
+	cost = 10 // Random ammo, so its cheaper?
+
 /datum/uplink_item/ammo/shotgun/buck
 	name = "12g Buckshot Drum"
-	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
+	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun.\
+			Front towards enemy."
 	item = /obj/item/ammo_box/magazine/m12g
 
 /datum/uplink_item/ammo/shotgun/dragon

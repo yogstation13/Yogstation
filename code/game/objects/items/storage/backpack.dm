@@ -536,6 +536,23 @@
 	for(var/i in 7 to 8)
 		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
+/obj/item/storage/backpack/duffelbag/syndie/ammo/random
+	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m12g,
+		/obj/item/ammo_box/magazine/m12g/dragon,
+		/obj/item/ammo_box/magazine/m12g/frag,
+		/obj/item/ammo_box/magazine/m12g/meteor,
+		/obj/item/ammo_box/magazine/m12g/slug,
+		/obj/item/ammo_box/magazine/m12g/flechette
+	)
+
+	for(var/i in 1 to 10)
+		var/item = pick(item_list)
+		new item(src)
+
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
