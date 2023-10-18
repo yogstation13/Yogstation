@@ -44,7 +44,7 @@
 	. = ..()
 	if(!safe && iscarbon(owner))
 		var/mob/living/carbon/dummy = owner
-		dummy.flash_act()
+		dummy.flash_act(3) //it's INSIDE you, it's gonna blind
 	owner.visible_message(span_warning("[owner] releases a blinding light from within themselves."), span_notice("You release all the light within you."))
 	owner.color = LIGHT_COLOR_HOLY_MAGIC
 	animate(owner, 0.5 SECONDS, color = null)
