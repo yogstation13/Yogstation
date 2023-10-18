@@ -713,7 +713,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//blob SM HAMMM
 	if(supermatter_blob)
 		powerloss_inhibitor = 0.01
-		power += 5000
+		power += 10000
 		if(prob(30))
 			radiation_pulse(src, 5000, 4)
 			pulsewave()
