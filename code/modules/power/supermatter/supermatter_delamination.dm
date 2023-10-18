@@ -128,22 +128,16 @@
 		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(E)].")
 
 /datum/supermatter_delamination/proc/call_blob()
-	var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Supermatter Blob?", ROLE_BLOB, null, ROLE_BLOB)
+	var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Blazing Oil Blob?", ROLE_BLOB, null, ROLE_BLOB)
 	if(candidates.len)
 		var/mob/dead/observer/new_blob = pick(candidates)
 		var/mob/camera/blob/BC = new_blob.become_overmind(350, 1.5, 1)
 		var/explosion_mod = clamp((1.001**supermatter_power) / ((1.001**supermatter_power) + SUPERMATTER_EXPLOSION_LAMBDA), 0.1, 1)
+		BC.set_strain(/datum/blobstrain/reagent/blazing_oil) //to protect against the fire around the blob when sm shitting itself
 		BC.forceMove(supermatter_turf)
 		BC.place_blob_core(BLOB_FORCE_PLACEMENT)
-		var/datum/gas_mixture/GM = new
-		for(var/turf/open/F in range(1,supermatter_turf)) //change the air around the blob back to normal so it doesnt fuck the blob
-			if(F.blocks_air)
-				continue
-			GM.parse_gas_string(OPENTURF_DEFAULT_ATMOS)
-			F.copy_air(GM)
-			F.update_visuals()
 		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(empulse), supermatter_turf, supermatter_explosion_power * explosion_mod, (supermatter_explosion_power * explosion_mod * 2) + (supermatter_explosion_power/4), TRUE, FALSE, FALSE, TRUE)
 		message_admins("Supermatter has created a blob. [ADMIN_JMP(BC)].")
 	else
 		supermatter_blob = FALSE
-		setup_delamination_type()
+		setup_delamination_type() //No blob? :( do other delams then
