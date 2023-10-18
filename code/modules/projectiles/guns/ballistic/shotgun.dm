@@ -211,8 +211,12 @@
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
-	if(prob(40))
+	if(prob(10))
 		playsound(src, dry_fire_sound, 30, TRUE)
+		if(prob(25))
+			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
+			to_chat(M, span_warning("The round explodes in the chamber!"))
+			qdel(src)
 		return
 	else
 		. = ..()
