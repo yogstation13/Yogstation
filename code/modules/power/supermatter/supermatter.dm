@@ -692,6 +692,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				radio.talk_into(src, "DANGER: BIOHAZARD DETECTED, VACATE THE CHAMBER IMMEDIATELY.", engineering_channel)
 				log_game("The supermatter crystal: DANGER: BIOHAZARD DETECTED, VACATE THE CHAMBER IMMEDIATELY.") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: DANGER: BIOHAZARD DETECTED, VACATE THE CHAMBER IMMEDIATELY.", INVESTIGATE_SUPERMATTER) // yogs end
+				if(damage >= emergency_point)
+					radio.talk_into(src, "DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.", common_channel)
+					log_game("DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.") // yogs start - Logs SM chatter
+					investigate_log("DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.", INVESTIGATE_SUPERMATTER) // yogs end
 			
 			if(antinoblium_attached)
 				if(support_integrity <= 10)
@@ -718,7 +722,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_zap(src, 5, power)
 			for(var/i = 1 to 20)
 				fire_nuclear_particle()
-			radio.talk_into(src, "DANGER: SUPERMATTER BIOHAZARD LEVELS HAVE EXCEEDED SAFETY THRESHOLDS.", common_channel)
 		if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 			damage += DAMAGE_HARDCAP * explosion_point
 		if(prob(2))
