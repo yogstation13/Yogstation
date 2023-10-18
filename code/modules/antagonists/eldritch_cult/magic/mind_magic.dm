@@ -106,7 +106,7 @@ MIND PATH SPELLS GO HERE
 	deactive_msg = span_notice("You relax your mind.")
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
-	/datum/action/cooldown/spell/pointed/projectile/assault
+/datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"
 	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
 	background_icon_state = "bg_heretic"
