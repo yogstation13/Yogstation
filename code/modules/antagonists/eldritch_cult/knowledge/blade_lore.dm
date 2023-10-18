@@ -91,9 +91,9 @@
 
 /datum/eldritch_knowledge/blade_dance
 	name = "T1 - Dance of the Brand"
-	gain_text = "Being attacked while wielding a Heretic Blade in either hand will deliver a riposte \
+	gain_text = "Having the prowess to wield such a thing requires great dedication and terror."
+	desc = "Being attacked while wielding a Heretic Blade in either hand will deliver a riposte \
 		towards your attacker. This effect can only trigger once every 20 seconds."
-	desc = "Having the prowess to wield such a thing requires great dedication and terror."
 	cost = 1
 	route = PATH_BLADE
 	tier = TIER_1
@@ -102,9 +102,11 @@
 	var/riposte_ready = TRUE
 
 /datum/eldritch_knowledge/blade_dance/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
 	RegisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_reaction))
 
 /datum/eldritch_knowledge/blade_dance/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
 	UnregisterSignal(user, COMSIG_HUMAN_CHECK_SHIELDS)
 
 /datum/eldritch_knowledge/blade_dance/proc/on_shield_reaction(mob/living/carbon/human/source, atom/movable/hitby, damage = 0, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0,damage_type = BRUTE)
@@ -163,18 +165,14 @@
 #undef BLADE_DANCE_COOLDOWN
 
 
-/datum/eldritch_knowledge/ashen_eyes
-	name = "T1 - Eldritch Medallion"
-	gain_text = "The City Guard wore these amulets when Amgala was beset by the Sanguine Horde. So too shall you be able to see the blood that flows in others."
-	desc = "Allows you to craft an eldritch amulet by transmuting a pair of eyes with a glass shard. When worn, the amulet will give you thermal vision."
-	unlocked_transmutations = list(/datum/eldritch_transmutation/ashen_eyes)
-	cost = 1
-	tier = TIER_1
-
 /datum/eldritch_knowledge/blade_mark
-	name = "Grasp Mark - Touch of the Spark"
-	gain_text = "All living things are linked through their sparks. This technique represents a fraction of the Shrouded One's communality."
-	desc = "Your Mansus grasp now applies a mark on hit. Use your ashen blade to detonate the mark, which causes burning that can spread to nearby targets, decreasing in damage with each jump."
+	name = "Grasp Mark - Mark of the Blade"
+	gain_text = "There was no room for cowardace here. Those who ran were scolded. \
+		That is how I met them. Their name was The Colonel."
+	desc = "Your Mansus Grasp now applies the Mark of the Blade. While marked, \
+		the victim will be unable to leave their current room until it expires or is triggered. \
+		Triggering the mark will summon a knife that will orbit you for a short time. \
+		The knife will block any attack directed towards you, but is consumed on use."
 	cost = 2
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/ash_mark,
