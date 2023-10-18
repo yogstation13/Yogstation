@@ -130,7 +130,7 @@
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/initiate_mass_recall()
 	recalling = TRUE
-	sound_to_playing_players('sound/machines/clockcult/ark_recall.ogg', 75, FALSE)
+	sound_to_playing_players('sound/machines/clockcult/ark_recall.ogg', 60, FALSE)
 	hierophant_message("<span class='bold large_brass'>The Eminence has initiated a mass recall! You are being transported to the Ark!</span>")
 	addtimer(CALLBACK(src, PROC_REF(mass_recall)), 100)
 
@@ -190,11 +190,11 @@
 			resistance_flags |= INDESTRUCTIBLE
 			countdown.stop()
 			visible_message(span_userdanger("[src] begins to pulse uncontrollably... you might want to run!"))
-			sound_to_playing_players(volume = 50, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
+			sound_to_playing_players(volume = 25, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
 			for(var/mob/M in GLOB.player_list)
 				var/turf/T = get_turf(M)
 				if((T && T.z == z) || is_servant_of_ratvar(M))
-					M.playsound_local(M, 'sound/machines/clockcult/ark_deathrattle.ogg', 100, FALSE, pressure_affected = FALSE)
+					M.playsound_local(M, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, FALSE, pressure_affected = FALSE)
 			make_glow()
 			glow.icon_state = "clockwork_gateway_disrupted"
 			resistance_flags |= INDESTRUCTIBLE
@@ -338,7 +338,7 @@
 				purpose_fulfilled = TRUE
 				make_glow()
 				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
-				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
+				sound_to_playing_players(volume = 50, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
 				sleep(12.5 SECONDS)
 				make_glow()
 				animate(glow, transform = matrix() * 3, alpha = 0, time = 0.5 SECONDS)
