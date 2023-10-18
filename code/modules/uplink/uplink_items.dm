@@ -771,6 +771,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/ammo/pistol
+	name = "Random 10mm Handgun Magazines"
+	desc = "A box that contains four random 10-round 10mm magazines at a discount; compatible with the Stechkin Pistol."
+	item = /obj/item/storage/box/syndie_kit/pistolammo/random
+	cost = 2 // same mentality as the 357. You can get 4 mags for 2-4 TC, so giving in to the random chance give you a deal
+
 /datum/uplink_item/ammo/pistol/cs
 	name = "Pair of 10mm Caseless Magazines"
 	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
@@ -820,7 +826,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/shotgun/bag/random
 	name = "Randomized 12g Ammo Duffel Bag"
 	desc = "A duffel bag containing 10 random drum mags for the Bulldog shotgun, bundled together at a big discount."
-	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun
 	cost = 10 // Random ammo, so its cheaper?
 
 /datum/uplink_item/ammo/shotgun/buck
@@ -868,6 +874,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/random
+	name = "Random .357 Speed Loader Box"
+	desc = "A box with four random .357 speed loaders. Who knows what fun toys you might get?"
+	item = /obj/item/storage/box/syndie_kit/revolverammo/random
+	cost = 2// four would cost between 2 and 4 TC, so i think its fair
 
 /datum/uplink_item/ammo/revolver/ironfeather
 	name = ".357 Ironfeather Speed Loader Box"
@@ -934,6 +946,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	cost = 20 //instead of 29 TC
 	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/smg/bag/random
+	desc = "A duffel bag containing eleven randomly picked, standard .45 magazines for the C-20r submachine gun, bundled together at a big discount."
+	cost = 18 // bit cheaper for more random crap
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/random/smg
 
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"

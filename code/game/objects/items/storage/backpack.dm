@@ -536,10 +536,10 @@
 	for(var/i in 7 to 8)
 		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
-/obj/item/storage/backpack/duffelbag/syndie/ammo/random
+/obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun
 	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
 
-/obj/item/storage/backpack/duffelbag/syndie/ammo/random/PopulateContents()
+/obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun/PopulateContents()
 	var/list/item_list = list(
 		/obj/item/ammo_box/magazine/m12g,
 		/obj/item/ammo_box/magazine/m12g/dragon,
@@ -563,6 +563,21 @@
 		new /obj/item/ammo_box/magazine/smgm45/ap(src)
 	for(var/i in 8 to 9)
 		new /obj/item/ammo_box/magazine/smgm45/hp(src)
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/random/smg
+	desc = "A large duffel bag, packed to the brim with random C-20r magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/random/smg/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/smgm45,
+		/obj/item/ammo_box/magazine/smgm45/ap,
+		/obj/item/ammo_box/magazine/smgm45/hp,
+		/obj/item/ammo_box/magazine/smgm45/venom
+	)
+
+	for(var/i in 1 to 11)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
