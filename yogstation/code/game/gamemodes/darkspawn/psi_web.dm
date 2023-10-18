@@ -145,19 +145,16 @@
 	if(learn_text)
 		to_chat(user, span_velvet(learn_text))
 	darkspawn.lucidity -= lucidity_cost
+	darkspawn.upgrades |= src //add it to the list
+	if(learned_ability)
+		var/datum/action/action = new learned_ability
+		action.Grant(user)
 	activate(user)
 	return TRUE
 
 ///If the purchase goes through, this gets called
 /datum/psi_web/proc/activate(mob/user)
-	if(!darkspawn)//no clue how it got here, but alright
-		return
-	darkspawn.upgrades |= src //add it to the list
-	if(learn_text)
-		to_chat(user, learn_text)
-	if(learned_ability)
-		var/datum/action/action = new learned_ability
-		action.Grant(user)
+	return
 
 /*
 	Purchases to select spec
