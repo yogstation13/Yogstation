@@ -93,7 +93,7 @@
 	name = "T1 - Dance of the Brand"
 	gain_text = "Being attacked while wielding a Heretic Blade in either hand will deliver a riposte \
 		towards your attacker. This effect can only trigger once every 20 seconds."
-	desc = "Transmute a mask, and a raw liver to create a Mask of Madness. It causes passive stamina damage and hallucinations to everyone around the wearer."
+	desc = "Having the prowess to wield such a thing requires great dedication and terror."
 	cost = 1
 	route = PATH_BLADE
 	tier = TIER_1
@@ -111,21 +111,13 @@
 
 	SIGNAL_HANDLER
 
-	// if(attack_type != MELEE_ATTACK)
-	// 	return
+	if(attack_type != MELEE_ATTACK)
+		return
 
-	// if(!riposte_ready)
-	// 	return
-
-	// if(source.incapacitated(IGNORE_GRAB))
-	// 	return
+	if(!riposte_ready)
+		return
 
 	var/mob/living/attacker = hitby.loc
-	// if(!istype(attacker))
-	// 	return
-
-	// if(!source.Adjacent(attacker))
-	// 	return
 
 	// // Let's check their held items to see if we can do a riposte
 	var/obj/item/main_hand = source.get_active_held_item()

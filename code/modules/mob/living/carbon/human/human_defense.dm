@@ -149,7 +149,7 @@
 			return TRUE
 	if(SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration, damage_type) & SHIELD_BLOCK)
 		return TRUE
-  return FALSE
+	return FALSE
 
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
