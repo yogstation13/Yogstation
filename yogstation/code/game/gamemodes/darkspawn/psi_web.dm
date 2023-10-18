@@ -174,7 +174,7 @@
 
 /datum/psi_web/fighter/activate(mob/user)
 	darkspawn.specialization = FIGHTER
-	var/datum/action/cooldown/spell/toggle/light_eater/spell = locate() in darkspawn.upgrades
+	var/datum/action/cooldown/spell/toggle/light_eater/spell = locate() in user.actions
 	if(spell)
 		spell.Remove(user)
 
@@ -283,6 +283,6 @@
 	menu_tab = STORE_PASSIVE
 
 /datum/psi_web/twin_tendrils/activate(mob/user)
-	var/datum/action/cooldown/spell/toggle/pass/spell = locate() in darkspawn.upgrades
+	var/datum/action/cooldown/spell/toggle/pass/spell = locate() in user.actions
 	if(spell)
 		spell.twin = TRUE
