@@ -41,20 +41,14 @@
 	sound = 'sound/magic/blind.ogg'
 	var/safe = FALSE
 
-
-/datum/action/cooldown/spell/aoe/radiantburst/get_things_to_cast_on(atom/center)
-	var/list/things = list()
-	for(var/mob/living/nearby_mob in view(aoe_radius, center))
-		if(nearby_mob == owner && safe)
-			continue
-		things += nearby_mob
-
-	return things
-
 /datum/action/cooldown/spell/aoe/radiantburst/cast(atom/cast_on)
 	. = ..()
+	if(!safe && iscarbon(owner))
+		var/mob/living/carbon/dummy = owner
+		dummy.flash_act()
 	owner.visible_message(span_warning("[owner] releases a blinding light from within themselves."), span_notice("You release all the light within you."))
-	flash_color(owner, flash_color = LIGHT_COLOR_HOLY_MAGIC, flash_time = 0.5 SECONDS)
+	owner.color = LIGHT_COLOR_HOLY_MAGIC
+	animate(owner, 0.5 SECONDS, color = null)
 
 /datum/action/cooldown/spell/aoe/radiantburst/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(ishuman(victim))
