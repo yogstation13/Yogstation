@@ -338,7 +338,7 @@
 				purpose_fulfilled = TRUE
 				make_glow()
 				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
-				sound_to_playing_players(volume = 50, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
+				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
 				sleep(12.5 SECONDS)
 				make_glow()
 				animate(glow, transform = matrix() * 3, alpha = 0, time = 0.5 SECONDS)
