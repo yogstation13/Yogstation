@@ -171,6 +171,12 @@
 	icon_state = "void_blade"
 	item_state = "void_blade"
 
+/obj/item/melee/sickly_blade/dark
+	name = "sundered blade"
+	desc = "A silver blade made to cut any and all who get in it's path."
+	icon_state = "dark_blade"
+	item_state = "dark_blade"
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
