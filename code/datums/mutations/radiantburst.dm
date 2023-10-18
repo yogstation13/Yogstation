@@ -19,10 +19,9 @@
 	if(!istype(to_modify)) // null or invalid
 		return
 
-	if(GET_MUTATION_SYNCHRONIZER(src) > 1)
+	if(GET_MUTATION_SYNCHRONIZER(src) < 1)
 		to_modify.safe = TRUE //don't blind yourself
-	if(GET_MUTATION_ENERGY(src) > 1)
-		to_modify.cooldown_time -= 5 SECONDS //blind more often
+	to_modify.cooldown_time *= GET_MUTATION_ENERGY(src) //blind more often
 	if(GET_MUTATION_POWER(src) > 1)
 		to_modify.aoe_radius += 2 //bigger blind
 
