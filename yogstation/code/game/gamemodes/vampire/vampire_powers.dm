@@ -314,7 +314,7 @@
 
 	check_flags = NONE
 	cooldown_time = 0 //no cooldown to the ability
-	var/actual_cooldown = 2 MINUTES //cooldown applied when revived
+	var/actual_cooldown = 1 MINUTES //cooldown applied when revived
 	vamp_req = TRUE
 	var/reviving = FALSE
 	var/revive_timer
