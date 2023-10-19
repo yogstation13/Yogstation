@@ -6,6 +6,16 @@
 	},
 /turf/open/floor/carpet/black,
 /area/clerk)
+"c" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/clerk)
 "d" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -96,10 +106,6 @@
 	},
 /turf/open/floor/wood,
 /area/clerk)
-"r" = (
-/obj/structure/chair/stool,
-/turf/open/floor/wood,
-/area/clerk)
 "s" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
@@ -107,6 +113,14 @@
 "t" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
+	},
+/turf/open/floor/wood,
+/area/clerk)
+"u" = (
+/obj/structure/chair/stool,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/wood,
 /area/clerk)
@@ -306,12 +320,6 @@
 "V" = (
 /turf/open/floor/carpet/black,
 /area/clerk)
-"W" = (
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/clerk)
 "X" = (
 /obj/structure/chair/stool,
 /obj/machinery/light{
@@ -433,12 +441,12 @@ G
 (9,1,1) = {"
 G
 F
-r
+u
 f
 G
 w
 A
-W
+c
 G
 "}
 (10,1,1) = {"
