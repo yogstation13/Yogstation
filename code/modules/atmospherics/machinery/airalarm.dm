@@ -743,6 +743,8 @@
 	for(var/obj/machinery/airalarm/AA in A)
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
+			if(new_area_danger_level>1)
+				AA.manual_overwrite = FALSE
 		
 	post_alert(new_area_danger_level)
 
