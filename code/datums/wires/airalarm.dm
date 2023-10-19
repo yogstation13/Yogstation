@@ -70,6 +70,6 @@
 		if(WIRE_ALARM) // Post alarm.
 			var/area/AA = get_area(A)
 			if(AA.atmosalert(2, holder))
-				A.alert_sent = TRUE
+				A.alert_triggered = TRUE
 				A.post_alert(2, TRUE)
 			A.update_appearance(UPDATE_ICON)

@@ -697,11 +697,6 @@
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
 
-// Used in process so it doesn't update the icon too much
-/obj/machinery/airalarm/proc/queue_icon_update()
-	icon_update_needed = TRUE
-
-
 /obj/machinery/airalarm/proc/post_alert(alert_level, force=FALSE)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
 	if(alert_level>0 && !force)
