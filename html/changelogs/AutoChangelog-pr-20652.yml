@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Cables now properly transfer colors upon being cut"
-  - bugfix: "Built computers no longer have a wacky computer screen."
