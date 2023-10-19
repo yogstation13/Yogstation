@@ -498,7 +498,7 @@
 	icon_state = "cult_sharpener"
 	desc = "An ancient block of metal from the abyss."
 	force = 5
-	increment = 4
+	increment = 1.5
 	max = 30
 	prefix = "abyss-sharpened"
 	requires_sharpness = 1
