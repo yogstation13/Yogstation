@@ -2,7 +2,7 @@ import { toFixed } from 'common/math';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Section } from '../components';
+import { Box, Button, LabeledList, Section, Icon } from '../components';
 import { Window } from '../layouts';
 import { Scrubber, Vent } from './common/AtmosControls';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
@@ -72,6 +72,10 @@ const AirAlarmStatus = (props, context) => {
               {data.atmos_alarm && 'Atmosphere Alarm'
                 || data.fire_alarm && 'Fire Alarm'
                 || 'Nominal'}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Alarm overwrite">
+              {data.manual_atmosalm? <Icon name="check" color="good" size={1} /> : <Icon name="times" color="bad" size={1} />}
             </LabeledList.Item>
           </>
         ) || (

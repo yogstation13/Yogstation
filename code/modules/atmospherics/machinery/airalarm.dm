@@ -81,8 +81,11 @@
     )
 
 	var/danger_level = 0
-	var/alert_triggered = FALSE //Did the alert trigger?
+	var/trigger_reset = FALSE //Will reset all air alarms to normal state when all alerts are cleared
+	var/manual_overwrite = FALSE
 	var/mode = AALARM_MODE_SCRUBBING
+
+	var/area/A = null
 
 	var/locked = TRUE
 	var/aidisabled = 0
@@ -222,10 +225,12 @@
 	var/list/air_scrub_names = list()
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()
+	var/manual_atmosalm = FALSE
 
 /obj/machinery/airalarm/New(loc, ndir, nbuild)
 	..()
 	wires = new /datum/wires/airalarm(src)
+	A = get_area(src)
 	if(ndir)
 		setDir(ndir)
 
@@ -281,7 +286,7 @@
 		"danger_level" = danger_level,
 	)
 
-	var/area/A = get_area(src)
+	data["manual_atmosalm"] = A.manual_atmosalm
 	data["atmos_alarm"] = A.atmosalm
 	data["fire_alarm"] = A.fire
 
@@ -451,14 +456,12 @@
 			apply_mode(usr)
 			. = TRUE
 		if("alarm")
-			var/area/A = get_area(src)
-			if(A.atmosalert(2, src))
-				post_alert(2)
+			atmos_manualOverwrite()
+			post_alert(2)
 			. = TRUE
 		if("reset")
-			var/area/A = get_area(src)
-			if(A.atmosalert(0, src))
-				post_alert(0)
+			atmos_manualOverwrite(TRUE)
+			post_alert(0)
 			. = TRUE
 	update_appearance(UPDATE_ICON)
 
@@ -524,7 +527,6 @@
 			return "Flood"
 
 /obj/machinery/airalarm/proc/apply_mode(atom/signal_source)
-	var/area/A = get_area(src)
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
 			for(var/device_id in A.air_scrub_names)
@@ -648,7 +650,6 @@
 		icon_state = "alarmp"
 		return
 
-	var/area/A = get_area(src)
 	switch(max(danger_level, A.atmosalm))
 		if(0)
 			icon_state = "alarm0"
@@ -690,19 +691,30 @@
 
 	if(safe < danger_level)
 		apply_danger_level()
-	else if(alert_triggered)
+	else if(trigger_reset)
 		apply_danger_level()
 
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
+	
+/obj/machinery/airalarm/proc/atmos_manualOverwrite(resetArea = FALSE)
+	for(var/obj/machinery/airalarm/AA in A)
+		if(resetArea)
+			AA.manual_overwrite = FALSE
+			AA.trigger_reset = TRUE
+		else
+			AA.manual_overwrite = TRUE
 
 /obj/machinery/airalarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
-	if(alert_level>0)
-		alert_triggered = TRUE
+	if(alert_level==2 && !manual_overwrite)
+		trigger_reset = TRUE
 	else
-		alert_triggered = FALSE
+		trigger_reset = FALSE
+
+	A.atmosalert(alert_level, src)
+	A.manual_atmosalm = manual_overwrite
 
 	if(!frequency)
 		return
@@ -711,7 +723,6 @@
 		"zone" = get_area_name(src),
 		"type" = "Atmospheric"
 	))
-	var/area/A = get_area(src)
 	if(alert_level==2)
 		alert_signal.data["alert"] = "severe"
 		A.set_vacuum_alarm_effect()
@@ -727,14 +738,13 @@
 		AA.update_appearance(UPDATE_ICON)
 
 /obj/machinery/airalarm/proc/apply_danger_level()
-	var/area/A = get_area(src)
 
 	var/new_area_danger_level = 0
 	for(var/obj/machinery/airalarm/AA in A)
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
-	if(A.atmosalert(new_area_danger_level,src)) //if area was in normal state or if area was in alert state
-		post_alert(new_area_danger_level)
+		
+	post_alert(new_area_danger_level)
 
 	update_appearance(UPDATE_ICON)
 
@@ -790,6 +800,7 @@
 						locked = FALSE
 						mode = 1
 						shorted = 0
+						atmos_manualOverwrite(TRUE)
 						post_alert(0)
 						buildstage = 2
 						update_appearance(UPDATE_ICON)
