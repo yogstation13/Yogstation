@@ -99,6 +99,42 @@
 /datum/eldritch_knowledge/proc/on_eldritch_blade(atom/target,mob/user,proximity_flag,click_parameters)
 	return
 
+/**
+ * Signal proc for [COMSIG_HERETIC_BLADE_ATTACK].
+ *
+ * Apply any melee effects from hitting someone with our blade.
+ */
+/datum/eldritch_knowledge/blade_upgrade/proc/on_melee_eldritch_blade(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	SIGNAL_HANDLER
+
+	do_melee_effects(source, target, blade)
+
+/**
+ * Signal proc for [COMSIG_HERETIC_RANGED_BLADE_ATTACK].
+ *
+ * Apply any ranged effects from hitting someone with our blade.
+ */
+/datum/eldritch_knowledge/blade_upgrade/proc/on_ranged_eldritch_blade(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	SIGNAL_HANDLER
+
+	do_ranged_effects(source, target, blade)
+
+/**
+ * Overridable proc that invokes special effects
+ * whenever the heretic attacks someone in melee with their heretic blade.
+ */
+/datum/eldritch_knowledge/blade_upgrade/proc/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	return
+
+/**
+ * Overridable proc that invokes special effects
+ * whenever the heretic clicks on someone at range with their heretic blade.
+ */
+/datum/eldritch_knowledge/blade_upgrade/proc/do_ranged_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	return
+
+
+
 ///////////////
 ///Base lore///
 ///////////////

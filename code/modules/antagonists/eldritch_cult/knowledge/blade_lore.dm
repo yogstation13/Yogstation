@@ -184,10 +184,7 @@
 	name = "Grasp Mark - Mark of the Blade"
 	gain_text = "There was no room for cowardace here. Those who ran were scolded. \
 		That is how I met them. Their name was The Colonel."
-	desc = "Your Mansus Grasp now applies the Mark of the Blade. While marked, \
-		the victim will be unable to leave their current room until it expires or is triggered. \
-		Triggering the mark will summon a knife that will orbit you for a short time. \
-		The knife will block any attack directed towards you, but is consumed on use."
+	desc = "Allows you to craft Edlrtich Whetstones, one time use items that can enhance the sharpness of your blade."
 	cost = 2
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/ash_mark,
@@ -195,51 +192,135 @@
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_whetstone)
 	route = PATH_BLADE
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/blade_mark/on_gain(mob/user)
-	. = ..()
-	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+#define BLOOD_FLOW_PER_SEVEIRTY -1
 
-/datum/eldritch_knowledge/blade_mark/on_lose(mob/user)
-	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
-
-/datum/eldritch_knowledge/blade_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-	SIGNAL_HANDLER
-
-	if(isliving(target))
-		var/mob/living/living_target = target
-		living_target.apply_status_effect(/datum/status_effect/eldritch/blade)
-
-/datum/eldritch_knowledge/spell/biden_blast
-	name = "T2 - Volcano Blast"
-	gain_text = "The strongest fires come from within, expel a piece of your burning soul to show you enemies the truth of flame."
-	desc = "Shoot a stong blast of fire at an enemy."
+/datum/eldritch_knowledge/duel_stance
+	name = "Stance of the Torn Champion"
+	desc = "Grants immunity to having your limbs dismembered. \
+		Additionally, when damaged below 50% of your maximum health, \
+		you gain increased resistance to gaining wounds and reduced damage slowdown."
+	gain_text = "In time, it was he who stood alone among the bodies of his former comrades, awash in blood, none of it his own. \
+		He was without rival, equal, or purpose."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/fireball/eldritch
+	route = PATH_BLADE
+	/// Whether we're currently in duelist stance, gaining certain buffs (low health)
+	var/in_duelist_stance = FALSE
 	route = PATH_BLADE
 	tier = TIER_2
 
+/datum/eldritch_knowledge/duel_stance/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	ADD_TRAIT(user, TRAIT_NODISMEMBER, type)
+	RegisterSignal(user, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(user, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_health_update))
+
+	on_health_update(user) // Run this once, so if the knowledge is learned while hurt it activates properly
+
+/datum/eldritch_knowledge/duel_stance/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	REMOVE_TRAIT(user, TRAIT_NODISMEMBER, type)
+	if(in_duelist_stance)
+		user.remove_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_REDUCED_DAMAGE_SLOWDOWN), type)
+
+	UnregisterSignal(user, list(COMSIG_PARENT_EXAMINE, COMSIG_CARBON_GAIN_WOUND, COMSIG_LIVING_HEALTH_UPDATE))
+
+/datum/eldritch_knowledge/duel_stance/proc/on_examine(mob/living/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+
+	var/obj/item/held_item = source.get_active_held_item()
+	if(in_duelist_stance)
+		examine_list += span_warning("[source] looks unnaturally poised[held_item?.force >= 15 ? " and ready to strike out":""].")
+
+/datum/eldritch_knowledge/duel_stance/proc/on_health_update(mob/living/source)
+	SIGNAL_HANDLER
+
+	if(in_duelist_stance && source.health > source.maxHealth * 0.5)
+		source.balloon_alert(source, "exited duelist stance")
+		in_duelist_stance = FALSE
+		source.remove_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_REDUCED_DAMAGE_SLOWDOWN), type)
+		return
+
+	if(!in_duelist_stance && source.health <= source.maxHealth * 0.5)
+		source.balloon_alert(source, "entered duelist stance")
+		in_duelist_stance = TRUE
+		source.add_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_REDUCED_DAMAGE_SLOWDOWN), type)
+		return
+
+#undef BLOOD_FLOW_PER_SEVEIRTY
+
+
 /datum/eldritch_knowledge/blade_blade_upgrade
-	name = "Blade Upgrade - Blade of the City Guard"
-	gain_text = "The stench of boiling blood was common in the wake of the City Guard. Though they are gone, the memory of their pikes and greatswords may yet benefit you."
-	desc = "Your ashen blade will now ignite targets."
+	name = "Swift Blades"
+	desc = "Attacking someone with a Sundered Blade in both hands \
+		will now deliver a blow with both at once, dealing two attacks in rapid succession. \
+		The second blow will be slightly weaker."
+	gain_text = "I found him cleaved in twain, halves locked in a duel without end; \
+		a flurry of blades, neither hitting their mark, for the Champion was indomitable."
 	cost = 2
 	banned_knowledge = list(
+		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_BLADE
 	tier = TIER_BLADE
+	/// How much force do we apply to the offhand?
+	var/offand_force_decrement = 0
+	/// How much force was the last weapon we offhanded with? If it's different, we need to re-calculate the decrement
+	var/last_weapon_force = -1
+	
+/datum/eldritch_knowledge/blade_upgrade/blade/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	if(target == source)
+		return
 
-/datum/eldritch_knowledge/blade_blade_upgrade/on_eldritch_blade(target,user,proximity_flag,click_parameters)
-	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		C.adjust_fire_stacks(2)
-		C.ignite_mob()
+	var/obj/item/off_hand = source.get_inactive_held_item()
+	if(QDELETED(off_hand) || !istype(off_hand, /obj/item/melee/sickly_blade))
+		return
+	// If our off-hand is the blade that's attacking,
+	// quit out now to avoid an infinite stab combo
+	if(off_hand == blade)
+		return
+
+	// Give it a short delay (for style, also lets people dodge it I guess)
+	addtimer(CALLBACK(src, PROC_REF(follow_up_attack), source, target, off_hand), 0.25 SECONDS)
+
+/datum/eldritch_knowledge/blade_upgrade/blade/proc/follow_up_attack(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	if(QDELETED(source) || QDELETED(target) || QDELETED(blade))
+		return
+	// Sanity to ensure that the blade we're delivering an offhand attack with is ACTUALLY our offhand
+	if(blade != source.get_inactive_held_item())
+		return
+	// And we easily could've moved away
+	if(!source.Adjacent(target))
+		return
+
+	// Check if we need to recaclulate our offhand force
+	// This is just so we don't run this block every attack, that's wasteful
+	if(last_weapon_force != blade.force)
+		offand_force_decrement = 0
+		// We want to make sure that the offhand blade increases their hits to crit by one, just about
+		// So, let's do some quick math. Yes this'll be inaccurate if their mainhand blade is modified (whetstone), no I don't care
+		// Find how much force we need to detract from the second blade
+		var/hits_to_crit_on_average = ROUND_UP(100 / (blade.force * 2))
+		while(hits_to_crit_on_average <= 3) // 3 hits and beyond is a bit too absurd
+			if(offand_force_decrement + 2 > blade.force * 0.5) // But also cutting the force beyond half is absurd
+				break
+
+			offand_force_decrement += 2
+			hits_to_crit_on_average = ROUND_UP(100 / (blade.force * 2 - offand_force_decrement))
+
+	// Save the force as our last weapon force
+	last_weapon_force = blade.force
+	// Subtract the decrement
+	blade.force -= offand_force_decrement
+	// Perform the offhand attack
+	blade.melee_attack_chain(source, target)
+	// Restore the force.
+	blade.force = last_weapon_force
+
 
 /datum/eldritch_knowledge/spell/flame_birth
 	name = "T3 - Flame Birth"

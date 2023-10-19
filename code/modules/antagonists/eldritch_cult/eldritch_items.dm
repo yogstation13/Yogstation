@@ -472,3 +472,14 @@
 
 		if(DT_PROB(25, seconds_per_tick))
 			human_in_range.set_dizzy_if_lower(10 SECONDS)
+
+/obj/item/sharpener/eldritch
+	name = "Master's Whetstone"
+	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon_state = "sharpener"
+	desc = "An ancient block of metal from the abyss."
+	force = 5
+	increment = 4
+	max = 30
+	prefix = "abyss-sharpened"
+	requires_sharpness = 1

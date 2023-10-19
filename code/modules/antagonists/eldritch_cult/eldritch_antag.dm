@@ -56,6 +56,7 @@
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
 		/datum/eldritch_knowledge/cold_snap,
+		/datum/eldritch_knowledge/duel_stance,
 		/datum/eldritch_knowledge/spell/blood_siphon,
 		/datum/eldritch_knowledge/spell/eldritchbolt,
 		/datum/eldritch_knowledge/spell/void_blast),
@@ -755,6 +756,9 @@
 
 /datum/antagonist/heretic/proc/is_void()
 	return "[lore]" == "Void"
+
+/datum/antagonist/heretic/proc/is_blade()
+	return "[lore]" == "Blade"
 
 /datum/antagonist/heretic/proc/is_unpledged()
 	return "[lore]" == "Unpledged"
