@@ -213,6 +213,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/duel_stance/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	. = ..()
 	ADD_TRAIT(user, TRAIT_NODISMEMBER, type)
 	RegisterSignal(user, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(user, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_health_update))
