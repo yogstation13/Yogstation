@@ -17,11 +17,27 @@
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 	var/small_item = FALSE //Small items can be grouped into a single crate.
+	var/budget_radioactive = FALSE //Overwrite budget crate into radiation protective crate
 
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
 	if(paying_account)
-		C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
+		if(budget_radioactive)
+			C = new /obj/structure/closet/crate/secure/owned/radiation(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+			C = new /obj/structure/closet/crate/secure/owned/medical(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
+			C = new /obj/structure/closet/crate/secure/owned/engineering(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SCI))
+			C = new /obj/structure/closet/crate/secure/owned/science(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SRV))
+			C = new /obj/structure/closet/crate/secure/owned/hydroponics(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SEC))
+			C = new /obj/structure/closet/crate/secure/owned/gear(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_CIV))
+			C = new /obj/structure/closet/crate/secure/owned/civ(A, paying_account)
+		else
+			C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
 		C.name = "[crate_name] - Purchased by [paying_account.account_holder]"
 	else
 		C = new crate_type(A)
@@ -1244,7 +1260,8 @@
 					/obj/item/fuel_rod,
 					/obj/item/fuel_rod)
 	crate_name = "Uranium-235 Fuel Rods"
-	crate_type = /obj/structure/closet/crate/radiation
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
 
 /datum/supply_pack/engine/fuel_rod_plutonium
 	name = "Plutonium-239 Fuel Rods Crate"
@@ -1256,7 +1273,8 @@
 					/obj/item/fuel_rod/plutonium,
 					/obj/item/fuel_rod/plutonium)
 	crate_name = "Plutonium-239 Fuel Rods"
-	crate_type = /obj/structure/closet/crate/radiation
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
 
 /datum/supply_pack/engine/fuel_rod_bananium
 	name = "Bananium Fuel Rods Crate"
@@ -1269,7 +1287,8 @@
 					/obj/item/fuel_rod/material/bananium,
 					/obj/item/fuel_rod/material/bananium)
 	crate_name = "Bananium Fuel Rods"
-	crate_type = /obj/structure/closet/crate/radiation
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
