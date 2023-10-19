@@ -689,9 +689,9 @@
 
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
-	if(danger_level>0)
+	if(danger_level>0 && !manual_overwrite)
 		apply_danger_level()
-	else if(trigger_reset)
+	else if(trigger_reset && !manual_overwrite)
 		apply_danger_level()
 
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
@@ -802,6 +802,8 @@
 						locked = FALSE
 						mode = 1
 						shorted = 0
+						atmos_manualOverwrite(TRUE)
+						post_alert(0)
 						buildstage = 2
 						update_appearance(UPDATE_ICON)
 				return

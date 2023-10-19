@@ -75,7 +75,7 @@ const AirAlarmStatus = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Alarm overwrite">
-              {data.manual_atmosalm? <Icon name="check" color="good" size={1} /> : <Icon name="times" color="bad" size={1} />}
+              {data.manual_atmosalm? <Icon name="toggle-on" color="good" size={1.3} /> : <Icon name="toggle-off" color="bad" size={1.3} />}
             </LabeledList.Item>
           </>
         ) || (
@@ -153,13 +153,12 @@ const AirAlarmControlHome = (props, context) => {
   return (
     <>
       <Button
-        icon={atmos_alarm
+        icon={atmos_alarm>1 && manual_atmosalm
           ? 'exclamation-triangle'
           : 'exclamation'}
-        color={atmos_alarm && 'caution'}
+        color={atmos_alarm>1 && manual_atmosalm && 'caution'}
         content="Area Atmosphere Alarm"
-        disabled={atmos_alarm>1 && !manual_atmosalm}
-        onClick={() => act(atmos_alarm ? 'reset' : 'alarm')} />
+        onClick={() => act(atmos_alarm>1 && manual_atmosalm ? 'reset' : 'alarm')} />
       <Box mt={1} />
       <Button
         icon={mode === 3
