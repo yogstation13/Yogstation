@@ -7,18 +7,22 @@
 		/datum/eldritch_knowledge/base_flesh,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final)
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/rust_blade)
 	route = PATH_RUST
@@ -101,7 +105,8 @@
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark)
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark)
 	route = PATH_RUST
 	tier = TIER_MARK
 	
@@ -137,7 +142,8 @@
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade)
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade)
 	route = PATH_RUST
 	tier = TIER_BLADE
 

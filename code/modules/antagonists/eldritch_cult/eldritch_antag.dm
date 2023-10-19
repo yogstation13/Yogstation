@@ -353,6 +353,8 @@
 			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
 		else if(is_rust())
 			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
+		else if(is_blade())
+			parts += "<span class='greentext big'>THE MASTER OF BLADES HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
@@ -657,7 +659,37 @@
 				flavor_message += 	"Stepping through the empty halls of the station, you look towards the empty space, and contemplate your failures."
 			else //Dead
 				flavor_message += 	"As your body shatters, the last pieces of your consciousness wonder what you could have done differently, before the spark of life dissipates."
+	
+	else if(is_blade()) //blade epilogues
 
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"The hallway leading to the shuttle explodes in a whirlwind of blades, each step you take cutting a path to your new reality."
+			else if(alive)
+				flavor_message += 	"Watching the shuttle as it jumps to warp puts a smile on your face, you ready your blade to cut through space and time. They won't escape."
+			else //Dead
+				flavor_message += 	"As your blade falls from your hand, it hits the ground and shatters, splintering into an uncountable amount of smaller blades. As long as one survives, your soul will exist, and you will return to cut again."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"You've crafted an impossible amount of blades, and made a mountain of corpses doing so. Victory is yours today!"
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"You sharpen your newly formed blade, made from the bones and soul of your enemies. Smirking, you think of new and twisted ways to continue your craft."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As the world goes dark, a flash of steel crosses the boundry between reality and the veil. Though you may pass here, those who felled you will not last."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You sit on a bench at centcom, escaping the madness of the station. You've failed, and will never smith a blade again."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Your bloodied hand pounds on the nearest wall, a failure of a smith you turned out to be. You pray someone finds your emergency beacon on this abandoned station."
+			else //Dead
+				flavor_message += 	"You lay there, life draining from your body onto the station around you. The last thing you see is your reflection in your own blade, and then it all goes dark."
 	else //Unpledged epilogues
 
 		if(cultiewin) //Completed objectives (WITH NO RESEARCH MIND YOU)

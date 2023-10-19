@@ -7,18 +7,22 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final)
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
 	route = PATH_FLESH
@@ -110,7 +114,12 @@
 	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your flesh blade to detonate the mark, which causes significant bleeding on the target."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/void_mark)
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,)
 	route = PATH_FLESH
 	tier = TIER_MARK
 
@@ -154,7 +163,8 @@
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade)
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade)
 	route = PATH_FLESH
 	tier = TIER_BLADE
 
