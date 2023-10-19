@@ -202,40 +202,17 @@
 	. = ..()
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
-/datum/eldritch_knowledge/blade_mark/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
-	. = ..()
+/datum/eldritch_knowledge/blade_mark/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/blade_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	var/datum/status_effect/eldritch/blade/blade_mark
-	if(istype(blade_mark))
-		var/area/to_lock_to = get_area(target)
-		blade_mark.locked_to = to_lock_to
-		to_chat(target, span_hypnophrase("An otherworldly force is compelling you to stay in [get_area_name(to_lock_to)]!"))
-	return blade_mark
+	if(isliving(target))
+		var/mob/living/living_target = target
+		living_target.apply_status_effect(/datum/status_effect/eldritch/blade)
 
-/datum/eldritch_knowledge/base_blade/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = user
-		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/blade)
-		if(E)
-			E.on_effect()
-			H.apply_status_effect(/datum/status_effect/protective_blades, 60 SECONDS, 1, 20, 0 SECONDS)
-
-// WILL COME BACK TO CURSES AT A LATER DATE 
-
-// /datum/eldritch_knowledge/blindness
-	// name = "T1 - Curse of Blindness"
-	// gain_text = "The Betrayed eternally walks the Kilnplains with a pair of blood-stained needles. She is willing to come to our world, for a price."
-	// desc = "Curse someone with two minutes of complete blindness by transmuting a pair of eyes, a screwdriver, and a pool of blood with an object that the victim has touched with their bare hands."
-	// cost = 1
-	// unlocked_transmutations = list(/datum/eldritch_transmutation/curse/blindness)
-	// tier = TIER_1
-
-/datum/eldritch_knowledge/spell/volcano_blast
+/datum/eldritch_knowledge/spell/biden_blast
 	name = "T2 - Volcano Blast"
 	gain_text = "The strongest fires come from within, expel a piece of your burning soul to show you enemies the truth of flame."
 	desc = "Shoot a stong blast of fire at an enemy."
@@ -243,22 +220,6 @@
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/fireball/eldritch
 	route = PATH_BLADE
 	tier = TIER_2
-
-// /datum/eldritch_knowledge/corrosion
-	//name = "T2 - Curse of Corrosion"
-	//gain_text = "The night before he was crowned, the Nightwatcher met with each of the City Guard. Through this ritual, only one lived to see the dawn."
-	//desc = "Curse someone with two minutes of vomiting and major organ damage by transmuting a wirecutter, a spill of blood, a heart, a left arm, and a right arm with an item that the victim has touched with their bare hands."
-	//cost = 1
-	//unlocked_transmutations = list(/datum/eldritch_transmutation/curse/corrosion)
-	//tier = TIER_2
-
-// /datum/eldritch_knowledge/paralysis
-	//name = "T2 - Curse of Paralysis"
-	//gain_text = "An acolyte must provide intense envy of another's well-being, which is absorbed with the rite's materials by the Shrouded One to grant opportunity for power."
-	//desc = "Curse someone with five minutes of an inability to walk by transmuting a knife, a pool of blood, a left leg, a right leg, and a hatchet with an item that the victim touched with their bare hands."
-	//cost = 1
-	//unlocked_transmutations = list(/datum/eldritch_transmutation/curse/paralysis)
-	//tier = TIER_2
 
 /datum/eldritch_knowledge/blade_blade_upgrade
 	name = "Blade Upgrade - Blade of the City Guard"
