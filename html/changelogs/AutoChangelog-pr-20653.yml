@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "unconscious+ people now count towards heretic sacrifice"
