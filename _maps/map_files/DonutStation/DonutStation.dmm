@@ -55735,7 +55735,6 @@
 	pixel_x = 3;
 	pixel_y = 2
 	},
-/obj/item/storage/box/deputy,
 /obj/item/storage/secure/safe/HoS{
 	pixel_x = 35
 	},
