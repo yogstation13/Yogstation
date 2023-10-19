@@ -22,7 +22,6 @@ GLOBAL_LIST_INIT(movement_type_trait_to_flag, list(
 	TRAIT_MOVE_FLYING = FLYING,
 	TRAIT_MOVE_VENTCRAWLING = VENTCRAWLING,
 	TRAIT_MOVE_FLOATING = FLOATING,
-	TRAIT_MOVE_PHASING = PHASING,
 	))
 
 GLOBAL_LIST_INIT(movement_type_addtrait_signals, set_movement_type_addtrait_signals())
