@@ -68,6 +68,9 @@ SUBSYSTEM_DEF(air)
 
 	var/list/paused_z_levels	//Paused z-levels will not add turfs to active
 
+/proc/get_ssair()
+	return SSair
+
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "C:{"
 	msg += "HP:[round(cost_highpressure,1)]|"
@@ -126,8 +129,6 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/extools_update_ssair()
 
-/datum/controller/subsystem/air/proc/auxtools_update_reactions()
-
 /proc/reset_all_air()
 	SSair.can_fire = 0
 	message_admins("Air reset begun.")
@@ -136,9 +137,6 @@ SUBSYSTEM_DEF(air)
 		CHECK_TICK
 	message_admins("Air reset done.")
 	SSair.can_fire = 1
-
-/datum/controller/subsystem/air/proc/thread_running()
-	return FALSE
 
 /datum/controller/subsystem/air/proc/check_threads()
 	if(thread_running())
@@ -386,13 +384,7 @@ SUBSYSTEM_DEF(air)
 	if(post_process_turfs_auxtools(MC_TICK_REMAINING_MS))
 		pause()
 
-/datum/controller/subsystem/air/proc/finish_turf_processing_auxtools()
-/datum/controller/subsystem/air/proc/process_turfs_auxtools()
 /datum/controller/subsystem/air/proc/post_process_turfs_auxtools()
-/datum/controller/subsystem/air/proc/process_turf_equalize_auxtools()
-/datum/controller/subsystem/air/proc/process_excited_groups_auxtools()
-/datum/controller/subsystem/air/proc/get_amt_gas_mixes()
-/datum/controller/subsystem/air/proc/get_max_gas_mixes()
 /datum/controller/subsystem/air/proc/turf_process_time()
 /datum/controller/subsystem/air/proc/heat_process_time()
 

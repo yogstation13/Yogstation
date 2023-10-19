@@ -1,17 +1,17 @@
 // This file contains defines allowing targeting byond versions newer than the supported
 
 //Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 514
-#define MIN_COMPILER_BUILD 1556
+#define MIN_COMPILER_VERSION 515
+#define MIN_COMPILER_BUILD 1619
 #if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM)
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 514.1556 or higher
+#error You need version 515.1619 or higher
 #endif
 
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 515
-#define MAX_BYOND_MINOR 1614
+#define MAX_BYOND_MINOR 1619
 
 // You can define IGNORE_MAX_BYOND_VERSION to bypass the max version check.
 // Note: This will likely break the game, especially any extools/auxtools linkage. Only use if you know what you're doing!
