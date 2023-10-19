@@ -196,8 +196,6 @@
 	route = PATH_BLADE
 	tier = TIER_MARK
 
-#define BLOOD_FLOW_PER_SEVEIRTY -1
-
 /datum/eldritch_knowledge/duel_stance
 	name = "Stance of the Torn Champion"
 	desc = "Grants immunity to having your limbs dismembered. \
@@ -249,9 +247,6 @@
 		source.add_traits(list(TRAIT_HARDLY_WOUNDED, TRAIT_REDUCED_DAMAGE_SLOWDOWN), type)
 		return
 
-#undef BLOOD_FLOW_PER_SEVEIRTY
-
-
 /datum/eldritch_knowledge/blade_blade_upgrade
 	name = "Swift Blades"
 	desc = "Attacking someone with a Sundered Blade in both hands \
@@ -288,6 +283,6 @@
 	gain_text = "A mountain of blades stand before you, your masterpiece in hand, you raise it high and cleave reality in twine."
 	desc = "Transmute three corpses to ascend as a Master of blades. You will become immune to stuns, resistant to wounds, and reduced overall damage. Additionally your spell 'furious steel' will have reduced cooldown, and you will create a shield of blades overtime."
 	cost = 3
-	unlocked_transmutations = list(/datum/eldritch_transmutation/final/ash_final)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/final/blade_final)
 	route = PATH_BLADE
 	tier = TIER_ASCEND

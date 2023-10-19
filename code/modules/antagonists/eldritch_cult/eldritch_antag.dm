@@ -55,7 +55,6 @@
 		/datum/eldritch_knowledge/raw_prophet,
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
-		/datum/eldritch_knowledge/duel_stance,
 		/datum/eldritch_knowledge/cold_snap,
 		/datum/eldritch_knowledge/duel_stance,
 		/datum/eldritch_knowledge/spell/blood_siphon,
