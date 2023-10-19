@@ -1815,8 +1815,6 @@
 #include "code\modules\antagonists\eldritch_cult\magic\flesh_magic.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\blade_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\magic\general_heretic_magic.dm"
-
-#include "code\modules\antagonists\eldritch_cult\magic\general_heretic_magic.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\flesh_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\mind_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\rust_transmutations.dm"
