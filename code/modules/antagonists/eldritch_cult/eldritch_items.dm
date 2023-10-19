@@ -494,7 +494,7 @@
 /obj/item/sharpener/eldritch
 	name = "Master's Whetstone"
 	icon = 'yogstation/icons/obj/kitchen.dmi'
-	icon_state = "sharpener"
+	icon_state = "cult_sharpener"
 	desc = "An ancient block of metal from the abyss."
 	force = 5
 	increment = 4

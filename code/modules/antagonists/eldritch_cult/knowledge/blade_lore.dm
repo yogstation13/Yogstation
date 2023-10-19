@@ -197,7 +197,7 @@
 	tier = TIER_MARK
 
 /datum/eldritch_knowledge/duel_stance
-	name = "Stance of the Torn Champion"
+	name = "T2 - Stance of the Torn Champion"
 	desc = "Grants immunity to having your limbs dismembered. \
 		Additionally, when damaged below 50% of your maximum health, \
 		you gain increased resistance to gaining wounds and reduced damage slowdown."
@@ -248,7 +248,7 @@
 		return
 
 /datum/eldritch_knowledge/blade_blade_upgrade
-	name = "Swift Blades"
+	name = "Blade Upgrade - Swift Blades"
 	desc = "Attacking someone with a Sundered Blade in both hands \
 		will now deliver a blow with both at once, dealing two attacks in rapid succession. \
 		The second blow will be slightly weaker."
