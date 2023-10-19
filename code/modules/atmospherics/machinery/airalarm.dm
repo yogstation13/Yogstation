@@ -81,6 +81,7 @@
     )
 
 	var/danger_level = 0
+	var/alert_triggered = FALSE //Did the alert trigger?
 	var/mode = AALARM_MODE_SCRUBBING
 
 	var/locked = TRUE
@@ -452,7 +453,7 @@
 		if("alarm")
 			var/area/A = get_area(src)
 			if(A.atmosalert(2, src))
-				post_alert(2)
+				post_alert(2, TRUE)
 			. = TRUE
 		if("reset")
 			var/area/A = get_area(src)
@@ -684,18 +685,29 @@
 		gas_dangerlevel = max(gas_dangerlevel, cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure))
 
 
-	var/old_danger_level = danger_level
+	var/safe = 0
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
-	if(old_danger_level != danger_level)
+	if(safe < danger_level)
 		apply_danger_level()
+	else if(alert_triggered)
+		apply_danger_level()
+
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
 
+// Used in process so it doesn't update the icon too much
+/obj/machinery/airalarm/proc/queue_icon_update()
+	icon_update_needed = TRUE
 
-/obj/machinery/airalarm/proc/post_alert(alert_level)
+
+/obj/machinery/airalarm/proc/post_alert(alert_level, force=FALSE)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
+	if(alert_level>0 && !force)
+		alert_triggered = TRUE
+	else
+		alert_triggered = FALSE
 
 	if(!frequency)
 		return
@@ -715,6 +727,9 @@
 		A.unset_vacuum_alarm_effect()
 
 	frequency.post_signal(src, alert_signal, range = -1)
+
+	for(var/obj/machinery/airalarm/AA in A)
+		AA.update_appearance(UPDATE_ICON)
 
 /obj/machinery/airalarm/proc/apply_danger_level()
 	var/area/A = get_area(src)
