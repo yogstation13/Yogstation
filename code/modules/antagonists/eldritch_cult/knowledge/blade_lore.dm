@@ -264,7 +264,12 @@
 	unlocked_transmutations = list(/datum/eldritch_transmutation/bone_knife)
 	route = PATH_BLADE
 	tier = TIER_BLADE
-	
+
+/datum/eldritch_knowledge/blade_blade_upgrade/on_gain(mob/user)
+	. = ..()
+	var/obj/eldwhetstone = new /obj/item/sharpener/eldritch
+	user.put_in_hands(eldwhetstone)
+
 /datum/eldritch_knowledge/spell/furious_steel
 	name = "T3 - Furious Steel"
 	desc = "Grants you Furious Steel, a targeted spell. Using it will summon three \
