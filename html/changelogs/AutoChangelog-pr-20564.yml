@@ -1,0 +1,6 @@
+author: " Qustinnus, Kryson, uglykoala, Ghost, @Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Ethereals now crystallize upon death, reviving after a delay"
+  - soundadd: "Sounds for crystalization starting, finishing, and being interrupted"
+  - imageadd: "Sprites for ethereal crystallization"
