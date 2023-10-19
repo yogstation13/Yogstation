@@ -25528,7 +25528,6 @@
 	pixel_x = -6;
 	pixel_y = 8
 	},
-/obj/item/storage/box/deputy,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Head of Security's Desk";
