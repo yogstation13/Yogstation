@@ -28,6 +28,21 @@
 	route = PATH_BLADE
 	tier = TIER_PATH
 
+// "Floating ghost blade" effect for blade heretics
+/obj/effect/floating_blade
+	name = "knife"
+	icon = "knife"
+	icon_state = "knife"
+	plane = GAME_PLANE_FOV_HIDDEN
+	/// The color the knife glows around it.
+	var/glow_color = "#ececff"
+
+/obj/effect/floating_blade/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/movetype_handler)
+	ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
+	add_filter("knife", 2, list("type" = "outline", "color" = glow_color, "size" = 1))
+
 /datum/eldritch_knowledge/base_blade/on_gain(mob/user)
 	. = ..()
 	var/obj/realknife = new /obj/item/melee/sickly_blade/dark
@@ -193,9 +208,21 @@
 /datum/eldritch_knowledge/blade_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	if(isliving(target))
-		var/mob/living/living_target = target
-		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
+	var/datum/status_effect/eldritch/blade/blade_mark = ..()
+	if(istype(blade_mark))
+		var/area/to_lock_to = get_area(target)
+		blade_mark.locked_to = to_lock_to
+		to_chat(target, span_hypnophrase("An otherworldly force is compelling you to stay in [get_area_name(to_lock_to)]!"))
+	return blade_mark
+
+/datum/eldritch_knowledge/base_blade/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = user
+		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/blade)
+		if(E)
+			E.on_effect()
+			H.apply_status_effect(/datum/status_effect/protective_blades, 60 SECONDS, 1, 20, 0 SECONDS)
 
 // WILL COME BACK TO CURSES AT A LATER DATE 
 
