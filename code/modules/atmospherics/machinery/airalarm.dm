@@ -248,6 +248,7 @@
 /obj/machinery/airalarm/Destroy()
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
+	atmos_manualOverwrite(TRUE)
 	post_alert(0)
 	return ..()
 
@@ -688,7 +689,7 @@
 
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
-	if(danger_level>1)
+	if(danger_level>0)
 		apply_danger_level()
 	else if(trigger_reset)
 		apply_danger_level()
@@ -801,7 +802,6 @@
 						locked = FALSE
 						mode = 1
 						shorted = 0
-						post_alert(0)
 						buildstage = 2
 						update_appearance(UPDATE_ICON)
 				return
