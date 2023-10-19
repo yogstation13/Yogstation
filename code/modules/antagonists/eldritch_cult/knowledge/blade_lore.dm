@@ -266,79 +266,21 @@
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/bone_knife)
 	route = PATH_BLADE
 	tier = TIER_BLADE
 	
-/datum/eldritch_knowledge/blade_upgrade/blade/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	if(target == source)
-		return
-
-	var/obj/item/off_hand = source.get_inactive_held_item()
-	if(QDELETED(off_hand) || !istype(off_hand, /obj/item/melee/sickly_blade))
-		return
-	// If our off-hand is the blade that's attacking,
-	// quit out now to avoid an infinite stab combo
-	if(off_hand == blade)
-		return
-
-	// Give it a short delay (for style, also lets people dodge it I guess)
-	addtimer(CALLBACK(src, PROC_REF(follow_up_attack), source, target, off_hand), 0.25 SECONDS)
-
-/datum/eldritch_knowledge/blade_upgrade/blade/proc/follow_up_attack(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	/// How much force do we apply to the offhand?
-	var/offand_force_decrement = 0
-	/// How much force was the last weapon we offhanded with? If it's different, we need to re-calculate the decrement
-	var/last_weapon_force = -1
-
-	if(QDELETED(source) || QDELETED(target) || QDELETED(blade))
-		return
-	// Sanity to ensure that the blade we're delivering an offhand attack with is ACTUALLY our offhand
-	if(blade != source.get_inactive_held_item())
-		return
-	// And we easily could've moved away
-	if(!source.Adjacent(target))
-		return
-
-	// Check if we need to recaclulate our offhand force
-	// This is just so we don't run this block every attack, that's wasteful
-	if(last_weapon_force != blade.force)
-		offand_force_decrement = 0
-		// We want to make sure that the offhand blade increases their hits to crit by one, just about
-		// So, let's do some quick math. Yes this'll be inaccurate if their mainhand blade is modified (whetstone), no I don't care
-		// Find how much force we need to detract from the second blade
-		var/hits_to_crit_on_average = ROUND_UP(100 / (blade.force * 2))
-		while(hits_to_crit_on_average <= 3) // 3 hits and beyond is a bit too absurd
-			if(offand_force_decrement + 2 > blade.force * 0.5) // But also cutting the force beyond half is absurd
-				break
-
-			offand_force_decrement += 2
-			hits_to_crit_on_average = ROUND_UP(100 / (blade.force * 2 - offand_force_decrement))
-
-	// Save the force as our last weapon force
-	last_weapon_force = blade.force
-	// Subtract the decrement
-	blade.force -= offand_force_decrement
-	// Perform the offhand attack
-	blade.melee_attack_chain(source, target)
-	// Restore the force.
-	blade.force = last_weapon_force
-
-
-/datum/eldritch_knowledge/spell/flame_birth
-	name = "T3 - Flame Birth"
-	gain_text = "The Nightwatcher was a man of principles, yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
-	desc = "A healing-damage spell that saps the life from those on fire nearby, killing any who are in a critical condition."
+/datum/eldritch_knowledge/spell/furious_steel
+	name = "T3 - Furious Steel"
+	desc = "Grants you Furious Steel, a targeted spell. Using it will summon three \
+		orbiting blades around you. These blades will protect you from all attacks, \
+		but are consumed on use. Additionally, you can click to fire the blades \
+		at a target, dealing damage and causing bleeding."
+	gain_text = "Without thinking, I took the knife of a fallen soldier and threw with all my might. My aim was true! \
+		The Torn Champion smiled at their first taste of agony, and with a nod, their blades became my own."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/aoe/fiery_rebirth
+	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/furious_steel
 	route = PATH_BLADE
-	tier = TIER_3
-
-/datum/eldritch_knowledge/spell/cleave
-	name = "T3 - Blood Cleave"
-	gain_text = "The Shrouded One connects all. This technique, a particular favorite of theirs, rips at the bodies of those who hunch too close to permit casuality."
-	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
-	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/cleave
 	tier = TIER_3
 
 /datum/eldritch_knowledge/blade_final

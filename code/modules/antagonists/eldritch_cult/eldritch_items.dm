@@ -177,6 +177,24 @@
 	icon_state = "dark_blade"
 	item_state = "dark_blade"
 
+/obj/item/melee/sickly_blade/bone
+	name = "bone blade"
+	desc = "A broken bloody bone, it'll get the job done."
+	icon_state = "bone_blade"
+	item_state = "bone_blade"
+	force = 10
+	armour_penetration = 10
+	throwforce = 5
+
+/obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+	. = ..()
+	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+	if(istype(secondsword, /obj/item/melee/sickly_blade/bone) && !secondattack)
+		sleep(0.2 SECONDS)
+		secondsword.attack(M, user, TRUE)
+		user.changeNext_move(CLICK_CD_MELEE)
+	return
+
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."

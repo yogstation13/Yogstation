@@ -9,3 +9,9 @@
 	required_atoms = list(/obj/item/organ/heart, /obj/item/stack/sheet/mineral/diamond, /obj/item/stack/sheet/plasteel)
 	result_atoms = list(/obj/item/sharpener/eldritch)
 	required_shit_list = "A human heart, a diamond, a sheet of plasteel"
+
+/datum/eldritch_transmutation/bone_knife
+	name = "Bone Blade"
+	required_atoms = list(/obj/item/kitchen/knife,/obj/item/stack/sheet/mineral/gold)
+	result_atoms = list(/obj/item/melee/sickly_blade/bone)
+	required_shit_list = "A bar of gold and a knife."
