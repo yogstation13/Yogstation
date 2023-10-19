@@ -107,13 +107,13 @@
 	box = /obj/item/storage/box/survival
 
 /datum/outfit/russianhunters/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/mob/living/L = usr
+	var/mob/living/L = H
 	if(!istype(L))
 		return
-	var/datum/mind/mega = usr.mind
+	var/datum/mind/mega = H.mind
 	if(!istype(mega))
 		return
-	mega.accent_name = accent_russian
+	mega.accent_name = accent_russian // todo, find out how the fuck this works
 	mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
 
 	var/obj/item/card/id/W = H.wear_id
