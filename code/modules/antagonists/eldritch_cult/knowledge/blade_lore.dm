@@ -267,10 +267,6 @@
 		/datum/eldritch_knowledge/void_blade_upgrade)
 	route = PATH_BLADE
 	tier = TIER_BLADE
-	/// How much force do we apply to the offhand?
-	var/offand_force_decrement = 0
-	/// How much force was the last weapon we offhanded with? If it's different, we need to re-calculate the decrement
-	var/last_weapon_force = -1
 	
 /datum/eldritch_knowledge/blade_upgrade/blade/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
 	if(target == source)
@@ -288,6 +284,11 @@
 	addtimer(CALLBACK(src, PROC_REF(follow_up_attack), source, target, off_hand), 0.25 SECONDS)
 
 /datum/eldritch_knowledge/blade_upgrade/blade/proc/follow_up_attack(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
+	/// How much force do we apply to the offhand?
+	var/offand_force_decrement = 0
+	/// How much force was the last weapon we offhanded with? If it's different, we need to re-calculate the decrement
+	var/last_weapon_force = -1
+
 	if(QDELETED(source) || QDELETED(target) || QDELETED(blade))
 		return
 	// Sanity to ensure that the blade we're delivering an offhand attack with is ACTUALLY our offhand

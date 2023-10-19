@@ -65,7 +65,8 @@
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade),
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade),
 	TIER_3 = list(
 		/datum/eldritch_knowledge/spell/flame_birth,
 		/datum/eldritch_knowledge/stalker,
