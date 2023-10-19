@@ -113,7 +113,7 @@
 	var/datum/mind/mega = usr.mind
 	if(!istype(mega))
 		return
-	mega.accent_name = Russian
+	mega.accent_name = accent_russian
 	mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
 
 	var/obj/item/card/id/W = H.wear_id
