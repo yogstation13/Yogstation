@@ -453,7 +453,7 @@
 		if("alarm")
 			var/area/A = get_area(src)
 			if(A.atmosalert(2, src))
-				post_alert(2, TRUE)
+				post_alert(2)
 			. = TRUE
 		if("reset")
 			var/area/A = get_area(src)
@@ -697,9 +697,9 @@
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
 
-/obj/machinery/airalarm/proc/post_alert(alert_level, force=FALSE)
+/obj/machinery/airalarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
-	if(alert_level>0 && !force)
+	if(alert_level>0)
 		alert_triggered = TRUE
 	else
 		alert_triggered = FALSE

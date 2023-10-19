@@ -71,5 +71,5 @@
 			var/area/AA = get_area(A)
 			if(AA.atmosalert(2, holder))
 				A.alert_triggered = TRUE
-				A.post_alert(2, TRUE)
+				A.post_alert(2)
 			A.update_appearance(UPDATE_ICON)
