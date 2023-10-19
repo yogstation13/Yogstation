@@ -179,6 +179,11 @@
 	desc = "A slab of mouse meat. Best not eat it raw."
 	foodtype = MICE
 
+/obj/item/reagent_containers/food/snacks/meat/slab/mouse/fat
+	name = "fatty mouse meat"
+	desc = "A decadently fatty slab of mouse meat. Best not eat it raw."
+	foodtype = MICE | JUNKFOOD
+
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well you know..."

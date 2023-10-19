@@ -278,7 +278,7 @@
 //not a derivative of autosurgeons because things get fucky
 //someone is more than welcome to combine the two if they want, just make sure it actually works
 /obj/item/multisurgeon
-	name = "autosurgeon"
+	name = "multisurgeon"
 	desc = "A device that automatically inserts an implant or organ into the user without the hassle of extensive surgery. It has a slot to insert implants/organs and a screwdriver slot for removing accidentally added items."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "autoimplanter"
@@ -297,13 +297,14 @@
 /obj/item/multisurgeon/proc/insert_organ(obj/item/I)
 	storedorgan |= I
 	I.forceMove(src)
+	name = "[initial(name)] ([I.name])"
 
 /obj/item/multisurgeon/examine(mob/user)
 	. = ..()
 	if(storedorgan)
 		. += span_info("Inside this multisurgeon is:")
 		for(var/obj/item/organ/implants in storedorgan)
-			. += span_info("-[implants.zone] [implants]")
+			. += span_info("-[implants] [implants.zone]")
 
 /obj/item/multisurgeon/attack_self(mob/user)//when the object it used...
 	if(!uses)
@@ -341,6 +342,12 @@
 
 /obj/item/multisurgeon/noslipall //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/noslip, /obj/item/organ/cyberimp/leg/noslip/l)
+
+/obj/item/multisurgeon/jumpboots //for admins
+	starting_organ = list(/obj/item/organ/cyberimp/leg/jumpboots, /obj/item/organ/cyberimp/leg/jumpboots/l)
+
+/obj/item/multisurgeon/wheelies //for admins
+	starting_organ = list(/obj/item/organ/cyberimp/leg/wheelies, /obj/item/organ/cyberimp/leg/wheelies/l)
 
 /obj/item/multisurgeon/magboots //for ce
 	desc = "A single-use multisurgeon that contains magboot implants for each leg."

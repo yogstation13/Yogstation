@@ -180,8 +180,7 @@
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
-	var/mob/living/carbon/C = M
-	if(C && ishuman(C))
+	if(ishuman(M))
 		return FALSE
 	return ..()
 
@@ -446,7 +445,7 @@
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 
 /obj/item/clothing/neck/cloak/ranger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(dodge(owner, hitby, attack_text))
+	if(!isprojectile(hitby) && dodge(owner, hitby, attack_text))
 		return TRUE
 	return ..()
 
@@ -454,7 +453,8 @@
 	if(update_signals(user))
 		set_cloak(cloak - cloak_move_loss)
 
-/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
+/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
+	SIGNAL_HANDLER
 	if(dodge(user, P, "[P]"))
 		return BULLET_ACT_FORCE_PIERCE
 

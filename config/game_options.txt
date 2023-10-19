@@ -698,5 +698,5 @@ ECONOMY
 ## Uncomment to enable dynamic ruleset config file.
 DYNAMIC_CONFIG_ENABLED
 
-## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any.
+## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for AGCNR
 ENGINE_TYPE 3
