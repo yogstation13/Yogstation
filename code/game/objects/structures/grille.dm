@@ -138,7 +138,7 @@
 	. = ..()
 	if(mover.pass_flags & PASSGRILLE)
 		return TRUE
-	else if(!. && istype(mover, /obj/item/projectile))
+	else if(!. && istype(mover, /obj/projectile))
 		return prob(30)
 
 /obj/structure/grille/CanAStarPass(ID, dir, caller)

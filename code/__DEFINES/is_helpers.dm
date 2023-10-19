@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isbodypart(A) (istype(A, /obj/item/bodypart))
 
-#define isprojectile(A) (istype(A, /obj/item/projectile))
+#define isprojectile(A) (istype(A, /obj/projectile))
 
 #define isgun(A) (istype(A, /obj/item/gun))
 

@@ -125,7 +125,7 @@
 		return
 	var/mob/living/carbon/user = owner.current
 	var/costMult = 1 // Coffin makes it cheaper
-	var/bruteheal = min(user.getBruteLoss_nonProsthetic(), actual_regen) // BRUTE: Always Heal
+	var/bruteheal = min(user.getBruteLoss(), actual_regen) // BRUTE: Always Heal
 	var/fireheal = 0 // BURN: Heal in Coffin while Fakedeath, or when damage above maxhealth (you can never fully heal fire)
 	/// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
@@ -134,7 +134,7 @@
 			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return
-		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
+		fireheal = min(user.getFireLoss(), actual_regen)
 		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
 		costMult *= 0 // No cost if we're sleeping in a coffin.
 		user.extinguish_mob()

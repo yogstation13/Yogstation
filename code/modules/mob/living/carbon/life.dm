@@ -347,7 +347,7 @@
 /mob/living/carbon/proc/handle_organs()
 	for(var/V in internal_organs)
 		var/obj/item/organ/O = V
-		if(O.process_flags & get_process_flags()) // assume carbons are organic by default
+		if(O.compatible_biotypes & mob_biotypes) // assume carbons are organic by default
 			O.on_life()
 
 /mob/living/carbon/handle_diseases()

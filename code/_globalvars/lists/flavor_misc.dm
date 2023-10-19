@@ -57,23 +57,7 @@ GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
 	"Low" = "low")) //for icon making -> use "enviro" before this
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
-GLOBAL_LIST_INIT(color_list_ethereal,list(
-	"O Class (Dark Green)" 		= 	"#37833F", 
-	"O2 Class(Green)"			= 	"#97ee63", 
-	"O3 Class (Light Green)" 	= 	"#00ff00",	
-	"B Class (Blue)" 			= 	"#3399ff",
-	"B1 Class (Dark Blue)" 		= 	"#6666ff",
-	"B2 Class (Faint Blue)" 	= 	"#b3d9ff",
-	"A Class (Cyan)"			=	"#00ffff", 
-	"F Class (White)" 			= 	"#ffffff", 
-	"K Class (Yellow)" 			= 	"#ffff00",
-	"M Class (Orange)" 			= 	"#ff8700", 
-	"L Class (Red)" 			= 	"#ff0000",
-	"L1 Class (Faint Red)" 		= 	"#ff4d4d",
-	"L2 Class (Dark Red)"		=	"#9c3030", 
-	"T Class (Light Purple)" 	= 	"#ff00ff",
-	"T2 Class (Dark Purple)" 	= 	"#ee82ee",
-	"White Dwarf" = "#f2f2f2",))
+
 GLOBAL_LIST_INIT(color_list_preternis, list(
 	"Factory Default" = "#FFFFFF", 
 	"Rust" = "#B7410E", 

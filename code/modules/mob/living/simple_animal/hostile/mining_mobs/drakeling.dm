@@ -214,7 +214,7 @@
 	cooldown_time = 1 SECONDS //adv cutter
 	active_msg = span_notice("You ready the wings.")
 	deactive_msg = span_notice("You stop the flapping.")
-	var/shootie = /obj/item/projectile/wing
+	var/shootie = /obj/projectile/wing
 
 /datum/action/cooldown/spell/pointed/drakeling/wing_flap/InterceptClickOn(mob/living/L, params, atom/A)
 	. = ..()
@@ -230,13 +230,13 @@
 		shooties += new shootie(get_step(drake, NORTH))
 		shooties += new shootie(get_step(drake, SOUTH))
 	for(var/S in shooties)
-		var/obj/item/projectile/wing/shooted = S
+		var/obj/projectile/wing/shooted = S
 		shooted.firer = L
 		shooted.fire(dir2angle(drake.dir))
 
 	return TRUE
 
-/obj/item/projectile/wing
+/obj/projectile/wing
 	name = "wing blast"
 	damage = 0
 	range = 5
@@ -244,7 +244,7 @@
 	icon_state = "energy2"
 	var/mine_range = 5 //same as an advanced cutter but there's three of them
 
-/obj/item/projectile/wing/on_hit(atom/target)
+/obj/projectile/wing/on_hit(atom/target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target

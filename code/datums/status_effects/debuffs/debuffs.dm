@@ -378,7 +378,7 @@
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
 	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
+	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.can_block_magic(charge_cost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
@@ -467,7 +467,7 @@
 		owner.remove_status_effect(/datum/status_effect/drowsiness)
 		owner.remove_status_effect(/datum/status_effect/confusion)
 		severity = 0
-	else if(!owner.anti_magic_check(chargecost = 0) && owner.stat != DEAD && severity)
+	else if(!owner.can_block_magic(charge_cost = 0) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
@@ -730,7 +730,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
@@ -757,7 +757,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/progenitor/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 

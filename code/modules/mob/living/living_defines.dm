@@ -69,6 +69,7 @@
 	var/has_limbs = 0 //does the mob have distinct limbs?(arms,legs, chest,head)
 
 	var/list/pipes_shown = list()
+	var/list/wires_shown = list()
 	var/last_played_vent
 
 	var/smoke_delay = FALSE //used to prevent spam with smoke reagent reaction on mob.
@@ -132,5 +133,5 @@
 	//Allergies
 	var/allergies
 
-	//Last item/projectile that damaged this mob, not including surgery
+	//Last projectile that damaged this mob, not including surgery
 	var/last_damage = ""

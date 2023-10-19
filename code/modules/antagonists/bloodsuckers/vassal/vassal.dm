@@ -85,7 +85,7 @@
 	/// Give Recuperate Power
 	BuyPower(new /datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
-	var/datum/objective/bloodsucker/vassal/vassal_objective = new
+	var/datum/objective/vassal_objective/vassal_objective = new
 	vassal_objective.owner = owner
 	objectives += vassal_objective
 	/// Give Vampire Language & Hud
@@ -388,7 +388,18 @@
 	returnString += "</span>\]" // \n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
 	return returnIcon + returnString
 
+
+/datum/objective/vassal_objective
+	name = "vassal objective"
+	explanation_text = "Help your Master with whatever is requested of you."
+	martyr_compatible = TRUE
+
+/datum/objective/vassal_objective/check_completion()
+	var/datum/antagonist/vassal/antag_datum = owner.has_antag_datum(/datum/antagonist/vassal)
+	return antag_datum.master?.owner?.current?.stat != DEAD
+
 /**
+ * 
  * Bloodsucker Blood
  *
  * Artificially made, this must be fed to ex-vassals to keep them on their high.
