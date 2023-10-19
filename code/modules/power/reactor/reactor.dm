@@ -596,13 +596,12 @@
 	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 	meltdown() //Double kill.
 	relay('sound/effects/reactor/explode.ogg')
-	SSweather.run_weather("nuclear fallout")
+	SSweather.run_weather("nuclear fallout", src.z)
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
-			if(is_station_level(WS.z)) //Begin the SLUDGING
-				WS.range *= 3
-				WS.fire()
+			WS.range *= 3
+			WS.fire()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon(updates=ALL)
 	. = ..()
@@ -954,7 +953,6 @@
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
 	/area/ai_monitored/turret_protected/ai, /area/shuttle)
-	target_trait = ZTRAIT_STATION
 	end_message = "<span class='notice'>The ash stops falling.</span>"
 	immunity_type = "rad"
 
