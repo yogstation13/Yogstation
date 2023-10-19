@@ -185,6 +185,7 @@
 	force = 10
 	armour_penetration = 10
 	throwforce = 5
+	block_chance = 10
 
 /obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, secondattack = FALSE)
 	. = ..()

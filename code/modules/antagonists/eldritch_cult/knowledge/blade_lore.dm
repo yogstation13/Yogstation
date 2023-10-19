@@ -183,7 +183,7 @@
 	name = "Grasp Mark - Mark of the Blade"
 	gain_text = "There was no room for cowardace here. Those who ran were scolded. \
 		That is how I met them. Their name was The Colonel."
-	desc = "Allows you to craft Edlrtich Whetstones, one time use items that can enhance the sharpness of your blades up to a certain degree."
+	desc = "Allows you to craft Eldrtich Whetstones, one time use items that can enhance the sharpness of your blades up to a certain degree."
 	cost = 2
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/ash_mark,
