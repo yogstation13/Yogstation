@@ -1288,7 +1288,7 @@
 	var/turf/further_behind_old_loc = get_edge_target_turf(old_loc, REVERSE_DIR(movement_dir))
 
 	source.Stun(1 SECONDS)
-	source.throw_at(further_behind_old_loc, 3, 1, gentle = TRUE) // Keeping this gentle so they don't smack into the heretic max speed
+	source.throw_at(further_behind_old_loc, 3, 1) // Keeping this gentle so they don't smack into the heretic max speed
 
 /datum/status_effect/amok
 	id = "amok"
