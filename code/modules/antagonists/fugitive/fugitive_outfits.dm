@@ -106,6 +106,16 @@
 	back = /obj/item/storage/backpack
 	box = /obj/item/storage/box/survival
 
+/datum/outfit/russianhunters/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/mob/living/L = usr
+	if(!istype(L))
+		return
+	var/datum/mind/mega = usr.mind
+	if(!istype(mega))
+		return
+	mega.accent_name = Russian
+	mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
+
 /datum/outfit/spacepol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
