@@ -116,6 +116,12 @@
 	mega.accent_name = Russian
 	mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
 
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "Bounty Hunter"
+	W.originalassignment = "Bounty Hunter"
+	W.registered_name = H.real_name
+	W.update_label()
+
 /datum/outfit/spacepol/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
