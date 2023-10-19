@@ -708,7 +708,7 @@
 
 /obj/machinery/airalarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
-	if(alert_level==2 && !manual_overwrite)
+	if(alert_level>1 && !manual_overwrite)
 		trigger_reset = TRUE
 	else
 		trigger_reset = FALSE

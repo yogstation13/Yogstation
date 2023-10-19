@@ -148,6 +148,7 @@ const AirAlarmControlHome = (props, context) => {
   const {
     mode,
     atmos_alarm,
+    manual_atmosalm,
   } = data;
   return (
     <>
@@ -157,6 +158,7 @@ const AirAlarmControlHome = (props, context) => {
           : 'exclamation'}
         color={atmos_alarm && 'caution'}
         content="Area Atmosphere Alarm"
+        disabled={atmos_alarm>1 && !manual_atmosalm}
         onClick={() => act(atmos_alarm ? 'reset' : 'alarm')} />
       <Box mt={1} />
       <Button
