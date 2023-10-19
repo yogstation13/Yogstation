@@ -55,6 +55,7 @@
 		/datum/eldritch_knowledge/raw_prophet,
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
+		/datum/eldritch_knowledge/duel_stance,
 		/datum/eldritch_knowledge/cold_snap,
 		/datum/eldritch_knowledge/duel_stance,
 		/datum/eldritch_knowledge/spell/blood_siphon,
@@ -73,6 +74,7 @@
 		/datum/eldritch_knowledge/spell/entropic_plume,
 		/datum/eldritch_knowledge/cerebral_control,
 		/datum/eldritch_knowledge/spell/void_pull,
+		/datum/eldritch_knowledge/spell/furious_steel,
 		/datum/eldritch_knowledge/ashy,
 		/datum/eldritch_knowledge/rusty,
 		/datum/eldritch_knowledge/spell/cleave,
@@ -83,7 +85,8 @@
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final))
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final))
 
 	var/static/list/path_to_ui_color = list(
 		PATH_START = "grey",

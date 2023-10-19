@@ -284,9 +284,9 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/blade_final
-	name = "Ascension Rite - Amgala's Ruin"
-	gain_text = "Ash feeds the soil, and fire consumes the plants that grow thereafter. On and on and on. The Nightwatcher consumed the sparks of a whole city, yet you will rise with only three: the first step of many to claim his crown."
-	desc = "Transmute three corpses to ascend as an Ashbringer. You will become immune to environmental hazards and grow more resistant to damage. You will additionally gain a spell that creates a massive burst of fire and another spell that creates a cloak of flames around you."
+	name = "Ascension Rite - Maelstrom of Silver"
+	gain_text = "A mountain of blades stand before you, your masterpiece in hand, you raise it high and cleave reality in twine."
+	desc = "Transmute three corpses to ascend as a Master of blades. You will become immune to stuns, resistant to wounds, and reduced overall damage. Additionally your spell 'furious steel' will have reduced cooldown, and you will create a shield of blades overtime."
 	cost = 3
 	unlocked_transmutations = list(/datum/eldritch_transmutation/final/ash_final)
 	route = PATH_BLADE
