@@ -600,8 +600,9 @@
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
-			WS.range *= 3
-			WS.fire()
+			if(is_station_level(WS.z)) //Begin the SLUDGING
+				WS.range *= 3
+				WS.fire()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon(updates=ALL)
 	. = ..()
