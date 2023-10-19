@@ -573,6 +573,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
 	item_state = "coil_[cable_color]"
+	color = null
+	add_atom_colour(cable_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/stack/cable_coil/update_name(updates=ALL)
 	. = ..()
