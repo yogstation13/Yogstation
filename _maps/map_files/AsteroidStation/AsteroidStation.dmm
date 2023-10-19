@@ -77649,7 +77649,6 @@
 /area/medical/medbay/aft)
 "xBV" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/deputy,
 /obj/item/storage/pencil_holder/crew/fancy{
 	pixel_x = -8;
 	pixel_y = 12
