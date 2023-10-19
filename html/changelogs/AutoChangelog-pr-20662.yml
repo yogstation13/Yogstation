@@ -1,0 +1,8 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Vampire revive only goes on cooldown after reviving rather than on button press"
+  - tweak: "Vampire revive has a 1 minute cooldown instead of 100 seconds"
+  - tweak: "Vampire revive can be canceled at any point after intial activation if you want to delay it"
+  - tweak: "Vampire revive chapel check has been moved to when the revive happens rather than when the button is clicked"
+  - bugfix: "Vampire screech no longer multiplies window damage and sound effects by the number of players nearby"
