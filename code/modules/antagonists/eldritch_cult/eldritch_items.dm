@@ -182,7 +182,7 @@
 	desc = "A broken bloody bone, it'll get the job done."
 	icon_state = "bone_blade"
 	item_state = "bone_blade"
-	force = 10
+	force = 5
 	armour_penetration = 10
 	throwforce = 5
 	block_chance = 10
@@ -498,7 +498,7 @@
 	icon_state = "cult_sharpener"
 	desc = "An ancient block of metal from the abyss."
 	force = 5
-	increment = 1.5
+	increment = 4
 	max = 30
 	prefix = "abyss-sharpened"
 	requires_sharpness = 1
