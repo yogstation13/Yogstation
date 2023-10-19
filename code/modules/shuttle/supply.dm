@@ -126,7 +126,20 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if(SO.pack.small_item) //small_item means it gets piled in the miscbox
 			if(SO.paying_account)
 				if(!miscboxes.len || !miscboxes[D.account_holder]) //if there's no miscbox for this person
-					miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned(pick_n_take(empty_turfs), SO.paying_account)
+					if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/medical(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/engineering(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_SCI))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/science(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_SRV))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/hydroponics(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_SEC))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/gear(pick_n_take(empty_turfs), SO.paying_account)
+					else if(SO.paying_account == SSeconomy.get_dep_account(ACCOUNT_CIV))
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap/civ(pick_n_take(empty_turfs), SO.paying_account)
+					else
+						miscboxes[D.account_holder] = new /obj/structure/closet/crate/secure/owned/cheap(pick_n_take(empty_turfs), SO.paying_account)
 					miscboxes[D.account_holder].name = "small items crate - purchased by [D.account_holder]"
 					misc_contents[D.account_holder] = list()
 				for (var/item in SO.pack.contains)
