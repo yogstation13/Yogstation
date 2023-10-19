@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_blade
 	name = "The Cutting Edge"
-	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to throw enemies away from you. You will also become more resistant to fire."
+	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to deal brute damage and paralyze enemies hit from behind."
 	gain_text = "Our great ancestors forged swords and practiced sparring on the eve of great battles."
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/base_ash,
@@ -179,12 +179,11 @@
 
 #undef BLADE_DANCE_COOLDOWN
 
-
 /datum/eldritch_knowledge/blade_mark
 	name = "Grasp Mark - Mark of the Blade"
 	gain_text = "There was no room for cowardace here. Those who ran were scolded. \
 		That is how I met them. Their name was The Colonel."
-	desc = "Allows you to craft Edlrtich Whetstones, one time use items that can enhance the sharpness of your blade."
+	desc = "Allows you to craft Edlrtich Whetstones, one time use items that can enhance the sharpness of your blades up to a certain degree."
 	cost = 2
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/ash_mark,
@@ -195,6 +194,12 @@
 	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_whetstone)
 	route = PATH_BLADE
 	tier = TIER_MARK
+
+/datum/eldritch_knowledge/blade_mark/on_gain(mob/user)
+	. = ..()
+	var/obj/eldwhetstone = new /obj/item/sharpener/eldritch
+	user.put_in_hands(eldwhetstone)
+
 
 /datum/eldritch_knowledge/duel_stance
 	name = "T2 - Stance of the Torn Champion"
@@ -249,9 +254,8 @@
 
 /datum/eldritch_knowledge/blade_blade_upgrade
 	name = "Blade Upgrade - Swift Blades"
-	desc = "Attacking someone with a Sundered Blade in both hands \
-		will now deliver a blow with both at once, dealing two attacks in rapid succession. \
-		The second blow will be slightly weaker."
+	desc = "Allows you to craft a bone blade from a knife and a bar of gold. \
+		Additionally will allow you to attack with both a sundered blade, and bone blade at once."
 	gain_text = "I found him cleaved in twain, halves locked in a duel without end; \
 		a flurry of blades, neither hitting their mark, for the Champion was indomitable."
 	cost = 2
@@ -267,8 +271,8 @@
 
 /datum/eldritch_knowledge/blade_blade_upgrade/on_gain(mob/user)
 	. = ..()
-	var/obj/eldwhetstone = new /obj/item/sharpener/eldritch
-	user.put_in_hands(eldwhetstone)
+	var/obj/offhandknife = new /obj/item/melee/sickly_blade/bone
+	user.put_in_hands(offhandknife)
 
 /datum/eldritch_knowledge/spell/furious_steel
 	name = "T3 - Furious Steel"
