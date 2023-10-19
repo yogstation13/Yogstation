@@ -686,10 +686,9 @@
 		gas_dangerlevel = max(gas_dangerlevel, cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure))
 
 
-	var/safe = 0
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
-	if(safe < danger_level)
+	if(danger_level>0)
 		apply_danger_level()
 	else if(trigger_reset)
 		apply_danger_level()
@@ -743,7 +742,7 @@
 	for(var/obj/machinery/airalarm/AA in A)
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
-			if(new_area_danger_level>1)
+			if(new_area_danger_level>0)
 				AA.manual_overwrite = FALSE
 		
 	post_alert(new_area_danger_level)
