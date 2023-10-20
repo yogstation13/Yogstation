@@ -89,9 +89,9 @@
 
 /obj/item/melee/sledgehammer/elite/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	if(istype(src, /turf/closed/wall) && !istype(src, /turf/closed/wall/r_wall))
+	if(istype(S, /turf/closed/wall) && !istype(S, /turf/closed/wall/r_wall))
 		if(prob(wallbreak_chance))
-			W.dismantle_wall(TRUE, TRUE)
+			S.dismantle_wall(TRUE, TRUE)
 		else
 			to_chat(user, span_warning("The wall shudders, but doesnt break!"))
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
