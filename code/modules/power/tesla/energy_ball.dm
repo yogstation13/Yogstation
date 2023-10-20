@@ -332,24 +332,11 @@
 		closest_grounding_rod.tesla_act(power, tesla_flags, shocked_targets)
 
 	else if(closest_mob)
+		var/mob/living/carbon/C = closest_mob
+		if(zap_gib)
+			C.zapping_gib = TRUE
 		var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE)? (min(round(power/600), 90) + rand(-5, 5)) : 0
 		closest_mob.electrocute_act(shock_damage, source, 1, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN))
-		if(zap_gib && closest_mob.mob_siemens_coeff_amount > 0)
-			//no gib() because if chest is gone it cannot transfer tesla to other mobs
-			for(var/obj/item/W in closest_mob)
-				closest_mob.dropItemToGround(W)
-				if(prob(50))
-					W.throw_at(get_edge_target_turf(closest_mob,pick(GLOB.alldirs)),rand(1,3),5)
-			ADD_TRAIT(closest_mob, TRAIT_DISFIGURED, TRAIT_GENERIC)
-			closest_mob.adjustFireLoss(1000)
-			closest_mob.spawn_gibs()
-			closest_mob.spill_organs()
-			var/obj/item/organ/brain/B = closest_mob.getorganslot(ORGAN_SLOT_BRAIN)
-			if(B)
-				B.Remove(closest_mob)
-				B.forceMove(get_turf(closest_mob))
-				B.throw_at(get_edge_target_turf(closest_mob,pick(GLOB.alldirs)),rand(1,3),5)
-			closest_mob.spread_bodyparts()
 		if(issilicon(closest_mob))
 			var/mob/living/silicon/S = closest_mob
 			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))

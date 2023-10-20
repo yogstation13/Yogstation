@@ -75,3 +75,20 @@
 		var/obj/item/bodypart/BP = X
 		BP.drop_limb()
 		BP.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+
+/mob/living/carbon/proc/sm_gib() //leave chest behind and vital organs
+	for(var/obj/item/W in src)
+		dropItemToGround(W)
+		if(prob(50))
+			W.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
+	adjustFireLoss(1000)
+	spawn_gibs()
+	spill_organs()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+	if(B)
+		B.Remove(src)
+		B.forceMove(get_turf(src))
+		B.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+	spread_bodyparts()
+	zapping_gib = FALSE
