@@ -53,7 +53,10 @@
 
 /datum/eldritch_knowledge/base_blade/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
-	
+
+
+	if(!isliving(target))
+		return COMPONENT_BLOCK_HAND_USE
 // Let's see if source is behind target
 	// "Behind" is defined as 3 tiles directly to the back of the target
 	// x . .
@@ -78,7 +81,7 @@
 	if(target.dir & REVERSE_DIR(dir_target_to_source))
 		are_we_behind = TRUE
 
-	if(!are_we_behind && !iscarbon(target))
+	if(!are_we_behind)
 		return COMPONENT_BLOCK_HAND_USE
 
 	// We're officially behind them, apply effects
