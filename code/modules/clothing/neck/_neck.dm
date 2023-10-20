@@ -445,7 +445,7 @@
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 
 /obj/item/clothing/neck/cloak/ranger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(dodge(owner, hitby, attack_text))
+	if(!isprojectile(hitby) && dodge(owner, hitby, attack_text))
 		return TRUE
 	return ..()
 
@@ -454,6 +454,7 @@
 		set_cloak(cloak - cloak_move_loss)
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
+	SIGNAL_HANDLER
 	if(dodge(user, P, "[P]"))
 		return BULLET_ACT_FORCE_PIERCE
 

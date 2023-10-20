@@ -1,0 +1,5 @@
+author: " ynot01, Cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added sledgehammers to the engine room, which does bonus damage to structures and is craftable"
+  - tweak: "Hitting a wall with an item now makes noise"
