@@ -212,7 +212,7 @@
 	var/usage = 0 //how many times it's been used since last maintenance
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
-	if(prob(max(usage * 10), 10))//10% chance for each shot to not fire with a baseline of 10%
+	if(prob((usage + 1) * 10))//10% chance for each shot to not fire with a baseline of 10%
 		if(prob(max((usage - 5), 0) * 10))//10% chance for each shot to explode, after 6 shots
 			explosion(src, 0, 0, 1, 1)
 			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
