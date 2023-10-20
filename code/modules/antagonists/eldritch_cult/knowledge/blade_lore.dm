@@ -56,9 +56,8 @@
 
 	if(!iscarbon(target))
 		return COMPONENT_BLOCK_HAND_USE
-
 	var/mob/living/carbon/carbon_target = target
-	carbon_target.AdjustParalyzed(1.5 SECONDS)
+	carbon_target.adjust_confusion(1.5 SECONDS)
 	carbon_target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
 	carbon_target.balloon_alert(source, "backstab!")
 	playsound(get_turf(carbon_target), 'sound/weapons/guillotine.ogg', 100, TRUE)
