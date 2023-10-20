@@ -423,6 +423,7 @@
 		visible_message(
 		span_danger("[src] body is emitting a loud noise!"), \
 		span_userdanger("You feel like you are about to explode!"), \
+		span_italics("You hear a loud noise!"), \
 		)
 		addtimer(CALLBACK(src, PROC_REF(sm_gib)), 4 SECONDS)
 	if(override)
