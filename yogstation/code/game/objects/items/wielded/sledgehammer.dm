@@ -90,9 +90,32 @@
 /obj/item/melee/sledgehammer/elite/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	var/turf/closed/wall/W = target
-	if(istype(W, /turf/closed/wall) && !istype(W, /turf/closed/wall/r_wall))
-		if(prob(wallbreak_chance))
-			W.dismantle_wall(TRUE, TRUE)
-		else
-			to_chat(user, span_warning("The wall shudders, but doesnt break!"))
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+	switch(wall_breaker)
+		if(istype(W, /turf/closed/wall/r_wall))
+			if(prob(wallbreak_chance - 45)) // 5% chance
+				W.dismantle_wall(TRUE, TRUE) // nice odds
+			else
+				to_chat(user, span_warning("The wall barely moves, but a crack does seem to show!"))
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+
+		if(istype(W, /turf/closed/wall/mineral/titanium))
+			if(prob(wallbreak_chance - 25)) // Shuttle walls, bit tougher
+				W.dismantle_wall(TRUE, TRUE)
+			else
+				to_chat(user, span_warning("The wall bounces back against your swing, but doesnt break!"))
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+
+		if(istype(W, /turf/closed/wall/mineral))
+			if(prob(wallbreak_chance + 20)) // 99% chance its playermade and non-essential so who cares.
+				W.dismantle_wall(TRUE, TRUE)
+			else
+				to_chat(user, span_warning("The wall shakes while peices, but doesnt break!"))
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+
+		if(istype(W, /turf/closed/wall))
+			if(prob(wallbreak_chance))
+				W.dismantle_wall(TRUE, TRUE)
+			else
+				to_chat(user, span_warning("The wall shudders, but doesnt break!"))
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		
