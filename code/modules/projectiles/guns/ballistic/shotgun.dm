@@ -209,7 +209,7 @@
 	unique_reskin = null
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
 	var/slung = FALSE
-	var/usage = 0 //how many times it's been used since last maintenance
+	var/usage = 1 //how many times it's been used since last maintenance
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
 	if(prob(usage * 10))//10% chance for each shot to not fire
@@ -245,7 +245,7 @@
 	to_chat(user, span_notice("You start to perform maintenance on [src]."))
 	if(I.use_tool(src, user, 4 SECONDS))
 		to_chat(user, span_notice("You finish maintaining [src]."))
-		usage = 0
+		usage = 1
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/examine(mob/user)
 	. = ..()
