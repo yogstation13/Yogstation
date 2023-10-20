@@ -317,7 +317,10 @@
 	//Alright, we've done our loop, now lets see if was anything interesting in range
 	if(closest_atom)
 		//common stuff
-		source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, maxdistance = INFINITY)
+		if(zap_gib)
+			source.Beam(closest_atom, icon_state="solar_beam", time=5, maxdistance = INFINITY)
+		else
+			source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, maxdistance = INFINITY)
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES))
 			LAZYSET(shocked_targets, closest_atom, TRUE)
 		var/zapdir = get_dir(source, closest_atom)
@@ -348,6 +351,8 @@
 
 	else if(closest_blob)
 		closest_blob.tesla_act(power, tesla_flags, shocked_targets)
+		tesla_zap(closest_blob, 3, power / 2, tesla_flags, shocked_targets, zap_gib)
 
 	else if(closest_structure)
 		closest_structure.tesla_act(power, tesla_flags, shocked_targets)
+		tesla_zap(closest_structure, 3, power / 2, tesla_flags, shocked_targets, zap_gib)
