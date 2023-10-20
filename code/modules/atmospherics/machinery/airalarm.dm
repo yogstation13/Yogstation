@@ -661,6 +661,8 @@
 
 /obj/machinery/airalarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted)
+		atmos_manualOverwrite(TRUE)
+		post_alert(0)
 		return
 
 	var/turf/location = get_turf(src)
