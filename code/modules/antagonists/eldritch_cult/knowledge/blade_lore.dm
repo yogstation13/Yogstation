@@ -54,10 +54,10 @@
 /datum/eldritch_knowledge/base_blade/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	// if(!iscarbon(target))
-	// 	return COMPONENT_BLOCK_HAND_USE
-	// var/mob/living/carbon/carbon_target = target
-	// carbon_target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
+	if(!iscarbon(target))
+		return COMPONENT_BLOCK_HAND_USE
+	var/mob/living/carbon/carbon_target = target
+	carbon_target.apply_damage(10, BRUTE)
 	// carbon_target.balloon_alert(source, "backstab!")
 	// playsound(get_turf(carbon_target), 'sound/weapons/guillotine.ogg', 100, TRUE)
 
