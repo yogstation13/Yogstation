@@ -252,9 +252,9 @@
 	switch(usage)
 		if(0 to 1)
 			. += "It looks about as good as it possibly could."
-		if(2 to 5)
+		if(2 to 6)
 			. += "It's starting to show some wear."
-		if(6 to INFINITY)
+		if(7 to INFINITY)
 			. += "It's not long before this thing falls apart."
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
