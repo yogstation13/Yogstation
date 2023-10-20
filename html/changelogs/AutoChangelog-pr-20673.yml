@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "Fix nuclear fallout weather running on station zlevel when the reactor isnt even on that zlevel"
