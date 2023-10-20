@@ -60,7 +60,7 @@
 	if((stat == CONSCIOUS && !sterile) && !isalien(user))
 		if(Leap(user))
 			return
-	if(!do_after(user, 2 SECONDS, src))
+	if(!sterile && !do_after(user, 2 SECONDS, src))
 		to_chat(user, "You fail to pry [src] off your face.")
 		return
 	. = ..()
