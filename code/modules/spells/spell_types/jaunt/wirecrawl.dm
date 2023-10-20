@@ -193,6 +193,8 @@
 
 //vision
 /mob/living/proc/update_wire_vision(var/obj/structure/cable/wire)
+	if(!istype(src.loc, /obj/effect/dummy/phased_mob/wirecrawl))//only get wirevision if phased
+		return
 	if(!wire) //if there's no wire, grab a random one in the location
 		wire = locate() in get_turf(src)
 	remove_wirevision()
