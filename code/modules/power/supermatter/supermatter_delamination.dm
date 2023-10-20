@@ -117,15 +117,15 @@
 
 /datum/supermatter_delamination/proc/call_tesla()
 	if(supermatter_turf)
-		var/obj/singularity/energy_ball/E = new(supermatter_turf)
-		E.energy = supermatter_power
-		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(E)].")
+		var/obj/singularity/energy_ball/supermatter_tesla = new(supermatter_turf)
+		supermatter_tesla.energy = supermatter_power
+		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(supermatter_tesla)].")
 
 /datum/supermatter_delamination/proc/call_cascadetesla()
 	if(supermatter_turf)
-		var/obj/singularity/energy_ball/supermatter/E = new(supermatter_turf)
-		E.energy += supermatter_power*100 // god
-		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(E)].")
+		var/obj/singularity/energy_ball/supermatter/supermatter_tesla = new(supermatter_turf)
+		supermatter_tesla.energy += supermatter_power * 100 // god
+		message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(supermatter_tesla)].")
 
 /datum/supermatter_delamination/proc/call_blob()
 	var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of Blazing Oil Blob?", ROLE_BLOB, null, ROLE_BLOB)
