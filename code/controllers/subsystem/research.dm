@@ -87,9 +87,9 @@ SUBSYSTEM_DEF(research)
 		bitcoins[i] *= income_time_difference / 10
 		if(science_tech.stored_research_points[i])
 			var/boost_amt = clamp(0, bitcoins[i], science_tech.stored_research_points[i]) //up to 2x research speed when burning stored research
-			bitcoins[i] += boost_amt
+			bitcoins[i] += boost_amt * bitcoin_multiplier
 			science_tech.remove_stored_point_type(i, boost_amt)
-	science_tech.add_point_list(round(bitcoins * bitcoin_multiplier))
+	science_tech.add_point_list(bitcoins)
 	//add RUIN_GENERATION_PER_TICK even without any servers, for things like freeminers
 	ruin_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = RUIN_GENERATION_PER_TICK, TECHWEB_POINT_TYPE_NANITES = NANITES_RESEARCH_RUIN_PER_TICK))
 	last_income = world.time
