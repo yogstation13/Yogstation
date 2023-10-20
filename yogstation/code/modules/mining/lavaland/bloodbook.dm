@@ -202,7 +202,8 @@
 					return
 			pick(mash(user, target), spiritbomb(user, target))
 			return
-		pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
+		damnedfang(user,target)	
+		//pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
 		return
 	if(severity > 1)
 		pick(inducingemission(user,target), concavehead(user,target))
@@ -320,7 +321,8 @@
 			B.color = "#ffffffd2"
 			B.desc = "A prismatic blender."
 			B.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
-			playsound(target, 'yogstation/sound/effects/bubbleblender.ogg', 40)
+			playsound(target, 'sound/effects/phaseinred.ogg', 30)
+			playsound(target, 'sound/effects/seedling_chargeup.ogg', 60)
 			target.visible_message(span_warning("A bubble surrounds [target] and floats into the air!"))
 			target.emote("spin")
 			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase+1, B), 0.5 SECONDS)
@@ -330,7 +332,7 @@
 		if(2)
 			target.forceMove(orb.loc)
 			orb.shred()
-			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase+1, orb), 1.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(damnedfang), user, target, phase+1, orb), 2.5 SECONDS)
 			return
 		if(3)
 			target.forceMove(orb.loc)
@@ -758,7 +760,7 @@
 	max_integrity = 500
 
 /obj/structure/bed/killbubble/proc/shred(var/times = 0)
-	if(times > 14)
+	if(times > 24)
 		return
 	var/obj/structure/slash/P = new(src.loc)
 	times++
