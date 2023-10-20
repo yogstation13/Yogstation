@@ -66,3 +66,32 @@
 		C.add_movespeed_modifier(SLEDGEHAMMER_THROWN_STAGGER, update=TRUE, priority=101, multiplicative_slowdown=1)
 		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), SLEDGEHAMMER_THROWN_STAGGER), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		to_chat(target, span_danger("You are staggered from throwing such a heavy object!"))
+
+/obj/item/melee/sledgehammer/elite
+	name = "'Dead Blow' sledgehammer"
+	desc = "A modernized version of the normal sledgehammer. Better weighted, better painted, you could really kill some chads with this."
+	icon_state = "sledgehammer-elite"
+	item_state = "sledgehammer-elite"
+	throwforce = 20 // A little better weighted
+	block_chance = 50 // Big ass thing probably blocks pretty good
+	var/wallbreak_chance = 50 // only non-Rwalls
+
+/obj/item/melee/sledgehammer/elite/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		force_unwielded = 3, \
+		force_wielded = 22, \
+		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
+		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
+		require_twohands = TRUE, \
+		wielded_stats = list(SWING_SPEED = 1.2, ENCUMBRANCE = 0.75, ENCUMBRANCE_TIME = 1 SECONDS, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
+	)
+
+/obj/item/melee/sledgehammer/elite/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(istype(src, /turf/closed/wall) && !istype(src, /turf/closed/wall/r_wall))
+		if(prob(wallbreak_chance))
+			W.dismantle_wall(TRUE, TRUE)
+		else
+			to_chat(user, span_warning("The wall shudders, but doesnt break!"))
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)

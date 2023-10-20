@@ -283,7 +283,7 @@
 			new /obj/item/clothing/head/welding/armored(src) // Silly mask. GREAT armor, but only protects the head. Some TC, ill do the calulation later
 			new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src) // unfortunatley no AP-20s. 8 TC.
 			new /obj/item/ammo_box/magazine/m12g(src) // a single spare mag. 2 TC.
-			// new /obj/item/melee/sledgehammer/elite(src) // not coded in yet. Less than an energy axe for sure.
+			new /obj/item/melee/sledgehammer/elite(src) //Less than an energy axe for sure.
 			new /obj/item/clothing/under/pants/blackjeans(src) // 0 TC. Style is free.
 			new /obj/item/clothing/suit/armor/vest/rig(src) //2 TC? Worse captain carapace, and only protects chest, not balls. Also needed to hold the shotgun in the vest slot.
 
