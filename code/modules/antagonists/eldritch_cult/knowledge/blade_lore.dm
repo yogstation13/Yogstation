@@ -33,7 +33,6 @@
 	name = "knife"
 	icon = 'icons/obj/kitchen.dmi';
 	icon_state = "knife"
-	plane = GAME_PLANE_FOV_HIDDEN
 	/// The color the knife glows around it.
 	var/glow_color = "#ececff"
 
@@ -80,7 +79,7 @@
 		are_we_behind = TRUE
 
 	if(!are_we_behind)
-		return
+		return COMPONENT_BLOCK_HAND_USE
 
 	// We're officially behind them, apply effects
 	target.AdjustParalyzed(1.5 SECONDS)
@@ -92,7 +91,7 @@
 /datum/eldritch_knowledge/base_blade/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!iscarbon(target))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/C = target
 	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh) || C.has_status_effect(/datum/status_effect/eldritch/void)
 	if(E)
