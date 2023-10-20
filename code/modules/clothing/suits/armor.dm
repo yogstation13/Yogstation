@@ -231,6 +231,13 @@
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
+/obj/item/clothing/suit/armor/vest/rig
+	name = "Crye Precision AVS plate carrier"
+	desc = "A small vest with three pouches on the front. Protects your chest, but thats about it."
+	icon_state = "rig-armor"
+	armor = list(MELEE = 40, BULLET = 60, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20, WOUND = 20)
+	body_parts_covered = CHEST // Aim for the tummy
+
 //All of the armor below is mostly unused
 
 /obj/item/clothing/suit/armor/centcom

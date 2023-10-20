@@ -138,7 +138,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "solo" = 1)))
+  switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = CARP_CARP_CARP, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "scav_boss" = 1, "solo" = 1)))
 		if("v") //Big Boss. Total of ~26 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -260,7 +260,6 @@
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
 
-
 		if("gang_boss")
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
@@ -279,6 +278,14 @@
 			new /obj/item/autosurgeon/upgraded_cyberlungs(src) //this is to remain true to the source material ok
 			new /obj/item/storage/pill_bottle/synaptizine(src) //take your drugs david, this and the lungs make up 1 tc
 			
+		if("scav_boss") // Mmm Tagilla my beloved. 30~ TC
+			new /obj/item/storage/belt/military(src) // 0 armor (for now, maybe) 0 TC its drippin.
+			new /obj/item/clothing/head/welding/armored(src) // Silly mask. GREAT armor, but only protects the head. Some TC, ill do the calulation later
+			new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src) // unfortunatley no AP-20s. 8 TC.
+			new /obj/item/ammo_box/magazine/m12g(src) // a single spare mag. 2 TC.
+			// new /obj/item/melee/sledgehammer/elite(src) // not coded in yet. Less than an energy axe for sure.
+			new /obj/item/clothing/under/pants/blackjeans(src) // 0 TC. Style is free.
+			new /obj/item/clothing/suit/armor/vest/rig(src) //2 TC? Worse captain carapace, and only protects chest, not balls. Also needed to hold the shotgun in the vest slot.
 
 #undef CARP_CARP_CARP
 

@@ -33,6 +33,35 @@
 /obj/item/clothing/head/welding/attack_self(mob/user)
 	weldingvisortoggle(user)
 
+/obj/item/clothing/head/welding/armored
+	name = "armored welding helmet"
+	desc = "A modified welding mask with loads of extra plating. Could probably shrug off a bullet, or twenty."
+	item_state = "weldingarmored"
+	icon_state = "weldingarmored"
+
+/obj/item/clothing/head/welding/armored/attack_self(mob/user)
+	..()
+	if(up)
+		armor = list(MELEE = 50, BULLET = 50, LASER = 10,ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 60) // you WILL leg meta the antag
+	else //cant keep you safe if you arent wearing it
+		armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 60)
+
+/obj/item/clothing/head/welding/armored/equipped(mob/user, slot)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot == ITEM_SLOT_HEAD)
+		user.grant_language(/datum/language/russian/, TRUE, TRUE, LANGUAGE_HAT)
+		to_chat(user, "You suddenly know how to speak like a gopnik!")
+
+/obj/item/clothing/head/welding/armored/dropped(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(ITEM_SLOT_HEAD) == src)
+		user.remove_language(/datum/language/russian/, TRUE, TRUE, LANGUAGE_HAT)
+		to_chat(user, "You can no longer speak like a russian.")
 
 /*
  * Cakehat
