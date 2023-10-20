@@ -89,7 +89,7 @@
 
 /obj/item/melee/sledgehammer/elite/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	var/obj/structure/W = target
+	var/turf/closed/wall/W = target
 	if(istype(W, /turf/closed/wall) && !istype(W, /turf/closed/wall/r_wall))
 		if(prob(wallbreak_chance))
 			W.dismantle_wall(TRUE, TRUE)
