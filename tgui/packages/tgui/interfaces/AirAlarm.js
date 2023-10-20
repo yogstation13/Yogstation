@@ -74,7 +74,7 @@ const AirAlarmStatus = (props, context) => {
                 || 'Nominal'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Alarm overwrite">
+              label="Alarm override">
               {data.manual_atmosalm? <Icon name="toggle-on" color="good" size={1.3} /> : <Icon name="toggle-off" color="bad" size={1.3} />}
             </LabeledList.Item>
           </>

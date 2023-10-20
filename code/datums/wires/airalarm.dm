@@ -46,7 +46,7 @@
 					A.mode = 1 // AALARM_MODE_SCRUB
 				A.apply_mode(usr)
 		if(WIRE_ALARM) // Clear alarms.
-			A.atmos_manualOverwrite(TRUE)
+			A.atmos_manualOverride(TRUE)
 			A.post_alert(0)
 			A.update_appearance(UPDATE_ICON)
 
@@ -67,6 +67,6 @@
 				A.mode = 3 // AALARM_MODE_PANIC
 				A.apply_mode(usr)
 		if(WIRE_ALARM) // Post alarm.
-			A.atmos_manualOverwrite()
+			A.atmos_manualOverride()
 			A.post_alert(2)
 			A.update_appearance(UPDATE_ICON)

@@ -82,7 +82,7 @@
 
 	var/danger_level = 0
 	var/trigger_reset = FALSE //Will reset all air alarms to normal state when all alerts are cleared
-	var/manual_overwrite = FALSE
+	var/manual_override = FALSE
 	var/mode = AALARM_MODE_SCRUBBING
 
 	var/area/A = null
@@ -248,7 +248,7 @@
 /obj/machinery/airalarm/Destroy()
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
-	atmos_manualOverwrite(TRUE)
+	atmos_manualOverride(TRUE)
 	post_alert(0)
 	return ..()
 
@@ -457,11 +457,11 @@
 			apply_mode(usr)
 			. = TRUE
 		if("alarm")
-			atmos_manualOverwrite()
+			atmos_manualOverride()
 			post_alert(2)
 			. = TRUE
 		if("reset")
-			atmos_manualOverwrite(TRUE)
+			atmos_manualOverride(TRUE)
 			post_alert(0)
 			. = TRUE
 	update_appearance(UPDATE_ICON)
@@ -661,7 +661,7 @@
 
 /obj/machinery/airalarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted)
-		atmos_manualOverwrite(TRUE)
+		atmos_manualOverride(TRUE)
 		post_alert(0)
 		return
 
@@ -691,32 +691,32 @@
 
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
-	if(danger_level>0 && !manual_overwrite)
+	if(danger_level>0 && !manual_override)
 		apply_danger_level()
-	else if(trigger_reset && !manual_overwrite)
+	else if(trigger_reset && !manual_override)
 		apply_danger_level()
 
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
 	
-/obj/machinery/airalarm/proc/atmos_manualOverwrite(resetArea = FALSE)
+/obj/machinery/airalarm/proc/atmos_manualOverride(resetArea = FALSE)
 	for(var/obj/machinery/airalarm/AA in A)
 		if(resetArea)
-			AA.manual_overwrite = FALSE
+			AA.manual_override = FALSE
 			AA.trigger_reset = TRUE
 		else
-			AA.manual_overwrite = TRUE
+			AA.manual_override = TRUE
 
 /obj/machinery/airalarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
-	if(alert_level>0 && !manual_overwrite)
+	if(alert_level>0 && !manual_override)
 		trigger_reset = TRUE
 	else
 		trigger_reset = FALSE
 
 	A.atmosalert(alert_level, src)
-	A.manual_atmosalm = manual_overwrite
+	A.manual_atmosalm = manual_override
 
 	if(!frequency)
 		return
@@ -746,7 +746,7 @@
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
 			if(new_area_danger_level>1)
-				AA.manual_overwrite = FALSE
+				AA.manual_override = FALSE
 		
 	post_alert(new_area_danger_level)
 
@@ -804,7 +804,7 @@
 						locked = FALSE
 						mode = 1
 						shorted = 0
-						atmos_manualOverwrite(TRUE)
+						atmos_manualOverride(TRUE)
 						post_alert(0)
 						buildstage = 2
 						update_appearance(UPDATE_ICON)
