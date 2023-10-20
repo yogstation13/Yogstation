@@ -1,6 +1,6 @@
 /datum/eldritch_knowledge/base_blade
 	name = "The Cutting Edge"
-	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to deal brute damage and paralyze enemies hit from behind."
+	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to deal brute damage and paralyze enemies hit."
 	gain_text = "Our great ancestors forged swords and practiced sparring on the eve of great battles."
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/base_ash,
