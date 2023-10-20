@@ -3927,6 +3927,7 @@
 #include "yogstation\code\game\objects\items\storage\toolbox.dm"
 #include "yogstation\code\game\objects\items\storage\uplink_kits.dm"
 #include "yogstation\code\game\objects\items\wielded\big_spoon.dm"
+#include "yogstation\code\game\objects\items\wielded\sledgehammer.dm"
 #include "yogstation\code\game\objects\items\wielded\vxtvulhammer.dm"
 #include "yogstation\code\game\objects\structures\bedsheet_bin.dm"
 #include "yogstation\code\game\objects\structures\fireaxe.dm"
