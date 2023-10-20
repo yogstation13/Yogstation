@@ -53,13 +53,39 @@
 
 /datum/eldritch_knowledge/base_blade/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
+// Let's see if source is behind target
+	// "Behind" is defined as 3 tiles directly to the back of the target
+	// x . .
+	// x > .
+	// x . .
+
+	var/are_we_behind = FALSE
+	// No tactical spinning allowed
+	if(target.flags_1 & IS_SPINNING_1)
+		are_we_behind = TRUE
+
+	// We'll take "same tile" as "behind" for ease
+	if(target.loc == source.loc)
+		are_we_behind = TRUE
+
+	// We'll also assume lying down is behind, as mob directions when lying are unclear
+	if(target.body_position == LYING_DOWN)
+		are_we_behind = TRUE
+
+	// Exceptions aside, let's actually check if they're, yknow, behind
+	var/dir_target_to_source = get_dir(target, source)
+	if(target.dir & REVERSE_DIR(dir_target_to_source))
+		are_we_behind = TRUE
 
 	if(!iscarbon(target))
 		return COMPONENT_BLOCK_HAND_USE
-	var/mob/living/carbon/carbon_target = target
-	carbon_target.apply_damage(10, BRUTE)
-	// carbon_target.balloon_alert(source, "backstab!")
-	// playsound(get_turf(carbon_target), 'sound/weapons/guillotine.ogg', 100, TRUE)
+
+	// We're officially behind them, apply effects
+	target.AdjustParalyzed(1.5 SECONDS)
+	target.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
+	target.balloon_alert(source, "backstab!")
+	playsound(get_turf(target), 'sound/weapons/guillotine.ogg', 100, TRUE)
+
 
 
 /datum/eldritch_knowledge/base_blade/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
