@@ -101,7 +101,14 @@
 	if(buckled_mobs)
 		for(var/mob/living/M in buckled_mobs)
 			unbuckle_mob(M)
-			M.electrocute_act(shock_damage/100, source, siemens_coeff, safety, tesla_shock, illusion, stun)	//Hard metal shell conducts!
+			M.electrocute_act(shock_damage/100, source, siemens_coeff, safety, tesla_shock, illusion, stun, gib)	//Hard metal shell conducts!
+	if(istype(src, /mob/living/silicon/robot) && gib)	
+		var/mob/living/silicon/robot/bot = src
+		bot.visible_message(
+		span_danger("[src] begins to heat up!"), \
+		span_userdanger("You begin to heat up!"), \
+		)
+		addtimer(CALLBACK(bot, TYPE_PROC_REF(/mob/living/silicon/robot, self_destruct), TRUE), 4 SECONDS)
 	return 0 //So borgs they don't die trying to fix wiring
 
 /mob/living/silicon/emp_act(severity)
