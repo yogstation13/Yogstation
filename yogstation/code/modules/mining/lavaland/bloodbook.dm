@@ -202,8 +202,7 @@
 					return
 			pick(mash(user, target), spiritbomb(user, target))
 			return
-		damnedfang(user,target)	
-		//pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
+		pick(tantrum(user, target), falling(user, target), damnedfang(user, target), dunk(user, target), shrink(user, target), redshot(user, target), vortex(user, target))
 		return
 	if(severity > 1)
 		pick(inducingemission(user,target), concavehead(user,target))
