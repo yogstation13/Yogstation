@@ -245,7 +245,7 @@
 	to_chat(user, span_notice("You start to perform maintenance on [src]."))
 	if(I.use_tool(src, user, 4 SECONDS))
 		to_chat(user, span_notice("You finish maintaining [src]."))
-		usage = 0
+		usage = initial(usage)
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/examine(mob/user)
 	. = ..()
@@ -279,3 +279,4 @@
 	sawn_off = TRUE
 	slot_flags = ITEM_SLOT_BELT
 	can_bayonet = FALSE
+	usage = 1 //always slightly worse
