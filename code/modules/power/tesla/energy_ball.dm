@@ -339,8 +339,8 @@
 			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))
 				S.emp_act(EMP_LIGHT)
 			tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets, zap_gib) // metallic folks bounce it further
-
-		tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, zap_gib)
+		else
+			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, zap_gib)
 
 	else if(closest_machine)
 		closest_machine.tesla_act(power, tesla_flags, shocked_targets)
