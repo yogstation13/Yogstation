@@ -209,10 +209,10 @@
 	unique_reskin = null
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
 	var/slung = FALSE
-	var/usage = 1 //how many times it's been used since last maintenance
+	var/usage = 0 //how many times it's been used since last maintenance
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
-	if(prob(usage * 10))//10% chance for each shot to not fire
+	if(prob((usage + 1) * 10))//10% chance for each shot to not fire
 		if(prob(max((usage - 5), 0) * 10))//10% chance for each shot to explode, after 6 shots
 			explosion(src, 0, 0, 1, 1)
 			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
@@ -245,7 +245,7 @@
 	to_chat(user, span_notice("You start to perform maintenance on [src]."))
 	if(I.use_tool(src, user, 4 SECONDS))
 		to_chat(user, span_notice("You finish maintaining [src]."))
-		usage = 1
+		usage = 0
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/examine(mob/user)
 	. = ..()
