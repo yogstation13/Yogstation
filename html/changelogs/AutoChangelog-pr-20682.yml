@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Upgraded sleepers no longer deal toxins instead of healing it"
