@@ -91,4 +91,3 @@
 		B.forceMove(get_turf(src))
 		B.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 	spread_bodyparts()
-	zapping_gib = FALSE

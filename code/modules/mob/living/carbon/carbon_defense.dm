@@ -380,7 +380,7 @@
 		var/obj/item/organ/O = X
 		O.emp_act(severity)
 
-/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
@@ -419,14 +419,12 @@
 			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 			adjust_jitter(10 SECONDS)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
-	if(zapping_gib && siemens_coeff>0)
+	if(gib && siemens_coeff>0)
 		visible_message(
 		span_danger("[src] body is emitting a loud noise!"), \
 		span_userdanger("You feel like you are about to explode!"), \
 		)
 		addtimer(CALLBACK(src, PROC_REF(sm_gib)), 4 SECONDS)
-	else
-		zapping_gib = FALSE
 	if(override)
 		return override
 	else

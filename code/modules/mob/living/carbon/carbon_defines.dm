@@ -89,6 +89,3 @@
 	COOLDOWN_DECLARE(bleeding_message_cd)
 
 	var/list/image/infra_images
-
-	/// Check for allowing tesla gib when getting zapped, if this is true and the mob has no protection, its getting gibbed on the shock
-	var/zapping_gib = FALSE
