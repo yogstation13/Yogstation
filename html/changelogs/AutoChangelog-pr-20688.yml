@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "No longer get wirevision when spawning ontop of a wire"
-  - bugfix: "Fixes some entrance and exit point targeting issues with wirecrawling"
