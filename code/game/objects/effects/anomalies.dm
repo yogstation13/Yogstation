@@ -474,7 +474,7 @@
 		near.adjust_confusion(10 SECONDS)
 		near.adjust_dizzy(10 SECONDS)
 		near.adjust_drowsiness(10 SECONDS)
-		var/list/messages = list(
+		var/static/list/messages = list(
 			"You feel your conscious mind fall apart!",
 			"Reality warps around you!",
 			"Something's wispering around you!",
