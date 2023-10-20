@@ -313,8 +313,11 @@
 	school = SCHOOL_SANGUINE
 
 	check_flags = NONE
-	cooldown_time = 100 SECONDS
+	cooldown_time = 0 //no cooldown to the ability
+	var/actual_cooldown = 1 MINUTES //cooldown applied when revived
 	vamp_req = TRUE
+	var/reviving = FALSE
+	var/revive_timer
 
 /datum/action/cooldown/spell/revive/cast(mob/living/user)
 	. = ..()
@@ -327,22 +330,29 @@
 		to_chat(user, span_danger("We cannot revive, holy water is in our system!"))
 		return
 	var/mob/living/L = user
-	if(istype(get_area(L.loc), /area/chapel))
-		var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
-		if(!V) //sanity check
-			return
-		if(V.get_ability(/datum/vampire_passive/full)) //full blooded vampire doesn't get dusted if they try to res, it still doesn't work though
+	reviving = !reviving
+	if(reviving)
+		to_chat(L, span_notice("We begin to reanimate... this will take 1 minute."))
+		deltimer(revive_timer)
+		revive_timer = addtimer(CALLBACK(src, PROC_REF(revive), L), 1 MINUTES, TIMER_UNIQUE | TIMER_STOPPABLE)
+	else
+		to_chat(L, span_notice("We stop our reanimation."))
+		deltimer(revive_timer)
+
+/datum/action/cooldown/spell/revive/proc/revive(mob/living/user)
+	if(istype(get_area(user.loc), /area/chapel))
+		var/datum/antagonist/vampire/V = is_vampire(user)
+		if(V && V.get_ability(/datum/vampire_passive/full)) //full blooded vampire doesn't get dusted if they try to res, it still doesn't work though
 			to_chat(user, span_danger("The holy energies of this place prevent our revival!"))
 			return
 		else //yes yes, it's an else after a return, it just feels wrong without it though
-			L.visible_message(span_warning("[L] disintegrates into dust!"), span_userdanger("Holy energy seeps into our very being, disintegrating us instantly!"), "You hear sizzling.")
-			new /obj/effect/decal/remains/human(L.loc)
-			L.dust()
+			user.visible_message(span_warning("[user] disintegrates into dust!"), span_userdanger("Holy energy seeps into our very being, disintegrating us instantly!"), "You hear sizzling.")
+			new /obj/effect/decal/remains/human(user.loc)
+			user.dust()
 			return
-	to_chat(L, span_notice("We begin to reanimate... this will take 1 minute."))
-	addtimer(CALLBACK(src, PROC_REF(revive), L), 1 MINUTES)
-
-/datum/action/cooldown/spell/revive/proc/revive(mob/living/user)
+	if(user.stat != DEAD) //if they somehow revive before it goes off
+		return
+	StartCooldownSelf(actual_cooldown)//start the cooldown when the revive actually happens
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
 		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
@@ -381,8 +391,14 @@
 
 	return things
 
+/datum/action/cooldown/spell/aoe/screech/cast(atom/cast_on)
+	. = ..()
+	owner.visible_message(span_warning("[owner] lets out an ear piercing shriek!"), span_warning("You let out a loud shriek."), span_warning("You hear a loud painful shriek!"))
+	playsound(owner.loc, 'sound/effects/screech.ogg', 100, TRUE)
+	for(var/obj/structure/window/W in view(aoe_radius, owner))
+		W.take_damage(75)
+
 /datum/action/cooldown/spell/aoe/screech/cast_on_thing_in_aoe(mob/living/target, mob/living/carbon/user)
-	user.visible_message(span_warning("[user] lets out an ear piercing shriek!"), span_warning("You let out a loud shriek."), span_warning("You hear a loud painful shriek!"))
 	if(!target == user  || !is_vampire(target))
 		if(ishuman(target) && target.soundbang_act(1, 0))
 			var/mob/living/carbon/human/human_target = target
@@ -392,9 +408,6 @@
 			human_target.adjust_stutter(30 SECONDS)
 			human_target.Paralyze(40)
 			human_target.adjust_jitter(2.5 MINUTES)
-	for(var/obj/structure/window/W in view(aoe_radius, user))
-		W.take_damage(75)
-	playsound(user.loc, 'sound/effects/screech.ogg', 100, TRUE)
 
 /datum/action/cooldown/spell/bats
 	name = "Summon Bats (30)"

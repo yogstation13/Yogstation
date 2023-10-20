@@ -7,6 +7,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
 	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/cell/ethereal
+	mutantheart = /obj/item/organ/heart/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
@@ -70,6 +71,10 @@
 	ethereal_light = ethereal.mob_light()
 	spec_updatehealth(ethereal)
 
+	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
+	if(ethereal_heart)
+		ethereal_heart.ethereal_color = default_color
+
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)
 	C.set_light(0)
@@ -90,6 +95,7 @@
 	b1 = GETBLUEPART(default_color)
 	var/list/hsl = rgb2hsl(r1, g1, b1)
 	hsl[2] *= 0.6
+	hsl[3] += (1 - hsl[3]) / 2 //the light part of HSL is from 0 to 1 this increases lightness of the colour, less increase the brighter the light is
 	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
 	r1 = rgb[1]
 	g1 = rgb[2]
