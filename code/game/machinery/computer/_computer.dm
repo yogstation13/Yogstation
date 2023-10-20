@@ -55,10 +55,8 @@
 		icon_state = initial(icon_state)
 		update_appearance(UPDATE_ICON)
 
-/obj/machinery/computer/update_overlays()
+/obj/machinery/computer/update_appearance(updates)
 	. = ..()
-
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
 	if(pixel_x == 0 && pixel_y == 0)
 		// this bit of code makes the computer hug the wall its next to
@@ -84,7 +82,10 @@
 			if(istype(T, /turf/closed/wall) || W)
 				pixel_x = offet_matrix[1]
 				pixel_y = offet_matrix[2]
-		
+
+
+/obj/machinery/computer/update_overlays()
+	. = ..()
 	if(stat & NOPOWER)
 		. += "[icon_keyboard]_off"
 		return
@@ -94,8 +95,8 @@
 	var/overlay_state = icon_screen
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, EMISSIVE_PLANE, dir)
+	. += mutable_appearance(icon, overlay_state)
+	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
 
 /obj/machinery/computer/power_change()
 	. = ..()

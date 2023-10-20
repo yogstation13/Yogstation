@@ -34,10 +34,10 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_void/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-//	SIGNAL_HANDLER
+	SIGNAL_HANDLER
 
 	if(!iscarbon(target))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.adjust_silence(10 SECONDS)
 	carbon_target.apply_status_effect(/datum/status_effect/void_chill)
