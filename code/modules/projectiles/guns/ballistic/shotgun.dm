@@ -242,10 +242,14 @@
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, span_notice("You start to perform maintenance on [src]."))
+	if(usage == initial(usage))
+		to_chat(user, span_notice("[src] has no need for maintenance yet."))
+		return
+
+	to_chat(user, span_notice("You start to perform some maintenance on [src]."))
 	if(I.use_tool(src, user, 4 SECONDS))
-		to_chat(user, span_notice("You finish maintaining [src]."))
-		usage = initial(usage)
+		to_chat(user, span_notice("You fix up [src] a bit."))
+		usage = max(usage - 2, initial(usage))
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/examine(mob/user)
 	. = ..()
