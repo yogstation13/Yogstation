@@ -72,7 +72,7 @@
 	route = PATH_COSMIC
 	tier = TIER_1
 
-	/datum/eldritch_knowledge/mark/cosmic_mark
+/datum/eldritch_knowledge/mark/cosmic_mark
 	name = "Mark of Cosmos"
 	desc = "Your Mansus Grasp now applies the Mark of Cosmos. The mark is triggered from an attack with your Cosmic Blade. \
 		When triggered, the victim is returned to the location where the mark was originally applied to them. \
