@@ -59,3 +59,15 @@
 	to_chat(target, span_danger("A cosmic ring appeared above your head!"))
 	human_target.apply_status_effect(/datum/status_effect/star_mark, source)
 	new /obj/effect/forcefield/cosmic_field(get_turf(source))
+
+/datum/eldritch_knowledge/spell/cosmic_runes
+	name = "Cosmic Runes"
+	desc = "Grants you Cosmic Runes, a spell that creates two runes linked with eachother for easy teleportation. \
+		Only the entity activating the rune will get transported, and it can be used by anyone without a star mark. \
+		However, people with a star mark will get transported along with another person using the rune."
+	gain_text = "The distant stars crept into my dreams, roaring and screaming without reason. \
+		I spoke, and heard my own words echoed back."
+	spell_to_add = /datum/action/cooldown/spell/cosmic_rune
+	cost = 1
+	route = PATH_COSMIC
+	tier = TIER_1

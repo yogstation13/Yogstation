@@ -39,6 +39,7 @@
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
 		/datum/eldritch_knowledge/spell/void_phase,
 		/datum/eldritch_knowledge/blade_dance,
+		/datum/eldritch_knowledge/spell/cosmic_runes,
 		/datum/eldritch_knowledge/armor,
 		/datum/eldritch_knowledge/void_cloak,
 		/datum/eldritch_knowledge/ashen_eyes,
