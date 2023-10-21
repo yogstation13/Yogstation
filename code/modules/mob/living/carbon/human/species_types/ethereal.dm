@@ -94,7 +94,7 @@
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
 	var/list/hsl = rgb2hsl(r1, g1, b1)
-	hsl[2] *= 0.6
+	hsl[2] *= 0.7
 	hsl[3] += (1 - hsl[3]) / 2 //the light part of HSL is from 0 to 1 this increases lightness of the colour, less increase the brighter the light is
 	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
 	r1 = rgb[1]
