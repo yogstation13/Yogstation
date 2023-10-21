@@ -135,3 +135,10 @@
 
 	//Last projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	/// Variable to track the body position of a mob, regardgless of the actual angle of rotation (usually matching it, but not necessarily).
+	var/body_position = STANDING_UP
+	///The x amount a mob's sprite should be offset due to the current position they're in
+	var/body_position_pixel_x_offset = 0
+	///The y amount a mob's sprite should be offset due to the current position they're in or size (e.g. lying down moves your sprite down)
+	var/body_position_pixel_y_offset = 0
