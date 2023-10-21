@@ -1612,7 +1612,7 @@
 	duration = 3 MINUTES
 
 /datum/status_effect/eldritch/cosmic
-	id = "rust_mark"
+	id = "cosmic_mark"
 	effect_sprite = "emark6"
 	/// For storing the location when the mark got applied.
 	var/obj/effect/cosmic_diamond/cosmic_diamond

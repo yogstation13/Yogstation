@@ -155,3 +155,160 @@
 	var/image/silicon_image = image(icon = 'icons/obj/hand_of_god_structures.dmi', icon_state = null, loc = src)
 	silicon_image.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cosmic", silicon_image)
+
+
+/datum/action/cooldown/spell/pointed/projectile/star_blast
+	name = "Star Blast"
+	desc = "This spell fires a disk with cosmic energies at a target."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "star_blast"
+
+	sound = 'sound/magic/cosmic_energy.ogg'
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 20 SECONDS
+
+	invocation = "R'T'T' ST'R!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	active_msg = "You prepare to cast your star blast!"
+	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."
+	cast_range = 12
+	projectile_type = /obj/projectile/magic/star_ball
+
+/obj/projectile/magic/star_ball
+	name = "star ball"
+	icon_state = "star_ball"
+	damage = 20
+	damage_type = BURN
+	speed = 1
+	range = 100
+	knockdown = 4 SECONDS
+	/// Effect for when the ball hits something
+	var/obj/effect/explosion_effect = /obj/effect/temp_visual/cosmic_explosion
+	/// The range at which people will get marked with a star mark.
+	var/star_mark_range = 3
+
+/obj/projectile/magic/star_ball/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/effect_trail, /obj/effect/forcefield/cosmic_field/fast)
+
+/obj/projectile/magic/star_ball/on_hit(atom/target, blocked = 0, pierce_hit)
+	. = ..()
+	var/mob/living/cast_on = firer
+	for(var/mob/living/nearby_mob in range(star_mark_range, target))
+		if(cast_on == nearby_mob)
+			continue
+		nearby_mob.apply_status_effect(/datum/status_effect/star_mark, cast_on)
+
+/obj/projectile/magic/star_ball/Destroy()
+	playsound(get_turf(src), 'sound/magic/cosmic_energy.ogg', 50, FALSE)
+	for(var/turf/cast_turf as anything in get_turfs())
+		new /obj/effect/forcefield/cosmic_field(cast_turf)
+	return ..()
+
+/obj/projectile/magic/star_ball/proc/get_turfs()
+	return list(get_turf(src), pick(get_step(src, NORTH), get_step(src, SOUTH)), pick(get_step(src, EAST), get_step(src, WEST)))
+
+/datum/action/cooldown/spell/conjure/cosmic_expansion
+	name = "Cosmic Expansion"
+	desc = "This spell generates a 3x3 domain of cosmic fields. \
+		Creatures up to 7 tiles away will also recieve a star mark."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "cosmic_domain"
+
+	sound = 'sound/magic/cosmic_expansion.ogg'
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 45 SECONDS
+
+	invocation = "C'SM'S 'XP'ND"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	summon_amount = 9
+	summon_radius = 1
+	summon_type = list(/obj/effect/forcefield/cosmic_field)
+	/// The range at which people will get marked with a star mark.
+	var/star_mark_range = 7
+	/// Effect for when the spell triggers
+	var/obj/effect/expansion_effect = /obj/effect/temp_visual/cosmic_domain
+	/// If the heretic is ascended or not
+	var/ascended = FALSE
+
+/datum/action/cooldown/spell/conjure/cosmic_expansion/cast(mob/living/cast_on)
+	new expansion_effect(get_turf(cast_on))
+	for(var/mob/living/nearby_mob in range(star_mark_range, cast_on))
+		if(cast_on == nearby_mob)
+			continue
+		nearby_mob.apply_status_effect(/datum/status_effect/star_mark, cast_on)
+	if (ascended)
+		for(var/turf/cast_turf as anything in get_turfs(get_turf(cast_on)))
+			new /obj/effect/forcefield/cosmic_field(cast_turf)
+	return ..()
+
+/datum/action/cooldown/spell/conjure/cosmic_expansion/proc/get_turfs(turf/target_turf)
+	var/list/target_turfs = list()
+	for (var/direction as anything in GLOB.cardinals)
+		target_turfs += get_ranged_target_turf(target_turf, direction, 2)
+		target_turfs += get_ranged_target_turf(target_turf, direction, 3)
+	return target_turfs
+
+
+/datum/action/cooldown/spell/conjure/cosmic_expansion/large
+
+	name = "Cosmic Domain"
+	desc = "This spell generates a domain of cosmic fields. \
+		Creatures up to 7 tiles away will also recieve a star mark."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "cosmic_domain"
+
+	sound = 'sound/magic/cosmic_expansion.ogg'
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 30 SECONDS
+
+	invocation = "C'SM'S 'XP'ND"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	summon_amount = 24
+	summon_radius = 2
+	summon_type = list(/obj/effect/forcefield/cosmic_field)
+
+
+/datum/action/cooldown/spell/pointed/projectile/star_blast/ascended
+
+	name = "Celestial Blast"
+	desc = "This spell fires a disk with cosmic energies at a target."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "star_blast"
+
+	sound = 'sound/magic/cosmic_energy.ogg'
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 10 SECONDS
+
+	invocation = "R'T'T' ST'R!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+
+	active_msg = "You prepare to cast your celestial blast!"
+	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."
+	cast_range = 12
+	projectile_type = /obj/projectile/magic/star_ball/ascended
+
+
+/obj/projectile/magic/star_ball/ascended
+	name = "celestial ball"
+	icon_state = "star_ball"
+	damage = 40
+	damage_type = BURN
+	speed = 1
+	range = 100
+	knockdown = 8 SECONDS

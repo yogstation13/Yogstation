@@ -383,8 +383,8 @@
 	base_pixel_x = -32
 	mob_biotypes = MOB_HUMANOID | MOB_SPECIAL
 	speed = -0.2
-	maxHealth = 6000
-	health = 6000
+	maxHealth = 750
+	health = 750
 
 	obj_damage = 400
 	armour_penetration = 20
@@ -404,6 +404,11 @@
 	mob_size = MOB_SIZE_HUGE
 	layer = LARGE_MOB_LAYER
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
+
+	actions_to_add = list(
+		/datum/action/cooldown/spell/conjure/cosmic_expansion/large,
+		/datum/action/cooldown/spell/pointed/projectile/star_blast/ascended
+	)
 
 /mob/living/simple_animal/hostile/eldritch/star_gazer/Initialize(mapload)
 	. = ..()
