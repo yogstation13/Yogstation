@@ -142,7 +142,7 @@
 		C.adjustCloneLoss(4)
 
 /datum/eldritch_knowledge/spell/cosmic_expansion
-	name = "Cosmic Expansion"
+	name = "T3- Cosmic Expansion"
 	desc = "Grants you Cosmic Expansion, a spell that creates a 3x3 area of cosmic fields around you. \
 		Nearby beings will also receive a star mark."
 	gain_text = "The ground now shook beneath me. The Beast inhabited me, and their voice was intoxicating."
