@@ -175,13 +175,11 @@
 	ricochet_chance = 100
 
 /obj/projectile/bullet/pellet/shotgun_anarchy/check_ricochet(atom/A)
-	..()
-	if(istype(A, /turf/closed))
+	if(!isliving(A))
 		return TRUE
 	return FALSE
 
 /obj/projectile/bullet/pellet/shotgun_anarchy/check_ricochet_flag(atom/A)
-	..()
 	return TRUE
 
 /obj/projectile/bullet/shotgun/slug/rip
