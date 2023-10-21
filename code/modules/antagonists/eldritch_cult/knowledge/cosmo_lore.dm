@@ -157,7 +157,7 @@
 		Bring 3 corpses to a transmutation rune to complete the ritual. \
 		When completed, you may transform into a Star Gazer. \
 		The Star Gazer has an aura that will heal you and damage opponents. \
-		Optionally, you may summon a Star Gazer Ally insteadd, and gain damage reduction, stun immunity, and space immunity."
+		Optionally, you may summon a Star Gazer Ally instead, and gain damage reduction, stun immunity, and space immunity."
 	gain_text = "The Beast held out its hand, I grabbed hold and they pulled me to them. Their body was towering, but it seemed so small and feeble after all their tales compiled in my head. \
 		I clung on to them, they would protect me, and I would protect it. \
 		I closed my eyes with my head laid against their form. I was safe. \
