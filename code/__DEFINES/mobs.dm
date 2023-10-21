@@ -372,3 +372,9 @@
 #define SWARMER_LIGHT_ON (1<<0)
 
 #define ACCENT_NONE "None"
+
+// Body position defines.
+/// Mob is standing up, usually associated with lying_angle value of 0.
+#define STANDING_UP 0
+/// Mob is lying down, usually associated with lying_angle values of 90 or 270.
+#define LYING_DOWN 1

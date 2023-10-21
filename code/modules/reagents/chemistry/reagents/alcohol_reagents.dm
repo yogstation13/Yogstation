@@ -1164,12 +1164,27 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Amasec"
 	description = "Official drink of the Nanotrasen Gun-Club!"
 	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 35
+	boozepwr = 55
 	quality = DRINK_GOOD
 	taste_description = "dark and metallic"
 	glass_icon_state = "amasecglass"
 	glass_name = "Amasec"
 	glass_desc = "Always handy before COMBAT!!!"
+
+/datum/reagent/consumable/ethanol/amasec/on_mob_metabolize(mob/living/carbon/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/guy = M
+		guy.physiology.punchdamagehigh_bonus += 2
+		guy.physiology.punchdamagelow_bonus += 2
+		guy.physiology.punchstunthreshold_bonus += 2
+
+/datum/reagent/consumable/ethanol/amasec/on_mob_end_metabolize(mob/living/carbon/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/guy = M
+		guy.physiology.punchdamagehigh_bonus -= 2
+		guy.physiology.punchdamagelow_bonus -= 2
+		guy.physiology.punchstunthreshold_bonus -= 2
+	return ..()
 
 /datum/reagent/consumable/ethanol/changelingsting
 	name = "Changeling Sting"
