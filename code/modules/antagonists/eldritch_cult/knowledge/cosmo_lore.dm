@@ -152,7 +152,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/cosmic_final
-	name = "Ascension Rite - Creators's Gift"
+	name = "Ascension Rite - Creator's Gift"
 	desc = "The ascension ritual of the Path of Cosmos. \
 		Bring 3 corpses to a transmutation rune to complete the ritual. \
 		When completed, you may transform into a Star Gazer. \
