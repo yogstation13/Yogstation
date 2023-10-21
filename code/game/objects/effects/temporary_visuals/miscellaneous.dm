@@ -183,7 +183,7 @@
 		if(EAST)
 			icon_state = "beam_splash_e"
 
-/obj/item/projectile/curse_hand/update_icon_state()
+/obj/projectile/curse_hand/update_icon_state()
 	. = ..()
 	icon_state = "[icon_state][handedness]"
 

@@ -1,14 +1,14 @@
-/obj/item/projectile/bullet/gyro
+/obj/projectile/bullet/gyro
 	name ="explosive bolt"
 	icon_state= "bolter"
 	damage = 50
 
-/obj/item/projectile/bullet/gyro/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/gyro/on_hit(atom/target, blocked = FALSE)
 	..()
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
-/obj/item/projectile/bullet/a84mm
+/obj/projectile/bullet/a84mm
 	name ="\improper HEDP rocket"
 	desc = "USE A WEEL GUN"
 	icon_state= "84mm-hedp"
@@ -17,7 +17,7 @@
 	armour_penetration = 100
 	dismemberment = 100
 
-/obj/item/projectile/bullet/a84mm/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/a84mm/on_hit(atom/target, blocked = FALSE)
 	..()
 	explosion(target, -1, 1, 3, 1, 0, flame_range = 4)
 
@@ -29,14 +29,14 @@
 		S.take_overall_damage(anti_armour_damage*0.75, anti_armour_damage*0.25)
 	return BULLET_ACT_HIT
 
-/obj/item/projectile/bullet/a84mm_he
+/obj/projectile/bullet/a84mm_he
 	name ="\improper HE missile"
 	desc = "Boom."
 	icon_state = "missile"
 	damage = 30
 	ricochets_max = 0 //it's a MISSILE
 
-/obj/item/projectile/bullet/a84mm_he/on_hit(atom/target, blocked=0)
+/obj/projectile/bullet/a84mm_he/on_hit(atom/target, blocked=0)
 	..()
 	if(!isliving(target)) //if the target isn't alive, so is a wall or something
 		explosion(target, 0, 1, 2, 4)
@@ -44,7 +44,7 @@
 		explosion(target, 0, 0, 2, 4)
 	return BULLET_ACT_HIT
 
-/obj/item/projectile/bullet/a84mm_br
+/obj/projectile/bullet/a84mm_br
 	name ="\improper HE missile"
 	desc = "Boom."
 	icon_state = "missile"
@@ -65,7 +65,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 
-/obj/item/projectile/bullet/a84mm_br/on_hit(atom/target, blocked=0)
+/obj/projectile/bullet/a84mm_br/on_hit(atom/target, blocked=0)
 	..()
 	for(var/i in sturdy)
 		if(istype(target, i))
@@ -74,13 +74,13 @@
 	//if(istype(target, /turf/closed) || ismecha(target))
 	new /obj/item/broken_missile(get_turf(src), 1)
 
-/obj/item/projectile/bullet/cball
+/obj/projectile/bullet/cball
 	name = "cannonball"
 	icon_state = "cannonball"
 	desc = "Not for bowling purposes"
 	damage = 30
 
-/obj/item/projectile/bullet/cball/on_hit(atom/target, blocked=0)
+/obj/projectile/bullet/cball/on_hit(atom/target, blocked=0)
 	var/mob/living/carbon/human/H = firer
 	var/atom/throw_target = get_edge_target_turf(target, H.dir)
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
@@ -96,7 +96,7 @@
 					C.throw_at(throw_target, 2, 4, H, 3)
 					return BULLET_ACT_HIT
 
-/obj/item/projectile/bullet/bolt
+/obj/projectile/bullet/bolt
 	name = "bolt"
 	icon_state = "bolt"
 	desc = "smaller and faster rod"

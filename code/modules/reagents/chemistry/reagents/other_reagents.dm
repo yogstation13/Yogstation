@@ -128,7 +128,7 @@
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
 
 /*
@@ -345,7 +345,7 @@
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
 	accelerant_quality = 20
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
 	M.fire_stacks = min(5,M.fire_stacks + 3)
@@ -360,7 +360,7 @@
 	description = "Strange liquid that defies the laws of physics"
 	taste_description = "glass"
 	color = "#1f8016"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
 	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
@@ -392,7 +392,7 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
 
 
@@ -1053,7 +1053,7 @@
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
 	var/irradiation_level = 1
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M)
 	M.apply_effect(irradiation_level/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
@@ -1074,7 +1074,7 @@
 	color = "#C7C7C7" // rgb: 199,199,199
 	taste_description = "the colour blue and regret"
 	irradiation_level = 2*REM
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
@@ -1082,7 +1082,7 @@
 	reagent_state = SOLID
 	color = "#0000CC"
 	taste_description = "fizzling blue"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if((methods & (TOUCH|VAPOR)) && (reac_volume > 5))
@@ -1108,7 +1108,7 @@
 	reagent_state = SOLID
 	color = "#db0735"
 	taste_description = "bitter evil"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	can_synth = FALSE
 
@@ -1153,7 +1153,7 @@
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
 	accelerant_quality = 10
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(methods & (TOUCH|VAPOR))
@@ -1470,7 +1470,7 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	can_synth = FALSE
-	process_flags = ORGANIC | SYNTHETIC // works in open air, don't think it cares what kind of body it's in
+	compatible_biotypes = ALL_BIOTYPES // works in open air, don't think it cares what kind of body it's in
 	taste_description = "searingly cold"
 
 /datum/reagent/hypernoblium/on_mob_add(mob/living/L)
@@ -1495,7 +1495,7 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "000000"
 	can_synth = FALSE
-	process_flags = ORGANIC | SYNTHETIC // BURN IT ALLLLLL
+	compatible_biotypes = ALL_BIOTYPES // BURN IT ALLLLLL
 	taste_description = "searingly hot"
 	self_consuming = TRUE
 	var/flame_timer = 0
@@ -1740,7 +1740,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	taste_description = "oil"
-	process_flags = SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/oil/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2*REM, FALSE, FALSE, BODYPART_ROBOTIC)
@@ -1753,7 +1753,7 @@
 	color = "#C8A5DC"
 	taste_description = "bitterness"
 	taste_mult = 1.5
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/stable_plasma/on_mob_life(mob/living/carbon/C)
 	C.adjustPlasma(10)

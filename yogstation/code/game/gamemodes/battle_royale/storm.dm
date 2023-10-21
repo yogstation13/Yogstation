@@ -48,12 +48,12 @@
 
 /datum/weather/royale/maint
 	name = "royale maint" //First wave, hits maintenance
-	telegraph_message = span_userdanger("<i>The storm is closing, get away from maintenance!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing, get away from maintenance!</i>")
 	area_type = /area/maintenance
 
 /datum/weather/royale/security
 	name = "royale security" //North wave, takes out security, EVA, dorms and associated areas.
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from security and controlled areas!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from security and controlled areas!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/hos)
 	areaTypesToWeather = list(/area/security, /area/ai_monitored, /area/lawoffice)
 	areaIgnore = list(/area/security/checkpoint/science, /area/security/checkpoint/engineering, //ignore all department security offices
@@ -61,19 +61,19 @@
 
 /datum/weather/royale/science
 	name = "royale science" //takes out science
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from science!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from science!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/hor, /area/security/checkpoint/science)
 	areaTypesToWeather = list(/area/science)
 
 /datum/weather/royale/engineering
 	name = "royale engineering" //takes out engineering and atmos
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from engineering and storage!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from engineering and storage!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/chief, /area/security/checkpoint/engineering)
 	areaTypesToWeather = list(/area/engine, /area/tcommsat, /area/construction, /area/storage)
 
 /datum/weather/royale/service //this one is more annoying because head offices are considered a type of crew_quarters
 	name = "royale service" //takes out service
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from service!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from service!</i>")
 	areasToWeather = list(/area/security/checkpoint/service)
 	areaTypesToWeather = list(/area/chapel, /area/library, /area/hydroponics, /area/holodeck, /area/janitor, /area/crew_quarters, /area/clerk)
 	areaIgnore = list(/area/crew_quarters/heads/hos, /area/crew_quarters/heads/hor, /area/crew_quarters/heads/cmo, //ignore all the head offices
@@ -81,21 +81,21 @@
 
 /datum/weather/royale/medbay
 	name = "royale medbay" //takes out medbay
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from medbay!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from medbay!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/cmo, /area/security/checkpoint/medical)
 	areaTypesToWeather = list(/area/medical)
 
 /datum/weather/royale/cargo
 	name = "royale cargo" //takes out arrivals and cargo (shuttle included)
-	telegraph_message = span_userdanger("<i>The storm is closing in, get away from cargo and any vacant rooms!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from cargo and any vacant rooms!</i>")
 	areasToWeather = list(/area/security/checkpoint/supply)
 	areaTypesToWeather = list(/area/quartermaster, /area/vacant_room, /area/shuttle)
 
 /datum/weather/royale/hallway//
 	name = "royale hallway"
-	telegraph_message = span_userdanger("<i>The storm is closing in, get out of the hallways!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get out of the hallways!</i>")
 	areaTypesToWeather = list(/area/hallway)
 
 /datum/weather/royale/six
 	name = "royale centre" //final wave, takes out the centre ring.
-	telegraph_message = span_userdanger("<i>The eye of the storm is closing, make your final stand!</i>")
+	telegraph_message = span_narsiesmall("<i>The eye of the storm is closing, make your final stand!</i>")

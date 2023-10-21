@@ -118,12 +118,12 @@
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
 	harmful = FALSE
-	projectile_type = /obj/item/projectile/bullet/c22hl
+	projectile_type = /obj/projectile/bullet/c22hl
 
-/obj/item/projectile/bullet/c22hl //.22 HL
+/obj/projectile/bullet/c22hl //.22 HL
 	name = "hardlight beam"
 	icon_state = "disabler_bullet"
-	flag = ENERGY
+	armor_flag = ENERGY
 	damage = 0 // maybe don't do actual damage so pacifists can use it and silicons won't be mad
 	damage_type = BURN
 	stamina = 25
@@ -151,12 +151,12 @@
 /obj/item/ammo_casing/caseless/c22ls
 	caliber = LASER
 	harmful = TRUE
-	projectile_type = /obj/item/projectile/bullet/c22ls
+	projectile_type = /obj/projectile/bullet/c22ls
 
-/obj/item/projectile/bullet/c22ls //.22 LS
+/obj/projectile/bullet/c22ls //.22 LS
 	name = "laser beam"
 	icon_state = "disabler_bullet"
-	flag = LASER
+	armor_flag = LASER
 	damage = 18
 	damage_type = BURN
 	color = "#ff0000"
