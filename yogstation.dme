@@ -2538,6 +2538,7 @@
 #include "code\modules\language\piratespeak.dm"
 #include "code\modules\language\polysmorph.dm"
 #include "code\modules\language\ratvarian.dm"
+#include "code\modules\language\russian.dm"
 #include "code\modules\language\slime.dm"
 #include "code\modules\language\swarmer.dm"
 #include "code\modules\language\sylvan.dm"
