@@ -1,7 +1,7 @@
 /datum/eldritch_knowledge/base_cosmic
 	name = "Eternal Gate"
 	desc = "Opens up the Path of Cosmos to you. \
-		Allows you to transmute a sheet of plasma and a knife into an Cosmic Blade."
+		Allows you to transmute a sheet of plasma and a knife into an Cosmic Blade. Additionally your grasp will now cause a cosmic ring on your targets, which are affected by your abilities."
 	gain_text = "A nebula appeared in the sky, its infernal birth shone upon me. This was the start of a great transcendence."
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/base_ash,
