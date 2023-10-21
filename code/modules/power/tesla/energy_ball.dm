@@ -14,14 +14,17 @@
 	dissipate = 1
 	dissipate_delay = 5
 	dissipate_strength = 1
-	var/list/orbiting_balls = list()
 	var/miniball = FALSE
 	var/produced_power
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 	var/max_balls = 10
 	var/zap_range = 7
-	var/hypercharged = FALSE //if true, will not lose energy and tesla zap will dust you
+	///Boolean that, if TRUE, will not lose energy and tesla zap will dust you
+	var/hypercharged = FALSE
+
+	///List of all energy balls that's orbiting this one.
+	var/list/obj/singularity/energy_ball/orbiting_balls = list()
 
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = energy, is_miniball = FALSE)
 	miniball = is_miniball
@@ -33,9 +36,9 @@
 	name = "supermatter energy ball"
 	color = "#ffe800"
 	energy = 10000
-	hypercharged = TRUE //doom
 	max_balls = 20
 	zap_range = 20
+	hypercharged = TRUE
 
 /obj/singularity/energy_ball/ex_act(severity, target)
 	return
@@ -45,51 +48,44 @@
 		var/obj/singularity/energy_ball/EB = orbiting.parent
 		EB.orbiting_balls -= src
 
-	for(var/ball in orbiting_balls)
-		var/obj/singularity/energy_ball/EB = ball
-		qdel(EB)
-
-	. = ..()
+	QDEL_LIST(orbiting_balls)
+	return ..()
 
 /obj/singularity/energy_ball/admin_investigate_setup()
 	if(miniball)
 		return //don't annnounce miniballs
-	..()
+	return ..()
 
 
 /obj/singularity/energy_ball/process()
-	if(!orbiting)
-		handle_energy()
-
-		move_the_basket_ball(4 + orbiting_balls.len * 1.5)
-
-		playsound(src.loc, 'sound/magic/lightningbolt.ogg', 100, 1, extrarange = 30)
-
-		pixel_x = 0
-		pixel_y = 0
-
-		if(hypercharged)
-			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
-		else
-			tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
-
-		pixel_x = -32
-		pixel_y = -32
-
-		var/list/RG = range(1, src)
-		for(var/obj/singularity/energy_ball/E in RG)
-			if(!E.miniball && E != src)
-				collide(E)
-
-		for (var/obj/singularity/energy_ball/ball in orbiting_balls)
-			ball.color = color
-			if(istype(ball, /obj/singularity/energy_ball/supermatter))
-				tesla_zap(ball, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
-			else if(prob(20))  //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
-				tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
-
-	else
+	if(orbiting)
 		energy = 0 // ensure we dont have miniballs of miniballs
+		return
+
+	handle_energy()
+	move_the_basket_ball(4 + orbiting_balls.len * 1.5)
+	playsound(loc, 'sound/magic/lightningbolt.ogg', 100, 1, extrarange = 30)
+
+	pixel_x = 0
+	pixel_y = 0
+
+	tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS, zap_gib = hypercharged)
+
+	pixel_x = -32
+	pixel_y = -32
+
+	var/list/around_us = range(1, src)
+	for(var/obj/singularity/energy_ball/E in around_us)
+		if(!E.miniball && E != src)
+			collide(E)
+
+	for (var/obj/singularity/energy_ball/ball as anything in orbiting_balls)
+		if(prob(80)) //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
+			continue
+		if(ball.hypercharged)
+			tesla_zap(ball, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
+		else
+			tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
 
 /obj/singularity/energy_ball/examine(mob/user)
 	. = ..()
@@ -128,7 +124,7 @@
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 
-		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
+		playsound(loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
 		addtimer(CALLBACK(src, PROC_REF(new_mini_ball)), 100)
 
 	else if(energy < energy_to_lower && orbiting_balls.len)
@@ -157,7 +153,6 @@
 	else
 		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
 
-	EB.color = color
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
 
@@ -165,7 +160,6 @@
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
 
 	EB.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
-
 
 /obj/singularity/energy_ball/Bump(atom/A)
 	dust_mobs(A)
@@ -193,14 +187,17 @@
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
 		target.orbiting_balls += src
+		color = target.color
 		GLOB.poi_list -= src
 		target.dissipate_strength = target.orbiting_balls.len
 
-	. = ..()
+	return ..()
+
 /obj/singularity/energy_ball/stop_orbit()
 	if (orbiting && istype(orbiting.parent, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/orbitingball = orbiting.parent
 		orbitingball.orbiting_balls -= src
+		color = initial(color)
 		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len
 	. = ..()
 	if (!QDELETED(src))
@@ -233,29 +230,35 @@
 	var/obj/machinery/closest_machine
 	var/obj/structure/closest_structure
 	var/obj/structure/blob/closest_blob
-	var/static/things_to_shock = typecacheof(list(/obj/machinery, /mob/living, /obj/structure))
-	var/static/blacklisted_tesla_types = typecacheof(list(/obj/machinery/atmospherics/pipe,
-										/obj/machinery/power/emitter,
-										/obj/machinery/field/generator,
-										/mob/living/simple_animal/hostile,
-										/mob/living/simple_animal/slime,
-										/obj/machinery/particle_accelerator/control_box,
-										/obj/structure/particle_accelerator/fuel_chamber,
-										/obj/structure/particle_accelerator/particle_emitter/center,
-										/obj/structure/particle_accelerator/particle_emitter/left,
-										/obj/structure/particle_accelerator/particle_emitter/right,
-										/obj/structure/particle_accelerator/power_box,
-										/obj/structure/particle_accelerator/end_cap,
-										/obj/machinery/field/containment,
-										/obj/structure/disposalpipe,
-										/obj/structure/disposaloutlet,
-										/obj/machinery/disposal/deliveryChute,
-										/obj/machinery/camera,
-										/obj/structure/sign,
-										/obj/machinery/gateway,
-										/obj/structure/lattice,
-										/obj/machinery/the_singularitygen/tesla,
-										/obj/structure/frame/machine))
+	var/static/things_to_shock = typecacheof(list(
+		/obj/machinery,
+		/mob/living,
+		/obj/structure,
+	))
+	var/static/blacklisted_tesla_types = typecacheof(list(
+		/obj/machinery/atmospherics/pipe,
+		/obj/machinery/power/emitter,
+		/obj/machinery/field/generator,
+		/mob/living/simple_animal/hostile,
+		/mob/living/simple_animal/slime,
+		/obj/machinery/particle_accelerator/control_box,
+		/obj/structure/particle_accelerator/fuel_chamber,
+		/obj/structure/particle_accelerator/particle_emitter/center,
+		/obj/structure/particle_accelerator/particle_emitter/left,
+		/obj/structure/particle_accelerator/particle_emitter/right,
+		/obj/structure/particle_accelerator/power_box,
+		/obj/structure/particle_accelerator/end_cap,
+		/obj/machinery/field/containment,
+		/obj/structure/disposalpipe,
+		/obj/structure/disposaloutlet,
+		/obj/machinery/disposal/deliveryChute,
+		/obj/machinery/camera,
+		/obj/structure/sign,
+		/obj/machinery/gateway,
+		/obj/structure/lattice,
+		/obj/machinery/the_singularitygen/tesla,
+		/obj/structure/frame/machine,
+	))
 
 	// +3 to range specifically to include grounding rods that are zap_range+3 away
 	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+3), things_to_shock, blacklisted_tesla_types))
@@ -318,9 +321,9 @@
 	if(closest_atom)
 		//common stuff
 		if(zap_gib)
-			source.Beam(closest_atom, icon_state="solar_beam", time=5, maxdistance = INFINITY)
+			source.Beam(closest_atom, icon_state = "solar_beam", time = 5, maxdistance = INFINITY)
 		else
-			source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, maxdistance = INFINITY)
+			source.Beam(closest_atom, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY)
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES))
 			LAZYSET(shocked_targets, closest_atom, TRUE)
 		var/zapdir = get_dir(source, closest_atom)
@@ -346,13 +349,10 @@
 			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, zap_gib)
 
 	else if(closest_machine)
-		closest_machine.tesla_act(power, tesla_flags, shocked_targets)
-		tesla_zap(closest_machine, 5, power / 1.1, tesla_flags, shocked_targets, zap_gib)
+		closest_machine.tesla_act(power, tesla_flags, shocked_targets, zap_gib)
 
 	else if(closest_blob)
-		closest_blob.tesla_act(power, tesla_flags, shocked_targets)
-		tesla_zap(closest_blob, 3, power / 2, tesla_flags, shocked_targets, zap_gib)
+		closest_blob.tesla_act(power, tesla_flags, shocked_targets, zap_gib)
 
 	else if(closest_structure)
-		closest_structure.tesla_act(power, tesla_flags, shocked_targets)
-		tesla_zap(closest_structure, 3, power / 2, tesla_flags, shocked_targets, zap_gib)
+		closest_structure.tesla_act(power, tesla_flags, shocked_targets, zap_gib)
