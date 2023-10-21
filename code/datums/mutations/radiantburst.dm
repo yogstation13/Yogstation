@@ -19,10 +19,9 @@
 	if(!istype(to_modify)) // null or invalid
 		return
 
-	if(GET_MUTATION_SYNCHRONIZER(src) > 1)
+	if(GET_MUTATION_SYNCHRONIZER(src) < 1)
 		to_modify.safe = TRUE //don't blind yourself
-	if(GET_MUTATION_ENERGY(src) > 1)
-		to_modify.cooldown_time -= 5 SECONDS //blind more often
+	to_modify.cooldown_time *= GET_MUTATION_ENERGY(src) //blind more often
 	if(GET_MUTATION_POWER(src) > 1)
 		to_modify.aoe_radius += 2 //bigger blind
 
@@ -41,20 +40,14 @@
 	sound = 'sound/magic/blind.ogg'
 	var/safe = FALSE
 
-
-/datum/action/cooldown/spell/aoe/radiantburst/get_things_to_cast_on(atom/center)
-	var/list/things = list()
-	for(var/mob/living/nearby_mob in view(aoe_radius, center))
-		if(nearby_mob == owner && safe)
-			continue
-		things += nearby_mob
-
-	return things
-
 /datum/action/cooldown/spell/aoe/radiantburst/cast(atom/cast_on)
 	. = ..()
+	if(!safe && iscarbon(owner))
+		var/mob/living/carbon/dummy = owner
+		dummy.flash_act(3) //it's INSIDE you, it's gonna blind
 	owner.visible_message(span_warning("[owner] releases a blinding light from within themselves."), span_notice("You release all the light within you."))
-	flash_color(owner, flash_color = LIGHT_COLOR_HOLY_MAGIC, flash_time = 0.5 SECONDS)
+	owner.color = LIGHT_COLOR_HOLY_MAGIC
+	animate(owner, 0.5 SECONDS, color = null)
 
 /datum/action/cooldown/spell/aoe/radiantburst/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(ishuman(victim))

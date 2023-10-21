@@ -7,18 +7,22 @@
 		/datum/eldritch_knowledge/base_flesh,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final)
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/rust_blade)
 	route = PATH_RUST
@@ -26,7 +30,7 @@
 
 /datum/eldritch_knowledge/base_rust/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/rust
+	var/obj/realknife = new /obj/item/melee/sickly_blade/rust
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
@@ -36,7 +40,15 @@
 /datum/eldritch_knowledge/base_rust/proc/on_mansus_grasp(mob/living/source, atom/target)
 	SIGNAL_HANDLER
 
-	if(source.a_intent == INTENT_HARM)
+	if(isitem(target))//items have no rust_heretic_act()
+		return COMPONENT_BLOCK_HAND_USE
+
+	if(isopenturf(target))//prevent use on tiles unless you use harm intent
+		if(source.a_intent == INTENT_HARM)
+			target.rust_heretic_act()
+		else
+			return COMPONENT_BLOCK_HAND_USE
+	else 
 		target.rust_heretic_act()
 
 /datum/eldritch_knowledge/base_rust/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
@@ -93,7 +105,8 @@
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark)
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark)
 	route = PATH_RUST
 	tier = TIER_MARK
 	
@@ -129,7 +142,8 @@
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade)
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade)
 	route = PATH_RUST
 	tier = TIER_BLADE
 

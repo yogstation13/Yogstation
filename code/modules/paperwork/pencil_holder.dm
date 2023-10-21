@@ -1,6 +1,6 @@
 /obj/item/storage/pencil_holder
 	name = "holder"
-	desc = "a holder for your utensils"
+	desc = "A container for writing utensils."
 	icon = 'yogstation/icons/obj/bureaucracy.dmi'
 	icon_state = "pencilholder_0"
 	item_state = "paper !CONFLICT! base"
@@ -36,8 +36,6 @@
 /obj/item/storage/pencil_holder/crew
 //THE POPULATED CAN FOR CREW
 	name = "pencil holder"
-	desc = "a holder for writing utensils"
-	icon_state = "pencilholder_0"
 
 /obj/item/storage/pencil_holder/crew/PopulateContents()
 	new	/obj/item/pen(src)
@@ -56,8 +54,7 @@
 /obj/item/storage/pencil_holder/crew/creative
 //CRAYON CAN
 	name = "crayon holder"
-	desc = "a holder for the marines and artists alike"
-	icon_state = "pencilholder_0"
+	desc = "What's mightier, the pen or the e-sword?"
 
 /obj/item/storage/pencil_holder/crew/creative/PopulateContents()
 	new	/obj/item/toy/crayon/red(src)
@@ -72,8 +69,7 @@
 /obj/item/storage/pencil_holder/crew/fancy
 //HOITY TOITY PENS CAN
 	name = "caligraphy holder"
-	desc = "the holder for nobles and poets"
-	icon_state = "pencilholder_0"
+	desc = "For creating beautiful caligraphy, or forging checks."
 	
 /obj/item/storage/pencil_holder/crew/fancy/PopulateContents()
 	new	/obj/item/pen/fountain(src)

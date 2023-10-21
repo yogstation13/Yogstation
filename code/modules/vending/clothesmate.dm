@@ -211,7 +211,8 @@
 		           /obj/item/clothing/suit/yogs/trainman = 1,
 		           /obj/item/clothing/head/yogs/trainman = 1,
 		           /obj/item/clothing/suit/yogs/infsuit = 1,
-		           /obj/item/clothing/under/yogs/persskinsuit = 3) //yogs end
+		           /obj/item/clothing/under/yogs/persskinsuit = 3,
+				   /obj/item/clothing/suit/toggle/cyberpunk = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/clothing
 	default_price = 50
 	extra_price = 75
