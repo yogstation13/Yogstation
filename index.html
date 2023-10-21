@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(716 modules,
-    1918/9072 macros, 21.1%)</aside></h3>
+<aside>(719 modules,
+    1934/9096 macros, 21.3%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -95,6 +95,7 @@ General Public License version 3.
     </ul></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_mood.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mood">signals_mood</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_moveloop.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_moveloop">signals_moveloop</a></li>
+    <li><a href="code/__DEFINES/dcs/signals/signals_movetype.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_movetype">signals_movetype</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_ntnet.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_ntnet">signals_ntnet</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_object.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object">signals_object</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_song.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_song">signals_song</a></li>
@@ -157,6 +158,7 @@ General Public License version 3.
     <li><a href="code/__HELPERS/AStar.html" title="code&#x2F;__HELPERS&#x2F;AStar">AStar</a></li>
     <li><a href="code/__HELPERS/_lists.html" title="code&#x2F;__HELPERS&#x2F;_lists">_lists</a></li>
     <li><a href="code/__HELPERS/_logging.html" title="code&#x2F;__HELPERS&#x2F;_logging">_logging</a></li>
+    <li><a href="code/__HELPERS/animations.html" title="code&#x2F;__HELPERS&#x2F;animations">animations</a></li>
     <li><a href="code/__HELPERS/areas.html" title="code&#x2F;__HELPERS&#x2F;areas">areas</a></li>
     <li><a href="code/__HELPERS/cmp.html" title="code&#x2F;__HELPERS&#x2F;cmp">cmp</a></li>
     <li><a href="code/__HELPERS/colors.html" title="code&#x2F;__HELPERS&#x2F;colors">colors</a></li>
@@ -272,6 +274,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
     <li><a href="code/datums/elements/frozen.html" title="code&#x2F;datums&#x2F;elements&#x2F;frozen">frozen</a></li>
     <li><a href="code/datums/elements/life_drain.html" title="code&#x2F;datums&#x2F;elements&#x2F;life_drain">life_drain</a></li>
+    <li><a href="code/datums/elements/movetype_handler.html" title="code&#x2F;datums&#x2F;elements&#x2F;movetype_handler">movetype_handler</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
     <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
     </ul></li>
@@ -1054,7 +1057,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(944 detailed/1748 documented/28490 total, 6.1%)</aside></h3>
+<aside>(952 detailed/1756 documented/28517 total, 6.2%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1281,6 +1284,7 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><a href="datum/action/cooldown/spell/pointed/manse_link.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;manse_link">Manse Link</a></li>
     <li><a href="datum/action/cooldown/spell/pointed/mind_transfer.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;mind_transfer">Mind Swap</a></li>
     <li class="has-children"><a href="datum/action/cooldown/spell/pointed/projectile.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;projectile">projectile</a><ul class="index-tree">
+    <li><a href="datum/action/cooldown/spell/pointed/projectile/furious_steel.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;projectile&#x2F;furious_steel">Furious Steel</a></li>
     <li><a href="datum/action/cooldown/spell/pointed/projectile/lightningbolt.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;projectile&#x2F;lightningbolt">Lightning Bolt</a></li>
     <li><a href="datum/action/cooldown/spell/pointed/projectile/spell_cards.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;pointed&#x2F;projectile&#x2F;spell_cards">Spell Cards</a></li>
     </ul></li>
@@ -1713,6 +1717,8 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="datum/eldritch_knowledge.html" title="&#x2F;datum&#x2F;eldritch_knowledge">Basic knowledge</a> - #Eldritch Knowledge<ul class="index-tree">
+    <li><a href="datum/eldritch_knowledge/blade_dance.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;blade_dance">T1 - Dance of the Brand</a></li>
+    <li><a href="datum/eldritch_knowledge/duel_stance.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;duel_stance">T2 - Stance of the Torn Champion</a></li>
     <li class="has-children"><a href="datum/eldritch_knowledge/spell.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;spell">spell</a> - A knowledge subtype that grants the heretic a certain spell.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;spell&#x2F;basic">Break of Dawn</span> - Base lore</li>
     </ul></li>
@@ -1731,6 +1737,10 @@ When the object moves, it will unhook the signal and rehook it to the new object
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
     <li><a href="datum/element/frozen.html" title="&#x2F;datum&#x2F;element&#x2F;frozen">frozen</a> - simple element to handle frozen obj's</li>
     <li><a href="datum/element/life_draining.html" title="&#x2F;datum&#x2F;element&#x2F;life_draining">life_draining</a> - Slowly drains HP from a living mob.</li>
+    <li><a href="datum/element/movetype_handler.html" title="&#x2F;datum&#x2F;element&#x2F;movetype_handler">movetype_handler</a> - An element that enables and disables movetype bitflags whenever the relative traits are added or removed.
+It also handles the +2/-2 pixel y anim loop typical of mobs possessing the FLYING or FLOATING movetypes.
+This element is necessary for the TRAIT_MOVE_ traits to work correctly, so make sure to attach this element
+before adding them to non-living movables.</li>
     <li><a href="datum/element/squish.html" title="&#x2F;datum&#x2F;element&#x2F;squish">squish</a> - squish.dm</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;update_icon_blocker">update_icon_blocker</span> - Prevents calling anything in update_icon() like update_icon_state() or update_overlays()</li>
     </ul></li>
@@ -2141,6 +2151,10 @@ Basically is the &quot;drunk but no side effects&quot; stage.</li>
     <li><a href="datum/status_effect/jitter.html" title="&#x2F;datum&#x2F;status_effect&#x2F;jitter">jitter</a></li>
     <li><a href="datum/status_effect/limp.html" title="&#x2F;datum&#x2F;status_effect&#x2F;limp">limp</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;status_effect&#x2F;masquerade">Status effect</span> - This is what the Masquerade power gives, handles their bonuses and gives them a neat icon to tell them they're on Masquerade.</li>
+    <li class="has-children"><a href="datum/status_effect/protective_blades.html" title="&#x2F;datum&#x2F;status_effect&#x2F;protective_blades">protective_blades</a><ul class="index-tree">
+    <li><a href="datum/status_effect/protective_blades/recharging.html" title="&#x2F;datum&#x2F;status_effect&#x2F;protective_blades&#x2F;recharging">recharging</a> - A subtype that doesn't self-delete / disappear when all blades are gone
+It instead regenerates over time back to the max after blades are consumed</li>
+    </ul></li>
     <li><a href="datum/status_effect/red_eye.html" title="&#x2F;datum&#x2F;status_effect&#x2F;red_eye">red_eye</a> - Red eye effect, makes your screen a swirling red</li>
     <li><a href="datum/status_effect/scent_hunter.html" title="&#x2F;datum&#x2F;status_effect&#x2F;scent_hunter">scent_hunter</a></li>
     <li class="has-children"><a href="datum/status_effect/shapechange_mob.html" title="&#x2F;datum&#x2F;status_effect&#x2F;shapechange_mob">shapechange_mob</a><ul class="index-tree">
@@ -2442,6 +2456,7 @@ also because some objects do not display particles due to how their visuals are 
     <li><a href="obj/effect/dummy/phased_mob/wirecrawl.html" title="&#x2F;obj&#x2F;effect&#x2F;dummy&#x2F;phased_mob&#x2F;wirecrawl">wire</a></li>
     </ul></li>
     <li><a href="obj/effect/eldritch.html" title="&#x2F;obj&#x2F;effect&#x2F;eldritch">generic rune</a></li>
+    <li><a href="obj/effect/floating_blade.html" title="&#x2F;obj&#x2F;effect&#x2F;floating_blade">knife</a></li>
     <li class="has-children"><a href="obj/effect/forcefield.html" title="&#x2F;obj&#x2F;effect&#x2F;forcefield">FORCEWALL</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;cult">glowing wall</span> - Cult forcefields</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;mime">invisible wall</span> - Mime forcefields (invisible walls)</li>
@@ -2932,6 +2947,7 @@ You can only use one type at a time, you have to clear them to swap to the other
     <li><a href="obj/item/melee/baton.html" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;baton">stun baton</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;curator_whip">curator&#x27;s whip</span> - Simple whip that does additional damage(8 brute to be exact) to simple animals</li>
     <li><a href="obj/item/melee/skateboard.html" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;skateboard">improvised skateboard</a></li>
+    <li><a href="obj/item/melee/sledgehammer.html" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;sledgehammer">sledgehammer</a></li>
     <li class="has-children"><a href="obj/item/melee/spear.html" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;spear">spear</a><ul class="index-tree">
     <li><a href="obj/item/melee/spear/explosive.html" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;spear&#x2F;explosive">explosive lance</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;spear&#x2F;grey_tide">Grey Tide</span> - Grey Tide</li>
@@ -3444,7 +3460,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/d395ea9d768571dcc10deb7ef1f879d55beda166">d395ea9</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/931e05fb5b02c1875eae843e40cb9413093905a1">931e05f</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
