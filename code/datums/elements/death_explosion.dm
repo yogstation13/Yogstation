@@ -33,5 +33,4 @@
 		get_turf(target),
 		devastation_range = devastation,
 		heavy_impact_range = heavy_impact,
-		light_impact_range = light_impact,
-		explosion_cause = target)
+		light_impact_range = light_impact)
