@@ -30,7 +30,8 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade),
+		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic),
 	TIER_1 = list(
 		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
