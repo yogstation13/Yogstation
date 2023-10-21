@@ -34,6 +34,8 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+	wings_icon = "Ethereal"
+	wings_detail = "Etherealdetails"
 
 	var/max_range = 5
 	var/max_power = 2
