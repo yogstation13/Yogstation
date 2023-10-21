@@ -69,7 +69,10 @@
 	pixel_x = 0
 	pixel_y = 0
 
-	tesla_zap(src, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS, zap_gib = hypercharged)
+	if(hypercharged)
+		tesla_zap(src, zap_range, TESLA_SUPERMATTER_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
+	else
+		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
 	pixel_x = -32
 	pixel_y = -32
