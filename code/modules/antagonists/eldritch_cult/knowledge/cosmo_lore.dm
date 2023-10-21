@@ -43,12 +43,6 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /// Aplies the effect of the mansus grasp when it hits a target.
-// /datum/eldritch_knowledge/cosmic_grasp/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-// 	SIGNAL_HANDLER
-
-// 	to_chat(target, span_danger("A cosmic ring appeared above your head!"))
-// 	target.apply_status_effect(/datum/status_effect/star_mark, source)
-// 	new /obj/effect/forcefield/cosmic_field(get_turf(source))
 /datum/eldritch_knowledge/base_cosmic/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 

@@ -10,7 +10,7 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/cosmic_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/alert_ = tgui_alert(user, "Do you want to ascend as a Star Gazer, or instead empower yourself and summon one as an ally?", "...", list("Yes","No"))
+	var/alert_ = tgui_alert(user, "Do you want to ascend as a Star Gazer? Rejecting this power will empower yourself and summon one as an ally.", "...", list("Yes","No"))
 	user.SetImmobilized(10 HOURS) // no way someone will stand 10 hours in a spot, just so he can move while the alert is still showing.
 	switch(alert_)
 		if("No")
@@ -47,7 +47,7 @@
 			summoned.ghostize(0)
 			user.SetImmobilized(0)
 			for(var/datum/action/cooldown/spell/spells in user.actions)
-				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //vitally important since ashen passage breaks the shit out of armsy
+				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //I dont want big mobs to be able to use ash jaunt
 					spells.Remove(user)
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the cosmos, for The Creator has ascended! Unmake all of reality! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
