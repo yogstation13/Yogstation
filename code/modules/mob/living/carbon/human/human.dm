@@ -101,9 +101,9 @@
 			if(istype(eth_species))
 				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
 			if(eth_heart)
-				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 600)
+				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 60)
 				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
-				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] minutes left"]"
+				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
 
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
