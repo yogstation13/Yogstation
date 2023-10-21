@@ -997,7 +997,7 @@
 	glass_desc = "A soothing, mellow drink made from ginger."
 
 /datum/reagent/consumable/sol_dry/on_mob_life(mob/living/carbon/M)
-	M.adjust_disgust(-5)
+	M.adjust_disgust(-1)
 	..()
 
 /datum/reagent/consumable/red_queen

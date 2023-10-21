@@ -222,7 +222,7 @@
 						if(healed)
 							break
 			if(SLEEPER_CHEMPURGE)
-				C.adjustToxLoss(-SLEEPER_HEAL_RATE + efficiency)
+				C.adjustToxLoss(-(SLEEPER_HEAL_RATE + efficiency))
 				if(obj_flags & EMAGGED)
 					return
 				var/purge_rate = 0.5 * efficiency

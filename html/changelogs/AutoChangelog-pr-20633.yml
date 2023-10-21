@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Wizard cloak and void cloak now properly have projectiles pierce"
