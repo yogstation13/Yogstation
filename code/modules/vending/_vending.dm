@@ -153,6 +153,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/extended_inventory = 0
 	///Are we checking the users ID
 	var/scan_id = 1
+	///holo credit accept?
+	var/obj/item/holochip/chip
 	///Coins that we accept?
 	var/obj/item/coin/coin
 	///Bills we accept?
@@ -432,6 +434,41 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return
+	else if(istype(I, /obj/item/coin))
+		if(coin)
+			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
+			return
+		if(bill)
+			to_chat(user, "<span class='warning'>[src] already has [bill] inserted</span>")
+			return
+		if(chip)
+			to_chat(user, "span class='warning'>[src] already has [chip] inserted</span>")
+			return
+		if(!premium.len)
+			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
+			return
+		if(!user.transferItemToLoc(I, src))
+			return
+			coin = I
+			to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+			return
+	else if(istype(I, /obj/item/stack/spacecash))
+		if(coin)
+			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
+			return
+		if(bill)
+			to_chat(user, "<span class='warning'>[src] already has [bill] inserted</span>")
+			return
+		var/obj/item/stack/S = I
+		if(!premium.len)
+			to_chat(user, "<span class='warning'>[src] doesn't have a bill slot.</span>")
+			return
+			S.use(1)
+		bill = new S.type(src, 1)
+		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		return
+
+
 	if(refill_canister && istype(I, refill_canister))
 		if (!panel_open)
 			to_chat(user, span_notice("You should probably unscrew the service panel first."))
@@ -784,6 +821,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/list/record_to_check = product_records + coin_records
 			if(extended_inventory)
 				record_to_check = product_records + coin_records + hidden_records
+			if(coin || bill)
+				record_to_check = product_records + coin_records
+			if((coin || bill) && extended_inventory)
+				record_to_check = product_records + hidden_records + coin_records
 			if(!R || !istype(R) || !R.product_path)
 				vend_ready = TRUE
 				return
@@ -794,15 +835,40 @@ GLOBAL_LIST_EMPTY(vending_products)
 				if(!extended_inventory)
 					vend_ready = TRUE
 					return
+			else if(R in coin_records)
+				if(!(coin || bill))
+					to_chat(usr, "<span class='warning'>You need to insert money to get this item!</span>")
+					vend_ready = 1
+					return
+				if(coin && coin.string_attached)
+					if(prob(50))
+						if(usr.put_in_hands(coin))
+							to_chat(usr, "<span class='notice'>You successfully pull [coin] out before [src] could swallow it.</span>")
+							coin = null
+						else
+							to_chat(usr, "<span class='warning'>You couldn't pull [coin] out because your hands are full!</span>")
+							QDEL_NULL(coin)
+					else
+						to_chat(usr, "<span class='warning'>You weren't able to pull [coin] out fast enough, the machine ate it, string and all!</span>")
+						QDEL_NULL(coin)
+				else
+					QDEL_NULL(coin)
+					QDEL_NULL(bill)
 			else if (!(R in record_to_check))
 				vend_ready = TRUE
 				message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(usr)]!")
 				return
-			if (R.amount <= 0)
-				say("Sold out of [R.name].")
-				flick(icon_deny,src)
-				vend_ready = TRUE
-				return
+			else
+				R.amount--
+
+			if(((last_reply + 200) <= world.time) && vend_reply)
+				speak(vend_reply)
+				last_reply = world.time
+				if (R.amount <= 0)
+					say("Sold out of [R.name].")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
 
 			var/is_premium = FALSE  // premium products always charge
 			if(coin_records.Find(R) || hidden_records.Find(R))
