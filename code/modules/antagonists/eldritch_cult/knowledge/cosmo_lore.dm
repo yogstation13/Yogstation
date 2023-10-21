@@ -71,3 +71,28 @@
 	cost = 1
 	route = PATH_COSMIC
 	tier = TIER_1
+
+	/datum/eldritch_knowledge/mark/cosmic_mark
+	name = "Mark of Cosmos"
+	desc = "Your Mansus Grasp now applies the Mark of Cosmos. The mark is triggered from an attack with your Cosmic Blade. \
+		When triggered, the victim is returned to the location where the mark was originally applied to them. \
+		They will then be paralyzed for 2 seconds."
+	gain_text = "The Beast now whispered to me occasionally, only small tidbits of their circumstances. \
+		I can help them, I have to help them."
+	route = PATH_COSMIC
+	tier = TIER_MARK
+
+
+/datum/eldritch_knowledge/cosmic_mark/on_gain(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/cosmic_mark/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/cosmic_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
+	if(isliving(target))
+		var/mob/living/living_target = target
+		living_target.apply_status_effect(/datum/status_effect/eldritch/cosmic, 1)

@@ -12,7 +12,7 @@
 
 	invocation = "ST'R R'N'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	/// Storage for the first rune.
 	var/datum/weakref/first_rune
