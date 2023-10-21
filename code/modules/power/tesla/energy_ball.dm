@@ -70,7 +70,7 @@
 	pixel_y = 0
 
 	if(hypercharged)
-		tesla_zap(src, zap_range, TESLA_SUPERMATTER_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
+		tesla_zap(src, zap_range, TESLA_HYPERCHARGED_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
 	else
 		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
