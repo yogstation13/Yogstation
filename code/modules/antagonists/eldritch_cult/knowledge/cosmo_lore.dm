@@ -113,7 +113,7 @@
 /datum/eldritch_knowledge/spell/star_blast
 	name = "T2 - Star Blast"
 	desc = "Fires a projectile that moves very slowly and creates cosmic fields on impact. \
-		Anyone hit by the projectile will recieve burn damage, a knockdown, and give people in a three tile range a star mark."
+		Anyone hit by the projectile will receive burn damage, a knockdown, and give people in a three tile range a star mark."
 	gain_text = "The Beast was behind me now at all times, with each sacrifice words of affirmation coursed through me."
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/star_blast
 	cost = 1
@@ -121,7 +121,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/cosmic_blade_upgrade
-	name = "Blade Upgrade - Cosmic Blade"
+	name = "Blade Upgrade - Stellar Sublimation"
 	desc = "Your blade now deals damage to people's cells through cosmic radiation."
 	gain_text = "The Beast took my blades in their hand, I kneeled and felt a sharp pain. \
 		The blades now glistened with fragmented power. I fell to the ground and wept at the beast's feet."
