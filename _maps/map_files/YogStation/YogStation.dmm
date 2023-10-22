@@ -12288,6 +12288,8 @@
 /obj/structure/table,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/metal/fifty,
+/obj/item/melee/sledgehammer,
+/obj/item/melee/sledgehammer,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bRu" = (
@@ -17072,7 +17074,6 @@
 	pixel_x = -31
 	},
 /obj/structure/table/wood,
-/obj/item/storage/box/deputy,
 /obj/machinery/button/door{
 	id = "hosspace";
 	name = "Space Shutters Control";

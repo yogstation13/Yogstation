@@ -810,7 +810,7 @@
 
 /obj/item/storage/box/deputy
 	name = "box of deputy armbands"
-	desc = "To be issued to those authorized to act as deputy of security."
+	desc = "A box of old Nanotrasen deputy armbands, they stopped serving a purpose ever since the deputization of crew was outlawed."
 
 /obj/item/storage/box/deputy/PopulateContents()
 	for(var/i in 1 to 7)
