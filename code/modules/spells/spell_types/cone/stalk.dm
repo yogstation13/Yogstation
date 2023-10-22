@@ -16,7 +16,7 @@
 
 	var/list/atom/victims = list()
 	var/look_counter = 0
-	var/look_per_tier = 20
+	var/look_per_tier = 60 //1 second per look for a total of 60 seconds per tier if spending a long time looking
 	var/tier = 0
 	var/max_tier = 3
 	var/list/traits = list( //they get a LOT of traits
