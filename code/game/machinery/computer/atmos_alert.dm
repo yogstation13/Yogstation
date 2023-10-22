@@ -43,14 +43,22 @@
 	switch(action)
 		if("clear")
 			var/zone = params["zone"]
-			if(zone in priority_alarms)
-				to_chat(usr, "Priority alarm for [zone] cleared.")
-				priority_alarms -= zone
-				. = TRUE
-			if(zone in minor_alarms)
-				to_chat(usr, "Minor alarm for [zone] cleared.")
-				minor_alarms -= zone
-				. = TRUE
+			for(var/area/A in priority_alarms)
+				if(A.name == zone)
+					var/obj/machinery/airalarm/AA = locate() in A
+					AA.atmos_manualOverride(TRUE)
+					AA.post_alert(0)
+					to_chat(usr, "Priority alarm for [zone] cleared.")
+					priority_alarms -= zone
+					. = TRUE
+			for(var/area/A in minor_alarms)
+				if(A.name == zone)
+					var/obj/machinery/airalarm/AA = locate() in A
+					AA.atmos_manualOverride(TRUE)
+					AA.post_alert(0)
+					to_chat(usr, "Minor alarm for [zone] cleared.")
+					minor_alarms -= zone
+					. = TRUE
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/atmos_alert/proc/set_frequency(new_frequency)

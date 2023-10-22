@@ -722,7 +722,7 @@
 		return
 
 	var/datum/signal/alert_signal = new(list(
-		"zone" = get_area_name(src),
+		"zone" = A,
 		"type" = "Atmospheric"
 	))
 	if(alert_level==2)
