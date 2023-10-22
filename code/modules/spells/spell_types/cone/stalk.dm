@@ -18,7 +18,7 @@
 	var/look_counter = 0
 	var/look_per_tier = 60 //1 second per look for a total of 60 seconds per tier if spending a long time looking
 	var/tier = 0
-	var/max_tier = 3
+	var/max_tier = 3 //3 total tiers, meaning 3 minutes to get to max tier of LOOKING
 	var/list/traits = list( //they get a LOT of traits
 		TRAIT_NOHARDCRIT,
 		TRAIT_NOSOFTCRIT,
