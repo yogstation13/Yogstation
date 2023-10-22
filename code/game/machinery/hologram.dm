@@ -284,10 +284,9 @@ obj/machinery/holopad/secure/Initialize(mapload)
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)
-					var/input = text2num(params["headcall"])
-					var/headcall = input == 1 ? TRUE : FALSE
-					new /datum/holocall(usr, src, callnames[result], headcall)
-					calling = TRUE
+					var/datum/hcall = new /datum/holocall(usr, src, callnames[result], text2num(params["headcall"])
+					if(!QDELETED(hcall))
+						calling = TRUE
 					return TRUE
 			else
 				to_chat(usr, span_warning("You must stand on the holopad to make a call!"))
