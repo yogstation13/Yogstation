@@ -49,7 +49,7 @@
 	owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 2)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/dude = owner
-		dude.physiology.damage_resistance += 50
+		dude.physiology.damage_resistance += 90
 		dude.physiology.do_after_speed *= 0.5
 
 /datum/action/cooldown/spell/cone/stalk/Remove(mob/living/remove_from)
@@ -58,7 +58,7 @@
 	owner.remove_movespeed_modifier(type)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/dude = owner
-		dude.physiology.damage_resistance -= 50
+		dude.physiology.damage_resistance -= 90
 		dude.physiology.do_after_speed /= 0.5
 	. = ..()
 
