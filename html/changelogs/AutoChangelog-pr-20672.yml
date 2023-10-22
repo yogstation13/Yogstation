@@ -1,6 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "fix atmos alerts not clearing when there are multiple air alarms in one area"
-  - rscadd: "Add a new label \"Alarm overwrite\" in the air alarm interface to dertermine an area atmos alarm if it is altered by someone (Note: The atmos alarm wont go away if atmos overwrite is on)"
-  - bugfix: "Fix apc not clearing alert when deleted"

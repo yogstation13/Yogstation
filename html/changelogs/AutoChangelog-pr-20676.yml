@@ -1,8 +1,0 @@
-author: " RaveRadbury, ktlwjec"
-delete-after: true 
-changes: 
-  - rscadd: "Space Mountain Wind snow cone."
-  - tweak: "Snow cones do not need water to craft."
-  - tweak: "Sodawater snow cones are now Space Cola snow cones."
-  - tweak: "Clown snow cone now needs laughter, not clown's tears."
-  - spellcheck: "Better descriptions for snowcones. Removes flavored from the snowcone names."
