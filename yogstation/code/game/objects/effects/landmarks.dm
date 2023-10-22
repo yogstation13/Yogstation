@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/clerk
-	template_names = list("Clerk Box", "Clerk Pod", "Clerk Meta")
+	template_names = list("Clerk Box", "Clerk Pod", "Clerk Meta", "Clerk Gambling Hall")
 
 /obj/effect/landmark/stationroom/box/clerk/load(template_name)
 	GLOB.stationroom_landmarks -= src
