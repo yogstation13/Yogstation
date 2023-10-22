@@ -30,8 +30,11 @@
 	if(id)
 		return id.registered_name
 	var/obj/item/pda/pda = wear_id
+	var/obj/item/modular_computer/tablet/tablet = wear_id
 	if(istype(pda))
 		return pda.owner
+	if(istype(tablet))
+		return tablet.name
 	return if_no_id
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a separate proc as it'll be useful elsewhere

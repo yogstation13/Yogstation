@@ -12,7 +12,7 @@
 	. = ..()
 	if(amount)
 		credits = amount
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/holochip/examine(mob/user)
 	. = ..()
@@ -22,8 +22,12 @@
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
-/obj/item/holochip/update_icon()
+/obj/item/holochip/update_name(updates=ALL)
+	. = ..()
 	name = "\improper [credits] credit holochip"
+
+/obj/item/holochip/update_overlays()
+	. = ..()
 	var/rounded_credits = credits
 	switch(credits)
 		if(1 to 999)
@@ -55,17 +59,16 @@
 			overlay_color = "#0153C1"
 		if(500 to INFINITY)
 			overlay_color = "#2C2C2C"
-	cut_overlays()
 	var/mutable_appearance/holochip_overlay = mutable_appearance('icons/obj/economy.dmi', "[icon_state]-color")
 	holochip_overlay.color = overlay_color
-	add_overlay(holochip_overlay)
+	. += holochip_overlay
 
 /obj/item/holochip/proc/spend(amount, pay_anyway = FALSE)
 	if(credits >= amount)
 		credits -= amount
 		if(credits == 0)
 			qdel(src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return amount
 	else if(pay_anyway)
 		qdel(src)
@@ -79,7 +82,7 @@
 		var/obj/item/holochip/H = I
 		credits += H.credits
 		to_chat(user, span_notice("You insert the credits into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		qdel(H)
 
 /obj/item/holochip/AltClick(mob/user)

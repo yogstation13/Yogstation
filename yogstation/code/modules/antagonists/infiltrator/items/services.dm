@@ -34,11 +34,13 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 /obj/item/service/ion/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
+	if(SSticker.current_state >= GAME_STATE_FINISHED)
+		return
 	priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", 'sound/ai/default/ionstorm.ogg')
 	message_admins("[key_name_admin(user)] made a fake ion storm announcement!")
 	log_game("[key_name_admin(user)] made a fake ion storm announcement!")
 	do_sparks(2, FALSE, src)
-	GLOB.next_button_push = world.time+10
+	GLOB.next_button_push = world.time + 10 SECONDS
 	qdel(src)
 
 /obj/item/service/meteor
@@ -47,11 +49,13 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 /obj/item/service/meteor/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
+	if(SSticker.current_state >= GAME_STATE_FINISHED)
+		return
 	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", 'sound/ai/default/meteors.ogg')
 	message_admins("[key_name_admin(user)] made a fake meteor storm announcement!")
 	log_game("[key_name_admin(user)] made a fake meteor storm announcement!")
 	do_sparks(2, FALSE, src)
-	GLOB.next_button_push = world.time+10
+	GLOB.next_button_push = world.time + 10 SECONDS
 	qdel(src)
 
 /obj/item/service/rodgod
@@ -60,9 +64,11 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 /obj/item/service/rodgod/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
+	if(SSticker.current_state >= GAME_STATE_FINISHED)
+		return
 	priority_announce("What the fuck was that?!", "General Alert")
 	message_admins("[key_name_admin(user)] made a fake immovable rod announcement!")
 	log_game("[key_name_admin(user)] made a fake immovable rod announcement!")
 	do_sparks(2, FALSE, src)
-	GLOB.next_button_push = world.time+10
+	GLOB.next_button_push = world.time + 10 SECONDS
 	qdel(src)

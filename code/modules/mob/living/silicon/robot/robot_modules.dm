@@ -8,6 +8,11 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
 
+	/// Sets the cyborg's armor values to these upon selecting their module.
+	var/list/module_armor = list()
+	/// Determines if the module will give '/datum/component/armor_plate' and how many times it can be done.
+	var/use_armorplates = 0
+
 	var/list/basic_modules = list() ///a list of paths, converted to a list of instances on New()
 	var/list/emag_modules = list() ///ditto
 	var/list/ratvar_modules = list() ///ditto ditto
@@ -24,7 +29,6 @@
 
 	var/can_be_pushed = TRUE
 	var/magpulsing = FALSE
-	var/clean_on_move = FALSE
 
 	var/did_feedback = FALSE
 
@@ -54,6 +58,7 @@
 		var/obj/item/I = new i(src)
 		ratvar_modules += I
 		ratvar_modules -= i
+	
 
 /obj/item/robot_module/Destroy()
 	basic_modules.Cut()
@@ -62,6 +67,7 @@
 	modules.Cut()
 	added_modules.Cut()
 	storages.Cut()
+
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
@@ -135,12 +141,21 @@
 	return I
 
 /obj/item/robot_module/proc/remove_module(obj/item/I, delete_after)
+	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+	
+	// Keeping these to reset their module slots to what they were previously.
+	var/list/held_modules = R.held_items.Copy()
+	var/active_module_num = R.get_selected_module()
+	R.uneq_all() // Must be done before module removed; otherwise, will CRASH().
+
 	basic_modules -= I
 	modules -= I
 	emag_modules -= I
 	ratvar_modules -= I
 	added_modules -= I
-	rebuild_modules()
+	rebuild_modules(held_modules, active_module_num)
 	if(delete_after)
 		qdel(I)
 
@@ -153,7 +168,7 @@
 			var/obj/item/assembly/flash/F = I
 			F.times_used = 0
 			F.burnt_out = FALSE
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 		else if(istype(I, /obj/item/melee/baton))
 			var/obj/item/melee/baton/B = I
 			if(B.cell)
@@ -165,10 +180,18 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules() ///builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules(list/last_held_modules = null, last_active_module_num = null) ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+
 	var/list/held_modules = R.held_items.Copy()
-	var/active_module = R.module_active
+	if(last_held_modules) 
+		held_modules = last_held_modules
+	var/active_module_num = R.get_selected_module()
+	if(last_active_module_num)
+		active_module_num = last_active_module_num
+
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -182,15 +205,17 @@
 	for(var/obj/item/I in added_modules)
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
-		if(i)
-			R.equip_module_to_slot(i, held_modules.Find(i))
-	if(active_module)
-		R.select_module(held_modules.Find(active_module))
+		if(i && (i in modules))
+			var/slot = held_modules.Find(i)
+			R.equip_module_to_slot(i, slot)
+			if(slot == active_module_num)
+				R.select_module(slot)
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 
 /obj/item/robot_module/proc/transform_to(new_module_type)
 	var/mob/living/silicon/robot/R = loc
+	R.uneq_all()
 	var/obj/item/robot_module/RM = new new_module_type(R)
 	if(!RM.be_transformed_to(src))
 		qdel(RM)
@@ -200,6 +225,13 @@
 	R.update_module_innate()
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
+	var/datum/component/armor_plate/C = R.GetComponent(/datum/component/armor_plate)
+	if(C) // Remove armor plating.
+		C.dropplates()
+		C.Destroy() // It is possible to switch over to a module that has a different 'use_armorplates' value, thus we remove in all cases.
+	if(RM.use_armorplates > 0) // Add armor plating.
+		R.AddComponent(/datum/component/armor_plate, RM.use_armorplates)
+	R.armor = getArmor(arglist(RM.module_armor))
 
 	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
 	qdel(src)
@@ -292,7 +324,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/borghypo,
+		/obj/item/reagent_containers/borghypo/medical,
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
@@ -309,9 +341,9 @@
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/stack/medical/bone_gel/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+		/obj/item/borg_snack_dispenser/medical)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
-	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
 		/obj/item/clockwork/weapon/ratvarian_spear)
@@ -336,7 +368,7 @@
 		/obj/item/multitool/cyborg,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
-		/obj/item/gripper/engineering,
+		/obj/item/borg/gripper/engineering,
 		/obj/item/geiger_counter/cyborg,
 		/obj/item/assembly/signaler/cyborg,
 		/obj/item/areaeditor/blueprints/cyborg,
@@ -390,7 +422,7 @@
 		if(T.cell.charge < T.cell.maxcharge)
 			var/obj/item/ammo_casing/energy/S = T.ammo_type[T.select]
 			T.cell.give(S.e_cost * coeff)
-			T.update_icon()
+			T.update_appearance(UPDATE_ICON)
 		else
 			T.charge_timer = 0
 
@@ -398,7 +430,7 @@
 	name = "Peacekeeper"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
-		/obj/item/rsf/cookiesynth,
+		/obj/item/borg_snack_dispenser/peacekeeper,
 		/obj/item/harmalarm,
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
@@ -436,7 +468,8 @@
 		/obj/item/paint/paint_remover,
 		/obj/item/lightreplacer/cyborg,
 		/obj/item/holosign_creator/janibarrier,
-		/obj/item/reagent_containers/spray/cyborg_drying)
+		/obj/item/reagent_containers/spray/cyborg_drying,
+		/obj/item/borg/floor_autocleaner)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
 	ratvar_modules = list(
@@ -445,7 +478,6 @@
 	cyborg_base_icon = "janitor"
 	moduleselect_icon = "janitor"
 	hat_offset = -5
-	clean_on_move = TRUE
 
 /obj/item/reagent_containers/spray/cyborg_drying
 	name = "drying agent spray"
@@ -487,7 +519,7 @@
 		/obj/item/lipstick/purple,
 		/obj/item/holosign_creator/clown/cyborg, //Evil
 		/obj/item/borg/cyborghug/peacekeeper,
-		/obj/item/borg/lollipop/clown,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/reagent_containers/borghypo/clown,
 		/obj/item/extinguisher/mini)
@@ -503,10 +535,11 @@
 	cyborg_base_icon = "clown"
 	hat_offset = -2
 
-/obj/item/robot_module/butler
+/obj/item/robot_module/service
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/storage/bag/money, // For charging a fee or getting onto the luxury shuttle.
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
 		/obj/item/reagent_containers/food/condiment/enzyme,
 		/obj/item/pen,
@@ -515,13 +548,14 @@
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
 		/obj/item/rsf,
+		/obj/item/borg/gripper/service,
 		/obj/item/instrument/guitar,
 		/obj/item/instrument/piano_synth,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		/obj/item/reagent_containers/borghypo/borgshaker,
-		/obj/item/borg/lollipop,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/reagent_containers/glass/rag,
 		/obj/item/soap/infinite)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
@@ -530,15 +564,18 @@
 		/obj/item/borg/sight/xray/truesight_lens)
 	moduleselect_icon = "service"
 	special_light_key = "service"
+	cyborg_base_icon = "tophat"
 	hat_offset = 0
 
-/obj/item/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
+/obj/item/robot_module/service/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
 	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
-/obj/item/robot_module/butler/be_transformed_to(obj/item/robot_module/old_module)
+// The reason why spawning a `silicon/robot/modules/service` or forcing a cyborg into ..
+// .. Service doesn't work as it prompts the cyborg into selecting their initial skin first:
+/obj/item/robot_module/service/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/list/service_icons = sortList(list(
 		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
@@ -574,7 +611,7 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/shovel,
+		/obj/item/shovel, // This is here for: the ability to butcher & tool behavior of TOOL_SHOVEL. In all other cases, the cyborg drill is better.
 		/obj/item/crowbar/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,
@@ -592,6 +629,8 @@
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
 	hat_offset = 0
+	module_armor = list(MELEE = 20)
+	use_armorplates = 3
 	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
 
 /obj/item/robot_module/miner/rebuild_modules()
@@ -638,7 +677,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/twohanded/shockpaddles/syndicate,
+		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
 		/obj/item/retractor,
 		/obj/item/hemostat,
@@ -678,7 +717,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/wirecutters/cyborg,
 		/obj/item/multitool/cyborg,
-		/obj/item/gripper/engineering,
+		/obj/item/borg/gripper/engineering,
 		/obj/item/stack/sheet/metal/cyborg,
 		/obj/item/stack/sheet/glass/cyborg,
 		/obj/item/stack/sheet/rglass/cyborg,

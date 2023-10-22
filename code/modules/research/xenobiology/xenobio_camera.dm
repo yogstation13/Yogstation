@@ -468,3 +468,9 @@
 		X.monkeys = round(X.monkeys, 0.1)		//Prevents rounding errors	
 		qdel(M)
 		to_chat(C, "[X] now has [X.monkeys] monkeys available.")
+
+/obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon
+	name = "slime management console"
+	desc = "A computer used for remotely handling slimes."
+	networks = list("synd_icemoon_xenobio")
+	circuit = /obj/item/circuitboard/computer/xenobiology/syndicateicemoon

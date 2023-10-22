@@ -40,6 +40,7 @@
 	imp_in.SetParalyzed(0)
 	imp_in.SetImmobilized(0)
 	imp_in.adjustStaminaLoss(-75)
+	imp_in.clear_stamina_regen() // We already cleared our stamina, don't continue healing
 	imp_in.set_resting(FALSE)
 	imp_in.update_mobility()
 
@@ -162,16 +163,14 @@
 /obj/item/implant/empshield/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	if(..())
 		if(ishuman(target))
-			target.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+			ADD_TRAIT(target, TRAIT_EMPPROOF_SELF, "EMP_shield_implant")
 			RegisterSignal(target, COMSIG_ATOM_EMP_ACT, PROC_REF(overloaded), target)
 		return TRUE
 
 /obj/item/implant/empshield/removed(mob/target, silent = FALSE, special = 0)
 	if(..())
 		if(ishuman(target))
-			var/datum/component/empprotection/empshield = target.GetExactComponent(/datum/component/empprotection)
-			if(empshield)
-				empshield.Destroy()
+			REMOVE_TRAIT(target, TRAIT_EMPPROOF_SELF, "EMP_shield_implant")
 			UnregisterSignal(target, COMSIG_ATOM_EMP_ACT)
 		return TRUE
 
@@ -185,16 +184,14 @@
 		if(warning)
 			to_chat(target, span_userdanger("You feel a twinge inside from your [src], you get the feeling it won't protect you anymore."))
 			warning = FALSE
-		var/datum/component/empprotection/empshield = target.GetExactComponent(/datum/component/empprotection)
-		if(empshield)
-			empshield.Destroy()
+		REMOVE_TRAIT(target, TRAIT_EMPPROOF_SELF, "EMP_shield_implant")
 		addtimer(CALLBACK(src, PROC_REF(refreshed), target), overloadtimer, TIMER_OVERRIDE | TIMER_UNIQUE)
 
 /obj/item/implant/empshield/proc/refreshed(mob/living/target)
 	to_chat(target, span_usernotice("A familiar feeling resonates from your [src], it seems to be functioning properly again."))
 	warning = TRUE
 	if(ishuman(target))
-		target.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+		ADD_TRAIT(target, TRAIT_EMPPROOF_SELF, "EMP_shield_implant")
 
 /obj/item/implanter/empshield
 	name = "implanter (EMP shield)"

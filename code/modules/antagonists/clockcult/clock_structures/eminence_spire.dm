@@ -7,7 +7,7 @@
 	icon_state = "tinkerers_daemon"
 	break_message = span_warning("The spire screeches with crackling power and collapses into scrap!")
 	max_integrity = 400
-	var/mob/eminence_nominee
+	var/mob/living/eminence_nominee
 	var/selection_timer //Timer ID; this is canceled if the vote is canceled
 	var/kingmaking
 

@@ -12,7 +12,6 @@
 	var/sigil_name = "Sigil"
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
 	var/check_antimagic = TRUE
-	var/check_holy = FALSE
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
@@ -46,7 +45,7 @@
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
+				var/atom/I = L.can_block_magic((check_antimagic ? MAGIC_RESISTANCE : NONE))
 				if(I)
 					if(isitem(I))
 						L.visible_message(span_warning("[L]'s [I.name] [resist_string], protecting [L.p_them()] from [src]'s effects!"), \
@@ -144,6 +143,11 @@
 			hierophant_message("<span class='large_brass bold'>With the conversion of a new servant the Ark's power grows. Application scriptures are now available.</span>")
 	if(add_servant_of_ratvar(L))
 		L.log_message("conversion was done with a [sigil_name]", LOG_ATTACK, color="BE8700")
+		var/brutedamage = L.getBruteLoss()
+		var/burndamage = L.getFireLoss()
+		if(brutedamage || burndamage)
+			L.adjustBruteLoss(-(brutedamage * 0.75))
+			L.adjustFireLoss(-(burndamage * 0.75))
 		if(iscarbon(L))
 			var/mob/living/carbon/M = L
 			M.uncuff()
@@ -181,7 +185,7 @@
 
 /obj/effect/clockwork/sigil/transmission/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/effect/clockwork/sigil/transmission/ex_act(severity)
 	if(severity == 3)
@@ -242,7 +246,8 @@
 		return FALSE
 	return TRUE
 
-/obj/effect/clockwork/sigil/transmission/update_icon()
+/obj/effect/clockwork/sigil/transmission/update_icon(updates=ALL)
+	. = ..()
 	var/power_charge = get_clockwork_power()
 	if(GLOB.ratvar_awakens)
 		alpha = 255

@@ -438,9 +438,10 @@
 	if(A.pulling == D)
 		return 1
 	A.start_pulling(D)
+	if(A.grab_state == GRAB_PASSIVE)
+		A.setGrabState(GRAB_AGGRESSIVE) //Instant agressive grab
 	D.visible_message(span_danger("[A] gets [D] in a cinch!"), \
 								span_userdanger("[A] gets [D] in a cinch!"))
-	D.Stun(rand(6, 10) SECONDS)
 	log_combat(A, D, "cinched")
 	return 1
 

@@ -86,9 +86,8 @@
 		qdel(air_contents)
 
 	if(tank_assembly)
-		qdel(tank_assembly)
 		tank_assembly.master = null
-		tank_assembly = null
+		QDEL_NULL(tank_assembly)
 
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -313,12 +312,12 @@
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/tank/update_icon()
-	cut_overlays()
+/obj/item/tank/update_overlays()
+	. = ..()
 	if(tank_assembly)
-		add_overlay(tank_assembly.icon_state)
-		copy_overlays(tank_assembly)
-		add_overlay("bomb_assembly")
+		. += tank_assembly.icon_state
+		. += tank_assembly.overlays
+		. += "bomb_assembly"
 
 /obj/item/tank/wrench_act(mob/living/user, obj/item/I)
 	if(tank_assembly)
@@ -402,7 +401,7 @@
 
 	throw_speed = max(2, throw_speed) //Make it a bit harder to throw
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.balloon_alert(user, "[assembly.name] attached")
 	return
 
@@ -415,7 +414,7 @@
 	bomb_status = FALSE
 	throw_speed = initial(throw_speed)
 	user.balloon_alert(user, "disassembled")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.get_moles(/datum/gas/tritium) + air_contents.get_moles(/datum/gas/hydrogen) + air_contents.get_moles(/datum/gas/plasma) + air_contents.get_moles(/datum/gas/oxygen)/6

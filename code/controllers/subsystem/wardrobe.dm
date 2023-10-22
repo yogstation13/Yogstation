@@ -70,6 +70,18 @@ SUBSYSTEM_DEF(wardrobe)
 	msg += " ID:[inspect_delay] NI:[last_inspect_time + inspect_delay]"
 	return ..()
 
+/datum/controller/subsystem/wardrobe/get_metrics()
+	. = ..()
+	.["canon_minimum"] = length(canon_minimum)
+	.["order_list"] = length(order_list)
+	.["preloaded_stock"] = length(preloaded_stock)
+	.["cache_intensity"] = length(cache_intensity)
+	.["overflow_lienency"] = length(overflow_lienency)
+	.["stock_hit"] = length(stock_hit)
+	.["stock_miss"] = length(stock_miss)
+	.["inspect_delay"] = length(inspect_delay)
+	.["one_go_master"] = one_go_master
+
 /datum/controller/subsystem/wardrobe/fire(resumed=FALSE)
 	if(current_task != SSWARDROBE_INSPECT && world.time - last_inspect_time >= inspect_delay)
 		current_task = SSWARDROBE_INSPECT

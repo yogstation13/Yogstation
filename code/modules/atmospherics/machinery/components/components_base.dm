@@ -8,6 +8,7 @@
 
 	var/list/datum/pipeline/parents
 	var/list/datum/gas_mixture/airs
+	var/startingvolume = 200
 
 /obj/machinery/atmospherics/components/New()
 	parents = new(device_type)
@@ -16,7 +17,7 @@
 	..()
 
 	for(var/i in 1 to device_type)
-		var/datum/gas_mixture/A = new(200)
+		var/datum/gas_mixture/A = new(startingvolume)
 		airs[i] = A
 
 // Iconnery
@@ -24,7 +25,8 @@
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
 
-/obj/machinery/atmospherics/components/update_icon()
+/obj/machinery/atmospherics/components/update_icon(updates=ALL)
+	. = ..()
 	update_icon_nopipes()
 
 	underlays.Cut()
@@ -32,7 +34,7 @@
 	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
 
 	if(!showpipe)
-		return ..()
+		return
 
 	var/connected = 0 //Direction bitset
 
@@ -49,7 +51,6 @@
 
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
-	return ..()
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)

@@ -87,7 +87,7 @@
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
-		cell.update_icon()
+		cell.update_appearance(UPDATE_ICON)
 		cell = null
 		add_fingerprint(user)
 
@@ -305,6 +305,7 @@
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
+	GLOB.lights += src
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
 	if(!mapload) //sync up nightshift lighting for player made lights
@@ -332,6 +333,7 @@
 			update(0)
 
 /obj/machinery/light/Destroy()
+	GLOB.lights.Remove(src)
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE && !forced_off
@@ -339,7 +341,8 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -347,7 +350,7 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire))
+			if(emergency_mode || (A && (A.fire || A.delta_light)))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
 				icon_state = "[base_state]_vacuum"
@@ -384,7 +387,7 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.fire)
+		if (A && (A.fire || A.delta_light))
 			CO = bulb_emergency_colour
 		else if (A && A.vacuum)
 			CO = bulb_vacuum_colour
@@ -413,7 +416,7 @@
 	else
 		use_power = IDLE_POWER_USE
 		set_light(0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	active_power_usage = (brightness * 10)
 	if(on != on_gs)
@@ -542,7 +545,7 @@
 		set_light(0)
 		forced_off = !forced_off
 		on = !on
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		update()
 	else
 		return ..()
@@ -687,14 +690,12 @@
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
-			var/datum/species/ethereal/eth_species = H.dna?.species
-			if(istype(eth_species))
+			if(isethereal(H))
 				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 5 SECONDS, src))
-					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-					if(istype(stomach))
+				if(do_after(user, 1 SECONDS, src))
+					if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						stomach.adjust_charge(25 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+						H.adjust_nutrition(100)
 					else
 						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
 				return
@@ -785,7 +786,7 @@
 	on = TRUE && !forced_off
 	update()
 
-/obj/machinery/light/tesla_act(power, tesla_flags)
+/obj/machinery/light/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		explosion(src,0,0,0,flame_range = 5, adminlog = 0)
 		qdel(src)

@@ -26,6 +26,8 @@ GLOBAL_PROTECT(href_token)
 	var/ip_cache
 	var/cid_cache
 
+	var/datum/particle_editor/particool
+
 
 /datum/admins/New(ckey, rights, force_active = FALSE)
 	if(IsAdminAdvancedProcCall())

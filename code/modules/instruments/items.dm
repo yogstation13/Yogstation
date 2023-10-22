@@ -94,14 +94,14 @@
   */
 /obj/item/instrument/piano_synth/headphones/proc/start_playing()
 	icon_state = "[initial(icon_state)]_on"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Called by a component signal when our song stops playing.
   */
 /obj/item/instrument/piano_synth/headphones/proc/stop_playing()
 	icon_state = "[initial(icon_state)]"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/instrument/banjo
 	name = "banjo"

@@ -22,7 +22,7 @@
 	sparks = new /datum/effect_system/spark_spread()
 	sparks.set_up(2,0)
 	sparks.attach(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/vr_sleeper/attackby(obj/item/I, mob/user, params)
 	if(!state_open && !occupant)
@@ -53,15 +53,17 @@
 	flags_1 = NODECONSTRUCT_1
 	only_current_user_can_interact = TRUE
 
-/obj/machinery/vr_sleeper/hugbox/emag_act(mob/user)
+/obj/machinery/vr_sleeper/hugbox/emag_act(mob/user, obj/item/card/emag/emag_card)
 	return
 
-/obj/machinery/vr_sleeper/emag_act(mob/user)
+/obj/machinery/vr_sleeper/emag_act(mob/user, obj/item/card/emag/emag_card)
 	you_die_in_the_game_you_die_for_real = TRUE
 	sparks.start()
 	addtimer(CALLBACK(src, PROC_REF(emagNotify)), 150)
-
-/obj/machinery/vr_sleeper/update_icon()
+	return TRUE
+	
+/obj/machinery/vr_sleeper/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][state_open ? "-open" : ""]"
 
 /obj/machinery/vr_sleeper/open_machine()

@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	if(chant_slowdown)
 		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
 	chant()
-	if(!do_after(invoker, channel_time, invoker, extra_checks = CALLBACK(src, PROC_REF(check_special_requirements)), stayStill = no_mobility))
+	if(!do_after(invoker, channel_time, invoker, timed_action_flags = (no_mobility ? IGNORE_USER_LOC_CHANGE : NONE), extra_checks = CALLBACK(src, PROC_REF(check_special_requirements))))
 		slab.busy = null
 		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 		chanting = FALSE

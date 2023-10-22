@@ -20,11 +20,10 @@
 	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
 	START_PROCESSING(SSobj, src)
 
-/obj/structure/toilet_bong/update_icon()
+/obj/structure/toilet_bong/update_overlays()
 	. = ..()
-	cut_overlays()
 	if (LAZYLEN(contents))
-		add_overlay(weed_overlay)
+		. += weed_overlay
 
 /obj/structure/toilet_bong/attack_hand(mob/user)
 	. = ..()
@@ -44,7 +43,7 @@
 		smoke.set_up(smoke_spread, location = location, carry = boof.reagents, silent = TRUE)
 		smoke.start()
 		qdel(boof)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 // It's a bong powered by a **flamethrower**, it's definitely an open flame!!
 /obj/structure/toilet_bong/process()

@@ -504,15 +504,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 	return 1
 
-/proc/is_blocked_turf(turf/T, exclude_mobs)
-	if(T.density)
-		return 1
-	for(var/i in T)
-		var/atom/A = i
-		if(A.density && (!exclude_mobs || !ismob(A)))
-			return 1
-	return 0
-
 /proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
 	if(T.density)
 		return 1
@@ -526,7 +517,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/base_dir = get_dir(ref, get_step_towards(ref,trg))
 	var/turf/temp = get_step_towards(ref,trg)
 
-	if(is_blocked_turf(temp))
+	if(temp.is_blocked_turf())
 		var/dir_alt1 = turn(base_dir, 90)
 		var/dir_alt2 = turn(base_dir, -90)
 		var/turf/turf_last1 = temp
@@ -535,10 +526,10 @@ Turf and target are separate in case you want to teleport some distance from a t
 		var/breakpoint = 0
 
 		while(!free_tile && breakpoint < 10)
-			if(!is_blocked_turf(turf_last1))
+			if(!turf_last1.is_blocked_turf())
 				free_tile = turf_last1
 				break
-			if(!is_blocked_turf(turf_last2))
+			if(!turf_last2.is_blocked_turf())
 				free_tile = turf_last2
 				break
 			turf_last1 = get_step(turf_last1,dir_alt1)
@@ -1299,44 +1290,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	temp = ((temp + (temp>>3))&29127) % 63	//070707
 	return temp
 
-//same as do_mob except for movables and it allows both to drift and doesn't draw progressbar
-/proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
-	if(!user || !target)
-		return TRUE
-	var/user_loc = user.loc
-
-	var/drifting = FALSE
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = TRUE
-
-	var/target_drifting = FALSE
-	if(!target.Process_Spacemove(0) && target.inertia_dir)
-		target_drifting = TRUE
-
-	var/target_loc = target.loc
-
-	var/endtime = world.time+time
-	. = TRUE
-	while (world.time < endtime)
-		stoplag(1)
-		if(QDELETED(user) || QDELETED(target))
-			. = 0
-			break
-		if(uninterruptible)
-			continue
-
-		if(drifting && !user.inertia_dir)
-			drifting = FALSE
-			user_loc = user.loc
-
-		if(target_drifting && !target.inertia_dir)
-			target_drifting = FALSE
-			target_loc = target.loc
-
-		if((!drifting && user.loc != user_loc) || (!target_drifting && target.loc != target_loc) || (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1438,6 +1391,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/blue,
 		/mob/living/simple_animal/hostile/retaliate/goat/brown,
 		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
@@ -1463,6 +1417,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
 		/mob/living/simple_animal/hostile/retaliate/goat/clown,
 		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
 		/mob/living/simple_animal/hostile/retaliate/goat/ras,
 		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
 		/mob/living/simple_animal/hostile/retaliate/goat/confetti,

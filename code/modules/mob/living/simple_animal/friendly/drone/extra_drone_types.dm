@@ -112,11 +112,9 @@
 	icon_dead = "drone_clock_dead"
 	picked = TRUE
 	pass_flags = PASSTABLE
-	health = 50
-	maxHealth = 50
 	harm_intent_damage = 5
 	density = TRUE
-	speed = 1
+	speed = 0
 	ventcrawler = VENTCRAWLER_NONE
 	faction = list("neutral", "ratvar")
 	speak_emote = list("clanks", "clinks", "clunks", "clangs")

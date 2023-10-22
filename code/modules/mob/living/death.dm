@@ -1,9 +1,11 @@
 GLOBAL_VAR_INIT(permadeath, FALSE)
 
-/mob/living/gib(no_brain, no_organs, no_bodyparts)
+/mob/living/proc/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying
 	if(stat != DEAD)
 		death(TRUE)
+
+	unequip_everything()
 
 	if(!prev_lying)
 		gib_animation()
@@ -38,7 +40,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
  * * drop_items - Should the mob drop their items before dusting?
  * * force - Should this mob be FORCABLY dusted?
 */
-/mob/living/dust(just_ash, drop_items, force)
+/mob/living/proc/dust(just_ash, drop_items, force)
 	death(TRUE)
 
 	if(drop_items)
@@ -58,7 +60,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	new /obj/effect/decal/cleanable/ash(loc)
 
 
-/mob/living/death(gibbed)
+/mob/living/proc/death(gibbed)
 	if(stat == DEAD)
 		return FALSE
 
@@ -93,7 +95,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	stop_pulling()
 
 	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed)
-	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src, gibbed)
 
 	if (client)
 		client.move_delay = initial(client.move_delay)

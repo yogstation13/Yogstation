@@ -35,7 +35,7 @@
 		V.attached_device = A
 		A.holder = V
 
-	V.update_icon()
+	V.update_appearance(UPDATE_ICON)
 
 	return INITIALIZE_HINT_QDEL
 

@@ -8,7 +8,7 @@
 	icon_aggro = "Goldgrub_alert"
 	icon_dead = "Goldgrub_dead"
 	icon_gib = "syndicate_gib"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	vision_range = 2
 	aggro_vision_range = 9
 	move_to_delay = 5
@@ -77,7 +77,7 @@
 		visible_message(span_danger("\The [name] buries into the ground, vanishing from sight!"))
 		qdel(src)
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/bullet_act(obj/projectile/P)
 	visible_message(span_danger("\The [P.name] was repelled by [name]'s blubberous girth!"))
 	return BULLET_ACT_BLOCK
 

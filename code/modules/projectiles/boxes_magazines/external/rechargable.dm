@@ -8,16 +8,18 @@
 	caliber = LASER
 	max_ammo = 20
 
-/obj/item/ammo_box/magazine/recharge/update_icon()
-	..()
+/obj/item/ammo_box/magazine/recharge/update_desc(updates=ALL)
+	. = ..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
-	cut_overlays()
+
+/obj/item/ammo_box/magazine/recharge/update_overlays()
+	. = ..()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo >= max_ammo)
-			add_overlay("[icon_state]_o_full")
+			. += "[icon_state]_o_full"
 		else
-			add_overlay("[icon_state]_o_mid")
+			. += "[icon_state]_o_mid"
 
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
@@ -28,10 +30,9 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "lasgunmag"
 	desc = "A rechargeable, detachable battery that serves as a magazine for las weaponry."
-	
-/obj/item/ammo_box/magazine/recharge/lasgun/update_icon()
-	..()
-	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
+
+/obj/item/ammo_box/magazine/recharge/lasgun/update_icon_state()
+	. = ..()
 	if(ammo_count())
 		icon_state = "[initial(icon_state)]"
 	else
@@ -55,7 +56,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp
 	name = "NT-USP pistol"
-	desc = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
+	desc = "The NT-HL3, later renamed to the NT-USP, is a small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
 	icon_state = "ntusp"
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/recharge/ntusp
@@ -74,7 +75,8 @@
 		"fire" = 2
 	)
 
-/obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon()
+/obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon(updates=ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		// Tricks the parent proc into thinking we have a skin so it uses the laser-variant icon_state
@@ -82,7 +84,6 @@
 		current_skin = "ntusp-l"
 		unique_reskin = list()
 		unique_reskin[current_skin] = current_skin
-	..()
 	current_skin = null
 	unique_reskin = null
 
@@ -104,7 +105,7 @@
 		var/bullets_to_remove = round(bullet_count / (severity*2))
 		for(var/i = 0; i < bullets_to_remove, i++)
 			qdel(get_round())
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(isgun(loc))
 			var/obj/item/gun/ballistic/G = loc
 			if(!G.magazine == src)
@@ -117,12 +118,12 @@
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
 	harmful = FALSE
-	projectile_type = /obj/item/projectile/bullet/c22hl
+	projectile_type = /obj/projectile/bullet/c22hl
 
-/obj/item/projectile/bullet/c22hl //.22 HL
+/obj/projectile/bullet/c22hl //.22 HL
 	name = "hardlight beam"
 	icon_state = "disabler_bullet"
-	flag = ENERGY
+	armor_flag = ENERGY
 	damage = 0 // maybe don't do actual damage so pacifists can use it and silicons won't be mad
 	damage_type = BURN
 	stamina = 25
@@ -135,15 +136,14 @@
 	icon_state = "powerpack_small-l"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_icon()
-	..()
-	cut_overlays()
+/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_overlays()
+	. = ..()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo >= max_ammo)
-			add_overlay("powerpack_small_o_full")
+			. += "powerpack_small_o_full"
 		else
-			add_overlay("powerpack_small_o_mid")
+			. += "powerpack_small_o_mid"
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
 	start_empty = TRUE
@@ -151,12 +151,12 @@
 /obj/item/ammo_casing/caseless/c22ls
 	caliber = LASER
 	harmful = TRUE
-	projectile_type = /obj/item/projectile/bullet/c22ls
+	projectile_type = /obj/projectile/bullet/c22ls
 
-/obj/item/projectile/bullet/c22ls //.22 LS
+/obj/projectile/bullet/c22ls //.22 LS
 	name = "laser beam"
 	icon_state = "disabler_bullet"
-	flag = LASER
+	armor_flag = LASER
 	damage = 18
 	damage_type = BURN
 	color = "#ff0000"

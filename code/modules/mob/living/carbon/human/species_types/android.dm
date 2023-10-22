@@ -2,9 +2,10 @@
 	name = "Android"
 	id = "android"
 	say_mod = "states"
+	sexes = FALSE
 	species_traits = list(NOBLOOD, NOZOMBIE, NOHUSK, NO_DNA_COPY, NOTRANSSTING)
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_COLDBLOODED,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_GENELESS,TRAIT_NOFIRE,TRAIT_PIERCEIMMUNE,TRAIT_NOHUNGER,TRAIT_LIMBATTACHMENT,TRAIT_MEDICALIGNORE)
-	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
 	skinned_type = /obj/item/stack/sheet/metal{amount = 10}
 	damage_overlay_type = "synth"
@@ -18,7 +19,6 @@
 	limbs_id = "synth"
 	toxmod = 0
 	clonemod = 0
-	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'

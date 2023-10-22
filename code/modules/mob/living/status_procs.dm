@@ -422,7 +422,7 @@
 	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		blind_eyes(1)
 	ADD_TRAIT(src, TRAIT_BLIND, source)
-
+		
 /mob/living/proc/cure_nearsighted(list/sources)
 	REMOVE_TRAIT(src, TRAIT_NEARSIGHT, sources)
 	if(!HAS_TRAIT(src, TRAIT_NEARSIGHT))

@@ -10,8 +10,8 @@
 /mob/living/silicon/robot/get_active_held_item(get_gripper = FALSE)
 	var/item = module_active
 	// snowflake handler for the gripper
-	if(istype(item, /obj/item/gripper) && !get_gripper)
-		var/obj/item/gripper/G = item
+	if(istype(item, /obj/item/borg/gripper) && !get_gripper)
+		var/obj/item/borg/gripper/G = item
 		if(G.wrapped)
 			if(G.wrapped.loc != G)
 				G.wrapped = null
@@ -24,6 +24,12 @@
   * Parent proc - triggers when an item/module is unequipped from a cyborg.
   */
 /obj/item/proc/cyborg_unequip(mob/user)
+	return
+
+/**
+  * Parent proc - triggers when an item/module is equipped from a cyborg.
+  */
+/obj/item/proc/cyborg_equip(mob/user)
 	return
 
 /**
@@ -77,6 +83,7 @@
 	item_module.mouse_opacity = initial(item_module.mouse_opacity)
 	item_module.layer = ABOVE_HUD_LAYER
 	item_module.plane = ABOVE_HUD_PLANE
+	item_module.cyborg_equip(src)
 	item_module.forceMove(src)
 
 	if(istype(item_module, /obj/item/borg/sight))
@@ -268,7 +275,7 @@
   */
 /mob/living/silicon/robot/proc/uneq_active()
 	if(module_active)
-		var/obj/item/gripper/gripper = get_active_held_item(TRUE)
+		var/obj/item/borg/gripper/gripper = get_active_held_item(TRUE)
 		if(istype(gripper) && gripper.drop_held())
 			return
 		unequip_module_from_slot(module_active, get_selected_module())
@@ -410,5 +417,5 @@
 		if(slot_num > 4) // not >3 otherwise cycling with just one item on module 3 wouldn't work
 			slot_num = 1 //Wrap around.
 
-/mob/living/silicon/robot/swap_hand()
+/mob/living/silicon/robot/perform_hand_swap()
 	cycle_modules()

@@ -47,7 +47,7 @@
 	var/mob/living/carbon/human/dummy/consistent/brother1 = new
 	var/mob/living/carbon/human/dummy/consistent/brother2 = new
 
-	brother1.dna.features["ethcolor"] = GLOB.color_list_ethereal["Faint Red"]
+	brother1.dna.features["mcolor"] = "#ff4d4d"
 	brother1.set_species(/datum/species/ethereal)
 
 	brother2.dna.features["moth_antennae"] = "Plain"
@@ -138,17 +138,15 @@
 	var/datum/antagonist/traitor/tot = new()
 	tot.give_objectives = FALSE
 	
-	for(var/datum/objective/obj in objectives)
+	for(var/datum/objective/obj in team.objectives)
 		var/obj_type = obj.type
 		var/datum/objective/new_obj = new obj_type()
 		new_obj.owner = owner
 		new_obj.copy_target(obj)
 		tot.add_objective(new_obj)
-		qdel(obj)
-	objectives.Cut()
 	
-	owner.add_antag_datum(tot)
 	owner.remove_antag_datum(/datum/antagonist/brother)
+	owner.add_antag_datum(tot)
 
 /datum/antagonist/brother/proc/give_pinpointer()
 	if(owner && owner.current)

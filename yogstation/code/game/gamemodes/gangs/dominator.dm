@@ -28,7 +28,7 @@
 	spark_system = new
 	spark_system.set_up(5, TRUE, src)
 	countdown = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	.=..()
 
 /obj/machinery/dominator/Destroy()
@@ -51,24 +51,30 @@
 /obj/machinery/dominator/hulk_damage()
 	return (max_integrity - integrity_failure) / DOM_HULK_HITS_REQUIRED
 
-/obj/machinery/dominator/tesla_act()
+/obj/machinery/dominator/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	qdel(src)
 
-/obj/machinery/dominator/update_icon()
-	cut_overlays()
-	if(!(stat & BROKEN))
-		icon_state = "dominator-active"
-		if(operating)
-			var/mutable_appearance/dominator_overlay = mutable_appearance('icons/obj/machines/dominator.dmi', "dominator-overlay")
-			if(gang)
-				dominator_overlay.color = gang.color
-			add_overlay(dominator_overlay)
-		else
-			icon_state = "dominator"
-		if(obj_integrity/max_integrity < 0.66)
-			add_overlay("damage")
-	else
+/obj/machinery/dominator/update_overlays()
+	. = ..()
+	if(stat & BROKEN)
+		return
+	if(operating)
+		var/mutable_appearance/dominator_overlay = mutable_appearance('icons/obj/machines/dominator.dmi', "dominator-overlay")
+		if(gang)
+			dominator_overlay.color = gang.color
+		. += dominator_overlay
+	if(obj_integrity/max_integrity < 0.66)
+		. += "damage"
+
+/obj/machinery/dominator/update_icon_state()
+	. = ..()
+	if(stat & BROKEN)
 		icon_state = "dominator-broken"
+		return
+	if(!operating)
+		icon_state = "dominator"
+		return
+	icon_state = "dominator-active"
 
 /obj/machinery/dominator/examine(mob/user)
 	. = ..()
@@ -137,7 +143,7 @@
 				spark_system.start()
 		else if(!(stat & BROKEN))
 			spark_system.start()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 
 /obj/machinery/dominator/obj_break(damage_flag)
@@ -196,7 +202,7 @@
 		SSshuttle.registerHostileEnvironment(src)
 		name = "[gang.name] Gang [name]"
 		operating = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 		countdown.color = gang.color
 		countdown.start()
@@ -244,7 +250,7 @@
 	set_light(0)
 	operating = FALSE
 	stat |= BROKEN
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	STOP_PROCESSING(SSmachines, src)
 	if(nukedisk)
 		nukedisk.forceMove(drop_location())

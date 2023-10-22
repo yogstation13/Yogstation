@@ -154,6 +154,8 @@
 		victory_timer = null
 
 	if(check_rev_victory())
+		if(!loud)
+			go_loud()
 		if(victory_timer_ended)
 			finished = 1
 		if(!victory_timer)
@@ -162,8 +164,6 @@
 			log_game("Revs victory timer started")
 
 	else if(check_heads_victory())
-		if(!loud)
-			go_loud()
 		if(victory_timer_ended)
 			finished = 2
 		if(!victory_timer)

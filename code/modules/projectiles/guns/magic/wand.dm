@@ -21,7 +21,8 @@
 	. = ..()
 	. += "Has [charges] charge\s remaining."
 
-/obj/item/gun/magic/wand/update_icon()
+/obj/item/gun/magic/wand/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][charges ? "" : "-drained"]"
 
 /obj/item/gun/magic/wand/attack(atom/target, mob/living/user)
@@ -44,7 +45,7 @@
 		zap_self(user)
 	else
 		. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user)
@@ -99,7 +100,7 @@
 		return
 	..()
 	charges--
-	if(user.anti_magic_check())
+	if(user.can_block_magic())
 		user.visible_message(span_warning("[src] has no effect on [user]!"))
 		return
 	user.revive(full_heal = 1)

@@ -49,7 +49,7 @@
 		. |= COMPONENT_ITEM_BURNT_OUT
 
 	charges = max_charges
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	recharge_newshot()
 
 	return .
@@ -63,7 +63,7 @@
 			return
 		else
 			no_den_usage = 0
-	if(checks_antimagic && user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE))
+	if(checks_antimagic && user.can_cast_magic())
 		add_fingerprint(user)
 		to_chat(user, span_warning("Something is interfering with [src]."))
 		return
@@ -108,8 +108,9 @@
 		recharge_newshot()
 	return 1
 
-/obj/item/gun/magic/update_icon()
-	return
+/obj/item/gun/magic/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, span_warning("The [name] whizzles quietly."))

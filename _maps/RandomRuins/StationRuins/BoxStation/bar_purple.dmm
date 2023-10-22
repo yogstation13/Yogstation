@@ -1153,7 +1153,7 @@
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "dy" = (
@@ -1244,7 +1244,7 @@
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/kitchen)
 "vE" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "xW" = (
@@ -1264,7 +1264,7 @@
 /obj/structure/table/reinforced{
 	color = "purple"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},

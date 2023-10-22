@@ -5,7 +5,7 @@
 	icon_state = "blackdog"
 	icon_living = "blackdog"
 	icon_dead = "blackdog_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
@@ -74,11 +74,13 @@
 	animal_species = /mob/living/simple_animal/pet/dog/corgi/borgi
 	nofur = TRUE
 
-/mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(user as mob)
-	if(!emagged)
-		emagged = TRUE
-		visible_message(span_warning("[user] swipes a card through [src]."), span_notice("You overload [src]s internal reactor."))
-		addtimer(CALLBACK(src, PROC_REF(explode)), 1000)
+/mob/living/simple_animal/pet/dog/corgi/borgi/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(emagged)
+		return FALSE
+	emagged = TRUE
+	visible_message(span_warning("[user] swipes a card through [src]."), span_notice("You overload [src]s internal reactor."))
+	addtimer(CALLBACK(src, PROC_REF(explode)), 1000)
+	return TRUE
 
 /mob/living/simple_animal/pet/dog/corgi/borgi/proc/explode()
 	visible_message(span_warning("[src] makes an odd whining noise."))

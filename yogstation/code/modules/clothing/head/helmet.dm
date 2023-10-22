@@ -5,7 +5,8 @@
 	. = ..()
 	initial_state = "[initial(icon_state)]"
 
-/obj/item/clothing/head/helmet/update_icon()
+/obj/item/clothing/head/helmet/update_icon_state()
+	. = ..()
 	var/state = "[initial_state]"
 	if(attached_light)
 		if(attached_light.on)

@@ -25,7 +25,7 @@
 /turf/closed/wall/r_wall,
 /area/template_noop)
 "n" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plating,
 /area/template_noop)
 "p" = (
@@ -37,6 +37,12 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/template_noop)
+"t" = (
+/obj/structure/transit_tube{
+	dir = 8
+	},
+/turf/baseturf_bottom,
 /area/template_noop)
 "v" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -54,14 +60,8 @@
 /area/template_noop)
 "z" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plating,
-/area/template_noop)
-"I" = (
-/obj/structure/transit_tube{
-	dir = 8
-	},
-/turf/open/space/basic,
 /area/template_noop)
 "K" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -111,28 +111,28 @@ k
 (4,1,1) = {"
 b
 v
-I
+t
 v
 b
 "}
 (5,1,1) = {"
 b
 v
-I
+t
 v
 b
 "}
 (6,1,1) = {"
 b
 v
-I
+t
 v
 b
 "}
 (7,1,1) = {"
 b
 v
-I
+t
 v
 b
 "}

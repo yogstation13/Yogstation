@@ -26,6 +26,13 @@
 /datum/http_request/proc/execute_blocking()
 	_raw_response = rustg_http_request_blocking(method, url, body, headers, build_options())
 
+/datum/http_request/proc/from_id(id)
+	if (in_progress)
+		CRASH("Attempted to re-use a request object.")
+
+	src.id = id
+	in_progress = TRUE
+
 /datum/http_request/proc/begin_async()
 	if (in_progress)
 		CRASH("Attempted to re-use a request object.")

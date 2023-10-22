@@ -43,7 +43,7 @@
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
-			if(INTERACTING_WITH(user, H))
+			if(DOING_INTERACTION(user, H))
 				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
@@ -68,7 +68,7 @@
 		if(!C || QDELETED(src))
 			return
 		current_color = C
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	action.build_all_button_icons()
 	user.regenerate_icons()
 
@@ -80,7 +80,7 @@
 	current_tool = mode
 	current_tool.on_set(src)
 	playsound(loc, 'yogstation/sound/items/holotool.ogg', get_clamped_volume(), 1, -1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.regenerate_icons()
 
 
@@ -101,7 +101,8 @@
 		else
 			qdel(M)
 
-/obj/item/holotool/update_icon()
+/obj/item/holotool/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(current_tool)
 		var/mutable_appearance/holo_item = mutable_appearance(icon, current_tool.name)
@@ -117,7 +118,7 @@
 		icon_state = "holotool"
 		set_light(0)
 
-	for(var/datum/action/A in actions)
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)
@@ -137,13 +138,13 @@
 		if(new_tool)
 			switch_tool(user, new_tool)
 
-/obj/item/holotool/emag_act(mob/user)
+/obj/item/holotool/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_danger("ZZT- ILLEGAL BLUEPRINT UNLOCKED- CONTACT !#$@^%$# NANOTRASEN SUPPORT-@*%$^%!"))
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED
-
+	return TRUE
 
 // Spawn in RD closet
 /obj/structure/closet/secure_closet/RD/PopulateContents()

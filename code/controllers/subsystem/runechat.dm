@@ -43,6 +43,11 @@ SUBSYSTEM_DEF(runechat)
 	msg += "ActMsgs:[bucket_count] SecQueue:[length(second_queue)]"
 	return msg
 
+/datum/controller/subsystem/runechat/get_metrics()
+	. = ..()
+	.["buckets"] = bucket_count
+	.["second_queue"] = length(second_queue)
+
 /datum/controller/subsystem/runechat/fire(resumed = FALSE)
 	// Store local references to datum vars as it is faster to access them this way
 	var/list/bucket_list = src.bucket_list

@@ -312,7 +312,7 @@
 	},
 /area/crew_quarters/kitchen)
 "bb" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-03"
 	},
 /turf/open/floor/plasteel/vaporwave,
@@ -926,7 +926,7 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "gz" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-26"
 	},
 /turf/open/floor/plasteel/vaporwave,
@@ -1146,7 +1146,7 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},

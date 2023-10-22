@@ -93,11 +93,11 @@ jobs:
     runs-on: ubuntu-20.04
     services:
       mariadb:
-       image: mariadb/server
+       image: mariadb
        ports: 
          - 3306:3306
        env:
-        MARIADB_ALLOW_EMPTY_PASSWORD: yes
+        MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
         
     steps:
       - uses: actions/checkout@v2

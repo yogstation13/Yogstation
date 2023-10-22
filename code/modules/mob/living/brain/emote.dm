@@ -18,6 +18,14 @@
 	message = "lets out a distressed noise."
 	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/brain/beep
+	key = "beep"
+	key_third_person = "beeps"
+	message = "beeps."
+	message_param = "beeps at %t."
+	sound = 'sound/machines/twobeep.ogg'
+	emote_type = EMOTE_AUDIBLE
+
 /datum/emote/brain/flash
 	key = "flash"
 	message = "blinks their lights."

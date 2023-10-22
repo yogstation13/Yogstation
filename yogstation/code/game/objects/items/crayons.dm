@@ -88,7 +88,7 @@
 	if(G)
 		gang = G
 		paint_color = G.color
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/toy/crayon/spraycan/gang/examine(mob/user)
 	. = ..()

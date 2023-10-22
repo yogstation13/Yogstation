@@ -3,7 +3,7 @@
 	desc = "Allows a creature to voluntary discard a random appendage."
 	quality = POSITIVE
 	text_gain_indication = span_notice("Your joints feel loose.")
-	instability = 30
+	instability = 10
 	power_path = /datum/action/cooldown/spell/self_amputation
 
 	energy_coeff = 1
@@ -39,4 +39,4 @@
 		return
 
 	var/obj/item/bodypart/to_remove = pick(parts)
-	to_remove.dismember()
+	to_remove.drop_limb()

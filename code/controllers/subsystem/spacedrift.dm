@@ -12,6 +12,9 @@ SUBSYSTEM_DEF(spacedrift)
 	msg = "P:[length(processing)]"
 	return ..()
 
+/datum/controller/subsystem/spacedrift/get_metrics()
+	. = ..()
+	.["queued"] = length(processing)
 
 /datum/controller/subsystem/spacedrift/fire(resumed = 0)
 	if (!resumed)

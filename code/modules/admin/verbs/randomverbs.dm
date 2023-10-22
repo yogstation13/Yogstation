@@ -762,7 +762,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_gib(mob/M in GLOB.mob_list)
+/client/proc/cmd_admin_gib(mob/living/M in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
 	set name = "Gib"
 
@@ -797,7 +797,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins(span_adminnotice("[key_name_admin(usr)] used gibself."))
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Gib Self") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		mob.gib(1, 1, 1)
+		var/mob/living/user_mob = mob
+		user_mob.gib(1, 1, 1)
 
 /client/proc/cmd_admin_check_contents(mob/living/M in GLOB.mob_list)
 	set category = "Misc.Unused"
@@ -1391,7 +1392,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!target.get_bodypart(body_zone))
 		return
 	playsound(target, 'sound/weapons/revolver357shot.ogg', 100)
-	var/obj/item/projectile/bullet/smite/divine_wrath = new(source_turf)
+	var/obj/projectile/bullet/smite/divine_wrath = new(source_turf)
 	divine_wrath.damage = damage
 	divine_wrath.wound_bonus = wound_bonus
 	divine_wrath.original = target

@@ -32,7 +32,7 @@
 
 /obj/item/clothing/gloves/fingerless/bigboss
 	tacticalspeed = 0.66 //Does channels 34% faster
-	clothing_traits = list(TRAIT_QUICKER_CARRY)
+	clothing_traits = list(TRAIT_QUICKER_CARRY, TRAIT_STRONG_GRIP)
 
 /obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
 	var/mob/living/M = loc
@@ -158,7 +158,7 @@
 	button_icon_state = "cuff"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
 	click_to_activate = TRUE
-	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS 
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
 
 	cooldown_time = 10 SECONDS
 

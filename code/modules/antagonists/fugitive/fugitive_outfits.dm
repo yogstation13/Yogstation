@@ -5,7 +5,7 @@
 	r_pocket = /obj/item/kitchen/knife/carrotshiv
 	var/list/rhand_items = list(
 		/obj/item/storage/toolbox/mechanical,
-		/obj/item/twohanded/spear,
+		/obj/item/melee/spear,
 		/obj/item/gun/ballistic/automatic/surplus,
 		/obj/item/melee/baton/cattleprod
 		) //Prisoners get a random item from this list
@@ -45,12 +45,12 @@
 	if(visualsOnly)
 		return
 	H.fully_replace_character_name(null,"Waldo")
-	H.eye_color = "000"
+	H.eye_color = "#000000"
 	H.gender = MALE
 	H.skin_tone = "caucasian3"
 	H.hair_style = "Business Hair 3"
 	H.facial_hair_style = "Shaved"
-	H.hair_color = "000"
+	H.hair_color = "#000000"
 	H.facial_hair_color = H.hair_color
 
 	var/list/no_drops = list()

@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-c"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC
 	var/gpstag = "COM0"
 	var/emped = FALSE
 	var/tracking = TRUE

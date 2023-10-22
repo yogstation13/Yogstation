@@ -34,7 +34,7 @@
 	if(check_glasses && glasses && (glasses.flags_cover & GLASSESCOVERSEYES))
 		return glasses
 
-/mob/living/carbon/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
+/mob/living/carbon/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	var/obj/item/bodypart/affecting = get_bodypart(def_zone)
 	if(affecting && affecting.dismemberable && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
 		affecting.dismember(P.damtype)
@@ -155,7 +155,7 @@
 		return
 	var/time_taken = choice.embedding.embedded_unsafe_removal_time * choice.w_class
 	user.visible_message(span_warning("[user] attempts to remove [choice] from [user.p_their()] [body_part.name]."),span_notice("You attempt to remove [choice] from your [body_part.name]... (It will take [DisplayTimeText(time_taken)].)"))
-	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
+	if(!do_after(user, time_taken, target = src) && !(choice in body_part.embedded_objects))
 		return
 	if(remove_embedded_object(choice, get_turf(src), unsafe = TRUE) && !QDELETED(choice))
 		user.put_in_hands(choice)
@@ -372,11 +372,15 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
+	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
+		severity++
+		if(severity > EMP_LIGHT)
+			return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
 		O.emp_act(severity)
 
-/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
@@ -414,7 +418,14 @@
 			revive()
 			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 			adjust_jitter(10 SECONDS)
-			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
+			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199)
+	if(gib && siemens_coeff > 0)
+		visible_message(
+			span_danger("[src] body is emitting a loud noise!"), \
+			span_userdanger("You feel like you are about to explode!"), \
+			span_italics("You hear a loud noise!"), \
+		)
+		addtimer(CALLBACK(src, PROC_REF(supermatter_tesla_gib)), 4 SECONDS) //yogs end
 	if(override)
 		return override
 	else

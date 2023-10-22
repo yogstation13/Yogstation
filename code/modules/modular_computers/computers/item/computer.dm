@@ -99,7 +99,7 @@
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
@@ -156,7 +156,13 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-		return (card_slot2?.try_eject(user) || card_slot?.try_eject(user)) //Try the secondary one first.
+		if(card_slot2)
+			var/obj/item/card/id/target_id_card = card_slot2.stored_card
+			if(!target_id_card)
+				return card_slot?.try_eject(user)
+			GLOB.data_core.manifest_modify(target_id_card.registered_name, target_id_card.assignment)
+			return card_slot2.try_eject(user)
+		return card_slot?.try_eject(user)
 
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.
@@ -235,7 +241,7 @@
 		if(response == "Yes")
 			turn_on(user)
 
-/obj/item/modular_computer/emag_act(mob/user)
+/obj/item/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!enabled)
 		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
 		return FALSE
@@ -262,7 +268,8 @@
 
 	. += get_modular_computer_parts_examine(user)
 
-/obj/item/modular_computer/update_icon()
+/obj/item/modular_computer/update_icon(updates=ALL)
+	. = ..()
 	if(!physical)
 		return
 
@@ -293,11 +300,11 @@
 
 /obj/item/modular_computer/equipped()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/modular_computer/dropped()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/modular_computer/proc/update_label()
@@ -338,7 +345,7 @@
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
@@ -480,7 +487,7 @@
 	var/mob/user = usr
 	if(user && istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
@@ -504,7 +511,7 @@
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
 
 /**
@@ -517,7 +524,7 @@
 	if(!has_light)
 		return FALSE
 	set_light_on(!light_on)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /**

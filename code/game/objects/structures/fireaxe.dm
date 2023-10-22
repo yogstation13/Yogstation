@@ -10,9 +10,9 @@
 	integrity_failure = 50
 	var/locked = TRUE
 	var/open = FALSE
-	var/obj/item/twohanded/fireaxe/fireaxe
+	var/obj/item/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
-	var/obj/item/twohanded/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
+	var/obj/item/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
 	var/alert = TRUE
 	var/axe = TRUE
 
@@ -21,7 +21,7 @@
 /obj/structure/fireaxecabinet/Initialize(mapload)
 	. = ..()
 	fireaxe = new
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //yogs NOTICE - Destroy() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
@@ -34,9 +34,10 @@
 
 /obj/structure/fireaxecabinet/attackby(obj/item/I, mob/user, params)
 	check_deconstruct(I, user)//yogs - deconstructible cabinet
-	if(iscyborg(user) || I.tool_behaviour == TOOL_MULTITOOL)
-		reset_lock(user) //yogs - adds reset option
-	else if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		reset_lock(user) // Yogs - Adds reset option.
+		return
+	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		//Repairing light damage with a welder
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
@@ -44,7 +45,7 @@
 			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
 				obj_integrity = max_integrity
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				to_chat(user, span_notice("You repair [src]."))
 		else
 			to_chat(user, span_warning("[src] is already in good condition!"))
@@ -59,23 +60,23 @@
 		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
 			obj_integrity = max_integrity
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
 		to_chat(user, span_warning("You need reinforced glass sheets to fix [src]!"))
 	//yogs end
 	else if(open || broken)
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
-		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe && axe)
-			var/obj/item/twohanded/fireaxe/F = I
-			if(F.wielded)
+		if(istype(I, /obj/item/fireaxe) && !fireaxe && axe)
+			var/obj/item/fireaxe/F = I
+			if(HAS_TRAIT(F, TRAIT_WIELDED))
 				to_chat(user, span_warning("Unwield the [F.name] first."))
 				return
 			if(!user.transferItemToLoc(F, src))
 				return
 			fireaxe = F
 			to_chat(user, span_caution("You place the [F.name] back in the [name]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		else if(istype(I, /obj/item/card/id/captains_spare) && !spareid && !axe)
 			var/obj/item/card/id/captains_spare/S = I
@@ -83,10 +84,10 @@
 				return
 			spareid = S
 			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
-		else if(istype(I, /obj/item/twohanded/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
-			var/obj/item/twohanded/fishingrod/collapsible/miningmedic/R = I
+		else if(istype(I, /obj/item/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
+			var/obj/item/fishingrod/collapsible/miningmedic/R = I
 			if(R.opened)
 				to_chat(user, span_caution("[R.name] won't seem to fit!"))
 				return
@@ -94,7 +95,7 @@
 				return
 			olreliable = R
 			to_chat(user, span_caution("You place the [R.name] back in the [name]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		else if(!broken)
 			//open the cabinet normally.
@@ -131,11 +132,11 @@
 		return
 	. = ..()
 	if(.)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/fireaxecabinet/obj_break(damage_flag)
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		broken = TRUE
 		playsound(src, 'sound/effects/glassbr3.ogg', 100, 1)
 		new /obj/item/shard(loc)
@@ -178,7 +179,7 @@
 			spareid = null
 			olreliable = null
 			src.add_fingerprint(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 	toggle_open()//yogs - consolidates opening code
 	return
@@ -190,38 +191,44 @@
 	toggle_lock(user)
 	return
 
+/obj/structure/fireaxecabinet/attack_robot(mob/living/silicon/user)
+	if(user.a_intent == INTENT_HARM) // In the case they still want to try to `reset_lock` instead of `toggle_lock`.
+		reset_lock(user)
+		return
+	. = ..()
+
 /obj/structure/fireaxecabinet/attack_tk(mob/user)
 	toggle_open()//yogs - consolidates opening code
 	return
 
-/obj/structure/fireaxecabinet/update_icon()
-	cut_overlays()
+/obj/structure/fireaxecabinet/update_overlays()
+	. = ..()
 	if(fireaxe)
-		add_overlay("axe")
+		. += "axe"
 	if(spareid)
-		add_overlay("card")
+		. += "card"
 	if(olreliable)
-		add_overlay("rod")
-	if(!open)
-		var/hp_percent = obj_integrity/max_integrity * 100
-		if(broken)
-			add_overlay("glass4")
-		else
-			switch(hp_percent)
-				if(-INFINITY to 40)
-					add_overlay("glass3")
-				if(40 to 60)
-					add_overlay("glass2")
-				if(60 to 80)
-					add_overlay("glass1")
-				if(80 to INFINITY)
-					add_overlay("glass")
-		if(locked)
-			add_overlay("locked")
-		else
-			add_overlay("unlocked")
+		. += "rod"
+	if(open)
+		. += "glass_raised"
+		return
+	var/hp_percent = obj_integrity/max_integrity * 100
+	if(broken)
+		. += "glass4"
 	else
-		add_overlay("glass_raised")
+		switch(hp_percent)
+			if(-INFINITY to 40)
+				. += "glass3"
+			if(40 to 60)
+				. += "glass2"
+			if(60 to 80)
+				. += "glass1"
+			if(80 to INFINITY)
+				. += "glass"
+	if(locked)
+		. += "locked"
+	else
+		. += "unlocked"
 
 //yogs NOTICE - toggle_lock() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
@@ -231,7 +238,7 @@
 	if(do_after(user, 2 SECONDS, src))
 		to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 		locked = !locked
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/fireaxecabinet/verb/toggle_open()
 	set name = "Open/Close"
@@ -247,7 +254,7 @@
 	else
 		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)//yogs - adds open/close sound
 		open = !open
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 /obj/structure/fireaxecabinet/proc/trigger_alarm()
@@ -270,7 +277,7 @@
 	. = ..()
 	fireaxe = null
 	spareid = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	
 /obj/structure/fireaxecabinet/bridge/spare/reset_lock(mob/user)
 	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
@@ -288,12 +295,12 @@
 				trigger_alarm() //already checks for alert var
 			toggle_lock(user)
 
-/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user)
+/obj/structure/fireaxecabinet/bridge/spare/emag_act(mob/user, obj/item/card/emag/emag_card)
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	trigger_alarm()
-
+	return TRUE
 
 /obj/structure/fireaxecabinet/fishingrod
 	name = "fishing cabinet"
@@ -308,4 +315,4 @@
 	. = ..()
 	fireaxe = null
 	olreliable = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)

@@ -6,7 +6,7 @@
 	icon_state = "gutlunch"
 	icon_living = "gutlunch"
 	icon_dead = "gutlunch"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_emote = list("warbles", "quavers")
 	emote_hear = list("trills.")
 	emote_see = list("sniffs.", "burps.")
@@ -68,6 +68,10 @@
 		return TRUE
 
 	if(isobj(the_target) && is_type_in_typecache(the_target, wanted_objects))
+		if(isorgan(the_target))
+			var/obj/item/organ/thing = the_target
+			if(thing.status == ORGAN_ROBOTIC)//don't eat robotic organs, they bad for the tummy
+				return FALSE
 		return TRUE
 
 	return FALSE
@@ -91,6 +95,10 @@
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/AttackingTarget()
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
+		if(istype(target, /obj/item/organ))
+			var/obj/item/organ/thing = target
+			if(thing.status == ORGAN_ROBOTIC)//don't eat robotic organs, they bad for the tummy
+				return ..()
 		udder.generateMilk()
 		regenerate_icons()
 		visible_message(span_notice("[src] slurps up [target]."))

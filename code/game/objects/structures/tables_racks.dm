@@ -20,7 +20,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	pass_flags = LETPASSTHROW //You can throw objects over this, despite it's density.")
 	var/frame = /obj/structure/table_frame
 	var/framestack = /obj/item/stack/rods
@@ -36,6 +35,7 @@
 
 /obj/structure/table/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/climbable)
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \
 	)
@@ -76,7 +76,8 @@
 /obj/structure/table/proc/deconstruction_hints(mob/user)
 	return span_notice("The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.")
 
-/obj/structure/table/update_icon()
+/obj/structure/table/update_icon(updates=ALL)
+	. = ..()
 	if(smooth)
 		queue_smooth(src)
 		queue_smooth_neighbors(src)

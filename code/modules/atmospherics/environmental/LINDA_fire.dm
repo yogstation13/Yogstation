@@ -1,9 +1,13 @@
-
+#define IGNITE_TURF_LOW_POWER 8
+#define IGNITE_TURF_HIGH_POWER 22
 
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
-
+/turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(prob(flammability * 100))
+		IgniteTurf(rand(IGNITE_TURF_LOW_POWER,IGNITE_TURF_HIGH_POWER))
+	return ..()
 
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	return
@@ -66,14 +70,18 @@
 		volume = starting_volume
 	if(!isnull(starting_temperature))
 		temperature = starting_temperature
-	perform_exposure()
+	if(!perform_exposure())
+		return INITIALIZE_HINT_QDEL
 	setDir(pick(GLOB.cardinals))
 	air_update_turf()
 
 /obj/effect/hotspot/proc/perform_exposure()
 	var/turf/open/location = loc
 	if(!istype(location) || !(location.air))
-		return
+		return FALSE
+
+	if(location.active_hotspot != src)
+		qdel(location.active_hotspot)
 
 	location.active_hotspot = src
 
@@ -95,7 +103,7 @@
 		var/atom/AT = A
 		if(!QDELETED(AT) && AT != src) // It's possible that the item is deleted in temperature_expose
 			AT.fire_act(temperature, volume)
-	return
+	return TRUE
 
 /obj/effect/hotspot/proc/gauss_lerp(x, x1, x2)
 	var/b = (x1 + x2) * 0.5
@@ -245,3 +253,5 @@
 	light_range = LIGHT_RANGE_FIRE
 
 #undef INSUFFICIENT
+#undef IGNITE_TURF_LOW_POWER
+#undef IGNITE_TURF_HIGH_POWER

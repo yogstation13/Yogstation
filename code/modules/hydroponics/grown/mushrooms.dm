@@ -1,5 +1,6 @@
 /obj/item/reagent_containers/food/snacks/grown/mushroom
 	name = "mushroom"
+	icon_state_preview = "reishi"
 	bitesize_mod = 2
 	foodtype = VEGETABLES
 	wine_power = 40

@@ -555,7 +555,7 @@
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
 	icon_state = "airshoes"
-	obj_flags = UNIQUE_RENAME //im not fucking naming them 'sonic 11's you can do that yourself ffm
+	obj_flags = UNIQUE_RENAME | UNIQUE_REDESC //im not fucking naming them 'sonic 11's you can do that yourself ffm
 	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
 	var/airToggle = FALSE
 	///Secret vehicle that helps us move around at mach speeds

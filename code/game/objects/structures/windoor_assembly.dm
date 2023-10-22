@@ -47,7 +47,8 @@
 	setDir(ini_dir)
 	move_update_air(T)
 
-/obj/structure/windoor_assembly/update_icon()
+/obj/structure/windoor_assembly/update_icon_state()
+	. = ..()
 	icon_state = "[facing]_[secure ? "secure_" : ""]windoor_assembly[state]"
 
 /obj/structure/windoor_assembly/CanAllowThrough(atom/movable/mover, turf/target)
@@ -309,7 +310,7 @@
 				return ..()
 
 	//Update to reflect changes(if applicable)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 
@@ -339,7 +340,7 @@
 
 /obj/structure/windoor_assembly/proc/after_rotation(mob/user)
 	ini_dir = dir
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
@@ -361,5 +362,5 @@
 		facing = "l"
 		to_chat(usr, span_notice("The windoor will now slide to the left."))
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return

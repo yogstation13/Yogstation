@@ -50,6 +50,21 @@
 
 	smells_like = "deadly authority"
 
+/datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/obj/item/badge/security/badge
+		switch(M.client.prefs.exp[title] / 60)
+			if(200 to INFINITY)
+				badge = new /obj/item/badge/security/hos3
+			if(50 to 200)
+				badge = new /obj/item/badge/security/hos2
+			else
+				badge = new /obj/item/badge/security/hos1
+		badge.owner_string = H.real_name
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(badge)
+
 /datum/job/hos/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 

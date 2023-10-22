@@ -13,13 +13,13 @@
 
 /obj/vehicle/ridden/gigadrill/after_add_occupant(mob/M)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	
 /obj/vehicle/ridden/gigadrill/after_remove_occupant(mob/M)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/vehicle/ridden/gigadrill/update_icon()
+/obj/vehicle/ridden/gigadrill/update_icon_state()
 	. = ..()
 	if(occupant_amount())
 		icon_state = "gigadrill_mov"

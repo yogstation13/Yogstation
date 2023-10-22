@@ -56,12 +56,12 @@
 				return
 			to_chat(user, span_notice("You slide \the [C] into \the [src]."))
 			inserted_item = C
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
-/obj/item/modular_computer/tablet/update_icon()
-	..()
+/obj/item/modular_computer/tablet/update_icon_state()
+	. = ..()
 	if (!isnull(variants))
 		if(!finish_color)
 			finish_color = pick(variants)
@@ -90,7 +90,7 @@
 	light_color = COLOR_RED
 	
 
-/obj/item/modular_computer/tablet/nukeops/emag_act(mob/user)
+/obj/item/modular_computer/tablet/nukeops/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!enabled)
 		to_chat(user, "<span class='warning'>You'd need to turn the [src] on first.</span>")
 		return FALSE

@@ -44,6 +44,7 @@
 		if(61 to 200) //you really can only go to 120
 			ooo_youaregettingsleepy = 2
 	M.adjustStaminaLoss(ooo_youaregettingsleepy * REM)
+	M.clear_stamina_regen()
 	..()
 	. = TRUE
 
@@ -55,6 +56,7 @@
 		to_chat(M,span_warning("You feel more tired than you usually do, perhaps if you rest your eyes for a bit..."))
 		M.adjustStaminaLoss(-100, TRUE)
 		M.Sleeping(10 SECONDS)
+	M.clear_stamina_regen()
 	..()
 	. = TRUE
 
@@ -156,6 +158,7 @@
 /datum/reagent/medicine/c2/tirimol/on_mob_life(mob/living/carbon/human/M)
 	M.adjustOxyLoss(-3 * REM)
 	M.adjustStaminaLoss(2 * REM)
+	M.clear_stamina_regen()
 	if(drowsycd && COOLDOWN_FINISHED(src, drowsycd))
 		M.adjust_drowsiness(20 SECONDS)
 		COOLDOWN_START(src, drowsycd, 45 SECONDS)

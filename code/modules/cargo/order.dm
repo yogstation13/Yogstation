@@ -27,10 +27,11 @@
 	var/orderer_rank
 	var/orderer_ckey
 	var/reason
+	var/budget
 	var/datum/supply_pack/pack
 	var/datum/bank_account/paying_account
 
-/datum/supply_order/New(datum/supply_pack/pack, orderer, orderer_rank, orderer_ckey, reason, paying_account)
+/datum/supply_order/New(datum/supply_pack/pack, orderer, orderer_rank, orderer_ckey, reason, paying_account, budget)
 	id = SSshuttle.ordernum++
 	src.pack = pack
 	src.orderer = orderer
@@ -38,6 +39,7 @@
 	src.orderer_ckey = orderer_ckey
 	src.reason = reason
 	src.paying_account = paying_account
+	src.budget = budget
 
 /datum/supply_order/proc/generateRequisition(turf/T)
 	var/obj/item/paper/P = new(T)
@@ -51,10 +53,11 @@
 	P.info += "Requested by: [orderer]<br/>"
 	if(paying_account)
 		P.info += "Paid by: [paying_account.account_holder]<br/>"
+	P.info += "Crate Type: [budget? "[paying_account.account_holder] Crate":"Normal Crate"]<br/>"
 	P.info += "Rank: [orderer_rank]<br/>"
 	P.info += "Comment: [reason]<br/>"
 
-	P.update_icon()
+	P.update_appearance(UPDATE_ICON)
 	return P
 
 /datum/supply_order/proc/generateManifest(obj/structure/closet/crate/C, owner, packname) //generates-the-manifests.
@@ -70,6 +73,7 @@
 		P.name += " - Purchased by [owner]"
 	P.info += "Order[packname?"":"s"]: [id]<br/>"
 	P.info += "Destination: [station_name]<br/>"
+	P.info += "Crate Type: [budget? "[paying_account.account_holder] Crate":"Normal Crate"]<br/>"
 	if(packname)
 		P.info += "Item: [packname]<br/>"
 	P.info += "Contents: <br/>"
@@ -92,10 +96,10 @@
 			while(--lost >= 0)
 				qdel(pick(C.contents))
 
-	P.update_icon()
+	P.update_appearance(UPDATE_ICON)
 	P.forceMove(C)
 	C.manifest = P
-	C.update_icon()
+	C.update_appearance(UPDATE_ICON)
 
 	return P
 

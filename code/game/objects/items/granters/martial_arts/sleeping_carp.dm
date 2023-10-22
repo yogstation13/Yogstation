@@ -21,15 +21,25 @@
 
 /obj/item/book/granter/martial/carp/on_reading_finished(mob/living/carbon/user)
 	. = ..()
-	update_icon()
+	update_appearance()
 
-/obj/item/book/granter/martial/carp/update_icon(updates)
+/obj/item/book/granter/martial/carp/update_name(updates=ALL)
 	. = ..()
 	if(!uses)
 		name = "empty scroll"
-		desc = "It's completely blank."
-		icon_state = "blankscroll"
 	else
 		name = initial(name)
+
+/obj/item/book/granter/martial/carp/update_desc(updates=ALL)
+	. = ..()
+	if(!uses)
+		desc = "It's completely blank."
+	else
 		desc = initial(desc)
+
+/obj/item/book/granter/martial/carp/update_icon_state()
+	. = ..()
+	if(!uses)
+		icon_state = "blankscroll"
+	else
 		icon_state = initial(icon_state)

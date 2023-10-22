@@ -198,7 +198,7 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered)
 "kb" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
@@ -213,7 +213,7 @@
 	},
 /area/ruin/powered)
 "kD" = (
-/obj/item/twohanded/required/kirbyplants/dead,
+/obj/item/kirbyplants/dead,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/item/stack/sheet/metal,

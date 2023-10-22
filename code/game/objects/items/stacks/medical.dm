@@ -46,19 +46,19 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
 		return
-	if(INTERACTING_WITH(user, M))
+	if(DOING_INTERACTION_WITH_TARGET(user, M))
 		return
 	if(M == user)
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [user.p_them()]self..."), span_notice("You begin applying \the [src] on yourself..."))
-		if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_after(user, self_delay, M, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [M]."), span_notice("You begin applying \the [src] on [M]..."))
-		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_after(user, other_delay, M, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 
 	if(heal(M, user))
@@ -242,8 +242,6 @@
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
 	icon_state = "suture_green"
 	heal_brute = 5
-	amount = 5
-	max_amount = 5
 	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 1)
 
 /obj/item/stack/medical/suture/emergency/makeshift
@@ -251,8 +249,6 @@
 	desc = "A makeshift suture, gnarly looking, but it...should work."
 	heal_brute = 4
 	stop_bleeding = 0.44
-	amount = 5
-	max_amount = 5
 	grind_results = null
 
 /obj/item/stack/medical/suture/emergency/makeshift/tribal
@@ -261,8 +257,6 @@
 	icon_state = "suture_tribal"
 	heal_brute = 6
 	stop_bleeding = 0.55
-	amount = 10
-	max_amount = 10
 	grind_results = list(/datum/reagent/liquidgibs = 2)
 
 /obj/item/stack/medical/suture/medicated
@@ -306,15 +300,15 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	apply_sounds = list('sound/effects/ointment.ogg')
-	amount = 8
-	max_amount = 8
-	self_delay = 40
-	other_delay = 20
+	amount = 15
+	max_amount = 15
+	self_delay = 4 SECONDS
+	other_delay = 2 SECONDS
 	repeating = TRUE
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.25
-	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
+	grind_results = null
 
 /obj/item/stack/medical/ointment/heal(mob/living/M, mob/user)
 	if(M.stat == DEAD)
@@ -332,11 +326,8 @@
 	name = "antiseptic ointment"
 	desc = "A specialized ointment, designed with preventing infections in mind."
 	icon_state = "aointment"
-	amount = 15
-	max_amount = 15
-	heal_burn = 3
 	sanitization = 1.0 // its main purpose is to disinfect
-	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 10)
+	grind_results = list(/datum/reagent/silver = 5)
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
@@ -360,11 +351,12 @@
 	. = ..()
 	if(amount == max_amount)	 //only seal full mesh packs
 		is_open = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/item/stack/medical/mesh/update_icon()
+/obj/item/stack/medical/mesh/update_icon_state()
+	. = ..()
 	if(is_open)
-		return ..()
+		return
 	icon_state = "regen_mesh_closed"
 
 /obj/item/stack/medical/mesh/heal(mob/living/M, mob/user)
@@ -399,7 +391,7 @@
 	if(!is_open)
 		is_open = TRUE
 		to_chat(user, span_notice("You open the sterile mesh package."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src, 'sound/items/poster_ripped.ogg', 20, TRUE)
 		return
 	. = ..()
@@ -417,9 +409,10 @@
 	flesh_regeneration = 3.5
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
-/obj/item/stack/medical/mesh/advanced/update_icon()
+/obj/item/stack/medical/mesh/advanced/update_icon_state()
+	. = ..()
 	if(is_open)
-		return ..()
+		return
 	icon_state = "aloe_mesh_closed"
 
 /obj/item/stack/medical/aloe

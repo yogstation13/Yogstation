@@ -300,7 +300,7 @@
 						to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
 						user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
 					to_chat(target, span_boldannounce("You feel your mental protection faltering!"))
-					if(!do_mob(user, target, 65 SECONDS)) //65 seconds to remove a loyalty implant. yikes!
+					if(!do_after(user, 65 SECONDS, target)) //65 seconds to remove a loyalty implant. yikes!
 						to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
 						to_chat(target, span_userdanger("You wrest yourself away from [user]'s hands and compose yourself!"))
 						enthralling = FALSE
@@ -315,7 +315,7 @@
 				to_chat(user, span_notice("You begin planting the tumor that will control the new thrall..."))
 				user.visible_message(span_warning("A strange energy passes from [user]'s hands into [target]'s head!"))
 				to_chat(target, span_boldannounce("You feel your memories twisting, morphing. A sense of horror dominates your mind."))
-		if(!do_mob(user, target, 7 SECONDS)) //around 21 seconds total for enthralling, 86 for someone with a loyalty implant
+		if(!do_after(user, 7 SECONDS, target)) //around 21 seconds total for enthralling, 86 for someone with a loyalty implant
 			to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
 			to_chat(target, span_userdanger("You wrest yourself away from [user]'s hands and compose yourself!"))
 			enthralling = FALSE
@@ -521,7 +521,7 @@
 		target_apc.cell?.charge = 0	//Sent to the shadow realm
 		target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
 		target_apc.charging = 0
-		target_apc.update_icon()
+		target_apc.update_appearance(UPDATE_ICON)
 
 	return TRUE
 
@@ -638,7 +638,7 @@
 	user.visible_message(span_danger("[user] places their hands over [thrallToEmpower]'s face, red light shining from beneath."), \
 						span_shadowling("You place your hands on [thrallToEmpower]'s face and begin gathering energy..."))
 	to_chat(thrallToEmpower, span_userdanger("[user] places their hands over your face. You feel energy gathering. Stand still..."))
-	if(!do_mob(user, thrallToEmpower, 8 SECONDS))
+	if(!do_after(user, 8 SECONDS, thrallToEmpower))
 		to_chat(user, span_warning("Your concentration snaps. The flow of energy ebbs."))
 		return
 	to_chat(user, span_shadowling("<b><i>You release a massive surge of power into [thrallToEmpower]!</b></i>"))
@@ -649,7 +649,7 @@
 	thrallToEmpower.Knockdown(5)
 	thrallToEmpower.visible_message(span_warning("<b>[thrallToEmpower] collapses, their skin and face distorting!"), \
 								   span_userdanger("<i>AAAAAAAAAAAAAAAAAAAGH-</i>"))
-	if (!do_mob(user, thrallToEmpower, 5))
+	if (!do_after(user, 5, thrallToEmpower))
 		thrallToEmpower.Unconscious(1 MINUTES)
 		thrallToEmpower.visible_message(span_warning("<b>[thrallToEmpower] gasps, and passes out!</b>"), span_warning("<i>That... feels nice....</i>"))
 		to_chat(user, span_warning("We have been interrupted! [thrallToEmpower] will need to rest to recover."))
@@ -703,7 +703,7 @@
 	user.visible_message(span_danger("[user] kneels over [thrallToRevive], placing their hands on \his chest."), \
 						span_shadowling("You crouch over the body of your thrall and begin gathering energy..."))
 	thrallToRevive.notify_ghost_cloning("Your masters are resuscitating you! Re-enter your corpse if you wish to be brought to life.", source = thrallToRevive)
-	if(!do_mob(user, thrallToRevive, 30))
+	if(!do_after(user, 3 SECONDS, thrallToRevive))
 		to_chat(user, span_warning("Your concentration snaps. The flow of energy ebbs."))
 		return
 	to_chat(user, span_shadowling("<b><i>You release a massive surge of power into [thrallToRevive]!</b></i>"))
@@ -711,18 +711,19 @@
 	playsound(thrallToRevive, 'sound/weapons/Egloves.ogg', 50, 1)
 	playsound(thrallToRevive, 'sound/machines/defib_zap.ogg', 50, 1)
 	user.Beam(thrallToRevive,icon_state="red_lightning",time=1)
-	var/b = do_mob(user, thrallToRevive, 20)
 	if(thrallToRevive.revive(full_heal = 1))
-		thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] heaves in breath, dim red light shining in their eyes."), \
-									   span_shadowling("<b><i>You have returned. One of your masters has brought you from the darkness beyond.</b></i>"))
+		thrallToRevive.visible_message(
+			span_boldannounce("[thrallToRevive] heaves in breath, dim red light shining in their eyes."), \
+			span_shadowling("<b><i>You have returned. One of your masters has brought you from the darkness beyond.</b></i>"), \
+		)
 		thrallToRevive.Knockdown(4)
 		thrallToRevive.emote("gasp")
 		playsound(thrallToRevive, "bodyfall", 50, 1)
-		if (!b)
+		if (!do_after(user, 2 SECONDS, thrallToRevive))
 			thrallToRevive.Knockdown(50)
 			thrallToRevive.Unconscious(500)
 			thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] collapses in exhaustion."), \
-				 span_warning("<b><i>You collapse in exhaustion... nap..... dark.</b></i>"))
+				span_warning("<b><i>You collapse in exhaustion... nap..... dark.</b></i>"))
 	
 	return TRUE
 

@@ -27,6 +27,10 @@ SUBSYSTEM_DEF(machines)
 	msg = "M:[length(processing)]|PN:[length(powernets)]"
 	return ..()
 
+/datum/controller/subsystem/machines/get_metrics()
+	. = ..()
+	.["machines"] = length(processing)
+	.["powernets"] = length(powernets)
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	if (!resumed)

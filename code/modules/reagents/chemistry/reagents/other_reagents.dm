@@ -128,7 +128,8 @@
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
+	default_container = /obj/item/reagent_containers/glass/beaker/waterbottle/large
 
 /*
  *	Water reaction to turf
@@ -343,7 +344,8 @@
 	name = "Hell Water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
-	process_flags = ORGANIC | SYNTHETIC
+	accelerant_quality = 20
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
 	M.fire_stacks = min(5,M.fire_stacks + 3)
@@ -358,6 +360,7 @@
 	description = "Strange liquid that defies the laws of physics"
 	taste_description = "glass"
 	color = "#1f8016"
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
 	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
@@ -366,16 +369,16 @@
 		M.adjustStaminaLoss(-10, FALSE)
 		M.adjustToxLoss(-2, FALSE)
 		M.adjustOxyLoss(-2, FALSE)
-		M.adjustBruteLoss(-2, FALSE)
-		M.adjustFireLoss(-2, FALSE)
+		M.adjustBruteLoss(-2, FALSE, FALSE, BODYPART_ANY)
+		M.adjustFireLoss(-2, FALSE, FALSE, BODYPART_ANY)
 		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, FALSE)
-		M.adjustFireLoss(2, FALSE)
+		M.adjustFireLoss(2, FALSE, FALSE, BODYPART_ANY)
 		M.adjustOxyLoss(2, FALSE)
-		M.adjustBruteLoss(2, FALSE)
+		M.adjustBruteLoss(2, FALSE, FALSE, BODYPART_ANY)
 	holder.remove_reagent(type, 1)
 	return TRUE
 
@@ -389,7 +392,7 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
 
 
@@ -434,7 +437,7 @@
 					if("african1")
 						N.skin_tone = "african2"
 					if("indian")
-						N.skin_tone = "african1"
+						N.skin_tone = "mixed2"
 					if("arab")
 						N.skin_tone = "indian"
 					if("asian2")
@@ -442,7 +445,7 @@
 					if("asian1")
 						N.skin_tone = "asian2"
 					if("mediterranean")
-						N.skin_tone = "african1"
+						N.skin_tone = "mixed1"
 					if("latino")
 						N.skin_tone = "mediterranean"
 					if("caucasian3")
@@ -453,6 +456,14 @@
 						N.skin_tone = "caucasian2"
 					if ("albino")
 						N.skin_tone = "caucasian1"
+					if("mixed1")
+						N.skin_tone = "mixed2"
+					if("mixed2")
+						N.skin_tone = "mixed3"
+					if("mixed3")
+						N.skin_tone = "african1"
+					if("mixed4")
+						N.skin_tone = "mixed3"
 
 			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
 				var/newcolor = ""
@@ -478,7 +489,7 @@
 							newcolor += ascii2text(ascii+31)	//letters B to F - translates to lowercase
 						else
 							break
-				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
+				if(ReadHSV(newcolor)[3] >= ReadHSV("#777777")[3])
 					N.dna.features["mcolor"] = newcolor
 			N.regenerate_icons()
 
@@ -495,7 +506,8 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/N = M
-		N.hair_style = "Spiky"
+		if(!HAS_TRAIT(M, TRAIT_BALD))
+			N.hair_style = "Spiky"
 		N.facial_hair_style = "Shaved"
 		N.facial_hair_color = "000"
 		N.hair_color = "000"
@@ -506,7 +518,7 @@
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
 			saved_color = N.dna.features["mcolor"]
-			N.dna.features["mcolor"] = "f80"
+			N.dna.features["mcolor"] = "#FF8800"
 		N.regenerate_icons()
 		if(prob(7))
 			if(N.w_uniform)
@@ -734,7 +746,7 @@
 	..()
 	if(!istype(H))
 		return
-	if(!H.dna || !H.dna.species || !(MOB_ORGANIC in H.mob_biotypes))
+	if(!H.dna || !H.dna.species || !(H.mob_biotypes & MOB_ORGANIC))
 		return
 
 	if(isjellyperson(H))
@@ -773,6 +785,7 @@
 	to_chat(H, span_warning("<b>You grit your teeth in pain as your body rapidly mutates!</b>"))
 	H.visible_message("<b>[H]</b> suddenly transforms!")
 	randomize_human(H)
+	H.dna.update_dna_identity()
 
 /datum/reagent/aslimetoxin
 	name = "Advanced Mutation Toxin"
@@ -1040,7 +1053,7 @@
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
 	var/irradiation_level = 1
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M)
 	M.apply_effect(irradiation_level/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
@@ -1061,7 +1074,7 @@
 	color = "#C7C7C7" // rgb: 199,199,199
 	taste_description = "the colour blue and regret"
 	irradiation_level = 2*REM
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
@@ -1069,7 +1082,7 @@
 	reagent_state = SOLID
 	color = "#0000CC"
 	taste_description = "fizzling blue"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if((methods & (TOUCH|VAPOR)) && (reac_volume > 5))
@@ -1087,6 +1100,7 @@
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
+#define REDSPACE_TELEPORT_MINIMUM 5
 //Gateway to traitor chemistry, want a drug to be traitor only? use this
 /datum/reagent/redspace
 	name = "Redspace Dust"
@@ -1094,23 +1108,27 @@
 	reagent_state = SOLID
 	color = "#db0735"
 	taste_description = "bitter evil"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	can_synth = FALSE
 
 //Teleport like normal telecrystals
 /datum/reagent/redspace/on_mob_metabolize(mob/living/L)
-	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
-	if(!istype(destination))
-		return
-	new /obj/effect/particle_effect/sparks(L.loc)
-	playsound(L.loc, "sparks", 50, 1)
-	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
-		return
-	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.adjust_disgust(15)
+	if(volume >= REDSPACE_TELEPORT_MINIMUM)
+		var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+		if(!istype(destination))
+			return
+		new /obj/effect/particle_effect/sparks(L.loc)
+		playsound(L.loc, "sparks", 50, 1)
+		if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+			return
+		L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.adjust_disgust(15)
+	L.reagents.remove_reagent(type, volume)
+
+#undef REDSPACE_TELEPORT_MINIMUM
 
 /datum/reagent/aluminium
 	name = "Aluminium"
@@ -1134,7 +1152,8 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
-	process_flags = ORGANIC | SYNTHETIC
+	accelerant_quality = 10
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(methods & (TOUCH|VAPOR))
@@ -1143,7 +1162,7 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(MOB_ROBOTIC in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_ROBOTIC)
 		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
 	else
 		M.adjustToxLoss(1*REM, 0)
@@ -1451,7 +1470,7 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	can_synth = FALSE
-	process_flags = ORGANIC | SYNTHETIC // works in open air, don't think it cares what kind of body it's in
+	compatible_biotypes = ALL_BIOTYPES // works in open air, don't think it cares what kind of body it's in
 	taste_description = "searingly cold"
 
 /datum/reagent/hypernoblium/on_mob_add(mob/living/L)
@@ -1476,7 +1495,7 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "000000"
 	can_synth = FALSE
-	process_flags = ORGANIC | SYNTHETIC // BURN IT ALLLLLL
+	compatible_biotypes = ALL_BIOTYPES // BURN IT ALLLLLL
 	taste_description = "searingly hot"
 	self_consuming = TRUE
 	var/flame_timer = 0
@@ -1721,7 +1740,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	taste_description = "oil"
-	process_flags = SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/oil/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-2*REM, FALSE, FALSE, BODYPART_ROBOTIC)
@@ -1734,7 +1753,7 @@
 	color = "#C8A5DC"
 	taste_description = "bitterness"
 	taste_mult = 1.5
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/stable_plasma/on_mob_life(mob/living/carbon/C)
 	C.adjustPlasma(10)
@@ -1840,7 +1859,7 @@
 
 /datum/reagent/barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
@@ -1857,11 +1876,31 @@
 
 /datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(methods & (TOUCH|VAPOR))
-		if(M && ishuman(M) && permeability)
+		if(M && ishuman(M) && permeability && !HAS_TRAIT(M, TRAIT_BALD))
 			var/mob/living/carbon/human/H = M
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
 			H.update_hair()
+
+/datum/reagent/baldium
+	name = "Baldium"
+	description = "A major cause of hair loss across the world."
+	reagent_state = LIQUID
+	color = "#ecb2cf"
+	taste_description = "bitterness"
+
+/datum/reagent/baldium/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	. = ..()
+	if(!(methods & (TOUCH|VAPOR)))
+		return
+	if(!permeability)
+		return
+	if(M && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		to_chat(H, span_danger("Your hair starts to fall out in clumps!"))
+		H.hair_style = "Bald"
+		H.facial_hair_style = "Shaved"
+		H.update_hair()
 
 /datum/reagent/saltpetre
 	name = "Saltpetre"
@@ -2135,13 +2174,13 @@
 	return ..()
 
 /datum/reagent/pax/peaceborg
-	name = "synth-pax"
+	name = "Synth-Pax"
 	description = "A colorless liquid that suppresses violence on the subjects. Cheaper to synthetize, but wears out faster than normal Pax."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/peaceborg/confuse
 	name = "Dizzying Solution"
-	description = "Makes the target off balance and dizzy"
+	description = "Makes the target off balance and dizzy."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "dizziness"
 
@@ -2162,6 +2201,7 @@
 	var/healthcomp = (100 - M.health)	//DOES NOT ACCOUNT FOR ADMINBUS THINGS THAT MAKE YOU HAVE MORE THAN 200/210 HEALTH, OR SOMETHING OTHER THAN A HUMAN PROCESSING THIS.
 	if(M.getStaminaLoss() < (45 - healthcomp))	//At 50 health you would have 200 - 150 health meaning 50 compensation. 60 - 50 = 10, so would only do 10-19 stamina.)
 		M.adjustStaminaLoss(10)
+		M.clear_stamina_regen()
 	if(prob(30))
 		to_chat(M, "You should sit down and take a rest...")
 	..()

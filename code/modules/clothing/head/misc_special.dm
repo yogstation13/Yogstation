@@ -134,7 +134,7 @@
 
 /obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user, slot)
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
-		update_icon(user)
+		update_appearance(UPDATE_ICON)
 		user.update_inv_head() //Color might have been changed by update_icon.
 		var/datum/language_holder/LH = user.get_language_holder()
 		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))
@@ -148,11 +148,13 @@
 	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
 		to_chat(user, "You lose the keenness in your ears.")
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
-	
 
-/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
-	if(ishuman(user))
-		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
+/obj/item/clothing/head/kitty/update_icon(updates=ALL)
+	. = ..()
+	if(!ishuman(loc))
+		return
+	var/mob/living/carbon/human/loc_human = loc
+	add_atom_colour(loc_human.hair_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/kitty/genuine
 	desc = "A pair of kitty ears. A tag on the inside says \"Hand made from real cats.\""
@@ -207,19 +209,25 @@
 
 /obj/item/clothing/head/wig/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/wig/update_icon()
-	cut_overlays()
+/obj/item/clothing/head/wig/update_icon_state()
+	. = ..()
 	icon_state = ""
 	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
+	if(S)
+		return
+	icon_state = "pwig"
+
+/obj/item/clothing/head/wig/update_overlays()
+	. = ..()
+	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
 	if(!S)
-		icon_state = "pwig"
-	else
-		var/mutable_appearance/M = mutable_appearance(S.icon,S.icon_state)
-		M.appearance_flags |= RESET_COLOR
-		M.color = hair_color
-		add_overlay(M)
+		return
+	var/mutable_appearance/M = mutable_appearance(S.icon,S.icon_state)
+	M.appearance_flags |= RESET_COLOR
+	M.color = hair_color
+	. += M
 
 /obj/item/clothing/head/wig/worn_overlays(isinhands = FALSE, file2use)
 	. = list()
@@ -241,7 +249,7 @@
 		user.visible_message(span_notice("[user] changes \the [src]'s hairstyle to [new_style]."), span_notice("You change \the [src]'s hairstyle to [new_style]."))
 	if(adjustablecolor)
 		hair_color = input(usr,"","Choose Color",hair_color) as color|null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/clothing/head/wig/random/Initialize(mapload)
@@ -263,8 +271,8 @@
 /obj/item/clothing/head/wig/natural/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
-		hair_color = "#[user.hair_color]"
-		update_icon()
+		hair_color = user.hair_color
+		update_appearance(UPDATE_ICON)
 		user.update_inv_head()
 
 /obj/item/clothing/head/bronze
@@ -288,10 +296,17 @@
 
 /obj/item/clothing/head/foilhat/Initialize(mapload)
 	. = ..()
-	if(!warped)
-		AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_HEAD,  6, TRUE, null, CALLBACK(src, PROC_REF(warp_up)))
-	else
+	if(warped)
 		warp_up()
+		return
+	AddComponent(
+		/datum/component/anti_magic, \
+		antimagic_flags = MAGIC_RESISTANCE_MIND, \
+		inventory_flags = ITEM_SLOT_HEAD, \
+		charges = 6, \
+		drain_antimagic = CALLBACK(src, PROC_REF(drain_antimagic)), \
+		expiration = CALLBACK(src, PROC_REF(warp_up)) \
+	)
 
 /obj/item/clothing/head/foilhat/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -319,6 +334,10 @@
 	. = ..()
 	if(paranoia)
 		QDEL_NULL(paranoia)
+
+/// When the foilhat is drained an anti-magic charge.
+/obj/item/clothing/head/foilhat/proc/drain_antimagic(mob/user)
+	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
 
 /obj/item/clothing/head/foilhat/proc/warp_up()
 	name = "scorched tinfoil hat"

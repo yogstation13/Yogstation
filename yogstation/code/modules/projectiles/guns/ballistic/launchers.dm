@@ -13,8 +13,9 @@
 	casing_ejector = FALSE
 	internal_magazine = TRUE
 
-/obj/item/gun/ballistic/speargun/update_icon()
-	return
+/obj/item/gun/ballistic/speargun/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/gun/ballistic/speargun/attack_self()
 	return

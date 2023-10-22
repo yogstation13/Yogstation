@@ -219,10 +219,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
+	TopicData = null							//Prevent calls to client.Topic from connect
+
 	//this is a scam, so sometimes the topicdata is set to /?key=value instead of key=value, this is a hack around that
 	if(copytext(tdata, 1, 3) == "/?")
 		tdata = copytext(tdata, 3)
-	TopicData = null							//Prevent calls to client.Topic from connect
+
 
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
@@ -1105,3 +1107,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
 	else
 		SSambience.ambience_listening_clients -= src
+
+/client/proc/open_particle_editor(atom/in_atom)
+	if(holder)
+		holder.particool = new /datum/particle_editor(in_atom)
+		holder.particool.ui_interact(mob)

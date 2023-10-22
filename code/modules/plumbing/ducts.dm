@@ -57,7 +57,7 @@ All the important duct code:
 		for(var/atom/movable/AM in get_step(src, D))
 			if(connect_network(AM, D))
 				add_connects(D)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/duct/proc/connect_network(atom/movable/AM, direction, ignore_color)
 	if(istype(AM, /obj/machinery/duct))
@@ -82,7 +82,7 @@ All the important duct code:
 		add_neighbour(D)
 
 		D.add_connects(opposite_dir)
-		D.update_icon()
+		D.update_appearance(UPDATE_ICON)
 		return TRUE //tell the current pipe to also update it's sprite
 	if(!(D in neighbours)) //we cool
 		if((duct_color != D.duct_color) && !(ignore_colors || D.ignore_colors))
@@ -125,7 +125,7 @@ All the important duct code:
 		duct.remove_duct(src)
 	lose_neighbours()
 	reset_connects(0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/duct/proc/create_duct()
 	duct = new()
@@ -160,7 +160,8 @@ All the important duct code:
 					adjacents += D
 	return adjacents
 
-/obj/machinery/duct/update_icon() //setting connects isnt a parameter because sometimes we make more than one change, overwrite it completely or just add it to the bitfield
+/obj/machinery/duct/update_icon_state() //setting connects isnt a parameter because sometimes we make more than one change, overwrite it completely or just add it to the bitfield
+	. = ..()
 	var/temp_icon = initial(icon_state)
 	for(var/D in GLOB.cardinals)
 		if(D & connects)
@@ -245,7 +246,7 @@ All the important duct code:
 		return
 	connect_network(D, direction, TRUE)
 	add_connects(direction)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/duct/multilayered
 	name = "duct layer-manifold"
@@ -262,7 +263,8 @@ All the important duct code:
 	dumb = TRUE
 
 
-/obj/machinery/duct/multilayered/update_icon()
+/obj/machinery/duct/multilayered/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if((connects & NORTH) || (connects & SOUTH))
 		icon_state += "_vertical"

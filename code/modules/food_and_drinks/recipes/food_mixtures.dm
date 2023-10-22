@@ -1,10 +1,26 @@
 /datum/crafting_recipe/food
 	var/real_parts
-	category = CAT_FOOD
+	/// A rough equivilance for how much nutrition this recipe's result will provide
+	var/total_nutriment_factor = 0
 
 /datum/crafting_recipe/food/New()
+	if(ispath(result, /obj/item/reagent_containers/food))
+		var/obj/item/reagent_containers/food/result_food = new result()
+		for(var/datum/reagent/consumable/nutriment as anything in result_food.list_reagents)
+			total_nutriment_factor += initial(nutriment.nutriment_factor) * result_food.list_reagents[nutriment]
+		qdel(result_food)
 	real_parts = parts.Copy()
 	parts |= reqs
+
+/datum/crafting_recipe/food/crafting_ui_data()
+	var/list/data = list()
+
+	if(ispath(result, /obj/item/reagent_containers/food))
+		var/obj/item/reagent_containers/food/item = result
+		data["foodtypes"] = bitfield_to_list(initial(item.foodtype), FOOD_FLAGS)
+	data["nutriments"] = total_nutriment_factor
+
+	return data
 
 //////////////////////////////////////////FOOD MIXTURES////////////////////////////////////
 
@@ -31,7 +47,6 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/chocolatebar(location)
 	return
-
 
 /datum/chemical_reaction/chocolate_bar2
 	name = "Chocolate Bar"
@@ -174,6 +189,12 @@
 	new /obj/item/reagent_containers/food/snacks/salad/ricebowl(location)
 	if(holder && holder.my_atom)
 		qdel(holder.my_atom)
+
+/datum/chemical_reaction/bbqsauce
+	name = "BBQ Sauce"
+	id = /datum/reagent/consumable/bbqsauce
+	results = list(/datum/reagent/consumable/bbqsauce = 5)
+	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/medicine/salglu_solution = 3, /datum/reagent/consumable/blackpepper = 1)
 
 ////////////////////////////////////////////CHEESEMILK////////////////////////////////////////////
 /datum/chemical_reaction/bluemilk

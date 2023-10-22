@@ -111,7 +111,7 @@
 			to_chat(user, span_warning("\the [HAS_TRAIT(src, TRAIT_NODROP) ? src : I] is stuck to your hand, you can't attach it to \the [HAS_TRAIT(src, TRAIT_NODROP) ? I : src]!"))
 			return
 		else
-			var/obj/item/twohanded/dualsaber/makeshift/newSaber = new /obj/item/twohanded/dualsaber/makeshift(user.loc)
+			var/obj/item/melee/dualsaber/makeshift/newSaber = new /obj/item/melee/dualsaber/makeshift(user.loc)
 			to_chat(user, span_notice("You crudely attach both [src]s together in order to make a [newSaber]."))
 			qdel(I)
 			qdel(src)

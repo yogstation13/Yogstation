@@ -221,7 +221,7 @@ GENE SCANNER
 		if(advanced)
 			combined_msg += "\t[span_info("Radiation Level: [M.radiation]%.")]"
 
-	if(advanced && M.hallucinating())
+	if(advanced && M.has_status_effect(/datum/status_effect/hallucination))
 		combined_msg += "\t[span_info("Subject is hallucinating.")]"
 
 	//Eyes and ears
@@ -607,6 +607,14 @@ GENE SCANNER
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
+
+/obj/item/analyzer/afterattack(atom/target as obj, mob/user, proximity)
+	if(!proximity)
+		return
+	add_fingerprint(user)
+	if(istype(target, /turf))
+		var/turf/U = get_turf(target)
+		atmosanalyzer_scan(user, U)
 
 /obj/item/proc/scangasses(mob/user)
 	var/list/combined_msg = list()

@@ -77,11 +77,11 @@
 /obj/structure/reagent_dispensers/fueltank/fire_act(exposed_temperature, exposed_volume)
 	boom()
 
-/obj/structure/reagent_dispensers/fueltank/tesla_act()
+/obj/structure/reagent_dispensers/fueltank/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..() //extend the zap
 	boom()
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/P)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/P)
 	. = ..()
 	if(!QDELETED(src)) //wasn't deleted by the projectile's effects.
 		if(!P.nodamage && ((P.damage_type == BURN) || (P.damage_type == BRUTE)))
@@ -101,7 +101,7 @@
 			reagents.trans_to(W, W.max_fuel, transfered_by = user)
 			user.visible_message(span_notice("[user] refills [user.p_their()] [W.name]."), span_notice("You refill [W]."))
 			playsound(src, 'sound/effects/refill.ogg', 50, 1)
-			W.update_icon()
+			W.update_appearance(UPDATE_ICON)
 		else
 			user.visible_message(span_warning("[user] catastrophically fails at refilling [user.p_their()] [W.name]!"), span_userdanger("That was stupid of you."))
 

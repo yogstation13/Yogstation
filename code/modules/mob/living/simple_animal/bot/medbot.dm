@@ -68,6 +68,7 @@
 	var/treatment_virus = /datum/reagent/medicine/spaceacillin
 	var/treat_virus = 1 //If on, the bot will attempt to treat viral infections, curing them if possible.
 	var/shut_up = 0 //self explanatory :)
+	var/holy = FALSE //if it injects holy water
 
 /mob/living/simple_animal/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
@@ -91,10 +92,8 @@
 	treatment_tox_avoid = null
 	treatment_tox = /datum/reagent/toxin/sodium_thiopental
 
-/mob/living/simple_animal/bot/medbot/update_icon()
-	cut_overlays()
-	if(skin)
-		add_overlay("medskin_[skin]")
+/mob/living/simple_animal/bot/medbot/update_icon_state()
+	. = ..()
 	if(!on)
 		icon_state = "medibot0"
 		return
@@ -109,6 +108,11 @@
 	else
 		icon_state = "medibot1"
 
+/mob/living/simple_animal/bot/medbot/update_overlays()
+	. = ..()
+	if(skin)
+		. += "medskin_[skin]"
+
 /mob/living/simple_animal/bot/medbot/Initialize(mapload, new_skin)
 	. = ..()
 	var/datum/job/doctor/J = new /datum/job/doctor
@@ -116,11 +120,11 @@
 	prev_access = access_card.access
 	qdel(J)
 	skin = new_skin
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/update_mobility()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/bot_reset()
 	..()
@@ -129,14 +133,14 @@
 	oldloc = null
 	last_found = world.time
 	declare_cooldown = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/proc/soft_reset() //Allows the medibot to still actively perform its medical duties without being completely halted as a hard reset does.
 	path = list()
 	patient = null
 	mode = BOT_IDLE
 	last_found = world.time
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/set_custom_texts()
 
@@ -222,7 +226,7 @@
 	else if(href_list["stationary"])
 		stationary_mode = !stationary_mode
 		path = list()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(href_list["virus"])
 		treat_virus = !treat_virus
@@ -252,7 +256,7 @@
 		if(health < current_health) //if medbot took some damage
 			step_to(src, (get_step_away(src,user)))
 
-/mob/living/simple_animal/bot/medbot/emag_act(mob/user)
+/mob/living/simple_animal/bot/medbot/emag_act(mob/user, obj/item/card/emag/emag_card)
 	..()
 	if(emagged == 2)
 		declare_crit = 0
@@ -413,7 +417,7 @@
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
 		if(mode != BOT_HEALING)
 			mode = BOT_HEALING
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			frustration = 0
 			medicate_patient(patient)
 		return
@@ -554,9 +558,9 @@
 		var/mob/living/carbon/C = A
 		patient = C
 		mode = BOT_HEALING
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		medicate_patient(C)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		..()
 
@@ -643,7 +647,7 @@
 			span_userdanger("[src] is trying to inject you!"))
 
 		var/failed = FALSE
-		if(do_mob(src, patient, 30))
+		if(do_after(src, 3 SECONDS, patient))
 			if((get_dist(src, patient) <= 1) && (on) && assess_patient(patient))
 				if(reagent_id == "internal_beaker")
 					if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
@@ -655,6 +659,8 @@
 				else
 					patient.reagents.add_reagent(reagent_id,injection_amount)
 					log_combat(src, patient, "injected", "internal synthesizer", "[reagent_id]:[injection_amount]")
+					if(holy)
+						patient.apply_status_effect(STATUS_EFFECT_HOLYLIGHT_HEALBOOST)	
 				C.visible_message(span_danger("[src] injects [patient] with its syringe!"), \
 					span_userdanger("[src] injects you with its syringe!"))
 			else
@@ -664,7 +670,7 @@
 
 		if(failed)
 			visible_message("[src] retracts its syringe.")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		soft_reset()
 		return
 

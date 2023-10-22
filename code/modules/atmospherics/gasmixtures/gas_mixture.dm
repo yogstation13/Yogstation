@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	reaction_results = new
 
 /datum/gas_mixture/vv_edit_var(var_name, var_value)
-	if(var_name == "_extools_pointer_gasmixture")
+	if(var_name == NAMEOF(src, _extools_pointer_gasmixture))
 		return FALSE // please no. segfaults bad.
 	return ..()
 /*

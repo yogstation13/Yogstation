@@ -33,26 +33,26 @@
 		if(allowed(user))
 			to_chat(user, span_notice("You unlock [src]."))
 			locked = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("Access denied."))
 
-/obj/item/nanite_remote/emag_act(mob/user)
+/obj/item/nanite_remote/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	to_chat(user, span_warning("You override [src]'s ID lock."))
 	obj_flags |= EMAGGED
 	if(locked)
 		locked = FALSE
-		update_icon()
-
-/obj/item/nanite_remote/update_icon()
+		update_appearance(UPDATE_ICON)
+	return TRUE
+	
+/obj/item/nanite_remote/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(obj_flags & EMAGGED)
-		add_overlay("nanite_remote_emagged")
+		. += "nanite_remote_emagged"
 	if(locked)
-		add_overlay("nanite_remote_locked")
+		. += "nanite_remote_locked"
 
 /obj/item/nanite_remote/afterattack(atom/target, mob/user, etc)
 	switch(mode)
@@ -166,7 +166,7 @@
 		if("lock")
 			if(!(obj_flags & EMAGGED))
 				locked = TRUE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			. = TRUE
 
 

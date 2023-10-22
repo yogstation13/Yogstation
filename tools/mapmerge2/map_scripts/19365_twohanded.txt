@@ -1,0 +1,12 @@
+# start off with snowflake stuff we're changing the paths of
+
+/obj/item/twohanded/bonespear : /obj/item/melee/spear/bonespear
+/obj/item/twohanded/bonespear/chitinspear : /obj/item/melee/spear/bonespear/chitinspear
+/obj/item/twohanded/bamboospear : /obj/item/melee/spear/bamboospear
+/obj/item/twohanded/required/cult_bastard : /obj/item/melee/cult_bastard
+/obj/item/twohanded/required/chainsaw : /obj/item/melee/chainsaw
+
+# now we'll do the generic paths, removing 'required' entirely.
+
+/obj/item/twohanded/required/@SUBTYPES : /obj/item/@SUBTYPES
+/obj/item/twohanded/@SUBTYPES : /obj/item/@SUBTYPES

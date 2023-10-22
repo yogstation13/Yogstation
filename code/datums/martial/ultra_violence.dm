@@ -30,6 +30,8 @@
 	COOLDOWN_DECLARE(next_parry) // so you can't just spam it
 
 /datum/martial_art/ultra_violence/can_use(mob/living/carbon/human/H)
+	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))//extra pacifism check because it does weird shit
+		return FALSE
 	return isipc(H)
 
 /datum/martial_art/ultra_violence/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)//A is user, D is target
@@ -67,12 +69,14 @@
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	check_streak(A,D)
-	handle_style(A, 0.1, STYLE_PUNCH)
+	if(A != D) // why are you hitting yourself
+		handle_style(A, 0.1, STYLE_PUNCH)
 	return FALSE
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
-	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || get_turf(H) == get_turf(A))
+	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || !can_use(H) || get_turf(H) == get_turf(A))
 		return FALSE
+
 	H.face_atom(A)
 	if(H.a_intent == INTENT_DISARM)
 		dash(H, A)
@@ -85,7 +89,7 @@
 
 /*---------------------------------------------------------------
 
-	start of blood burst section 
+	start of blood burst section
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -110,25 +114,30 @@
 	var/heal_amt = clamp(amount, 0, H.getBruteLoss() + H.getFireLoss() - hard_damage) //now introducing hard damage, a reason to actually dodge and parry things
 	H.heal_ordered_damage(heal_amt / 2, list(BRUTE, BURN), BODYPART_ANY) // splits the damage between brute and burn as evenly as possible
 	H.heal_ordered_damage(heal_amt / 2, list(BURN, BRUTE), BODYPART_ANY)
-	H.adjust_nutrition(amount / 2) // BLOOD IS FUEL
+	H.set_nutrition(min(H.nutrition + (amount / 2), NUTRITION_LEVEL_ALMOST_FULL)) // BLOOD IS FUEL
 
 /*---------------------------------------------------------------
 
-	end of blood burst section 
+	end of blood burst section
 
 ---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 
-	start of pocket pistol section 
+	start of pocket pistol section
 
 ---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/pocket_pistol(mob/living/carbon/human/A)
-	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = new /obj/item/gun/ballistic/revolver/ipcmartial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
-	gun.gun_owner = A
+	var/obj/item/gun/ballistic/revolver/ipcmartial/gun = locate() in A // check if they already had one
+	if(gun)
+		to_chat(A, span_notice("You reload your revolver."))
+		gun.magazine.top_off()
+	if(style >= 8 || !gun) // can dual wield at the max style level
+		gun = new(A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+		to_chat(A, span_notice("You whip out your revolver."))
+		gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You whip out your revolver."))	
 	streak = ""
-	
+
 /obj/item/gun/ballistic/revolver/ipcmartial
 	desc = "Your trusty revolver."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
@@ -148,10 +157,10 @@
 	name = ".357 sharpshooter bullet casing"
 	desc = "A .357 sharpshooter bullet casing."
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/ipcmartial
+	projectile_type = /obj/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
-/obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
+/obj/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
 	name = ".357 sharpshooter bullet"
 	damage = 30 // can't 3-shot against sec armor
 	armour_penetration = 15
@@ -161,14 +170,14 @@
 	ricochet_chance = INFINITY // ALWAYS ricochet
 	penetrating = TRUE
 
-/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
+/obj/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
 	. = ..()
 	if(!isliving(target)) // don't gain style from hitting an object
 		return .
 	var/mob/living/L = target
 	if(L.stat == DEAD)
 		return . // no using dead bodies to gain style, that's boring and uncool KILL SOME REAL THINGS
-	if(ishuman(firer))
+	if(ishuman(firer) && firer != target) // WHY ARE YOU SHOOTING YOURSELF
 		var/mob/living/carbon/human/H = firer
 		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
@@ -184,16 +193,16 @@
 	if(damage <= 0)
 		qdel(src)
 
-/obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
+/obj/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
 	speed *= 0.5 // faster so it can hit more reliably
 	penetrating = FALSE
 	return ..()
 
-/obj/item/projectile/bullet/ipcmartial/check_ricochet()
+/obj/projectile/bullet/ipcmartial/check_ricochet()
 	return TRUE
 
-/obj/item/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
+/obj/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
 	return !ismob(A) // don't ricochet off of mobs, that would be weird
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
@@ -207,13 +216,13 @@
 		qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/attack_self(mob/living/A)
-	to_chat(A, span_notice("You stash your revolver away."))	
+	to_chat(A, span_notice("You stash your revolver away."))
 	qdel(src)
 
 /obj/item/gun/ballistic/revolver/ipcmartial/proc/on_drop()//to let people drop it early with Q rather than attack self
 	var/mob/living/carbon/human/holder = src.loc
 	if(istype(holder))
-		to_chat(holder, span_notice("You relax your gun hand."))	
+		to_chat(holder, span_notice("You relax your gun hand."))
 	qdel(src)
 
 /*---------------------------------------------------------------
@@ -311,11 +320,11 @@
 			continue
 		for(var/thing in parried_tile.contents)
 			if(isprojectile(thing))
-				var/obj/item/projectile/P = thing
+				var/obj/projectile/P = thing
 				P.firer = H
 				P.damage *= 1.5
 				P.speed *= 0.5
-				P.permutated = list()
+				P.impacted = list()
 				P.fire(get_angle(H, A)) // parry the projectile towards wherever you clicked
 				successful_parry = TRUE
 	if(successful_parry)
@@ -386,11 +395,10 @@
 	to_chat(usr, span_notice("This module has made you a hell-bound killing machine."))
 	to_chat(usr, span_notice("You are immune to stuns and cannot be slowed by damage."))
 	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, releases the energy into anyone nearby."))
-	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
 	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
 	to_chat(usr, span_warning("Your grab has been replaced with the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you, but taking too much damage will build up \"hard damage\" which cannot be healed and decays over time.</b>"))
-	
+
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
 	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
@@ -431,7 +439,7 @@
 	..()
 	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
 	H.dna.species.punchdamagelow -= 4
-	H.dna.species.punchdamagehigh -= 4 
+	H.dna.species.punchdamagehigh -= 4
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)

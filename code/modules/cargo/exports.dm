@@ -45,15 +45,14 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		var/sold = FALSE
 		if(QDELETED(thing))
 			continue
-		if(istype(thingy) && thingy.item_flags & AUTOLATHED)
-			qdel(thingy)
-		for(var/datum/export/E in GLOB.exports_list)
-			if(!E)
-				continue
-			if(E.applies_to(thing, allowed_categories, apply_limit))
-				sold = E.sell_object(thing, report, dry_run, allowed_categories , apply_limit)
-				report.exported_atoms += " [thing.name]"
-				break
+		if(!(istype(thingy) && thingy.item_flags & AUTOLATHED))
+			for(var/datum/export/E in GLOB.exports_list)
+				if(!E)
+					continue
+				if(E.applies_to(thing, allowed_categories, apply_limit))
+					sold = E.sell_object(thing, report, dry_run, allowed_categories , apply_limit)
+					report.exported_atoms += " [thing.name]"
+					break
 		if(!dry_run && (sold || delete_unsold))
 			if(ismob(thing))
 				thing.investigate_log("deleted through cargo export",INVESTIGATE_CARGO)

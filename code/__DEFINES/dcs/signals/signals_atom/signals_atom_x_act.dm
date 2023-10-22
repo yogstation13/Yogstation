@@ -8,7 +8,7 @@
 #define COMSIG_ATOM_EMP_ACT "atom_emp_act"
 ///from base of atom/fire_act(): (exposed_temperature, exposed_volume)
 #define COMSIG_ATOM_FIRE_ACT "atom_fire_act"
-///from base of atom/bullet_act(): (/obj/item/projectile, def_zone)
+///from base of atom/bullet_act(): (/obj/projectile, def_zone)
 #define COMSIG_ATOM_BULLET_ACT "atom_bullet_act"
 ///from base of atom/CheckParts(): (list/parts_list, datum/crafting_recipe/R)
 #define COMSIG_ATOM_CHECKPARTS "atom_checkparts"
@@ -20,7 +20,7 @@
 	#define COMPONENT_CANCEL_BLOB_ACT (1<<0)
 ///from base of atom/acid_act(): (acidpwr, acid_volume)
 #define COMSIG_ATOM_ACID_ACT "atom_acid_act"
-///from base of atom/emag_act(): (/mob/user)
+///from base of atom/emag_act(): (/mob/user, /obj/item/card/emag)
 #define COMSIG_ATOM_EMAG_ACT "atom_emag_act"
 ///! from base of atom/rad_act(intensity, collectable_radiation)
 #define COMSIG_ATOM_RAD_ACT "atom_rad_act"

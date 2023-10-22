@@ -68,3 +68,24 @@ GLOBAL_LIST_INIT(abductor_gear, subtypesof(/datum/abductor_gear))
 	cost = 2
 	build_path = /obj/item/abductor_machine_beacon/chem_dispenser
 	category = "Advanced Gear"
+
+/datum/abductor_gear/posters
+	name = "Random Poster"
+	description = "A poster, to decorate the walls of the Mothership (or even the station) with."
+	id = "poster"
+	build_path = /obj/item/poster/random_abductor
+	category = "Decorative Items"
+
+/datum/abductor_gear/plushie
+	name = "Abductor Plushie"
+	description = "A plushie depicting an alien abductor."
+	id = "plushie1"
+	build_path = /obj/item/toy/plush/abductor
+	category = "Decorative Items"
+
+/datum/abductor_gear/plushie_agent
+	name = "Abductor Agent Plushie"
+	description = "A plushie depicting an alien abductor agent."
+	id = "plushie2"
+	build_path = /obj/item/toy/plush/abductor/agent
+	category = "Decorative Items"

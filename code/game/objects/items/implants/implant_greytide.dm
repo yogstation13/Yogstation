@@ -13,20 +13,19 @@
 <b>Function:</b> Makes the injected have a strong urge to break into places.<HR>"}
 	return dat
 
-/obj/item/implant/greytide/implant(mob/source, mob/user)
+/obj/item/implant/greytide/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 
-	if(!source.mind)
-		to_chat(user.mind, span_notice("[source] doesn't posses the mental capabilities to be a greytider."))	//"doesn't posses the mental capabilities to be a greytider"
+	if(!target.mind)
+		to_chat(user, span_notice("[target] doesn't posses the mental capabilities to be a greytider."))	//"doesn't posses the mental capabilities to be a greytider"
 		return FALSE
 
-	var/mob/living/carbon/target = source
 	var/mob/living/carbon/holder = user
 
 	if(target == holder)
 		to_chat(holder, span_notice("You can't implant yourself!"))
 		return FALSE
 
-	var/obj/item/implant/greytide/imp = locate(src.type) in source
+	var/obj/item/implant/greytide/imp = locate(src.type) in target
 	if(imp)
 		to_chat(holder, span_warning("[target] is already a slave!"))
 		return FALSE
@@ -35,14 +34,14 @@
 		to_chat(holder, span_warning("[target] seems to resist the implant!"))
 		return FALSE
 
-	to_chat(target, span_userdanger("<FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isn't something you will do.</FONT>"))
+	to_chat(target, span_userdanger("<FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder?.real_name] and your assistant brothers. You want to break into everything, but harming others isn't something you will do.</FONT>"))
 
 	var/datum/antagonist/greytide/GT = new
 	target.mind.add_antag_datum(GT)
 	GT.master = user
 	var/datum/objective/greytide/new_objective = new /datum/objective/greytide
 	GT.objectives += new_objective
-	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your assistant brothers! Remember not to harm others "
+	new_objective.explanation_text = "Never betray [holder?.real_name] or abandon your assistant brothers! Remember not to harm others "
 	ADD_TRAIT(target, TRAIT_PACIFISM, "Greytide Implant")
 
 	message_admins("[target.ckey] was implanted by with greytide implant ")

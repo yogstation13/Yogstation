@@ -24,7 +24,7 @@
 		var/color = GLOB.color_list_preternis[name]
 
 		var/icon/icon = new(preternis_base)
-		icon.Blend("#[color]", ICON_MULTIPLY)
+		icon.Blend(color, ICON_MULTIPLY)
 		values[name] = icon
 
 	return values

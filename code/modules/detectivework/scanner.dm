@@ -137,7 +137,7 @@
 	P.info = text("<center><B>Forensic Record - (FR-[])</B></center><HR><BR>", frNum)
 	P.info += jointext(log, "<BR>")
 	P.info += "<HR><B>Notes:</B><BR>"
-	P.update_icon()
+	P.update_appearance(UPDATE_ICON)
 
 	if(ismob(loc))
 		var/mob/M = loc
@@ -182,7 +182,7 @@
 
 			var/mob/living/carbon/human/H = A
 			if(!H.gloves)
-				fingerprints += md5(H.dna.uni_identity)
+				fingerprints += md5(H.dna.unique_identity)
 
 		else if(!ismob(A))
 

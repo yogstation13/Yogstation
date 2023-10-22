@@ -1,4 +1,5 @@
 /proc/webhook_send(method, data)
+	set waitfor = FALSE
 	if(!CONFIG_GET(string/webhook_address) || !CONFIG_GET(string/webhook_key))
 		return
 
@@ -7,6 +8,7 @@
 	var/datum/http_request/req = new()
 	req.prepare(RUSTG_HTTP_METHOD_POST, url, json_encode(data), list("Content-Type" = "application/json"))
 	req.begin_async() //why would we ever want to track the results of the request, meme made by yogstation gang
+	UNTIL(req.is_complete()) //what if we actually wanted to clean these up
 
 /proc/webhook(ckey, message)
 	return list("ckey" = ckey, "message" = message)

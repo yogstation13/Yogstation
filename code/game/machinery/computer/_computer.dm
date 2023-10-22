@@ -23,7 +23,7 @@
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	if(mapload)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	power_change()
 	if(!QDELETED(C))
 		qdel(circuit)
@@ -45,7 +45,7 @@
 		icon_screen = "ratvar[rand(1, 4)]"
 		icon_keyboard = "ratvar_key[rand(1, 6)]"
 		icon_state = "ratvarcomputer[rand(1, 4)]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/narsie_act()
 	if(clockwork && clockwork != initial(clockwork)) //if it's clockwork but isn't normally clockwork
@@ -53,12 +53,10 @@
 		icon_screen = initial(icon_screen)
 		icon_keyboard = initial(icon_keyboard)
 		icon_state = initial(icon_state)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/machinery/computer/update_icon()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
+/obj/machinery/computer/update_appearance(updates)
+	. = ..()
 	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
 	if(pixel_x == 0 && pixel_y == 0)
 		// this bit of code makes the computer hug the wall its next to
@@ -84,18 +82,21 @@
 			if(istype(T, /turf/closed/wall) || W)
 				pixel_x = offet_matrix[1]
 				pixel_y = offet_matrix[2]
-		
+
+
+/obj/machinery/computer/update_overlays()
+	. = ..()
 	if(stat & NOPOWER)
-		add_overlay("[icon_keyboard]_off")
+		. += "[icon_keyboard]_off"
 		return
-	add_overlay(icon_keyboard)
+	. += icon_keyboard
 
 	// This whole block lets screens ignore lighting and be visible even in the darkest room
 	var/overlay_state = icon_screen
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, EMISSIVE_PLANE, dir)
+	. += mutable_appearance(icon, overlay_state)
+	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
 
 /obj/machinery/computer/power_change()
 	. = ..()

@@ -37,11 +37,12 @@
 	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	if(((methods & VAPOR) && prob(min(33, reac_volume) * permeability)) || ((methods & (INGEST|PATCH|INJECT)) && reac_volume >= 5))
-		M.randmuti()
+		M.random_mutate_unique_identity()
+		M.random_mutate_unique_features()
 		if(prob(98))
-			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			M.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 		else
-			M.easy_randmut(POSITIVE)
+			M.easy_random_mutate(POSITIVE)
 		M.updateappearance()
 		M.domutcheck()
 	..()
@@ -58,7 +59,8 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
-	process_flags = ORGANIC | SYNTHETIC
+	accelerant_quality = 10
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
@@ -198,6 +200,7 @@
 			M.adjust_slurring(3 SECONDS)
 		if(5 to 8)
 			M.adjustStaminaLoss(40, 0)
+			M.clear_stamina_regen()
 		if(9 to INFINITY)
 			fakedeath_active = TRUE
 			M.fakedeath(type)
@@ -286,7 +289,7 @@
 
 /datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	..()
-	if(MOB_BUG in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_BUG)
 		var/damage = min(round(0.4*reac_volume, 0.1),10)
 		M.adjustToxLoss(damage)
 
@@ -308,6 +311,7 @@
 	color = "#9ACD32"
 	toxpwr = 0.5
 	taste_description = "burning"
+	accelerant_quality = 10
 
 /datum/reagent/toxin/spore_burning/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -392,6 +396,7 @@
 
 /datum/reagent/toxin/staminatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(REM * data, 0)
+	M.clear_stamina_regen()
 	data = max(data - 1, 3)
 	..()
 	. = 1
@@ -440,7 +445,7 @@
 	color = "#787878"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/radpower = 40
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
@@ -664,6 +669,7 @@
 	if(current_cycle >= 10)
 		M.Sleeping(40, 0)
 	M.adjustStaminaLoss(10*REM, 0)
+	M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -791,7 +797,7 @@
 	metabolization_rate = 1.2 * REAGENTS_METABOLISM
 	toxpwr = 0.5
 	taste_description = "spinning"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/rotatium/on_mob_life(mob/living/carbon/M)
 	return ..() //dont forget to reenable this
@@ -842,7 +848,7 @@
 	var/acidpwr = 10 //the amount of protection removed from the armour
 	taste_description = "acid"
 	self_consuming = TRUE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(C))
@@ -935,6 +941,7 @@
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(7.5, 0)
+	M.clear_stamina_regen()
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.adjustBruteLoss(0.5, 0)
 	if(prob(20))
@@ -992,6 +999,7 @@
 
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
+	M.clear_stamina_regen()
 	..()
 
 /datum/reagent/toxin/mushroom_powder

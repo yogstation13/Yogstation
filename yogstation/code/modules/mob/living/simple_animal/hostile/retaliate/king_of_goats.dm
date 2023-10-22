@@ -107,7 +107,7 @@ Difficulty: Insanely Hard
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Found(atom/A)
 	if(isliving(A))
@@ -245,22 +245,24 @@ Difficulty: Insanely Hard
 		else return
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/phase3_transition()
-	phase3 = TRUE
 	spellscast = 0
 	maxHealth = 750
 	revive(TRUE)
+	phase3 = TRUE
 	var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
 	// Do a sudden transition of music
 	player.stop_all(0)
+	loot = list(/obj/item/gem/dark, /obj/item/t_scanner/adv_mining_scanner/goat_scanner, /obj/item/toy/plush/goatplushie/angry/kinggoat, /obj/structure/ladder/unbreakable/goat)
 	player.remove_all()
 	player.music_path = /datum/music/sourced/battle/king_goat_2
 	player.do_range_check(0)
 	stun_chance = 10
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon_state()
+	. = ..()
 	var/matrix/M = new
 	if(phase3)
 		icon_state = "king_goat3"
@@ -292,10 +294,6 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/OnDeath()
 	if(phase3)
 		visible_message(span_cult("\The [src] shrieks as the seal on his power breaks and he starts to break apart!"))
-		new /obj/structure/ladder/unbreakable/goat(loc)
-		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
-		new /obj/item/t_scanner/adv_mining_scanner/goat_scanner(loc)
-		new /obj/item/gem/dark(loc)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()

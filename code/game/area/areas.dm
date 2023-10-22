@@ -32,12 +32,13 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
-	var/fire = null
+	var/fire = FALSE
 	var/atmos = TRUE
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
 	var/vacuum = null //yogs- yellow vacuum lights
+	var/mining_speed = FALSE
 
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize(mapload).
@@ -72,6 +73,8 @@
 	var/unique = TRUE
 	/// If false, then this area will show up as gibberish on suit sensors.
 	var/show_on_sensors = TRUE
+	/// a simple check to determine whether the lights in an area should go red during delta alert
+	var/delta_light = FALSE
 
 	var/no_air = null
 
@@ -90,7 +93,7 @@
 	///Used to decide what the minimum time between ambience is
 	var/min_ambience_cooldown = 30 SECONDS
 	///Used to decide what the maximum time between ambience is
-	var/max_ambience_cooldown = 240 SECONDS
+	var/max_ambience_cooldown = 175 SECONDS
 	///Used to decide what kind of reverb the area makes sound have
 	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
@@ -183,6 +186,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	map_name = name // Save the initial (the name set in the map) name of the area.
 	canSmoothWithAreas = typecacheof(canSmoothWithAreas)
 
+	add_delta_areas()
 
 	if(!ambientsounds && ambience_index)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
@@ -277,6 +281,10 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		areas_in_z["[z]"] = list()
 	areas_in_z["[z]"] += src
 
+/area/proc/add_delta_areas()
+	if(is_station_level(z) && !istype(src, /area/shuttle) && !istype(src, /area/ruin) && !istype(src, /area/space))
+		GLOB.delta_areas += src
+
 /**
   * Destroy an area and clean it up
   *
@@ -290,6 +298,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		GLOB.areas_by_type[type] = null
 	GLOB.sortedAreas -= src
 	GLOB.areas -= src
+	GLOB.delta_areas -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -335,40 +344,34 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Sends to all ai players, alert consoles, drones and alarm monitor programs in the world
   */
 /area/proc/atmosalert(danger_level, obj/source)
-	if(danger_level != atmosalm)
-		if (danger_level==2)
+	atmosalm = danger_level
+	if (atmosalm==2)
+		for (var/item in GLOB.silicon_mobs)
+			var/mob/living/silicon/aiPlayer = item
+			aiPlayer.triggerAlarm("Atmosphere", src, cameras, source)
+		for (var/item in GLOB.alert_consoles)
+			var/obj/machinery/computer/station_alert/a = item
+			a.triggerAlarm("Atmosphere", src, cameras, source)
+		for (var/item in GLOB.drones_list)
+			var/mob/living/simple_animal/drone/D = item
+			D.triggerAlarm("Atmosphere", src, cameras, source)
+		for(var/item in GLOB.alarmdisplay)
+			var/datum/computer_file/program/alarm_monitor/p = item
+			p.triggerAlarm("Atmosphere", src, cameras, source)
 
-			for (var/item in GLOB.silicon_mobs)
-				var/mob/living/silicon/aiPlayer = item
-				aiPlayer.triggerAlarm("Atmosphere", src, cameras, source)
-			for (var/item in GLOB.alert_consoles)
-				var/obj/machinery/computer/station_alert/a = item
-				a.triggerAlarm("Atmosphere", src, cameras, source)
-			for (var/item in GLOB.drones_list)
-				var/mob/living/simple_animal/drone/D = item
-				D.triggerAlarm("Atmosphere", src, cameras, source)
-			for(var/item in GLOB.alarmdisplay)
-				var/datum/computer_file/program/alarm_monitor/p = item
-				p.triggerAlarm("Atmosphere", src, cameras, source)
-
-		else if (src.atmosalm == 2)
-			for (var/item in GLOB.silicon_mobs)
-				var/mob/living/silicon/aiPlayer = item
-				aiPlayer.cancelAlarm("Atmosphere", src, source)
-			for (var/item in GLOB.alert_consoles)
-				var/obj/machinery/computer/station_alert/a = item
-				a.cancelAlarm("Atmosphere", src, source)
-			for (var/item in GLOB.drones_list)
-				var/mob/living/simple_animal/drone/D = item
-				D.cancelAlarm("Atmosphere", src, source)
-			for(var/item in GLOB.alarmdisplay)
-				var/datum/computer_file/program/alarm_monitor/p = item
-				p.cancelAlarm("Atmosphere", src, source)
-
-		src.atmosalm = danger_level
-		return 1
-	return 0
-
+	else
+		for (var/item in GLOB.silicon_mobs)
+			var/mob/living/silicon/aiPlayer = item
+			aiPlayer.cancelAlarm("Atmosphere", src, source)
+		for (var/item in GLOB.alert_consoles)
+			var/obj/machinery/computer/station_alert/a = item
+			a.cancelAlarm("Atmosphere", src, source)
+		for (var/item in GLOB.drones_list)
+			var/mob/living/simple_animal/drone/D = item
+			D.cancelAlarm("Atmosphere", src, source)
+		for(var/item in GLOB.alarmdisplay)
+			var/datum/computer_file/program/alarm_monitor/p = item
+			p.cancelAlarm("Atmosphere", src, source)
 /**
   * Try to close all the firedoors in the area
   */
@@ -406,7 +409,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		ModifyFiredoors(FALSE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	for (var/item in GLOB.alert_consoles)
 		var/obj/machinery/computer/station_alert/a = item
@@ -437,7 +440,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		ModifyFiredoors(TRUE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	for (var/item in GLOB.silicon_mobs)
 		var/mob/living/silicon/aiPlayer = item
@@ -508,12 +511,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/set_fire_alarm_effect()
-	fire = TRUE
+/area/proc/set_fire_alarm_effect(delta_alert=FALSE)
+	if(delta_alert)
+		delta_light = TRUE
+	else
+		fire = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(fire)
+		F.update_fire_light(TRUE)
 	for(var/obj/machinery/light/L in src)
 		L.update()
 
@@ -522,12 +528,16 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
   */
-/area/proc/unset_fire_alarm_effects()
-	fire = FALSE
+/area/proc/unset_fire_alarm_effects(delta_alert=FALSE)
+	if(delta_alert)
+		delta_light = FALSE
+	else
+		fire = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(fire)
+		if(!delta_light)
+			F.update_fire_light(FALSE)
 	for(var/obj/machinery/light/L in src)
 		L.update()
 
@@ -544,25 +554,26 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		L.update()
 
 /**
-  * Update the icon of the area
+  * Update the icon state of the area
   *
   * Im not sure what the heck this does, somethign to do with weather being able to set icon
   * states on areas?? where the heck would that even display?
   */
-/area/update_icon()
+/area/update_icon_state()
 	var/weather_icon
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
+	for(var/datum/weather/W as anything in SSweather.processing)
 		if(W.stage != END_STAGE && (src in W.impacted_areas))
 			W.update_areas()
 			weather_icon = TRUE
 	if(!weather_icon)
 		icon_state = null
+	return ..()
 
 /**
   * Update the icon of the area (overridden to always be null for space
   */
-/area/space/update_icon()
+/area/space/update_icon_state()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = null
 
 
@@ -602,7 +613,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()				// reverify power status (to update icons etc.)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
   * Return the usage of power per channel

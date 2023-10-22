@@ -11,7 +11,7 @@
 					/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted = 10,
 					/obj/item/gun/ballistic/shotgun/toy/unrestricted = 10,
 					/obj/item/toy/sword = 10,
-					/obj/item/twohanded/vxtvulhammer/toy = 7,
+					/obj/item/melee/vxtvulhammer/toy = 7,
 					/obj/item/ammo_box/foambox = 20,
 					/obj/item/toy/foamblade = 10,
 					/obj/item/toy/syndicateballoon = 10,
@@ -22,7 +22,7 @@
 					  /obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/riot = 10,
 					  /obj/item/ammo_box/foambox/riot = 20,
 					  /obj/item/toy/katana = 10,
-					  /obj/item/twohanded/dualsaber/toy = 5,
+					  /obj/item/melee/dualsaber/toy = 5,
 					  /obj/item/toy/cards/deck/syndicate = 10) //Gambling and it hurts, making it a +18 item
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF

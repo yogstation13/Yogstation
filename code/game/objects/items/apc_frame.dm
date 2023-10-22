@@ -128,6 +128,14 @@
 	. = ..()
 	if(issilicon(user))
 		var/mob/living/silicon/robot/robotuser = user
-		var/obj/item/gripper/gripper = robotuser.get_active_held_item(TRUE)
-		if(!istype(gripper) || (istype(gripper) && Adjacent(src))) // basically you have to be holding it
-			. = min(., UI_UPDATE)
+		var/obj/item/held_item = robotuser.get_active_held_item(TRUE)
+		if(istype(held_item, /obj/item/borg/gripper))
+			var/obj/item/borg/gripper/gripper = held_item
+			if(gripper.wrapped == src)
+				return // Gripper has this electronic held.
+		if(istype(held_item, /obj/item/construction/rcd/borg))
+			var/obj/item/construction/rcd/borg/rcd = held_item
+			if(rcd.airlock_electronics == src)
+				return // RCD is accessing their electronic.
+		. = min(., UI_UPDATE)
+

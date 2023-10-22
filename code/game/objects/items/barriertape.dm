@@ -97,7 +97,7 @@
 				P.icon_state = "[P.icon_base]_[dir]"
 				P.tape_dir = dir
 			cur = get_step_towards(cur,end)
-	//is_blocked_turf(turf/T)
+	//T.is_blocked_turf()
 		to_chat(usr, span_notice("You finish placing the [src]."))	//Git Test
 
 /obj/item/barrier_taperoll/afterattack(atom/A, mob/user, proximity)

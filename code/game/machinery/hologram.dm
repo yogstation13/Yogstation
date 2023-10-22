@@ -388,18 +388,16 @@ obj/machinery/holopad/secure/Initialize(mapload)
 			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
 				HC.Answer(src)
 				break
-			if(HC.head_call && secure)
+			if(HC.head_call) //captain is calling: ACCEPT | ACCEPT
 				HC.Answer(src)
 				break
-			if(!secure)
-				HC.Answer(src)
 			if(outgoing_call)
 				HC.Disconnect(src)//can't answer calls while calling
 			else
 				playsound(src, 'sound/machines/twobeep.ogg', 100)	//bring, bring!
 				ringing = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/holopad/proc/activate_holo(mob/living/user)
 	var/mob/living/silicon/ai/AI = user
@@ -467,9 +465,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		set_light_on(TRUE)
 	else
 		set_light_on(FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holopad/update_icon()
+/obj/machinery/holopad/update_icon_state()
+	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"

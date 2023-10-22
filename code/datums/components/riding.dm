@@ -35,6 +35,8 @@
 	restore_position(M)
 	unequip_buckle_inhands(M)
 	M.updating_glide_size = TRUE
+	if(AM.movement_type & FLYING)
+		M.movement_type &= ~FLYING
 	if(del_on_unbuckle_all && !AM.has_buckled_mobs())
 		qdel(src)
 
@@ -44,6 +46,8 @@
 	M.updating_glide_size = FALSE
 	parent_initial_layer = AM.layer
 	handle_vehicle_offsets()
+	if(AM.movement_type & FLYING)
+		M.movement_type |= FLYING
 
 /datum/component/riding/proc/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
@@ -68,6 +72,10 @@
 /datum/component/riding/proc/ride_check(mob/living/M)
 	var/atom/movable/AM = parent
 	var/mob/AMM = AM
+	if(AM.movement_type & FLYING)
+		AMM.movement_type |= FLYING
+	else
+		AMM.movement_type &= ~FLYING
 	if((ride_check_rider_restrained && M.restrained(TRUE)) || (ride_check_rider_incapacitated && M.incapacitated(FALSE, TRUE)) || (ride_check_ridden_incapacitated && istype(AMM) && AMM.incapacitated(FALSE, TRUE)))
 		AM.visible_message(span_warning("[M] falls off of [AM]!"))
 		AM.unbuckle_mob(M)

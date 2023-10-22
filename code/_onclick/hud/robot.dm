@@ -166,13 +166,13 @@
 
 	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = 'icons/mob/screen_cyborg.dmi'
-	pull_icon.update_icon()
+	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_borg_pull
 	hotkeybuttons += pull_icon
 
 
 	zone_select = new /atom/movable/screen/zone_sel/robot(src)
-	zone_select.update_icon()
+	zone_select.update_appearance(UPDATE_ICON)
 	static_inventory += zone_select
 
 
@@ -278,9 +278,10 @@
 	if(.)
 		return
 	robot?.toggle_headlamp()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/atom/movable/screen/robot/lamp/update_icon()
+/atom/movable/screen/robot/lamp/update_icon(updates=ALL)
+	. = ..()
 	if(robot?.lamp_enabled)
 		icon_state = "lamp_on"
 	else

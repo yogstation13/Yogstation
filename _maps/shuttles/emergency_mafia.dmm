@@ -1,0 +1,661 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"au" = (
+/obj/structure/chair/comfy/black,
+/mob/living/simple_animal/drone/snowflake/mafia{
+	name = "The Dronefather";
+	unique_name = 0
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"cw" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"dd" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"en" = (
+/turf/open/floor/wood/broken/six,
+/area/shuttle/escape)
+"eC" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"fe" = (
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"fs" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"fV" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"ig" = (
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"jA" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"jZ" = (
+/obj/structure/shuttle/engine/large,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"kV" = (
+/obj/structure/table/wood/fancy,
+/obj/effect/fun_balloon/sentience/emergency_shuttle{
+	effect_range = 5;
+	group_name = "Drone Mafia or barstaff on the emergency shuttle"
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"nb" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"pD" = (
+/obj/structure/table/wood/fancy,
+/obj/item/clothing/head/fedora,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"qH" = (
+/turf/open/floor/wood/broken/five,
+/area/shuttle/escape)
+"qR" = (
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"qU" = (
+/turf/open/floor/wood/broken/two,
+/area/shuttle/escape)
+"tu" = (
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"ud" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"uo" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"uD" = (
+/turf/open/floor/wood/broken/seven,
+/area/shuttle/escape)
+"vR" = (
+/turf/template_noop,
+/area/template_noop)
+"wd" = (
+/obj/structure/table/wood/fancy,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"wA" = (
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"yS" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"yT" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/escape)
+"BI" = (
+/obj/structure/table/wood/fancy,
+/obj/item/clothing/head/fedora/brown,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"CE" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"DC" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/flask,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"DZ" = (
+/mob/living/simple_animal/drone/snowflake/bardrone,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"EY" = (
+/obj/docking_port/mobile/emergency{
+	name = "mafia emergency shuttle"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/escape)
+"Fc" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"FA" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/mob/living/simple_animal/drone/snowflake/mafia,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"FX" = (
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Ge" = (
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"JW" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Kn" = (
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"KI" = (
+/obj/machinery/computer/emergency_shuttle,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"La" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/mob/living/simple_animal/drone/snowflake/mafia,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"Ls" = (
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Mi" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"Nk" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"No" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"NJ" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"Oc" = (
+/obj/structure/table/wood/fancy,
+/obj/item/clothing/head/fedora/gtrim_fedora,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"Oi" = (
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"Oj" = (
+/obj/structure/chair/comfy/black{
+	dir = 1;
+	name = "Command Station"
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"OA" = (
+/turf/open/floor/wood/broken,
+/area/shuttle/escape)
+"OP" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"PM" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Qr" = (
+/mob/living/simple_animal/hostile/alien/maid/barmaid,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Rs" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/pizza/sassysage,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Sa" = (
+/mob/living/simple_animal/pet/cat/Proc{
+	desc = "The mobs cutest cat!";
+	health = 45000;
+	maxHealth = 45000;
+	name = "Booze"
+	},
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"TP" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"TS" = (
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"TW" = (
+/turf/closed/wall/mineral/wood,
+/area/shuttle/escape)
+"Vc" = (
+/obj/machinery/door/airlock/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"Vi" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"Vx" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
+"Wm" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/shuttle/escape)
+"Yg" = (
+/obj/item/flashlight/lamp/green,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+
+(1,1,1) = {"
+vR
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+EY
+yT
+yT
+yT
+yT
+yT
+Vc
+yT
+uo
+yT
+yT
+yT
+yT
+yT
+vR
+vR
+"}
+(2,1,1) = {"
+yT
+yT
+jA
+CE
+Oi
+Oi
+CE
+jA
+Oi
+Oi
+CE
+jA
+Oi
+Oi
+TW
+Oi
+CE
+Oi
+fs
+fs
+Fc
+Oi
+yT
+yT
+vR
+"}
+(3,1,1) = {"
+yT
+Kn
+ud
+Yg
+fV
+OA
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+TW
+Oi
+Oi
+Oi
+Oi
+Oi
+en
+Oi
+yS
+TS
+jZ
+"}
+(4,1,1) = {"
+yT
+Ge
+Qr
+ig
+fV
+qR
+qR
+FA
+qR
+FA
+qR
+qR
+qR
+Oi
+TW
+Oi
+Oi
+Oi
+Vi
+Nk
+nb
+OP
+yS
+TS
+TS
+"}
+(5,1,1) = {"
+yT
+fe
+DZ
+Rs
+fV
+qR
+qR
+BI
+Mi
+NJ
+pD
+qR
+qR
+Oi
+TW
+jA
+Oi
+Oi
+Vi
+Nk
+nb
+OP
+yS
+PM
+vR
+"}
+(6,1,1) = {"
+yT
+JW
+wA
+Rs
+fV
+au
+Oc
+TP
+wd
+Mi
+wd
+Mi
+qR
+Oi
+TW
+TW
+jA
+Oi
+Vi
+Nk
+nb
+Sa
+yS
+TS
+jZ
+"}
+(7,1,1) = {"
+yT
+tu
+wA
+Rs
+fV
+qR
+DC
+kV
+NJ
+Mi
+NJ
+Mi
+Oj
+Oi
+jA
+TW
+TW
+Oi
+qR
+qR
+qR
+OP
+yS
+TS
+TS
+"}
+(8,1,1) = {"
+yT
+Ls
+wA
+ig
+fV
+qR
+qR
+pD
+Mi
+BI
+Mi
+qR
+qR
+Oi
+Oi
+Oi
+TW
+qU
+qR
+qR
+qR
+Oi
+yS
+PM
+vR
+"}
+(9,1,1) = {"
+yT
+FX
+wA
+ud
+fV
+qR
+qR
+La
+qR
+La
+qR
+qR
+qR
+qH
+Oi
+Oi
+cw
+Oi
+qR
+Vx
+qR
+Oi
+yS
+TS
+jZ
+"}
+(10,1,1) = {"
+yT
+FX
+ig
+KI
+fV
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+Oi
+uD
+Oi
+Oi
+cw
+Oi
+Wm
+Wm
+Wm
+Wm
+yS
+TS
+TS
+"}
+(11,1,1) = {"
+yT
+yT
+jA
+dd
+Oi
+Oi
+dd
+jA
+Oi
+Oi
+dd
+jA
+Oi
+Oi
+dd
+Oi
+TW
+No
+Wm
+eC
+No
+jA
+yT
+yT
+vR
+"}
+(12,1,1) = {"
+vR
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+yT
+vR
+vR
+"}

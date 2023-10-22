@@ -37,7 +37,7 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/powered)
 "dc" = (
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/obj/item/kirbyplants/photosynthetic,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
 "dm" = (
@@ -310,7 +310,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered)
 "uf" = (

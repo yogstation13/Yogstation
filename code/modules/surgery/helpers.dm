@@ -92,7 +92,7 @@
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
 	var/selected_zone = user.zone_selected
 	to_chat(user, span_notice("You begin to cancel \the [S]."))
-	if(!do_mob(user, M, 3 SECONDS))
+	if(!do_after(user, 3 SECONDS, M))
 		return
 	if(S.status == 1)
 		M.surgeries -= S
@@ -145,10 +145,10 @@
 			if(covered_locations & HEAD)
 				return 0
 		if(BODY_ZONE_PRECISE_EYES)
-			if(covered_locations & HEAD || face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES)
+			if(face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES || eyesmouth_covered & HEADCOVERSEYES || eyesmouth_covered & MASKCOVERSEYES)
 				return 0
 		if(BODY_ZONE_PRECISE_MOUTH)
-			if(covered_locations & HEAD || face_covered & HIDEFACE || eyesmouth_covered & MASKCOVERSMOUTH || eyesmouth_covered & HEADCOVERSMOUTH)
+			if(face_covered & HIDEFACE || eyesmouth_covered & MASKCOVERSMOUTH || eyesmouth_covered & HEADCOVERSMOUTH)
 				return 0
 		if(BODY_ZONE_CHEST)
 			if(covered_locations & CHEST)

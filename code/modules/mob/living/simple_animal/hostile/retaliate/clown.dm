@@ -7,7 +7,7 @@
 	icon_dead = "clown_dead"
 	icon_gib = "clown_gib"
 	health_doll_icon = "clown" //if >32x32, it will use this generic. for all the huge clown mobs that subtype from this
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	turns_per_move = 5
 	response_help = "pokes"
 	response_disarm = "gently pushes aside"

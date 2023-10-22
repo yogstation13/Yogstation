@@ -95,6 +95,11 @@
 		amount = min(amount, 0)
 	return ..()
 
+/mob/living/carbon/adjustCloneLoss(amount, updating_health, forced)
+	if(HAS_TRAIT(src, TRAIT_NOCLONE)) // Can't have clone damage if you can't be cloned
+		amount = min(amount, 0) // but you can still heal it so you don't get stuck forever
+	return ..()
+
 /mob/living/carbon/getStaminaLoss()
 	. = 0
 	for(var/X in bodyparts)

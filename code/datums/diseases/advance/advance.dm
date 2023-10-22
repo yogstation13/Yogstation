@@ -296,7 +296,7 @@
 		var/res = clamp(properties["resistance"] - (symptoms.len / 2), 1, advance_cures.len)
 		if(res == oldres)
 			return
-		
+
 		if(prob(82 - (res * 7))) // Double cure
 			var/list/the_cures = advance_cures[res]
 			var/list/not_used = the_cures.Copy()
@@ -310,7 +310,7 @@
 			// Get the cure name from the cure_id
 			var/datum/reagent/D = GLOB.chemical_reagents_list[cures[1]]
 			cure_text = D.name
-		
+
 		oldres = res
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.

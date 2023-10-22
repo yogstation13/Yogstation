@@ -377,7 +377,7 @@
 /area/ruin/powered/gasstation)
 "sY" = (
 /obj/machinery/vending/cigarette{
-	products = list(/obj/item/storage/box/fancy/cigarettes = 3, /obj/item/storage/box/fancy/cigarettes/cigpack_uplift = 2, /obj/item/storage/box/fancy/cigarettes/cigpack_robust = 1, /obj/item/storage/box/fancy/cigarettes/cigpack_carp = 0, /obj/item/storage/box/fancy/cigarettes/cigpack_midori = 0, /obj/item/storage/box/matches = 4, /obj/item/lighter/greyscale = 1, /obj/item/storage/box/fancy/rollingpapers = 3)
+	products = list(/obj/item/storage/fancy/cigarettes = 3, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 2, /obj/item/storage/fancy/cigarettes/cigpack_robust = 1, /obj/item/storage/fancy/cigarettes/cigpack_carp = 0, /obj/item/storage/fancy/cigarettes/cigpack_midori = 0, /obj/item/storage/box/matches = 4, /obj/item/lighter/greyscale = 1, /obj/item/storage/fancy/rollingpapers = 3)
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/gasstation)

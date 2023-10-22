@@ -220,8 +220,8 @@
  */
 /obj/effect/particle_effect/fluid/smoke/bad/proc/on_entered(datum/source, atom/movable/arrived, atom/oldloc)
 	SIGNAL_HANDLER
-	if(istype(arrived, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/beam = arrived
+	if(istype(arrived, /obj/projectile/beam))
+		var/obj/projectile/beam/beam = arrived
 		beam.damage = (beam.damage/2)
 
 /// A factory which produces smoke that makes you cough.
@@ -306,7 +306,7 @@
 		for(var/obj/machinery/atmospherics/components/unary/comp in chilly)
 			if(!isnull(comp.welded) && !comp.welded) //must be an unwelded vent pump or vent scrubber.
 				comp.welded = TRUE
-				comp.update_icon()
+				comp.update_appearance(UPDATE_ICON)
 				comp.visible_message(span_danger("[comp] is frozen shut!"))
 
 	// Extinguishes everything in the turf

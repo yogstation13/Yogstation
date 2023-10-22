@@ -37,6 +37,7 @@
 	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
+	mutantrace_variation = MUTANTRACE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 
@@ -379,4 +380,12 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	item_state = "rmaks"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	clothing_flags = MASKINTERNALS
+	flags_cover = MASKCOVERSEYES
+
+/obj/item/clothing/mask/pocketcatmask
+	name = "peculiar cat mask"
+	desc = "this mask makes you a little uneasy"
+	icon_state = "pocketmask"
+	item_state = "pocketmask"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = MASKCOVERSEYES

@@ -84,7 +84,7 @@ input. The input's `action` and `params` are passed to the proc.
       return FALSE
     color = new_color
     . = TRUE
-  update_icon()
+  update_appearance(UPDATE_ICON)
 ```
 
 The `..()` (parent call) is very important here, as it is how we check that the
@@ -312,7 +312,7 @@ upon code review):
       // A demo of proper input sanitation.
       var = CLAMP(newvar, min_val, max_val)
       . = TRUE
-  update_icon() // Not applicable to all objects.
+  update_appearance(UPDATE_ICON) // Not applicable to all objects.
 ```
 
 And the template:

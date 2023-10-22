@@ -54,7 +54,8 @@
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
-
+	return TRUE
+	
 /obj/effect/mob_spawn/Initialize(mapload)
 	. = ..()
 	if(instant || (roundstart && (mapload || (SSticker && SSticker.current_state > GAME_STATE_SETTING_UP))))

@@ -3,9 +3,7 @@
 /turf/closed/wall/r_wall,
 /area/template_noop)
 "b" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/basic,
+/turf/baseturf_bottom,
 /area/template_noop)
 "c" = (
 /obj/machinery/button/door{
@@ -48,9 +46,6 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
-"u" = (
-/turf/open/space/basic,
-/area/template_noop)
 "v" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "junctionshutter"
@@ -83,6 +78,11 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"B" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/baseturf_bottom,
+/area/template_noop)
 "E" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only,
@@ -90,6 +90,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/structure/lattice,
+/turf/baseturf_bottom,
 /area/template_noop)
 "I" = (
 /obj/machinery/button/door{
@@ -111,10 +115,6 @@
 "M" = (
 /obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/plating,
-/area/template_noop)
-"O" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
 /area/template_noop)
 "R" = (
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -150,37 +150,37 @@ a
 "}
 (2,1,1) = {"
 a
-O
+G
 Y
 Y
 s
 Y
 Y
-u
+b
 T
 a
 "}
 (3,1,1) = {"
 a
-O
-u
+G
+b
 Y
 S
 Y
-O
-O
-b
+G
+G
+B
 a
 "}
 (4,1,1) = {"
 Y
 Y
-u
+b
 a
 p
 x
-u
-u
+b
+b
 Y
 Y
 "}
@@ -223,25 +223,25 @@ S
 (8,1,1) = {"
 Y
 Y
-O
+G
 x
 w
 a
-u
-u
+b
+b
 Y
 Y
 "}
 (9,1,1) = {"
 a
-O
+G
 Y
 Y
 s
 Y
 Y
-O
-O
+G
+G
 a
 "}
 (10,1,1) = {"
