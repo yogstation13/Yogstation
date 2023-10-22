@@ -1,7 +1,7 @@
 /datum/round_event_control/alien_infestation
 	name = "Alien Infestation"
 	typepath = /datum/round_event/ghost_role/alien_infestation
-	weight = 5
+	weight = 0
 
 	min_players = 30
 
