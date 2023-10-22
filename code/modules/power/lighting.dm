@@ -350,7 +350,7 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire))
+			if(emergency_mode || (A && (A.fire || A.delta_light)))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
 				icon_state = "[base_state]_vacuum"
@@ -387,7 +387,7 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.fire)
+		if (A && (A.fire || A.delta_light))
 			CO = bulb_emergency_colour
 		else if (A && A.vacuum)
 			CO = bulb_vacuum_colour
@@ -786,7 +786,7 @@
 	on = TRUE && !forced_off
 	update()
 
-/obj/machinery/light/tesla_act(power, tesla_flags)
+/obj/machinery/light/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		explosion(src,0,0,0,flame_range = 5, adminlog = 0)
 		qdel(src)

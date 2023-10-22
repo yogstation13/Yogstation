@@ -290,6 +290,11 @@
 	suffix = "clerk_meta.dmm"
 	name = "Clerk Meta"
 
+/datum/map_template/ruin/station/box/clerk/gamble
+	id = "clerk_gamble"
+	suffix = "clerk_gamble.dmm"
+	name = "Clerk Gambling Hall"
+
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 
