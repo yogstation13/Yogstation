@@ -109,7 +109,7 @@
 	
 /datum/action/cooldown/spell/cone/stalk/proc/increase_tier()
 	tier++
-	to_chat(owner, span_danger("Tiered up to [tier]"))
+	owner.balloon_alert(owner, "tiered up to [tier]")
 	switch(tier)
 		if(1)
 			owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 1.5)
