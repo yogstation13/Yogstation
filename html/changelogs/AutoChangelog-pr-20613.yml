@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Gives Clerk a new template where instead of a giftshop it's a gambling hall."
+  - rscadd: "Gives coinstacks the ability to be maploaded in."

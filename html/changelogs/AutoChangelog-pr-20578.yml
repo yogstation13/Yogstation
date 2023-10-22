@@ -1,0 +1,8 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - rscadd: "Added philospher's tome loot"
+  - rscdel: "Removed bloody knuckles from bg loot"
+  - tweak: "tweaked the way goat king drops its loot"
+  - soundadd: "added bubbleblender.ogg"
+  - imageadd: "added sprites for philospher's tome"

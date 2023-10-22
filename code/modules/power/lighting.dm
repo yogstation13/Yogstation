@@ -350,7 +350,7 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire))
+			if(emergency_mode || (A && (A.fire || A.delta_light)))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
 				icon_state = "[base_state]_vacuum"
@@ -387,7 +387,7 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.fire)
+		if (A && (A.fire || A.delta_light))
 			CO = bulb_emergency_colour
 		else if (A && A.vacuum)
 			CO = bulb_vacuum_colour
