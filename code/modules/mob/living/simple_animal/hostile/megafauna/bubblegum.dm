@@ -70,14 +70,6 @@ Difficulty: Hard
 	small_sprite_type = /datum/action/small_sprite/megafauna/bubblegum
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/bubblegum
-
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize(mapload)
-	. = ..()
-	if(true_spawn)
-		for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_living_list)
-			if(B != src)
-				return INITIALIZE_HINT_QDEL //There can be only one
-
 /datum/action/innate/megafauna_attack/triple_charge
 	name = "Triple Charge"
 	button_icon = 'icons/mob/actions/actions_items.dmi'

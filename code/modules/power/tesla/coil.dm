@@ -78,7 +78,7 @@
 
 	return ..()
 
-/obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets)
+/obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
 		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
@@ -114,7 +114,7 @@
 	research_points_per_zap = 6 // level 1 coil: 44/m, level coil 2: 60/m, level coil 3: 90/m, level coil 4: 180/m
 	money_per_zap = 6
 
-/obj/machinery/power/tesla_coil/research/tesla_act(power, tesla_flags, shocked_things)
+/obj/machinery/power/tesla_coil/research/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(anchored && !panel_open)
 		obj_flags |= BEING_SHOCKED
 		add_avail((power * (1 - percentage_power_loss))*input_power_multiplier)
@@ -178,7 +178,7 @@
 
 	return ..()
 
-/obj/machinery/power/grounding_rod/tesla_act(power)
+/obj/machinery/power/grounding_rod/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 		tesla_buckle_check(power)

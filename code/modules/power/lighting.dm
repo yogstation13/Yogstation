@@ -786,7 +786,7 @@
 	on = TRUE && !forced_off
 	update()
 
-/obj/machinery/light/tesla_act(power, tesla_flags)
+/obj/machinery/light/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		explosion(src,0,0,0,flame_range = 5, adminlog = 0)
 		qdel(src)
