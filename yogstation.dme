@@ -3523,6 +3523,7 @@
 #include "code\modules\spells\spell_types\charged\tesla_blast.dm"
 #include "code\modules\spells\spell_types\cone\_cone.dm"
 #include "code\modules\spells\spell_types\cone\cone_of_cold.dm"
+#include "code\modules\spells\spell_types\cone\stalk.dm"
 #include "code\modules\spells\spell_types\conjure\_conjure.dm"
 #include "code\modules\spells\spell_types\conjure\bees.dm"
 #include "code\modules\spells\spell_types\conjure\carp.dm"

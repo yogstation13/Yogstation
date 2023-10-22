@@ -72,6 +72,8 @@
 
 #define STATUS_EFFECT_HOLYLIGHT_HEALBOOST /datum/status_effect/holylight_healboost //short-term heal boost that grants the chaplain favor
 
+#define STATUS_EFFECT_SPEEDBOOST /datum/status_effect/speedboost //applies a speed boost
+
 /////////////
 // DEBUFFS //
 /////////////
