@@ -86,7 +86,7 @@
 
 
 /datum/action/cooldown/spell/cone/stalk/proc/looking()
-	if(!LAZYLEN(victims))//if you didn't get anyone, don't start (also, stop working if you're at max tier)
+	if(!LAZYLEN(victims) || tier >= max_tier)//if you didn't get anyone, don't start (also, stop working if you're at max tier)
 		return
 
 	if(!do_after(owner, 1 SECONDS, owner))
@@ -100,12 +100,11 @@
 	if(!LAZYLEN(victims))//if no one is left, don't continue
 		return
 
-	if(tier < max_tier)
-		look_counter++
-		if(look_counter > look_per_tier)
-			look_counter = 0
-			increase_tier()
-		looking()
+	look_counter++
+	if(look_counter > look_per_tier)
+		look_counter = 0
+		increase_tier()
+	looking()
 		
 	
 /datum/action/cooldown/spell/cone/stalk/proc/increase_tier()
