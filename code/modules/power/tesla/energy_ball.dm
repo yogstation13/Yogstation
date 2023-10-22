@@ -351,9 +351,6 @@
 		else
 			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, zap_gib)
 
-		if(isanimal(closest_mob) && zap_gib)
-			closest_mob.gib()
-
 	else if(closest_machine)
 		closest_machine.tesla_act(power*1.9, tesla_flags, shocked_targets, zap_gib)
 
