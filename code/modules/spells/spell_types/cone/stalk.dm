@@ -46,7 +46,7 @@
 	. = ..()
 	for(var/trait in traits)
 		ADD_TRAIT(owner, trait, type)
-	owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 2)
+	owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 3)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/dude = owner
 		dude.physiology.damage_resistance += 90
@@ -112,13 +112,13 @@
 	to_chat(owner, span_danger("Tiered up to [tier]"))
 	switch(tier)
 		if(1)
-			owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 1)
+			owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 1.5)
 			sound = 'yogstation/sound/magic/sacrament_heartbeat_02.ogg'
 		if(2)
-			owner.remove_movespeed_modifier(type)
+			owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = 0.5)
 			sound = 'yogstation/sound/magic/sacrament_heartbeat_03.ogg'
 		if(3)
-			owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = -0.2) //he WILL gain on you
+			owner.add_movespeed_modifier(type, TRUE, 101, override=TRUE , multiplicative_slowdown = -0.3) //he WILL gain on you
 			cooldown_time = 10 SECONDS
 			sound = 'sound/spookoween/insane_low_laugh.ogg'
 
