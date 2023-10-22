@@ -277,14 +277,14 @@ obj/machinery/holopad/secure/Initialize(mapload)
 			if(usr.loc == loc)
 				var/list/callnames = list()
 				for(var/obj/machinery/holopad/pad in GLOB.holopads)
-					if(pad.padname)
+					if(pad.is_operational())
 						LAZYADD(callnames[pad.padname], pad)
 				callnames -= padname
 				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)
-					var/datum/hcall = new /datum/holocall(usr, src, callnames[result], text2num(params["headcall"])
+					var/datum/hcall = new /datum/holocall(usr, src, callnames[result], text2num(params["headcall"]))
 					if(!QDELETED(hcall))
 						calling = TRUE
 					return TRUE
