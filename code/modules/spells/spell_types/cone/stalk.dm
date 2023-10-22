@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/cone/stalk
 	name = "Stalk"
-	desc = "Shoots out a freezing cone in front of you."
+	desc = "LOOK AT THEM. that is all. (changes at tier 3)"
 	background_icon_state = "bg_default"
 	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	button_icon_state = "see"
