@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(ntsl_methods)
 
-/datum/n_Interpreter/proc/get_property(object, key, datum/scope, node)
+/datum/n_Interpreter/proc/get_property(object, key, datum/scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		switch(key)
@@ -26,16 +26,16 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	else if(istype(object, /datum))
 		var/datum/D = object
 		return D.ntsl_get(key, scope, src, node)
-	RaiseError(new/datum/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
+	RaiseError(new /datum/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
 
-/datum/n_Interpreter/proc/set_property(object, key, val, datum/scope, node)
+/datum/n_Interpreter/proc/set_property(object, key, val, datum/scope/scope, node)
 	if(istype(object, /datum))
 		var/datum/D = object
 		D.ntsl_set(key, val, scope, src, node)
 		return
-	RaiseError(new/datum/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
+	RaiseError(new /datum/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
 
-/datum/n_Interpreter/proc/get_index(object, index, datum/scope, node)
+/datum/n_Interpreter/proc/get_index(object, index, datum/scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		if(!isnum(index) || (index <= L.len && index >= 1))
@@ -43,22 +43,22 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	else if(istext(object))
 		if(isnum(index) && index >= 1 && index <= length(object))
 			return object[index]
-	RaiseError(new/datum/runtimeError/IndexOutOfRange(object, index), scope, node)
+	RaiseError(new /datum/runtimeError/IndexOutOfRange(object, index), scope, node)
 
-/datum/n_Interpreter/proc/set_index(object, index, val, datum/scope, node)
+/datum/n_Interpreter/proc/set_index(object, index, val, datum/scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		if(!isnum(index) || (index <= L.len && index >= 1))
 			L[index] = val
 			return
-	RaiseError(new/datum/runtimeError/IndexOutOfRange(object, index), scope, node)
+	RaiseError(new /datum/runtimeError/IndexOutOfRange(object, index), scope, node)
 
-/datum/proc/ntsl_get(key, datum/scope, n_Interpreter/interp, node)
-	interp.RaiseError(new/datum/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
+/datum/proc/ntsl_get(key, datum/scope/scope, datum/n_Interpreter/interp, node)
+	interp.RaiseError(new /datum/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
 	return
 
-/datum/proc/ntsl_set(key, val, datum/scope, n_Interpreter/interp, node)
-	interp.RaiseError(new/datum/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
+/datum/proc/ntsl_set(key, val, datum/scope/scope, datum/n_Interpreter/interp, node)
+	interp.RaiseError(new /datum/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
 	return
 
 /datum/n_enum
@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_function
 	var/name = ""
 
-/datum/n_function/proc/execute(this_obj, list/params, datum/scope, n_Interpreter/interp)
+/datum/n_function/proc/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp)
 	return
 
 /datum/n_function/defined
@@ -105,15 +105,15 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	var/datum/scope/closure
 	var/datum/node/statement/FunctionDefinition/def
 
-/datum/n_function/defined/New(node/statement/FunctionDefinition/D, scope/S, n_Interpreter/C)
+/datum/n_function/defined/New(datum/node/statement/FunctionDefinition/D, datum/scope/S, datum/n_Interpreter/C)
 	def = D
 	closure = S
 	context = C
 
-/datum/n_function/defined/execute(this_obj, list/params, datum/scope, n_Interpreter/interp, node/datum/node)
+/datum/n_function/defined/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp, datum/node)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
-		interp.RaiseError(new/datum/runtimeError/RecursionLimitReached(), scope, node)
+		interp.RaiseError(new /datum/runtimeError/RecursionLimitReached(), scope, node)
 		return 0
 	scope = scope.push(def.block, closure, RESET_STATUS | RETURNING)
 	scope.recursion++
@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	proc_ref = ref
 	name = N
 
-/datum/n_function/default_method/execute(this_obj, list/params, datum/scope, n_Interpreter/interp)
+/datum/n_function/default_method/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp)
 	if(!istype(this_obj, obj_type))
 		return
 	return call(this_obj, proc_ref)(params, scope, interp)

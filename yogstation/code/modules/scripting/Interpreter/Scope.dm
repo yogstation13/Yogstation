@@ -15,7 +15,7 @@
 	var/datum/node/expression/FunctionCall/call_node
 	var/return_val
 
-/datum/scope/New(node/BlockDefinition/B, scope/parent, scope/variables_parent, allowed_status = 0)
+/datum/scope/New(datum/node/BlockDefinition/B, datum/scope/parent, datum/scope/variables_parent, allowed_status = 0)
 	src.block = B
 	src.parent = parent
 	src.variables_parent = variables_parent || parent
@@ -42,7 +42,7 @@
 			return S
 		S = S.variables_parent
 
-/datum/scope/proc/push(node/BlockDefinition/B, scope/variables_parent = src, allowed_status = 0)
+/datum/scope/proc/push(datum/node/BlockDefinition/B, datum/scope/variables_parent = src, allowed_status = 0)
 	return new /datum/scope(B, src, variables_parent, allowed_status)
 
 /datum/scope/proc/pop(keep_status = (BREAKING | CONTINUING | RETURNING)) // keep_status is which flags you want to copy to the parent.
@@ -51,12 +51,12 @@
 		parent.return_val = return_val
 	return parent
 
-/datum/scope/proc/get_var(name, n_Interpreter/interp, node/datum/node)
+/datum/scope/proc/get_var(name, datum/n_Interpreter/interp, datum/node)
 	var/datum/scope/S = get_scope(name)
 	if(S)
 		return S.variables[name]
 	else if(interp)
-		interp.RaiseError(new/datum/runtimeError/UndefinedVariable(name), src, node)
+		interp.RaiseError(new /datum/runtimeError/UndefinedVariable(name), src, node)
 
 /datum/scope/proc/get_function(name)
 	var/datum/scope/S = src
@@ -66,7 +66,7 @@
 			return
 		S = S.variables_parent
 
-/datum/scope/proc/set_var(name, val, n_Interpreter/interp, node/datum/node)
+/datum/scope/proc/set_var(name, val, datum/n_Interpreter/interp, datum/node)
 	var/datum/scope/S = get_scope(name)
 	if(S)
 		S.variables[name] = val
@@ -74,7 +74,7 @@
 		init_var(name, val, interp, node)
 	return val
 
-/datum/scope/proc/init_var(name, val, n_Interpreter/interp, node/datum/node)
+/datum/scope/proc/init_var(name, val, datum/n_Interpreter/interp, datum/node)
 	if(variables.Find(name) && interp)
-		interp.RaiseError(new/datum/runtimeError/DuplicateVariableDeclaration(name), src, node)
+		interp.RaiseError(new /datum/runtimeError/DuplicateVariableDeclaration(name), src, node)
 	variables[name] = val

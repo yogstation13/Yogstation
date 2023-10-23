@@ -17,7 +17,7 @@
 	Parameters:
 	program - A <GlobalBlock> object which represents the script's global scope.
 */
-		Load(node/BlockDefinition/GlobalBlock/program)
+		Load(datum/node/BlockDefinition/GlobalBlock/program)
 			ASSERT(program)
 			src.program 	= program
 			CreateGlobalScope()
@@ -132,4 +132,4 @@
 	See Also:
 	- <runtimeError>
 */
-		HandleError(runtimeError/e)
+		HandleError(datum/runtimeError/e)

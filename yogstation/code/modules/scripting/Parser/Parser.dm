@@ -31,15 +31,15 @@
 	A list of non-fatal problems in the script.
 */
 			warnings = new
-		token
+		datum/token
 /*
 	Var: curToken
 	The token at <index> in <tokens>.
 */
 			curToken
-		stack
+		datum/stack
 			blocks=new
-		node/BlockDefinition
+		datum/node/BlockDefinition
 			GlobalBlock/global_block=new
 			curBlock
 
@@ -66,7 +66,7 @@
 	An implmentation of a parser for n_Script.
 */
 /datum/n_Parser/nS_Parser
-	var/datum/n_scriptOptions/options
+	var/datum/n_scriptOptions/nS_Options/options
 /*
 	Constructor: New
 
@@ -74,7 +74,7 @@
 	tokens  - A list of tokens to parse.
 	options - An object used for configuration.
 */
-	New(tokens[], /datum/n_scriptOptions/options)
+	New(tokens[], datum/n_scriptOptions/nS_Options/options)
 		src.tokens=tokens
 		src.options=options
 		curBlock=global_block
@@ -86,7 +86,7 @@
 			curToken=tokens[index]
 			switch(curToken.type)
 				if(/datum/token/keyword)
-					var/datum/n_Keyword/kw=options.keywords[curToken.value]
+					var/datum/n_Keyword/kw = options.keywords[curToken.value]
 					kw=new kw()
 					if(kw)
 						if(!kw.Parse(src))
@@ -116,11 +116,12 @@
 			if(skip)NextToken()
 			return 1
 
-		AddBlock(node/BlockDefinition/B)
+		AddBlock(datum/node/BlockDefinition/B)
 			blocks.Push(curBlock)
-			curBlock=B
+			curBlock = B
 
 		EndBlock()
-			if(curBlock==global_block) return 0
+			if(curBlock==global_block)
+				return FALSE
 			curBlock=blocks.Pop()
-			return 1
+			return TRUE

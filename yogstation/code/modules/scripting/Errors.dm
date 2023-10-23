@@ -18,7 +18,7 @@
 	BadToken
 		message="Unexpected token: "
 		var/datum/token/token
-		New(token/t)
+		New(datum/token/t)
 			token=t
 			if(t&&t.line) message="[t.line]: [message]"
 			if(istype(t))message+="[t.value]"
@@ -39,7 +39,7 @@
 	BadReturn
 		var/datum/token/token
 		message = "Unexpected return statement outside of a function."
-		New(token/t)
+		New(datum/token/t)
 			src.token=t
 
 	EndOfFile
@@ -47,7 +47,7 @@
 
 	ExpectedToken
 		message="Expected: "
-		New(id, token/T)
+		New(id, datum/token/T)
 			if(T)
 				message = "[T.line ? T.line : "???"]: [message]'[id]'. Found '[T.value]'."
 			else
@@ -63,7 +63,7 @@
 	ParameterFunction
 		message = "You cannot use a function inside a parameter."
 
-		New(token/t)
+		New(datum/token/t)
 			var/line = "???"
 			if(t)
 				line = t.line
@@ -87,8 +87,8 @@
 	A basic description as to what went wrong.
 */
 		message
-		datum/scope
-		datum/token
+		datum/scope/scope
+		datum/token/token
 
 	proc
 /*
@@ -97,7 +97,8 @@
 */
 		ToString()
 			. = "[name]: [message]"
-			if(!scope) return
+			if(!scope)
+				return
 			var/last_line
 			var/last_col
 			if(token)
@@ -134,7 +135,7 @@
 
 	UnknownInstruction
 		name = "UnknownInstructionError"
-		New(node/op)
+		New(datum/node/op)
 			message="Unknown instruction type '[op.type]'. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
 	UndefinedVariable

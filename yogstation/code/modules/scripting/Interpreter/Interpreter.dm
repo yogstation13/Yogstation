@@ -29,13 +29,13 @@
 
 /datum/n_Interpreter
 	var
-		scope
+		datum/scope
 			globalScope
-		node
+		datum/node
 			BlockDefinition/program
 			statement/FunctionDefinition/curFunction
-		stack
-			functions	= new()
+		datum/stack
+			functions = new()
 
 		datum/container // associated container for interpeter
 /*
@@ -59,7 +59,7 @@
 	Constructor: New
 	Calls <Load()> with the given parameters.
 */
-	New(node/BlockDefinition/GlobalBlock/program=null)
+	New(datum/node/BlockDefinition/GlobalBlock/program=null)
 		.=..()
 		if(program)Load(program)
 
@@ -86,7 +86,7 @@
 	Proc: RaiseError
 	Raises a runtime error.
 */
-		RaiseError(runtimeError/e, datum/scope, token/datum/token)
+		RaiseError(datum/runtimeError/e, datum/scope/scope, datum/token)
 			e.scope = scope
 			if(istype(token))
 				e.token = token
@@ -125,7 +125,7 @@
 	Proc: RunBlock
 	Runs each statement in a block of code.
 */
-		RunBlock(node/BlockDefinition/Block, datum/scope = globalScope)
+		RunBlock(datum/node/BlockDefinition/Block, datum/scope/scope = globalScope)
 
 			if(cur_statements < MAX_STATEMENTS)
 				for(var/datum/node/S in Block.statements)
@@ -133,7 +133,7 @@
 
 					cur_statements++
 					if(cur_statements >= MAX_STATEMENTS)
-						RaiseError(new/datum/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
+						RaiseError(new /datum/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
 						AlertAdmins()
 						break
 
@@ -154,25 +154,25 @@
 						. = RunIf(S, scope)
 					else if(istype(S, /datum/node/statement/ReturnStatement))
 						if(!(scope.allowed_status & RETURNING))
-							RaiseError(new/datum/runtimeError/UnexpectedReturn(), scope, S)
+							RaiseError(new /datum/runtimeError/UnexpectedReturn(), scope, S)
 							continue
 						scope.status |= RETURNING
 						. = (scope.return_val=Eval(S:value, scope))
 						break
 					else if(istype(S, /datum/node/statement/BreakStatement))
 						if(!(scope.allowed_status & BREAKING))
-							//RaiseError(new/datum/runtimeError/UnexpectedReturn())
+							//RaiseError(new /datum/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= BREAKING
 						break
 					else if(istype(S, /datum/node/statement/ContinueStatement))
 						if(!(scope.allowed_status & CONTINUING))
-							//RaiseError(new/datum/runtimeError/UnexpectedReturn())
+							//RaiseError(new /datum/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= CONTINUING
 						break
 					else
-						RaiseError(new/datum/runtimeError/UnknownInstruction(S), scope, S)
+						RaiseError(new /datum/runtimeError/UnknownInstruction(S), scope, S)
 					if(scope.status)
 						break
 
@@ -180,7 +180,7 @@
 	Proc: RunFunction
 	Runs a function block or a proc with the arguments specified in the script.
 */
-		RunFunction(node/expression/FunctionCall/stmt, datum/scope)
+		RunFunction(datum/node/expression/FunctionCall/stmt, datum/scope)
 			var/datum/n_function/func
 			var/this_obj
 			if(istype(stmt.function, /datum/node/expression/member))
@@ -190,7 +190,7 @@
 			else
 				func = Eval(stmt.function, scope)
 			if(!istype(func))
-				RaiseError(new/datum/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
+				RaiseError(new /datum/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
 				return
 			var/list/params = list()
 			for(var/datum/node/expression/P in stmt.parameters)
@@ -205,7 +205,7 @@
 	Proc: RunIf
 	Checks a condition and runs either the if block or else block.
 */
-		RunIf(node/statement/IfStatement/stmt, datum/scope)
+		RunIf(datum/node/statement/IfStatement/stmt, datum/scope/scope)
 			if(!stmt.skip)
 				scope = scope.push(stmt.block)
 				if(Eval(stmt.cond, scope))
@@ -228,14 +228,14 @@
 	Proc: RunWhile
 	Runs a while loop.
 */
-		RunWhile(node/statement/WhileLoop/stmt, datum/scope)
+		RunWhile(datum/node/statement/WhileLoop/stmt, datum/scope/scope)
 			var/i=1
 			scope = scope.push(stmt.block, allowed_status = CONTINUING | BREAKING)
 			while(Eval(stmt.cond, scope) && Iterate(stmt.block, scope, i++))
 				continue
 			scope = scope.pop(RETURNING)
 
-		RunFor(node/statement/ForLoop/stmt, datum/scope)
+		RunFor(datum/node/statement/ForLoop/stmt, datum/scope/scope)
 			var/i=1
 			scope = scope.push(stmt.block)
 			Eval(stmt.init, scope)
@@ -250,10 +250,10 @@
 	Proc:Iterate
 	Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
 */
-		Iterate(node/BlockDefinition/block, datum/scope, count)
+		Iterate(datum/node/BlockDefinition/block, datum/scope/scope, count)
 			RunBlock(block, scope)
 			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
-				RaiseError(new/datum/runtimeError/IterationLimitReached(), scope, block)
+				RaiseError(new /datum/runtimeError/IterationLimitReached(), scope, block)
 				return 0
 			if(status & (BREAKING|RETURNING))
 				return 0

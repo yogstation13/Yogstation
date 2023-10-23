@@ -45,8 +45,9 @@
 	Proc: GetExpression
 	Takes a token expected to represent a value and returns an <expression> node.
 */
-		GetExpression(token/T)
-			if(!T) return
+		GetExpression(datum/token/T)
+			if(!T)
+				return
 			if(istype(T, /datum/node/expression))
 				return T
 			switch(T.type)
@@ -113,8 +114,8 @@
 	Takes the operator on top of the opr stack and assigns its operand(s). Then this proc pushes the value of that operation to the top
 	of the val stack.
 */
-		Reduce(stack/opr, stack/val, check_assignments = 1)
-			var/datum/node/expression/expression_operator/O=opr.Pop()
+		Reduce(datum/stack/opr, datum/stack/val, check_assignments = 1)
+			var/datum/node/expression/expression_operator/O = opr.Pop()
 			if(!O) return
 			if(!istype(O))
 				errors+=new/datum/scriptError("Error reducing expression - invalid operator.")

@@ -31,7 +31,7 @@ Represents a special statement in the code triggered by a keyword.
 	parser - The parser that created this object. You can use the parameter to manipulate the parser in order to add statements and blocks
 	to its AST.
 */
-	proc/Parse(n_Parser/parser)
+	proc/Parse(datum/n_Parser/parser)
 
 /*
 	Class: nS_Keyword
@@ -49,7 +49,7 @@ Represents a special statement in the code triggered by a keyword.
 				del src
 
 		kwReturn
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock)) // Exit out of the program by setting the tokens list size to the same as index.
 					parser.tokens.len = parser.index
@@ -60,7 +60,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.curBlock.statements+=stmt
 
 		kwIf
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				var/datum/node/statement/IfStatement/stmt=new(parser.curToken)
 				parser.NextToken()  //skip 'if' token
@@ -74,7 +74,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.AddBlock(stmt.block)
 
 		kwElseIf
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				var/list/L=parser.curBlock.statements
 				var/datum/node/statement/IfStatement/ifstmt
@@ -99,7 +99,7 @@ Represents a special statement in the code triggered by a keyword.
 
 
 		kwElse
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				var/list/L=parser.curBlock.statements
 				var/datum/node/statement/IfStatement/stmt
@@ -114,7 +114,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.AddBlock(stmt.else_block)
 
 		kwWhile
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				var/datum/node/statement/WhileLoop/stmt=new(parser.curToken)
 				parser.NextToken()  //skip 'while' token
@@ -128,7 +128,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.AddBlock(stmt.block)
 
 		kwFor
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				var/datum/node/statement/ForLoop/stmt = new(parser.curToken)
 				parser.NextToken()
@@ -150,7 +150,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.AddBlock(stmt.block)
 
 		kwBreak
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock))
 					parser.errors+=new/datum/scriptError/BadToken(parser.curToken)
@@ -160,7 +160,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.curBlock.statements+=stmt
 
 		kwContinue
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock))
 					parser.errors+=new/datum/scriptError/BadToken(parser.curToken)
@@ -170,7 +170,7 @@ Represents a special statement in the code triggered by a keyword.
 				parser.curBlock.statements+=stmt
 
 		kwDef
-			Parse(n_Parser/nS_Parser/parser)
+			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				var/datum/node/statement/FunctionDefinition/def=new(parser.curToken)
 				parser.NextToken() //skip 'def' token

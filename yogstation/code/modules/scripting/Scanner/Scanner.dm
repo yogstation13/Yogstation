@@ -57,7 +57,7 @@
 		codepos				 = 1
 		line				 = 1
 		linepos 			 = 0 										 //column=codepos-linepos
-		/datum/n_scriptOptions/options
+		datum/n_scriptOptions/nS_Options/options
 
 /*
 	Variable: ignore
@@ -98,8 +98,8 @@
 	code	 	- The source code to tokenize.
 	options - An <nS_Options> object used to configure the scanner.
 */
-	New(code, datum/n_scriptOptions/options)
-		.=..()
+	New(code, datum/n_scriptOptions/nS_Options/options)
+		. = ..()
 		ignore+= ascii2text(13) //Carriage return
 		delim += ignore + options.symbols + end_stmt + string_delim
 		src.options=options

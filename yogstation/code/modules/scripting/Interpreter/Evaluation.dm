@@ -1,8 +1,6 @@
-#define IS_OBJECT(thing) (istype(thing, /datum) || istype(thing, /list) || istype(thing, /savefile) || istype(thing, /client) || (thing==world))
-
 /datum/n_Interpreter
 
-/datum/n_Interpreter/proc/Eval(node/expression/exp, datum/scope)
+/datum/n_Interpreter/proc/Eval(datum/node/expression/exp, datum/scope/scope)
 	if(istype(exp, /datum/node/expression/FunctionCall))
 		. = RunFunction(exp, scope)
 	else if(istype(exp, /datum/node/expression/expression_operator))
@@ -38,13 +36,13 @@
 		var/index = B.temp_index || Eval(B.index, scope)
 		. = get_index(object, index, scope)
 	else if(istype(exp, /datum/node/expression))
-		RaiseError(new/datum/runtimeError/UnknownInstruction(exp), scope, exp)
+		RaiseError(new /datum/runtimeError/UnknownInstruction(exp), scope, exp)
 	else
 		. = exp
 
 	return Trim(.)
 
-/datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, datum/scope)
+/datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, datum/scope/scope)
 	if(istype(exp, /datum/node/expression/expression_operator/binary/Assign))
 		var/datum/node/expression/expression_operator/binary/Assign/ass=exp
 		var/member_obj
@@ -107,7 +105,7 @@
 				if(/datum/node/expression/expression_operator/binary/Assign/Modulo)
 					out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
 				else
-					RaiseError(new/datum/runtimeError/UnknownInstruction(ass),scope, ass)
+					RaiseError(new /datum/runtimeError/UnknownInstruction(ass),scope, ass)
 			// write it to the var
 			if(istype(ass.exp, /datum/node/expression/value/variable))
 				var/datum/node/expression/value/variable/var_exp = ass.exp
@@ -118,7 +116,7 @@
 			else if(istype(ass.exp, /datum/node/expression/member/brackets))
 				set_index(member_obj, member_idx, out_value, scope)
 			else
-				RaiseError(new/datum/runtimeError/InvalidAssignment(), scope, ass)
+				RaiseError(new /datum/runtimeError/InvalidAssignment(), scope, ass)
 		return out_value
 	else if(istype(exp, /datum/node/expression/expression_operator/binary))
 		var/datum/node/expression/expression_operator/binary/bin=exp
@@ -160,7 +158,7 @@
 			if(/datum/node/expression/expression_operator/binary/Modulo)
 				return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 			else
-				RaiseError(new/datum/runtimeError/UnknownInstruction(bin), scope, bin)
+				RaiseError(new /datum/runtimeError/UnknownInstruction(bin), scope, bin)
 	else
 		switch(exp.type)
 			if(/datum/node/expression/expression_operator/unary/Minus)
@@ -172,68 +170,95 @@
 			if(/datum/node/expression/expression_operator/unary/group)
 				return Eval(exp.exp, scope)
 			else
-				RaiseError(new/datum/runtimeError/UnknownInstruction(exp), scope, exp)
+				RaiseError(new /datum/runtimeError/UnknownInstruction(exp), scope, exp)
 
+/datum/n_Interpreter/proc/Equal(a, b)
+	return a==b
 
-	//Binary//
-		//Comparison operators
-		Equal(a, b) 				return a==b
-		NotEqual(a, b)			return a!=b //LogicalNot(Equal(a, b))
-		Greater(a, b)				return a>b
-		Less(a, b)					return a<b
-		GreaterOrEqual(a, b)return a>=b
-		LessOrEqual(a, b)		return a<=b
-		//Logical Operators
-		LogicalAnd(a, b)		return a&&b
-		LogicalOr(a, b)			return a||b
-		LogicalXor(a, b)		return (a||b) && !(a&&b)
-		//Bitwise Operators
-		BitwiseAnd(a, b)		return a&b
-		BitwiseOr(a, b)			return a|b
-		BitwiseXor(a, b)		return a^b
-		//Arithmetic Operators
-		Add(a, b, scope, node)
-			if(istext(a)&&!istext(b))
-				b="[b]"
-			else if(istext(b)&&!istext(a)&&!islist(a))
-				a="[a]"
-			if(isnull(a) || isnull(b))
-				RaiseError(new/datum/runtimeError/TypeMismatch("+", a, b), scope, node)
-				return null
-			return a+b
-		Subtract(a, b, scope, node)
-			if(isnull(a) || isnull(b))
-				RaiseError(new/datum/runtimeError/TypeMismatch("-", a, b), scope, node)
-				return null
-			return a-b
-		Divide(a, b, scope, node)
-			if(isnull(a) || isnull(b))
-				RaiseError(new/datum/runtimeError/TypeMismatch("/", a, b), scope, node)
-				return null
-			if(b)
-				return a/b
-			// If $b is 0 or Null or whatever, then the above if statement fails,
-			// and we got a divison by zero.
-			RaiseError(new/datum/runtimeError/DivisionByZero(), scope, node)
-			//ReleaseSingularity()
-			return null
-		Multiply(a, b, scope, node)
-			if(isnull(a) || isnull(b))
-				RaiseError(new/datum/runtimeError/TypeMismatch("*", a, b), scope, node)
-				return null
-			return a*b
-		Modulo(a, b, scope, node)
-			if(isnull(a) || isnull(b))
-				RaiseError(new/datum/runtimeError/TypeMismatch("%", a, b), scope, node)
-				return null
-			return a%b
-		Power(a, b, scope, node)
-			if(isnull(a) || isnull(b))
-				RaiseError(new/datum/runtimeError/TypeMismatch("**", a, b), scope, node)
-				return null
-			return a**b
+/datum/n_Interpreter/proc/NotEqual(a, b)
+	return a!=b //LogicalNot(Equal(a, b))
 
-	//Unary//
-		Minus(a)						return -a
-		LogicalNot(a)				return !a
-		BitwiseNot(a)				return ~a
+/datum/n_Interpreter/proc/Greater(a, b)
+	return a>b
+
+/datum/n_Interpreter/proc/Less(a, b)
+	return a<b
+
+/datum/n_Interpreter/proc/GreaterOrEqual(a, b)
+	return a>=b
+
+/datum/n_Interpreter/proc/LessOrEqual(a, b)
+	return a<=b
+
+/datum/n_Interpreter/proc/LogicalAnd(a, b)
+	return a&&b
+
+/datum/n_Interpreter/proc/LogicalOr(a, b)
+	return a||b
+
+/datum/n_Interpreter/proc/LogicalXor(a, b)
+	return (a||b) && !(a&&b)
+
+/datum/n_Interpreter/proc/BitwiseAnd(a, b)
+	return a&b
+
+/datum/n_Interpreter/proc/BitwiseOr(a, b)
+	return a|b
+
+/datum/n_Interpreter/proc/BitwiseXor(a, b)
+	return a^b
+
+/datum/n_Interpreter/proc/Add(a, b, scope, node)
+	if(istext(a)&&!istext(b))
+		b="[b]"
+	else if(istext(b)&&!istext(a)&&!islist(a))
+		a="[a]"
+	if(isnull(a) || isnull(b))
+		RaiseError(new /datum/runtimeError/TypeMismatch("+", a, b), scope, node)
+		return null
+	return a+b
+
+/datum/n_Interpreter/proc/Subtract(a, b, scope, node)
+	if(isnull(a) || isnull(b))
+		RaiseError(new /datum/runtimeError/TypeMismatch("-", a, b), scope, node)
+		return null
+	return a-b
+
+/datum/n_Interpreter/proc/Divide(a, b, scope, node)
+	if(isnull(a) || isnull(b))
+		RaiseError(new /datum/runtimeError/TypeMismatch("/", a, b), scope, node)
+		return null
+	if(b)
+		return a/b
+	// If $b is 0 or Null or whatever, then the above if statement fails,
+	// and we got a divison by zero.
+	RaiseError(new /datum/runtimeError/DivisionByZero(), scope, node)
+	//ReleaseSingularity()
+	return null
+
+/datum/n_Interpreter/proc/Multiply(a, b, scope, node)
+	if(isnull(a) || isnull(b))
+		RaiseError(new /datum/runtimeError/TypeMismatch("*", a, b), scope, node)
+		return null
+	return a*b
+
+/datum/n_Interpreter/proc/Modulo(a, b, scope, node)
+	if(isnull(a) || isnull(b))
+		RaiseError(new /datum/runtimeError/TypeMismatch("%", a, b), scope, node)
+		return null
+	return a%b
+
+/datum/n_Interpreter/proc/Power(a, b, scope, node)
+	if(isnull(a) || isnull(b))
+		RaiseError(new /datum/runtimeError/TypeMismatch("**", a, b), scope, node)
+		return null
+	return a**b
+
+/datum/n_Interpreter/proc/Minus(a)
+	return -a
+
+/datum/n_Interpreter/proc/LogicalNot(a)
+	return !a
+
+/datum/n_Interpreter/proc/BitwiseNot(a)
+	return ~a
