@@ -235,6 +235,16 @@
 	result = /obj/item/reagent_containers/food/snacks/onigiri
 	category = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/pickle
+	name ="Pickle"
+	reqs = list(
+		/datum/reagent/water = 5,
+		/datum/reagent/consumable/sodiumchloride = 2,
+		/obj/item/reagent_containers/food/snacks/grown/cucumber = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/pickle
+	category = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/tacoplain
 	name ="Plain Taco"
 	reqs = list(

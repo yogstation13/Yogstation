@@ -42,7 +42,7 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/proc/spawn_bus()
 	var/obj/effect/landmark/observer_start/center = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list //observer start is usually in the middle
 	var/turf/turf = get_ranged_target_turf(get_turf(center), prob(50) ? NORTH : SOUTH, rand(0,30)) //get a random spot above or below the middle
-	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 20) //almost all the way at the edge of the map
+	var/turf/target = get_ranged_target_turf(get_edge_target_turf(turf, WEST), EAST, 15) //almost all the way at the edge of the map
 	if(target)
 		new /obj/structure/battle_bus(target)
 	else //please don't ever happen
@@ -64,11 +64,13 @@ GLOBAL_VAR(stormdamage)
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		original_num ++
-		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_GAMER) //to prevent space from hurting
+		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		ADD_TRAIT(virgin.current, TRAIT_NOBREATH, "breathingiscringe") //because atmos is silly and stupid and goofy and bad
-		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i get pacifists get to fight too
+		ADD_TRAIT(virgin.current, TRAIT_NOSOFTCRIT, "KEEP GOING, FIGHT MORE") //because no sleepy
+		ADD_TRAIT(virgin.current, TRAIT_NOHARDCRIT, "Son always remember, dying is gay. @margot") //fight fight fight
+		REMOVE_TRAIT(virgin.current, TRAIT_PACIFISM, ROUNDSTART_TRAIT) //FINE, i guess pacifists get to fight too
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
@@ -144,9 +146,9 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/set_round_result()
 	..()
 	if(winner)
-		SSticker.mode_result = "win - [winner] won the battle royale"
+		SSticker.mode_result = span_green(span_extremelybig("win - [winner] won the battle royale"))
 	else
-		SSticker.mode_result = "loss - nobody won the battle royale!"
+		SSticker.mode_result = span_narsiesmall("loss - nobody won the battle royale!")
 
 /datum/game_mode/fortnite/proc/shrinkborders()
 	switch(borderstage)//to keep it seperate and not fuck with weather selection
@@ -184,6 +186,8 @@ GLOBAL_VAR(stormdamage)
 		stage_interval = max(1 MINUTES, initial(stage_interval) * remainingpercent) //intervals get faster as people die
 		loot_interval = min(stage_interval / 2, initial(loot_interval)) //loot spawns faster as more die, but won't ever take longer than base
 		loot_deviation = loot_interval / 2 //less deviation as time goes on
+		if(borderstage == 8)//final collapse takes the full time but still spawns loot faster
+			stage_interval = initial(stage_interval)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/delete_armoury()
@@ -318,7 +322,20 @@ GLOBAL_VAR(stormdamage)
 	if(!owner)
 		CRASH("antagonist datum without owner")
 
-	report += printplayer(owner)	
+	var/text = "<b>[owner.key]</b> was <b>[owner.name]</b> and"
+	if(owner.current)
+		var/datum/game_mode/fortnite/fortnut = SSticker.mode 
+		if(istype(fortnut))
+			if(owner?.current == fortnut.winner)
+				text += " [span_greentext("won")]"
+			else
+				text += " [span_redtext("lost")]"
+		if(owner.current.real_name != owner.name)
+			text += " as <b>[owner.current.real_name]</b>"
+	else
+		text += " [span_redtext("lost while having their body destroyed")]"
+
+	report += text
 	report += "They killed a total of [killed ? killed : "0" ] competitors"
 
 	return report.Join("<br>")
@@ -328,6 +345,7 @@ GLOBAL_VAR(stormdamage)
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/jackboots
 	ears = /obj/item/radio/headset
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	neck = /obj/item/clothing/neck/tie/gamer //glorified kill tracker
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
@@ -355,7 +373,7 @@ GLOBAL_VAR(stormdamage)
 
 	if(isprojectile(hitby))//get the person that shot the projectile
 		var/obj/projectile/thing
-		if(isliving(thing.firer))
+		if(thing?.firer && isliving(thing.firer))
 			culprit = thing.firer
 	else if(isitem(hitby))//get the person holding the item
 		var/obj/item/thing = hitby
@@ -377,10 +395,11 @@ GLOBAL_VAR(stormdamage)
 	icon_state = "battlebus"
 	density = FALSE
 	opacity = FALSE
-	alpha = 185 //So you can see under it when it moves
+	alpha = 170 //So you can see under it when it moves
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	light_system = MOVABLE_LIGHT
-	light_range = 10 //light up the darkness, oh battle bus.
+	light_range = 20 //light up the darkness, oh battle bus.
+	light_power = 2
 	layer = 4 //Above everything
 	var/starter_z = 0 //What Z level did we start on?
 	var/can_leave = FALSE //so people don't immediately walk out into space by accident

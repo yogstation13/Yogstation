@@ -347,9 +347,12 @@
 	icon_state = "keiki_dress"
 	item_state = "keiki_dress"
 
-/obj/item/clothing/suit/yogs/cyberpunk
+/obj/item/clothing/suit/toggle/cyberpunk
 	name = "punk jacket"
 	desc = "My Moon My Man."
+	togglename = "symbol"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "punk"
 	item_state = "punk"
 

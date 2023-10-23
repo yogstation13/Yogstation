@@ -57,7 +57,7 @@
 			continue
 		if(istype(atom_in_range,/mob/living))
 			var/mob/living/living_in_range = atom_in_range
-			if(living_in_range.stat != DEAD || living_in_range == user) // we only accept corpses, no living beings allowed.
+			if(!living_in_range.stat || living_in_range == user) // we only accept people in crit, no healthy beings allowed.
 				continue
 		atoms_in_range += atom_in_range
 	for(var/X in transmutations)
@@ -205,6 +205,7 @@
 	icon_state = "pierced_illusion"
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
 
 /obj/effect/broken_illusion/attack_hand(mob/living/user)
 	if(!ishuman(user))
