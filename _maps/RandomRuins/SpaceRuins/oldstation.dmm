@@ -8923,6 +8923,12 @@
 /area/ruin/space/has_grav/ancientstation/atmo)
 "To" = (
 /obj/machinery/pool_filter,
+/obj/item/fuel_rod{
+	pixel_x = 6
+	},
+/obj/item/fuel_rod{
+	pixel_x = -6
+	},
 /turf/open/indestructible/sound/pool/end,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Tt" = (
@@ -8942,9 +8948,6 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
-	},
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
 	},
 /turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/ancientstation/engi)
