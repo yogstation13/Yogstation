@@ -1,9 +1,11 @@
 // Script -> BYOND code procs
 #define SCRIPT_MAX_REPLACEMENTS_ALLOWED 200
 
-// --- List operations (lists known as vectors in n_script) ---
+/**
+ * List operations (lists known as vectors in n_script)
+ */
 
-// Picks one random item from the list
+/// Picks one random item from the list
 /datum/n_function/default/pick
 	name = "pick"
 
@@ -20,9 +22,11 @@
 
 	return pick(finalpick)
 
-// --- String methods ---
+/**
+ * String methods
+ */
 
-//If list, finds a value in it, if text, finds a substring in it
+///If list, finds a value in it, if text, finds a substring in it
 /datum/n_function/default/find
 	name = "find"
 
@@ -42,7 +46,7 @@
 			if(length(haystack) >= end && start > 0)
 				return findtext(haystack, needle, start, end)
 
-//Returns a substring of the string
+///Returns a substring of the string
 /datum/n_function/default/substr
 	name = "substr"
 
@@ -54,7 +58,7 @@
 		if(start > 0)
 			return copytext(string, start, end)
 
-//Returns the length of the string or list
+///Returns the length of the string or list
 /datum/n_function/default/length
 	name = "length"
 
@@ -65,7 +69,7 @@
 			return length(container)
 	return FALSE
 
-//Lowercase all characters
+///Lowercase all characters
 /datum/n_function/default/lower
 	name = "lower"
 
@@ -74,7 +78,7 @@
 	if(istext(string))
 		return lowertext(string)
 
-//Uppercase all characters
+///Uppercase all characters
 /datum/n_function/default/upper
 	name = "upper"
 
@@ -83,7 +87,7 @@
 	if(istext(string))
 		return uppertext(string)
 
-//Converts a string to a list
+///Converts a string to a list
 /datum/n_function/default/explode
 	name = "explode"
 
@@ -93,7 +97,7 @@
 	if(istext(string) && (istext(separator) || isnull(separator)))
 		return splittext(string, separator)
 
-//Converts a list to a string
+///Converts a list to a string
 /datum/n_function/default/implode
 	name = "implode"
 
@@ -103,7 +107,7 @@
 	if(istype(li) && (istext(separator) || isnull(separator)))
 		return jointext(li, separator)
 
-//Repeats the string x times
+///Repeats the string x times
 /datum/n_function/default/repeat
 	name = "repeat"
 
@@ -122,7 +126,7 @@
 
 		return newstring
 
-//Reverses the order of the string. "Clown" becomes "nwolC"
+///Reverses the order of the string. "Clown" becomes "nwolC"
 /datum/n_function/default/reverse
 	name = "reverse"
 
@@ -138,7 +142,7 @@
 
 		return newstring
 
-// String -> Number
+//Turns a String into a Number
 /datum/n_function/default/tonum
 	name = "tonum"
 
@@ -157,10 +161,12 @@
 
 	return text("[][]", uppertext(copytext(string, 1, 2)), lowertext(copytext(string, 2)))
 
-// --- Number methods ---
+/**
+ * Number methods
+ */
 
-//Returns the highest value of the arguments
-//Need custom functions here cause byond's min and max runtimes if you give them a string or list.
+///Returns the highest value of the arguments
+///Need custom functions here cause byond's min and max runtimes if you give them a string or list.
 /datum/n_function/default/max
 	name = "max"
 
@@ -175,7 +181,7 @@
 
 	return max
 
-//Returns the lowest value of the arguments
+///Returns the lowest value of the arguments
 /datum/n_function/default/min
 	name = "min"
 
@@ -215,7 +221,7 @@
 
 	return rand(low, high)
 
-// Number -> String
+///Turns a Number into a String
 /datum/n_function/default/tostring
 	name = "tostring"
 
@@ -233,7 +239,7 @@
 	if(isnum(num))
 		return sqrt(num)
 
-// Magnitude of num
+///Magnitude of a Number
 /datum/n_function/default/abs
 	name = "abs"
 
@@ -242,7 +248,7 @@
 	if(isnum(num))
 		return abs(num)
 
-// Round down
+///Rounds a number down
 /datum/n_function/default/floor
 	name = "floor"
 
@@ -251,7 +257,7 @@
 	if(isnum(num))
 		return round(num)
 
-// Round up
+///Rounds a number up
 /datum/n_function/default/ceil
 	name = "ceil"
 
@@ -260,7 +266,7 @@
 	if(isnum(num))
 		return round(num)+1
 
-// Round to nearest integer
+///Rounds a number to its nearest integer
 /datum/n_function/default/round
 	name = "round"
 
@@ -271,7 +277,7 @@
 			return round(num)
 		return round(num) + 1
 
-// Clamps N between min and max
+/// Clamps a number between min and max
 /datum/n_function/default/clamp
 	name = "clamp"
 
@@ -286,7 +292,7 @@
 			return max
 		return num
 
-// Returns 1 if N is inbetween Min and Max
+///Returns TRUE if a number is inbetween Min and Max
 /datum/n_function/default/inrange
 	name = "inrange"
 
@@ -297,7 +303,7 @@
 	if(isnum(num)&&isnum(min)&&isnum(max))
 		return ((min <= num) && (num <= max))
 
-// Returns the sine of num
+///Returns the sine of a number
 /datum/n_function/default/sin
 	name = "sin"
 
@@ -306,7 +312,7 @@
 	if(isnum(num))
 		return sin(num)
 
-// Returns the cosine of num
+///Returns the cosine of a number
 /datum/n_function/default/cos
 	name = "cos"
 
@@ -315,7 +321,7 @@
 	if(isnum(num))
 		return cos(num)
 
-// Returns the arcsine of num
+///Returns the arcsine of a number
 /datum/n_function/default/asin
 	name = "asin"
 
@@ -324,7 +330,7 @@
 	if(isnum(num) && -1 <= num && num <= 1)
 		return arcsin(num)
 
-// Returns the arccosine of num
+///Returns the arccosine of a number
 /datum/n_function/default/acos
 	name = "acos"
 
@@ -333,7 +339,7 @@
 	if(isnum(num) && -1 <= num && num <= 1)
 		return arccos(num)
 
-// Returns the natural log of num
+///Returns the natural log of a number
 /datum/n_function/default/log
 	name = "log"
 
@@ -342,7 +348,7 @@
 	if(isnum(num) && 0 < num)
 		return log(num)
 
-// Replace text
+///Replaces text
 /datum/n_function/default/replace
 	name = "replace"
 
@@ -371,9 +377,11 @@
 		. += copytext(text, last_found, found)
 		. += replacement
 		last_found = found + find_len
-	return . + copytext(text,last_found)
+	return . + copytext(text, last_found)
 
-// --- Miscellaneous functions ---
+/**
+ * Miscellaneous functions
+ */
 
 /datum/n_function/default/time
 	name = "time"
@@ -381,7 +389,7 @@
 /datum/n_function/default/time/execute(this_obj, list/params)
 	return world.timeofday
 
-// Clone of sleep()
+///Clone of BYOND's sleep()
 /datum/n_function/default/sleeps
 	name = "sleep"
 

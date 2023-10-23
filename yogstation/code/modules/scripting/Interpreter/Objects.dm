@@ -63,8 +63,10 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 
 /datum/n_enum
 	var/list/entries
+
 /datum/n_enum/New(list/E)
 	entries = E
+
 /datum/n_enum/ntsl_get(key)
 	if(entries.Find(key))
 		return entries[key]
@@ -72,8 +74,10 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 
 /datum/n_struct
 	var/list/properties
+
 /datum/n_struct/New(list/P)
 	properties = P
+
 /datum/n_struct/proc/get_clean_property(name, compare)
 	var/x = properties[name]
 	if(istext(x) && compare && x != compare) // Was changed
@@ -84,15 +88,17 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 			log_ntsl(log_message)
 			return FALSE
 	return x
+
 /datum/n_struct/ntsl_get(key)
 	if(properties.Find(key))
 		return properties[key]
 	return ..()
+
 /datum/n_struct/ntsl_set(key, val)
 	if(properties.Find(key))
 		properties[key] = val
 		return
-	..()
+	return ..()
 
 /datum/n_function
 	var/name = ""
@@ -114,7 +120,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
 		interp.RaiseError(new /datum/runtimeError/RecursionLimitReached(), scope, node)
-		return 0
+		return FALSE
 	scope = scope.push(def.block, closure, RESET_STATUS | RETURNING)
 	scope.recursion++
 	scope.function = def
@@ -169,27 +175,32 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 
 /datum/n_function/list_add
 	name = "Add"
+
 /datum/n_function/list_add/execute(list/this_obj, list/params)
 	for(var/param in params)
 		this_obj.Add(param)
 
 /datum/n_function/list_copy
 	name = "Copy"
+
 /datum/n_function/list_copy/execute(list/this_obj, list/params)
 	return this_obj.Copy(params.len >= 1 ? params[1] : 1, params.len >= 2 ? params[2] : 0)
 
 /datum/n_function/list_cut
 	name = "Cut"
+
 /datum/n_function/list_cut/execute(list/this_obj, list/params)
 	this_obj.Cut(params.len >= 1 ? params[1] : 1, params.len >= 2 ? params[2] : 0)
 
 /datum/n_function/list_find
 	name = "Find"
+
 /datum/n_function/list_find/execute(list/this_obj, list/params)
 	return this_obj.Find(params[1], params.len >= 2 ? params[2] : 1, params.len >= 3 ? params[3] : 0)
 
 /datum/n_function/list_insert
 	name = "Insert"
+
 /datum/n_function/list_insert/execute(list/this_obj, list/params)
 	if(params.len >= 2)
 		if(params[1] == 0)
@@ -201,11 +212,13 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 
 /datum/n_function/list_join
 	name = "Join"
+
 /datum/n_function/list_join/execute(list/this_obj, list/params)
 	return this_obj.Join(params[1], params.len >= 2 ? params[2] : 1, params.len >= 3 ? params[3] : 0)
 
 /datum/n_function/list_remove
 	name = "Remove"
+
 /datum/n_function/list_remove/execute(list/this_obj, list/params)
 	for(var/param in params)
 		this_obj.Remove(param)

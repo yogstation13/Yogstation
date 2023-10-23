@@ -1,12 +1,7 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
-
 /*
-	File: Binary Operators
-*/
-/*
-	Class: binary
-	Represents a binary operator in the AST. A binary operator takes two operands (ie x and y) and returns a value.
-*/
+ * Class: binary
+ * Represents a binary operator in the AST. A binary operator takes two operands (ie x and y) and returns a value.
+ */
 /datum/node/expression/expression_operator/binary
 	var/datum/node/expression/exp2
 

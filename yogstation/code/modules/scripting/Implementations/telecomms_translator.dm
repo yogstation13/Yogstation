@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 /datum/n_Interpreter/TCS_Interpreter/HandleError(datum/runtimeError/e)
 	Compiler.Holder.add_entry(e.ToString(), "Execution Error")
 
-/datum/n_Interpreter/TCS_Interpreter/GC()
+/datum/n_Interpreter/TCS_Interpreter/garbage_collect()
 	. = ..()
 	Compiler = null
 
@@ -53,10 +53,10 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 /**
  * Set ourselves to Garbage Collect.
  */
-/datum/TCS_Compiler/proc/GC()
+/datum/TCS_Compiler/proc/garbage_collect()
 	Holder = null
 	if(interpreter)
-		interpreter.GC()
+		interpreter.garbage_collect()
 /**
  * Compile a raw block of text.
  */
