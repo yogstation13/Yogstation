@@ -79,7 +79,7 @@
 	Class: runtimeError
 	An error thrown by the interpreter in running the script.
 */
-/runtimeError
+/datum/runtimeError
 	var
 		name
 /*

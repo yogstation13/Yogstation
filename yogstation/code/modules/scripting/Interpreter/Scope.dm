@@ -56,7 +56,7 @@
 	if(S)
 		return S.variables[name]
 	else if(interp)
-		interp.RaiseError(new/runtimeError/UndefinedVariable(name), src, node)
+		interp.RaiseError(new/datum/runtimeError/UndefinedVariable(name), src, node)
 
 /datum/scope/proc/get_function(name)
 	var/datum/scope/S = src
@@ -76,5 +76,5 @@
 
 /datum/scope/proc/init_var(name, val, n_Interpreter/interp, node/datum/node)
 	if(variables.Find(name) && interp)
-		interp.RaiseError(new/runtimeError/DuplicateVariableDeclaration(name), src, node)
+		interp.RaiseError(new/datum/runtimeError/DuplicateVariableDeclaration(name), src, node)
 	variables[name] = val

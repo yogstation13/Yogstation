@@ -38,7 +38,7 @@
 		var/index = B.temp_index || Eval(B.index, scope)
 		. = get_index(object, index, scope)
 	else if(istype(exp, /datum/node/expression))
-		RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
+		RaiseError(new/datum/runtimeError/UnknownInstruction(exp), scope, exp)
 	else
 		. = exp
 
@@ -107,7 +107,7 @@
 				if(/datum/node/expression/expression_operator/binary/Assign/Modulo)
 					out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
 				else
-					RaiseError(new/runtimeError/UnknownInstruction(ass),scope, ass)
+					RaiseError(new/datum/runtimeError/UnknownInstruction(ass),scope, ass)
 			// write it to the var
 			if(istype(ass.exp, /datum/node/expression/value/variable))
 				var/datum/node/expression/value/variable/var_exp = ass.exp
@@ -118,7 +118,7 @@
 			else if(istype(ass.exp, /datum/node/expression/member/brackets))
 				set_index(member_obj, member_idx, out_value, scope)
 			else
-				RaiseError(new/runtimeError/InvalidAssignment(), scope, ass)
+				RaiseError(new/datum/runtimeError/InvalidAssignment(), scope, ass)
 		return out_value
 	else if(istype(exp, /datum/node/expression/expression_operator/binary))
 		var/datum/node/expression/expression_operator/binary/bin=exp
@@ -160,7 +160,7 @@
 			if(/datum/node/expression/expression_operator/binary/Modulo)
 				return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 			else
-				RaiseError(new/runtimeError/UnknownInstruction(bin), scope, bin)
+				RaiseError(new/datum/runtimeError/UnknownInstruction(bin), scope, bin)
 	else
 		switch(exp.type)
 			if(/datum/node/expression/expression_operator/unary/Minus)
@@ -172,7 +172,7 @@
 			if(/datum/node/expression/expression_operator/unary/group)
 				return Eval(exp.exp, scope)
 			else
-				RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
+				RaiseError(new/datum/runtimeError/UnknownInstruction(exp), scope, exp)
 
 
 	//Binary//
@@ -198,38 +198,38 @@
 			else if(istext(b)&&!istext(a)&&!islist(a))
 				a="[a]"
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("+", a, b), scope, node)
+				RaiseError(new/datum/runtimeError/TypeMismatch("+", a, b), scope, node)
 				return null
 			return a+b
 		Subtract(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("-", a, b), scope, node)
+				RaiseError(new/datum/runtimeError/TypeMismatch("-", a, b), scope, node)
 				return null
 			return a-b
 		Divide(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("/", a, b), scope, node)
+				RaiseError(new/datum/runtimeError/TypeMismatch("/", a, b), scope, node)
 				return null
 			if(b)
 				return a/b
 			// If $b is 0 or Null or whatever, then the above if statement fails,
 			// and we got a divison by zero.
-			RaiseError(new/runtimeError/DivisionByZero(), scope, node)
+			RaiseError(new/datum/runtimeError/DivisionByZero(), scope, node)
 			//ReleaseSingularity()
 			return null
 		Multiply(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("*", a, b), scope, node)
+				RaiseError(new/datum/runtimeError/TypeMismatch("*", a, b), scope, node)
 				return null
 			return a*b
 		Modulo(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("%", a, b), scope, node)
+				RaiseError(new/datum/runtimeError/TypeMismatch("%", a, b), scope, node)
 				return null
 			return a%b
 		Power(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("**", a, b), scope, node)
+				RaiseError(new/datum/runtimeError/TypeMismatch("**", a, b), scope, node)
 				return null
 			return a**b
 

@@ -133,7 +133,7 @@
 
 					cur_statements++
 					if(cur_statements >= MAX_STATEMENTS)
-						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
+						RaiseError(new/datum/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
 						AlertAdmins()
 						break
 
@@ -154,25 +154,25 @@
 						. = RunIf(S, scope)
 					else if(istype(S, /datum/node/statement/ReturnStatement))
 						if(!(scope.allowed_status & RETURNING))
-							RaiseError(new/runtimeError/UnexpectedReturn(), scope, S)
+							RaiseError(new/datum/runtimeError/UnexpectedReturn(), scope, S)
 							continue
 						scope.status |= RETURNING
 						. = (scope.return_val=Eval(S:value, scope))
 						break
 					else if(istype(S, /datum/node/statement/BreakStatement))
 						if(!(scope.allowed_status & BREAKING))
-							//RaiseError(new/runtimeError/UnexpectedReturn())
+							//RaiseError(new/datum/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= BREAKING
 						break
 					else if(istype(S, /datum/node/statement/ContinueStatement))
 						if(!(scope.allowed_status & CONTINUING))
-							//RaiseError(new/runtimeError/UnexpectedReturn())
+							//RaiseError(new/datum/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= CONTINUING
 						break
 					else
-						RaiseError(new/runtimeError/UnknownInstruction(S), scope, S)
+						RaiseError(new/datum/runtimeError/UnknownInstruction(S), scope, S)
 					if(scope.status)
 						break
 
@@ -190,7 +190,7 @@
 			else
 				func = Eval(stmt.function, scope)
 			if(!istype(func))
-				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
+				RaiseError(new/datum/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
 				return
 			var/list/params = list()
 			for(var/datum/node/expression/P in stmt.parameters)
@@ -199,7 +199,7 @@
 			try
 				return func.execute(this_obj, params, scope, src, stmt)
 			catch(var/exception/E)
-				RaiseError(new /runtimeError/Internal(E), scope, stmt)
+				RaiseError(new /datum/runtimeError/Internal(E), scope, stmt)
 
 /*
 	Proc: RunIf
@@ -253,7 +253,7 @@
 		Iterate(node/BlockDefinition/block, datum/scope, count)
 			RunBlock(block, scope)
 			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
-				RaiseError(new/runtimeError/IterationLimitReached(), scope, block)
+				RaiseError(new/datum/runtimeError/IterationLimitReached(), scope, block)
 				return 0
 			if(status & (BREAKING|RETURNING))
 				return 0

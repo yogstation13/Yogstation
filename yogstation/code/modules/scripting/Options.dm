@@ -90,12 +90,14 @@ File: Options
 		if(!symbols.Find(O))
 			symbols += O
 
-/datum/n_scriptOptions/proc/CanStartID(char) //returns true if the character can start a variable, function, or keyword name (by default letters or an underscore)
+///Returns TRUE if the character can start a variable, function, or keyword name (by default letters or an underscore)
+/datum/n_scriptOptions/proc/CanStartID(char)
 	if(!isnum(char))
 		char=text2ascii(char)
 	return (char in ascii_A to ascii_Z) || (char in ascii_a to ascii_z) || char==ascii_UNDERSCORE || char==ascii_DOLLAR
 
-/datum/n_scriptOptions/proc/IsValidIDChar(char) //returns true if the character can be in the body of a variable, function, or keyword name (by default letters, numbers, and underscore)
+///Returns TRUE if the character can be in the body of a variable, function, or keyword name (by default letters, numbers, and underscore)
+/datum/n_scriptOptions/proc/IsValidIDChar(char)
 	if(!isnum(char))
 		char=text2ascii(char)
 	return CanStartID(char) || IsDigit(char)
@@ -105,7 +107,8 @@ File: Options
 		char=text2ascii(char)
 	return char in ascii_ZERO to ascii_NINE
 
-/datum/n_scriptOptions/proc/IsValidID(id)    //returns true if all the characters in the string are okay to be in an identifier name
+///Returns TRUE if all the characters in the string are okay to be in an identifier name.
+/datum/n_scriptOptions/proc/IsValidID(id)
 	if(!CanStartID(id)) //don't need to grab first char in id, since text2ascii does it automatically
 		return FALSE
 	if(length(id) == 1)
