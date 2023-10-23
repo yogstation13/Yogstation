@@ -264,11 +264,11 @@ obj/machinery/holopad/secure/Initialize(mapload)
 				return
 			TIMER_COOLDOWN_START(src, "holopad", holopad_cooldown)
 			to_chat(usr, span_info("You requested an AI's presence."))
-			var/area/area = get_area(src)
+			var/area/A = get_area(src)
 			for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 				if(!AI.client)
 					continue
-				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
+				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [A]</a>."))
 			return TRUE
 		if("holocall")
 			if(outgoing_call)
@@ -283,7 +283,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 				if(pad.is_operational())
 					LAZYADD(callnames[pad.padname], pad)
 			var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
-			if(QDELETED(usr) || !result || outgoing_call)
+			if(QDELETED(usr) || !result || outgoing_call) // Is this even needed? could trigger but holocall will catch it
 				return
 			var/datum/hcall = new /datum/holocall(usr, src, callnames[result], text2num(params["headcall"]))
 			if(!QDELETED(hcall))
