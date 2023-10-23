@@ -4425,7 +4425,7 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "pN" = (
 /obj/structure/window/plasma/reinforced/spawner/north,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine/plasma,
 /area/ruin/space/has_grav/ancientstation/engi)
 "pO" = (

@@ -15468,7 +15468,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "gBR" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -28154,7 +28154,7 @@
 /area/engine/atmos)
 "mqS" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -45166,7 +45166,7 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "tHn" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -51640,7 +51640,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "wxp" = (
@@ -54478,7 +54478,7 @@
 /obj/machinery/atmospherics/miner/toxins{
 	max_ext_kpa = 2500
 	},
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/engine/plasma{
 	initial_gas_mix = "plasma=1000;TEMP=293.15"
 	},
