@@ -25,6 +25,10 @@
 
 	tiled_dirt = TRUE
 
+	//Do we have an uncleanable level of grime? This overlays a color multiplied noise ("grime") image on top for TG style dirtiness with clean icons.
+	var/grime = FALSE
+	var/grime_alpha = 40 //what is the alpha of our grime? brighter tiles look worse with grime.
+
 /turf/open/floor/Initialize(mapload)
 
 	if (!broken_states)
@@ -57,6 +61,13 @@
 	else
 		icon_state_regular_floor = icon_state
 		icon_regular_floor = icon
+
+	if(grime)
+		//add a bit of grime for noobs
+		var/mutable_appearance/MA = mutable_appearance(icon, "grime", alpha = grime_alpha)
+		MA.blend_mode = BLEND_MULTIPLY
+		add_overlay(MA)
+
 	if(mapload && prob(33))
 		MakeDirty()
 	if(is_station_level(z))

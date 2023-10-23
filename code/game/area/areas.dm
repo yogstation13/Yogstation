@@ -52,6 +52,13 @@
 	/// Mood message for being here, only shows up if mood_bonus != 0
 	var/mood_message = span_nicegreen("This area is pretty nice!\n")
 
+	/// The color of the light tubes' light in this area
+	var/lighting_colour_tube = "#FFF6ED"
+	/// The color of the light bulb's light in this area
+	var/lighting_colour_bulb = "#FFE6CC"
+
+	var/lighting_colour_night = "#FFDBB5"
+
 	var/power_equip = TRUE
 	var/power_light = TRUE
 	var/power_environ = TRUE

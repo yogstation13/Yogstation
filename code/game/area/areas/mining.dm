@@ -5,6 +5,8 @@
 	has_gravity = STANDARD_GRAVITY
 	area_flags = FLORA_ALLOWED
 	ambient_buzz = 'sound/ambience/magma.ogg'
+	lighting_colour_tube = "#ffe8d2"
+	lighting_colour_bulb = "#ffdcb7"
 	
 	ambient_buzz_vol = 10
 	mining_speed = TRUE
@@ -78,6 +80,8 @@
 /area/mine/maintenance
 	name = "Mining Station Communications"
 	icon_state = "mining_engineering"
+	lighting_colour_tube = "#edfdff"
+	lighting_colour_bulb = "#dafffd"
 
 /area/mine/vacant
 	name = "Mining Station Vacant Room"

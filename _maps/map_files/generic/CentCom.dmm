@@ -3523,11 +3523,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"aje" = (
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 1
-	},
-/area/centcom/supply)
 "ajf" = (
 /obj/machinery/light{
 	dir = 4
@@ -4216,9 +4211,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/syndicate_mothership)
-"akw" = (
-/turf/open/floor/plasteel/yellowsiding,
-/area/centcom/supply)
 "akx" = (
 /obj/structure/filingcabinet/medical,
 /obj/effect/turf_decal/stripes/line{
@@ -9186,11 +9178,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"atT" = (
-/turf/open/floor/plasteel/yellowsiding{
-	dir = 1
-	},
-/area/centcom/evac)
 "atU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -9630,8 +9617,8 @@
 /area/centcom/testchamber)
 "auJ" = (
 /obj/machinery/door/airlock/external/glass{
-	req_access_txt = "150";
-	name = "Assault Pod Launcher Access"
+	name = "Assault Pod Launcher Access";
+	req_access_txt = "150"
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
@@ -12386,9 +12373,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
-"aAt" = (
-/turf/open/floor/plasteel/yellowsiding,
-/area/centcom/evac)
 "aAu" = (
 /obj/machinery/abductor/experiment{
 	team_number = 3
@@ -22729,8 +22713,8 @@
 /area/centcom/holding)
 "aUm" = (
 /obj/structure/closet/crate/hydroponics{
-	name = "fish food crate";
-	desc = "Supposedly tastes of nuclear authentication disks."
+	desc = "Supposedly tastes of nuclear authentication disks.";
+	name = "fish food crate"
 	},
 /obj/item/shovel/spade,
 /obj/item/wirecutters,
@@ -25834,6 +25818,9 @@
 /obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"cZw" = (
+/turf/open/floor/plasteel,
+/area/centcom/supply)
 "dbb" = (
 /turf/open/indestructible/wiki/greenscreen,
 /area/centcom/testchamber)
@@ -25885,8 +25872,8 @@
 /area/syndicate_mothership/control)
 "dFj" = (
 /obj/structure/closet/crate/hydroponics{
-	name = "fish food crate";
-	desc = "Supposedly tastes of nuclear authentication disks."
+	desc = "Supposedly tastes of nuclear authentication disks.";
+	name = "fish food crate"
 	},
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
@@ -27209,8 +27196,8 @@
 /area/syndicate_mothership)
 "tna" = (
 /obj/machinery/door/airlock/external/glass{
-	req_access_txt = "150";
-	name = "Assault Pod Launcher Access"
+	name = "Assault Pod Launcher Access";
+	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
@@ -27384,8 +27371,8 @@
 /obj/structure/table/wood,
 /obj/machinery/button/door{
 	id = "nukie_leader_dorm_windows";
-	req_access_txt = "151";
-	name = "Window Shutters"
+	name = "Window Shutters";
+	req_access_txt = "151"
 	},
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
@@ -68500,7 +68487,7 @@ aaa
 aiG
 aiR
 aiY
-aje
+cZw
 aiO
 aiY
 aiO
@@ -68508,7 +68495,7 @@ aiY
 aiO
 aiY
 aiO
-akw
+cZw
 aiY
 alo
 alJ
@@ -68757,7 +68744,7 @@ aaa
 aiG
 aiR
 aiY
-aje
+cZw
 ajp
 aiY
 ajp
@@ -68765,7 +68752,7 @@ aiY
 ajp
 aiY
 ajp
-akw
+cZw
 aiY
 alo
 aiF
@@ -69014,7 +69001,7 @@ aaa
 aiF
 aiR
 aiY
-aje
+cZw
 ajp
 aiY
 ajp
@@ -69022,7 +69009,7 @@ aiY
 ajp
 aiY
 ajp
-akw
+cZw
 aiY
 alo
 ajE
@@ -69271,7 +69258,7 @@ aaa
 aiG
 aiR
 aiY
-aje
+cZw
 ajp
 aiY
 ajp
@@ -69279,7 +69266,7 @@ aiY
 ajp
 aiY
 ajp
-akw
+cZw
 aiY
 alp
 aiF
@@ -76492,7 +76479,7 @@ aqz
 aqy
 aqx
 asO
-atT
+avh
 auB
 auB
 auB
@@ -76502,7 +76489,7 @@ auB
 auB
 auB
 auB
-aAt
+avh
 aAW
 aqx
 aqz
@@ -76749,7 +76736,7 @@ aqA
 aqy
 aqV
 asP
-atT
+avh
 auB
 ave
 avW
@@ -76759,7 +76746,7 @@ auB
 auB
 auB
 auB
-aAt
+avh
 aAX
 aqV
 aCd
@@ -77006,7 +76993,7 @@ aqy
 aqz
 arS
 asQ
-atT
+avh
 auB
 avf
 avX
@@ -77016,7 +77003,7 @@ auB
 auB
 auB
 auB
-aAt
+avh
 aAY
 arS
 aqy
@@ -77263,7 +77250,7 @@ aqy
 aqz
 aqx
 asQ
-atT
+avh
 auB
 avf
 avY
@@ -77273,7 +77260,7 @@ auB
 auB
 auB
 auB
-aAt
+avh
 aAY
 aqx
 aqV
@@ -77520,7 +77507,7 @@ aqx
 aqV
 aqx
 asR
-atT
+avh
 auB
 ave
 avZ
@@ -77530,7 +77517,7 @@ avZ
 avZ
 ayB
 auB
-aAt
+avh
 aAZ
 aqx
 aCe
@@ -77777,7 +77764,7 @@ aqB
 aqW
 arT
 asO
-atT
+avh
 auB
 avg
 avY
@@ -77787,7 +77774,7 @@ axY
 awa
 azl
 auB
-aAt
+avh
 aAW
 aBN
 aCf
@@ -78034,7 +78021,7 @@ aqC
 aqX
 arU
 aSq
-atT
+avh
 auB
 avh
 avg
@@ -78044,7 +78031,7 @@ avY
 ayB
 avh
 auB
-aAt
+avh
 aBa
 aBO
 aCg
@@ -78291,7 +78278,7 @@ aqD
 aqY
 arV
 asO
-atT
+avh
 auB
 ave
 avZ
@@ -78301,7 +78288,7 @@ avY
 avY
 ayB
 auB
-aAt
+avh
 aAW
 aBP
 aCf
@@ -78548,7 +78535,7 @@ aqx
 aqV
 aqx
 asR
-atT
+avh
 auB
 avg
 awa
@@ -78558,7 +78545,7 @@ awa
 awa
 azl
 auB
-aAt
+avh
 aAZ
 aqx
 aCh
@@ -78805,7 +78792,7 @@ aqz
 aqy
 aqx
 asQ
-atT
+avh
 auB
 auB
 auB
@@ -78815,7 +78802,7 @@ axZ
 avY
 azm
 auB
-aAt
+avh
 aAY
 aqx
 aqV
@@ -79062,7 +79049,7 @@ aqy
 aqz
 arS
 asQ
-atT
+avh
 auB
 auB
 auB
@@ -79072,7 +79059,7 @@ axt
 axZ
 azm
 auB
-aAt
+avh
 aAY
 arS
 aqz
@@ -79319,7 +79306,7 @@ aqA
 aqy
 aqV
 asS
-atT
+avh
 auB
 auB
 auB
@@ -79329,7 +79316,7 @@ auB
 axt
 azl
 auB
-aAt
+avh
 aBb
 aqV
 aCd
@@ -79576,7 +79563,7 @@ aqz
 aqy
 aqx
 asO
-atT
+avh
 auB
 auB
 auB
@@ -79586,7 +79573,7 @@ auB
 auB
 auB
 auB
-aAt
+avh
 aAW
 aqx
 aqy
