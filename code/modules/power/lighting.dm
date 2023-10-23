@@ -450,34 +450,34 @@
 	if(!on)
 		return FALSE
 
-  var/BR = brightness
-  var/PO = bulb_power
-  var/CO = bulb_colour
-  if(color)
-    CO = color
-  var/area/A = get_area(src)
-  if (A && (A.fire || A.delta_light))
-    CO = bulb_emergency_colour
-  else if (A && A.vacuum)
-    CO = bulb_vacuum_colour
-    BR = bulb_vacuum_brightness
-  else if (nightshift_enabled)
-    BR = nightshift_brightness
-    PO = nightshift_light_power
-    if(!color)
-      CO = nightshift_light_color
-  var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
-  if(!matching)
-    switchcount++
-    if(rigged)
-      if(status == LIGHT_OK && trigger)
-        explode()
-    else if( prob( min(60, (switchcount^2)*0.01) ) )
-      if(trigger)
-        burn_out()
-    else
-      use_power = ACTIVE_POWER_USE
-      set_light(BR, PO, CO)
+	var/BR = brightness
+	var/PO = bulb_power
+	var/CO = bulb_colour
+	if(color)
+		CO = color
+	var/area/A = get_area(src)
+	if (A && (A.fire || A.delta_light))
+		CO = bulb_emergency_colour
+	else if (A && A.vacuum)
+		CO = bulb_vacuum_colour
+		BR = bulb_vacuum_brightness
+	else if (nightshift_enabled)
+		BR = nightshift_brightness
+		PO = nightshift_light_power
+		if(!color)
+			CO = nightshift_light_color
+	var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
+	if(!matching)
+		switchcount++
+		if(rigged)
+			if(status == LIGHT_OK && trigger)
+				explode()
+		else if( prob( min(60, (switchcount^2)*0.01) ) )
+			if(trigger)
+				burn_out()
+		else
+			use_power = ACTIVE_POWER_USE
+			set_light(BR, PO, CO)
 			if(!quiet)
 				playsound(src.loc, 'sound/effects/light_on.ogg', 50)
 	update_icon()
