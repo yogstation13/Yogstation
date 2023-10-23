@@ -31,6 +31,8 @@
 
 	smells_like = "crimson guardianship"
 
+	minimal_lightup_areas = list(/area/medical/morgue)
+	
 	mail_goodies = list(
 		/obj/item/storage/firstaid/regular = 20,
 		/obj/item/reagent_containers/autoinjector/medipen/atropine = 10,

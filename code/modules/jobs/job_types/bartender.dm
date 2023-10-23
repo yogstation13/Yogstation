@@ -33,6 +33,12 @@
 		/obj/item/reagent_containers/food/drinks/shaker = 5,
 	)
 
+	lightup_areas = list(
+		/area/hydroponics,
+		/area/medical/morgue,
+		/area/crew_quarters/kitchen
+	)
+	
 	smells_like = "alcohol"
 
 /datum/outfit/job/bartender

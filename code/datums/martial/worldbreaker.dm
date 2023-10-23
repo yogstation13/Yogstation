@@ -584,7 +584,9 @@
 			target.break_tile()
 
 	//flavour stuff
-	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
+	if(heavy)
+		flicker_all_lights()
+		playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS + (WARNING_RANGE * 2))
 	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
 	shockwave.transform *= 0.1 //basically invisible
