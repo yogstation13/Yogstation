@@ -13,6 +13,7 @@
 	///Offset of where the click is calculated from, due to how food is positioned in their DMIs.
 	var/placement_offset = -12
 	var/smash_force = 10 //damage for head smashing
+	var/const/duration = 13 // Directly relates to the 'knockdown' duration. Lowered by armor (i.e. helmets)
 
 
 /obj/item/plate/attackby(obj/item/I, mob/user, params)
@@ -118,16 +119,28 @@
 		return
 
 	var/armor_block = 0
+	var/armor_duration = 0 //The more force the plate has, the longer the duration.
 
 	if(ishuman(target))
 
 		var/mob/living/carbon/human/H = target
+		var/headarmor = 0 // Target's head armor
 		armor_block = H.run_armor_check(affecting, MELEE,"","",armour_penetration)
+
+		if(istype(H.head, /obj/item/clothing/head))
+			headarmor = H.head.armor.melee
+		else
+			headarmor = 0
+
+		armor_duration = (duration - headarmor) + force //knockdown duration
+
 	else
 		armor_block = target.run_armor_check(affecting, MELEE)
+		armor_duration = duration + force
 
 	armor_block = min(90,armor_block)
 	target.apply_damage(smash_force, BRUTE, affecting, armor_block)
+	target.apply_effect(min(armor_duration, 200) , EFFECT_KNOCKDOWN)
 
 	//attack message
 	if(target != user)
