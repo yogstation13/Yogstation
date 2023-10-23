@@ -459,6 +459,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(bill)
 			to_chat(user, "<span class='warning'>[src] already has [bill] inserted</span>")
 			return
+		if(chip)
+			to_chat(user, "span class='warning'>[src] already has [chip] inserted</span>")
+			return
 		var/obj/item/stack/S = I
 		if(!premium.len)
 			to_chat(user, "<span class='warning'>[src] doesn't have a bill slot.</span>")
@@ -467,6 +470,22 @@ GLOBAL_LIST_EMPTY(vending_products)
 		bill = new S.type(src, 1)
 		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
 		return
+	else if(istype(I, /obj/item/holochip))
+		if(coin)
+			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
+			return
+		if(bill)
+			to_chat(user, "<span class='warning'>[src] already has [bill] inserted</span>")
+			return
+		if(chip)
+			to_chat(user, "span class='warning'>[src] already has [chip] inserted</span>")
+			return
+		if(!premium.len)
+			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
+			return
+			chip = /obj/item/holochip
+			to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+			return
 
 
 	if(refill_canister && istype(I, refill_canister))
