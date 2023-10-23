@@ -158,8 +158,6 @@
 		if(target.mind)
 			return
 	if(istype(target, /mob/living/simple_animal/hostile/retaliate/goat/king))
-		if(istype(target, /mob/living/simple_animal/hostile/retaliate/goat/king/phase2))
-			return
 		return //cant trap people in the room forever
 	if((!istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion)))
 		for(var/i =1 to 3)
