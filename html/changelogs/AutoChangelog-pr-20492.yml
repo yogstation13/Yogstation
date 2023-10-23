@@ -1,7 +1,0 @@
-author: " PowerfulBacon, Sinestia, ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Each area can now have their own tube and bulb color"
-  - rscdel: "Some old floors that should have been decals were deleted"
-  - tweak: "Light overlays are brighter and no longer emissive (so you can see them in light)"
-  - tweak: "Floors have been redesigned"
