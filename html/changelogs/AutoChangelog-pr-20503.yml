@@ -1,8 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Can no longer infinitely drink bloodpacks that are empty"
-  - tweak: "Shifted around some vampire blood thresholds to unlocking certain ability"
-  - tweak: "Vampire bat is slightly faster and can see in the dark"
-  - tweak: "Can no longer transform into a bat if incapacitated"
-  - tweak: "Vampires get 1/2 the previous amount of usable blood from drinking blood packs"

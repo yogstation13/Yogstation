@@ -157,10 +157,10 @@
 	name = ".357 sharpshooter bullet casing"
 	desc = "A .357 sharpshooter bullet casing."
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/ipcmartial
+	projectile_type = /obj/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
-/obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
+/obj/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
 	name = ".357 sharpshooter bullet"
 	damage = 30 // can't 3-shot against sec armor
 	armour_penetration = 15
@@ -170,7 +170,7 @@
 	ricochet_chance = INFINITY // ALWAYS ricochet
 	penetrating = TRUE
 
-/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
+/obj/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
 	. = ..()
 	if(!isliving(target)) // don't gain style from hitting an object
 		return .
@@ -193,16 +193,16 @@
 	if(damage <= 0)
 		qdel(src)
 
-/obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
+/obj/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
 	speed *= 0.5 // faster so it can hit more reliably
 	penetrating = FALSE
 	return ..()
 
-/obj/item/projectile/bullet/ipcmartial/check_ricochet()
+/obj/projectile/bullet/ipcmartial/check_ricochet()
 	return TRUE
 
-/obj/item/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
+/obj/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
 	return !ismob(A) // don't ricochet off of mobs, that would be weird
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
@@ -320,11 +320,11 @@
 			continue
 		for(var/thing in parried_tile.contents)
 			if(isprojectile(thing))
-				var/obj/item/projectile/P = thing
+				var/obj/projectile/P = thing
 				P.firer = H
 				P.damage *= 1.5
 				P.speed *= 0.5
-				P.permutated = list()
+				P.impacted = list()
 				P.fire(get_angle(H, A)) // parry the projectile towards wherever you clicked
 				successful_parry = TRUE
 	if(successful_parry)

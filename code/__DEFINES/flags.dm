@@ -51,6 +51,9 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define IS_PLAYER_COLORABLE_1 (1<<17)
 /// Prevents most radiation on this turf from leaving it
 #define RAD_CONTAIN_CONTENTS (1<<18)
+/// Is the thing currently spinning?
+#define IS_SPINNING_1 (1<<19)
+
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
 #define UNUSED_RESERVATION_TURF_1	(1<<1)

@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a new gene called radiant burst that blinds people nearby upon use"
-  - tweak: "Ethereal inert gene is now radiant burst instead of shock touch"

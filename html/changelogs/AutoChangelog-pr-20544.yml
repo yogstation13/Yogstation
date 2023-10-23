@@ -1,8 +1,0 @@
-author: " @cuackles @Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds fat mouse that counts as junk food when eaten"
-  - tweak: "Vermin bites now gives a fat mouse rather than a regular mouse"
-  - rscadd: "Vermin bites now creates trash"
-  - imageadd: "Sprites for fat mouse"
-  - imageadd: "new sprites for vermin bites and it's trash"

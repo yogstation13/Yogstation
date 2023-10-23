@@ -378,7 +378,7 @@
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
 	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
+	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.can_block_magic(charge_cost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
@@ -467,7 +467,7 @@
 		owner.remove_status_effect(/datum/status_effect/drowsiness)
 		owner.remove_status_effect(/datum/status_effect/confusion)
 		severity = 0
-	else if(!owner.anti_magic_check(chargecost = 0) && owner.stat != DEAD && severity)
+	else if(!owner.can_block_magic(charge_cost = 0) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
@@ -730,7 +730,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
@@ -757,7 +757,7 @@
 	set waitfor = FALSE
 	new/obj/effect/temp_visual/dir_setting/curse/grasp_portal(spawn_turf, owner.dir)
 	playsound(spawn_turf, 'sound/effects/curse2.ogg', 80, 1, -1)
-	var/obj/item/projectile/curse_hand/progenitor/C = new (spawn_turf)
+	var/obj/projectile/curse_hand/progenitor/C = new (spawn_turf)
 	C.preparePixelProjectile(owner, spawn_turf)
 	C.fire()
 
@@ -1426,4 +1426,137 @@
 	id = "lasting_void_chill"
 	duration = -1
 
+/datum/status_effect/protective_blades
+	id = "Silver Knives"
+	alert_type = null
+	status_type = STATUS_EFFECT_MULTIPLE
+	tick_interval = -1
+	/// The number of blades we summon up to.
+	var/max_num_blades = 4
+	/// The radius of the blade's orbit.
+	var/blade_orbit_radius = 20
+	/// The time between spawning blades.
+	var/time_between_initial_blades = 0.25 SECONDS
+	/// If TRUE, we self-delete our status effect after all the blades are deleted.
+	var/delete_on_blades_gone = TRUE
+	/// A list of blade effects orbiting / protecting our owner
+	var/list/obj/effect/floating_blade/blades = list()
 
+/datum/status_effect/protective_blades/on_creation(
+	mob/living/new_owner,
+	new_duration = -1,
+	max_num_blades = 4,
+	blade_orbit_radius = 20,
+	time_between_initial_blades = 0.25 SECONDS,
+)
+
+	src.duration = new_duration
+	src.max_num_blades = max_num_blades
+	src.blade_orbit_radius = blade_orbit_radius
+	src.time_between_initial_blades = time_between_initial_blades
+	return ..()
+
+/datum/status_effect/protective_blades/on_apply()
+	RegisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_reaction))
+	for(var/blade_num in 1 to max_num_blades)
+		var/time_until_created = (blade_num - 1) * time_between_initial_blades
+		if(time_until_created <= 0)
+			create_blade()
+		else
+			addtimer(CALLBACK(src, PROC_REF(create_blade)), time_until_created)
+
+	return TRUE
+
+/datum/status_effect/protective_blades/on_remove()
+	UnregisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS)
+	QDEL_LIST(blades)
+
+	return ..()
+
+/// Creates a floating blade, adds it to our blade list, and makes it orbit our owner.
+/datum/status_effect/protective_blades/proc/create_blade()
+	if(QDELETED(src) || QDELETED(owner))
+		return
+
+	var/obj/effect/floating_blade/blade = new(get_turf(owner))
+	blades += blade
+	blade.orbit(owner, blade_orbit_radius)
+	RegisterSignal(blade, COMSIG_PARENT_QDELETING, PROC_REF(remove_blade))
+	playsound(get_turf(owner), 'sound/items/unsheath.ogg', 33, TRUE)
+
+/// Signal proc for [COMSIG_HUMAN_CHECK_SHIELDS].
+/// If we have a blade in our list, consume it and block the incoming attack (shield it)
+/datum/status_effect/protective_blades/proc/on_shield_reaction(
+	mob/living/carbon/human/source,
+	atom/movable/hitby,
+	damage = 0,
+	attack_text = "the attack",
+	attack_type = MELEE_ATTACK,
+	armour_penetration = 0,
+	damage_type = BRUTE,
+)
+	SIGNAL_HANDLER
+
+	if(!length(blades))
+		return
+
+	if(HAS_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED))
+		return
+
+	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, type)
+
+	var/obj/effect/floating_blade/to_remove = blades[1]
+
+	playsound(get_turf(source), 'sound/weapons/parry.ogg', 100, TRUE)
+	source.visible_message(
+		span_warning("[to_remove] orbiting [source] snaps in front of [attack_text], blocking it before vanishing!"),
+		span_warning("[to_remove] orbiting you snaps in front of [attack_text], blocking it before vanishing!"),
+		span_hear("You hear a clink."),
+	)
+
+	qdel(to_remove)
+
+	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, type), 1)
+
+	return SHIELD_BLOCK
+
+/// Remove deleted blades from our blades list properly.
+/datum/status_effect/protective_blades/proc/remove_blade(obj/effect/floating_blade/to_remove)
+	SIGNAL_HANDLER
+
+	if(!(to_remove in blades))
+		CRASH("[type] called remove_blade() with a blade that was not in its blades list.")
+
+	to_remove.stop_orbit(owner.orbiters)
+	blades -= to_remove
+
+	if(!length(blades) && !QDELETED(src) && delete_on_blades_gone)
+		qdel(src)
+
+	return TRUE
+
+/// A subtype that doesn't self-delete / disappear when all blades are gone
+/// It instead regenerates over time back to the max after blades are consumed
+/datum/status_effect/protective_blades/recharging
+	delete_on_blades_gone = FALSE
+	/// The amount of time it takes for a blade to recharge
+	var/blade_recharge_time = 1 MINUTES
+
+/datum/status_effect/protective_blades/recharging/on_creation(
+	mob/living/new_owner,
+	new_duration = -1,
+	max_num_blades = 4,
+	blade_orbit_radius = 20,
+	time_between_initial_blades = 0.25 SECONDS,
+	blade_recharge_time = 1 MINUTES,
+)
+
+	src.blade_recharge_time = blade_recharge_time
+	return ..()
+
+/datum/status_effect/protective_blades/recharging/remove_blade(obj/effect/floating_blade/to_remove)
+	. = ..()
+	if(!.)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(create_blade)), blade_recharge_time)

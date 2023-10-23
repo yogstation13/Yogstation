@@ -1,5 +1,0 @@
-author: " DrDiasyl"
-delete-after: true 
-changes: 
-  - rscadd: "New red alert sound"
-  - rscadd: "New announcement sound for specific announcements"
