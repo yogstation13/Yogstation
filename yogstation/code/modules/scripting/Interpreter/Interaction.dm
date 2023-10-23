@@ -7,7 +7,7 @@
 	Procedures allowing for interaction with the script that is being run by the interpreter object.
 */
 
-/n_Interpreter
+/datum/n_Interpreter
 	proc
 
 /*

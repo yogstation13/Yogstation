@@ -5,7 +5,7 @@
 	Class: n_Parser
 	An object that reads tokens and produces an AST (abstract syntax tree).
 */
-/n_Parser
+/datum/n_Parser
 	var
 /*
 	Var: index
@@ -65,8 +65,8 @@
 	Class: nS_Parser
 	An implmentation of a parser for n_Script.
 */
-/n_Parser/nS_Parser
-	var/n_scriptOptions/nS_Options/options
+/datum/n_Parser/nS_Parser
+	var/datum/n_scriptOptions/options
 /*
 	Constructor: New
 
@@ -74,7 +74,7 @@
 	tokens  - A list of tokens to parse.
 	options - An object used for configuration.
 */
-	New(tokens[], n_scriptOptions/options)
+	New(tokens[], /datum/n_scriptOptions/options)
 		src.tokens=tokens
 		src.options=options
 		curBlock=global_block
@@ -85,24 +85,24 @@
 		for(,src.index<=src.tokens.len, src.index++)
 			curToken=tokens[index]
 			switch(curToken.type)
-				if(/token/keyword)
+				if(/datum/token/keyword)
 					var/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw()
 					if(kw)
 						if(!kw.Parse(src))
 							return
 						continue
-				if(/token/symbol)
+				if(/datum/token/symbol)
 					if(curToken.value=="}")
 						if(!EndBlock())
-							errors+=new/scriptError/BadToken(curToken)
+							errors+=new/datum/scriptError/BadToken(curToken)
 							continue
 						continue
-				if(/token/end)
+				if(/datum/token/end)
 					continue
 			curBlock.statements += ParseExpression()
-			if(!istype(curToken, /token/end))
-				errors+=new/scriptError/ExpectedToken(";", curToken)
+			if(!istype(curToken, /datum/token/end))
+				errors+=new/datum/scriptError/ExpectedToken(";", curToken)
 				continue
 
 		return global_block
@@ -111,7 +111,7 @@
 		CheckToken(val, type, err=1, skip=1)
 			if(!curToken || !istype(curToken,type) || curToken.value!=val)
 				if(err)
-					errors+=new/scriptError/ExpectedToken(val, curToken)
+					errors+=new/datum/scriptError/ExpectedToken(val, curToken)
 				return 0
 			if(skip)NextToken()
 			return 1

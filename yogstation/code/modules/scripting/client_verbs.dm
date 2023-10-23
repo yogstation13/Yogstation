@@ -58,7 +58,7 @@
 					else if(length(compileerrors))
 						src << output("<b>Compile Errors</b>", "tcserror")
 						var/i = 1
-						for(var/scriptError/e in compileerrors)
+						for(var/datum/scriptError/e in compileerrors)
 							if(i) //. Bold the first one, since it's probably important
 								src << output("<font color = red>\t><b>[e.message]</b></font color>", "tcserror")
 								i = 0
@@ -72,7 +72,7 @@
 								M << output(null, "tcserror")
 								M << output("<b>Compile Errors</b>", "tcserror")
 								i = 1 //. Still using var/i from above
-								for(var/scriptError/e in compileerrors)
+								for(var/datum/scriptError/e in compileerrors)
 									if(i)
 										M << output("<font color = red>\t><b>[e.message]</b></font color>", "tcserror")
 										i = 0
@@ -94,14 +94,14 @@
 								M << output("(0 errors)", "tcserror")
 					if(Server.compile_warnings.len)
 						src << output("<b>Compile Warnings</b>", "tcserror")
-						for(var/scriptError/e in Server.compile_warnings)
+						for(var/datum/scriptError/e in Server.compile_warnings)
 							src << output("<font color = yellow>\t>[e.message]</font color>", "tcserror")
 						src << output("([Server.compile_warnings.len] warnings)", "tcserror")
 						for(var/fuck_you_for_making_me_do_this_altoids in Machine.viewingcode)
 							var/mob/M = fuck_you_for_making_me_do_this_altoids
 							if(M.client)
 								M << output("<b>Compile Warnings</b>", "tcserror")
-								for(var/scriptError/e in Server.compile_warnings)
+								for(var/datum/scriptError/e in Server.compile_warnings)
 									M << output("<font color = yellow>\t>[e.message]</font color>", "tcserror")
 								M << output("([Server.compile_warnings.len] warnings)", "tcserror")
 
@@ -232,7 +232,15 @@
 		src << output(null, "tcserror")
 		src << output("<font color = red>Failed to clear memory: Unable to locate machine.</font color>", "tcserror")
 
-/proc/telecomms_check(mob/mob)
-	if(mob && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && in_range(mob.machine, mob) || issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic))
-		return 1
-	return 0
+/**
+ * Checks to see if 'mob_checking''s machine is a traffic control computer they can access.
+ */
+/proc/telecomms_check(mob/mob_checking)
+	if(!mob_checking)
+		return FALSE
+	if(!istype(mob_checking.machine, /obj/machinery/computer/telecomms/traffic))
+		return FALSE
+	if(!issilicon(mob_checking) && !in_range(mob_checking.machine, mob_checking))
+		return FALSE
+
+	return TRUE

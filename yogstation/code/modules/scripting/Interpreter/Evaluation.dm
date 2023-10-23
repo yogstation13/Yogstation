@@ -1,180 +1,178 @@
+#define IS_OBJECT(thing) (istype(thing, /datum) || istype(thing, /list) || istype(thing, /savefile) || istype(thing, /client) || (thing==world))
 
-/proc/isobject(x)
-	return (istype(x, /datum) || istype(x, /list) || istype(x, /savefile) || istype(x, /client) || (x==world))
+/datum/n_Interpreter
 
-/n_Interpreter
-	proc
-		Eval(node/expression/exp, scope/scope)
-			if(istype(exp, /node/expression/FunctionCall))
-				. = RunFunction(exp, scope)
-			else if(istype(exp, /node/expression/operator))
-				. = EvalOperator(exp, scope)
-			else if(istype(exp, /node/expression/value/literal))
-				var/node/expression/value/literal/lit=exp
-				. = lit.value
-			else if(istype(exp, /node/expression/value/reference))
-				var/node/expression/value/reference/ref=exp
-				. = ref.value
-			else if(istype(exp, /node/expression/value/variable))
-				var/node/expression/value/variable/v=exp
-				. = scope.get_var(v.id.id_name, src, v)
-			else if(istype(exp, /node/expression/value/list_init))
-				var/node/expression/value/list_init/list_exp = exp
-				. = list()
-				for(var/key in list_exp.init_list)
-					var/key_eval = Eval(key, scope)
-					var/val = list_exp.init_list[key]
-					if(val)
-						set_index(., key_eval, Eval(val, scope), scope, key)
+/datum/n_Interpreter/proc/Eval(node/expression/exp, scope/scope)
+	if(istype(exp, /datum/node/expression/FunctionCall))
+		. = RunFunction(exp, scope)
+	else if(istype(exp, /datum/node/expression/expression_operator))
+		. = EvalOperator(exp, scope)
+	else if(istype(exp, /datum/node/expression/value/literal))
+		var/datum/node/expression/value/literal/lit=exp
+		. = lit.value
+	else if(istype(exp, /datum/node/expression/value/reference))
+		var/datum/node/expression/value/reference/ref=exp
+		. = ref.value
+	else if(istype(exp, /datum/node/expression/value/variable))
+		var/datum/node/expression/value/variable/v=exp
+		. = scope.get_var(v.id.id_name, src, v)
+	else if(istype(exp, /datum/node/expression/value/list_init))
+		var/datum/node/expression/value/list_init/list_exp = exp
+		. = list()
+		for(var/key in list_exp.init_list)
+			var/key_eval = Eval(key, scope)
+			var/val = list_exp.init_list[key]
+			if(val)
+				set_index(., key_eval, Eval(val, scope), scope, key)
+			else
+				. += list(key_eval)
+	else if(istype(exp, /datum/node/expression/member/dot))
+		var/datum/node/expression/member/dot/D = exp
+		var/object = D.temp_object || Eval(D.object, scope)
+		D.temp_object = null
+		. = get_property(object, D.id.id_name, scope)
+	else if(istype(exp, /datum/node/expression/member/brackets))
+		var/datum/node/expression/member/brackets/B = exp
+		var/object = B.temp_object || Eval(B.object, scope)
+		B.temp_object = null
+		var/index = B.temp_index || Eval(B.index, scope)
+		. = get_index(object, index, scope)
+	else if(istype(exp, /datum/node/expression))
+		RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
+	else
+		. = exp
+
+	return Trim(.)
+
+/datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, scope/scope)
+	if(istype(exp, /datum/node/expression/expression_operator/binary/Assign))
+		var/datum/node/expression/expression_operator/binary/Assign/ass=exp
+		var/member_obj
+		var/member_idx
+		if(istype(ass.exp, /datum/node/expression/value/variable))
+			var/datum/node/expression/value/variable/var_exp = ass.exp
+			if(!scope.get_scope(var_exp.id.id_name))
+				scope.init_var(var_exp.id.id_name, null, src, var_exp)
+		else if(istype(ass.exp, /datum/node/expression/member))
+			var/datum/node/expression/member/M = ass.exp
+			member_obj = Eval(M.object, scope)
+			if(istype(M, /datum/node/expression/member/brackets))
+				var/datum/node/expression/member/brackets/B = M
+				member_idx = Eval(B.index, scope)
+		var/out_value
+		var/in_value
+		if(ass.type != /datum/node/expression/expression_operator/binary/Assign)
+			if(istype(ass.exp, /datum/node/expression/member))
+				var/datum/node/expression/member/M = ass.exp
+				M.temp_object = member_obj
+				if(istype(M, /datum/node/expression/member/brackets))
+					var/datum/node/expression/member/brackets/B = M
+					B.temp_index = member_idx
+			in_value = Eval(ass.exp, scope)
+			if(islist(in_value))
+				out_value = in_value
+				switch(ass.type)
+					if(/datum/node/expression/expression_operator/binary/Assign/BitwiseAnd)
+						in_value &= Eval(ass.exp2, scope)
+					if(/datum/node/expression/expression_operator/binary/Assign/BitwiseOr)
+						in_value |= Eval(ass.exp2, scope)
+					if(/datum/node/expression/expression_operator/binary/Assign/BitwiseXor)
+						in_value ^= Eval(ass.exp2, scope)
+					if(/datum/node/expression/expression_operator/binary/Assign/Add)
+						in_value += Eval(ass.exp2, scope)
+					if(/datum/node/expression/expression_operator/binary/Assign/Subtract)
+						in_value -= Eval(ass.exp2, scope)
 					else
-						. += list(key_eval)
-			else if(istype(exp, /node/expression/member/dot))
-				var/node/expression/member/dot/D = exp
-				var/object = D.temp_object || Eval(D.object, scope)
-				D.temp_object = null
-				. = get_property(object, D.id.id_name, scope)
-			else if(istype(exp, /node/expression/member/brackets))
-				var/node/expression/member/brackets/B = exp
-				var/object = B.temp_object || Eval(B.object, scope)
-				B.temp_object = null
-				var/index = B.temp_index || Eval(B.index, scope)
-				. = get_index(object, index, scope)
-			else if(istype(exp, /node/expression))
+						out_value = null
+		if(!out_value)
+			switch(ass.type)
+				if(/datum/node/expression/expression_operator/binary/Assign)
+					out_value = Eval(ass.exp2, scope)
+				if(/datum/node/expression/expression_operator/binary/Assign/BitwiseAnd)
+					out_value = BitwiseAnd(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/BitwiseOr)
+					out_value = BitwiseOr(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/BitwiseXor)
+					out_value = BitwiseXor(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/Add)
+					out_value = Add(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/Subtract)
+					out_value = Subtract(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/Multiply)
+					out_value = Multiply(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/Divide)
+					out_value = Divide(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/Power)
+					out_value = Power(in_value, Eval(ass.exp2, scope), scope, ass)
+				if(/datum/node/expression/expression_operator/binary/Assign/Modulo)
+					out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
+				else
+					RaiseError(new/runtimeError/UnknownInstruction(ass),scope, ass)
+			// write it to the var
+			if(istype(ass.exp, /datum/node/expression/value/variable))
+				var/datum/node/expression/value/variable/var_exp = ass.exp
+				scope.set_var(var_exp.id.id_name, out_value, src, var_exp)
+			else if(istype(ass.exp, /datum/node/expression/member/dot))
+				var/datum/node/expression/member/dot/dot_exp = ass.exp
+				set_property(member_obj, dot_exp.id.id_name, out_value, scope)
+			else if(istype(ass.exp, /datum/node/expression/member/brackets))
+				set_index(member_obj, member_idx, out_value, scope)
+			else
+				RaiseError(new/runtimeError/InvalidAssignment(), scope, ass)
+		return out_value
+	else if(istype(exp, /datum/node/expression/expression_operator/binary))
+		var/datum/node/expression/expression_operator/binary/bin=exp
+		switch(bin.type)
+			if(/datum/node/expression/expression_operator/binary/Equal)
+				return Equal(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/NotEqual)
+				return NotEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Greater)
+				return Greater(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Less)
+				return Less(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/GreaterOrEqual)
+				return GreaterOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/LessOrEqual)
+				return LessOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/LogicalAnd)
+				return LogicalAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/LogicalOr)
+				return LogicalOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/LogicalXor)
+				return LogicalXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/BitwiseAnd)
+				return BitwiseAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/BitwiseOr)
+				return BitwiseOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/BitwiseXor)
+				return BitwiseXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Add)
+				return Add(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Subtract)
+				return Subtract(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Multiply)
+				return Multiply(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Divide)
+				return Divide(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Power)
+				return Power(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			if(/datum/node/expression/expression_operator/binary/Modulo)
+				return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
+			else
+				RaiseError(new/runtimeError/UnknownInstruction(bin), scope, bin)
+	else
+		switch(exp.type)
+			if(/datum/node/expression/expression_operator/unary/Minus)
+				return Minus(Eval(exp.exp, scope), scope, exp)
+			if(/datum/node/expression/expression_operator/unary/LogicalNot)
+				return LogicalNot(Eval(exp.exp, scope), scope, exp)
+			if(/datum/node/expression/expression_operator/unary/BitwiseNot)
+				return BitwiseNot(Eval(exp.exp, scope), scope, exp)
+			if(/datum/node/expression/expression_operator/unary/group)
+				return Eval(exp.exp, scope)
+			else
 				RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
-			else
-				. = exp
-
-			return Trim(.)
-
-		EvalOperator(node/expression/operator/exp, scope/scope)
-			if(istype(exp, /node/expression/operator/binary/Assign))
-				var/node/expression/operator/binary/Assign/ass=exp
-				var/member_obj
-				var/member_idx
-				if(istype(ass.exp, /node/expression/value/variable))
-					var/node/expression/value/variable/var_exp = ass.exp
-					if(!scope.get_scope(var_exp.id.id_name))
-						scope.init_var(var_exp.id.id_name, null, src, var_exp)
-				else if(istype(ass.exp, /node/expression/member))
-					var/node/expression/member/M = ass.exp
-					member_obj = Eval(M.object, scope)
-					if(istype(M, /node/expression/member/brackets))
-						var/node/expression/member/brackets/B = M
-						member_idx = Eval(B.index, scope)
-				var/out_value
-				var/in_value
-				if(ass.type != /node/expression/operator/binary/Assign)
-					if(istype(ass.exp, /node/expression/member))
-						var/node/expression/member/M = ass.exp
-						M.temp_object = member_obj
-						if(istype(M, /node/expression/member/brackets))
-							var/node/expression/member/brackets/B = M
-							B.temp_index = member_idx
-					in_value = Eval(ass.exp, scope)
-					if(islist(in_value))
-						out_value = in_value
-						switch(ass.type)
-							if(/node/expression/operator/binary/Assign/BitwiseAnd)
-								in_value &= Eval(ass.exp2, scope)
-							if(/node/expression/operator/binary/Assign/BitwiseOr)
-								in_value |= Eval(ass.exp2, scope)
-							if(/node/expression/operator/binary/Assign/BitwiseXor)
-								in_value ^= Eval(ass.exp2, scope)
-							if(/node/expression/operator/binary/Assign/Add)
-								in_value += Eval(ass.exp2, scope)
-							if(/node/expression/operator/binary/Assign/Subtract)
-								in_value -= Eval(ass.exp2, scope)
-							else
-								out_value = null
-				if(!out_value)
-					switch(ass.type)
-						if(/node/expression/operator/binary/Assign)
-							out_value = Eval(ass.exp2, scope)
-						if(/node/expression/operator/binary/Assign/BitwiseAnd)
-							out_value = BitwiseAnd(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/BitwiseOr)
-							out_value = BitwiseOr(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/BitwiseXor)
-							out_value = BitwiseXor(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/Add)
-							out_value = Add(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/Subtract)
-							out_value = Subtract(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/Multiply)
-							out_value = Multiply(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/Divide)
-							out_value = Divide(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/Power)
-							out_value = Power(in_value, Eval(ass.exp2, scope), scope, ass)
-						if(/node/expression/operator/binary/Assign/Modulo)
-							out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
-						else
-							RaiseError(new/runtimeError/UnknownInstruction(ass),scope, ass)
-					// write it to the var
-					if(istype(ass.exp, /node/expression/value/variable))
-						var/node/expression/value/variable/var_exp = ass.exp
-						scope.set_var(var_exp.id.id_name, out_value, src, var_exp)
-					else if(istype(ass.exp, /node/expression/member/dot))
-						var/node/expression/member/dot/dot_exp = ass.exp
-						set_property(member_obj, dot_exp.id.id_name, out_value, scope)
-					else if(istype(ass.exp, /node/expression/member/brackets))
-						set_index(member_obj, member_idx, out_value, scope)
-					else
-						RaiseError(new/runtimeError/InvalidAssignment(), scope, ass)
-				return out_value
-			else if(istype(exp, /node/expression/operator/binary))
-				var/node/expression/operator/binary/bin=exp
-				switch(bin.type)
-					if(/node/expression/operator/binary/Equal)
-						return Equal(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/NotEqual)
-						return NotEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Greater)
-						return Greater(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Less)
-						return Less(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/GreaterOrEqual)
-						return GreaterOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/LessOrEqual)
-						return LessOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/LogicalAnd)
-						return LogicalAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/LogicalOr)
-						return LogicalOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/LogicalXor)
-						return LogicalXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/BitwiseAnd)
-						return BitwiseAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/BitwiseOr)
-						return BitwiseOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/BitwiseXor)
-						return BitwiseXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Add)
-						return Add(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Subtract)
-						return Subtract(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Multiply)
-						return Multiply(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Divide)
-						return Divide(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Power)
-						return Power(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					if(/node/expression/operator/binary/Modulo)
-						return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-					else
-						RaiseError(new/runtimeError/UnknownInstruction(bin), scope, bin)
-			else
-				switch(exp.type)
-					if(/node/expression/operator/unary/Minus)
-						return Minus(Eval(exp.exp, scope), scope, exp)
-					if(/node/expression/operator/unary/LogicalNot)
-						return LogicalNot(Eval(exp.exp, scope), scope, exp)
-					if(/node/expression/operator/unary/BitwiseNot)
-						return BitwiseNot(Eval(exp.exp, scope), scope, exp)
-					if(/node/expression/operator/unary/group)
-						return Eval(exp.exp, scope)
-					else
-						RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
 
 
 	//Binary//

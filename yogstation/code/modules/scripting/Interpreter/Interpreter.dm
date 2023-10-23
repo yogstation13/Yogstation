@@ -27,7 +27,7 @@
 #define MAX_STRINGLEN 1024
 #define MAX_LISTLEN 256
 
-/n_Interpreter
+/datum/n_Interpreter
 	var
 		scope
 			globalScope
@@ -86,12 +86,12 @@
 	Proc: RaiseError
 	Raises a runtime error.
 */
-		RaiseError(runtimeError/e, scope/scope, token/token)
+		RaiseError(runtimeError/e, scope/scope, token/datum/token)
 			e.scope = scope
 			if(istype(token))
 				e.token = token
-			else if(istype(token, /node))
-				var/node/N = token
+			else if(istype(token, /datum/node))
+				var/datum/node/N = token
 				e.token = N.token
 			src.HandleError(e)
 
@@ -128,7 +128,7 @@
 		RunBlock(node/BlockDefinition/Block, scope/scope = globalScope)
 
 			if(cur_statements < MAX_STATEMENTS)
-				for(var/node/S in Block.statements)
+				for(var/datum/node/S in Block.statements)
 					while(paused) sleep(1 SECONDS)
 
 					cur_statements++
@@ -137,35 +137,35 @@
 						AlertAdmins()
 						break
 
-					if(istype(S, /node/expression))
+					if(istype(S, /datum/node/expression))
 						. = Eval(S, scope)
-					else if(istype(S, /node/statement/VariableDeclaration))
+					else if(istype(S, /datum/node/statement/VariableDeclaration))
 						//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
-						var/node/statement/VariableDeclaration/dec=S
+						var/datum/node/statement/VariableDeclaration/dec=S
 						scope.init_var(dec.var_name.id_name, src, S)
-					else if(istype(S, /node/statement/FunctionDefinition))
-						var/node/statement/FunctionDefinition/dec=S
+					else if(istype(S, /datum/node/statement/FunctionDefinition))
+						var/datum/node/statement/FunctionDefinition/dec=S
 						scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src), src, S)
-					else if(istype(S, /node/statement/WhileLoop))
+					else if(istype(S, /datum/node/statement/WhileLoop))
 						. = RunWhile(S, scope)
-					else if(istype(S, /node/statement/ForLoop))
+					else if(istype(S, /datum/node/statement/ForLoop))
 						. = RunFor(S, scope)
-					else if(istype(S, /node/statement/IfStatement))
+					else if(istype(S, /datum/node/statement/IfStatement))
 						. = RunIf(S, scope)
-					else if(istype(S, /node/statement/ReturnStatement))
+					else if(istype(S, /datum/node/statement/ReturnStatement))
 						if(!(scope.allowed_status & RETURNING))
 							RaiseError(new/runtimeError/UnexpectedReturn(), scope, S)
 							continue
 						scope.status |= RETURNING
 						. = (scope.return_val=Eval(S:value, scope))
 						break
-					else if(istype(S, /node/statement/BreakStatement))
+					else if(istype(S, /datum/node/statement/BreakStatement))
 						if(!(scope.allowed_status & BREAKING))
 							//RaiseError(new/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= BREAKING
 						break
-					else if(istype(S, /node/statement/ContinueStatement))
+					else if(istype(S, /datum/node/statement/ContinueStatement))
 						if(!(scope.allowed_status & CONTINUING))
 							//RaiseError(new/runtimeError/UnexpectedReturn())
 							continue
@@ -183,8 +183,8 @@
 		RunFunction(node/expression/FunctionCall/stmt, scope/scope)
 			var/datum/n_function/func
 			var/this_obj
-			if(istype(stmt.function, /node/expression/member))
-				var/node/expression/member/M = stmt.function
+			if(istype(stmt.function, /datum/node/expression/member))
+				var/datum/node/expression/member/M = stmt.function
 				this_obj = M.temp_object = Eval(M.object, scope)
 				func = Eval(M, scope)
 			else
@@ -193,7 +193,7 @@
 				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
 				return
 			var/list/params = list()
-			for(var/node/expression/P in stmt.parameters)
+			for(var/datum/node/expression/P in stmt.parameters)
 				params+=list(Eval(P, scope))
 
 			try
@@ -211,7 +211,7 @@
 				if(Eval(stmt.cond, scope))
 					. = RunBlock(stmt.block, scope)
 					// Loop through the if else chain and tell them to be skipped.
-					var/node/statement/IfStatement/i = stmt.else_if
+					var/datum/node/statement/IfStatement/i = stmt.else_if
 					var/fail_safe = 800
 					while(i && fail_safe)
 						fail_safe -= 1

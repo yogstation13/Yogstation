@@ -5,14 +5,14 @@
 /scope
 	var/scope/parent
 	var/scope/variables_parent
-	var/node/BlockDefinition/block
+	var/datum/node/BlockDefinition/block
 	var/list/functions
 	var/list/variables
 	var/status = 0
 	var/allowed_status = 0
 	var/recursion = 0
-	var/node/statement/FunctionDefinition/function
-	var/node/expression/FunctionCall/call_node
+	var/datum/node/statement/FunctionDefinition/function
+	var/datum/node/expression/FunctionCall/call_node
 	var/return_val
 
 /scope/New(node/BlockDefinition/B, scope/parent, scope/variables_parent, allowed_status = 0)
@@ -51,7 +51,7 @@
 		parent.return_val = return_val
 	return parent
 
-/scope/proc/get_var(name, n_Interpreter/interp, node/node)
+/scope/proc/get_var(name, n_Interpreter/interp, node/datum/node)
 	var/scope/S = get_scope(name)
 	if(S)
 		return S.variables[name]
@@ -66,7 +66,7 @@
 			return
 		S = S.variables_parent
 
-/scope/proc/set_var(name, val, n_Interpreter/interp, node/node)
+/scope/proc/set_var(name, val, n_Interpreter/interp, node/datum/node)
 	var/scope/S = get_scope(name)
 	if(S)
 		S.variables[name] = val
@@ -74,7 +74,7 @@
 		init_var(name, val, interp, node)
 	return val
 
-/scope/proc/init_var(name, val, n_Interpreter/interp, node/node)
+/scope/proc/init_var(name, val, n_Interpreter/interp, node/datum/node)
 	if(variables.Find(name) && interp)
 		interp.RaiseError(new/runtimeError/DuplicateVariableDeclaration(name), src, node)
 	variables[name] = val

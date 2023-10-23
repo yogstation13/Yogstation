@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(ntsl_methods)
 
-/n_Interpreter/proc/get_property(object, key, scope/scope, node)
+/datum/n_Interpreter/proc/get_property(object, key, scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		switch(key)
@@ -28,14 +28,14 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 		return D.ntsl_get(key, scope, src, node)
 	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
 
-/n_Interpreter/proc/set_property(object, key, val, scope/scope, node)
+/datum/n_Interpreter/proc/set_property(object, key, val, scope/scope, node)
 	if(istype(object, /datum))
 		var/datum/D = object
 		D.ntsl_set(key, val, scope, src, node)
 		return
 	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
 
-/n_Interpreter/proc/get_index(object, index, scope/scope, node)
+/datum/n_Interpreter/proc/get_index(object, index, scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		if(!isnum(index) || (index <= L.len && index >= 1))
@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 			return object[index]
 	RaiseError(new/runtimeError/IndexOutOfRange(object, index), scope, node)
 
-/n_Interpreter/proc/set_index(object, index, val, scope/scope, node)
+/datum/n_Interpreter/proc/set_index(object, index, val, scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		if(!isnum(index) || (index <= L.len && index >= 1))
@@ -101,16 +101,16 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	return
 
 /datum/n_function/defined
-	var/n_Interpreter/context
+	var/datum/n_Interpreter/context
 	var/scope/closure
-	var/node/statement/FunctionDefinition/def
+	var/datum/node/statement/FunctionDefinition/def
 
 /datum/n_function/defined/New(node/statement/FunctionDefinition/D, scope/S, n_Interpreter/C)
 	def = D
 	closure = S
 	context = C
 
-/datum/n_function/defined/execute(this_obj, list/params, scope/scope, n_Interpreter/interp, node/node)
+/datum/n_function/defined/execute(this_obj, list/params, scope/scope, n_Interpreter/interp, node/datum/node)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
 		interp.RaiseError(new/runtimeError/RecursionLimitReached(), scope, node)
@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 
 /datum/n_function/default
 	// functions included on compilation
-	var/interp_type = /n_Interpreter // include this function in this kind of interpreter.
+	var/interp_type = /datum/n_Interpreter // include this function in this kind of interpreter.
 	var/list/aliases // in case you want to give it multiple "names"
 
 /proc/ntsl_method(path, proc_ref, N)

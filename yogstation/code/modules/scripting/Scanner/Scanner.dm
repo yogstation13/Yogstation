@@ -47,7 +47,7 @@
 	Class: nS_Scanner
 	A scanner implementation for n_Script.
 */
-/n_Scanner/nS_Scanner
+/datum/n_Scanner
 
 	var
 /*
@@ -57,7 +57,7 @@
 		codepos				 = 1
 		line				 = 1
 		linepos 			 = 0 										 //column=codepos-linepos
-		n_scriptOptions/nS_Options/options
+		/datum/n_scriptOptions/options
 
 /*
 	Variable: ignore
@@ -98,7 +98,7 @@
 	code	 	- The source code to tokenize.
 	options - An <nS_Options> object used to configure the scanner.
 */
-	New(code, n_scriptOptions/nS_Options/options)
+	New(code, datum/n_scriptOptions/options)
 		.=..()
 		ignore+= ascii2text(13) //Carriage return
 		delim += ignore + options.symbols + end_stmt + string_delim
@@ -119,7 +119,7 @@
 			else if(twochar == "//" || twochar == "/*")
 				ReadComment()
 			else if(end_stmt.Find(char))
-				tokens+=new /token/end(char, line, COL)
+				tokens+=new /datum/token/end(char, line, COL)
 			else if(string_delim.Find(char))
 				codepos++ //skip string delimiter
 				tokens+=ReadString(char)
@@ -162,8 +162,8 @@
 								else				//Unknown escaped text
 									buf+=char
 					if("\n")
-						. = new/token/string(buf, line, COL)
-						errors+=new/scriptError("Unterminated string. Newline reached.", .)
+						. = new/datum/token/string(buf, line, COL)
+						errors+=new/datum/scriptError("Unterminated string. Newline reached.", .)
 						line++
 						linepos=codepos
 						break
@@ -172,7 +172,7 @@
 							break
 						else
 							buf+=char     //Just a normal character in a string
-			if(!.) return new/token/string(buf, line, COL)
+			if(!.) return new/datum/token/string(buf, line, COL)
 
 /*
 	Proc: ReadWord
@@ -187,9 +187,9 @@
 				char=copytext(code, ++codepos, codepos+1)
 			codepos-- //allow main Scan() proc to read the delimiter
 			if(options.keywords.Find(buf))
-				return new /token/keyword(buf, line, COL)
+				return new /datum/token/keyword(buf, line, COL)
 			else
-				return new /token/word(buf, line, COL)
+				return new /datum/token/word(buf, line, COL)
 
 /*
 	Proc: ReadSymbol
@@ -205,7 +205,7 @@
 				char=copytext(code, codepos, codepos+1)
 
 			codepos-- //allow main Scan() proc to read the next character
-			return new /token/symbol(buf, line, COL)
+			return new /datum/token/symbol(buf, line, COL)
 
 /*
 	Proc: ReadNumber
@@ -221,9 +221,9 @@
 				buf+=char
 				codepos++
 				char=copytext(code, codepos, codepos+1)
-			var/token/number/T=new(buf, line, COL)
+			var/datum/token/number/T=new(buf, line, COL)
 			if(isnull(text2num(buf)))
-				errors+=new/scriptError("Bad number: ", T)
+				errors+=new/datum/scriptError("Bad number: ", T)
 				T.value=0
 			codepos-- //allow main Scan() proc to read the next character
 			return T
@@ -259,6 +259,6 @@
 						line++
 						linepos=codepos
 				//Else if the longcomment didn't end, do an error
-				errors += new/scriptError/UnterminatedComment()
+				errors += new/datum/scriptError/UnterminatedComment()
 
 

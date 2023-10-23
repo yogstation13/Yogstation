@@ -5,7 +5,7 @@
 	Class: scriptError
 	An error scanning or parsing the source code.
 */
-/scriptError
+/datum/scriptError
 	var
 /*
 	Var: message
@@ -17,7 +17,7 @@
 
 	BadToken
 		message="Unexpected token: "
-		var/token/token
+		var/datum/token/token
 		New(token/t)
 			token=t
 			if(t&&t.line) message="[t.line]: [message]"
@@ -25,19 +25,19 @@
 			else message+="[t]"
 
 	InvalidID
-		parent_type=/scriptError/BadToken
+		parent_type=/datum/scriptError/BadToken
 		message="Invalid identifier name: "
 
 	ReservedWord
-		parent_type=/scriptError/BadToken
+		parent_type=/datum/scriptError/BadToken
 		message="Identifer using reserved word: "
 
 	BadNumber
-		parent_type=/scriptError/BadToken
+		parent_type=/datum/scriptError/BadToken
 		message = "Bad number: "
 
 	BadReturn
-		var/token/token
+		var/datum/token/token
 		message = "Unexpected return statement outside of a function."
 		New(token/t)
 			src.token=t
@@ -88,7 +88,7 @@
 */
 		message
 		scope/scope
-		token/token
+		token/datum/token
 
 	proc
 /*
@@ -120,7 +120,7 @@
 				. += "\n\tat \[internal]"
 
 	TypeMismatch
-		name="TypeMismatchError"
+		name = "TypeMismatchError"
 		New(op, a, b)
 			if(isnull(a))
 				a = "NULL"
@@ -129,55 +129,55 @@
 			message="Type mismatch: '[a]' [op] '[b]'"
 
 	UnexpectedReturn
-		name="UnexpectedReturnError"
+		name = "UnexpectedReturnError"
 		message="Unexpected return statement."
 
 	UnknownInstruction
-		name="UnknownInstructionError"
+		name = "UnknownInstructionError"
 		New(node/op)
 			message="Unknown instruction type '[op.type]'. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
 	UndefinedVariable
-		name="UndefinedVariableError"
+		name = "UndefinedVariableError"
 		New(variable)
 			message="Variable '[variable]' has not been declared."
 
 	IndexOutOfRange
-		name="IndexOutOfRangeError"
+		name = "IndexOutOfRangeError"
 		New(obj, idx)
 			message="Index [obj]\[[idx]] is out of range."
 
 	UndefinedFunction
-		name="UndefinedFunctionError"
+		name = "UndefinedFunctionError"
 		New(function)
 			message="Function '[function]()' has not been defined."
 
 	DuplicateVariableDeclaration
-		name="DuplicateVariableError"
+		name = "DuplicateVariableError"
 		New(variable)
 			message="Variable '[variable]' was already declared."
 
 	IterationLimitReached
-		name="MaxIterationError"
+		name = "MaxIterationError"
 		message="A loop has reached its maximum number of iterations."
 
 	RecursionLimitReached
-		name="MaxRecursionError"
+		name = "MaxRecursionError"
 		message="The maximum amount of recursion has been reached."
 
 	DivisionByZero
-		name="DivideByZeroError"
+		name = "DivideByZeroError"
 		message="Division by zero (or a NULL value) attempted."
 
 	InvalidAssignment
 		message="Left side of assignment cannot be assigned to."
 
 	MaxCPU
-		name="MaxComputationalUse"
+		name = "MaxComputationalUse"
 		New(maxcycles)
 			message="Maximum amount of computational cycles reached (>= [maxcycles])."
 
 	Internal
-		name="InternalError"
+		name = "InternalError"
 		New(exception/E)
 			message = E.name

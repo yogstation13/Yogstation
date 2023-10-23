@@ -4,7 +4,7 @@
 	Class: Token
 	Represents an entity and position in the source code.
 */
-/token
+/datum/token
 	var/value
 	var/line
 	var/column
