@@ -724,6 +724,6 @@
 		"\bswarmed\b": "svårmed",
 		"\bswarming\b": "svårming",
 		"\bgoliath\b": "goliatt",
-		"\bgoliaths\b": "goliatts",
+		"\bgoliaths\b": "goliatts"
 	}
 }
