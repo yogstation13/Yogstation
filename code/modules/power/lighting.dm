@@ -308,8 +308,19 @@
 	GLOB.lights += src
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
+
+	//Setup area colours -pb
+	var/area/A = get_area(src)
+	if(bulb_colour == initial(bulb_colour))
+		if(istype(src, /obj/machinery/light/small))
+			bulb_colour = A.lighting_colour_bulb
+		else
+			bulb_colour = A.lighting_colour_tube
+
+	if(nightshift_light_color == initial(nightshift_light_color))
+		nightshift_light_color = A.lighting_colour_night
+
 	if(!mapload) //sync up nightshift lighting for player made lights
-		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
 
@@ -352,16 +363,21 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire))
+			if(emergency_mode || (A && (A.fire || A.delta_light)))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
 				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
-				if(on && !forced_off)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
-					glowybit.alpha = clamp(light_power*250, 30, 200)
-					add_overlay(glowybit)
+			if(on && !forced_off)
+				var/glow_state = base_state
+				if(emergency_mode || (A && A.fire))
+					glow_state = "[base_state]_emergency"
+				else if ((A && A.vacuum) || nightshift_enabled)
+					glow_state = "[base_state]_nightshift"
+				var/mutable_appearance/glowybit = mutable_appearance(overlayicon, glow_state, layer)
+				//glowybit.alpha = clamp(light_power*250, 30, 200)
+				add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -373,7 +389,11 @@
 /obj/machinery/light/proc/clean_light(O,strength)
 	if(strength < CLEAN_TYPE_BLOOD)
 		return
-	bulb_colour = initial(bulb_colour)
+	var/area/A = get_area(src)
+	if(istype(src, /obj/machinery/light/small))
+		bulb_colour = A.lighting_colour_bulb
+	else
+		bulb_colour = A.lighting_colour_tube
 	update()
 
 // update the icon_state and luminosity of the light depending on its state
@@ -389,7 +409,7 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.fire)
+		if (A && (A.fire || A.delta_light))
 			CO = bulb_emergency_colour
 		else if (A && A.vacuum)
 			CO = bulb_vacuum_colour
@@ -795,7 +815,7 @@
 	on = TRUE && !forced_off
 	update()
 
-/obj/machinery/light/tesla_act(power, tesla_flags)
+/obj/machinery/light/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		explosion(src,0,0,0,flame_range = 5, adminlog = 0)
 		qdel(src)

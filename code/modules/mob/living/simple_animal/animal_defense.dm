@@ -179,3 +179,8 @@
 		else
 			visual_effect_icon = ATTACK_EFFECT_SMASH
 	..()
+
+/mob/living/simple_animal/electrocute_act(shock_damage, obj/source, siemens_coeff, safety, tesla_shock, illusion, stun, gib)
+	if(gib)
+		gib()
+	return ..()
