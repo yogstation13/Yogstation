@@ -29,24 +29,24 @@ n_scriptOptions
 											"while"	  = /n_Keyword/nS_Keyword/kwWhile,		"break"	= /n_Keyword/nS_Keyword/kwBreak, \
 											"continue" = /n_Keyword/nS_Keyword/kwContinue, "for"	  = /n_Keyword/nS_Keyword/kwFor,\
 											"return" = /n_Keyword/nS_Keyword/kwReturn, 		"def"   = /n_Keyword/nS_Keyword/kwDef)
-		var/list/unary_operators = list(	"!"  = /node/expression/operator/unary/LogicalNot,	 "~"  = /node/expression/operator/unary/BitwiseNot,
-													"-"  = /node/expression/operator/unary/Minus)
+		var/list/unary_operators = list(	"!"  = /node/expression/oper/unary/LogicalNot,	 "~"  = /node/expression/oper/unary/BitwiseNot,
+													"-"  = /node/expression/oper/unary/Minus)
 
-		var/list/binary_operators=list(	"==" = /node/expression/operator/binary/Equal, 			   "!="	= /node/expression/operator/binary/NotEqual,
-													">"  = /node/expression/operator/binary/Greater, 			"<" 	= /node/expression/operator/binary/Less,
-													">=" = /node/expression/operator/binary/GreaterOrEqual,	"<=" = /node/expression/operator/binary/LessOrEqual,
-													"&&" = /node/expression/operator/binary/LogicalAnd,  		"||"	= /node/expression/operator/binary/LogicalOr,
-													"&"  = /node/expression/operator/binary/BitwiseAnd,  		"|" 	= /node/expression/operator/binary/BitwiseOr,
-													"`"  = /node/expression/operator/binary/BitwiseXor,  		"+" 	= /node/expression/operator/binary/Add,
-													"-"  = /node/expression/operator/binary/Subtract, 			"*" 	= /node/expression/operator/binary/Multiply,
-													"/"  = /node/expression/operator/binary/Divide, 			"^" 	= /node/expression/operator/binary/Power,
-													"%"  = /node/expression/operator/binary/Modulo,
-													"="  = /node/expression/operator/binary/Assign, 					 "&=" = /node/expression/operator/binary/Assign/BitwiseAnd,
-													"|=" = /node/expression/operator/binary/Assign/BitwiseOr,					 	 "`=" = /node/expression/operator/binary/Assign/BitwiseXor,
-													"+=" = /node/expression/operator/binary/Assign/Add,						 "-=" = /node/expression/operator/binary/Assign/Subtract,
-													"*=" = /node/expression/operator/binary/Assign/Multiply,						 "/=" = /node/expression/operator/binary/Assign/Divide,
-													"^=" = /node/expression/operator/binary/Assign/Power,
-													"%=" = /node/expression/operator/binary/Assign/Modulo)
+		var/list/binary_operators=list(	"==" = /node/expression/oper/binary/Equal, 			   "!="	= /node/expression/oper/binary/NotEqual,
+													">"  = /node/expression/oper/binary/Greater, 			"<" 	= /node/expression/oper/binary/Less,
+													">=" = /node/expression/oper/binary/GreaterOrEqual,	"<=" = /node/expression/oper/binary/LessOrEqual,
+													"&&" = /node/expression/oper/binary/LogicalAnd,  		"||"	= /node/expression/oper/binary/LogicalOr,
+													"&"  = /node/expression/oper/binary/BitwiseAnd,  		"|" 	= /node/expression/oper/binary/BitwiseOr,
+													"`"  = /node/expression/oper/binary/BitwiseXor,  		"+" 	= /node/expression/oper/binary/Add,
+													"-"  = /node/expression/oper/binary/Subtract, 			"*" 	= /node/expression/oper/binary/Multiply,
+													"/"  = /node/expression/oper/binary/Divide, 			"^" 	= /node/expression/oper/binary/Power,
+													"%"  = /node/expression/oper/binary/Modulo,
+													"="  = /node/expression/oper/binary/Assign, 					 "&=" = /node/expression/oper/binary/Assign/BitwiseAnd,
+													"|=" = /node/expression/oper/binary/Assign/BitwiseOr,					 	 "`=" = /node/expression/oper/binary/Assign/BitwiseXor,
+													"+=" = /node/expression/oper/binary/Assign/Add,						 "-=" = /node/expression/oper/binary/Assign/Subtract,
+													"*=" = /node/expression/oper/binary/Assign/Multiply,						 "/=" = /node/expression/oper/binary/Assign/Divide,
+													"^=" = /node/expression/oper/binary/Assign/Power,
+													"%=" = /node/expression/oper/binary/Assign/Modulo)
 		New()
 			.=..()
 			for(var/O in binary_operators+unary_operators)

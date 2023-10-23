@@ -37,6 +37,9 @@
 		/obj/item/taster = 2,
 		/obj/item/sharpener = 1
 	)
+	
+	minimal_lightup_areas = list(/area/crew_quarters/kitchen, /area/medical/morgue)
+	lightup_areas = list(/area/hydroponics)
 
 	smells_like = "delicious food"
 

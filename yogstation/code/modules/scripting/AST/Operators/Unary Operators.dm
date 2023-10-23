@@ -5,7 +5,7 @@
 	Class: unary
 	Represents a unary operator in the AST. Unary operators take a single operand (referred to as x below) and return a value.
 */
-/node/expression/operator/unary
+/node/expression/oper/unary
 	precedence=OOP_UNARY
 
 /*

@@ -17074,7 +17074,6 @@
 	pixel_x = -31
 	},
 /obj/structure/table/wood,
-/obj/item/storage/box/deputy,
 /obj/machinery/button/door{
 	id = "hosspace";
 	name = "Space Shutters Control";

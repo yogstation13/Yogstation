@@ -43,6 +43,15 @@
 		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
 	)
 
+	minimal_lightup_areas = list(
+		/area/crew_quarters/heads/cmo,
+		/area/medical/chemistry,
+		/area/medical/genetics,
+		/area/medical/morgue,
+		/area/medical/surgery,
+		/area/storage/eva
+	)
+
 	smells_like = "blood-soaked stress"
 
 /datum/outfit/job/cmo

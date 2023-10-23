@@ -266,6 +266,7 @@ SUBSYSTEM_DEF(explosions)
 
 		if(prob(devastation_range*DEVASTATION_PROB+heavy_impact_range*HEAVY_IMPACT_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
 			creaking_explosion = TRUE // prob over 100 always returns true
+			flicker_all_lights()
 
 		for(var/MN in GLOB.player_list)
 			var/mob/M = MN
