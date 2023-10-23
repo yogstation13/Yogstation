@@ -6933,8 +6933,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Fe" = (
-/obj/effect/decal/nuclear_waste,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/tank/internals/oxygen/yellow,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Fj" = (
@@ -8293,7 +8292,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "OO" = (
-/obj/item/tank/internals/oxygen/yellow,
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "OP" = (
@@ -11305,7 +11304,7 @@ yZ
 yZ
 xy
 nE
-hk
+ze
 ni
 xT
 xT
@@ -11366,7 +11365,7 @@ qq
 qq
 qq
 qq
-ze
+OO
 ze
 xV
 CJ
@@ -11618,7 +11617,7 @@ ze
 Rg
 KZ
 bp
-Fe
+XT
 XT
 Iq
 jI
@@ -11677,7 +11676,7 @@ ze
 gV
 ze
 hk
-OO
+Fe
 WF
 pi
 ow
