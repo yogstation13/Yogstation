@@ -249,7 +249,7 @@
 		"\bwirecutters\b": "virekutters",
 		"\bunwire\b": "unvire",
 		"\bunwires\b": "unvires",
-		"\bunwired\b": "unvired";
+		"\bunwired\b": "unvired",
 		"\bunwiring\b": "unviring",
 		"\bcut\b": "kutt",
 		"\bpulse\b": "puls",
