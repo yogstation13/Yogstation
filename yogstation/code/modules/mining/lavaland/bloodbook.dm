@@ -158,6 +158,8 @@
 		if(target.mind)
 			return
 	if(istype(target, /mob/living/simple_animal/hostile/retaliate/goat/king))
+		if(istype(target, /mob/living/simple_animal/hostile/retaliate/goat/king/phase2))
+			return
 		return //cant trap people in the room forever
 	if((!istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion)))
 		for(var/i =1 to 3)
@@ -166,22 +168,25 @@
 		target.adjustBruteLoss(target.health)
 		return
 	playsound(target, "shatter", 70, 1)
-	if(ismegafauna(target))
-		var/mob/living/simple_animal/hostile/megafauna/L = target
-		for(var/V in L.guaranteed_butcher_results)
-			new V(target.loc)
-		L.guaranteed_butcher_results = null
-		for(var/V in L.butcher_results)
-			new V(target.loc)
-		L.butcher_results = null
-		if(target.stat == DEAD)
-			target.gib()
-			return //no double dipping
-		target.dust(TRUE, FALSE, TRUE)
-		return
 	if(isanimal(target))
 		target.drop_loot()
 		target.loot = null
+		var/mob/living/simple_animal/L = target
+		for(var/V in L.guaranteed_butcher_results)
+			for(var/i in 1 to L.guaranteed_butcher_results[V])
+				new V(L.loc)
+		L.guaranteed_butcher_results = null
+		if((!istype(L, /mob/living/simple_animal/hostile/megafauna/hierophant)))
+			for(var/V in L.butcher_results)
+				for(var/i in 1 to L.butcher_results[V])
+					new V(L.loc)
+			L.butcher_results = null
+		if(target.stat == DEAD)
+			target.gib()
+	if(ismegafauna(target))
+		target.dust(TRUE, TRUE, TRUE)
+		return
+
 	target.gib()
 
 //animation stuff
@@ -659,7 +664,7 @@
 		if(1)
 			target.visible_message(span_warning("[user] gives [target] [src]!"))
 			target.setDir(get_dir(target, user))
-			user.Immobilize(30)
+			user.Immobilize(10)
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, do_jitter_animation), 25))
 			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase+1), 1 SECONDS)
 			return
@@ -713,6 +718,7 @@
 			qdel(geometry)
 			splosion(user, target)
 	if(target)
+		target.resize = 1
 		sceneend(target, user)
 
 /obj/item/bloodbook/proc/concavehead(mob/living/user, mob/living/target, phase = 1, obj/rend, obj/bowlingball)
@@ -731,7 +737,6 @@
 			var/obj/structure/prop/showmeteor/B = new(target.loc)		
 			target.visible_message(span_warning("A meteor appears from the opening!"))
 			animate(B, pixel_y = 30)
-			B.SpinAnimation(0.15 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase+1, rend, B), 0.15 SECONDS)
 			animate(B,  pixel_y = 0, time = 0.2 SECONDS, easing = LINEAR_EASING)
 			return
@@ -847,6 +852,7 @@
 /obj/structure/prop/showmeteor/Initialize(mapload)
 	. = ..()
 	icon_state = pick("dust", "small", "large", "glowing", "flaming", "sharp")
+	src.SpinAnimation(1 SECONDS)
 
 /obj/structure/prop/rune
 	name = "giant rune"
