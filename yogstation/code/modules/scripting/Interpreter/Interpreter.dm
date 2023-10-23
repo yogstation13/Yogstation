@@ -86,7 +86,7 @@
 	Proc: RaiseError
 	Raises a runtime error.
 */
-		RaiseError(runtimeError/e, scope/scope, token/datum/token)
+		RaiseError(runtimeError/e, datum/scope, token/datum/token)
 			e.scope = scope
 			if(istype(token))
 				e.token = token
@@ -96,7 +96,7 @@
 			src.HandleError(e)
 
 		CreateGlobalScope()
-			var/scope/S = new(program, null)
+			var/datum/scope/S = new(program, null)
 			globalScope = S
 			for(var/functype in subtypesof(/datum/n_function/default))
 				var/datum/n_function/default/god_damn_it_byond = functype
@@ -125,7 +125,7 @@
 	Proc: RunBlock
 	Runs each statement in a block of code.
 */
-		RunBlock(node/BlockDefinition/Block, scope/scope = globalScope)
+		RunBlock(node/BlockDefinition/Block, datum/scope = globalScope)
 
 			if(cur_statements < MAX_STATEMENTS)
 				for(var/datum/node/S in Block.statements)
@@ -180,7 +180,7 @@
 	Proc: RunFunction
 	Runs a function block or a proc with the arguments specified in the script.
 */
-		RunFunction(node/expression/FunctionCall/stmt, scope/scope)
+		RunFunction(node/expression/FunctionCall/stmt, datum/scope)
 			var/datum/n_function/func
 			var/this_obj
 			if(istype(stmt.function, /datum/node/expression/member))
@@ -205,7 +205,7 @@
 	Proc: RunIf
 	Checks a condition and runs either the if block or else block.
 */
-		RunIf(node/statement/IfStatement/stmt, scope/scope)
+		RunIf(node/statement/IfStatement/stmt, datum/scope)
 			if(!stmt.skip)
 				scope = scope.push(stmt.block)
 				if(Eval(stmt.cond, scope))
@@ -228,14 +228,14 @@
 	Proc: RunWhile
 	Runs a while loop.
 */
-		RunWhile(node/statement/WhileLoop/stmt, scope/scope)
+		RunWhile(node/statement/WhileLoop/stmt, datum/scope)
 			var/i=1
 			scope = scope.push(stmt.block, allowed_status = CONTINUING | BREAKING)
 			while(Eval(stmt.cond, scope) && Iterate(stmt.block, scope, i++))
 				continue
 			scope = scope.pop(RETURNING)
 
-		RunFor(node/statement/ForLoop/stmt, scope/scope)
+		RunFor(node/statement/ForLoop/stmt, datum/scope)
 			var/i=1
 			scope = scope.push(stmt.block)
 			Eval(stmt.init, scope)
@@ -250,7 +250,7 @@
 	Proc:Iterate
 	Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
 */
-		Iterate(node/BlockDefinition/block, scope/scope, count)
+		Iterate(node/BlockDefinition/block, datum/scope, count)
 			RunBlock(block, scope)
 			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
 				RaiseError(new/runtimeError/IterationLimitReached(), scope, block)

@@ -5,7 +5,7 @@
 	Class: n_Scanner
 	An object responsible for breaking up source code into tokens for use by the parser.
 */
-/n_Scanner
+/datum/n_Scanner
 	var
 		code
 		list
@@ -47,7 +47,7 @@
 	Class: nS_Scanner
 	A scanner implementation for n_Script.
 */
-/datum/n_Scanner
+/datum/n_Scanner/nS_Scanner
 
 	var
 /*

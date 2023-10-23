@@ -87,8 +87,8 @@
 	A basic description as to what went wrong.
 */
 		message
-		scope/scope
-		token/datum/token
+		datum/scope
+		datum/token
 
 	proc
 /*
@@ -103,7 +103,7 @@
 			if(token)
 				last_line = token.line
 				last_col = token.column
-			var/scope/cur_scope = scope
+			var/datum/scope/cur_scope = scope
 			while(cur_scope)
 				if(cur_scope.function)
 					. += "\n\tat [cur_scope.function.func_name]([last_line]:[last_col])"

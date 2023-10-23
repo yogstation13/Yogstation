@@ -38,15 +38,15 @@ File: Options
 	 * associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc will be called.
 	 */
 	var/list/keywords = list(
-		"if" = /n_Keyword/nS_Keyword/kwIf,
-		"else" = /n_Keyword/nS_Keyword/kwElse,
-		"elseif" = /n_Keyword/nS_Keyword/kwElseIf,
-		"while" = /n_Keyword/nS_Keyword/kwWhile,
-		"break"	= /n_Keyword/nS_Keyword/kwBreak,
-		"continue" = /n_Keyword/nS_Keyword/kwContinue,
-		"for" = /n_Keyword/nS_Keyword/kwFor,
-		"return" = /n_Keyword/nS_Keyword/kwReturn,
-		"def"= /n_Keyword/nS_Keyword/kwDef,
+		"if" = /datum/n_Keyword/nS_Keyword/kwIf,
+		"else" = /datum/n_Keyword/nS_Keyword/kwElse,
+		"elseif" = /datum/n_Keyword/nS_Keyword/kwElseIf,
+		"while" = /datum/n_Keyword/nS_Keyword/kwWhile,
+		"break"	= /datum/n_Keyword/nS_Keyword/kwBreak,
+		"continue" = /datum/n_Keyword/nS_Keyword/kwContinue,
+		"for" = /datum/n_Keyword/nS_Keyword/kwFor,
+		"return" = /datum/n_Keyword/nS_Keyword/kwReturn,
+		"def"= /datum/n_Keyword/nS_Keyword/kwDef,
 	)
 	var/list/unary_operators = list(
 		"!" = /datum/node/expression/expression_operator/unary/LogicalNot,

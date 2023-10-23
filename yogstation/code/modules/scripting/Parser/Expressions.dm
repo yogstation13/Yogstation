@@ -240,7 +240,7 @@
 				else if(istype(curToken, /datum/token/word) && curToken.value == "list" && ntok && ntok.value == "(" && expecting == VALUE)
 					val.Push(ParseListExpression())
 				else if(istype(curToken, /datum/token/keyword)) 										//inline keywords
-					var/n_Keyword/kw=options.keywords[curToken.value]
+					var/datum/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw(inline=1)
 					if(kw)
 						if(!kw.Parse(src))

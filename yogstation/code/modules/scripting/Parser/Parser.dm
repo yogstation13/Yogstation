@@ -86,7 +86,7 @@
 			curToken=tokens[index]
 			switch(curToken.type)
 				if(/datum/token/keyword)
-					var/n_Keyword/kw=options.keywords[curToken.value]
+					var/datum/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw()
 					if(kw)
 						if(!kw.Parse(src))

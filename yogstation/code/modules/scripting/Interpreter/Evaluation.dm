@@ -2,7 +2,7 @@
 
 /datum/n_Interpreter
 
-/datum/n_Interpreter/proc/Eval(node/expression/exp, scope/scope)
+/datum/n_Interpreter/proc/Eval(node/expression/exp, datum/scope)
 	if(istype(exp, /datum/node/expression/FunctionCall))
 		. = RunFunction(exp, scope)
 	else if(istype(exp, /datum/node/expression/expression_operator))
@@ -44,7 +44,7 @@
 
 	return Trim(.)
 
-/datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, scope/scope)
+/datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, datum/scope)
 	if(istype(exp, /datum/node/expression/expression_operator/binary/Assign))
 		var/datum/node/expression/expression_operator/binary/Assign/ass=exp
 		var/member_obj

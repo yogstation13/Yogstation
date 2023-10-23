@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	name = "mem"
 	interp_type = /datum/n_Interpreter/TCS_Interpreter
 
-/datum/n_function/default/mem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+/datum/n_function/default/mem/execute(this_obj, list/params, datum/scope, n_Interpreter/TCS_Interpreter/interp)
 	var/address = params.len >= 1 ? params[1] : null
 	var/value = params.len >= 2 ? params[2] : null
 	if(istext(address))
@@ -358,7 +358,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	name = "clearmem"
 	interp_type = /datum/n_Interpreter/TCS_Interpreter
 
-/datum/n_function/default/clearmem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+/datum/n_function/default/clearmem/execute(this_obj, list/params, datum/scope, n_Interpreter/TCS_Interpreter/interp)
 	var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 	S.memory = list()
 	return TRUE
@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	name = "remote_signal"
 	interp_type = /datum/n_Interpreter/TCS_Interpreter
 
-/datum/n_function/default/remote_signal/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+/datum/n_function/default/remote_signal/execute(this_obj, list/params, datum/scope, n_Interpreter/TCS_Interpreter/interp)
 	var/freq = params.len >= 1 ? params[1] : 1459
 	var/code = params.len >= 2 ? params[2] : 30
 
@@ -405,7 +405,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	name = "broadcast"
 	interp_type = /datum/n_Interpreter/TCS_Interpreter
 
-/datum/n_function/default/broadcast/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+/datum/n_function/default/broadcast/execute(this_obj, list/params, datum/scope, n_Interpreter/TCS_Interpreter/interp)
 	if(params.len < 1)
 		return
 	var/datum/n_struct/signal/script_signal = params[1]

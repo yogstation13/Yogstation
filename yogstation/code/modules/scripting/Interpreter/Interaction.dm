@@ -122,7 +122,7 @@
 			if(istype(func))
 				cur_recursion = 0 // reset recursion
 				cur_statements = 0 // reset CPU tracking
-				return func.execute(null, params, new /scope(program, null), src)
+				return func.execute(null, params, new /datum/scope(program, null), src)
 			//CRASH("Unknown function type '[name]'.")
 
 /*

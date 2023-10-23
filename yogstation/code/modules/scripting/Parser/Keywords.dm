@@ -12,7 +12,7 @@
 Class: n_Keyword
 Represents a special statement in the code triggered by a keyword.
 */
-/n_Keyword
+/datum/n_Keyword
 	New(inline=0)
 		src.inline=inline
 		return ..()
