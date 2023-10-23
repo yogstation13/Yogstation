@@ -81,7 +81,7 @@
 	recharge_rate = 1.11
 
 	//Please update the var below with more projectiles if they get added
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_tentacle, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
+	var/allowed_projectile_types = list(/obj/projectile/magic/runic_honk, /obj/projectile/magic/runic_fire, /obj/projectile/magic/runic_tentacle, /obj/projectile/magic/runic_bomb, /obj/projectile/magic/runic_heal, /obj/projectile/temp/runic_icycle, /obj/projectile/magic/runic_toxin, /obj/projectile/magic/runic_death, /obj/projectile/magic/runic_mutation, /obj/projectile/magic/runic_resizement)
 
 //shamelessly stolen from chaos staff honk
 /obj/item/gun/magic/rune/chaos_rune/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -138,7 +138,7 @@
 	charges = 5
 	recharge_rate = 2.66
 	spread = 1
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun/slug, /obj/item/projectile/magic/incediary_slug)
+	var/allowed_projectile_types = list(/obj/projectile/magic/shotgun/slug, /obj/projectile/magic/incediary_slug)
 
 
 /obj/item/gun/magic/rune/bullet_rune/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)

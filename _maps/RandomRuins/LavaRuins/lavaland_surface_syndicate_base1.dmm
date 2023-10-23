@@ -1097,6 +1097,12 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
+"gb" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/closed/mineral/random/high_chance/volcanic,
+/area/lavaland/surface/outdoors)
 "gc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -4324,6 +4330,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"sg" = (
+/obj/structure/statue/resin/ashwalker{
+	name = "ancient statue";
+	desc = "An ancient statue, made of resin and covered in a thin coat of ash and debris. It'd probably fetch a good price with the right buyer."
+	},
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/decal/remains/human{
+	name = "ancient remains";
+	desc = "Remains covered in ash. There's a visible bullet hole in the skull."
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "tp" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -5101,12 +5119,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "DA" = (
-/obj/structure/statue/resin/ashwalker{
-	name = "ancient statue";
-	desc = "An ancient statue, made of resin and covered in a thin coat of ash and debris. It'd probably fetch a good price with the right buyer."
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/obj/structure/railing/corner,
+/turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors)
 "DP" = (
 /obj/effect/turf_decal/siding/wood{
@@ -6570,11 +6584,12 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "XA" = (
-/obj/effect/decal/remains/human{
-	name = "ancient remains";
-	desc = "Remains covered in ash. There's a visible bullet hole in the skull."
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/water{
+	name = "ashen water";
+	desc = "A once-pure water reserve, now coated with ash. You can see fish swimming through it.";
+	color = "#454444"
 	},
-/turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors)
 "XF" = (
 /obj/structure/cable{
@@ -6691,6 +6706,11 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"ZD" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/railing,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ZV" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood{
@@ -8572,8 +8592,8 @@ Ub
 Ub
 Ub
 Ub
-XA
 mJ
+sg
 ju
 ey
 ez
@@ -8629,7 +8649,7 @@ Ub
 Ub
 mJ
 mJ
-DA
+mJ
 ju
 ez
 eY
@@ -8683,9 +8703,9 @@ Ub
 Ub
 Ub
 Ub
-XA
-mJ
-mJ
+Ub
+DA
+gb
 ju
 ju
 ju
@@ -8740,8 +8760,8 @@ Ub
 Ub
 Ub
 Ub
-mJ
-mJ
+ZD
+XA
 XA
 ju
 ly
@@ -8797,8 +8817,8 @@ Ub
 Ub
 Ub
 Ub
-mJ
-mJ
+XA
+XA
 ju
 fb
 fu

@@ -36,7 +36,7 @@
 	name = "Bread"
 	description = "Problems with central planning have led to bread prices skyrocketing. Ship some bread to ease tensions."
 	reward = 1000
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/bread, /obj/item/reagent_containers/food/snacks/breadslice, /obj/item/reagent_containers/food/snacks/bun, /obj/item/reagent_containers/food/snacks/pizzabread, /obj/item/reagent_containers/food/snacks/rawpastrybase) 
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/bread, /obj/item/reagent_containers/food/snacks/breadslice, /obj/item/reagent_containers/food/snacks/bun, /obj/item/reagent_containers/food/snacks/pizzabread, /obj/item/reagent_containers/food/snacks/rawpastrybase)
 
 /datum/bounty/item/chef/pie
 	name = "Pie"
@@ -128,7 +128,7 @@
 	reward = 4000
 	required_count = 6
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/nugget)
-	
+
 /datum/bounty/item/chef/parmesan
 	name = "Parmesan Wheel"
 	description = "We're having pasta for dinner, but we ran out of parmesan. Send us a wheel."
@@ -142,3 +142,10 @@
 	reward = 1500
 	required_count = 3
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/sosjerky/healthy)
+
+/datum/bounty/item/chef/pickles
+	name = "Pickles"
+	description = "The food control department lacks enough pickles to properly evaluate some of the different types of hard liquor."
+	reward = 1000
+	required_count = 7
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/pickle)

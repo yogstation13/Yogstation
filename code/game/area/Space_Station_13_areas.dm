@@ -91,6 +91,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	min_ambience_cooldown = 20 SECONDS
 	max_ambience_cooldown = 35 SECONDS
 	lights_always_start_on = TRUE
+	lighting_colour_tube = "#ffe5cb"
+	lighting_colour_bulb = "#ffdbb4"
 
 
 //Departments
@@ -256,6 +258,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#8d8c68"
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	lights_always_start_on = TRUE
+	lighting_colour_tube = "#fdf3ea"
+	lighting_colour_bulb = "#ffebd6"
 
 /area/hallway/primary/aft
 	name = "Aft (S) Primary Hallway"
@@ -375,12 +379,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "tcomsatcham"
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	lights_always_start_on = TRUE
+	lighting_colour_tube = "#e2feff"
+	lighting_colour_bulb = "#d5fcff"
 
 /area/server
 	name = "Messaging Server Room"
 	icon_state = "server"
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	lights_always_start_on = TRUE
+	lighting_colour_tube = "#fff4d6"
+	lighting_colour_bulb = "#ffebc1"
 
 //Crew
 
@@ -399,12 +407,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Cryopod Room"
 	safe = TRUE
 	icon_state = "cryopod"
+	lighting_colour_tube = "#e3ffff"
+	lighting_colour_bulb = "#d5ffff"
 
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
 	icon_state = "toilet"
 	minimap_color = "#b0e1ff"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	lighting_colour_tube = "#e3ffff"
+	lighting_colour_bulb = "#d5ffff"
 
 /area/crew_quarters/toilet/auxiliary
 	name = "Auxiliary Restrooms"
@@ -452,11 +464,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#5ac866"
 	airlock_wires = /datum/wires/airlock/service
 	lights_always_start_on = FALSE
+	lighting_colour_tube = "#e3ffff"
+	lighting_colour_bulb = "#d5ffff"
 
 /area/crew_quarters/kitchen/coldroom
 	name = "Kitchen Cold Room"
 	icon_state = "kitchen_cold"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
+	lighting_colour_tube = "#fff4d6"
+	lighting_colour_bulb = "#ffebc1"
 
 /area/crew_quarters/bar
 	name = "Bar"
@@ -504,6 +520,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "library"
 	flags_1 = NONE
 	minimap_color = "#5ac866"
+	lighting_colour_tube = "#fff1cc"
+	lighting_colour_bulb = "#ffe9b9"
 
 /area/library/lounge
 	name = "Library Lounge"
@@ -560,6 +578,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 	minimap_color = "#edea00"
 	airlock_wires = /datum/wires/airlock/engineering
+	lighting_colour_tube = "#ffce93"
+	lighting_colour_bulb = "#ffbc6f"
 
 /area/engine/engine_smes
 	name = "Engineering SMES"
@@ -755,6 +775,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	minimap_color = "#5d57a5"
 	airlock_wires = /datum/wires/airlock/medbay
+	lighting_colour_tube = "#e7f8ff"
+	lighting_colour_bulb = "#d5f2ff"
 
 /area/medical/abandoned
 	name = "Abandoned Medbay"
@@ -862,6 +884,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	minimap_color = "#b12527"
 	airlock_wires = /datum/wires/airlock/security
+	lighting_colour_tube = "#ffeee2"
+	lighting_colour_bulb = "#ffdfca"
 
 /area/security/interrogation
 	name = "Interrogation"
@@ -989,6 +1013,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#936f3c"
 	airlock_wires = /datum/wires/airlock/service
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lighting_colour_tube = "#ffe3cc"
+	lighting_colour_bulb = "#ffdbb8"
 
 /area/quartermaster/sorting
 	name = "Delivery Office"
@@ -1074,6 +1100,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#75009b"
 	airlock_wires = /datum/wires/airlock/science
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lighting_colour_tube = "#f0fbff"
+	lighting_colour_bulb = "#e4f7ff"
 
 /area/science/lab
 	name = "Research and Development"

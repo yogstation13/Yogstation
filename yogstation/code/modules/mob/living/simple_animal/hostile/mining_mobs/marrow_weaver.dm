@@ -64,6 +64,8 @@
 			var/mob/living/carbon/human/H = L
 			var/foundorgans = 0
 			for(var/obj/item/organ/O in H.internal_organs)
+				if(O.status == ORGAN_ROBOTIC)//no tasty organs (lol ipc brains getting eaten)
+					continue
 				if(O.zone == "chest")
 					foundorgans++
 					qdel(O)
@@ -85,6 +87,8 @@
 	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
 		var/mob/living/carbon/human/H = A
 		for(var/obj/item/organ/O in H.internal_organs)
+			if(O.status == ORGAN_ROBOTIC)//no tasty organs (lol ipc brains getting eaten)
+				continue
 			if(O.zone == "chest")
 				return TRUE
 	return FALSE

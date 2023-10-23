@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/void_knife
 	name = "Frozen Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/item/shard) 
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/void)
+	result_atoms = list(/obj/item/melee/sickly_blade/void)
 	required_shit_list = "A clear shard of glass and a knife."
 
 /datum/eldritch_transmutation/void_cloak
@@ -24,6 +24,7 @@
 	var/datum/weather/void_storm/storm
 	H.physiology.brute_mod *= 0.5
 	H.physiology.burn_mod *= 0.5
+	H.AddComponent(/datum/component/ice_walk)
 	
 	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, MAGIC_TRAIT)
 	

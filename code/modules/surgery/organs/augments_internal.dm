@@ -5,7 +5,7 @@
 	visual = FALSE
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = ORGANIC | SYNTHETIC // everyone can use cybernetic implants
+	compatible_biotypes = ALL_BIOTYPES // everyone can use cybernetic implants
 	var/implant_color = "#FFFFFF"
 	var/implant_overlay
 	var/syndicate_implant = FALSE //Makes the implant invisible to health analyzers and medical HUDs.

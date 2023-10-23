@@ -7,18 +7,22 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final)
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
 	route = PATH_FLESH
@@ -28,7 +32,7 @@
 
 /datum/eldritch_knowledge/base_flesh/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/flesh
+	var/obj/realknife = new /obj/item/melee/sickly_blade/flesh
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
@@ -36,32 +40,32 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_flesh/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-//	SIGNAL_HANDLER godammit
+//	SIGNAL_HANDLER so this one just sorta explodes if i uncomment it, no clue why
 
 	if(!ishuman(target) || target == source)
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
-		return
+		return 
 
 	human_target.grab_ghost()
 
 	if(!human_target.mind || !human_target.client)
 		to_chat(source, span_warning("There is no soul connected to this body..."))
-		return
+		return 
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
 		to_chat(source, span_warning("The body is too damaged to be revived this way!"))
-		return
+		return 
 
 	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
 		to_chat(source, span_warning("Their will cannot be malformed to obey your own!"))
-		return
+		return 
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
 		to_chat(source, span_warning("Your Oath cannot support more ghouls on this plane!"))
-		return
+		return 
 
 	LAZYADD(spooky_scaries, human_target)
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [source.real_name]")
@@ -97,7 +101,7 @@
 			crit_wound.apply_wound(bodypart)
 
 /datum/eldritch_knowledge/flesh_ghoul
-	name = "Imperfect Ritual"
+	name = "T1 - Imperfect Ritual"
 	gain_text = "The rite requests an indulgence from the Crimson Church, erasing the victim's freedom and granting them life anew."
 	desc = "Allows you to resurrect a humanoid body as a Voiceless Dead by transmuting them with a poppy. Voiceless Dead are mute and have 50 HP. You can only have two at a time."
 	cost = 1
@@ -106,11 +110,16 @@
 	tier = TIER_1
 
 /datum/eldritch_knowledge/flesh_mark
-	name = "Lover's Exsanguination"
+	name = "Grasp Mark - Lover's Exsanguination"
 	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your flesh blade to detonate the mark, which causes significant bleeding on the target."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/void_mark)
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,)
 	route = PATH_FLESH
 	tier = TIER_MARK
 
@@ -129,7 +138,7 @@
 		living_target.apply_status_effect(/datum/status_effect/eldritch/flesh)
 
 /datum/eldritch_knowledge/raw_prophet
-	name = "Raw Ritual"
+	name = "T2- Raw Ritual"
 	gain_text = "The Glorious Feast is not kind to all who are blessed with participation. Those who see less-fortunate metamorphosis are exiled to the Sunless Wastes, from where they can be offered food for service."
 	desc = "Allows you to summon a Raw Prophet by transmuting a pair of eyes, a left arm and a right arm. Raw Prophets have massive sight range with X-ray, and they can sustain a telepathic network. However, they are very fragile and weak."
 	cost = 1
@@ -138,7 +147,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/spell/blood_siphon
-	name = "Blood Siphon"
+	name = "T2 - Blood Siphon"
 	gain_text = "The meat of another being is a delicacy that many enjoy. The Gravekeeper's hunger may be decadent, but you will come to know the strength it yields."
 	desc = "A touch spell that drains a target's health and restores yours."
 	cost = 1
@@ -146,7 +155,7 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/flesh_blade_upgrade
-	name = "Talons of the Sworn"
+	name = "Blade Upgrade - Talons of the Sworn"
 	gain_text = "Ebis, the Owl, was the second to take the Red Oath. They still grant the gift of their steel to those powerful enough to resist their incursions."
 	desc = "Your flesh blade will now cause additional bleeding on hit."
 	cost = 2
@@ -154,7 +163,8 @@
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade)
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade)
 	route = PATH_FLESH
 	tier = TIER_BLADE
 
@@ -167,7 +177,7 @@
 		crit_wound.apply_wound(bodypart)
 
 /datum/eldritch_knowledge/stalker
-	name = "Lonely Ritual"
+	name = "T3 - Lonely Ritual"
 	gain_text = "The Lover is drawn to those who skirt the Crimson Church with solitude in their hearts. Their bodies afterward are like her; deceiving, yet deadly."
 	desc = "Allows you to summon a Stalker by transmuting a knife, a candle, a pen, and a piece of paper. Stalkers can shapeshift into harmless animals and emit EMPs."
 	cost = 1
@@ -176,7 +186,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/ashy
-	name = "Ashen Ritual"
+	name = "T3 - Ashen Ritual"
 	gain_text = "There are so many that fall and wander the Kilnplains as horrid spawn of the Ashy Lantern. This rite offers them sparks anew to consume in exchange for servitude."
 	desc = "You can now summon an Ashman by transmuting a pile of ash, a head, and a book. Ashmen have powerful offensive abilities and access to the Ashen Shift spell."
 	cost = 1
@@ -184,7 +194,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/rusty
-	name = "Rusted Ritual"
+	name = "T3 - Rusted Ritual"
 	gain_text = "The Vermin Duke's pawns span the Corroded Sewers, though several spill out and roam the Badlands to accost traders and travelers alike. They are not difficult to control, as you have learned."
 	desc = "You can now summon a Rustwalker transmuting a vomit pool and a book. Rustwalkers are capable of spreading rust and have a strong, short-ranged projectile attack."
 	cost = 1
@@ -192,7 +202,7 @@
 	tier = TIER_3
 
 /datum/eldritch_knowledge/flesh_final
-	name = "Priest's Final Hymn"
+	name = "Ascension Rite - Priest's Final Hymn"
 	gain_text = "In preparation for the Glorious Feast, many Sworn appetize with their closest followers. Their master looks upon this fondly, and soothes them into a new, ravenous form of decadence. You will eat, and you will grow."
 	desc = "Transmute three corpses to ascend by metamorphisizing as a Thirstly Serpent, or ascend instead by summoning a Lavish Serpent, tripling your ghoul maximum, and becoming incredibly resilient to damage."
 	cost = 3

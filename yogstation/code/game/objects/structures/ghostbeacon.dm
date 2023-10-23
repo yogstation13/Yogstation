@@ -7,10 +7,13 @@
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mob/living/carbon/ghosts = list()
+	var/area/spawnArea
 
 /obj/structure/ghostbeacon/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list |= src
+	var/area/A = get_area(loc)
+	spawnArea = A
 	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/ghostbeacon/Destroy()
@@ -30,6 +33,15 @@
 			qdel(M)
 		if(QDELETED(M)) // Admin fuckery check
 			ghosts.Remove(M) // -= doesnt work with qdeled objects
+
+		// Get your ass back here
+		// Only problem is a admin sending someone to the admin gulag
+		// Unsure what to do. Detect if the zlevel is centcom?
+		// Is it even a problem?
+		var/area/A = get_area(M)
+		if(spawnArea != A)
+			to_chat(M, span_warner("Your corporeal form gets ripped back!"))
+			M.loc = loc
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
 	. = ..()
@@ -83,6 +95,3 @@
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
-	shoes = /obj/item/clothing/shoes/sneakers/brown
-	glasses = /obj/item/clothing/glasses/sunglasses
-	back = /obj/item/storage/backpack
