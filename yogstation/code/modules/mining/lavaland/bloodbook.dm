@@ -48,13 +48,13 @@
 	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /obj/item/bloodbook/proc/sceneend(mob/living/target, mob/living/user, var/die = FALSE)
-	if(die)
-		target.adjustBruteLoss(target.health)
 	if((target.mobility_flags & MOBILITY_STAND))
 		animate(target, transform = null)
 	target.color = initial(target.color)
 	target.alpha = initial(target.alpha)
 	animate(target, pixel_x = 0, pixel_y = 0, transform = matrix().Scale(1))
+	if(die)
+		target.adjustBruteLoss(target.health)
 	if(isanimal(target))
 		var/mob/living/simple_animal/L = target
 		L.toggle_ai(AI_ON)
