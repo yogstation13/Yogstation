@@ -45,6 +45,7 @@
 			var/list/sources = alarm[3]
 			if (!(source in sources))
 				sources += source
+			update_appearance(UPDATE_ICON)
 			return 1
 	var/obj/machinery/camera/C = null
 	var/list/CL = null

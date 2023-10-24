@@ -35,6 +35,8 @@
 	var/last_alarm = 0
 	var/area/myarea = null
 
+	var/bad_temp = null //Current bad temperature
+
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
 	. = ..()
 	if(dir)
@@ -49,6 +51,15 @@
 	LAZYADD(myarea.firealarms, src)
 
 /obj/machinery/firealarm/Destroy()
+	if(myarea.firealarms.len<2)
+		if(!myarea.actual_fire) //only lift the firedoors if there is no actual fire in the area
+			reset()
+		else
+			myarea.firereset(src, TRUE)
+	else if(!myarea.actual_fire && myarea.fire) //No actual fire and one of the air alarms is active
+		reset()
+	else
+		myarea.firereset(src, TRUE)
 	LAZYREMOVE(myarea.firealarms, src)
 	return ..()
 
@@ -115,9 +126,18 @@
 	playsound(src, "sparks", 50, 1)
 	return TRUE
 
+/obj/machinery/firealarm/examine(mob/user)
+	. = ..()
+	if(myarea.actual_fire)
+		. += span_danger("Fire detected in this area, current fire alarm temperature: [bad_temp+T0C]C")
+	else
+		. += span_notice("There's no fire detected.")
+
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	var/turf/open/T = get_turf(src)
 	if((temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST || temperature < BODYTEMP_COLD_DAMAGE_LIMIT || (istype(T) && T.turf_fire)) && (last_alarm+FIREALARM_COOLDOWN < world.time) && !(obj_flags & EMAGGED) && detecting && !stat)
+		myarea.actual_fire = TRUE
+		bad_temp = temperature
 		alarm()
 	..()
 
@@ -125,8 +145,7 @@
 	if(!is_operational() || (last_alarm+FIREALARM_COOLDOWN > world.time))
 		return
 	last_alarm = world.time
-	var/area/A = get_area(src)
-	A.firealert(src)
+	myarea.firealert(src)
 	playsound(loc, 'goon/sound/machinery/FireAlarm.ogg', 75)
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
@@ -134,8 +153,10 @@
 /obj/machinery/firealarm/proc/reset(mob/user)
 	if(!is_operational())
 		return
-	var/area/A = get_area(src)
-	A.firereset(src)
+	for(var/obj/machinery/firealarm/F in myarea.firealarms)
+		F.myarea.firereset(F)
+		F.myarea.actual_fire = FALSE
+		F.bad_temp = null
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
 
@@ -144,8 +165,7 @@
 		return ..()
 	add_fingerprint(user)
 	play_click_sound("button")
-	var/area/A = get_area(src)
-	if(A.fire || A.party)
+	if(myarea.fire || myarea.party)
 		reset(user)
 	else
 		alarm(user)
@@ -201,8 +221,7 @@
 
 				else if(W.force) //hit and turn it on
 					..()
-					var/area/A = get_area(src)
-					if(!A.fire)
+					if(!myarea.fire)
 						alarm()
 					return
 
@@ -295,6 +314,15 @@
 
 	. = ..()
 	if(.)
+		if(myarea.firealarms.len<2)
+			if(!myarea.actual_fire) //only lift the firedoors if there is no actual fire in the area
+				reset()
+			else
+				myarea.firereset(src, TRUE)
+		else if(!myarea.actual_fire && myarea.fire) //No actual fire and one of the air alarms is active
+			reset()
+		else
+			myarea.firereset(src, TRUE)
 		LAZYREMOVE(myarea.firealarms, src)
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
@@ -332,19 +360,17 @@
 /obj/machinery/firealarm/partyalarm/reset()
 	if (stat & (NOPOWER|BROKEN))
 		return
-	var/area/A = get_area(src)
-	if (!A || !A.party)
+	if (!myarea || !myarea.party)
 		return
-	A.party = FALSE
-	A.cut_overlay(party_overlay)
+	myarea.party = FALSE
+	myarea.cut_overlay(party_overlay)
 
 /obj/machinery/firealarm/partyalarm/alarm()
 	if (stat & (NOPOWER|BROKEN))
 		return
-	var/area/A = get_area(src)
-	if (!A || A.party || A.name == "Space")
+	if (!myarea || myarea.party || istype(myarea, /area/space))
 		return
-	A.party = TRUE
+	myarea.party = TRUE
 	if (!party_overlay)
 		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
-	A.add_overlay(party_overlay)
+	myarea.add_overlay(party_overlay)

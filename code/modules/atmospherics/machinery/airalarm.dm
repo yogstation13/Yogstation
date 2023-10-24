@@ -231,6 +231,7 @@
 	..()
 	wires = new /datum/wires/airalarm(src)
 	A = get_area(src)
+	LAZYADD(A.airalarms, src)
 	if(ndir)
 		setDir(ndir)
 
@@ -248,8 +249,13 @@
 /obj/machinery/airalarm/Destroy()
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
-	atmos_manualOverride(TRUE)
-	post_alert(0)
+	if(A.airalarms.len<2 || A.manual_atmosalm)
+		atmos_manualOverride(TRUE)
+		post_alert(0)
+	else
+		atmos_manualOverride(TRUE)
+		A.atmosalert(0, src)
+	LAZYREMOVE(A.airalarms, src)
 	return ..()
 
 /obj/machinery/airalarm/Initialize(mapload)
