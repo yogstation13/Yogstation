@@ -1,0 +1,4 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - bugfix: "Lawyers now have access to their shutter buttons"
