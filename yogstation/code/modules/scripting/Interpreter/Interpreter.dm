@@ -1,6 +1,6 @@
 /*
  * Macros: Status Macros
-*/
+ */
 ///Indicates that the current function is returning a value.
 #define RETURNING (1<<0)
 ///Indicates that the current loop is being terminated.

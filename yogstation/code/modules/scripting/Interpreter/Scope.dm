@@ -1,7 +1,7 @@
 /*
-	Class: scope
-	A runtime instance of a block. Used internally by the interpreter.
-*/
+ * Scope
+ * A runtime instance of a block. Used internally by the interpreter.
+ */
 /datum/scope
 	var/datum/scope/parent
 	var/datum/scope/variables_parent

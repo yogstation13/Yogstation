@@ -209,10 +209,10 @@
 	return a^b
 
 /datum/n_Interpreter/proc/Add(a, b, scope, node)
-	if(istext(a)&&!istext(b))
-		b="[b]"
-	else if(istext(b)&&!istext(a)&&!islist(a))
-		a="[a]"
+	if(istext(a) && !istext(b))
+		b = "[b]"
+	else if(istext(b) && !istext(a) && !islist(a))
+		a = "[a]"
 	if(isnull(a) || isnull(b))
 		RaiseError(new /datum/runtimeError/TypeMismatch("+", a, b), scope, node)
 		return null

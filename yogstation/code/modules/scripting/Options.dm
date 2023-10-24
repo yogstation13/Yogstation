@@ -1,6 +1,3 @@
-/*
-File: Options
-*/
 #define ascii_A 65
 #define ascii_Z 90
 #define ascii_a 97

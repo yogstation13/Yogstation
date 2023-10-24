@@ -93,16 +93,16 @@
 							return
 						continue
 				if(/datum/token/symbol)
-					if(curToken.value=="}")
+					if(curToken.value == "}")
 						if(!EndBlock())
-							errors+=new/datum/scriptError/BadToken(curToken)
+							errors += new /datum/scriptError/BadToken(curToken)
 							continue
 						continue
 				if(/datum/token/end)
 					continue
 			curBlock.statements += ParseExpression()
 			if(!istype(curToken, /datum/token/end))
-				errors+=new/datum/scriptError/ExpectedToken(";", curToken)
+				errors += new /datum/scriptError/ExpectedToken(";", curToken)
 				continue
 
 		return global_block
@@ -111,7 +111,7 @@
 		CheckToken(val, type, err=1, skip=1)
 			if(!curToken || !istype(curToken,type) || curToken.value!=val)
 				if(err)
-					errors+=new/datum/scriptError/ExpectedToken(val, curToken)
+					errors += new /datum/scriptError/ExpectedToken(val, curToken)
 				return 0
 			if(skip)NextToken()
 			return 1

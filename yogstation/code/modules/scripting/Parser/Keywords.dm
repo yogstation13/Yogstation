@@ -105,7 +105,7 @@ Represents a special statement in the code triggered by a keyword.
 				var/datum/node/statement/IfStatement/stmt
 				if(L&&L.len) stmt=L[L.len] //Get the last statement in the current block
 				if(!stmt || !istype(stmt) || stmt.else_block) //Ensure that it is an if statement
-					parser.errors+=new/datum/scriptError/ExpectedToken("if statement",parser.curToken)
+					parser.errors += new /datum/scriptError/ExpectedToken("if statement",parser.curToken)
 					return KW_FAIL
 				parser.NextToken()         //skip 'else' token
 				if(!parser.CheckToken("{", /datum/token/symbol, skip=0))
@@ -153,7 +153,7 @@ Represents a special statement in the code triggered by a keyword.
 			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock))
-					parser.errors+=new/datum/scriptError/BadToken(parser.curToken)
+					parser.errors += new /datum/scriptError/BadToken(parser.curToken)
 					. = KW_WARN
 				var/datum/node/statement/BreakStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'break' token
@@ -163,7 +163,7 @@ Represents a special statement in the code triggered by a keyword.
 			Parse(datum/n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock))
-					parser.errors+=new/datum/scriptError/BadToken(parser.curToken)
+					parser.errors += new /datum/scriptError/BadToken(parser.curToken)
 					. = KW_WARN
 				var/datum/node/statement/ContinueStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'break' token
@@ -175,7 +175,7 @@ Represents a special statement in the code triggered by a keyword.
 				var/datum/node/statement/FunctionDefinition/def=new(parser.curToken)
 				parser.NextToken() //skip 'def' token
 				if(!parser.options.IsValidID(parser.curToken.value))
-					parser.errors+=new/datum/scriptError/InvalidID(parser.curToken)
+					parser.errors += new /datum/scriptError/InvalidID(parser.curToken)
 					return KW_FAIL
 				def.func_name=parser.curToken.value
 				parser.NextToken()
@@ -189,27 +189,27 @@ Represents a special statement in the code triggered by a keyword.
 							if(")")
 								break
 							else
-								parser.errors+=new/datum/scriptError/BadToken(parser.curToken)
+								parser.errors += new /datum/scriptError/BadToken(parser.curToken)
 								return KW_ERR
 
 					else if(istype(parser.curToken, /datum/token/word))
 						def.parameters+=parser.curToken.value
 						parser.NextToken()
 					else
-						parser.errors+=new/datum/scriptError/InvalidID(parser.curToken)
+						parser.errors += new /datum/scriptError/InvalidID(parser.curToken)
 						return KW_ERR
 				if(!parser.CheckToken(")", /datum/token/symbol))
 					return KW_FAIL
 
 				if(istype(parser.curToken, /datum/token/end)) //Function prototype
 					parser.curBlock.statements+=def
-				else if(parser.curToken.value=="{" && istype(parser.curToken, /datum/token/symbol))
+				else if(parser.curToken.value == "{" && istype(parser.curToken, /datum/token/symbol))
 					def.block = new
 					parser.curBlock.statements.Insert(1, def) // insert into the beginning so that all functions are defined first
 					parser.curBlock.functions[def.func_name]=def
 					parser.AddBlock(def.block)
 				else
-					parser.errors+=new/datum/scriptError/BadToken(parser.curToken)
+					parser.errors += new /datum/scriptError/BadToken(parser.curToken)
 					return KW_FAIL
 
 #undef KW_FAIL

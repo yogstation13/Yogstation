@@ -38,7 +38,7 @@
  * 
  * See Also:
  * - <Block.SetVar()>
-*/
+ */
 /datum/n_Interpreter/proc/SetVar(name, value)
 	if(!istext(name))
 		//CRASH("Invalid variable name")
