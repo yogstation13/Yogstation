@@ -40,7 +40,7 @@
 #define OOP_GROUP 10
 
 /**
- * Class: Node
+ * Node
  */
 /datum/node
 	///Returns line number information
@@ -50,7 +50,7 @@
 	return "[type]"
 
 /*
- * Class: identifier
+ * identifier
  */
 /datum/node/identifier
 	var/id_name
@@ -64,11 +64,11 @@
 	return id_name
 
 /*
- * Class: expression
+ * expression
  */
 /datum/node/expression
 /*
- * Class: operator
+ * operator
  * See <Binary Operators> and <Unary Operators> for subtypes.
  */
 /datum/node/expression/expression_operator
@@ -103,7 +103,7 @@
 
 
 /*
- * Class: FunctionCall
+ * FunctionCall
  */
 /datum/node/expression/FunctionCall
 	//Function calls can also be expressions or statements.
@@ -115,7 +115,7 @@
 	src.token = token
 
 /*
- * Class: literal
+ * literal
  */
 /datum/node/expression/value/literal
 	var/value
@@ -128,7 +128,7 @@
 	return value
 
 /*
- * Class: variable
+ * variable
  */
 /datum/node/expression/value/variable
 	///Either a node/identifier or another node/expression/value/variable which points to the object
@@ -153,7 +153,7 @@
 	src.token = token
 
 /**
- * Class: Reference
+ * Reference
  */
 /datum/node/expression/value/reference
 	var/datum/value

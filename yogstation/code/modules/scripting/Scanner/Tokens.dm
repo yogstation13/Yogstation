@@ -1,5 +1,5 @@
 /*
- * Class: Token
+ * Token
  * Represents an entity and position in the source code.
  */
 /datum/token

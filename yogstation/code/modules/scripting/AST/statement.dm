@@ -1,5 +1,5 @@
 /*
- * Class: statement
+ * Statement
  * An object representing a single instruction run by an interpreter.
  */
 /datum/node/statement
@@ -9,7 +9,7 @@
 	src.token=token
 
 /*
- * Class: FunctionDefinition
+ * FunctionDefinition
  * Defines a function.
  */
 /datum/node/statement/FunctionDefinition
@@ -18,7 +18,7 @@
 	var/datum/node/BlockDefinition/FunctionBlock/block
 
 /*
- * Class: VariableAssignment
+ * VariableAssignment
  * Sets a variable in an accessible scope to the given value if one exists, otherwise initializes a new local variable to the given value.
  * 
  * Notes:
@@ -34,7 +34,7 @@
 	var/datum/node/expression/value
 
 /*
- * Class: VariableDeclaration
+ * VariableDeclaration
  * Intializes a local variable to a null value.
  * 
  * See Also:
@@ -45,7 +45,7 @@
 	var/datum/node/identifier/var_name
 
 /**
- * Class: IfStatement
+ * IfStatement
  */
 /datum/node/statement/IfStatement
 	var/skip = 0
@@ -58,7 +58,7 @@
 
 
 /**
- * Class: WhileLoop
+ * WhileLoop
  * Loops while a given condition is TRUE.
  */
 /datum/node/statement/WhileLoop
@@ -66,7 +66,7 @@
 	var/datum/node/expression/cond
 
 /*
- * Class: ForLoop
+ * ForLoop
  * Loops while test is true, initializing a variable, increasing the variable
  */
 /datum/node/statement/ForLoop
@@ -76,19 +76,19 @@
 	var/datum/node/expression/increment
 
 /*
- * Class: BreakStatement
+ * BreakStatement
  * Ends a loop.
  */
 /datum/node/statement/BreakStatement
 
 /*
- * Class: ContinueStatement
+ * ContinueStatement
  * Skips to the next iteration of a loop.
  */
 /datum/node/statement/ContinueStatement
 
 /*
- * Class: ReturnStatement
+ * ReturnStatement
  * Ends the function and returns a value.
  */
 /datum/node/statement/ReturnStatement

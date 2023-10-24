@@ -1,7 +1,7 @@
 /**
  * Unary Operators
  * 
- * Class: Unary
+ * Unary
  * Represents a Unary operator in the AST.
  * Unary operators take a single operand (referred to as 'x' below) and returns a value.
  */
@@ -9,7 +9,7 @@
 	precedence = OOP_UNARY
 
 /**
- * Class: LogicalNot
+ * LogicalNot
  * Returns !x
  * 
  * Ex: !TRUE = FALSE and !FALSE = TRUE
@@ -18,7 +18,7 @@
 	name = "logical not"
 
 /**
- * Class: BitwiseNot
+ * BitwiseNot
  * Returns the value of a bitwise not operation performed on x
  * 
  * Ex: ~10 (decimal 2) = 01 (decimal 1)
@@ -27,14 +27,14 @@
 	name = "bitwise not"
 
 /**
- * Class: Minus
+ * Minus
  * Returns -x
  */
 /datum/node/expression/expression_operator/unary/Minus
 	name = "minus"
 
 /**
- * Class: Group
+ * Group
  * A special unary operator representing a value in parentheses.
  */
 /datum/node/expression/expression_operator/unary/group

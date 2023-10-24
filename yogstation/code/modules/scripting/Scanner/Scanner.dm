@@ -1,7 +1,7 @@
 #define COLUMN_LOCATION codepos-linepos
 
 /*
- * Class: n_Scanner
+ * n_Scanner
  * An object responsible for breaking up source code into tokens for use by the parser.
  */
 /datum/n_Scanner
@@ -23,7 +23,7 @@
 /datum/n_Scanner/proc/Scan()
 
 /*
- * Class: nS_Scanner
+ * nS_Scanner
  * A scanner implementation for n_Script.
  */
 /datum/n_Scanner/nS_Scanner

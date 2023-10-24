@@ -1,5 +1,5 @@
 /*
- * Class: n_Interpreter
+ * n_Interpreter
  * Procedures allowing for interaction with the script that is being run by the interpreter object.
  */
 
@@ -11,6 +11,7 @@
  * program - A <GlobalBlock> object which represents the script's global scope.
  * 
  * Parameters:
+ * program - A <GlobalBlock> object which represents the script's global scope.
  */
 /datum/n_Interpreter/proc/Load(datum/node/BlockDefinition/GlobalBlock/program)
 	ASSERT(program)
@@ -49,7 +50,7 @@
  * SetProc
  * Defines a procedure to be available to the script.
  * 
- * Parameters:
+ * Arguments:
  * name - The name of the procedure as exposed to the script.
  * path - The typepath of a proc to be called when the function call is read by the interpreter, or, if object is specified, a string representing the procedure's name.
  * object - (Optional) An object which will the be target of a function call.

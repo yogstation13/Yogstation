@@ -1,5 +1,5 @@
 /*
- * Class: BlockDefinition
+ * BlockDefinition
  * An object representing a set of actions to perform independently from the rest of the script. Blocks are basically just
  * lists of statements to execute which also contain some local variables and methods. Note that since functions are local to a block,
  * it is possible to have a function definition inside of any type of block (such as in an if statement or another function),
@@ -26,7 +26,7 @@
 	initial_variables[name] = value
 
 /**
- * Class: Globalblock
+ * Globalblock
  * A block object representing the global scope
  */
 /datum/node/BlockDefinition/GlobalBlock
@@ -36,7 +36,7 @@
 	return ..()
 
 /**
- * Class: FunctionBlock
+ * FunctionBlock
  * A block representing a function body.
  */
 /datum/node/BlockDefinition/FunctionBlock

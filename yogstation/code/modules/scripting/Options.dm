@@ -8,12 +8,12 @@
 #define ascii_UNDERSCORE 95	// _
 
 /*
- * Class: n_scriptOptions
+ * n_scriptOptions
  */
 /datum/n_scriptOptions
 
 /*
- * Class: nS_Options
+ * nS_Options
  * An implementation of <n_scriptOptions> for the n_Script language.
  */
 /datum/n_scriptOptions/nS_Options
