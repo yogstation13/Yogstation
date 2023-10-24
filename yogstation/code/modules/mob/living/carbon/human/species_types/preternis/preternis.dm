@@ -223,7 +223,6 @@
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
-		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 0.5, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(4 - (H.fire_stacks / 2))
@@ -239,6 +238,7 @@
 			do_sparks(rand(1,3), FALSE, H)
 		soggy = TRUE
 		H.throw_alert("preternis_wet", /atom/movable/screen/alert/preternis_wet)
+		H.adjust_fire_stacks(1)
 	else if(soggy)
 		H.remove_movespeed_modifier("preternis_water")
 		to_chat(H, "You breathe a sigh of relief as you dry off.")

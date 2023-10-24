@@ -26,6 +26,7 @@
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 10,
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted = 10,
 		/obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted = 10,
+		/obj/item/gun/water/full = 10,
 		/obj/item/toy/katana = 10,
 		/obj/item/melee/dualsaber/toy = 5,
 		/obj/item/organ/cyberimp/chest/spinalspeed/toy = 5,

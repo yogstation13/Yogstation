@@ -610,6 +610,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
+/datum/uplink_item/dangerous/watergun
+	name = "Extended Capacity Hyper-Soaker"
+	desc = "A simple yet effective way of applying chemicals to a target's skin. \
+			Comes with a high-power nozzle and larger tank."
+	item = /obj/item/gun/water/syndicate
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus = 10
+
 /datum/uplink_item/dangerous/hardlightbow
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
