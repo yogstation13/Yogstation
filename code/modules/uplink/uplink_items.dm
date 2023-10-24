@@ -615,7 +615,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A simple yet effective way of applying chemicals to a target's skin. \
 			Comes with a high-power nozzle and larger tank."
 	item = /obj/item/gun/water/syndicate
-	cost = 1
+	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
