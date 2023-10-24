@@ -1,7 +1,7 @@
 /obj/item/ammo_casing/reagent
 	name = "pressurized liquid"
 	desc = "You shouldn't be seeing this!"
-	projectile_type = /obj/item/projectile/reagent
+	projectile_type = /obj/projectile/reagent
 	firing_effect_type = null
 
 /obj/item/ammo_casing/reagent/Initialize(mapload)
@@ -21,4 +21,4 @@
 	return ..()
 
 /obj/item/ammo_casing/reagent/water
-	projectile_type = /obj/item/projectile/reagent/water
+	projectile_type = /obj/projectile/reagent/water
