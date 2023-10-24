@@ -157,6 +157,7 @@
 	if(!isanimal(target))
 		if(target.mind)
 			return
+	playsound(target, "shatter", 70, 1)
 	if(istype(target, /mob/living/simple_animal/hostile/retaliate/goat/king))
 		return //cant trap people in the room forever
 	if((!istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion)))
@@ -165,7 +166,6 @@
 	if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
 		target.adjustBruteLoss(target.health)
 		return
-	playsound(target, "shatter", 70, 1)
 	if(isanimal(target))
 		target.drop_loot()
 		target.loot = null
