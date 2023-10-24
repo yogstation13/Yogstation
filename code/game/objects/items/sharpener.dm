@@ -36,7 +36,7 @@
 		to_chat(user, span_warning("[I] has already been refined before. It cannot be sharpened further!"))
 		return
 	if(!(signal_out & COMPONENT_BLOCK_SHARPEN_APPLIED)) //If the item has a relevant component and COMPONENT_BLOCK_SHARPEN_APPLIED is returned, the item only gets the throw force increase
-		I.force = clamp(I.force + increment, 0, max)
+		I.throwforce = clamp(I.throwforce + increment, 0, max)
 		I.wound_bonus = I.wound_bonus + increment //wound_bonus has no cap
 	user.visible_message(span_notice("[user] sharpens [I] with [src]!"), span_notice("You sharpen [I], making it much more deadly than before."))
 	playsound(src, 'sound/items/unsheath.ogg', 25, 1)

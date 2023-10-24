@@ -1,19 +1,19 @@
-/obj/item/projectile/bullet/reusable
+/obj/projectile/bullet/reusable
 	name = "reusable bullet"
 	desc = "How do you even reuse a bullet?"
 	var/obj/item/ammo_casing/ammo_type
 	var/dropped = FALSE
 	impact_effect_type = null
 
-/obj/item/projectile/bullet/reusable/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/reusable/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	handle_drop(target, blocked)
 
-/obj/item/projectile/bullet/reusable/on_range()
+/obj/projectile/bullet/reusable/on_range()
 	handle_drop()
 	..()
 
-/obj/item/projectile/bullet/reusable/proc/handle_drop(atom/target, blocked)
+/obj/projectile/bullet/reusable/proc/handle_drop(atom/target, blocked)
 	if(dropped || !ammo_type)
 		return
 

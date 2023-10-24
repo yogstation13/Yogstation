@@ -725,8 +725,8 @@
 		add_overlay(head_overlay)
 	update_fire()
 
-/mob/living/silicon/robot/proc/self_destruct()
-	if(emagged || module.syndicate_module)
+/mob/living/silicon/robot/proc/self_destruct(explode_override = FALSE)
+	if(emagged || module.syndicate_module || explode_override)
 		if(mmi)
 			qdel(mmi)
 		explosion(src.loc,1,2,4,flame_range = 2)

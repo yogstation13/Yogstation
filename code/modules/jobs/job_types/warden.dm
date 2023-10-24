@@ -42,6 +42,9 @@
 		/obj/item/storage/box/lethalshot = 5
 	)
 
+	lightup_areas = list(/area/security/detectives_office)
+	minimal_lightup_areas = list(/area/security/warden)
+	
 	smells_like = "gunpowdery justice"
 
 /datum/job/warden/get_access()

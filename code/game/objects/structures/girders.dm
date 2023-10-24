@@ -273,7 +273,7 @@
 
 /obj/structure/girder/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if((mover.pass_flags & PASSGRILLE) || istype(mover, /obj/item/projectile))
+	if((mover.pass_flags & PASSGRILLE) || istype(mover, /obj/projectile))
 		return prob(girderpasschance)
 
 /obj/structure/girder/CanAStarPass(ID, dir, caller)

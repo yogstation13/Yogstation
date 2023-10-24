@@ -49,6 +49,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RAD_NO_CONTAMINATE_1 (1 << 16)
 /// Prevents most radiation on this turf from leaving it
 #define RAD_CONTAIN_CONTENTS (1<<17)
+/// Is the thing currently spinning?
+#define IS_SPINNING_1 (1<<18)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)

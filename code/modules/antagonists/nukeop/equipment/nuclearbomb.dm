@@ -428,7 +428,7 @@
 		return
 	qdel(src)
 
-/obj/machinery/nuclearbomb/tesla_act(power, tesla_flags)
+/obj/machinery/nuclearbomb/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..()
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over

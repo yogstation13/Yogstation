@@ -609,7 +609,7 @@ Class Procs:
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
+/obj/machinery/tesla_act(power, tesla_flags, shocked_objects, zap_gib = FALSE)
 	..()
 	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		if(prob(60))

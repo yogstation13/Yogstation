@@ -498,7 +498,7 @@
 
 /obj/structure/window/plasma/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover, /obj/item/projectile/energy/nuclear_particle))
+	if(istype(mover, /obj/projectile/energy/nuclear_particle))
 		return FALSE
 
 /obj/structure/window/plasma/spawnDebris(location)
@@ -762,7 +762,7 @@
 
 /obj/structure/window/plastitanium/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover, /obj/item/projectile/energy/nuclear_particle))
+	if(istype(mover, /obj/projectile/energy/nuclear_particle))
 		return FALSE
 
 /obj/structure/window/plastitanium/unanchored

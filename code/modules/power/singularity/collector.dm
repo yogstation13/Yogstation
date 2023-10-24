@@ -329,8 +329,8 @@
 		flick("ca_deactive", src)
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+/obj/machinery/power/rad_collector/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
 		rad_act(P.irradiate * P.damage) // equivalent of a 2000 strength rad pulse for each particle
 		P.damage = 0
 	..()

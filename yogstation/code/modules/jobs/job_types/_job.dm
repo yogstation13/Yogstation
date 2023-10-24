@@ -160,6 +160,48 @@
 			template.load(B.loc, centered = FALSE)
 			qdel(B)
 	catch(var/exception/e)
-		message_admins("RUNTIME IN GIVE_BAR_CHANCE")
+		message_admins("RUNTIME IN GIVE_BAR_CHOICE")
 		spawn_bar()
+		throw e
+
+
+/datum/job/proc/give_clerk_choice(mob/living/H, mob/M)
+	try
+		var/choice
+
+		var/client/C = M.client
+		if(!C)
+			C = H.client
+			if(!C)
+				choice = "Random"
+
+		if(C)
+			choice = C.prefs.read_preference(/datum/preference/choiced/clerk_choice)
+
+		if(choice != "Random")
+			var/clerk_sanitize = FALSE
+			for(var/A in GLOB.potential_box_clerk)
+				if(choice == A)
+					clerk_sanitize = TRUE
+					break
+
+			if(!clerk_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_clerk)
+		
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		if(!template)
+			log_game("clerk FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Clerk Box as backup.")
+			message_admins("clerk FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Clerk Box as backup.")
+			template = SSmapping.station_room_templates["Clerk Box"]
+
+		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN GIVE_CLERK_CHOICE")
+		spawn_clerk()
 		throw e

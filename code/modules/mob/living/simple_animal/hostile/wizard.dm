@@ -115,7 +115,7 @@
 	ranged = 1
 	retreat_distance = 4
 	minimum_distance = 4
-	projectiletype = /obj/item/projectile/magic/arcane_barrage
+	projectiletype = /obj/projectile/magic/arcane_barrage
 	projectilesound = 'sound/weapons/emitter.ogg'
 	loot = list(/obj/effect/mob_spawn/human/corpse/wizard, /obj/item/staff)
 	del_on_death = 1
@@ -143,10 +143,10 @@
 /mob/living/simple_animal/hostile/academywizard/chaos //chaotic wizard, not too powerful overall
 	name = "Chaos Wizard"
 	desc = "Unfortunately, he cannot Chaos Control."
-	projectiletype = /obj/item/projectile/magic
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/animate, /obj/item/projectile/magic/runic_honk,
-	/obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door,
-	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
+	projectiletype = /obj/projectile/magic
+	var/allowed_projectile_types = list(/obj/projectile/magic/animate, /obj/projectile/magic/runic_honk,
+	/obj/projectile/magic/teleport, /obj/projectile/magic/door,
+	/obj/projectile/magic/spellblade, /obj/projectile/magic/arcane_barrage)
 
 /mob/living/simple_animal/hostile/academywizard/chaos/Initialize(mapload)
 	projectiletype = pick(allowed_projectile_types)
@@ -159,4 +159,4 @@
 /mob/living/simple_animal/hostile/academywizard/botanist //super weak garbage wizard, for memes
 	name = "Academy Botanist"
 	desc = "Will destroy you with the power of... making you grow larger?"
-	projectiletype = /obj/item/projectile/magic/runic_resizement
+	projectiletype = /obj/projectile/magic/runic_resizement

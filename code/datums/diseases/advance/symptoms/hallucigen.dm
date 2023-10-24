@@ -32,7 +32,7 @@ Bonus
 		"Stage Speed 7" = "Increases the amount of hallucinations.",
 		"Stealth 4" = "The virus mimics positive symptoms.",
 	)
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/hallucigen/Start(datum/disease/advance/A)
 	. = ..()

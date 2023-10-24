@@ -112,6 +112,8 @@
 
 //IPC lol, lmao
 /mob/living/carbon/human/can_consume_power_from(mob/user)
+	if(src == user) //stop that
+		return
 	return HAS_TRAIT(src, TRAIT_POWERHUNGRY)
 
 /mob/living/carbon/human/consume_power_from(amount, mob/user)

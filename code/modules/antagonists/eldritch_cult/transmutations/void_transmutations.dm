@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/void_knife
 	name = "Frozen Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/item/shard) 
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/void)
+	result_atoms = list(/obj/item/melee/sickly_blade/void)
 	required_shit_list = "A clear shard of glass and a knife."
 
 /datum/eldritch_transmutation/void_cloak

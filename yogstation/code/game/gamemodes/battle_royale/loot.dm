@@ -140,6 +140,8 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/kitchen/knife/carrotshiv = 5,
+		/obj/item/storage/toolbox/mechanical = 5,
+		/obj/item/weldingtool/experimental = 5,
 
 		/obj/item/kitchen/knife/combat/survival = 4,
 		/obj/item/melee/baseball_bat = 4,
@@ -163,7 +165,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/baseball_bat/homerun = 1,
 		/obj/item/fireaxe = 1,
 		/obj/item/nullrod/talking = 1,
-		/obj/item/melee/powerfist = 1,
+		/obj/item/melee/powerfist/filled = 1,
 
 		/obj/item/melee/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/automatic/pistol = 0,
@@ -239,6 +241,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/backpack = 5,
 		/obj/item/storage/backpack/duffelbag = 5,
 		/obj/item/storage/backpack/satchel = 5,
+		/obj/item/storage/toolbox/mechanical = 5,
 
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
@@ -247,34 +250,38 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/backpack/satchel = 4,
 
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
-		/obj/item/nullrod/servoskull = 3,
 		/obj/item/nullrod/staff = 3,
+		/obj/effect/spawner/lootdrop/weakgene = 3,
+		/obj/item/grenade/plastic/c4 = 3,
 
-		/obj/item/autosurgeon/cmo = 2,
 		/obj/item/book/granter/action/spell/smoke/lesser = 2,
-		/obj/effect/spawner/lootdrop/weakgene = 2,
-		/obj/item/gun/energy/gravity_gun = 2,
 		/obj/item/multisurgeon/jumpboots = 2,
+		/obj/item/autosurgeon/reviver = 2,
+		/obj/item/grenade/plastic/c4 = 2,
+		/obj/effect/spawner/lootdrop/weakgene = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
-		/obj/item/autosurgeon/reviver = 1,
-		/obj/item/battleroyale/martial/preternis = 1, //arguably a downgrade, maybe not
-		/obj/item/multisurgeon/wheelies = 1,
+		/obj/item/gun/energy/gravity_gun = 1,
+		/obj/item/slimecross/stabilized/red = 1,
+		/obj/item/grenade/plastic/c4 = 1,
 
 		/obj/item/teleportation_scroll/apprentice = 0,
 		/obj/effect/spawner/lootdrop/ammobox = 0,
-		/obj/item/slimecross/stabilized/red = 0,
 		/obj/item/warp_whistle = 0,
 		/obj/item/gun/magic/staff/animate = 0, //no clue why you'd want this, but why not
+		/obj/item/multisurgeon/wheelies = 0,
+		/obj/item/grenade/plastic/c4 = 0, //it's c4 all the way down buddy
 
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
-		/obj/item/multisurgeon/airshoes = -1,
 		/obj/item/gun/magic/wand/door = -1,
 		/obj/item/gun/magic/staff/door = -1,
 		/obj/item/storage/backpack/duffelbag/syndie = -1,
+		/obj/item/slimecross/stabilized/red = -1,
+		/obj/item/autosurgeon/reviver = -1,
+		/obj/effect/spawner/lootdrop/ammobox = -1,
 
-		/obj/item/storage/box/syndie_kit/augmentation = -2,
+		/obj/item/multisurgeon/airshoes = -2,
 		/obj/item/grenade/syndieminibomb = -2,
 		/obj/item/dragons_blood = -2,
 		/obj/item/dragons_blood/refined = -2,
@@ -287,16 +294,18 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/book/granter/action/spell/summonitem = -2,
 		/obj/item/nullrod/hermes = -2,
 		/obj/item/nullrod/unrestricted = -2,
+		/obj/effect/spawner/lootdrop/ammobox = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
+		/obj/item/storage/box/syndie_kit/augmentation = -3,
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
 		/obj/item/stand_arrow = -3, //possibly OP but it's 50/50 to get dusted
 		/obj/item/book/granter/action/spell/forcewall = -3,
 		/obj/item/antag_spawner/slaughter_demon = -3, //why the hell not
-		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //pretty sure it's exactly the same since players dust on death
+		/obj/item/antag_spawner/slaughter_demon/laughter = -3, //people still get disqualified, but they at least get to come back
 		/obj/item/storage/backpack/holding = -3,
 		/obj/effect/spawner/lootdrop/stronggene = -3,
 		/obj/item/gun/magic/wand/resurrection = -3, //the person revived isn't able to win, but why not, maybe they help
@@ -529,6 +538,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 /obj/effect/spawner/lootdrop/ammobox
 	name = "Random ammo boxes"
+	lootcount = 2
 	loot = list( //woo i love ammo woooo
 		/obj/item/storage/box/lethalshot,
 		/obj/item/ammo_box/magazine/wt550m9,
@@ -560,7 +570,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/dnainjector/thermal,
 		/obj/item/dnainjector/xraymut,
 		/obj/item/dnainjector/hulkmut,
-		/obj/item/dnainjector/hulkmut/genetics_hulk,
 		/obj/item/dnainjector/shock,
 		/obj/item/dnainjector/lasereyesmut,
 		/obj/item/dnainjector/spacemut,

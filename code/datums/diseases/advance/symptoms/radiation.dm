@@ -15,7 +15,7 @@
 		"Transmission 12" = "Makes the host irradiate others around them as well.",
 		"Stage Speed 8" = "Host takes radiation damage faster."
 	)
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/radiation/Start(datum/disease/advance/A)
 	. = ..()

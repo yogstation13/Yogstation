@@ -1750,9 +1750,9 @@ obj/item/toy/turn_tracker
 	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
 
 /obj/item/ammo_casing/magic/sickly_blade_toy
-	projectile_type = /obj/item/projectile/sickly_blade_toy
+	projectile_type = /obj/projectile/sickly_blade_toy
 	harmful = FALSE
-/obj/item/projectile/sickly_blade_toy
+/obj/projectile/sickly_blade_toy
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -1765,7 +1765,7 @@ obj/item/toy/turn_tracker
 	knockdown = 0
 	hitsound = 'sound/effects/gravhit.ogg'
 
-/obj/item/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
+/obj/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target

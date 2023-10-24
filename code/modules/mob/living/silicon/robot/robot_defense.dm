@@ -195,8 +195,17 @@
 			if (stat != DEAD)
 				adjustBruteLoss(run_armor(30, BRUTE, BOMB))
 
-/mob/living/silicon/robot/bullet_act(obj/item/projectile/Proj, def_zone)
+/mob/living/silicon/robot/bullet_act(obj/projectile/Proj, def_zone)
 	. = ..()
 	updatehealth()
 	if(prob(75) && Proj.damage > 0)
 		spark_system.start()
+
+/mob/living/silicon/robot/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
+	if(gib)
+		visible_message(
+		span_danger("[src] begins to heat up!"), \
+		span_userdanger("You begin to heat up!"), \
+		)
+		addtimer(CALLBACK(src, PROC_REF(self_destruct), TRUE), 4 SECONDS)
+	return ..()

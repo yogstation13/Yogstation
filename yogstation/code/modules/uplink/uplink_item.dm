@@ -185,6 +185,13 @@
 	restricted_species = list("ipc")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) // designed around mass murder, no need to use this if you aren't allowed to do that
 
+/datum/uplink_item/race_restricted/wirecrawl
+	name = "Modified yellow slime extract"
+	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
+	cost = 8
+	item = /obj/item/book/granter/action/wirecrawl
+	restricted_species = list("ethereal")
+
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
 	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down — avoiding burning out altogether."

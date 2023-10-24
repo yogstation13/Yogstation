@@ -275,6 +275,26 @@
 	suffix = "chapel2.dmm"
 	name = "Chapel 2"
 
+/datum/map_template/ruin/station/box/clerk/box
+	id = "clerk_box"
+	suffix = "clerk_box.dmm"
+	name = "Clerk Box"
+
+/datum/map_template/ruin/station/box/clerk/pod
+	id = "clerk_pod"
+	suffix = "clerk_pod.dmm"
+	name = "Clerk Pod"
+
+/datum/map_template/ruin/station/box/clerk/meta
+	id = "clerk_meta"
+	suffix = "clerk_meta.dmm"
+	name = "Clerk Meta"
+
+/datum/map_template/ruin/station/box/clerk/gamble
+	id = "clerk_gamble"
+	suffix = "clerk_gamble.dmm"
+	name = "Clerk Gambling Hall"
+
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 
@@ -622,6 +642,11 @@
 	id = "checkpoint"
 	suffix = "3x5_checkpoint.dmm"
 	name = "Maint checkpoint"
+
+/datum/map_template/ruin/station/maint/threexfive/experimental
+	id = "experimental"
+	suffix = "3x5_experimental.dmm"
+	name = "Secure Loot"
 
 /datum/map_template/ruin/station/maint/threexfive/hank
 	id = "hank"

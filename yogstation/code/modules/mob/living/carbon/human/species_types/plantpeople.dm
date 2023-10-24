@@ -272,9 +272,9 @@
 	else
 		no_light_heal = FALSE
 
-/datum/species/pod/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/pod/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	switch(P.type)
-		if(/obj/item/projectile/energy/floramut)
+		if(/obj/projectile/energy/floramut)
 			H.rad_act(rand(20, 30))
 			H.adjustFireLoss(5)
 			H.visible_message(span_warning("[H] writhes in pain as [H.p_their()] vacuoles boil."), span_userdanger("You writhe in pain as your vacuoles boil!"), span_italics("You hear the crunching of leaves."))
@@ -283,7 +283,7 @@
 			else
 				H.easy_random_mutate(POSITIVE)
 			H.domutcheck()
-		if(/obj/item/projectile/energy/florayield)
+		if(/obj/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
 /datum/species/pod/random_name(gender,unique,lastname)

@@ -7,7 +7,7 @@
 	visual = TRUE
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_TAIL
-	process_flags = ORGANIC | SYNTHETIC // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
+	compatible_biotypes = ALL_BIOTYPES // pretty much entirely cosmetic, if someone wants to make crimes against nature then sure
 	/// The sprite accessory this tail gives to the human it's attached to. If null, it will inherit its value from the human's DNA once attached.
 	var/tail_type = "None"
 

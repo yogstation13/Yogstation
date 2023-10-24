@@ -173,7 +173,7 @@
 
 	user.visible_message(span_warning("[user]'s hand flashes a bright blue!"), \
 						 span_cultitalic("You speak the cursed words, emitting an EMP blast from your hand."))
-	var/obj/item/projectile/magic/ion/A = new /obj/item/projectile/magic/ion(user.loc)
+	var/obj/projectile/magic/ion/A = new /obj/projectile/magic/ion(user.loc)
 	A.firer = user
 	A.preparePixelProjectile(target, user, params)
 	A.fire()
@@ -425,13 +425,13 @@
 
 		user.mob_light(_range = 3, _color = LIGHT_COLOR_BLOOD_MAGIC, _duration = 0.2 SECONDS)
 
-		var/anti_magic_source = L.anti_magic_check()
+		var/anti_magic_source = L.can_block_magic()
 		if(anti_magic_source)
 
 			L.mob_light(_range = 2, _color = LIGHT_COLOR_HOLY_MAGIC, _duration = 10 SECONDS)
 			var/mutable_appearance/forbearance = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 			L.add_overlay(forbearance)
-			addtimer(CALLBACK(L, /atom/proc/cut_overlay, forbearance), 100)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/atom, cut_overlay), forbearance), 100)
 
 			if(istype(anti_magic_source, /obj/item))
 				var/obj/item/ams_object = anti_magic_source

@@ -564,7 +564,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
+	AddComponent(/datum/component/anti_magic, antimagic_flags = MAGIC_RESISTANCE, inventory_flags = ITEM_SLOT_OCLOTHING)
 
 
 	//Medical hardsuit
@@ -854,7 +854,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/anti_magic, antimagic_flags = MAGIC_RESISTANCE_MIND, inventory_flags = ITEM_SLOT_OCLOTHING)
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal
 	name = "paranormal response team hardsuit"
@@ -867,7 +867,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE, ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/anti_magic, antimagic_flags = ALL, inventory_flags = ITEM_SLOT_OCLOTHING)
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 	name = "inquisitor's hardsuit"
