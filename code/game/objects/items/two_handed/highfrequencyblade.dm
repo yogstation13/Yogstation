@@ -21,7 +21,7 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
-		force_wielded = 20, \
+		force_wielded = 20 + force, \
 		icon_wielded = "[base_icon_state]1", \
 	)
 	AddComponent(/datum/component/butchering, 20, 105)

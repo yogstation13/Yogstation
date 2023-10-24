@@ -35,7 +35,7 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
-		force_wielded = force_wielded, \
+		force_wielded = force_wielded + force, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5), \
 	)
@@ -66,7 +66,7 @@
 /obj/item/melee/spear/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if (istype(tip, /obj/item/shard/plasma))
-		force_wielded += 1
+		SEND_SIGNAL(I, COMSIG_ITEM_SHARPEN_ACT, 1)
 		force += 1
 		throwforce += 1
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs

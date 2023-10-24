@@ -17,7 +17,7 @@
 	resistance_flags = FIRE_PROOF
 
 	///How much damage the pitchfork will do while wielded.
-	var/force_wielded = 8
+	var/force_wielded = 15
 
 /obj/item/pitchfork/Initialize(mapload)
 	. = ..()

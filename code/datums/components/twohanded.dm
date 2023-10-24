@@ -365,7 +365,7 @@
 /**
  * on_sharpen Triggers on usage of a sharpening stone on the item
  */
-/datum/component/two_handed/proc/on_sharpen(obj/item/item, amount, max_amount)
+/datum/component/two_handed/proc/on_sharpen(obj/item/item, amount, max_amount=INFINITY)
 	SIGNAL_HANDLER
 
 	if(!item)
