@@ -847,41 +847,6 @@
 		var/client/interacted_client = usr.client
 		interacted_client?.open_particle_editor(src)
 
-
-	if(href_list[VV_HK_ADD_EMITTER])
-		if(!check_rights(R_VAREDIT))
-			return
-
-		var/key = stripped_input(usr, "Enter a key for your emitter", "Emitter Key")
-		var/lifetime = input("How long should this live for in deciseconds? 0 for infinite, -1 for a single burst.", "Lifespan") as null|num
-
-		if(!key)
-			return
-		switch(alert("Should this be a pre-filled emitter (empty emitters don't support timers)?",,"Yes","No","Cancel"))
-			if("Yes")
-				var/choice = input(usr, "Choose an emitter to add", "Choose an Emitter") as null|anything in subtypesof(/obj/emitter)
-				var/should_burst = FALSE
-				if(lifetime == -1)
-					should_burst = TRUE
-				if(choice)
-					add_emitter(choice, key, lifespan = lifetime, burst_mode = should_burst)
-			if("No")
-				add_emitter(/obj/emitter, key)
-			else
-				return
-
-	if(href_list[VV_HK_REMOVE_EMITTER])
-		if(!check_rights(R_VAREDIT))
-			return
-		if(!master_holder?.emitters.len)
-			return
-		var/removee = input(usr, "Choose an emitter to remove", "Choose an Emitter") as null|anything in master_holder?.emitters
-		if(!removee)
-			return
-		remove_emitter(removee)
-
-
-
 /atom/movable/proc/ex_check(ex_id)
 	if(!ex_id)
 		return TRUE
