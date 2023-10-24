@@ -58,15 +58,19 @@
 	if(response == "No")
 		return
 	var/mob/living/carbon/human/H = user.change_mob_type(/mob/living/carbon/human, get_turf(src), null, TRUE)
-	var/outfit = /datum/outfit/ghost
-	if(isplasmaman(H))
-		outfit = /datum/outfit/ghost/plasmaman
-	H.equipOutfit(outfit)
+	getOutfit(H)
 	if(isplasmaman(H))
 		H.open_internals(H.get_item_for_held_index(2))
 	H.regenerate_icons()
 	ghosts |= H
 	H.visible_message(span_notice("[H] decends into this plane"), span_notice("You decend into the living plane."))
+	return TRUE
+
+/obj/structure/ghostbeacon/proc/getOutfit(mob/living/carbon/human/H)
+	var/outfit = /datum/outfit/ghost
+	if(isplasmaman(H))
+		outfit = /datum/outfit/ghost/plasmaman
+	H.equipOutfit(outfit)
 
 /obj/structure/ghostbeacon/attack_hand(mob/user)
 	. = ..()
@@ -95,3 +99,36 @@
 	r_hand = /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+
+/obj/structure/ghostbeacon/clown
+	name = "Funny Beacon"
+
+/obj/structure/ghostbeacon/clown/getOutfit(mob/living/carbon/human/H)
+	var/outfit = /datum/outfit/ghost/clown
+	if(isplasmaman(H))
+		outfit = /datum/outfit/ghost/clown/plasmaman
+	H.equipOutfit(outfit)
+
+/obj/structure/ghostbeacon/clown/attack_ghost(mob/user)
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(user, TRAIT_PACIFISM, TRAIT_GENERIC)
+
+/datum/outfit/ghost/clown/plasmaman
+	name = "Plasmaman Clown Chef"
+	head = /obj/item/clothing/head/helmet/space/plasmaman/clown
+	r_hand = /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	uniform = /obj/item/clothing/under/plasmaman/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	l_pocket = /obj/item/bikehorn
+
+/datum/outfit/ghost/clown
+	name = "Clown Chef"
+	head = /obj/item/clothing/head/clownmitre
+	uniform = /obj/item/clothing/under/rank/clown
+	shoes = /obj/item/clothing/shoes/clown_shoes
+	mask = /obj/item/clothing/mask/gas/clown_hat
+	l_pocket = /obj/item/bikehorn
+	back = /obj/item/storage/backpack/clown
