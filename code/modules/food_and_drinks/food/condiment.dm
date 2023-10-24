@@ -301,6 +301,13 @@
 	list_reagents = list(/datum/reagent/consumable/bbqsauce = 50)
 	possible_states = list()
 
+/obj/item/reagent_containers/food/condiment/peanutbutter
+	name = "peanut butter jar"
+	desc = "Tasty, fattening processed peanuts in a jar."
+	icon_state = "peanutbutter"
+	list_reagents = list(/datum/reagent/consumable/peanut_butter = 50)
+	possible_states = list()
+
 //Food packs. To easily apply deadly toxi... delicious sauces to your food!
 
 /obj/item/reagent_containers/food/condiment/pack

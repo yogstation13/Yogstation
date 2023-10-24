@@ -27,6 +27,12 @@
 	return
 
 /**
+  * Parent proc - triggers when an item/module is equipped from a cyborg.
+  */
+/obj/item/proc/cyborg_equip(mob/user)
+	return
+
+/**
   * Finds the first available slot and attemps to put item item_module in it.
   *
   * Arguments
@@ -77,6 +83,7 @@
 	item_module.mouse_opacity = initial(item_module.mouse_opacity)
 	item_module.layer = ABOVE_HUD_LAYER
 	item_module.plane = ABOVE_HUD_PLANE
+	item_module.cyborg_equip(src)
 	item_module.forceMove(src)
 
 	if(istype(item_module, /obj/item/borg/sight))

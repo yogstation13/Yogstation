@@ -539,7 +539,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if(W.GetID())			// trying to unlock the interface with an ID card
+	else if(W.GetID() && user.a_intent == INTENT_HELP)			// trying to unlock the interface with an ID card only on help intent.
 		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
@@ -725,8 +725,8 @@
 		add_overlay(head_overlay)
 	update_fire()
 
-/mob/living/silicon/robot/proc/self_destruct()
-	if(emagged || module.syndicate_module)
+/mob/living/silicon/robot/proc/self_destruct(explode_override = FALSE)
+	if(emagged || module.syndicate_module || explode_override)
 		if(mmi)
 			qdel(mmi)
 		explosion(src.loc,1,2,4,flame_range = 2)
@@ -1061,13 +1061,18 @@
 
 	if(sight_mode & BORGMESON)
 		sight |= SEE_TURFS
-		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		see_in_dark = 1
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		see_in_dark = 2
+
+	if(sight_mode & BORGMESON_NIGHTVISION)
+		sight |= SEE_TURFS
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		see_in_dark = 8
 
 	if(sight_mode & BORGMATERIAL)
 		sight |= SEE_OBJS
 		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		see_in_dark = 1
+		see_in_dark = 2
 
 	if(sight_mode & BORGXRAY)
 		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
@@ -1176,16 +1181,10 @@
 	else
 		status_flags &= ~CANPUSH
 
-	if(module.clean_on_move)
-		AddElement(/datum/element/cleaning)
-	else
-		RemoveElement(/datum/element/cleaning)
-
 	hat_offset = module.hat_offset
 
 	magpulse = module.magpulsing
 	updatename()
-
 
 /mob/living/silicon/robot/proc/place_on_head(obj/item/new_hat)
 	if(hat)

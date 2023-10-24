@@ -132,6 +132,8 @@
 #define TRAIT_RESTRAINED 		"restrained"
 /// In some kind of critical condition. Is able to succumb.
 #define TRAIT_CRITICAL_CONDITION "critical-condition"
+/// Is frozen in place
+#define TRAIT_FROZEN "frozen"
 /// trait associated to a stat value or range of
 #define STAT_TRAIT 				"stat"
 #define TRAIT_INCAPACITATED 	"incapacitated"
@@ -163,6 +165,8 @@
 #define TRAIT_IMPACTIMMUNE		"impact_immunity" //protects from the damage of getting launched into a wall hard
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
+/// Prevents you from leaving your corpse
+#define TRAIT_CORPSELOCKED 		"corpselocked"
 #define TRAIT_STABLEHEART		"stable_heart"
 #define TRAIT_STABLELIVER		"stable_liver"
 #define TRAIT_RESISTHEAT		"resist_heat"
@@ -178,6 +182,7 @@
 #define TRAIT_VIRUSIMMUNE		"virus_immunity"
 #define TRAIT_PIERCEIMMUNE		"pierce_immunity"
 #define TRAIT_NODISMEMBER		"dismember_immunity"
+#define TRAIT_SAFEWELD		"safe_welding" //prevents blinding from welding without giving actual flash immunity
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
 #define TRAIT_NO_STUN_WEAPONS	"no_stun_weapons" //prevents use of commonly available instant or near instant stun weapons
@@ -192,7 +197,10 @@
 #define TRAIT_TOXINLOVER		"toxinlover"
 #define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
-#define TRAIT_ANTIMAGIC			"anti_magic"
+/// This mob is antimagic, and immune to spells / cannot cast spells
+#define TRAIT_ANTIMAGIC "anti_magic"
+/// This mob recently blocked magic with some form of antimagic
+#define TRAIT_RECENTLY_BLOCKED_MAGIC "recently_blocked_magic"
 #define TRAIT_HOLY				"holy"
 #define TRAIT_DEPRESSION		"depression"
 #define TRAIT_JOLLY				"jolly"
@@ -279,6 +287,8 @@
 #define TRAIT_BALD "bald"
 /// Reduces severity of EMPs by one level, heavy becomes light and light is ignored
 #define TRAIT_FARADAYCAGE "faraday_cage"
+/// You can't see color!
+#define TRAIT_COLORBLIND "color_blind"
 
 ///Trait given to a mob's mind to indicate they can't be revived due to otherworldly events.
 #define TRAIT_HELLBOUND "hellbound"
@@ -428,6 +438,7 @@
 #define POSIBRAIN_TRAIT "positrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
 #define ECHOLOCATION_TRAIT "echolocation_trait"
+#define GRIMOIRE_TRAIT "grimoire_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -454,3 +465,22 @@
 
 ///Organ traits
 #define TRAIT_BALLMER_SCIENTIST "ballmer_scientist"
+
+///storm immunity traits
+#define TRAIT_LAVA_IMMUNE "lava_immune" //Used by lava turfs and The Floor Is Lava.
+#define TRAIT_ASHSTORM_IMMUNE "ashstorm_immune"
+#define TRAIT_SNOWSTORM_IMMUNE "snowstorm_immune"
+#define TRAIT_RADSTORM_IMMUNE "radstorm_immune"
+#define TRAIT_VOIDSTORM_IMMUNE "voidstorm_immune"
+#define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.
+
+///Movement type traits for movables. See elements/movetype_handler.dm
+#define TRAIT_MOVE_GROUND "move_ground"
+#define TRAIT_MOVE_FLYING "move_flying"
+#define TRAIT_MOVE_VENTCRAWLING "move_ventcrawling"
+#define TRAIT_MOVE_FLOATING "move_floating"
+#define TRAIT_MOVE_PHASING "move_phasing"
+/// Disables the floating animation. See above.
+#define TRAIT_NO_FLOATING_ANIM "no-floating-animation"
+/// Used to prevent multiple floating blades from triggering over the same target
+#define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"

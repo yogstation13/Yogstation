@@ -427,6 +427,13 @@
 	foodtype = GRAIN | MEAT
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
+/obj/item/reagent_containers/food/snacks/cookie/peanut_butter
+	name = "peanut butter cookie"
+	desc = "A tasty, chewy peanut butter cookie."
+	icon_state = "peanut_butter_cookie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/peanut_butter = 5)
+	tastes = list("peanut butter" = 2, "cookie" = 1)
+	foodtype = GRAIN | SUGAR | NUTS
 
 /obj/item/reagent_containers/food/snacks/cookie/bacon
 	name = "strip of bacon"
@@ -619,6 +626,36 @@
 	filling_color = "#D9833E"
 	tastes = list("orange" = 1, "cake" = 1)
 	foodtype = GRAIN | SUGAR | FRUIT | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/raw_brownie_batter
+	name = "raw brownie batter"
+	desc = "A sticky mixture of raw brownie batter, cook it in the oven!"
+	icon_state = "raw_brownie_batter"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("raw brownie batter" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE | RAW
+
+/obj/item/reagent_containers/food/snacks/raw_brownie_batter/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/brownie_sheet, rand(20 SECONDS, 30 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/brownie_sheet
+	name = "brownie sheet"
+	desc = "A sheet of cooked brownie, use a knife to cut it!"
+	icon_state = "brownie_sheet"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/sugar = 12)
+	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE
+	burns_in_oven = TRUE
+	slices_num = 4
+	slice_path = /obj/item/reagent_containers/food/snacks/brownie
+
+/obj/item/reagent_containers/food/snacks/brownie
+	name = "brownie"
+	desc = "A square slice of delicious, chewy brownie."
+	icon_state = "brownie"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 3)
+	tastes = list("brownie" = 1, "chocolatey goodness" = 1)
+	foodtype = GRAIN | SUGAR | JUNKFOOD | CHOCOLATE
 
 #define PANCAKE_MAX_STACK 10
 

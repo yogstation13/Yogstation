@@ -31,6 +31,13 @@
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 5
 	)
 
+	lightup_areas = list(/area/medical/surgery)
+	minimal_lightup_areas = list(
+		/area/storage/eva,
+		/area/medical/morgue,
+		/area/medical/genetics/cloning
+	)
+
 	smells_like = "pre-packaged oxygen"
 
 /datum/outfit/job/paramedic
@@ -41,7 +48,9 @@
 
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
 	ears = /obj/item/radio/headset/headset_med
+	belt = /obj/item/storage/belt/medical
 	uniform = /obj/item/clothing/under/rank/medical
+	uniform_skirt = /obj/item/clothing/under/rank/medical/skirt
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	l_hand = /obj/item/roller

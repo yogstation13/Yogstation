@@ -694,10 +694,11 @@
 		H.physiology.pressure_mod /= 0.5
 		H.physiology.heat_mod /= 0.5
 	
+//holy light specific buffs
 /datum/status_effect/holylight_antimagic
 	id = "holy antimagic"
 	duration = 2 MINUTES
-	tick_interval = 0
+	tick_interval = -1
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/holylight_antimagic
 
@@ -707,10 +708,33 @@
 	icon_state = "slime_rainbowshield" //i'm a coder, not a spriter
 
 /datum/status_effect/holylight_antimagic/on_apply()
-	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
-	owner.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+	. = ..()
+	if(.)
+		ADD_TRAIT(owner, TRAIT_ANTIMAGIC, type)
+		owner.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 
 /datum/status_effect/holylight_antimagic/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, type)
 	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
+/datum/status_effect/holylight_healboost
+	id = "holy healboost"
+	duration = 30 SECONDS
+	tick_interval = -1
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/holylight_healboost
+	examine_text = span_notice("They are glowing with an internal holy light.")
+
+/atom/movable/screen/alert/status_effect/holylight_healboost
+	name = "Blessing of light"
+	desc = "Your being is suffused with holy light that accelerates healing."
+	icon_state = "regenerative_core" //again, i'm a coder, not a spriter
+
+/datum/status_effect/holylight_healboost/on_apply()
+	. = ..()
+	if(.)
+		owner.AddComponent(/datum/component/heal_react/boost/holylight)
+
+/datum/status_effect/holylight_healboost/on_remove()
+	var/datum/component/heal_react/boost/holylight/healing = owner.GetComponent(/datum/component/heal_react/boost/holylight)
+	healing?.RemoveComponent()

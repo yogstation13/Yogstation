@@ -32,6 +32,13 @@
 		/obj/item/reagent_containers/glass/bottle/mutagen = 5,
 		/obj/item/dnainjector/elvismut = 1
 	)
+	
+	lightup_areas = list(
+		/area/medical/surgery,
+		/area/medical/virology,
+		/area/medical/chemistry
+	)
+	minimal_lightup_areas = list(/area/medical/morgue, /area/medical/genetics)
 
 	smells_like = "monkey hair"
 
@@ -43,7 +50,7 @@
 
 	ears = /obj/item/radio/headset/headset_medsci
 	uniform = /obj/item/clothing/under/rank/geneticist
-	uniform_skirt = /obj/item/clothing/under/rank/geneticist
+	uniform_skirt = /obj/item/clothing/under/rank/geneticist/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/genetics
 	suit_store =  /obj/item/flashlight/pen

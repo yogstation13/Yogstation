@@ -153,12 +153,6 @@
 	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
 	required_temp = 525
 
-/datum/chemical_reaction/lemolime
-	name = "Lemoline"
-	id = /datum/reagent/lemoline
-	required_reagents = list(/datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/ethanol = 2)
-	results = list(/datum/reagent/lemoline = 2)
-
 //Technically a mutation toxin
 /datum/chemical_reaction/mulligan
 	name = "Mulligan"

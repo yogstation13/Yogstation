@@ -1038,6 +1038,16 @@
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_nv_mesons
+	name = "Cyborg Upgrade (Night Vision Mesons)"
+	id = "borg_upgrade_nv_mesons"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/nv_mesons
+	/// Exact cost of NV Mesons for humans.
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000, /datum/material/plastic = 150)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_service_cookbook
 	name = "Cyborg Upgrade (Cookbook)"
 	id = "borg_upgrade_service_cookbook"

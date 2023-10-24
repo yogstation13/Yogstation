@@ -7,7 +7,7 @@
 	name = "vocal cords"
 	icon_state = "appendix"
 	visual = FALSE
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_VOICE
 	gender = PLURAL
@@ -32,7 +32,7 @@
 	desc = "Fragments of adamantine exist in all golems, stemming from their origins as purely magical constructs. These are used to \"hear\" messages from their leaders."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ADAMANTINE_RESONATOR
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	icon_state = "adamantine_resonator"
 	visual = FALSE
 
@@ -148,7 +148,7 @@
 
 	var/list/mob/living/listeners = list()
 	for(var/mob/living/L in get_hearers_in_view(max_range, user))
-		if(L.can_hear() && !L.anti_magic_check(FALSE, TRUE) && L.stat != DEAD)
+		if(L.can_hear() && !L.can_block_magic(MAGIC_RESISTANCE_HOLY) && L.stat != DEAD)
 			if(L == user && !include_speaker)
 				continue
 			if(ishuman(L))

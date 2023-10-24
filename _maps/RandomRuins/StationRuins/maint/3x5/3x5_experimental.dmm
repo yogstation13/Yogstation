@@ -1,0 +1,41 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"t" = (
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/item/crowbar/red/caravan,
+/obj/item/wirecutters/caravan,
+/obj/item/wrench/caravan,
+/obj/item/screwdriver/caravan,
+/obj/structure/safe{
+	number_of_tumblers = 6
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+t
+a
+a
+"}
+(2,1,1) = {"
+t
+a
+w
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+t
+"}

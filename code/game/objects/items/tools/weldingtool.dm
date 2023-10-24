@@ -77,7 +77,7 @@
 			return
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(1)
-			force = 15
+			force = 12
 			damtype = BURN
 			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
@@ -223,7 +223,7 @@
 		if(get_fuel() >= 1)
 			to_chat(user, span_notice("You switch [src] on."))
 			playsound(loc, acti_sound, 50, 1)
-			force = 15
+			force = 12
 			damtype = BURN
 			hitsound = 'sound/items/welder.ogg'
 			update_appearance(UPDATE_ICON)
@@ -261,10 +261,8 @@
 /obj/item/weldingtool/tool_start_check(mob/living/user, amount=0)
 	. = tool_use_check(user, amount)
 	if(. && user)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
-				return
+		if(HAS_TRAIT(user, TRAIT_SAFEWELD))
+			return
 		user.flash_act(light_range)
 
 // Flash the user during welding progress
@@ -272,12 +270,10 @@
 	. = ..()
 	if(. && user)
 		if (progress_flash_divisor == 0)
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if(istype(H.head,/obj/item/clothing/head/helmet/space/plasmaman))
-					return
-			user.flash_act(min(light_range,1))
 			progress_flash_divisor = initial(progress_flash_divisor)
+			if(HAS_TRAIT(user, TRAIT_SAFEWELD))
+				return
+			user.flash_act(min(light_range,1))
 		else
 			progress_flash_divisor--
 

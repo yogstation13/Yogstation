@@ -266,6 +266,7 @@ SUBSYSTEM_DEF(explosions)
 
 		if(prob(devastation_range*DEVASTATION_PROB+heavy_impact_range*HEAVY_IMPACT_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
 			creaking_explosion = TRUE // prob over 100 always returns true
+			flicker_all_lights()
 
 		for(var/MN in GLOB.player_list)
 			var/mob/M = MN
@@ -521,7 +522,7 @@ SUBSYSTEM_DEF(explosions)
 		for(var/thing in flame_turf)
 			if(thing)
 				var/turf/T = thing
-				new /obj/effect/hotspot(T) //Mostly for ambience!
+				T.IgniteTurf(rand(4, 24)) //Mostly for ambience!
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		if (low_turf.len || med_turf.len || high_turf.len)

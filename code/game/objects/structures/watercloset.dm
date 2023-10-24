@@ -200,7 +200,7 @@
 	icon_state = "urinalcake"
 	item_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
-	list_reagents = list(/datum/reagent/chlorine = 3, /datum/reagent/ammonia = 1)
+	list_reagents = list(/datum/reagent/chlorine = 10, /datum/reagent/ammonia = 5)
 	foodtype = TOXIC | GROSS
 
 /obj/item/reagent_containers/food/snacks/urinalcake/attack_self(mob/living/user)
