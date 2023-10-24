@@ -1722,6 +1722,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/medbay)
+"qi" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/jukebox/disco/indestructible,
+/turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/shuttle/abandoned/crew)
 "qP" = (
 /obj/structure/window/plasma/reinforced/spawner/east,
 /turf/open/floor/engine/air,
@@ -1745,13 +1752,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/medbay)
-"rP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/jukebox/disco/indestructible,
-/turf/open/floor/light/colour_cycle/dancefloor_a,
-/area/shuttle/abandoned/crew)
 "rV" = (
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/bot,
@@ -3257,7 +3257,7 @@ cw
 cw
 br
 ec
-rP
+qi
 ec
 bh
 iM
