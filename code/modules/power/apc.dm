@@ -216,11 +216,11 @@
 	area.power_light = FALSE
 	area.power_equip = FALSE
 	area.power_environ = FALSE
+	area.poweralert(1, src)
 	area.power_change()
 	if(occupier)
 		malfvacate(1)
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
 	if(cell)
 		qdel(cell)
 	if(terminal)
@@ -242,8 +242,6 @@
 
 /obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
-	if(!mapload)
-		return
 	has_electronics = APC_ELECTRONICS_SECURED
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)

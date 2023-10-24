@@ -39,6 +39,8 @@
 		///obj/item/ammo_box/c38/match = 5,
 		///obj/item/storage/belt/holster/detective/full = 1
 	)
+	
+	minimal_lightup_areas = list(/area/medical/morgue, /area/security/detectives_office)
 
 	smells_like = "whisky-soaked despair"
 

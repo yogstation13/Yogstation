@@ -200,3 +200,12 @@
 	updatehealth()
 	if(prob(75) && Proj.damage > 0)
 		spark_system.start()
+
+/mob/living/silicon/robot/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
+	if(gib)
+		visible_message(
+		span_danger("[src] begins to heat up!"), \
+		span_userdanger("You begin to heat up!"), \
+		)
+		addtimer(CALLBACK(src, PROC_REF(self_destruct), TRUE), 4 SECONDS)
+	return ..()

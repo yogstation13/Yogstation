@@ -261,7 +261,7 @@
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
-	desc = "An armband, worn by personnel authorized to act as a deputy of station security."
+	desc = "A worn out armband, once worn by personnel authorized to act as a deputy of station security. No longer serves a purpose since Nanotrasen outlawed deputization."
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo bay guard armband"

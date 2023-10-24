@@ -19,7 +19,7 @@ It can charge at its target, and also heavily damaging anything directly hit in 
 If at half health it will start to charge from all sides with clones.
 
 When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as one of the following: 
- 1.A set of knuckles that can trap victims where they stand
+ 1.A book that allows the user to parry incoming attacks and squeeze ores out of victims
  2.A pair of cuffs allowing the wearer to devour creatures to heal
 
 Difficulty: Hard
@@ -70,14 +70,6 @@ Difficulty: Hard
 	small_sprite_type = /datum/action/small_sprite/megafauna/bubblegum
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/bubblegum
-
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize(mapload)
-	. = ..()
-	if(true_spawn)
-		for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_living_list)
-			if(B != src)
-				return INITIALIZE_HINT_QDEL //There can be only one
-
 /datum/action/innate/megafauna_attack/triple_charge
 	name = "Triple Charge"
 	button_icon = 'icons/mob/actions/actions_items.dmi'

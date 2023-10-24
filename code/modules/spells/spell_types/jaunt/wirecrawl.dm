@@ -52,12 +52,12 @@
 
 /// Returns a nearby blood decal, or null if there aren't any
 /datum/action/cooldown/spell/jaunt/wirecrawl/proc/find_nearby_power(turf/origin)
-	var/machinery = FALSE
-	for(var/obj/machinery/power/thing in range(enter_radius, origin))
-		machinery = TRUE
-	for(var/obj/structure/cable/thing in range(enter_radius, origin))
-		if(machinery || !thing.invisibility)//only enter it if it's not covered by a tile or is connected to a power machinery
-			return thing
+	for(var/obj/machinery/power/power in range(enter_radius, origin))
+		for(var/obj/structure/cable/cable in range(0 , power))//try to find a cable directly under a power thing first
+			return cable
+	for(var/obj/structure/cable/cable in range(enter_radius, origin))
+		if(!cable.invisibility)//otherwise, find a cable that isn't covered
+			return cable
 	return null
 
 /**
@@ -193,6 +193,8 @@
 
 //vision
 /mob/living/proc/update_wire_vision(var/obj/structure/cable/wire)
+	if(!istype(src.loc, /obj/effect/dummy/phased_mob/wirecrawl))//only get wirevision if phased
+		return
 	if(!wire) //if there's no wire, grab a random one in the location
 		wire = locate() in get_turf(src)
 	remove_wirevision()

@@ -36,6 +36,19 @@
 	},
 /turf/open/floor/carpet/black,
 /area/clerk)
+"f" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/clerk";
+	dir = 1;
+	name = "Gift Shop APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
 "g" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners,
 /turf/open/floor/plasteel/dark,
@@ -251,19 +264,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/clerk)
-"F" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/clerk";
-	dir = 4;
-	name = "Gift Shop APC";
-	pixel_y = 27
 	},
 /turf/open/floor/plasteel/dark,
 /area/clerk)
@@ -491,7 +491,7 @@ a
 "}
 (7,1,1) = {"
 a
-F
+f
 r
 Y
 h
