@@ -483,7 +483,7 @@ LAW_WEIGHT chapai,0
 ION_LAW_WEIGHT chapai,2
 LAW_WEIGHT silicop,0
 ION_LAW_WEIGHT silicop,2
-LAW_WEIGHT researcher,0
+LAW_WEIGHT researcher,1
 ION_LAW_WEIGHT researcher,2
 LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,2
