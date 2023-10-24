@@ -29,7 +29,7 @@
 	light_range = 2
 	light_power = 2
 
-	var/force_wielded = 24
+	var/force_wielded = 28
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE

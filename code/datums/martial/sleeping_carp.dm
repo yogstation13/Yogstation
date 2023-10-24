@@ -185,7 +185,7 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 10, \
-		force_wielded = 14, \
+		force_wielded = 24, \
 	)
 
 /obj/item/melee/bostaff/update_icon_state()
