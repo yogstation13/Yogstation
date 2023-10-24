@@ -154,7 +154,7 @@
 		return
 
 	deltimer(plate_timer)//reset the plate timer
-	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)
+	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), user), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)
 
 	if(damagetype != BRUTE && damagetype != BURN)
 		damage /= 4 //brute and burn are most effective
