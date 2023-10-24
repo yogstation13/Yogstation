@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(720 modules,
-    1937/9112 macros, 21.3%)</aside></h3>
+<aside>(723 modules,
+    1937/9116 macros, 21.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -272,10 +272,12 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/_element.html" title="code&#x2F;datums&#x2F;elements&#x2F;_element">_element</a></li>
     <li><a href="code/datums/elements/connect_loc.html" title="code&#x2F;datums&#x2F;elements&#x2F;connect_loc">connect_loc</a></li>
     <li><a href="code/datums/elements/content_barfer.html" title="code&#x2F;datums&#x2F;elements&#x2F;content_barfer">content_barfer</a></li>
+    <li><a href="code/datums/elements/death_explosion.html" title="code&#x2F;datums&#x2F;elements&#x2F;death_explosion">death_explosion</a></li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
     <li><a href="code/datums/elements/frozen.html" title="code&#x2F;datums&#x2F;elements&#x2F;frozen">frozen</a></li>
     <li><a href="code/datums/elements/life_drain.html" title="code&#x2F;datums&#x2F;elements&#x2F;life_drain">life_drain</a></li>
     <li><a href="code/datums/elements/movetype_handler.html" title="code&#x2F;datums&#x2F;elements&#x2F;movetype_handler">movetype_handler</a></li>
+    <li><a href="code/datums/elements/regenerator.html" title="code&#x2F;datums&#x2F;elements&#x2F;regenerator">regenerator</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
     <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
     </ul></li>
@@ -511,7 +513,10 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/antagonists/eldritch_cult/eldritch_knowledge.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_knowledge">eldritch_knowledge</a></li>
     <li><a href="code/modules/antagonists/eldritch_cult/eldritch_monster_antag.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_monster_antag">eldritch_monster_antag</a></li>
     <li><a href="code/modules/antagonists/eldritch_cult/eldritch_transmutations.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;eldritch_transmutations">eldritch_transmutations</a></li>
-    <li><span class="no-substance">magic&#x2F;</span><a href="code/modules/antagonists/eldritch_cult/magic/ash_magic.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;magic&#x2F;ash_magic">ash_magic</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;magic">magic</span><ul class="index-tree">
+    <li><a href="code/modules/antagonists/eldritch_cult/magic/ash_magic.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;magic&#x2F;ash_magic">ash_magic</a></li>
+    <li><a href="code/modules/antagonists/eldritch_cult/magic/cosmo_magic.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;magic&#x2F;cosmo_magic">cosmo_magic</a></li>
+    </ul></li>
     <li><span class="no-substance">transmutations&#x2F;</span><a href="code/modules/antagonists/eldritch_cult/transmutations/rust_transmutations.html" title="code&#x2F;modules&#x2F;antagonists&#x2F;eldritch_cult&#x2F;transmutations&#x2F;rust_transmutations">rust_transmutations</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;antagonists&#x2F;monsterhunter">monsterhunter</span><ul class="index-tree">
@@ -1058,7 +1063,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(959 detailed/1763 documented/28545 total, 6.2%)</aside></h3>
+<aside>(970 detailed/1774 documented/28581 total, 6.2%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1248,11 +1253,13 @@ These spells function off of a cooldown-based system.<ul class="index-tree">
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="datum/action/cooldown/spell/conjure.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;conjure">conjure</a><ul class="index-tree">
+    <li><a href="datum/action/cooldown/spell/conjure/cosmic_expansion.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;conjure&#x2F;cosmic_expansion">Cosmic Expansion</a></li>
     <li><a href="datum/action/cooldown/spell/conjure/the_traps.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;conjure&#x2F;the_traps">The Traps!</a></li>
     </ul></li>
     <li class="has-children"><a href="datum/action/cooldown/spell/conjure_item.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;conjure_item">conjure_item</a><ul class="index-tree">
     <li><a href="datum/action/cooldown/spell/conjure_item/invisible_box.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;conjure_item&#x2F;invisible_box">Invisible Box</a></li>
     </ul></li>
+    <li><a href="datum/action/cooldown/spell/cosmic_rune.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;cosmic_rune">Cosmic Rune</a></li>
     <li><a href="datum/action/cooldown/spell/emp.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;emp">Emplosion</a></li>
     <li><a href="datum/action/cooldown/spell/fire_cascade.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;fire_cascade">Lesser Fire Cascade</a> - Creates one, large, expanding ring of fire around the caster, which does not follow them.</li>
     <li><a href="datum/action/cooldown/spell/fire_sworn.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;fire_sworn">Oath of Fire</a> - Creates a constant Ring of Fire around the caster for a set duration of time, which follows them.</li>
@@ -1468,6 +1475,8 @@ Like telepathy but for multiple people at once!</li>
     <li><a href="datum/component/phylactery.html" title="&#x2F;datum&#x2F;component&#x2F;phylactery">phylactery</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;refundable">refundable</span> - A very basic component saying that this item is TC-refundable in an uplink.
 Refundable items are expected to register COMSIG_ITEM_REFUND themselves.</li>
+    <li><a href="datum/component/regenerator.html" title="&#x2F;datum&#x2F;component&#x2F;regenerator">Regenerator component</a> - A mob with this component will regenerate its health over time, as long as it has not received damage
+in the last X seconds. Taking any damage will reset this cooldown.</li>
     <li><a href="datum/component/religious_tool.html" title="&#x2F;datum&#x2F;component&#x2F;religious_tool">religious_tool</a> - Allows the parent to act similarly to the Altar of Gods with modularity. Invoke and Sect Selection is done via attacking with a bible. This means you cannot sacrifice Bibles (you shouldn't want to do this anyways although now that I mentioned it you probably will want to).</li>
     <li><span class="no-substance">riding&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;riding&#x2F;human">human</span> - Yes, I said humans. No, this won't end well...</li>
     <li><a href="datum/component/surgery_bed.html" title="&#x2F;datum&#x2F;component&#x2F;surgery_bed">surgery_bed</a> - A component for surgery beds and those that act like them, handles patient information, success chance, and available surgeries</li>
@@ -1718,6 +1727,7 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="datum/eldritch_knowledge.html" title="&#x2F;datum&#x2F;eldritch_knowledge">Basic knowledge</a> - #Eldritch Knowledge<ul class="index-tree">
+    <li><a href="datum/eldritch_knowledge/base_cosmic.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;base_cosmic">Eternal Gate</a></li>
     <li><a href="datum/eldritch_knowledge/blade_dance.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;blade_dance">T1 - Dance of the Brand</a></li>
     <li><a href="datum/eldritch_knowledge/duel_stance.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;duel_stance">T2 - Stance of the Torn Champion</a></li>
     <li class="has-children"><a href="datum/eldritch_knowledge/spell.html" title="&#x2F;datum&#x2F;eldritch_knowledge&#x2F;spell">spell</a> - A knowledge subtype that grants the heretic a certain spell.<ul class="index-tree">
@@ -1735,6 +1745,8 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     <li><a href="datum/element/connect_loc.html" title="&#x2F;datum&#x2F;element&#x2F;connect_loc">connect_loc</a> - This element hooks a signal onto the loc the current object is on.
 When the object moves, it will unhook the signal and rehook it to the new object.</li>
     <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
+    <li><a href="datum/element/death_explosion.html" title="&#x2F;datum&#x2F;element&#x2F;death_explosion">death_explosion</a></li>
+    <li><a href="datum/element/effect_trail.html" title="&#x2F;datum&#x2F;element&#x2F;effect_trail">effect_trail</a></li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
     <li><a href="datum/element/frozen.html" title="&#x2F;datum&#x2F;element&#x2F;frozen">frozen</a> - simple element to handle frozen obj's</li>
     <li><a href="datum/element/life_draining.html" title="&#x2F;datum&#x2F;element&#x2F;life_draining">life_draining</a> - Slowly drains HP from a living mob.</li>
@@ -2127,6 +2139,7 @@ This file contains their code, plus code for applying and removing them.<ul clas
     <li><a href="datum/status_effect/drugginess.html" title="&#x2F;datum&#x2F;status_effect&#x2F;drugginess">drugginess</a> - Drugginess / &quot;high&quot; effect, makes your screen rainbow</li>
     <li class="has-children"><a href="datum/status_effect/eldritch.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch">eldritch</a><ul class="index-tree">
     <li><a href="datum/status_effect/eldritch/ash.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch&#x2F;ash">ash</a></li>
+    <li><a href="datum/status_effect/eldritch/cosmic.html" title="&#x2F;datum&#x2F;status_effect&#x2F;eldritch&#x2F;cosmic">cosmic</a></li>
     </ul></li>
     <li><a href="datum/status_effect/exposed.html" title="&#x2F;datum&#x2F;status_effect&#x2F;exposed">exposed</a></li>
     <li><a href="datum/status_effect/fire_ring.html" title="&#x2F;datum&#x2F;status_effect&#x2F;fire_ring">fire_ring</a> - Simple status effect for adding a ring of fire around a mob.</li>
@@ -2171,6 +2184,7 @@ It instead regenerates over time back to the max after blades are consumed</li>
     <li class="has-children"><span title="&#x2F;datum&#x2F;status_effect&#x2F;stabilized">stabilized</span> - STABILIZED EXTRACTS<ul class="index-tree">
     <li><a href="datum/status_effect/stabilized/purple.html" title="&#x2F;datum&#x2F;status_effect&#x2F;stabilized&#x2F;purple">purple</a></li>
     </ul></li>
+    <li><a href="datum/status_effect/star_mark.html" title="&#x2F;datum&#x2F;status_effect&#x2F;star_mark">star_mark</a></li>
     <li><a href="datum/status_effect/void_chill.html" title="&#x2F;datum&#x2F;status_effect&#x2F;void_chill">void_chill</a></li>
     <li><a href="datum/status_effect/wound.html" title="&#x2F;datum&#x2F;status_effect&#x2F;wound">wound</a></li>
     </ul></li>
@@ -2424,11 +2438,11 @@ Will yield a &quot;?&quot;</li>
     </ul></li>
     </ul></li>
     </ul></li>
-    <li class="has-children"><span class="no-substance">node&#x2F;expression&#x2F;operator&#x2F;</span><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;operator&#x2F;binary">binary</span><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;operator&#x2F;binary&#x2F;Add">Add</span> - Arithmetic Operators</li>
-    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;operator&#x2F;binary&#x2F;BitwiseAnd">BitwiseAnd</span> - Bitwise Operators</li>
-    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;operator&#x2F;binary&#x2F;Equal">Equal</span> - Comparison Operators</li>
-    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;operator&#x2F;binary&#x2F;LogicalAnd">LogicalAnd</span> - Logical Operators</li>
+    <li class="has-children"><span class="no-substance">node&#x2F;expression&#x2F;oper&#x2F;</span><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;oper&#x2F;binary">binary</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;oper&#x2F;binary&#x2F;Add">Add</span> - Arithmetic Operators</li>
+    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;oper&#x2F;binary&#x2F;BitwiseAnd">BitwiseAnd</span> - Bitwise Operators</li>
+    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;oper&#x2F;binary&#x2F;Equal">Equal</span> - Comparison Operators</li>
+    <li><span class="no-substance" title="&#x2F;node&#x2F;expression&#x2F;oper&#x2F;binary&#x2F;LogicalAnd">LogicalAnd</span> - Logical Operators</li>
     </ul></li>
     <li class="has-children"><a href="obj.html" title="&#x2F;obj">obj</a><ul class="index-tree">
     <li class="has-children"><a href="obj/docking_port.html" title="&#x2F;obj&#x2F;docking_port">docking_port</a><ul class="index-tree">
@@ -2450,6 +2464,7 @@ also because some objects do not display particles due to how their visuals are 
     <li><a href="obj/effect/anomaly/pyro.html" title="&#x2F;obj&#x2F;effect&#x2F;anomaly&#x2F;pyro">pyroclastic anomaly</a></li>
     </ul></li>
     <li><span class="no-substance">beam&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;beam&#x2F;i_beam">infrared beam</span> - IBeam</li>
+    <li><a href="obj/effect/cosmic_rune.html" title="&#x2F;obj&#x2F;effect&#x2F;cosmic_rune">cosmic rune</a> - A rune that allows you to teleport to the location of a linked rune.</li>
     <li><span class="no-substance">cross_action&#x2F;</span><a href="obj/effect/cross_action/spacetime_dist.html" title="&#x2F;obj&#x2F;effect&#x2F;cross_action&#x2F;spacetime_dist">spacetime distortion</a></li>
     <li><a href="obj/effect/custom_portal.html" title="&#x2F;obj&#x2F;effect&#x2F;custom_portal">portal</a></li>
     <li class="has-children"><span class="no-substance">decal&#x2F;</span><a href="obj/effect/decal/cleanable.html" title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable">cleanable</a><ul class="index-tree">
@@ -2463,6 +2478,7 @@ also because some objects do not display particles due to how their visuals are 
     <li><a href="obj/effect/eldritch.html" title="&#x2F;obj&#x2F;effect&#x2F;eldritch">generic rune</a></li>
     <li><a href="obj/effect/floating_blade.html" title="&#x2F;obj&#x2F;effect&#x2F;floating_blade">knife</a></li>
     <li class="has-children"><a href="obj/effect/forcefield.html" title="&#x2F;obj&#x2F;effect&#x2F;forcefield">FORCEWALL</a><ul class="index-tree">
+    <li><a href="obj/effect/forcefield/cosmic_field.html" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;cosmic_field">Cosmic Field</a> - The cosmic heretics forcefield</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;cult">glowing wall</span> - Cult forcefields</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;mime">invisible wall</span> - Mime forcefields (invisible walls)</li>
     <li><a href="obj/effect/forcefield/wizard.html" title="&#x2F;obj&#x2F;effect&#x2F;forcefield&#x2F;wizard">wizard</a></li>
@@ -3351,6 +3367,7 @@ then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.</
     <li class="has-children"><a href="obj/projectile/magic/fireball.html" title="&#x2F;obj&#x2F;projectile&#x2F;magic&#x2F;fireball">bolt of fireball</a><ul class="index-tree">
     <li><a href="obj/projectile/magic/fireball/eldritch.html" title="&#x2F;obj&#x2F;projectile&#x2F;magic&#x2F;fireball&#x2F;eldritch">bolt of soul fire</a></li>
     </ul></li>
+    <li><a href="obj/projectile/magic/star_ball.html" title="&#x2F;obj&#x2F;projectile&#x2F;magic&#x2F;star_ball">star ball</a></li>
     </ul></li>
     <li><a href="obj/projectile/wire.html" title="&#x2F;obj&#x2F;projectile&#x2F;wire">hook</a> - Projectile</li>
     </ul></li>
@@ -3474,7 +3491,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/f65fac29101c56ea0c2dce7029f97d5e9f8dbe76">f65fac2</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/9590f99d30cb7892969a1949d3932e68dc37ba2c">9590f99</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
