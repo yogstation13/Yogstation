@@ -10,4 +10,4 @@
 	cooldown_time = 8 SECONDS
 	spell_requirements = NONE
 
-	projectile_type = /obj/item/projectile/magic/fireball/infernal
+	projectile_type = /obj/projectile/magic/fireball/infernal
