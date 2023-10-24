@@ -207,7 +207,7 @@
 		return
 
 	victim.adjust_bodytemperature((BODYTEMP_HEATING_MAX + (stacks * 12)) * 0.5 * seconds_per_tick)
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "on_fire")
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
 /**
  * Handles mob ignition, should be the only way to set on_fire to TRUE

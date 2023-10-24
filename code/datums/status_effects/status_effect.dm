@@ -81,6 +81,8 @@
 		on_remove()
 		UnregisterSignal(owner, COMSIG_LIVING_POST_FULLY_HEAL)
 		owner = null
+	if(particle_effect)
+		QDEL_NULL(particle_effect)
 	return ..()
 
 // Status effect process. Handles adjusting its duration and ticks.

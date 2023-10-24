@@ -192,7 +192,7 @@
 		M.AdjustUnconscious(-reac_volume*0.3 SECONDS)
 		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
 
-		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
+		M.adjust_wet_stacks((reac_volume / 10) * M.get_permeability(null, TRUE))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
 

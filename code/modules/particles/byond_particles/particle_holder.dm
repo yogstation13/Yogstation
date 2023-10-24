@@ -20,6 +20,8 @@
 	/// Holds info about how this particle emitter works
 	/// See \code\__DEFINES\particles.dm
 	var/particle_flags = NONE
+	///list of all particle emitters
+	var/list/emitters = list()
 
 	var/atom/parent
 
@@ -46,6 +48,7 @@
 	on_move(parent, null, NORTH)
 
 /obj/effect/abstract/particle_holder/Destroy(force)
+	QDEL_NULL(emitters)
 	QDEL_NULL(particles)
 	parent = null
 	return ..()
