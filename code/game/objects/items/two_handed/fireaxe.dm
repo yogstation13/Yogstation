@@ -65,7 +65,7 @@
 	base_icon_state = "metalh2_axe"
 	name = "metallic hydrogen axe"
 	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherworldly weapon."
-	force_wielded = 18
+	force_wielded = 23
 
 /*
  * Bone Axe
@@ -75,7 +75,7 @@
 	base_icon_state = "bone_axe"
 	name = "bone axe"
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
-	force_wielded = 18
+	force_wielded = 23
 
 /*
  * Energy Fire Axe
@@ -98,7 +98,7 @@
 	sharpness = SHARP_NONE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-	force_wielded = 25
+	force_wielded = 30
 
 	var/w_class_on = WEIGHT_CLASS_BULKY
 
