@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new Heretic paths"
-  - soundadd: "Adds new heretic sounds"
-  - imageadd: "added new sprites, icons, and actions"
