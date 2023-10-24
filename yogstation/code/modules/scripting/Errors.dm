@@ -56,7 +56,7 @@
 
 /datum/scriptError/DuplicateFunction
 
-/datum/scriptError/DuplicateFunction/New(name, token/t)
+/datum/scriptError/DuplicateFunction/New(name, datum/token/t)
 	message = "Function '[name]' defined twice."
 
 /datum/scriptError/ParameterFunction

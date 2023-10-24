@@ -339,4 +339,4 @@
 #undef OPERATOR
 #undef VALUE
 #undef SHIFT
-#undef REDUC
+#undef REDUCE
