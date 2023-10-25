@@ -651,6 +651,7 @@
 	update_parents() // double-check all the pipes are connected on startup
 	if(!powernet)
 		connect_to_network()
+	check_powernet()
 
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()
@@ -660,6 +661,7 @@
 	desired_k = 0
 	power = 0
 	active = FALSE
+	check_powernet()
 	update_icon()
 
 //Controlling the reactor.
