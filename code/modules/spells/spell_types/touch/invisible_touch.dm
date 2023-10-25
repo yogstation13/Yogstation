@@ -1,9 +1,11 @@
+#define MIME_INVISIBLE_TOUCH_LENGTH 16 SECONDS
+
 /datum/action/cooldown/spell/touch/invisible_touch
 	name = "Invisible Touch"
-	desc = "Touch somthing to make it disapear temporarily."
+	desc = "Touch something to make it disappear temporarily."
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
-	button_icon = 'icons/mob/actions/actions_mime.dmi'// todo all sprites and such
+	button_icon = 'icons/mob/actions/actions_mime.dmi'
 	button_icon_state = "mime_speech"
 	panel = "Mime"
 
@@ -14,10 +16,12 @@
 	antimagic_flags = NONE
 
 	school = SCHOOL_MIME
-	cooldown_time = 1 MINUTES
+	cooldown_time = MIME_INVISIBLE_TOUCH_LENGTH * 2
 	spell_max_level = 1
 
 	hand_path = /obj/item/melee/touch_attack/invisible_touch
+	draw_message = span_notice("You channel mime power into your hand.")
+	drop_message = span_notice("You let the power from your hand dissipate.")
 
 	var/list/things = list()
 	var/list/blacklist = list (
@@ -25,21 +29,16 @@
         /obj/structure/closet
         )
 
-/datum/action/cooldown/spell/touch/invisible_touch/Destroy()
-	for(var/obj/O in things)
-		if(!O.alpha)
-			reverttarget(O)
-	..()
-
 /datum/action/cooldown/spell/touch/invisible_touch/is_valid_target(atom/cast_on)
 	// Do not supercall this
 	. = TRUE
+	if(istype(cast_on, /turf/))
+		return FALSE
 	//if(cast_on in blacklist)
-	//	. = FALSE
+	//	return FALSE
 	return
 
 /datum/action/cooldown/spell/touch/invisible_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
-	. = ..()
 	if(victim in blacklist)
 		to_chat(caster, span_warning("[victim] is too dangerous to mess with!"))
 		return
@@ -47,17 +46,24 @@
 		to_chat(caster, span_warning("It doesn't work on other people!")) // Not yet at least
 		return
 	if(isobj(victim))
-		victim.alpha = 0
-		victim.visible_message("[victim] vanishes!")
-	
-		addtimer(CALLBACK(src, PROC_REF(reverttarget), victim), 8 SECONDS)
+		vanish_target(victim)
 	return TRUE
 
-/datum/action/cooldown/spell/touch/invisible_touch/proc/reverttarget(atom/A)
-	if(A)
-		A.alpha = initial(A.alpha)
-		A.visible_message("[A] reappears!")
+/datum/action/cooldown/spell/touch/invisible_touch/proc/vanish_target(atom/T)
+	T.alpha = 0
+	T.visible_message("[T] vanishes!")
+	
+	addtimer(CALLBACK(src, PROC_REF(revert_target), T), MIME_INVISIBLE_TOUCH_LENGTH)
+
+/datum/action/cooldown/spell/touch/invisible_touch/proc/revert_target(atom/T)
+	if(T)
+		T.alpha = initial(T.alpha)
+		T.visible_message("[T] reappears!")
 
 /obj/item/melee/touch_attack/invisible_touch
 	name = "\improper vanishing hand"
 	desc = "\"But I can see it!\""
+	icon_state = "nothing"
+	item_state = "nothing"
+
+#undef MIME_INVISIBLE_TOUCH_LENGTH
