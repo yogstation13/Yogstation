@@ -7,7 +7,7 @@
 	Class: binary
 	Represents a binary operator in the AST. A binary operator takes two operands (ie x and y) and returns a value.
 */
-/node/expression/operator/binary
+/node/expression/oper/binary
 	var/node/expression/exp2
 
 ////////// Comparison Operators //////////

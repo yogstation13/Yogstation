@@ -556,7 +556,7 @@
 /datum/chemical_reaction/hearty_punch
 	name = "Hearty Punch"
 	id = /datum/reagent/consumable/ethanol/hearty_punch
-	results = list(/datum/reagent/consumable/ethanol/hearty_punch = 1)  //Very little, for balance reasons
+	results = list(/datum/reagent/consumable/ethanol/hearty_punch = 6)  //Very little, for balance reasons
 	required_reagents = list(/datum/reagent/consumable/ethanol/brave_bull = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5, /datum/reagent/consumable/ethanol/absinthe = 5)
 	mix_message = "The mixture darkens to a healthy crimson."
 	required_temp = 315 //Piping hot!

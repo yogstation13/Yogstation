@@ -26,6 +26,17 @@
 		name = "light switch ([area.name])"
 
 	update_appearance(UPDATE_ICON)
+	if(mapload)
+		return INITIALIZE_HINT_LATELOAD
+	return
+
+/obj/machinery/light_switch/LateInitialize()
+	if(!is_station_level(z))
+		return
+	var/area/source_area = get_area(get_turf(src))
+	if(source_area.lights_always_start_on)
+		return
+	turn_off()
 
 /obj/machinery/light_switch/update_overlays()
 	. = ..()
@@ -35,6 +46,17 @@
 		. += "light1"
 	else
 		. += "light0"
+
+/obj/machinery/light_switch/proc/turn_off()
+	if(!area.lightswitch)
+		return
+	area.lightswitch = FALSE
+	area.update_icon()
+
+	for(var/obj/machinery/light_switch/L in area)
+		L.update_icon()
+
+	area.power_change()
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()

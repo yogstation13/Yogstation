@@ -8,21 +8,25 @@
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
 		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
 		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
 		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final)
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
 	route = PATH_FLESH
@@ -91,7 +95,7 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/human_target = target
-	var/datum/status_effect/eldritch/eldritch_effect = human_target.has_status_effect(/datum/status_effect/eldritch/rust) || human_target.has_status_effect(/datum/status_effect/eldritch/ash) || human_target.has_status_effect(/datum/status_effect/eldritch/flesh) || human_target.has_status_effect(/datum/status_effect/eldritch/void)
+	var/datum/status_effect/eldritch/eldritch_effect = human_target.has_status_effect(/datum/status_effect/eldritch/rust) || human_target.has_status_effect(/datum/status_effect/eldritch/ash) || human_target.has_status_effect(/datum/status_effect/eldritch/flesh) || human_target.has_status_effect(/datum/status_effect/eldritch/void) || human_target.has_status_effect(/datum/status_effect/eldritch/cosmic)
 	if(eldritch_effect)
 		eldritch_effect.on_effect()
 		if(iscarbon(target))
@@ -119,7 +123,8 @@
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,)
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark)
 	route = PATH_FLESH
 	tier = TIER_MARK
 
@@ -164,7 +169,8 @@
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade)
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade)
 	route = PATH_FLESH
 	tier = TIER_BLADE
 

@@ -32,7 +32,7 @@
 	Proc: Precedence
 	Compares two operators, decides which is higher in the order of operations, and returns <SHIFT> or <REDUCE>.
 */
-		Precedence(node/expression/operator/top, node/expression/operator/input)
+		Precedence(node/expression/oper/top, node/expression/oper/input)
 			if(istype(top))
 				top=top.precedence
 			if(istype(input))
@@ -71,7 +71,7 @@
 	- <GetBinaryOperator()>
 	- <GetUnaryOperator()>
 */
-		GetOperator(O, type=/node/expression/operator, L[])
+		GetOperator(O, type=/node/expression/oper, L[])
 			var/token/T
 			if(istype(O, type)) return O		//O is already the desired type
 			if(istype(O, /token))
@@ -94,7 +94,7 @@
 	- <GetUnaryOperator()>
 */
 		GetBinaryOperator(O)
-			return GetOperator(O, /node/expression/operator/binary, options.binary_operators)
+			return GetOperator(O, /node/expression/oper/binary, options.binary_operators)
 
 /*
 	Proc: GetUnaryOperator
@@ -106,7 +106,7 @@
 	- <GetBinaryOperator()>
 */
 		GetUnaryOperator(O)
-			return GetOperator(O, /node/expression/operator/unary,  options.unary_operators)
+			return GetOperator(O, /node/expression/oper/unary,  options.unary_operators)
 
 /*
 	Proc: Reduce
@@ -114,19 +114,19 @@
 	of the val stack.
 */
 		Reduce(stack/opr, stack/val, check_assignments = 1)
-			var/node/expression/operator/O=opr.Pop()
+			var/node/expression/oper/O=opr.Pop()
 			if(!O) return
 			if(!istype(O))
 				errors+=new/scriptError("Error reducing expression - invalid operator.")
 				return
 			//Take O and assign its operands, popping one or two values from the val stack
 			//depending on whether O is a binary or unary operator.
-			if(istype(O, /node/expression/operator/binary))
-				var/node/expression/operator/binary/B=O
+			if(istype(O, /node/expression/oper/binary))
+				var/node/expression/oper/binary/B=O
 				B.exp2=val.Pop()
 				B.exp =val.Pop()
 				val.Push(B)
-				if(check_assignments && istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable) && !istype(B.exp, /node/expression/member))
+				if(check_assignments && istype(B, /node/expression/oper/binary/Assign) && !istype(B.exp, /node/expression/value/variable) && !istype(B.exp, /node/expression/member))
 					errors += new/scriptError/InvalidAssignment()
 			else
 				O.exp=val.Pop()
@@ -218,7 +218,7 @@
 					B.index = ParseExpression(list("]"))
 					val.Push(B)
 				else if(istype(curToken, /token/symbol))												//Operator found.
-					var/node/expression/operator/curOperator											//Figure out whether it is unary or binary and get a new instance.
+					var/node/expression/oper/curOperator											//Figure out whether it is unary or binary and get a new instance.
 					if(src.expecting==OPERATOR)
 						curOperator=GetBinaryOperator(curToken)
 						if(!curOperator)
@@ -314,8 +314,8 @@
 				if(istype(curToken, /token/symbol) && curToken.value == ")")
 					return exp
 				var/node/expression/E = ParseParamExpression(check_assignments = FALSE)
-				if(E.type == /node/expression/operator/binary/Assign)
-					var/node/expression/operator/binary/Assign/A = E
+				if(E.type == /node/expression/oper/binary/Assign)
+					var/node/expression/oper/binary/Assign/A = E
 					exp.init_list[A.exp] = A.exp2
 				else
 					exp.init_list += E
@@ -337,7 +337,7 @@
 			var/group_token = curToken
 			if(!CheckToken("(", /token/symbol))
 				return
-			return new/node/expression/operator/unary/group(group_token, ParseExpression(list(")")))
+			return new/node/expression/oper/unary/group(group_token, ParseExpression(list(")")))
 
 /*
 	Proc: ParseParamExpression

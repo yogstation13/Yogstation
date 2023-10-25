@@ -1560,3 +1560,82 @@
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(create_blade)), blade_recharge_time)
+
+/datum/status_effect/star_mark
+	id = "star_mark"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 30 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	///overlay used to indicate that someone is marked
+	var/mutable_appearance/cosmic_overlay
+	/// icon file for the overlay
+	var/effect_icon = 'icons/effects/eldritch.dmi'
+	/// icon state for the overlay
+	var/effect_icon_state = "cosmic_ring"
+	/// Storage for the spell caster
+	var/datum/weakref/spell_caster
+
+/atom/movable/screen/alert/status_effect/star_mark
+	name = "Star Mark"
+	desc = "A ring above your head prevents you from entering cosmic fields or teleporting through cosmic runes..."
+	icon_state = "star_mark"
+
+/datum/status_effect/star_mark/on_creation(mob/living/new_owner, mob/living/new_spell_caster)
+	cosmic_overlay = mutable_appearance(effect_icon, effect_icon_state, BELOW_MOB_LAYER)
+	if(new_spell_caster)
+		spell_caster = WEAKREF(new_spell_caster)
+	return ..()
+
+/datum/status_effect/star_mark/Destroy()
+	QDEL_NULL(cosmic_overlay)
+	return ..()
+
+/datum/status_effect/star_mark/on_apply()
+	if(istype(owner, /mob/living/simple_animal/hostile/eldritch/star_gazer))
+		return FALSE
+	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return TRUE
+
+/// Updates the overlay of the owner
+/datum/status_effect/star_mark/proc/update_owner_overlay(atom/source, list/overlays)
+	SIGNAL_HANDLER
+
+	overlays += cosmic_overlay
+
+/datum/status_effect/star_mark/on_remove()
+	UnregisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS)
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return ..()
+
+/datum/status_effect/star_mark/extended
+	duration = 3 MINUTES
+
+/datum/status_effect/eldritch/cosmic
+	id = "cosmic_mark"
+	effect_sprite = "emark6"
+	/// For storing the location when the mark got applied.
+	var/obj/effect/cosmic_diamond/cosmic_diamond
+	/// Effect when triggering mark.
+	var/obj/effect/teleport_effect = /obj/effect/temp_visual/cosmic_cloud
+
+/datum/status_effect/eldritch/cosmic/on_creation(mob/living/new_owner)
+	. = ..()
+	cosmic_diamond = new(get_turf(owner))
+
+/datum/status_effect/eldritch/cosmic/Destroy()
+	QDEL_NULL(cosmic_diamond)
+	return ..()
+
+/datum/status_effect/eldritch/cosmic/on_effect()
+	new teleport_effect(get_turf(owner))
+	new /obj/effect/forcefield/cosmic_field(get_turf(owner))
+	do_teleport(
+		owner,
+		get_turf(cosmic_diamond),
+		no_effects = TRUE,
+		channel = TELEPORT_CHANNEL_MAGIC,
+	)
+	new teleport_effect(get_turf(owner))
+	owner.Paralyze(2 SECONDS)
+	return ..()

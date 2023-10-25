@@ -187,6 +187,12 @@
 	throwforce = 5
 	block_chance = 10
 
+/obj/item/melee/sickly_blade/cosmic
+	name = "cosmic blade"
+	desc = "A piece of the cosmos, shaped like a weapon for you to wield"
+	icon_state = "cosmic_blade"
+	item_state = "cosmic_blade"
+
 /obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, secondattack = FALSE)
 	. = ..()
 	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()

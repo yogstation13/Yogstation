@@ -8,21 +8,25 @@
 		/datum/eldritch_knowledge/base_flesh,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/blade_final)
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_knife)
 	cost = 1
 	route = PATH_VOID
@@ -50,7 +54,7 @@
 	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh) || H.has_status_effect(/datum/status_effect/eldritch/void)
+		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh) || H.has_status_effect(/datum/status_effect/eldritch/void) || H.has_status_effect(/datum/status_effect/eldritch/cosmic)
 		if(E)
 			E.on_effect()
 			H.adjust_silence(10)
@@ -90,7 +94,8 @@
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/blade_mark)
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark)
 	route = PATH_VOID
 	tier = TIER_MARK
 
@@ -146,7 +151,8 @@
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade)
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade)
 	route = PATH_VOID
 	tier = TIER_BLADE
 

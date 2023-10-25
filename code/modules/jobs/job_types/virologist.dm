@@ -43,6 +43,14 @@
 		/obj/item/reagent_containers/glass/bottle/anxiety = 3
 	)
 
+	lightup_areas = list(
+		/area/medical/morgue,
+		/area/medical/surgery,
+		/area/medical/genetics,
+		/area/medical/chemistry
+	)
+	minimal_lightup_areas = list(/area/medical/virology)
+	
 	smells_like = "germlessness"
 
 /datum/outfit/job/virologist

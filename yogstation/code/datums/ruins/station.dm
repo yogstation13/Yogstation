@@ -643,6 +643,11 @@
 	suffix = "3x5_checkpoint.dmm"
 	name = "Maint checkpoint"
 
+/datum/map_template/ruin/station/maint/threexfive/experimental
+	id = "experimental"
+	suffix = "3x5_experimental.dmm"
+	name = "Secure Loot"
+
 /datum/map_template/ruin/station/maint/threexfive/hank
 	id = "hank"
 	suffix = "3x5_hank.dmm"
