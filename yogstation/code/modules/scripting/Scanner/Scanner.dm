@@ -32,7 +32,7 @@
 	var/codepos = 1
 	var/line = 1
 	var/linepos = 0
-	var/datum/n_scriptOptions/nS_Options/options
+	var/datum/n_scriptOptions/options
 
 	///List of characters that end a statement. Each item may only be one character long. Default is a semicolon.
 	var/list/end_stmt = list(";")
@@ -44,15 +44,15 @@
 	var/list/delim = new
 
 
-/datum/n_Scanner/nS_Scanner/New(code, datum/n_scriptOptions/nS_Options/options)
+/datum/n_Scanner/nS_Scanner/New(code, datum/n_scriptOptions/options)
 	. = ..()
 	src.options = options
-	ignore += ascii2text(13) //Carriage return
-	delim += ignore + options.symbols + end_stmt + string_delim
+	src.ignore += ascii2text(13) //Carriage return
+	src.delim += ignore + options.symbols + end_stmt + string_delim
 	LoadCode(code)
 
 /datum/n_Scanner/nS_Scanner/Scan()
-	var/list/tokens = new
+	var/list/datum/token/tokens = new
 	for(, codepos <= length(code), codepos++)
 		var/char = copytext(code, codepos, codepos + 1)
 		var/twochar = copytext(code, codepos, codepos + 2) // For finding comment syntax

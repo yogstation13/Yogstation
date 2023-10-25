@@ -64,8 +64,8 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_enum
 	var/list/entries
 
-/datum/n_enum/New(list/E)
-	entries = E
+/datum/n_enum/New(list/entry_list)
+	src.entries = entry_list
 
 /datum/n_enum/ntsl_get(key, datum/scope/scope, datum/n_Interpreter/interp, node)
 	if(entries.Find(key))
@@ -75,8 +75,8 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_struct
 	var/list/properties
 
-/datum/n_struct/New(list/P)
-	properties = P
+/datum/n_struct/New(list/property_list)
+	src.properties = property_list
 
 /datum/n_struct/proc/get_clean_property(name, compare)
 	var/x = properties[name]
@@ -163,10 +163,10 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	var/obj_type
 	var/proc_ref
 
-/datum/n_function/default_method/New(path, ref, N)
-	obj_type = path
-	proc_ref = ref
-	name = N
+/datum/n_function/default_method/New(path, ref, name)
+	src.obj_type = path
+	src.proc_ref = ref
+	src.name = name
 
 /datum/n_function/default_method/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp)
 	if(!istype(this_obj, obj_type))

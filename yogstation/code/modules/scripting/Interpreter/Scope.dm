@@ -27,7 +27,7 @@
 		src.functions = list()
 	if(parent)
 		src.status = parent.status
-		recursion = parent.recursion
+		src.recursion = parent.recursion
 
 	if(allowed_status & RESET_STATUS || !parent)
 		src.allowed_status = allowed_status & ~RESET_STATUS

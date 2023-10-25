@@ -4,7 +4,6 @@
 /**
  * List operations (lists known as vectors in n_script)
  */
-
 /// Picks one random item from the list
 /datum/n_function/default/pick
 	name = "pick"
@@ -25,7 +24,6 @@
 /**
  * String methods
  */
-
 ///If list, finds a value in it, if text, finds a substring in it
 /datum/n_function/default/find
 	name = "find"
@@ -33,18 +31,19 @@
 /datum/n_function/default/find/execute(this_obj, list/params)
 	var/haystack = params.len >= 1 ? params[1] : null
 	var/needle = params.len >= 2 ? params[2] : null
-	var/start  = params.len >= 3 ? params[3] :  1
-	var/end  = params.len >= 4 ? params[4] :  0
-	if(haystack && needle)
-		if(IS_OBJECT(haystack))
-			if(istype(haystack, /list))
-				if(length(haystack) >= end && start > 0)
-					var/list/listhaystack = haystack
-					return listhaystack.Find(needle, start, end)
-
-		else if(istext(haystack))
-			if(length(haystack) >= end && start > 0)
-				return findtext(haystack, needle, start, end)
+	var/start  = params.len >= 3 ? params[3] : 1
+	var/end  = params.len >= 4 ? params[4] : 0
+	if(!haystack || !needle)
+		return
+	if(IS_OBJECT(haystack))
+		if(!istype(haystack, /list))
+			return
+		if(length(haystack) >= end && start > 0)
+			var/list/listhaystack = haystack
+			return listhaystack.Find(needle, start, end)
+	else if(istext(haystack))
+		if(length(haystack) >= end && start > 0)
+			return findtext(haystack, needle, start, end)
 
 ///Returns a substring of the string
 /datum/n_function/default/substr

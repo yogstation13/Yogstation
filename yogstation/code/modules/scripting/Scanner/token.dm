@@ -26,7 +26,7 @@
 	. = ..()
 	if(isnum(value))
 		return
-	value = text2num(value)
+	src.value = text2num(value)
 	ASSERT(!isnull(value))
 
 /datum/token/end

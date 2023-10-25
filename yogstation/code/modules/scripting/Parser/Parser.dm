@@ -33,12 +33,12 @@
  * An implmentation of a parser for n_Script.
  */
 /datum/n_Parser/nS_Parser
-	var/datum/n_scriptOptions/nS_Options/options
+	var/datum/n_scriptOptions/options
 
-/datum/n_Parser/nS_Parser/New(tokens[], datum/n_scriptOptions/nS_Options/options)
+/datum/n_Parser/nS_Parser/New(tokens[], datum/n_scriptOptions/options)
 	src.tokens = tokens
 	src.options = options
-	curBlock=global_block
+	src.curBlock = global_block
 	return ..()
 
 /datum/n_Parser/nS_Parser/Parse()

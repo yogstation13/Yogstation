@@ -145,7 +145,7 @@
 		signal.frequency = 1459
 	signal.data["name"] = ""
 	signal.data["job"] = ""
-	signal.data["reject"] = 0
+	signal.data["reject"] = FALSE
 	signal.data["server"] = Server
 	Server.Compiler.Run(signal)
 

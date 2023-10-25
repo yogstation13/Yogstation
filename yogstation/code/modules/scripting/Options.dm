@@ -11,12 +11,6 @@
  * n_scriptOptions
  */
 /datum/n_scriptOptions
-
-/*
- * nS_Options
- * An implementation of <n_scriptOptions> for the n_Script language.
- */
-/datum/n_scriptOptions/nS_Options
 	///scanner - Characters that can be in symbols
 	var/list/symbols = list(
 		"(",
@@ -81,11 +75,11 @@
 		"%=" = /datum/node/expression/expression_operator/binary/Assign/Modulo,
 	)
 
-/datum/n_scriptOptions/nS_Options/New()
+/datum/n_scriptOptions/New()
 	. = ..()
-	for(var/O in binary_operators + unary_operators)
-		if(!symbols.Find(O))
-			symbols += O
+	for(var/operators in binary_operators + unary_operators)
+		if(!symbols.Find(operators))
+			symbols += operators
 
 ///Returns TRUE if the character can start a variable, function, or keyword name (by default letters or an underscore)
 /datum/n_scriptOptions/proc/CanStartID(char)

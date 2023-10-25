@@ -4,9 +4,9 @@
  */
 /datum/node/statement
 
-/datum/node/statement/New(token)
+/datum/node/statement/New(datum/token/token)
 	. = ..()
-	src.token=token
+	src.token = token
 
 /*
  * FunctionDefinition
@@ -14,7 +14,7 @@
  */
 /datum/node/statement/FunctionDefinition
 	var/func_name
-	var/list/parameters=new
+	var/list/parameters = new
 	var/datum/node/BlockDefinition/FunctionBlock/block
 
 /*

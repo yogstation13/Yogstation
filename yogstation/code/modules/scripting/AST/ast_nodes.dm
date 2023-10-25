@@ -79,8 +79,8 @@
 	. = ..()
 	if(!name)
 		name = "[type]"
-	token = token
-	exp = exp
+	src.token = token
+	src.exp = exp
 
 /datum/node/expression/expression_operator/ToString()
 	return "operator: [name]"
@@ -137,9 +137,9 @@
 /datum/node/expression/value/variable/New(datum/node/identifier/ident, datum/token/token)
 	. = ..()
 	src.token = token
-	id = ident
+	src.id = ident
 	if(istext(id))
-		id = new(id)
+		src.id = new(id)
 
 /datum/node/expression/value/variable/ToString()
 	return id.ToString()

@@ -42,7 +42,6 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	. = ..()
 	Compiler = null
 
-
 /datum/TCS_Compiler
 	var/datum/n_Interpreter/TCS_Interpreter/interpreter
 	///The telecomms server that is running the code.
@@ -61,9 +60,9 @@ GLOBAL_LIST_INIT(allowed_translations, list(
  * Compile a raw block of text.
  */
 /datum/TCS_Compiler/proc/Compile(code as message)
-	var/datum/n_scriptOptions/nS_Options/options = new()
+	var/datum/n_scriptOptions/options = new()
 	var/datum/n_Scanner/nS_Scanner/scanner = new(code, options)
-	var/list/tokens = scanner.Scan()
+	var/list/datum/token/tokens = scanner.Scan()
 	var/datum/n_Parser/nS_Parser/parser = new(tokens, options)
 	var/datum/node/BlockDefinition/GlobalBlock/program = parser.Parse()
 
@@ -76,7 +75,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		return returnerrors
 
 	interpreter = new(program)
-	interpreter.persist	= TRUE
+	interpreter.persist = TRUE
 	interpreter.Compiler = src
 	interpreter.container = src
 
@@ -94,6 +93,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	interpreter.SetVar("WEST", WEST) // WEST (8)
 
 	// Channel macros
+	// Common server is the one that handles the AI Private Channel, btw.
 	interpreter.SetVar(
 		"channels", new /datum/n_enum(list(
 			"common" = FREQ_COMMON,
@@ -105,7 +105,6 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			"supply" = FREQ_SUPPLY,
 			"service" = FREQ_SERVICE,
 			"centcom" = FREQ_CENTCOM,
-			//common server is the one that handles the AI Private Channel, btw.
 			"aiprivate" = FREQ_AI_PRIVATE,
 		))
 	)
@@ -263,8 +262,10 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	if(signal.data["message"] == "" || !signal.data["message"])
 		signal.data["reject"] = TRUE
 
-/datum/n_struct/signal/New(list/P)
-	properties = P | list(
+/datum/n_struct/signal
+
+/datum/n_struct/signal/New(list/property_list)
+	properties = property_list | list(
 		"content" = "",
 		"freq" = 1459,
 		"source" = "",

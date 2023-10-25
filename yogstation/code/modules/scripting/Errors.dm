@@ -10,15 +10,15 @@
 	message = "Unexpected token: "
 	var/datum/token/token
 
-/datum/scriptError/BadToken/New(datum/token/t)
-	token = t
+/datum/scriptError/BadToken/New(datum/token/token)
+	src.token = token
 
-	if(t && t.line)
-		message = "[t.line]: [message]"
-	if(istype(t))
-		message += "[t.value]"
+	if(token && token.line)
+		message = "[token.line]: [message]"
+	if(istype(token))
+		message += "[token.value]"
 	else
-		message += "[t]"
+		message += "[token]"
 
 /datum/scriptError/InvalidID
 	parent_type=/datum/scriptError/BadToken
@@ -36,8 +36,8 @@
 	message = "Unexpected return statement outside of a function."
 	var/datum/token/token
 
-/datum/scriptError/BadReturn/New(datum/token/t)
-	token=t
+/datum/scriptError/BadReturn/New(datum/token/token)
+	src.token = token
 
 /datum/scriptError/EndOfFile
 	message = "Unexpected end of file."
@@ -45,9 +45,9 @@
 /datum/scriptError/ExpectedToken
 	message = "Expected: "
 
-/datum/scriptError/ExpectedToken/New(id, datum/token/T)
-	if(T)
-		message = "[T.line ? T.line : "???"]: [message]'[id]'. Found '[T.value]'."
+/datum/scriptError/ExpectedToken/New(id, datum/token/token)
+	if(token)
+		message = "[token.line ? token.line : "???"]: [message]'[id]'. Found '[token.value]'."
 	else
 		message = "???: [message]'[id]'. Token did not exist!"
 
@@ -56,16 +56,16 @@
 
 /datum/scriptError/DuplicateFunction
 
-/datum/scriptError/DuplicateFunction/New(name, datum/token/t)
+/datum/scriptError/DuplicateFunction/New(name, datum/token/token)
 	message = "Function '[name]' defined twice."
 
 /datum/scriptError/ParameterFunction
 	message = "You cannot use a function inside a parameter."
 
-/datum/scriptError/ParameterFunction/New(datum/token/t)
+/datum/scriptError/ParameterFunction/New(datum/token/token)
 	var/line = "???"
-	if(t)
-		line = t.line
+	if(token)
+		line = token.line
 	message = "[line]: [message]"
 
 /datum/scriptError/InvalidAssignment
@@ -179,5 +179,5 @@
 /datum/runtimeError/Internal
 	name = "InternalError"
 
-/datum/runtimeError/Internal/New(exception/E)
-	message = E.name
+/datum/runtimeError/Internal/New(exception/exception_message)
+	message = exception_message.name
