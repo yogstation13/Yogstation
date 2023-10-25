@@ -219,6 +219,11 @@
 	suit_store = /obj/item/gun/ballistic/automatic/laser/hotshot
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
 
+/datum/outfit/imperial/psyker
+	name = "Imperial Sanctioned Psyker"
+	suit_store = /obj/item/staff/psyker
+	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
+
 /datum/outfit/imperial/commissar
 	name = "Imperial Commissar"
 	uniform = /obj/item/clothing/under/imperial/commissar
@@ -230,3 +235,84 @@
 	glasses = /obj/item/clothing/glasses/hud/security
 	suit_store =/obj/item/gun/ballistic/automatic/pistol/boltpistol 
 	back = /obj/item/chainsaw_sword
+
+
+// Handling for psyker stuff. Could be in another file but idc enough to find a good spot.
+
+/obj/item/staff
+	name = "inert staff"
+	desc = "Usually used to channel power, this one seems hollow. Probably shouldn`t have it anyways..."
+	icon = ''
+	icon_state = ""
+	item_state = ""
+	lefthand_file = ''
+	righthand_file = '' // TODO, All sprites :3
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
+	force = 8 // bonk
+	throwforce = 5
+	w_class = WEIGHT_CLASS_NORMAL // its a big stick basically
+	hitsound = '' // todo
+	attack_verb = list("thwacked", "cleansed", "purified", "cludged")
+	var/heat = 0 // To allow warp effects
+
+/obj/item/staff/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/staff/process()
+	if(heat > 0)
+		heat --
+	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
+		icon_state = "[initial(icon_state)]" // Purple smoke radiating off?
+
+/obj/item/staff/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..() //Todo make this work. dont use after attack, thats for smacking someone.
+	heat += 2
+	switch(heat)
+		if(heat >= 20 && heat < 30)
+			icon_state = "[initial(icon_state)]-crit"
+			if(COOLDOWN_FINISHED(src, overheat_alert))
+				to_chat(user, span_warning("You feel a presense pressing on your mind!"))
+				COOLDOWN_START(src, overheat_alert, 5 SECONDS)
+		if(heat >= 30 && heat < 40)
+			to_chat(user, span_warning("The strain on your mind is too much!"))
+			gib(usr) // lol dont do that. Think D20 but only bad things. One can gib you tho.
+		if(heat >= 40)
+			addtimer(CALLBACK(src, PROC_REF(warp_gib), user), 5 SECONDS)
+			to_chat(user, span_warning("The denizens of the warp have come for your soul! Embrace the pain!"))
+			usr.say("AAAA HAHAHAHAHA!!!")
+	return
+
+/obj/item/staff/proc/warp_gib(mob/living/user)
+	user.gib() // haha he went too crazy
+
+/obj/item/staff/psyker
+	name = "force staff"
+	desc = "Usually used to channel power, this one seems hollow. Probably shouldn`t have it anyways..."
+
+/datum/psycicpower
+	var/name = "power"
+	var/channel_time = 1 SECONDS //In seconds, how long a spell takes to charge
+	var/obj/item/staff //The staff being used to channel
+	var/mob/living/psyker //The slab's holder
+	var/heat_cost = 5//the amount of heat the spell generates
+	var/sort_priority = 1 //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
+	var/cast_slowdown = 0
+	var/staff_overlay
+	var/ranged_type = /datum/action/innate/slab
+	var/ranged_message = "This is a huge goddamn bug, how'd you cast this?"
+	var/timeout_time = 0
+	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
+	var/datum/progressbar/progbar
+
+/datum/clockwork_scripture/ranged_ability/Destroy()
+	qdel(progbar)
+	return ..()
+
+/datum/psycicpower/headpop
+	name = "Mind Detonation"
+	channel_time = 40
+	ranged_type = /datum/action/innate/slab/kindle
+	timeout_time = 50
+	cast_slowdown = 1
+	heat_cost = 25 // so that 2 uses will gib you
