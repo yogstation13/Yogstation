@@ -9,6 +9,7 @@
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
 	antag_hud_name = "darkspawn"
+	ui_name = "AntagInfoDarkspawn"
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	antag_moodlet = /datum/mood_event/sling
 
@@ -33,6 +34,59 @@
 	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
 	var/datum/action/cooldown/spell/psi_web/psi_web_action //Used to link the menu with our antag datum
 	var/specialization = NONE
+
+/datum/antagonist/darkspawn/ui_data(mob/user)
+	var/list/data = list()
+	var/datum/antagonist/darkspawn/darkspawn = antag_datum
+
+	if(!istype(darkspawn))
+		CRASH("darkspawn menu started with wrong datum.")
+
+	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [SSticker.mode.required_succs] unique drained total"
+	data["specialization"] = darkspawn.specialization //whether or not they've picked their specialization
+
+
+	for(var/category in show_categories)
+		var/list/category_data = list()
+		category_data["name"] = category
+
+		var/list/upgrades = list()
+		for(var/path in subtypesof(/datum/psi_web))
+			var/datum/psi_web/selection = new path
+
+			if(!selection.check_show(user))
+				continue
+
+			var/list/AL = list()
+			AL["name"] = selection.name
+			AL["desc"] = selection.desc
+			AL["lucidity_cost"] = selection.lucidity_cost
+			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_cost
+			AL["type_path"] = selection.type
+			
+			if(category == selection.menu_tab)
+				upgrades += list(AL)
+
+			qdel(selection)
+
+		category_data["upgrades"] = upgrades
+		data["categories"] += list(category_data)
+
+	return data
+
+/datum/antagonist/darkspawn/ui_act(action, params)
+	if(..())
+		return
+	var/datum/antagonist/darkspawn/darkspawn = antag_datum
+	if(!istype(darkspawn))
+		return
+	switch(action)
+		if("purchase")
+			var/upgradePath = text2path(params["upgradePath"])
+			if(!ispath(upgradePath, /datum/psi_web))
+				return FALSE
+			var/datum/psi_web/selected = new upgradePath
+			selected.on_purchase(darkspawn?.owner?.current)
 
 // Antagonist datum things like assignment //
 /datum/antagonist/darkspawn/on_gain()
