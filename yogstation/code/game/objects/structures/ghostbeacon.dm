@@ -8,7 +8,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mob/living/carbon/ghosts = list()
 	var/area/spawnArea
-	var/restricted = TRUE
+	var/restricted = FALSE
 
 /obj/structure/ghostbeacon/Initialize(mapload)
 	. = ..()
@@ -100,5 +100,5 @@
 	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 
-/obj/structure/ghostbeacon/unrestricted
-	restricted = FALSE
+/obj/structure/ghostbeacon/restricted
+	restricted = TRUE
