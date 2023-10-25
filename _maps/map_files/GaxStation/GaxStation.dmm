@@ -43889,7 +43889,7 @@
 /obj/machinery/airalarm/directional/north,
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier/faxmachine{
-	department = "Syndicate Command Field Administration Vessel"
+	department = "SSV Gateway"
 	},
 /obj/machinery/camera/all{
 	c_tag = "SSV Gateway"
