@@ -5,8 +5,8 @@
 	desc = "Touch something to make it disappear temporarily."
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
-	button_icon = 'icons/mob/actions/actions_mime.dmi'
-	button_icon_state = "mime_speech"
+	button_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "nothing"
 	panel = "Mime"
 
 	invocation = ""
@@ -31,21 +31,17 @@
         )
 
 /datum/action/cooldown/spell/touch/invisible_touch/is_valid_target(atom/cast_on)
-	// Do not supercall this
-	. = FALSE
-	if(istype(cast_on, /obj/) || istype(cast_on, /mob/living/carbon))
-		. = TRUE
-	//if(cast_on in blacklist)
-	//	return FALSE
-	return
+	return TRUE
 
 /datum/action/cooldown/spell/touch/invisible_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	if(isturf(victim))
+		return FALSE
 	if(victim in blacklist)
 		to_chat(caster, span_warning("[victim] is too dangerous to mess with!"))
-		return
+		return FALSE
 	if(iscarbon(victim))
 		to_chat(caster, span_warning("It doesn't work on other people!")) // Not yet at least
-		return
+		return FALSE
 	if(isobj(victim))
 		vanish_target(victim)
 	return TRUE
