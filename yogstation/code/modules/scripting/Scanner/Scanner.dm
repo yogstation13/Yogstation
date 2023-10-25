@@ -46,13 +46,13 @@
 
 /datum/n_Scanner/nS_Scanner/New(code, datum/n_scriptOptions/nS_Options/options)
 	. = ..()
+	src.options = options
 	ignore += ascii2text(13) //Carriage return
 	delim += ignore + options.symbols + end_stmt + string_delim
-	src.options = options
 	LoadCode(code)
 
 /datum/n_Scanner/nS_Scanner/Scan()
-	var/list/tokens=new
+	var/list/tokens = new
 	for(, codepos <= length(code), codepos++)
 		var/char = copytext(code, codepos, codepos + 1)
 		var/twochar = copytext(code, codepos, codepos + 2) // For finding comment syntax
@@ -75,7 +75,6 @@
 			tokens += ReadNumber()
 		else if(options.symbols.Find(char))
 			tokens += ReadSymbol()
-
 
 	codepos = initial(codepos)
 	line = initial(line)

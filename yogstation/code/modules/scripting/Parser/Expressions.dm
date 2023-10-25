@@ -53,7 +53,7 @@
  * - <GetBinaryOperator()>
  * - <GetUnaryOperator()>
  */
-/datum/n_Parser/nS_Parser/proc/GetOperator(O, type=/datum/node/expression/expression_operator, L[])
+/datum/n_Parser/nS_Parser/proc/GetOperator(O, type = /datum/node/expression/expression_operator, L[])
 	var/datum/token/T
 	if(istype(O, type))
 		return O

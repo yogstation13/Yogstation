@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		return returnerrors
 
 	interpreter = new(program)
-	interpreter.persist	= 1
+	interpreter.persist	= TRUE
 	interpreter.Compiler = src
 	interpreter.container = src
 
@@ -90,32 +90,36 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 
 	interpreter.SetVar("NORTH", NORTH) // NORTH (1)
 	interpreter.SetVar("SOUTH", SOUTH) // SOUTH (2)
-	interpreter.SetVar("EAST", EAST) // EAST  (4)
-	interpreter.SetVar("WEST", WEST) // WEST  (8)
+	interpreter.SetVar("EAST", EAST) // EAST (4)
+	interpreter.SetVar("WEST", WEST) // WEST (8)
 
 	// Channel macros
-	interpreter.SetVar("channels", new /datum/n_enum(list(
-		"common" = FREQ_COMMON,
-		"science" = FREQ_SCIENCE,
-		"command" = FREQ_COMMAND,
-		"medical" = FREQ_MEDICAL,
-		"engineering" = FREQ_ENGINEERING,
-		"security" = FREQ_SECURITY,
-		"supply" = FREQ_SUPPLY,
-		"service" = FREQ_SERVICE,
-		"centcom" = FREQ_CENTCOM,
-		//common server is the one that handles the AI Private Channel, btw.
-		"aiprivate" = FREQ_AI_PRIVATE,
-	)))
+	interpreter.SetVar(
+		"channels", new /datum/n_enum(list(
+			"common" = FREQ_COMMON,
+			"science" = FREQ_SCIENCE,
+			"command" = FREQ_COMMAND,
+			"medical" = FREQ_MEDICAL,
+			"engineering" = FREQ_ENGINEERING,
+			"security" = FREQ_SECURITY,
+			"supply" = FREQ_SUPPLY,
+			"service" = FREQ_SERVICE,
+			"centcom" = FREQ_CENTCOM,
+			//common server is the one that handles the AI Private Channel, btw.
+			"aiprivate" = FREQ_AI_PRIVATE,
+		))
+	)
 
 
-	interpreter.SetVar("filter_types", new /datum/n_enum(list(
-		"robot" = SPAN_ROBOT,
-		"loud" = SPAN_YELL,
-		"emphasis" = SPAN_ITALICS,
-		"wacky" = SPAN_SANS,
-		"commanding" = SPAN_COMMAND,
-	)))
+	interpreter.SetVar(
+		"filter_types", new /datum/n_enum(list(
+			"robot" = SPAN_ROBOT,
+			"loud" = SPAN_YELL,
+			"emphasis" = SPAN_ITALICS,
+			"wacky" = SPAN_SANS,
+			"commanding" = SPAN_COMMAND,
+		))
+	)
 
 	/**
 	 * Current allowed span classes
