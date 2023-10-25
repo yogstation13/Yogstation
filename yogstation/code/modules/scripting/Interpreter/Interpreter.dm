@@ -27,6 +27,10 @@
 #define MAX_STRINGLEN 1024
 #define MAX_LISTLEN 256
 
+/**
+ * n_Interpreter
+ * Procedures allowing for interaction with the script that is being run by the interpreter object.
+ */
 /datum/n_Interpreter
 	var/datum/scope/globalScope
 	var/datum/node/BlockDefinition/program
@@ -53,6 +57,21 @@
 	if(program)
 		Load(program)
 
+/**
+ * Load
+ * Loads a 'compiled' script into Memory.
+ * program - A <GlobalBlock> object which represents the script's global scope.
+ * 
+ * Parameters:
+ * program - A <GlobalBlock> object which represents the script's global scope.
+ */
+/datum/n_Interpreter/proc/Load(datum/node/BlockDefinition/GlobalBlock/program)
+	to_chat(world, "Called Load: creating program [program]")
+	ASSERT(program)
+	src.program = program
+	CreateGlobalScope()
+	alertadmins = FALSE
+
 ///Trims strings and vectors down to an acceptable size, to prevent runaway memory usage
 /datum/n_Interpreter/proc/Trim(value)
 	if(istext(value) && (length(value) > MAX_STRINGLEN))
@@ -78,6 +97,7 @@
 
 /datum/n_Interpreter/proc/CreateGlobalScope()
 	var/datum/scope/S = new(program, null)
+	to_chat(world, "CREATING GLOBAL SCOPE: [S]")
 	globalScope = S
 	for(var/functype in subtypesof(/datum/n_function/default))
 		var/datum/n_function/default/god_damn_it_byond = functype

@@ -225,5 +225,6 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 
 /datum/n_function/list_swap
 	name = "Swap"
+
 /datum/n_function/list_swap/execute(list/this_obj, list/params)
 	this_obj.Swap(params[1], params[2])

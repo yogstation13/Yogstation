@@ -53,7 +53,7 @@
 
 /datum/n_Scanner/nS_Scanner/Scan()
 	var/list/tokens=new
-	for(, src.codepos<=length(code), src.codepos++)
+	for(, codepos <= length(code), codepos++)
 		var/char = copytext(code, codepos, codepos + 1)
 		var/twochar = copytext(code, codepos, codepos + 2) // For finding comment syntax
 		if(char == "\n")

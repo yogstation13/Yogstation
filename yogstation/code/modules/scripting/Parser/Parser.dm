@@ -36,15 +36,15 @@
 	var/datum/n_scriptOptions/nS_Options/options
 
 /datum/n_Parser/nS_Parser/New(tokens[], datum/n_scriptOptions/nS_Options/options)
-	src.tokens=tokens
+	src.tokens = tokens
 	src.options=options
 	curBlock=global_block
 	return ..()
 
 /datum/n_Parser/nS_Parser/Parse()
 	ASSERT(tokens)
-	for(,src.index<=src.tokens.len, src.index++)
-		curToken=tokens[index]
+	for(,index <= tokens.len, index++)
+		curToken = tokens[index]
 		switch(curToken.type)
 			if(/datum/token/keyword)
 				var/datum/n_Keyword/kw = options.keywords[curToken.value]

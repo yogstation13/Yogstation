@@ -1,34 +1,10 @@
-/*
- * n_Interpreter
- * Procedures allowing for interaction with the script that is being run by the interpreter object.
- */
-
-/datum/n_Interpreter
-
-/**
- * Load
- * Loads a 'compiled' script into Memory.
- * program - A <GlobalBlock> object which represents the script's global scope.
- * 
- * Parameters:
- * program - A <GlobalBlock> object which represents the script's global scope.
- */
-/datum/n_Interpreter/proc/Load(datum/node/BlockDefinition/GlobalBlock/program)
-	ASSERT(program)
-	src.program = program
-	CreateGlobalScope()
-	alertadmins = FALSE
-
-/**
- * Run
- * Runs the script.
- */
+///Runs the Script.
 /datum/n_Interpreter/proc/Run()
 	cur_recursion = 0 // reset recursion
 	cur_statements = 0 // reset CPU tracking
 
-	ASSERT(src.program)
-	. = RunBlock(src.program)
+	ASSERT(program)
+	. = RunBlock(program)
 
 /**
  * SetVar

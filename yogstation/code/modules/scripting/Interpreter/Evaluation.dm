@@ -1,18 +1,16 @@
-/datum/n_Interpreter
-
 /datum/n_Interpreter/proc/Eval(datum/node/expression/exp, datum/scope/scope)
 	if(istype(exp, /datum/node/expression/FunctionCall))
 		. = RunFunction(exp, scope)
 	else if(istype(exp, /datum/node/expression/expression_operator))
 		. = EvalOperator(exp, scope)
 	else if(istype(exp, /datum/node/expression/value/literal))
-		var/datum/node/expression/value/literal/lit=exp
+		var/datum/node/expression/value/literal/lit = exp
 		. = lit.value
 	else if(istype(exp, /datum/node/expression/value/reference))
-		var/datum/node/expression/value/reference/ref=exp
+		var/datum/node/expression/value/reference/ref = exp
 		. = ref.value
 	else if(istype(exp, /datum/node/expression/value/variable))
-		var/datum/node/expression/value/variable/v=exp
+		var/datum/node/expression/value/variable/v = exp
 		. = scope.get_var(v.id.id_name, src, v)
 	else if(istype(exp, /datum/node/expression/value/list_init))
 		var/datum/node/expression/value/list_init/list_exp = exp
@@ -44,7 +42,7 @@
 
 /datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, datum/scope/scope)
 	if(istype(exp, /datum/node/expression/expression_operator/binary/Assign))
-		var/datum/node/expression/expression_operator/binary/Assign/ass=exp
+		var/datum/node/expression/expression_operator/binary/Assign/ass = exp
 		var/member_obj
 		var/member_idx
 		if(istype(ass.exp, /datum/node/expression/value/variable))
@@ -119,7 +117,7 @@
 				RaiseError(new /datum/runtimeError/InvalidAssignment(), scope, ass)
 		return out_value
 	else if(istype(exp, /datum/node/expression/expression_operator/binary))
-		var/datum/node/expression/expression_operator/binary/bin=exp
+		var/datum/node/expression/expression_operator/binary/bin = exp
 		switch(bin.type)
 			if(/datum/node/expression/expression_operator/binary/Equal)
 				return Equal(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)

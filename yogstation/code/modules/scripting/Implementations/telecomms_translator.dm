@@ -1,7 +1,6 @@
 /**
  * Nanotrasen TCS Language - Made by Doohl, ported to Yogs by Altoids
  */
-
 #define HUMAN (1<<0)
 #define MONKEY (1<<1)
 #define ROBOT (1<<2)
@@ -24,6 +23,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans, list(
 	SPAN_COMMAND,
 	SPAN_CLOWN,
 ))
+
 ///Language datums that players are allowed to translate to in a radio transmission.
 ///This is fucking broken.
 GLOBAL_LIST_INIT(allowed_translations, list(
@@ -62,7 +62,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
  */
 /datum/TCS_Compiler/proc/Compile(code as message)
 	var/datum/n_scriptOptions/nS_Options/options = new()
-	var/datum/n_Scanner/scanner = new(code, options)
+	var/datum/n_Scanner/nS_Scanner/scanner = new(code, options)
 	var/list/tokens = scanner.Scan()
 	var/datum/n_Parser/nS_Parser/parser = new(tokens, options)
 	var/datum/node/BlockDefinition/GlobalBlock/program = parser.Parse()
@@ -187,10 +187,10 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			oldlangbits = BONE
 		if(/datum/language/mothian)
 			oldlangbits = MOTH
-		if(/datum/language/felinid) 
-			oldlangbits  = CAT
-		if(/datum/language/english) 
-			oldlangbits  = ENGLISH
+		if(/datum/language/felinid)
+			oldlangbits = CAT
+		if(/datum/language/english)
+			oldlangbits = ENGLISH
 
 	// Signal data
 	var/datum/n_struct/signal/script_signal = new(list(
