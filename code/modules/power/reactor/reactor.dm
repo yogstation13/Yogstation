@@ -253,7 +253,7 @@
 
 	if(C.powernet != powernet)
 		powernet = C.powernet
-		return TRUE
+
 	return TRUE
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/process()
