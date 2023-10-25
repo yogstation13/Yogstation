@@ -209,7 +209,7 @@
 		if(prob(100 - severity * 30))
 			new /obj/effect/temp_visual/emp(get_turf(src))
 
-/obj/structure/blob/tesla_act(power)
+/obj/structure/blob/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..()
 	if(overmind)
 		if(overmind.blobstrain.tesla_reaction(src, power))

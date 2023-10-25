@@ -113,7 +113,7 @@
 		D.apply_damage(A.get_punchdamagehigh() + 5, STAMINA)	//15 damage
 		log_combat(A, D, "kicked (CQC)")
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
-		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
+		addtimer(CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH)
 	if(!(D.mobility_flags & MOBILITY_STAND) && !D.stat)
 		log_combat(A, D, "prone-kicked(CQC)")
 		D.visible_message(span_warning("[A] firmly kicks [D] in the abdomen!"), \

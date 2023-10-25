@@ -165,17 +165,32 @@
 	. += "<div class='ml-3'>"
 
 	if(infestation <= sanitization && flesh_damage <= flesh_healing)
-		. += "No further treatment required: Burns will heal shortly."
+		. += "[span_green("No further treatment required: Burns will heal shortly.")]"
 	else
-		switch(infestation)
-			if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-				. += "Infection Level: Moderate\n"
-			if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-				. += "Infection Level: Severe\n"
-			if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-				. += "Infection Level: <span class='deadsay'>CRITICAL</span>\n"
-			if(WOUND_INFECTION_SEPTIC to INFINITY)
-				. += "Infection Level: <span class='deadsay'>LOSS IMMINENT</span>\n"
+		. += "Wound Bed Damage: [span_deadsay("[flesh_damage]")]\n"
+		if(flesh_healing > 0)
+			. += "Positive signs of healing in the flesh damage, rate: [span_green("[round(flesh_healing, 0.01)]")]\n"
+		if(infestation > 0)
+			. += "Current Sanitization Effect: [span_brass("[clamp(round(sanitization/infestation*100, 1),0,100)]%")]\n"
+			if(sanitization > 0)
+				. += "[span_green("Sanitization in effect, infection level is decreasing.")]\n"
+			switch(infestation)
+				if(0 to WOUND_INFECTION_MODERATE)
+					. += "Infection Level: Minimal\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_MODERATE-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
+					. += "Infection Level: Moderate\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEVERE-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
+					. += "Infection Level: Severe\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_CRITICAL-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
+					. += "Infection Level: <span class='deadsay'>CRITICAL</span>\n"
+					. += "Time Until Next Infection Level: [span_abductor("[DisplayTimeText((WOUND_INFECTION_SEPTIC-infestation)/infestation_rate*10)]")]\n"
+				if(WOUND_INFECTION_SEPTIC to INFINITY)
+					. += "Infection Level: <span class='deadsay'>LOSS IMMINENT</span>\n"
+		else
+			. += "[span_green("No infection detected.")]\n"
 		if(infestation > sanitization)
 			. += "\tSurgical debridement, antibiotics/sterilizers, or regenerative mesh will rid infection. Paramedic UV penlights are also effective.\n"
 
@@ -247,7 +262,7 @@
 	else if(istype(I, /obj/item/flashlight/pen/paramedic))
 		uv(I, user)
 
-// people complained about burns not healing on stasis beds, so in addition to checking if it's cured, they also get the special ability to very slowly heal on stasis beds if they have the healing effects stored
+// people complained about burns not healing on stasis beds, so in addition to checking if it's cured, they also get the special ability to very slowly heal on stasis beds if they have the healing effects stored.
 /datum/wound/burn/on_stasis()
 	. = ..()
 	if(flesh_healing > 0)

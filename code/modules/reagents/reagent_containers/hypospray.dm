@@ -109,7 +109,7 @@
 	amount_per_transfer_from_this = 12
 	volume = 12
 	ignore_flags = 1 //so you can medipen through hardsuits
-	reagent_flags = DRAWABLE
+	reagent_flags = NONE
 	flags_1 = null
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/coagulant = 2)
 	custom_price = 40

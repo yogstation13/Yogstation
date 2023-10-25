@@ -3,6 +3,7 @@
 	floor_tile = /obj/item/stack/tile/plasteel
 	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 	burnt_states = list("floorscorched1", "floorscorched2")
+	grime = TRUE
 
 /turf/open/floor/plasteel/examine(mob/user)
 	. = ..()
@@ -107,15 +108,19 @@
 
 /turf/open/floor/plasteel/white
 	icon_state = "white"
+	grime_alpha = 20
 
 /turf/open/floor/plasteel/whitegrad
 	icon_state = "whitegreygrad"
+	grime_alpha = 30
 
 /turf/open/floor/plasteel/white/side
 	icon_state = "whitehall"
+	grime_alpha = 30
 
 /turf/open/floor/plasteel/white/corner
 	icon_state = "whitecorner"
+	grime_alpha = 30
 
 /turf/open/floor/plasteel/airless/white
 	icon_state = "white"
@@ -131,12 +136,6 @@
 
 /turf/open/floor/plasteel/white/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-
-/turf/open/floor/plasteel/yellowsiding
-	icon_state = "yellowsiding"
-
-/turf/open/floor/plasteel/yellowsiding/corner
-	icon_state = "yellowcornersiding"
 
 /turf/open/floor/plasteel/recharge_floor
 	icon_state = "recharge_floor"

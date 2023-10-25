@@ -11,4 +11,4 @@
 	cooldown_time = 35 SECONDS
 	spell_requirements = NONE
 
-	projectile_type = /obj/item/projectile/magic/aoe/juggernaut
+	projectile_type = /obj/projectile/magic/aoe/juggernaut

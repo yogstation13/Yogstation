@@ -381,3 +381,11 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
+
+/obj/item/clothing/mask/pocketcatmask
+	name = "peculiar cat mask"
+	desc = "this mask makes you a little uneasy"
+	icon_state = "pocketmask"
+	item_state = "pocketmask"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_cover = MASKCOVERSEYES

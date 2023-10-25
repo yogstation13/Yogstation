@@ -32,6 +32,8 @@
 		/obj/item/book/mimery = 1,
 	)
 
+	minimal_lightup_areas = list(/area/crew_quarters/theatre)
+	
 	smells_like = "complete nothingness"
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)

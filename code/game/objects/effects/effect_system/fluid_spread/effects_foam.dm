@@ -272,8 +272,10 @@
 	location.air_update_turf(FALSE, FALSE)
 
 /obj/effect/particle_effect/fluid/foam/firefighting/make_result()
+	if(!absorbed_plasma) // don't bother if it didn't scrub any plasma
+		return
 	var/atom/movable/deposit = ..()
-	if(istype(deposit) && deposit.reagents && absorbed_plasma > 0)
+	if(istype(deposit) && deposit.reagents)
 		deposit.reagents.add_reagent(/datum/reagent/stable_plasma, absorbed_plasma)
 		absorbed_plasma = 0
 	return deposit

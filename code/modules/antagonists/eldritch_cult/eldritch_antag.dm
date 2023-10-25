@@ -5,6 +5,7 @@
 	antag_moodlet = /datum/mood_event/heretics
 	job_rank = ROLE_HERETIC
 	antag_hud_name = "heretic"
+	ui_name = "AntagInfoHeretic"
 	can_hijack = HIJACK_HIJACKER
 	show_to_ghosts = TRUE
 	preview_outfit = /datum/outfit/heretic
@@ -21,54 +22,157 @@
 ///tracks the number of knowledges to next tier, currently 3
 	var/tier_counter = 0
 ///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
+///order these from main path ability (will choose the color in the UI) to minor abilities below them (will once again, make sense if you look at the in game UI)
 	var/list/knowledges = list(	
 	TIER_PATH = list(
 		/datum/eldritch_knowledge/base_ash,
 		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_rust, 
-		/datum/eldritch_knowledge/base_mind),
+		/datum/eldritch_knowledge/base_rust,
+		/datum/eldritch_knowledge/base_mind,
+		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic),
 	TIER_1 = list(
-		/datum/eldritch_knowledge/spell/ashen_shift,
-		/datum/eldritch_knowledge/ashen_eyes,
+		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
 		/datum/eldritch_knowledge/rust_regen,
-		/datum/eldritch_knowledge/armor,
-		/datum/eldritch_knowledge/essence,
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
+		/datum/eldritch_knowledge/spell/void_phase,
+		/datum/eldritch_knowledge/blade_dance,
+		/datum/eldritch_knowledge/spell/cosmic_runes,
+		/datum/eldritch_knowledge/armor,
+		/datum/eldritch_knowledge/void_cloak,
+		/datum/eldritch_knowledge/ashen_eyes,
+		/datum/eldritch_knowledge/essence,
 		/datum/eldritch_knowledge/eldritch_eye),
 	TIER_MARK = list(
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/mind_mark),
+		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark),
 	TIER_2 = list(
-		/datum/eldritch_knowledge/blindness,
-		/datum/eldritch_knowledge/corrosion,
-		/datum/eldritch_knowledge/paralysis,
+		/datum/eldritch_knowledge/spell/volcano_blast,
 		/datum/eldritch_knowledge/raw_prophet,
-		/datum/eldritch_knowledge/spell/blood_siphon,
 		/datum/eldritch_knowledge/spell/area_conversion,
 		/datum/eldritch_knowledge/spell/assault,
-		/datum/eldritch_knowledge/spell/eldritchbolt),
+		/datum/eldritch_knowledge/cold_snap,
+		/datum/eldritch_knowledge/duel_stance,
+		/datum/eldritch_knowledge/spell/star_blast,
+		/datum/eldritch_knowledge/spell/blood_siphon,
+		/datum/eldritch_knowledge/spell/eldritchbolt,
+		/datum/eldritch_knowledge/spell/void_blast),
 	TIER_BLADE = list(
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade),
+		/datum/eldritch_knowledge/mind_blade_upgrade,
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade),
 	TIER_3 = list(
 		/datum/eldritch_knowledge/spell/flame_birth,
-		/datum/eldritch_knowledge/spell/cleave,
 		/datum/eldritch_knowledge/stalker,
-		/datum/eldritch_knowledge/ashy,
-		/datum/eldritch_knowledge/rusty,
 		/datum/eldritch_knowledge/spell/entropic_plume,
 		/datum/eldritch_knowledge/cerebral_control,
-		/datum/eldritch_knowledge/spell/famished_roar),
+		/datum/eldritch_knowledge/spell/void_pull,
+		/datum/eldritch_knowledge/spell/furious_steel,
+		/datum/eldritch_knowledge/spell/cosmic_expansion,
+		/datum/eldritch_knowledge/ashy,
+		/datum/eldritch_knowledge/rusty,
+		/datum/eldritch_knowledge/spell/cleave,
+		/datum/eldritch_knowledge/spell/famished_roar,
+		/datum/eldritch_knowledge/spell/call_of_ice),
 	TIER_ASCEND = list(
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/rust_final, 
-		/datum/eldritch_knowledge/mind_final))
+		/datum/eldritch_knowledge/rust_final,
+		/datum/eldritch_knowledge/mind_final,
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final))
+
+	var/static/list/path_to_ui_color = list(
+		PATH_START = "grey",
+		PATH_SIDE = "green",
+		PATH_RUST = "brown",
+		PATH_FLESH = "red",
+		PATH_ASH = "white",
+		PATH_VOID = "blue",
+		PATH_MIND = "pink",
+		PATH_BLADE = "label", // my favorite color is label
+		PATH_COSMIC = "purple",
+		PATH_KNOCK = "yellow",
+	)
+
+/datum/antagonist/heretic/ui_data(mob/user)
+	var/list/data = list()
+	
+	data["charges"] = charge
+	data["total_sacrifices"] = total_sacrifices
+	data["ascended"] = ascended
+
+	for(var/datum/eldritch_knowledge/knowledge as anything in get_researchable_knowledge())
+		var/list/knowledge_data = list()
+		knowledge_data["path"] = lore
+		knowledge_data["name"] = initial(knowledge.name)
+		knowledge_data["desc"] = initial(knowledge.desc)
+		knowledge_data["gainFlavor"] = initial(knowledge.gain_text)
+		knowledge_data["cost"] = initial(knowledge.cost)
+		knowledge_data["disabled"] = (initial(knowledge.cost) > charge)
+
+		// Final knowledge can't be learned until all objectives are complete.
+		//if(ispath(knowledge, /datum/eldritch_transmutation/final))
+			///knowledge_data["disabled"] = !can_ascend()
+
+		knowledge_data["hereticPath"] = initial(knowledge.route)
+		knowledge_data["color"] = path_to_ui_color[initial(knowledge.route)] || "grey"
+
+		data["learnableKnowledge"] += list(knowledge_data)
+
+	for(var/path in researched_knowledge)
+		var/list/knowledge_data = list()
+		var/datum/eldritch_knowledge/found_knowledge = researched_knowledge[path]
+		knowledge_data["name"] = found_knowledge.name
+		knowledge_data["desc"] = found_knowledge.desc
+		knowledge_data["gainFlavor"] = found_knowledge.gain_text
+		knowledge_data["cost"] = found_knowledge.cost
+		knowledge_data["hereticPath"] = found_knowledge.route
+		knowledge_data["color"] = path_to_ui_color[found_knowledge.route] || "grey"
+
+		data["learnedKnowledge"] += list(knowledge_data)
+
+	return data
+
+/datum/antagonist/heretic/ui_static_data(mob/user)
+	var/list/data = list()
+
+	data["objectives"] = get_objectives()
+
+	
+
+	return data
+
+/datum/antagonist/heretic/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("research")
+			var/ekname = params["name"]
+			for(var/X in get_researchable_knowledge())
+				var/datum/eldritch_knowledge/EK = X
+				if(initial(EK.name) != ekname)
+					continue
+				if(gain_knowledge(EK))
+					return TRUE
+
+/datum/antagonist/heretic/ui_status(mob/user, datum/ui_state/state)
+	if(user.stat == DEAD)
+		return UI_CLOSE
+	return ..()
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -84,7 +188,7 @@
 	Your book allows you to gain abilities with research points. You cannot undo research, so choose your path wisely!<br>\
 	You gain research points by collecting influences or sacrificing targets by using a living heart and a transmutation rune.<br>\
 	You can find a basic guide at : https://wiki.yogstation.net/wiki/Heretic </span><br>\
-	If you need to quickly check your unlocked transmutation recipes, ALT + CLICK your Codex Cicatrix.")
+	If you need to quickly check your unlocked transmutation recipes, use your Codex Cicatrix in hand with Z.")
 
 /datum/antagonist/heretic/get_preview_icon()
 	var/icon/icon = render_preview_outfit(preview_outfit)
@@ -98,7 +202,7 @@
 	// This makes the image 64x64.
 	icon.Crop(-15, -15, 48, 48)
 
-	var/obj/item/gun/magic/hook/sickly_blade/blade = new
+	var/obj/item/melee/sickly_blade/blade = new
 	icon.Blend(icon(blade.lefthand_file, blade.item_state), ICON_OVERLAY)
 	qdel(blade)
 
@@ -111,6 +215,7 @@
 	if(ishuman(owner.current))
 		forge_primary_objectives()
 		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
+		gain_knowledge(/datum/eldritch_knowledge/spell/basic_jaunt)
 	owner.current.log_message("has been made a student of the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
@@ -249,15 +354,22 @@
 	if(ascended) //They are not just a heretic now; they are something more
 		if(is_ash())
 			parts += "<span class='greentext big'>THE ASHBRINGER HAS ASCENDED!</span>"
-		if(is_mind())
+		else if(is_mind())
 			parts += "<span class='greentext big'>THE MONARCH OF KNOWLEDGE HAS ASCENDED!</span>"
+		else if(is_void())
+			parts += "<span class='greentext big'>THE WALTZ AT THE END OF TIME HAS BEGUN!</span>"
+		else if(is_rust())
+			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
+		else if(is_blade())
+			parts += "<span class='greentext big'>THE MASTER OF BLADES HAS ASCENDED!</span>"
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
+		else if(is_cosmic())
+			if(transformed)
+				parts += "<span class='greentext big'>THE STAR GAZER HAS ASCENDED!</span>"
 			else
 				parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
-		else //Rust
-			parts += "<span class='greentext big'>THE SOVEREIGN OF DECAY HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The [lowertext(lore)] heretic was successful!")
@@ -527,7 +639,98 @@
 				flavor_message += 	"Your beaten and battered body lays there, your consciousness still trapped in it like a prison of flesh. \
 									You rally against the cage, fists pounding at the inside of your brain as you beat your fists bloody raw. \
 									Unfortunately, despite all your rage you're still just a rat in a cage. Doomed to be nothing more than a rotten corpse added to the beach at the end of time." 
+	else if(is_void()) //Void epilogues
 
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"Arriving at Centcom you smile, the infinite winds billow behind your back, bringing a new age of Ice to the system."
+			else if(alive)
+				flavor_message += 	"You watch as the shuttle leaves, smirking, you turn your gaze to the planet below, planning your next moves carefully, ready to expand your domain of Ice."
+			else //Dead
+				flavor_message += 	"Your body freezes and shatters, but it is not the end. Your eternal spirit will live on, and the storm you called will never stop in this sector. You have won the war."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"The mission is done, the stage is set, though you did not reach the peak of power, you achieved what many thought impossible."
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"Your success has been noted, and the coming storm will grant you powers of ice beyond all mortal comprehension. You need only wait..."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As your body crumbles to snow, you smile one last toothy grin, knowing the fate of those who will freeze, despite your demise."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You escaped, but at what cost? Your mission a failure, along with you. The coming days will not be kind."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Stepping through the empty halls of the station, you look towards the empty space, and contemplate your failures."
+			else //Dead
+				flavor_message += 	"As your body shatters, the last pieces of your consciousness wonder what you could have done differently, before the spark of life dissipates."
+	
+	else if(is_blade()) //blade epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"The hallway leading to the shuttle explodes in a whirlwind of blades, each step you take cutting a path to your new reality."
+			else if(alive)
+				flavor_message += 	"Watching the shuttle as it jumps to warp puts a smile on your face, you ready your blade to cut through space and time. They won't escape."
+			else //Dead
+				flavor_message += 	"As your blade falls from your hand, it hits the ground and shatters, splintering into an uncountable amount of smaller blades. As long as one survives, your soul will exist, and you will return to cut again."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"You've crafted an impossible amount of blades, and made a mountain of corpses doing so. Victory is yours today!"
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"You sharpen your newly formed blade, made from the bones and soul of your enemies. Smirking, you think of new and twisted ways to continue your craft."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As the world goes dark, a flash of steel crosses the boundry between reality and the veil. Though you may pass here, those who felled you will not last."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You sit on a bench at centcom, escaping the madness of the station. You've failed, and will never smith a blade again."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Your bloodied hand pounds on the nearest wall, a failure of a smith you turned out to be. You pray someone finds your emergency beacon on this abandoned station."
+			else //Dead
+				flavor_message += 	"You lay there, life draining from your body onto the station around you. The last thing you see is your reflection in your own blade, and then it all goes dark."
+	
+	else if(is_cosmic()) //Cosmic epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"As the shuttle docks cosmic radiation pours from the doors, the lifeless corpses of those who dared defy you remain. Unmake the rest of them."
+			else if(alive)
+				flavor_message += 	"You turn to watch the escape shuttle leave, waving a small goodbye before beginning your new duty: Remaking the cosmos in your image."
+			else //Dead
+				flavor_message += 	"A loud scream is heard around the cosmos, your death cry will awaken your brothers and sisters, you will be remembered as a martyr."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"You completed everything you had set out to do and more on this station, now you must take the art of the cosmos to the rest of humanity."
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"You feel the great creator look upon you with glee, opening a portal to his realm for you to join it."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As your body melts away into the stars, your consciousness carries on to the nearest star, beginning a super nova. A victory, in a sense."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You step off the shuttle, knowing your time is limited now that you have failed. Cosmic radiation seeps through your soul, what will you do next?"
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Dragging your feet through what remains of the ruined station, you can only laugh as the stars continue to twinkle in the sky, despite everything."
+			else //Dead
+				flavor_message += 	"Your skin turns to dust and your bones reduce to raw atoms, you will be forgotten in the new cosmic age."
 	else //Unpledged epilogues
 
 		if(cultiewin) //Completed objectives (WITH NO RESEARCH MIND YOU)
@@ -560,6 +763,7 @@
 			else //Dead
 				flavor_message += 	"Perhaps it is better this way. You chose not to make a plunge into the Mansus, yet your soul returns to it. \
 									You will drift down, deeper, further, until you are forgotten to nothingness."
+				
 
 
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
@@ -626,6 +830,15 @@
 /datum/antagonist/heretic/proc/is_mind()
 	return "[lore]" == "Mind"
 
+/datum/antagonist/heretic/proc/is_void()
+	return "[lore]" == "Void"
+
+/datum/antagonist/heretic/proc/is_blade()
+	return "[lore]" == "Blade"
+
+/datum/antagonist/heretic/proc/is_cosmic()
+	return "[lore]" == "Cosmic"
+
 /datum/antagonist/heretic/proc/is_unpledged()
 	return "[lore]" == "Unpledged"
 
@@ -653,10 +866,11 @@
 /datum/outfit/heretic
 	name = "Heretic (Preview only)"
 
-	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch
+	suit = /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy
 	r_hand = /obj/item/melee/touch_attack/mansus_fist
 
 /datum/outfit/heretic/post_equip(mob/living/carbon/human/H, visualsOnly)
 	var/obj/item/clothing/suit/hooded/hooded = locate() in H
 	hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
 	hooded.ToggleHood()
+

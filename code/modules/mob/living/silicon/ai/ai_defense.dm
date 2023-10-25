@@ -17,7 +17,7 @@
 /mob/living/silicon/ai/ex_act(severity, target)
 	return 
 
-/mob/living/silicon/ai/bullet_act(obj/item/projectile/Proj)
+/mob/living/silicon/ai/bullet_act(obj/projectile/Proj)
 	return 
 
 /mob/living/silicon/ai/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0)

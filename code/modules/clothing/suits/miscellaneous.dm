@@ -800,5 +800,12 @@
 	icon_state = "eldritch_armor"
 	item_state = "eldritch_armor"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book, /obj/item/toy/eldritch_book) //gonna make it work with this the real stuff as a "fashion statement"
+	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book, /obj/item/toy/eldritch_book) //gonna make it work with this the real stuff as a "fashion statement"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie_toy/eldritch_toy
+
+/obj/item/clothing/suit/pocketcat
+	name = "peculiar clothes"
+	desc = "These clothes make you uneasy"
+	icon_state = "pocketcat"
+	item_state = "pocketcat"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS

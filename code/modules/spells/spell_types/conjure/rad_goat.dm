@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/conjure/radiation_anomaly
 	name = "Spawn Radiation Anomaly"
 	desc = "Spawn a radiation anomaly!"
-	button_icon = 'icons/obj/projectiles.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "radiation_anomaly"
 	sound = 'sound/weapons/resonator_fire.ogg'
 

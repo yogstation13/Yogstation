@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/rust_blade
 	name = "Rusty Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/item/trash)
-	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/rust)
+	result_atoms = list(/obj/item/melee/sickly_blade/rust)
 	required_shit_list = "A piece of trash and a knife."
 
 /datum/eldritch_transmutation/armor
@@ -9,6 +9,12 @@
 	required_atoms = list(/obj/structure/table,/obj/item/clothing/mask/gas)
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch)
 	required_shit_list = "A table and a gas mask."
+
+/datum/eldritch_transmutation/armor/upgrade
+	name = "Enhanced Eldritch Armor"
+	required_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch,/obj/item/stack/sheet/mineral/diamond)
+	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/upgraded)
+	required_shit_list = "An existing ominous armor, and a diamond."
 
 /datum/eldritch_transmutation/water
 	name = "Eldritch Essence"

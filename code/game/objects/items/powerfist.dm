@@ -110,3 +110,11 @@
 	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 
 	return
+
+/obj/item/melee/powerfist/filled
+	var/obj/item/tank/internals/plasma/full/fire
+
+/obj/item/melee/powerfist/filled/Initialize(mapload)
+	. = ..()
+	fire = new(src)
+	tank = fire

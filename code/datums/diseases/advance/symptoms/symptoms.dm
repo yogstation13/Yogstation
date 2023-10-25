@@ -36,7 +36,7 @@
 	var/naturally_occuring = TRUE
 	/// Types of mob this symptom should affect.
 	/// Checked against [/mob/living/proc/get_process_flags]
-	var/process_flags = ORGANIC
+	var/compatible_biotypes = MOB_ORGANIC
 
 /datum/symptom/New()
 	var/list/S = SSdisease.list_symptoms
@@ -64,7 +64,7 @@
 		return FALSE
 	if(world.time < next_activation)
 		return FALSE
-	if(process_flags & A.affected_mob.get_process_flags())
+	if(compatible_biotypes & A.affected_mob.mob_biotypes)
 		next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
 		return TRUE
 

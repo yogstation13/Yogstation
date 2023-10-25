@@ -49,6 +49,7 @@
 	light_on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	flash_protect = 0
+	clothing_traits = list(TRAIT_SAFEWELD)
 	var/helmet_on = FALSE
 	///Boolean on whether the item will be modified by player's "plasmaman helmet style pref"
 	var/pref_alteration = TRUE

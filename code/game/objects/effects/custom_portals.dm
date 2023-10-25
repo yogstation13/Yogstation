@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(custom_portals)
 	var/turf/real_target = get_link_target_turf()
 	if(!real_target)
 		to_chat(M, span_warning("This portal has no linked portal!"))
-	if(!force && (!ismecha(M) && !istype(M, /obj/item/projectile) && M.anchored))
+	if(!force && (!ismecha(M) && !istype(M, /obj/projectile) && M.anchored))
 		return
 	if(ismegafauna(M))
 		message_admins("[M] has used a portal at [ADMIN_VERBOSEJMP(src)] made by [usr].")
@@ -52,8 +52,8 @@ GLOBAL_LIST_EMPTY(custom_portals)
 	else
 		last_effect = world.time
 	if(do_teleport(M, real_target, 0, no_effects = no_effect, channel = TELEPORT_CHANNEL_QUANTUM, forced = TRUE))
-		if(istype(M, /obj/item/projectile))
-			var/obj/item/projectile/P = M
+		if(istype(M, /obj/projectile))
+			var/obj/projectile/P = M
 			P.ignore_source_check = TRUE
 		return TRUE
 	return FALSE

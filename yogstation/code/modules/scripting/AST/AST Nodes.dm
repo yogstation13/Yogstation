@@ -71,7 +71,7 @@
 	Class: operator
 	See <Binary Operators> and <Unary Operators> for subtypes.
 */
-/node/expression/operator
+/node/expression/oper
 	var
 		node/expression/exp
 		tmp

@@ -129,7 +129,7 @@
 	. = ..()
 	if(isliving(hit_atom))
 		var/mob/M = hit_atom
-		var/atom/A = M.anti_magic_check()
+		var/atom/A = M.can_block_magic()
 		if(A)
 			if(isitem(A))
 				M.visible_message(span_warning("[M]'s [A] glows brightly as it disrupts the Mjolnir's power!"))

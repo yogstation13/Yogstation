@@ -442,10 +442,10 @@
 	reagent_state = LIQUID
 	color = "#F1C40F"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
-	if(!(L.get_process_flags() & ORGANIC))
+	if(!(L.mob_biotypes & MOB_ORGANIC))
 		for(var/thing in L.diseases) // can clean viruses from fully synthetic hosts
 			var/datum/disease/D = thing
 			D.cure()
@@ -463,7 +463,7 @@
 	description = "Repairs brain damage in synthetics."
 	color = "#727272"
 	taste_description = "metallic"
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
 	var/obj/item/organ/O = M.getorganslot(ORGAN_SLOT_BRAIN)
@@ -486,7 +486,7 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	var/healing = 0.5
 	overdose_threshold = 30
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-healing*REM, 0)
@@ -1895,7 +1895,7 @@
 	color = "#ff00d4"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "acidic oil"
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	var/nanite_reduction = -50
 
 /datum/reagent/medicine/naniteremover/on_mob_life(mob/living/carbon/M)

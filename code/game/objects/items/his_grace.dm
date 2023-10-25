@@ -13,7 +13,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	icon = 'icons/obj/storage.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
-	force = 12
+	force = 15
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
 	var/awakened = FALSE

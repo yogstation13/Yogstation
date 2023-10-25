@@ -539,7 +539,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if(W.GetID())			// trying to unlock the interface with an ID card
+	else if(W.GetID() && user.a_intent == INTENT_HELP)			// trying to unlock the interface with an ID card only on help intent.
 		togglelock(user)
 
 	else if(istype(W, /obj/item/borg/upgrade/))
@@ -725,8 +725,8 @@
 		add_overlay(head_overlay)
 	update_fire()
 
-/mob/living/silicon/robot/proc/self_destruct()
-	if(emagged || module.syndicate_module)
+/mob/living/silicon/robot/proc/self_destruct(explode_override = FALSE)
+	if(emagged || module.syndicate_module || explode_override)
 		if(mmi)
 			qdel(mmi)
 		explosion(src.loc,1,2,4,flame_range = 2)

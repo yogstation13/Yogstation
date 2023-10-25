@@ -128,7 +128,7 @@ export const CargoCatalog = (props, context) => {
   const { express } = props;
   const { act, data } = useBackend(context);
 
-  const { self_paid, app_cost } = data;
+  const { self_paid, app_cost, budget_order, unlock_budget } = data;
 
   const supplies = Object.values(data.supplies);
   const [
@@ -144,11 +144,16 @@ export const CargoCatalog = (props, context) => {
       buttons={!express && (
         <>
           <CargoCartButtons />
-          <Button.Checkbox
+          {!budget_order && <Button.Checkbox
             ml={2}
             content="Buy Privately"
             checked={self_paid}
-            onClick={() => act('toggleprivate')} />
+            onClick={() => act('toggleprivate')} />}
+          {!self_paid && !!unlock_budget && <Button.Checkbox
+            ml={2}
+            content="Departmental Purchasing"
+            checked={budget_order}
+            onClick={() => act('togglebudget')} />}
         </>
       )}>
       <Flex>
@@ -347,6 +352,9 @@ const CargoCart = (props, context) => {
                 {entry.object}
               </Table.Cell>
               <Table.Cell collapsing>
+                {!!entry.budget && (
+                  <b>[{entry.budget}]</b>
+                )}
                 {!!entry.paid && (
                   <b>[Paid Privately]</b>
                 )}

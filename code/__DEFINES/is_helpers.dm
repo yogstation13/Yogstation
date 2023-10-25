@@ -15,6 +15,8 @@
 
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
+#define isinternalorgan(A) (istype(A, /obj/item/organ/internal))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -253,7 +255,7 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 
 #define isbodypart(A) (istype(A, /obj/item/bodypart))
 
-#define isprojectile(A) (istype(A, /obj/item/projectile))
+#define isprojectile(A) (istype(A, /obj/projectile))
 
 #define isgun(A) (istype(A, /obj/item/gun))
 

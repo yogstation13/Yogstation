@@ -70,7 +70,10 @@
 
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
-							new /datum/computer_file/program/alarm_monitor)
+							new /datum/computer_file/program/alarm_monitor,
+							new /datum/computer_file/program/supermatter_monitor,
+							new /datum/computer_file/program/nuclear_monitor,
+							new /datum/computer_file/program/energy_harvester_control)
 	finish_color = "orange"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd

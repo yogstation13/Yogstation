@@ -108,14 +108,14 @@
 	user.visible_message(span_warning("[user] draws back [src] and swings them towards [target]!"), \
 	span_velvet("<b>opehhjaoo</b><br>You swing your tendrils towards [target]!"))
 	playsound(user, 'sound/magic/tail_swing.ogg', 50, TRUE)
-	var/obj/item/projectile/umbral_tendrils/T = new(get_turf(user))
+	var/obj/projectile/umbral_tendrils/T = new(get_turf(user))
 	T.preparePixelProjectile(target, user)
 	T.twinned = twin
 	T.firer = user
 	T.fire()
 	qdel(src)
 
-/obj/item/projectile/umbral_tendrils
+/obj/projectile/umbral_tendrils
 	name = "umbral tendrils"
 	icon_state = "cursehand0"
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
@@ -128,15 +128,15 @@
 	var/twinned = FALSE
 	var/beam
 
-/obj/item/projectile/umbral_tendrils/fire(setAngle)
+/obj/projectile/umbral_tendrils/fire(setAngle)
 	beam = firer.Beam(src, icon_state = "curse0", time = INFINITY, maxdistance = INFINITY)
 	..()
 
-/obj/item/projectile/umbral_tendrils/Destroy()
+/obj/projectile/umbral_tendrils/Destroy()
 	qdel(beam)
 	. = ..()
 
-/obj/item/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
+/obj/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
 	if(blocked >= 100)
 		return
 	. = TRUE

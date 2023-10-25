@@ -27,12 +27,12 @@
 	icon_dead = "headcrab_dead"
 	health = 250
 	maxHealth = 250
-	var/datum/action/cooldown/spell/aoe/screech/scream = null
+	var/datum/action/cooldown/spell/aoe/shriek/scream = null
 	var/screamCD
 
 /mob/living/simple_animal/hostile/abomination/super/New()
 	..()
-	scream = new /datum/action/cooldown/spell/aoe/screech()
+	scream = new /datum/action/cooldown/spell/aoe/shriek()
 	scream.Grant(src)
 
 /mob/living/simple_animal/hostile/abomination/super/handle_automated_action()

@@ -129,6 +129,7 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BACK
 	force = 8 //Force is same as a chair
 	custom_materials = list(/datum/material/iron = 10000)
 	var/obj/vehicle/ridden/wheelchair/wheelchair
