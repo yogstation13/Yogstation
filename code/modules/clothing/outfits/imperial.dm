@@ -294,8 +294,8 @@
 	var/name = "power"
 	var/channel_time = 1 SECONDS //In seconds, how long a spell takes to charge
 	var/obj/item/staff //The staff being used to channel
-	var/mob/living/psyker //The slab's holder
-	var/heat_cost = 5//the amount of heat the spell generates
+	var/mob/living/psyker //The staff's holder
+	var/heat_cost = 5 //the amount of heat the spell generates
 	var/sort_priority = 1 //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
 	var/cast_slowdown = 0
 	var/staff_overlay
