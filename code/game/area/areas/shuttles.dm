@@ -134,6 +134,12 @@
 	name = "Mining Shuttle"
 	blob_allowed = FALSE
 
+/area/shuttle/space_elevator
+	name = "Space Elevator"
+	blob_allowed = FALSE
+	lighting_colour_tube = "#ffdde6"
+	lighting_colour_bulb = "#ffc1d9"
+
 /area/shuttle/labor
 	name = "Labor Camp Shuttle"
 	blob_allowed = FALSE

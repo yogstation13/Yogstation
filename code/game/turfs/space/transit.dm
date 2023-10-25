@@ -5,6 +5,7 @@
 	baseturfs = /turf/open/space/transit
 	flags_1 = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 	explosion_block = INFINITY
+	var/space_elevator = FALSE
 
 /turf/open/space/transit/Initialize(mapload)
 	. = ..()
@@ -67,14 +68,19 @@
 /turf/open/space/transit/east
 	dir = EAST
 
+/turf/open/space/transit/space_elevator
+	space_elevator = TRUE
+
 /turf/open/space/transit/update_icon_state()
 	. = ..()
 	icon_state = "speedspace_ns_[get_transit_state(src)]"
 	transform = turn(matrix(), get_transit_angle(src))
 
-/proc/get_transit_state(turf/T)
+/turf/open/space/transit/proc/get_transit_state(turf/T)
 	var/p = 9
 	. = 1
+	if(space_elevator)
+		return "elevator"
 	switch(T.dir)
 		if(NORTH)
 			. = ((-p*T.x+T.y) % 15) + 1

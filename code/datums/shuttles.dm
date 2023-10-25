@@ -116,7 +116,10 @@
 /datum/map_template/shuttle/ferry
 	port_id = "ferry"
 	name = "Base Shuttle Template (Ferry)"
-
+	
+/datum/map_template/shuttle/space_elevator
+	port_id = "space_elevator"
+	
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"
 
@@ -560,6 +563,10 @@
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"
 	name = "cargo ferry (Box)"
+
+/datum/map_template/shuttle/space_elevator/naut
+	suffix = "naut"
+	name = "space elevator"
 
 /datum/map_template/shuttle/mining/box
 	suffix = "box"

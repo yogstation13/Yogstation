@@ -464,6 +464,7 @@ SUBSYSTEM_DEF(shuttle)
 	// Because of shuttle rotation, the "width" of the shuttle is not
 	// always x.
 	var/travel_dir = M.preferred_direction
+	var/space_elevator = M.space_elevator
 	// Remember, the direction is the direction we appear to be
 	// coming from
 	var/dock_angle = dir2angle(M.preferred_direction) + dir2angle(M.port_direction) + 180
@@ -488,15 +489,18 @@ SUBSYSTEM_DEF(shuttle)
 */
 
 	var/transit_path = /turf/open/space/transit
-	switch(travel_dir)
-		if(NORTH)
-			transit_path = /turf/open/space/transit/north
-		if(SOUTH)
-			transit_path = /turf/open/space/transit/south
-		if(EAST)
-			transit_path = /turf/open/space/transit/east
-		if(WEST)
-			transit_path = /turf/open/space/transit/west
+	if(space_elevator)
+		transit_path = /turf/open/space/transit/space_elevator
+	else
+		switch(travel_dir)
+			if(NORTH)
+				transit_path = /turf/open/space/transit/north
+			if(SOUTH)
+				transit_path = /turf/open/space/transit/south
+			if(EAST)
+				transit_path = /turf/open/space/transit/east
+			if(WEST)
+				transit_path = /turf/open/space/transit/west
 
 	var/datum/turf_reservation/proposal = SSmapping.RequestBlockReservation(transit_width, transit_height, null, /datum/turf_reservation/transit, transit_path)
 
