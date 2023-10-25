@@ -591,7 +591,7 @@
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	tool_behaviour = TOOL_MINING
-	weapon_stats = list(SWING_SPEED = 1.4, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
+	weapon_stats = list(SWING_SPEED = 2, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
 	force = 35					//clearly it wasnt boneshattering enough lmao
 	throwforce = 0 				//Just to be on the safe side
 	throw_range = 0
