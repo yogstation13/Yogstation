@@ -1,6 +1,6 @@
 /obj/item/sharpener
 	name = "whetstone"
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "sharpener"
 	desc = "A block that makes things sharp."
 	force = 5

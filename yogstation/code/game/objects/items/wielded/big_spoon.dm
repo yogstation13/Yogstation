@@ -1,7 +1,7 @@
 /obj/item/bigspoon
 	name = "comically large spoon"
 	desc = "For when you're only allowed one spoonful of something."
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
 	icon_state = "bigspoon"
 	item_state = "bigspoon0"
