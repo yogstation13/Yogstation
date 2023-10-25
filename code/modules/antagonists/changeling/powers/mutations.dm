@@ -574,7 +574,7 @@
 //	background_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "flesh_maul"
 	chemical_cost = 20
-	dna_cost = 3
+	dna_cost = 2
 	req_human = 1
 	weapon_type = /obj/item/melee/flesh_maul
 	weapon_name_simple = "maul"
@@ -591,8 +591,8 @@
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	tool_behaviour = TOOL_MINING
-	weapon_stats = list(SWING_SPEED = 1.8, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
-	force = 45					//clearly it wasnt boneshattering enough lmao
+	weapon_stats = list(SWING_SPEED = 1.4, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
+	force = 35					//clearly it wasnt boneshattering enough lmao
 	throwforce = 0 				//Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
