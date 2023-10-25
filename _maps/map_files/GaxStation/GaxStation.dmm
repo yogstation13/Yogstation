@@ -36049,6 +36049,9 @@
 /obj/item/ammo_box/no_direct/a357,
 /obj/item/storage/belt/utility/full/engi,
 /obj/item/storage/part_replacer/bluespace/tier4,
+/obj/item/clothing/neck/pauldron/commander{
+	desc = "An old pauldron with the Syndicate's markings scratched over the markings of a Nanotrasen Commodore."
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/gateway)
 "qNI" = (
