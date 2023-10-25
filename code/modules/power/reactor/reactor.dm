@@ -254,7 +254,7 @@
 	if(C.powernet != powernet)
 		powernet = C.powernet
 		return TRUE
-	return FALSE
+	return TRUE
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/process()
 	// Find a powernet
