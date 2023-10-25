@@ -242,13 +242,28 @@
 		var/mob/living/L = AM
 		L.adjust_bodytemperature(clamp(temperature, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
 
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/check_powernet() //Nuclear reactor is not using machinery/power subtype so we gotta make a new powernet check
+	var/turf/T = get_turf(src)
+	if(!T || !istype(T))
+		return FALSE
+	
+	var/obj/structure/cable/C = T.get_cable_node()
+	if(!C || !C.powernet)
+		return FALSE
+
+	if(C.powernet != powernet)
+		powernet = C.powernet
+		return TRUE
+	return FALSE
+
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/process()
 	// Find a powernet
 	if(!powernet)
 		connect_to_network()
 
 	// Make some power!
-	add_avail(last_power_produced)
+	if(check_powernet())
+		add_avail(last_power_produced)
 
 	// You're overloading the reactor. Give a more subtle warning that power is getting out of control.
 	if(power >= 100 && world.time >= next_flicker)
