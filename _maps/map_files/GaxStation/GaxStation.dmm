@@ -21107,7 +21107,7 @@
 /obj/structure/fireaxecabinet/bridge{
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -28579,6 +28579,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/mineral/plastitanium,
 /area/bridge)
 "nlR" = (
@@ -44159,6 +44160,10 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "uyy" = (
 /obj/structure/table/reinforced,
+/obj/item/melee/baseball_bat/metal_bat{
+	name = "Koko Tenderclaw Re-Wheelchair-Inator";
+	desc = "Specifically for when he gets up."
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/gateway)
 "uyM" = (
@@ -100167,12 +100172,12 @@ pps
 cgw
 cgw
 cgw
-lzV
-lzV
+wgx
+dxA
 rdG
 pfU
 gfb
-lzV
+wgx
 nlP
 cgw
 cgw
