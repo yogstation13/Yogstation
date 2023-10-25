@@ -9,6 +9,7 @@
 	button_icon_state = "mime_speech"
 	panel = "Mime"
 
+	invocation = ""
 	invocation_type = INVOCATION_EMOTE
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED
 
@@ -31,9 +32,9 @@
 
 /datum/action/cooldown/spell/touch/invisible_touch/is_valid_target(atom/cast_on)
 	// Do not supercall this
-	. = TRUE
-	if(istype(cast_on, /turf/))
-		return FALSE
+	. = FALSE
+	if(istype(cast_on, /obj/) || istype(cast_on, /mob/living/carbon))
+		. = TRUE
 	//if(cast_on in blacklist)
 	//	return FALSE
 	return
