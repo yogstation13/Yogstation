@@ -37,7 +37,6 @@
 
 /datum/antagonist/darkspawn/ui_data(mob/user)
 	var/list/data = list()
-	var/datum/antagonist/darkspawn/darkspawn = antag_datum
 
 	if(!istype(darkspawn))
 		CRASH("darkspawn menu started with wrong datum.")
