@@ -1,5 +1,4 @@
 /**
- * File: AST Nodes
  * An abstract syntax tree (AST) is a representation of source code in a computer-friendly format. It is composed of nodes,
  * each of which represents a certain part of the source code. For example, an <IfStatement> node represents an if statement in the
  * script's source code. Because it is a representation of the source code in memory, it is independent of any specific scripting language.
@@ -128,14 +127,14 @@
 	return value
 
 /*
- * variable
+ * Variable
  */
 /datum/node/expression/value/variable
 	///Either a node/identifier or another node/expression/value/variable which points to the object
 	var/datum/node/object
 	var/datum/node/identifier/id
 
-/datum/node/expression/value/variable/New(ident, token)
+/datum/node/expression/value/variable/New(datum/node/identifier/ident, datum/token/token)
 	. = ..()
 	src.token = token
 	id = ident
@@ -148,7 +147,7 @@
 /datum/node/expression/value/list_init
 	var/list/init_list
 
-/datum/node/expression/value/list_init/New(token)
+/datum/node/expression/value/list_init/New(datum/token/token)
 	. = ..()
 	src.token = token
 
@@ -158,10 +157,10 @@
 /datum/node/expression/value/reference
 	var/datum/value
 
-/datum/node/expression/value/reference/New(value, token)
+/datum/node/expression/value/reference/New(value, datum/token/token)
 	. = ..()
 	src.token = token
-	src.value=value
+	src.value = value
 
 /datum/node/expression/value/reference/ToString()
 	return "ref: [value] ([value.type])"

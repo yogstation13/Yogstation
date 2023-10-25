@@ -36,7 +36,7 @@
 	var/datum/node/BlockDefinition/program
 	var/datum/node/statement/FunctionDefinition/curFunction
 	var/datum/stack/functions = new()
-	var/datum/container // associated container for interpeter
+	var/datum/TCS_Compiler/container // associated container for interpeter
 
 	///Boolean indicating that the rest of the current block should be skipped. This may be set to any combination of <Status Macros>.
 	var/status = FALSE
@@ -85,7 +85,7 @@
 	container = null
 
 ///Raises a Runtime error.
-/datum/n_Interpreter/proc/RaiseError(datum/runtimeError/e, datum/scope/scope, datum/token)
+/datum/n_Interpreter/proc/RaiseError(datum/runtimeError/e, datum/scope/scope, datum/token/token)
 	e.scope = scope
 	if(istype(token))
 		e.token = token
@@ -173,7 +173,7 @@
 			break
 
 ///Runs a function block or a proc with the arguments specified in the script.
-/datum/n_Interpreter/proc/RunFunction(datum/node/expression/FunctionCall/stmt, datum/scope)
+/datum/n_Interpreter/proc/RunFunction(datum/node/expression/FunctionCall/stmt, datum/scope/scope)
 	var/datum/n_function/func
 	var/this_obj
 	if(istype(stmt.function, /datum/node/expression/member))

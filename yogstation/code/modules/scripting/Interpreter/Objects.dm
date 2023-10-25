@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(ntsl_methods)
 
-/datum/n_Interpreter/proc/get_property(object, key, datum/scope/scope, node)
+/datum/n_Interpreter/proc/get_property(object, key, datum/scope/scope, node) //fun fact: node is always null here.
 	if(islist(object))
 		var/list/L = object
 		switch(key)
@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 			return
 	RaiseError(new /datum/runtimeError/IndexOutOfRange(object, index), scope, node)
 
-/datum/proc/ntsl_get(key, datum/scope/scope, datum/n_Interpreter/interp, node)
+/datum/proc/ntsl_get(key, datum/scope/scope, datum/n_Interpreter/interp, node) //fun fact: node is always null here.
 	interp.RaiseError(new /datum/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
 	return
 
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_enum/New(list/E)
 	entries = E
 
-/datum/n_enum/ntsl_get(key)
+/datum/n_enum/ntsl_get(key, datum/scope/scope, datum/n_Interpreter/interp, node)
 	if(entries.Find(key))
 		return entries[key]
 	return ..()
@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 			return FALSE
 	return x
 
-/datum/n_struct/ntsl_get(key)
+/datum/n_struct/ntsl_get(key, datum/scope/scope, datum/n_Interpreter/interp, node)
 	if(properties.Find(key))
 		return properties[key]
 	return ..()
@@ -109,32 +109,32 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_function/defined
 	var/datum/n_Interpreter/context
 	var/datum/scope/closure
-	var/datum/node/statement/FunctionDefinition/def
+	var/datum/node/statement/FunctionDefinition/function_def
 
-/datum/n_function/defined/New(datum/node/statement/FunctionDefinition/D, datum/scope/S, datum/n_Interpreter/C)
-	def = D
-	closure = S
-	context = C
+/datum/n_function/defined/New(datum/node/statement/FunctionDefinition/function_def, datum/scope/closure, datum/n_Interpreter/context)
+	src.function_def = function_def
+	src.closure = closure
+	src.context = context
 
 /datum/n_function/defined/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp, datum/node/node)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
 		interp.RaiseError(new /datum/runtimeError/RecursionLimitReached(), scope, node)
 		return FALSE
-	scope = scope.push(def.block, closure, RESET_STATUS | RETURNING)
+	scope = scope.push(function_def.block, closure, RESET_STATUS | RETURNING)
 	scope.recursion++
-	scope.function = def
+	scope.function = function_def
 	if(node)
 		scope.call_node = node
-	for(var/i=1 to def.parameters.len)
+	for(var/i=1 to function_def.parameters.len)
 		var/val
 		if(params.len>=i)
 			val = params[i]
 		//else
 		//	unspecified param
-		scope.init_var(def.parameters[i], val, interp, node)
+		scope.init_var(function_def.parameters[i], val, interp, node)
 	scope.init_var("src", this_obj, interp, node);
-	interp.RunBlock(def.block, scope)
+	interp.RunBlock(function_def.block, scope)
 	//Handle return value
 	. = scope.return_val
 	scope = scope.pop(0) // keep nothing

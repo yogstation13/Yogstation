@@ -103,7 +103,7 @@
 				if(/datum/node/expression/expression_operator/binary/Assign/Modulo)
 					out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
 				else
-					RaiseError(new /datum/runtimeError/UnknownInstruction(ass),scope, ass)
+					RaiseError(new /datum/runtimeError/UnknownInstruction(ass), scope, ass)
 			// write it to the var
 			if(istype(ass.exp, /datum/node/expression/value/variable))
 				var/datum/node/expression/value/variable/var_exp = ass.exp
