@@ -305,7 +305,7 @@
 	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
 	var/datum/progressbar/progbar
 
-/datum/clockwork_scripture/ranged_ability/Destroy()
+/datum/psycicpower/Destroy()
 	qdel(progbar)
 	return ..()
 
