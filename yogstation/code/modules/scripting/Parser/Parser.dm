@@ -37,7 +37,7 @@
 
 /datum/n_Parser/nS_Parser/New(tokens[], datum/n_scriptOptions/nS_Options/options)
 	src.tokens = tokens
-	src.options=options
+	src.options = options
 	curBlock=global_block
 	return ..()
 

@@ -51,7 +51,7 @@
 		parent.return_val = return_val
 	return parent
 
-/datum/scope/proc/get_var(name, datum/n_Interpreter/interp, datum/node)
+/datum/scope/proc/get_var(name, datum/n_Interpreter/interp, datum/node/node)
 	var/datum/scope/S = get_scope(name)
 	if(S)
 		return S.variables[name]
@@ -66,7 +66,7 @@
 			return
 		S = S.variables_parent
 
-/datum/scope/proc/set_var(name, val, datum/n_Interpreter/interp, datum/node)
+/datum/scope/proc/set_var(name, val, datum/n_Interpreter/interp, datum/node/node)
 	var/datum/scope/S = get_scope(name)
 	if(S)
 		S.variables[name] = val
@@ -74,7 +74,7 @@
 		init_var(name, val, interp, node)
 	return val
 
-/datum/scope/proc/init_var(name, val, datum/n_Interpreter/interp, datum/node)
+/datum/scope/proc/init_var(name, val, datum/n_Interpreter/interp, datum/node/node)
 	if(variables.Find(name) && interp)
 		interp.RaiseError(new /datum/runtimeError/DuplicateVariableDeclaration(name), src, node)
 	variables[name] = val

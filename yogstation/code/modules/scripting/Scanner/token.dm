@@ -7,10 +7,10 @@
 	var/line
 	var/column
 
-/datum/token/New(v, l = 0, c = 0)
-	value = v
-	line = l
-	column = c
+/datum/token/New(value, line = 0, column = 0)
+	src.value = value
+	src.line = line
+	src.column = column
 
 /datum/token/string
 
@@ -26,7 +26,7 @@
 	. = ..()
 	if(isnum(value))
 		return
-	value=text2num(value)
+	value = text2num(value)
 	ASSERT(!isnull(value))
 
 /datum/token/end

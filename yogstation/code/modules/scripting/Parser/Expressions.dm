@@ -18,10 +18,10 @@
 ///Compares two operators, decides which is higher in the order of operations, and returns <SHIFT> or <REDUCE>.
 /datum/n_Parser/nS_Parser/proc/Precedence(datum/node/expression/expression_operator/top, datum/node/expression/expression_operator/input)
 	if(istype(top))
-		top=top.precedence
+		top = top.precedence
 	if(istype(input))
-		input=input.precedence
-	if(top>=input)
+		input = input.precedence
+	if(top >= input)
 		return REDUCE
 	return SHIFT
 
@@ -34,7 +34,6 @@
 	switch(T.type)
 		if(/datum/token/word)
 			return new /datum/node/expression/value/variable(T.value, T)
-
 		if(/datum/token/number, /datum/token/string)
 			return new /datum/node/expression/value/literal(T.value, T)
 
@@ -54,19 +53,19 @@
  * - <GetUnaryOperator()>
  */
 /datum/n_Parser/nS_Parser/proc/GetOperator(O, type = /datum/node/expression/expression_operator, L[])
-	var/datum/token/T
+	var/datum/token/input_token
 	if(istype(O, type))
 		return O
 	if(istype(O, /datum/token))
-		T = O
-		O=O:value
+		input_token = O
+		O = input_token.value
 	if(istext(O))
 		if(L.Find(O))
 			O=L[O]
 		else
 			return null
-	if(ispath(O))
-		O = new O(T)
+	if(input_token)
+		O = new O(input_token)
 	else
 		return null
 	return O
@@ -246,7 +245,7 @@
 				NextToken()
 				continue
 			val.Push(GetExpression(curToken))
-			src.expecting=OPERATOR
+			expecting = OPERATOR
 
 		NextToken()
 
@@ -260,7 +259,7 @@
 
 ///Parses a function call inside of an expression. (See also <ParseExpression()>)
 /datum/n_Parser/nS_Parser/proc/ParseFunctionExpression(func_exp)
-	var/datum/node/expression/FunctionCall/exp=new(curToken)
+	var/datum/node/expression/FunctionCall/exp = new(curToken)
 	exp.function = func_exp
 	NextToken() //skip open parenthesis, already found
 	var/loops = 0

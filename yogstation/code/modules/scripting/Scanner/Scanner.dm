@@ -1,4 +1,4 @@
-#define COLUMN_LOCATION codepos-linepos
+#define COLUMN_LOCATION (codepos-linepos)
 
 /*
  * n_Scanner
@@ -101,7 +101,7 @@
 					if("n")				//\n Newline
 						buf += "\n"
 					else
-						if(char==start) //\" Doublequote
+						if(char == start) //\" Doublequote
 							buf += start
 						else				//Unknown escaped text
 							buf += char
@@ -112,7 +112,7 @@
 				linepos = codepos
 				break
 			else
-				if(char==start) //string delimiter found, end string
+				if(char == start) //string delimiter found, end string
 					break
 				else
 					buf += char     //Just a normal character in a string
