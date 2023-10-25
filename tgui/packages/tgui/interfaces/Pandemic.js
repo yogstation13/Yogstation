@@ -182,11 +182,10 @@ export const PandemicSymptomIcon = (props) => {
   } else {
     return (
       <span
-        className={classes(["virology_symptoms56x56", icon])}
+        className={classes(["virology_symptoms64x64", icon])}
         style={{
           'vertical-align': 'middle',
           'horizontal-align': 'middle',
-          margin: '4px',
         }}
       />
     );
