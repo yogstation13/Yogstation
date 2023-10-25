@@ -91,7 +91,7 @@
 		if(beakers.len)
 			I.play_tool_sound(src, 25)
 			to_chat(user, span_notice("You begin to secure the grenade assembly."))
-			if(I.use_tool(user, 3 SECONDS, src))
+			if(I.use_tool(src, user, 3 SECONDS))
 				embedding = initial(embedding)
 				stage_change(GRENADE_READY)
 				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
