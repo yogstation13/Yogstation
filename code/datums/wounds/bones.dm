@@ -187,8 +187,6 @@
 	else if(limb.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		if(limb.current_gauze)
 			interaction_efficiency_penalty = 1 + ((interaction_efficiency_penalty - 1) * limb.current_gauze.splint_factor)
-		else
-			interaction_efficiency_penalty = interaction_efficiency_penalty
 
 	if(initial(disabling))
 		set_disabling(!limb.current_gauze)

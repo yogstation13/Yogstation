@@ -154,7 +154,7 @@
 	var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(loc)
 	extinguish_mob()
 	forceMove(holder)
-	holder = holder
+	src.holder = holder
 	notransform = FALSE
 	fakefireextinguish()
 
