@@ -597,6 +597,7 @@
 	throw_range = 0
 	throw_speed = 0
 	wound_bonus = 30			//But your bones will be sad :(
+	armour_penetration = -20	//it having negative armor penetration is stupid but it'll balance out the wound bonus.. probably
 	hitsound = "swing_hit"
 	attack_verb = list("smashed", "slammed", "crushed", "whacked")
 	sharpness = SHARP_NONE
