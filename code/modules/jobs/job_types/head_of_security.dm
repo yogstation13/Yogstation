@@ -48,6 +48,12 @@
 		/obj/item/kitchen/knife/combat = 2
 	)
 
+	minimal_lightup_areas = list(
+		/area/crew_quarters/heads/hos,
+		/area/security/detectives_office,
+		/area/security/warden
+	)
+	
 	smells_like = "deadly authority"
 
 /datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)

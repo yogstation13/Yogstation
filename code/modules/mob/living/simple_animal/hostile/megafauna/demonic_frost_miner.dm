@@ -170,7 +170,7 @@ Difficulty: Extremely Hard
 			P.original = target
 		P.set_homing_target(target)
 		P.fire(rand(0, 360))
-		addtimer(CALLBACK(P, /obj/projectile/frost_orb/proc/orb_explosion, projectile_speed_multiplier), 20) // make the orbs home in after a second
+		addtimer(CALLBACK(P, TYPE_PROC_REF(/obj/projectile/frost_orb, orb_explosion), projectile_speed_multiplier), 20) // make the orbs home in after a second
 		SLEEP_CHECK_DEATH(added_delay)
 	SetRecoveryTime(40, 60)
 

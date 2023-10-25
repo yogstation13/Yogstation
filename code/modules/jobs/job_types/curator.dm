@@ -36,6 +36,11 @@
 	departments_list = list(
 		/datum/job_department/service,
 	)
+	
+	minimal_lightup_areas = list(
+		/area/library,
+		/area/construction/mining/aux_base
+	)
 
 	smells_like = "musty paper"
 

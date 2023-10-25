@@ -19,6 +19,10 @@
 #define IGNORE_MAX_BYOND_VERSION
 #endif
 
+#ifdef SPACEMAN_DMM // dm-langserver is now on 515 and we aren't
+#define IGNORE_MAX_BYOND_VERSION
+#endif
+
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
 // Not updating until we fully move to 515
 #error Your version of BYOND is too new to compile this project. Download version 514.1589 at www.byond.com/download/build/514/514.1589_byond.exe

@@ -32,6 +32,13 @@
 		/obj/item/reagent_containers/glass/bottle/mutagen = 5,
 		/obj/item/dnainjector/elvismut = 1
 	)
+	
+	lightup_areas = list(
+		/area/medical/surgery,
+		/area/medical/virology,
+		/area/medical/chemistry
+	)
+	minimal_lightup_areas = list(/area/medical/morgue, /area/medical/genetics)
 
 	smells_like = "monkey hair"
 

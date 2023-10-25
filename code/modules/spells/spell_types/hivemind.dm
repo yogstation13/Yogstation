@@ -954,10 +954,10 @@
 		if(C.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 6))
 			continue
 		to_chat(C, span_boldwarning("Something's wrong..."))
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_boldwarning("...your memories are becoming fuzzy.")), 45)
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_boldwarning("You try to remember who you are...")), 90)
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_assimilator("There is no you...")), 110)
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_bigassimilator("...there is only us.")), 130)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), C, span_boldwarning("...your memories are becoming fuzzy.")), 45)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), C, span_boldwarning("You try to remember who you are...")), 90)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), C, span_assimilator("There is no you...")), 110)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), C, span_bigassimilator("...there is only us.")), 130)
 		addtimer(CALLBACK(C, /mob/living/proc/hive_awaken, new_objective, one_mind_team), 150)
 
 	return TRUE

@@ -232,8 +232,8 @@
 		if(AM == source)
 			continue			//we don't want to return source
 
-		if(!cable_only && istype(AM, /obj/machinery/power))
-			var/obj/machinery/power/P = AM
+		if(!cable_only && istype(AM, /obj/machinery))
+			var/obj/machinery/P = AM
 			if(P.powernet == 0)
 				continue		// exclude APCs which have powernet=0
 
@@ -271,15 +271,15 @@
 				PN.add_cable(C)
 			worklist |= C.get_connections() //get adjacents power objects, with or without a powernet
 
-		else if(P.anchored && istype(P, /obj/machinery/power))
-			var/obj/machinery/power/M = P
+		else if(P.anchored && istype(P, /obj/machinery))
+			var/obj/machinery/M = P
 			found_machines |= M //we wait until the powernet is fully propagates to connect the machines
 
 		else
 			continue
 
 	//now that the powernet is set, connect found machines to it
-	for(var/obj/machinery/power/PM in found_machines)
+	for(var/obj/machinery/PM in found_machines)
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a powernet
 
@@ -302,7 +302,7 @@
 	for(var/obj/structure/cable/Cable in net2.cables) //merge cables
 		net1.add_cable(Cable)
 
-	for(var/obj/machinery/power/Node in net2.nodes) //merge power machines
+	for(var/obj/machinery/Node in net2.nodes) //merge power machines
 		if(!Node.connect_to_network())
 			Node.disconnect_from_network() //if somehow we can't connect the machine to the new powernet, disconnect it from the old nonetheless
 

@@ -126,6 +126,8 @@
 	SIGNAL_HANDLER
 
 	if(magic_flags & antimagic_flags)
+		if(HAS_TRAIT(user, TRAIT_ANTIMAGIC_NO_SELFBLOCK)) // this trait bypasses magic casting restrictions
+			return NONE
 		return COMPONENT_MAGIC_BLOCKED
 
 	return NONE

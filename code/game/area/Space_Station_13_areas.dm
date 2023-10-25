@@ -90,6 +90,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambient_buzz_vol = 20
 	min_ambience_cooldown = 20 SECONDS
 	max_ambience_cooldown = 35 SECONDS
+	lights_always_start_on = TRUE
 	lighting_colour_tube = "#ffe5cb"
 	lighting_colour_bulb = "#ffdbb4"
 
@@ -256,6 +257,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway
 	minimap_color = "#8d8c68"
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 	lighting_colour_tube = "#fdf3ea"
 	lighting_colour_bulb = "#ffebd6"
 
@@ -334,6 +336,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/heads
 	airlock_wires = /datum/wires/airlock/command
 	clockwork_warp_allowed = FALSE
+	lights_always_start_on = FALSE
 
 /area/crew_quarters/heads/captain
 	name = "Captain's Office"
@@ -375,6 +378,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Communications Relay"
 	icon_state = "tcomsatcham"
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 	lighting_colour_tube = "#e2feff"
 	lighting_colour_bulb = "#d5fcff"
 
@@ -382,6 +386,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Messaging Server Room"
 	icon_state = "server"
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 	lighting_colour_tube = "#fff4d6"
 	lighting_colour_bulb = "#ffebc1"
 
@@ -390,6 +395,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters
 	minimap_color = "#b0e1ff"
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 
 /area/crew_quarters/dorms
 	name = "Dormitories"
@@ -457,6 +463,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "kitchen"
 	minimap_color = "#5ac866"
 	airlock_wires = /datum/wires/airlock/service
+	lights_always_start_on = FALSE
 	lighting_colour_tube = "#e3ffff"
 	lighting_colour_bulb = "#d5ffff"
 
@@ -501,10 +508,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "Theatre"
 	minimap_color = "#5ac866"
 	sound_environment = SOUND_AREA_WOODFLOOR
+	lights_always_start_on = FALSE
 
 /area/crew_quarters/theatre/abandoned
 	name = "Abandoned Theatre"
 	icon_state = "Theatre"
+	lights_always_start_on = FALSE
 
 /area/library
 	name = "Library"
@@ -1110,6 +1119,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	valid_territory = FALSE
 	name = "Toxins Test Area"
 	icon_state = "toxtest"
+	lights_always_start_on = TRUE
 
 /area/science/mixing
 	name = "Toxins Mixing Lab"
@@ -1166,6 +1176,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/storage
 	minimap_color = "#f8ff83"
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 
 /area/storage/tools
 	name = "Auxiliary Tool Storage"
@@ -1329,6 +1340,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "yellow"
 	minimap_color = "#00fff6"
 	airlock_wires = /datum/wires/airlock/ai
+	lights_always_start_on = TRUE
 
 /area/ai_monitored/turret_protected/aisat_interior
 	name = "AI Satellite Antechamber"
