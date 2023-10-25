@@ -66,7 +66,6 @@
  * program - A <GlobalBlock> object which represents the script's global scope.
  */
 /datum/n_Interpreter/proc/Load(datum/node/BlockDefinition/GlobalBlock/program)
-	to_chat(world, "Called Load: creating program [program]")
 	ASSERT(program)
 	src.program = program
 	CreateGlobalScope()
@@ -97,7 +96,6 @@
 
 /datum/n_Interpreter/proc/CreateGlobalScope()
 	var/datum/scope/S = new(program, null)
-	to_chat(world, "CREATING GLOBAL SCOPE: [S]")
 	globalScope = S
 	for(var/functype in subtypesof(/datum/n_function/default))
 		var/datum/n_function/default/god_damn_it_byond = functype
