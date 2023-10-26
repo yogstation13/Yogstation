@@ -276,7 +276,7 @@
 				COOLDOWN_START(src, overheat_alert, 5 SECONDS)
 		if(heat >= 30 && heat < 40)
 			to_chat(user, span_warning("The strain on your mind is too much!"))
-			gib(usr) // lol dont do that. Think D20 but only bad things. One can gib you tho.
+			// Think D20 but only bad things. 
 		if(heat >= 40)
 			addtimer(CALLBACK(src, PROC_REF(warp_gib), user), 5 SECONDS)
 			to_chat(user, span_warning("The denizens of the warp have come for your soul! Embrace the pain!"))
@@ -290,97 +290,3 @@
 	name = "force staff"
 	desc = "Usually used to channel power, this one seems hollow. Probably shouldn`t have it anyways..."
 
-
-// bro i hate clock code
-/datum/psycicpower
-	var/name = "power"
-	var/channel_time = 1 SECONDS //In seconds, how long a spell takes to charge
-	var/obj/item/staff //The staff being used to channel
-	var/mob/living/psyker //The staff's holder
-	var/heat_cost = 5 //the amount of heat the spell generates
-	var/sort_priority = 1 //what position the scripture should have in a list of scripture. Should be based off of component costs/reqs, but you can't initial() lists.
-	var/cast_slowdown = 0
-	var/staff_overlay
-	var/ranged_type = /datum/action/innate/staff
-	var/timeout_time = 0
-	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
-	var/datum/progressbar/progbar
-
-/datum/action/innate/staff
-	click_action = TRUE
-	var/obj/item/staff/psyker/staff
-	var/successful = FALSE
-	var/in_progress = FALSE
-	var/finished = FALSE
-
-/datum/action/innate/staff/Destroy()
-	staff = null
-	return ..()
-
-/datum/psycicpower/Destroy()
-	qdel(progbar)
-	return ..()
-
-/datum/action/innate/staff/IsAvailable(feedback = FALSE)
-	return TRUE
-
-/datum/action/innate/staff/InterceptClickOn(mob/living/caller, params, atom/clicked_on)
-	if(in_progress)
-		return FALSE
-	if(caller.incapacitated() || !staff || !(staff in caller.held_items) || clicked_on == staff)
-		unset_ranged_ability(caller)
-		return FALSE
-
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/i_hate_this = caller || owner || usr
-	i_hate_this?.client?.mouse_override_icon = initial(caller?.client?.mouse_override_icon)
-	i_hate_this?.update_mouse_pointer()
-	i_hate_this?.click_intercept = null
-	finished = TRUE
-	QDEL_IN(src, 0.1 SECONDS)
-	return TRUE
-
-/datum/psycicpower/headpop
-	name = "Mind Detonation"
-	channel_time = 40
-	ranged_type = /datum/action/innate/staff/headpop
-	timeout_time = 50
-	cast_slowdown = 1
-	heat_cost = 25 // so that 2 uses will gib you
-
-/datum/action/innate/staff/headpop/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
-	if(!isturf(T))
-		return FALSE
-
-	if(clicked_on in view(7, get_turf(caller)))
-
-		successful = TRUE
-
-		var/turf/U = get_turf(clicked_on)
-		var/obj/projectile/kindle/A = new(T)
-		A.preparePixelProjectile(clicked_on, caller, params)
-		A.fire()
-
-	return TRUE
-
-/obj/projectile/headpop
-	name = "Mind Detonation Pulse"
-	icon_state = "pulse0"
-	nodamage = TRUE
-	damage = 0 //technically...
-	range = 5
-	log_override = TRUE
-
-/obj/projectile/headpop/Destroy()
-	visible_message(span_warning("[src] dispells before your eyes!"))
-	. = ..()
-
-/obj/projectile/headpop/on_hit(atom/clicked_on)
-	if(isliving(clicked_on))
-		var/mob/living/L = clicked_on
-		// find cool sound playsound(L, 'sound', 50, TRUE)
-		// Delete L head
-	return ..()
