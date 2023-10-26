@@ -216,7 +216,6 @@
 	icon_state = "rubberducky"
 	item_state = "rubberducky"
 
-
 /obj/structure/sink
 	name = "sink"
 	icon = 'icons/obj/watercloset.dmi'
@@ -345,7 +344,11 @@
 	new /obj/item/stack/sheet/metal (loc, 3)
 	qdel(src)
 
-
+/obj/structure/sink/shamblers
+	name = "shambler's juice branded sink"
+	desc = "Fresh water brought to you by Shambler's Juice! Now with 1% less sugar!"
+	icon_state = "shamblers_sink"
+	dispensedreagent = /datum/reagent/consumable/shamblers
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"
