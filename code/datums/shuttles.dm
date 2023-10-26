@@ -120,6 +120,9 @@
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"
 
+/datum/map_template/shuttle/djchu
+	port_id = "djchu"
+
 /datum/map_template/shuttle/labour
 	port_id = "labour"
 
@@ -677,3 +680,8 @@
 /datum/map_template/shuttle/arrival/donut
 	suffix = "donut"
 	name = "arrival shuttle (Donut)"
+
+/datum/map_template/shuttle/djchu/ship
+	suffix = "ship"
+	name = "DJ Chu's Ship"
+	admin_notes = "Specifically made for DJ Chu to run music from. Has a ghost beacon."
