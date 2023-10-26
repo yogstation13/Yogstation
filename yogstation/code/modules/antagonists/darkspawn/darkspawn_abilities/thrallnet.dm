@@ -42,6 +42,7 @@
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn
 	name = "dark orb"
+	desc = "lol"
 	icon = 'icons/obj/modular_phone.dmi'
 	icon_state = "phone-red"
 	icon_state_base = "phone"
