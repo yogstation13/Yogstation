@@ -36,15 +36,41 @@
 /datum/action/cooldown/spell/touch/invisible_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	if(isturf(victim))
 		return FALSE
-	if(victim in blacklist)
+	if(victim.type in blacklist)
 		to_chat(caster, span_warning("[victim] is too dangerous to mess with!"))
 		return FALSE
-	if(iscarbon(victim))
-		to_chat(caster, span_warning("It doesn't work on other people!")) // Not yet at least
+	
+	if(ismob(victim))
+		if(ishuman(victim))
+			vanish_items(victim)
+			caster.visible_message(span_danger("[caster] casts a spell on [victim], turning their clothes invisible!"))
+			return TRUE
+		to_chat(caster, span_warning("There is nothing on [victim] to make disappear"))
 		return FALSE
+	
 	if(isobj(victim))
 		vanish_target(victim)
-	return TRUE
+		return TRUE
+
+/datum/action/cooldown/spell/touch/invisible_touch/proc/vanish_items(mob/living/carbon/human/H)
+	if(H.head)
+		vanish_target(H.head)
+	if(H.wear_mask)
+		vanish_target(H.wear_mask)
+	if(H.wear_suit)
+		vanish_target(H.wear_suit)
+	if(H.wear_neck)
+		vanish_target(H.wear_neck)
+	if(H.back)
+		vanish_target(H.back)
+	if(H.w_uniform)
+		vanish_target(H.w_uniform)
+	if(H.shoes)
+		vanish_target(H.shoes)
+	H.regenerate_icons()
+
+	addtimer(CALLBACK(src, PROC_REF(revert_items), H), MIME_INVISIBLE_TOUCH_LENGTH+1) // +1 incase of minor lag or something
+
 
 /datum/action/cooldown/spell/touch/invisible_touch/proc/vanish_target(atom/T)
 	T.alpha = 0
@@ -56,6 +82,9 @@
 	if(T)
 		T.alpha = initial(T.alpha)
 		T.visible_message("[T] reappears!")
+
+datum/action/cooldown/spell/touch/invisible_touch/proc/revert_items(mob/living/carbon/human/H)
+	H.regenerate_icons()
 
 /obj/item/melee/touch_attack/invisible_touch
 	name = "\improper vanishing hand"
