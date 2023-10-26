@@ -109,7 +109,7 @@
 /////////////////////////////////////////////////////////////////
 //-----------------training related section--------------------//
 /////////////////////////////////////////////////////////////////
-/mob/living/carbon/human/proc/lightning_flow_help()//negative flavour, i just wanted to add something to attach wirecrawling to
+/mob/living/carbon/human/proc/lightning_flow_help()
 	set name = "Focus"
 	set desc = "Remember what you are capable of."
 	set category = "Lightning Flow"
