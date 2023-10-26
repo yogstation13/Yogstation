@@ -3113,6 +3113,16 @@
 /obj/structure/closet/crate/medical,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/warehouse)
+"byP" = (
+/mob/living/simple_animal/pet/cat{
+	icon_living = "cat";
+	icon_state = "cat";
+	icon_dead = "cat_dead";
+	name = "Oscar";
+	desc = "A clone of a cat that supposedly served on the Bismarck, now the ship's cat for the SVS Gax."
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/bridge)
 "bzM" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/effect/turf_decal/stripes/line{
@@ -100655,7 +100665,7 @@ qmg
 hTe
 fvV
 qLE
-lzV
+byP
 qFU
 lzV
 qLE
