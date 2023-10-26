@@ -8,7 +8,6 @@
 #define REACTOR_TEMPERATURE_CRITICAL 1000 //At this point the entire station is alerted to a meltdown. This may need altering
 #define REACTOR_TEMPERATURE_MELTDOWN 1200
 
-
 #define REACTOR_HEAT_CAPACITY 6000 //How much thermal energy it takes to cool the reactor
 #define REACTOR_ROD_HEAT_CAPACITY 400 //How much thermal energy it takes to cool each reactor rod
 #define REACTOR_HEAT_EXPONENT 1.5 // The exponent used for the function for K heating
