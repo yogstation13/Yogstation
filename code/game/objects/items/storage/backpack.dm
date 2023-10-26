@@ -536,7 +536,7 @@
 	for(var/i in 7 to 8)
 		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
-/obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
 	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun/PopulateContents()
