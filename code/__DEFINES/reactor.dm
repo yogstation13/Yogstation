@@ -54,3 +54,5 @@
 #define HYDROGEN_RAD_MOD 0.12 // getting a bit spicy there
 #define TRITIUM_RAD_MOD 0.2 // fuck that's a lot
 #define ANTINOBLIUM_RAD_MOD 10 // AAAAAAAAAAAAAAAAAAAA
+
+#define HEALIUM_COEFFICIENTS 0.002554 // Used for calculating the temperature requirement to restore the reactor integrity

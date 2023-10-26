@@ -415,7 +415,7 @@
 		// Integrity modification
 		var/healium_moles = coolant_input.get_moles(/datum/gas/healium)
 		if(healium_moles>1)
-			integrity_restoration = min(3,log(healium_moles)/2)
+			integrity_restoration = max(0, HEALIUM_COEFFICIENTS * temperature) * delta_time
 		else
 			integrity_restoration = 0
 		coolant_input.set_temperature(last_coolant_temperature - (heat_delta * (1 - coolant_heat_factor))) //Heat the coolant output gas that we just had pass through us.
@@ -501,9 +501,9 @@
 	else
 		color = null
 
-	if(temperature <= REACTOR_TEMPERATURE_GAS_FAILSAFE && vessel_integrity <= 400)
+	if(vessel_integrity <= 400)
 		vessel_integrity += integrity_restoration
-	else if(vessel_integrity > 400) //incase it goes beyond
+	else //incase it goes beyond
 		vessel_integrity = 400
 	
 	//Second alert condition: Overpressurized (the more lethal one)
