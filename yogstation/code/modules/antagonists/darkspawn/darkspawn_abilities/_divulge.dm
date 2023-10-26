@@ -52,10 +52,9 @@
 	user.visible_message(span_danger("[user] slowly rises into the air, their belongings falling away, and begins to shimmer..."), \
 						"<span class='velvet big'><b>You begin the removal of your human disguise. You will be completely vulnerable during this time.</b></span>")
 	user.setDir(SOUTH)
-	for(var/obj/item/I in user)
-		user.dropItemToGround(I)
+	user.unequip_everything()
 	for(var/turf/T in RANGE_TURFS(1, user))
-		new/obj/structure/psionic_barrier(T, 500)
+		new/obj/structure/psionic_barrier(T, 35 SECONDS)
 	for(var/stage in 1 to 3)
 		if(isethereal(user))//keep the light disabled
 			user.dna.species.spec_emp_act(user, EMP_HEAVY)
@@ -67,14 +66,14 @@
 			if(2)
 				user.visible_message(span_userdanger("Gravity fluctuates. Psychic tendrils extend outward and feel blindly around the area."), \
 									span_velvet("Gravity around you fluctuates. You tentatively reach out, feel with your mind."))
-				user.Shake(0, 3, 750) //50 loops in a second times 15 seconds = 750 loops
+				user.Shake(0, 3, 500) //50 loops in a second times 15 seconds = 750 loops
 				playsound(user, 'yogstation/sound/magic/divulge_02.ogg', 40, 0)
 			if(3)
 				user.visible_message(span_userdanger("Sigils form along [user]'s body. \His skin blackens as \he glows a blinding purple."), \
 									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
-				animate(user, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 15 SECONDS) //Produces a slow skin-blackening effect
+				animate(user, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 10 SECONDS) //Produces a slow skin-blackening effect
 				playsound(user, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
-		if(!do_after(user, 15 SECONDS, user))
+		if(!do_after(user, 10 SECONDS, user))
 			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
 			animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 1 SECONDS)
 			in_use = FALSE
