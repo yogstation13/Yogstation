@@ -22,6 +22,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_STORAGE, TRAIT_GENERIC)
 	bodcam = new(src)
+	bodcam.bodycam = src
 	bodcam.c_tag = "NT_BodyCam"
 	bodcam.network = list("ss13")
 	bodcam.internal_light = FALSE
@@ -110,16 +111,15 @@
 	..()
 	getMobhook(user)
 
-/obj/item/clothing/neck/bodycam/dropped(mob/wearer)
-	if(bodcam)
-		if(bodcam.status)//if it's on
-			attack_self(wearer) //turn it off
-		GLOB.cameranet.updatePortableCamera(bodcam)
-		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	..()
-
 /obj/item/clothing/neck/bodycam/proc/getMobhook(mob/to_hook) //This stuff is basically copypasta from RCL.dm, look there if you are confused
 	bodcam.built_in = to_hook
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+		if(C == bodcam)
+			continue
+		if(C.built_in == to_hook && C.status)
+			C.bodycam.attack_self(to_hook) //Disconnect other cameras that registered same mobs to prevent people abusing bodycams around the station
+			GLOB.cameranet.updatePortableCamera(C)
+			UnregisterSignal(C.bodycam.listeningTo, COMSIG_MOVABLE_MOVED)
 	if(listeningTo == to_hook)//if it's already hooked, no need to do it again lol
 		return
 	if(listeningTo)

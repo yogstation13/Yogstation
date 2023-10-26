@@ -24,6 +24,7 @@
 	var/invuln = null
 	var/obj/item/camera_bug/bug = null
 	var/obj/item/radio/alertradio = null
+	var/obj/item/clothing/neck/bodycam/bodycam = null
 	var/obj/structure/camera_assembly/assembly = null
 	var/area/myarea = null
 
