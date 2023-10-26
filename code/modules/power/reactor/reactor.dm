@@ -415,7 +415,7 @@
 		// Integrity modification
 		var/healium_moles = coolant_input.get_moles(/datum/gas/healium)
 		if(healium_moles>1)
-			integrity_restoration = max(0, HEALIUM_COEFFICIENTS * temperature) * delta_time //At 1800K integrity_restoration should be around 2.23, which then it cant keep up with the heat damage to restore integrity
+			integrity_restoration = max(0, HEALIUM_COEFFICIENTS * max(TCMB, temperature)) * delta_time //At 1800K integrity_restoration should be around 2.23, which then it cant keep up with the heat damage to restore integrity
 		coolant_input.set_temperature(last_coolant_temperature - (heat_delta * (1 - coolant_heat_factor))) //Heat the coolant output gas that we just had pass through us.
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
 		coolant_input.clear() //Clear out anything left in the input gate.
