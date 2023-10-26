@@ -1,14 +1,14 @@
 /datum/eldritch_transmutation/knock_knife
-	name = "Ashen Blade"
-	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/ash)
-	result_atoms = list(/obj/item/melee/sickly_blade/ash)
-	required_shit_list = "A pile of ash and a knife."
+	name = "Key Blade"
+	required_atoms = list(/obj/item/kitchen/knife,/obj/item/crowbar)
+	result_atoms = list(/obj/item/melee/sickly_blade/knock)
+	required_shit_list = "A crowbar and a knife."
 
 /datum/eldritch_transmutation/key_ring
 	name = "Key Keeper’s Burden"
 	required_atoms = list(/obj/item/storage/wallet,/obj/item/card/id,/obj/item/stack/rods)
 	result_atoms = list(/obj/item/card/id/syndicate/heretic)
-	required_shit_list = "A glass shard and a pair of eyes."
+	required_shit_list = "A wallet, ID card, and metal rods."
 
 /datum/eldritch_transmutation/final/knock_final
 	name = "Many secrets behind the Spider Door"

@@ -34,6 +34,7 @@
 		/datum/eldritch_knowledge/void_final,
 		/datum/eldritch_knowledge/blade_final,
 		/datum/eldritch_knowledge/cosmic_final)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/knock_knife)
 	cost = 1
 	route = PATH_KNOCK
 	tier = TIER_PATH
@@ -43,7 +44,7 @@
 
 	var/datum/action/cooldown/spell/touch/mansus_grasp/knock_grasp = locate() in user.actions
 	knock_grasp?.cooldown_time = 20 SECONDS
-	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
+	var/obj/realknife = new /obj/item/melee/sickly_blade/knock
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 

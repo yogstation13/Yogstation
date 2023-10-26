@@ -189,7 +189,7 @@
 
 /obj/item/melee/sickly_blade/cosmic
 	name = "cosmic blade"
-	desc = "A piece of the cosmos, shaped like a weapon for you to wield"
+	desc = "A piece of the cosmos, shaped like a weapon for you to wield."
 	icon_state = "cosmic_blade"
 	item_state = "cosmic_blade"
 
@@ -201,6 +201,12 @@
 		secondsword.attack(M, user, TRUE)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return
+
+/obj/item/melee/sickly_blade/knock
+	name = "key blade"
+	desc = "A blade in the shape of a key, what door will you unlock with it?"
+	icon_state = "eldritch_blade"
+	item_state = "eldritch_blade"
 
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
