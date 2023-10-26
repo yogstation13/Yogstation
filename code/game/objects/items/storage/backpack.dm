@@ -539,7 +539,7 @@
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
 	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
 
-/obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun/PopulateContents()
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random/PopulateContents()
 	var/list/item_list = list(
 		/obj/item/ammo_box/magazine/m12g,
 		/obj/item/ammo_box/magazine/m12g/dragon,
@@ -567,7 +567,7 @@
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
 	desc = "A large duffel bag, packed to the brim with random C-20r magazines."
 
-/obj/item/storage/backpack/duffelbag/syndie/ammo/random/smg/PopulateContents()
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random/PopulateContents()
 	var/list/item_list = list(
 		/obj/item/ammo_box/magazine/smgm45,
 		/obj/item/ammo_box/magazine/smgm45/ap,

@@ -826,7 +826,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/shotgun/bag/random
 	name = "Randomized 12g Ammo Duffel Bag"
 	desc = "A duffel bag containing 10 random drum mags for the Bulldog shotgun, bundled together at a big discount."
-	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/random/shotgun
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
 	cost = 10 // Random ammo, so its cheaper?
 
 /datum/uplink_item/ammo/shotgun/buck
@@ -948,9 +948,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/smg/bag/random
+	name = "Randomized .45 Ammo Duffel Bag"
 	desc = "A duffel bag containing eleven randomly picked, standard .45 magazines for the C-20r submachine gun, bundled together at a big discount."
 	cost = 18 // bit cheaper for more random crap
-	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/random/smg
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
 
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"
