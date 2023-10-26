@@ -28,7 +28,7 @@
 /datum/martial_art/lightning_flow/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(dashing)
 		return TRUE
-	damage(A, D, 5)
+	damage(D, A, 5)
 	return FALSE
 
 /datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, knockdown = 1 SECONDS)
