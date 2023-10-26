@@ -1049,7 +1049,7 @@
 	- Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of plutonium production or sabotage.<BR>\
 	<BR><B>Coolant effects</B><BR>\
 	- The higher heat capacity gas allows the reactor to increase coolant effciency.<BR>\
-	- Healium has low heat capacity but it can reduce heat damage and restore integrity below 1800 Kelvin.<BR>\
+	- Healium has low heat capacity but it can restore integrity if below 1800 Kelvin.<BR>\
 	<BR><B>OH GOD IT'S SCREAMING AT ME WHAT DO I DO</B><BR>\
 	Don't panic! There's a few things you can do to prevent the station from becoming an irradiated hellscape.<BR>\
 	Scenario 1: Overheating<BR>\
