@@ -66,6 +66,9 @@
 	action_type = H.a_intent
 	dash(H, target)
 
+/////////////////////////////////////////////////////////////////
+//-------------------dash handling section---------------------//
+/////////////////////////////////////////////////////////////////
 /datum/martial_art/lightning_flow/proc/dash(mob/living/carbon/human/H, atom/target)
 	dashing = TRUE
 	if(action_type && action_type == INTENT_DISARM)
