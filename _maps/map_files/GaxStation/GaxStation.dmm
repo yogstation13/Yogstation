@@ -2959,6 +2959,14 @@
 "byP" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"bzu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "bzM" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/effect/turf_decal/stripes/line{
@@ -4780,6 +4788,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"cvn" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "cvq" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -14015,6 +14032,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"gHi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "gHq" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -22862,10 +22888,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"lhO" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "lia" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp/green,
@@ -24045,6 +24067,13 @@
 "lMu" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/department/security)
+"lMw" = (
+/obj/effect/turf_decal/trimline/white/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "lMA" = (
 /turf/closed/wall/r_wall,
 /area/hallway/secondary/entry)
@@ -27423,6 +27452,9 @@
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 9
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "nwr" = (
@@ -28028,14 +28060,6 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/aft)
-"nJc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "nJe" = (
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -29037,13 +29061,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"omN" = (
-/obj/effect/turf_decal/trimline/white/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "omU" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 4
@@ -39618,6 +39635,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"tuQ" = (
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "tva" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -40869,6 +40890,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -45080,15 +45104,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"wfs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "wfE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -46733,15 +46748,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"wVc" = (
-/obj/effect/turf_decal/trimline/blue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "wVo" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -92193,7 +92199,7 @@ vvd
 vmy
 vvd
 qSn
-omN
+lMw
 vvd
 atx
 pnP
@@ -92450,7 +92456,7 @@ qub
 wcy
 lzE
 jWH
-wfs
+gHi
 oAE
 atx
 pnP
@@ -92707,7 +92713,7 @@ mPt
 vvd
 vvd
 xus
-lhO
+tuQ
 rRY
 atx
 pnP
@@ -94508,7 +94514,7 @@ rrI
 faQ
 btB
 wYh
-nJc
+bzu
 aAR
 blt
 aAR
@@ -97307,12 +97313,12 @@ fnc
 aCD
 nhh
 nvT
-wVc
+cvn
 dKK
 rFX
 lEO
 hVZ
-wVc
+cvn
 jqf
 tZB
 hfQ
