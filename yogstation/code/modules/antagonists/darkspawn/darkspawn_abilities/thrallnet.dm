@@ -6,7 +6,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "pass"
+	button_icon_state = "sacrament"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/orb
