@@ -91,8 +91,9 @@
 	. = ..()
 	if(prob(150/severity))
 		Disconnect()
-		bodcam.c_tag = null
-		bodcam.network[1] = null //requires a reset
+		if(!preset)
+			bodcam.c_tag = null
+			bodcam.network[1] = null //requires a reset
 		update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/neck/bodycam/Destroy()
@@ -116,10 +117,14 @@
 	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		if(C == bodcam)
 			continue
-		if(C.built_in == to_hook && C.status)
-			C.bodycam.attack_self(to_hook) //Disconnect other cameras that registered same mobs to prevent people abusing bodycams around the station
-			GLOB.cameranet.updatePortableCamera(C)
-			UnregisterSignal(C.bodycam.listeningTo, COMSIG_MOVABLE_MOVED)
+		if(C.built_in == to_hook)
+			if(C.status)
+				C.bodycam.attack_self(to_hook) //Disconnect other cameras that registered same mobs to prevent people abusing bodycams around the station
+				GLOB.cameranet.updatePortableCamera(C)
+				UnregisterSignal(C.bodycam.listeningTo, COMSIG_MOVABLE_MOVED)
+			if(istype(C.bodycam, /obj/item/clothing/neck/bodycam/miner))
+				C.c_tag = "Unactivated Miner Body Camera"
+
 	if(listeningTo == to_hook)//if it's already hooked, no need to do it again lol
 		return
 	if(listeningTo)
