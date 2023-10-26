@@ -16794,6 +16794,8 @@
 /obj/item/pipe_dispenser,
 /obj/item/pipe_dispenser,
 /obj/item/pipe_dispenser,
+/obj/item/melee/sledgehammer,
+/obj/item/melee/sledgehammer,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "hnb" = (
@@ -55735,7 +55737,6 @@
 	pixel_x = 3;
 	pixel_y = 2
 	},
-/obj/item/storage/box/deputy,
 /obj/item/storage/secure/safe/HoS{
 	pixel_x = 35
 	},

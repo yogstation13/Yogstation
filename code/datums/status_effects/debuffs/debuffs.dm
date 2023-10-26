@@ -1426,4 +1426,216 @@
 	id = "lasting_void_chill"
 	duration = -1
 
+/datum/status_effect/protective_blades
+	id = "Silver Knives"
+	alert_type = null
+	status_type = STATUS_EFFECT_MULTIPLE
+	tick_interval = -1
+	/// The number of blades we summon up to.
+	var/max_num_blades = 4
+	/// The radius of the blade's orbit.
+	var/blade_orbit_radius = 20
+	/// The time between spawning blades.
+	var/time_between_initial_blades = 0.25 SECONDS
+	/// If TRUE, we self-delete our status effect after all the blades are deleted.
+	var/delete_on_blades_gone = TRUE
+	/// A list of blade effects orbiting / protecting our owner
+	var/list/obj/effect/floating_blade/blades = list()
 
+/datum/status_effect/protective_blades/on_creation(
+	mob/living/new_owner,
+	new_duration = -1,
+	max_num_blades = 4,
+	blade_orbit_radius = 20,
+	time_between_initial_blades = 0.25 SECONDS,
+)
+
+	src.duration = new_duration
+	src.max_num_blades = max_num_blades
+	src.blade_orbit_radius = blade_orbit_radius
+	src.time_between_initial_blades = time_between_initial_blades
+	return ..()
+
+/datum/status_effect/protective_blades/on_apply()
+	RegisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS, PROC_REF(on_shield_reaction))
+	for(var/blade_num in 1 to max_num_blades)
+		var/time_until_created = (blade_num - 1) * time_between_initial_blades
+		if(time_until_created <= 0)
+			create_blade()
+		else
+			addtimer(CALLBACK(src, PROC_REF(create_blade)), time_until_created)
+
+	return TRUE
+
+/datum/status_effect/protective_blades/on_remove()
+	UnregisterSignal(owner, COMSIG_HUMAN_CHECK_SHIELDS)
+	QDEL_LIST(blades)
+
+	return ..()
+
+/// Creates a floating blade, adds it to our blade list, and makes it orbit our owner.
+/datum/status_effect/protective_blades/proc/create_blade()
+	if(QDELETED(src) || QDELETED(owner))
+		return
+
+	var/obj/effect/floating_blade/blade = new(get_turf(owner))
+	blades += blade
+	blade.orbit(owner, blade_orbit_radius)
+	RegisterSignal(blade, COMSIG_PARENT_QDELETING, PROC_REF(remove_blade))
+	playsound(get_turf(owner), 'sound/items/unsheath.ogg', 33, TRUE)
+
+/// Signal proc for [COMSIG_HUMAN_CHECK_SHIELDS].
+/// If we have a blade in our list, consume it and block the incoming attack (shield it)
+/datum/status_effect/protective_blades/proc/on_shield_reaction(
+	mob/living/carbon/human/source,
+	atom/movable/hitby,
+	damage = 0,
+	attack_text = "the attack",
+	attack_type = MELEE_ATTACK,
+	armour_penetration = 0,
+	damage_type = BRUTE,
+)
+	SIGNAL_HANDLER
+
+	if(!length(blades))
+		return
+
+	if(HAS_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED))
+		return
+
+	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, type)
+
+	var/obj/effect/floating_blade/to_remove = blades[1]
+
+	playsound(get_turf(source), 'sound/weapons/parry.ogg', 100, TRUE)
+	source.visible_message(
+		span_warning("[to_remove] orbiting [source] snaps in front of [attack_text], blocking it before vanishing!"),
+		span_warning("[to_remove] orbiting you snaps in front of [attack_text], blocking it before vanishing!"),
+		span_hear("You hear a clink."),
+	)
+
+	qdel(to_remove)
+
+	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, type), 1)
+
+	return SHIELD_BLOCK
+
+/// Remove deleted blades from our blades list properly.
+/datum/status_effect/protective_blades/proc/remove_blade(obj/effect/floating_blade/to_remove)
+	SIGNAL_HANDLER
+
+	if(!(to_remove in blades))
+		CRASH("[type] called remove_blade() with a blade that was not in its blades list.")
+
+	to_remove.stop_orbit(owner.orbiters)
+	blades -= to_remove
+
+	if(!length(blades) && !QDELETED(src) && delete_on_blades_gone)
+		qdel(src)
+
+	return TRUE
+
+/// A subtype that doesn't self-delete / disappear when all blades are gone
+/// It instead regenerates over time back to the max after blades are consumed
+/datum/status_effect/protective_blades/recharging
+	delete_on_blades_gone = FALSE
+	/// The amount of time it takes for a blade to recharge
+	var/blade_recharge_time = 1 MINUTES
+
+/datum/status_effect/protective_blades/recharging/on_creation(
+	mob/living/new_owner,
+	new_duration = -1,
+	max_num_blades = 4,
+	blade_orbit_radius = 20,
+	time_between_initial_blades = 0.25 SECONDS,
+	blade_recharge_time = 1 MINUTES,
+)
+
+	src.blade_recharge_time = blade_recharge_time
+	return ..()
+
+/datum/status_effect/protective_blades/recharging/remove_blade(obj/effect/floating_blade/to_remove)
+	. = ..()
+	if(!.)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(create_blade)), blade_recharge_time)
+
+/datum/status_effect/star_mark
+	id = "star_mark"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 30 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	///overlay used to indicate that someone is marked
+	var/mutable_appearance/cosmic_overlay
+	/// icon file for the overlay
+	var/effect_icon = 'icons/effects/eldritch.dmi'
+	/// icon state for the overlay
+	var/effect_icon_state = "cosmic_ring"
+	/// Storage for the spell caster
+	var/datum/weakref/spell_caster
+
+/atom/movable/screen/alert/status_effect/star_mark
+	name = "Star Mark"
+	desc = "A ring above your head prevents you from entering cosmic fields or teleporting through cosmic runes..."
+	icon_state = "star_mark"
+
+/datum/status_effect/star_mark/on_creation(mob/living/new_owner, mob/living/new_spell_caster)
+	cosmic_overlay = mutable_appearance(effect_icon, effect_icon_state, BELOW_MOB_LAYER)
+	if(new_spell_caster)
+		spell_caster = WEAKREF(new_spell_caster)
+	return ..()
+
+/datum/status_effect/star_mark/Destroy()
+	QDEL_NULL(cosmic_overlay)
+	return ..()
+
+/datum/status_effect/star_mark/on_apply()
+	if(istype(owner, /mob/living/simple_animal/hostile/eldritch/star_gazer))
+		return FALSE
+	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_overlay))
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return TRUE
+
+/// Updates the overlay of the owner
+/datum/status_effect/star_mark/proc/update_owner_overlay(atom/source, list/overlays)
+	SIGNAL_HANDLER
+
+	overlays += cosmic_overlay
+
+/datum/status_effect/star_mark/on_remove()
+	UnregisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS)
+	owner.update_appearance(UPDATE_OVERLAYS)
+	return ..()
+
+/datum/status_effect/star_mark/extended
+	duration = 3 MINUTES
+
+/datum/status_effect/eldritch/cosmic
+	id = "cosmic_mark"
+	effect_sprite = "emark6"
+	/// For storing the location when the mark got applied.
+	var/obj/effect/cosmic_diamond/cosmic_diamond
+	/// Effect when triggering mark.
+	var/obj/effect/teleport_effect = /obj/effect/temp_visual/cosmic_cloud
+
+/datum/status_effect/eldritch/cosmic/on_creation(mob/living/new_owner)
+	. = ..()
+	cosmic_diamond = new(get_turf(owner))
+
+/datum/status_effect/eldritch/cosmic/Destroy()
+	QDEL_NULL(cosmic_diamond)
+	return ..()
+
+/datum/status_effect/eldritch/cosmic/on_effect()
+	new teleport_effect(get_turf(owner))
+	new /obj/effect/forcefield/cosmic_field(get_turf(owner))
+	do_teleport(
+		owner,
+		get_turf(cosmic_diamond),
+		no_effects = TRUE,
+		channel = TELEPORT_CHANNEL_MAGIC,
+	)
+	new teleport_effect(get_turf(owner))
+	owner.Paralyze(2 SECONDS)
+	return ..()
