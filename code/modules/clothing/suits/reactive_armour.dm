@@ -39,10 +39,6 @@
 	hit_reaction_chance = 50
 	///Whether the armor will try to react to hits (is it on)
 	var/active = 0
-	///This will be true for 30 seconds after an EMP, it makes the reaction effect dangerous to the user.
-	var/bad_effect = FALSE
-	///Message sent when the armor is emp'd. It is not the message for when the emp effect goes off.
-	var/emp_message = span_warning("The reactive armor has been emp'd! Damn, now it's REALLY gonna not do much!")
 	///Message sent when the armor is still on cooldown, but activates.
 	var/cooldown_message = span_danger("The reactive armor fails to do much, as it is recharging! From what? Only the reactive armor knows.")
 	///Duration of the cooldown specific to reactive armor for when it can activate again.
@@ -79,10 +75,7 @@
 	if(reactivearmor_cooldown_duration)
 		COOLDOWN_START(src, reactivearmor_cooldown, reactivearmor_cooldown_duration)
 
-	if(bad_effect)
-		return emp_activation(owner, hitby, attack_text, damage, attack_type)
-	else
-		return reactive_activation(owner, hitby, attack_text, damage, attack_type)
+	return reactive_activation(owner, hitby, attack_text, damage, attack_type)
 
 /**
  * A proc for doing cooldown effects (like the sparks on the tesla armor, or the semi-stealth on stealth armor)
@@ -101,29 +94,10 @@
 	owner.visible_message(span_danger("The reactive armor doesn't do much! No surprises here."))
 	return TRUE
 
-/**
- * A proc for doing owner unfriendly reactive armor effects.
- * Called from the suit activating while off cooldown, while the armor is still suffering from the effect of an EMP.
- * Returning TRUE will block the attack that triggered this
- */
-/obj/item/clothing/suit/armor/reactive/proc/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("The reactive armor doesn't do much, despite being emp'd! Besides giving off a special message, of course."))
-	return TRUE
-
-/obj/item/clothing/suit/armor/reactive/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF || bad_effect || !active) //didn't get hit or already emp'd, or off
-		return
-	if(ismob(loc))
-		to_chat(loc, emp_message)
-	bad_effect = TRUE
-	addtimer(VARSET_CALLBACK(src, bad_effect, FALSE), 30 SECONDS)
-
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive/teleport
 	name = "reactive teleport armor"
 	desc = "Someone separated our Research Director from his own head!"
-	emp_message = span_warning("The reactive armor's teleportation calculations begin spewing errors!")
 	cooldown_message = span_danger("The reactive teleport system is still recharging! It fails to activate!")
 	reactivearmor_cooldown_duration = 10 SECONDS
 	var/tele_range = 6
@@ -136,22 +110,12 @@
 	owner.rad_act(rad_amount)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/teleport/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("The reactive teleport system flings itself clear of [attack_text], leaving someone behind in the process!"))
-	owner.dropItemToGround(src, TRUE, TRUE)
-	playsound(get_turf(owner), 'sound/machines/buzz-sigh.ogg', 50, 1)
-	playsound(get_turf(owner), 'sound/magic/blink.ogg', 100, 1)
-	do_teleport(teleatom = src, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
-	owner.rad_act(rad_amount)
-	return FALSE //you didn't actually evade the attack now did you
-
 //Fire
 
 /obj/item/clothing/suit/armor/reactive/fire
 	name = "reactive incendiary armor"
 	desc = "An experimental suit of armor with a reactive sensor array rigged to a flame emitter. For the stylish pyromaniac."
 	cooldown_message = span_danger("The reactive incendiary armor activates, but fails to send out flames as it is still recharging its flame jets!")
-	emp_message = span_warning("The reactive incendiary armor's targeting system begins rebooting...")
 
 /obj/item/clothing/suit/armor/reactive/fire/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], sending out jets of flame!"))
@@ -162,20 +126,12 @@
 	owner.fire_stacks = -20
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/fire/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] just makes [attack_text] worse by spewing fire on [owner]!"))
-	playsound(get_turf(owner),'sound/magic/fireball.ogg', 100, 1)
-	owner.fire_stacks += 12
-	owner.ignite_mob()
-	return FALSE
-
 //Stealth
 
 /obj/item/clothing/suit/armor/reactive/stealth
 	name = "reactive stealth armor"
 	desc = "An experimental suit of armor that renders the wearer invisible on detection of imminent harm, and creates a decoy that runs away from the owner. You can't fight what you can't see."
 	cooldown_message = span_danger("The reactive stealth system activates, but is not charged enough to fully cloak!")
-	emp_message = span_warning("The reactive stealth armor's threat assessment system crashes...")
 	///when triggering while on cooldown will only flicker the alpha slightly. this is how much it removes.
 	var/cooldown_alpha_removal = 50
 	///cooldown alpha flicker- how long it takes to return to the original alpha
@@ -208,15 +164,6 @@
 	in_stealth = FALSE
 	animate(owner, alpha = initial(owner.alpha), time = animation_time)
 
-/obj/item/clothing/suit/armor/reactive/stealth/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	if(!isliving(hitby))
-		return FALSE //it just doesn't activate
-	var/mob/living/attacker = hitby
-	owner.visible_message(span_danger("[src] activates, cloaking the wrong person!"))
-	attacker.alpha = 0
-	addtimer(VARSET_CALLBACK(attacker, alpha, initial(attacker.alpha)), 4 SECONDS)
-	return FALSE
-
 //Tesla
 
 /obj/item/clothing/suit/armor/reactive/tesla
@@ -228,7 +175,6 @@
 	var/tesla_range = 20
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
 	cooldown_message = span_danger("The tesla capacitors on the reactive tesla armor are still recharging! The armor merely emits some sparks.")
-	emp_message = span_warning("The tesla capacitors beep ominously for a moment.")
 
 /obj/item/clothing/suit/armor/reactive/tesla/dropped(mob/user)
 	..()
@@ -251,14 +197,6 @@
 	tesla_zap(owner, tesla_range, tesla_power, tesla_flags)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/tesla/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of energy into [owner] from the surrounding environment!"))
-	if(istype(owner))
-		owner.flags_1 &= ~TESLA_IGNORE_1
-	electrocute_mob(owner, get_area(src), src, 1)
-	owner.flags_1 |= TESLA_IGNORE_1
-	return FALSE
-
 //Repulse
 
 /obj/item/clothing/suit/armor/reactive/repulse
@@ -267,7 +205,6 @@
 	reactivearmor_cooldown_duration = 5 SECONDS
 	var/repulse_force = MOVE_FORCE_EXTREMELY_STRONG
 	cooldown_message = span_danger("The repulse generator is still recharging! It fails to generate a strong enough wave!")
-	emp_message = span_warning("The repulse generator is reset to default settings...")
 
 /obj/item/clothing/suit/armor/reactive/repulse/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	playsound(get_turf(owner),'sound/magic/repulse.ogg', 100, 1)
@@ -283,19 +220,6 @@
 
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/repulse/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	playsound(get_turf(owner),'sound/magic/repulse.ogg', 100, 1)
-	owner.visible_message(span_danger("[src] does not block [attack_text], and instead generates an attracting force!"))
-	var/turf/T = get_turf(owner)
-	var/list/thrown_items = list()
-	for(var/atom/movable/A as mob|obj in orange(7, T))
-		if(A.anchored || thrown_items[A])
-			continue
-		A.safe_throw_at(owner, 10, 1, force = repulse_force)
-		thrown_items[A] = A
-
-	return FALSE
-
 //Table
 
 /obj/item/clothing/suit/armor/reactive/table
@@ -303,7 +227,6 @@
 	desc = "If you can't beat the memes, embrace them."
 	var/tele_range = 10
 	cooldown_message = span_danger("The reactive table armor's fabricators are still on cooldown!")
-	emp_message = span_danger("The reactive table armor's fabricators click and whirr ominously for a moment...")
 
 /obj/item/clothing/suit/armor/reactive/table/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("The reactive teleport system flings [owner] clear of [attack_text] and slams [owner.p_them()] into a fabricated table!"))
@@ -314,22 +237,12 @@
 	new /obj/structure/table(get_turf(owner))
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/table/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("The reactive teleport system flings [owner] clear of [attack_text] and slams [owner.p_them()] into a fabricated glass table!"))
-	owner.visible_message("<font color='red' size='3'>[owner] GOES ON THE TABLE!!!</font>")
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
-	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
-	var/obj/structure/table/glass/table = new(get_turf(owner))
-	table.table_shatter(owner)
-	return TRUE
-
 //Hallucinating
 
 /obj/item/clothing/suit/armor/reactive/hallucinating
 	name = "reactive hallucinating armor"
 	desc = "An experimental suit of armor with sensitive detectors hooked up to the mind of the wearer, sending mind pulses that causes hallucinations around you."
 	cooldown_message = span_warning("The connection is currently out of sync... Recalibrating.")
-	emp_message = span_warning("You feel the backsurge of a mind pulse.")
 	var/effect_range = 3
 	clothing_traits = list(TRAIT_MESONS)
 
@@ -346,18 +259,12 @@
 		hallucination_pulse(location, effect_range, strength = 25)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of mental energy into [owner] from the surrounding environment!"))
-	owner.adjust_hallucinations(150)
-	return TRUE
-
 //Radiation
 
 /obj/item/clothing/suit/armor/reactive/radiation
 	name = "reactive radiation armor"
 	desc = "An experimental suit of armor thats give the owner radiation proof and on activation releases a wave of radiation around the owner."
 	cooldown_message = span_warning("The connection is currently out of sync... Recalibrating.")
-	emp_message = span_warning("You feel the radiation wave within you.")
 	var/effect_range = 3
 	clothing_traits = list(TRAIT_RADIMMUNE)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 100, FIRE = 100, ACID = 100)
@@ -374,9 +281,4 @@
 	radiation_pulse(src, 1000, effect_range)
 	for(var/i = 1 to 15)
 		fire_nuclear_particle()
-	return TRUE
-
-/obj/item/clothing/suit/armor/reactive/radiation/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of radiation wave into [owner] from the surrounding environment!"))
-	owner.adjustToxLoss(10)
 	return TRUE
