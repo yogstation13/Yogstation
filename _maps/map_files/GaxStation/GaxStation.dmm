@@ -4157,6 +4157,52 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/chemorange/filled/corner/lower,
+/obj/structure/closet/syndicate{
+	name = "syndicate uniform closet";
+	desc = "A closet marked to contain Syndicate uniform."
+	},
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat/combat_knife,
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
+/obj/item/clothing/suit/toggle/labcoat,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bXk" = (
@@ -10306,7 +10352,70 @@
 /area/science/robotics/lab)
 "eFs" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line/lower,
-/obj/structure/closet/secure_closet/personal,
+/obj/structure/closet/syndicate{
+	name = "syndicate uniform closet";
+	desc = "A closet marked to contain Syndicate uniform."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
 "eFu" = (
@@ -12094,6 +12203,55 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/bridge)
+"fwg" = (
+/obj/structure/closet/syndicate{
+	name = "syndicate uniform closet";
+	desc = "A closet marked to contain Syndicate uniform."
+	},
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "fwr" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
@@ -42834,6 +42992,34 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 5
 	},
+/obj/structure/closet/syndicate{
+	name = "syndicate uniform closet";
+	desc = "A closet marked to contain Syndicate uniform."
+	},
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/suit/armor/vest,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "tSf" = (
@@ -76511,7 +76697,7 @@ vNV
 xHC
 eCN
 ixK
-brd
+fwg
 uDP
 brd
 brd
