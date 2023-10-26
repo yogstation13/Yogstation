@@ -1,5 +1,3 @@
-// Handling for psyker stuff. Could be in another file but idc enough to find a good spot.
-
 /obj/item/staff
 	name = "inert staff"
 	desc = "Usually used to channel power, this one seems hollow. Probably shouldn`t have it anyways..."
@@ -21,40 +19,9 @@
 	var/list/quickbound = list(/datum/clockwork_scripture/ranged_ability/kindle)
 	var/maximum_quickbound = 5 // 5 because we only have 3 spells right now. 
 
-/obj/item/staff/Initialize()
-	. = ..()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/staff/process()
-	if(heat > 0)
-		heat --
-	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
-		icon_state = "[initial(icon_state)]" // Purple smoke radiating off?
-
-/obj/item/staff/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
-	..() //Todo make this work. dont use after attack, thats for smacking someone.
-	heat += 2
-	switch(heat)
-		if(heat >= 20 && heat < 30)
-			icon_state = "[initial(icon_state)]-crit"
-			if(COOLDOWN_FINISHED(src, overheat_alert))
-				to_chat(user, span_warning("You feel a presense pressing on your mind!"))
-				COOLDOWN_START(src, overheat_alert, 5 SECONDS)
-		if(heat >= 30 && heat < 40)
-			to_chat(user, span_warning("The strain on your mind is too much!"))
-			// Think D20 but only bad things. 
-		if(heat >= 40)
-			addtimer(CALLBACK(src, PROC_REF(warp_gib), user), 5 SECONDS)
-			to_chat(user, span_warning("The denizens of the warp have come for your soul! Embrace the pain!"))
-			usr.say("AAAA HAHAHAHAHA!!!")
-	return
-
-/obj/item/staff/proc/warp_gib(mob/living/user)
-	user.gib() // haha he went too crazy
-
 /obj/item/staff/psyker
 	name = "force staff"
-	desc = "Usually used to channel power, this one seems hollow. Probably shouldn`t have it anyways..."
+	desc = "A Psykers staff, used to channel the powers of the warp with dealy prowess, or blow themselves up. More often the latter."
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Below follow the utter nonsense of trying to make the staff work sorta like a slab
@@ -66,6 +33,31 @@
 	var/successful = FALSE
 	var/in_progress = FALSE
 	var/finished = FALSE
+
+/obj/item/staff/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/staff/process()
+	if(heat > 0)
+		heat --
+	if(icon_state == "[initial(icon_state)]-crit" && heat < 18)
+		icon_state = "[initial(icon_state)]" // Purple smoke radiating off?
+    if(heat >= 20 && heat < 30)
+        icon_state = "[initial(icon_state)]-crit"
+        if(COOLDOWN_FINISHED(src, overheat_alert))
+            to_chat(user, span_warning("You feel a presense pressing on your mind!"))
+            COOLDOWN_START(src, overheat_alert, 5 SECONDS)
+    if(heat >= 30 && heat < 40)
+        to_chat(user, span_warning("The strain on your mind is too much!"))
+        // Think D20 but only bad things. 
+    if(heat >= 40)
+        addtimer(CALLBACK(src, PROC_REF(warp_gib), user), 5 SECONDS)
+        to_chat(user, span_warning("The denizens of the warp have come for your soul! Embrace the pain!"))
+        usr.say("AAAA HAHAHAHAHA!!!")
+
+/obj/item/staff/proc/warp_gib(mob/living/user)
+	user.gib() // haha he went too crazy
 
 /datum/action/innate/staff/Destroy()
 	staff = null
@@ -80,7 +72,6 @@
 	if(caller.incapacitated() || !staff || !(staff in caller.held_items) || clicked_on == staff)
 		unset_ranged_ability(caller)
 		return FALSE
-
 	. = ..()
 	if(!.)
 		return FALSE
@@ -91,6 +82,160 @@
 	finished = TRUE
 	QDEL_IN(src, 0.1 SECONDS)
 	return TRUE
+
+/obj/item/staff/psyker/ui_action_click(mob/user, action)
+	if(istype(action, /datum/action/item_action/clock/quickbind)) //clock stuff below here
+		var/datum/action/item_action/clock/quickbind/Q = action
+		recite_scripture(quickbound[Q.scripture_index], user, FALSE)
+
+/obj/item/staff/psyker/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	if(isliving(loc))
+		slab_ability.unset_ranged_ability(loc)
+	slab_ability = null
+	return ..()
+
+/obj/item/staff/psyker/dropped(mob/user, slot)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user, slot), 0.1 SECONDS) //dropped is called before the item is out of the slot, so we need to check slightly later
+
+/obj/item/staff/psyker/equipped(mob/user, slot)
+	. = ..()
+    if(!is_psyker(user)) // Todo, give the psyker the gene on spawn so only they can use the staff
+		to_chat(user, span_warning("You hear whispering and chittering from somewhere beyond your mind closing in, and quickly drop the staff before anything bad can happen."))
+		user.adjust_confusion(5 SECONDS)
+		user.adjust_dizzy(5 SECONDS)
+        // make them drop it.
+        return
+	update_quickbind(user)
+
+/obj/item/staff/psyker/proc/check_on_mob(mob/user, slot)
+	if(!user)
+		CRASH("No user on dropped slab.")
+	if(slab_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
+		slab_ability.unset_ranged_ability(user)
+	if(!LAZYFIND(user.held_items, src))
+		update_quickbind(user, TRUE)
+///////////////////////////////////////////////////////////////////////////////////
+// Overall framework for all spells, channeling, and such
+///////////////////////////////////////////////////////////////////////////////////
+
+/datum/psyker_power
+	var/descname = "useless" //a simple name for the scripture's effect
+	var/name = "scripture"
+	var/desc = "Ancient Ratvarian lore. This piece seems particularly mundane."
+	var/channel_time = 1 SECONDS //In seconds, how long a ritual takes to chant
+	var/obj/item/staff/psyker/staff //The parent staff
+	var/mob/living/invoker //The staff's holder
+	var/quickbind = FALSE //if this scripture can be quickbound to a clockwork slab
+	var/quickbind_desc = "This shouldn't be quickbindable. File a bug report!"
+	var/primary_component
+	var/chant_slowdown = 0 //slowdown added while channeling
+	var/no_mobility = FALSE //if false user can move while channeling
+
+/datum/clockwork_scripture/New()
+	creation_update()
+
+/datum/clockwork_scripture/proc/creation_update() //updates any on-creation effects
+	return FALSE //return TRUE if updated
+
+/datum/clockwork_scripture/proc/run_scripture()
+	var/successful = FALSE
+    if(slab.busy)
+        to_chat(invoker, span_warning("[slab] refuses to work, displaying the message: \"[slab.busy]!\""))
+        return FALSE
+    pre_recital()
+    slab.busy = "Invocation ([name]) in progress"
+    channel_time *= slab.speed_multiplier
+    if(!recital() || !check_special_requirements() || !scripture_effects()) //if we fail any of these, refund components used
+        adjust_clockwork_power(power_cost)
+        update_slab_info()
+    else
+        successful = TRUE
+        if(slab) //if the slab exists, record spell usage
+            SSblackbox.record_feedback("tally", "clockcult_scripture_recited", 1, name)
+	if(slab)
+		slab.busy = null
+	post_recital()
+	qdel(src)
+	return successful
+
+/datum/clockwork_scripture/proc/recital() //The process of speaking the words
+	to_chat(invoker, span_brass("You [channel_time <= 0 ? "channel" : "begin channeling"] the warp, to manifest a spell of \"[name]\"."))
+	if(!channel_time)
+		return TRUE
+	if(chant_slowdown)
+		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
+	if(!do_after(invoker, channel_time, invoker, timed_action_flags = (no_mobility ? IGNORE_USER_LOC_CHANGE : NONE), extra_checks = CALLBACK(src, PROC_REF(check_special_requirements))))
+		slab.busy = null
+		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
+        scripture_fail()
+		return
+	invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
+	return TRUE
+
+/datum/clockwork_scripture/proc/scripture_effects() //The actual effects of the recital after its conclusion
+
+/datum/clockwork_scripture/proc/scripture_fail() //Called if the scripture fails to invoke.
+
+/datum/clockwork_scripture/proc/pre_recital() //Called before the scripture is recited
+
+/datum/clockwork_scripture/proc/post_recital() //Called after the scripture is recited
+
+///////////////////////////////////////////////////////////////////////////////////
+// Framework for ranged spells, in case of close ranged spells in the future.
+///////////////////////////////////////////////////////////////////////////////////
+
+/datum/clockwork_scripture/ranged_ability
+	var/slab_overlay
+	var/ranged_type = /datum/action/innate/slab
+	var/ranged_message = "This is a huge goddamn bug, how'd you cast this?"
+	var/timeout_time = 0
+	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
+	var/datum/progressbar/progbar
+
+/datum/clockwork_scripture/ranged_ability/Destroy()
+	qdel(progbar)
+	return ..()
+
+/datum/clockwork_scripture/ranged_ability/scripture_effects()
+	if(slab_overlay)
+		slab.add_overlay(slab_overlay)
+		slab.item_state = "clockwork_slab"
+		slab.lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
+		slab.righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+		slab.inhand_overlay = slab_overlay
+	slab.slab_ability = new ranged_type(slab)
+	slab.slab_ability.slab = slab
+	slab.slab_ability.set_ranged_ability(invoker, ranged_message)
+	invoker.update_inv_hands()
+	var/end_time = world.time + timeout_time
+	var/successful = FALSE
+	if(timeout_time)
+		progbar = new(invoker, timeout_time, slab)
+	var/turf/T = get_turf(invoker)
+	while(slab && slab.slab_ability && !slab.slab_ability.finished && (slab.slab_ability.in_progress || !timeout_time || world.time <= end_time) && \
+		(allow_mobility || (can_recite() && T == get_turf(invoker))))
+		if(progbar)
+			if(slab.slab_ability.in_progress)
+				qdel(progbar)
+			else
+				progbar.update(end_time - world.time)
+		stoplag(1)
+	if(slab)
+		if(slab.slab_ability)
+			successful = slab.slab_ability.successful
+			if(!slab.slab_ability.finished && invoker)
+				invoker.client?.mouse_override_icon = initial(invoker.client?.mouse_pointer_icon)
+				invoker.update_mouse_pointer()
+				invoker.click_intercept = null
+		slab.cut_overlays()
+		slab.item_state = initial(slab.item_state)
+		slab.item_state = initial(slab.lefthand_file)
+		slab.item_state = initial(slab.righthand_file)
+		slab.inhand_overlay = null
+		invoker?.update_inv_hands()
+	return successful //slab doesn't look like a word now.
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Below is kindle, hopefully it will be a different spell soon

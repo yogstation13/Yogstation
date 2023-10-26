@@ -235,5 +235,3 @@
 	glasses = /obj/item/clothing/glasses/hud/security
 	suit_store =/obj/item/gun/ballistic/automatic/pistol/boltpistol 
 	back = /obj/item/chainsaw_sword
-
-
