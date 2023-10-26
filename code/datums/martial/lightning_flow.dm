@@ -49,10 +49,10 @@
 	if(H.get_active_held_item()) //abilities need an empty hand
 		return
 
-	if(H.pulling) //don't do anything if you're currently grabbing someone
+	if(H.a_intent == INTENT_HELP)
 		return
 
-	if(H.a_intent == INTENT_HELP)
+	if(H.pulling && H.a_intent == INTENT_GRAB) //don't do anything if you're currently grabbing someone
 		return
 
 	if(!(H.mobility_flags & MOBILITY_STAND))//require standing to dash
