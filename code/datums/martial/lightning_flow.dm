@@ -5,7 +5,7 @@
 
 /datum/martial_art/lightning_flow
 	name = "Lightning Flow"
-	id = MARTIALART_CONDUIT
+	id = MARTIALART_LIGHTNINGFLOW
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/lightning_flow_help
 	var/recalibration = /mob/living/carbon/human/proc/lightning_flow_recalibration
@@ -28,18 +28,16 @@
 /datum/martial_art/lightning_flow/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(dashing)
 		return TRUE
-	
+	damage(A, D, 5)
 	return FALSE
 
-/datum/martial_art/lightning_flow/proc/damage(mob/living/carbon/human/target, amount)
-	H.electrocute_act(amount, stun = FALSE)
+/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, knockdown = 1 SECONDS)
+	target.Knockdown(knockdown)
+	target.electrocute_act(amount, user, stun = stun)
 
 /datum/martial_art/lightning_flow/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	var/list/modifiers = params2list(params)
 	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
-		return
-
-	if(!COOLDOWN_FINISHED(src, action_cooldown))
 		return
 
 	if(H.Adjacent(target))//just do the regular action
@@ -53,6 +51,16 @@
 	if(H.get_active_held_item()) //abilities need an empty hand
 		return
 
+	if(H.pulling) //don't do anything if you're currently grabbing someone
+		return
+
+	if(H.a_intent == INTENT_HELP)
+		return
+
+	if(!COOLDOWN_FINISHED(src, action_cooldown))
+		return
+
+	COOLDOWN_START(src, action_cooldown, ACTION_DELAY)
 	action_type = H.a_intent
 	dash(H, target)
 
@@ -60,7 +68,7 @@
 	dashing = TRUE
 	if(action_type && action_type == INTENT_DISARM)
 		H.Knockdown(2 SECONDS, TRUE, TRUE)
-	H.Immobilize(1 SECONDS, TRUE, TRUE)
+	H.Immobilize(ACTION_DELAY, TRUE, TRUE)
 	new /obj/effect/particle_effect/sparks/electricity/short/loud(get_turf(H))
 	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, TRUE)
 		
@@ -71,15 +79,16 @@
 		return FALSE
 	var/mob/living/target = hit_atom
 	dashing = FALSE
-	A.SetImmobilized(0)
-	A.SetKnockdown(0)
+	H.SetImmobilized(0)
+	H.SetKnockdown(0)
 	switch(action_type)
 		if(INTENT_DISARM)
 			dropkick(target, H, throwingdatum)
 		if(INTENT_GRAB)
 			target.grabbedby(H)
 		if(INTENT_HARM)
-			H.attack_hand(target)
+			target.attack_hand(H)
+	action_type = null
 	return TRUE
 
 /////////////////////////////////////////////////////////////////
@@ -87,8 +96,7 @@
 /////////////////////////////////////////////////////////////////
 /datum/martial_art/lightning_flow/proc/dropkick(mob/living/target, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	target.visible_message(span_danger("[H] dropkicks [target]!"), span_userdanger("[H] dropkicks you!"))
-	target.Knockdown(5 SECONDS)
-	target.electrocute_act(10)
+	damage(target, H, 15, TRUE, 5 SECONDS)
 	target.throw_at(throwingdatum.target, 5, 3, H)
 	do_sparks(4, FALSE, H)
 
@@ -142,3 +150,7 @@
 		user.physiology.punchstunthreshold_bonus -= 5
 	REMOVE_TRAIT(H, TRAIT_STRONG_GRABBER, type)
 	return ..()
+
+#undef ACTION_DELAY
+#undef DASH_RANGE
+#undef DASH_SPEED
