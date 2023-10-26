@@ -290,6 +290,8 @@
 	name = "force staff"
 	desc = "Usually used to channel power, this one seems hollow. Probably shouldn`t have it anyways..."
 
+
+// bro i hate clock code
 /datum/psycicpower
 	var/name = "power"
 	var/channel_time = 1 SECONDS //In seconds, how long a spell takes to charge
