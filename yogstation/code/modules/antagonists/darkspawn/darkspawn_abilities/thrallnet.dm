@@ -41,13 +41,32 @@
 	orb.moveToNullspace()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn
+	name = "dark orb"
+	icon = 'icons/obj/modular_phone.dmi'
+	icon_state = "phone-red"
+	icon_state_base = "phone"
+	icon_state_unpowered = "phone"
+	icon_state_powered = "phone"
 	base_active_power_usage = 0
 	base_idle_power_usage = 0
 	has_light = FALSE
+	no_overlays = TRUE
 	starting_files = list(/datum/computer_file/program/secureye/darkspawn)
 	initial_program = /datum/computer_file/program/secureye/darkspawn
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	pen_type = null
+	interact_sounds = list('yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_01.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_02.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_03.ogg')//change to something spooky
+
+/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	AddComponent(/datum/component/light_eater)
 
 /datum/computer_file/program/secureye/darkspawn
 	usage_flags = PROGRAM_ALL
 	network = list("darkspawn")
+	available_on_ntnet = FALSE
+	unsendable = TRUE
+	undeletable = TRUE
+	turnoff_sound = null
+	action_sound = "crawling_shadows_walk"
