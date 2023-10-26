@@ -645,12 +645,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "bZ" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/structure/window/plasma/reinforced/spawner/east,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+/obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
 	},
-/turf/open/floor/engine/n2,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ca" = (
 /obj/machinery/door/airlock/external,
@@ -1076,7 +1074,11 @@
 "dz" = (
 /obj/structure/closet,
 /obj/item/tank/jetpack/void,
-/obj/item/clothing/head/helmet/space/nasavoid/old,
+/obj/item/clothing/head/helmet/space/nasavoid/old{
+	name = "Radiation Response Void Helmet";
+	desc = "An old engineering helmet. This version has additional radiation protection.";
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70)
+	},
 /obj/item/clothing/suit/space/nasavoid,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -3191,6 +3193,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "mp" = (
@@ -3415,6 +3418,7 @@
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "mT" = (
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg1"
 	},
@@ -3691,8 +3695,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "nD" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/plating/airless,
+/turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "nE" = (
 /obj/structure/disposalpipe/trunk{
@@ -3807,7 +3810,8 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "nV" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine/n2,
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "nX" = (
 /obj/machinery/light/small{
@@ -3955,10 +3959,14 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "ot" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/closet/firecloset,
+/obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "ov" = (
@@ -3976,14 +3984,13 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "ow" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/item/clothing/head/helmet/space/nasavoid/old{
+	name = "Radiation Response Void Helmet";
+	desc = "An old engineering helmet. This version has additional radiation protection.";
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70)
 	},
-/obj/machinery/light_switch{
-	pixel_x = 26
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/ancientstation/betastorage)
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "ox" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4164,12 +4171,15 @@
 "oV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset/anchored,
+/obj/machinery/light_switch{
+	pixel_x = 26
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "oW" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/ancientstation/betastorage)
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "oY" = (
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/solarpanel,
@@ -5173,7 +5183,6 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "sS" = (
 /obj/effect/decal/cleanable/glass,
-/obj/structure/closet/radiation,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "sW" = (
@@ -5387,8 +5396,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "un" = (
-/obj/structure/window/plasma/reinforced/spawner/east,
-/turf/open/floor/engine/n2,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ur" = (
 /obj/structure/table,
@@ -5486,6 +5495,8 @@
 /obj/machinery/airalarm/all_access{
 	pixel_y = 24
 	},
+/obj/item/sealant,
+/obj/item/sealant,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "uT" = (
@@ -6378,6 +6389,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/item/clothing/suit/space/nasavoid/old{
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70);
+	name = "Radiation Response Voidsuit";
+	desc = "A modified version of a CentCom engineering voidsuit used to respond to radiological emergencies."
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Bs" = (
@@ -6917,8 +6933,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Fe" = (
-/obj/effect/decal/nuclear_waste,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/tank/internals/oxygen/yellow,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Fj" = (
@@ -6938,12 +6953,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/suit_storage_unit{
-	helmet_type = /obj/item/clothing/head/helmet/space/nasavoid/old;
-	mask_type = /obj/item/clothing/mask/breath;
-	storage_type = /obj/item/tank/internals/oxygen;
-	suit_type = /obj/item/clothing/suit/space/nasavoid/old
-	},
+/obj/machinery/suit_storage_unit/open,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Ft" = (
@@ -7334,9 +7344,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "HO" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/machinery/atmospherics/components/unary/outlet_injector/on,
-/turf/open/floor/engine/n2,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "HT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8090,10 +8101,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
-"Na" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/ruin/space/has_grav/ancientstation/solars)
 "Nd" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -8285,9 +8292,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "OO" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 1
-	},
+/obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "OP" = (
@@ -8917,6 +8922,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "To" = (
+/obj/machinery/pool_filter,
+/obj/item/fuel_rod{
+	pixel_x = 6
+	},
+/obj/item/fuel_rod{
+	pixel_x = -6
+	},
 /turf/open/indestructible/sound/pool/end,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Tt" = (
@@ -8936,9 +8948,6 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
-	},
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
 	},
 /turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -10666,7 +10675,7 @@ aa
 OY
 Lq
 Lq
-Na
+ZT
 DX
 wW
 ZT
@@ -11051,9 +11060,9 @@ mm
 mT
 sS
 nD
-ow
-oW
-jQ
+nD
+nD
+nD
 dF
 dF
 bf
@@ -11173,7 +11182,7 @@ aa
 aa
 aa
 qq
-ze
+oW
 ze
 ty
 qi
@@ -11235,7 +11244,7 @@ aa
 ZM
 aa
 qq
-ze
+oW
 ze
 ty
 To
@@ -11298,7 +11307,7 @@ yZ
 yZ
 xy
 nE
-hk
+ze
 ni
 xT
 xT
@@ -11359,7 +11368,7 @@ qq
 qq
 qq
 qq
-ze
+OO
 ze
 xV
 CJ
@@ -11419,7 +11428,7 @@ gU
 nO
 nV
 HO
-OO
+ze
 it
 kz
 kz
@@ -11611,7 +11620,7 @@ ze
 Rg
 KZ
 bp
-Fe
+XT
 XT
 Iq
 jI
@@ -11670,10 +11679,10 @@ ze
 gV
 ze
 hk
-ze
+Fe
 WF
 pi
-ze
+ow
 ze
 qq
 qq
