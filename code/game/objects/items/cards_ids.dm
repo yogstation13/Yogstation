@@ -1087,3 +1087,33 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/sec
 	department_ID = ACCOUNT_SEC
 	department_name = ACCOUNT_SEC_NAME
+
+/obj/item/card/id/syndicate/heretic
+	name = "Eldritch Card"
+	access = list(ACCESS_MAINT_TUNNELS)
+	///The first portal in the portal pair, so we can clear it later
+	var/obj/effect/knock_portal/portal_one
+	///The second portal in the portal pair, so we can clear it later
+	var/obj/effect/knock_portal/portal_two
+	///The first door we are linking in the pair, so we can create a portal pair
+	var/datum/weakref/link
+
+/obj/item/card/id/syndicate/heretic/examine(mob/user)
+	. = ..()
+	if(!IS_HERETIC_OR_MONSTER(user))
+		return
+	. += span_hypnophrase("Enchanted by the Mansus!")
+	. += span_hypnophrase("Using an ID on this will consume it and allow you to copy its accesses.")
+	. += span_hypnophrase("<b>Using this in-hand</b> allows you to change its appearance.")
+	. += span_hypnophrase("<b>Using this on a pair of doors</b>, allows you to link them together. Entering one door will transport you to the other, while heathens are instead teleported to a random airlock.")
+
+/obj/item/card/id/syndicate/heretic/afterattack(obj/item/O, mob/user, proximity)
+	if(!proximity)
+		return
+	if(istype(O, /obj/item/card/id))
+		var/obj/item/card/id/I = O
+		src.access |= I.access
+		if(isliving(user) && user.mind)
+			if(user.mind.has_antag_datum(/datum/antagonist/heretic))
+				qdel(I)
+				to_chat(usr, span_notice("The card consumes the original ID, copying its access."))

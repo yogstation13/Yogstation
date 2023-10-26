@@ -31,7 +31,8 @@
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
 		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic),
+		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock),
 	TIER_1 = list(
 		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
@@ -40,6 +41,7 @@
 		/datum/eldritch_knowledge/spell/void_phase,
 		/datum/eldritch_knowledge/blade_dance,
 		/datum/eldritch_knowledge/spell/cosmic_runes,
+		/datum/eldritch_knowledge/key_ring,
 		/datum/eldritch_knowledge/armor,
 		/datum/eldritch_knowledge/void_cloak,
 		/datum/eldritch_knowledge/ashen_eyes,
@@ -52,7 +54,8 @@
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
 		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark),
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark),
 	TIER_2 = list(
 		/datum/eldritch_knowledge/spell/volcano_blast,
 		/datum/eldritch_knowledge/raw_prophet,
@@ -61,6 +64,7 @@
 		/datum/eldritch_knowledge/cold_snap,
 		/datum/eldritch_knowledge/duel_stance,
 		/datum/eldritch_knowledge/spell/star_blast,
+		/datum/eldritch_knowledge/spell/burglar_finesse,
 		/datum/eldritch_knowledge/spell/blood_siphon,
 		/datum/eldritch_knowledge/spell/eldritchbolt,
 		/datum/eldritch_knowledge/spell/void_blast),
@@ -71,7 +75,8 @@
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade),
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade),
 	TIER_3 = list(
 		/datum/eldritch_knowledge/spell/flame_birth,
 		/datum/eldritch_knowledge/stalker,
@@ -80,6 +85,7 @@
 		/datum/eldritch_knowledge/spell/void_pull,
 		/datum/eldritch_knowledge/spell/furious_steel,
 		/datum/eldritch_knowledge/spell/cosmic_expansion,
+		/datum/eldritch_knowledge/spell/freedom_forever,
 		/datum/eldritch_knowledge/ashy,
 		/datum/eldritch_knowledge/rusty,
 		/datum/eldritch_knowledge/spell/cleave,
@@ -92,7 +98,8 @@
 		/datum/eldritch_knowledge/mind_final,
 		/datum/eldritch_knowledge/void_final,
 		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final))
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final))
 
 	var/static/list/path_to_ui_color = list(
 		PATH_START = "grey",
