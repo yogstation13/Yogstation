@@ -388,6 +388,13 @@ AI MODULES
 	name = "'Crewsimov' Core AI Module"
 	law_id = "crewsimov"
 
+
+/******************** pranksimov ********************/
+
+/obj/item/aiModule/core/full/pranksimov
+	name = "'Pranksimov' Core AI Module"
+	law_id = "pranksimov"
+
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
 /obj/item/aiModule/core/full/paladin // -- NEO
@@ -558,6 +565,13 @@ AI MODULES
 /obj/item/aiModule/core/full/detective
 	name = "'Detective' Core AI Module"
 	law_id = "detective"
+
+
+/******************** Waffle House Host ************************/
+
+/obj/item/aiModule/core/full/wafflehouse
+	name = "'Waffle House Host' Core AI Module"
+	law_id = "wafflehouse"
 
 	
 /******************** Freeform Core ******************/

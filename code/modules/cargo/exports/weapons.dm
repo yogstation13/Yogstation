@@ -73,4 +73,4 @@
 /datum/export/weapon/gibtonite
 	cost = 1000
 	unit_name = "Gibtonite Chunk"
-	export_types = list(/obj/item/twohanded/required/gibtonite)
+	export_types = list(/obj/item/melee/gibtonite)

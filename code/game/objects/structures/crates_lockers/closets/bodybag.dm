@@ -38,7 +38,7 @@
 		if(t)
 			name = "[initial(name)] - [t]"
 			tagged = 1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			name = initial(name)
 		return
@@ -46,12 +46,12 @@
 		to_chat(user, span_notice("You cut the tag off [src]."))
 		name = initial(name)
 		tagged = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/structure/closet/body_bag/update_icon()
-	..()
+/obj/structure/closet/body_bag/update_overlays()
+	. = ..()
 	if (tagged)
-		add_overlay("bodybag_label")
+		. += "bodybag_label"
 
 /obj/structure/closet/body_bag/close()
 	if(..())
@@ -190,7 +190,7 @@
 		to_chat(the_folder, span_warning("You wrestle with [src], but it won't fold while its straps are fastened."))
 	return ..()
 
-/obj/structure/closet/body_bag/environmental/prisoner/update_icon()
+/obj/structure/closet/body_bag/environmental/prisoner/update_icon_state()
 	. = ..()
 	if(sinched)
 		icon_state = initial(icon_state) + "_sinched"
@@ -216,7 +216,7 @@
 	if(!dense_when_open)
 		density = FALSE
 	dump_contents()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/closet/body_bag/environmental/prisoner/container_resist(mob/living/user)
@@ -278,7 +278,7 @@
 							span_notice("You [sinched ? null : "un"]sinch [src]."),
 							span_hear("You hear stretching followed by metal clicking from [src]."))
 	log_game("[key_name(user)] [sinched ? "sinched":"unsinched"] secure environmental bag [src] at [AREACOORD(src)]")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate
 	name = "syndicate prisoner transport bag"
@@ -292,11 +292,11 @@
 	breakout_time = 8 MINUTES
 	sinch_time = 4 SECONDS
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_icon()
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_overlays()
 	. = ..()
 	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
 	if(sinched && inner_bag && inner_bag.killing)
-		add_overlay("kill_flash")
+		. += "kill_flash"
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize(mapload)
 	. = ..()

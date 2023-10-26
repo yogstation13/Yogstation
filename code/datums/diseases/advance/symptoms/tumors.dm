@@ -49,13 +49,13 @@
 		if(A.stage > 2)
 			var/datum/species/S = M.dna?.species
 			if(S)
-				S.add_no_equip_slot(M, ITEM_SLOT_MASK)
-				S.add_no_equip_slot(M, ITEM_SLOT_HEAD)
+				S.add_no_equip_slot(M, ITEM_SLOT_MASK, src)
+				S.add_no_equip_slot(M, ITEM_SLOT_HEAD, src)
 
 		if(A.stage == 5)
 			var/datum/species/S = M.dna?.species
 			if(S)
-				S.add_no_equip_slot(M, ITEM_SLOT_OCLOTHING)
+				S.add_no_equip_slot(M, ITEM_SLOT_OCLOTHING, src)
 
 	//spreading
 	if(prob(tumor_chance)) //2% chance to make a new tumor somewhere
@@ -91,9 +91,9 @@
 		M.visible_tumors = FALSE
 		var/datum/species/S = M.dna?.species
 		if(S)
-			S.remove_no_equip_slot(M, ITEM_SLOT_MASK)
-			S.remove_no_equip_slot(M, ITEM_SLOT_HEAD)
-			S.remove_no_equip_slot(M, ITEM_SLOT_OCLOTHING)
+			S.remove_no_equip_slot(M, ITEM_SLOT_MASK, src)
+			S.remove_no_equip_slot(M, ITEM_SLOT_HEAD, src)
+			S.remove_no_equip_slot(M, ITEM_SLOT_OCLOTHING, src)
 
 /datum/symptom/tumor/malignant
 	name = "Malignant tumors"

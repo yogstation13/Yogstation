@@ -438,9 +438,9 @@
 		if(slime.docile) //Undoes docility, but doesn't make rabid.
 			slime.visible_message(span_danger("[slime] forgets its training, becoming wild once again!"))
 			slime.docile = FALSE
-			slime.update_name()
+			slime.update_appearance(UPDATE_NAME)
 			continue
-		slime.rabid = 1
+		slime.rabid = TRUE
 		slime.visible_message(span_danger("The [slime] is driven into a frenzy!"))
 	..()
 

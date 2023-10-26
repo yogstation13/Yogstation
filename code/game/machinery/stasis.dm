@@ -97,7 +97,7 @@
 		stasis_can_toggle = world.time + stasis_cooldown
 		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 		play_power_sound()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
@@ -109,7 +109,17 @@
 /obj/machinery/stasis/proc/stasis_running()
 	return stasis_enabled && is_operational()
 
-/obj/machinery/stasis/update_icon()
+/obj/machinery/stasis/update_icon_state()
+	. = ..()
+	if(stat & BROKEN)
+		icon_state = "stasis_broken"
+		return
+	if(panel_open || stat & MAINT)
+		icon_state = "stasis_maintenance"
+		return
+	icon_state = "stasis"
+
+/obj/machinery/stasis/update_overlays()
 	. = ..()
 	var/_running = stasis_running()
 	var/list/overlays_to_remove = managed_vis_overlays
@@ -126,14 +136,6 @@
 		overlays_to_remove = managed_vis_overlays - mattress_on
 
 	SSvis_overlays.remove_vis_overlay(src, overlays_to_remove)
-
-	if(stat & BROKEN)
-		icon_state = "stasis_broken"
-		return
-	if(panel_open || stat & MAINT)
-		icon_state = "stasis_maintenance"
-		return
-	icon_state = "stasis"
 
 /obj/machinery/stasis/obj_break(damage_flag)
 	. = ..()
@@ -166,13 +168,13 @@
 	occupant = L
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
 	if(L == occupant)
 		occupant = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )
@@ -189,7 +191,7 @@
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/wrench_act(mob/living/user, obj/item/I)
 	if(default_change_direction_wrench(user, I))
@@ -207,9 +209,10 @@
 	else
 		..()
 
-/obj/machinery/stasis/emag_act(mob/user)
+/obj/machinery/stasis/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("The stasis bed's safeties are already overridden!"))
-		return
+		return FALSE
 	to_chat(user, span_notice("You override the stasis bed's safeties!"))
 	obj_flags |= EMAGGED
+	return TRUE

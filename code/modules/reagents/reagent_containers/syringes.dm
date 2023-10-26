@@ -21,28 +21,28 @@
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/pickup(mob/user)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/dropped(mob/user)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/attack_self(mob/user)
 	mode = !mode
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/reagent_containers/syringe/attack_hand()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/syringe/attack_paw(mob/user)
 	return attack_hand(user)
@@ -78,7 +78,7 @@
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
 									span_userdanger("[user] is trying to take a blood sample from [target]!"))
 					busy = TRUE
-					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, TRUE, BODY_ZONE_CHEST, proj_piercing)))
+					if(!do_after(user, 3 SECONDS, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, TRUE, BODY_ZONE_CHEST, proj_piercing)))
 						busy = FALSE
 						return
 					if(reagents.total_volume >= reagents.maximum_volume)
@@ -103,7 +103,7 @@
 				to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
 			if (reagents.total_volume >= reagents.maximum_volume)
 				mode=!mode
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 		if(SYRINGE_INJECT)
 			// Always log attemped injections for admins
@@ -130,7 +130,7 @@
 				if(L != user)
 					L.visible_message(span_danger("[user] is trying to inject [L]!"), \
 											span_userdanger("[user] is trying to inject [L]!"))
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, FALSE, BODY_ZONE_CHEST, proj_piercing)))
+					if(!do_after(user, 3 SECONDS, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, null, FALSE, BODY_ZONE_CHEST, proj_piercing)))
 						return
 					if(!reagents.total_volume)
 						return
@@ -165,17 +165,16 @@
 			to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
-
-/obj/item/reagent_containers/syringe/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/syringe/update_overlays()
+	. = ..()
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
 		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
 		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling_overlay)
+		. += filling_overlay
 	else
 		rounded_vol = 0
 	icon_state = "[rounded_vol]"
@@ -188,7 +187,7 @@
 				injoverlay = "draw"
 			if (SYRINGE_INJECT)
 				injoverlay = "inject"
-		add_overlay(injoverlay)
+		. += injoverlay
 		M.update_inv_hands()
 
 /obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)

@@ -41,6 +41,9 @@
 	if(user.is_mouth_covered() && !isplasmaman(user))
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
+	if(bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_PAINFUL && owner.grab_state <= GRAB_PASSIVE)
+		owner.balloon_alert(owner, "can't silent feed!")
+		return FALSE
 	//Find target, it will alert what the problem is, if any.
 	if(!find_target())
 		return FALSE
@@ -55,8 +58,10 @@
 
 /datum/action/cooldown/bloodsucker/feed/DeactivatePower()
 	var/mob/living/user = owner
-	if(target_ref)
-		var/mob/living/feed_target = target_ref.resolve()
+	var/mob/living/feed_target = target_ref.resolve()
+	if(isnull(feed_target))
+		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
+	else
 		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
 		user.balloon_alert(owner, "feed stopped")
 		to_chat(user, span_notice("You slowly release [feed_target]."))

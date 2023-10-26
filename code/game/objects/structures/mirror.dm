@@ -39,7 +39,7 @@
 /obj/structure/mirror/proc/preapply_choices(selectiontype, mob/living/carbon/human/H)
 	switch(selectiontype)
 		if(FACE_HAIR_COLOR)
-			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color","#"+H.facial_hair_color) as color|null
+			var/new_hair_color = input(H, "Choose your face hair color", "Face Hair Color",H.facial_hair_color) as color|null
 			if(!new_hair_color)
 				return TRUE
 			H.facial_hair_color = sanitize_hexcolor(new_hair_color)
@@ -47,7 +47,7 @@
 			H.update_hair()
 			return TRUE
 		if(HAIR_COLOR)
-			var/new_hair_color = input(H, "Choose your hair color", "Hair Color","#"+H.hair_color) as color|null
+			var/new_hair_color = input(H, "Choose your hair color", "Hair Color",H.hair_color) as color|null
 			if(!new_hair_color)
 				return TRUE
 			H.hair_color = sanitize_hexcolor(new_hair_color)
@@ -64,6 +64,9 @@
 			H.update_hair()
 			return TRUE
 		if(HEAD_HAIR)
+			if(HAS_TRAIT(H, TRAIT_BALD) && selection != "Bald")
+				to_chat(H, span_notice("If only growing back hair were that easy for you..."))
+				return TRUE
 			H.hair_style = selection
 			H.update_hair()
 			return TRUE
@@ -109,6 +112,8 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!disassembled)
 			new /obj/item/shard( src.loc )
+			new /obj/item/stack/sheet/mineral/silver( src.loc )
+			new /obj/item/stack/rods( src.loc )
 	qdel(src)
 
 /obj/structure/mirror/welder_act(mob/living/user, obj/item/I)
@@ -137,6 +142,13 @@
 		if(BURN)
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 
+/obj/item/wallframe/mirror
+	name = "mirror"
+	desc = "a mirror on your hand, what are you gonna do?"
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "mirror"
+	result_path = /obj/structure/mirror
+	pixel_shift = -30
 
 /obj/structure/mirror/magic
 	name = "magic mirror"
@@ -182,7 +194,7 @@
 	. = ..()
 	switch(selectiontype)
 		if(EYE_COLOR)
-			var/new_eye_color = input(H, "Choose your eye color", "Eye Color","#"+H.eye_color) as color|null
+			var/new_eye_color = input(H, "Choose your eye color", "Eye Color",H.eye_color) as color|null
 			if(!new_eye_color)
 				return TRUE
 			H.eye_color = sanitize_hexcolor(new_eye_color)
@@ -201,12 +213,13 @@
 				H.mind.name = newname
 			return TRUE
 		if(MUTANT_COLOR)
-			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change","#"+H.dna.features["mcolor"]) as color|null
+			var/new_mutantcolor = input(H, "Choose your skin color:", "Race change",H.dna.features["mcolor"]) as color|null
 			if(!new_mutantcolor)
 				return TRUE
 			var/temp_hsv = RGBtoHSV(new_mutantcolor)
-			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright
+			if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright
 				H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
+				H.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
 			else
 				to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
 			H.update_body()

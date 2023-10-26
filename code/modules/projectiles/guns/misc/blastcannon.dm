@@ -41,10 +41,11 @@
 		user.put_in_hands(bomb)
 		user.visible_message(span_warning("[user] detaches [bomb] from [src]."))
 		bomb = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()
 
-/obj/item/gun/blastcannon/update_icon()
+/obj/item/gun/blastcannon/update_icon(updates=ALL)
+	. = ..()
 	if(bomb)
 		icon_state = icon_state_loaded
 		name = "blast cannon"
@@ -65,7 +66,7 @@
 			return FALSE
 		user.visible_message(span_warning("[user] attaches [T] to [src]!"))
 		bomb = T
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return ..()
 
@@ -94,7 +95,7 @@
 	var/power = bomb? calculate_bomb() : debug_power
 	power = min(power, max_power)
 	QDEL_NULL(bomb)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/heavy = power * 0.25
 	var/medium = power * 0.5
 	var/light = power
@@ -104,12 +105,12 @@
 	var/turf/targturf = get_turf(target)
 	message_admins("Blast wave fired from [ADMIN_VERBOSEJMP(starting)] at [ADMIN_VERBOSEJMP(targturf)] ([target.name]) by [ADMIN_LOOKUPFLW(user)] with power [heavy]/[medium]/[light].")
 	log_game("Blast wave fired from [AREACOORD(starting)] at [AREACOORD(targturf)] ([target.name]) by [key_name(user)] with power [heavy]/[medium]/[light].")
-	var/obj/item/projectile/blastwave/BW = new(loc, heavy, medium, light)
+	var/obj/projectile/blastwave/BW = new(loc, heavy, medium, light)
 	BW.hugbox = hugbox
 	BW.preparePixelProjectile(target, get_turf(src), params, 0)
 	BW.fire()
 
-/obj/item/projectile/blastwave
+/obj/projectile/blastwave
 	name = "blast wave"
 	icon_state = "blastwave"
 	damage = 0
@@ -121,13 +122,13 @@
 	var/hugbox = TRUE
 	range = 150
 
-/obj/item/projectile/blastwave/Initialize(mapload, _h, _m, _l)
+/obj/projectile/blastwave/Initialize(mapload, _h, _m, _l)
 	heavyr = _h
 	mediumr = _m
 	lightr = _l
 	return ..()
 
-/obj/item/projectile/blastwave/Range()
+/obj/projectile/blastwave/Range()
 	..()
 	var/amount_destruction = EXPLODE_NONE
 	var/wallbreak_chance = 0
@@ -162,5 +163,5 @@
 	mediumr = max(mediumr - 1, 0)
 	lightr = max(lightr - 1, 0)
 
-/obj/item/projectile/blastwave/ex_act()
+/obj/projectile/blastwave/ex_act()
 	return

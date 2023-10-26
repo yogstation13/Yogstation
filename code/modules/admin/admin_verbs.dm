@@ -22,6 +22,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/fix_air_z,
 	/client/proc/debugstatpanel,
 	/client/proc/clear_mfa,
+	/client/proc/show_rights
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -756,6 +757,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")
+
+/client/proc/show_rights()
+	set name = "Show Rights"
+	set category = "Admin"
+	set desc = "Shows access rights"
+
+	to_chat(src, span_interface("You have the following permissions:\n[rights2text(GLOB.permissions.get_rights_for_ckey(ckey), "\n")]"))
 
 /client/proc/populate_world(amount = 50 as num)
 	set name = "Populate World"

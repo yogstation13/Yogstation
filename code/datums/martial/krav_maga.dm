@@ -155,7 +155,7 @@
 							span_userdanger("[A] attempted to disarm [D]!"))
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	log_combat(A, D, "disarmed (Krav Maga)", "[I ? " removing \the [I]" : ""]")
-	return 1
+	return FALSE
 
 //Krav Maga Gloves
 
@@ -192,8 +192,8 @@
 	var/datum/martial_art/krav_maga/style = new
 	cryo_preserve = TRUE
 	var/equipper = null //who's wearing the gloves?
-	var/equipped = FALSE //does the user currently have the martial art? 
-	var/list/enabled_areas = list(/area/security, 
+	var/equipped = FALSE //does the user currently have the martial art?
+	var/list/enabled_areas = list(/area/security,
 					/area/ai_monitored/security,
 					/area/mine/laborcamp,
 					/area/shuttle/labor,

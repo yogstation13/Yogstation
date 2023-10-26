@@ -393,6 +393,7 @@
 		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
 		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
+		"dust_implant" = list("desc" = "Dusting Implant", "type" = "boolean", "value" = "[(ertemplate.dusting ? "Yes" : "No")]")
 		)
 	)
 
@@ -417,6 +418,7 @@
 		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.dusting = prefs["dust_implant"]["value"] == "Yes" ? TRUE : FALSE
 
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
 		var/teamSpawned = FALSE
@@ -469,6 +471,10 @@
 				ERTOperative.mind.add_antag_datum(ert_antag,ert_team)
 				ERTOperative.mind.assigned_role = ert_antag.name
 
+				if(ertemplate.dusting)
+					var/obj/item/implant/dusting/dustimplant = new(ERTOperative)
+					dustimplant.implant(ERTOperative)
+
 				//Logging and cleanup
 				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
 				numagents--
@@ -510,6 +516,7 @@
 		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
 		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
 		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
+		"dust_implant" = list("desc" = "Dusting Implant", "type" = "boolean", "value" = "[(ertemplate.dusting ? "Yes" : "No")]"),
 		)
 	)
 
@@ -528,6 +535,7 @@
 		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.dusting = prefs["dust_implant"]["value"] == "Yes" ? TRUE : FALSE
 
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
 		var/teamSpawned = FALSE
@@ -592,6 +600,10 @@
 				if(istype(upl))
 					ERTOperative.equip_to_slot_or_del(upl, ITEM_SLOT_BACKPACK)
 					ert_team.uplink_type = ertemplate.uplinktype // Type path
+
+				if(ertemplate.dusting)
+					var/obj/item/implant/dusting/dustimplant = new(ERTOperative)
+					dustimplant.implant(ERTOperative)
 
 				//Logging and cleanup
 				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant

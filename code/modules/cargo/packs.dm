@@ -17,11 +17,27 @@
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 	var/small_item = FALSE //Small items can be grouped into a single crate.
+	var/budget_radioactive = FALSE //Overwrite budget crate into radiation protective crate
 
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
 	if(paying_account)
-		C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
+		if(budget_radioactive)
+			C = new /obj/structure/closet/crate/secure/owned/radiation(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_MED))
+			C = new /obj/structure/closet/crate/secure/owned/medical(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_ENG))
+			C = new /obj/structure/closet/crate/secure/owned/engineering(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SCI))
+			C = new /obj/structure/closet/crate/secure/owned/science(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SRV))
+			C = new /obj/structure/closet/crate/secure/owned/hydroponics(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_SEC))
+			C = new /obj/structure/closet/crate/secure/owned/gear(A, paying_account)
+		else if(paying_account == SSeconomy.get_dep_account(ACCOUNT_CIV))
+			C = new /obj/structure/closet/crate/secure/owned/civ(A, paying_account)
+		else
+			C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
 		C.name = "[crate_name] - Purchased by [paying_account.account_holder]"
 	else
 		C = new crate_type(A)
@@ -232,7 +248,7 @@
 					/obj/item/grenade/smokebomb,
 					/obj/item/grenade/smokebomb,
 					/obj/item/grenade/smokebomb,
-					/obj/item/pen/sleepy,
+					/obj/item/pen/blue/sleepy,
 					/obj/item/grenade/chem_grenade/incendiary)
 	crate_name = "emergency crate"
 	crate_type = /obj/structure/closet/crate/internals
@@ -895,9 +911,9 @@
 	crate_name = "conveyor assembly crate"
 
 /datum/supply_pack/engineering/atmos/fire
-	name = "Advanced Atmos Firesuit Crate"
-	desc = "Contains 4 atmos firesuits"
-	cost = 2000
+	name = "Advanced Firefighting Crate"
+	desc = "Station is burning? Don't worry we got you. Introducing 4 atmos firesuits, gloves and advanced extinguishers!"
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/fire/atmos,
 					/obj/item/clothing/suit/fire/atmos,
 					/obj/item/clothing/suit/fire/atmos,
@@ -905,8 +921,16 @@
 					/obj/item/clothing/head/hardhat/atmos,
 					/obj/item/clothing/head/hardhat/atmos,
 					/obj/item/clothing/head/hardhat/atmos,
-					/obj/item/clothing/head/hardhat/atmos)
-	crate_name = "advanced atmos firesuit crate"
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/clothing/gloves/atmos,
+					/obj/item/extinguisher/advanced,
+					/obj/item/extinguisher/advanced,
+					/obj/item/extinguisher/advanced,
+					/obj/item/extinguisher/advanced)
+	crate_name = "advanced firefighting crate"
 
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
@@ -1225,6 +1249,46 @@
 	crate_name = "HFR crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
+
+/datum/supply_pack/engine/fuel_rod_basic
+	name = "Uranium-235 Fuel Rods Crate"
+	desc = "Contains 5 Enriched Uranium Control Rods."
+	cost = 5000
+	contains = list(/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod,
+					/obj/item/fuel_rod)
+	crate_name = "Uranium-235 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
+
+/datum/supply_pack/engine/fuel_rod_plutonium
+	name = "Plutonium-239 Fuel Rods Crate"
+	desc = "Contains 5 Plutonium-239 Control Rods."
+	cost = 15000
+	contains = list(/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium,
+					/obj/item/fuel_rod/plutonium)
+	crate_name = "Plutonium-239 Fuel Rods"
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
+
+/datum/supply_pack/engine/fuel_rod_bananium
+	name = "Bananium Fuel Rods Crate"
+	desc = "Contains 5 Bananium Control Rods."
+	cost = 15000
+	contraband = TRUE
+	contains = list(/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium,
+					/obj/item/fuel_rod/material/bananium)
+	crate_name = "Bananium Fuel Rods"
+	crate_type = /obj/structure/closet/crate/secure/radiation
+	budget_radioactive = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
@@ -1831,7 +1895,7 @@
 					/obj/item/reagent_containers/glass/bucket,
 					/obj/item/reagent_containers/glass/bucket,
 					/obj/item/mop,
-					/obj/item/twohanded/broom,
+					/obj/item/broom,
 					/obj/item/clothing/suit/caution,
 					/obj/item/clothing/suit/caution,
 					/obj/item/clothing/suit/caution,
@@ -2181,7 +2245,7 @@
 					/obj/item/reagent_containers/food/condiment/saltshaker,
 					/obj/item/reagent_containers/food/condiment/peppermill,
 					/obj/item/reagent_containers/food/condiment/cinnamon, // Yogs -- Adds cinnamon shakers to this crate
-					/obj/item/storage/box/fancy/egg_box,
+					/obj/item/storage/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
 					/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
@@ -2283,11 +2347,11 @@
 	name = "Potted Plants Crate"
 	desc = "Spruce up the station with these lovely plants! Contains a random assortment of five potted plants from Nanotrasen's potted plant research division. Warranty void if thrown."
 	cost = 700
-	contains = list(/obj/item/twohanded/required/kirbyplants/random,
-					/obj/item/twohanded/required/kirbyplants/random,
-					/obj/item/twohanded/required/kirbyplants/random,
-					/obj/item/twohanded/required/kirbyplants/random,
-					/obj/item/twohanded/required/kirbyplants/random)
+	contains = list(/obj/item/kirbyplants/random,
+					/obj/item/kirbyplants/random,
+					/obj/item/kirbyplants/random,
+					/obj/item/kirbyplants/random,
+					/obj/item/kirbyplants/random)
 	crate_name = "potted plants crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2308,7 +2372,8 @@
 					/obj/item/seeds/sunflower,
 					/obj/item/seeds/chanter,
 					/obj/item/seeds/potato,
-					/obj/item/seeds/sugarcane)
+					/obj/item/seeds/sugarcane,
+					/obj/item/seeds/cucumber)
 	crate_name = "seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2323,7 +2388,8 @@
 					/obj/item/reagent_containers/food/snacks/grown/carrot,
 					/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
 					/obj/item/reagent_containers/food/snacks/grown/onion,
-					/obj/item/reagent_containers/food/snacks/grown/pumpkin)
+					/obj/item/reagent_containers/food/snacks/grown/pumpkin,
+					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/vending/hydro_refills
@@ -2605,8 +2671,8 @@
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
-					/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate,
-					/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims,
+					/obj/item/storage/fancy/cigarettes/cigpack_syndicate,
+					/obj/item/storage/fancy/cigarettes/cigpack_shadyjims,
 					/obj/item/clothing/mask/gas/syndicate,
 					/obj/item/clothing/neck/necklace/dope,
 					/obj/item/vending_refill/donksoft)
@@ -2996,12 +3062,14 @@
 					/obj/item/hand_labeler_refill,
 					/obj/item/hand_labeler_refill,
 					/obj/item/paper_bin,
+					/obj/item/storage/pencil_holder,
 					/obj/item/pen/fourcolor,
 					/obj/item/pen/fourcolor,
 					/obj/item/pen,
 					/obj/item/pen/fountain,
 					/obj/item/pen/blue,
 					/obj/item/pen/red,
+					/obj/item/pen/green,
 					/obj/item/folder/blue,
 					/obj/item/folder/red,
 					/obj/item/folder/yellow,

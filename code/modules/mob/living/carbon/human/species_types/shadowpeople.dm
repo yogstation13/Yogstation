@@ -102,7 +102,7 @@
 
 	C.fully_replace_character_name("[C.real_name]","[pick(GLOB.nightmare_names)]") // Yogs -- fixes nightmares not having special spooky names. this proc takes the old name first, and *THEN* the new name!
 
-/datum/species/shadow/nightmare/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/shadow/nightmare/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
@@ -147,6 +147,9 @@
 	var/obj/item/light_eater/blade
 	decay_factor = 0
 
+/obj/item/organ/heart/nightmare/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/organ/heart/nightmare/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
@@ -178,9 +181,6 @@
 
 /obj/item/organ/heart/nightmare/Stop()
 	return 0
-
-/obj/item/organ/heart/nightmare/update_icon()
-	return //always beating visually
 
 /obj/item/organ/heart/nightmare/process()
 	if(QDELETED(owner) || owner.stat != DEAD || !owner)
@@ -261,7 +261,7 @@
 		var/obj/item/pda/PDA = O
 		PDA.set_light_on(FALSE)
 		PDA.set_light_range(0) //It won't be turning on again.
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
 		visible_message(span_danger("[O] is disintegrated by [src]!"))

@@ -11,9 +11,6 @@
 		if(A.attachable)
 			return TRUE
 
-/atom
-	var/datum/wires/wires = null
-
 /atom/proc/attempt_wire_interaction(mob/user)
 	if(!wires)
 		return WIRE_INTERACTION_FAIL
@@ -254,19 +251,26 @@
 		reveal_wires = TRUE
 
 	// Station blueprints do that too, but only if the wires are not randomized.
-	else if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints) && !randomize)
-		reveal_wires = TRUE
+	else if(!randomize)
+		if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints))
+			reveal_wires = TRUE
+		else if(user.is_holding_item_of_type(/obj/item/photo))
+			var/obj/item/photo/P = user.is_holding_item_of_type(/obj/item/photo)
+			if(P.picture.has_blueprints)	//if the blueprints are in frame
+				reveal_wires = TRUE
 
+	var/colorblind = HAS_TRAIT(user, TRAIT_COLORBLIND)
 	for(var/color in colors)
 		payload.Add(list(list(
 			"color" = color,
-			"wire" = ((reveal_wires && !is_dud_color(color)) ? get_wire(color) : null),
+			"wire" = ((reveal_wires && !is_dud_color(color) && !colorblind) ? get_wire(color) : null),
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))
 	data["wires"] = payload
 	data["status"] = get_status()
 	data["proper_name"] = (proper_name != "Unknown") ? proper_name : null
+	data["colorblind"] = colorblind
 	return data
 
 /datum/wires/ui_act(action, params)

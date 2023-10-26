@@ -479,7 +479,7 @@
 /area/ruin/powered)
 "bb" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/dualsaber/toy,
+/obj/item/melee/dualsaber/toy,
 /obj/item/toy/katana{
 	pixel_x = 6
 	},

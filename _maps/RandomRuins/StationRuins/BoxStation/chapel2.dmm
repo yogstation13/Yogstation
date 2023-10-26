@@ -118,6 +118,22 @@
 	},
 /turf/open/floor/carpet/black,
 /area/chapel/main)
+"gc" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	sortType = 17
+	},
+/turf/open/floor/carpet/black,
+/area/chapel/office)
 "gr" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -459,7 +475,7 @@
 	},
 /area/chapel/main)
 "Cq" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "Cv" = (
@@ -473,20 +489,6 @@
 	pixel_y = 28
 	},
 /turf/open/floor/carpet/red,
-/area/chapel/office)
-"Cw" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/sorting/mail,
-/turf/open/floor/carpet/black,
 /area/chapel/office)
 "Cz" = (
 /obj/structure/cable{
@@ -1365,7 +1367,7 @@ WA
 Zp
 Zw
 GD
-Cw
+gc
 Jj
 Gs
 ED

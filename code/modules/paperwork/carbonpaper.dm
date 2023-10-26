@@ -7,7 +7,8 @@
 	var/iscopy = FALSE
 
 
-/obj/item/paper/carbon/update_icon()
+/obj/item/paper/carbon/update_icon_state()
+	. = ..()
 	if(iscopy)
 		if(written.len)
 			icon_state = "cpaper_words"
@@ -52,8 +53,8 @@
 		copied = TRUE
 		copy.copied = TRUE
 		copy.iscopy = TRUE
-		update_icon()
-		copy.update_icon()
+		update_appearance(UPDATE_ICON)
+		copy.update_appearance(UPDATE_ICON)
 		usr.put_in_hands(copy)
 	else
 		to_chat(usr, span_warning("There are no more carbon copies attached to this paper!"))

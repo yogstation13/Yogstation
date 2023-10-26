@@ -312,12 +312,7 @@
 		var/mob/B = A
 		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
-
-///Is the mob hallucinating?
-/mob/proc/hallucinating()
-	return FALSE
-
-
+	
 // moved out of admins.dm because things other than admin procs were calling this.
 /**
   * Is this mob special to the gamemode?

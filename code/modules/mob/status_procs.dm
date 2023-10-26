@@ -113,6 +113,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		amount *= H.dna.species.tempmod
+		amount *= H.physiology.temp_mod
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)
 	// Infrared luminosity, how far away can you pick up someone's heat with infrared (NOT THERMAL) vision

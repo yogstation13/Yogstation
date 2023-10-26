@@ -300,18 +300,20 @@ SUBSYSTEM_DEF(demo)
 			inted[i] += round(old_list[i] * 255)
 		color_string = jointext(inted, ",")
 	var/overlays_string = "\[]"
-	if(appearance.overlays.len)
+	var/list/appearance_overlays = appearance.overlays
+	if(appearance_overlays.len)
 		var/list/overlays_list = list()
-		for(var/i in 1 to appearance.overlays.len)
-			var/image/overlay = appearance.overlays[i]
+		for(var/i in 1 to appearance_overlays.len)
+			var/image/overlay = appearance_overlays[i]
 			overlays_list += encode_appearance(overlay, appearance, TRUE)
 		overlays_string = "\[[jointext(overlays_list, ",")]]"
 
 	var/underlays_string = "\[]"
-	if(appearance.underlays.len)
+	var/list/appearance_underlays = appearance.underlays
+	if(appearance_underlays.len)
 		var/list/underlays_list = list()
-		for(var/i in 1 to appearance.underlays.len)
-			var/image/underlay = appearance.underlays[i]
+		for(var/i in 1 to appearance_underlays.len)
+			var/image/underlay = appearance_underlays[i]
 			underlays_list += encode_appearance(underlay, appearance, TRUE)
 		underlays_string = "\[[jointext(underlays_list, ",")]]"
 
@@ -412,6 +414,13 @@ SUBSYSTEM_DEF(demo)
 	msg += "Del:[del_list.len]"
 	msg += "}"
 	return ..(msg)
+
+/datum/controller/subsystem/demo/get_metrics()
+	. = ..()
+	.["remaining_turfs"] = marked_turfs.len
+	.["remaining_new"] = marked_new.len
+	.["remaining_updated"] = marked_dirty.len
+	.["remaining_deleted"] = del_list.len
 
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
 	if(!can_fire)

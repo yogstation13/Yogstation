@@ -91,6 +91,7 @@
 	feedback_types = list(
 		"fire" = 2
 	)
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/pickup(mob/living/user)
 	SHOULD_CALL_PARENT(FALSE)

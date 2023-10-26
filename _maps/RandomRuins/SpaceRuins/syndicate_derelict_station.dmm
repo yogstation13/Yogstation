@@ -1,0 +1,3935 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"af" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"ah" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"aj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"ar" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"aw" = (
+/obj/structure/table,
+/obj/item/inducer,
+/obj/item/inducer,
+/obj/item/inducer,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"aG" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"aM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/virology,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"aP" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"aS" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"ba" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/virology,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"bp" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"bt" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"bv" = (
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"bx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"bJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 8
+	},
+/turf/open/floor/plating/broken/two,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"cd" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"cm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"co" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"cA" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"cH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/mob/living/simple_animal/hostile/pirate/melee/space,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"cM" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/research)
+"cZ" = (
+/obj/structure/table,
+/obj/machinery/plantgenes/seedvault,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"dd" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"di" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"dr" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"dx" = (
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"dH" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"dX" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"ec" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure,
+/obj/item/ammo_box/magazine/smgm45,
+/obj/item/melee/transforming/energy/sword,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"eE" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"eO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"fe" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"fg" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"fu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/pirate/melee/space,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"fw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"fT" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"fW" = (
+/obj/structure/cable/yellow{
+	dir = 1
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Syndicate Derelict Kitchen";
+	pixel_y = -23;
+	start_charge = 0
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"fX" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"gl" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"gr" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"gx" = (
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"gP" = (
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/light,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"ha" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"hp" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"hu" = (
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"hx" = (
+/obj/machinery/rnd/destructive_analyzer,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"hy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"hz" = (
+/obj/structure/table,
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"hC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"ic" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"ip" = (
+/obj/item/stack/rods,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"iK" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"iQ" = (
+/obj/machinery/disposal/bin,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"jv" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"jH" = (
+/obj/machinery/chem_master,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"jK" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"jP" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"jW" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/solar_control{
+	dir = 8;
+	id = "aftport";
+	name = "Station Solar Control"
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"ke" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/hydronutrients{
+	tilted = 1
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Syndicate Derelict Hydroponics";
+	pixel_y = 23;
+	start_charge = 0
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"kh" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"kz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"kA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"kH" = (
+/obj/structure/cable/yellow{
+	dir = 1
+	},
+/obj/machinery/power/apc/syndicate{
+	name = "Syndicate Derelict Hallway";
+	pixel_y = -23;
+	start_charge = 0
+	},
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"kJ" = (
+/obj/item/shard,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"kM" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"lc" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	name = "Nitrogen"
+	},
+/turf/open/floor/engine/n2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"lf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"lk" = (
+/obj/machinery/atmospherics/components/binary/pump/on/layer4{
+	name = "Scrubbers"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"lp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"lA" = (
+/obj/structure/table/glass,
+/obj/structure/windoor_assembly{
+	dir = 8
+	},
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/fire,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"lE" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"lF" = (
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"lO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"lV" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"lY" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"mo" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"mv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"my" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"mD" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"nb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"ni" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"nj" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"nr" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"ns" = (
+/obj/machinery/power/smes/engineering{
+	charge = 0
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"nA" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"nK" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"nS" = (
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"nW" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"oa" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"oe" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"oh" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"oz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"oE" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"oG" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/turf/open/floor/engine/n2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"oH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"oP" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"oX" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/turf/open/floor/engine/o2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"pn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/research/glass,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"pp" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "N2 Output"
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"pq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"pu" = (
+/obj/machinery/computer/rdconsole/nolock/ruin{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"pJ" = (
+/obj/structure/table,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"pR" = (
+/obj/structure/table_frame,
+/obj/item/shard,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"pS" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"ql" = (
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"qu" = (
+/turf/template_noop,
+/area/template_noop)
+"qA" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"qD" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"qH" = (
+/obj/machinery/atmospherics/miner/nitrogen,
+/turf/open/floor/engine/n2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"qI" = (
+/turf/open/floor/plating/broken/two,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"qX" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"rv" = (
+/obj/effect/mob_spawn/human/syndicate_derelict_engineer{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"rC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 0;
+	dir = 8;
+	freerange = 1;
+	listening = 1;
+	name = "Syndicate Listening Channel"
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/research)
+"rP" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"rU" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"rZ" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"sm" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"sr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"sv" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 0;
+	dir = 8;
+	freerange = 1;
+	listening = 1;
+	name = "Syndicate Listening Channel"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"sz" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"sH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/item/stack/rods,
+/obj/item/shard,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"sL" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"sQ" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"tf" = (
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"tl" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"tC" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/airless,
+/area/template_noop)
+"tP" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"ub" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"ui" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/turf/open/floor/engine/n2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"uk" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"uB" = (
+/obj/structure/closet/secure_closet/medical1,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"uG" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"uQ" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"uS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"ve" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"vk" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Engineering";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/obj/effect/mob_spawn/human/syndicate_derelict_engineer{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"vv" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"vw" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"vx" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"vF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"vO" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/metal,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"vU" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/research)
+"vV" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"wv" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"wy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"wB" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"wG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"wH" = (
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"wW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"wY" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"xd" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"xm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/item/paper/crumpled/bloody/ruins/syndicate_derelict_station/lore2,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"xw" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/template_noop,
+/area/template_noop)
+"xK" = (
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"xQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"xR" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"xW" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"ya" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"yB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"yC" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"yT" = (
+/obj/structure/table,
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_y = -30
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 1
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/gloves/color/latex,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"yY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"zd" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"zl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"zs" = (
+/obj/machinery/computer/pandemic,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"zu" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"zJ" = (
+/obj/machinery/disposal/bin,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"zM" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Ak" = (
+/obj/structure/lattice,
+/obj/structure/grille/broken,
+/turf/open/space/basic,
+/area/template_noop)
+"Aq" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"As" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"AD" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"AE" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"AF" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"AO" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"AR" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Bq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"Br" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Bv" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"BG" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"BJ" = (
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"BS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Ci" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Cq" = (
+/mob/living/simple_animal/hostile/pirate/melee/space,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Ct" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Cz" = (
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/electronics/tracker,
+/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil/red,
+/obj/item/holosign_creator/atmos,
+/obj/structure/closet/crate/engineering,
+/obj/item/solar_assembly,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"CG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"CR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"CT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/window/brigdoor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"De" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Dp" = (
+/turf/open/floor/engine/o2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Dw" = (
+/obj/effect/decal/cleanable/glass,
+/mob/living/simple_animal/hostile/pirate/melee/space,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"DJ" = (
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"DO" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"DP" = (
+/obj/structure/chair/office/dark,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"El" = (
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"En" = (
+/obj/machinery/sleeper/syndie{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Es" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/floor/plating/broken/two,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"EB" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"EC" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"ED" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"EE" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"EH" = (
+/obj/structure/table_frame,
+/obj/item/shard,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"ER" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"EV" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 2
+	},
+/turf/open/floor/plating/broken/two,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Fo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Fq" = (
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"FA" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"FK" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"FS" = (
+/obj/item/shard,
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"Gc" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/rods/fifty,
+/obj/item/stack/rods/fifty,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Gd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/dark,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"Gh" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Gj" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/mineral/gold/fifty,
+/obj/item/stack/sheet/mineral/silver/fifty,
+/obj/item/stack/sheet/mineral/titanium/fifty,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/plasma/fifty,
+/obj/item/stack/sheet/mineral/diamond/fifty,
+/obj/item/paper/fluff/ruins/syndicate_derelict_station/engineering,
+/obj/item/stack/sheet/mineral/uranium/fifty,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/dilithium_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/sheet/bluespace_crystal,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Gl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"GA" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"GM" = (
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"He" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Hg" = (
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/research)
+"HF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"HL" = (
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"HM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"HO" = (
+/obj/machinery/smartfridge,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"HR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"HW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"HX" = (
+/obj/structure/disposalpipe/broken,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"Io" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Iv" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Iz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"IE" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"IT" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	name = "Oxygen"
+	},
+/turf/open/floor/engine/o2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"IY" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Jd" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"Jo" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Js" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/tank_dispenser/plasma,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"JC" = (
+/turf/open/floor/engine/n2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"JE" = (
+/obj/item/stack/rods,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"JN" = (
+/obj/machinery/smartfridge/chemistry/virology/preloaded,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"JQ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"JV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Ka" = (
+/obj/structure/lattice,
+/obj/item/shard,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Kc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Kj" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/obj/structure/disposalpipe/broken,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Ko" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"KK" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"KL" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "N2 Output"
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"KM" = (
+/obj/item/stack/sheet/metal,
+/obj/item/stack/sheet/metal,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"KY" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	dir = 8;
+	freerange = 1;
+	listening = 0;
+	name = "Syndicate Broadcast Channel"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Lk" = (
+/obj/item/shard,
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Lo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"Lx" = (
+/obj/structure/table,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/dropper,
+/obj/item/storage/box/monkeycubes/syndicate,
+/obj/item/storage/box/monkeycubes/syndicate,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"LB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/closet/wardrobe/virology_white,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"LF" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Research Wing";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Mg" = (
+/obj/machinery/deepfryer,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"Mw" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Mz" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"MP" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Na" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Nh" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/item/shard,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"No" = (
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_y = -30
+	},
+/obj/structure/closet/l3closet/virology,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Ny" = (
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"NC" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"NM" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"Ol" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 1
+	},
+/turf/open/floor/engine/o2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Ov" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"OB" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"OE" = (
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"OH" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"OY" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/circuitboard/machine/ore_silo,
+/obj/item/circuitboard/machine/ore_redemption,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/matter_bin{
+	pixel_x = 5
+	},
+/obj/item/stock_parts/matter_bin{
+	pixel_x = -1
+	},
+/obj/item/stock_parts/matter_bin{
+	pixel_x = -7
+	},
+/obj/item/stock_parts/manipulator{
+	pixel_y = 11
+	},
+/obj/item/stock_parts/manipulator{
+	pixel_x = -5;
+	pixel_y = 11
+	},
+/obj/item/stock_parts/micro_laser{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/assembly/igniter,
+/obj/item/stack/sheet/glass,
+/obj/item/stack/sheet/glass,
+/obj/structure/closet/crate,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airalarm,
+/obj/item/electronics/airalarm,
+/obj/item/electronics/airalarm,
+/obj/item/electronics/airalarm,
+/obj/item/electronics/apc,
+/obj/item/electronics/apc,
+/obj/item/electronics/apc,
+/obj/item/electronics/apc,
+/obj/item/electronics/advanced_airlock_controller,
+/obj/item/electronics/advanced_airlock_controller,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Pi" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
+"Pj" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut/red,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"PE" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"PH" = (
+/obj/machinery/atmospherics/miner/oxygen,
+/turf/open/floor/engine/o2,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"PX" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Qc" = (
+/obj/machinery/disposal/bin,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Qi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"QD" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"QP" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"QU" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Ri" = (
+/obj/structure/grille,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/floor/plating/broken/three,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Rl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"RG" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/item/paper/crumpled/bloody/ruins/syndicate_derelict_station/lore1,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/research)
+"So" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Sr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/twohanded/rcl/pre_loaded,
+/obj/item/twohanded/rcl/pre_loaded,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"SO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 8;
+	name = "Syndicate Derelict Virology";
+	pixel_x = -25;
+	start_charge = 0
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"SQ" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/broken,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"SZ" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/solars/solar_96,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"Tc" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"Tm" = (
+/obj/item/shard,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Tq" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"Tu" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Tw" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/airless/burnt,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"TA" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"TD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"TO" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/solars)
+"TT" = (
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Uk" = (
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"UH" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/template_noop)
+"UL" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Vu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Vv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless/broken,
+/area/ruin/space/has_grav/syndiederelict/research)
+"VB" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"VX" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/template_noop,
+/area/template_noop)
+"Wm" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plasteel/airless/dark,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Wt" = (
+/obj/structure/rack,
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/head/welding,
+/obj/item/clothing/head/welding,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/combat,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Wx" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"WG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hallway)
+"WH" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"WT" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"WU" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/research)
+"WV" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Xf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"Xg" = (
+/obj/machinery/power/apc/syndicate{
+	name = "Syndicate Derelict Medbay";
+	pixel_y = -23;
+	start_charge = 0
+	},
+/obj/structure/cable/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Xm" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"Xo" = (
+/obj/structure/lattice,
+/obj/item/shard,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"Xs" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/research)
+"XC" = (
+/obj/structure/lattice,
+/obj/structure/grille/broken,
+/turf/template_noop,
+/area/template_noop)
+"XF" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"XG" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"XK" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"XQ" = (
+/turf/open/floor/plasteel/airless/broken/three,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"XS" = (
+/obj/structure/grille/broken,
+/obj/item/stack/rods,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"XY" = (
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/medbay)
+"Ya" = (
+/obj/structure/closet/wardrobe/virology_white,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Yf" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Yl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"YX" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Zl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+"Zt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
+"ZO" = (
+/obj/item/stack/rods,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless/broken/two,
+/area/ruin/space/has_grav/syndiederelict/research)
+"ZY" = (
+/mob/living/simple_animal/hostile/pirate/ranged/space,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/virology)
+
+(1,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(2,1,1) = {"
+qu
+qu
+qu
+xw
+qu
+qu
+XC
+VX
+VX
+VX
+XC
+qu
+qu
+VX
+XC
+VX
+VX
+XC
+VX
+qu
+qu
+XC
+VX
+VX
+VX
+qu
+qu
+qu
+qu
+qu
+"}
+(3,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+ub
+qu
+qu
+qu
+qu
+qu
+ub
+qu
+qu
+ub
+qu
+qu
+qu
+qu
+ub
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(4,1,1) = {"
+qu
+qu
+qu
+Fq
+Fq
+Pi
+nK
+Aq
+Aq
+Aq
+IY
+IY
+QU
+QU
+lE
+lE
+lE
+QU
+QU
+QU
+Yf
+EC
+EC
+Yf
+Yf
+qu
+qu
+qu
+qu
+qu
+"}
+(5,1,1) = {"
+qu
+ub
+qu
+Fq
+qD
+Pi
+Pi
+oa
+EE
+Aq
+Ci
+Lk
+QU
+dH
+sz
+TT
+hC
+ba
+lf
+aM
+wy
+wW
+oH
+SO
+UL
+Yf
+Yf
+qu
+Ak
+qu
+"}
+(6,1,1) = {"
+qu
+XC
+qu
+Fq
+Pi
+sQ
+Pi
+Pi
+FS
+qI
+QD
+vx
+EV
+wG
+WT
+uS
+xm
+ic
+QU
+QU
+zJ
+fX
+oe
+Qi
+uB
+No
+Yf
+ub
+VX
+qu
+"}
+(7,1,1) = {"
+qu
+ub
+ub
+Fq
+tP
+Pi
+xW
+Fq
+GM
+Pi
+DJ
+DJ
+qA
+co
+qA
+vV
+dd
+pR
+En
+QU
+Wm
+Wm
+Wm
+cH
+Na
+pJ
+EC
+qu
+VX
+qu
+"}
+(8,1,1) = {"
+qu
+XC
+qu
+Pi
+Pi
+Pi
+jv
+Pi
+OH
+El
+mo
+TA
+nS
+XY
+tf
+qA
+qA
+JE
+Xg
+QU
+Vu
+yY
+Zl
+YX
+DP
+zs
+EC
+qu
+qu
+qu
+"}
+(9,1,1) = {"
+qu
+VX
+qu
+qD
+sQ
+Fq
+Fq
+dx
+DO
+aG
+Gl
+yB
+Es
+Ka
+pq
+qA
+qA
+Tw
+xR
+QU
+xQ
+LB
+Wm
+kz
+ZY
+JN
+EC
+qu
+VX
+qu
+"}
+(10,1,1) = {"
+qu
+qu
+qu
+Fq
+Pi
+xW
+FS
+Ko
+fW
+Aq
+HW
+MP
+fg
+aP
+ED
+Ct
+rZ
+Br
+Br
+QU
+Wm
+Wm
+Wm
+fu
+FA
+Lx
+EC
+qu
+VX
+qu
+"}
+(11,1,1) = {"
+qu
+qu
+qu
+BG
+Pi
+HX
+Dw
+Mg
+bt
+Aq
+HW
+Tm
+QU
+aP
+bp
+HM
+Ov
+Nh
+Br
+QU
+Vu
+HR
+CT
+mv
+Gh
+yT
+Yf
+ub
+VX
+qu
+"}
+(12,1,1) = {"
+qu
+XC
+qu
+uQ
+uQ
+As
+HO
+oh
+oh
+oh
+WG
+kH
+QU
+jH
+Iv
+sL
+EH
+OB
+lA
+QU
+xQ
+Ya
+Wm
+ec
+UL
+Yf
+Yf
+qu
+XC
+qu
+"}
+(13,1,1) = {"
+qu
+VX
+ub
+oh
+vw
+Uk
+uQ
+uQ
+lF
+oh
+Tq
+aj
+So
+So
+So
+So
+Hg
+HL
+So
+So
+So
+So
+Yf
+Yf
+Yf
+qu
+ub
+qu
+qu
+qu
+"}
+(14,1,1) = {"
+qu
+VX
+qu
+oh
+XG
+KK
+Uk
+KM
+Xo
+oh
+vF
+PX
+So
+pu
+di
+Jo
+lY
+BJ
+LF
+Xs
+wY
+So
+qu
+ub
+qu
+qu
+VX
+VX
+qu
+qu
+"}
+(15,1,1) = {"
+qu
+qu
+qu
+cd
+dX
+HF
+JQ
+SQ
+Uk
+uQ
+bJ
+De
+So
+vU
+kh
+WU
+lY
+zu
+BJ
+Vv
+wH
+So
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(16,1,1) = {"
+qu
+qu
+qu
+cd
+dX
+fw
+cZ
+AF
+ah
+uQ
+DJ
+Tm
+Ri
+hx
+bv
+AO
+nr
+lY
+lY
+AR
+kM
+Mw
+qu
+VX
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(17,1,1) = {"
+qu
+VX
+qu
+cd
+dX
+fw
+hz
+kJ
+dX
+oh
+ip
+ql
+XS
+Xm
+cM
+ZO
+AE
+AD
+BJ
+vO
+uG
+HL
+ub
+VX
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(18,1,1) = {"
+qu
+VX
+ub
+cd
+dX
+nW
+Bq
+vw
+dX
+oh
+xK
+Pj
+So
+XK
+XF
+CR
+RG
+sm
+lY
+lY
+AR
+lY
+qu
+VX
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(19,1,1) = {"
+qu
+VX
+qu
+oh
+ke
+Lo
+vw
+vw
+gP
+oh
+jP
+Kj
+pn
+bx
+lO
+sv
+Kc
+rC
+lY
+zM
+Cq
+Tu
+qu
+XC
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(20,1,1) = {"
+qu
+VX
+qu
+oh
+fe
+ar
+iQ
+gl
+dX
+oh
+sH
+Ny
+So
+ni
+Qc
+AO
+KY
+GA
+lY
+lV
+BJ
+gx
+qu
+UH
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(21,1,1) = {"
+qu
+XC
+ub
+oh
+oh
+Gd
+oh
+oh
+oh
+oh
+kA
+IY
+So
+So
+So
+So
+So
+So
+HL
+lY
+lY
+lY
+ub
+ub
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(22,1,1) = {"
+qu
+VX
+qu
+nA
+hu
+eO
+OY
+vk
+rv
+Gj
+TD
+XQ
+PE
+ui
+JC
+qH
+nA
+qu
+qu
+qu
+ub
+qu
+qu
+ub
+UH
+qu
+qu
+qu
+qu
+qu
+"}
+(23,1,1) = {"
+qu
+qu
+qu
+xd
+WV
+fT
+CG
+cA
+nb
+nb
+lp
+aS
+KL
+lc
+oG
+oG
+xd
+qu
+VX
+VX
+VX
+XC
+XC
+ub
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(24,1,1) = {"
+qu
+qu
+qu
+xd
+rU
+Iz
+af
+Yl
+af
+af
+my
+wv
+lk
+JV
+JV
+JV
+VB
+Bv
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(25,1,1) = {"
+qu
+VX
+qu
+nA
+rU
+Fo
+Cz
+BS
+ve
+Gc
+Rl
+nj
+pp
+IT
+oX
+oX
+xd
+qu
+VX
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(26,1,1) = {"
+qu
+Ak
+qu
+nA
+EB
+Fo
+nA
+zl
+nA
+nA
+Zt
+qX
+pS
+Ol
+Dp
+PH
+nA
+ub
+XC
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}
+(27,1,1) = {"
+qu
+VX
+ub
+nA
+rU
+Fo
+NC
+Io
+aw
+Sr
+Rl
+cm
+hp
+nA
+xd
+nA
+nA
+qu
+VX
+VX
+Ak
+VX
+ub
+VX
+VX
+XC
+ub
+VX
+qu
+qu
+"}
+(28,1,1) = {"
+qu
+VX
+qu
+xd
+rU
+QP
+af
+yC
+hy
+oz
+sr
+Xf
+zd
+tC
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+ub
+qu
+ub
+qu
+ub
+qu
+ub
+qu
+VX
+"}
+(29,1,1) = {"
+qu
+VX
+qu
+xd
+rU
+af
+af
+Yl
+af
+af
+af
+af
+xd
+qu
+XC
+qu
+qu
+FK
+oE
+FK
+qu
+SZ
+wB
+rP
+qu
+FK
+Jd
+rP
+ub
+XC
+"}
+(30,1,1) = {"
+qu
+XC
+qu
+nA
+ns
+Js
+jW
+jK
+He
+Wt
+WH
+vv
+xd
+ub
+VX
+qu
+qu
+SZ
+ha
+rP
+qu
+FK
+Jd
+FK
+qu
+SZ
+ha
+FK
+qu
+VX
+"}
+(31,1,1) = {"
+qu
+qu
+qu
+nA
+nA
+xd
+nA
+mD
+nA
+xd
+xd
+nA
+nA
+qu
+VX
+qu
+qu
+SZ
+eE
+FK
+qu
+FK
+TO
+rP
+qu
+FK
+eE
+FK
+ub
+ub
+"}
+(32,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+nA
+dr
+nA
+qu
+qu
+ub
+qu
+qu
+qu
+qu
+qu
+qu
+oE
+qu
+qu
+qu
+oE
+qu
+qu
+qu
+oP
+qu
+qu
+VX
+"}
+(33,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+xd
+tl
+xd
+qu
+XC
+VX
+VX
+qu
+qu
+eE
+NM
+oE
+IE
+ya
+oE
+ya
+Mz
+Tc
+ya
+oE
+iK
+OE
+qu
+VX
+"}
+(34,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+nA
+uk
+nA
+qu
+qu
+qu
+qu
+qu
+qu
+oP
+qu
+qu
+TO
+qu
+qu
+qu
+oP
+qu
+qu
+qu
+oP
+qu
+qu
+XC
+"}
+(35,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+xd
+Wx
+xd
+qu
+qu
+qu
+qu
+qu
+qu
+oP
+qu
+FK
+oP
+rP
+qu
+SZ
+ER
+FK
+qu
+FK
+TO
+FK
+ub
+VX
+"}
+(36,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+oP
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+oP
+qu
+FK
+Mz
+rP
+qu
+FK
+oP
+rP
+qu
+SZ
+ER
+FK
+qu
+VX
+"}
+(37,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+TO
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+oP
+qu
+SZ
+Mz
+FK
+qu
+FK
+gr
+FK
+qu
+SZ
+Mz
+rP
+ub
+ub
+"}
+(38,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+ER
+ya
+ya
+ya
+NM
+Tc
+Tc
+ya
+Mz
+qu
+ub
+qu
+ub
+qu
+ub
+qu
+ub
+qu
+ub
+qu
+ub
+qu
+XC
+"}
+(39,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+VX
+XC
+VX
+ub
+XC
+VX
+VX
+XC
+ub
+VX
+VX
+qu
+qu
+"}
+(40,1,1) = {"
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+"}

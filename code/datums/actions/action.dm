@@ -364,14 +364,14 @@
 
 	var/update_flag = ALL
 	var/forced = TRUE
-//	if(updates & UPDATE_ICON_STATE)
-//		update_flag |= UPDATE_BUTTON_ICON
-//		forced = TRUE
-//	if(updates & UPDATE_OVERLAYS)
-//		update_flag |= UPDATE_BUTTON_OVERLAY
-//		forced = TRUE
-//	if(updates & (UPDATE_NAME|UPDATE_DESC))
-//		update_flag |= UPDATE_BUTTON_NAME
+	if(updates & UPDATE_ICON_STATE)
+		update_flag |= UPDATE_BUTTON_ICON
+		forced = TRUE
+	if(updates & UPDATE_OVERLAYS)
+		update_flag |= UPDATE_BUTTON_OVERLAY
+		forced = TRUE
+	if(updates & (UPDATE_NAME|UPDATE_DESC))
+		update_flag |= UPDATE_BUTTON_NAME
 	// Status is not relevant, and background is not relevant. Neither will change
 
 	// Force the update if an icon state or overlay change was done

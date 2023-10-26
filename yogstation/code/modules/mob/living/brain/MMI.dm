@@ -7,7 +7,7 @@
 			brain = newbrain
 			name = "[initial(name)]: [brain.real_name]"
 			to_chat(brainmob, "(<span class='notice'>If your brain was removed after your death you don't remember how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.</span>") //yogs
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 
 	.=..()

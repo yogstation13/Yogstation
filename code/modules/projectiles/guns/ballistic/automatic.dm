@@ -23,16 +23,17 @@
 	pin = null
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/update_icon()
-	..()
+/obj/item/gun/ballistic/automatic/update_overlays()
+	. = ..()
 	if(!select)
-		add_overlay("[initial(icon_state)]_semi")
+		. += "[initial(icon_state)]_semi"
 	if(select == 1)
-		add_overlay("[initial(icon_state)]_burst")
+		. += "[initial(icon_state)]_burst"
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -56,7 +57,7 @@
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -77,12 +78,18 @@
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure
+	pin = /obj/item/firing_pin/fucked
+
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
 
+/obj/item/gun/ballistic/automatic/c20r/ultrasecure
+	pin = /obj/item/firing_pin/fucked
+
 /obj/item/gun/ballistic/automatic/c20r/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/wt550
 	name = "\improper security auto carbine"
@@ -113,6 +120,7 @@
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
+	show_bolt_icon = FALSE
 	rack_sound = "sound/weapons/pistollock.ogg"
 
 /obj/item/gun/ballistic/automatic/m90
@@ -133,7 +141,7 @@
 /obj/item/gun/ballistic/automatic/m90/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/m90/unrestricted
 	pin = /obj/item/firing_pin
@@ -141,7 +149,7 @@
 /obj/item/gun/ballistic/automatic/m90/unrestricted/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/m90/afterattack(atom/target, mob/living/user, flag, params)
 	if(select == 2)
@@ -157,16 +165,15 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()
-	..()
+/obj/item/gun/ballistic/automatic/m90/update_overlays()
+	. = ..()
 	switch(select)
 		if(0)
-			add_overlay("[initial(icon_state)]_semi")
+			. += "[initial(icon_state)]_semi"
 		if(1)
-			add_overlay("[initial(icon_state)]_burst")
+			. += "[initial(icon_state)]_burst"
 		if(2)
-			add_overlay("[initial(icon_state)]_gren")
-	return
+			. += "[initial(icon_state)]_gren"
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
@@ -188,7 +195,7 @@
 			spread -= spread_difference
 			to_chat(user, span_notice("You switch to semi-auto."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/gun/ballistic/automatic/tommygun
@@ -205,6 +212,7 @@
 	spread = 30
 	fire_delay = 1
 	bolt_type = BOLT_TYPE_OPEN
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/ar
 	name = "\improper NT-ARG 'Boarder' Rifle"
@@ -239,6 +247,7 @@
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
 	mag_display_ammo = TRUE
+	show_bolt_icon = FALSE
 	tac_reloads = FALSE
 	automatic = TRUE
 	fire_sound = 'sound/weapons/rifleshot.ogg'
@@ -262,12 +271,12 @@
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	else
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
+/obj/item/gun/ballistic/automatic/l6_saw/update_overlays()
 	. = ..()
-	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
+	. += "l6_door_[cover_open ? "open" : "closed"]"
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
@@ -276,7 +285,7 @@
 		return
 	else
 		. = ..()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/gun/ballistic/automatic/l6_saw/attack_hand(mob/user)

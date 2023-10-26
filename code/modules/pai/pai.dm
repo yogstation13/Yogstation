@@ -149,8 +149,8 @@
 	GLOB.pai_list.Remove(src)
 	return ..()
 
-/mob/living/silicon/pai/emag_act(mob/user)
-	handle_emag(user)
+/mob/living/silicon/pai/emag_act(mob/user, obj/item/card/emag/emag_card)
+	return handle_emag(user, emag_card)
 
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()
@@ -170,7 +170,7 @@
 		hacking_cable = null
 		SStgui.update_user_uis(src)
 		if(!QDELETED(card))
-			card.update_icon()
+			card.update_appearance(UPDATE_ICON)
 	if(deleting_atom == atmos_analyzer)
 		atmos_analyzer = null
 	if(deleting_atom == camera)
@@ -287,7 +287,7 @@
  * @param {living/carbon} attacker - The user performing the action.
  * @returns {boolean} - TRUE if successful, FALSE if not.
  */
-/mob/living/silicon/pai/proc/handle_emag(mob/living/carbon/attacker)
+/mob/living/silicon/pai/proc/handle_emag(mob/living/carbon/attacker, obj/item/card/emag/emag_card)
 	if(!isliving(attacker))
 		return FALSE
 	balloon_alert(attacker, "directive override complete")

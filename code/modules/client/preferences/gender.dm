@@ -11,14 +11,14 @@
 
 	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
 	
-	if(!species_type.sexes || (AGENDER in initial(species_type.species_traits)))
-		return list(PLURAL)
+	if(!initial(species_type.sexes) || (AGENDER in initial(species_type.species_traits)))
+		return PLURAL
 	else if(FGENDER in initial(species_type.species_traits))
-		return list(FEMALE)
+		return FEMALE
 	else if(MGENDER in initial(species_type.species_traits))
-		return list(MALE)
+		return MALE
 
-	return list(MALE, FEMALE, PLURAL)
+	return pick(list(MALE, FEMALE, PLURAL))
 
 /datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value)
 	var/datum/species/S = target.dna.species

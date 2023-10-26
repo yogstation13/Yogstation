@@ -74,8 +74,8 @@
 				L -= I
 	return !cleared
 
-/obj/machinery/computer/station_alert/update_icon()
-	..()
+/obj/machinery/computer/station_alert/update_overlays()
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	var/active_alarms = FALSE
@@ -84,4 +84,4 @@
 		if(L.len)
 			active_alarms = TRUE
 	if(active_alarms)
-		add_overlay("alert:2")
+		. += "alert:2"

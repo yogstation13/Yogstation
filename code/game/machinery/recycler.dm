@@ -21,7 +21,7 @@
 	AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/plasma, /datum/material/silver, /datum/material/gold, /datum/material/diamond, /datum/material/uranium, /datum/material/bananium, /datum/material/titanium, /datum/material/bluespace, /datum/material/dilithium, /datum/material/plastic), INFINITY, FALSE, null, null, null, TRUE)
 	AddComponent(/datum/component/butchering, 1, amount_produced,amount_produced/5)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	req_one_access = get_all_accesses() + get_all_centcom_access()
 
 /obj/machinery/recycler/RefreshParts()
@@ -61,18 +61,19 @@
 		return
 	return ..()
 
-/obj/machinery/recycler/emag_act(mob/user)
+/obj/machinery/recycler/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	if(safety_mode)
 		safety_mode = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	playsound(src, "sparks", 75, TRUE, -1)
 	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
-
-/obj/machinery/recycler/update_icon()
-	..()
+	return TRUE
+	
+/obj/machinery/recycler/update_icon_state()
+	. = ..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
 		is_powered = FALSE
@@ -160,13 +161,13 @@
 /obj/machinery/recycler/proc/emergency_stop()
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 	safety_mode = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(reboot)), SAFETY_COOLDOWN)
 
 /obj/machinery/recycler/proc/reboot()
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 	safety_mode = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/recycler/proc/crush_living(mob/living/L)
 
@@ -184,7 +185,7 @@
 
 	if(!bloody && !issilicon(L))
 		bloody = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	// Instantly lie down, also go unconscious from the pain, before you die.
 	L.Unconscious(100)

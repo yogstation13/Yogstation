@@ -8,11 +8,10 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rag"
 	item_flags = NOBLUDGEON
-	reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER_NOSPILL
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list()
 	volume = 5
-	spillable = FALSE
 	var/cleanspeed = 3 SECONDS
 
 /obj/item/reagent_containers/glass/rag/suicide_act(mob/user)

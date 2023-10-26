@@ -175,7 +175,7 @@
 		return //do not update_icon
 	spawn(2)
 		broadcast_status()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume
 	name = "large dual-port air vent"

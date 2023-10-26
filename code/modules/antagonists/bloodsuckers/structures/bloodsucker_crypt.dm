@@ -97,7 +97,6 @@
 	icon_state = "bloodaltar"
 	density = TRUE
 	anchored = FALSE
-	climbable = TRUE
 	pass_flags = LETPASSTHROW
 	can_buckle = FALSE
 	var/sacrifices = 0
@@ -115,6 +114,10 @@
 	Hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
 		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
 		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
+
+/obj/structure/bloodsucker/bloodaltar/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/bloodsucker/bloodaltar/bolt()
 	. = ..()
@@ -256,7 +259,7 @@
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
 	if(!IS_BLOODSUCKER(user)) //only bloodsucker will attack this with their hand
 		return
-	if(INTERACTING_WITH(user, src))
+	if(DOING_INTERACTION(user, src))
 		return
 	if(user.mind in src.siphoners)
 		balloon_alert(user, "already harvested!")
@@ -316,7 +319,7 @@
 		return
 
 	icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/rankspent
 	switch(bloodsuckerdatum.clanprogress)
 		if(0)
@@ -384,7 +387,7 @@
 	if(bloodsuckerdatum.my_clan?.control_type >= BLOODSUCKER_CONTROL_METAL)
 		if(metal)
 			. += span_boldnotice("It currently contains [metal] metal to use in sculpting.")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/moldingstone/bolt()
@@ -395,15 +398,15 @@
 	. = ..()
 	anchored = FALSE
 
-/obj/structure/bloodsucker/moldingstone/update_icon()
-	cut_overlays()
+/obj/structure/bloodsucker/moldingstone/update_overlays()
+	. = ..()
 	switch(metal)
 		if(1 to 5)
-			add_overlay("metal")
+			. += "metal"
 		if(6 to 20)
-			add_overlay("metal_2")
+			. += "metal_2"
 		if(21 to 50)
-			add_overlay("metal_3")
+			. += "metal_3"
 
 /obj/structure/bloodsucker/moldingstone/attackby(obj/item/I, mob/user, params)
 	if(!anchored)
@@ -427,7 +430,7 @@
 		balloon_alert(user, "added [metal] metal")
 	if(istype(I, /obj/item/bloodsucker/chisel))
 		start_sculpiting(user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/moldingstone/proc/start_sculpiting(mob/living/artist)
 	if(metal < 10)
@@ -440,8 +443,8 @@
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")
 		metal -= rand(5, 10)
-		update_icon()
-		
+		update_appearance(UPDATE_ICON)
+
 		return
 	artist.balloon_alert(artist, "done, a masterpiece!")
 	new what_type(get_turf(src))
@@ -464,7 +467,7 @@
 		new /obj/item/stack/sheet/metal(get_turf(user), count)
 	else
 		to_chat(user, span_warning("There's no metal to retrieve in [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 #undef METALLIMIT
 
 /obj/structure/bloodsucker/bloodstatue
@@ -695,7 +698,7 @@
 	if(issilicon(living_target))
 		to_chat(user, span_danger("You realize that Silicon cannot be vassalized, therefore it is useless to buckle them."))
 		return
-	if(do_mob(user, living_target, 5 SECONDS))
+	if(do_after(user, 5 SECONDS, living_target))
 		attach_victim(living_target, user)
 
 /obj/structure/bloodsucker/vassalrack/proc/attach_victim(mob/living/target, mob/living/user)
@@ -710,7 +713,7 @@
 
 	playsound(loc, 'sound/effects/pop_expl.ogg', 25, 1)
 	density = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	// Set up Torture stuff now
 	convert_progress = 3
@@ -746,7 +749,7 @@
 	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
 	density = FALSE
 	buckled_mob.Paralyze(2 SECONDS)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
@@ -807,20 +810,20 @@
 				smallmeat++
 		meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 		qdel(I)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 #undef MEATLIMIT
 
-/obj/structure/bloodsucker/vassalrack/update_icon()
-	cut_overlays()
+/obj/structure/bloodsucker/vassalrack/update_overlays()
+	. = ..()
 	if(bigmeat)
-		add_overlay("bigmeat_[bigmeat]")
+		. += "bigmeat_[bigmeat]"
 	if(intermeat)
-		add_overlay("mediummeat_[intermeat]")
-		add_overlay("smallmeat_[intermeat]")
+		. += "mediummeat_[intermeat]"
+		. += "smallmeat_[intermeat]"
 	if(mediummeat)
-		add_overlay("mediummeat_[mediummeat + intermeat]")
+		. += "mediummeat_[mediummeat + intermeat]"
 	if(smallmeat)
-		add_overlay("smallmeat_[smallmeat + intermeat]")
+		. += "smallmeat_[smallmeat + intermeat]"
 
 /obj/structure/bloodsucker/vassalrack/CtrlClick(mob/user)
 	if(!anchored)
@@ -849,7 +852,7 @@
 	else
 		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /**
  *	Step One: Tick Down Conversion from 3 to 0
@@ -858,7 +861,7 @@
  */
 
 /obj/structure/bloodsucker/vassalrack/proc/torture_victim(mob/living/user, mob/living/target)
-	if(INTERACTING_WITH(user, target))
+	if(DOING_INTERACTION(user, target))
 		balloon_alert(user, "already interacting!")
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -1010,7 +1013,7 @@
 		to_chat(user, span_notice("Do you wish to rebuild this body? This will remove any restraints they might have, and will cost 150 Blood!"))
 		var/revive_response = tgui_alert(usr, "Would you like to revive [target]?", "Ghetto Medbay", list("Yes", "No"))
 		if(revive_response == "Yes")
-			if(!do_mob(user, src, 7 SECONDS))
+			if(!do_after(user, 7 SECONDS, src))
 				to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 				return
 			if(prob(70 - bloodsuckerdatum.bloodsucker_level * 7)) //calculation, stops going wrong at level 10
@@ -1047,7 +1050,7 @@
 		to_chat(user, span_notice("You decide to leave your Vassal just the way they are."))
 		return
 	to_chat(user, span_warning("You start mutating your Vassal into a [answer]..."))
-	if(!do_mob(user, src, 5 SECONDS))
+	if(!do_after(user, 5 SECONDS, src))
 		to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 		return
 	playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
@@ -1056,10 +1059,10 @@
 			if(HAS_TRAIT(target, TRAIT_HUSK))
 				to_chat(user, span_warning("[target] is already a Husk!"))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			to_chat(user, span_notice("You suck all the blood out of [target], turning them into a Living Husk!"))
 			to_chat(target, span_notice("Your master has mutated you into a Living Husk!"))
@@ -1077,9 +1080,9 @@
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
 			if(meat_points < meat_cost)
-				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
+				to_chat(user, span_warning("You need at least [meat_cost - meat_points] more meat points to do this."))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh, leaving their body as a head and arm almalgam."))
@@ -1097,9 +1100,9 @@
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
 			if(meat_points < meat_cost)
-				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
+				to_chat(user, span_warning("You need at least [meat_cost - meat_points] more meat points to do this."))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a boney and flesh amalgam."))
@@ -1116,12 +1119,12 @@
 				to_chat(user, span_warning("You need to mutilate [target] into a husk first before doing this."))
 				return
 			if(meat_points < meat_cost)
-				to_chat(user, span_warning("You need atleast [meat_cost - meat_points] more meat points to do this."))
+				to_chat(user, span_warning("You need at least [meat_cost - meat_points] more meat points to do this."))
 				return
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			playsound(target.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-			if(!do_mob(user, target, 1 SECONDS))
+			if(!do_after(user, 1 SECONDS, target))
 				return
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a huge pile of flesh and organs."))
 			to_chat(target, span_notice("Your master has mutated you into a gargantuan monster!"))
@@ -1149,7 +1152,7 @@
 		if(bigmeat && meatlost == 4)
 			bigmeat--
 			meatlost -= 4
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1183,9 +1186,9 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/bloodsucker/candelabrum/update_icon()
+/obj/structure/bloodsucker/candelabrum/update_icon_state()
+	. = ..()
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
-	return ..()
 
 /obj/structure/bloodsucker/candelabrum/examine(mob/user)
 	. = ..()
@@ -1208,7 +1211,7 @@
 	else
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/candelabrum/process()
 	if(!lit)
@@ -1246,7 +1249,7 @@
 				switch(input("Do you wish to spend 50 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
 					if("Yes")
 						user.blood_volume -= 50
-						if(!do_mob(user, target, 20 SECONDS))
+						if(!do_after(user, 20 SECONDS, target))
 							to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 							return FALSE
 						remove_loyalties(target)
@@ -1270,7 +1273,7 @@
 		to_chat(user, span_warning("[target] doesn't have a mindshield for you to turn off!"))
 		return
 	/// Good to go - Buckle them!
-	if(do_mob(user, target, 5 SECONDS))
+	if(do_after(user, 5 SECONDS, target))
 		attach_mob(target, user)
 
 /obj/structure/bloodsucker/candelabrum/proc/attach_mob(mob/living/target, mob/living/user)
@@ -1284,7 +1287,7 @@
 
 	if(!buckle_mob(target))
 		return
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bloodsucker/candelabrum/proc/remove_loyalties(mob/living/target, mob/living/user)
 	// Find Mindshield implant & destroy, takes a good while.
@@ -1296,7 +1299,7 @@
 /obj/structure/bloodsucker/candelabrum/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	. = ..()
 	src.visible_message(span_danger("[buckled_mob][buckled_mob.stat==DEAD?"'s corpse":""] slides off of the candelabrum."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
 /* broken currently

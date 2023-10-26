@@ -14,7 +14,7 @@
 /obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/toilet/attack_hand(mob/living/user)
@@ -38,7 +38,7 @@
 				if(open)
 					GM.visible_message(span_danger("[user] starts to give [GM] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
 					swirlie = GM
-					if(do_after(user, 3 SECONDS, src, FALSE))
+					if(do_after(user, 3 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
 						GM.visible_message(span_danger("[user] gives [GM] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_italics("You hear a toilet flushing."))
 						if(iscarbon(GM))
 							var/mob/living/carbon/C = GM
@@ -67,12 +67,12 @@
 			w_items -= I.w_class
 	else
 		open = !open
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
-/obj/structure/toilet/update_icon()
+/obj/structure/toilet/update_icon_state()
+	. = ..()
 	icon_state = "toilet[open][cistern]"
-
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_CROWBAR)
@@ -81,7 +81,7 @@
 		if(I.use_tool(src, user, 30))
 			user.visible_message("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!", span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), span_italics("You hear grinding porcelain."))
 			cistern = !cistern
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(cistern)
 		if(user.a_intent != INTENT_HARM)
@@ -200,7 +200,7 @@
 	icon_state = "urinalcake"
 	item_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
-	list_reagents = list(/datum/reagent/chlorine = 3, /datum/reagent/ammonia = 1)
+	list_reagents = list(/datum/reagent/chlorine = 10, /datum/reagent/ammonia = 5)
 	foodtype = TOXIC | GROSS
 
 /obj/item/reagent_containers/food/snacks/urinalcake/attack_self(mob/living/user)
@@ -392,9 +392,10 @@
 
 /obj/structure/curtain/proc/toggle()
 	open = !open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/curtain/update_icon()
+/obj/structure/curtain/update_icon_state()
+	. = ..()
 	if(!open)
 		icon_state = "closed"
 		layer = WALL_OBJ_LAYER

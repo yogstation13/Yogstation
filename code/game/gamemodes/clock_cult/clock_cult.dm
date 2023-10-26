@@ -140,8 +140,8 @@ Credit where due:
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	false_report_weight = 10
 	required_players = 24
-	required_enemies = 4
-	recommended_enemies = 4
+	required_enemies = 3
+	recommended_enemies = 3
 	enemy_minimum_age = 14
 	protected_jobs = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician") //Silicons can eventually be converted //Yogs: Added Brig Physician
 	restricted_jobs = list("Chaplain", "Captain")
@@ -161,13 +161,13 @@ Credit where due:
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/starter_servants = 4 //Guaranteed four servants
+	var/starter_servants = required_enemies
 	var/number_players = num_players()
 	roundstart_player_count = number_players
-	if(number_players > 30) //plus one servant for every additional 10 players above 30
+	if(number_players > 30) //plus one servant for every additional 8 players above 30
 		number_players -= 30
-		starter_servants += round(number_players / 10)
-	starter_servants = min(starter_servants, 8) //max 8 servants (that sould only happen with a ton of players)
+		starter_servants += round(number_players / 8)
+	starter_servants = min(starter_servants, 8) //max 8 servants (that should only happen with a ton of players)
 	while(starter_servants)
 		var/datum/mind/servant = antag_pick(antag_candidates)
 		servants_to_serve += servant
@@ -308,7 +308,7 @@ Credit where due:
 		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		PDA.update_filters()
 
 	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that

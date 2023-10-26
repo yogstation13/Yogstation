@@ -123,7 +123,7 @@
 	light_power = 1
 	light_range = 3
 
-/obj/effect/portal/permanent/one_way/recall/syndicate/recall_effect(mob/user)
+/obj/effect/portal/permanent/one_way/recall/syndicate/recall_effect(mob/living/user)
 	// fuck this im not dealing with you fucks smuggling equipment out of the syndicate uplink
 	user.dust()
 	return

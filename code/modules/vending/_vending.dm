@@ -266,14 +266,16 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else
 		..()
 
-/obj/machinery/vending/update_icon()
+/obj/machinery/vending/update_icon_state()
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+		return
+
+	if(powered())
+		icon_state = initial(icon_state)
 	else
-		if(powered())
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]-off"
 
 
 /obj/machinery/vending/obj_break(damage_flag)
@@ -658,12 +660,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	update_canister()
 	. = ..()
 
-/obj/machinery/vending/emag_act(mob/user)
+/obj/machinery/vending/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You short out the product lock on [src]."))
-
+	return TRUE
+	
 /obj/machinery/vending/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
@@ -974,7 +977,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		stat |= NOPOWER
 
-	update_icon()
+	return ..()
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /**

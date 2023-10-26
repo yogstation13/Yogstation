@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(Yogs)
 					for(var/datum/department_goal/d in listOfGoals[account])
 						P.info += d.get_name()
 					P.info += "</ul><br>"
-				P.update_icon()
+				P.update_appearance(UPDATE_ICON)
 
 			else
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(Yogs)
 					if(d.account == account)
 						P.info += d.get_name()
 				P.info += "</ul>"
-				P.update_icon()
+				P.update_appearance(UPDATE_ICON)
 
 
 	for(var/path in subtypesof(/datum/corporation))

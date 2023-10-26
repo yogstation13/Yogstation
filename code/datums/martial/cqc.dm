@@ -113,7 +113,7 @@
 		D.apply_damage(A.get_punchdamagehigh() + 5, STAMINA)	//15 damage
 		log_combat(A, D, "kicked (CQC)")
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
-		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
+		addtimer(CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), SHOVE_SLOWDOWN_LENGTH)
 	if(!(D.mobility_flags & MOBILITY_STAND) && !D.stat)
 		log_combat(A, D, "prone-kicked(CQC)")
 		D.visible_message(span_warning("[A] firmly kicks [D] in the abdomen!"), \
@@ -297,7 +297,7 @@
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
 	chokehold_active = TRUE
 	var/damage2deal = 15
-	while(do_mob(A, D, isipc(D) ? 5 SECONDS : 1 SECONDS)) // doesn't make sense to deal oxygen damage to IPCs so instead do a longer channel that automatically succeeds
+	while(do_after(A, isipc(D) ? 5 SECONDS : 1 SECONDS, D)) // doesn't make sense to deal oxygen damage to IPCs so instead do a longer channel that automatically succeeds
 		if(!A.grab_state)
 			return FALSE
 		if(isipc(D)) // have you tried turning it off and on again

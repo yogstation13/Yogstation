@@ -89,22 +89,22 @@
 		return
 	to_chat(user, span_notice("You link all parts toghether."))
 	active = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	linked_interface.active = TRUE
-	linked_interface.update_icon()
+	linked_interface.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_interface, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	linked_input.active = TRUE
-	linked_input.update_icon()
+	linked_input.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_input, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	linked_output.active = TRUE
-	linked_output.update_icon()
+	linked_output.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_output, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	linked_moderator.active = TRUE
-	linked_moderator.update_icon()
+	linked_moderator.update_appearance(UPDATE_ICON)
 	RegisterSignal(linked_moderator, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	for(var/obj/machinery/hypertorus/corner/corner in corners)
 		corner.active = TRUE
-		corner.update_icon()
+		corner.update_appearance(UPDATE_ICON)
 		RegisterSignal(corner, COMSIG_PARENT_QDELETING, PROC_REF(unregister_signals))
 	soundloop = new(list(src), TRUE)
 	soundloop.volume = 5
@@ -138,27 +138,27 @@
 	if(!active)
 		return
 	active = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(linked_interface)
 		linked_interface.active = FALSE
-		linked_interface.update_icon()
+		linked_interface.update_appearance(UPDATE_ICON)
 		linked_interface = null
 	if(linked_input)
 		linked_input.active = FALSE
-		linked_input.update_icon()
+		linked_input.update_appearance(UPDATE_ICON)
 		linked_input = null
 	if(linked_output)
 		linked_output.active = FALSE
-		linked_output.update_icon()
+		linked_output.update_appearance(UPDATE_ICON)
 		linked_output = null
 	if(linked_moderator)
 		linked_moderator.active = FALSE
-		linked_moderator.update_icon()
+		linked_moderator.update_appearance(UPDATE_ICON)
 		linked_moderator = null
 	if(corners.len)
 		for(var/obj/machinery/hypertorus/corner/corner in corners)
 			corner.active = FALSE
-			corner.update_icon()
+			corner.update_appearance(UPDATE_ICON)
 		corners = list()
 	QDEL_NULL(soundloop)
 
@@ -592,7 +592,7 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/create_crack()
 	var/obj/machinery/atmospherics/components/unary/hypertorus/part = pick(machine_parts)
 	part.cracked = TRUE
-	part.update_icon()
+	part.update_appearance(UPDATE_ICON)
 	part.update_overlays()
 	return part
 

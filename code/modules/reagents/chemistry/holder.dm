@@ -89,6 +89,13 @@
 		my_atom.reagents = null
 	my_atom = null
 
+/datum/reagents/proc/get_total_accelerant_quality()
+	var/quality = 0
+	for(var/datum/reagent/reagent in reagent_list)
+		if(istype(reagent))
+			quality += reagent.volume * reagent.accelerant_quality
+	return quality
+
 /**
   * Used in attack logs for reagents in pills and such
   */
@@ -594,7 +601,7 @@
 	return 0
 
 /datum/reagents/proc/reaction_check(mob/living/M, datum/reagent/R)
-	return (R.process_flags & M.get_process_flags())
+	return (R.compatible_biotypes & M.mob_biotypes)
 
 /**
   * Applies the relevant reaction_ proc for every reagent in this holder

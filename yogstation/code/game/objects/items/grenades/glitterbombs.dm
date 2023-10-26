@@ -28,7 +28,7 @@ datum/effect_system/fluid_spread/smoke/chem/glitter
 	target = user
 	moveToNullspace()
 	addtimer(CALLBACK(src, PROC_REF(prime)), 99)
-	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob, gib)), 100)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib)), 100)
 	return MANUAL_SUICIDE
 
 /obj/item/grenade/plastic/glitterbomb/pink

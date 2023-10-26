@@ -78,7 +78,7 @@
 	tesla_zap(src, 5, power_gen * 0.05)
 	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(explosion), get_turf(src), 2, 3, 4, 8), 100) // Not a normal explosion.
 
-/obj/machinery/power/rtg/abductor/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(!going_kaboom && istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)))
 		log_bomber(Proj.firer, "triggered a", src, "explosion via projectile")
@@ -96,6 +96,6 @@
 /obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
 	overload()
 
-/obj/machinery/power/rtg/abductor/tesla_act()
+/obj/machinery/power/rtg/abductor/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	..() //extend the zap
 	overload()

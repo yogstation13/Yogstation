@@ -131,7 +131,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "o" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},

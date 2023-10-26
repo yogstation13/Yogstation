@@ -13,7 +13,7 @@
 	var/t_is = p_are()
 	var/obscure_name
 	var/robotic = FALSE //robotic mobs look different under certain circumstances
-	if(MOB_ROBOTIC in mob_biotypes)//please someone tell me this is stupid and i can do it all in one line
+	if(mob_biotypes & MOB_ROBOTIC)//please someone tell me this is stupid and i can do it all in one line
 		robotic = TRUE
 
 	if(isliving(user))
@@ -47,7 +47,14 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 		//suit/armor storage
 		if(s_store && !(ITEM_SLOT_SUITSTORE in obscured))
 			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
@@ -131,7 +138,7 @@
 				highest_trauma = 2
 			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
 				highest_trauma = 1
-		
+
 		switch(highest_trauma)
 			if(1)
 				. += span_warning("[t_His] behavior seems a bit off.")
@@ -235,7 +242,7 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-				
+
 	if(surgeries.len)
 		var/surgery_text
 		for(var/datum/surgery/S in surgeries)
@@ -261,20 +268,21 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 
-	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
-		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= NUTRITION_LEVEL_FAT)
-		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else
-			msg += "[t_He] [t_is] quite chubby.\n"
-	switch(disgust)
-		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
-			msg += "[t_He] look[p_s()] a bit grossed out.\n"
-		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
-			msg += "[t_He] look[p_s()] really grossed out.\n"
-		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
-			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+	if(!HAS_TRAIT(src, TRAIT_POWERHUNGRY)) //robots don't visibly show their hunger
+		if(nutrition < NUTRITION_LEVEL_STARVING - 50)
+			msg += "[t_He] [t_is] severely malnourished.\n"
+		else if(nutrition >= NUTRITION_LEVEL_FAT)
+			if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
+				msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
+			else
+				msg += "[t_He] [t_is] quite chubby.\n"
+		switch(disgust)
+			if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
+				msg += "[t_He] look[p_s()] a bit grossed out.\n"
+			if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
+				msg += "[t_He] look[p_s()] really grossed out.\n"
+			if(DISGUST_LEVEL_DISGUSTED to INFINITY)
+				msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
 
 	var/apparent_blood_volume = blood_volume
@@ -405,6 +413,8 @@
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
 	var/scar_severity = 0
 	for(var/i in all_scars)
 		var/datum/scar/S = i
@@ -444,7 +454,7 @@
 					var/cyberimp_detect
 					for(var/obj/item/organ/cyberimp/CI in internal_organs)
 						if(CI.status == ORGAN_ROBOTIC && !CI.syndicate_implant)
-							cyberimp_detect += "[name] is modified with a [CI.name]."
+							cyberimp_detect += "[name] is modified with a [CI.name].\n"
 					if(cyberimp_detect)
 						. += "Detected cybernetic modifications:"
 						. += cyberimp_detect
@@ -476,7 +486,7 @@
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
 	. += "</span>"
-
+	
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)
@@ -499,7 +509,7 @@
 	var/t_his = p_their()
 	var/t_has = p_have()
 	var/t_is = p_are()
-	
+
 	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
@@ -519,7 +529,14 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 	//back
 	if(back)
 		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."

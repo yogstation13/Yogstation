@@ -109,7 +109,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/bar)
 "at" = (
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/obj/item/kirbyplants/photosynthetic,
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
@@ -1197,7 +1197,7 @@
 /area/crew_quarters/bar)
 "Nw" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "kitchen shutters"
@@ -1231,7 +1231,7 @@
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "Sd" = (
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/obj/item/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "Sl" = (

@@ -60,12 +60,12 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	ping_ghosts("requested", FALSE)
 	next_ask = world.time + askDelay
 	searching = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	addtimer(CALLBACK(src, PROC_REF(check_success)), askDelay)
 
 /obj/item/mmi/posibrain/proc/check_success()
 	searching = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(QDELETED(brainmob))
 		return
 	if(brainmob.client)
@@ -131,7 +131,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 	brainmob.mind.remove_all_antag()
 	brainmob.mind.wipe_memory()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/item/mmi/posibrain/proc/transfer_personality(mob/candidate)
@@ -210,11 +210,15 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	return
 
 
-/obj/item/mmi/posibrain/update_icon()
+/obj/item/mmi/posibrain/update_icon_state()
+	. = ..()
 	if(searching)
 		icon_state = "[initial(icon_state)]-searching"
 		return
 	if(brainmob && brainmob.key)
 		icon_state = "[initial(icon_state)]-occupied"
-	else
-		icon_state = initial(icon_state)
+		return
+	icon_state = initial(icon_state)
+
+/obj/item/mmi/posibrain/add_mmi_overlay()
+	return

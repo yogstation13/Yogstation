@@ -163,19 +163,20 @@
 
 	active_power_usage = 50 + spawned.len * 3 + effects.len * 5
 
-/obj/machinery/computer/holodeck/emag_act(mob/user)
+/obj/machinery/computer/holodeck/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	if(!LAZYLEN(emag_programs))
 		to_chat(user, "[src] does not seem to have a card swipe port. It must be an inferior model.")
-		return
+		return FALSE
 	playsound(src, "sparks", 75, 1)
 	obj_flags |= EMAGGED
 	to_chat(user, span_warning("You vastly increase projector power and override the safety and security protocols."))
 	say("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call Nanotrasen maintenance and do not use the simulator.")
 	log_game("[key_name(user)] emagged the Holodeck Control Console")
 	nerf(!(obj_flags & EMAGGED))
-
+	return TRUE
+	
 /obj/machinery/computer/holodeck/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)

@@ -14,6 +14,10 @@ SUBSYSTEM_DEF(asset_loading)
 
 	return ..()
 
+/datum/controller/subsystem/asset_loading/get_metrics()
+	. = ..()
+	.["queued"] = length(generate_queue)
+
 /datum/controller/subsystem/asset_loading/fire(resumed)
 	while(length(generate_queue))
 		var/datum/asset/to_load = generate_queue[generate_queue.len]

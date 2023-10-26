@@ -89,6 +89,7 @@
 	icon_state = "plasma"
 	flags_1 = CONDUCT_1
 	slot_flags = null	//they have no straps!
+	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
 	force = 8
 
 
@@ -104,7 +105,7 @@
 			return
 		src.master = F
 		F.ptank = src
-		F.update_icon()
+		F.update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

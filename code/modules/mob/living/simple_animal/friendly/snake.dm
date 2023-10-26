@@ -32,7 +32,7 @@
 	density = FALSE
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST, MOB_REPTILE)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
 	gold_core_spawnable = HOSTILE_SPAWN
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_NECK

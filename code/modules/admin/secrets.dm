@@ -248,7 +248,7 @@
 			dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(H.ckey)
-					dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"
+					dat += "<tr><td>[H]</td><td>[md5(H.dna.unique_identity)]</td></tr>"
 			dat += "</table></BODY></HTML>"
 			mob_user << browse(dat, "window=fingerprints;size=440x410")
 
@@ -364,14 +364,6 @@
 			message_admins(span_boldannounce("[key_name_admin(mob_user)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]"))
 			log_admin("[key_name(mob_user)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]")
 
-		if("blackout")
-			if(!check_rights_for(rights, R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Break All Lights"))
-			message_admins("[key_name_admin(mob_user)] broke all lights")
-			for(var/obj/machinery/light/L in GLOB.machines)
-				L.break_light_tube()
-
 		if("anime")
 			if(!check_rights_for(rights, R_FUN))
 				return
@@ -414,6 +406,14 @@
 					if(droptype == "Yes")
 						ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
 
+		if("blackout")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Break All Lights"))
+			message_admins("[key_name_admin(mob_user)] broke all lights")
+			for(var/obj/machinery/light/L in GLOB.machines)
+				L.break_light_tube()
+
 		if("whiteout")
 			if(!check_rights_for(rights, R_FUN))
 				return
@@ -421,6 +421,13 @@
 			message_admins("[key_name_admin(mob_user)] fixed all lights")
 			for(var/obj/machinery/light/L in GLOB.machines)
 				L.fix()
+
+		if("flickerout")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Flicker All Lights"))
+			message_admins("[key_name_admin(mob_user)] flickered the lights")
+			flicker_all_lights()
 
 		if("floorlava")
 			SSweather.run_weather(/datum/weather/floor_is_lava)
@@ -554,6 +561,15 @@
 					id.critter_money = FALSE
 			message_admins("[key_name_admin(mob_user)] has deactivated critter money (pets generated on money withdrawl)!")
 			log_admin("[key_name(mob_user)] has deactivated critter money.")
+		if("halflife")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			for(var/obj/machinery/power/supermatter_crystal/S in GLOB.machines)
+				if(!isturf(S.loc) || !is_station_level(S.z))
+					continue
+				S.antinoblium_attached = TRUE
+			message_admins("[key_name_admin(mob_user)] has started a resonance cascade!")
+			log_admin("[key_name(mob_user)] has started a resonance cascade.")
 
 	if(E)
 		E.processing = FALSE

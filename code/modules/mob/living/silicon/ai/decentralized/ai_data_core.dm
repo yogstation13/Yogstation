@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
 		GLOB.primary_data_core = src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	RefreshParts()
 
 /obj/machinery/ai/data_core/RefreshParts()
@@ -165,7 +165,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(valid_holder())
 		valid_ticks++
 		if(valid_ticks == 1)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		use_power = ACTIVE_POWER_USE
 		if((stat & NOPOWER))
 			integrated_battery.use(active_power_usage * CELL_POWERUSE_MULTIPLIER)
@@ -174,7 +174,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks--
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			for(var/mob/living/silicon/ai/AI in contents)
 				if(!AI.is_dying)
 					AI.relocate()
@@ -214,8 +214,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(AI.eyeobj)
 		AI.eyeobj.forceMove(get_turf(src))
 
-/obj/machinery/ai/data_core/update_icon()
-	cut_overlays()
+/obj/machinery/ai/data_core/update_icon_state()
+	. = ..()
 	
 	if(!(stat & (BROKEN|EMPED)) && has_power())
 		if(!valid_data_core())

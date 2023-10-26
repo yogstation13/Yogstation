@@ -41,8 +41,11 @@
 				M.name = M.real_name
 				M.dna.blood_type = fields["blood_type"]
 			if(fields["UI"])	//UI+UE
-				M.dna.uni_identity = merge_text(M.dna.uni_identity, fields["UI"])
-				M.updateappearance(mutations_overlay_update=1)
+				M.dna.unique_identity = merge_text(M.dna.unique_identity, fields["UI"])
+			if(fields["UF"])
+				M.dna.unique_features = merge_text(M.dna.unique_features, fields["UF"])
+			if(fields["UI"] || fields["UF"])
+				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	return FALSE
@@ -63,7 +66,7 @@
 	if(target != user)
 		target.visible_message(span_danger("[user] is trying to inject [target] with [src]!"), \
 			span_userdanger("[user] is trying to inject you with [src]!"))
-		if(!do_mob(user, target) || used)
+		if(!do_after(user, 3 SECONDS, target) || used)
 			return
 		target.visible_message("<span class='danger'>[user] injects [target] with the syringe with [src]!", \
 						span_userdanger("[user] injects you with the syringe with [src]!"))
@@ -101,6 +104,16 @@
 	name = "\improper DNA injector (Fire Breath)"
 	desc = "Restores the dragon ancestry."
 	add_mutations = list(FIREBREATH)
+
+/obj/item/dnainjector/acidspit
+	name = "\improper DNA injector (Acid Spit)"
+	desc = "Lets you spit acid."
+	add_mutations = list(ACIDSPIT)
+
+/obj/item/dnainjector/antispit
+	name ="\improper DNA injector (Anti-Acid Spit)"
+	desc = "Cures your corrosive saliva."
+	remove_mutations = list(ACIDSPIT)
 
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
@@ -153,6 +166,16 @@
 	desc = "It's a small world after all."
 	add_mutations = list(DWARFISM)
 
+/obj/item/dnainjector/antiravenous
+	name = "\improper DNA injector (Anti-Ravenous)"
+	desc = "Cures ravenous."
+	remove_mutations = list(RAVENOUS)
+
+/obj/item/dnainjector/ravenous
+	name = "\improper DNA injector (Ravenous)"
+	desc = "Gives you ravenous."
+	add_mutations = list(RAVENOUS)
+
 /obj/item/dnainjector/clumsymut
 	name = "\improper DNA injector (Clumsy)"
 	desc = "Makes clown minions."
@@ -192,6 +215,16 @@
 	name = "\improper DNA injector (Space Adaptation)"
 	desc = "Gives you space adaptation."
 	add_mutations = list(SPACEMUT)
+
+/obj/item/dnainjector/antiradiant
+	name = "\improper DNA injector (Anti-Radiant Burst)"
+	desc = "Cures radiant burst."
+	remove_mutations = list(RADIANTBURST)
+
+/obj/item/dnainjector/radiantburst
+	name = "\improper DNA injector (Radiant Burst)"
+	desc = "Gives you radiant burst."
+	add_mutations = list(RADIANTBURST)
 
 /obj/item/dnainjector/antiheat
 	name = "\improper DNA injector (Anti-Heat Adaptation)"
@@ -358,6 +391,15 @@
 /obj/item/dnainjector/antiradioactive
 	name = "\improper DNA injector (Anti-Radioactive)"
 	remove_mutations = list(RADIOACTIVE)
+
+/obj/item/dnainjector/radproof
+	name = "\improper DNA injector (Radproof)"
+	add_mutations = list(RADPROOF)
+
+/obj/item/dnainjector/antiradproof
+	name = "\improper DNA injector (Anti-Radproof)"
+	remove_mutations = list(RADPROOF)
+
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
 	add_mutations = list(OLFACTION)
@@ -462,6 +504,22 @@
 	name = "\improper DNA injector (Anti-Antiglowy)"
 	remove_mutations = list(ANTIGLOWY)
 
+/obj/item/dnainjector/fierysweat
+	name = "\improper DNA injector (Fiery Sweat)"
+	add_mutations = list(FIRESWEAT)
+
+/obj/item/dnainjector/strong
+	name = "\improper DNA injector (Strength)"
+	add_mutations = list(STRONG)
+
+/obj/item/dnainjector/thickskin
+	name = "\improper DNA injector (Thick Skin)"
+	add_mutations = list(THICKSKIN)
+
+/obj/item/dnainjector/densebones
+	name = "\improper DNA injector (Bone Densification)"
+	add_mutations = list(DENSEBONES)
+
 /obj/item/dnainjector/timed
 	var/duration = 600
 
@@ -505,10 +563,16 @@
 				M.dna.temporary_mutations[UE_CHANGED] = endtime
 			if(fields["UI"])	//UI+UE
 				if(!M.dna.previous["UI"])
-					M.dna.previous["UI"] = M.dna.uni_identity
-				M.dna.uni_identity = merge_text(M.dna.uni_identity, fields["UI"])
-				M.updateappearance(mutations_overlay_update=1)
+					M.dna.previous["UI"] = M.dna.unique_identity
+				M.dna.unique_identity = merge_text(M.dna.unique_identity, fields["UI"])
 				M.dna.temporary_mutations[UI_CHANGED] = endtime
+			if(fields["UF"]) //UI+UE
+				if(!M.dna.previous["UF"])
+					M.dna.previous["UF"] = M.dna.unique_features
+				M.dna.unique_features = merge_text(M.dna.unique_features, fields["UF"])
+				M.dna.temporary_mutations[UF_CHANGED] = endtime
+			if(fields["UI"] || fields["UF"])
+				M.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	else
