@@ -106,7 +106,7 @@
 	if(get_dist(target, destination) < 5)
 		destination = get_ranged_target_turf(get_turf(H), throwingdatum.init_dir, 5)
 	target.throw_at(destination, 5, 3, H)
-	do_sparks(4, FALSE, H)
+	do_sparks(4, FALSE, target)
 
 /////////////////////////////////////////////////////////////////
 //-----------------training related section--------------------//
