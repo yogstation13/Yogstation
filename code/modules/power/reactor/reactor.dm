@@ -34,6 +34,7 @@
 	var/gas_absorption_effectiveness = 0.5
 	var/gas_absorption_constant = 0.5 //We refer to this one as it's set on init, randomized.
 	var/minimum_coolant_level = MINIMUM_MOLE_COUNT
+	var/integrity_restoration = 0
 	var/next_warning = 0 //To avoid spam.
 	var/last_power_produced = 0 //For logging purposes
 	var/next_flicker = 0 //Light flicker timer
@@ -411,6 +412,12 @@
 		var/coolant_heat_factor = coolant_input.heat_capacity() / (coolant_input.heat_capacity() + REACTOR_HEAT_CAPACITY + (REACTOR_ROD_HEAT_CAPACITY * has_fuel())) //What percent of the total heat capacity is in the coolant
 		last_heat_delta = heat_delta
 		temperature += heat_delta * coolant_heat_factor
+		// Integrity modification
+		var/healium_moles = coolant_input.get_moles(/datum/gas/healium)
+		if(healium_moles>1)
+			integrity_restoration = min(3,log(healium_moles)/2)
+		else
+			integrity_restoration = 0
 		coolant_input.set_temperature(last_coolant_temperature - (heat_delta * (1 - coolant_heat_factor))) //Heat the coolant output gas that we just had pass through us.
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
 		coolant_input.clear() //Clear out anything left in the input gate.
@@ -493,6 +500,11 @@
 		color = COLOR_CYAN
 	else
 		color = null
+
+	if(temperature <= REACTOR_TEMPERATURE_GAS_FAILSAFE && vessel_integrity <= 400)
+		vessel_integrity += integrity_restoration
+	else if(vessel_integrity > 400) //incase it goes beyond
+		vessel_integrity = 400
 	
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
