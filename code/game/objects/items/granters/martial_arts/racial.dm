@@ -155,22 +155,20 @@
 		user.put_in_active_hand(empty)
 
 /obj/item/book/granter/martial/lightning_flow
-	name = "Modified yellow slime extract"
-	desc = "An experimental yellow slime extract that when absorbed by an Ethereal, grants control over electrical powers."
-	icon = 'icons/mob/slimes.dmi'
-	icon_state = "yellow slime extract"
+	name = "glowing parchment"
+	desc = "A scroll made of unusual paper, written for ethereals looking to defend themselves while exploring the material world."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
 	martial = /datum/martial_art/lightning_flow
 	martial_name = "Lightning Flow"
-	greet = span_sciradio("You have absorbed the abilities of a Conduit! You are a walking electrical storm. You can recall your abilites using Focus in the Conduit tab.")
-	remarks = list("Drain...", "Absorb...", "Shock...", "Zap...", "High Voltage...")
-	book_sounds = list('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg')
+	greet = span_sciradio("You have learned lightning flow. Weave through your enemies like a bolt of lightning.\
+		Use Focus in the Lightning Flow tab to remember the moves.")
+	remarks = list("")
 
 /obj/item/book/granter/martial/lightning_flow/on_reading_finished(mob/living/carbon/user)
 	..()
 	if(!uses)
-		name = "grey slime extract"
-		desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
-		icon_state = "grey slime extract"
+		desc = "It's completely blank."
 
 /obj/item/book/granter/action/wirecrawl
 	name = "modified yellow slime extract"

@@ -31,8 +31,7 @@
 	damage(D, A, 5)
 	return FALSE
 
-/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE, knockdown = 1 SECONDS)
-	target.Knockdown(knockdown)
+/datum/martial_art/lightning_flow/proc/damage(mob/living/target, mob/living/carbon/human/user, amount = 5, stun = FALSE)
 	target.electrocute_act(amount, user, stun = stun)
 
 /datum/martial_art/lightning_flow/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
@@ -57,6 +56,9 @@
 	if(H.a_intent == INTENT_HELP)
 		return
 
+	if(!(H.mobility_flags & MOBILITY_STAND))//require standing to dash
+		return
+
 	if(!COOLDOWN_FINISHED(src, action_cooldown))
 		return
 
@@ -68,7 +70,7 @@
 	dashing = TRUE
 	if(action_type && action_type == INTENT_DISARM)
 		H.Knockdown(2 SECONDS, TRUE, TRUE)
-	H.Immobilize(ACTION_DELAY, TRUE, TRUE)
+	H.Immobilize(0.6 SECONDS, TRUE, TRUE) //just until the dash would end
 	new /obj/effect/particle_effect/sparks/electricity/short/loud(get_turf(H))
 	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, TRUE)
 		
@@ -96,10 +98,10 @@
 /////////////////////////////////////////////////////////////////
 /datum/martial_art/lightning_flow/proc/dropkick(mob/living/target, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	target.visible_message(span_danger("[H] dropkicks [target]!"), span_userdanger("[H] dropkicks you!"))
+	target.Knockdown(5 SECONDS)
 	damage(target, H, 15, TRUE, 5 SECONDS)
 	target.throw_at(throwingdatum.target, 5, 3, H)
 	do_sparks(4, FALSE, H)
-
 
 /////////////////////////////////////////////////////////////////
 //-----------------training related section--------------------//
@@ -111,10 +113,10 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You focus your mind.</i></b>"
 
-	combined_msg += span_warning("Your disarm has been replaced with a short cooldown dropkick.")
-	combined_msg += span_warning("Your punches electrocute everyone nearby.")
-	combined_msg += span_notice("<b>You are immune to getting shocked.</b>")
-	combined_msg += span_notice("<b>You can travel through wires using your wirecrawl ability.</b>")
+	combined_msg += span_warning("Every intent now dashes first.")
+	combined_msg += span_notice("<b>If you collide with someone during a disarm dash, you'll instead dropkick them.</b>")
+	combined_msg += span_notice("<b>Your grabs are aggressive.</b>")
+	combined_msg += span_notice("<b>Your harm intent does more damage and shocks.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
