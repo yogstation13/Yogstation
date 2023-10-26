@@ -416,8 +416,6 @@
 		var/healium_moles = coolant_input.get_moles(/datum/gas/healium)
 		if(healium_moles>1)
 			integrity_restoration = max(0, HEALIUM_COEFFICIENTS * temperature) * delta_time
-		else
-			integrity_restoration = 0
 		coolant_input.set_temperature(last_coolant_temperature - (heat_delta * (1 - coolant_heat_factor))) //Heat the coolant output gas that we just had pass through us.
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
 		coolant_input.clear() //Clear out anything left in the input gate.
