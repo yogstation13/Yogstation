@@ -14,6 +14,8 @@
 	/// Whether we should, on equipping, alert the caster that this item can block any of their spells
 	/// This changes between true and false on equip and drop, don't set it outright to something
 	var/alert_caster_on_equip = TRUE
+	/// 
+	var/magic_blocked_directionality_flag
 
 /**
  * Adds magic resistances to an object
@@ -39,6 +41,7 @@
 	inventory_flags = ~ITEM_SLOT_BACKPACK, // items in a backpack won't activate, anywhere else is fine
 	datum/callback/drain_antimagic,
 	datum/callback/expiration,
+	blocked_magic_directionality = CASTING | RECEIVING
 )
 
 	if(isitem(parent))
@@ -54,6 +57,7 @@
 	src.inventory_flags = inventory_flags
 	src.drain_antimagic = drain_antimagic
 	src.expiration = expiration
+	src.magic_blocked_directionality_flag = blocked_magic_directionality
 
 /datum/component/anti_magic/Destroy(force, silent)
 	drain_antimagic = null
@@ -61,8 +65,10 @@
 	return ..()
 
 /datum/component/anti_magic/proc/register_antimagic_signals(datum/on_what)
-	RegisterSignal(on_what, COMSIG_MOB_RECEIVE_MAGIC, PROC_REF(block_receiving_magic), override = TRUE)
-	RegisterSignal(on_what, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic), override = TRUE)
+	if(magic_blocked_directionality_flag & RECEIVING) 
+		RegisterSignal(on_what, COMSIG_MOB_RECEIVE_MAGIC, PROC_REF(block_receiving_magic), override = TRUE)
+	if(magic_blocked_directionality_flag & CASTING) 
+		RegisterSignal(on_what, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic), override = TRUE)
 
 /datum/component/anti_magic/proc/unregister_antimagic_signals(datum/on_what)
 	UnregisterSignal(on_what, list(COMSIG_MOB_RECEIVE_MAGIC, COMSIG_MOB_RESTRICT_MAGIC))

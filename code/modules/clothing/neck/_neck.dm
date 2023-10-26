@@ -51,15 +51,6 @@
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
 
-/obj/item/clothing/neck/tie/anti_magic_collar
-	name = "anti-magic collar"
-	desc = "A tight collar used on prisoners to restrict their use of magic, while leaving them vulnerable to it's effects"
-	icon_state = "horribletie"
-
-/obj/item/clothing/neck/tie/anti_magic_collar/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/anti_magic/proc/restrict_casting_magic, inventory_flags = ITEM_SLOT_NECK)
-
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] wont hear much!"))
 	return OXYLOSS
@@ -201,6 +192,21 @@
 	name = "post-modern scarf"
 	icon_state = "artist"
 	custom_price = 10
+
+/obj/item/clothing/neck/anti_magic_collar
+	name = "anti-magic collar"
+	desc = "A tight collar used on prisoners to restrict their use of magic, while leaving them vulnerable to it's effects"
+	icon_state = "antimagiccollar"
+	resistance_flags = FIRE_PROOF
+	
+/obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot)
+	. = ..()
+	if(ishuman(user) && slot == ITEM_SLOT_NECK)
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+	
+/obj/item/clothing/neck/anti_magic_collar/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/anti_magic, antimagic_flags = MAGIC_RESISTANCE, inventory_flags = ITEM_SLOT_NECK, blocked_magic_directionality = CASTING)
 
 //////////////
 //DOPE BLING//
