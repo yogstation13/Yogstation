@@ -499,7 +499,7 @@
 	else
 		color = null
 
-	if(vessel_integrity <= 400)
+	if(vessel_integrity < 400)
 		vessel_integrity += integrity_restoration
 	else //incase it goes beyond
 		vessel_integrity = 400
