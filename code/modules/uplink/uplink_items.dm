@@ -75,7 +75,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		A.cost = max(round(A.cost * discount),1)
 		A.name += " ([round(((initial(A.cost)-A.cost)/initial(A.cost))*100)]% off!)"
 		A.desc += " Normally costs [initial(A.cost)] TC. All sales final. [pick(disclaimer)]"
-		A.refundable = FALSE //in case it was originally refundable
 		A.item = I.item
 		uplink_items[category_name][A.name] = A
 
@@ -115,7 +114,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/proc/purchase(mob/user, datum/component/uplink/U)
 	var/atom/A = spawn_item(item, user, U)
 	if(refundable)
-		A.AddComponent(/datum/component/refundable, user.mind, cost)
+		var/refund = cost
+		if(manufacturer && user.mind.is_employee(manufacturer))
+			refund = CEILING(cost*0.8, 1)
+		A.AddComponent(/datum/component/refundable, user.mind, refund)
 	if(purchase_log_vis && U.purchase_log)
 		U.purchase_log.LogPurchase(A, src, cost)
 
