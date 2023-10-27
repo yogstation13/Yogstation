@@ -26,8 +26,6 @@
 	/// All the plane masters that need to be applied.
 	var/list/cam_plane_masters
 	var/atom/movable/screen/background/cam_background
-	var/action_sound = "terminal_type"
-	var/turnoff_sound = 'sound/machines/terminal_off.ogg'
 
 /datum/computer_file/program/secureye/New()
 	. = ..()
@@ -116,8 +114,7 @@
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/selected_camera = cameras[c_tag]
 		active_camera = selected_camera
-		if(action_sound)
-			playsound(src, action_sound, 25, FALSE)
+		playsound(src, get_sfx("terminal_type"), 25, FALSE)
 
 		if(!selected_camera)
 			return TRUE
@@ -137,8 +134,7 @@
 	// Turn off the console
 	if(length(concurrent_users) == 0 && is_living)
 		active_camera = null
-		if(turnoff_sound)
-			playsound(src, turnoff_sound, 25, FALSE)
+		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 
 /datum/computer_file/program/secureye/proc/update_active_camera_screen()
 	// Show static if can't use the camera

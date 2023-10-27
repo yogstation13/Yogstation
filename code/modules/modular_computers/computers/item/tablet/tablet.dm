@@ -26,8 +26,7 @@
 
 /obj/item/modular_computer/tablet/Initialize(mapload)
 	. = ..()
-	if(pen_type)
-		inserted_item = new pen_type(src)
+	inserted_item = new pen_type(src)
 
 /obj/item/modular_computer/tablet/AltClick(mob/user)
 	if(issilicon(user))
