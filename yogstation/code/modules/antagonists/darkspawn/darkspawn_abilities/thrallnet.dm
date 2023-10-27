@@ -11,7 +11,7 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/orb
 	var/casting = FALSE
-	var/cast_time = 3 SECONDS
+	var/cast_time = 2 SECONDS
 
 /datum/action/cooldown/spell/toggle/thrall_net/Grant(mob/grant_to)
 	. = ..()
