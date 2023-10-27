@@ -16,7 +16,7 @@
 	var/busy //If the staff is currently being used by something
 	var/selected_spell
 	var/datum/action/innate/staff/staff_ability //the staff's current bound ability, for certain scripture
-	var/list/quickbound = list(/datum/clockwork_scripture/ranged_ability/kindle)
+	var/list/quickbound = list(/datum/psyker_power/ranged_ability/mindcrush)
 	var/maximum_quickbound = 5 // 5 because we only have 3 spells right now. 
 
 /obj/item/staff/psyker
@@ -41,7 +41,7 @@
 /obj/item/staff/process()
 	if(heat > 0)
 		heat --
-	if(icon_state == "[initial(icon_state)]-crit" && heat < 18)
+	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
 		icon_state = "[initial(icon_state)]" // Purple smoke radiating off?
     if(heat >= 20 && heat < 30)
         icon_state = "[initial(icon_state)]-crit"
@@ -127,46 +127,42 @@
 	var/channel_time = 1 SECONDS //In seconds, how long a ritual takes to chant
 	var/obj/item/staff/psyker/staff //The parent staff
 	var/mob/living/invoker //The staff's holder
-	var/quickbind = FALSE //if this scripture can be quickbound to a clockwork staff
+	var/quickbind = TRUE //if this scripture can be quickbound to a staff
 	var/quickbind_desc = "This shouldn't be quickbindable. File a bug report!"
-	var/primary_component
 	var/chant_slowdown = 0 //slowdown added while channeling
 	var/no_mobility = FALSE //if false user can move while channeling
 
-/datum/clockwork_scripture/New()
+/datum/psyker_power/New()
 	creation_update()
 
-/datum/clockwork_scripture/proc/creation_update() //updates any on-creation effects
+/datum/psyker_power/proc/creation_update() //updates any on-creation effects
 	return FALSE //return TRUE if updated
 
-/datum/clockwork_scripture/proc/run_scripture()
+/datum/psyker_power/proc/run_scripture()
 	var/successful = FALSE
     if(staff.busy)
         to_chat(invoker, span_warning("[staff] refuses to work, displaying the message: \"[staff.busy]!\""))
         return FALSE
     pre_recital()
-    staff.busy = "Invocation ([name]) in progress"
+    staff.busy = "A spell of ([name]) is in progress"
     channel_time *= staff.speed_multiplier
-    if(!recital() || !check_special_requirements() || !scripture_effects()) //if we fail any of these, refund components used
-        adjust_clockwork_power(power_cost)
+    if(!recital() || !scripture_effects()) //if we fail any of these, refund components used
         update_staff_info()
     else
         successful = TRUE
-        if(staff) //if the staff exists, record spell usage
-            SSblackbox.record_feedback("tally", "clockcult_scripture_recited", 1, name)
 	if(staff)
 		staff.busy = null
 	post_recital()
 	qdel(src)
 	return successful
 
-/datum/clockwork_scripture/proc/recital() //The process of speaking the words
-	to_chat(invoker, span_brass("You [channel_time <= 0 ? "channel" : "begin channeling"] the warp, to manifest a spell of \"[name]\"."))
+/datum/psyker_power/proc/recital() //The process of channeling and charging the spell
+	to_chat(invoker, span_warning("You [channel_time <= 0 ? "channel" : "begin channeling"] the warp, to manifest a spell of \"[name]\"."))
 	if(!channel_time)
 		return TRUE
 	if(chant_slowdown)
-		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
-	if(!do_after(invoker, channel_time, invoker, timed_action_flags = (no_mobility ? IGNORE_USER_LOC_CHANGE : NONE), extra_checks = CALLBACK(src, PROC_REF(check_special_requirements))))
+		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown) // we can bowwow the clockie slowdown, they wont mind.
+	if(!do_after(invoker, channel_time, invoker, timed_action_flags = (no_mobility ? IGNORE_USER_LOC_CHANGE : NONE)))
 		staff.busy = null
 		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
         scripture_fail()
@@ -174,36 +170,37 @@
 	invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 	return TRUE
 
-/datum/clockwork_scripture/proc/scripture_effects() //The actual effects of the recital after its conclusion
+/datum/psyker_power/proc/scripture_effects() //The actual effects of the recital after its conclusion
 
-/datum/clockwork_scripture/proc/scripture_fail() //Called if the scripture fails to invoke.
+/datum/psyker_power/proc/scripture_fail() //Called if the scripture fails to invoke.
 
-/datum/clockwork_scripture/proc/pre_recital() //Called before the scripture is recited
+/datum/psyker_power/proc/pre_recital() //Called before the scripture is recited
 
-/datum/clockwork_scripture/proc/post_recital() //Called after the scripture is recited
+/datum/psyker_power/proc/post_recital() //Called after the scripture is recited
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Framework for ranged spells, in case of close ranged spells in the future.
 ///////////////////////////////////////////////////////////////////////////////////
 
-/datum/clockwork_scripture/ranged_ability
+/datum/psyker_power/ranged_ability
 	var/staff_overlay
 	var/ranged_type = /datum/action/innate/staff
 	var/ranged_message = "This is a huge goddamn bug, how'd you cast this?"
 	var/timeout_time = 0
 	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
 	var/datum/progressbar/progbar
+	var/spell_heat = 10 //Heat generated on spell cast.
 
-/datum/clockwork_scripture/ranged_ability/Destroy()
+/datum/psyker_power/ranged_ability/Destroy()
 	qdel(progbar)
 	return ..()
 
-/datum/clockwork_scripture/ranged_ability/scripture_effects()
+/datum/psyker_power/ranged_ability/scripture_effects()
 	if(staff_overlay)
 		staff.add_overlay(staff_overlay)
-		staff.item_state = "clockwork_staff"
-		staff.lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
-		staff.righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+		staff.item_state = ""
+		staff.lefthand_file = '' // more sprites (waaa)
+		staff.righthand_file = ''
 		staff.inhand_overlay = staff_overlay
 	staff.staff_ability = new ranged_type(staff)
 	staff.staff_ability.staff = staff
@@ -235,94 +232,36 @@
 		staff.item_state = initial(staff.righthand_file)
 		staff.inhand_overlay = null
 		invoker?.update_inv_hands()
-	return successful //staff doesn't look like a word now.
+	return successful
 
 ///////////////////////////////////////////////////////////////////////////////////
-// Below is kindle, hopefully it will be a different spell soon
+// Mindcrush, formerly kindle. 
 ///////////////////////////////////////////////////////////////////////////////////
 
-/datum/clockwork_scripture/ranged_ability/kindle
-	descname = "Short-Range Single-Target Stun"
-	name = "Kindle"
-	desc = "Charges your staff with divine energy, allowing you to overwhelm a target with Ratvar's light."
-	invocations = list("Divinity, show them your light!")
-	whispered = TRUE
+/datum/psyker_power/ranged_ability/mindcrush
+	name = "mindcrush"
 	channel_time = 40
-	power_cost = 150
-	usage_tip = "The light can be used from up to two tiles away. Damage taken will GREATLY REDUCE the stun's duration."
-	tier = SCRIPTURE_DRIVER
-	primary_component = BELLIGERENT_EYE
 	sort_priority = 4
 	staff_overlay = "volt"
-	ranged_type = /datum/action/innate/staff/kindle
-	ranged_message = "<span class='brass'><i>You charge the clockwork staff with divine energy.</i>\n\
-	<b>Left-click a target within melee range to stun!\n\
-	Click your staff to cancel.</b></span>"
+	ranged_type = /datum/action/innate/staff/mindcrush
 	timeout_time = 50
 	chant_slowdown = 1
-	no_mobility = FALSE
 	important = TRUE
 	quickbind = TRUE
 	quickbind_desc = "Stuns and mutes a target from a short range."
+	spell_heat = 25 // 2 casts can overheat you unless careful
 
-/datum/action/innate/staff/kindle
-	ranged_mousepointer = 'icons/effects/mouse_pointers/volt_target.dmi'
+/datum/action/innate/staff/mindcrush
+	ranged_mousepointer = 'icons/effects/mouse_pointers/volt_target.dmi' // could make somthing for here too maybe...
 
-/datum/action/innate/staff/kindle/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
-	if(!isturf(T))
+/datum/action/innate/staff/mindcrush/do_ability(mob/living/carbon/human/cast_on)
+	. = ..()
+	if(!.)
 		return FALSE
+	if(!ishuman(cast_on)) // cant crush a borg or a simple mob
+		return FALSE
+	staff.heat += spell_heat
 
-	if(clicked_on in view(7, get_turf(caller)))
-
-		successful = TRUE
-
-		var/turf/U = get_turf(clicked_on)
-		to_chat(caller, span_brass("You release the light of Ratvar!"))
-		clockwork_say(caller, text2ratvar("Purge all untruths and honor Engine!"))
-		log_combat(caller, U, "fired at with Kindle")
-		playsound(caller, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
-		var/obj/projectile/kindle/A = new(T)
-		A.preparePixelProjectile(clicked_on, caller, params)
-		A.fire()
+	//crush their head, spawn gibs.
 
 	return TRUE
-
-/obj/projectile/kindle
-	name = "kindled flame"
-	icon_state = "pulse0"
-	nodamage = TRUE
-	damage = 0 //We're just here for the stunning!
-	damage_type = BURN
-	armor_flag = BOMB
-	range = 3
-	log_override = TRUE
-
-/obj/projectile/kindle/Destroy()
-	visible_message(span_warning("[src] flickers out!"))
-	. = ..()
-
-/obj/projectile/kindle/on_hit(atom/clicked_on, blocked = FALSE)
-	if(isliving(clicked_on))
-		var/mob/living/L = clicked_on
-		if(is_servant_of_ratvar(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))
-			return BULLET_ACT_HIT
-		var/atom/O = L.can_block_magic()
-		playsound(L, 'sound/magic/fireball.ogg', 50, TRUE, frequency = 1.25)
-		if(O)
-			if(isitem(O))
-				L.visible_message(span_warning("[L]'s eyes flare with dim light!"), \
-				span_userdanger("Your [O] glows white-hot against you as it absorbs [src]'s power!"))
-			else if(ismob(O))
-				L.visible_message(span_warning("[L]'s eyes flare with dim light!"))
-			playsound(L, 'sound/weapons/sear.ogg', 50, TRUE)
-		else
-			L.visible_message(span_warning("[L]'s eyes blaze with brilliant light!"), \
-			span_userdanger("Your vision suddenly screams with white-hot light!"))
-			L.Paralyze(1.5 SECONDS)
-			L.apply_status_effect(STATUS_EFFECT_KINDLE)
-			L.flash_act(1, 1)
-			if(iscultist(L))
-				L.adjustFireLoss(15)
-
-	return ..()
