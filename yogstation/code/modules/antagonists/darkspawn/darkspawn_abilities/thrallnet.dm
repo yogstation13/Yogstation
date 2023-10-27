@@ -44,7 +44,7 @@
 	max_integrity = 200
 	integrity_failure = 0
 	light_on = FALSE
-	networks = list("darkspawn")
+	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
