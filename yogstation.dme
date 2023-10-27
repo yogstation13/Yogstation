@@ -522,6 +522,7 @@
 #include "code\datums\components\ice_walk.dm"
 #include "code\datums\components\igniter.dm"
 #include "code\datums\components\infective.dm"
+#include "code\datums\components\internal_cam.dm"
 #include "code\datums\components\jousting.dm"
 #include "code\datums\components\knockback.dm"
 #include "code\datums\components\knockoff.dm"
