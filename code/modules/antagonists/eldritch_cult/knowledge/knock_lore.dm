@@ -1,9 +1,7 @@
 /datum/eldritch_knowledge/base_knock
 	name = "A Locksmith’s Secret"
 	desc = "Opens up the Path of Knock to you. \
-		Allows you to transmute a knife and a crowbar into a Key Blade. \
-		You can only create two at a time and they function as fast crowbars. \
-		In addition, they can fit into utility belts."
+		Allows you to transmute a knife and a crowbar into a Key Blade. Additionally, your grasp will open up numerous locked things when used upon them."
 	gain_text = "The Knock permits no seal and no isolation. It thrusts us gleefully out of the safety of ignorance."
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/base_ash,
@@ -76,9 +74,10 @@
 /datum/eldritch_knowledge/key_ring
 	name = "T1 - Key Keeper’s Burden"
 	desc = "Allows you to transmute a wallet, an iron rod, and an ID card to create an Eldritch Card. \
-		It functions the same as an ID Card, but attacking it with an ID card fuses it and gains its access. \
-		You can use it in-hand to change its form to a card you fused. \
-		Does not preserve the card used in the ritual."
+		It functions the same as an ID Card, but attacking an ID card with it fuses them, causing it to gain the original's access. \
+		You can use it in-hand to change its form. \
+		Does not preserve the card used in the ritual.\
+		Will also allow you to open portals at airlocks to travel between, with a maximum of two."
 	gain_text = "Gateways shall open before me, my very will ensnaring reality."
 
 	unlocked_transmutations = list(/datum/eldritch_transmutation/key_ring)
@@ -89,8 +88,7 @@
 /datum/eldritch_knowledge/knock_mark
 	name = "Grasp Mark - Mark of Knock"
 	desc = "Your Mansus Grasp now applies the Mark of Knock. \
-		Attack a marked person to bar them from all passages for the duration of the mark. \
-		This will make it so that they have no access whatsoever, even public access doors will reject them."
+		Attack a marked person to bar them from all passages for the duration of the mark."
 	gain_text = "Their requests for passage will remain unheeded."
 	cost = 2
 	banned_knowledge = list(
@@ -130,7 +128,7 @@
 
 /datum/eldritch_knowledge/knock_blade_upgrade
 	name = "Blade Upgrade - Opening Blade"
-	desc = "Your blade has a chance to cause a weeping avulsion on attack."
+	desc = "Your blade will be able to pry open unlocked airlocks."
 	gain_text = "The power of my patron courses through my blade, willing their very flesh to part."
 	banned_knowledge = list(
 		/datum/eldritch_knowledge/ash_blade_upgrade,
@@ -183,8 +181,8 @@
 /datum/eldritch_knowledge/knock_final
 	name = "Ascension Rite - Many secrets behind the Spider Door"
 	desc = "The ascension ritual of the Path of Knock. \
-		Bring 3 corpses without organs in their torso to a transmutation rune to complete the ritual. \
-		When completed, you gain the ability to transform into empowered eldritch creatures \
+		Bring 3 corpses to a transmutation rune to complete the ritual. \
+		When completed, you gain damage resistance, and stun immunity \
 		and in addition, create a tear to the Spider Door; \
 		a tear in reality located at the site of this ritual. \
 		Eldritch creatures will endlessly pour from this rift \

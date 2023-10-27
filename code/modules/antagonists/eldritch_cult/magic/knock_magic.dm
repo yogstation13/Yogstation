@@ -40,7 +40,7 @@
 
 
 /datum/action/cooldown/spell/spacetime_dist/eldritch
-	name = "Spacetime Distortion"
+	name = "Freedom Forever"
 	desc = "Entangle the strings of space-time in an area around you, \
 		randomizing the layout and making proper movement impossible. The strings vibrate..."
 	sound = 'sound/effects/magic.ogg'
