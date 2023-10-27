@@ -36,6 +36,14 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		reagents.maximum_volume += REAGENTS_BASE_VOLUME * B.rating
 
+/obj/machinery/smoke_machine/radbgone
+	name = "anti radiation smoke machine"
+	desc = "A machine with a centrifuge installed into it. It produces a cloud of radscrub chemical that can remove any radiation contamination."
+
+/obj/machinery/smoke_machine/radbgone/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(/datum/reagent/medicine/radscrub = 300)
+
 /obj/machinery/smoke_machine/update_icon_state()
 	. = ..()
 	if((!is_operational()) || (!on) || (reagents.total_volume == 0))
