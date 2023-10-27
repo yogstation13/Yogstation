@@ -7,6 +7,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
+	sound = 'sound/magic/staff_door.ogg'
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/orb
@@ -33,12 +34,10 @@
 
 /datum/action/cooldown/spell/toggle/thrall_net/Enable()
 	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 	owner.put_in_hands(orb)
 
 /datum/action/cooldown/spell/toggle/thrall_net/Disable()
 	owner.visible_message(span_warning("The orb [owner] was holding puffed into shadows!"), span_velvet("You dispel your orb"))
-	playsound(get_turf(owner), 'sound/magic/staff_door.ogg', 50, TRUE)
 	orb.moveToNullspace()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn
