@@ -10,7 +10,6 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/orb
-	var/casting = FALSE
 
 
 /datum/action/cooldown/spell/toggle/thrall_net/Grant(mob/grant_to)
@@ -30,18 +29,8 @@
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
-	if(casting)
-		return FALSE
 	. = ..()
 
-/datum/action/cooldown/spell/toggle/thrall_net/before_cast(atom/cast_on)
-	casting = TRUE
-	if(!do_after(owner, 2 SECONDS, owner))
-		casting = FALSE
-		return SPELL_CANCEL_CAST
-	casting = FALSE
-	return ..()
-	
 /datum/action/cooldown/spell/toggle/thrall_net/Enable()
 	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
@@ -68,8 +57,6 @@
 	initial_program = /datum/computer_file/program/secureye/darkspawn
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	pen_type = null
-	item_flags = SLOWS_WHILE_IN_HAND
-	slowdown = 2
 	interact_sounds = list('yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_01.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_02.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_03.ogg')//change to something spooky
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/Initialize(mapload)
