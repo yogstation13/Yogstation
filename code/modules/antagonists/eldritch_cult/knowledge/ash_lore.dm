@@ -130,7 +130,7 @@
 /datum/eldritch_knowledge/spell/volcano_blast
 	name = "T2 - Volcano Blast"
 	gain_text = "The strongest fires come from within, expel a piece of your burning soul to show you enemies the truth of flame."
-	desc = "Shoot a stong blast of fire at an enemy."
+	desc = "Shoot a strong blast of fire at an enemy."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/fireball/eldritch
 	route = PATH_ASH
