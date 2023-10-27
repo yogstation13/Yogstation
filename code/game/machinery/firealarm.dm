@@ -56,7 +56,7 @@
 			reset()
 		else
 			myarea.firereset(src, TRUE)
-	else if(!myarea.actual_fire && myarea.fire) //No actual fire and one of the air alarms is active
+	else if(!myarea.actual_fire && myarea.fire) //No actual fire and one of the fire alarms is active
 		reset()
 	else
 		myarea.firereset(src, TRUE)
