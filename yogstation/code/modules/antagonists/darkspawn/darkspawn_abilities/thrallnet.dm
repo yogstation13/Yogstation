@@ -38,7 +38,7 @@
 
 /datum/action/cooldown/spell/toggle/thrall_net/Disable()
 	owner.visible_message(span_warning("The orb [owner] was holding puffed into shadows!"), span_velvet("You dispel your orb"))
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
+	playsound(get_turf(owner), 'sound/magic/staff_door.ogg', 50, TRUE)
 	orb.moveToNullspace()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn
