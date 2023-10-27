@@ -63,6 +63,10 @@ if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' code/**/*
 	echo "ERROR: Initialize override without 'mapload' argument."
 	st=1
 fi;
+if grep -P '^\s*(\w+)\s*=\s*(\1)\b\s*$' code/**/*.dm; then
+	echo "ERROR: Variable is assigned to itself"
+	st=1
+fi;
 for json in _maps/*.json
 do
     filename="_maps/$(jq -r '.map_path' $json)/$(jq -r '.map_file' $json)"
