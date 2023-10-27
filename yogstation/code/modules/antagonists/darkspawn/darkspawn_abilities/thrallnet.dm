@@ -38,13 +38,14 @@
 	desc = "SEND DUDES"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
-	networks = list("darkspawn")
+	special = TRUE
+	use_power = NO_POWER_USE
+	flags_1 = NODECONSTRUCT_1
 	max_integrity = 200
 	integrity_failure = 0
 	light_on = FALSE
-	clicksound = "keyboard" //spookify this
-	use_power = NO_POWER_USE
-	flags_1 = NODECONSTRUCT_1
+	networks = list("darkspawn")
+	clicksound = "crawling_shadows_walk"
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return

@@ -14,6 +14,7 @@
 	light_range = 2
 	light_power = 1
 	light_on = TRUE
+	/// Doesn't have standard overlays or appearance, but has the same effects
 	var/special = FALSE
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
