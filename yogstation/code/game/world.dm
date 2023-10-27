@@ -49,8 +49,8 @@ GLOBAL_LIST_EMPTY(donators)
 
 	//PLAYER COUNT
 
-	/*
 	var/players = GLOB.clients.len
+	/*
 	var/popcaptext = ""
 	if(players)
 		popcaptext = "~[players] player\s"
@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(donators)
 	*/
 
 	/*
-	
+
 	//HOST
 	var/hostedby = CONFIG_GET(string/hostedby)
 	if (!host && hostedby)
