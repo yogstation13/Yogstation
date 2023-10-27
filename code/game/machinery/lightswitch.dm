@@ -1,3 +1,11 @@
+/obj/item/wallframe/light_switch
+	name = "light switch frame"
+	desc = "Used for building light switches."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "light-u"
+	result_path = /obj/machinery/light_switch
+	pixel_shift = 25
+
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
