@@ -264,11 +264,10 @@
 		var/mob/living/L = clicked_on
 		L.apply_damage(200, def_zone = BODY_ZONE_HEAD)
 		var/obj/item/bodypart/head = L.get_bodypart(BODY_ZONE_HEAD)
+		head.droplimb()
 		head.gib()
 		L.spawn_gibs()
 		staff.heat += spell_heat
 		to_chat(invoker, span_warning("so no head?"))
 	to_chat(invoker, span_warning("its working"))
-	//crush their head, spawn gibs.
-
 	return TRUE
