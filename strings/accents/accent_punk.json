@@ -93,14 +93,14 @@
 		"\bkidnapping\b": "extracting",
 		"\bcqc\b": "ninjutsu",
 		"\bcaptured\b": "rolled up",
-		"\brendezvous\b": "rv",
+		"\brendezvous\b": "RV",
 		"\boperative\b": "sleeper",
 		"\bmmi\b": "cyberdeck",
 		"\btelecomms\b": "net",
 		"\bsysop\b": "netrunner",
 		"\bsysadmin\b": "netrunner",
-		"\bc4\b": "h.e.",
-		"\bx4\b": "h.e.",
+		"\bc4\b": "H.E.",
+		"\bx4\b": "H.E.",
 		"\bturret\b": "trash-can",
 		"\bburned\b": "baked",
 		"\bburning\b": "crisped",
@@ -169,6 +169,6 @@
 		"\bassistant\b": "wageslave",
 		"\bnice\b": "groovy",
 		"\bsmooth\b": "wavy",
-		"\bhigh\b": "whacked",
+		"\bhigh\b": "whacked"
 	}
 }
