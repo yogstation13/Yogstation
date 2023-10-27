@@ -91,6 +91,49 @@
 	icon_state = "diagonal_edge"
 	name = "green diagonal edge"
 
+/// Dark Blue tiles
+
+/obj/effect/turf_decal/tile/darkblue
+	name = "darkblue corner"
+	color = "#384e6d"
+	alpha = 220
+
+/obj/effect/turf_decal/tile/darkblue/opposingcorners
+	icon_state = "tile_opposing_corners"
+	name = "opposing darkblue corners"
+
+/obj/effect/turf_decal/tile/darkblue/half
+	icon_state = "tile_half"
+	name = "darkblue half"
+
+/obj/effect/turf_decal/tile/darkblue/darkblue/contrasted
+	icon_state = "tile_half_contrasted"
+	name = "contrasted darkblue half"
+
+/obj/effect/turf_decal/tile/darkblue/anticorner
+	icon_state = "tile_anticorner"
+	name = "darkblue anticorner"
+
+/obj/effect/turf_decal/tile/darkblue/anticorner/contrasted
+	icon_state = "tile_anticorner_contrasted"
+	name = "contrasted darkblue anticorner"
+
+/obj/effect/turf_decal/tile/darkblue/fourcorners
+	icon_state = "tile_fourcorners"
+	name = "darkblue fourcorners"
+
+/obj/effect/turf_decal/tile/darkblue/full
+	icon_state = "tile_full"
+	name = "darkblue full"
+
+/obj/effect/turf_decal/tile/darkblue/diagonal_centre
+	icon_state = "diagonal_centre"
+	name = "darkblue diagonal centre"
+
+/obj/effect/turf_decal/tile/darkblue/diagonal_edge
+	icon_state = "diagonal_edge"
+	name = "darkblue diagonal edge"
+
 /// Yellow tiles
 
 /obj/effect/turf_decal/tile/yellow
@@ -132,6 +175,48 @@
 /obj/effect/turf_decal/tile/yellow/diagonal_edge
 	icon_state = "diagonal_edge"
 	name = "yellow diagonal edge"
+
+//Engie Yellow
+/obj/effect/turf_decal/tile/engieyellow
+	name = "engieyellow corner"
+	color = "#CCB223"
+	alpha = 220
+
+/obj/effect/turf_decal/tile/engieyellow/opposingcorners
+	icon_state = "tile_opposing_corners"
+	name = "opposing engieyellow corners"
+
+/obj/effect/turf_decal/tile/engieyellow/half
+	icon_state = "tile_half"
+	name = "engieyellow half"
+
+/obj/effect/turf_decal/tile/engieyellow/half/contrasted
+	icon_state = "tile_half_contrasted"
+	name = "contrasted engieyellow half"
+
+/obj/effect/turf_decal/tile/engieyellow/anticorner
+	icon_state = "tile_anticorner"
+	name = "engieyellow anticorner"
+
+/obj/effect/turf_decal/tile/engieyellow/anticorner/contrasted
+	icon_state = "tile_anticorner_contrasted"
+	name = "contrasted engieyellow anticorner"
+
+/obj/effect/turf_decal/tile/engieyellow/fourcorners
+	icon_state = "tile_fourcorners"
+	name = "engieyellow fourcorners"
+
+/obj/effect/turf_decal/tile/engieyellow/full
+	icon_state = "tile_full"
+	name = "engieyellow full"
+
+/obj/effect/turf_decal/tile/engieyellow/diagonal_centre
+	icon_state = "diagonal_centre"
+	name = "engieyellow diagonal centre"
+
+/obj/effect/turf_decal/tile/engieyellow/diagonal_edge
+	icon_state = "diagonal_edge"
+	name = "engieyellow diagonal edge"
 
 /// Red tiles
 
