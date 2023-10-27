@@ -131,36 +131,26 @@ SUBSYSTEM_DEF(dbcore)
 		"SELECT MAX(id) FROM [format_table_name("round")]"
 	)
 	query_round_number.Execute(async = FALSE) // Async false because the other one is, so I guess async bad right here
-	var/is_50k = FALSE
-	var/to_skip = 50000
+	var/prev_round
+	var/to_set = 49985
 	if(query_round_number.NextRow())
-		is_50k = text2num(query_round_number.item[1]) + 1 == to_skip 
-	qdel(query_round_number)
-	
-	log_world()
-
-	if(is_50k)
-		var/datum/DBQuery/query_round_initialize = SSdbcore.NewQuery(
-			"INSERT INTO [format_table_name("round")] (initialize_datetime, server_ip, server_port, id) VALUES (Now(), INET_ATON(:internet_address), :port, [to_skip + 1])",
-			list("internet_address" = world.internet_address || "0", "port" = "[world.port]")
-		)
-		query_round_initialize.Execute(async = FALSE)
-		GLOB.round_id = "[to_skip + 1]"
-		var/datum/DBQuery/query_fix_connections = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = NOW() WHERE `left` IS NULL AND round_id = :id", list("id" = to_skip - 1))
-		query_fix_connections.Execute()
-		qdel(query_fix_connections)
-		qdel(query_round_initialize)
+		prev_round = text2num(query_round_number.item[1])
+		qdel(query_round_number)
 	else
-		var/datum/DBQuery/query_round_initialize = SSdbcore.NewQuery(
-			"INSERT INTO [format_table_name("round")] (initialize_datetime, server_ip, server_port) VALUES (Now(), INET_ATON(:internet_address), :port)",
-			list("internet_address" = world.internet_address || "0", "port" = "[world.port]")
-		)
-		query_round_initialize.Execute(async = FALSE)
-		GLOB.round_id = "[query_round_initialize.last_insert_id]"
-		var/datum/DBQuery/query_fix_connections = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = NOW() WHERE `left` IS NULL AND round_id = :id", list("id" = text2num(GLOB.round_id) - 1))
-		query_fix_connections.Execute()
-		qdel(query_fix_connections)
-		qdel(query_round_initialize)
+		message_admins("Failed to set round number")
+		qdel(query_round_number)
+		return
+	
+	var/datum/DBQuery/query_round_initialize = SSdbcore.NewQuery(
+		"INSERT INTO [format_table_name("round")] (initialize_datetime, server_ip, server_port, id) VALUES (Now(), INET_ATON(:internet_address), :port, [to_set])",
+		list("internet_address" = world.internet_address || "0", "port" = "[world.port]")
+	)
+	query_round_initialize.Execute(async = FALSE)
+	GLOB.round_id = "[to_set]"
+	var/datum/DBQuery/query_fix_connections = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = NOW() WHERE `left` IS NULL AND round_id = :id", list("id" = prev_round))
+	query_fix_connections.Execute()
+	qdel(query_fix_connections)
+	qdel(query_round_initialize)
 
 /datum/controller/subsystem/dbcore/proc/SetRoundStart()
 	if(!Connect())
