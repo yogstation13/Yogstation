@@ -34,7 +34,13 @@
 	new /obj/machinery/computer/camera_advanced/darkspawn(get_turf(cast_on))
 	
 /obj/machinery/computer/camera_advanced/darkspawn
+	name = "dark orb"
+	desc = "SEND DUDES"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "computer"
 	networks = list("darkspawn")
+	max_integrity = 200
+	integrity_failure = 0
 	light_on = FALSE
 	clicksound = "keyboard" //spookify this
 	use_power = NO_POWER_USE
