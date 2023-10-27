@@ -174,7 +174,8 @@
 	play_click_sound("button")
 	if(myarea.fire || myarea.party)
 		if(areafire_check() && !(obj_flags & EMAGGED))
-			to_chat(user, span_notice("There is a fire in this area, you cannot lift the fire doors."))
+			to_chat(user, span_danger("There is a fire in this area, you cannot lift the fire doors."))
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 			return
 		reset(user)
 	else
