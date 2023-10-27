@@ -771,6 +771,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/ammo/pistol
+	name = "Random 10mm Handgun Magazines"
+	desc = "A box that contains four random 10-round 10mm magazines at a discount; compatible with the Stechkin Pistol."
+	item = /obj/item/storage/box/syndie_kit/pistolammo/random
+	cost = 2 // same mentality as the 357. You can get 4 mags for 2-4 TC, so giving in to the random chance give you a deal
+
 /datum/uplink_item/ammo/pistol/cs
 	name = "Pair of 10mm Caseless Magazines"
 	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
@@ -817,9 +823,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun
 	cost = 12 //Instead of 18
 
+/datum/uplink_item/ammo/shotgun/bag/random
+	name = "Randomized 12g Ammo Duffel Bag"
+	desc = "A duffel bag containing 10 random drum mags for the Bulldog shotgun, bundled together at a big discount."
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
+	cost = 10 // Random ammo, so its cheaper?
+
 /datum/uplink_item/ammo/shotgun/buck
 	name = "12g Buckshot Drum"
-	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
+	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun.\
+			Front towards enemy."
 	item = /obj/item/ammo_box/magazine/m12g
 
 /datum/uplink_item/ammo/shotgun/dragon
@@ -861,6 +874,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/random
+	name = "Random .357 Speed Loader Box"
+	desc = "A box with four random .357 speed loaders. Who knows what fun toys you might get?"
+	item = /obj/item/storage/box/syndie_kit/revolverammo/random
+	cost = 2// four would cost between 2 and 4 TC, so i think its fair
 
 /datum/uplink_item/ammo/revolver/ironfeather
 	name = ".357 Ironfeather Speed Loader Box"
@@ -927,6 +946,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	cost = 20 //instead of 29 TC
 	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/smg/bag/random
+	name = "Randomized .45 Ammo Duffel Bag"
+	desc = "A duffel bag containing eleven randomly picked, standard .45 magazines for the C-20r submachine gun, bundled together at a big discount."
+	cost = 18 // bit cheaper for more random crap
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
 
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"
@@ -1558,7 +1583,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_tools/angelcoolboy
 	name = "Syndicate Angel Potion"
 	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \
-			Preliminary testing could only sprout wings in Humans, Vuulen, Ex'hau, Preterni, IPCs, and Phytosians."
+			Preliminary testing found that of the most common species, neither plasmamen nor polysmorph were capable of sprouting wings."
 	cost = 2
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 

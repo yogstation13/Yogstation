@@ -31,7 +31,7 @@
 	ranged = 1
 	retreat_distance = 5
 	minimum_distance = 5
-	projectiletype = /obj/item/projectile/snowball
+	projectiletype = /obj/projectile/snowball
 	
 /mob/living/simple_animal/snowman
 	desc = "A very friendly snowman."

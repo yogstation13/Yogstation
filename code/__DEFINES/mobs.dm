@@ -78,6 +78,12 @@
 #define MOB_EPIC		(1<<7) //megafauna
 #define MOB_REPTILE		(1<<8)
 #define MOB_SPIRIT		(1<<9)
+#define MOB_SPECIAL		(1<<10) //eldritch biggums
+
+
+/// All the biotypes that matter
+#define ALL_NON_ROBOTIC (MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD)
+#define ALL_BIOTYPES (MOB_ORGANIC|MOB_INORGANIC|MOB_ROBOTIC|MOB_UNDEAD)
 
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
@@ -100,10 +106,6 @@
 #define LARVA_BODYPART "larva"
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
-
-// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
-#define ORGANIC (1<<0)
-#define SYNTHETIC (1<<1)
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
@@ -372,3 +374,9 @@
 #define SWARMER_LIGHT_ON (1<<0)
 
 #define ACCENT_NONE "None"
+
+// Body position defines.
+/// Mob is standing up, usually associated with lying_angle value of 0.
+#define STANDING_UP 0
+/// Mob is lying down, usually associated with lying_angle values of 90 or 270.
+#define LYING_DOWN 1

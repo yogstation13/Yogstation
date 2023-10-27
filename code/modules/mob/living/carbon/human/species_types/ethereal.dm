@@ -7,6 +7,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
 	mutantlungs = /obj/item/organ/lungs/ethereal
 	mutantstomach = /obj/item/organ/stomach/cell/ethereal
+	mutantheart = /obj/item/organ/heart/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //Don't rupture their membranes
@@ -33,7 +34,11 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+	wings_icon = "Ethereal"
+	wings_detail = "Etherealdetails"
 
+	var/max_range = 5
+	var/max_power = 2
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
@@ -63,12 +68,14 @@
 		return
 
 	var/mob/living/carbon/human/ethereal = C
-	default_color = ethereal.dna.features["mcolor"]
-	r1 = GETREDPART(default_color)
-	g1 = GETGREENPART(default_color)
-	b1 = GETBLUEPART(default_color)
+	setup_color(ethereal)
+
 	ethereal_light = ethereal.mob_light()
 	spec_updatehealth(ethereal)
+
+	var/obj/item/organ/heart/ethereal/ethereal_heart = ethereal.getorganslot(ORGAN_SLOT_HEART)
+	if(ethereal_heart)
+		ethereal_heart.ethereal_color = default_color
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	QDEL_NULL(ethereal_light)
@@ -83,19 +90,32 @@
 
 	return randname
 
+/datum/species/ethereal/proc/setup_color(mob/living/carbon/human/ethereal)
+	default_color = ethereal.dna.features["mcolor"]
+	r1 = GETREDPART(default_color)
+	g1 = GETGREENPART(default_color)
+	b1 = GETBLUEPART(default_color)
+	var/list/hsl = rgb2hsl(r1, g1, b1)
+	//both saturation and lightness are a scale of 0 to 1
+	hsl[2] = min(hsl[2], 0.7) //don't let saturation be too high or it's overwhelming
+	hsl[3] = max(hsl[3], 0.5) //don't let lightness be too low or it looks like a void of light
+	var/list/rgb = hsl2rgb(hsl[1], hsl[2], hsl[3]) //terrible way to do it, but it works
+	r1 = rgb[1]
+	g1 = rgb[2]
+	b1 = rgb[3]
+
 /datum/species/ethereal/spec_updatehealth(mob/living/carbon/human/ethereal)
 	. = ..()
 	if(!ethereal_light)
 		return
 	if(default_color != ethereal.dna.features["mcolor"])
-		var/new_color = ethereal.dna.features["mcolor"]
-		r1 = GETREDPART(new_color)
-		g1 = GETGREENPART(new_color)
-		b1 = GETBLUEPART(new_color)
+		setup_color(ethereal)
+
 	if(ethereal.stat != DEAD && !EMPeffect)
-		var/healthpercent = max(ethereal.health, 0) / 100
-		var/light_range = 1 + (4 * healthpercent)
-		var/light_power = 1 + healthpercent
+		var/healthpercent = max(ethereal.health, 0) / ethereal.maxHealth//scale with the lower of health and hunger
+		var/hungerpercent = min((ethereal.nutrition / NUTRITION_LEVEL_FED), 1)//scale only when below a certain hunger threshold
+		var/light_range = max_range * min(healthpercent, hungerpercent)
+		var/light_power = max_power * min(healthpercent, hungerpercent)
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
 			ethereal_light.set_light_color(current_color) //emag effect handles colour changes
@@ -112,14 +132,11 @@
 
 /datum/species/ethereal/spec_emp_act(mob/living/carbon/human/H, severity)
 	.=..()
+	if(!EMPeffect)
+		to_chat(H, span_notice("You feel the light of your body leave you."))
 	EMPeffect = TRUE
 	spec_updatehealth(H)
-	to_chat(H, span_notice("You feel the light of your body leave you."))
-	switch(severity)
-		if(EMP_LIGHT)
-			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 100, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 seconds
-		if(EMP_HEAVY)
-			addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
+	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200 / severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 to 20 seconds depending on severity
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
 	EMPeffect = FALSE
@@ -168,9 +185,9 @@
 		return
 	H.adjust_nutrition(min(amount / 2500, 5) * rad_percent)
 
-/datum/species/ethereal/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/ethereal/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	. = ..()
-	if(istype(P, /obj/item/projectile/energy/nuclear_particle))
+	if(istype(P, /obj/projectile/energy/nuclear_particle))
 		H.visible_message(span_warning("[H] absorbs [P]!"), span_userdanger("You absorb [P]!"))
 		H.adjust_nutrition(P.damage * (1 - (H.getarmor(null, RAD) / 100)))
 		return TRUE

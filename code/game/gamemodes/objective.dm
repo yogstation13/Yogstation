@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/proc/copy_target(datum/objective/old_obj)
 	target = old_obj.get_target()
 	target_amount = old_obj.target_amount
-	explanation_text = explanation_text
+	explanation_text = old_obj.explanation_text
 
 /datum/objective/assassinate
 	name = "assassinate"
@@ -1704,9 +1704,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return TRUE
 
 //Bee port, gimmick objectives
-#define GIMMICK_OBJ_FILE "string/gimmick_objectives.txt"
-#define DEPT_GIMMICK_OBJ_FILE "string/dept_gimmick_objectives.txt"
-#define TARGET_GIMMICK_OBJ_FILE "string/target_gimmick_objectives.txt"
+#define GIMMICK_OBJ_FILE "strings/gimmick_objectives.txt"
+#define DEPT_GIMMICK_OBJ_FILE "strings/dept_gimmick_objectives.txt"
+#define TARGET_GIMMICK_OBJ_FILE "strings/target_gimmick_objectives.txt"
 
 /datum/objective/gimmick
 	name = "gimmick"

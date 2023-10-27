@@ -1,0 +1,612 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall,
+/area/clerk)
+"b" = (
+/obj/effect/turf_decal/trimline/secred/warning/lower{
+	alpha = 220
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"c" = (
+/obj/machinery/vending/gifts,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"d" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"e" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"g" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"h" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/chair/americandiner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"i" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"j" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/mob/living/simple_animal/spiffles,
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"l" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"m" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"n" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"o" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/paystand/register{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"p" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"q" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/instrument/piano_synth{
+	pixel_x = 2
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"r" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"s" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"t" = (
+/obj/machinery/button/door{
+	id = "giftshop";
+	name = "Gift Shop Internal Shutters";
+	pixel_x = 26;
+	pixel_y = 24
+	},
+/obj/structure/rack,
+/obj/item/a_gift,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/item/a_gift,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"u" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/stack/wrapping_paper{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/obj/item/stack/packageWrap{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/cardboard{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/hand_labeler{
+	pixel_x = 8;
+	pixel_y = -7
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"v" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"w" = (
+/obj/item/poster/random_contraband{
+	pixel_y = 2
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/clerk";
+	dir = 1;
+	name = "Gift Shop APC";
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/obj/structure/table/reinforced,
+/obj/item/toy/figure/clerk,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"x" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"y" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"A" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	name = "Gift Shop";
+	req_access_txt = "36"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"B" = (
+/obj/structure/table,
+/obj/item/folder/red{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = -6
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"C" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 10
+	},
+/obj/structure/table/reinforced,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/item/storage/fancy/heart_box{
+	pixel_y = 5
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"D" = (
+/obj/structure/chair,
+/obj/effect/turf_decal/trimline/secred/warning/lower{
+	alpha = 220
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"E" = (
+/obj/structure/rack,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/coin,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"F" = (
+/obj/machinery/vending/autodrobe,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"I" = (
+/obj/structure/rack,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/plushies,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"J" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"K" = (
+/obj/machinery/vending/games,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"L" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"M" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"N" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/costume,
+/obj/machinery/camera{
+	c_tag = "Clerk's office";
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"O" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/item/a_gift,
+/obj/item/a_gift,
+/turf/open/floor/pod/dark,
+/area/clerk)
+"P" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/multi_tile/four_tile_hor{
+	id = "giftshop";
+	armor = list("melee" = 50, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"Q" = (
+/obj/structure/rack,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"R" = (
+/turf/open/floor/pod/dark,
+/area/clerk)
+"S" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock{
+	name = "Gift Shop";
+	req_access_txt = "36"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"T" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"U" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock{
+	name = "Gift Shop";
+	req_access_txt = "36"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"V" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"W" = (
+/obj/effect/landmark/event_spawn,
+/obj/item/storage/secure/safe{
+	pixel_x = 35;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/clerk)
+"X" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/toy/plush/nukeplushie{
+	pixel_y = 7;
+	pixel_x = 4;
+	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious. This one seems to be skilled at guitar."
+	},
+/obj/item/instrument/eguitar{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+"Y" = (
+/turf/template_noop,
+/area/template_noop)
+"Z" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/clerk)
+
+(1,1,1) = {"
+Y
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+Y
+a
+w
+q
+X
+u
+e
+C
+a
+"}
+(3,1,1) = {"
+Y
+a
+y
+l
+R
+R
+M
+b
+P
+"}
+(4,1,1) = {"
+Y
+U
+m
+r
+r
+r
+V
+D
+o
+"}
+(5,1,1) = {"
+Y
+a
+J
+Z
+d
+t
+x
+b
+n
+"}
+(6,1,1) = {"
+a
+a
+A
+a
+a
+O
+x
+b
+T
+"}
+(7,1,1) = {"
+a
+c
+p
+h
+a
+E
+x
+s
+S
+"}
+(8,1,1) = {"
+a
+K
+j
+B
+a
+I
+v
+i
+a
+"}
+(9,1,1) = {"
+a
+F
+W
+L
+a
+N
+g
+Q
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

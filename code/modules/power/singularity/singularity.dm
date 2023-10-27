@@ -148,7 +148,7 @@
 		return
 
 
-/obj/singularity/bullet_act(obj/item/projectile/P)
+/obj/singularity/bullet_act(obj/projectile/P)
 	qdel(P)
 	return BULLET_ACT_HIT //Will there be an impact? Who knows.  Will we see it? No.
 
@@ -303,6 +303,9 @@
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
 			icon_state = "singularity_s11"
+			desc = "[initial(desc)] It glows fiercely with inner fire."
+			name = "supermatter-charged [initial(name)]"
+			set_light(10)
 			pixel_x = -160
 			pixel_y = -160
 			grav_pull = 15
@@ -371,10 +374,7 @@
 	var/gain = A.singularity_act(current_size, src)
 	src.energy += gain
 	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumedSupermatter)
-		desc = "[initial(desc)] It glows fiercely with inner fire."
-		name = "supermatter-charged [initial(name)]"
 		consumedSupermatter = 1
-		set_light(10)
 	return
 
 

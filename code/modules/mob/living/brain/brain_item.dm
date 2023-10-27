@@ -191,7 +191,7 @@
 		return
 
 	// This should be a better check but this covers 99.9% of cases
-	if(!(process_flags & C.get_process_flags()))
+	if(!(compatible_biotypes & C.mob_biotypes))
 		to_chat(user, span_warner("This brain is incompatiable with this beings biology!"))
 		return
 
@@ -278,7 +278,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC
 
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
