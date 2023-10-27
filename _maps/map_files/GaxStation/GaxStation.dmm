@@ -5204,9 +5204,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -5341,6 +5339,15 @@
 	},
 /obj/item/roller,
 /obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/head/soft/emt/phys{
+	name = "syndicate combat medic utility cover";
+	desc = "A red utility cover used by certain Syndicate field medics."
+	},
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "cyN" = (
@@ -5827,6 +5834,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
+"cIa" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/automatic/ar{
+	spawnwithmagazine = 0
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "cIF" = (
 /obj/structure/sign/warning/docking,
 /obj/effect/spawner/structure/window/plastitanium,
@@ -6343,6 +6359,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "cUB" = (
@@ -6394,6 +6413,13 @@
 /obj/item/stamp/hos,
 /turf/open/floor/carpet/red,
 /area/crew_quarters/heads/hos)
+"cVF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure/gear{
+	name = "ammunition crate"
+	},
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "cVM" = (
 /obj/machinery/door/airlock/research{
 	name = "Toxins Launch Room";
@@ -8361,6 +8387,17 @@
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"dQT" = (
+/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/structure/closet/crate,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "dRh" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/segment,
@@ -8448,6 +8485,7 @@
 	pixel_x = 30;
 	pixel_y = -9
 	},
+/obj/item/robot_module/saboteur,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "dTN" = (
@@ -10321,6 +10359,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "eEF" = (
@@ -14569,9 +14610,7 @@
 "gwb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -14886,9 +14925,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -15244,9 +15281,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -16364,6 +16399,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"hqe" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "hqm" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 1
@@ -17177,6 +17216,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
+"hHO" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "hIl" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 4
@@ -17563,6 +17607,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
+"hSI" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/empty,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "hSO" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -19415,6 +19467,9 @@
 	},
 /obj/item/ammo_box/magazine/mm712x82,
 /obj/item/ammo_box/magazine/mm712x82,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "iMU" = (
@@ -21079,9 +21134,7 @@
 "jCA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -21887,9 +21940,7 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "jXz" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -23304,9 +23355,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "kJq" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -24135,6 +24184,12 @@
 	dir = 5
 	},
 /obj/structure/closet/secure_closet/quartermaster,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/gun/ballistic/automatic/pistol{
+	desc = "A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors. A note scratched into it reads 'QM IS A HEAD YOU FUCKS'."
+	},
+/obj/item/encryptionkey/headset_com,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/qm)
 "leG" = (
@@ -24223,9 +24278,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -27642,6 +27695,7 @@
 	},
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/metal/fifty,
+/obj/item/robot_module/syndicate_medical,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "mIS" = (
@@ -28214,6 +28268,9 @@
 "mVw" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/storage/toolbox/syndicate/real,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "mVD" = (
@@ -28522,9 +28579,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
 "ngZ" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12:36"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -28543,6 +28597,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "nhc" = (
@@ -31866,6 +31921,15 @@
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"oLx" = (
+/mob/living/simple_animal/hostile/nanotrasen/ranged{
+	loot = list(/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag,/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/centcom,
+/obj/structure/bed,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "oLJ" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -31909,6 +31973,25 @@
 /obj/effect/turf_decal/trimline/chemorange/filled/corner/lower{
 	dir = 4
 	},
+/obj/structure/closet/syndicate{
+	name = "syndicate uniform closet";
+	desc = "A closet marked to contain Syndicate uniform."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/head/soft/black{
+	name = "syndicate utility cover";
+	desc = "A utility cover used by the Syndicate's support staff."
+	},
+/obj/item/clothing/suit/toggle/labcoat/chemist,
+/obj/item/clothing/suit/toggle/labcoat/chemist,
+/obj/item/clothing/suit/toggle/labcoat/chemist,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "oNT" = (
@@ -32219,6 +32302,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"oXQ" = (
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "oXR" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32392,6 +32478,15 @@
 /obj/structure/closet/secure_closet/paramedic,
 /obj/item/roller,
 /obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/head/soft/emt/phys{
+	name = "syndicate combat medic utility cover";
+	desc = "A red utility cover used by certain Syndicate field medics."
+	},
+/obj/item/clothing/under/syndicate,
+/obj/item/clothing/accessory/armband/medblue{
+	name = "medical armband";
+	desc = "An armband bearing the colours of the medical department."
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "pcu" = (
@@ -32484,9 +32579,7 @@
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "peq" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -35097,9 +35190,7 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
 "qiY" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -36222,6 +36313,7 @@
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/ears/earmuffs,
+/obj/item/robot_module/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "qOj" = (
@@ -36244,9 +36336,7 @@
 /turf/open/space/basic,
 /area/solar/starboard/aft)
 "qPM" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
@@ -38899,6 +38989,9 @@
 /area/medical/storage)
 "rWx" = (
 /obj/structure/closet/secure_closet/hop,
+/obj/item/gun/ballistic/automatic/pistol,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/mineral/plastitanium,
 /area/crew_quarters/heads/hop)
 "rWP" = (
@@ -41407,9 +41500,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "tcS" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
+/obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -48842,6 +48933,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"wzI" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/blue,
+/area/maintenance/starboard/fore)
 "wAg" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/turf_decal/bot,
@@ -90032,9 +90127,9 @@ keq
 keq
 keq
 hvG
-wCC
-wCC
-fJJ
+hqe
+oXQ
+cVF
 hvG
 rIc
 xbK
@@ -90289,9 +90384,9 @@ nPL
 rCs
 nHp
 hvG
-wCC
-wCC
-wCC
+cIa
+wzI
+oLx
 hvG
 qjL
 xbK
@@ -90546,9 +90641,9 @@ wKt
 wGp
 alQ
 hvG
-wCC
-wCC
-wCC
+hHO
+hSI
+dQT
 hvG
 qjL
 xbK
