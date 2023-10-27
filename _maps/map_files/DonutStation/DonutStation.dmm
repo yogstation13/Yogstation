@@ -12744,12 +12744,6 @@
 "fpH" = (
 /turf/closed/wall/r_wall,
 /area/teleporter)
-"fpL" = (
-/obj/structure/cable/orange{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "fpS" = (
 /obj/machinery/air_sensor/atmos/carbon_tank,
 /turf/open/floor/engine/co2{
@@ -39168,6 +39162,19 @@
 	initial_gas_mix = "n2=1000;TEMP=293.15"
 	},
 /area/engine/atmos)
+"rab" = (
+/obj/structure/cable/orange{
+	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/smoke_machine,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "rai" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -96155,7 +96162,7 @@ ylr
 ylr
 ylr
 ocR
-fpL
+rab
 xsv
 efb
 tua

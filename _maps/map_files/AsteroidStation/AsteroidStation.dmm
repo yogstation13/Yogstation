@@ -19450,6 +19450,25 @@
 	},
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai_upload)
+"fmi" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/machinery/smoke_machine,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "fmn" = (
 /obj/machinery/light{
 	dir = 4
@@ -63327,18 +63346,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"tac" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "taw" = (
 /obj/machinery/turnstile/brig{
 	dir = 1
@@ -122629,7 +122636,7 @@ aYF
 pRm
 hHG
 aPn
-tac
+fmi
 rHy
 xeC
 die

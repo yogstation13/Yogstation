@@ -15063,6 +15063,19 @@
 "eAN" = (
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"eAP" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/smoke_machine,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/turf/open/floor/plasteel{
+	dir = 1
+	},
+/area/engine/engineering)
 "eBh" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -56488,19 +56501,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"qwT" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/item/kirbyplants{
-	icon_state = "plant-20";
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	dir = 1
-	},
-/area/engine/engineering)
 "qxh" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 31
@@ -123223,7 +123223,7 @@ jXO
 tDb
 kXH
 ept
-qwT
+eAP
 fZl
 scl
 jAk

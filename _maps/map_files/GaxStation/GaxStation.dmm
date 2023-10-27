@@ -7973,6 +7973,17 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"dVx" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/smoke_machine,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "dVz" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/machinery/firealarm{
@@ -30194,13 +30205,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"oXp" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "oXr" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -74527,7 +74531,7 @@ rCR
 eKF
 qmZ
 kFU
-oXp
+dVx
 oyB
 geh
 wfm

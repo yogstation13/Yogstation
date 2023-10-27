@@ -24976,18 +24976,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ghP" = (
-/obj/structure/table,
-/obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/stack/cable_coil,
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "giq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -32269,6 +32257,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"iUF" = (
+/obj/machinery/camera{
+	c_tag = "Engineering Storage";
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/command/charge{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/smoke_machine,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/obj/item/reagent_containers/glass/beaker/large/radscrub,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "iUI" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
@@ -42605,6 +42610,19 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"mXY" = (
+/obj/structure/table,
+/obj/item/stack/cable_coil{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/stack/cable_coil,
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 10
+	},
+/obj/item/electronics/airlock,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "mYN" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -64873,21 +64891,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"vza" = (
-/obj/machinery/camera{
-	c_tag = "Engineering Storage";
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/electronics/airlock,
-/obj/structure/sign/departments/minsky/command/charge{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "vzb" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
@@ -97262,9 +97265,9 @@ aiw
 xey
 bvV
 hDa
-vza
+iUF
 xbs
-ghP
+mXY
 crp
 qQV
 qQV

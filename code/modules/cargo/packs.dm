@@ -932,6 +932,18 @@
 					/obj/item/extinguisher/advanced)
 	crate_name = "advanced firefighting crate"
 
+/datum/supply_pack/engineering/antirad
+	name = "Anti Radiation Smoke Machine Crate"
+	desc = "Station is full of radiation? Worry no more! Introducing to you a smoke machine with radiation-cleaning chemicals that can make rad disappear quicker than your ex can ghost you!"
+	cost = 2000
+	contains = list(/obj/machinery/smoke_machine,
+					/obj/item/reagent_containers/glass/beaker/large/radscrub,
+					/obj/item/reagent_containers/glass/beaker/large/radscrub,
+					/obj/item/reagent_containers/glass/beaker/large/radscrub
+					)
+	crate_name = "anti radiation smoke machine crate"
+	crate_type = /obj/structure/closet/crate/radiation
+
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
 	desc = "Gear up with three toolbelts, high-visibility vests, welding goggles, hardhats, and two pairs of meson goggles!"
