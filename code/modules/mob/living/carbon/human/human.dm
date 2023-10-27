@@ -100,7 +100,7 @@
 			var/obj/item/organ/heart/ethereal/eth_heart = getorganslot(ORGAN_SLOT_HEART)
 			if(istype(eth_species))
 				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
-			if(eth_heart)
+			if(eth_heart && istype(eth_heart))
 				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 10)
 				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
 				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
