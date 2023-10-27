@@ -47,5 +47,14 @@
 	networks = list("darkspawn")
 	clicksound = "crawling_shadows_walk"
 
+/obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
+	if(!is_darkspawn_or_veil(user))
+		return FALSE
+	return ..()
+
+/obj/machinery/computer/camera_advanced/darkspawn/CreateEye()
+	. = ..()
+	eyeobj.nightvision = TRUE
+
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return

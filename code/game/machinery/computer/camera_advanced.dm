@@ -170,11 +170,12 @@
 	var/eye_initialized = 0
 	var/visible_icon = 0
 	var/image/user_image = null
+	var/nightvision = FALSE
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
 	user.sight = SEE_TURFS | SEE_BLACKNESS
-	user.see_in_dark = 2
+	user.see_in_dark = nightvision ? 8 : 2
 	return TRUE
 
 /mob/camera/aiEye/remote/Destroy()
