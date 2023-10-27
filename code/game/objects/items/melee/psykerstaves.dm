@@ -261,7 +261,8 @@
 	if(!ishuman(cast_on)) // cant crush a borg or a simple mob
 		return FALSE
 	staff.heat += spell_heat
-
+	
+	to_chat(invoker, span_warning("its working"))
 	//crush their head, spawn gibs.
 
 	return TRUE
