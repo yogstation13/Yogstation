@@ -22,6 +22,6 @@
 			break
 		if(foundAlready)
 			continue
-		H.gain_trauma(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, "You feel a need to show how much you appreicate your department head. Bring them a dead rat as a gift!")
+		H.gain_trauma(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, "You feel a need to show how much you appreciate your department head. Bring them a dead rat as a gift!")
 		announce_to_ghosts(H)
 		break
