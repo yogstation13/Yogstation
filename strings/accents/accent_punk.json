@@ -150,6 +150,7 @@
 		"\bholodeck\b": "holo",
 		"\bass\b": "hoop",
 		"\bweapon\b": "iron",
+		"\ba weapon\b": "an iron",
 		"\bconnect\b": "jack",
 		"\bconnected\b": "jacked",
 		"\bfight\b": "jam",
@@ -162,6 +163,12 @@
 		"\banti-magic\b": "mundane",
 		"\bperp\b": "perpetrator",
 		"\bsecway\b": "pig-rig",
-		"\brailgun\b": "reason"
+		"\brailgun\b": "reason",
+		"\bspend\b": "spill",
+		"\bid\b": "tag",
+		"\bassistant\b": "wageslave",
+		"\bnice\b": "groovy",
+		"\bsmooth\b": "wavy",
+		"\bhigh\b": "whacked",
 	}
 }
