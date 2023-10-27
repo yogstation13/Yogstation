@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;n_Scanner&#x2F;nS_Scanner - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/n_Scanner/nS_Scanner.html#var">Var Details</a> - <a href="datum/n_Scanner/nS_Scanner.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/n_Scanner.html">n_Scanner</a>/<a href="datum/n_Scanner/nS_Scanner.html">nS_Scanner</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L29">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 29"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#var/codepos">codepos</a></th><td>The scanner's position in the source code.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#var/delim">delim</a></th><td>List of characters that denote the start of a new token. This list is automatically populated.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#var/end_stmt">end_stmt</a></th><td>List of characters that end a statement. Each item may only be one character long. Default is a semicolon.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#var/ignore">ignore</a></th><td>List of characters that are ignored by the scanner. Default is whitespace.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#var/string_delim">string_delim</a></th><td>List of characters that can start and end strings. Default is double and single quotes.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#proc/ReadNumber">ReadNumber</a></th><td>Reads a number into a token.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#proc/ReadString">ReadString</a></th><td>ReadString
+Reads a string in the source code into a token.
+Arguments:
+start - The character used to start the string.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#proc/ReadSymbol">ReadSymbol</a></th><td>Reads a symbol into a token.</td></tr>
+            <tr><th><a href="datum/n_Scanner/nS_Scanner.html#proc/ReadWord">ReadWord</a></th><td>Reads characters separated by an item in <delim> into a token.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/codepos"><aside class="declaration">var </aside>codepos
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L32">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 32"/></a></h3>
+        <p>The scanner's position in the source code.</p><h3 id="var/delim"><aside class="declaration">var </aside>delim
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L44">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 44"/></a></h3>
+        <p>List of characters that denote the start of a new token. This list is automatically populated.</p><h3 id="var/end_stmt"><aside class="declaration">var </aside>end_stmt
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L38">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 38"/></a></h3>
+        <p>List of characters that end a statement. Each item may only be one character long. Default is a semicolon.</p><h3 id="var/ignore"><aside class="declaration">var </aside>ignore
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L40">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 40"/></a></h3>
+        <p>List of characters that are ignored by the scanner. Default is whitespace.</p><h3 id="var/string_delim"><aside class="declaration">var </aside>string_delim
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L42">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 42"/></a></h3>
+        <p>List of characters that can start and end strings. Default is double and single quotes.</p><h2 id="proc">Proc Details</h2><h3 id="proc/ReadNumber"><aside class="declaration">proc </aside>ReadNumber<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L151">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 151"/></a></aside>
+        </h3>
+        <p>Reads a number into a token.</p><h3 id="proc/ReadString"><aside class="declaration">proc </aside>ReadString<aside>(start) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L90">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 90"/></a></aside>
+        </h3>
+        <p>ReadString
+Reads a string in the source code into a token.
+Arguments:
+start - The character used to start the string.</p><h3 id="proc/ReadSymbol"><aside class="declaration">proc </aside>ReadSymbol<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L137">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 137"/></a></aside>
+        </h3>
+        <p>Reads a symbol into a token.</p><h3 id="proc/ReadWord"><aside class="declaration">proc </aside>ReadWord<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Scanner/Scanner.dm#L123">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Scanner&#x2F;Scanner.dm 123"/></a></aside>
+        </h3>
+        <p>Reads characters separated by an item in <delim> into a token.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/3ce13d31f709fc4bb41e52ada95c9944f7f1419d">3ce13d3</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

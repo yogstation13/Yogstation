@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;n_Interpreter - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/n_Interpreter.html#var">Var Details</a> - <a href="datum/n_Interpreter.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/n_Interpreter.html">n_Interpreter</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L34">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 34"/></a></h1>
+
+<p>n_Interpreter
+Procedures allowing for interaction with the script that is being run by the interpreter object.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#var/cur_recursion">cur_recursion</a></th><td>Current amount of recursion</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#var/cur_statements">cur_statements</a></th><td>current amount of statements called</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#var/persist">persist</a></th><td>Boolean that will reset global variables after Run() finishes.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#var/status">status</a></th><td>Boolean indicating that the rest of the current block should be skipped. This may be set to any combination of <Status Macros>.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/AlertAdmins">AlertAdmins</a></th><td>Alerts the admins of a script that is bad.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/Iterate">Iterate</a></th><td>Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/Load">Load</a></th><td>Load
+Loads a 'compiled' script into Memory.
+program - A <GlobalBlock> object which represents the script's global scope.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/RaiseError">RaiseError</a></th><td>Raises a Runtime error.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/Run">Run</a></th><td>Runs the Script.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/RunBlock">RunBlock</a></th><td>Runs each statement in a block of code.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/RunFunction">RunFunction</a></th><td>Runs a function block or a proc with the arguments specified in the script.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/RunIf">RunIf</a></th><td>Checks a condition and runs either the if block or else block.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/RunWhile">RunWhile</a></th><td>Runs a while loop.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/SetVar">SetVar</a></th><td>SetVar
+Defines a global variable for the duration of the next execution of a script.
+Notes:
+This differs from &lt;Block.SetVar()&gt; in that variables set using this procedure only last for the session,
+while those defined from the block object persist if it is ran multiple times.</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/Trim">Trim</a></th><td>Trims strings and vectors down to an acceptable size, to prevent runaway memory usage</td></tr>
+            <tr><th><a href="datum/n_Interpreter.html#proc/garbage_collect">garbage_collect</a></th><td>Sets ourselves to Garbage Collect.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cur_recursion"><aside class="declaration">var </aside>cur_recursion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L50">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 50"/></a></h3>
+        <p>Current amount of recursion</p><h3 id="var/cur_statements"><aside class="declaration">var </aside>cur_statements
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L46">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 46"/></a></h3>
+        <p>current amount of statements called</p><h3 id="var/persist"><aside class="declaration">var </aside>persist
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L52">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 52"/></a></h3>
+        <p>Boolean that will reset global variables after Run() finishes.</p><h3 id="var/status"><aside class="declaration">var </aside>status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L42">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 42"/></a></h3>
+        <p>Boolean indicating that the rest of the current block should be skipped. This may be set to any combination of <Status Macros>.</p><h2 id="proc">Proc Details</h2><h3 id="proc/AlertAdmins"><aside class="declaration">proc </aside>AlertAdmins<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L111">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 111"/></a></aside>
+        </h3>
+        <p>Alerts the admins of a script that is bad.</p><h3 id="proc/Iterate"><aside class="declaration">proc </aside>Iterate<aside>(/<a href="datum.html">datum</a>/<a href="datum/node.html">node</a>/<a href="datum/node/BlockDefinition.html">BlockDefinition</a>/block, /<a href="datum.html">datum</a>/scope/scope, count) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L237">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 237"/></a></aside>
+        </h3>
+        <p>Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.</p><h3 id="proc/Load"><aside class="declaration">proc </aside>Load<aside>(/<a href="datum.html">datum</a>/<a href="datum/node.html">node</a>/<a href="datum/node/BlockDefinition.html">BlockDefinition</a>/GlobalBlock/program) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L68">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 68"/></a></aside>
+        </h3>
+        <p>Load
+Loads a 'compiled' script into Memory.
+program - A <GlobalBlock> object which represents the script's global scope.</p>
+<p>Parameters:
+program - A <GlobalBlock> object which represents the script's global scope.</p><h3 id="proc/RaiseError"><aside class="declaration">proc </aside>RaiseError<aside>(/<a href="datum.html">datum</a>/<a href="datum/runtimeError.html">runtimeError</a>/e, /<a href="datum.html">datum</a>/scope/scope, /<a href="datum.html">datum</a>/token/token) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L88">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 88"/></a></aside>
+        </h3>
+        <p>Raises a Runtime error.</p><h3 id="proc/Run"><aside class="declaration">proc </aside>Run<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interaction.dm#L2">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interaction.dm 2"/></a></aside>
+        </h3>
+        <p>Runs the Script.</p><h3 id="proc/RunBlock"><aside class="declaration">proc </aside>RunBlock<aside>(/<a href="datum.html">datum</a>/<a href="datum/node.html">node</a>/<a href="datum/node/BlockDefinition.html">BlockDefinition</a>/Block, /<a href="datum.html">datum</a>/scope/scope) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L123">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 123"/></a></aside>
+        </h3>
+        <p>Runs each statement in a block of code.</p><h3 id="proc/RunFunction"><aside class="declaration">proc </aside>RunFunction<aside>(/<a href="datum.html">datum</a>/<a href="datum/node.html">node</a>/expression/FunctionCall/stmt, /<a href="datum.html">datum</a>/scope/scope) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L176">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 176"/></a></aside>
+        </h3>
+        <p>Runs a function block or a proc with the arguments specified in the script.</p><h3 id="proc/RunIf"><aside class="declaration">proc </aside>RunIf<aside>(/<a href="datum.html">datum</a>/<a href="datum/node.html">node</a>/statement/IfStatement/stmt, /<a href="datum.html">datum</a>/scope/scope) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L198">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 198"/></a></aside>
+        </h3>
+        <p>Checks a condition and runs either the if block or else block.</p><h3 id="proc/RunWhile"><aside class="declaration">proc </aside>RunWhile<aside>(/<a href="datum.html">datum</a>/<a href="datum/node.html">node</a>/statement/WhileLoop/stmt, /<a href="datum.html">datum</a>/scope/scope) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L218">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 218"/></a></aside>
+        </h3>
+        <p>Runs a while loop.</p><h3 id="proc/SetVar"><aside class="declaration">proc </aside>SetVar<aside>(name, value) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interaction.dm#L19">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interaction.dm 19"/></a></aside>
+        </h3>
+        <p>SetVar
+Defines a global variable for the duration of the next execution of a script.
+Notes:
+This differs from &lt;Block.SetVar()&gt; in that variables set using this procedure only last for the session,
+while those defined from the block object persist if it is ran multiple times.</p>
+<p>See Also:</p>
+<ul>
+<li>&lt;Block.SetVar()&gt;</li>
+</ul><h3 id="proc/Trim"><aside class="declaration">proc </aside>Trim<aside>(value) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L75">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 75"/></a></aside>
+        </h3>
+        <p>Trims strings and vectors down to an acceptable size, to prevent runaway memory usage</p><h3 id="proc/garbage_collect"><aside class="declaration">proc </aside>garbage_collect<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L84">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 84"/></a></aside>
+        </h3>
+        <p>Sets ourselves to Garbage Collect.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/3ce13d31f709fc4bb41e52ada95c9944f7f1419d">3ce13d3</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

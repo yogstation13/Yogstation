@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;TCS_Compiler - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/TCS_Compiler.html#var">Var Details</a> - <a href="datum/TCS_Compiler.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/TCS_Compiler.html">TCS_Compiler</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Implementations/telecomms_translator.dm#L45">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Implementations&#x2F;telecomms_translator.dm 45"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/TCS_Compiler.html#var/Holder">Holder</a></th><td>The telecomms server that is running the code.</td></tr>
+            <tr><th><a href="datum/TCS_Compiler.html#var/ready">ready</a></th><td>Boolean on whether it's ready to run code.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/TCS_Compiler.html#proc/Compile">Compile</a></th><td>Compile a raw block of text.</td></tr>
+            <tr><th><a href="datum/TCS_Compiler.html#proc/Run">Run</a></th><td>Current allowed span classes</td></tr>
+            <tr><th><a href="datum/TCS_Compiler.html#proc/garbage_collect">garbage_collect</a></th><td>Set ourselves to Garbage Collect.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/Holder"><aside class="declaration">var </aside>Holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/telecomms/server</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Implementations/telecomms_translator.dm#L48">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Implementations&#x2F;telecomms_translator.dm 48"/></a></h3>
+        <p>The telecomms server that is running the code.</p><h3 id="var/ready"><aside class="declaration">var </aside>ready
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Implementations/telecomms_translator.dm#L50">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Implementations&#x2F;telecomms_translator.dm 50"/></a></h3>
+        <p>Boolean on whether it's ready to run code.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Compile"><aside class="declaration">proc </aside>Compile<aside>(code) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Implementations/telecomms_translator.dm#L62">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Implementations&#x2F;telecomms_translator.dm 62"/></a></aside>
+        </h3>
+        <p>Compile a raw block of text.</p><h3 id="proc/Run"><aside class="declaration">proc </aside>Run<aside>(/<a href="datum.html">datum</a>/<a href="datum/signal/subspace.html">signal/subspace</a>/vocal/signal) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Implementations/telecomms_translator.dm#L163">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Implementations&#x2F;telecomms_translator.dm 163"/></a></aside>
+        </h3>
+        <p>Current allowed span classes</p>
+<p>Language bitflags
+(Following comment written 26 Jan 2019)
+So, language doesn't work with bitflags anymore
+But having them be bitflags inside of NTSL makes more sense in its context
+So, when we get the signal back from NTSL, if the language has been altered, we'll set it to a new language datum,
+based on the bitflag the guy used.</p>
+<p>However, I think the signal can only have one language
+So, the lowest bit set within $language overrides any higher ones that are set.</p>
+<p>Executes the Compiled code on an incoming signal.</p><h3 id="proc/garbage_collect"><aside class="declaration">proc </aside>garbage_collect<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Implementations/telecomms_translator.dm#L55">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Implementations&#x2F;telecomms_translator.dm 55"/></a></aside>
+        </h3>
+        <p>Set ourselves to Garbage Collect.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/3ce13d31f709fc4bb41e52ada95c9944f7f1419d">3ce13d3</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

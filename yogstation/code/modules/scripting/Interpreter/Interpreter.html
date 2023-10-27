@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define">Define Details</a></header>
+<main>
+<h1>yogstation/code/modules/scripting/Interpreter/Interpreter.dm 
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/RETURNING">RETURNING</a></th><td>Indicates that the current function is returning a value.</td></tr>
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/BREAKING">BREAKING</a></th><td>Indicates that the current loop is being terminated.</td></tr>
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/CONTINUING">CONTINUING</a></th><td>Indicates that the rest of the current iteration of a loop is being skipped.</td></tr>
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/RESET_STATUS">RESET_STATUS</a></th><td>Indicates that we are entering a new function and the allowed_status var should be cleared</td></tr>
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/MAX_STATEMENTS">MAX_STATEMENTS</a></th><td>Maximum amount of statements that can be called in one execution. this is to prevent massive crashes and exploitation</td></tr>
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/MAX_ITERATIONS">MAX_ITERATIONS</a></th><td>Max number of uninterrupted loops possible</td></tr>
+        <tr><th><a href="yogstation/code/modules/scripting/Interpreter/Interpreter.html#define/MAX_RECURSION">MAX_RECURSION</a></th><td>&lt;ax recursions without returning anything (or completing the code block)</td></tr>
+        <tr><th><a href="datum&#x2F;n_Interpreter.html">&#x2F;datum&#x2F;n_Interpreter</a></th><td>n_Interpreter
+Procedures allowing for interaction with the script that is being run by the interpreter object.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/BREAKING"><aside class="declaration">#define </aside>BREAKING
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L7">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 7"/></a>
+    </h3>
+    <p>Indicates that the current loop is being terminated.</p><h3 id="define/CONTINUING"><aside class="declaration">#define </aside>CONTINUING
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L9">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 9"/></a>
+    </h3>
+    <p>Indicates that the rest of the current iteration of a loop is being skipped.</p><h3 id="define/MAX_ITERATIONS"><aside class="declaration">#define </aside>MAX_ITERATIONS
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L24">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 24"/></a>
+    </h3>
+    <p>Max number of uninterrupted loops possible</p><h3 id="define/MAX_RECURSION"><aside class="declaration">#define </aside>MAX_RECURSION
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L26">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 26"/></a>
+    </h3>
+    <p>&lt;ax recursions without returning anything (or completing the code block)</p><h3 id="define/MAX_STATEMENTS"><aside class="declaration">#define </aside>MAX_STATEMENTS
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L22">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 22"/></a>
+    </h3>
+    <p>Maximum amount of statements that can be called in one execution. this is to prevent massive crashes and exploitation</p><h3 id="define/RESET_STATUS"><aside class="declaration">#define </aside>RESET_STATUS
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L11">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 11"/></a>
+    </h3>
+    <p>Indicates that we are entering a new function and the allowed_status var should be cleared</p><h3 id="define/RETURNING"><aside class="declaration">#define </aside>RETURNING
+            <a href="https://github.com/yogstation13/Yogstation/blob/3ce13d31f709fc4bb41e52ada95c9944f7f1419d/yogstation/code/modules/scripting/Interpreter/Interpreter.dm#L5">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting&#x2F;Interpreter&#x2F;Interpreter.dm 5"/></a>
+    </h3>
+    <p>Indicates that the current function is returning a value.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/3ce13d31f709fc4bb41e52ada95c9944f7f1419d">3ce13d3</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
