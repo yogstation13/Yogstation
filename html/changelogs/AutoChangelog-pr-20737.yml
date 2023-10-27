@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds restricted ghost beacons"
-  - tweak: "reverts all existing ghost beacons to being unrestricted"
