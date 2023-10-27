@@ -59,6 +59,8 @@
 
 /obj/machinery/computer/update_appearance(updates)
 	. = ..()
+	if(special) //always centered
+		return
 	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
 	if(pixel_x == 0 && pixel_y == 0)
 		// this bit of code makes the computer hug the wall its next to
