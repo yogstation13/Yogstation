@@ -15,7 +15,7 @@
 	var/heat = 0 // To allow warp effects
 	var/busy //If the staff is currently being used by something
 	var/selected_spell
-	var/datum/action/innate/slab/slab_ability //the slab's current bound ability, for certain scripture
+	var/datum/action/innate/staff/staff_ability //the staff's current bound ability, for certain scripture
 	var/list/quickbound = list(/datum/clockwork_scripture/ranged_ability/kindle)
 	var/maximum_quickbound = 5 // 5 because we only have 3 spells right now. 
 
@@ -24,7 +24,7 @@
 	desc = "A Psykers staff, used to channel the powers of the warp with dealy prowess, or blow themselves up. More often the latter."
 
 ///////////////////////////////////////////////////////////////////////////////////
-// Below follow the utter nonsense of trying to make the staff work sorta like a slab
+// Below follow the utter nonsense of trying to make the staff work sorta like a staff
 ///////////////////////////////////////////////////////////////////////////////////
 
 /datum/action/innate/staff
@@ -91,8 +91,8 @@
 /obj/item/staff/psyker/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(isliving(loc))
-		slab_ability.unset_ranged_ability(loc)
-	slab_ability = null
+		staff_ability.unset_ranged_ability(loc)
+	staff_ability = null
 	return ..()
 
 /obj/item/staff/psyker/dropped(mob/user, slot)
@@ -111,9 +111,9 @@
 
 /obj/item/staff/psyker/proc/check_on_mob(mob/user, slot)
 	if(!user)
-		CRASH("No user on dropped slab.")
-	if(slab_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
-		slab_ability.unset_ranged_ability(user)
+		CRASH("No user on dropped staff.")
+	if(staff_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
+		staff_ability.unset_ranged_ability(user)
 	if(!LAZYFIND(user.held_items, src))
 		update_quickbind(user, TRUE)
 ///////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@
 	var/channel_time = 1 SECONDS //In seconds, how long a ritual takes to chant
 	var/obj/item/staff/psyker/staff //The parent staff
 	var/mob/living/invoker //The staff's holder
-	var/quickbind = FALSE //if this scripture can be quickbound to a clockwork slab
+	var/quickbind = FALSE //if this scripture can be quickbound to a clockwork staff
 	var/quickbind_desc = "This shouldn't be quickbindable. File a bug report!"
 	var/primary_component
 	var/chant_slowdown = 0 //slowdown added while channeling
@@ -141,21 +141,21 @@
 
 /datum/clockwork_scripture/proc/run_scripture()
 	var/successful = FALSE
-    if(slab.busy)
-        to_chat(invoker, span_warning("[slab] refuses to work, displaying the message: \"[slab.busy]!\""))
+    if(staff.busy)
+        to_chat(invoker, span_warning("[staff] refuses to work, displaying the message: \"[staff.busy]!\""))
         return FALSE
     pre_recital()
-    slab.busy = "Invocation ([name]) in progress"
-    channel_time *= slab.speed_multiplier
+    staff.busy = "Invocation ([name]) in progress"
+    channel_time *= staff.speed_multiplier
     if(!recital() || !check_special_requirements() || !scripture_effects()) //if we fail any of these, refund components used
         adjust_clockwork_power(power_cost)
-        update_slab_info()
+        update_staff_info()
     else
         successful = TRUE
-        if(slab) //if the slab exists, record spell usage
+        if(staff) //if the staff exists, record spell usage
             SSblackbox.record_feedback("tally", "clockcult_scripture_recited", 1, name)
-	if(slab)
-		slab.busy = null
+	if(staff)
+		staff.busy = null
 	post_recital()
 	qdel(src)
 	return successful
@@ -167,7 +167,7 @@
 	if(chant_slowdown)
 		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
 	if(!do_after(invoker, channel_time, invoker, timed_action_flags = (no_mobility ? IGNORE_USER_LOC_CHANGE : NONE), extra_checks = CALLBACK(src, PROC_REF(check_special_requirements))))
-		slab.busy = null
+		staff.busy = null
 		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
         scripture_fail()
 		return
@@ -187,8 +187,8 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 /datum/clockwork_scripture/ranged_ability
-	var/slab_overlay
-	var/ranged_type = /datum/action/innate/slab
+	var/staff_overlay
+	var/ranged_type = /datum/action/innate/staff
 	var/ranged_message = "This is a huge goddamn bug, how'd you cast this?"
 	var/timeout_time = 0
 	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
@@ -199,43 +199,43 @@
 	return ..()
 
 /datum/clockwork_scripture/ranged_ability/scripture_effects()
-	if(slab_overlay)
-		slab.add_overlay(slab_overlay)
-		slab.item_state = "clockwork_slab"
-		slab.lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
-		slab.righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
-		slab.inhand_overlay = slab_overlay
-	slab.slab_ability = new ranged_type(slab)
-	slab.slab_ability.slab = slab
-	slab.slab_ability.set_ranged_ability(invoker, ranged_message)
+	if(staff_overlay)
+		staff.add_overlay(staff_overlay)
+		staff.item_state = "clockwork_staff"
+		staff.lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
+		staff.righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+		staff.inhand_overlay = staff_overlay
+	staff.staff_ability = new ranged_type(staff)
+	staff.staff_ability.staff = staff
+	staff.staff_ability.set_ranged_ability(invoker, ranged_message)
 	invoker.update_inv_hands()
 	var/end_time = world.time + timeout_time
 	var/successful = FALSE
 	if(timeout_time)
-		progbar = new(invoker, timeout_time, slab)
+		progbar = new(invoker, timeout_time, staff)
 	var/turf/T = get_turf(invoker)
-	while(slab && slab.slab_ability && !slab.slab_ability.finished && (slab.slab_ability.in_progress || !timeout_time || world.time <= end_time) && \
+	while(staff && staff.staff_ability && !staff.staff_ability.finished && (staff.staff_ability.in_progress || !timeout_time || world.time <= end_time) && \
 		(allow_mobility || (can_recite() && T == get_turf(invoker))))
 		if(progbar)
-			if(slab.slab_ability.in_progress)
+			if(staff.staff_ability.in_progress)
 				qdel(progbar)
 			else
 				progbar.update(end_time - world.time)
 		stoplag(1)
-	if(slab)
-		if(slab.slab_ability)
-			successful = slab.slab_ability.successful
-			if(!slab.slab_ability.finished && invoker)
+	if(staff)
+		if(staff.staff_ability)
+			successful = staff.staff_ability.successful
+			if(!staff.staff_ability.finished && invoker)
 				invoker.client?.mouse_override_icon = initial(invoker.client?.mouse_pointer_icon)
 				invoker.update_mouse_pointer()
 				invoker.click_intercept = null
-		slab.cut_overlays()
-		slab.item_state = initial(slab.item_state)
-		slab.item_state = initial(slab.lefthand_file)
-		slab.item_state = initial(slab.righthand_file)
-		slab.inhand_overlay = null
+		staff.cut_overlays()
+		staff.item_state = initial(staff.item_state)
+		staff.item_state = initial(staff.lefthand_file)
+		staff.item_state = initial(staff.righthand_file)
+		staff.inhand_overlay = null
 		invoker?.update_inv_hands()
-	return successful //slab doesn't look like a word now.
+	return successful //staff doesn't look like a word now.
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Below is kindle, hopefully it will be a different spell soon
@@ -244,7 +244,7 @@
 /datum/clockwork_scripture/ranged_ability/kindle
 	descname = "Short-Range Single-Target Stun"
 	name = "Kindle"
-	desc = "Charges your slab with divine energy, allowing you to overwhelm a target with Ratvar's light."
+	desc = "Charges your staff with divine energy, allowing you to overwhelm a target with Ratvar's light."
 	invocations = list("Divinity, show them your light!")
 	whispered = TRUE
 	channel_time = 40
@@ -253,11 +253,11 @@
 	tier = SCRIPTURE_DRIVER
 	primary_component = BELLIGERENT_EYE
 	sort_priority = 4
-	slab_overlay = "volt"
-	ranged_type = /datum/action/innate/slab/kindle
-	ranged_message = "<span class='brass'><i>You charge the clockwork slab with divine energy.</i>\n\
+	staff_overlay = "volt"
+	ranged_type = /datum/action/innate/staff/kindle
+	ranged_message = "<span class='brass'><i>You charge the clockwork staff with divine energy.</i>\n\
 	<b>Left-click a target within melee range to stun!\n\
-	Click your slab to cancel.</b></span>"
+	Click your staff to cancel.</b></span>"
 	timeout_time = 50
 	chant_slowdown = 1
 	no_mobility = FALSE
@@ -265,10 +265,10 @@
 	quickbind = TRUE
 	quickbind_desc = "Stuns and mutes a target from a short range."
 
-/datum/action/innate/slab/kindle
+/datum/action/innate/staff/kindle
 	ranged_mousepointer = 'icons/effects/mouse_pointers/volt_target.dmi'
 
-/datum/action/innate/slab/kindle/do_ability(mob/living/caller, params, atom/clicked_on)
+/datum/action/innate/staff/kindle/do_ability(mob/living/caller, params, atom/clicked_on)
 	var/turf/T = caller.loc
 	if(!isturf(T))
 		return FALSE
