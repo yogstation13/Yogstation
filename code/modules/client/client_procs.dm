@@ -402,7 +402,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] ([address]) is connecting here for the first time.")
-			log_mentor("New user: [key_name_admin(src)] ([address]) is connecting here for the first time, and might need help.")
+			to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, "New user: [key_name_admin(src)] is connecting here for the first time, and might need help.", confidential=TRUE)
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)
