@@ -15,6 +15,7 @@
 	var/no_splash = FALSE //If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
 	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
 	var/obj/item/assembly/prox_sensor/landminemode = null
+	var/can_dismantle = TRUE
 
 /obj/item/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
@@ -52,27 +53,7 @@
 /obj/item/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(istype(I,/obj/item/assembly) && stage == GRENADE_WIRED)
 		wires.interact(user)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(stage == GRENADE_WIRED)
-			if(beakers.len)
-				I.play_tool_sound(src, 25)
-				to_chat(user, span_notice("You begin to secure the grenade assembly."))
-				if(do_after(user, 3 SECONDS, src))
-					embedding = initial(embedding)
-					stage_change(GRENADE_READY)
-					to_chat(user, span_notice("You lock the [initial(name)] assembly."))
-			else
-				to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
-		else if(stage == GRENADE_READY)
-			det_time = det_time == 50 ? 30 : 50 //toggle between 30 and 50
-			if(landminemode)
-				landminemode.time = det_time * 0.1	//overwrites the proxy sensor activation timer
-
-			to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
-		else
-			to_chat(user, span_warning("You need to add a wire!"))
-		return
-	else if(stage == GRENADE_WIRED && is_type_in_list(I, allowed_containers))
+	if(stage == GRENADE_WIRED && is_type_in_list(I, allowed_containers))
 		. = TRUE //no afterattack
 		if(is_type_in_list(I, banned_containers))
 			to_chat(user, span_warning("[src] is too small to fit [I]!")) // this one hits home huh anon?
@@ -101,11 +82,42 @@
 			to_chat(user, span_warning("You need one length of coil to wire the assembly!"))
 			return
 
-	else if(stage == GRENADE_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		stage_change(GRENADE_WIRED)
-		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+	else
+		return ..()
 
-	else if(stage == GRENADE_WIRED && I.tool_behaviour == TOOL_WRENCH)
+/obj/item/grenade/chem_grenade/screwdriver_act(mob/living/user, obj/item/I)
+	SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), user, I)
+	if(stage == GRENADE_WIRED)
+		if(beakers.len)
+			I.play_tool_sound(src, 25)
+			to_chat(user, span_notice("You begin to secure the grenade assembly."))
+			if(I.use_tool(src, user, 3 SECONDS))
+				embedding = initial(embedding)
+				stage_change(GRENADE_READY)
+				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
+		else
+			to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
+	else if(stage == GRENADE_READY)
+		det_time = det_time == 50 ? 30 : 50 //toggle between 30 and 50
+		if(landminemode)
+			landminemode.time = det_time * 0.1	//overwrites the proxy sensor activation timer
+
+		to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
+	else
+		to_chat(user, span_warning("You need to add a wire!"))
+
+/obj/item/grenade/chem_grenade/wirecutter_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(stage == GRENADE_READY && !active)
+		if(can_dismantle)
+			stage_change(GRENADE_WIRED)
+			to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
+		else
+			to_chat(user, span_notice("There's no way to open [src]'s assembly."))
+	
+/obj/item/grenade/chem_grenade/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(stage == GRENADE_WIRED)
 		if(beakers.len)
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
@@ -120,8 +132,6 @@
 		new /obj/item/stack/cable_coil(get_turf(src),1)
 		stage_change(GRENADE_EMPTY)
 		to_chat(user, span_notice("You remove the activation mechanism from the [initial(name)] assembly."))
-	else
-		return ..()
 
 /obj/item/grenade/chem_grenade/proc/stage_change(N)
 	if(N)
@@ -426,6 +436,7 @@
 	name = "cleaner grenade"
 	desc = "Waffle Co.-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	stage = GRENADE_READY
+	can_dismantle = FALSE
 
 /obj/item/grenade/chem_grenade/ez_clean/Initialize(mapload)
 	. = ..()
