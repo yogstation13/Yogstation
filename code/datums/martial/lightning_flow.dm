@@ -87,6 +87,10 @@
 	H.SetKnockdown(0)
 	switch(action_type)
 		if(INTENT_DISARM)
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				if(H.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
+					return FALSE
 			dropkick(target, H, throwingdatum)
 		if(INTENT_GRAB)
 			target.grabbedby(H)
