@@ -14,6 +14,7 @@
 	light_range = 2
 	light_power = 1
 	light_on = TRUE
+	var/special = FALSE
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
@@ -40,7 +41,7 @@
 	return 1
 
 /obj/machinery/computer/ratvar_act()
-	if(!clockwork)
+	if(!clockwork && !special)
 		clockwork = TRUE
 		icon_screen = "ratvar[rand(1, 4)]"
 		icon_keyboard = "ratvar_key[rand(1, 6)]"
@@ -86,6 +87,8 @@
 
 /obj/machinery/computer/update_overlays()
 	. = ..()
+	if(special)
+		return
 	if(stat & NOPOWER)
 		. += "[icon_keyboard]_off"
 		return

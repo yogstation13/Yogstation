@@ -1,4 +1,4 @@
-/datum/action/cooldown/spell/toggle/thrall_net
+/datum/action/cooldown/spell/pointed/thrall_net
 	name = "Thrall net"
 	desc = "Call up your boys."
 	panel = null
@@ -6,48 +6,39 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "pass"
-	sound = 'sound/magic/staff_door.ogg'
+	button_icon_state = "sacrament"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
+	cooldown_time = 1 MINUTE
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	var/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/orb
+	cast_range = 2
+	var/casting = FALSE
+	var/cast_time = 2 SECONDS
 
-
-/datum/action/cooldown/spell/toggle/thrall_net/Grant(mob/grant_to)
-	. = ..()
-	orb = new()
-
-/datum/action/cooldown/spell/toggle/thrall_net/Remove(mob/living/remove_from)
-	qdel(orb)
-	. = ..()
-
-/datum/action/cooldown/spell/toggle/thrall_net/process()
-	active = owner.is_holding_item_of_type(/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn)
-	. = ..()
-
-/datum/action/cooldown/spell/toggle/thrall_net/can_cast_spell(feedback)
-	if(!owner.get_empty_held_indexes())
-		if(feedback)
-			to_chat(owner, span_warning("You need an empty hand for this!"))
+/datum/action/cooldown/spell/pointed/thrall_net/can_cast_spell(feedback)
+	if(casting)
 		return FALSE
 	. = ..()
 
-/datum/action/cooldown/spell/toggle/thrall_net/Enable()
+/datum/action/cooldown/spell/pointed/thrall_net/PreActivate(atom/target)
+	. = ..()
+	casting = TRUE
+	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
+	if(!do_after(owner, cast_time, target))
+		casting = FALSE
+		return 
+	casting = FALSE
+	
+/datum/action/cooldown/spell/pointed/thrall_net/cast(atom/cast_on)
 	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
-	owner.put_in_hands(orb)
+	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
+	new /obj/machinery/computer/camera_advanced/darkspawn(get_turf(cast_on))
+	
+/obj/machinery/computer/camera_advanced/darkspawn
+	networks = list("darkspawn")
+	light_on = FALSE
+	clicksound = "keyboard" //spookify this
+	use_power = NO_POWER_USE
+	flags_1 = NODECONSTRUCT_1
 
-/datum/action/cooldown/spell/toggle/thrall_net/Disable()
-	owner.visible_message(span_warning("The orb [owner] was holding puffed into shadows!"), span_velvet("You dispel your orb"))
-	orb.moveToNullspace()
-
-/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn
-	base_active_power_usage = 0
-	base_idle_power_usage = 0
-	has_light = FALSE
-	starting_files = list(/datum/computer_file/program/secureye/darkspawn)
-	initial_program = /datum/computer_file/program/secureye/darkspawn
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-
-/datum/computer_file/program/secureye/darkspawn
-	usage_flags = PROGRAM_ALL
-	network = list("darkspawn")
+/obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
+	return
