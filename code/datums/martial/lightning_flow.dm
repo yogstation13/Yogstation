@@ -88,8 +88,8 @@
 	switch(action_type)
 		if(INTENT_DISARM)
 			if(ishuman(target))
-				var/mob/living/carbon/human/H = target
-				if(H.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
+				var/mob/living/carbon/human/victim = target
+				if(victim.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
 					return FALSE
 			dropkick(target, H, throwingdatum)
 		if(INTENT_GRAB)
