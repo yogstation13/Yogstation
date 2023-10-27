@@ -9540,6 +9540,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"dXg" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "dXn" = (
 /obj/machinery/door/airlock/external{
 	name = "Construction Zone"
@@ -9722,6 +9731,17 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/fore)
+"eay" = (
+/obj/docking_port/stationary{
+	dir = 4;
+	dwidth = 11;
+	height = 22;
+	id = "whiteship_home";
+	name = "SS13: Auxiliary Dock, Station-Port";
+	width = 35
+	},
+/turf/open/space/basic,
+/area/space)
 "eaz" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -17493,12 +17513,6 @@
 	icon_state = "damaged5"
 	},
 /area/space/nearstation)
-"hBS" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "hBU" = (
 /obj/item/clothing/head/cone,
 /obj/effect/turf_decal/stripes/corner{
@@ -24063,6 +24077,20 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"kyZ" = (
+/obj/machinery/modular_computer/console/preset/engineering,
+/obj/machinery/camera{
+	c_tag = "Bridge - Main 3";
+	dir = 2
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "kza" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31446,17 +31474,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"nJP" = (
-/obj/machinery/modular_computer/console/preset/engineering,
-/obj/machinery/camera{
-	c_tag = "Bridge - Main 3";
-	dir = 2
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "nKe" = (
 /obj/structure/grille,
 /turf/open/floor/plating,
@@ -39595,6 +39612,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"rmo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "rms" = (
 /obj/structure/curtain{
 	pixel_y = 32
@@ -45144,17 +45175,6 @@
 "tGP" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"tGQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "tGT" = (
 /obj/structure/grille,
 /obj/structure/sign/warning/docking,
@@ -55737,7 +55757,6 @@
 	pixel_x = 3;
 	pixel_y = 2
 	},
-/obj/item/storage/box/deputy,
 /obj/item/storage/secure/safe/HoS{
 	pixel_x = 35
 	},
@@ -62254,7 +62273,7 @@ ylr
 ylr
 ylr
 ylr
-ylr
+eay
 ylr
 ylr
 ylr
@@ -103820,7 +103839,7 @@ mfu
 wYy
 dcX
 kfs
-tGQ
+rmo
 sfV
 ttj
 tnY
@@ -104077,7 +104096,7 @@ mqJ
 uuD
 eRv
 oKU
-hBS
+dXg
 eRv
 cFn
 cGE
@@ -104334,7 +104353,7 @@ kfw
 rMu
 eRv
 mfu
-nJP
+kyZ
 eRv
 cFn
 cFn

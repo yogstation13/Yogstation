@@ -6,10 +6,20 @@
 	item_state = "staff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi' //not really a gun and some toys use these inhands
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+
 	fire_sound = 'sound/weapons/emitter.ogg'
 	flags_1 =  CONDUCT_1
 	w_class = WEIGHT_CLASS_HUGE
-	var/checks_antimagic = TRUE
+	recoil = 0
+	spread = 0
+	clumsy_check = 0
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
+	pin = /obj/item/firing_pin/magic
+
+	var/antimagic_flags = MAGIC_RESISTANCE
 	var/max_charges = 6
 	var/charges = 0
 	var/recharge_rate = 8 // Seconds per charge
@@ -17,14 +27,6 @@
 	var/can_charge = TRUE
 	var/ammo_type
 	var/no_den_usage
-	recoil = 0
-	spread = 0
-	clumsy_check = 0
-	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
-	pin = /obj/item/firing_pin/magic
-
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi' //not really a gun and some toys use these inhands
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
 /obj/item/gun/magic/Initialize(mapload)
 	. = ..()
@@ -63,7 +65,7 @@
 			return
 		else
 			no_den_usage = 0
-	if(checks_antimagic && user.can_cast_magic())
+	if(!user.can_cast_magic(antimagic_flags))
 		add_fingerprint(user)
 		to_chat(user, span_warning("Something is interfering with [src]."))
 		return

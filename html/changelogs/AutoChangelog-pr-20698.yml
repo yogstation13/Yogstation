@@ -1,0 +1,5 @@
+author: " Scrambledeggs00 & Molti"
+delete-after: true 
+changes: 
+  - tweak: "Ethereals can now use wing potions"
+  - soundadd: "sprites for ethereal wings"

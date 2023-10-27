@@ -160,7 +160,7 @@
 			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun). Since you can print off .357 boxes now I'd honestly say it's like 5 TC, even that's an overestimation
 			new /obj/item/ammo_box/magazine/m50(src) //Spare mag for your gun. 1 TC.
 			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
-			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
+			new /obj/item/deployablemine/explosive(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
 			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
 
 		if("ninja")
@@ -657,6 +657,24 @@
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 
+/obj/item/storage/box/syndie_kit/pistolammo/random
+	real_name = "random 10mm magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m10mm,
+		/obj/item/ammo_box/magazine/m10mm/cs,
+		/obj/item/ammo_box/magazine/m10mm/sp,
+		/obj/item/ammo_box/magazine/m10mm/ap,
+		/obj/item/ammo_box/magazine/m10mm/hp,
+		/obj/item/ammo_box/magazine/m10mm/fire,
+		/obj/item/ammo_box/magazine/m10mm/emp
+	)
+
+	for(var/i in 1 to 4)
+		var/item = pick(item_list)
+		new item(src)
+
 /obj/item/storage/box/syndie_kit/pistolcaselessammo
 	real_name = "10mm caseless magazine box"
 
@@ -677,6 +695,23 @@
 /obj/item/storage/box/syndie_kit/revolverammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/a357(src)
+
+/obj/item/storage/box/syndie_kit/revolverammo/random
+	real_name = "random .357 speed loader box"
+
+/obj/item/storage/box/syndie_kit/revolverammo/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/a357,
+		/obj/item/ammo_box/a357/ironfeather,
+		/obj/item/ammo_box/a357/nutcracker,
+		/obj/item/ammo_box/a357/metalshock,
+		/obj/item/ammo_box/a357/heartpiercer,
+		/obj/item/ammo_box/a357/wallstake
+	)
+
+	for(var/i in 1 to 4)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo
 	real_name = ".357 Ironfeather speed loader box"

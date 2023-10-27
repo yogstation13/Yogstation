@@ -555,7 +555,6 @@
 		for(var/datum/antagonist/A in antag_datums)
 			objective = locate(href_list["obj_completed"]) in A.objectives
 			if(istype(objective))
-				objective = objective
 				break
 		if(!objective)
 			to_chat(usr,"Invalid objective.")
