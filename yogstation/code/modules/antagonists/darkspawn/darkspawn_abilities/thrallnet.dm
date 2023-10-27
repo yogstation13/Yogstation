@@ -20,13 +20,13 @@
 	. = ..()
 
 /datum/action/cooldown/spell/pointed/thrall_net/PreActivate(atom/target)
-	. = ..()
 	casting = TRUE
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 	if(!do_after(owner, cast_time, target))
 		casting = FALSE
-		return 
+		return FALSE
 	casting = FALSE
+	return ..()
 	
 /datum/action/cooldown/spell/pointed/thrall_net/cast(atom/cast_on)
 	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
