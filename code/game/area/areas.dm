@@ -32,7 +32,6 @@
 	var/clockwork_warp_allowed = TRUE // Can servants warp into this area from Reebe?
 	var/clockwork_warp_fail = "The structure there is too dense for warping to pierce. (This is normal in high-security areas.)"
 
-	var/actual_fire = FALSE //If true, theres an actual fire detected in this area
 	var/fire = FALSE //If true, that means one of any fire alarms in the area is active
 	var/atmos = TRUE
 	var/atmosalm = FALSE

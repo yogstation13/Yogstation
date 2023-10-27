@@ -34,6 +34,7 @@
 	var/buildstage = 2 // 2 = complete, 1 = no wires, 0 = circuit gone
 	var/last_alarm = 0
 	var/area/myarea = null
+	var/real_fire = FALSE
 
 	var/bad_temp = null //Current bad temperature
 
@@ -49,17 +50,10 @@
 	update_appearance(UPDATE_ICON)
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
+	STOP_PROCESSING(SSmachines, src) // I will do this
 
 /obj/machinery/firealarm/Destroy()
-	if(myarea.firealarms.len<2)
-		if(!myarea.actual_fire) //only lift the firedoors if there is no actual fire in the area
-			reset()
-		else
-			myarea.firereset(src, TRUE)
-	else if(!myarea.actual_fire && myarea.fire) //No actual fire and one of the fire alarms is active
-		reset()
-	else
-		myarea.firereset(src, TRUE)
+	myarea.firereset(src, TRUE)
 	LAZYREMOVE(myarea.firealarms, src)
 	return ..()
 
@@ -128,7 +122,7 @@
 
 /obj/machinery/firealarm/examine(mob/user)
 	. = ..()
-	if(myarea.actual_fire)
+	if(areafire_check())
 		. += span_danger("Fire detected in this area, current fire alarm temperature: [bad_temp+T0C]C")
 	else
 		. += span_notice("There's no fire detected.")
@@ -136,10 +130,24 @@
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	var/turf/open/T = get_turf(src)
 	if((temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST || temperature < BODYTEMP_COLD_DAMAGE_LIMIT || (istype(T) && T.turf_fire)) && (last_alarm+FIREALARM_COOLDOWN < world.time) && !(obj_flags & EMAGGED) && detecting && !stat)
-		myarea.actual_fire = TRUE
+		real_fire = TRUE
 		bad_temp = temperature
 		alarm()
+		START_PROCESSING(SSmachines, src)
 	..()
+
+/obj/machinery/firealarm/process() //Fire alarm only start processing when its triggered by temperature_expose()
+	var/turf/open/T = get_turf(src)
+	var/datum/gas_mixture/env = T.return_air()
+	if(env.return_temperature() < FIRE_MINIMUM_TEMPERATURE_TO_EXIST && env.return_temperature() > BODYTEMP_COLD_DAMAGE_LIMIT && (istype(T) && !T.turf_fire))
+		real_fire = FALSE
+		STOP_PROCESSING(SSmachines, src)
+
+/obj/machinery/firealarm/proc/areafire_check()
+	for(var/obj/machinery/firealarm/FA in myarea.firealarms)
+		if(FA.real_fire)
+			return TRUE
+	return FALSE
 
 /obj/machinery/firealarm/proc/alarm(mob/user)
 	if(!is_operational() || (last_alarm+FIREALARM_COOLDOWN > world.time))
@@ -155,7 +163,6 @@
 		return
 	for(var/obj/machinery/firealarm/F in myarea.firealarms)
 		F.myarea.firereset(F)
-		F.myarea.actual_fire = FALSE
 		F.bad_temp = null
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
@@ -166,6 +173,9 @@
 	add_fingerprint(user)
 	play_click_sound("button")
 	if(myarea.fire || myarea.party)
+		if(areafire_check() && !(obj_flags & EMAGGED))
+			to_chat(user, span_notice("There is a fire in this area, you cannot lift the fire doors."))
+			return
 		reset(user)
 	else
 		alarm(user)
@@ -314,15 +324,7 @@
 
 	. = ..()
 	if(.)
-		if(myarea.firealarms.len<2)
-			if(!myarea.actual_fire) //only lift the firedoors if there is no actual fire in the area
-				reset()
-			else
-				myarea.firereset(src, TRUE)
-		else if(!myarea.actual_fire && myarea.fire) //No actual fire and one of the air alarms is active
-			reset()
-		else
-			myarea.firereset(src, TRUE)
+		myarea.firereset(src, TRUE)
 		LAZYREMOVE(myarea.firealarms, src)
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
