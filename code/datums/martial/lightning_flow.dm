@@ -101,7 +101,7 @@
 /datum/martial_art/lightning_flow/proc/dropkick(mob/living/target, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	target.visible_message(span_danger("[H] dropkicks [target]!"), span_userdanger("[H] dropkicks you!"))
 	target.Knockdown(5 SECONDS)
-	damage(target, H, 15, TRUE, 5 SECONDS)
+	damage(target, H, 15, TRUE)
 	var/destination = throwingdatum.target
 	if(get_dist(target, destination) < 5)
 		destination = get_ranged_target_turf(get_turf(H), throwingdatum.init_dir, 5)
