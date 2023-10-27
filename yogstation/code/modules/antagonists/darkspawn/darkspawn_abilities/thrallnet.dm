@@ -11,7 +11,7 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/obj/item/modular_computer/tablet/phone/preset/advanced/darkspawn/orb
 	var/casting = FALSE
-	var/cast_time = 2 SECONDS
+
 
 /datum/action/cooldown/spell/toggle/thrall_net/Grant(mob/grant_to)
 	. = ..()
@@ -36,7 +36,7 @@
 
 /datum/action/cooldown/spell/toggle/thrall_net/before_cast(atom/cast_on)
 	casting = TRUE
-	if(!do_after(owner, cast_time, owner))
+	if(!do_after(owner, 2 SECONDS, owner))
 		casting = FALSE
 		return SPELL_CANCEL_CAST
 	casting = FALSE
