@@ -15,7 +15,7 @@
 	var/heat = 0 // To allow warp effects
 	var/busy //If the staff is currently being used by something
 	var/selected_spell
-	var/datum/action/innate/staff/staff_ability //the staff's current bound ability, for certain scripture
+	var/datum/action/innate/staff/staff_ability //the staff's current bound ability, for certain ability
 	var/list/quickbound = list(/datum/psyker_power/ranged_ability/mindcrush)
 	var/maximum_quickbound = 5 // 5 because we only have 3 spells right now. 
 
@@ -86,7 +86,7 @@
 /obj/item/staff/psyker/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/clock/quickbind)) //clock stuff below here
 		var/datum/action/item_action/clock/quickbind/Q = action
-		recite_scripture(quickbound[Q.scripture_index], user, FALSE)
+		recite_ability(quickbound[Q.ability_index], user, FALSE)
 
 /obj/item/staff/psyker/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -121,13 +121,13 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 /datum/psyker_power
-	var/descname = "useless" //a simple name for the scripture's effect
-	var/name = "scripture"
+	var/descname = "useless" //a simple name for the ability's effect
+	var/name = "ability"
 	var/desc = "Ancient Ratvarian lore. This piece seems particularly mundane."
 	var/channel_time = 1 SECONDS //In seconds, how long a ritual takes to chant
 	var/obj/item/staff/psyker/staff //The parent staff
 	var/mob/living/invoker //The staff's holder
-	var/quickbind = TRUE //if this scripture can be quickbound to a staff
+	var/quickbind = TRUE //if this ability can be quickbound to a staff
 	var/quickbind_desc = "This shouldn't be quickbindable. File a bug report!"
 	var/chant_slowdown = 0 //slowdown added while channeling
 	var/no_mobility = FALSE //if false user can move while channeling
@@ -138,7 +138,7 @@
 /datum/psyker_power/proc/creation_update() //updates any on-creation effects
 	return FALSE //return TRUE if updated
 
-/datum/psyker_power/proc/run_scripture()
+/datum/psyker_power/proc/run_ability()
 	var/successful = FALSE
     if(staff.busy)
         to_chat(invoker, span_warning("[staff] refuses to work, displaying the message: \"[staff.busy]!\""))
@@ -146,7 +146,7 @@
     pre_recital()
     staff.busy = "A spell of ([name]) is in progress"
     channel_time *= staff.speed_multiplier
-    if(!recital() || !scripture_effects()) //if we fail any of these, refund components used
+    if(!recital() || !ability_effects()) //if we fail any of these, refund components used
         update_staff_info()
     else
         successful = TRUE
@@ -165,18 +165,18 @@
 	if(!do_after(invoker, channel_time, invoker, timed_action_flags = (no_mobility ? IGNORE_USER_LOC_CHANGE : NONE)))
 		staff.busy = null
 		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
-        scripture_fail()
+        ability_fail()
 		return
 	invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 	return TRUE
 
-/datum/psyker_power/proc/scripture_effects() //The actual effects of the recital after its conclusion
+/datum/psyker_power/proc/ability_effects() //The actual effects of the recital after its conclusion
 
-/datum/psyker_power/proc/scripture_fail() //Called if the scripture fails to invoke.
+/datum/psyker_power/proc/ability_fail() //Called if the ability fails to invoke.
 
-/datum/psyker_power/proc/pre_recital() //Called before the scripture is recited
+/datum/psyker_power/proc/pre_recital() //Called before the ability is recited
 
-/datum/psyker_power/proc/post_recital() //Called after the scripture is recited
+/datum/psyker_power/proc/post_recital() //Called after the ability is recited
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Framework for ranged spells, in case of close ranged spells in the future.
@@ -195,7 +195,7 @@
 	qdel(progbar)
 	return ..()
 
-/datum/psyker_power/ranged_ability/scripture_effects()
+/datum/psyker_power/ranged_ability/ability_effects()
 	if(staff_overlay)
 		staff.add_overlay(staff_overlay)
 		staff.item_state = ""
