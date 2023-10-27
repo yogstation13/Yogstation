@@ -71,8 +71,6 @@
 	var/max_bays = 0
 	/// Idle programs on background. They still receive process calls but can't be interacted with.
 	var/list/idle_threads
-	/// Controls if we want overlays drawn or not (useful if something is meant to function like a pda, but uses a different sprite)
-	var/no_overlays = FALSE
 	/// Object that represents our computer. It's used for Adjacent() and UI visibility checks.
 	var/obj/physical = null
 	///If the computer has a flashlight/LED light/what-have-you installed
@@ -273,9 +271,6 @@
 /obj/item/modular_computer/update_icon(updates=ALL)
 	. = ..()
 	if(!physical)
-		return
-
-	if(no_overlays)
 		return
 
 	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
