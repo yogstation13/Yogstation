@@ -50,7 +50,7 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_knock/proc/on_mansus_grasp(mob/living/source, atom/target)
-	//SIGNAL_HANDLER
+	//SIGNAL_HANDLER - if this is uncommented the whole thing explodes like flesh grasp 
 
 	if(isopenturf(target))//prevent use on tiles
 		return COMPONENT_BLOCK_HAND_USE
