@@ -8942,10 +8942,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/storage)
-"cdf" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/exit)
 "cdi" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/atmospherics/miner/toxins,
@@ -17758,15 +17754,6 @@
 	},
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
-"eME" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high/plus,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
 "eMF" = (
 /obj/structure/cable{
@@ -29001,6 +28988,16 @@
 "iss" = (
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
+"isA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "isE" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Auxillary Art Storage"
@@ -30293,12 +30290,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"iOz" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/crowbar/red,
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/exit)
 "iOH" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -35056,6 +35047,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"kmi" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "kmo" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -56487,6 +56491,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"rce" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/crowbar/red,
+/turf/open/floor/plasteel/dark,
+/area/escapepodbay)
 "rcg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -56839,12 +56849,6 @@
 	},
 /turf/open/floor/grass,
 /area/maintenance/starboard/aft)
-"rgk" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "rgl" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -61981,6 +61985,10 @@
 	},
 /turf/open/floor/plating,
 /area/clerk)
+"sFM" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/dark,
+/area/escapepodbay)
 "sFQ" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 4
@@ -66545,6 +66553,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"tZU" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/escapepodbay)
 "uac" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -68302,6 +68316,12 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+"uDJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "uDZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -68311,6 +68331,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"uEl" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high/plus,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/dark,
+/area/escapepodbay)
 "uEH" = (
 /obj/structure/sign/poster/official/love_ian,
 /turf/closed/wall/r_wall,
@@ -69070,17 +69099,6 @@
 /obj/machinery/papershredder,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"uRX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "uRZ" = (
 /obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/bot,
@@ -123073,11 +123091,11 @@ msb
 msb
 msb
 msb
-aNY
-aNY
-aNY
-aNY
-aNY
+wgX
+wgX
+wgX
+wgX
+wgX
 aNY
 aNY
 aNY
@@ -123330,8 +123348,8 @@ msb
 msb
 msb
 msb
-aNY
-cdf
+wgX
+sFM
 aXI
 sVl
 msW
@@ -123350,10 +123368,10 @@ wUF
 shY
 shY
 wkz
+isA
 shY
 shY
-shY
-uRX
+kmi
 iln
 shY
 shY
@@ -123587,9 +123605,9 @@ msb
 msb
 msb
 msb
-aNY
-iOz
-rgk
+wgX
+rce
+tZU
 srH
 eMp
 aNY
@@ -123607,10 +123625,10 @@ pVj
 ajX
 ajX
 hNR
+huV
 ajX
 ajX
-ajX
-ajX
+uDJ
 hNR
 ajX
 ajX
@@ -123844,9 +123862,9 @@ msb
 msb
 msb
 msb
-aNY
-eME
-rgk
+wgX
+uEl
+tZU
 srH
 arR
 aNY
@@ -124101,7 +124119,7 @@ msb
 msb
 msb
 msb
-aNY
+wgX
 wWP
 oWp
 srH
@@ -124358,7 +124376,7 @@ msb
 msb
 msb
 msb
-aNY
+wgX
 vuM
 ozN
 ozN
@@ -124615,7 +124633,7 @@ msb
 msb
 msb
 msb
-aNY
+wgX
 aOQ
 uam
 uam
