@@ -48,6 +48,8 @@ GLOBAL_LIST_EMPTY(donators)
 	//As of October 27th, 2023 taglines.txt is no longer used in the status because we never had the characters to spare it, so it would put 2-3 random characters at the end and look bad.
 
 	//PLAYER COUNT
+
+	/*
 	var/players = GLOB.clients.len
 	var/popcaptext = ""
 	if(players)
@@ -58,10 +60,16 @@ GLOBAL_LIST_EMPTY(donators)
 
 	s += "\[[popcaptext][queuetext]"
 
+	*/
+
+	/*
+	
 	//HOST
 	var/hostedby = CONFIG_GET(string/hostedby)
 	if (!host && hostedby)
 		s += " hosted by <b>[hostedby]</b>"
+
+	*/
 
 	//RETURN
 	status = s
