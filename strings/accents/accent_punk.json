@@ -69,7 +69,7 @@
 		"\bmorgue\b": "recycling",
 		"\bcrematorium\b": "recycling",
 		"\bninja\b": "ronin",
-		"\bassasin\b": "samurai",
+		"\bassassin\b": "samurai",
 		"\broboticist\b": "ripper",
 		"\brobotics\b": "the ripperdoc",
 		"\brobo\b": "ripper",
