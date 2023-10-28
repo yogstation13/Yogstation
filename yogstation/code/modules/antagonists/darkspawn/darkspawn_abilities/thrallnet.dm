@@ -35,6 +35,7 @@
 	casting = FALSE
 	
 /datum/action/cooldown/spell/pointed/thrall_net/cast(atom/cast_on)
+	. = ..()
 	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	new /obj/machinery/computer/camera_advanced/darkspawn(get_turf(cast_on))
