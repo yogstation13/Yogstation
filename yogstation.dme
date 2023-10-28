@@ -1542,6 +1542,7 @@
 #include "code\modules\admin\team_panel.dm"
 #include "code\modules\admin\topic.dm"
 #include "code\modules\admin\whitelist.dm"
+#include "code\modules\admin\admin_events\admin_events.dm"
 #include "code\modules\admin\permissions\database.dm"
 #include "code\modules\admin\permissions\forums.dm"
 #include "code\modules\admin\permissions\permissions.dm"
