@@ -46,7 +46,7 @@
 	max_integrity = 200
 	integrity_failure = 0
 	light_power = -1
-	light_color = '#21007F'
+	light_color = "#21007F"
 	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
 
