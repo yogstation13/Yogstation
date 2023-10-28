@@ -21,6 +21,7 @@
 	///images currently in use on obscured turfs.
 	var/list/active_static_images = list()
 
+	var/changed = FALSE
 	var/x = 0
 	var/y = 0
 	var/z = 0
@@ -29,7 +30,8 @@
 /datum/camerachunk/proc/add(mob/camera/aiEye/eye)
 	eye.visibleCameraChunks += src
 	seenby += eye
-	update(eye.networks)
+	if(changed)
+		update()
 
 	var/client/client = eye.GetViewerClient()
 	if(client && eye.use_static)
@@ -54,17 +56,18 @@
  * Updates the chunk, makes sure that it doesn't update too much. If the chunk isn't being watched it will
  * instead be flagged to update the next time an AI Eye moves near it.
  */
-/datum/camerachunk/proc/hasChanged()
-	for(var/mob/camera/aiEye/eye as anything in seenby)
-		if(eye && istype(eye))
-			addtimer(CALLBACK(src, PROC_REF(update), eye.networks), UPDATE_BUFFER_TIME, TIMER_UNIQUE)
+/datum/camerachunk/proc/hasChanged(update_now = 0)
+	if(seenby.len || update_now)
+		addtimer(CALLBACK(src, PROC_REF(update)), UPDATE_BUFFER_TIME, TIMER_UNIQUE)
+	else
+		changed = TRUE
 
 /// The actual updating. It gathers the visible turfs from cameras and puts them into the appropiate lists.
-/datum/camerachunk/proc/update(list/networks = list("ss13"))
+/datum/camerachunk/proc/update()
 	var/list/updated_visible_turfs = list()
 
 	for(var/obj/machinery/camera/current_camera as anything in cameras)
-		if(!current_camera || !current_camera.can_use() || (!LAZYLEN(current_camera.network & networks)))
+		if(!current_camera || !current_camera.can_use())
 			continue
 
 		var/turf/point = locate(src.x + (CHUNK_SIZE / 2), src.y + (CHUNK_SIZE / 2), src.z)
@@ -82,7 +85,7 @@
 
 	for(var/mob/camera/aiEye/client_eye as anything in seenby)
 		var/client/client = client_eye.ai?.client || client_eye.client
-		if(!client || (!LAZYLEN(client_eye.networks & networks)))
+		if(!client)
 			continue
 
 		client.images -= active_static_images
@@ -115,12 +118,14 @@
 
 	visibleTurfs = updated_visible_turfs
 
+	changed = FALSE
+
 	for(var/mob/camera/aiEye/client_eye as anything in seenby)
 		var/client/client = client_eye.ai?.client || client_eye.client
 		if(!client)
 			continue
 
-		client.images |= active_static_images
+		client.images += active_static_images
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
 /datum/camerachunk/New(x, y, z)
