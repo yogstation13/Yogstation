@@ -171,10 +171,6 @@
 	var/visible_icon = 0
 	var/image/user_image = null
 	var/nightvision = FALSE
-	//use these variables to keep track of their previous sight
-	var/old_see_invis
-	var/old_sight
-	var/old_see_dark
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
