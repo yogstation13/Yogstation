@@ -26,25 +26,15 @@
 	var/learn_text
 	///what tab of the antag menu does it fall under
 	var/menu_tab
+	///The owner of the psi_web datum that effects will be applied to
+	var/mob/living/owner
 	///The antag datum of the owner(used for modifying)
 	var/datum/antagonist/darkspawn/darkspawn
 
-///Check to see if they should be shown the ability
-/datum/psi_web/proc/check_show(mob/user)
-	if(!menu_tab && shadow_flags)
-		return FALSE
-	darkspawn = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
-	if(!darkspawn)
-		return FALSE
-	if(shadow_flags && !(darkspawn.specialization & shadow_flags))
-		return FALSE
-	if(locate(type) in darkspawn.upgrades)//if they already have it
-		return FALSE
-	return TRUE
-
 ///When the button to purchase is clicked
-/datum/psi_web/proc/on_purchase(mob/user)
-	darkspawn = user.mind?.has_antag_datum(/datum/antagonist/darkspawn)
+/datum/psi_web/proc/on_purchase(mob/living/user)
+	owner = user
+	darkspawn = owner.mind?.has_antag_datum(/datum/antagonist/darkspawn)
 	if(!darkspawn)
 		return FALSE
 	if(shadow_flags && !(darkspawn.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
@@ -53,77 +43,67 @@
 		return FALSE
 
 	if(learn_text)
-		to_chat(user, span_velvet(learn_text))
+		to_chat(owner, span_velvet(learn_text))
 	darkspawn.lucidity -= lucidity_cost
-	darkspawn.upgrades |= src //add it to the list
+	//darkspawn.upgrades |= src //add it to the list
+	on_gain()
 	if(learned_ability)
 		var/datum/action/action = new learned_ability
-		action.Grant(user)
-	activate(user)
+		action.Grant(owner)
 	return TRUE
 
 ///If the purchase goes through, this gets called
-/datum/psi_web/proc/activate(mob/user)
+/datum/psi_web/proc/on_gain()
 	return
 
-/*
-	Purchases to select spec
-*/
-/datum/psi_web/scout
-	name = "shadow step"
-	desc = "GO FAST, TOUCH GRASS"
+/datum/psi_web/proc/on_loss()
+	return
 
-/datum/psi_web/scout/activate(mob/user)
-	user.LoadComponent(/datum/component/walk/shadow)
-	darkspawn.specialization = SCOUT
+/datum/psi_web/proc/remove(refund = FALSE)
+	on_loss()
+	if(refund)
+		darkspawn.lucidity += lucidity_cost
+	darkspawn.upgrades -= src //add it to the list
+	return QDEL_HINT_QUEUE
+
+/datum/psi_web/Destroy(force, ...)
+	remove()
+	return ..()
 
 /datum/psi_web/fighter
-	name = "fighter"
-	desc = "me no think so good"
-	learned_ability = /datum/action/cooldown/spell/toggle/pass
-
-/datum/psi_web/fighter/activate(mob/user)
-	darkspawn.specialization = FIGHTER
-	var/datum/action/cooldown/spell/toggle/light_eater/spell = locate() in user.actions
-	if(spell)
-		spell.Remove(user)
-
-/datum/psi_web/warlock
-	name = "warlock"
-	desc = "apartment \"complex\"... really? I find it quite simple"
-
-/datum/psi_web/warlock/activate(mob/user)
-	darkspawn.specialization = WARLOCK
-
-
-
-/datum/psi_web/castertest
-	name = "warlock ability"
-	desc = "apartment \"complex\"... really? I find it quite simple"
-	shadow_flags = WARLOCK
-
-/datum/psi_web/fightertest
 	name = "fighter ability"
 	desc = "me no think so good"
 	shadow_flags = FIGHTER
 
-/datum/psi_web/scouttest
+/datum/psi_web/scout
 	name = "scout ability (dark speed)"
 	desc = "GO FAST, TOUCH GRASS"
 	shadow_flags = SCOUT
 
-/datum/psi_web/scouttest/activate(mob/user)
-	user.AddComponent(/datum/component/shadow_step)
+/datum/psi_web/scout/on_gain()
+	owner.AddComponent(/datum/component/shadow_step)
 
-/datum/psi_web/everyone
-	name = "universal ability"
-	desc = "everyone should see this"
-	shadow_flags = SCOUT | WARLOCK | FIGHTER
+/datum/psi_web/scout/on_loss()
+	var/datum/component/mood/shadow_walk = owner.GetComponent(/datum/component/shadow_step)
+	if(shadow_walk)
+		shadow_walk.RemoveComponent()
+
+/datum/psi_web/warlock
+	name = "warlock ability"
+	desc = "apartment \"complex\"... really? I find it quite simple"
+	shadow_flags = WARLOCK
+
+/datum/psi_web/warlock/on_gain()
+	darkspawn.psi_cap += 25
+
+/datum/psi_web/warlock/on_loss()
+	darkspawn.psi_cap -= 25
 
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Passive Upgrades--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
+
 //Increases max Psi by 25.
 /datum/psi_web/psi_cap
 	name = "\'Psi\' Sigils"
@@ -132,8 +112,11 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
-/datum/psi_web/psi_cap/activate(mob/user)
+/datum/psi_web/psi_cap/on_gain()
 	darkspawn.psi_cap += 25
+
+/datum/psi_web/psi_cap/on_loss()
+	darkspawn.psi_cap -= 25
 
 //Decreases the Psi regeneration delay by 3 ticks and increases Psi regeneration threshold to 25.
 /datum/psi_web/psi_regen
@@ -143,9 +126,13 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
-/datum/psi_web/psi_regen/activate(mob/user)
+/datum/psi_web/psi_regen/on_gain()
 	darkspawn.psi_regen += 5
 	darkspawn.psi_regen_delay -= 3
+
+/datum/psi_web/psi_regen/on_loss()
+	darkspawn.psi_regen -= 5
+	darkspawn.psi_regen_delay += 3
 
 //Increases healing in darkness by 25%.
 /datum/psi_web/dark_healing
@@ -155,8 +142,11 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
-/datum/psi_web/dark_healing/activate(mob/user)
+/datum/psi_web/dark_healing/on_gain()
 	darkspawn.dark_healing *= 1.25
+
+/datum/psi_web/dark_healing/on_gain()
+	darkspawn.dark_healing /= 1.25
 
 //Halves lightburn damage and gives resistance to dim light.
 /datum/psi_web/light_resistance
@@ -166,9 +156,13 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
 
-/datum/psi_web/light_resistance/activate(mob/user)
+/datum/psi_web/light_resistance/on_gain()
 	darkspawn.light_burning /= 2
-	ADD_TRAIT(user, TRAIT_DARKSPAWN_LIGHTRES, "lightward sigils")
+	ADD_TRAIT(owner, TRAIT_DARKSPAWN_LIGHTRES, src)
+
+/datum/psi_web/light_resistance/on_loss()
+	darkspawn.light_burning *= 2
+	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_LIGHTRES, src)
 
 //Provides immunity to starlight.
 /datum/psi_web/spacewalking
@@ -178,21 +172,31 @@
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
-/datum/psi_web/spacewalking/activate(mob/user)
-	ADD_TRAIT(user, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
+/datum/psi_web/spacewalking/on_gain()
+	ADD_TRAIT(owner, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
 
-//Using Pass will now form two tendrils if possible.
+/datum/psi_web/spacewalking/on_gain()
+	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_SPACEWALK, "starlight sigils")
+
+//Using shadow tendrils will now form two tendrils if possible.
 //Attacking with one set of tendrils will attack with the other.
 //This also speeds up most actions they have.
-//Check pass.dm and for the effect.
+//Check shadow_tendril.dm for the effect.
 /datum/psi_web/twin_tendrils
 	name = "\'Duality\' Sigils"
-	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes Pass to form tendrils in both hands if possible, which empowers both."
+	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
 	lucidity_cost = 1
 	shadow_flags = FIGHTER
 	menu_tab = STORE_PASSIVE
 
-/datum/psi_web/twin_tendrils/activate(mob/user)
-	var/datum/action/cooldown/spell/toggle/pass/spell = locate() in user.actions
+	var/datum/action/cooldown/spell/toggle/shadow_tendril/spell
+
+/datum/psi_web/twin_tendrils/on_gain()
+	spell = locate() in owner.actions
 	if(spell)
 		spell.twin = TRUE
+
+/datum/psi_web/twin_tendrils/on_loss()
+	if(spell)
+		spell.twin = FALSE
+		spell = null

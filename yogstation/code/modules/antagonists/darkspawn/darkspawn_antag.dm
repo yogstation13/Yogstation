@@ -1,7 +1,3 @@
-#define MUNDANE 0
-#define DIVULGED 1
-#define PROGENITOR 2
-
 //aka Shadowlings/umbrages/whatever
 /datum/antagonist/darkspawn
 	name = "Darkspawn"
@@ -31,61 +27,39 @@
 
 	//upgrade variables
 	var/list/upgrades = list() //A list of all the upgrades we currently have (actual objects, not just typepaths)
-	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
-	var/datum/action/cooldown/spell/psi_web/psi_web_action //Used to link the menu with our antag datum
+	
 	var/specialization = NONE
 
 /datum/antagonist/darkspawn/ui_data(mob/user)
 	var/list/data = list()
 
-	if(!istype(darkspawn))
-		CRASH("darkspawn menu started with wrong datum.")
+	data["lucidity"] = lucidity
+	
 
-	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / [SSticker.mode.required_succs] unique drained total"
-	data["specialization"] = darkspawn.specialization //whether or not they've picked their specialization
+	return data
 
-
-	for(var/category in show_categories)
-		var/list/category_data = list()
-		category_data["name"] = category
-
-		var/list/upgrades = list()
-		for(var/path in subtypesof(/datum/psi_web))
-			var/datum/psi_web/selection = new path
-
-			if(!selection.check_show(user))
-				continue
-
-			var/list/AL = list()
-			AL["name"] = selection.name
-			AL["desc"] = selection.desc
-			AL["lucidity_cost"] = selection.lucidity_cost
-			AL["can_purchase"] = darkspawn.lucidity >= selection.lucidity_cost
-			AL["type_path"] = selection.type
-			
-			if(category == selection.menu_tab)
-				upgrades += list(AL)
-
-			qdel(selection)
-
-		category_data["upgrades"] = upgrades
-		data["categories"] += list(category_data)
+/datum/antagonist/darkspawn/ui_static_data(mob/user)
+	var/list/data = list()
+	
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	data["lucidity_drained"] = lucidity_drained
+	data["required_succs"] = SSticker.mode.required_succs
+	data["specialization"] = specialization //whether or not they've picked their specializationW
 
 	return data
 
 /datum/antagonist/darkspawn/ui_act(action, params)
-	if(..())
-		return
-	var/datum/antagonist/darkspawn/darkspawn = antag_datum
-	if(!istype(darkspawn))
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("purchase")
-			var/upgradePath = text2path(params["upgradePath"])
-			if(!ispath(upgradePath, /datum/psi_web))
+			var/upgrade_path = text2path(params["upgrade_path"])
+			if(!ispath(upgrade_path, /datum/psi_web))
 				return FALSE
-			var/datum/psi_web/selected = new upgradePath
-			selected.on_purchase(darkspawn?.owner?.current)
+			//var/datum/psi_web/selected = new upgrade_path
+			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 
 // Antagonist datum things like assignment //
 /datum/antagonist/darkspawn/on_gain()
@@ -256,9 +230,6 @@
 	user.set_species(/datum/species/shadow/darkspawn)
 	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	show_to_ghosts = TRUE
-	psi_web = new(src)
-	psi_web_action = new(psi_web)
-	psi_web_action.Grant(owner.current)
 	var/datum/action/cooldown/spell/devour_will/devour = new(src)
 	upgrades |= devour
 	devour.Grant(owner.current)
@@ -301,7 +272,3 @@
 	darkspawn_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 
 	return darkspawn_icon
-
-#undef MUNDANE
-#undef DIVULGED
-#undef PROGENITOR
