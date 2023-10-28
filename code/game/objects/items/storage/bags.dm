@@ -293,8 +293,8 @@
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
-	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	name = "stack snatcher"
+	desc = "A patented Nanotrasen storage system designed for any kind of stacks. this is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
