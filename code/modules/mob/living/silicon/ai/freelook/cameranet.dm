@@ -19,9 +19,12 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	var/obj/effect/statclick/statclick
 	///The image given to the effect in vis_contents on AI clients
 	var/image/obscured
+	///If defined, only cameras with matching network flags will be used by chunks
+	///The cameras list is only used for updating chunks, not for actual vision
 	var/list/networks
 
-/datum/cameranet/darkspawn
+//worst 6 hours of my life i spent trying to figure out how to best split a cameranet, this is what i've settled on
+/datum/cameranet/darkspawn 
 	networks = list(ROLE_DARKSPAWN)
 
 /datum/cameranet/New()
