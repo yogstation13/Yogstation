@@ -147,6 +147,8 @@
 	addtimer(CALLBACK(src, PROC_REF(stop_emp), H), 200 / severity, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 to 20 seconds depending on severity
 
 /datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/H)
+	if(!isethereal(H))//if they've stopped being an ethereal since then
+		return
 	EMPeffect = FALSE
 	spec_updatehealth(H)
 	to_chat(H, span_notice("You feel more energized as your shine comes back."))
@@ -175,6 +177,8 @@
 	addtimer(CALLBACK(src, PROC_REF(handle_emag), H), emag_speed) //Call ourselves every 0.4 seconds to continue the animation
 
 /datum/species/ethereal/proc/stop_emag(mob/living/carbon/human/H)
+	if(!isethereal(H))//if they've stopped being an ethereal since then
+		return
 	emageffect = FALSE
 	spec_updatehealth(H)
 	var/datum/component/overlay_lighting/light = ethereal_light.GetComponent(/datum/component/overlay_lighting)
