@@ -12,7 +12,7 @@
 	bodcam.c_tag = camera_name
 	bodcam.network = networks
 	bodcam.internal_light = FALSE
-	bodcam.status = FALSE
+	bodcam.status = TRUE
 
 /datum/component/internal_cam/RegisterWithParent()
 	. = ..()

@@ -68,6 +68,10 @@
 	eyeobj.eye_user = null
 	user.remote_control = null
 
+	//return their old sight
+	user.see_invisible = eyeobj.old_see_invis
+	user.sight = eyeobj.old_sight
+	user.see_in_dark = eyeobj.old_see_dark
 	current_user = null
 	user.unset_machine()
 	user.client.view_size.unsupress()
@@ -171,11 +175,18 @@
 	var/visible_icon = 0
 	var/image/user_image = null
 	var/nightvision = FALSE
+	//use these variables to keep track of their previous sight
+	var/old_see_invis
+	var/old_sight
+	var/old_see_dark
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
+	old_see_invis = user.see_invisible
+	old_sight = user.sight
+	old_see_dark = user.see_in_dark
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
 	user.sight = SEE_TURFS | SEE_BLACKNESS
-	user.see_in_dark = nightvision ? 8 : 2
+	user.see_in_dark = nightvision ? 10 : 2
 	return TRUE
 
 /mob/camera/aiEye/remote/Destroy()

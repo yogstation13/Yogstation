@@ -19,14 +19,16 @@
 		return FALSE
 	. = ..()
 
-/datum/action/cooldown/spell/pointed/thrall_net/PreActivate(atom/target)
+/datum/action/cooldown/spell/pointed/thrall_net/before_cast(atom/cast_on)
+	. = ..()
+	if(cast_on.density)
+		return . | SPELL_CANCEL_CAST
 	casting = TRUE
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
 	if(!do_after(owner, cast_time, target))
 		casting = FALSE
-		return FALSE
+		return . | SPELL_CANCEL_CAST
 	casting = FALSE
-	return ..()
 	
 /datum/action/cooldown/spell/pointed/thrall_net/cast(atom/cast_on)
 	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
@@ -43,12 +45,13 @@
 	flags_1 = NODECONSTRUCT_1
 	max_integrity = 200
 	integrity_failure = 0
-	light_on = FALSE
+	light_power = -1
+	light_color = '#21007F'
 	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
-	if(!is_darkspawn_or_veil(user))
+	if(user && !is_darkspawn_or_veil(user))
 		return FALSE
 	return ..()
 
