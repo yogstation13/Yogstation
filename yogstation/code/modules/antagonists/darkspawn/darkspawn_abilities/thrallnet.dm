@@ -53,6 +53,7 @@
 	light_color = COLOR_DARKSPAWN_PSI
 	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 	networks = list(ROLE_DARKSPAWN)
+	use_static = FALSE
 	clicksound = "crawling_shadows_walk"
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
