@@ -4,12 +4,12 @@
 /datum/component/internal_cam
 	var/obj/machinery/camera/bodcam = null
 
-/datum/component/internal_cam/Initialize(camera_name = "Internal Camera", list/networks = list("ss13"))
+/datum/component/internal_cam/Initialize(list/networks = list("ss13"))
 	if (!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	bodcam = new(parent)
-	bodcam.c_tag = camera_name
+	bodcam.c_tag = parent
 	bodcam.network = networks
 	bodcam.internal_light = FALSE
 

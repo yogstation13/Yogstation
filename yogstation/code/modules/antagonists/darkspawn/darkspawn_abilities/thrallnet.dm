@@ -64,7 +64,6 @@
 /obj/machinery/computer/camera_advanced/darkspawn/CreateEye()
 	. = ..()
 	eyeobj.nightvision = TRUE
-	eyeobj.use_static = FALSE
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return
