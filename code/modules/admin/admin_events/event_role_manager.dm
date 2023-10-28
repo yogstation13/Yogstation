@@ -23,9 +23,10 @@ GLOBAL_DATUM_INIT(event_role_manager, /datum/event_role_manager, new)
 	var/list/assignments = list()
 	for(var/ckey in role_assignments)
 		var/ckey_data = list()
+		var/datum/event_role_assignment/assignment = role_assignments[ckey]
 		ckey_data["ckey"] = ckey
-		ckey_data["title"] = role_assignments[ckey].title
-		ckey_data["role_alt_title"] = role_assignments[ckey].role_alt_title
+		ckey_data["title"] = assignment.title
+		ckey_data["role_alt_title"] = assignment.role_alt_title
 		assignments.Add(list(ckey_data))
 	.["assignments"] = assignments
 
