@@ -76,6 +76,7 @@
 	objectives += O
 	O.update_explanation_text()
 	owner.announce_objectives()
+	owner.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -84,6 +85,9 @@
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""
 	STOP_PROCESSING(SSprocessing, src)
+	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
+	if(cam)
+		cam.RemoveComponent()
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)

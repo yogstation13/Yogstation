@@ -35,7 +35,7 @@
 	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
 	current_mob.add_overlay(veil_sigils)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
-	current_mob.AddComponent(/datum/component/internal_cam, current_mob, list(ROLE_DARKSPAWN))
+	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
