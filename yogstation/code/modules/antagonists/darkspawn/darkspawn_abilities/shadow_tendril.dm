@@ -1,6 +1,6 @@
 //Equips umbral tendrils with many uses.
-/datum/action/cooldown/spell/toggle/pass
-	name = "Pass"
+/datum/action/cooldown/spell/toggle/shadow_tendril
+	name = "Shadow Tendril"
 	desc = "Twists an active arm into a mass of tendrils with many important uses. Examine the tendrils to see a list of uses."
 	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
@@ -12,21 +12,21 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	var/twin = FALSE
 
-/datum/action/cooldown/spell/toggle/pass/can_cast_spell(feedback)
+/datum/action/cooldown/spell/toggle/shadow_tendril/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes())
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
 	. = ..()
 
-/datum/action/cooldown/spell/toggle/pass/process()
+/datum/action/cooldown/spell/toggle/shadow_tendril/process()
 	active = owner.is_holding_item_of_type(/obj/item/umbral_tendrils)
 	if(twin)
-		name = "Twinned Pass"
+		name = "Twinned Shadow Tendrils"
 		desc = "Twists one or both of your arms into tendrils with many uses."
 	. = ..()
 
-/datum/action/cooldown/spell/toggle/pass/Enable()
+/datum/action/cooldown/spell/toggle/shadow_tendril/Enable()
 	var/list/hands_free = owner.get_empty_held_indexes()
 	if(!twin || hands_free.len < 2)
 		owner.visible_message(span_warning("[owner]'s arm contorts into tentacles!"), "<span class='velvet bold'>ikna</span><br>\
@@ -43,7 +43,7 @@
 			var/obj/item/umbral_tendrils/T = new(owner, isdarkspawn(owner) )
 			owner.put_in_hands(T)
 
-/datum/action/cooldown/spell/toggle/pass/Disable()
+/datum/action/cooldown/spell/toggle/shadow_tendril/Disable()
 	owner.visible_message(span_warning("[owner]'s tentacles transform back!"), "<span class='velvet bold'>haoo</span><br>\
 	[span_notice("You dispel the tendrils.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
