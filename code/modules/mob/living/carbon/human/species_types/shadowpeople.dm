@@ -30,12 +30,10 @@
 				H.adjustBruteLoss(-dark_healing)
 				H.adjustFireLoss(-dark_healing)
 				H.adjustCloneLoss(-dark_healing)
-				if(powerful_heal) //only darkspawn and nightmare get this
+				if(powerful_heal) //only darkspawn gets this
 					H.adjustToxLoss(-dark_healing)
 					H.adjustStaminaLoss(-dark_healing * 20)
-					H.AdjustStun(-dark_healing * 40)
-					H.AdjustKnockdown(-dark_healing * 40)
-					H.AdjustUnconscious(-dark_healing * 40)
+					H.AdjustAllImmobility(-dark_healing * 40)
 					H.SetSleeping(0)
 					H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
 			if(SHADOW_SPECIES_DIM_LIGHT to SHADOW_SPECIES_BRIGHT_LIGHT) //not bright, but still dim

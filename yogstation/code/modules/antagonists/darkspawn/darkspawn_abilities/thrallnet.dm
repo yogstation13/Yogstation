@@ -8,7 +8,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "sacrament"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	cooldown_time = 1 MINUTE
+	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	cast_range = 2
 	var/casting = FALSE
