@@ -23,9 +23,13 @@
 	. = ..()
 	if(cast_on.density)
 		return . | SPELL_CANCEL_CAST
+	if(casting)
+		return . | SPELL_CANCEL_CAST
+	if(. & SPELL_CANCEL_CAST)
+		return .
 	casting = TRUE
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
-	if(!do_after(owner, cast_time, target))
+	if(!do_after(owner, cast_time, cast_on))
 		casting = FALSE
 		return . | SPELL_CANCEL_CAST
 	casting = FALSE
