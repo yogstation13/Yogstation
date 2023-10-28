@@ -85,7 +85,7 @@
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""
 	STOP_PROCESSING(SSprocessing, src)
-	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
+	var/datum/component/internal_cam/cam = owner.GetComponent(/datum/component/internal_cam)
 	if(cam)
 		cam.RemoveComponent()
 	return ..()

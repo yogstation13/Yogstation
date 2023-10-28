@@ -11,6 +11,7 @@
 	bodcam = new(parent)
 	bodcam.c_tag = parent
 	bodcam.network = networks
+	bodcam.view_range = 10 //standard mob viewrange
 	bodcam.internal_light = FALSE
 
 /datum/component/internal_cam/RegisterWithParent()
