@@ -395,6 +395,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		adminGreet()
 
 	add_verbs_from_config()
+	if(GLOB.admin_event)
+		add_verb(src, /client/proc/event_info)
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		player_age = 0
