@@ -20,6 +20,7 @@
 	var/list/inactive_static_images = list()
 	///images currently in use on obscured turfs.
 	var/list/active_static_images = list()
+	var/datum/cameranet/camnet
 
 	var/changed = FALSE
 	var/x = 0
@@ -128,16 +129,16 @@
 		client.images += active_static_images
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
-/datum/camerachunk/New(x, y, z)
+/datum/camerachunk/New(x, y, z, cameranet)
 	x &= ~(CHUNK_SIZE - 1)
 	y &= ~(CHUNK_SIZE - 1)
-
+	camnet = cameranet
 	src.x = x
 	src.y = y
 	src.z = z
 
 	for(var/obj/machinery/camera/camera in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)))
-		if(camera.can_use())
+		if(camera.can_use() && (!camnet.networks || LAZYLEN(camera.network & camnet.networks)))
 			cameras += camera
 
 	for(var/turf/t as anything in block(locate(max(x, 1), max(y, 1), z), locate(min(x + CHUNK_SIZE - 1, world.maxx), min(y + CHUNK_SIZE - 1, world.maxy), z)))

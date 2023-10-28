@@ -17,9 +17,11 @@
 		queue_smooth_neighbors(src)
 		icon_state = ""
 	GLOB.cameranet.updateVisibility(src)
+	GLOB.thrallnet.updateVisibility(src)
 
 /obj/structure/Destroy()
 	GLOB.cameranet.updateVisibility(src)
+	GLOB.thrallnet.updateVisibility(src)
 	if(smooth)
 		queue_smooth_neighbors(src)
 	return ..()

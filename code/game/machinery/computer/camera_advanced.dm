@@ -11,6 +11,7 @@
 	var/datum/action/innate/camera_off/off_action = new
 	var/datum/action/innate/camera_jump/jump_action = new
 	var/list/actions = list()
+	var/datum/cameranet/camnet //the net it's looking at
 
 	///Should we supress any view changes?
 	var/should_supress_view_changes  = TRUE
@@ -31,6 +32,7 @@
 			z_lock |= SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 		if(lock_override & CAMERA_LOCK_REEBE)
 			z_lock |= SSmapping.levels_by_trait(ZTRAIT_REEBE)
+	camnet = GLOB.cameranet //the default cameranet
 
 /obj/machinery/computer/camera_advanced/syndie
 	icon_keyboard = "syndie_key"
@@ -118,10 +120,10 @@
 		var/camera_location
 		var/turf/myturf = get_turf(src)
 		if(eyeobj.use_static != FALSE)
-			if((!z_lock.len || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
+			if((!z_lock.len || (myturf.z in z_lock)) && camnet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
-				for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+				for(var/obj/machinery/camera/C in camnet.cameras)
 					if(!C.can_use() || z_lock.len && !(C.z in z_lock))
 						continue
 					var/list/network_overlap = networks & C.network
@@ -167,7 +169,7 @@
 	var/cooldown = 0
 	var/acceleration = 1
 	var/mob/living/eye_user = null
-	var/obj/machinery/origin
+	var/obj/machinery/computer/camera_advanced/origin
 	var/eye_initialized = 0
 	var/visible_icon = 0
 	var/image/user_image = null
@@ -176,7 +178,10 @@
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
 	user.sight = SEE_TURFS | SEE_BLACKNESS
-	user.see_in_dark = nightvision ? 10 : 2
+	user.see_in_dark = 2
+	if(nightvision)
+		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+		user.see_in_dark = 10
 	return TRUE
 
 /mob/camera/aiEye/remote/Destroy()
@@ -202,7 +207,7 @@
 		update_ai_detect_hud()
 
 		if(use_static)
-			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+			origin.camnet.visibility(src, GetViewerClient(), null, use_static)
 
 		if(visible_icon && eye_user.client)
 			eye_user.client.images -= user_image
@@ -254,7 +259,7 @@
 
 	var/list/L = list()
 
-	for (var/obj/machinery/camera/cam in GLOB.cameranet.cameras)
+	for (var/obj/machinery/camera/cam in origin.camnet.cameras)
 		if(origin.z_lock.len && !(cam.z in origin.z_lock))
 			continue
 		L.Add(cam)

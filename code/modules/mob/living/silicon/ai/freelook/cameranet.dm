@@ -19,6 +19,10 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	var/obj/effect/statclick/statclick
 	///The image given to the effect in vis_contents on AI clients
 	var/image/obscured
+	var/list/networks
+
+/datum/cameranet/darkspawn
+	networks = list(ROLE_DARKSPAWN)
 
 /datum/cameranet/New()
 	obscured = new('icons/effects/cameravis.dmi')
@@ -40,7 +44,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	var/key = "[x],[y],[z]"
 	. = chunks[key]
 	if(!.)
-		chunks[key] = . = new /datum/camerachunk(x, y, z)
+		chunks[key] = . = new /datum/camerachunk(x, y, z, src)
 
 /// Updates what the ai_eye can see. It is recommended you use this when the ai_eye moves or it's location is set.
 /datum/cameranet/proc/visibility(list/moved_eyes, client/C, list/other_eyes, use_static = TRUE)
@@ -152,7 +156,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat(name, statclick.update("Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]"))
+	stat(name, statclick.update("Cameras: [cameras.len] | Chunks: [chunks.len]"))
 
 /obj/effect/overlay/camera_static
 	name = "static"
