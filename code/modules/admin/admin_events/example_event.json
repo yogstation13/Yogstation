@@ -1,8 +1,13 @@
 {
 	"name": "Example Event",
 	"description": "During this event you find yourself on a testing server to see if new functionality is working",
-	"role_greetings": {
-		"/datum/job/assistant": "As assistant during this event, you will need to do something idfk",
-		"/datum/antagonist/traitor": "As traitor during this event, you will be doing special things as well"
+	"role_settings": {
+		"/datum/job/assistant": {
+			"disable": true,
+			"greeting": "As assistant during this event, you will need to do something idfk"
+		},
+		"/datum/antagonist/traitor": {
+			"greeting": "As traitor during this event, you will be doing special things as well"
+		}
 	}
 }
