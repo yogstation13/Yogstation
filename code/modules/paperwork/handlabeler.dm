@@ -70,7 +70,7 @@
 	if(mode)
 		to_chat(user, span_notice("You turn on [src]."))
 		//Now let them chose the text.
-		var/str = reject_bad_text(stripped_input(user, "Label text?", "Set label","", MAX_NAME_LEN))
+		var/str = reject_bad_text(tgui_input_text(user, "Label text?", "Set label","", MAX_NAME_LEN))
 		if(!str || !length(str))
 			to_chat(user, span_warning("Invalid text!"))
 			return
