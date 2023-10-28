@@ -51,6 +51,7 @@
 	integrity_failure = 0
 	light_power = -1
 	light_color = "#21007F"
+	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
 
