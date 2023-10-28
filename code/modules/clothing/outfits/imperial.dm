@@ -104,6 +104,8 @@
 	flags_1 = CONDUCT_1
 
 
+
+
 // Belts
 /obj/item/storage/belt/military/imperial/guardsman/Initialize(mapload) // Imperial Guardsman
 	. = ..()
@@ -223,6 +225,10 @@
 	name = "Imperial Sanctioned Psyker"
 	suit_store = /obj/item/staff/psyker
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
+
+/datum/outfit/imperial/psyker/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/datum/mind/psyker = H
+	psyker.special_role = ROLE_PSYKER
 
 /datum/outfit/imperial/commissar
 	name = "Imperial Commissar"
