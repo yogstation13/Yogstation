@@ -173,8 +173,8 @@
 
 /obj/item/book/granter/martial/lightning_flow/can_learn(mob/user)
 	if(!isethereal(user))
-		if(user.get_language_holder()?.get_selected_language())
-			to_chat(user, span_warning("This language looks nothing like [user.get_language_holder().get_selected_language()]."))
+		if(user.get_selected_language())
+			to_chat(user, span_warning("This language looks nothing like [user.get_selected_language()]."))
 		else
 			to_chat(user, span_warning("I can't understand a word of this."))
 		return FALSE
