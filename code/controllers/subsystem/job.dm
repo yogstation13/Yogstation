@@ -354,6 +354,7 @@ SUBSYSTEM_DEF(job)
 	initial_players_to_assign = unassigned.len
 
 	JobDebug("DO, Len: [unassigned.len]")
+	GLOB.event_role_manager.setup_event_positions()
 	if(unassigned.len == 0)
 		return validate_required_jobs(required_jobs)
 
