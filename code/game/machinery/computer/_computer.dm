@@ -14,6 +14,8 @@
 	light_range = 2
 	light_power = 1
 	light_on = TRUE
+	/// Doesn't have standard overlays or appearance, but has the same effects
+	var/special = FALSE
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/clockwork = FALSE
@@ -40,7 +42,7 @@
 	return 1
 
 /obj/machinery/computer/ratvar_act()
-	if(!clockwork)
+	if(!clockwork && !special)
 		clockwork = TRUE
 		icon_screen = "ratvar[rand(1, 4)]"
 		icon_keyboard = "ratvar_key[rand(1, 6)]"
@@ -57,6 +59,8 @@
 
 /obj/machinery/computer/update_appearance(updates)
 	. = ..()
+	if(special) //always centered
+		return
 	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
 	if(pixel_x == 0 && pixel_y == 0)
 		// this bit of code makes the computer hug the wall its next to
@@ -86,6 +90,8 @@
 
 /obj/machinery/computer/update_overlays()
 	. = ..()
+	if(special)
+		return
 	if(stat & NOPOWER)
 		. += "[icon_keyboard]_off"
 		return
