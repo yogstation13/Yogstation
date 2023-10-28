@@ -77,6 +77,9 @@
 	O.update_explanation_text()
 	owner.announce_objectives()
 	owner.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
+	var/datum/component/internal_cam/cam = owner.GetComponent(/datum/component/internal_cam)
+	if(cam)
+		cam.change_cameranet(GLOB.thrallnet)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()

@@ -1,3 +1,5 @@
+GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
+
 /datum/action/cooldown/spell/pointed/thrall_net
 	name = "Thrall net"
 	desc = "Call up your boys."
@@ -55,6 +57,10 @@
 	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
 	networks = list(ROLE_DARKSPAWN)
 	clicksound = "crawling_shadows_walk"
+
+/obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
+	. = ..()
+	camnet = GLOB.thrallnet
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
 	if(user && !is_darkspawn_or_veil(user))

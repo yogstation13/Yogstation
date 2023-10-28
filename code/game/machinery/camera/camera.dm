@@ -29,6 +29,8 @@
 
 	//OTHER
 
+	var/datum/cameranet/camnet
+
 	var/view_range = 7
 	var/short_range = 2
 
@@ -78,8 +80,9 @@
 	else
 		assembly = new(src)
 		assembly.state = 4 //STATE_FINISHED
-	GLOB.cameranet.cameras += src
-	GLOB.cameranet.addCamera(src)
+	camnet = GLOB.cameranet
+	camnet.cameras += src
+	camnet.addCamera(src)
 	if (isturf(loc))
 		myarea = get_area(src)
 		LAZYADD(myarea.cameras, src)
@@ -97,10 +100,19 @@
 	else //this is handled by toggle_camera, so no need to update it twice.
 		update_appearance(UPDATE_ICON)
 
+/obj/machinery/camera/proc/change_camnet(var/datum/cameranet/newnet)
+	if(newnet && istype(newnet))
+		camnet.cameras -= src
+		camnet.removeCamera(src)
+		camnet = newnet
+		camnet.cameras += src
+		camnet.addCamera(src)
+
 /obj/machinery/camera/Destroy()
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
-	GLOB.cameranet.cameras -= src
+	camnet.cameras -= src
+	camnet = null
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 	
@@ -148,7 +160,7 @@
 			update_appearance(UPDATE_ICON)
 			var/list/previous_network = network
 			network = list()
-			GLOB.cameranet.removeCamera(src)
+			camnet.removeCamera(src)
 			stat |= EMPED
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
@@ -162,7 +174,7 @@
 						stat &= ~EMPED
 						update_appearance(UPDATE_ICON)
 						if(can_use())
-							GLOB.cameranet.addCamera(src)
+							camnet.addCamera(src)
 						emped = 0 //Resets the consecutive EMP count
 						addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
 			for(var/i in GLOB.player_list)
@@ -179,7 +191,7 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+	camnet.updateVisibility(src, 0)
 
 /obj/machinery/camera/proc/shock(mob/living/user)
 	if(!istype(user))
@@ -367,7 +379,7 @@
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = 1)
 	status = !status
 	if(can_use())
-		GLOB.cameranet.addCamera(src)
+		camnet.addCamera(src)
 		if (isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
@@ -375,10 +387,10 @@
 			myarea = null
 	else
 		set_light(0)
-		GLOB.cameranet.removeCamera(src)
+		camnet.removeCamera(src)
 		if (isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
-	GLOB.cameranet.updateChunk(x, y, z)
+	camnet.updateChunk(x, y, z)
 	var/change_msg = "deactivates"
 	if(status)
 		change_msg = "reactivates"
