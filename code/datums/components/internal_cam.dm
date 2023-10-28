@@ -12,16 +12,17 @@
 	bodcam.c_tag = camera_name
 	bodcam.network = networks
 	bodcam.internal_light = FALSE
-	bodcam.status = TRUE
 
 /datum/component/internal_cam/RegisterWithParent()
 	. = ..()
+	bodcam.status = TRUE
 	bodcam.built_in = parent
+	GLOB.cameranet.updatePortableCamera(bodcam)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(update_cam))
 
 /datum/component/internal_cam/UnregisterFromParent()
-	bodcam.built_in = null
 	bodcam.status = FALSE
+	bodcam.built_in = null
 	GLOB.cameranet.updatePortableCamera(bodcam)
 	qdel(bodcam)
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
@@ -34,7 +35,7 @@
 	QDEL_NULL(bodcam)
 	. = ..()
 
-/datum/component/internal_cam/proc/update_cam(mob/user)
+/datum/component/internal_cam/proc/update_cam()
 	GLOB.cameranet.updatePortableCamera(bodcam)
 
 
