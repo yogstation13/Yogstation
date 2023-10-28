@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Moves evac up on AsteroidStation, removes petting zoo and adds small garden where evac used to be."
