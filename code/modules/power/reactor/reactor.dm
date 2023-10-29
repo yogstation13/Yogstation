@@ -501,7 +501,7 @@
 
 	vessel_integrity += integrity_restoration
 	if(vessel_integrity > initial(vessel_integrity)) //hey you cant go above
-  		vessel_integrity = initial(vessel_integrity)
+		vessel_integrity = initial(vessel_integrity)
 	
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
