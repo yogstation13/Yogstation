@@ -53,4 +53,4 @@
 
 /obj/item/paper/fluff/awaymissions/mine_coordinates
 	name = "coordinate readout"
-	info = {"Coordinates of REDACTED facility attached. Return to transmuter to upload coordinates."}
+	info = {"Coordinates of REDACTED facility attached for supply purposes. <b>Return to transmuter to upload coordinates and access further missions.</b>"}

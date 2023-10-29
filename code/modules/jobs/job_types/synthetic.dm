@@ -42,6 +42,7 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	. = ..()
 
 	addtimer(CALLBACK(src, PROC_REF(synth_name_choose), H, M), 1 SECONDS)
+	H.remove_all_quirks()
 
 /datum/job/synthetic/proc/synth_name_choose(mob/living/H, mob/M)
 	var/newname = sanitize_name(reject_bad_text(stripped_input(M, "Please input your name.", "Name change", H.real_name, MAX_NAME_LEN)))
