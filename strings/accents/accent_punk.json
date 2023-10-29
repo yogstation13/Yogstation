@@ -109,7 +109,7 @@
 		"\barrested\b": "busted",
 		"\bcorpse\b": "boney",
 		"\bcivillian\b": "creep",
-		"\bfried\b": "insane",
+		"\binsane\b": "fried",
 		"\bconman\b": "grifter",
 		"\bcon-artist\b": "grifter",
 		"\bcon arist\b": "grifter",
