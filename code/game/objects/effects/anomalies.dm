@@ -33,8 +33,6 @@
 	switch(core_type)
 		if(ANOMALY_RADIATION)
 			aSignal = new /obj/item/assembly/signaler/anomaly/radiation(src)
-		if(ANOMALY_HALLUCINATION)
-			aSignal = new /obj/item/assembly/signaler/anomaly/hallucination(src)
 		if(ANOMALY_FLUX)
 			aSignal = new /obj/item/assembly/signaler/anomaly/flux(src)
 		if(ANOMALY_GRAVITATIONAL)

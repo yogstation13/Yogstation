@@ -2,7 +2,6 @@
 #define ANOMALY_FLUX "flux_anomaly"
 #define ANOMALY_FLUX_EXPLOSIVE "flux_explosive_anomaly"
 #define ANOMALY_GRAVITATIONAL "gravitational_anomaly"
-#define ANOMALY_HALLUCINATION "hallucination_anomaly"
 #define ANOMALY_PYRO "pyro_anomaly"
 #define ANOMALY_BLUESPACE "bluespace_anomaly"
 #define ANOMALY_VORTEX "vortex_anomaly"
