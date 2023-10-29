@@ -13,7 +13,6 @@
 		/obj/effect/anomaly/pyro	  			    = /obj/item/clothing/suit/armor/reactive/fire,
 		/obj/effect/anomaly/bluespace = /obj/item/clothing/suit/armor/reactive/teleport,
 		/obj/effect/anomaly/radiation = /obj/item/clothing/suit/armor/reactive/radiation,
-		/obj/effect/anomaly/hallucination = /obj/item/clothing/suit/armor/reactive/hallucinating,
 		)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
@@ -321,34 +320,6 @@
 	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
 	var/obj/structure/table/glass/table = new(get_turf(owner))
 	table.table_shatter(owner)
-	return TRUE
-
-//Hallucinating
-
-/obj/item/clothing/suit/armor/reactive/hallucinating
-	name = "reactive hallucinating armor"
-	desc = "An experimental suit of armor with sensitive detectors hooked up to the mind of the wearer, sending mind pulses that causes hallucinations around you."
-	cooldown_message = span_warning("The connection is currently out of sync... Recalibrating.")
-	emp_message = span_warning("You feel the backsurge of a mind pulse.")
-	var/effect_range = 3
-	clothing_traits = list(TRAIT_MESONS)
-
-/obj/item/clothing/suit/armor/reactive/hallucinating/cooldown_activation(mob/living/carbon/human/owner)
-	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
-	sparks.set_up(1, 1, src)
-	sparks.start()
-	..()
-
-/obj/item/clothing/suit/armor/reactive/hallucinating/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], sending out mental pulses!"))
-	var/turf/location = get_turf(owner)
-	if(location)
-		hallucination_pulse(location, effect_range, strength = 25)
-	return TRUE
-
-/obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of mental energy into [owner] from the surrounding environment!"))
-	owner.adjust_hallucinations(150)
 	return TRUE
 
 //Radiation
