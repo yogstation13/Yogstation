@@ -412,11 +412,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/ammo_casing/magic/hook
 	name = "hook"
 	desc = "A hook."
-	projectile_type = /obj/item/projectile/hook
+	projectile_type = /obj/projectile/hook
 	caliber = "hook"
 	icon_state = "hook"
 
-/obj/item/projectile/hook
+/obj/projectile/hook
 	name = "hook"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -428,13 +428,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	knockdown = 30
 	var/chain
 
-/obj/item/projectile/hook/fire(setAngle)
+/obj/projectile/hook/fire(setAngle)
 	if(firer)
 		chain = firer.Beam(src, icon_state = "chain", time = INFINITY, maxdistance = INFINITY)
 	..()
 	//TODO: root the firer until the chain returns
 
-/obj/item/projectile/hook/on_hit(atom/target, blocked)
+/obj/projectile/hook/on_hit(atom/target, blocked)
 	. = ..()
 	if(ismovable(target) && blocked != 100)
 		var/atom/movable/A = target
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		//TODO: keep the chain beamed to A
 		//TODO: needs a callback to delete the chain
 
-/obj/item/projectile/hook/Destroy()
+/obj/projectile/hook/Destroy()
 	qdel(chain)
 	return ..()
 
@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
+	AddComponent(/datum/component/anti_magic, ALL)
 
 /datum/action/item_action/immortality
 	name = "Immortality"
@@ -703,13 +703,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "Flight Potion"
 	description = "Strange mutagenic compound of unknown origins."
 	reagent_state = LIQUID
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C) || isethereal(C))
 		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
 			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
 			return ..()
@@ -1080,13 +1080,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "#A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
-			H.eye_color = "fee5a3"
-			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-			H.updateappearance()
-		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
 		if(2)
@@ -1096,6 +1089,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
+			H.weather_immunities |= "ash"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
@@ -1234,7 +1228,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/melee/knuckles(src)
+			new /obj/item/bloodbook(src)
 		if(2)
 			new /obj/item/clothing/gloves/bracer/cuffs(src)
 
@@ -1407,8 +1401,8 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
 
-/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/colossus))
+/obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/colossus))
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 

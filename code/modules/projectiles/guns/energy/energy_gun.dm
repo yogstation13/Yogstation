@@ -113,7 +113,7 @@
 		teletarget = T
 		user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
 
-/obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
+/obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/projectile/energy/net/N)
 	N.teletarget = teletarget
 
 /obj/item/gun/energy/e_gun/dragnet/snare

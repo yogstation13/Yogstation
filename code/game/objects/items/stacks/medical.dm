@@ -52,13 +52,13 @@
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [user.p_them()]self..."), span_notice("You begin applying \the [src] on yourself..."))
-		if(!do_after(user, self_delay, M, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_after(user, self_delay, M, extra_checks=CALLBACK(M, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
 			return
 	else if(other_delay)
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [M]."), span_notice("You begin applying \the [src] on [M]..."))
-		if(!do_after(user, other_delay, M, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_after(user, other_delay, M, extra_checks=CALLBACK(M, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
 			return
 
 	if(heal(M, user))

@@ -75,8 +75,13 @@
 	if(!istype(S, /obj/item/organ/stomach/cell/preternis))//need a fancy stomach for it
 		return ..()
 
+	if(!get_location_accessible(H, BODY_ZONE_PRECISE_MOUTH))
+		to_chat(H, span_notice("You can't eat with your mouth covered!"))
+		return
+
 	if(!eaten(H))
-		return ..()
+		to_chat(H, span_notice("You don't feel like eating this ore."))
+		return
 
 	use(1)//only eat one at a time
 
@@ -339,7 +344,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	else
 		..()
 
-/obj/item/melee/gibtonite/bullet_act(obj/item/projectile/P)
+/obj/item/melee/gibtonite/bullet_act(obj/projectile/P)
 	GibtoniteReaction(P.firer)
 	. = ..()
 
@@ -410,7 +415,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/value = 1
 	var/coinflip
 	var/coin_stack_icon_state = "coin_stack"
-	var/list/allowed_ricochet_types = list(/obj/item/projectile/bullet/c38, /obj/item/projectile/bullet/a357, /obj/item/projectile/bullet/ipcmartial)
+	var/list/allowed_ricochet_types = list(/obj/projectile/bullet/c38, /obj/projectile/bullet/a357, /obj/projectile/bullet/ipcmartial)
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -618,11 +623,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	. = ..()
 	transform = initial(transform)
 
-/obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
+/obj/item/coin/bullet_act(obj/projectile/P)
+	if(P.armor_flag != LASER && P.armor_flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 
-	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
+	if(cooldown >= world.time || istype(P, /obj/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
 		for(var/mob/living/T in viewers(5, src))
 			if(istype(T) && T != P.firer && T.stat != DEAD) //don't fire at someone if they're dead or if we already hit them
@@ -631,7 +636,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		P.speed *= 0.5
 		P.ricochets++
 		P.on_ricochet(src)
-		P.permutated = list(src)
+		P.impacted = list(src)
 		P.pixel_x = pixel_x
 		P.pixel_y = pixel_y
 		if(!targets.len)
@@ -675,6 +680,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
+	var/turf/T = get_turf(src)
+	if(T)
+		for(var/obj/item/coin/C in T.contents)
+			add_to_stack(C, null, FALSE)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/coinstack/examine(mob/user)
@@ -716,8 +725,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	C.forceMove(src)
 	C.pixel_x = 0
 	C.pixel_y = 0
-	src.add_fingerprint(user)
-	to_chat(user,span_notice("You add [C] to the stack of coins."))
+	if(user)
+		src.add_fingerprint(user)
+		to_chat(user,span_notice("You add [C] to the stack of coins."))
 	update_appearance(UPDATE_ICON)
 	return TRUE
 

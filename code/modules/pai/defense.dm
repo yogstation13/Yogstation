@@ -54,7 +54,7 @@
 	if(user.put_in_hands(card))
 		user.visible_message(span_notice("[user] promptly scoops up [user.p_their()] pAI's card."))
 
-/mob/living/silicon/pai/bullet_act(obj/item/projectile/Proj)
+/mob/living/silicon/pai/bullet_act(obj/projectile/Proj)
 	if(Proj.stun)
 		fold_in(force = TRUE)
 		src.visible_message(span_warning("The electrically-charged projectile disrupts [src]'s holomatrix, forcing [src] to fold in!"))

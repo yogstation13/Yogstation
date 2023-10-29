@@ -32,6 +32,11 @@ map asteroidstation
 	votable
 endmap
 
+map donutstation
+	maxplayers 50
+	votable
+endmap
+
 map runtimestation
 	disabled 
 endmap

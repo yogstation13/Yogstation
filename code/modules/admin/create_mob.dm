@@ -25,7 +25,6 @@
 
 	// Mutant randomizing, doesn't affect the mob appearance unless it's the specific mutant.
 	human.dna.features["mcolor"] = "#[random_color()]"
-	human.dna.features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 	human.dna.features["pretcolor"] = GLOB.color_list_preternis[pick(GLOB.color_list_preternis)]
 	human.dna.features["tail_lizard"] = pick(GLOB.tails_list_lizard)
 	human.dna.features["tail_polysmorph"] = pick(GLOB.tails_list_polysmorph)

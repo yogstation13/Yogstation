@@ -1,4 +1,4 @@
-/datum/action/cooldown/spell/aoe/screech //Stuns anyone in view range.
+/datum/action/cooldown/spell/aoe/shriek //Stuns anyone in view range.
 	name = "Screech"
 	desc = "Releases a terrifying screech, freezing those who hear."
 	panel = "Abomination"
@@ -7,7 +7,7 @@
 	cooldown_time = 10 SECONDS
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/aoe/screech/cast_on_thing_in_aoe(atom/victim, atom/user)
+/datum/action/cooldown/spell/aoe/shriek/cast_on_thing_in_aoe(atom/victim, atom/user)
 	if(!istype(user, /mob/living/simple_animal/hostile/abomination))
 		return
 	user.visible_message(span_warning("<b>[usr] unhinges their jaw and releases a horrifying shriek!"))

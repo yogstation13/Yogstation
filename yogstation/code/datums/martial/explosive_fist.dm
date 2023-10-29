@@ -52,7 +52,11 @@
 	var/burn_block = D.run_armor_check(affecting, BOMB, 0)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	playsound(get_turf(D), get_sfx("explosion"), 50, TRUE, -1)
-	new /obj/effect/hotspot(get_turf(D)) //for the flashy
+	
+	if(isopenturf(get_turf(D)))
+		var/turf/open/flashy = get_turf(D)
+		flashy.IgniteTurf(rand(5, 10)) //for the flashy
+
 	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
 	D.apply_damage(A.get_punchdamagehigh() + 3, BURN, selected_zone, burn_block) 	//10 burn (vs bomb armor)
@@ -239,7 +243,7 @@
 
 	if(!D.has_movespeed_modifier(MOVESPEED_ID_SHOVE)) /// We apply a more long shove slowdown if our target doesn't already have one
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
-		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
+		addtimer(CALLBACK(D, TYPE_PROC_REF(/mob/living/carbon/human, clear_shove_slowdown)), 4 SECONDS)
 
 	D.dna.species.aiminginaccuracy += 25
 	addtimer(CALLBACK(src, PROC_REF(remove_stagger), D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
@@ -356,7 +360,7 @@
 			target.adjustFireLoss(30)
 			target.ignite_mob() 	
 		for(var/turf/open/flashy in view_or_range(2, A, "range"))
-			new /obj/effect/hotspot(flashy) //for the flashy
+			flashy.IgniteTurf(15)
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)

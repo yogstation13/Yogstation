@@ -1,5 +1,5 @@
 //Nuclear particle projectile - a deadly side effect of fusion just kidding fuck that shit rads shouldn`t be a vomit ICBM
-/obj/item/projectile/energy/nuclear_particle
+/obj/projectile/energy/nuclear_particle
 	name = "nuclear particle"
 	icon_state = "nuclear_particle"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -18,16 +18,16 @@
 		"purple" = "#FF00FF"
 	)
 
-/obj/item/projectile/energy/nuclear_particle/Initialize(mapload)
+/obj/projectile/energy/nuclear_particle/Initialize(mapload)
 	. = ..()
 	//Random color time!
 	var/our_color = pick(particle_colors)
 	add_atom_colour(particle_colors[our_color], FIXED_COLOUR_PRIORITY)
 	set_light(4, 3, particle_colors[our_color]) //Range of 4, brightness of 3 - Same range as a flashlight
 
-/obj/item/projectile/energy/nuclear_particle/Move(atom/newloc, dir)
+/obj/projectile/energy/nuclear_particle/Move(atom/newloc, dir)
 	..()
-	for(var/obj/item/projectile/energy/nuclear_particle/P in newloc.contents)
+	for(var/obj/projectile/energy/nuclear_particle/P in newloc.contents)
 		if(istype(P) && MODULUS(Angle - P.Angle, 360) > 150 && MODULUS(Angle - P.Angle, 360) < 210 && prob(10))
 			name = "high-energy " + name
 			damage += P.damage
@@ -39,11 +39,11 @@
 			break
 
 /atom/proc/fire_nuclear_particle(angle = rand(0,360)) //used by fusion to fire random nuclear particles. Fires one particle in a random direction.
-	var/obj/item/projectile/energy/nuclear_particle/P = new /obj/item/projectile/energy/nuclear_particle(src)
+	var/obj/projectile/energy/nuclear_particle/P = new /obj/projectile/energy/nuclear_particle(src)
 	P.fire(angle)
 
 /// stronger particles
-/obj/item/projectile/energy/nuclear_particle/strong
+/obj/projectile/energy/nuclear_particle/strong
 	name = "high-energy particle"
 	damage = 10
 	irradiate = 800

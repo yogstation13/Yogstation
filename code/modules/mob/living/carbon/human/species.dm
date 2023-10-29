@@ -138,8 +138,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
 	var/wings_detail
-	/// Used for reagents, organs, and virus symptoms. We're going to assume you're a meatbag unless you say otherwise.
-	var/process_flags = ORGANIC
 	/// What kind of gibs to spawn
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
@@ -1315,7 +1313,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		H.reagents.del_reagent(chem.type)
 		return TRUE
 	//This handles dumping unprocessable reagents.
-	if(!(chem.process_flags & H.get_process_flags()))
+	if(!(chem.compatible_biotypes & H.mob_biotypes))
 		chem.holder.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
 	return FALSE
@@ -1940,15 +1938,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			sitter.take_damage(damage, damagetype)
 	return 1
 
-/datum/species/proc/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile
 	switch(P.type)
-		if(/obj/item/projectile/energy/floramut) // overwritten by plants/pods
+		if(/obj/projectile/energy/floramut) // overwritten by plants/pods
 			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
-		if(/obj/item/projectile/energy/florayield)
+		if(/obj/projectile/energy/florayield)
 			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
 
-/datum/species/proc/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/proc/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
 	return 0
 
