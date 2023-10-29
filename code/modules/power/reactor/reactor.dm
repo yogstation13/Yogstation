@@ -348,6 +348,11 @@
 		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/tritium) * TRITIUM_RAD_MOD
 		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/antinoblium) * ANTINOBLIUM_RAD_MOD
 
+		// Integrity modification
+		var/healium_moles = moderator_input.get_moles(/datum/gas/healium)
+		if(healium_moles > minimum_coolant_level)
+			integrity_restoration = max((2400-max(TCMB, temperature))/300) * delta_time //At 1800K integrity_restoration should be around 1, which then it cant keep up with the heat damage (around 1.1 maximum in temp_damage) to restore integrity
+
 		// Degradation types: degrades the fuel rods
 		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/pluonium) //Because it's quite hard to get.
 		if(total_degradation_moles >= minimum_coolant_level) //I'll be nice.
@@ -412,10 +417,6 @@
 		var/coolant_heat_factor = coolant_input.heat_capacity() / (coolant_input.heat_capacity() + REACTOR_HEAT_CAPACITY + (REACTOR_ROD_HEAT_CAPACITY * has_fuel())) //What percent of the total heat capacity is in the coolant
 		last_heat_delta = heat_delta
 		temperature += heat_delta * coolant_heat_factor
-		// Integrity modification
-		var/healium_moles = coolant_input.get_moles(/datum/gas/healium)
-		if(healium_moles>1)
-			integrity_restoration = max((2400-max(TCMB, temperature))/300) * delta_time //At 1800K integrity_restoration should be around 1, which then it cant keep up with the heat damage (around 1.1 maximum in temp_damage) to restore integrity
 		coolant_input.set_temperature(last_coolant_temperature - (heat_delta * (1 - coolant_heat_factor))) //Heat the coolant output gas that we just had pass through us.
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
 		coolant_input.clear() //Clear out anything left in the input gate.
@@ -1044,9 +1045,9 @@
 	- Hyper-Noblium: Extremely efficient permeability increase (10x as efficient as bz)<BR>\
 	Depletion types:<BR>\
 	- Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of plutonium production or sabotage.<BR>\
+	- Healium: Can restore integrity if below 1800 Kelvin. The restoration rate is depended on the temperature, the lower the temperature the faster it is to restore integrity.<BR>\
 	<BR><B>Coolant effects</B><BR>\
 	- The higher heat capacity gas allows the reactor to increase coolant effciency.<BR>\
-	- Healium: Even tho having low heat capacity it can restore integrity if below 1800 Kelvin. The restoration rate is depended on the temperature, the lower the temperature the faster it is to restore integrity.<BR>\
 	<BR><B>OH GOD IT'S SCREAMING AT ME WHAT DO I DO</B><BR>\
 	Don't panic! There's a few things you can do to prevent the station from becoming an irradiated hellscape.<BR>\
 	Scenario 1: Overheating<BR>\
