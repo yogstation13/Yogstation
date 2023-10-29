@@ -243,12 +243,6 @@
 	desc = "The neutralized core of a vortex anomaly. It won't sit still, as if some invisible force is acting on it. It'd probably be valuable for research."
 	anomaly_type = /obj/effect/anomaly/bhole
 
-/obj/item/assembly/signaler/anomaly/hallucination
-	name = "\improper hallucination anomaly core"
-	desc = "The neutralized core of a hallucination anomaly. It seems to be moving, but it's probably your imagination. It'd probably be valuable for research."
-	icon_state = "hallucination_core"
-	anomaly_type = /obj/effect/anomaly/hallucination
-
 /obj/item/assembly/signaler/anomaly/radiation
 	name = "\improper radiation anomaly core"
 	desc = "The neutralized core of a radiation anomaly. It keeps pulsing an ominous green. It'd probably be valuable for research."
