@@ -1,0 +1,4 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - rscadd: "Charlie Station's nuclear reactor now has shutters, a damage report, and is in general now slightly idiot-resistant."
