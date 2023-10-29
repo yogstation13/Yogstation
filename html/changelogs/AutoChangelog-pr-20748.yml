@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Ethereal crystal revive now actually applies a brain trauma"
+  - tweak: "Ethereal heart no longer decays (can cause issues with reviving)"
