@@ -1044,9 +1044,9 @@
 	- Hyper-Noblium: Extremely efficient permeability increase (10x as efficient as bz)<BR>\
 	Depletion types:<BR>\
 	- Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of plutonium production or sabotage.<BR>\
-	- Healium: Restore integrity if below 1800 Kelvin. The restoration rate is depended on the temperature, the lower the temperature the faster it is to restore integrity.<BR>\
 	<BR><B>Coolant effects</B><BR>\
 	- The higher heat capacity gas allows the reactor to increase coolant effciency.<BR>\
+	- Healium: Even tho having low heat capacity it can restore integrity if below 1800 Kelvin. The restoration rate is depended on the temperature, the lower the temperature the faster it is to restore integrity.<BR>\
 	<BR><B>OH GOD IT'S SCREAMING AT ME WHAT DO I DO</B><BR>\
 	Don't panic! There's a few things you can do to prevent the station from becoming an irradiated hellscape.<BR>\
 	Scenario 1: Overheating<BR>\
