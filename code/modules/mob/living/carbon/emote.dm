@@ -40,7 +40,7 @@
 	var/area/A = get_area(user)
 	if(area)
 		if(rand(0, 100000) == 0)
-			A.lightswitch = FALSE
+			A.lightswitch = !A.lightswitch
 			A.update_appearance(UPDATE_ICON)
 		
 			for(var/obj/machinery/light_switch/L in A)
