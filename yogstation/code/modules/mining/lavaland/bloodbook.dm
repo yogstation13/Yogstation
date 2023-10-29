@@ -48,13 +48,13 @@
 	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 /obj/item/bloodbook/proc/sceneend(mob/living/target, mob/living/user, var/die = FALSE)
-	if(die)
-		target.adjustBruteLoss(target.health)
 	if((target.mobility_flags & MOBILITY_STAND))
 		animate(target, transform = null)
 	target.color = initial(target.color)
 	target.alpha = initial(target.alpha)
 	animate(target, pixel_x = 0, pixel_y = 0, transform = matrix().Scale(1))
+	if(die)
+		target.adjustBruteLoss(target.health)
 	if(isanimal(target))
 		var/mob/living/simple_animal/L = target
 		L.toggle_ai(AI_ON)
@@ -109,7 +109,7 @@
 	if(istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion))
 		addtimer(CALLBACK(src, PROC_REF(splosion), user, target))
 		crystallize(target)
-		target.Immobilize(1)
+		target.Immobilize(0.1 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(shatter), target), 0.1 SECONDS)
 		return
 	if(result != 1)
@@ -157,6 +157,7 @@
 	if(!isanimal(target))
 		if(target.mind)
 			return
+	playsound(target, "shatter", 70, 1)
 	if(istype(target, /mob/living/simple_animal/hostile/retaliate/goat/king))
 		return //cant trap people in the room forever
 	if((!istype(target, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion)))
@@ -165,23 +166,25 @@
 	if(istype(target, /mob/living/simple_animal/hostile/megafauna/legion))
 		target.adjustBruteLoss(target.health)
 		return
-	playsound(target, "shatter", 70, 1)
-	if(ismegafauna(target))
-		var/mob/living/simple_animal/hostile/megafauna/L = target
-		for(var/V in L.guaranteed_butcher_results)
-			new V(target.loc)
-		L.guaranteed_butcher_results = null
-		for(var/V in L.butcher_results)
-			new V(target.loc)
-		L.butcher_results = null
-		if(target.stat == DEAD)
-			target.gib()
-			return //no double dipping
-		target.dust(TRUE, FALSE, TRUE)
-		return
 	if(isanimal(target))
 		target.drop_loot()
 		target.loot = null
+		var/mob/living/simple_animal/L = target
+		for(var/V in L.guaranteed_butcher_results)
+			for(var/i in 1 to L.guaranteed_butcher_results[V])
+				new V(L.loc)
+		L.guaranteed_butcher_results = null
+		if((!istype(L, /mob/living/simple_animal/hostile/megafauna/hierophant)))
+			for(var/V in L.butcher_results)
+				for(var/i in 1 to L.butcher_results[V])
+					new V(L.loc)
+			L.butcher_results = null
+		if(target.stat == DEAD)
+			target.gib()
+	if(ismegafauna(target))
+		target.dust(TRUE, TRUE, TRUE)
+		return
+
 	target.gib()
 
 //animation stuff
@@ -314,7 +317,7 @@
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
-			target.Immobilize(30)
+			target.Immobilize(3 SECONDS)
 			B.buckle_mob(target)
 			B.icon_state = "gumball"
 			B.color = "#ffffffd2"
@@ -346,7 +349,7 @@
 	switch(phase) 
 		if(1)
 			var/obj/structure/bed/killbubble/B = new(target.loc)
-			target.Immobilize(30)
+			target.Immobilize(3 SECONDS)
 			B.buckle_mob(target)
 			target.visible_message(span_warning("A blood-red bubble forms around [target]!"))
 			animate(B, transform = matrix().Scale(1.5))
@@ -390,7 +393,7 @@
 			B.icon_state = "singularity_s1"
 			playsound(target,'sound/magic/charge.ogg', 50, 1)
 			animate(B, transform = matrix().Scale(0.3))
-			target.Immobilize(15)
+			target.Immobilize(1.5 SECONDS)
 			target.visible_message(span_warning("A miniature black hole appears behind [target]!"))
 			var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 			shockwave.transform = matrix().Scale(0.5)
@@ -421,8 +424,8 @@
 /obj/item/bloodbook/proc/dunk(mob/living/user, mob/living/target, phase = 1, var/obj/hoop, var/turf/second)
 	switch(phase)
 		if(1) 
-			user.Immobilize(9)
-			target.Immobilize(15)
+			user.Immobilize(0.9 SECONDS)
+			target.Immobilize(1.5 SECONDS)
 			var/turf/secondspot = target.loc
 			var/turf/front = get_step(get_turf(target), (user.dir))
 			var/obj/structure/holohoop/H = new(front)
@@ -480,8 +483,8 @@
 /obj/item/bloodbook/proc/redshot(mob/living/user, mob/living/target, phase = 1, var/obj/structure/prop/killight/red)
 	switch(phase)
 		if(1) 
-			user.Immobilize(5)
-			target.Immobilize(30)
+			user.Immobilize(0.5 SECONDS)
+			target.Immobilize(3.0 SECONDS)
 			var/obj/structure/prop/killight/B = new(user.loc)
 			B.icon_state = "red_1"
 			animate(B, pixel_x = 8)
@@ -659,7 +662,7 @@
 		if(1)
 			target.visible_message(span_warning("[user] gives [target] [src]!"))
 			target.setDir(get_dir(target, user))
-			user.Immobilize(30)
+			user.Immobilize(1 SECONDS)
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, do_jitter_animation), 25))
 			addtimer(CALLBACK(src, PROC_REF(workphobia), user, target, phase+1), 1 SECONDS)
 			return
@@ -683,7 +686,7 @@
 	switch(phase) 
 		if(1)
 			var/obj/structure/prop/killight/B = new(user.loc)
-			target.Immobilize(5)
+			target.Immobilize(0.5 SECONDS)
 			B.icon_state = "wipe"
 			B.light_range = 0
 			B.light_power = 0
@@ -713,6 +716,7 @@
 			qdel(geometry)
 			splosion(user, target)
 	if(target)
+		target.resize = 1
 		sceneend(target, user)
 
 /obj/item/bloodbook/proc/concavehead(mob/living/user, mob/living/target, phase = 1, obj/rend, obj/bowlingball)
@@ -722,7 +726,7 @@
 			P.density = FALSE
 			animate(P, pixel_y = 30, transform = matrix().Scale(1, 0.6))
 			target.forceMove(P.loc)
-			target.Immobilize(20)
+			target.Immobilize(2 SECONDS)
 			target.visible_message(span_warning("A rift appears above [target]!"))
 			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase+1, P), 0.5 SECONDS)
 			return
@@ -731,7 +735,6 @@
 			var/obj/structure/prop/showmeteor/B = new(target.loc)		
 			target.visible_message(span_warning("A meteor appears from the opening!"))
 			animate(B, pixel_y = 30)
-			B.SpinAnimation(0.15 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(concavehead), user, target, phase+1, rend, B), 0.15 SECONDS)
 			animate(B,  pixel_y = 0, time = 0.2 SECONDS, easing = LINEAR_EASING)
 			return
@@ -847,6 +850,7 @@
 /obj/structure/prop/showmeteor/Initialize(mapload)
 	. = ..()
 	icon_state = pick("dust", "small", "large", "glowing", "flaming", "sharp")
+	src.SpinAnimation(1 SECONDS)
 
 /obj/structure/prop/rune
 	name = "giant rune"
