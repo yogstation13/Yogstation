@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Healium inside coolant can now restore integrity of the reactor. This only work if the reactor is below 1800K"
-  - spellcheck: "Updated guide to reactor 101 paper"
