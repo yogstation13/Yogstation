@@ -499,10 +499,10 @@
 	else
 		color = null
 
-	if(vessel_integrity < 400)
+	if(vessel_integrity < initial(vessel_integrity))
 		vessel_integrity += integrity_restoration
 	else //incase it goes beyond
-		vessel_integrity = 400
+		vessel_integrity = initial(vessel_integrity)
 	
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
@@ -1045,9 +1045,9 @@
 	- Hyper-Noblium: Extremely efficient permeability increase (10x as efficient as bz)<BR>\
 	Depletion types:<BR>\
 	- Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of plutonium production or sabotage.<BR>\
+	- Healium: Restore integrity if below 1800 Kelvin. The restoration rate is depended on the temperature, the lower the temperature the faster it is to restore integrity.<BR>\
 	<BR><B>Coolant effects</B><BR>\
 	- The higher heat capacity gas allows the reactor to increase coolant effciency.<BR>\
-	- Healium has low heat capacity but it can restore integrity if below 1800 Kelvin.<BR>\
 	<BR><B>OH GOD IT'S SCREAMING AT ME WHAT DO I DO</B><BR>\
 	Don't panic! There's a few things you can do to prevent the station from becoming an irradiated hellscape.<BR>\
 	Scenario 1: Overheating<BR>\
