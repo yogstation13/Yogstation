@@ -932,6 +932,8 @@
 
 /datum/reagent/medicine/strange_reagent/proc/try_revive(mob/living/M)
 	SIGNAL_HANDLER
+	if(!M || QDELETED(M) || M.stat != DEAD)
+		return
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		for(var/organ in C.internal_organs)
