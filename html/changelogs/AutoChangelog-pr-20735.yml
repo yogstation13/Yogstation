@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Changed how fire and water are handled in code"
+  - imageadd: "adds sprites for water particles and new fire sprite"
+  - experiment: "Let me know about any bugs involving fire on mobs"
