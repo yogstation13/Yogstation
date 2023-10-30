@@ -6,6 +6,10 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/touch/veil_mind
 	name = "Veil mind"
 	desc = "Consume a lucidity to veil a target's mind. To be eligible, they must be alive and recently drained by Devour Will."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "veil_mind"
 	antimagic_flags = NONE
 	panel = null
