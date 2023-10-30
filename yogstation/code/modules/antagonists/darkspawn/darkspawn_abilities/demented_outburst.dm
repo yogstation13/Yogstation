@@ -48,6 +48,10 @@
 	var/atom/movable/AM = victim
 	if(AM.anchored)
 		return
+	if(isliving(AM))
+		var/mob/living/dude = AM
+		if(is_darkspawn_or_veil(dude))
+			return
 	var/distance = get_dist(owner, AM)
 	var/turf/target = get_edge_target_turf(owner, get_dir(owner, get_step_away(AM, owner)))
 	AM.throw_at(target, ((clamp((5 - (clamp(distance - 2, 0, distance))), 3, 5))), 1, owner)
