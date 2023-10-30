@@ -520,7 +520,7 @@
 
 /datum/action/toggle_buffer/Grant(mob/M)
 	. = ..()
-	wash_audio = new(owner)
+	wash_audio = new(list(owner), FALSE)
 
 /datum/action/toggle_buffer/IsAvailable(feedback = FALSE)
 	if(!issilicon(owner))
