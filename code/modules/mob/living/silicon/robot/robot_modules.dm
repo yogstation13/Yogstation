@@ -537,7 +537,7 @@
 	if(block_buffer_change)
 		return FALSE
 
-	var/obj/item/reagent_containers/glass/bucket/our_bucket = locate(/obj/item/reagent_containers/glass/bucket) in robot_owner.model.modules
+	var/obj/item/reagent_containers/glass/bucket/our_bucket = locate(/obj/item/reagent_containers/glass/bucket) in robot_owner.module.modules
 	bucket_ref = WEAKREF(our_bucket)
 
 	if(!buffer_on)
