@@ -1444,7 +1444,7 @@
 		R.module.remove_module(book, TRUE)
 
 /obj/item/borg/upgrade/janitor_autocleaner
-	name = "janitor auto cleaner"
+	name = "janitor autocleaner"
 	desc = "An upgrade to the janitor cyborg that lets them automatically cleans the floor wherever they go."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
@@ -1457,7 +1457,7 @@
 		return FALSE
 	var/obj/item/borg/floor_autocleaner/autocleaner = locate() in R.module.modules
 	if(autocleaner)
-		to_chat(user, span_warning("This cyborg is already equipped with an auto cleaner."))
+		to_chat(user, span_warning("This cyborg is already equipped with an autocleaner."))
 		return FALSE
 	autocleaner = new(R.module)
 	R.module.basic_modules += autocleaner
