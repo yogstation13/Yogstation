@@ -153,3 +153,10 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	
 /datum/action/cooldown/spell/veilbuff/proc/empower(mob/living/carbon/human/target)
 	return
+
+
+/datum/action/cooldown/spell/veilbuff/heal
+	name = "Heal veils"
+
+/datum/action/cooldown/spell/veilbuff/empower(mob/living/carbon/human/target)
+	target.heal_overall_damage(25, 25, 0, BODYPART_ANY)
