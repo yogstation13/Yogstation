@@ -98,3 +98,6 @@
 /datum/looping_sound/proc/on_stop()
 	if(end_sound)
 		play(end_sound)
+
+/datum/looping_sound/proc/is_active()
+	return !!timerid
