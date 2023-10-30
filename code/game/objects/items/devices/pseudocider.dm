@@ -113,6 +113,7 @@
 			equip_item_to_human_corpse(copied_human_mob.shoes, ITEM_SLOT_FEET, fake_human_corpse)
 		if(copied_human_mob.wear_id)
 			equip_item_to_human_corpse(copied_human_mob.wear_id, ITEM_SLOT_ID, fake_human_corpse)
+			fake_human_corpse.sec_hud_set_ID()
 
 		for(var/obj/item/implant/implant_instance in copied_human_mob.implants)
 			var/obj/item/implant/implant_copy = new implant_instance.type
@@ -192,7 +193,6 @@
 		id_copy.registered_name = id_instance.registered_name
 		id_copy.assignment = id_instance.assignment
 		id_copy.originalassignment = id_instance.originalassignment
-		corpse.sec_hud_set_ID()
 
 	// Update ID + HUD but if it's in a PDA
 	if(istype(item_instance, /obj/item/modular_computer/tablet))
@@ -215,7 +215,6 @@
 
 			tablet_copy.update_label()
 
-		corpse.sec_hud_set_ID()
 
 	// Update damaged clothing
 	if(isclothing(item_instance))
