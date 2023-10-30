@@ -41,7 +41,7 @@
 					return
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_LIGHTRES))
 					return
-				if(H.has_status_effect(STATUS_EFFECT_CREEP))
+				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
 					return
 				to_chat(H, span_userdanger("The light singes you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 40 * light_amount), TRUE)
@@ -49,7 +49,7 @@
 			if(SHADOW_SPECIES_BRIGHT_LIGHT to INFINITY) //but quick death in the light
 				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_SPACEWALK) && isspaceturf(T))
 					return
-				if(H.has_status_effect(STATUS_EFFECT_CREEP))
+				if(HAS_TRAIT(H, TRAIT_DARKSPAWN_CREEP))
 					return
 				to_chat(H, span_userdanger("The light burns you!"))
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(40, 65 * light_amount), TRUE)

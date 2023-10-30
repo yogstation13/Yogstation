@@ -472,6 +472,11 @@
 #define TRAIT_VOIDSTORM_IMMUNE "voidstorm_immune"
 #define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.
 
+///Darkspawn traits
+#define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
+#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" //lets darkspawns walk through weak light
+#define TRAIT_DARKSPAWN_CREEP "darkspawn_creep" //lets darkspawns walk through any light (look at creep.dm)
+
 ///Movement type traits for movables. See elements/movetype_handler.dm
 #define TRAIT_MOVE_GROUND "move_ground"
 #define TRAIT_MOVE_FLYING "move_flying"
@@ -482,6 +487,3 @@
 #define TRAIT_NO_FLOATING_ANIM "no-floating-animation"
 /// Used to prevent multiple floating blades from triggering over the same target
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
-///Darkspawn traits
-#define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
-#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" //lets darkspawns spacewalk safely
