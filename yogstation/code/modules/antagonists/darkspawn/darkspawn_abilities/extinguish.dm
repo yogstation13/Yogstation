@@ -33,7 +33,7 @@
 	if(isobj(victim))//put out any items too
 		var/obj/target = victim
 		target.extinguish()
-	bopper.afterattack(victim, owner) //just use a light eater attack on everyone
+	SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, victim, owner) //just use a light eater attack on everyone
 
 /obj/item/dark_orb
 	name = "extinguish"
