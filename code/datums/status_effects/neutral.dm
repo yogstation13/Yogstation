@@ -181,9 +181,6 @@
 	var/obj/item/I = owner.get_active_held_item()
 	if(I)
 		to_chat(owner, span_userdanger("Equipping an item forces you out!"))
-		if(istype(I, /obj/item/dark_bead))
-			to_chat(owner, span_userdanger("[I] crackles with feedback, briefly disorienting you!"))
-			owner.Stun(5) //short delay so they can't click as soon as they're out
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/tagalong
