@@ -114,7 +114,8 @@
 		if(copied_human_mob.wear_id)
 			equip_item_to_human_corpse(copied_human_mob.wear_id, ITEM_SLOT_ID, fake_human_corpse)
 
-		for(var/obj/item/implant/implant_copy in copied_human_mob.implants)
+		for(var/obj/item/implant/implant_instance in copied_human_mob.implants)
+			var/obj/item/implant/implant_copy = new implant_instance.type
 			implant_copy.implant(fake_human_corpse, null, TRUE)
 			QDEL_IN(implant_copy, 6.5 SECONDS) // anti duping
 
