@@ -522,8 +522,8 @@
 	. = ..()
 	wash_audio = new(owner)
 
-/datum/action/toggle_buffer/IsAvailable()
-	if(!istype(owner, /mob/living/silicon/robot))
+/datum/action/toggle_buffer/IsAvailable(feedback = FALSE)
+	if(!issilicon(owner))
 		return FALSE
 	return ..()
 
