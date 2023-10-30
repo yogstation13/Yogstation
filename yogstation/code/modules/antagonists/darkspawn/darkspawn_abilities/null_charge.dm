@@ -15,7 +15,7 @@
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
 	return istype(cast_on, /obj/machinery/power/apc)
 
-/datum/action/cooldown/spell/touch/null_charge/cast_on_hand_hit(obj/item/melee/touch_attack/hand, /obj/machinery/power/apc/target, mob/living/carbon/human/caster)
+/datum/action/cooldown/spell/touch/null_charge/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/power/apc/target, mob/living/carbon/human/caster)
 	if(!target || !istype(target))//sanity check
 		return FALSE
 
