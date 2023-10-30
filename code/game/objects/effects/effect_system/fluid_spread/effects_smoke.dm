@@ -453,3 +453,9 @@
 
 /datum/effect_system/fluid_spread/smoke/chem/quick
 	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/quick
+
+/datum/effect_system/fluid_spread/smoke/chem/transparent
+	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/transparent
+
+/obj/effect/particle_effect/fluid/smoke/chem/transparent
+	opacity = FALSE
