@@ -1738,6 +1738,62 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/gimmick/check_completion()
 	return TRUE
-	
+
 /datum/objective/gimmick/admin_edit(mob/admin)
 	update_explanation_text()
+
+/// steals your kidneys https://i.imgur.com/sxqGeSu.png
+/datum/objective/steal_organ
+	name = "steal organ"
+	var/obj/item/organ/target_organ
+
+/datum/objective/steal_organ/is_valid_target(datum/mind/possible_target)
+	if(iscarbon(possible_target?.current))
+		var/mob/living/carbon/possible_carbon_target = possible_target
+		return LAZYLEN(possible_carbon_target.internal_organs)
+
+/datum/objective/steal_organ/finalize()
+	var/datum/mind/mind_target = find_target()
+	if(!mind_target)
+		return FALSE
+
+	// This will always be a carbon with organs, because of is_valid_target()
+	var/mob/living/carbon/carbon_target = mind_target.current
+	target_organ = pick(carbon_target.internal_organs)
+	if(target_organ)
+		update_explanation_text()
+		return TRUE
+
+/datum/objective/steal_organ/update_explanation_text()
+	if(target && target_organ)
+		var/mob/living/carbon/human/H = target.current
+		explanation_text = "Steal the original [target_organ] of [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [target.assigned_role]."
+	else
+		explanation_text = "Free Objective"
+	. = ..()
+
+/datum/objective/steal_organ/check_completion()
+	if(..())
+		return TRUE
+	var/list/datum/mind/owners = get_owners()
+	if(!target)
+		return TRUE
+	for(var/datum/mind/M in owners)
+		if(!isliving(M.current))
+			continue
+
+		var/list/all_items = M.current.get_all_contents()	//this should get things in cheesewheels, books, etc.
+
+		for(var/obj/I in all_items) //Check for items
+			if(I == target_organ)
+				return TRUE
+	if (istype(team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/I in A.get_all_contents()) //Check for items
+					if(I == target_organ)
+						return TRUE
+					CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
+	return FALSE
