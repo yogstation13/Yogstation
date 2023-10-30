@@ -1,5 +1,5 @@
 /obj/item/pseudocider
-	name = "pocket watch"
+	name = "syndicate pseudocider"
 	desc = "A syndicate device that triggers upon taking damage, making you invisible and leaving behind a fake body."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pocketwatch-closed"
@@ -197,6 +197,7 @@
 	if(istype(item_instance, /obj/item/modular_computer/tablet))
 		var/obj/item/modular_computer/tablet/tablet_copy = item_copy
 		var/obj/item/modular_computer/tablet/tablet_instance = item_instance
+		tablet_copy.finish_color = tablet_instance.finish_color
 		var/obj/item/computer_hardware/card_slot/card_slot = tablet_instance.all_components[MC_CARD]
 		if(card_slot?.stored_card)
 			var/obj/item/card/id/id_copy = new card_slot.stored_card.type
