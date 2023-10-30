@@ -23,7 +23,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/touch/trespass/process()
-	if(caster.has_status_effect(STATUS_EFFECT_TAGALONG))
+	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
 		psi_cost = 0
 	else
 		psi_cost = initial(psi_cost)
