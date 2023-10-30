@@ -1457,7 +1457,7 @@
 		return FALSE
 	var/obj/item/borg/floor_autocleaner/autocleaner = locate() in R.module.modules
 	if(autocleaner)
-		to_chat(user, span_warning("This cyborg is already equipped with a cookbook."))
+		to_chat(user, span_warning("This cyborg is already equipped with an auto cleaner."))
 		return FALSE
 	autocleaner = new(R.module)
 	R.module.basic_modules += autocleaner
