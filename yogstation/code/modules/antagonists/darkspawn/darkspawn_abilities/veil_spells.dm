@@ -147,7 +147,7 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	if(darkspawns_too)
 		for(var/datum/antagonist/darkspawn/ally in GLOB.antagonists)
 			if(ally.owner?.current && ishuman(ally.owner.current))
-				var/mob/living/carbon/human/target = lackey.owner.current
+				var/mob/living/carbon/human/target = ally.owner.current
 				if(target && istype(target))//sanity check
 					empower(target)
 	
