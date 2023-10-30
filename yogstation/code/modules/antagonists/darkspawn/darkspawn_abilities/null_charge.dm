@@ -1,7 +1,6 @@
 /datum/action/cooldown/spell/touch/null_charge
 	name = "Null Charge"
 	desc = "Empties an APC, preventing it from recharging until fixed."
-	panel = "Shadowling Abilities"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "null_charge"
 
@@ -24,15 +23,15 @@
 	target.set_light(0)
 	target.visible_message(span_warning("The [target] flickers and begins to grow dark."))
 
-	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 5 SECONDS, target))
+	to_chat(caster, span_velvet("You dim the APC's screen and carefully begin siphoning its power into the void."))
+	if(!do_after(caster, 5 SECONDS, target))
 		//Whoops!  The APC's light turns back on
-		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
+		to_chat(caster, span_velvet("Your concentration breaks and the APC suddenly repowers!"))
 		target.set_light(2)
 		target.visible_message(span_warning("The [target] begins glowing brightly!"))
 	else
 		//We did it
-		to_chat(user, span_velvet("You return the APC's power to the void, disabling it."))
+		to_chat(caster, span_velvet("You return the APC's power to the void, disabling it."))
 		target.cell?.charge = 0	//Sent to the shadow realm
 		target.chargemode = 0 //Won't recharge either until an engineer hits the button
 		target.charging = 0
