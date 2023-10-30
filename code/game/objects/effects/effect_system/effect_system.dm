@@ -15,11 +15,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect/particle_effect/Initialize(mapload)
 	. = ..()
 	GLOB.cameranet.updateVisibility(src)
-	GLOB.thrallnet.updateVisibility(src)
+	GLOB.veilnet.updateVisibility(src)
 
 /obj/effect/particle_effect/Destroy()
 	GLOB.cameranet.updateVisibility(src)
-	GLOB.thrallnet.updateVisibility(src)
+	GLOB.veilnet.updateVisibility(src)
 	return ..()
 
 /obj/effect/particle_effect/newtonian_move() // Prevents effects from getting registered for SSspacedrift
