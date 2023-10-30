@@ -1749,11 +1749,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/steal_organ/is_valid_target(datum/mind/possible_target)
 	if(iscarbon(possible_target?.current))
-		var/mob/living/carbon/possible_carbon_target = possible_target
+		var/mob/living/carbon/possible_carbon_target = possible_target.current
 		return LAZYLEN(possible_carbon_target.internal_organs)
 
 /datum/objective/steal_organ/finalize()
-	var/datum/mind/mind_target = find_target()
+	var/datum/mind/mind_target = find_target() // Also sets target
 	if(!mind_target)
 		return FALSE
 
