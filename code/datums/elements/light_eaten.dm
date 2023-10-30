@@ -66,7 +66,7 @@
 	examine_text += span_warning("It's dark and empty...")
 	if(isliving(examiner) && prob(20))
 		var/mob/living/target = examiner
-		examine_text += span_danger("You can feel something in [eaten_light.p_them()] gnash at your eyes!")
+		examine_text += span_userdanger("You can feel something in [eaten_light.p_them()] gnash at your eyes!")
 		target.blind_eyes(5)
 		target.blur_eyes(10)
 	return NONE
