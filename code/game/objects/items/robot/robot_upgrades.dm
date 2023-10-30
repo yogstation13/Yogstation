@@ -1459,7 +1459,7 @@
 	if(autocleaner)
 		to_chat(user, span_warning("This cyborg is already equipped with a cookbook."))
 		return FALSE
-	autocleaner = new(R.autocleaner)
+	autocleaner = new(R.module)
 	R.module.basic_modules += autocleaner
 	R.module.add_module(autocleaner, FALSE, TRUE)
 
