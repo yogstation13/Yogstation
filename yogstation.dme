@@ -4005,6 +4005,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\glare.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\icy_veins.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\light_eater.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\null_charge.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_step.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_tendril.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\trespass.dm"
