@@ -22,7 +22,7 @@
 /datum/action/cooldown/spell/touch/silver_tongue/is_valid_target(atom/cast_on)
 	return istype(cast_on, /obj/machinery/computer/communications)
 	
-/datum/action/cooldown/spell/touch/silver_tongue/cast_on_hand_hit(obj/item/melee/touch_attack/hand, /obj/machinery/computer/communications/target, mob/living/carbon/caster)
+/datum/action/cooldown/spell/touch/silver_tongue/cast_on_hand_hit(obj/item/melee/touch_attack/hand, obj/machinery/computer/communications/target, mob/living/carbon/caster)
 	if(in_use)
 		return
 	in_use = TRUE
