@@ -1453,6 +1453,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/stealthy_tools/pseudocider
+	name = "Pseudocider"
+	desc = "Disguised as a common pocket watch, the pseudocider will convincingly feign your fall, making you invisible \
+			completely silent as you slip away from the scene, or into a better position! You will not be able to take \
+			any actions for the 7 second duration."
+	item = /obj/item/pseudocider
+	cost = 6
+	exclude_modes = list(/datum/game_mode/nuclear)
+
 /datum/uplink_item/stealthy_tools/shadowcloak
 	name = "Cloaker Belt"
 	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."

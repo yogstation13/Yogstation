@@ -715,7 +715,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 								flower_overlay.color = fixed_mut_color
 							else
 								flower_overlay.color = hair_color
-						else		
+						else
 							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
@@ -1495,6 +1495,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(health_deficiency >= H.maxHealth * 0.4)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
+				if(HAS_TRAIT(H, TRAIT_HIGHRESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.25
 				if(flight)
 					health_deficiency *= 0.333
 				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png https://www.desmos.com/calculator/qsf6iakqgp
@@ -2475,7 +2477,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_species_diet()
 	if(TRAIT_NOHUNGER in inherent_traits)
 		return null
-	
+
 	if(TRAIT_POWERHUNGRY in inherent_traits)
 		return null
 
@@ -2777,7 +2779,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "Toxins damage dealt to [plural_form] are reversed - healing toxins will instead cause harm, and \
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
-		
+
 	return to_add
 
 /**
@@ -2796,7 +2798,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
 		))
-	
+
 	if(inherent_biotypes & MOB_ROBOTIC)//species traits is basically inherent traits
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
