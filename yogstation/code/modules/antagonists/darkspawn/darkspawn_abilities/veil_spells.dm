@@ -136,7 +136,6 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
-	var/duration = 5 SECONDS
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()
@@ -153,6 +152,4 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 					empower(target)
 	
 /datum/action/cooldown/spell/veilbuff/proc/empower(mob/living/carbon/human/target)
-	addtimer(CALLBACK(src, PROC_REF(unpower), target), duration)
-
-/datum/action/cooldown/spell/veilbuff/proc/unpower(mob/living/carbon/human/target)
+	return
