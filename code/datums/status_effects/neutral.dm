@@ -176,7 +176,6 @@
 		owner.forceMove(cached_location)
 		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
 		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
-		owner.Knockdown(3 SECONDS)
 		qdel(src)
 	var/obj/item/I = owner.get_active_held_item()
 	if(I)
