@@ -465,7 +465,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/proc/visibilityChanged()
 	GLOB.cameranet.updateVisibility(src)
-	GLOB.thrallnet.updateVisibility(src)
+	GLOB.veilnet.updateVisibility(src)
 
 /turf/proc/burn_tile()
 	return
