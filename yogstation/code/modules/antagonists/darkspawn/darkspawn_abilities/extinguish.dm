@@ -34,7 +34,7 @@
 	if(ishuman(victim))//put out any
 		var/mob/living/carbon/human/target = victim
 		target.extinguish_mob()
-		if(is_darkspawn_or_veil(target))
+		if(is_darkspawn_or_veil(target)) //don't put out or damage any lights carried by allies
 			return
 	if(isobj(victim))//put out any items too
 		var/obj/target = victim
