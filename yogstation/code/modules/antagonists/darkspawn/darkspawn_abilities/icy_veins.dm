@@ -1,4 +1,4 @@
-/datum/action/cooldown/spell/aoe/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
+/datum/action/cooldown/spell/aoe/icyveins //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
@@ -12,11 +12,11 @@
 	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
-/datum/action/cooldown/spell/aoe/flashfreeze/cast(atom/cast_on)
+/datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
 	. = ..()
 	to_chat(owner, span_velvet("You freeze the nearby air."))
 
-/datum/action/cooldown/spell/aoe/flashfreeze/cast_on_thing_in_aoe(atom/target, atom/user)
+/datum/action/cooldown/spell/aoe/icyveins/cast_on_thing_in_aoe(atom/target, atom/user)
 	if(!isliving(target))
 		return
 	var/mob/living/victim = target
