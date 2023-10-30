@@ -67,7 +67,6 @@
 	if(copied_mob.dna?.species)
 		INVOKE_ASYNC(fake_corpse, TYPE_PROC_REF(/mob,set_species), new copied_mob.dna.species.type)
 		fake_corpse.dna.features = LAZYCOPY(copied_mob.dna.features)
-	fake_corpse.silent = 3 // Don't want the deathgasp making noise or it'll be too obvious
 
 	// Set up the mob to be identical
 	if(ishuman(fake_corpse) && ishuman(copied_mob))
