@@ -120,6 +120,7 @@
 		reset_spell_cooldown()
 	else
 		StartCooldown()
+		consume_resource()
 		build_all_button_icons()
 
 /// Registers all signal procs for the hand.
@@ -169,13 +170,9 @@
 	SHOULD_NOT_OVERRIDE(TRUE) // DEFINITELY don't put effects here, put them in cast_on_hand_hit
 
 	if(!proximity_flag)
-		return FALSE
-	if(!can_cast_on_self && victim == caster)
-		return FALSE
-	if(!is_valid_target(victim))
-		return FALSE
-	if(!can_cast_spell(feedback = TRUE))
-		return FALSE
+		return
+	if(!can_hit_with_hand(victim, caster))
+		return
 
 	INVOKE_ASYNC(src, PROC_REF(do_hand_hit), source, victim, caster)
 
