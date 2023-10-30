@@ -353,8 +353,7 @@
 	SEND_SIGNAL(src, COMSIG_SPELL_AFTER_CAST, cast_on)
 
 /// Called after the effect happens, whether that's after the button press or after hitting someone with a touch ability
-/datum/action/cooldown/spell/proc/consume_resource()
-	//sanity check, they shouldn't be able to get here without being darkspawn if it has a psi cost
+/datum/action/cooldown/spell/proc/consume_resource() //to-do: rework vampire blood use into using this proc
 	if(psi_cost && isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 		darkspawn.use_psi(psi_cost)
