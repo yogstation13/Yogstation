@@ -13,9 +13,7 @@
 
 /datum/action/cooldown/spell/pointed/glare/before_cast(atom/cast_on)
 	. = ..()
-	if(cast_on.density)
-		return . | SPELL_CANCEL_CAST
-	if(!cast_on || !iscarbon(cast_on))
+	if(!cast_on || !isliving(cast_on))
 		return . | SPELL_CANCEL_CAST
 	if(!owner.getorganslot(ORGAN_SLOT_EYES))
 		to_chat(owner, span_warning("You need eyes to glare!"))

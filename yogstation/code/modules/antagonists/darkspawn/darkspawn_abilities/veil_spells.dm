@@ -17,18 +17,20 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/veil_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
+	if(!target.mind)
+		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
+		return
 	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>[span_notice("You take a deep breath...")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
-	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>[span_notice("You veil the minds of everyone nearby.")]")
+	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>[span_notice("You veil the minds of [target].")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isveil(target))
 		target.revive(1)
 	else
-		if(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
-			if(target.add_veil())
-				to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
+		if(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && target.add_veil())
+			to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 		else
 			to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
 			return FALSE
