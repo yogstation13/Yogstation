@@ -166,6 +166,7 @@ SUBSYSTEM_DEF(ticker)
 			//Everyone who wants to be an observer is now spawned
 			create_observers()
 			fire()
+			rock_paper_scissors_puzzle()
 		if(GAME_STATE_PREGAME)
 				//lobby stats for statpanels
 			if(isnull(timeLeft))
