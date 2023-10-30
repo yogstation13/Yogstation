@@ -27,7 +27,7 @@
 		return
 	in_use = TRUE
 	if(target.stat)
-		to_chat(owner, span_warning("[C] is depowered."))
+		to_chat(owner, span_warning("[target] is depowered."))
 		return FALSE
 	owner.visible_message(span_warning("[owner] briefly touches [src]'s screen, and the keys begin to move by themselves!"), \
 	"<span class='velvet bold'>[pick("Oknnu. Pda ywlpwej swo hkccaz ej.", "Pda aiancajyu eo kran. Oknnu bkn swopejc ukqn peia.", "We swo knzanaz xu Hws Psk. Whh ckkz jks.")]</span><br>\
@@ -40,7 +40,7 @@
 		in_use = FALSE
 		return
 	if(target.stat)
-		to_chat(owner, span_warning("[C] has lost power."))
+		to_chat(owner, span_warning("[target] has lost power."))
 		in_use = FALSE
 		return
 	in_use = FALSE
