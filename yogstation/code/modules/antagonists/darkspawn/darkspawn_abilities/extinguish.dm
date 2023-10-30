@@ -9,7 +9,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	cooldown_time = 15 SECONDS
+	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
 	var/obj/item/dark_orb/bopper
@@ -24,10 +24,12 @@
 
 /datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
 	. = ..()
-	to_chat(owner, span_velvet("extinguish all light"))
+	to_chat(owner, span_velvet("You extinguish all lights."))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(isturf(victim)) //no turf hitting
+		return
+	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	if(ishuman(victim))//put out any
 		var/mob/living/carbon/human/target = victim
@@ -37,7 +39,7 @@
 	if(isobj(victim))//put out any items too
 		var/obj/target = victim
 		target.extinguish()
-	SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, victim, owner) //just use a light eater attack on everyone
+	SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, victim, owner, TRUE) //just use a light eater attack on everyone
 
 /obj/item/dark_orb
 	name = "extinguish"
