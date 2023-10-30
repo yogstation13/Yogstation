@@ -4004,6 +4004,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\light_eater.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_step.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_tendril.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\trespass.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\veil_spells.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_classes\_class.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\dark_bead.dm"
