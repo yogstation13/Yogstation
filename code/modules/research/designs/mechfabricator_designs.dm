@@ -1062,7 +1062,7 @@
 	id = "borg_upgrade_janitor_autocleaner"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/janitor_autocleaner
-	/// Cost of the the pimpin' ride upgrade.
+	/// Cost of a pimpin' ride upgrade.
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
