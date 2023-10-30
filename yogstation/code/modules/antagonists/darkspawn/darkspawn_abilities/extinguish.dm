@@ -12,7 +12,7 @@
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
-	var/obj/item/dark_orb/bopper
+	var/obj/item/darkspawn_extinguish/bopper
 
 /datum/action/cooldown/spell/aoe/extinguish/Grant(mob/grant_to)
 	. = ..()
@@ -41,11 +41,11 @@
 		target.extinguish()
 	SEND_SIGNAL(bopper, COMSIG_ITEM_AFTERATTACK, victim, owner, TRUE) //just use a light eater attack on everyone
 
-/obj/item/dark_orb
+/obj/item/darkspawn_extinguish
 	name = "extinguish"
 	desc = "you shouldn't be seeing this, it's just used for the spell and nothing else"
 
-/obj/item/dark_orb/Initialize(mapload)
+/obj/item/darkspawn_extinguish/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/light_eater)
 
