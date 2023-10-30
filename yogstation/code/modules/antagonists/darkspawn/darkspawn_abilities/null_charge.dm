@@ -8,7 +8,7 @@
 	cooldown_time = 30 SECONDS
 	antimagic_flags = NONE
 	panel = null
-	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
+	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	psi_cost = 15
 	hand_path = /obj/item/melee/touch_attack/null_charge
