@@ -569,7 +569,6 @@
 			robot_owner.balloon_alert(robot_owner, "auto-wash deactivating, please hold...")
 			return FALSE
 		robot_owner.balloon_alert(robot_owner, "de-activating auto-wash...")
-
 	toggle_wash()
 
 /// Toggle our wash mode
@@ -600,8 +599,9 @@
 	if(!wash_audio.is_active())
 		wash_audio.start()
 	clean()
-	name = "De-Activate Auto-Wash";
+	name = "De-Activate Auto-Wash"
 	button_icon_state = "deactivate_wash"
+	build_all_button_icons()
 
 /// Start the process of disabling the buffer. Plays some effects, waits a bit, then finishes
 /datum/action/toggle_buffer/proc/deactivate_wash()
@@ -633,6 +633,7 @@
 	robot_owner.remove_movespeed_modifier("janiborg buffer")
 	name = "Activate Auto-Wash"
 	button_icon_state = "activate_wash"
+	build_all_button_icons()
 
 /// Should we keep trying to activate our buffer, or did you fuck it up somehow
 /datum/action/toggle_buffer/proc/allow_buffer_activate()
