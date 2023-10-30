@@ -24,7 +24,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/touch/trespass/process()
-	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG))
+	if(owner.has_status_effect(STATUS_EFFECT_TAGALONG) || owner.is_holding_item_of_type(/obj/item/melee/touch_attack/trespass))
 		psi_cost = 0
 	else
 		psi_cost = initial(psi_cost)
@@ -35,9 +35,6 @@
 		return
 	. = ..()
 	
-/datum/action/cooldown/spell/touch/trespass/is_valid_target(atom/cast_on)
-	return isliving(cast_on)
-
 /datum/action/cooldown/spell/touch/trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
 	to_chat(caster, span_velvet("<b>iahz</b><br>You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out."))

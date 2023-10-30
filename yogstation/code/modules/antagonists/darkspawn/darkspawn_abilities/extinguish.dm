@@ -5,13 +5,13 @@
 	button_icon_state = "Kindle"
 	active_icon_state = "Kindle"
 	base_icon_state = "Kindle"
-	aoe_radius = 7
 	panel = null
-	antimagic_flags = NONE
+	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	cooldown_time = 15 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
+	aoe_radius = 7
 	var/obj/item/dark_orb/bopper
 
 /datum/action/cooldown/spell/aoe/extinguish/Grant(mob/grant_to)
@@ -21,6 +21,10 @@
 /datum/action/cooldown/spell/aoe/extinguish/Remove(mob/living/remove_from)
 	qdel(bopper)
 	. = ..()
+
+/datum/action/cooldown/spell/aoe/extinguish/cast(atom/cast_on)
+	. = ..()
+	to_chat(owner, span_velvet("extinguish all light"))
 
 /datum/action/cooldown/spell/aoe/extinguish/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(isturf(victim)) //no turf hitting
