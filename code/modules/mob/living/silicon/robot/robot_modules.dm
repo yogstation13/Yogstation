@@ -600,7 +600,8 @@
 	if(!wash_audio.is_active())
 		wash_audio.start()
 	clean()
-	UpdateButtonIcon()
+	name = "De-Activate Auto-Wash";
+	button_icon_state = "deactivate_wash"
 
 /// Start the process of disabling the buffer. Plays some effects, waits a bit, then finishes
 /datum/action/toggle_buffer/proc/deactivate_wash()
@@ -630,7 +631,8 @@
 	var/mob/living/silicon/robot/robot_owner = owner
 	buffer_on = FALSE
 	robot_owner.remove_movespeed_modifier("janiborg buffer")
-	UpdateButtonIcon()
+	name = "Activate Auto-Wash"
+	button_icon_state = "activate_wash"
 
 /// Should we keep trying to activate our buffer, or did you fuck it up somehow
 /datum/action/toggle_buffer/proc/allow_buffer_activate()
@@ -666,15 +668,6 @@
 	reagents.expose(our_turf, TOUCH, 10)
 	// We use more water doing this then mopping
 	reagents.remove_any(2) //reaction() doesn't use up the reagents
-
-/datum/action/toggle_buffer/UpdateButtonIcon(status_only = FALSE, force = FALSE)
-	if(buffer_on)
-		name = "De-Activate Auto-Wash"
-		button_icon_state = "deactivate_wash"
-	else
-		name = "Activate Auto-Wash"
-		button_icon_state = "activate_wash"
-	return ..()
 
 /obj/item/reagent_containers/spray/cyborg_drying
 	name = "drying agent spray"
