@@ -606,7 +606,7 @@
 			if(!HM)
 				return
 			if(!HM.allow_cloning)
-				say("ERROR: This mutation is anomalous, cannot be synthesized.")
+				say("ERROR: This mutation is anomalous and cannot be synthesized.")
 				return
 
 			// Create a new DNA Injector and add the appropriate mutations to it
