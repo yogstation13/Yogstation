@@ -616,7 +616,7 @@
 	// Reset our animations.
 	animate(pixel_x = base_x, pixel_y = base_y, time = 2)
 	addtimer(CALLBACK(wash_audio, /datum/looping_sound/proc/stop), time_left)
-	addtimer(CALLBACK(src, PROC_REF(turn_off_wash), finished_by))
+	addtimer(CALLBACK(src, PROC_REF(turn_off_wash)), finished_by)
 
 /// Called by [deactivate_wash] on a timer to allow noises and animation to play out.
 /// Finally disables the buffer. Doesn't do everything mind, just the stuff that we wanted to delay.
