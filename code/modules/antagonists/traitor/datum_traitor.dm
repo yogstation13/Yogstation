@@ -204,6 +204,13 @@
 			organ_objective.owner = owner
 			organ_objective.finalize()
 			add_objective(organ_objective)
+			// perform with "surgical" precision, you must keep them alive to not arouse too much suspicion
+			if(prob(50) && !istype(organ_objective, /obj/item/organ/brain)) // you COULD do this with pod cloning but meh
+				var/datum/objective/protect/keep_them_alive = new
+				keep_them_alive.owner = owner
+				keep_them_alive.target = organ_objective.target
+				keep_them_alive.update_explanation_text()
+				add_objective(keep_them_alive)
 		else
 			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
 			var/datum/objective/assassinate/kill_objective = new N
