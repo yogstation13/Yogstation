@@ -495,7 +495,7 @@
 /datum/action/toggle_buffer
 	name = "Activate Auto-Wash"
 	desc = "Trade speed and water for a clean floor."
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "activate_wash"
 	var/static/datum/callback/allow_buffer_activate
 	var/block_buffer_change	= FALSE
@@ -584,7 +584,7 @@
 	var/mob/living/silicon/robot/robot_owner = owner
 	buffer_on = TRUE
 	// Slow em down a bunch
-	robot_owner.add_movespeed_modifier(/datum/movespeed_modifier/auto_wash)
+	robot_owner.add_movespeed_modifier("janiborg buffer", multiplicative_slowdown = 3)
 	RegisterSignal(robot_owner, COMSIG_MOVABLE_MOVED, .proc/clean)
 	//This is basically just about adding a shake to the borg, effect should look ilke an engine's running
 	var/base_x = robot_owner.base_pixel_x
@@ -629,7 +629,7 @@
 /datum/action/toggle_buffer/proc/turn_off_wash()
 	var/mob/living/silicon/robot/robot_owner = owner
 	buffer_on = FALSE
-	robot_owner.remove_movespeed_modifier(/datum/movespeed_modifier/auto_wash)
+	robot_owner.remove_movespeed_modifier("janiborg buffer")
 	UpdateButtonIcon()
 
 /// Should we keep trying to activate our buffer, or did you fuck it up somehow
