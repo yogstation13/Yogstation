@@ -655,12 +655,14 @@
 		return
 
 	var/turf/our_turf = get_turf(robot_owner)
-
+	
+	// We're realistically only going to have water, but here is the full list of chems that can clean anyways.
 	if(reagents.has_reagent(/datum/reagent/water, 1) || reagents.has_reagent(/datum/reagent/water/holywater, 1) || reagents.has_reagent(/datum/reagent/consumable/ethanol/vodka, 1) || reagents.has_reagent(/datum/reagent/space_cleaner, 1))
 		our_turf.wash(CLEAN_SCRUB)
 	
-	spawn() // Deals with any sleep(). I'm looking at you, STRANGE REAGENT!!
-		reagents.reaction(our_turf, TOUCH, 10)
+	// Deals with any sleeps().
+	INVOKE_ASYNC(reagents, TYPE_PROC_REF(/datum/reagents, reaction), our_turf, TOUCH, 10)
+
 	// We use more water doing this then mopping.
 	reagents.remove_any(2) //reaction() doesn't use up the reagents.
 
