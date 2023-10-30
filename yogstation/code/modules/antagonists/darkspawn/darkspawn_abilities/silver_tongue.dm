@@ -23,6 +23,8 @@
 	return istype(cast_on, /obj/machinery/computer/communications)
 	
 /datum/action/cooldown/spell/touch/silver_tongue/cast_on_hand_hit(obj/item/melee/touch_attack/hand, /obj/machinery/computer/communications/target, mob/living/carbon/caster)
+	if(in_use)
+		return
 	in_use = TRUE
 	if(target.stat)
 		to_chat(owner, span_warning("[C] is depowered."))
