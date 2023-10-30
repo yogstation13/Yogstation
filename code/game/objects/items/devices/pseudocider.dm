@@ -61,7 +61,7 @@
 	if(!istype(copy_location))
 		return
 
-	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown)
+	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown) // sanity
 
 	fake_corpse = new copied_mob.type
 	if(copied_mob.dna?.species)
@@ -166,6 +166,8 @@
 	active = FALSE
 	icon_state = "pocketwatch-closed"
 	update_appearance(UPDATE_ICON)
+
+	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown)
 
 	if(!QDELETED(copied_mob) && istype(copied_mob))
 		var/datum/component/footstep/footsteps = copied_mob.GetComponent(/datum/component/footstep)
