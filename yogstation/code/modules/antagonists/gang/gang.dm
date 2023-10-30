@@ -347,9 +347,9 @@
 	if(winner)
 		report += span_greentext("The [name] gang was successful!")
 		for(var/datum/mind/M in leaders)
-			SSachievements.unlock_achievement(/datum/achievement/greentext/gangleader,M.current)
+			M.current.client.give_award(/datum/award/achievement/antagonist/gangleader, M.current)
 		for(var/datum/mind/M in members) // Leaders are included in this too
-			SSachievements.unlock_achievement(/datum/achievement/greentext/gang,M.current) // and so get the lower achievement, too
+			M.current.client.give_award(/datum/award/achievement/antagonist/gang, M.current) // and so get the lower achievement, too
 	else
 		report += span_redtext("The [name] gang has failed!")
 

@@ -28,7 +28,7 @@
 		jones = TRUE
 		for(var/mob/I in contents)
 			if(I.client && I.stat != DEAD)
-				SSachievements.unlock_achievement(/datum/achievement/jones, I.client)
+				I.client.give_award(/datum/award/achievement/misc/jones, I)
 	else
 		..()
 

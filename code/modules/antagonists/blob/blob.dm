@@ -20,7 +20,7 @@
 			var/point_report = "<br><b>[owner.name]</b> took over [overmind.max_count] tiles at the height of its growth."
 			return basic_report+point_report
 		else
-			SSachievements.unlock_achievement(/datum/achievement/greentext/blob,overmind.client)
+			overmind.client.give_award(/datum/award/achievement/antagonist/blob, overmind)
 	return basic_report
 
 /datum/antagonist/blob/greet()

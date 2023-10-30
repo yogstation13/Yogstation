@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(bounties_list_syndicate)
 			D.adjust_money(reward * SSeconomy.bounty_modifier)
 			D.bounties_claimed += 1
 			if(D.bounties_claimed == 10)
-				SSachievements.unlock_achievement(/datum/achievement/cargo/bounties, user.client)
+				user.client.give_award(/datum/award/achievement/cargo/bounties, user)
 		claimed = TRUE
 
 // If an item sent in the cargo shuttle can satisfy the bounty.

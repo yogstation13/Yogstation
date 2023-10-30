@@ -334,10 +334,10 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 
 	if(wizardwin)
 		parts += span_greentext("The wizard was successful!")
-		SSachievements.unlock_achievement(/datum/achievement/greentext/wizwin, owner.current.client) //wizard wins, give achievement
+		owner.current.client.give_award(/datum/award/achievement/antagonist/wizard_win, owner.current) //wizard wins, give achievement
 	else
 		parts += span_redtext("The wizard has failed!")
-		SSachievements.unlock_achievement(/datum/achievement/redtext/winlost, owner.current.client) //wizard loses, still give achievement lol
+		owner.current.client.give_award(/datum/award/achievement/antagonist/wizard_lose, owner.current) //wizard loses, still give achievement lol
 
 	var/list/purchases = list()
 	for(var/list/log as anything in GLOB.wizard_spellbook_purchases_by_key[owner.key])

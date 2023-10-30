@@ -407,15 +407,15 @@
 		if(NUKE_RESULT_FLUKE)
 			for(var/mob/living/carbon/human/H in GLOB.player_list) //if you observe, too bad
 				if(!is_nuclear_operative(H))
-					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
+					H.client.give_award(/datum/award/achievement/flukeops, H)
 		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
 				var/datum/mind/M = H.mind
 				if(M && M.has_antag_datum(/datum/antagonist/nukeop))
 					if(M.has_antag_datum(/datum/antagonist/nukeop/clownop) || M.has_antag_datum(/datum/antagonist/nukeop/leader/clownop))
-						SSachievements.unlock_achievement(/datum/achievement/greentext/clownop, H.client)
+						H.client.give_award(/datum/award/achievement/antagonist/clownop, H)
 					else
-						SSachievements.unlock_achievement(/datum/achievement/greentext/nukewin, H.client)
+						H.client.give_award(/datum/award/achievement/antagonist/nukewin, H)
 
 
 /datum/team/nuclear/antag_listing_name()

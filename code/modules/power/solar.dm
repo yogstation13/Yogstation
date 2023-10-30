@@ -438,7 +438,7 @@
 		search_for_connected()
 		if(last_user && last_user.client && connected_tracker && connected_panels.len) // If this guy finished up the solars
 			if(last_user.stat != DEAD && (last_user.mind?.assigned_role in GLOB.engineering_positions)) // and he's an engineer who isn't long-dead or adminbussing
-				SSachievements.unlock_achievement(/datum/achievement/engineering/solar, last_user.client) // Give him the achievement
+				last_user.client.give_award(/datum/award/achievement/engineering/solar, last_user) // Give him the achievement
 		return TRUE
 	return FALSE
 

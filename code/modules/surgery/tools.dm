@@ -132,7 +132,7 @@
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
-	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
+	user.client.give_award(/datum/award/achievement/misc/likearecord, user)
 	return (MANUAL_SUICIDE)
 
 /obj/item/surgicaldrill/attack(mob/living/M, mob/user)
