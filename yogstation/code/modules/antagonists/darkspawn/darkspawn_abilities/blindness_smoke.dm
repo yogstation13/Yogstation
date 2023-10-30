@@ -34,17 +34,14 @@
 	color = "#000000" //Complete black (RGB: 0, 0, 0)
 	metabolization_rate = 100 //lel
 
-/datum/reagent/darkspawn_blindness_smoke/on_mob_life(mob/living/M)
-	if(!is_darkspawn_or_veil(M))
+/datum/reagent/darkspawn_blindness_smoke/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
+	if(is_darkspawn_or_veil(M))
+		to_chat(M, span_velvet("<b>You breathe in the black smoke, and you feel revitalized!</b>"))
+		M.adjustOxyLoss(-2, 0)
+		M.adjustToxLoss(-2, 0)
+	else
 		to_chat(M, span_warning("<b>You breathe in the black smoke, and your eyes burn horribly!</b>"))
 		M.blind_eyes(5)
 		if(prob(25))
 			M.visible_message("<b>[M]</b> claws at their eyes!")
 			M.Stun(3, 0)
-			. = 1
-	else
-		to_chat(M, span_velvet("<b>You breathe in the black smoke, and you feel revitalized!</b>"))
-		M.adjustOxyLoss(-2, 0)
-		M.adjustToxLoss(-2, 0)
-		. = 1
-	return ..() || .
