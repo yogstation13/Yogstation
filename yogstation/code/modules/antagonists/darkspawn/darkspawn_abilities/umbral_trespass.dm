@@ -1,6 +1,6 @@
 //Melds with a mob's shadow, allowing the caster to "shadow" (HA) them while they're not in darkness.
-/datum/action/cooldown/spell/touch/encroach
-	name = "Encroach"
+/datum/action/cooldown/spell/touch/umbral_trespass
+	name = "Umbral trespass"
 	desc = "Melds with a target's shadow, causing you to invisibly follow them. Only works in lit areas, and you will be forced out if you hold any items. Costs 30 Psi."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -13,21 +13,21 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	psi_cost = 30
 	var/datum/status_effect/tagalong/tagalong
-	hand_path = /obj/item/melee/touch_attack/encroach
+	hand_path = /obj/item/melee/touch_attack/umbral_trespass
 
-/datum/action/cooldown/spell/touch/encroach/cast(mob/living/carbon/cast_on)
+/datum/action/cooldown/spell/touch/umbral_trespass/cast(mob/living/carbon/cast_on)
 	if(tagalong)
 		QDEL_NULL(tagalong)
 		return
 	. = ..()
 	
-/datum/action/cooldown/spell/touch/encroach/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
+/datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	tagalong = caster.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
 	to_chat(caster, span_velvet("<b>iahz</b><br>You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out."))
 	caster.forceMove(target)
 	return TRUE
 
-/obj/item/melee/touch_attack/encroach
+/obj/item/melee/touch_attack/umbral_trespass
 	name = "Veiling hand"
 	desc = "Concentrated psionic power, primed to toy with mortal minds."
 	icon_state = "flagellation"

@@ -45,7 +45,7 @@
 		return
 	if(!ismovable(victim))
 		return
-		var/atom/movable/AM = victim
+	var/atom/movable/AM = victim
 	if(AM.anchored)
 		continue
 	var/distance = get_dist(owner, AM)
