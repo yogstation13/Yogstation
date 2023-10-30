@@ -15,7 +15,7 @@
 	var/in_use = FALSE
 
 /datum/action/cooldown/spell/touch/silver_tongue/can_cast_spell(feedback)
-	if(SSshuttle.emergency.mode != SHUTTLE_CALL || using)
+	if(SSshuttle.emergency.mode != SHUTTLE_CALL || in_use)
 		return
 	return ..()
 
