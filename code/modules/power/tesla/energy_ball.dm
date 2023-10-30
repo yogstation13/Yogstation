@@ -34,7 +34,8 @@
 
 /obj/singularity/energy_ball/supermatter
 	name = "supermatter energy ball"
-	color = "#ffe800"
+	icon = 'icons/obj/tesla_engine/SMEnergyBall.dmi'
+	icon_state = "smenergy_ball"
 	energy = 10000
 	max_balls = 20
 	zap_range = 20
