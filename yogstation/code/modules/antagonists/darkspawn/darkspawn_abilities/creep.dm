@@ -2,6 +2,10 @@
 /datum/action/cooldown/spell/toggle/creep
 	name = "Creep"
 	desc = "Grants immunity to lightburn while active. Can be toggled on and off. Drains 5 Psi per second."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "creep"
 	panel = null
 	antimagic_flags = NONE
