@@ -154,7 +154,7 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff/proc/empower(mob/living/carbon/human/target)
 	return
 
-
+//////////////////////Global AOE heal////////////////////
 /datum/action/cooldown/spell/veilbuff/heal
 	name = "Heal veils"
 
