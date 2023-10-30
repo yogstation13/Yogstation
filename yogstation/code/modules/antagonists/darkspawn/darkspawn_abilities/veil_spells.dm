@@ -1,7 +1,11 @@
-//Converts people within three tiles of the caster into veils. Also confuses noneligible targets and stuns silicons.
+GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
+
+//////////////////////////////////////////////////////////////////////////
+//-----------------------------Veil Creation----------------------------//
+//////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/veil_mind
 	name = "Veil mind"
-	desc = "Converts nearby eligible targets into veils. To be eligible, they must be alive and recently drained by Devour Will."
+	desc = "Consume a lucidity to veil a target's mind. To be eligible, they must be alive and recently drained by Devour Will."
 	button_icon_state = "veil_mind"
 	antimagic_flags = NONE
 	panel = null
@@ -13,13 +17,11 @@
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/veil_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
-	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
-	[span_notice("You take a deep breath...")]")
+	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>[span_notice("You take a deep breath...")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
-	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>\
-	[span_notice("You veil the minds of everyone nearby.")]")
+	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>[span_notice("You veil the minds of everyone nearby.")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isveil(target))
 		target.revive(1)
@@ -28,9 +30,8 @@
 			if(target.add_veil())
 				to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 		else
-			to_chat(target, span_boldwarning("...and it scrambles your thoughts!"))
-			target.dir = pick(GLOB.cardinals)
-			target.adjust_confusion(10 SECONDS)
+			to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
+			return FALSE
 	return TRUE
 
 /obj/item/melee/touch_attack/veil_mind
@@ -39,10 +40,9 @@
 	icon_state = "flagellation"
 	item_state = "hivemind"
 
-
-
-GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
-
+//////////////////////////////////////////////////////////////////////////
+//--------------------------Veil Camera System--------------------------//
+//////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/veil_cam
 	name = "Veil net"
 	desc = "Call up your boys."
@@ -117,3 +117,42 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 
 /obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
 	return
+
+//////////////////////////////////////////////////////////////////////////
+//-----------------------Global AOE Buff spells-------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/veilbuff
+	name = "Empower veil"
+	desc = "buffs all veils with some sort of effect."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "veil_sigils"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	cooldown_time = 1 MINUTES
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	/// If the buff also buffs all darkspawns
+	var/darkspawns_too = FALSE
+	var/duration = 5 SECONDS
+
+/datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
+	. = ..()
+	for(var/datum/antagonist/veil/lackey in GLOB.antagonists)
+		if(lackey.owner?.current && ishuman(lackey.owner.current))
+			var/mob/living/carbon/human/target = lackey.owner.current
+			if(target && istype(target))//sanity check
+				empower(target)
+	if(darkspawns_too)
+		for(var/datum/antagonist/darkspawn/ally in GLOB.antagonists)
+			if(ally.owner?.current && ishuman(ally.owner.current))
+				var/mob/living/carbon/human/target = lackey.owner.current
+				if(target && istype(target))//sanity check
+					empower(target)
+	
+/datum/action/cooldown/spell/veilbuff/proc/empower(mob/living/carbon/human/target)
+	addtimer(CALLBACK(src, PROC_REF(unpower), target), duration)
+
+/datum/action/cooldown/spell/veilbuff/proc/unpower(mob/living/carbon/human/target)
