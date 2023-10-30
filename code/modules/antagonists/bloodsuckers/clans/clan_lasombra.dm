@@ -56,14 +56,13 @@
 		vassal.see_in_dark = 8
 		vassal.eye_color = BLOODCULT_EYE
 		vassal.updateappearance()
-	var/list/powers = list(/datum/action/cooldown/spell/pointed/lesser_glare, /datum/action/cooldown/spell/jaunt/shadow_walk)
+	var/list/powers = list(/datum/action/cooldown/spell/pointed/glare/lesser, /datum/action/cooldown/spell/jaunt/shadow_walk)
 	for(var/datum/action/cooldown/spell/power in powers)
 		power = new(vassaldatum.owner.current)
 		power.Grant(vassaldatum.owner.current)
 
 
-// rip shadowlings, but suckers gotta keep their abilities
-/datum/action/cooldown/spell/pointed/lesser_glare //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
+/datum/action/cooldown/spell/pointed/glare/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
 	name = "Lesser Glare"
 	desc = "Makes a single target dizzy for a bit."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
@@ -72,30 +71,4 @@
 
 	cooldown_time = 45 SECONDS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-
-/datum/action/cooldown/spell/pointed/lesser_glare/InterceptClickOn(mob/living/carbon/user, params, atom/target)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!user.getorganslot(ORGAN_SLOT_EYES))
-		to_chat(user, span_warning("You need eyes to glare!"))
-		return
-	if(!ishuman(target) || !target)
-		to_chat(user, span_warning("You may only glare at humans!"))
-		return
-	var/mob/living/carbon/human/M = target
-	if(M.stat)
-		to_chat(user, span_warning("[target] must be conscious!"))
-		return
-	user.visible_message(span_warning("<b>[user]'s eyes flash a bright red!</b>"))
-	target.visible_message(span_danger("[target] suddendly looks dizzy and nauseous..."))
-	if(in_range(target, user))
-		to_chat(target, span_userdanger("Your gaze is forcibly drawn into [user]'s eyes, and you suddendly feel dizzy and nauseous..."))
-	else //Only alludes to the thrall if the target is close by
-		to_chat(target, span_userdanger("Red lights suddenly dance in your vision, and you suddendly feel dizzy and nauseous..."))
-	M.adjust_confusion(25 SECONDS)
-	M.adjust_jitter(50 SECONDS)
-	if(prob(25))
-		M.vomit(10)
-
-	return TRUE
+	strong = FALSE

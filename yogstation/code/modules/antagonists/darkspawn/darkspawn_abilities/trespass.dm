@@ -7,6 +7,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "tagalong"
+	panel = null
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
