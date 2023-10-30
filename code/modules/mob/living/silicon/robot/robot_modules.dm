@@ -480,7 +480,7 @@
 	/// Weakref to the wash toggle action we own
 	var/datum/weakref/wash_toggle_ref
 
-/obj/item/robot_model/janitor/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
+/obj/item/robot_module/janitor/be_transformed_to(obj/item/robot_module/old_module, forced = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -488,7 +488,7 @@
 	wash_toggle.Grant(loc)
 	wash_toggle_ref = WEAKREF(wash_toggle)
 
-/obj/item/robot_model/janitor/Destroy()
+/obj/item/robot_module/janitor/Destroy()
 	QDEL_NULL(wash_toggle_ref)
 	return ..()
 
