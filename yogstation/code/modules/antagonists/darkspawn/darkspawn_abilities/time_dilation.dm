@@ -11,7 +11,7 @@
 	panel = null
 	antimagic_flags = NONE
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg
+	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg'
 	psi_cost = 75
 
 /datum/action/cooldown/spell/time_dilation/can_cast_spell(feedback)
