@@ -13,71 +13,59 @@
     <a href="index.html#types">Types</a>
  &mdash; <a href="obj/effect/abstract/particle_holder.html#var">Var Details</a> - <a href="obj/effect/abstract/particle_holder.html#proc">Proc Details</a></header>
 <main>
-<h1>/<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a>
+<h1>particle holder <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L9">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 9"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/def21e9e58c28107c60ad51695c5513d66aa7c90/code/modules/particles/byond_particles/particle_holder.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 12"/></a></h1>
 
 <p>objects can only have one particle on them at a time, so we use these abstract effects to hold and display the effects. You know, so multiple particle effects can exist at once.
 also because some objects do not display particles due to how their visuals are built</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="obj/effect/abstract/particle_holder.html#var/emitters">emitters</a></th><td>list of all particle emitters</td></tr>
-            <tr><th><a href="obj/effect/abstract/particle_holder.html#var/last_attached_location_type">last_attached_location_type</a></th><td>typepath of the last location we're in, if it's different when moved then we need to update vis contents</td></tr>
-            <tr><th><a href="obj/effect/abstract/particle_holder.html#var/weak_additional">weak_additional</a></th><td>besides the item we're also sometimes attached to other stuff! (items held emitting particles on a mob)</td></tr>
-            <tr><th><a href="obj/effect/abstract/particle_holder.html#var/weak_attached">weak_attached</a></th><td>the main item we're attached to at the moment, particle holders hold particles for something</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
-            <tr><th><a href="obj/effect/abstract/particle_holder.html#proc/on_move">on_move</a></th><td>signal called when parent is moved</td></tr>
-            <tr><th><a href="obj/effect/abstract/particle_holder.html#proc/on_qdel">on_qdel</a></th><td>signal called when parent is deleted</td></tr>
-            <tr><th><a href="obj/effect/abstract/particle_holder.html#proc/update_visual_contents">update_visual_contents</a></th><td>logic proc for particle holders, aka where they move.
-subtypes of particle holders can override this for particles that should always be turf level or do special things when repositioning.
-this base subtype has some logic for items, as the loc of items becomes mobs very often hiding the particles</td></tr></table>
+            <tr><th><a href="obj/effect/abstract/particle_holder.html#var/particle_flags">particle_flags</a></th><td>Holds info about how this particle emitter works
+See \code__DEFINES\particles.dm</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/abstract/particle_holder.html#proc/on_move">on_move</a></th><td>signal called when a parent that's been hooked into this moves
+does a variety of checks to ensure overrides work out properly</td></tr>
+            <tr><th><a href="obj/effect/abstract/particle_holder.html#proc/parent_deleted">parent_deleted</a></th><td>Non movables don't delete contents on destroy, so we gotta do this</td></tr>
+            <tr><th><a href="obj/effect/abstract/particle_holder.html#proc/set_particle_position">set_particle_position</a></th><td>Sets the particles position to the passed coordinate list (X, Y, Z)
+See [https://www.byond.com/docs/ref/#/{notes}/particles] for position documentation</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/emitters"><aside class="declaration">var </aside>emitters
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L21">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 21"/></a></h3>
-        <p>list of all particle emitters</p><h3 id="var/last_attached_location_type"><aside class="declaration">var </aside>last_attached_location_type
+            <a href="https://github.com/yogstation13/Yogstation/blob/def21e9e58c28107c60ad51695c5513d66aa7c90/code/modules/particles/byond_particles/particle_holder.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 24"/></a></h3>
+        <p>list of all particle emitters</p><h3 id="var/particle_flags"><aside class="declaration">var </aside>particle_flags
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L15">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 15"/></a></h3>
-        <p>typepath of the last location we're in, if it's different when moved then we need to update vis contents</p><h3 id="var/weak_additional"><aside class="declaration">var </aside>weak_additional
-            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/def21e9e58c28107c60ad51695c5513d66aa7c90/code/modules/particles/byond_particles/particle_holder.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 22"/></a></h3>
+        <p>Holds info about how this particle emitter works
+See \code__DEFINES\particles.dm</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_move"><aside class="declaration">proc </aside>on_move<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/attached, /<a href="atom.html">atom</a>/oldloc, direction) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L19">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 19"/></a></h3>
-        <p>besides the item we're also sometimes attached to other stuff! (items held emitting particles on a mob)</p><h3 id="var/weak_attached"><aside class="declaration">var </aside>weak_attached
-            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L17">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 17"/></a></h3>
-        <p>the main item we're attached to at the moment, particle holders hold particles for something</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_move"><aside class="declaration">proc </aside>on_move<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/attached, /<a href="atom.html">atom</a>/oldloc, direction) 
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L48">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 48"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/def21e9e58c28107c60ad51695c5513d66aa7c90/code/modules/particles/byond_particles/particle_holder.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 63"/></a></aside>
         </h3>
-        <p>signal called when parent is moved</p><h3 id="proc/on_qdel"><aside class="declaration">proc </aside>on_qdel<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/attached, force) 
+        <p>signal called when a parent that's been hooked into this moves
+does a variety of checks to ensure overrides work out properly</p><h3 id="proc/parent_deleted"><aside class="declaration">proc </aside>parent_deleted<aside>(/<a href="datum.html">datum</a>/source) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L54">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 54"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/def21e9e58c28107c60ad51695c5513d66aa7c90/code/modules/particles/byond_particles/particle_holder.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 57"/></a></aside>
         </h3>
-        <p>signal called when parent is deleted</p><h3 id="proc/update_visual_contents"><aside class="declaration">proc </aside>update_visual_contents<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/attached_to) 
+        <p>Non movables don't delete contents on destroy, so we gotta do this</p><h3 id="proc/set_particle_position"><aside class="declaration">proc </aside>set_particle_position<aside>(/list/pos) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/03ffeac5c0fe4108b5c1781a4986eab7db84dd35/code/modules/particles/byond_particles/particle_holder.dm#L61">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 61"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/def21e9e58c28107c60ad51695c5513d66aa7c90/code/modules/particles/byond_particles/particle_holder.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;particles&#x2F;byond_particles&#x2F;particle_holder.dm 81"/></a></aside>
         </h3>
-        <p>logic proc for particle holders, aka where they move.
-subtypes of particle holders can override this for particles that should always be turf level or do special things when repositioning.
-this base subtype has some logic for items, as the loc of items becomes mobs very often hiding the particles</p></main>
+        <p>Sets the particles position to the passed coordinate list (X, Y, Z)
+See [https://www.byond.com/docs/ref/#/{notes}/particles] for position documentation</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/03ffeac5c0fe4108b5c1781a4986eab7db84dd35">03ffeac</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/def21e9e58c28107c60ad51695c5513d66aa7c90">def21e9</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
