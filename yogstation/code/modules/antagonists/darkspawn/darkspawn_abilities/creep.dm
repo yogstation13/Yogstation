@@ -10,25 +10,21 @@
 	panel = null
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 5
 
-/datum/action/innate/darkspawn/toggle/creep/process()
+/datum/action/cooldown/spell/toggle/creep/process()
 	var/mob/living/L = owner
 	active = L.has_status_effect(STATUS_EFFECT_CREEP)
 	. = ..()
 
-/datum/action/innate/darkspawn/toggle/creep/Enable()
-	if(!isdarkspawn(owner))
-		return
+/datum/action/cooldown/spell/toggle/creep/Enable()
 	var/mob/living/L = owner
 	owner.visible_message(span_warning("Velvety shadows coalesce around [owner]!"), span_velvet("<b>odeahz</b><br>You begin using Psi to shield yourself from lightburn."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_victim.ogg', 50, TRUE)
 	L.apply_status_effect(STATUS_EFFECT_CREEP, isdarkspawn(owner))
 
-/datum/action/innate/darkspawn/toggle/creep/Disable()
-	if(!isdarkspawn(owner))
-		return
+/datum/action/cooldown/spell/toggle/creep/Disable()
 	var/mob/living/L = owner
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
