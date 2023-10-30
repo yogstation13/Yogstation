@@ -19,9 +19,9 @@
 	user.visible_message(span_warning("[user] bends over and coughs out a cloud of black smoke!"), span_velvet("You regurgitate a vast cloud of blinding smoke."))
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
-	B.invisibility = INFINITY //This ought to do the trick					////////////////////////////////
-	B.reagents.add_reagent(/datum/reagent/darkspawn_blindness_smoke, 10)	////DOESN't BLOCK LIGHT, FIX////
-	var/datum/effect_system/fluid_spread/smoke/chem/S = new					////////////////////////////////
+	B.invisibility = INFINITY //This ought to do the trick
+	B.reagents.add_reagent(/datum/reagent/darkspawn_blindness_smoke, 10)
+	var/datum/effect_system/fluid_spread/smoke/chem/transparent/S = new //it doesn't actually block light anyways, so let's not block vision either
 	S.attach(B)
 	if(S)
 		S.set_up(range, location = B.loc, carry = B.reagents)
