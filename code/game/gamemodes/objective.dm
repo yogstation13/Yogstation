@@ -1767,7 +1767,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/steal_organ/update_explanation_text()
 	if(target && target_organ)
 		var/mob/living/carbon/human/H = target.current
-		explanation_text = "Steal the original [target_organ] of [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [target.assigned_role]."
+		explanation_text = "Steal \the original [target_organ] of [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [target.assigned_role]."
 	else
 		explanation_text = "Free Objective"
 	. = ..()
