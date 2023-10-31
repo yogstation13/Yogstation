@@ -49,6 +49,7 @@
 
 	movement_type = FLYING
 	pressure_resistance = INFINITY
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	gold_core_spawnable = FALSE
@@ -79,6 +80,7 @@
 		invisibility = initial(invisibility)
 		speed = 0
 		alpha = min(lums * 60, 255) //Slowly becomes more visible in brighter light
+	update_simplemob_varspeed()
 
 /mob/living/simple_animal/hostile/crawling_shadows/AttackingTarget()
 	if(ishuman(target) && !knocking_out)

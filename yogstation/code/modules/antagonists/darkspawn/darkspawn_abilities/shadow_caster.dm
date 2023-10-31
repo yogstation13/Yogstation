@@ -10,25 +10,25 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 
-/datum/action/cooldown/spell/toggle/light_eater/process()
+/datum/action/cooldown/spell/toggle/shadow_caster/process()
 	active = owner.is_holding_item_of_type(/obj/item/gun/ballistic/bow/energy/shadow_caster)
 	. = ..()
 
-/datum/action/cooldown/spell/toggle/light_eater/can_cast_spell(feedback)
+/datum/action/cooldown/spell/toggle/shadow_caster/can_cast_spell(feedback)
 	if(!owner.get_empty_held_indexes())
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
 	. = ..()
 
-/datum/action/cooldown/spell/toggle/light_eater/Enable()
+/datum/action/cooldown/spell/toggle/shadow_caster/Enable()
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), "<span class='velvet bold'>ikna</span><br>\
 	[span_notice("You transform your arm into a blade.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	var/obj/item/gun/ballistic/bow/energy/shadow_caster/T = new(owner)
 	owner.put_in_hands(T)
 
-/datum/action/cooldown/spell/toggle/light_eater/Disable()
+/datum/action/cooldown/spell/toggle/shadow_caster/Disable()
 	owner.visible_message(span_warning("[owner]'s blade transform back!"), "<span class='velvet bold'>haoo</span><br>\
 	[span_notice("You dispel the blade.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
@@ -42,7 +42,11 @@
 	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
-	draw_slowdown = 0
+
+/obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	AddComponent(/datum/component/light_eater)
 
 /obj/item/ammo_box/magazine/internal/bow/shadow
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
