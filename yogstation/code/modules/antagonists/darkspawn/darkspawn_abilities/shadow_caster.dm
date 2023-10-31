@@ -52,6 +52,8 @@
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
 
 /obj/item/ammo_casing/reusable/arrow/shadow
+	name = "shadow arrow"
+	desc = "it seem to suck light out of the surroundings."
 	light_system = MOVABLE_LIGHT
 	light_power = -0.5
 	light_color = COLOR_DARKSPAWN_PSI
@@ -63,6 +65,7 @@
 	QDEL_IN(src, 10 SECONDS)
 
 /obj/projectile/bullet/reusable/arrow/shadow
+	name = "shadow arrow"
 	light_system = MOVABLE_LIGHT
 	light_power = -0.5
 	light_color = COLOR_DARKSPAWN_PSI
