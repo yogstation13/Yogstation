@@ -128,7 +128,7 @@
 				span_userdanger("You're suddenly dragged across the floor!"))
 				L.Knockdown(8 SECONDS) //these can't hit people who are already on the ground but they can be spammed to all shit
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
-		else
+		else if(issilicon(target))
 			var/mob/living/silicon/robot/R = target
 			R.toggle_headlamp(TRUE) //disable headlamps
 			target.visible_message(span_warning("[firer]'s [name] smashes into [target]'s chassis!"), \
