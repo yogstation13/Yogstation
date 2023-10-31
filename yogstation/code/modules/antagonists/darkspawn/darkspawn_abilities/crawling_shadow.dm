@@ -71,7 +71,7 @@
 	..()
 	var/turf/T = get_turf(src)
 	var/lums = T.get_lumcount()
-	if(lums < DARKSPAWN_BRIGHT_LIGHT)
+	if(lums < SHADOW_SPECIES_BRIGHT_LIGHT)
 		invisibility = INVISIBILITY_OBSERVER //Invisible in complete darkness
 		speed = -1 //Faster, too
 		alpha = 255

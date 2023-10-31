@@ -1,7 +1,6 @@
 //Creates an illusionary copy of the caster that runs in their direction for ten seconds and then vanishes.
 /datum/action/cooldown/spell/simulacrum
 	name = "Simulacrum"
-	id = "simulacrum"
 	desc = "Creates an illusion that closely resembles you. The illusion will run forward for ten seconds. Costs 20 Psi."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
