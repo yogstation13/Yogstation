@@ -13,7 +13,6 @@
 	var/active = FALSE
 	var/activationCost = 300
 	var/activationUpkeep = 50
-	var/disguise = "engineer"
 	var/mob/listeningTo
 	var/static/list/signalCache = list( // list here all signals that should break the camouflage
 			COMSIG_PARENT_ATTACKBY,
