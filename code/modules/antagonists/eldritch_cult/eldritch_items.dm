@@ -333,7 +333,7 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
-	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
 	resistance_flags = FIRE_PROOF
 	
 	/// The mob currently wearing this
