@@ -107,9 +107,3 @@
  * as it encompasses more states in which a mob may be "incorporeal from magic"
  */
 #define is_jaunting(atom) (istype(atom.loc, /obj/effect/dummy/phased_mob))
-
-
-// THIS WILL ALLOW YOU TO DETERMINE IF AN ITEM SHOULD BE ABLE TO CAST MAGIC OR RECIEVE IT (GET HIT BY IT)
-
-#define CASTING		(1<<0)
-#define RECEIVING	(1<<1)
