@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/extract
 	name = "Extract"
-	desc = "Drain a target's life force."
+	desc = "Drain a target's life force or bestow it to an ally."
 	button_icon_state = "mindread"
 	cooldown_time = 5 SECONDS
 	panel = null
@@ -9,7 +9,7 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = 5
-	var/mob/living/target
+	var/mob/living/channeled
 	var/datum/beam/visual
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
@@ -26,11 +26,9 @@
 	. = ..()
 	if(isdarkspawn(owner))
 		cost = isdarkspawn(owner)
-	if(active && cost && (!cost.use_psi(upkeep_cost)))
-		Activate(owner)
 
 /datum/action/cooldown/spell/pointed/extract/can_cast_spell(feedback)
-	if(target)
+	if(channeled)
 		return FALSE
 	. = ..()
 
@@ -45,21 +43,28 @@
 
 /datum/action/cooldown/spell/pointed/extract/process()
 	. = ..()
-	if(target)
-		if(get_dist(owner, target) > cast_range )
-			target = null
-			qdel(beam)
+	if(channeled)
+		if(channeled.stat == DEAD)
+			channeled = null
+			qdel(visual)
 			return
-		if(is_darkspawn_or_veil(target))
-			target.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+		if(get_dist(owner, channeled) > cast_range)
+			channeled = null
+			qdel(visual)
+			return
+		if(cost && (!cost.use_psi(upkeep_cost)))
+			channeled = null
+			qdel(visual)
+			return
+		if(is_darkspawn_or_veil(channeled))
+			channeled.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
-			target.apply_damage(10, BURN)
-			owner.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
-			if(target.stat == DEAD)
-				target = null
-				qdel(beam)
-				return
+			channeled.apply_damage(10, BURN)
+			if(isliving(owner))
+				var/mob/living/healed = owner
+				healed.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
-	visual = owner.beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, 10)
+	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, 10)
+	channeled = cast_on
