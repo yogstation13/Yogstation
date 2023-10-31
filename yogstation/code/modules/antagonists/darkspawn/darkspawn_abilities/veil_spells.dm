@@ -62,6 +62,7 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	cooldown_time = 1 MINUTES
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	cast_range = 2
 	var/casting = FALSE
 	var/cast_time = 2 SECONDS

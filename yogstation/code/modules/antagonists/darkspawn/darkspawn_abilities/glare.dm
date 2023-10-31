@@ -9,6 +9,7 @@
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	cooldown_time = 30 SECONDS
+	ranged_mousepointer = 'icons/effects/mouse_pointers/daze_target.dmi'
 	var/strong = TRUE
 
 /datum/action/cooldown/spell/pointed/glare/before_cast(atom/cast_on)
