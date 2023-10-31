@@ -122,11 +122,11 @@
 			return FALSE
 
 	switch(action)
-		if("new_game")
+		if("PRG_new_game")
 			new_game()
 			return TRUE
 
-		if("eject_credits")
+		if("PRG_eject_credits")
 			if(credits_stored < 1)
 				return FALSE
 			var/obj/item/holochip/holochip = new (usr.drop_location(), credits_stored)
@@ -135,7 +135,7 @@
 			credits_stored = 0
 			return TRUE
 
-		if("set_wager")
+		if("PRG_set_wager")
 			if(!isnum(text2num(params["wager"])))
 				return FALSE
 			var/new_wager = text2num(params["wager"])
@@ -144,7 +144,7 @@
 			set_wager = round(new_wager)
 			return TRUE
 
-		if("hit")
+		if("PRG_hit")
 			if(game_state != BLACKJACK_CONTINUE)
 				return FALSE
 			play_snd('sound/machines/switch3.ogg')
@@ -152,14 +152,14 @@
 			check_player_hand(usr)
 			return TRUE
 
-		if("stand")
+		if("PRG_stand")
 			if(game_state != BLACKJACK_CONTINUE)
 				return FALSE
 			game_state = BLACKJACK_DEALER_TURN
 			addtimer(CALLBACK(src, PROC_REF(dealer_turn), game_id, usr), 1 SECONDS)
 			return TRUE
 
-		if("double_down")
+		if("PRG_double_down")
 			if(game_state != BLACKJACK_CONTINUE)
 				return FALSE
 			if(credits_stored < active_wager)

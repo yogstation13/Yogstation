@@ -59,7 +59,7 @@ export const NtosBlackjack = (props, context) => {
               <br />
               <Button.Confirm
                 disabled={data.credits_stored < data.set_wager}
-                onClick={() => act('new_game')}
+                onClick={() => act('PRG_new_game')}
                 textAlign='center'
                 width={15}
                 content={"New Game"} />
@@ -68,14 +68,14 @@ export const NtosBlackjack = (props, context) => {
               <br />
               <Button.Confirm
                 disabled={data.credits_stored < 1}
-                onClick={() => act('eject_credits')}
+                onClick={() => act('PRG_eject_credits')}
                 textAlign='center'
                 width={15}
                 content={"Eject Credits"} />
               <br />
               <Button.Input
                 currentValue={data.set_wager}
-                onCommit={(e:any, value:string) => act('set_wager', {
+                onCommit={(e:any, value:string) => act('PRG_set_wager', {
                   wager: value,
                 })}
                 textAlign='center'
@@ -86,21 +86,21 @@ export const NtosBlackjack = (props, context) => {
               <br />
               <Button.Confirm
                 disabled={data.game_state !== GameState.Continue}
-                onClick={() => act('hit')}
+                onClick={() => act('PRG_hit')}
                 textAlign='center'
                 width={15}
                 content={"Hit"} />
               <br />
               <Button.Confirm
                 disabled={data.game_state !== GameState.Continue}
-                onClick={() => act('stand')}
+                onClick={() => act('PRG_stand')}
                 textAlign='center'
                 width={15}
                 content={"Stand"} />
               <br />
               <Button.Confirm
                 disabled={data.game_state !== GameState.Continue}
-                onClick={() => act('double_down')}
+                onClick={() => act('PRG_double_down')}
                 textAlign='center'
                 width={15}
                 content={"Double Down"} />
