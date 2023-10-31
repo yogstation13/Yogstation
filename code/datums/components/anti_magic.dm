@@ -40,6 +40,7 @@
 	datum/callback/drain_antimagic,
 	datum/callback/expiration,
 )
+
 	if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
