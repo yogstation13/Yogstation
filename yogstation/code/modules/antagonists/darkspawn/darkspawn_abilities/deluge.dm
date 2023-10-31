@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/aoe/deluge
 	name = "deluge"
-	desc = "Erase the very concept of time for a short period of time."
+	desc = "yeah i make people wet."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
