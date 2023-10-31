@@ -20,7 +20,10 @@
 		target.extinguish_mob()
 		target.adjust_wet_stacks(20)
 		ADD_TRAIT(target, TRAIT_NOFIRE, type)
-		addtimer(CALLBACK(src, PROC_REF(REMOVE_TRAIT), target, TRAIT_NOFIRE), 10 SECONDS, TIMER_UNIQUE, TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(unbuff), target), 10 SECONDS, TIMER_UNIQUE, TIMER_OVERRIDE)
+
+/datum/action/cooldown/spell/aoe/deluge/proc/unbuff(mob/living/target)
+	REMOVE_TRAIT(target, TRAIT_NOFIRE, type)
 
 /datum/action/cooldown/spell/aoe/deluge/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim))
