@@ -85,21 +85,21 @@
 		var/mob/M = loc
 		M.dropItemToGround(src)
 
-/obj/item/grenade/attackby(obj/item/W, mob/user, params)
+/obj/item/grenade/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(!active)
-		if(W.tool_behaviour == TOOL_MULTITOOL)
-			var/newtime = text2num(stripped_input(user, "Please enter a new detonation time", name))
-			if (newtime != null && user.canUseTopic(src, BE_CLOSE))
-				change_det_time(newtime)
-				to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
-				if (round(newtime * 10) != det_time)
-					to_chat(user, span_warning("The new value is out of bounds. The lowest possible time is 3 seconds and highest is 5 seconds. Instant detonations are also possible."))
-			return
-		else if(W.tool_behaviour == TOOL_SCREWDRIVER)
-			change_det_time()
+		change_det_time()
+		to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
+	
+/obj/item/grenade/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!active)
+		var/newtime = text2num(stripped_input(user, "Please enter a new detonation time", name))
+		if (newtime != null && user.canUseTopic(src, BE_CLOSE))
+			change_det_time(newtime)
 			to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
-	else
-		return ..()
+			if (round(newtime * 10) != det_time)
+				to_chat(user, span_warning("The new value is out of bounds. The lowest possible time is 3 seconds and highest is 5 seconds. Instant detonations are also possible."))
 
 /obj/item/grenade/proc/change_det_time(time) //Time uses real time.
 	if(time != null)

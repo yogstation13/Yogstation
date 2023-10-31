@@ -53,6 +53,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	. += "Players: [SSticker.totalPlayers]"
 	if(client.holder)
 		. += "Players Ready: [SSticker.totalPlayersReady]"
+		GLOB.event_role_manager.admin_status_panel(.)
 
 /mob/dead/proc/server_hop()
 	set category = "OOC"

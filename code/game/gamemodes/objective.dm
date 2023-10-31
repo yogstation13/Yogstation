@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/proc/copy_target(datum/objective/old_obj)
 	target = old_obj.get_target()
 	target_amount = old_obj.target_amount
-	explanation_text = explanation_text
+	explanation_text = old_obj.explanation_text
 
 /datum/objective/assassinate
 	name = "assassinate"
