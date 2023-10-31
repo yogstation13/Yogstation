@@ -199,14 +199,10 @@
 	icon_state = "antimagiccollar"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot)
-	. = ..()
-	if(ishuman(user) && slot == ITEM_SLOT_NECK)
-		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
-	
 /obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(!(slot & slot_flags))
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 		return
 	RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))
 
@@ -218,7 +214,7 @@
 /obj/item/clothing/neck/anti_magic_collar/proc/restrict_casting_magic(mob/user, magic_flags)
 	SIGNAL_HANDLER
 	return COMPONENT_MAGIC_BLOCKED
-	
+
 //////////////
 //DOPE BLING//
 //////////////
