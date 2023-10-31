@@ -105,7 +105,7 @@
 			return -1
 
 		var/obj/item/organ/O = tool
-		if(!(O.process_flags & target.get_process_flags()))
+		if(!(O.compatible_biotypes & target.mob_biotypes))
 			to_chat(user, span_notice("[target] is not compatible with [O]!"))
 			return -1
 

@@ -94,11 +94,16 @@
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
 
-		//WS Begin - Display Ethereal Charge
+		//WS Begin - Display Ethereal Charge and Crystallization Cooldown
 		if(istype(src))
 			var/datum/species/ethereal/eth_species = src.dna?.species
+			var/obj/item/organ/heart/ethereal/eth_heart = getorganslot(ORGAN_SLOT_HEART)
 			if(istype(eth_species))
 				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
+			if(eth_heart && istype(eth_heart))
+				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 10)
+				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
+				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
 
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
@@ -1140,7 +1145,10 @@
 		if(nutrition >= NUTRITION_LEVEL_FAT)
 			return FALSE
 		change = min(change, NUTRITION_LEVEL_FAT - nutrition) // no getting fat
-	return ..()
+	..()
+	if(HAS_TRAIT(src, TRAIT_BOTTOMLESS_STOMACH)) //so they never cap out EVER
+		nutrition = min(nutrition, NUTRITION_LEVEL_MOSTLY_FULL)
+	return nutrition
 
 /mob/living/carbon/human/set_nutrition(change) //Seriously fuck you oldcoders.
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -1172,10 +1180,6 @@
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
-
-/// Returns the type of organs, reagents, and symptoms this mob is compatible with
-/mob/living/carbon/human/get_process_flags()
-	return dna?.species?.process_flags // uses the process flags of whichever species we are
 
 /mob/living/carbon/human/species
 	var/race = null

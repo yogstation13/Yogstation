@@ -40,7 +40,7 @@
 	var/currentplate = 0 //how much damage the current plate has taken
 
 /datum/martial_art/worldbreaker/can_use(mob/living/carbon/human/H)
-	if(H.stat || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
+	if(H.stat == DEAD || H.IsUnconscious() || H.incapacitated(TRUE, TRUE) || HAS_TRAIT(H, TRAIT_PACIFISM))//extra pacifism check because it does weird shit
 		return FALSE
 	return ispreternis(H)
 
@@ -152,6 +152,9 @@
 /datum/martial_art/worldbreaker/proc/lose_plate(mob/living/carbon/human/user, damage, damagetype, def_zone)
 	if(plates <= 0)//no plate to lose
 		return
+
+	deltimer(plate_timer)//reset the plate timer
+	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), user), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)
 
 	if(damagetype != BRUTE && damagetype != BURN)
 		damage /= 4 //brute and burn are most effective
@@ -584,7 +587,9 @@
 			target.break_tile()
 
 	//flavour stuff
-	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
+	if(heavy)
+		flicker_all_lights()
+		playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS + (WARNING_RANGE * 2))
 	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
 	shockwave.transform *= 0.1 //basically invisible

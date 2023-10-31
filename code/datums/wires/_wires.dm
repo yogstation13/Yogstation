@@ -259,16 +259,18 @@
 			if(P.picture.has_blueprints)	//if the blueprints are in frame
 				reveal_wires = TRUE
 
+	var/colorblind = HAS_TRAIT(user, TRAIT_COLORBLIND)
 	for(var/color in colors)
 		payload.Add(list(list(
 			"color" = color,
-			"wire" = ((reveal_wires && !is_dud_color(color)) ? get_wire(color) : null),
+			"wire" = ((reveal_wires && !is_dud_color(color) && !colorblind) ? get_wire(color) : null),
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))
 	data["wires"] = payload
 	data["status"] = get_status()
 	data["proper_name"] = (proper_name != "Unknown") ? proper_name : null
+	data["colorblind"] = colorblind
 	return data
 
 /datum/wires/ui_act(action, params)

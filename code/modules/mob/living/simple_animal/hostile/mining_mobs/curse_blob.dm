@@ -75,8 +75,8 @@
 	. = ..()
 	if(mover == set_target)
 		return FALSE
-	if(istype(mover, /obj/item/projectile))
-		var/obj/item/projectile/P = mover
+	if(istype(mover, /obj/projectile))
+		var/obj/projectile/P = mover
 		if(P.firer == set_target)
 			return FALSE
 
@@ -96,7 +96,7 @@ IGNORE_PROC_IF_NOT_TARGET(attack_animal)
 
 IGNORE_PROC_IF_NOT_TARGET(attack_slime)
 
-/mob/living/simple_animal/hostile/asteroid/curseblob/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/hostile/asteroid/curseblob/bullet_act(obj/projectile/Proj)
 	if(Proj.firer != set_target)
 		return
 	return ..()

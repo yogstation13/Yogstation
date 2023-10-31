@@ -73,6 +73,11 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
 	name = "secure engineering crate"
 	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/radiation
+	desc = "A crate with a lock and is painted with a radiation sign on it. This crate is designed to prevent radiation from leaking outside of the crate."
+	name = "secure radiation crate"
+	icon_state = "radiation_secure"
 	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
 
 /obj/structure/closet/crate/secure/science
@@ -97,6 +102,48 @@
 	var/privacy_lock = TRUE
 	///Is the crate being bought by a person, or a budget card?
 	var/department_purchase = FALSE
+
+/obj/structure/closet/crate/secure/owned/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/civ
+	icon_state = "plasmacrate"
+
+/obj/structure/closet/crate/secure/owned/radiation
+	icon_state = "radiation_secure"
+	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
+
+/obj/structure/closet/crate/secure/owned/cheap
+
+/obj/structure/closet/crate/secure/owned/cheap/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/cheap/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/civ
+	icon_state = "plasmacrate"
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
@@ -131,5 +178,5 @@
 		add_fingerprint(user)
 	locked = !locked
 	user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
-					span_notice("You [locked ? null : "un"]lock [src]."))
+	span_notice("You [locked ? null : "un"]lock [src]."))
 	update_appearance(UPDATE_ICON)

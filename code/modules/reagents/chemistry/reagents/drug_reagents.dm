@@ -713,7 +713,7 @@
 	if(prob(50))
 		to_chat(L, span_warning("You start to see flickering blue light..."))
 	else
-		addtimer(CALLBACK(L, /mob/living/proc/bluespace_shuffle), 30)
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, bluespace_shuffle)), 30)
 
 /datum/reagent/drug/blue_eye/on_mob_life(mob/living/carbon/M)
 	if(!M?.mind?.has_antag_datum(/datum/antagonist/cult))
@@ -756,7 +756,7 @@
 		M.visible_message(span_danger("[M]'s fingers curl into mystical shapes!"))
 		M.drop_all_held_items()
 	if(prob(8))
-		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, bluespace_shuffle)), 30)
 	..()
 
 /datum/reagent/drug/blue_eye/addiction_act_stage1(mob/living/M)

@@ -477,7 +477,7 @@
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = SYNTHETIC // no more humans with IPC lungs, that's just silly
+	compatible_biotypes = MOB_ROBOTIC // no more humans with IPC lungs, that's just silly
 	status = ORGAN_ROBOTIC
 	COOLDOWN_DECLARE(last_message)
 
@@ -619,8 +619,8 @@
 
 /obj/item/organ/lungs/ethereal/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 	. = ..()
-	var/electrolysis = breath.get_moles(/datum/gas/water_vapor)
+	var/electrolysis = breath.get_moles(GAS_H2O)
 	if(electrolysis)
-		breath.adjust_moles(/datum/gas/water_vapor, -electrolysis)
-		breath.adjust_moles(/datum/gas/hydrogen, electrolysis)
-		breath.adjust_moles(/datum/gas/oxygen, electrolysis/2)
+		breath.adjust_moles(GAS_H2O, -electrolysis)
+		breath.adjust_moles(GAS_H2, electrolysis)
+		breath.adjust_moles(GAS_O2, electrolysis/2)

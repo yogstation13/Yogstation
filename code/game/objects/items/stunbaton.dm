@@ -221,11 +221,9 @@
 		else
 			L.Paralyze(stunforce)
 		L.adjust_jitter(20 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
 		L.adjust_jitter(10 SECONDS)
-		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
 		L.adjust_jitter(5 SECONDS)

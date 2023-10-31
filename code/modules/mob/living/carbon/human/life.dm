@@ -74,15 +74,20 @@
 
 
 /mob/living/carbon/human/calculate_affecting_pressure(pressure)
-	if (wear_suit && head && istype(wear_suit, /obj/item/clothing) && istype(head, /obj/item/clothing))
-		var/obj/item/clothing/CS = wear_suit
-		var/obj/item/clothing/CH = head
-		if (CS.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
-			return ONE_ATMOSPHERE
-	else if(!get_bodypart(BODY_ZONE_HEAD) && wear_suit && istype(wear_suit, /obj/item/clothing)) // you don't need a helmet if you don't have a head
-		var/obj/item/clothing/CS = wear_suit
-		if(CS.clothing_flags & STOPSPRESSUREDAMAGE)
-			return ONE_ATMOSPHERE
+	var/obj/item/clothing/CS = wear_suit
+	if(CS && istype(CS))
+		if(get_bodypart(BODY_ZONE_HEAD))
+			var/obj/item/clothing/CH = head
+			if(CH && istype(CH))
+				if(pressure > ONE_ATMOSPHERE && (CS.clothing_flags & CH.clothing_flags & STOPSHIGHPRESSURE))
+					return ONE_ATMOSPHERE
+				else if(pressure < ONE_ATMOSPHERE && (CS.clothing_flags & CH.clothing_flags & STOPSLOWPRESSURE))
+					return ONE_ATMOSPHERE
+		else // you don't need a helmet if you don't have a head
+			if(pressure > ONE_ATMOSPHERE && (CS.clothing_flags & STOPSHIGHPRESSURE))
+				return ONE_ATMOSPHERE
+			else if(pressure < ONE_ATMOSPHERE && (CS.clothing_flags & STOPSLOWPRESSURE))
+				return ONE_ATMOSPHERE
 	return pressure
 
 
@@ -148,22 +153,6 @@
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	dna.species.handle_environment(environment, src)
-
-///FIRE CODE
-/mob/living/carbon/human/handle_fire()
-	. = ..()
-	if(.) //if the mob isn't on fire anymore
-		return
-
-	if(dna)
-		. = dna.species.handle_fire(src) //do special handling based on the mob's species. TRUE = they are immune to the effects of the fire.
-
-	if(!last_fire_update)
-		last_fire_update = fire_stacks
-	if((fire_stacks > HUMAN_FIRE_STACK_ICON_NUM && last_fire_update <= HUMAN_FIRE_STACK_ICON_NUM) || (fire_stacks <= HUMAN_FIRE_STACK_ICON_NUM && last_fire_update > HUMAN_FIRE_STACK_ICON_NUM))
-		last_fire_update = fire_stacks
-		update_fire()
-
 
 /mob/living/carbon/human/proc/get_thermal_protection()
 	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures

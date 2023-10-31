@@ -528,13 +528,12 @@
 							if(master)
 								master.spawn_spacevine_piece(stepturf, src)
 					else
-						if(!istype(D, /obj/machinery/door/firedoor))
-							D.open()
-							for(var/datum/spacevine_mutation/SM in mutations)
-								SM.on_spread(src, stepturf)
-								stepturf = get_step(src,direction)
-							if(master)
-								master.spawn_spacevine_piece(stepturf, src)
+						D.open()
+						for(var/datum/spacevine_mutation/SM in mutations)
+							SM.on_spread(src, stepturf)
+							stepturf = get_step(src,direction)
+						if(master)
+							master.spawn_spacevine_piece(stepturf, src)
 
 /obj/structure/spacevine/ex_act(severity, target)
 	if(istype(target, type)) //if its agressive spread vine dont do anything

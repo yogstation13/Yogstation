@@ -16,6 +16,7 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	grime = TRUE
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1\

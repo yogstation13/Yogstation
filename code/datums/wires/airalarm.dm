@@ -46,9 +46,8 @@
 					A.mode = 1 // AALARM_MODE_SCRUB
 				A.apply_mode(usr)
 		if(WIRE_ALARM) // Clear alarms.
-			var/area/AA = get_area(A)
-			if(AA.atmosalert(0, holder))
-				A.post_alert(0)
+			A.atmos_manualOverride(TRUE)
+			A.post_alert(0)
 			A.update_appearance(UPDATE_ICON)
 
 /datum/wires/airalarm/on_cut(wire, mend)
@@ -68,7 +67,6 @@
 				A.mode = 3 // AALARM_MODE_PANIC
 				A.apply_mode(usr)
 		if(WIRE_ALARM) // Post alarm.
-			var/area/AA = get_area(A)
-			if(AA.atmosalert(2, holder))
-				A.post_alert(2)
+			A.atmos_manualOverride()
+			A.post_alert(2)
 			A.update_appearance(UPDATE_ICON)
