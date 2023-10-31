@@ -13,3 +13,4 @@
 	psi_cost = 100 //lol
 	cooldown_time = 60 SECONDS
 	length = 5 SECONDS
+	guardian_lock = FALSE
