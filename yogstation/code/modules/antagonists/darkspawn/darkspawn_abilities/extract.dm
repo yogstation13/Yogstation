@@ -11,14 +11,28 @@
 	cast_range = 5
 	var/mob/living/target
 	var/datum/beam/visual
+	var/datum/antagonist/darkspawn/cost
+	var/upkeep_cost = 1 //happens 5 times a second
 
-/datum/action/cooldown/spell/toggle/New()
+/datum/action/cooldown/spell/pointed/extract/New()
 	..()
 	START_PROCESSING(SSfastprocess, src)
 
-/datum/action/cooldown/spell/toggle/Destroy()
+/datum/action/cooldown/spell/pointed/extract/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
+
+/datum/action/cooldown/spell/pointed/extract/Grant(mob/grant_to)
+	. = ..()
+	if(isdarkspawn(owner))
+		cost = isdarkspawn(owner)
+	if(active && cost && (!cost.use_psi(upkeep_cost)))
+		Activate(owner)
+
+/datum/action/cooldown/spell/pointed/extract/can_cast_spell(feedback)
+	if(target)
+		return FALSE
+	. = ..()
 
 /datum/action/cooldown/spell/pointed/extract/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
