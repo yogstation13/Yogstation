@@ -249,12 +249,12 @@
 	var/protection = T.get_eye_protection()
 	var/sleep_duration = 30 SECONDS
 	switch(protection)
+		if(1 to INFINITY)
+			to_chat(user, span_vampirewarning("Your hypnotic powers are dampened by [T]'s eye protection."))
+			sleep_duration = 10 SECONDS
 		if(INFINITY)
 			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by hypnosis!"))
 			return FALSE
-		if(INFINITY to 1)
-			to_chat(user, span_vampirewarning("Your hypnotic powers are dampened by [T]'s eye protection."))
-			sleep_duration = 10 SECONDS
 
 	to_chat(T, span_boldwarning("Your knees suddenly feel heavy. Your body begins to sink to the floor."))
 	to_chat(user, span_notice("[T] is now under your spell. In four seconds they will be rendered unconscious as long as they are within close range."))
