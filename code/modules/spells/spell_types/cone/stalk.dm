@@ -74,7 +74,7 @@
 /datum/action/cooldown/spell/cone/stalk/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
 	if(target_mob == caster)
 		return
-	if(!target_mod.client)
+	if(!target_mob.client)
 		return
 	if(!can_see(owner, target_mob, cone_levels))
 		return
