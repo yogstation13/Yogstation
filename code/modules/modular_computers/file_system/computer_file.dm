@@ -35,3 +35,6 @@
 		temp.filename = filename
 	temp.filetype = filetype
 	return temp
+
+/datum/computer_file/proc/try_insert(obj/item/I, mob/living/user = null)
+	return FALSE
