@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - experiment: "Refactored a lot of code related to scripting. Please report any bugs."
