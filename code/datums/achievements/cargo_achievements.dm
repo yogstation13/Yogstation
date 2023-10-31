@@ -1,5 +1,6 @@
 /datum/award/achievement/cargo
 	category = "Cargo"
+	icon = "baseskill"
 
 /datum/award/achievement/cargo/ducatduke
 	name = "Duke of Ducats"

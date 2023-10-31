@@ -1,5 +1,6 @@
 /datum/award/achievement/misc
 	category = "Misc"
+	icon = "basemisc"
 
 /datum/award/achievement/misc/roboborg
 	name = "I Live Again"

@@ -83,7 +83,7 @@
 ///Achievements are one-off awards for usually doing cool things.
 /datum/award/achievement
 	desc = "Achievement for epic people"
-	icon = "" // This should warn contributors that do not declare an icon when contributing new achievements.
+	icon = "default"
 	///How many players have earned this achievement
 	var/times_achieved = 0
 

@@ -1,5 +1,6 @@
 /datum/award/achievement/engineering
 	category = "Engineering"
+	icon = "baseskill"
 
 /datum/award/achievement/engineering/engineering_round
 	name = "Isaac Clarke"
