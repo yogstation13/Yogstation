@@ -4002,6 +4002,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\crawling_shadow.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\creep.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\darkness_smoke.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\deluge.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\demented_outburst.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\devour_will.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\extinguish.dm"
