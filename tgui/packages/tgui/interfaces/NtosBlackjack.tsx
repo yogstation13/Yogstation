@@ -17,22 +17,22 @@ const GameStateFlavor = {
   2:"Congratulations!",
   3:"Tied!",
   4:"Gamble responsibly!",
-  5:"Dealer is drawing..."
-}
+  5:"Dealer is drawing...",
+};
 
 const ColorSuit = {
   "S":"black",
   "H":"red",
   "C":"black",
   "D":"red",
-}
+};
 
 const IconSuit = {
   "S":"spa",
   "H":"heart",
   "C":"cubes",
   "D":"diamond",
-}
+};
 
 type Data = {
   game_state: GameState;
@@ -131,12 +131,12 @@ export const NtosBlackjack = (props, context) => {
               <Stack.Item grow>
                 <Section fill>
                   <Box textAlign='center'>
-                    Dealer's hand
+                    Dealer&apos;s hand
                   </Box>
                   <br />
                   <Stack>
                     {data.active_dealer_cards.map((card_string, index) =>
-                      <Stack.Item
+                      (<Stack.Item
                         bold
                         fontSize={1.4}
                         height={7}
@@ -159,7 +159,7 @@ export const NtosBlackjack = (props, context) => {
                             </Box>
                           </Stack.Item>
                         </Stack>
-                      </Stack.Item>
+                       </Stack.Item>)
                     )}
                   </Stack>
                 </Section>
@@ -172,7 +172,7 @@ export const NtosBlackjack = (props, context) => {
                   <br />
                   <Stack>
                     {data.active_player_cards.map((card_string, index) =>
-                      <Stack.Item
+                      (<Stack.Item
                         bold
                         fontSize={1.4}
                         height={7}
@@ -195,7 +195,7 @@ export const NtosBlackjack = (props, context) => {
                             </Box>
                           </Stack.Item>
                         </Stack>
-                      </Stack.Item>
+                       </Stack.Item>)
                     )}
                   </Stack>
                 </Section>
