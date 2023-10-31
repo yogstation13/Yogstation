@@ -198,22 +198,37 @@
 	desc = "A tight collar used on prisoners to restrict their use of magic, while leaving them vulnerable to it's effects"
 	icon_state = "antimagiccollar"
 	resistance_flags = FIRE_PROOF
+	var/mob/living/collar_on = null
+	var/inmate_name = "none"
+
+/obj/item/clothing/neck/anti_magic_collar/Initialize(mapload)
+	..()
+	GLOB.tracked_collars += src
+
+/obj/item/clothing/neck/anti_magic_collar/Destroy()
+	. = ..()
+	GLOB.tracked_collars -= src
 
 /obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	if(!(slot & slot_flags))
+	if((slot & slot_flags))
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+		RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))
+		inmate_name = user.name
 		return
-	RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))
-
+	
 /obj/item/clothing/neck/anti_magic_collar/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC)
+	inmate_name = "none"
 
 ///Prevents any magic from being used by the user.
 /obj/item/clothing/neck/anti_magic_collar/proc/restrict_casting_magic(mob/user, magic_flags)
 	SIGNAL_HANDLER
 	return COMPONENT_MAGIC_BLOCKED
+
+/obj/item/clothing/neck/anti_magic_collar/proc/unlock()
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 //////////////
 //DOPE BLING//
