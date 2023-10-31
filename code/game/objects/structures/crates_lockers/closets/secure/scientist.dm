@@ -13,6 +13,7 @@
 	new /obj/item/clothing/neck/cloak/rd(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/storage/lockbox/medal/sci(src)
+	new /obj/item/card/id/departmental_budget/sci (src)
 	new /obj/item/clothing/suit/armor/reactive/teleport(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/laser_pointer(src)

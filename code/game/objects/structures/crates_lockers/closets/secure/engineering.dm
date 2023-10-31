@@ -5,6 +5,7 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/PopulateContents()
 	..()
+	//a good chunk of these tools could be belt populated 
 	new /obj/item/tank/jetpack/suit(src)
 	new /obj/item/cartridge/ce(src)
 	new /obj/item/radio/headset/heads/ce(src)
@@ -21,6 +22,7 @@
 	new /obj/item/door_remote/chief_engineer(src)
 	new /obj/item/pipe_dispenser(src)
 	new /obj/item/inducer(src)
+	new /obj/item/card/id/departmental_budget/eng (src)
 	new /obj/item/circuitboard/machine/techfab/department/engineering(src)
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/CE(src)
