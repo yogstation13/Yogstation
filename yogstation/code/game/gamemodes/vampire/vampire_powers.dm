@@ -188,16 +188,17 @@
 
 	var/protection = T.get_eye_protection()
 	switch(protection)
-		if(INFINITY)
-			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by your gaze!"))
-			return FALSE
-		if(INFINITY to 1)
-			T.adjust_confusion(5 SECONDS)
-			return TRUE
+	
 		if(0)
 			to_chat(target, span_userdanger("You are paralyzed with fear!"))
 			to_chat(user, span_notice("You paralyze [T]."))
 			T.Stun(5 SECONDS)
+		if(1 to INFINITY)
+			T.adjust_confusion(5 SECONDS)
+			return TRUE
+		if(INFINITY)
+			to_chat(user, span_vampirewarning("[T] is blind and is unaffected by your gaze!"))
+			return FALSE
 	return TRUE
 
 
