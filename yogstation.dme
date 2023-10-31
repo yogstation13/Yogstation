@@ -3999,6 +3999,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\veil.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\_divulge.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\_sacrament.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\crawling_shadow.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\creep.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\darkness_smoke.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\demented_outburst.dm"
