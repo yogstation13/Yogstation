@@ -1,0 +1,4 @@
+author: "wonderinghost"
+delete-after: true 
+changes: 
+  - tweak: "allows the sheet snatcher to hold rods and tiles"
