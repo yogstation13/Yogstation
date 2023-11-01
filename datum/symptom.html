@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;symptom - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/symptom.html#var">Var Details</a></header>
+<main>
+<h1>Disease Symptoms <aside>/<a href="datum.html">datum</a>/<a href="datum/symptom.html">symptom</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 3"/></a></h1>
+
+<p>Symptoms are the effects that engineered advanced diseases do.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/symptom.html#var/base_message_chance">base_message_chance</a></th><td>Chance of warning the affected mob about this symptom</td></tr>
+            <tr><th><a href="datum/symptom.html#var/compatible_biotypes">compatible_biotypes</a></th><td>Types of mob this symptom should affect.
+Checked against [/mob/living/proc/get_process_flags]</td></tr>
+            <tr><th><a href="datum/symptom.html#var/desc">desc</a></th><td>Basic symptom description</td></tr>
+            <tr><th><a href="datum/symptom.html#var/icon">icon</a></th><td>Asset representing this symptom in Pandemic UI</td></tr>
+            <tr><th><a href="datum/symptom.html#var/id">id</a></th><td>The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!</td></tr>
+            <tr><th><a href="datum/symptom.html#var/level">level</a></th><td>The type level of the symptom. Higher is harder to generate.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/name">name</a></th><td>Friendly symptom name</td></tr>
+            <tr><th><a href="datum/symptom.html#var/naturally_occuring">naturally_occuring</a></th><td>True if this symptom can appear from <a href="datum/disease/advance.html#proc/GenerateSymptoms" title="/datum/disease/advance">/datum/disease/advance/proc/GenerateSymptoms</a></td></tr>
+            <tr><th><a href="datum/symptom.html#var/neutered">neutered</a></th><td>A neutered symptom has no effect, and only affects statistics.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/next_activation">next_activation</a></th><td>Ticks between each activation</td></tr>
+            <tr><th><a href="datum/symptom.html#var/power">power</a></th><td>Can be used to multiply virus effects</td></tr>
+            <tr><th><a href="datum/symptom.html#var/severity">severity</a></th><td>The severity level of the symptom. Higher is more dangerous.</td></tr>
+            <tr><th><a href="datum/symptom.html#var/suppress_warning">suppress_warning</a></th><td>If the early warning messages are suppressed or not</td></tr>
+            <tr><th><a href="datum/symptom.html#var/threshold_descs">threshold_descs</a></th><td>Descriptions of threshold effects</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/base_message_chance"><aside class="declaration">var </aside>base_message_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 23"/></a></h3>
+        <p>Chance of warning the affected mob about this symptom</p><h3 id="var/compatible_biotypes"><aside class="declaration">var </aside>compatible_biotypes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 39"/></a></h3>
+        <p>Types of mob this symptom should affect.
+Checked against [/mob/living/proc/get_process_flags]</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 7"/></a></h3>
+        <p>Basic symptom description</p><h3 id="var/icon"><aside class="declaration">var </aside>icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 9"/></a></h3>
+        <p>Asset representing this symptom in Pandemic UI</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 21"/></a></h3>
+        <p>The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!</p><h3 id="var/level"><aside class="declaration">var </aside>level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 17"/></a></h3>
+        <p>The type level of the symptom. Higher is harder to generate.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 5"/></a></h3>
+        <p>Friendly symptom name</p><h3 id="var/naturally_occuring"><aside class="declaration">var </aside>naturally_occuring
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 36"/></a></h3>
+        <p>True if this symptom can appear from <a href="datum/disease/advance.html#proc/GenerateSymptoms" title="/datum/disease/advance">/datum/disease/advance/proc/GenerateSymptoms</a></p><h3 id="var/neutered"><aside class="declaration">var </aside>neutered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 33"/></a></h3>
+        <p>A neutered symptom has no effect, and only affects statistics.</p><h3 id="var/next_activation"><aside class="declaration">var </aside>next_activation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 27"/></a></h3>
+        <p>Ticks between each activation</p><h3 id="var/power"><aside class="declaration">var </aside>power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 31"/></a></h3>
+        <p>Can be used to multiply virus effects</p><h3 id="var/severity"><aside class="declaration">var </aside>severity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 19"/></a></h3>
+        <p>The severity level of the symptom. Higher is more dangerous.</p><h3 id="var/suppress_warning"><aside class="declaration">var </aside>suppress_warning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 25"/></a></h3>
+        <p>If the early warning messages are suppressed or not</p><h3 id="var/threshold_descs"><aside class="declaration">var </aside>threshold_descs
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/838ec68bcd3c76f578139d14c635f5d9522939af/code/datums/diseases/advance/symptoms/symptoms.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;diseases&#x2F;advance&#x2F;symptoms&#x2F;symptoms.dm 11"/></a></h3>
+        <p>Descriptions of threshold effects</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/838ec68bcd3c76f578139d14c635f5d9522939af">838ec68</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
