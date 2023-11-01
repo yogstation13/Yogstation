@@ -205,7 +205,7 @@
 		A distress signal has been sent to Central Command to alert them of the situation. In addition to that, \
 		we have observed a substantial number of meteors approaching the station on a large scale. \
 		Please remain calm and follow the evacuation procedures provided. \
-		Proceed to the designated evacuation points swiftly and orderly, To ensure your safety, \
+		Proceed to the designated evacuation points swiftly and orderly. To ensure your safety, \
 		please avoid areas with abnormal activity and refrain from going outside the station to minimize the risk of collisions with meteors. \
 		Security personnel are present to assist and ensure your safety. \
 		Cooperate with their instructions and refrain from engaging with any hostiles. \

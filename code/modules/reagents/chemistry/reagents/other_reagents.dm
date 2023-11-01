@@ -192,7 +192,7 @@
 		M.AdjustUnconscious(-reac_volume*0.3 SECONDS)
 		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
 
-		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
+		M.adjust_wet_stacks((reac_volume / 10) * M.get_permeability(null, TRUE))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
 
@@ -1094,7 +1094,7 @@
 		to_chat(M, span_warning("You feel unstable..."))
 		M.adjust_jitter(2 SECONDS)
 		current_cycle = 1
-		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, bluespace_shuffle)), 30)
 	..()
 
 /mob/living/proc/bluespace_shuffle()
