@@ -39869,7 +39869,7 @@
 /area/engine/atmos)
 "rsn" = (
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;5"
+	req_access_txt = "5"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -39878,7 +39878,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/medical/genetics)
+/area/medical/sleeper)
 "rsE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
