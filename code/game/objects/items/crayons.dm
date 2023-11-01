@@ -443,7 +443,7 @@
 		// check_empty() is called during afterattack
 		M.adjust_disgust(10)
 		if(prob(70))
-				M.vomit()
+			M.vomit()
 	else
 		..()
 
