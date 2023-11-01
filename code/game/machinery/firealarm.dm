@@ -38,6 +38,8 @@
 
 	var/bad_temp = null //Current bad temperature
 
+	var/obj/item/radio/radio
+
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
 	. = ..()
 	if(dir)
@@ -50,6 +52,11 @@
 	update_appearance(UPDATE_ICON)
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
+	radio = new(src)
+	radio.keyslot = new /obj/item/encryptionkey/headset_eng
+	radio.subspace_transmission = TRUE
+	radio.canhear_range = 0
+	radio.recalculateChannels()
 	STOP_PROCESSING(SSmachines, src) // I will do this
 
 /obj/machinery/firealarm/Destroy()
@@ -133,6 +140,7 @@
 		real_fire = TRUE
 		bad_temp = temperature
 		alarm()
+		radio.talk_into(src, "Fire detected in [myarea].", RADIO_CHANNEL_ENGINEERING)
 		START_PROCESSING(SSmachines, src)
 	..()
 
@@ -173,10 +181,6 @@
 	add_fingerprint(user)
 	play_click_sound("button")
 	if(myarea.fire || myarea.party)
-		if(areafire_check() && !(obj_flags & EMAGGED))
-			to_chat(user, span_danger("There is a fire in this area, you cannot lift the fire doors."))
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-			return
 		reset(user)
 	else
 		alarm(user)

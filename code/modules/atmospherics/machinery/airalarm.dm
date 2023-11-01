@@ -249,7 +249,7 @@
 /obj/machinery/airalarm/Destroy()
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
-	if(A.airalarms.len<2 || A.manual_atmosalm)
+	if(length(A.airalarms)<2 || A.manual_atmosalm)
 		atmos_manualOverride(TRUE)
 		post_alert(0)
 	else
