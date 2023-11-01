@@ -39,7 +39,7 @@
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
-	var/whiteship = pick("whiteship_1", "whiteship_2", "whiteship_3", "whiteship_4", "whiteship_5", "whiteship_clown")
+	var/whiteship = pick("whiteship_1", "whiteship_2", "whiteship_3", "whiteship_4", "whiteship_5")
 	config.shuttles["whiteship"] = whiteship
 	if (default_to_box)
 		return config
