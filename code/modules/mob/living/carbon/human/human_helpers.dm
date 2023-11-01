@@ -419,7 +419,7 @@
 		var/datum/component/forensics/detective_work = item_instance.GetComponent(/datum/component/forensics)
 		item_copy.add_blood_DNA(detective_work.blood_DNA) // authentic lol
 
-	item_copy.update_appearance(UPDATE_NAME | UPDATE_ICON)
+	item_copy.update_icon(UPDATE_OVERLAYS)
 
 	// So you can attempt to take off the clothes to prevent meta, but they will be deleted anyways
 	if(dropdel)

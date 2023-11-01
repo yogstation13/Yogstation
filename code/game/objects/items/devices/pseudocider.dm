@@ -3,12 +3,17 @@
 	desc = "A syndicate device that triggers upon taking damage, making you invisible and leaving behind a fake body."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pocketwatch-closed"
+	base_icon_state = "pocketwatch"
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/toggle_pseudocider)
 	var/active = FALSE
 	var/mob/living/carbon/fake_corpse
 	COOLDOWN_DECLARE(fake_death_timer)
 	var/fake_death_cooldown = 20 SECONDS
+
+/obj/item/pseudocider/update_icon_state()
+	icon_state = "[base_icon_state][active ? "-open" : "-closed"]"
+	return ..()
 
 /obj/item/pseudocider/Initialize(mapload)
 	. = ..()
@@ -37,10 +42,6 @@
 		to_chat(user, span_notice("\The [src] refuses to open! Wait [COOLDOWN_TIMELEFT(src, fake_death_timer)/10] more seconds!"))
 		return
 	active = !active
-	if(active)
-		icon_state = "pocketwatch-open"
-	else
-		icon_state = "pocketwatch-closed"
 	update_appearance(UPDATE_ICON)
 
 /obj/item/pseudocider/proc/fake_death(mob/living/carbon/copied_mob, damage, damagetype, def_zone)
@@ -78,8 +79,8 @@
 			cloth.damaged_clothes = equipped.damaged_clothes
 			if(HAS_BLOOD_DNA(equipped))
 				var/datum/component/forensics/detective_work = equipped.GetComponent(/datum/component/forensics)
-				cloth.add_blood_DNA(detective_work.blood_DNA) // authentic lol
-			cloth.update_appearance(UPDATE_NAME | UPDATE_ICON)
+				cloth.add_blood_DNA(detective_work.blood_DNA) // authentic
+			cloth.update_icon(UPDATE_OVERLAYS)
 			cloth.item_flags |= DROPDEL
 			if(!fake_corpse.equip_to_appropriate_slot(cloth))
 				QDEL_NULL(cloth)
@@ -112,7 +113,6 @@
 
 /obj/item/pseudocider/proc/unfake_death(mob/living/carbon/copied_mob, stored_footstep_volume, mob/living/carbon/fake_corpse)
 	active = FALSE
-	icon_state = "pocketwatch-closed"
 	update_appearance(UPDATE_ICON)
 
 	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown)
