@@ -370,9 +370,6 @@
 	// yogs end
 	return TRUE
 
-/mob/living/simple_animal/handle_fire()
-	return TRUE
-
 /mob/living/simple_animal/ignite_mob()
 	return FALSE
 

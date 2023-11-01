@@ -442,6 +442,7 @@
 	pixel_x = -2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "bq" = (
@@ -645,12 +646,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "bZ" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/structure/window/plasma/reinforced/spawner/east,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+/obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
 	},
-/turf/open/floor/engine/n2,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ca" = (
 /obj/machinery/door/airlock/external,
@@ -1027,6 +1026,7 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "di" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "dj" = (
@@ -1076,7 +1076,11 @@
 "dz" = (
 /obj/structure/closet,
 /obj/item/tank/jetpack/void,
-/obj/item/clothing/head/helmet/space/nasavoid/old,
+/obj/item/clothing/head/helmet/space/nasavoid/old{
+	name = "Radiation Response Void Helmet";
+	desc = "An old engineering helmet. This version has additional radiation protection.";
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70)
+	},
 /obj/item/clothing/suit/space/nasavoid,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1098,6 +1102,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "dB" = (
@@ -1460,6 +1465,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
+"fc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "fd" = (
 /obj/structure/sign/poster/contraband/donut_corp,
 /turf/closed/wall,
@@ -1579,18 +1589,18 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "fD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/engineering{
-	name = "Reactor Core"
-	},
 /obj/machinery/door/firedoor/border_only/closed,
-/obj/machinery/door/firedoor/border_only/closed{
-	dir = 1;
-	icon_state = "door_closed"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/door/firedoor/border_only/closed{
+	dir = 1;
+	icon_state = "door_closed"
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "charlie_reactor_access"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "fE" = (
@@ -1867,6 +1877,7 @@
 /obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "gX" = (
@@ -1883,6 +1894,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"hd" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "he" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset/anchored,
@@ -1907,6 +1926,7 @@
 /area/ruin/space/has_grav/ancientstation/proto)
 "hk" = (
 /obj/effect/decal/nuclear_waste,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "hl" = (
@@ -2211,6 +2231,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"iU" = (
+/obj/item/paper/guides/jobs/engi/agcnr,
+/obj/structure/filingcabinet,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "iV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -2375,6 +2400,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "jI" = (
@@ -2385,6 +2411,11 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/button/door{
+	id = "charlie_reactor_access";
+	name = "Reactor Access";
+	pixel_y = 24
+	},
 /turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/ancientstation/engi)
 "jJ" = (
@@ -2964,6 +2995,13 @@
 "lp" = (
 /turf/closed/mineral/gold,
 /area/ruin/unpowered)
+"ls" = (
+/obj/machinery/atmospherics/components/trinary/filter{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "lw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -3191,6 +3229,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "mp" = (
@@ -3415,6 +3454,7 @@
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "mT" = (
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg1"
 	},
@@ -3525,6 +3565,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "nj" = (
@@ -3691,14 +3732,14 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "nD" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/plating/airless,
+/turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "nE" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
 /obj/machinery/disposal/deliveryChute,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "nG" = (
@@ -3807,7 +3848,8 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "nV" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/engine/n2,
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "nX" = (
 /obj/machinery/light/small{
@@ -3955,10 +3997,14 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "ot" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/closet/firecloset,
+/obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "ov" = (
@@ -3976,14 +4022,13 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "ow" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/item/clothing/head/helmet/space/nasavoid/old{
+	name = "Radiation Response Void Helmet";
+	desc = "An old engineering helmet. This version has additional radiation protection.";
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70)
 	},
-/obj/machinery/light_switch{
-	pixel_x = 26
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/ancientstation/betastorage)
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "ox" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4164,12 +4209,15 @@
 "oV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset/anchored,
+/obj/machinery/light_switch{
+	pixel_x = 26
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "oW" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/ancientstation/betastorage)
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "oY" = (
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/solarpanel,
@@ -4667,6 +4715,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "qo" = (
@@ -4931,6 +4982,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 10
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "rm" = (
@@ -5092,6 +5144,8 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "sl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "sm" = (
@@ -5173,7 +5227,6 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "sS" = (
 /obj/effect/decal/cleanable/glass,
-/obj/structure/closet/radiation,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "sW" = (
@@ -5315,6 +5368,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"tJ" = (
+/obj/effect/turf_decal/pool{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "tR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/ash,
@@ -5387,8 +5447,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "un" = (
-/obj/structure/window/plasma/reinforced/spawner/east,
-/turf/open/floor/engine/n2,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ur" = (
 /obj/structure/table,
@@ -5486,6 +5546,8 @@
 /obj/machinery/airalarm/all_access{
 	pixel_y = 24
 	},
+/obj/item/sealant,
+/obj/item/sealant,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "uT" = (
@@ -5883,15 +5945,15 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "xw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/engineering{
-	name = "Reactor Core"
-	},
 /obj/machinery/door/firedoor/border_only/closed,
 /obj/machinery/door/firedoor/border_only/closed{
 	dir = 1;
 	icon_state = "door_closed"
 	},
 /obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/machinery/door/poddoor/shutters{
+	id = "charlie_reactor_access"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "xy" = (
@@ -6191,7 +6253,7 @@
 	id = "charlie_station_reactor"
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper/guides/jobs/engi/agcnr,
+/obj/item/paper/fluff/ruins/oldstation/nuclearcore_status,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Ab" = (
@@ -6318,6 +6380,18 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
+"AS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only/closed{
+	dir = 1;
+	icon_state = "door_closed"
+	},
+/obj/machinery/door/firedoor/border_only/closed,
+/obj/machinery/door/poddoor/shutters{
+	id = "charlie_reactor_access"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "Ba" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
@@ -6378,6 +6452,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/item/clothing/suit/space/nasavoid/old{
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70);
+	name = "Radiation Response Voidsuit";
+	desc = "A modified version of a CentCom engineering voidsuit used to respond to radiological emergencies."
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Bs" = (
@@ -6586,6 +6666,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "CK" = (
@@ -6836,6 +6917,7 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "Et" = (
 /obj/machinery/atmospherics/components/binary/pump,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Ev" = (
@@ -6888,6 +6970,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
+"EL" = (
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "EM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -6917,8 +7004,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Fe" = (
-/obj/effect/decal/nuclear_waste,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/tank/internals/oxygen/yellow,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Fj" = (
@@ -6938,12 +7024,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/suit_storage_unit{
-	helmet_type = /obj/item/clothing/head/helmet/space/nasavoid/old;
-	mask_type = /obj/item/clothing/mask/breath;
-	storage_type = /obj/item/tank/internals/oxygen;
-	suit_type = /obj/item/clothing/suit/space/nasavoid/old
-	},
+/obj/machinery/suit_storage_unit/open,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Ft" = (
@@ -7078,6 +7159,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Gm" = (
@@ -7334,9 +7416,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "HO" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/machinery/atmospherics/components/unary/outlet_injector/on,
-/turf/open/floor/engine/n2,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "HT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7620,6 +7703,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Kn" = (
@@ -7799,6 +7883,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Lf" = (
@@ -7909,6 +7994,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "LO" = (
@@ -8090,10 +8176,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
-"Na" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/ruin/space/has_grav/ancientstation/solars)
 "Nd" = (
 /mob/living/simple_animal/hostile/alien/drone,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -8285,9 +8367,8 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "OO" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 1
-	},
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "OP" = (
@@ -8386,6 +8467,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
+"Po" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	id = "charlie_reactor_access";
+	name = "Reactor Access";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "Pp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -8864,10 +8954,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"ST" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "SV" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "SZ" = (
@@ -8917,6 +9014,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "To" = (
+/obj/machinery/pool_filter,
+/obj/item/fuel_rod{
+	pixel_x = 6
+	},
+/obj/item/fuel_rod{
+	pixel_x = -6
+	},
 /turf/open/indestructible/sound/pool/end,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Tt" = (
@@ -8936,9 +9040,6 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
-	},
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
 	},
 /turf/open/floor/engine/airless,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -9010,7 +9111,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "TP" = (
-/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "TQ" = (
@@ -9525,6 +9627,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Xd" = (
@@ -9588,6 +9691,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/binary/pump,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "XS" = (
@@ -9782,6 +9886,7 @@
 	pixel_x = -24
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ZK" = (
@@ -10666,7 +10771,7 @@ aa
 OY
 Lq
 Lq
-Na
+ZT
 DX
 wW
 ZT
@@ -11051,9 +11156,9 @@ mm
 mT
 sS
 nD
-ow
-oW
-jQ
+nD
+nD
+nD
 dF
 dF
 bf
@@ -11173,7 +11278,7 @@ aa
 aa
 aa
 qq
-ze
+oW
 ze
 ty
 qi
@@ -11235,9 +11340,9 @@ aa
 ZM
 aa
 qq
-ze
-ze
-ty
+oW
+ju
+tJ
 To
 nc
 nc
@@ -11298,7 +11403,7 @@ yZ
 yZ
 xy
 nE
-hk
+ju
 ni
 xT
 xT
@@ -11359,8 +11464,8 @@ qq
 qq
 qq
 qq
-ze
-ze
+OO
+ju
 xV
 CJ
 ZF
@@ -11419,14 +11524,14 @@ gU
 nO
 nV
 HO
-OO
+ze
 it
-kz
-kz
+TP
+TP
 LN
 Et
-kz
-kz
+TP
+TP
 xw
 Hz
 VS
@@ -11486,10 +11591,10 @@ BY
 ze
 ze
 Bn
-ze
-ze
-TP
-xT
+ju
+ju
+ju
+AS
 Ty
 jW
 xb
@@ -11550,7 +11655,7 @@ Cz
 dA
 XR
 qo
-qo
+hd
 fD
 In
 VS
@@ -11604,15 +11709,15 @@ je
 Vc
 nO
 jV
-ze
+ju
 gV
 hk
-ze
+ju
 Rg
 KZ
 bp
-Fe
 XT
+ST
 Iq
 jI
 BG
@@ -11668,13 +11773,13 @@ bv
 qn
 ze
 gV
-ze
+ju
 hk
-ze
+Fe
 WF
 pi
-ze
-ze
+ow
+Po
 qq
 qq
 qq
@@ -11730,13 +11835,13 @@ Zn
 fb
 zO
 zV
-fb
-zO
+ls
+fc
 Ut
 om
 Es
 zO
-fb
+ls
 fb
 OL
 Cr
@@ -11914,7 +12019,7 @@ fZ
 gU
 qs
 FM
-ze
+iU
 ze
 pN
 xT
@@ -11922,7 +12027,7 @@ UH
 qm
 Pi
 qq
-Gi
+EL
 WZ
 fC
 QH

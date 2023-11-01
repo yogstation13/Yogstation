@@ -1,6 +1,9 @@
 
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
-	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
+	if(tool_behaviour && (target.tool_act(user, src, tool_behaviour) & TOOL_ACT_MELEE_CHAIN_BLOCKING))
+		return TRUE
+
+	if(pre_attack(target, user, params))
 		// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 		var/resolved = target.attackby(src, user, params)
 		if(!resolved && target && !QDELETED(src))
@@ -10,14 +13,6 @@
 		SSdemo.mark_turf(target)
 	else
 		SSdemo.mark_dirty(target)
-
-//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
-/obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	if(!tool_behaviour)
-		return FALSE
-
-	return target.tool_act(user, src, tool_behaviour)
-
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)

@@ -17,6 +17,7 @@ BONUS
 /datum/symptom/beard
 
 	name = "Facial Hypertrichosis"
+	icon = "facial_hypertrichosis"
 	desc = "The virus increases hair production significantly, causing rapid beard growth."
 	stealth = 0
 	resistance = 3

@@ -156,9 +156,11 @@
 	armor = list(MELEE = 10, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 75, FIRE = 50, ACID = 75, WOUND = 10)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser)
 	siemens_coefficient = 0
-	var/obj/item/clothing/head/helmet/space/hardsuit/helmet
 	actions_types = list(/datum/action/item_action/toggle_helmet)
+
+	var/obj/item/clothing/head/helmet/space/hardsuit/helmet
 	var/helmettype = /obj/item/clothing/head/helmet/space/hardsuit
+
 	var/obj/item/tank/jetpack/suit/jetpack = null
 	var/hardsuit_type
 
@@ -352,10 +354,11 @@
 	hardsuit_type = "syndi"
 	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 90, WOUND = 25)
 	on = TRUE
-	var/obj/item/clothing/suit/space/hardsuit/syndi/linkedsuit = null
 	actions_types = list(/datum/action/item_action/toggle_helmet_mode)
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	visor_flags = STOPSPRESSUREDAMAGE
+
+	var/obj/item/clothing/suit/space/hardsuit/syndi/linkedsuit
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon_state()
 	. = ..()
@@ -561,6 +564,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/wizard
 	slowdown = 0
+	clothing_traits = list(TRAIT_ANTIMAGIC_NO_SELFBLOCK)
 
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize(mapload)
 	. = ..()
