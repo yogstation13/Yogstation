@@ -20,6 +20,7 @@
 		"Muppet": "accent_chef_muppet.json",
 		"Valley": "accent_valspeak.json",
 		"Skaven": "accent_skaven.json",
-		"Russian": "accent_russian.json"
+		"Russian": "accent_russian.json",
+		"Punk" : "accent_punk.json"
 	}
 }
