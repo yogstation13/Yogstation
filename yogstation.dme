@@ -177,6 +177,7 @@
 #include "code\__DEFINES\dcs\signals\signals_mob\signals_mob.dm"
 #include "code\__DEFINES\dcs\signals\signals_mob\signals_silicon.dm"
 #include "code\__DEFINES\dcs\signals\signals_mob\signals_simplemob.dm"
+#include "code\__DEFINES\dcs\signals\signals_mob\signals_tools.dm"
 #include "code\__DEFINES\dcs\signals\signals_mob\signals_xenobiology.dm"
 #include "code\__DEFINES\{yogs_defines}\admin.dm"
 #include "code\__DEFINES\{yogs_defines}\antagonists.dm"
