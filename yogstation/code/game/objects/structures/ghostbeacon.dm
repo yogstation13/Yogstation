@@ -45,6 +45,8 @@
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
 	. = ..()
+	if(!user)
+		return // Don't ask this happened in testing (at roundstart)
 	if(!SSticker.HasRoundStarted())
 		to_chat(usr, span_warning("The round hasn't started yet!"))
 		return FALSE

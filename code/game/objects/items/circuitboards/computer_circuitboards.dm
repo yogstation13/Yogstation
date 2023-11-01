@@ -271,6 +271,11 @@
 	name = "Salvage Pod Recall (Computer Board)"
 	build_path = /obj/machinery/computer/shuttle/white_ship/pod/recall
 
+/obj/item/circuitboard/computer/clown_ship
+	name = "Clown Ship (Computer Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/computer/shuttle/clown_ship
+
 //Medical
 
 /obj/item/circuitboard/computer/cloning
