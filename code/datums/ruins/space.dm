@@ -271,11 +271,11 @@
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
 
-/datum/map_template/ruin/space/resturantdock
-	id = "resturantdock"
-	suffix = "resturantdock.dmm"
-	name = "Resturant Dock"
-	description = "A mobile resturant."
+/datum/map_template/ruin/space/restaurantdock
+	id = "restaurantdock"
+	suffix = "restaurantdock.dmm"
+	name = "restaurant Dock"
+	description = "A mobile restaurant."
 	always_place = TRUE
 	cost = 0
 

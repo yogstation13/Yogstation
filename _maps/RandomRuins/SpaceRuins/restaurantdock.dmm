@@ -9,7 +9,7 @@
 	dwidth = 8;
 	height = 17;
 	id = "clownship_away";
-	json_key = "resturant";
+	json_key = "restaurant";
 	name = "Deep Space";
 	width = 23
 	},

@@ -120,8 +120,8 @@
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"
 
-/datum/map_template/shuttle/resturant
-	port_id = "resturant"
+/datum/map_template/shuttle/restaurant
+	port_id = "restaurant"
 
 /datum/map_template/shuttle/labour
 	port_id = "labour"
@@ -522,9 +522,9 @@
 	suffix = "whiteship_pod"
 	name = "Salvage Pod"
 
-/datum/map_template/shuttle/resturant/clown
+/datum/map_template/shuttle/restaurant/clown
 	suffix = "clown"
-	name = "Clown Resturant"
+	name = "Clown restaurant"
 
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"

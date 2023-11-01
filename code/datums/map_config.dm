@@ -31,7 +31,7 @@
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_1",
 		"emergency" = "emergency_box",
-		"resturant" = "resturant_clown"
+		"restaurant" = "restaurant_clown"
 	)
 	
 	/// List of unit tests that are skipped when running this map
