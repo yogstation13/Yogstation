@@ -65,7 +65,7 @@
 	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown) // sanity
 
 	// Set up the mob to be identical
-	if(ishuman(fake_corpse) && ishuman(copied_mob))
+	if(ishuman(copied_mob))
 		fake_corpse = visually_duplicate_human(copied_mob, TRUE)
 	else
 		fake_corpse = new copied_mob.type
