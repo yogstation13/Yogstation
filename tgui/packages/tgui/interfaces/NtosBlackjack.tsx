@@ -101,7 +101,7 @@ export const NtosBlackjack = (props, context) => {
                 content={"Stand"} />
               <br />
               <Button.Confirm
-                disabled={data.game_state !== GameState.Continue}
+                disabled={data.game_state !== GameState.Continue || data.credits_stored < data.set_wager}
                 onClick={() => act('PRG_double_down')}
                 textAlign='center'
                 width={15}
