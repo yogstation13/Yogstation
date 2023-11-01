@@ -35363,7 +35363,7 @@
 "puy" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
-	req_one_access_txt = "12;26"
+	req_access_txt = "26"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -38367,7 +38367,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12;63";
+	req_access_txt = "63";
 	req_one_access_txt = "0"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -50994,7 +50994,7 @@
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "Security Maintenance";
-	req_access_txt = "12;63";
+	req_access_txt = "63";
 	req_one_access_txt = "0"
 	},
 /obj/machinery/door/firedoor/border_only,
