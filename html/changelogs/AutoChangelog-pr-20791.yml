@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "You should no longer have an extra-wide stance with digitigrade robot legs"
