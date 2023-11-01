@@ -43,6 +43,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/HoP(src)
 	new /obj/item/card/id/departmental_budget/srv (src)
+	new /obj/item/card/id/departmental_budget/civ (src)
 	new /obj/item/clipboard/yog/paperwork/hop(src)
 	new /obj/item/gun/energy/e_gun/mini(src) //hop doesn't get a proper gun
 	new /obj/item/storage/backpack/duffelbag/clothing/hop(src)

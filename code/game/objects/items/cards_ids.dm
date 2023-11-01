@@ -1103,3 +1103,7 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/departmental_budget/srv
 	department_ID = ACCOUNT_SRV
 	department_name = ACCOUNT_SRV_NAME
+
+/obj/item/card/id/departmental_budget/civ
+	department_ID = ACCOUNT_CIV
+	department_name = ACCOUNT_CIV_NAME
