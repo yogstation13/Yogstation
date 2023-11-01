@@ -605,6 +605,14 @@ GLOBAL_LIST_EMPTY(station_turfs)
 //Should return new turf
 /turf/proc/Melt()
 	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+	
+/turf/rust_heretic_act()
+	if(flags_1 & NO_RUST)
+		return
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		return
+
+	AddElement(/datum/element/rust)
 
 /turf/bullet_act(obj/projectile/P)
 	. = ..()

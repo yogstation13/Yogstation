@@ -18,6 +18,7 @@ Bonus
 
 /datum/symptom/sneeze
 	name = "Sneezing"
+	icon = "sneezing"
 	desc = "The virus causes irritation of the nasal cavity, making the host sneeze occasionally."
 	stealth = -2
 	resistance = 3
