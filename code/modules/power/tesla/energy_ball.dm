@@ -40,6 +40,11 @@
 	zap_range = 20
 	hypercharged = TRUE
 
+/obj/singularity/energy_ball/supermatter/small_crystals
+	name = "floating supermatter crystals"
+	icon = 'icons/obj/tesla_engine/smcrystals.dmi'
+	icon_state = "smcrystal1"
+
 /obj/singularity/energy_ball/ex_act(severity, target)
 	return
 
@@ -152,7 +157,8 @@
 
 	var/obj/singularity/energy_ball/EB
 	if(hypercharged)
-		EB = new /obj/singularity/energy_ball/supermatter(loc, 0, TRUE)
+		EB = new /obj/singularity/energy_ball/supermatter/small_crystals(loc, 0, TRUE)
+		EB.icon_state = "smcrystal[rand(1,3)]"
 	else
 		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
 
