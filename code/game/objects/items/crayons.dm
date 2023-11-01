@@ -442,8 +442,8 @@
 		reagents.trans_to(M, eaten, volume_multiplier, transfered_by = user)
 		// check_empty() is called during afterattack
 		M.adjust_disgust(10)
-		if(prob(25))
-			M.vomit(95)
+		if(prob(70))
+				M.vomit()
 	else
 		..()
 
