@@ -34,6 +34,7 @@
 
 /obj/singularity/energy_ball/supermatter
 	name = "supermatter energy ball"
+	desc = "The supermatter energy ball hovers ominously, a radiant orb of sheer power. Its brilliance is blinding, casting an intense glow that illuminates the surrounding area. The air crackles with the electric energy it exudes. The sheer intensity of its presence instills a sense of caution, reminding you of the untamed force contained within. Wisps of energy escape its surface, dissipating into the atmosphere with a sizzling sound. Sparks of energy occasionally arc between the crystal and the energy ball, crackling with a captivating yet dangerous allure."
 	icon_state = "smenergy_ball"
 	energy = 10000
 	max_balls = 20
@@ -42,6 +43,7 @@
 
 /obj/singularity/energy_ball/supermatter/small_crystals
 	name = "floating supermatter crystals"
+	desc = "The crystal emanates an otherworldly radiance, casting a soft, ethereal glow that illuminates the space around it. It hovers around the supermatter energy ball in a precise orbit, defying gravity with an elegant, weightless dance. Sparks of energy occasionally arc between the crystal and the energy ball, crackling with a captivating yet dangerous allure."
 	icon = 'icons/obj/tesla_engine/smcrystals.dmi'
 	icon_state = "smcrystal1"
 
