@@ -1,7 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Golf now works."
-  - bugfix: "Different golf holes can now be differentiated."
-  - bugfix: "Golf doesn't need power anymore."
-  - bugfix: "Golf closets now come with all golf equipment."
