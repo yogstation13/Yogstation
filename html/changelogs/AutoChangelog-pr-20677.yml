@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Venus human traps slowly regen if standing near vines"
+  - tweak: "Venus human traps lifesteal more, but must be near vines to do it"
+  - tweak: "Venus human traps can now be hurt by weedkiller that's applied ways other than in a gas cloud"
