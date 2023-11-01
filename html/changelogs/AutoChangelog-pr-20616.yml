@@ -1,0 +1,6 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "more things can be rusted"
+  - tweak: "leeching walk also slowly restores missing blood"
+  - tweak: "Aggressive spread now has a 25 second cooldown instead of 30 second"

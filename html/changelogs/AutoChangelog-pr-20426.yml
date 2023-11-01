@@ -1,0 +1,4 @@
+author: "hedgehog1029 & papi"
+delete-after: true 
+changes: 
+  - imageadd: "Added new symptom sprites to the PanD.E.M.I.C UI"

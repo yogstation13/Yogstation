@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "neural overclocker also gives a slight crawl speed increase"
+  - tweak: "neural overclocker costs 12tc instead of 14tc for traitors"
+  - tweak: "neural overclocker costs 20tc instead of 14tc for nukies"
+  - tweak: "toy neural overclocker is slightly more common in maints"

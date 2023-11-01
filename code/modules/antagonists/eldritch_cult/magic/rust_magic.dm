@@ -14,7 +14,7 @@ RUST PATH SPELLS GO HERE
 	sound = 'sound/items/welder.ogg'
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 30 SECONDS
+	cooldown_time = 25 SECONDS
 
 	invocation = "A'GRSV SPR'D"
 	invocation_type = INVOCATION_WHISPER
