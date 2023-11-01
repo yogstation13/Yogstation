@@ -436,15 +436,12 @@
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")
 		var/eaten = use_charges(user, 5, FALSE)
 		M.adjust_disgust(10)
-		if(prob(70))
-			M.vomit()
 		if(check_empty(user)) //Prevents divsion by zero
 			return
 		var/fraction = min(eaten / reagents.total_volume, 1)
 		reagents.reaction(M, INGEST, fraction * volume_multiplier)
 		reagents.trans_to(M, eaten, volume_multiplier, transfered_by = user)
 		// check_empty() is called during afterattack
-		M.adjust_disgust(10)
 	else
 		..()
 
