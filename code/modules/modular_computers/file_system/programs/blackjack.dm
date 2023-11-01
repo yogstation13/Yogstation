@@ -29,13 +29,34 @@
 
 	var/game_id = 0
 
+	var/datum/bank_account/temp_account // Call refresh_id_account() or get_credit_amount() before using this
+
+/datum/computer_file/program/blackjack/proc/refresh_id_account()
+	temp_account = null
+	if(holder && istype(holder.holder, /obj/item/modular_computer))
+		var/obj/item/modular_computer/computer = holder.holder
+		var/obj/item/card/id/stored_card = computer.GetID()
+		if(istype(stored_card) && istype(stored_card.registered_account))
+			temp_account = stored_card.registered_account
+			return stored_card.registered_account
+
+/datum/computer_file/program/blackjack/proc/get_credit_amount()
+	refresh_id_account()
+	return temp_account?.account_balance || credits_stored
+
+/datum/computer_file/program/blackjack/proc/adjust_credits(amt)
+	if(refresh_id_account())
+		temp_account.adjust_money(amt)
+	else
+		credits_stored += amt
+
 /datum/computer_file/program/blackjack/proc/new_game()
-	if(set_wager <= 0 || credits_stored < set_wager)
+	if(set_wager <= 0 || get_credit_amount() < set_wager)
 		return
 
 	game_id++
 
-	credits_stored -= set_wager
+	adjust_credits(-set_wager)
 	active_wager = set_wager
 
 	game_state = BLACKJACK_CONTINUE
@@ -85,7 +106,9 @@
 	data["game_state"] = game_state
 	data["active_dealer_cards"] = active_dealer_cards
 	data["active_player_cards"] = active_player_cards
-	data["credits_stored"] = credits_stored
+	data["credits_stored"] = get_credit_amount()
+	data["local_credits"] = credits_stored
+	data["has_id"] = !!temp_account
 	data["active_wager"] = active_wager
 	data["set_wager"] = set_wager
 	data["game_end_reason"] = game_end_reason
@@ -133,6 +156,7 @@
 			usr.put_in_hands(holochip)
 			to_chat(usr, span_notice("You withdraw [credits_stored] credits into a holochip."))
 			credits_stored = 0
+			play_snd('sound/machines/click.ogg')
 			return TRUE
 
 		if("PRG_set_wager")
@@ -142,6 +166,7 @@
 			if(round(new_wager) < 1)
 				return FALSE
 			set_wager = round(new_wager)
+			play_snd('sound/machines/click.ogg')
 			return TRUE
 
 		if("PRG_hit")
@@ -157,14 +182,15 @@
 				return FALSE
 			game_state = BLACKJACK_DEALER_TURN
 			addtimer(CALLBACK(src, PROC_REF(dealer_turn), game_id, usr), 1 SECONDS)
+			play_snd('sound/machines/click.ogg')
 			return TRUE
 
 		if("PRG_double_down")
 			if(game_state != BLACKJACK_CONTINUE)
 				return FALSE
-			if(credits_stored < active_wager)
+			if(get_credit_amount() < active_wager)
 				return
-			credits_stored -= active_wager
+			adjust_credits(-active_wager)
 			active_wager *= 2
 			play_snd('sound/machines/switch3.ogg')
 			active_player_cards += pop(current_deck)
@@ -184,6 +210,7 @@
 		game_state = BLACKJACK_LOSS
 		game_end_reason = "You busted!"
 		active_wager = 0
+		play_snd('sound/machines/buzz-two.ogg')
 		return TRUE
 
 	return FALSE
@@ -205,9 +232,10 @@
 	// check_player_hand() already checked for player bust
 	if(dealer_worth == player_worth)
 		game_state = BLACKJACK_TIE
-		credits_stored += active_wager
+		adjust_credits(active_wager)
 		active_wager = 0
 		SStgui.try_update_ui(user, src)
+		play_snd('sound/machines/button1.ogg')
 		return
 
 	if(dealer_worth > 21 || player_worth > dealer_worth)
@@ -216,9 +244,10 @@
 		else
 			game_end_reason = "You won!"
 		game_state = BLACKJACK_WIN
-		credits_stored += active_wager * 2
+		adjust_credits(active_wager * 2)
 		active_wager = 0
 		SStgui.try_update_ui(user, src)
+		play_snd('sound/machines/chime.ogg')
 		return
 
 	if(player_worth < dealer_worth) // this is redundant, but it helps understand what is happening
@@ -226,6 +255,7 @@
 		game_end_reason = "You lost!"
 		active_wager = 0
 		SStgui.try_update_ui(user, src)
+		play_snd('sound/machines/buzz-two.ogg')
 		return
 
 #undef BLACKJACK_CONTINUE

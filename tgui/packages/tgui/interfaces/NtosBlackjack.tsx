@@ -39,6 +39,8 @@ type Data = {
   active_dealer_cards: Array<string>;
   active_player_cards: Array<string>;
   credits_stored: number;
+  local_credits: number;
+  has_id: boolean;
   active_wager: number;
   set_wager: number;
   game_end_reason: string;
@@ -67,7 +69,7 @@ export const NtosBlackjack = (props, context) => {
               <br />
               <br />
               <Button.Confirm
-                disabled={data.credits_stored < 1}
+                disabled={data.local_credits < 1}
                 onClick={() => act('PRG_eject_credits')}
                 textAlign='center'
                 width={15}
@@ -108,7 +110,7 @@ export const NtosBlackjack = (props, context) => {
               <br />
               <br />
               <Box textAlign='center'>
-                Credits
+                Credits {data.has_id ? " in account" : ""}
                 <br />
                 {data.credits_stored}
                 <br />
