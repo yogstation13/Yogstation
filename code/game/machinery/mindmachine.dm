@@ -623,7 +623,7 @@
 	name = "\improper mind machine pod"
 	desc = "A large pod used for mind transfers. \
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
-	icon = 'icons/obj/machines/mind_machine.dmi'
+	icon = 'icons/obj/objects.dmi'
 	icon_state = "hivebot_fab"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
