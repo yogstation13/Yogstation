@@ -3022,6 +3022,7 @@
 #include "code\modules\modular_computers\file_system\program.dm"
 #include "code\modules\modular_computers\file_system\program_events.dm"
 #include "code\modules\modular_computers\file_system\programs\arcade.dm"
+#include "code\modules\modular_computers\file_system\programs\blackjack.dm"
 #include "code\modules\modular_computers\file_system\programs\configurator.dm"
 #include "code\modules\modular_computers\file_system\programs\file_browser.dm"
 #include "code\modules\modular_computers\file_system\programs\minesweeper.dm"
