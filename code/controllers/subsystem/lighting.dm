@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(lighting)
 		var/datum/light_source/L = queue[i]
 
 		L.update_corners()
-
+		for(var/turf/turf_to_update in view(CEILING(L.light_range, 1), L.source_turf))
 		L.needs_update = LIGHTING_NO_UPDATE
 
 		if(init_tick_checks)
