@@ -27,9 +27,12 @@
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "medcomp"
+	icon_state = "computer"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_hub
+	/// The current icon of the screen.
+	var/icon_screen = "medcomp"
+	var/icon_keyboard = "med_key"
 	/// A list of mobs that cannot be swapped to/from.
 	var/static/list/blacklisted_mobs = typecacheof(list(
 		/mob/living/simple_animal/slaughter,
@@ -87,6 +90,21 @@
 	else
 		icon_state = initial(icon_state)
 	return ..()
+
+/obj/machinery/mindmachine_hub/update_overlays()
+	. = ..()
+	if(stat & NOPOWER)
+		. += "[icon_keyboard]_off"
+		return
+	. += icon_keyboard
+
+	// This whole block lets screens ignore lighting and be visible even in the darkest room
+	var/overlay_state = icon_screen
+	if(stat & BROKEN)
+		overlay_state = "[icon_state]_broken"
+	. += mutable_appearance(icon, overlay_state)
+	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
+
 
 /obj/machinery/mindmachine_hub/RefreshParts()
 	// 2 matter bins. Reduce failure chance by 5 per tier. Results in 30 (tier 1) to 0 (tier 4).
@@ -641,7 +659,10 @@
 		if(TRUE)
 			icon_state = initial(icon_state)
 		else
-			icon_state = "hivebot_fab_on" // While inaccurate (non-active & active taking same icon), it'll just have to work as desired sprites were not added.
+			if(hub?.active)
+				icon_state = "hivebot_fab_on"
+			else
+				icon_state = "hivebot_fab_off"
 	return ..()
 
 /obj/machinery/mindmachine_pod/Destroy()
