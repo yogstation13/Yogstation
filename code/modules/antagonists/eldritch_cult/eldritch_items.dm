@@ -205,8 +205,8 @@
 /obj/item/melee/sickly_blade/knock
 	name = "key blade"
 	desc = "A blade in the shape of a key, what door will you unlock with it?"
-	icon_state = "eldritch_blade"
-	item_state = "eldritch_blade"
+	icon_state = "knock_blade"
+	item_state = "knock_blade"
 
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
