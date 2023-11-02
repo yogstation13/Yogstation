@@ -1,4 +1,10 @@
-#define AUXMOS "auxmos"
+#define AUXMOS (__detect_auxmos())
+
+/proc/__detect_auxmos()
+	if (world.system_type == UNIX)
+		return "libauxmos"
+	else
+		return "auxmos"
 
 /proc/finalize_gas_refs()
 	return call_ext(AUXMOS, "byond:finalize_gas_refs_ffi")()
