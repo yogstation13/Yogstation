@@ -1095,7 +1095,12 @@
 /datum/reagent/bluespace/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if((methods & (TOUCH|VAPOR)) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
-	..()
+	return ..()
+
+/datum/reagent/bluespace/reaction_obj(obj/O, volume)
+	if(volume > 5 && !O.anchored) // can teleport objects that aren't anchored
+		do_teleport(O, get_turf(O), (volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
+	return ..()
 
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > 10 && prob(15))

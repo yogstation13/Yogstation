@@ -6,6 +6,7 @@
 	damage = 0
 	armor_flag = BIO
 	nodamage = TRUE
+	speed = 1.2 // slow projectile
 	/// Reagent application methods
 	var/transfer_methods = TOUCH
 	var/list/reagents_list = list()

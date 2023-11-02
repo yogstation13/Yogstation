@@ -22,16 +22,6 @@
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water, reagent_volume)
 
-/obj/item/gun/water/afterattack(atom/target, mob/living/user, proximity, params)
-	if(proximity && istype(target, /obj/structure/reagent_dispensers))
-		var/obj/structure/reagent_dispensers/RD = target
-		RD.reagents.trans_to(src, min(reagents.maximum_volume - reagents.total_volume, RD.reagents.total_volume), transfered_by = user)
-		visible_message(span_notice("[user] refills [user.p_their()] [name]."), span_notice("You refill [src]."))
-		playsound(src, 'sound/effects/refill.ogg', 50, 1)
-		update_appearance(UPDATE_OVERLAYS)
-		return
-	return ..()
-
 /obj/item/gun/water/can_shoot()
 	return (reagents.total_volume > 1)
 
@@ -46,12 +36,29 @@
 /obj/item/gun/water/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread, cd_override)
 	if(!chambered && can_shoot())
 		process_chamber()	// If the gun was drained and then recharged, load a new shot.
+	if(reagent_check())
+		return
 	return ..()
 
 /obj/item/gun/water/process_burst(mob/living/user, atom/target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, iteration)
 	if(!chambered && can_shoot())
 		process_chamber()	// If the gun was drained and then recharged, load a new shot.
+	if(reagent_check())
+		return
 	return ..()
+
+/obj/item/gun/water/proc/reagent_check()
+	var/atom/starting_loc = loc
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
+		R.reaction_obj(src, R.volume) // dangerous chemicals can damage the gun (or teleport it lmao)
+	if(QDELETED(src))
+		return TRUE
+	if(loc != starting_loc)
+		reagents.clear_reagents()
+		if(chambered)
+			qdel(chambered)
+			chambered = null
+		return TRUE // the gun broke or moved so you didn't actually get to shoot it
 
 // overlay for water levels
 /obj/item/gun/water/update_overlays()
