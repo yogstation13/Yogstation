@@ -5,6 +5,11 @@
 #define BLACKJACK_IDLE 4
 #define BLACKJACK_DEALER_TURN 5
 
+#define JOKER_CARD "J"
+#define QUEEN_CARD "Q"
+#define KING_CARD "K"
+#define ACE_CARD "A"
+
 /datum/computer_file/program/blackjack
 	filename = "blackjack"
 	filedesc = "Nanotrasen Micro Arcade: Blackjack"
@@ -87,9 +92,9 @@
 			worth += text2num(card)
 		else
 			switch(card)
-				if("J", "Q", "K") // "Picture" cards are worth 10
+				if(JOKER_CARD, QUEEN_CARD, KING_CARD) // "Picture" cards are worth 10
 					worth += 10
-				if("A") // Aces are calculated last
+				if(ACE_CARD) // Aces are calculated last
 					aces += 1
 
 	for(var/i in 1 to aces) // Ace is worth either 1 or 11, whichever is more beneficial
@@ -264,3 +269,8 @@
 #undef BLACKJACK_TIE
 #undef BLACKJACK_IDLE
 #undef BLACKJACK_DEALER_TURN
+
+#undef JOKER_CARD
+#undef QUEEN_CARD
+#undef KING_CARD
+#undef ACE_CARD
