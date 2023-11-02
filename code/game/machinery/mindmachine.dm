@@ -717,8 +717,8 @@
 	if(state_open)
 		// Due to spriting issues (the lack of empty closed sprite), you can only close if it is empty. :)
 		close_machine(no_sound = FALSE)
-		if(occupant)
-			open_machine()
+		if(!occupant)
+			open_machine(no_sound = FALSE)
 		else
 			playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 	else
@@ -754,7 +754,6 @@
 	..(target)
 	if(!no_sound)
 		playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
-	
 
 /obj/machinery/mindmachine_pod/open_machine(drop, no_sound = FALSE)
 	hub?.deactivate()
