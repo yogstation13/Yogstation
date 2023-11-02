@@ -86,11 +86,12 @@
 
 /obj/machinery/mindmachine_hub/update_icon_state()
 	if(active)
-		icon_state = "crew"
+		icon_screen = "crew" // Icon state? Icon screen? Eh, close enough!
 	else
-		icon_state = initial(icon_state)
+		icon_screen = initial(icon_state)
 	return ..()
 
+// A copy paste of computer's update_overlays().
 /obj/machinery/mindmachine_hub/update_overlays()
 	. = ..()
 	if(stat & NOPOWER)
@@ -104,7 +105,6 @@
 		overlay_state = "[icon_state]_broken"
 	. += mutable_appearance(icon, overlay_state)
 	. += mutable_appearance(icon, overlay_state, layer, EMISSIVE_PLANE)
-
 
 /obj/machinery/mindmachine_hub/RefreshParts()
 	// 2 matter bins. Reduce failure chance by 5 per tier. Results in 30 (tier 1) to 0 (tier 4).
@@ -643,7 +643,7 @@
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "hivebot_fab"
-	density = TRUE
+	state_open = FALSE // Starts open.
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine_hub/hub
@@ -702,9 +702,9 @@
 		return
 	if(do_after(user, 3 SECONDS, dropped))
 		if(dropped == user)
-			user.visible_message(span_warning("[user] enters the [src] and closes the door behind [user.p_them()]!"))
+			user.visible_message(span_warning("[user] enters [src] and closes the door behind [user.p_them()]!"))
 		else
-			dropped.visible_message(span_warning("[user] puts [dropped] into the [src]."))
+			dropped.visible_message(span_warning("[user] puts [dropped] into [src]."))
 		close_machine(dropped)
 		return
 
@@ -715,7 +715,12 @@
 		to_chat(user, span_notice("The pod is locked!"))
 		return
 	if(state_open)
-		close_machine()
+		// Due to spriting issues (the lack of empty closed sprite), you can only close if it is empty. :)
+		close_machine(no_sound = FALSE)
+		if(occupant)
+			open_machine()
+		else
+			playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 	else
 		open_machine()
 
@@ -745,9 +750,11 @@
 		span_notice("You successfully break out of [src]!"))
 	open_machine()
 
-/obj/machinery/mindmachine_pod/close_machine(atom/movable/target)
+/obj/machinery/mindmachine_pod/close_machine(atom/movable/target, no_sound = FALSE)
 	..(target)
-	playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
+	if(!no_sound)
+		playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
+	
 
 /obj/machinery/mindmachine_pod/open_machine(drop)
 	hub?.deactivate()
