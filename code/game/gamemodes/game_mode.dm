@@ -100,7 +100,7 @@
 
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 
 	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles))
 		var/delay = CONFIG_GET(number/reopen_roundstart_suicide_roles_delay)
@@ -108,7 +108,7 @@
 			delay = (delay SECONDS)
 		else
 			delay = (4 MINUTES) //default to 4 minutes if the delay isn't defined.
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(reopen_roundstart_suicide_roles)), delay)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(reopen_roundstart_suicide_roles)), delay)
 
 	if(SSdbcore.Connect())
 		var/list/to_set  = list()
@@ -363,7 +363,7 @@
 			var/mob/dead/new_player/player = M
 			if(player.ready == PLAYER_READY_TO_PLAY)
 				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
-					addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
 					player.mind.token_picked = TRUE
 					return player.mind
 
