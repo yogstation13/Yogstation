@@ -15,6 +15,7 @@
 #define MINDMACHINE_CAN_MINDSHIELD 13
 #define MINDMACHINE_CAN_ADMINGHOST 14
 #define MINDMACHINE_CAN_ANTAGBLACKLIST 15
+#define MINDMACHINE_CAN_DOUBLEMINDCKEY 16
 
 /*	One of the returned values from `/obj/machinery/mindmachine_hub/determine_mindswap_type()`
 	Used to determine if the pods contained 2 (pair), 1 (solo), or 0 (none) sentient mobs. */
@@ -183,7 +184,7 @@
 			balloon_alert(usr, "silicon mind too distant")
 			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 			return
-		if(MINDMACHINE_CAN_MINDLESS_NOTANIMALS)
+		if(MINDMACHINE_CAN_MINDLESS_NOTANIMALS, MINDMACHINE_CAN_DOUBLEMINDCKEY)
 			balloon_alert(usr, "mind waves incompatible")
 			playsound(src, 'sound/machines/synth_no.ogg', 30, TRUE)
 			return
@@ -493,6 +494,8 @@
 		for(var/antag_datum in blacklisted_antag_datums)
 			if(firstOccupant.mind?.has_antag_datum(antag_datum) || secondOccupant.mind?.has_antag_datum(antag_datum))
 				return MINDMACHINE_CAN_ANTAGBLACKLIST
+	if(firstOccupant.mind?.key == secondOccupant.mind?.key)
+		return MINDMACHINE_CAN_DOUBLEMINDCKEY
 	return MINDMACHINE_CAN_SUCCESS
 
 /// Returns what type of mindswapping we should do.
