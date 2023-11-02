@@ -193,7 +193,7 @@
 		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
 
 		// this function allows lower volumes to still do something without preventing higher volumes from causing too much wetness
-		M.adjust_fire_stacks(-3*log(2, (reac_volume*M.get_permeability(null, TRUE) + 10) / 10))
+		M.adjust_wet_stacks(3*log(2, (reac_volume*M.get_permeability(null, TRUE) + 10) / 10))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 
 		// if preternis, update wetness instantly when applying more water instead of waiting for the next life tick
