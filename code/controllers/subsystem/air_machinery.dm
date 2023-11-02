@@ -1,6 +1,6 @@
 
 SUBSYSTEM_DEF(air_machinery)
-	name = "Atmospherics - Machinery"
+	name = "Atmospherics Machinery"
 	init_order = INIT_ORDER_AIR_MACHINERY
 	priority = FIRE_PRIORITY_AIR
 	wait = 1 SECONDS

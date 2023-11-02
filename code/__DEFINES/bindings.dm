@@ -1,7 +1,25 @@
 #define AUXMOS "auxmos"
 
-/proc/__auxmos_shutdown()
-	return call_ext(AUXMOS, "byond:auxmos_shutdown_ffi")()
+/proc/finalize_gas_refs()
+	return call_ext(AUXMOS, "byond:finalize_gas_refs_ffi")()
+
+/datum/controller/subsystem/air/proc/auxtools_update_reactions()
+	return call_ext(AUXMOS, "byond:update_reactions_ffi")()
+
+/proc/auxtools_atmos_init(gas_data)
+	return call_ext(AUXMOS, "byond:hook_init_ffi")(gas_data)
+
+/proc/_auxtools_register_gas(gas)
+	return call_ext(AUXMOS, "byond:hook_register_gas_ffi")(gas)
+
+/turf/proc/__update_auxtools_turf_adjacency_info()
+	return call_ext(AUXMOS, "byond:hook_infos_ffi")(src)
+
+/turf/proc/update_air_ref(flag)
+	return call_ext(AUXMOS, "byond:hook_register_turf_ffi")(src, flag)
+
+/datum/controller/subsystem/air/proc/process_excited_groups_auxtools(remaining)
+	return call_ext(AUXMOS, "byond:groups_hook_ffi")(src, remaining)
 
 /datum/gas_mixture/proc/__auxtools_parse_gas_string(string)
 	return call_ext(AUXMOS, "byond:parse_gas_string_ffi")(src, string)
@@ -30,8 +48,8 @@
 /datum/gas_mixture/proc/transfer_to(other, moles)
 	return call_ext(AUXMOS, "byond:transfer_hook_ffi")(src, other, moles)
 
-/datum/gas_mixture/proc/adjust_heat()
-	return call_ext(AUXMOS, "byond:adjust_heat_hook_ffi")()
+/datum/gas_mixture/proc/adjust_heat(temp)
+	return call_ext(AUXMOS, "byond:adjust_heat_hook_ffi")(src, temp)
 
 /datum/gas_mixture/proc/react(holder)
 	return call_ext(AUXMOS, "byond:react_hook_ffi")(src, holder)
@@ -66,8 +84,10 @@
 /datum/gas_mixture/proc/add(num_val)
 	return call_ext(AUXMOS, "byond:add_hook_ffi")(src, num_val)
 
-/datum/gas_mixture/proc/adjust_multi()
-	return call_ext(AUXMOS, "byond:adjust_multi_hook_ffi")()
+/datum/gas_mixture/proc/adjust_multi(...)
+	var/list/args_copy = args.Copy()
+	args_copy.Insert(1, src)
+	return call_ext(AUXMOS, "byond:adjust_multi_hook_ffi")(arglist(args_copy))
 
 /datum/gas_mixture/proc/adjust_moles_temp(id_val, num_val, temp_val)
 	return call_ext(AUXMOS, "byond:adjust_moles_temp_hook_ffi")(src, id_val, num_val, temp_val)
@@ -93,8 +113,10 @@
 /datum/gas_mixture/proc/get_gases()
 	return call_ext(AUXMOS, "byond:get_gases_hook_ffi")(src)
 
-/datum/gas_mixture/proc/temperature_share()
-	return call_ext(AUXMOS, "byond:temperature_share_hook_ffi")()
+/datum/gas_mixture/proc/temperature_share(...)
+	var/list/args_copy = args.Copy()
+	args_copy.Insert(1, src)
+	return call_ext(AUXMOS, "byond:temperature_share_hook_ffi")(arglist(args_copy))
 
 /datum/gas_mixture/proc/copy_from(giver)
 	return call_ext(AUXMOS, "byond:copy_from_hook_ffi")(src, giver)
@@ -138,17 +160,8 @@
 /proc/process_atmos_callbacks(remaining)
 	return call_ext(AUXMOS, "byond:atmos_callback_handle_ffi")(remaining)
 
-/proc/finalize_gas_refs()
-	return call_ext(AUXMOS, "byond:finalize_gas_refs_ffi")()
-
-/datum/controller/subsystem/air/proc/auxtools_update_reactions()
-	return call_ext(AUXMOS, "byond:update_reactions_ffi")()
-
-/proc/auxtools_atmos_init(gas_data)
-	return call_ext(AUXMOS, "byond:hook_init_ffi")(gas_data)
-
-/proc/_auxtools_register_gas(gas)
-	return call_ext(AUXMOS, "byond:hook_register_gas_ffi")(gas)
+/proc/__auxmos_shutdown()
+	return call_ext(AUXMOS, "byond:auxmos_shutdown_ffi")()
 
 /datum/controller/subsystem/air/proc/process_turfs_auxtools(remaining)
 	return call_ext(AUXMOS, "byond:process_turf_hook_ffi")(src, remaining)
@@ -159,15 +172,7 @@
 /datum/controller/subsystem/air/proc/thread_running()
 	return call_ext(AUXMOS, "byond:thread_running_hook_ffi")()
 
-/turf/proc/__update_auxtools_turf_adjacency_info()
-	return call_ext(AUXMOS, "byond:hook_infos_ffi")(src)
-
-/turf/proc/update_air_ref()
-	return call_ext(AUXMOS, "byond:hook_register_turf_ffi")(src)
-
-/datum/controller/subsystem/air/proc/process_excited_groups_auxtools(remaining)
-	return call_ext(AUXMOS, "byond:groups_hook_ffi")(src, remaining)
-
 /datum/controller/subsystem/air/proc/process_turf_equalize_auxtools(remaining)
-	return call_ext(AUXMOS, "byond:equalize_hook_ffi")(remaining)
+	return call_ext(AUXMOS, "byond:equalize_hook_ffi")(src, remaining)
+
 

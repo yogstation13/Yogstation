@@ -3,6 +3,3 @@
 /proc/extools_log_write()
 
 /proc/extools_finalize_logging()
-
-/proc/auxtools_stack_trace(msg)
-	CRASH(msg)
