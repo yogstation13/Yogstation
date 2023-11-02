@@ -36,5 +36,5 @@
 	temp.filetype = filetype
 	return temp
 
-/datum/computer_file/proc/try_insert(obj/item/I, mob/living/user = null)
+/datum/computer_file/proc/try_insert(obj/item/inserted_item, mob/living/user = null)
 	return FALSE

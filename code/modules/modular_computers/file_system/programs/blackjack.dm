@@ -120,15 +120,15 @@
 
 	return data
 
-/datum/computer_file/program/blackjack/try_insert(obj/item/I, mob/living/user)
+/datum/computer_file/program/blackjack/try_insert(obj/item/inserted_item, mob/living/user)
 	if(!holder || !istype(holder?.holder, /obj/item/modular_computer))
 		return FALSE
 
-	if(!I.get_item_credit_value())
+	if(!inserted_item.get_item_credit_value())
 		return FALSE
 
-	credits_stored += I.get_item_credit_value()
-	QDEL_NULL(I)
+	credits_stored += inserted_item.get_item_credit_value()
+	QDEL_NULL(inserted_item)
 	play_snd('sound/machines/ping.ogg')
 	SStgui.try_update_ui(user, src)
 	return TRUE
