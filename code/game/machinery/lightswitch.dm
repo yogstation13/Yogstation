@@ -50,9 +50,9 @@
 	name = "light switch frame"
 	desc = "Used for building light switches."
 	icon = 'icons/obj/power.dmi'
-	icon_state = "light-u"
+	icon_state = "light-b"
 	result_path = /obj/machinery/light_switch
-	pixel_shift = 25
+	pixel_shift = -25
 
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
@@ -141,6 +141,8 @@
 /obj/machinery/light_switch/interact(mob/user)
 	if(obj_flags & EMAGGED)
 		shock(user)
+	if(construction_state != LIGHT_CONSTRUCTED)
+		return
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
@@ -157,9 +159,14 @@
 		if(LIGHT_BARE)
 			var/obj/item/stack/cable_coil/c = W
 			if(istype(c) && c.use(1))
-				to_chat(user, span_notice("You insert wiring into [src]"))
+				to_chat(user, span_notice("You insert wiring into [src]."))
 				construction_state = LIGHT_WIRE
 				update_appearance(UPDATE_ICON)
+				return
+			if(W.tool_behaviour == TOOL_WRENCH)
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You remove the frame."))
+				new /obj/item/wallframe/light_switch(loc)
 				return
 		if(LIGHT_WIRE)
 			if(W.tool_behaviour == TOOL_WIRECUTTER && wires.is_cut(WIRE_POWER))
