@@ -26,8 +26,8 @@
 	name = "\improper mind machine hub"
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
-	icon = 'icons/obj/machines/mind_machine.dmi'
-	icon_state = "hub"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "medcomp"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_hub
 	/// A list of mobs that cannot be swapped to/from.
@@ -83,9 +83,9 @@
 
 /obj/machinery/mindmachine_hub/update_icon_state()
 	if(active)
-		icon_state = "hub_active"
+		icon_state = "crew"
 	else
-		icon_state = "hub"
+		icon_state = initial(icon_state)
 	return ..()
 
 /obj/machinery/mindmachine_hub/RefreshParts()
@@ -624,7 +624,7 @@
 	desc = "A large pod used for mind transfers. \
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon = 'icons/obj/machines/mind_machine.dmi'
-	icon_state = "pod_open"
+	icon_state = "hivebot_fab"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
@@ -639,12 +639,9 @@
 /obj/machinery/mindmachine_pod/update_icon_state()
 	switch(state_open)
 		if(TRUE)
-			icon_state = "pod_open"
+			icon_state = initial(icon_state)
 		else
-			if(hub?.active)
-				icon_state = "pod_active"
-			else
-				icon_state = "pod_closed"
+			icon_state = "hivebot_fab_on" // While inaccurate (non-active & active taking same icon), it'll just have to work as desired sprites were not added.
 	return ..()
 
 /obj/machinery/mindmachine_pod/Destroy()
