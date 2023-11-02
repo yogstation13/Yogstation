@@ -16,7 +16,7 @@ MIND PATH SPELLS GO HERE
 	school = SCHOOL_FORBIDDEN
 	invocation = "GR' RO'AR"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 	aoe_radius = 4
 
 	cooldown_time = 1 MINUTES
@@ -76,7 +76,7 @@ MIND PATH SPELLS GO HERE
 
 	invocation = "EL'RICH BL'AS'T"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	base_icon_state = "lightning"
 	active_msg = "You energize your hands with raw power!"
@@ -104,7 +104,7 @@ MIND PATH SPELLS GO HERE
 	invocation_type = INVOCATION_WHISPER
 	active_msg = span_notice("You prepare to warp everyone's vision.")
 	deactive_msg = span_notice("You relax your mind.")
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/pointed/projectile/assault
 	name = "Amygdala Assault"
@@ -117,7 +117,7 @@ MIND PATH SPELLS GO HERE
 	sound = 'sound/weapons/resonator_blast.ogg'
 	cast_range = 7
 	cooldown_time = 25 SECONDS
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	invocation = "D'O'DGE TH'IS!"
 	invocation_type = INVOCATION_SHOUT

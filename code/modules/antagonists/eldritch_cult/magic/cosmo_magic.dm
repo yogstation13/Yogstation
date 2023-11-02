@@ -12,7 +12,7 @@
 
 	invocation = "ST'R R'N'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	/// Storage for the first rune.
 	var/datum/weakref/first_rune
@@ -171,7 +171,7 @@
 
 	invocation = "R'T'T' ST'R!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	active_msg = "You prepare to cast your star blast!"
 	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."
@@ -227,7 +227,7 @@
 
 	invocation = "C'SM'S 'XP'ND"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	summon_amount = 9
 	summon_radius = 1
@@ -274,7 +274,7 @@
 
 	invocation = "C'SM'S 'XP'ND"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	summon_amount = 24
 	summon_radius = 2
@@ -296,7 +296,7 @@
 
 	invocation = "R'T'T' ST'R!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	active_msg = "You prepare to cast your celestial blast!"
 	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."

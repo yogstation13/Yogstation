@@ -155,6 +155,7 @@
 #define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
 #define TRAIT_REDUCED_DAMAGE_SLOWDOWN "reduced_damage_slowdown"
 #define TRAIT_RESISTDAMAGESLOWDOWN "resistdamageslowdown"
+#define TRAIT_HIGHRESISTDAMAGESLOWDOWN "highresistdamageslowdown"
 #define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_DISFIGURED		"disfigured"
