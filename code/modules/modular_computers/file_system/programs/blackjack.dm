@@ -5,7 +5,7 @@
 #define BLACKJACK_IDLE 4
 #define BLACKJACK_DEALER_TURN 5
 
-#define JOKER_CARD "J"
+#define JACK_CARD "J"
 #define QUEEN_CARD "Q"
 #define KING_CARD "K"
 #define ACE_CARD "A"
@@ -92,7 +92,7 @@
 			worth += text2num(card)
 		else
 			switch(card)
-				if(JOKER_CARD, QUEEN_CARD, KING_CARD) // "Picture" cards are worth 10
+				if(JACK_CARD, QUEEN_CARD, KING_CARD) // "Picture" cards are worth 10
 					worth += 10
 				if(ACE_CARD) // Aces are calculated last
 					aces += 1
@@ -270,7 +270,7 @@
 #undef BLACKJACK_IDLE
 #undef BLACKJACK_DEALER_TURN
 
-#undef JOKER_CARD
+#undef JACK_CARD
 #undef QUEEN_CARD
 #undef KING_CARD
 #undef ACE_CARD
