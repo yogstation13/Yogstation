@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new anti-magic item for security"
-  - tweak: "Tweaks around some heretic spell reqs"
-  - imageadd: "Adds new sprites for anti-magic collar"
