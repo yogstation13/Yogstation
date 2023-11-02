@@ -194,7 +194,11 @@
 	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
 		return
 
-	return ..()
+	. = ..()
+
+	if(!.)
+		to_chat(user, span_notice("You hit the wall with \the [W] but nothing happens!"))
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 
 /turf/closed/wall/proc/try_clean(obj/item/W, mob/user, turf/T)
 	if((user.a_intent != INTENT_HELP) || !LAZYLEN(dent_decals))
@@ -316,8 +320,11 @@
 	add_overlay(dent_decals)
 
 /turf/closed/wall/rust_heretic_act()
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		ScrapeAway()
+		return
 	if(prob(70))
 		new /obj/effect/glowing_rune(src)
-	ChangeTurf(/turf/closed/wall/rust)
+	return ..()
 
 #undef MAX_DENT_DECALS

@@ -31,6 +31,10 @@
 		/obj/item/circuitboard/machine/vending/donksofttoyvendor = 1
 	)
 
+	minimal_lightup_areas = list(
+		/area/quartermaster/qm
+	)
+
 	smells_like = "capitalism"
 
 	exp_requirements = 120

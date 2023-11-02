@@ -265,13 +265,7 @@ SUBSYSTEM_DEF(shuttle)
 		return
 
 	var/area/signal_origin = get_area(user)
-	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
-	var/security_num = seclevel2num(get_security_level())
-	switch(security_num)
-		if(SEC_LEVEL_RED,SEC_LEVEL_GAMMA,SEC_LEVEL_EPSILON,SEC_LEVEL_DELTA)
-			emergency.request(null, signal_origin, html_decode(emergency_reason), 1) //There is a serious threat we gotta move no time to give them five minutes.
-		else
-			emergency.request(null, signal_origin, html_decode(emergency_reason), 0)
+	emergency.request(null, signal_origin, call_reason)
 
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)
 

@@ -1,6 +1,0 @@
-author: " Krysonism, Ktlwjec"
-delete-after: true 
-changes: 
-  - rscadd: "Small and large plates have been added to the kitchen vendor."
-  - rscadd: "Plates break when thrown."
-  - soundadd: "Plates breaking."

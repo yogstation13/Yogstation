@@ -132,9 +132,10 @@ Class Procs:
 
 	/// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface
-	var/climb_time = 20
-	var/climb_stun = 20
-	var/mob/living/machineclimber
+	/// world.time of last use by [/mob/living]
+	var/last_used_time = 0
+	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
+	var/mob/living/last_user_mobtype
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
@@ -389,6 +390,14 @@ Class Procs:
 		return	
 	return ..()
 
+/obj/machinery/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	if(SEND_SIGNAL(user, COMSIG_TRY_USE_MACHINE, src) & COMPONENT_CANT_USE_MACHINE_TOOLS)
+		return TOOL_ACT_MELEE_CHAIN_BLOCKING
+	. = ..()
+	if(. & TOOL_ACT_SIGNAL_BLOCKING)
+		return
+	update_last_used(user)
+
 /obj/machinery/CheckParts(list/parts_list)
 	..()
 	RefreshParts()
@@ -609,7 +618,7 @@ Class Procs:
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
+/obj/machinery/tesla_act(power, tesla_flags, shocked_objects, zap_gib = FALSE)
 	..()
 	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		if(prob(60))
@@ -654,3 +663,8 @@ Class Procs:
 
 /obj/machinery/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)
+
+/obj/machinery/proc/update_last_used(mob/user)
+	if(isliving(user))
+		last_used_time = world.time
+		last_user_mobtype = user.type

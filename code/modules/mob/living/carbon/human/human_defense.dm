@@ -124,7 +124,7 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	var/block_chance_modifier = round(damage / -3)
 
 	for(var/obj/item/I in held_items)
@@ -147,7 +147,9 @@
 		var/final_block_chance = wear_neck.block_chance - (clamp((armour_penetration-wear_neck.armour_penetration)/2,0,100)) + block_chance_modifier
 		if(wear_neck.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type))
 			return TRUE
-  return FALSE
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, AM, damage, attack_text, attack_type, armour_penetration, damage_type) & SHIELD_BLOCK)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
@@ -273,7 +275,7 @@
 		return 1
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)
-	if(check_shields(M, 0, "the M.name"))
+	if(check_shields(M, 0, "the [M.name]"))
 		visible_message(span_danger("[M] attempted to touch [src]!"))
 		return 0
 
@@ -498,7 +500,7 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
 	if(tesla_shock)
 		var/total_coeff = 1
 		if(gloves)
@@ -535,7 +537,7 @@
 	siemens_coeff *= physiology.siemens_coeff
 
 	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
-	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
+	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun, gib)
 	if(.)
 		electrocution_animation(40)
 
@@ -1030,3 +1032,68 @@
 
 	for(var/obj/item/I in torn_items)
 		I.take_damage(damage_amount, damage_type, damage_flag, 0)
+
+/**
+ * Used by fire code to damage worn items.
+ *
+ * Arguments:
+ * - seconds_per_tick
+ * - times_fired
+ * - stacks: Current amount of firestacks
+ *
+ */
+
+/mob/living/carbon/human/proc/burn_clothing(seconds_per_tick, stacks)
+	var/list/burning_items = list()
+	var/obscured = check_obscured_slots(TRUE)
+	//HEAD//
+
+	if(glasses && !(obscured & ITEM_SLOT_EYES))
+		burning_items += glasses
+	if(wear_mask && !(obscured & ITEM_SLOT_MASK))
+		burning_items += wear_mask
+	if(wear_neck && !(obscured & ITEM_SLOT_NECK))
+		burning_items += wear_neck
+	if(ears && !(obscured & ITEM_SLOT_EARS))
+		burning_items += ears
+	if(head)
+		burning_items += head
+
+	//CHEST//
+	if(w_uniform && !(obscured & ITEM_SLOT_ICLOTHING))
+		burning_items += w_uniform
+	if(wear_suit)
+		burning_items += wear_suit
+
+	//ARMS & HANDS//
+	var/obj/item/clothing/arm_clothes = null
+	if(gloves && !(obscured & ITEM_SLOT_GLOVES))
+		arm_clothes = gloves
+	else if(wear_suit && ((wear_suit.body_parts_covered & HANDS) || (wear_suit.body_parts_covered & ARMS)))
+		arm_clothes = wear_suit
+	else if(w_uniform && ((w_uniform.body_parts_covered & HANDS) || (w_uniform.body_parts_covered & ARMS)))
+		arm_clothes = w_uniform
+	if(arm_clothes)
+		burning_items |= arm_clothes
+
+	//LEGS & FEET//
+	var/obj/item/clothing/leg_clothes = null
+	if(shoes && !(obscured & ITEM_SLOT_FEET))
+		leg_clothes = shoes
+	else if(wear_suit && ((wear_suit.body_parts_covered & FEET) || (wear_suit.body_parts_covered & LEGS)))
+		leg_clothes = wear_suit
+	else if(w_uniform && ((w_uniform.body_parts_covered & FEET) || (w_uniform.body_parts_covered & LEGS)))
+		leg_clothes = w_uniform
+	if(leg_clothes)
+		burning_items |= leg_clothes
+
+	for(var/obj/item/burning in burning_items)
+		burning.fire_act((stacks * 25 * seconds_per_tick)) //damage taken is reduced to 2% of this value by fire_act()
+
+/mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	SEND_SIGNAL(src, COMSIG_HUMAN_BURNING)
+	burn_clothing(seconds_per_tick, fire_handler.stacks)
+	var/no_protection = FALSE
+	if(dna && dna.species)
+		no_protection = dna.species.handle_fire(src, seconds_per_tick, no_protection)
+	fire_handler.harm_human(seconds_per_tick, no_protection)

@@ -254,7 +254,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/tentacle
 	fire_sound = 'sound/effects/splat.ogg'
 	force = 0
-	checks_antimagic = FALSE
+	antimagic_flags = NONE
 	max_charges = 1
 	fire_delay = 1
 	throwforce = 0 //Just to be on the safe side

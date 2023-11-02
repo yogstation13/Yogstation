@@ -138,7 +138,7 @@
 	name = "Makeshift Bow"
 	result = /obj/item/gun/ballistic/bow/maint
 	reqs = list(/obj/item/pipe = 5,
-           		/obj/item/stack/tape = 3, 
+           		/obj/item/stack/tape = 3,
 				/obj/item/stack/cable_coil = 10)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
@@ -187,6 +187,17 @@
 	result = /obj/item/gun/ballistic/gauss
 	time = 12
 	category = CAT_WEAPON_RANGED
+
+/datum/crafting_recipe/sledgehammer
+	name = "Sledgehammer"
+	result = /obj/item/melee/sledgehammer
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 4,
+				/obj/item/stack/sheet/plasteel = 3,
+				/obj/item/stack/sheet/metal = 1)
+	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	result = /obj/item/melee/sledgehammer
+	time = 8 SECONDS
+	category = CAT_WEAPON_MELEE
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
@@ -415,7 +426,26 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
 
-/datum/crafting_recipe/laserslug
+/datum/crafting_recipe/ripslug
+	name = "Ripslug Shell"
+	result = /obj/item/ammo_casing/shotgun/rip
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stack/sheet/mineral/plastitanium = 5,
+				/obj/item/stock_parts/micro_laser/quadultra = 1) // to split the slug duh
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPON_AMMO	
+
+/datum/crafting_recipe/anarchy
+	name = "Anarchy Shell"
+	result = /obj/item/ammo_casing/shotgun/anarchy
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/obj/item/stack/sheet/plastic = 5, // uhh because we dont have rubber and this is as close as i can get?
+				/obj/item/stack/sheet/mineral/silver = 5) // mirrors are inlaid with silver so light reflects, so clearly it helps them reflect too, right?
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPON_AMMO
+
 	name = "Bolts"
 	result = /obj/item/ammo_casing/caseless/bolts
 	reqs = list(/obj/item/stack/rods = 1)
@@ -487,8 +517,8 @@
 	name = "Glass Arrow"
 	result = /obj/item/ammo_casing/reusable/arrow/glass
 	time = 1.5 SECONDS
-	reqs = list(/obj/item/shard = 1, 
-				/obj/item/stack/rods = 1, 
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
 				/obj/item/stack/cable_coil = 3)
 	category = CAT_WEAPON_AMMO
 
@@ -497,6 +527,6 @@
 	result = /obj/item/ammo_casing/reusable/arrow/glass/plasma
 	time = 1.5 SECONDS
 	reqs = list(/obj/item/shard/plasma = 1,
-				/obj/item/stack/rods = 1, 
+				/obj/item/stack/rods = 1,
 				/obj/item/stack/cable_coil = 3)
 	category = CAT_WEAPON_AMMO

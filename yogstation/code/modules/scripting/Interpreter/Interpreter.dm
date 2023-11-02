@@ -1,264 +1,248 @@
 /*
-	File: Interpreter (Internal)
-*/
-/*
-	Class: n_Interpreter
-*/
-/*
-	Macros: Status Macros
-	RETURNING  - Indicates that the current function is returning a value.
-	BREAKING   - Indicates that the current loop is being terminated.
-	CONTINUING - Indicates that the rest of the current iteration of a loop is being skipped.
-	RESET_STATUS - Indicates that we are entering a new function and the allowed_status var should be cleared
-*/
-#define RETURNING  1
-#define BREAKING   2
-#define CONTINUING 4
-#define RESET_STATUS 8
+ * Macros: Status Macros
+ */
+///Indicates that the current function is returning a value.
+#define RETURNING (1<<0)
+///Indicates that the current loop is being terminated.
+#define BREAKING (1<<2)
+///Indicates that the rest of the current iteration of a loop is being skipped.
+#define CONTINUING (1<<3)
+///Indicates that we are entering a new function and the allowed_status var should be cleared
+#define RESET_STATUS (1<<4)
 
 /*
-	Macros: Maximums
-	MAX_STATEMENTS fuckin'... holds the maximum statements. I'unno, dude, I'm not the guy who made NTSL, I don't do fuckin verbose-ass comments line this.
-	Figure it out yourself, fuckface.
-*/
-#define MAX_STATEMENTS 900 // maximum amount of statements that can be called in one execution. this is to prevent massive crashes and exploitation
-#define MAX_ITERATIONS 100 // max number of uninterrupted loops possible
-#define MAX_RECURSION 10 // max recursions without returning anything (or completing the code block)
+ * Macros: Maximums
+ * MAX_STATEMENTS fuckin'... holds the maximum statements. I'unno, dude, I'm not the guy who made NTSL,
+ * I don't do fuckin verbose-ass comments line this.
+ * Figure it out yourself, fuckface.
+ * 
+ * very helpful comment ^ ty
+ */
+///Maximum amount of statements that can be called in one execution. this is to prevent massive crashes and exploitation
+#define MAX_STATEMENTS 900
+///Max number of uninterrupted loops possible
+#define MAX_ITERATIONS 100
+///<ax recursions without returning anything (or completing the code block)
+#define MAX_RECURSION 10
 #define MAX_STRINGLEN 1024
 #define MAX_LISTLEN 256
 
-/n_Interpreter
-	var
-		scope
-			globalScope
-		node
-			BlockDefinition/program
-			statement/FunctionDefinition/curFunction
-		stack
-			functions	= new()
+/**
+ * n_Interpreter
+ * Procedures allowing for interaction with the script that is being run by the interpreter object.
+ */
+/datum/n_Interpreter
+	var/datum/scope/globalScope
+	var/datum/node/BlockDefinition/program
+	var/datum/node/statement/FunctionDefinition/curFunction
+	var/datum/stack/functions = new()
+	var/datum/TCS_Compiler/container // associated container for interpeter
 
-		datum/container // associated container for interpeter
-/*
-	Var: status
-	A variable indicating that the rest of the current block should be skipped. This may be set to any combination of <Status Macros>.
-*/
-		status=0
-		returnVal
+	///Boolean indicating that the rest of the current block should be skipped. This may be set to any combination of <Status Macros>.
+	var/status = FALSE
+	var/returnVal
 
-		cur_statements=0    // current amount of statements called
-		alertadmins=0		// set to 1 if the admins shouldn't be notified of anymore issues
-		cur_recursion=0	   	// current amount of recursion
-/*
-	Var: persist
-	If 0, global variables will be reset after Run() finishes.
-*/
-		persist=1
-		paused=0
+	/// current amount of statements called
+	var/cur_statements = FALSE
+	//Boolean on wheteher admins should be notified of anymore issues.
+	var/alertadmins = FALSE
+	///Current amount of recursion
+	var/cur_recursion = 0
+	///Boolean that will reset global variables after Run() finishes.
+	var/persist = TRUE
+	var/paused = FALSE
 
-/*
-	Constructor: New
-	Calls <Load()> with the given parameters.
-*/
-	New(node/BlockDefinition/GlobalBlock/program=null)
-		.=..()
-		if(program)Load(program)
+/datum/n_Interpreter/New(datum/node/BlockDefinition/GlobalBlock/program)
+	. = ..()
+	if(program)
+		Load(program)
 
-	proc
-/*
-	Proc: Trim
-	Trims strings and vectors down to an acceptable size, to prevent runaway memory usage
-*/
-		Trim(value)
-			if(istext(value) && (length(value) > MAX_STRINGLEN))
-				value = copytext(value, 1, MAX_STRINGLEN+1)
-			else if(islist(value) && (length(value) > MAX_LISTLEN))
-				var/list/L = value
-				value = L.Copy(1, MAX_LISTLEN+1)
-			return value
+/**
+ * Load
+ * Loads a 'compiled' script into Memory.
+ * program - A <GlobalBlock> object which represents the script's global scope.
+ * 
+ * Parameters:
+ * program - A <GlobalBlock> object which represents the script's global scope.
+ */
+/datum/n_Interpreter/proc/Load(datum/node/BlockDefinition/GlobalBlock/program)
+	ASSERT(program)
+	src.program = program
+	CreateGlobalScope()
+	alertadmins = FALSE
 
-/*
-	Set ourselves to Garbage Collect
-*/
-		GC()
-			container = null
+///Trims strings and vectors down to an acceptable size, to prevent runaway memory usage
+/datum/n_Interpreter/proc/Trim(value)
+	if(istext(value) && (length(value) > MAX_STRINGLEN))
+		value = copytext(value, 1, MAX_STRINGLEN+1)
+	else if(islist(value) && (length(value) > MAX_LISTLEN))
+		var/list/L = value
+		value = L.Copy(1, MAX_LISTLEN+1)
+	return value
 
-/*
-	Proc: RaiseError
-	Raises a runtime error.
-*/
-		RaiseError(runtimeError/e, scope/scope, token/token)
-			e.scope = scope
-			if(istype(token))
-				e.token = token
-			else if(istype(token, /node))
-				var/node/N = token
-				e.token = N.token
-			src.HandleError(e)
+///Sets ourselves to Garbage Collect.
+/datum/n_Interpreter/proc/garbage_collect()
+	container = null
 
-		CreateGlobalScope()
-			var/scope/S = new(program, null)
-			globalScope = S
-			for(var/functype in subtypesof(/datum/n_function/default))
-				var/datum/n_function/default/god_damn_it_byond = functype
-				if(!istype(src, initial(god_damn_it_byond.interp_type)))
-					continue
-				var/datum/n_function/default/func = new functype()
-				globalScope.init_var(func.name, func)
-				for(var/alias in func.aliases)
-					globalScope.init_var(alias, func)
-			return S
+///Raises a Runtime error.
+/datum/n_Interpreter/proc/RaiseError(datum/runtimeError/e, datum/scope/scope, datum/token/token)
+	e.scope = scope
+	if(istype(token))
+		e.token = token
+	else if(istype(token, /datum/node))
+		var/datum/node/N = token
+		e.token = N.token
+	HandleError(e)
 
-/*
-	Proc: AlertAdmins
-	Alerts the admins of a script that is bad.
-*/
-		AlertAdmins()
-			if(container && !alertadmins)
-				if(istype(container, /datum/TCS_Compiler))
-					var/datum/TCS_Compiler/Compiler = container
-					var/obj/machinery/telecomms/server/Holder = Compiler.Holder
-					var/message = "Potential crash-inducing NTSL script detected at telecommunications server [Compiler.Holder] ([Holder.x], [Holder.y], [Holder.z])."
+/datum/n_Interpreter/proc/CreateGlobalScope()
+	var/datum/scope/S = new(program, null)
+	globalScope = S
+	for(var/functype in subtypesof(/datum/n_function/default))
+		var/datum/n_function/default/god_damn_it_byond = functype
+		if(!istype(src, initial(god_damn_it_byond.interp_type)))
+			continue
+		var/datum/n_function/default/func = new functype()
+		globalScope.init_var(func.name, func)
+		for(var/alias in func.aliases)
+			globalScope.init_var(alias, func)
+	return S
 
-					alertadmins = 1
-					message_admins(message, 1)
-/*
-	Proc: RunBlock
-	Runs each statement in a block of code.
-*/
-		RunBlock(node/BlockDefinition/Block, scope/scope = globalScope)
+///Alerts the admins of a script that is bad.
+/datum/n_Interpreter/proc/AlertAdmins()
+	if(!container || alertadmins)
+		return
+	if(!istype(container, /datum/TCS_Compiler))
+		return
+	var/datum/TCS_Compiler/Compiler = container
+	var/obj/machinery/telecomms/server/Holder = Compiler.Holder
+	var/message = "Potential crash-inducing NTSL script detected at telecommunications server [Compiler.Holder] ([Holder.x], [Holder.y], [Holder.z])."
+	alertadmins = TRUE
+	message_admins(message)
 
-			if(cur_statements < MAX_STATEMENTS)
-				for(var/node/S in Block.statements)
-					while(paused) sleep(1 SECONDS)
+///Runs each statement in a block of code.
+/datum/n_Interpreter/proc/RunBlock(datum/node/BlockDefinition/Block, datum/scope/scope = globalScope)
+	if(cur_statements >= MAX_STATEMENTS)
+		return
+	for(var/datum/node/S in Block.statements)
+		while(paused)
+			sleep(1 SECONDS)
 
-					cur_statements++
-					if(cur_statements >= MAX_STATEMENTS)
-						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
-						AlertAdmins()
-						break
+		cur_statements++
+		if(cur_statements >= MAX_STATEMENTS)
+			RaiseError(new /datum/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
+			AlertAdmins()
+			break
 
-					if(istype(S, /node/expression))
-						. = Eval(S, scope)
-					else if(istype(S, /node/statement/VariableDeclaration))
-						//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
-						var/node/statement/VariableDeclaration/dec=S
-						scope.init_var(dec.var_name.id_name, src, S)
-					else if(istype(S, /node/statement/FunctionDefinition))
-						var/node/statement/FunctionDefinition/dec=S
-						scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src), src, S)
-					else if(istype(S, /node/statement/WhileLoop))
-						. = RunWhile(S, scope)
-					else if(istype(S, /node/statement/ForLoop))
-						. = RunFor(S, scope)
-					else if(istype(S, /node/statement/IfStatement))
-						. = RunIf(S, scope)
-					else if(istype(S, /node/statement/ReturnStatement))
-						if(!(scope.allowed_status & RETURNING))
-							RaiseError(new/runtimeError/UnexpectedReturn(), scope, S)
-							continue
-						scope.status |= RETURNING
-						. = (scope.return_val=Eval(S:value, scope))
-						break
-					else if(istype(S, /node/statement/BreakStatement))
-						if(!(scope.allowed_status & BREAKING))
-							//RaiseError(new/runtimeError/UnexpectedReturn())
-							continue
-						scope.status |= BREAKING
-						break
-					else if(istype(S, /node/statement/ContinueStatement))
-						if(!(scope.allowed_status & CONTINUING))
-							//RaiseError(new/runtimeError/UnexpectedReturn())
-							continue
-						scope.status |= CONTINUING
-						break
-					else
-						RaiseError(new/runtimeError/UnknownInstruction(S), scope, S)
-					if(scope.status)
-						break
-
-/*
-	Proc: RunFunction
-	Runs a function block or a proc with the arguments specified in the script.
-*/
-		RunFunction(node/expression/FunctionCall/stmt, scope/scope)
-			var/datum/n_function/func
-			var/this_obj
-			if(istype(stmt.function, /node/expression/member))
-				var/node/expression/member/M = stmt.function
-				this_obj = M.temp_object = Eval(M.object, scope)
-				func = Eval(M, scope)
-			else
-				func = Eval(stmt.function, scope)
-			if(!istype(func))
-				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
-				return
-			var/list/params = list()
-			for(var/node/expression/P in stmt.parameters)
-				params+=list(Eval(P, scope))
-
-			try
-				return func.execute(this_obj, params, scope, src, stmt)
-			catch(var/exception/E)
-				RaiseError(new /runtimeError/Internal(E), scope, stmt)
-
-/*
-	Proc: RunIf
-	Checks a condition and runs either the if block or else block.
-*/
-		RunIf(node/statement/IfStatement/stmt, scope/scope)
-			if(!stmt.skip)
-				scope = scope.push(stmt.block)
-				if(Eval(stmt.cond, scope))
-					. = RunBlock(stmt.block, scope)
-					// Loop through the if else chain and tell them to be skipped.
-					var/node/statement/IfStatement/i = stmt.else_if
-					var/fail_safe = 800
-					while(i && fail_safe)
-						fail_safe -= 1
-						i.skip = 1
-						i = i.else_if
-
-				else if(stmt.else_block)
-					. = RunBlock(stmt.else_block, scope)
-				scope = scope.pop()
-			// We don't need to skip you anymore.
-			stmt.skip = 0
-
-/*
-	Proc: RunWhile
-	Runs a while loop.
-*/
-		RunWhile(node/statement/WhileLoop/stmt, scope/scope)
-			var/i=1
-			scope = scope.push(stmt.block, allowed_status = CONTINUING | BREAKING)
-			while(Eval(stmt.cond, scope) && Iterate(stmt.block, scope, i++))
+		if(istype(S, /datum/node/expression))
+			. = Eval(S, scope)
+		else if(istype(S, /datum/node/statement/VariableDeclaration))
+			//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
+			var/datum/node/statement/VariableDeclaration/dec=S
+			scope.init_var(dec.var_name.id_name, src, S)
+		else if(istype(S, /datum/node/statement/FunctionDefinition))
+			var/datum/node/statement/FunctionDefinition/dec=S
+			scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src), src, S)
+		else if(istype(S, /datum/node/statement/WhileLoop))
+			. = RunWhile(S, scope)
+		else if(istype(S, /datum/node/statement/ForLoop))
+			. = RunFor(S, scope)
+		else if(istype(S, /datum/node/statement/IfStatement))
+			. = RunIf(S, scope)
+		else if(istype(S, /datum/node/statement/ReturnStatement))
+			if(!(scope.allowed_status & RETURNING))
+				RaiseError(new /datum/runtimeError/UnexpectedReturn(), scope, S)
 				continue
-			scope = scope.pop(RETURNING)
+			scope.status |= RETURNING
+			. = (scope.return_val=Eval(S:value, scope))
+			break
+		else if(istype(S, /datum/node/statement/BreakStatement))
+			if(!(scope.allowed_status & BREAKING))
+				//RaiseError(new /datum/runtimeError/UnexpectedReturn())
+				continue
+			scope.status |= BREAKING
+			break
+		else if(istype(S, /datum/node/statement/ContinueStatement))
+			if(!(scope.allowed_status & CONTINUING))
+				//RaiseError(new /datum/runtimeError/UnexpectedReturn())
+				continue
+			scope.status |= CONTINUING
+			break
+		else
+			RaiseError(new /datum/runtimeError/UnknownInstruction(S), scope, S)
+		if(scope.status)
+			break
 
-		RunFor(node/statement/ForLoop/stmt, scope/scope)
-			var/i=1
-			scope = scope.push(stmt.block)
-			Eval(stmt.init, scope)
-			while(Eval(stmt.test, scope))
-				if(Iterate(stmt.block, scope, i++))
-					Eval(stmt.increment, scope)
-				else
-					break
-			scope = scope.pop(RETURNING)
+///Runs a function block or a proc with the arguments specified in the script.
+/datum/n_Interpreter/proc/RunFunction(datum/node/expression/FunctionCall/stmt, datum/scope/scope)
+	var/datum/n_function/func
+	var/this_obj
+	if(istype(stmt.function, /datum/node/expression/member))
+		var/datum/node/expression/member/M = stmt.function
+		this_obj = M.temp_object = Eval(M.object, scope)
+		func = Eval(M, scope)
+	else
+		func = Eval(stmt.function, scope)
+	if(!istype(func))
+		RaiseError(new /datum/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
+		return
+	var/list/params = list()
+	for(var/datum/node/expression/P in stmt.parameters)
+		params+=list(Eval(P, scope))
 
-/*
-	Proc:Iterate
-	Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
-*/
-		Iterate(node/BlockDefinition/block, scope/scope, count)
-			RunBlock(block, scope)
-			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
-				RaiseError(new/runtimeError/IterationLimitReached(), scope, block)
-				return 0
-			if(status & (BREAKING|RETURNING))
-				return 0
-			status &= ~CONTINUING
-			return 1
+	try
+		return func.execute(this_obj, params, scope, src, stmt)
+	catch(var/exception/E)
+		RaiseError(new /datum/runtimeError/Internal(E), scope, stmt)
+
+///Checks a condition and runs either the if block or else block.
+/datum/n_Interpreter/proc/RunIf(datum/node/statement/IfStatement/stmt, datum/scope/scope)
+	if(!stmt.skip)
+		scope = scope.push(stmt.block)
+		if(Eval(stmt.cond, scope))
+			. = RunBlock(stmt.block, scope)
+			// Loop through the if else chain and tell them to be skipped.
+			var/datum/node/statement/IfStatement/i = stmt.else_if
+			var/fail_safe = 800
+			while(i && fail_safe)
+				fail_safe -= 1
+				i.skip = 1
+				i = i.else_if
+
+		else if(stmt.else_block)
+			. = RunBlock(stmt.else_block, scope)
+		scope = scope.pop()
+	// We don't need to skip you anymore.
+	stmt.skip = FALSE
+
+///Runs a while loop.
+/datum/n_Interpreter/proc/RunWhile(datum/node/statement/WhileLoop/stmt, datum/scope/scope)
+	var/i=1
+	scope = scope.push(stmt.block, allowed_status = CONTINUING | BREAKING)
+	while(Eval(stmt.cond, scope) && Iterate(stmt.block, scope, i++))
+		continue
+	scope = scope.pop(RETURNING)
+
+/datum/n_Interpreter/proc/RunFor(datum/node/statement/ForLoop/stmt, datum/scope/scope)
+	var/i=1
+	scope = scope.push(stmt.block)
+	Eval(stmt.init, scope)
+	while(Eval(stmt.test, scope))
+		if(Iterate(stmt.block, scope, i++))
+			Eval(stmt.increment, scope)
+		else
+			break
+	scope = scope.pop(RETURNING)
+
+///Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
+/datum/n_Interpreter/proc/Iterate(datum/node/BlockDefinition/block, datum/scope/scope, count)
+	RunBlock(block, scope)
+	if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
+		RaiseError(new /datum/runtimeError/IterationLimitReached(), scope, block)
+		return FALSE
+	if(status & (BREAKING|RETURNING))
+		return FALSE
+	status &= ~CONTINUING
+	return TRUE
 
 #undef MAX_STATEMENTS
 #undef MAX_ITERATIONS

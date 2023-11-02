@@ -1,0 +1,4 @@
+author: " ynot01, thegoldencat413"
+delete-after: true 
+changes: 
+  - rscadd: "Added the pseudocider to the stealthy tools uplink section for 6TC. Activate it and the next time you take damage, you will feign your death or stun!"
