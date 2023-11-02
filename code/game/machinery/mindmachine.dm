@@ -27,7 +27,7 @@
 	desc = "The main hub of a complete mind machine setup. Placed between two mind pods and used to control and manage the transfer. \
 			Houses an experimental bluespace conduit which uses bluespace crystals for charge."
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	icon_state = "computer" // This may appear to be a computer, but it is a machine (that looks like a computer).
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/mindmachine_hub
 	/// The current icon of the screen.
@@ -88,7 +88,7 @@
 	if(active)
 		icon_screen = "crew" // Icon state? Icon screen? Eh, close enough!
 	else
-		icon_screen = initial(icon_state)
+		icon_screen = initial(icon_screen)
 	return ..()
 
 // A copy paste of computer's update_overlays().
@@ -643,7 +643,6 @@
 	Contains two locking systems: One for ensuring occupants do not disturb the transfer process, and another that prevents lower minded creatures from leaving on their own."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "hivebot_fab"
-	state_open = FALSE // Starts open.
 	circuit = /obj/item/circuitboard/machine/mindmachine_pod
 	/// The connected mind machine hub.
 	var/obj/machinery/mindmachine_hub/hub
@@ -653,6 +652,7 @@
 /obj/machinery/mindmachine_pod/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
+	open_machine(no_sound = TRUE)
 
 /obj/machinery/mindmachine_pod/update_icon_state()
 	switch(state_open)
@@ -756,8 +756,9 @@
 		playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 	
 
-/obj/machinery/mindmachine_pod/open_machine(drop)
+/obj/machinery/mindmachine_pod/open_machine(drop, no_sound = FALSE)
 	hub?.deactivate()
 	locked = FALSE
 	..(drop)
-	playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)
+	if(!no_sound)
+		playsound(src, 'sound/machines/decon/decon-open.ogg', 25, TRUE)
