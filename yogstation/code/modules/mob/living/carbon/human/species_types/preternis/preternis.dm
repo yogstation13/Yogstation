@@ -238,7 +238,6 @@
 		H.adjust_wet_stacks(-1)
 		soggy = TRUE
 		H.throw_alert("preternis_wet", /atom/movable/screen/alert/preternis_wet)
-		H.adjust_fire_stacks(1)
 	else if(soggy)
 		H.remove_movespeed_modifier("preternis_water")
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
