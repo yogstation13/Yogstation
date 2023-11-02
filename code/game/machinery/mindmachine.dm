@@ -716,9 +716,9 @@
 		return
 	if(state_open)
 		// Due to spriting issues (the lack of empty closed sprite), you can only close if it is empty. :)
-		close_machine(no_sound = FALSE)
+		close_machine(no_sound = TRUE)
 		if(!occupant)
-			open_machine(no_sound = FALSE)
+			open_machine(no_sound = TRUE)
 		else
 			playsound(src, 'sound/machines/decon/decon-close.ogg', 25, TRUE)
 	else
