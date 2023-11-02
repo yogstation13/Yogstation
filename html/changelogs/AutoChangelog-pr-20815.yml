@@ -1,5 +1,0 @@
-author: "bruhlookatthisdood"
-delete-after: true 
-changes: 
-  - bugfix: "donut janitor closet/security maintenance doors have better access requirments."
-  - bugfix: "donut medical cryo freezer room maintenance door no longer lets those with maintenance access in and is now under the exam room's area."
