@@ -114,7 +114,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/proc/purchase(mob/user, datum/component/uplink/U)
 	var/atom/A = spawn_item(item, user, U)
 	if(refundable)
-		A.AddComponent(/datum/component/refundable, user.mind, cost)
+		var/refund = cost
+		if(manufacturer && user.mind.is_employee(manufacturer))
+			refund = CEILING(cost*0.8, 1)
+		A.AddComponent(/datum/component/refundable, user.mind, refund)
 	if(purchase_log_vis && U.purchase_log)
 		U.purchase_log.LogPurchase(A, src, cost)
 
@@ -2209,9 +2212,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
-	cost = 14
-	surplus = 0
-	limited_stock = 1
+	cost = 12
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/implants/spinal/nukie
+	cost = 20
+	exclude_modes = list()
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"

@@ -87,6 +87,8 @@
 	living_user.adjustToxLoss(-2, FALSE, TRUE, BODYPART_ANY)
 	living_user.adjustOxyLoss(-0.5, FALSE)
 	living_user.adjustStaminaLoss(-2)
+	if(living_user.blood_volume < BLOOD_VOLUME_NORMAL(living_user))
+		living_user.blood_volume += 2.5
 
 /datum/eldritch_knowledge/armor
 	name = "T1 - Eldritch Armor"

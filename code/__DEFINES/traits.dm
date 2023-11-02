@@ -376,6 +376,8 @@
 #define CRYO_TRAIT "cryo_trait"
 /// Trait applied by element
 #define ELEMENT_TRAIT(source) "element_trait_[source]"
+/// Trait from [/datum/element/rust]. Its rusty and should be applying a special overlay to denote this.
+#define TRAIT_RUSTY "rust_trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"

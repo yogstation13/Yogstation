@@ -293,8 +293,8 @@
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
-	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	name = "stack snatcher"
+	desc = "A patented Nanotrasen storage system designed for any kind of stacks. this is geared towards sheets, rods, and tiles."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
@@ -306,7 +306,7 @@
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
-	STR.set_holdable(list(/obj/item/stack/sheet), list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
+	STR.set_holdable(list(/obj/item/stack/sheet, /obj/item/stack/tile, /obj/item/stack/rods))
 	STR.max_items = 500
 
 // -----------------------------

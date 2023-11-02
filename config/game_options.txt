@@ -443,9 +443,9 @@ ION_LAW_WEIGHT custom,0
 ## standard-ish laws. These are fairly ok to run
 LAW_WEIGHT asimov,3
 ION_LAW_WEIGHT asimov,1
-LAW_WEIGHT crewsimov,5
+LAW_WEIGHT crewsimov,4
 ION_LAW_WEIGHT crewsimov,1
-LAW_WEIGHT asimovpp,2
+LAW_WEIGHT asimovpp,3
 ION_LAW_WEIGHT asimovpp,2
 LAW_WEIGHT paladin,0
 ION_LAW_WEIGHT paladin,2
@@ -453,13 +453,13 @@ LAW_WEIGHT paladin5,0
 ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
-LAW_WEIGHT ceo,2
+LAW_WEIGHT ceo,4
 ION_LAW_WEIGHT ceo,1
-LAW_WEIGHT reporter,2
+LAW_WEIGHT reporter,4
 ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,2
+LAW_WEIGHT hippocratic,1
 ION_LAW_WEIGHT hippocratic,2
 LAW_WEIGHT maintain,1
 ION_LAW_WEIGHT maintain,2
@@ -469,7 +469,7 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
 ION_LAW_WEIGHT peacekeeper,1
-LAW_WEIGHT cowboy,2
+LAW_WEIGHT cowboy,1
 ION_LAW_WEIGHT cowboy,3
 LAW_WEIGHT construction,0
 ION_LAW_WEIGHT construction,2
@@ -483,7 +483,7 @@ LAW_WEIGHT chapai,0
 ION_LAW_WEIGHT chapai,2
 LAW_WEIGHT silicop,0
 ION_LAW_WEIGHT silicop,2
-LAW_WEIGHT researcher,0
+LAW_WEIGHT researcher,2
 ION_LAW_WEIGHT researcher,2
 LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,2
@@ -493,15 +493,15 @@ LAW_WEIGHT detective,0
 ION_LAW_WEIGHT detective,2
 LAW_WEIGHT hulkamania,0
 ION_LAW_WEIGHT hulkamania,1
-LAW_WEIGHT partybot,2
+LAW_WEIGHT partybot,0
 ION_LAW_WEIGHT partybot,3
-LAW_WEIGHT friendbot,2
+LAW_WEIGHT friendbot,1
 ION_LAW_WEIGHT friendbot,3
-LAW_WEIGHT fitnesscoach,2
+LAW_WEIGHT fitnesscoach,0
 ION_LAW_WEIGHT fitnesscoach,3
-LAW_WEIGHT educator,2
+LAW_WEIGHT educator,0
 ION_LAW_WEIGHT educator,3
-LAW_WEIGHT mediator,2
+LAW_WEIGHT mediator,1
 ION_LAW_WEIGHT mediator,3
 
 ## Bad idea laws. Probably shouldn't enable these
