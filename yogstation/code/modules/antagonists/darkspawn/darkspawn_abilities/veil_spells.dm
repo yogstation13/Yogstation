@@ -49,7 +49,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/darkspawn_trap/veil_cam
+/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam
 	name = "Panopticon"
 	desc = "Watch what your allies and servants are doing at all times."
 	button_icon_state = "sacrament"
@@ -78,9 +78,11 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 /datum/action/cooldown/spell/veilbuff/before_cast(atom/cast_on)
 	. = ..()
+	/*
 	if(isdarkspawn(owner))
 		var/datum/antagonist/darkspawn/antag = isdarkspawn(owner)
-		var/darkspawns_too = FALSE //change this to check for a special darkspawn variable
+		darkspawns_too = antag.buff_darkspawn					//change this to check for a special darkspawn variable
+	*/
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()

@@ -195,7 +195,7 @@
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Trap abilities----------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/darkspawn_trap
+/datum/action/cooldown/spell/pointed/darkspawn_build
 	name = "Dark sticks"
 	desc = "Place dangerous punji sticks. Allies pass safely."
 	panel = null
@@ -214,12 +214,12 @@
 	var/cast_time = 2 SECONDS
 	var/object_type = /obj/structure/dark_sticks
 
-/datum/action/cooldown/spell/pointed/darkspawn_trap/can_cast_spell(feedback)
+/datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
 	if(casting)
 		return FALSE
 	. = ..()
 
-/datum/action/cooldown/spell/pointed/darkspawn_trap/before_cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/darkspawn_build/before_cast(atom/cast_on)
 	. = ..()
 	if(cast_on.density)
 		return . | SPELL_CANCEL_CAST
@@ -234,13 +234,13 @@
 		return . | SPELL_CANCEL_CAST
 	casting = FALSE
 	
-/datum/action/cooldown/spell/pointed/darkspawn_trap/cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/darkspawn_build/cast(atom/cast_on)
 	. = ..()
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	var/obj/thing = new object_type(get_turf(cast_on))
 	owner.visible_message(span_warning("[owner] knits shadows together into a [thing]!"), span_velvet("You create a [thing]"))
 
-/datum/action/cooldown/spell/pointed/darkspawn_trap/legcuff
+/datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Legcuffs"
 	desc = "Place dangerous punji sticks. Darkspawn can pass safely, but thralls can't."
 	object_type = /obj/item/restraints/legcuffs/beartrap/energy/dark
