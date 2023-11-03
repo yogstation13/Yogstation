@@ -101,9 +101,7 @@
 	ADD_TRAIT(copied_mob, TRAIT_NOINTERACT, "[type]")
 	ADD_TRAIT(copied_mob, TRAIT_HIGHRESISTDAMAGESLOWDOWN, "[type]")
 	// also make their footsteps silent
-	var/datum/component/footstep/footsteps = copied_mob.GetComponent(/datum/component/footstep)
-	var/stored_footstep_volume = footsteps.volume
-	footsteps.volume = 0
+	ADD_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
 
 	if(damagetype == STAMINA)
 		fake_corpse.Paralyze(100 SECONDS)
@@ -118,8 +116,7 @@
 	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown)
 
 	if(!QDELETED(copied_mob) && istype(copied_mob))
-		var/datum/component/footstep/footsteps = copied_mob.GetComponent(/datum/component/footstep)
-		footsteps.volume = stored_footstep_volume
+		REMOVE_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
 		animate(copied_mob, 0.5 SECONDS, alpha = 255)
 		REMOVE_TRAIT(copied_mob, TRAIT_NOINTERACT, "[type]")
 		REMOVE_TRAIT(copied_mob, TRAIT_RESISTDAMAGESLOWDOWN, "[type]")
