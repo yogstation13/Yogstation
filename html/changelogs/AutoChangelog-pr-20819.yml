@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "lighting should actually update in replays"
+  - bugfix: "player directionality should actually update in replays"
