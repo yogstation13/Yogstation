@@ -22,7 +22,7 @@
 	. = loc.handle_slip(src, knockdown_amount, O, lube, stun, force_drop)
 	if(wagging)
 		src.dna.species.start_wagging_tail(src)
-	return ret
+	return .
 	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
 	if(!.)
