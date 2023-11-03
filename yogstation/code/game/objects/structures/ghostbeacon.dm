@@ -111,6 +111,7 @@
 
 /obj/structure/ghostbeacon/clown
 	name = "Funny Beacon"
+	restricted = TRUE
 
 /obj/structure/ghostbeacon/clown/getOutfit(mob/living/carbon/human/H)
 	var/outfit = /datum/outfit/ghost/clown
