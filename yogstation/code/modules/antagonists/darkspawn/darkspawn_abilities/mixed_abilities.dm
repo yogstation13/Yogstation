@@ -1,4 +1,9 @@
-//Melds with a mob's shadow, allowing the caster to "shadow" (HA) them while they're not in darkness.
+//////////////////////////////////////////////////////////////////////////
+//-------------------Abilities that only two classes get----------------//
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+//-------------------Scout and warlock, hide in person------------------//
+//////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/umbral_trespass
 	name = "Umbral trespass"
 	desc = "Melds with a target's shadow, causing you to invisibly follow them. Only works in lit areas, and you will be forced out if you hold any items. Costs 30 Psi."
@@ -17,8 +22,12 @@
 
 /datum/action/cooldown/spell/touch/umbral_trespass/cast(mob/living/carbon/cast_on)
 	if(tagalong)
+		var/possessing = FALSE
+		if(caster.has_status_effect(STATUS_EFFECT_TAGALONG))
+			possessing = TRUE
 		QDEL_NULL(tagalong)
-		return
+		if(possessing)
+			return //only return if the user is actually still hiding
 	. = ..()
 	
 /datum/action/cooldown/spell/touch/umbral_trespass/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
