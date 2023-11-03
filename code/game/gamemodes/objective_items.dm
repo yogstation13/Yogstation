@@ -110,7 +110,7 @@
 	..()
 
 /datum/objective_item/steal/hdd_extraction
-	name = "the source code for Project Goon from the master R&D server mainframe."
+	name = "the source code for Project Bee from the master R&D server mainframe."
 	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
 	difficulty = 10
 	excludefromjob = list("Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
