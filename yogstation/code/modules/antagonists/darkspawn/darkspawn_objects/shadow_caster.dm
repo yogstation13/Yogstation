@@ -5,7 +5,7 @@
 	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
-	recharge_time = 5 SECONDS
+	recharge_time = 2 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()
@@ -14,6 +14,10 @@
 
 /obj/item/ammo_box/magazine/internal/bow/shadow
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/shadow
+	light_system = MOVABLE_LIGHT
+	light_power = -0.5
+	light_color = COLOR_VELVET
+	light_range = 3.5
 
 /obj/item/ammo_casing/reusable/arrow/shadow
 	name = "shadow arrow"
