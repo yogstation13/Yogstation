@@ -195,11 +195,13 @@
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Trap abilities----------------------------//
 //////////////////////////////////////////////////////////////////////////
+//Reskinned punji sticks that don't stun for as long
 /datum/action/cooldown/spell/pointed/darkspawn_build/punji
 	name = "Dark sticks"
 	desc = "Place dangerous punji sticks. Allies pass safely."
 	object_type = /obj/structure/dark_sticks
 
+//Reskinned bear trap that doesn't slow as much and can't be picked up
 /datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Legcuffs"
 	desc = "a dark bear trap."

@@ -1,3 +1,4 @@
+//////////////////////////////////////////////////////////////////////////
 /obj/structure/dark_sticks
 	name = "dark sticks" //basicaly punji sticks
 	desc = "Don't step on this."
@@ -19,7 +20,8 @@
 		if(is_darkspawn_or_veil(target))
 			return
 	. = ..()
-	
+
+//////////////////////////////////////////////////////////////////////////	
 /obj/item/restraints/legcuffs/beartrap/dark
 	name = "dark snare"
 	armed = 1
