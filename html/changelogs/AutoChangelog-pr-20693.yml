@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Can no longer do mechanical surgeries on simple mobs that aren't robotic"
