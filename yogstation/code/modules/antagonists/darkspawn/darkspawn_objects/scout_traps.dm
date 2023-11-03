@@ -20,8 +20,8 @@
 			return
 	. = ..()
 	
-/obj/item/restraints/legcuffs/beartrap/energy/dark
-	name = "energy snare"
+/obj/item/restraints/legcuffs/beartrap/dark
+	name = "dark snare"
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
@@ -31,11 +31,14 @@
 	break_strength = 2
 	slowdown = 4
 
-/obj/item/restraints/legcuffs/beartrap/energy/dark/Initialize(mapload)
+/obj/item/restraints/legcuffs/beartrap/dark/Initialize(mapload)
 	. = ..()
 	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
-/obj/item/restraints/legcuffs/beartrap/energy/dark/Crossed(AM as mob|obj)
+/obj/item/restraints/legcuffs/beartrap/dark/attack_hand(mob/user)
+	Crossed(user) //no picking it up
+
+/obj/item/restraints/legcuffs/beartrap/dark/Crossed(AM as mob|obj)
 	if(isliving(AM))
 		var/mob/living/target = AM
 		if(is_darkspawn_or_veil(target))

@@ -202,5 +202,5 @@
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Legcuffs"
-	desc = "Place dangerous punji sticks. Darkspawn can pass safely, but thralls can't."
-	object_type = /obj/item/restraints/legcuffs/beartrap/energy/dark
+	desc = "a dark bear trap."
+	object_type = /obj/item/restraints/legcuffs/beartrap/dark
