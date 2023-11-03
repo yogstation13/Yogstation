@@ -1,0 +1,6 @@
+author: "cowbot92"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new heretic path"
+  - soundadd: "Adds new heretic sounds"
+  - imageadd: "Adds new heretic portal icon and abilities"
