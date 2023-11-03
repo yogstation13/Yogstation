@@ -107,9 +107,9 @@
 		fake_corpse.Paralyze(100 SECONDS)
 	else
 		INVOKE_ASYNC(fake_corpse, TYPE_PROC_REF(/mob/living,death))
-	addtimer(CALLBACK(src, PROC_REF(unfake_death), copied_mob, stored_footstep_volume, fake_corpse), 7 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unfake_death), copied_mob, fake_corpse), 7 SECONDS)
 
-/obj/item/pseudocider/proc/unfake_death(mob/living/carbon/copied_mob, stored_footstep_volume, mob/living/carbon/fake_corpse)
+/obj/item/pseudocider/proc/unfake_death(mob/living/carbon/copied_mob, mob/living/carbon/fake_corpse)
 	active = FALSE
 	update_appearance(UPDATE_ICON)
 
