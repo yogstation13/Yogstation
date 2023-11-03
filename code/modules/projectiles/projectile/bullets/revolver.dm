@@ -32,7 +32,7 @@
 
 /obj/item/projectile/bullet/c38/iceblox
 	name = ".38 Iceblox bullet"
-	damage = 0 // We are just here to make you sick
+	damage = 0 // We are just here to make you cold
 	var/temperature = 100
 	sharpness = SHARP_NONE
 
