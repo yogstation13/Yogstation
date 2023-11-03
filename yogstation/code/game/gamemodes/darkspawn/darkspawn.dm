@@ -34,7 +34,7 @@
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
 	required_succs = clamp(round(num_players() / 3), 15, 30)
-	GLOB.veilnet.name = "Thrall net"
+	GLOB.thrallnet.name = "Thrall net"
 	return TRUE
 
 /datum/game_mode/darkspawn/generate_report()

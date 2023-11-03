@@ -38,7 +38,7 @@
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
-		cam.change_cameranet(GLOB.veilnet)
+		cam.change_cameranet(GLOB.thrallnet)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current

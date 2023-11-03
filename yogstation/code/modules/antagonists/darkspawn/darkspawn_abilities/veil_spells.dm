@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
+GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------Veil Creation----------------------------//
@@ -49,81 +49,13 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/veil_cam
-	name = "Veil net"
-	desc = "Call up your boys."
-	panel = null
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
+/datum/action/cooldown/spell/pointed/darkspawn_trap/veil_cam
+	name = "Panopticon"
+	desc = "Watch what your allies and servants are doing at all times."
 	button_icon_state = "sacrament"
-	antimagic_flags = NONE
-	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	cooldown_time = 1 MINUTES
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	cast_range = 2
-	var/casting = FALSE
-	var/cast_time = 2 SECONDS
-
-/datum/action/cooldown/spell/pointed/veil_cam/can_cast_spell(feedback)
-	if(casting)
-		return FALSE
-	. = ..()
-
-/datum/action/cooldown/spell/pointed/veil_cam/before_cast(atom/cast_on)
-	. = ..()
-	if(cast_on.density)
-		return . | SPELL_CANCEL_CAST
-	if(casting)
-		return . | SPELL_CANCEL_CAST
-	if(. & SPELL_CANCEL_CAST)
-		return .
-	casting = TRUE
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
-	if(!do_after(owner, cast_time, cast_on))
-		casting = FALSE
-		return . | SPELL_CANCEL_CAST
-	casting = FALSE
-	
-/datum/action/cooldown/spell/pointed/veil_cam/cast(atom/cast_on)
-	. = ..()
-	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	new /obj/machinery/computer/camera_advanced/darkspawn(get_turf(cast_on))
-	
-/obj/machinery/computer/camera_advanced/darkspawn
-	name = "dark orb"
-	desc = "SEND DUDES"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
-	special = TRUE
-	use_power = NO_POWER_USE
-	flags_1 = NODECONSTRUCT_1
-	max_integrity = 200
-	integrity_failure = 0
-	light_power = -1
-	light_color = COLOR_DARKSPAWN_PSI
-	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
-	networks = list(ROLE_DARKSPAWN)
-	clicksound = "crawling_shadows_walk"
-
-/obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
-	. = ..()
-	camnet = GLOB.veilnet
-
-/obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
-	if(user && !is_darkspawn_or_veil(user))
-		return FALSE
-	return ..()
-
-/obj/machinery/computer/camera_advanced/darkspawn/CreateEye()
-	. = ..()
-	eyeobj.nightvision = TRUE
-
-/obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
-	return
+	cast_time = 2 SECONDS
+	object_type = /obj/machinery/computer/camera_advanced/darkspawn
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Global AOE Buff spells-------------------------//
@@ -140,9 +72,15 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 1 MINUTES
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
+
+/datum/action/cooldown/spell/veilbuff/before_cast(atom/cast_on)
+	. = ..()
+	if(isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/antag = isdarkspawn(owner)
+		var/darkspawns_too = FALSE //change this to check for a special darkspawn variable
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()

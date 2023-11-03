@@ -3,14 +3,16 @@
 	var/max_damage
 	var/probability
 	var/flags
+	var/paralyze
 
 	var/cooldown = 0
 
-/datum/component/caltrop/Initialize(_min_damage = 0, _max_damage = 0, _probability = 100,  _flags = NONE)
+/datum/component/caltrop/Initialize(_min_damage = 0, _max_damage = 0, _probability = 100, _flags = NONE, _paralyze = 60)
 	min_damage = _min_damage
 	max_damage = max(_min_damage, _max_damage)
 	probability = _probability
 	flags = _flags
+	paralyze = _paralyze
 
 	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED), PROC_REF(Crossed))
 
@@ -59,4 +61,4 @@
 						span_userdanger("You slide on [A]!"))
 
 			cooldown = world.time
-		H.Paralyze(60)
+		H.Paralyze(paralyze)

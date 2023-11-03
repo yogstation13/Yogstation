@@ -80,7 +80,7 @@
 		owner.current.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 		var/datum/component/internal_cam/cam = owner.current.GetComponent(/datum/component/internal_cam)
 		if(cam)
-			cam.change_cameranet(GLOB.veilnet)
+			cam.change_cameranet(GLOB.thrallnet)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
