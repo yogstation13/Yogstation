@@ -33,7 +33,7 @@
 /datum/reagent/darkspawn_darkness_smoke/reaction_mob(mob/living/M, methods, reac_volume, show_message, permeability)
 	. = ..()
 	if(is_darkspawn_or_veil(M)) //since darkspawns don't breathe, let's do this
-		M.add_reagent(type, 5)
+		M.reagents.add_reagent(type, 5)
 
 /datum/reagent/darkspawn_darkness_smoke/on_mob_life(mob/living/M)
 	if(!is_darkspawn_or_veil(M))
