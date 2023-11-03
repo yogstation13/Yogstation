@@ -155,6 +155,7 @@
 #define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
 #define TRAIT_REDUCED_DAMAGE_SLOWDOWN "reduced_damage_slowdown"
 #define TRAIT_RESISTDAMAGESLOWDOWN "resistdamageslowdown"
+#define TRAIT_HIGHRESISTDAMAGESLOWDOWN "highresistdamageslowdown"
 #define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_DISFIGURED		"disfigured"
@@ -489,3 +490,5 @@
 #define TRAIT_NO_FLOATING_ANIM "no-floating-animation"
 /// Used to prevent multiple floating blades from triggering over the same target
 #define TRAIT_BEING_BLADE_SHIELDED "being_blade_shielded"
+/// things with this trait are treated as having no access in /obj/proc/check_access(obj/item)
+#define TRAIT_ALWAYS_NO_ACCESS "alwaysnoaccess"
