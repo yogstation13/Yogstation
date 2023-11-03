@@ -12,7 +12,6 @@
 	wreckage = /obj/structure/mecha_wreckage/gygax
 	internal_damage_threshold = 35
 	max_equip = 3
-	step_energy_drain = 3
 
 /obj/mecha/combat/gygax/dark
 	desc = "A lightweight exosuit, painted in a dark scheme. This model appears to have some modifications."
@@ -28,6 +27,7 @@
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
 	max_equip = 6
 	destruction_sleep_duration = 20
+	step_energy_drain = 3
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize(mapload)
 	. = ..()
