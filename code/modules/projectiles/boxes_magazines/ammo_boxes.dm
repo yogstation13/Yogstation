@@ -73,6 +73,20 @@
 	icon_state = "38rubber"
 	ammo_type = /obj/item/ammo_casing/c38/rubber
 
+/obj/item/ammo_box/c38/iceblox
+	name = "speed loader (.38 Iceblox)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade some damage for a cryogenic payload which significantly reduces the body temperature of targets hit."
+	icon_state = "38ice"
+	ammo_type = /obj/item/ammo_casing/c38/iceblox
+
+/obj/item/ammo_box/c38/gutterpunch
+	name = "speed loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade some damage for an emetic payload which induces nausea in targets."
+	icon_state = "38gut"
+	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
+
 // .32 TRAC speed loader
 
 /obj/item/ammo_box/tra32

@@ -763,7 +763,7 @@
 	display_name = "Experimental Ammunition"
 	description = "We're hitting levels of power that shouldn't be possible."
 	prereq_ids = list("exotic_ammo")
-	design_ids = list("techshotshell", "mag_v38_bluespace", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
+	design_ids = list("techshotshell", "mag_v38_bluespace", "mag_oldsmg_kraken", "c38_iceblox", "c38_gutterpunch", "mag_oldsmg_snakebite")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////mech technology////////////////////////
