@@ -10,4 +10,4 @@
 /datum/unit_test/focus_only/multiple_space_initialization
 
 /// Checks that every overlay passed into build_appearance_list exists in the icon
-/datum/unit_test/focus_only/invalid_overlays
+///datum/unit_test/focus_only/invalid_overlays
