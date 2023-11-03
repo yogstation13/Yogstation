@@ -38,8 +38,8 @@
 	if(!.)
 		return
 	var/area/A = get_area(user)
-	if(area)
-		if(rand(0, 100000) == 0)
+	if(A)
+		if(rand(0, 10000) == 0)
 			A.lightswitch = !A.lightswitch
 			A.update_appearance(UPDATE_ICON)
 		
