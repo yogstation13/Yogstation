@@ -35363,7 +35363,7 @@
 "puy" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
-	req_one_access_txt = "12;26"
+	req_access_txt = "26"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -38367,7 +38367,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12;63";
+	req_access_txt = "63";
 	req_one_access_txt = "0"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -39869,7 +39869,7 @@
 /area/engine/atmos)
 "rsn" = (
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;5"
+	req_access_txt = "5"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -39878,7 +39878,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/medical/genetics)
+/area/medical/sleeper)
 "rsE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -50994,7 +50994,7 @@
 	},
 /obj/machinery/door/airlock/maintenance{
 	name = "Security Maintenance";
-	req_access_txt = "12;63";
+	req_access_txt = "63";
 	req_one_access_txt = "0"
 	},
 /obj/machinery/door/firedoor/border_only,
