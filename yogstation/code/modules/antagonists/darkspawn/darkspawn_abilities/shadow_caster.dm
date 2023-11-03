@@ -42,6 +42,7 @@
 	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
+	recharge_time = 5 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()
@@ -57,7 +58,7 @@
 	light_system = MOVABLE_LIGHT
 	light_power = -0.5
 	light_color = COLOR_DARKSPAWN_PSI
-	light_range = 2
+	light_range = 3.5
 	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
 
 /obj/item/ammo_casing/reusable/arrow/shadow/on_land(obj/projectile/old_projectile)
@@ -69,4 +70,4 @@
 	light_system = MOVABLE_LIGHT
 	light_power = -0.5
 	light_color = COLOR_DARKSPAWN_PSI
-	light_range = 2
+	light_range = 3.5

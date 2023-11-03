@@ -48,6 +48,8 @@
 	var/atom/movable/AM = victim
 	if(AM.anchored)
 		return
+	if(isitem(AM) && isliving(AM.loc))//don't throw anything being held by someone
+		return
 	if(isliving(AM))
 		var/mob/living/dude = AM
 		if(is_darkspawn_or_veil(dude))

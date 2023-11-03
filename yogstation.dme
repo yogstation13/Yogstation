@@ -4014,6 +4014,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\light_eater.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\null_charge.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_caster.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_crash.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_jaunt.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_play.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\shadow_step.dm"
