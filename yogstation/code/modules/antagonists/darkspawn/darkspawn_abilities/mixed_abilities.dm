@@ -15,7 +15,7 @@
 	panel = null
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 30
 	var/datum/status_effect/tagalong/tagalong
 	hand_path = /obj/item/melee/touch_attack/umbral_trespass
@@ -75,9 +75,8 @@
 	panel = null
 	antimagic_flags = NONE
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	cooldown_time = 1 MINUTES
-	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/aoe/icyveins/cast(atom/cast_on)
 	. = ..()

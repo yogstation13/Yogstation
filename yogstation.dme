@@ -4011,6 +4011,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_classes\_class.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\crawling_shadows.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\dark_bead.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\darkspawn_chems.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\psionic_barrier.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\shadow_caster.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\simulacrum.dm"

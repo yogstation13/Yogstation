@@ -164,9 +164,6 @@
 		L.visible_message(span_warning("[owner] breaks away from [L]'s shadow!"), \
 		span_userdanger("You feel a sense of freezing cold pass through you!"))
 		to_chat(owner, span_velvet("<b>zayaera</b><br>You create an illusion of yourself."))
-	else
-		owner.visible_message(span_warning("[owner] splits in two!"), \
-		span_velvet("<b>zayaera</b><br>You create an illusion of yourself."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 	var/obj/effect/simulacrum/simulacrum = new(get_turf(owner))
 	simulacrum.mimic(owner)
