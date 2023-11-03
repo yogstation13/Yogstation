@@ -20,6 +20,7 @@
 /obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
 	. = ..()
 	camnet = GLOB.thrallnet
+	GLOB.thrallnet.updateVisibility(src)
 
 /obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
 	if(user && !is_darkspawn_or_veil(user))

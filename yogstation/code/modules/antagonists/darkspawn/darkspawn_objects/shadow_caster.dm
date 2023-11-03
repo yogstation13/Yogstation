@@ -5,7 +5,7 @@
 	item_state = "bow_hardlight"
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/shadow
 	no_pin_required = TRUE
-	recharge_time = 2 SECONDS
+	recharge_time = 5 SECONDS
 
 /obj/item/gun/ballistic/bow/energy/shadow_caster/Initialize(mapload)
 	. = ..()

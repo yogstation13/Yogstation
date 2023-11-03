@@ -52,6 +52,7 @@
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	var/obj/item/gun/ballistic/bow/energy/shadow_caster/bow
 
 /datum/action/cooldown/spell/toggle/shadow_caster/process()
 	active = owner.is_holding_item_of_type(/obj/item/gun/ballistic/bow/energy/shadow_caster)
@@ -68,15 +69,15 @@
 	owner.visible_message(span_warning("[owner]'s arm contorts into a blade!"), "<span class='velvet bold'>ikna</span><br>\
 	[span_notice("You transform your arm into a blade.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
-	var/obj/item/gun/ballistic/bow/energy/shadow_caster/T = new(owner)
-	owner.put_in_hands(T)
+	if(!bow)
+		bow = new (owner)
+	owner.put_in_hands(bow)
 
 /datum/action/cooldown/spell/toggle/shadow_caster/Disable()
 	owner.visible_message(span_warning("[owner]'s blade transform back!"), "<span class='velvet bold'>haoo</span><br>\
 	[span_notice("You dispel the blade.")]")
 	playsound(owner, 'yogstation/sound/magic/pass_dispel.ogg', 50, 1)
-	for(var/obj/item/gun/ballistic/bow/energy/shadow_caster/T in owner)
-		qdel(T)
+	bow.moveToNullspace()
 	
 //////////////////////////////////////////////////////////////////////////
 //---------------------Detain and capture ability-----------------------//
