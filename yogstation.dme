@@ -4002,7 +4002,6 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\_divulge.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\_sacrament.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\core_abilities.dm"
-#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\crawling_shadow.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\fighter_abilities.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\icy_veins.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_abilities\mixed_abilities.dm"
