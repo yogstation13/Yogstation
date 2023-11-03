@@ -73,6 +73,16 @@
 	desc = "A .38 frost bullet casing."
 	projectile_type = /obj/projectile/bullet/c38/frost
 
+/obj/item/ammo_casing/c38/iceblox
+	name = ".38 iceblox bullet casing"
+	desc = "A .38 iceblox bullet casing."
+	projectile_type = /obj/projectile/bullet/c38/iceblox
+
+/obj/item/ammo_casing/c38/gutterpunch
+	name = ".38 gutterpunch bullet casing"
+	desc = "A .38 gutterpunch bullet casing."
+	projectile_type = /obj/projectile/bullet/c38/gutterpunch
+
 /obj/item/ammo_casing/c38/talon
 	name = ".38 talon bullet casing"
 	desc = "A .38 talon bullet casing."
