@@ -90,7 +90,7 @@
 	var/obj/item/paicard/ricephone = W
 	if(!ricephone.pai)
 		return ..()
-	if(!ricephone.pai.has_status_effect(/datum/status_effect/speech/slurring) && !ricephone.pai.has_status_effect(/datum/status_effect/speech/stutter/derpspeech))
+	if(!ricephone.pai.has_status_effect(/datum/status_effect/speech/slurring/drunk) && !ricephone.pai.has_status_effect(/datum/status_effect/speech/stutter/derpspeech))
 		to_chat(user, span_notice("There are rumors that burying a pAI in rice can fix some internal damage, but yours seems to be working fine for now."))
 		return ..()
 	user.visible_message(span_notice("[user] buries [ricephone] into [src]..."), span_notice("You bury [ricephone] in [src]..."))
