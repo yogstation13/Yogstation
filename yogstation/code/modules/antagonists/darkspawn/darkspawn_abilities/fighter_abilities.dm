@@ -11,7 +11,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	var/twin = FALSE
 
 /datum/action/cooldown/spell/toggle/shadow_tendril/can_cast_spell(feedback)
@@ -103,7 +103,7 @@
 	button_icon_state = "glare"
 	panel = null
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	cooldown_time = 15 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	psi_cost = 20
@@ -170,7 +170,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	panel = null
 	antimagic_flags = NONE
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	sound = 'yogstation/sound/creatures/darkspawn_howl.ogg'
 	psi_cost = 75
 
@@ -200,7 +200,7 @@
 	button_icon_state = "demented_outburst"
 	antimagic_flags = NONE
 	panel = null
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	check_flags = AB_CHECK_CONSCIOUS
 	psi_cost = 50 //big boom = big cost
 	aoe_radius = 5

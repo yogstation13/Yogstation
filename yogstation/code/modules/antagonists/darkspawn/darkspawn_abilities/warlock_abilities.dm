@@ -11,7 +11,7 @@
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	sound = 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg'
 	aoe_radius = 7
@@ -65,7 +65,7 @@
 	antimagic_flags = NONE
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 15
 	hand_path = /obj/item/melee/touch_attack/null_charge
 

@@ -11,7 +11,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/toggle/light_eater/process()
 	active = owner.is_holding_item_of_type(/obj/item/light_eater)
@@ -51,7 +51,7 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "pass"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/toggle/shadow_caster/process()
 	active = owner.is_holding_item_of_type(/obj/item/gun/ballistic/bow/energy/shadow_caster)
@@ -90,7 +90,7 @@
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	cooldown_time = 30 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	var/strong = TRUE
@@ -146,7 +146,7 @@
 	antimagic_flags = NONE
 	panel = null
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 15
 	var/range = 4
 
@@ -177,7 +177,7 @@
 	antimagic_flags = NONE
 	panel = null
 	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 30
 
 	exit_jaunt_sound = 'sound/magic/ethereal_exit.ogg'
