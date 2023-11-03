@@ -180,17 +180,13 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 30
 
-	exit_jaunt_sound = 'sound/magic/ethereal_exit.ogg'
-	/// For how long are we jaunting?
-	jaunt_duration = 5 SECONDS
-	/// Visual for jaunting
-	jaunt_in_type = /obj/effect/temp_visual/wizard
-	/// Visual for exiting the jaunt
-	jaunt_out_type = /obj/effect/temp_visual/wizard/out
+	sound = 'sound/effects/bamf.ogg'
+	exit_jaunt_sound = 'yogstation/sound/magic/devour_will_begin.ogg'
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ninja/cloak
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ninja
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt/do_steam_effects(turf/loc)
 	return FALSE
-
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Trap abilities----------------------------//
