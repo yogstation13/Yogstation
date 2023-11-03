@@ -34,8 +34,7 @@
 /obj/item/umbral_tendrils/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || isdarkspawn(user))
-		to_chat(user, "<span class='velvet bold'>Functions:<span>")
-		to_chat(user, span_velvet("<b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi."))
+		to_chat(user, span_velvet("<b>Functions:</b>"))
 		to_chat(user, span_velvet("<b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)"))
 		to_chat(user, span_velvet("<b>Grab intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck."))
 		to_chat(user, span_velvet("The tendrils will break any lights hit in melee,"))
@@ -56,23 +55,8 @@
 	if(twin && proximity && !QDELETED(target) && (isstructure(target) || ismachinery(target)) && user.get_active_held_item() == src)
 		target.attackby(twin, user)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
-		if(INTENT_HELP)
-			if(!target.density && isopenturf(get_turf(target)))
-				tendril_jump(user, target)
 		if(INTENT_GRAB)
 			tendril_swing(user, target)
-
-/obj/item/umbral_tendrils/proc/tendril_jump(mob/living/user, turf/open/target) //throws the user towards the target turf
-	if(!darkspawn.has_psi(10))
-		to_chat(user, span_warning("You need at least 10 Psi to jump!"))
-		return
-	if(!(target in view(7, user)))
-		to_chat(user, span_warning("You can't access that area, or it's too far away!"))
-		return
-	to_chat(user, span_velvet("You pull yourself towards [target]."))
-	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
-	user.throw_at(target, 5, 3, user, FALSE)
-	darkspawn.use_psi(10)
 
 /obj/item/umbral_tendrils/proc/tendril_swing(mob/living/user, mob/living/target) //swing the tendrils to knock someone down
 	if(isliving(target) && target.lying)
