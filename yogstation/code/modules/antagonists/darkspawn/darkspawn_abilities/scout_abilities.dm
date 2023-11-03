@@ -195,50 +195,10 @@
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Trap abilities----------------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/darkspawn_build
+/datum/action/cooldown/spell/pointed/darkspawn_build/punji
 	name = "Dark sticks"
 	desc = "Place dangerous punji sticks. Allies pass safely."
-	panel = null
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
-	button_icon_state = "sacrament"
-	antimagic_flags = NONE
-	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	cooldown_time = 30 SECONDS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
-	cast_range = 2
-	var/casting = FALSE
-	var/cast_time = 2 SECONDS
-	var/object_type = /obj/structure/dark_sticks
-
-/datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
-	if(casting)
-		return FALSE
-	. = ..()
-
-/datum/action/cooldown/spell/pointed/darkspawn_build/before_cast(atom/cast_on)
-	. = ..()
-	if(cast_on.density)
-		return . | SPELL_CANCEL_CAST
-	if(casting)
-		return . | SPELL_CANCEL_CAST
-	if(. & SPELL_CANCEL_CAST)
-		return .
-	casting = TRUE
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
-	if(!do_after(owner, cast_time, cast_on))
-		casting = FALSE
-		return . | SPELL_CANCEL_CAST
-	casting = FALSE
-	
-/datum/action/cooldown/spell/pointed/darkspawn_build/cast(atom/cast_on)
-	. = ..()
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	var/obj/thing = new object_type(get_turf(cast_on))
-	owner.visible_message(span_warning("[owner] knits shadows together into a [thing]!"), span_velvet("You create a [thing]"))
+	object_type = /obj/structure/dark_sticks
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Legcuffs"

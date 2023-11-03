@@ -167,3 +167,58 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
 	var/obj/effect/simulacrum/simulacrum = new(get_turf(owner))
 	simulacrum.mimic(owner)
+
+
+//////////////////////////////////////////////////////////////////////////
+//-----------------Used for placing things into the world---------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/darkspawn_build
+	name = "Darkspawn building thing"
+	desc = "You shouldn't be able to see this."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "sacrament"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
+	cooldown_time = 15 SECONDS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+	psi_cost = 20
+	cast_range = 2
+	var/casting = FALSE
+	var/cast_time = 2 SECONDS
+	var/object_type
+
+/datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
+	if(casting)
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/pointed/darkspawn_build/before_cast(atom/cast_on)
+	. = ..()
+	if(!object_type)
+		CRASH("someone forgot to set the placed object of a darkspawn building ability")
+		return . | SPELL_CANCEL_CAST
+	if(cast_on.density)
+		return . | SPELL_CANCEL_CAST
+	if(casting)
+		return . | SPELL_CANCEL_CAST
+	if(. & SPELL_CANCEL_CAST)
+		return .
+	casting = TRUE
+	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
+	if(!do_after(owner, cast_time, cast_on))
+		casting = FALSE
+		return . | SPELL_CANCEL_CAST
+	casting = FALSE
+	
+/datum/action/cooldown/spell/pointed/darkspawn_build/cast(atom/cast_on)
+	. = ..()
+	if(!object_type) //sanity check
+		return
+	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
+	var/obj/thing = new object_type(get_turf(cast_on))
+	owner.visible_message(span_warning("[owner] knits shadows together into a [thing]!"), span_velvet("You create a [thing]"))
