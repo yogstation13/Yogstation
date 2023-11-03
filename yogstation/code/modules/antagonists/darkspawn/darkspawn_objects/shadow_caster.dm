@@ -20,7 +20,7 @@
 	desc = "it seem to suck light out of the surroundings."
 	light_system = MOVABLE_LIGHT
 	light_power = -0.5
-	light_color = COLOR_DARKSPAWN_PSI
+	light_color = COLOR_VELVET
 	light_range = 3.5
 	projectile_type = /obj/projectile/bullet/reusable/arrow/shadow
 
@@ -32,5 +32,5 @@
 	name = "shadow arrow"
 	light_system = MOVABLE_LIGHT
 	light_power = -0.5
-	light_color = COLOR_DARKSPAWN_PSI
+	light_color = COLOR_VELVET
 	light_range = 3.5
