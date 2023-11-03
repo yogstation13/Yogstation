@@ -200,8 +200,8 @@
 /datum/action/cooldown/spell/pointed/darkspawn_build/before_cast(atom/cast_on)
 	. = ..()
 	if(!object_type)
+		. = . | SPELL_CANCEL_CAST
 		CRASH("someone forgot to set the placed object of a darkspawn building ability")
-		return . | SPELL_CANCEL_CAST
 	if(cast_on.density)
 		return . | SPELL_CANCEL_CAST
 	if(casting)
