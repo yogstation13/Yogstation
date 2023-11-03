@@ -24,8 +24,8 @@
 	
 /datum/action/cooldown/spell/pointed/shadow_crash/cast(atom/cast_on)
 	. = ..()
-	owner.throw_at(cast_on, 5, 1, owner, FALSE)
-	owner.SetImmobilized(0.3 SECONDS)
+	owner.throw_at(cast_on, 4, 1, owner, FALSE)
+	owner.SetImmobilized(0.4 SECONDS, TRUE, TRUE) //to prevent walking out of your charge
 	charging = TRUE
 	addtimer(VARSET_CALLBACK(src, charging, FALSE), 1 SECONDS, TIMER_UNIQUE)
 	
@@ -53,6 +53,6 @@
 	
 	var/destination = get_ranged_target_turf(get_turf(target), throwingdatum.init_dir, 5)
 	if(blocked)
-		target.throw_at(destination, 5, 2)
+		target.throw_at(destination, 4, 2)
 	else
-		target.throw_at(destination, 5, 2, callback = CALLBACK(target, TYPE_PROC_REF(/mob/living, Knockdown), 2 SECONDS))
+		target.throw_at(destination, 4, 2, callback = CALLBACK(target, TYPE_PROC_REF(/mob/living, Knockdown), 2 SECONDS))
