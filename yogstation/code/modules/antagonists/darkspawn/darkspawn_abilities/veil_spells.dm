@@ -167,3 +167,18 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 
 /datum/action/cooldown/spell/veilbuff/empower(mob/living/carbon/human/target)
 	target.heal_overall_damage(25, 25, 0, BODYPART_ANY)
+
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------Abilities that thralls get----------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/glare/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
+	name = "Lesser Glare"
+	desc = "Makes a single target dizzy for a bit."
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "glare"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
+
+	cooldown_time = 45 SECONDS
+	spell_requirements = SPELL_REQUIRES_HUMAN
+	strong = FALSE

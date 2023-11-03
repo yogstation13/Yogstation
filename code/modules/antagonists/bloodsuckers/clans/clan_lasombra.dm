@@ -60,15 +60,3 @@
 	for(var/datum/action/cooldown/spell/power in powers)
 		power = new(vassaldatum.owner.current)
 		power.Grant(vassaldatum.owner.current)
-
-
-/datum/action/cooldown/spell/pointed/glare/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
-	name = "Lesser Glare"
-	desc = "Makes a single target dizzy for a bit."
-	button_icon = 'yogstation/icons/mob/actions.dmi'
-	button_icon_state = "glare"
-	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
-
-	cooldown_time = 45 SECONDS
-	spell_requirements = SPELL_REQUIRES_HUMAN
-	strong = FALSE
