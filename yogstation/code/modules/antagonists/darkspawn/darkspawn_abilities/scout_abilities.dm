@@ -88,6 +88,9 @@
 	panel = "Shadowling Abilities"
 	button_icon_state = "glare"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
@@ -141,6 +144,9 @@
 	panel = "Shadowling Abilities"
 	button_icon_state = "black_smoke"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 
 	sound = 'sound/effects/bamf.ogg'
 	cooldown_time = 1 MINUTES
@@ -157,7 +163,7 @@
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
-	B.reagents.add_reagent(/datum/reagent/darkspawn_darkness_smoke, 10)
+	B.reagents.add_reagent(/datum/reagent/darkspawn_darkness_smoke, 50)
 	var/datum/effect_system/fluid_spread/smoke/chem/transparent/S = new //it doesn't actually block light anyways, so let's not block vision either
 	S.attach(B)
 	if(S)

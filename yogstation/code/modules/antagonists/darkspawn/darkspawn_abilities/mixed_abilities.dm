@@ -70,6 +70,9 @@
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "icy_veins"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	sound = 'sound/effects/ghost2.ogg'
 	aoe_radius = 3
 	panel = null

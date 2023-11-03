@@ -47,5 +47,5 @@
 		M.adjustOxyLoss(-5, 0)
 		M.adjustToxLoss(-2, 0)
 
-	volume = clamp(volume, 0, 2)//have at most 2u at any time
 	holder.remove_reagent(type, 1)//tick down at 1u at a time
+	volume = clamp(volume, 0, 2)//have at most 2u at any time

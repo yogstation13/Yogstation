@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 /obj/structure/dark_sticks
-	name = "\improper dark sticks" //basicaly punji sticks
+	name = "dark sticks" //basicaly punji sticks
 	desc = "Don't step on this."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "punji"
@@ -23,7 +23,7 @@
 
 //////////////////////////////////////////////////////////////////////////	
 /obj/item/restraints/legcuffs/beartrap/dark
-	name = "\improper dark snare"
+	name = "dark snare"
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0

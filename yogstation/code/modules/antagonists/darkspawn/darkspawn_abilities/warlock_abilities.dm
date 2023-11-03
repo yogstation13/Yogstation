@@ -59,6 +59,9 @@
 	name = "Null Charge"
 	desc = "Empties an APC, preventing it from recharging until fixed."
 	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "null_charge"
 
 	cooldown_time = 30 SECONDS
@@ -106,7 +109,11 @@
 /datum/action/cooldown/spell/pointed/extract
 	name = "Extract"
 	desc = "Drain a target's life force or bestow it to an ally."
-	button_icon_state = "mindread"
+	button_icon = 'yogstation/icons/mob/sling.dmi'
+	button_icon_state = "slingbeam"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	cooldown_time = 5 SECONDS
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND

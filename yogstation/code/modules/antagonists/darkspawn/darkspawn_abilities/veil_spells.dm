@@ -122,3 +122,25 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	cooldown_time = 45 SECONDS
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	strong = FALSE
+
+/datum/action/cooldown/spell/toggle/nightvision
+	name = "Nightvision"
+	desc = "Grants sight in the dark."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "pass"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/toggle/light_eater/Enable()
+	owner.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	owner.see_in_dark = 8
+
+/datum/action/cooldown/spell/toggle/light_eater/Disable()
+	owner.lighting_alpha = initial(owner.lighting_alpha)
+	owner.see_in_dark = initial(owner.see_in_dark)
+	owner.update_sight()

@@ -100,6 +100,9 @@
 	desc = "Charge in a direction."
 	panel = "Shadowling Abilities"
 	button_icon = 'yogstation/icons/mob/actions.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	button_icon_state = "glare"
 	panel = null
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
