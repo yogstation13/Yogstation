@@ -15,16 +15,3 @@
 /datum/reagent/cluwnification/reaction_mob(mob/living/L, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if((methods & (PATCH|INGEST|INJECT)) || ((methods & VAPOR) && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/cluwnification(), FALSE, TRUE)
-
-/datum/reagent/shadowfrost
-	name = "Shadowfrost"
-	description = "A dark liquid that seems to slow down anything that comes into contact with it."
-	color = "#000000" //Complete black (RGB: 0, 0, 0)
-
-/datum/reagent/shadowfrost/on_mob_metabolize(mob/living/L)
-	..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=2)
-
-/datum/reagent/shadowfrost/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(type)
-	..()
