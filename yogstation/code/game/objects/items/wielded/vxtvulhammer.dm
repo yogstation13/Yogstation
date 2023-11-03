@@ -181,8 +181,13 @@
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
 			if(toy)
-				ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
-				victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
+				if(user == target)
+					victim.Paralyze(2 SECONDS)
+					victim.emote("scream")
+					to_chat(victim, span_userdanger("That was stupid."))
+				else
+					ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
+					victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
 			else
 				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
 				victim.Paralyze(2 SECONDS)

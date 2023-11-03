@@ -78,6 +78,8 @@
 #define MOB_EPIC		(1<<7) //megafauna
 #define MOB_REPTILE		(1<<8)
 #define MOB_SPIRIT		(1<<9)
+#define MOB_SPECIAL		(1<<10) //eldritch biggums
+
 
 /// All the biotypes that matter
 #define ALL_NON_ROBOTIC (MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD)
@@ -372,3 +374,9 @@
 #define SWARMER_LIGHT_ON (1<<0)
 
 #define ACCENT_NONE "None"
+
+// Body position defines.
+/// Mob is standing up, usually associated with lying_angle value of 0.
+#define STANDING_UP 0
+/// Mob is lying down, usually associated with lying_angle values of 90 or 270.
+#define LYING_DOWN 1

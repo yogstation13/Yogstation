@@ -1,6 +1,3 @@
-/*
-File: Options
-*/
 #define ascii_A 65
 #define ascii_Z 90
 #define ascii_a 97
@@ -11,71 +8,107 @@ File: Options
 #define ascii_UNDERSCORE 95	// _
 
 /*
-	Class: n_scriptOptions
-*/
-n_scriptOptions
-/*
-	Class: nS_Options
-	An implementation of <n_scriptOptions> for the n_Script language.
-*/
-	nS_Options
-		var/list/symbols = list("(", ")", "\[", "]", ";", ",", "{", "}", ".")  //scanner - Characters that can be in symbols
-/*
-	Var: keywords
-	An associative list used by the parser to parse keywords. Indices are strings which will trigger the keyword when parsed and the
-	associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc will be called.
-*/
-		var/list/keywords	= list(	"if" = /n_Keyword/nS_Keyword/kwIf,  "else"  = /n_Keyword/nS_Keyword/kwElse, "elseif" = /n_Keyword/nS_Keyword/kwElseIf, \
-											"while"	  = /n_Keyword/nS_Keyword/kwWhile,		"break"	= /n_Keyword/nS_Keyword/kwBreak, \
-											"continue" = /n_Keyword/nS_Keyword/kwContinue, "for"	  = /n_Keyword/nS_Keyword/kwFor,\
-											"return" = /n_Keyword/nS_Keyword/kwReturn, 		"def"   = /n_Keyword/nS_Keyword/kwDef)
-		var/list/unary_operators = list(	"!"  = /node/expression/operator/unary/LogicalNot,	 "~"  = /node/expression/operator/unary/BitwiseNot,
-													"-"  = /node/expression/operator/unary/Minus)
+ * n_scriptOptions
+ */
+/datum/n_scriptOptions
+	///scanner - Characters that can be in symbols
+	var/list/symbols = list(
+		"(",
+		")",
+		"\[",
+		"]",
+		";",
+		",",
+		"{",
+		"}",
+		".",
+	) 
+	/*
+	 * Var: keywords
+	 * An associative list used by the parser to parse keywords. Indices are strings which will trigger the keyword when parsed and the
+	 * associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc will be called.
+	 */
+	var/list/keywords = list(
+		"if" = /datum/n_Keyword/nS_Keyword/kwIf,
+		"else" = /datum/n_Keyword/nS_Keyword/kwElse,
+		"elseif" = /datum/n_Keyword/nS_Keyword/kwElseIf,
+		"while" = /datum/n_Keyword/nS_Keyword/kwWhile,
+		"break"	= /datum/n_Keyword/nS_Keyword/kwBreak,
+		"continue" = /datum/n_Keyword/nS_Keyword/kwContinue,
+		"for" = /datum/n_Keyword/nS_Keyword/kwFor,
+		"return" = /datum/n_Keyword/nS_Keyword/kwReturn,
+		"def"= /datum/n_Keyword/nS_Keyword/kwDef,
+	)
+	var/list/unary_operators = list(
+		"!" = /datum/node/expression/expression_operator/unary/LogicalNot,
+		"~" = /datum/node/expression/expression_operator/unary/BitwiseNot,
+		"-"  = /datum/node/expression/expression_operator/unary/Minus,
+	)
 
-		var/list/binary_operators=list(	"==" = /node/expression/operator/binary/Equal, 			   "!="	= /node/expression/operator/binary/NotEqual,
-													">"  = /node/expression/operator/binary/Greater, 			"<" 	= /node/expression/operator/binary/Less,
-													">=" = /node/expression/operator/binary/GreaterOrEqual,	"<=" = /node/expression/operator/binary/LessOrEqual,
-													"&&" = /node/expression/operator/binary/LogicalAnd,  		"||"	= /node/expression/operator/binary/LogicalOr,
-													"&"  = /node/expression/operator/binary/BitwiseAnd,  		"|" 	= /node/expression/operator/binary/BitwiseOr,
-													"`"  = /node/expression/operator/binary/BitwiseXor,  		"+" 	= /node/expression/operator/binary/Add,
-													"-"  = /node/expression/operator/binary/Subtract, 			"*" 	= /node/expression/operator/binary/Multiply,
-													"/"  = /node/expression/operator/binary/Divide, 			"^" 	= /node/expression/operator/binary/Power,
-													"%"  = /node/expression/operator/binary/Modulo,
-													"="  = /node/expression/operator/binary/Assign, 					 "&=" = /node/expression/operator/binary/Assign/BitwiseAnd,
-													"|=" = /node/expression/operator/binary/Assign/BitwiseOr,					 	 "`=" = /node/expression/operator/binary/Assign/BitwiseXor,
-													"+=" = /node/expression/operator/binary/Assign/Add,						 "-=" = /node/expression/operator/binary/Assign/Subtract,
-													"*=" = /node/expression/operator/binary/Assign/Multiply,						 "/=" = /node/expression/operator/binary/Assign/Divide,
-													"^=" = /node/expression/operator/binary/Assign/Power,
-													"%=" = /node/expression/operator/binary/Assign/Modulo)
-		New()
-			.=..()
-			for(var/O in binary_operators+unary_operators)
-				if(!symbols.Find(O)) symbols+=O
+	var/list/binary_operators = list(
+		"==" = /datum/node/expression/expression_operator/binary/Equal,
+		"!=" = /datum/node/expression/expression_operator/binary/NotEqual,
+		">" = /datum/node/expression/expression_operator/binary/Greater,
+		"<"= /datum/node/expression/expression_operator/binary/Less,
+		">=" = /datum/node/expression/expression_operator/binary/GreaterOrEqual,
+		"<=" = /datum/node/expression/expression_operator/binary/LessOrEqual,
+		"&&" = /datum/node/expression/expression_operator/binary/LogicalAnd,
+		"||" = /datum/node/expression/expression_operator/binary/LogicalOr,
+		"&" = /datum/node/expression/expression_operator/binary/BitwiseAnd,
+		"|"= /datum/node/expression/expression_operator/binary/BitwiseOr,
+		"`" = /datum/node/expression/expression_operator/binary/BitwiseXor,
+		"+"= /datum/node/expression/expression_operator/binary/Add,
+		"-"  = /datum/node/expression/expression_operator/binary/Subtract,
+		"*"= /datum/node/expression/expression_operator/binary/Multiply,
+		"/"  = /datum/node/expression/expression_operator/binary/Divide,
+		"^"= /datum/node/expression/expression_operator/binary/Power,
+		"%"  = /datum/node/expression/expression_operator/binary/Modulo,
+		"="  = /datum/node/expression/expression_operator/binary/Assign,
+		"&=" = /datum/node/expression/expression_operator/binary/Assign/BitwiseAnd,
+		"|=" = /datum/node/expression/expression_operator/binary/Assign/BitwiseOr,
+		"`=" = /datum/node/expression/expression_operator/binary/Assign/BitwiseXor,
+		"+=" = /datum/node/expression/expression_operator/binary/Assign/Add,
+		"-=" = /datum/node/expression/expression_operator/binary/Assign/Subtract,
+		"*=" = /datum/node/expression/expression_operator/binary/Assign/Multiply,
+		"/=" = /datum/node/expression/expression_operator/binary/Assign/Divide,
+		"^=" = /datum/node/expression/expression_operator/binary/Assign/Power,
+		"%=" = /datum/node/expression/expression_operator/binary/Assign/Modulo,
+	)
 
-n_scriptOptions/proc/CanStartID(char) //returns true if the character can start a variable, function, or keyword name (by default letters or an underscore)
+/datum/n_scriptOptions/New()
+	. = ..()
+	for(var/operators in binary_operators + unary_operators)
+		if(!symbols.Find(operators))
+			symbols += operators
+
+///Returns TRUE if the character can start a variable, function, or keyword name (by default letters or an underscore)
+/datum/n_scriptOptions/proc/CanStartID(char)
 	if(!isnum(char))
 		char=text2ascii(char)
 	return (char in ascii_A to ascii_Z) || (char in ascii_a to ascii_z) || char==ascii_UNDERSCORE || char==ascii_DOLLAR
 
-n_scriptOptions/proc/IsValidIDChar(char) //returns true if the character can be in the body of a variable, function, or keyword name (by default letters, numbers, and underscore)
+///Returns TRUE if the character can be in the body of a variable, function, or keyword name (by default letters, numbers, and underscore)
+/datum/n_scriptOptions/proc/IsValidIDChar(char)
 	if(!isnum(char))
 		char=text2ascii(char)
 	return CanStartID(char) || IsDigit(char)
 
-n_scriptOptions/proc/IsDigit(char)
+/datum/n_scriptOptions/proc/IsDigit(char)
 	if(!isnum(char))
 		char=text2ascii(char)
 	return char in ascii_ZERO to ascii_NINE
 
-n_scriptOptions/proc/IsValidID(id)    //returns true if all the characters in the string are okay to be in an identifier name
+///Returns TRUE if all the characters in the string are okay to be in an identifier name.
+/datum/n_scriptOptions/proc/IsValidID(id)
 	if(!CanStartID(id)) //don't need to grab first char in id, since text2ascii does it automatically
-		return 0
-	if(length(id)==1)
-		return 1
-	for(var/i=2 to length(id))
+		return FALSE
+	if(length(id) == 1)
+		return TRUE
+	for(var/i = 2 to length(id))
 		if(!IsValidIDChar(copytext(id, i, i+1)))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
+
 #undef ascii_A
 #undef ascii_Z
 #undef ascii_a
