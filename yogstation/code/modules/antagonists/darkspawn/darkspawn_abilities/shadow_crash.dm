@@ -25,7 +25,9 @@
 /datum/action/cooldown/spell/pointed/shadow_crash/cast(atom/cast_on)
 	. = ..()
 	owner.throw_at(cast_on, 4, 1, owner, FALSE)
-	owner.SetImmobilized(0.4 SECONDS, TRUE, TRUE) //to prevent walking out of your charge
+	if(isliving(owner))
+		var/mob/living/thing = owner
+		thing.SetImmobilized(0.4 SECONDS, TRUE, TRUE) //to prevent walking out of your charge
 	charging = TRUE
 	addtimer(VARSET_CALLBACK(src, charging, FALSE), 1 SECONDS, TIMER_UNIQUE)
 	
