@@ -30,24 +30,24 @@
 	armour_penetration = -30 //Armor hit by this is modified by x1.43.
 	sharpness = SHARP_NONE
 
-/obj/item/projectile/bullet/c38/iceblox
+/obj/projectile/bullet/c38/iceblox
 	name = ".38 Iceblox bullet"
 	damage = 0 // We are just here to make you cold
 	var/temperature = 100
 	sharpness = SHARP_NONE
 
-/obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
 	..()
 	if(isliving(target))
 		var/mob/living/M = target
 		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
 
-/obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
+/obj/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
 	name = ".38 Gutterpunch bullet"
 	damage = 0 // We are just here to make you sick
 	sharpness = SHARP_NONE
 
-/obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target 
 		M.adjust_disgust(20)
