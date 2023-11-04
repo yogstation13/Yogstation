@@ -88,13 +88,14 @@
 
 	REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 
-	var/lucidity_amount = 2
+	var/lucidity_amount = 5
 	var/list/self_text = list() //easier to format this way
 	self_text += span_velvet("<b>...aranupdejc</b>")
 	self_text += span_velvet("You devour [target]'s will. Your Psi has been fully restored.")
 	self_text += span_velvet("Additionally, you have gained [lucidity_amount] lucidity. Use it to purchase and upgrade abilities.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
 		lucidity_amount *= 0.5
+		lucidity_amount = round(lucidity_amount) //make sure it's a whole number still
 		self_text += span_warning("[target] has already been devoured before so they have granted less lucidity.")
 	else
 		self_text += span_warning("[target] will also grant less lucidity any future times their will is devoured.")
