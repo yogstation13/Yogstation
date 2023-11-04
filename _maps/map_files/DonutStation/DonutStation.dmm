@@ -9482,6 +9482,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"dUj" = (
+/obj/machinery/modular_computer/console/preset/command/cmo{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "dUG" = (
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -16585,12 +16591,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal)
-"hec" = (
-/obj/machinery/computer/crew{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "hef" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -50670,6 +50670,22 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"vVw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Engineer's Desk";
+	departmentType = 3;
+	name = "Chief Engineer RC";
+	pixel_x = -32
+	},
+/obj/machinery/modular_computer/console/preset/command/ce{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "vVz" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/airless{
@@ -51466,23 +51482,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"woW" = (
-/obj/machinery/computer/card/minor/ce{
-	dir = 4;
-	icon_state = "computer"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Engineer's Desk";
-	departmentType = 3;
-	name = "Chief Engineer RC";
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "wpc" = (
 /obj/structure/table,
 /obj/machinery/button/massdriver{
@@ -82070,7 +82069,7 @@ qSt
 tpK
 ykb
 wNV
-hec
+dUj
 aCH
 nUw
 eKL
@@ -91580,7 +91579,7 @@ ogQ
 mVN
 jvn
 eXN
-woW
+vVw
 pjL
 jvn
 jvn
