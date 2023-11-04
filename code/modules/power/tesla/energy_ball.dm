@@ -44,7 +44,6 @@
 /obj/singularity/energy_ball/supermatter/small_crystals
 	name = "floating supermatter crystals"
 	desc = "The crystal emanates an otherworldly radiance, casting a soft, ethereal glow that illuminates the space around it. It hovers around the supermatter energy ball in a precise orbit, defying gravity with an elegant, weightless dance. Sparks of energy occasionally arc between the crystal and the energy ball, crackling with a captivating yet dangerous allure."
-	icon = 'icons/obj/tesla_engine/smcrystals.dmi'
 	icon_state = "smcrystal1"
 
 /obj/singularity/energy_ball/ex_act(severity, target)
