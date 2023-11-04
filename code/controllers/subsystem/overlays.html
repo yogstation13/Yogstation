@@ -14,17 +14,23 @@
 </header>
 <main>
 <h1>code/controllers/subsystem/overlays.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/0a9a102d190b96022251944d077b61da33818215/code/controllers/subsystem/overlays.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/controllers/subsystem/overlays.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;overlays.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
         <tr><th>/proc/<a href="global.html#proc/overlays2text">overlays2text</a></th>
                 <td>Converts an overlay list into text for debug printing
 Of note: overlays aren't actually mutable appearances, they're just appearances
-Don't have access to that type tho, so this is the best you're gonna get</td></tr></table></main>
+Don't have access to that type tho, so this is the best you're gonna get</td></tr>
+        <tr><th><a href="atom.html">&#x2F;atom</a></th><td>The base type for nearly all physical objects in SS13</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/realize_appearance_queue">realize_appearance_queue</a></th>
+                <td>Takes a list of appearnces, makes them mutable so they can be properly vv'd and inspected</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/diff_appearances">diff_appearances</a></th>
+                <td>Takes two appearances as args, prints out, logs, and returns a text representation of their differences
+Including suboverlays</td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/0a9a102d190b96022251944d077b61da33818215">0a9a102</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe">9f9a6a7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>

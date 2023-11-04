@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(739 modules,
-    1980/9140 macros, 21.7%)</aside></h3>
+    1981/9143 macros, 21.7%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1089,7 +1089,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1000 detailed/1851 documented/28622 total, 6.5%)</aside></h3>
+<aside>(1006 detailed/1857 documented/28640 total, 6.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1333,7 +1333,9 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;smoke&#x2F;disable">Paralysing Smoke</span> - Unused smoke that makes people sleep. Used to be for cult?</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;smoke&#x2F;lesser">Holy Smoke</span> - Chaplain smoke.</li>
     </ul></li>
-    <li><a href="datum/action/cooldown/spell/spacetime_dist.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;spacetime_dist">Spacetime Distortion</a></li>
+    <li class="has-children"><a href="datum/action/cooldown/spell/spacetime_dist.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;spacetime_dist">Spacetime Distortion</a><ul class="index-tree">
+    <li><a href="datum/action/cooldown/spell/spacetime_dist/eldritch.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;spacetime_dist&#x2F;eldritch">Freedom Forever</a></li>
+    </ul></li>
     <li><a href="datum/action/cooldown/spell/summonitem.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;summonitem">Instant Summons</a></li>
     <li><a href="datum/action/cooldown/spell/tap.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;tap">Soul Tap</a> - SOUL TAP!</li>
     <li class="has-children"><a href="datum/action/cooldown/spell/teleport.html" title="&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;spell&#x2F;teleport">teleport</a><ul class="index-tree">
@@ -1571,6 +1573,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/economy.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;economy">Economy</a></li>
     <li><a href="datum/controller/subsystem/fluids.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;fluids">Fluid</a></li>
     <li><a href="datum/controller/subsystem/job.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;job">Jobs</a></li>
+    <li><a href="datum/controller/subsystem/machines.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;machines">Machines</a></li>
     <li><a href="datum/controller/subsystem/mapping.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;mapping">Mapping</a></li>
     <li><a href="datum/controller/subsystem/materials.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;materials">Materials</a></li>
     <li><a href="datum/controller/subsystem/persistent_paintings.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;persistent_paintings">Persistent Paintings</a></li>
@@ -2468,7 +2471,9 @@ For example, change /datum/unit_test/focus_only/invalid_overlays to TEST_FOCUS(/
 and you will only test the check for invalid overlays in appearance building.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;focus_only&#x2F;multiple_space_initialization">multiple_space_initialization</span> - Checks that every created emissive has a valid icon_state</li>
     </ul></li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;job_roundstart_spawnpoints">job_roundstart_spawnpoints</span> - Tests that [/datum/job/proc/get_default_roundstart_spawn_point] returns a landmark from all joinable jobs.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;job_roundstart_spawnpoints">job_roundstart_spawnpoints</span> - Checks that every overlay passed into build_appearance_list exists in the icon
+datum/unit_test/focus_only/invalid_overlays
+Tests that [/datum/job/proc/get_default_roundstart_spawn_point] returns a landmark from all joinable jobs.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;log_mapping">log_mapping</span> - Conveys all log_mapping messages as unit test failures, as they all indicate mapping problems.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;space_dragon_expiration">space_dragon_expiration</span> - Unit tests that the space dragon - when its rift expires and it gets qdel'd - doesn't delete all the mobs it has eaten</li>
     </ul></li>
@@ -2497,6 +2502,7 @@ The datum can be referenced again using <code>resolve()</code>.</li>
     <li><a href="datum/wound/slash.html" title="&#x2F;datum&#x2F;wound&#x2F;slash">Slashing (Cut) Wound</a></li>
     </ul></li>
     </ul></li>
+    <li><a href="image.html" title="&#x2F;image">image</a></li>
     <li class="has-children"><a href="mob.html" title="&#x2F;mob">mob</a> - The mob, usually meant to be a creature of some type<ul class="index-tree">
     <li class="has-children"><span title="&#x2F;mob&#x2F;dead">dead</span><ul class="index-tree">
     <li><a href="mob/dead/new_player.html" title="&#x2F;mob&#x2F;dead&#x2F;new_player">new_player</a></li>
@@ -2637,6 +2643,7 @@ also because some objects do not display particles due to how their visuals are 
     <li class="has-children"><a href="obj/effect/immovablerod.html" title="&#x2F;obj&#x2F;effect&#x2F;immovablerod">immovable rod</a><ul class="index-tree">
     <li><a href="obj/effect/immovablerod/wizard.html" title="&#x2F;obj&#x2F;effect&#x2F;immovablerod&#x2F;wizard">wizard</a> - Wizard Version of the Immovable Rod.</li>
     </ul></li>
+    <li><a href="obj/effect/knock_portal.html" title="&#x2F;obj&#x2F;effect&#x2F;knock_portal">crack in reality</a> - HERETIC ID SECTION (SORRY)</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;landmark">landmark</span><ul class="index-tree">
     <li class="has-children"><a href="obj/effect/landmark/stationroom.html" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;stationroom">stationroom</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;stationroom&#x2F;limited_spawn">limited_spawn</span> - Type of landmark that find all others of the same type, and only spawns count number of ruins at them</li>
@@ -2919,7 +2926,9 @@ Attacking any human mob (typically yourself) will cause their arm to instantly b
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;card">card</span><ul class="index-tree">
     <li><a href="obj/item/card/cmag.html" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;cmag">jestographic sequencer</a> - A replica of an emag in most ways, except what it &quot;cmags&quot; what it interacts with.</li>
     <li><a href="obj/item/card/emag.html" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;emag">cryptographic sequencer</a></li>
-    <li><a href="obj/item/card/id.html" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;id">identification card</a></li>
+    <li class="has-children"><a href="obj/item/card/id.html" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;id">identification card</a><ul class="index-tree">
+    <li><span class="no-substance">syndicate&#x2F;</span><a href="obj/item/card/id/syndicate/heretic.html" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;id&#x2F;syndicate&#x2F;heretic">Eldritch Card</a></li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;mining_access_card">mining access card</span> - Conscript kit</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;card&#x2F;mining_point_card">mining points card</span> - Mining Point Card</li>
     </ul></li>
@@ -3579,6 +3588,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     <li><span class="no-substance">girder&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;girder&#x2F;cult">runed girder</span> - cult girder</li>
     <li><a href="obj/structure/glowshroom.html" title="&#x2F;obj&#x2F;structure&#x2F;glowshroom">glowshroom</a></li>
     <li><a href="obj/structure/grille.html" title="&#x2F;obj&#x2F;structure&#x2F;grille">grille</a></li>
+    <li><a href="obj/structure/knock_tear.html" title="&#x2F;obj&#x2F;structure&#x2F;knock_tear">???</a></li>
     <li class="has-children"><a href="obj/structure/mecha_wreckage.html" title="&#x2F;obj&#x2F;structure&#x2F;mecha_wreckage">exosuit wreckage</a> - Mecha wreckage<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;mecha_wreckage&#x2F;loaded_ripley">intact Ripley wreckage</span> - Mecha wreckage</li>
     </ul></li>
@@ -3646,7 +3656,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/0a9a102d190b96022251944d077b61da33818215">0a9a102</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe">9f9a6a7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>

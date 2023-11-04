@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;knock_portal - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/knock_portal.html#var">Var Details</a> - <a href="obj/effect/knock_portal.html#proc">Proc Details</a></header>
+<main>
+<h1>crack in reality <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/knock_portal.html">effect/knock_portal</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1099">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1099"/></a></h1>
+
+<p>HERETIC ID SECTION (SORRY)</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#var/destination">destination</a></th><td>The knock portal we teleport to</td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#var/our_airlock">our_airlock</a></th><td>The airlock we are linked to, we delete if it is destroyed</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#proc/async_opendoor">async_opendoor</a></th><td>Asynchronous proc to unbolt, then open the passed door</td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#proc/delete_on_door_delete">delete_on_door_delete</a></th><td>Deletes us and our destination portal if our_airlock is destroyed</td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#proc/find_random_airlock">find_random_airlock</a></th><td>Returns a random airlock on the same Z level as our portal, that isnt our airlock</td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#proc/on_entered">on_entered</a></th><td>Signal handler for when our location is entered, calls teleport on the victim, if their old_loc didnt contain a portal already (to prevent loops)</td></tr>
+            <tr><th><a href="obj/effect/knock_portal.html#proc/teleport">teleport</a></th><td>Teleports the teleportee, to a random airlock if the teleportee isnt a heretic, or the other portal if they are one</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/destination"><aside class="declaration">var </aside>destination
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/knock_portal.html">effect/knock_portal</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1113"/></a></h3>
+        <p>The knock portal we teleport to</p><h3 id="var/our_airlock"><aside class="declaration">var </aside>our_airlock
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1117"/></a></h3>
+        <p>The airlock we are linked to, we delete if it is destroyed</p><h2 id="proc">Proc Details</h2><h3 id="proc/async_opendoor"><aside class="declaration">proc </aside>async_opendoor<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a>/door) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1173"/></a></aside>
+        </h3>
+        <p>Asynchronous proc to unbolt, then open the passed door</p><h3 id="proc/delete_on_door_delete"><aside class="declaration">proc </aside>delete_on_door_delete<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1129"/></a></aside>
+        </h3>
+        <p>Deletes us and our destination portal if our_airlock is destroyed</p><h3 id="proc/find_random_airlock"><aside class="declaration">proc </aside>find_random_airlock<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1162"/></a></aside>
+        </h3>
+        <p>Returns a random airlock on the same Z level as our portal, that isnt our airlock</p><h3 id="proc/on_entered"><aside class="declaration">proc </aside>on_entered<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/loser, /<a href="atom.html">atom</a>/old_loc) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1134"/></a></aside>
+        </h3>
+        <p>Signal handler for when our location is entered, calls teleport on the victim, if their old_loc didnt contain a portal already (to prevent loops)</p><h3 id="proc/teleport"><aside class="declaration">proc </aside>teleport<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/teleportee) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe/code/game/objects/items/cards_ids.dm#L1145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cards_ids.dm 1145"/></a></aside>
+        </h3>
+        <p>Teleports the teleportee, to a random airlock if the teleportee isnt a heretic, or the other portal if they are one</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe">9f9a6a7</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
