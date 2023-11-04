@@ -16,6 +16,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	invocation_type = INVOCATION_NONE
 	psi_cost = 30
 	var/datum/status_effect/tagalong/tagalong
 	hand_path = /obj/item/melee/touch_attack/darkspawn

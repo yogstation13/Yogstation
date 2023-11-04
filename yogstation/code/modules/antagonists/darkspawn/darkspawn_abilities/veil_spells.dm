@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	invocation_type = INVOCATION_NONE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/veil_mind/is_valid_target(atom/cast_on)

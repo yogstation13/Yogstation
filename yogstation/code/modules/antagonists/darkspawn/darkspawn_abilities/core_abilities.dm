@@ -16,7 +16,6 @@
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Main progression ability-----------------------//
 //////////////////////////////////////////////////////////////////////////
-//After a brief charge-up, equips a temporary dark bead that can be used on a human to knock them out and drain their will, making them vulnerable to conversion.
 /datum/action/cooldown/spell/touch/devour_will
 	name = "Devour Will"
 	desc = "Creates a dark bead that can be used on a human to fully recharge Psi, gain one lucidity, and knock them unconscious. The victim will be stunned for the duration of the channel, being interrupted \
@@ -30,6 +29,7 @@
 	button_icon_state = "devour_will"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	invocation_type = INVOCATION_NONE
 	psi_cost = 5
 	hand_path = /obj/item/melee/touch_attack/devour_will
 	var/eating = FALSE //If we're devouring someone's will
@@ -135,6 +135,7 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
+	invocation_type = INVOCATION_NONE
 	antimagic_flags = NONE
 	panel = null
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
