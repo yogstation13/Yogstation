@@ -15,7 +15,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	hand_path = /obj/item/melee/touch_attack/veil_mind
+	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/veil_mind/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
@@ -39,12 +39,6 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
 			return FALSE
 	return TRUE
-
-/obj/item/melee/touch_attack/veil_mind
-	name = "Veiling hand"
-	desc = "Concentrated psionic power, primed to toy with mortal minds."
-	icon_state = "flagellation"
-	item_state = "hivemind"
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//

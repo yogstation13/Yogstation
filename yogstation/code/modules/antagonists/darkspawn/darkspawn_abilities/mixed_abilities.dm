@@ -18,7 +18,7 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 30
 	var/datum/status_effect/tagalong/tagalong
-	hand_path = /obj/item/melee/touch_attack/umbral_trespass
+	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/umbral_trespass/cast(mob/living/carbon/cast_on)
 	if(tagalong)
@@ -35,12 +35,6 @@
 	to_chat(caster, span_velvet("<b>iahz</b><br>You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out."))
 	caster.forceMove(target)
 	return TRUE
-
-/obj/item/melee/touch_attack/umbral_trespass
-	name = "Veiling hand"
-	desc = "Concentrated psionic power, primed to toy with mortal minds."
-	icon_state = "flagellation"
-	item_state = "hivemind"
 
 //////////////////////////////////////////////////////////////////////////
 //-------------------Scout and warlock, erase time----------------------//

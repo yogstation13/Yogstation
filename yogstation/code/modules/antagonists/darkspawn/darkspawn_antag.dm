@@ -239,7 +239,7 @@
 	user.set_species(/datum/species/shadow/darkspawn)
 	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
 	show_to_ghosts = TRUE
-	var/datum/action/cooldown/spell/devour_will/devour = new(src)
+	var/datum/action/cooldown/spell/touch/devour_will/devour = new(src)
 	upgrades |= devour
 	devour.Grant(owner.current)
 	var/datum/action/cooldown/spell/toggle/light_eater/eater = new(src)

@@ -70,7 +70,7 @@
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS | AB_CHECK_LYING
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 15
-	hand_path = /obj/item/melee/touch_attack/null_charge
+	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/null_charge/is_valid_target(atom/cast_on)
 	return istype(cast_on, /obj/machinery/power/apc)
@@ -96,13 +96,7 @@
 		target.chargemode = 0 //Won't recharge either until an engineer hits the button
 		target.charging = 0
 		target.update_appearance(UPDATE_ICON)
-
-/obj/item/melee/touch_attack/null_charge
-	name = "null charge"
-	desc = "Succ that power boi."
-	icon_state = "flagellation"
-	item_state = "hivemind"
-
+		
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Drain enemy, heal ally-------------------------//
 //////////////////////////////////////////////////////////////////////////

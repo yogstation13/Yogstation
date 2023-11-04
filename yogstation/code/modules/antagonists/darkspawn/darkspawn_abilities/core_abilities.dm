@@ -1,11 +1,23 @@
 //////////////////////////////////////////////////////////////////////////
 //--------------------Abilities all three classes get-------------------//
 //////////////////////////////////////////////////////////////////////////
+/obj/item/melee/touch_attack/darkspawn
+	name = "Psionic hand"
+	desc = "Concentrated psionic power, primed to toy with mortal minds."
+	icon_state = "flagellation"
+	item_state = "hivemind"
+
+/obj/item/melee/touch_attack/devour_will
+	name = "Psionic hand"
+	desc = "Concentrated psionic power, primed to toy with mortal minds."
+	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
+	icon_state = "dark_bead"
+	item_state = "hivemind"
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Main progression ability-----------------------//
 //////////////////////////////////////////////////////////////////////////
 //After a brief charge-up, equips a temporary dark bead that can be used on a human to knock them out and drain their will, making them vulnerable to conversion.
-/datum/action/cooldown/spell/devour_will
+/datum/action/cooldown/spell/touch/devour_will
 	name = "Devour Will"
 	desc = "Creates a dark bead that can be used on a human to fully recharge Psi, gain one lucidity, and knock them unconscious. The victim will be stunned for the duration of the channel, being interrupted \
 	will knock both you and the victim down. Costs 5 Psi."
@@ -16,33 +28,110 @@
 	buttontooltipstyle = "alien"
 	button_icon_state = "devour_will"
 	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	psi_cost = 5
+	hand_path = /obj/item/melee/touch_attack/devour_will
+	var/eating = FALSE //If we're devouring someone's will
 	var/list/victims = list()//A list of people we've used the bead on recently; we can't drain them again so soon
 	var/last_victim
 
-/datum/action/cooldown/spell/devour_will/can_cast_spell(feedback)
-	if(!owner.get_empty_held_indexes())
-		if(feedback)
-			to_chat(owner, span_warning("You need an empty hand for this!"))
-		return FALSE
-	. = ..()
+/datum/action/cooldown/spell/touch/devour_will/can_cast_spell(feedback)
+	if(eating)
+		return
+	return ..()
 
-/datum/action/cooldown/spell/devour_will/cast(atom/cast_on)
+/datum/action/cooldown/spell/touch/devour_will/is_valid_target(atom/cast_on)
+	return iscarbon(cast_on)
+
+/datum/action/cooldown/spell/touch/devour_will/cast(mob/living/carbon/cast_on)
 	. = ..()
-	owner.visible_message(span_warning("A glowing black orb appears in [owner]'s hand!"), "<span class='velvet'><b>pwga...iejz</b><br>\
-	You form a dark bead in your hand.</span>")
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, 1)
-	var/obj/item/dark_bead/B = new
-	owner.put_in_hands(B)
-	B.linked_ability = src
+
+/datum/action/cooldown/spell/touch/devour_will/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
+	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
+	if(!darkspawn || eating || target == caster) //no eating urself ;)))))))
+		return
+	if(!target.mind)
+		to_chat(caster, span_warning("You cannot drain the mindless."))
+		return
+	if(is_darkspawn_or_veil(target))
+		to_chat(caster, span_warning("You cannot drain allies."))
+		return
+	if(!istype(target))
+		to_chat(caster, span_warning("[target]'s mind is too pitiful to be of any use."))
+		return
+	if(!target.health || target.stat)
+		to_chat(caster, span_warning("[target] is too weak to drain."))
+		return
+	if(victims[target])
+		to_chat(caster, span_warning("[target] must be given time to recover from their last draining."))
+		return
+	if(target.ckey && last_victim == target.ckey)
+		to_chat(caster, span_warning("[target]'s mind is still too scrambled. Drain someone else first."))
+		return
+	eating = TRUE
+	target.Stun(5 SECONDS)
+	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
+	ADD_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+	if(caster.loc != target)
+		caster.visible_message(span_warning("[caster] grabs [target] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
+		[span_danger("You begin siphoning [target]'s mental energy...")]")
+		to_chat(target, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
+		target.silent += 4
+		playsound(target, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
+		if(!do_after(caster, 3 SECONDS, target))
+			REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+			caster.Knockdown(3 SECONDS)
+			to_chat(target, span_boldwarning("All right... You're all right."))
+			target.Knockdown(3 SECONDS)
+			qdel(src, force = TRUE)
+			return
+	else
+		target.visible_message("<span class='userdanger italics'>[target] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
+		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
+		to_chat(caster, span_velvet("<b>cera qo...</b><br>You begin siphoning [target]'s will..."))
+		playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
+		if(!do_after(caster, 5 SECONDS, target))
+			REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+			caster.Knockdown(5 SECONDS)
+			to_chat(target, span_boldwarning("All right. You're all right."))
+			target.Knockdown(5 SECONDS)
+			qdel(src, force = TRUE)
+			return
+	REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."),
+		span_velvet("<b>...aranupdejc</b><br> You devour [target]'s will. Your Psi has been fully restored.\
+		Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities.<br>\
+		[span_warning("[target] is now severely weakened and will take some time to recover.")] \
+		[span_warning("Additionally, you can not drain them again without first draining someone else.")]"))
+	playsound(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
+
+	darkspawn.psi = darkspawn.psi_cap
+	darkspawn.update_psi_hud()
+
+	to_chat(caster, "<span class ='velvet'> This individual's lucidity brings you one step closer to the sacrament...</span>")
+	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
+		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
+		if(teammate && istype(teammate))//sanity check
+			teammate.lucidity++ 
+			teammate.lucidity_drained++
+
+	victims[target] = TRUE
+	last_victim = target.ckey
+	to_chat(target, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
+	target.playsound_local(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
+	target.Unconscious(5 SECONDS)
+	target.apply_effect(EFFECT_STUTTER, 20)
+	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
+	addtimer(CALLBACK(src, PROC_REF(make_eligible), target), 60 SECONDS)
+	qdel(src, force = TRUE)
 	return TRUE
 
-/datum/action/cooldown/spell/devour_will/proc/make_eligible(mob/living/L)
-	if(!L || !victims[L])
+/datum/action/cooldown/spell/touch/devour_will/proc/make_eligible(mob/living/target)
+	if(!target || !victims[target])
 		return
-	victims[L] = FALSE
-	to_chat(owner, span_notice("[L] has recovered from their draining and is vulnerable to Devour Will again."))
+	victims[target] = FALSE
+	to_chat(owner, span_notice("[target] has recovered from their draining and is vulnerable to Devour Will again."))
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////
@@ -62,6 +151,7 @@
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
 	psi_cost = 60
 	var/in_use = FALSE
+	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/silver_tongue/can_cast_spell(feedback)
 	if(SSshuttle.emergency.mode != SHUTTLE_CALL || in_use)
