@@ -479,6 +479,7 @@
 #define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
 #define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" //lets darkspawns walk through weak light
 #define TRAIT_DARKSPAWN_CREEP "darkspawn_creep" //lets darkspawns walk through any light (look at creep.dm)
+#define TRAIT_DARKSPAWN_DEVOURED "darkspawn_creep" //permanently reduces the lucidity gained from future succs
 
 ///Movement type traits for movables. See elements/movetype_handler.dm
 #define TRAIT_MOVE_GROUND "move_ground"

@@ -66,32 +66,38 @@
 		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
 		return
 
+
 	target.Stun(5 SECONDS)
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
-	ADD_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+	ADD_TRAIT(target, TRAIT_PARALYSIS, type)
 	target.silent += 5
 
-	target.visible_message("<span class='userdanger italics'>[target] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
-	"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
+	target.visible_message(span_danger("<i>[target] suddenly howls and clutches as their face as violet light screams from their eyes!</i>"), span_userdanger("<i>AAAAAAAAAAAAAAA-</i>"))
 	to_chat(caster, span_velvet("<b>cera qo...</b><br>You begin siphoning [target]'s will..."))
 	playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
 
 	eating = TRUE
 	if(!do_after(caster, 5 SECONDS, target))
 		to_chat(target, span_boldwarning("All right... You're all right."))
-		REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+		REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 		caster.Knockdown(5 SECONDS)
 		target.Knockdown(5 SECONDS)
 		eating = FALSE
 		return FALSE
 	eating = FALSE
 
-	REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+	REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 
+	var/lucidity_amount = 2
 	var/list/self_text = list() //easier to format this way
 	self_text += span_velvet("<b>...aranupdejc</b>")
 	self_text += span_velvet("You devour [target]'s will. Your Psi has been fully restored.")
-	self_text += span_velvet("Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities.")
+	self_text += span_velvet("Additionally, you have gained [lucidity_amount] lucidity. Use it to purchase and upgrade abilities.")
+	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
+		lucidity_amount *= 0.5
+		self_text += span_warning("[target] has already been devoured before so they have granted less lucidity.")
+	else
+		self_text += span_warning("[target] will also grant less lucidity any future times their will is devoured.")
 	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
 
 	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
@@ -105,8 +111,8 @@
 	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
 		if(teammate && istype(teammate))//sanity check
-			teammate.lucidity++ 
-			teammate.lucidity_drained++
+			teammate.lucidity += lucidity_amount
+			teammate.lucidity_drained += lucidity_amount
 
 	to_chat(target, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	target.playsound_local(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
@@ -114,6 +120,7 @@
 	target.apply_effect(EFFECT_STUTTER, 20)
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
 	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)
+	ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////
