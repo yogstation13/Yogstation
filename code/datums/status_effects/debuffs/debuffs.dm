@@ -1068,7 +1068,14 @@
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"
-	alerttooltipstyle = "alien" //yogs end
+	alerttooltipstyle = "alien" 
+
+//used to prevent the use of devour will on the target
+/datum/status_effect/devoured_will
+	id = "devoured_will"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 60 SECONDS
+	alert_type = null //yogs end
 
 /datum/status_effect/eldritch
 	duration = 15 SECONDS

@@ -23,6 +23,7 @@
 	will knock both you and the victim down. Costs 5 Psi."
 	panel = null
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	sound = null
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
@@ -32,8 +33,6 @@
 	psi_cost = 5
 	hand_path = /obj/item/melee/touch_attack/devour_will
 	var/eating = FALSE //If we're devouring someone's will
-	var/list/victims = list()//A list of people we've used the bead on recently; we can't drain them again so soon
-	var/last_victim
 
 /datum/action/cooldown/spell/touch/devour_will/can_cast_spell(feedback)
 	if(eating)
@@ -63,47 +62,40 @@
 	if(!target.health || target.stat)
 		to_chat(caster, span_warning("[target] is too weak to drain."))
 		return
-	if(victims[target])
-		to_chat(caster, span_warning("[target] must be given time to recover from their last draining."))
+	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
+		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
 		return
-	if(target.ckey && last_victim == target.ckey)
-		to_chat(caster, span_warning("[target]'s mind is still too scrambled. Drain someone else first."))
-		return
-	eating = TRUE
+
 	target.Stun(5 SECONDS)
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
 	ADD_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
-	if(caster.loc != target)
-		caster.visible_message(span_warning("[caster] grabs [target] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
-		[span_danger("You begin siphoning [target]'s mental energy...")]")
-		to_chat(target, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
-		target.silent += 4
-		playsound(target, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
-		if(!do_after(caster, 3 SECONDS, target))
-			REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
-			caster.Knockdown(3 SECONDS)
-			to_chat(target, span_boldwarning("All right... You're all right."))
-			target.Knockdown(3 SECONDS)
-			qdel(src, force = TRUE)
-			return
-	else
-		target.visible_message("<span class='userdanger italics'>[target] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
-		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
-		to_chat(caster, span_velvet("<b>cera qo...</b><br>You begin siphoning [target]'s will..."))
-		playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
-		if(!do_after(caster, 5 SECONDS, target))
-			REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
-			caster.Knockdown(5 SECONDS)
-			to_chat(target, span_boldwarning("All right. You're all right."))
-			target.Knockdown(5 SECONDS)
-			qdel(src, force = TRUE)
-			return
+	target.silent += 5
+
+	target.visible_message("<span class='userdanger italics'>[target] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
+	"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
+	to_chat(caster, span_velvet("<b>cera qo...</b><br>You begin siphoning [target]'s will..."))
+	playsound(target, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
+
+	eating = TRUE
+	if(!do_after(caster, 5 SECONDS, target))
+		to_chat(target, span_boldwarning("All right... You're all right."))
+		REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
+		caster.Knockdown(5 SECONDS)
+		target.Knockdown(5 SECONDS)
+		eating = FALSE
+		return FALSE
+	eating = FALSE
+
 	REMOVE_TRAIT(target, TRAIT_PARALYSIS, "bead-trait")
-	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."),
-		span_velvet("<b>...aranupdejc</b><br> You devour [target]'s will. Your Psi has been fully restored.\
-		Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities.<br>\
-		[span_warning("[target] is now severely weakened and will take some time to recover.")] \
-		[span_warning("Additionally, you can not drain them again without first draining someone else.")]"))
+
+	var/list/self_text = list() //easier to format this way
+	self_text += span_velvet("<b>...aranupdejc</b>")
+	self_text += span_velvet("You devour [target]'s will. Your Psi has been fully restored.")
+	self_text += span_velvet("Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities.")
+	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
+
+	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
+
 	playsound(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 
 	darkspawn.psi = darkspawn.psi_cap
@@ -116,22 +108,12 @@
 			teammate.lucidity++ 
 			teammate.lucidity_drained++
 
-	victims[target] = TRUE
-	last_victim = target.ckey
 	to_chat(target, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	target.playsound_local(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
 	target.Unconscious(5 SECONDS)
 	target.apply_effect(EFFECT_STUTTER, 20)
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
-	addtimer(CALLBACK(src, PROC_REF(make_eligible), target), 60 SECONDS)
-	qdel(src, force = TRUE)
-	return TRUE
-
-/datum/action/cooldown/spell/touch/devour_will/proc/make_eligible(mob/living/target)
-	if(!target || !victims[target])
-		return
-	victims[target] = FALSE
-	to_chat(owner, span_notice("[target] has recovered from their draining and is vulnerable to Devour Will again."))
+	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////
