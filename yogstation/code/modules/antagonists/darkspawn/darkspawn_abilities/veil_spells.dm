@@ -14,7 +14,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = NONE
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
@@ -25,21 +25,53 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(!target.mind)
 		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
 		return
-	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>[span_notice("You take a deep breath...")]")
+	if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && !isveil(target))
+		to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
+		return FALSE
+	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
-	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>[span_notice("You veil the minds of [target].")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isveil(target))
+		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
 		target.revive(1)
-	else
-		if(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && target.add_veil())
-			to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
-		else
-			to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
-			return FALSE
+	else if(target.add_veil())
+		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 	return TRUE
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------------Get rid of a thrall-----------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/unveil_mind
+	name = "Release veil"
+	desc = "Release a veil from your control, freeing your power to be redistributed."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "veil_mind"
+	antimagic_flags = NONE
+	panel = null
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+
+/datum/action/cooldown/spell/unveil_mind/can_cast_spell(feedback)
+	if(!LAZYLEN(SSticker.mode.veils))
+		if(feedback)
+			to_chat(owner, "You have no veils to release.")
+		return
+	. = ..()
+	
+/datum/action/cooldown/spell/unveil_mind/cast(atom/cast_on)
+	. = ..()
+	var/loser = input(owner, "Select a veil to release from your control.", "Release a veil") as null|anything in SSticker.mode.veils
+	if(!loser || !istype(loser, /datum/mind))
+		return
+	var/datum/mind/unveiled = loser
+	if(!unveiled.current)
+		return
+	unveiled.current.remove_veil()
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
@@ -131,11 +163,11 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/toggle/light_eater/Enable()
+/datum/action/cooldown/spell/toggle/nightvision/Enable()
 	owner.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	owner.see_in_dark = 8
 
-/datum/action/cooldown/spell/toggle/light_eater/Disable()
+/datum/action/cooldown/spell/toggle/nightvision/Disable()
 	owner.lighting_alpha = initial(owner.lighting_alpha)
 	owner.see_in_dark = initial(owner.see_in_dark)
 	owner.update_sight()

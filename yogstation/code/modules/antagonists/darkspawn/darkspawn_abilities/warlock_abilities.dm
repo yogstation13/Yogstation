@@ -109,7 +109,6 @@
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	cooldown_time = 5 SECONDS
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_HANDS_BLOCKED | AB_CHECK_LYING
@@ -120,6 +119,7 @@
 	var/datum/beam/visual
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
+	var/damage_amount = 2 //these both happen 2 times a second
 
 /datum/action/cooldown/spell/pointed/extract/New()
 	..()
@@ -133,11 +133,6 @@
 	. = ..()
 	if(isdarkspawn(owner))
 		cost = isdarkspawn(owner)
-
-/datum/action/cooldown/spell/pointed/extract/can_cast_spell(feedback)
-	if(channeled)
-		return FALSE
-	. = ..()
 
 /datum/action/cooldown/spell/pointed/extract/is_valid_target(atom/cast_on)
 	if(!isliving(cast_on))
@@ -164,14 +159,19 @@
 			qdel(visual)
 			return
 		if(is_darkspawn_or_veil(channeled))
-			channeled.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
-			channeled.apply_damage(10, BURN)
+			channeled.apply_damage(damage_amount, BURN)
 			if(isliving(owner))
 				var/mob/living/healed = owner
-				healed.heal_ordered_damage(10, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
+	if(channeled)
+		channeled = null
+		if(visual)
+			qdel(visual)
+		return
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, 10)
 	channeled = cast_on
