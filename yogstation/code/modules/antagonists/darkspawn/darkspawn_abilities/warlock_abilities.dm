@@ -119,7 +119,7 @@
 	var/datum/beam/visual
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 1 //happens 5 times a second
-	var/damage_amount = 2 //these both happen 2 times a second
+	var/damage_amount = 2 //these both happen 5 times a second
 
 /datum/action/cooldown/spell/pointed/extract/New()
 	..()
@@ -144,7 +144,6 @@
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/extract/process()
-	. = ..()
 	if(channeled)
 		if(channeled.stat == DEAD)
 			channeled = null
@@ -165,13 +164,19 @@
 			if(isliving(owner))
 				var/mob/living/healed = owner
 				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
+	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
-/datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
+/datum/action/cooldown/spell/pointed/extract/before_cast(atom/cast_on)
 	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		on_deactivation(owner, refund_cooldown = FALSE)
 	if(channeled)
 		channeled = null
 		if(visual)
 			qdel(visual)
-		return
-	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, 10)
+		return . | SPELL_CANCEL_CAST
+	
+/datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
+	. = ..()
+	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on

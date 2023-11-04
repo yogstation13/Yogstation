@@ -65,13 +65,14 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	
 /datum/action/cooldown/spell/unveil_mind/cast(atom/cast_on)
 	. = ..()
-	var/loser = input(owner, "Select a veil to release from your control.", "Release a veil") as null|anything in SSticker.mode.veils
+	var/loser = tgui_input_list(owner, "Select a veil to release from your control.", "Release a veil", SSticker.mode.veils)
 	if(!loser || !istype(loser, /datum/mind))
 		return
 	var/datum/mind/unveiled = loser
 	if(!unveiled.current)
 		return
 	unveiled.current.remove_veil()
+	to_chat(owner, span_velvet("You release your control over [unveiled]"))
 
 //////////////////////////////////////////////////////////////////////////
 //--------------------------Veil Camera System--------------------------//
