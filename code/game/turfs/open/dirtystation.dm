@@ -48,6 +48,7 @@
 		/area/construction,
 		/area/vacant_room/commissary,
 		/area/survivalpod,
+		/area/procedurally_generated/maintenance,
 	))
 	if(is_type_in_typecache(A, engine_dirt_areas))
 		if(prob(3))
@@ -91,6 +92,7 @@
 		/area/ai_monitored/turret_protected,
 		/area/security,
 		/area/crew_quarters/heads/hos,
+		/area/procedurally_generated/maintenance,
 	))
 	if(is_type_in_typecache(A, gib_covered_areas))
 		if(prob(20))
