@@ -20,4 +20,4 @@
 	if(light_amount > SHADOW_SPECIES_BRIGHT_LIGHT)
 		owner.remove_movespeed_modifier(type)
 	else
-		owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=speedboost, blacklisted_movetypes=(FLYING|FLOATING))
+		owner.add_movespeed_modifier(type, update=TRUE, priority=100, override = TRUE, multiplicative_slowdown=speedboost, blacklisted_movetypes=(FLYING|FLOATING))
