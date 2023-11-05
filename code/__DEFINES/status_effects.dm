@@ -155,6 +155,8 @@
 
 #define STATUS_EFFECT_VOID_CHILL /datum/status_effect/void_chill
 
+#define STATUS_EFFECT_TAUNT /datum/status_effect/taunt //forced movement towards the person applying
+
 /////////////
 // NEUTRAL //
 /////////////

@@ -57,7 +57,7 @@
 //---------------------Fighter anti-fire ability------------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/deluge
-	name = "deluge"
+	name = "Deluge"
 	desc = "yeah i make people wet."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
@@ -84,7 +84,7 @@
 	REMOVE_TRAIT(target, TRAIT_NOFIRE, type)
 
 /datum/action/cooldown/spell/aoe/deluge/cast_on_thing_in_aoe(atom/victim, atom/caster)
-	if(!isliving(victim))
+	if(!isliving(victim) || !can_see(caster, victim))
 		return
 	var/mob/living/target = victim
 	target.extinguish_mob()
@@ -356,3 +356,43 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
 	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
+
+//////////////////////////////////////////////////////////////////////////
+//------------Toggled CC immunity force walking with psi drain----------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/aoe/taunt
+	name = "Taunt"
+	desc = "taunt everyone."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "time_dilation"
+	panel = null
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	psi_cost = 10
+	cooldown_time = 20 SECONDS
+
+/datum/action/cooldown/spell/aoe/taunt/cast(atom/cast_on)
+	. = ..()
+	if(isliving(owner))
+		var/mob/living/target = owner
+		target.SetStun(5000 SECONDS, TRUE, TRUE)
+		ADD_TRAIT(target, TRAIT_PUSHIMMUNE, type)
+		target.move_resist = INFINITY
+		addtimer(CALLBACK(src, PROC_REF(unlock), target), 5 SECONDS, TIMER_UNIQUE, TIMER_OVERRIDE)
+
+/datum/action/cooldown/spell/aoe/deluge/proc/unlock(mob/living/target)
+	REMOVE_TRAIT(target, TRAIT_PUSHIMMUNE, type)
+	target.move_resist = initial(target.move_resist)
+	target.SetStun(0, TRUE, TRUE)
+
+/datum/action/cooldown/spell/aoe/taunt/cast_on_thing_in_aoe(atom/victim, atom/caster)
+	if(!isliving(victim) || !can_see(caster, victim))
+		return
+	var/mob/living/target = victim
+	if(is_darkspawn_or_veil(target) && ispreternis(target)) //don't make preterni allies wet
+		return
+	target.apply_status_effect(STATUS_EFFECT_TAUNT, owner)
