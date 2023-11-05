@@ -101,25 +101,22 @@
 	ADD_TRAIT(copied_mob, TRAIT_NOINTERACT, "[type]")
 	ADD_TRAIT(copied_mob, TRAIT_HIGHRESISTDAMAGESLOWDOWN, "[type]")
 	// also make their footsteps silent
-	var/datum/component/footstep/footsteps = copied_mob.GetComponent(/datum/component/footstep)
-	var/stored_footstep_volume = footsteps.volume
-	footsteps.volume = 0
+	ADD_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
 
 	if(damagetype == STAMINA)
 		fake_corpse.Paralyze(100 SECONDS)
 	else
 		INVOKE_ASYNC(fake_corpse, TYPE_PROC_REF(/mob/living,death))
-	addtimer(CALLBACK(src, PROC_REF(unfake_death), copied_mob, stored_footstep_volume, fake_corpse), 7 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(unfake_death), copied_mob, fake_corpse), 7 SECONDS)
 
-/obj/item/pseudocider/proc/unfake_death(mob/living/carbon/copied_mob, stored_footstep_volume, mob/living/carbon/fake_corpse)
+/obj/item/pseudocider/proc/unfake_death(mob/living/carbon/copied_mob, mob/living/carbon/fake_corpse)
 	active = FALSE
 	update_appearance(UPDATE_ICON)
 
 	COOLDOWN_START(src, fake_death_timer, fake_death_cooldown)
 
 	if(!QDELETED(copied_mob) && istype(copied_mob))
-		var/datum/component/footstep/footsteps = copied_mob.GetComponent(/datum/component/footstep)
-		footsteps.volume = stored_footstep_volume
+		REMOVE_TRAIT(copied_mob, TRAIT_SILENT_FOOTSTEPS, PSEUDOCIDER_TRAIT)
 		animate(copied_mob, 0.5 SECONDS, alpha = 255)
 		REMOVE_TRAIT(copied_mob, TRAIT_NOINTERACT, "[type]")
 		REMOVE_TRAIT(copied_mob, TRAIT_RESISTDAMAGESLOWDOWN, "[type]")

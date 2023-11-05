@@ -4,16 +4,18 @@
 
 #define SHADOWWALK_THRESHOLD 0.02
 
+#define WALK_COMPONENT_TRAIT "walk_component_trait"
+
+/datum/component/walk
+
 /datum/component/walk/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))
-	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
-	if (footsteps)
-		qdel(footsteps)
+	ADD_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 
 /datum/component/walk/RemoveComponent()
-	parent.AddComponent(/datum/component/footstep)
+	REMOVE_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS, WALK_COMPONENT_TRAIT)
 	return ..()
 
 /datum/component/walk/proc/handle_move(datum/source, direction)
