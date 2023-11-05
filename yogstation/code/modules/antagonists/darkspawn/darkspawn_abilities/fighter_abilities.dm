@@ -78,7 +78,7 @@
 		target.extinguish_mob()
 		target.adjust_wet_stacks(20)
 		ADD_TRAIT(target, TRAIT_NOFIRE, type)
-		addtimer(CALLBACK(src, PROC_REF(unbuff), target), 10 SECONDS, TIMER_UNIQUE, TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(unbuff), target), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/action/cooldown/spell/aoe/deluge/proc/unbuff(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_NOFIRE, type)
@@ -382,7 +382,7 @@
 		target.SetStun(5000 SECONDS, TRUE, TRUE)
 		ADD_TRAIT(target, TRAIT_PUSHIMMUNE, type)
 		target.move_resist = INFINITY
-		addtimer(CALLBACK(src, PROC_REF(unlock), target), 5 SECONDS, TIMER_UNIQUE, TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(unlock), target), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/action/cooldown/spell/aoe/taunt/proc/unlock(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_PUSHIMMUNE, type)

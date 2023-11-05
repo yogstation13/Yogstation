@@ -1677,12 +1677,11 @@
 		return FALSE
 	if(!target)
 		return FALSE
-	owner.SetStun(5 SECONDS)
+	owner.SetImmobilized(5 SECONDS)
 
 /datum/status_effect/taunt/tick(delta_time, times_fired)
-	if(!(step_towards(owner, target)))
-		owner.ClickOn(target)
-	owner.SetStun(5 SECONDS)
+	step_towards(owner, target)
+	owner.SetImmobilized(5 SECONDS)
 
 /datum/status_effect/taunt/on_remove()
-	owner.AdjustStun(-5 SECONDS)
+	owner.SetImmobilized(0)
