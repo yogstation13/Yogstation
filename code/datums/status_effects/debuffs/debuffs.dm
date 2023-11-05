@@ -1664,7 +1664,7 @@
 	id = "taunt"
 	alert_type = /atom/movable/screen/alert/status_effect/star_mark
 	duration = 5 SECONDS
-	tick_interval = CLICK_CD_MELEE * 2
+	tick_interval = CLICK_CD_MELEE
 	var/mob/living/target
 
 /datum/status_effect/taunt/on_creation(mob/living/new_owner, mob/living/taunter)

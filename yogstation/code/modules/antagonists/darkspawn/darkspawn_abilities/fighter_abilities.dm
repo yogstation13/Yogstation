@@ -384,7 +384,7 @@
 		target.move_resist = INFINITY
 		addtimer(CALLBACK(src, PROC_REF(unlock), target), 5 SECONDS, TIMER_UNIQUE, TIMER_OVERRIDE)
 
-/datum/action/cooldown/spell/aoe/deluge/proc/unlock(mob/living/target)
+/datum/action/cooldown/spell/aoe/taunt/proc/unlock(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_PUSHIMMUNE, type)
 	target.move_resist = initial(target.move_resist)
 	target.SetStun(0, TRUE, TRUE)
