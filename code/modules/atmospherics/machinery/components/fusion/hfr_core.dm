@@ -176,8 +176,9 @@
 	moderator_internal = new
 	moderator_internal.set_volume(10000)
 	for(var/datum/gas/gas in subtypesof(/datum/gas))
-		delta_mod_removed_list[gas.id] = 0
-		delta_fuel_removed_list[gas.id] = 0
+		var/id = gas.id
+		delta_mod_removed_list[id] = 0
+		delta_fuel_removed_list[id] = 0
 
 	radio = new(src)
 	radio.keyslot = new radio_key
