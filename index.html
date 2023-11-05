@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(739 modules,
-    1981/9143 macros, 21.7%)</aside></h3>
+<aside>(744 modules,
+    1990/9186 macros, 21.7%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -116,6 +116,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/exosuit_fab.html" title="code&#x2F;__DEFINES&#x2F;exosuit_fab">exosuit_fab</a></li>
     <li><a href="code/__DEFINES/flags.html" title="code&#x2F;__DEFINES&#x2F;flags">flags</a></li>
     <li><a href="code/__DEFINES/food.html" title="code&#x2F;__DEFINES&#x2F;food">food</a></li>
+    <li><a href="code/__DEFINES/footsteps.html" title="code&#x2F;__DEFINES&#x2F;footsteps">footsteps</a></li>
     <li><a href="code/__DEFINES/hud.html" title="code&#x2F;__DEFINES&#x2F;hud">hud</a></li>
     <li><a href="code/__DEFINES/instruments.html" title="code&#x2F;__DEFINES&#x2F;instruments">instruments</a></li>
     <li><a href="code/__DEFINES/interaction_flags.html" title="code&#x2F;__DEFINES&#x2F;interaction_flags">interaction_flags</a></li>
@@ -284,6 +285,8 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/content_barfer.html" title="code&#x2F;datums&#x2F;elements&#x2F;content_barfer">content_barfer</a></li>
     <li><a href="code/datums/elements/death_explosion.html" title="code&#x2F;datums&#x2F;elements&#x2F;death_explosion">death_explosion</a></li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
+    <li><a href="code/datums/elements/footstep.html" title="code&#x2F;datums&#x2F;elements&#x2F;footstep">footstep</a></li>
+    <li><a href="code/datums/elements/footstep_override.html" title="code&#x2F;datums&#x2F;elements&#x2F;footstep_override">footstep_override</a></li>
     <li><a href="code/datums/elements/frozen.html" title="code&#x2F;datums&#x2F;elements&#x2F;frozen">frozen</a></li>
     <li><a href="code/datums/elements/life_drain.html" title="code&#x2F;datums&#x2F;elements&#x2F;life_drain">life_drain</a></li>
     <li><a href="code/datums/elements/movetype_handler.html" title="code&#x2F;datums&#x2F;elements&#x2F;movetype_handler">movetype_handler</a></li>
@@ -629,6 +632,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/client/preferences/scaling_method.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;scaling_method">scaling_method</a></li>
     <li><a href="code/modules/client/preferences/security_department.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;security_department">security_department</a></li>
     <li><a href="code/modules/client/preferences/species.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;species">species</a></li>
+    <li><a href="code/modules/client/preferences/tgui.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;tgui">tgui</a></li>
     <li><a href="code/modules/client/preferences/ui_style.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;ui_style">ui_style</a></li>
     <li><a href="code/modules/client/preferences/window_flashing.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;window_flashing">window_flashing</a></li>
     </ul></li>
@@ -910,6 +914,7 @@ transformations and other events that cause new languages to become available.</
     </ul></li>
     <li><a href="code/modules/research/experimentor.html" title="code&#x2F;modules&#x2F;research&#x2F;experimentor">experimentor</a></li>
     <li><span class="no-substance">machinery&#x2F;</span><a href="code/modules/research/machinery/plortmachine.html" title="code&#x2F;modules&#x2F;research&#x2F;machinery&#x2F;plortmachine">plortmachine</a></li>
+    <li><a href="code/modules/research/server.html" title="code&#x2F;modules&#x2F;research&#x2F;server">server</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;research&#x2F;techweb">techweb</span><ul class="index-tree">
     <li><a href="code/modules/research/techweb/all_nodes.html" title="code&#x2F;modules&#x2F;research&#x2F;techweb&#x2F;all_nodes">all_nodes</a></li>
     <li><a href="code/modules/research/techweb/layout.html" title="code&#x2F;modules&#x2F;research&#x2F;techweb&#x2F;layout">layout</a></li>
@@ -1089,7 +1094,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1006 detailed/1857 documented/28640 total, 6.5%)</aside></h3>
+<aside>(1018 detailed/1871 documented/28664 total, 6.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1381,6 +1386,7 @@ All mobs consumed are revived after the demon is killed.</li>
     <li><a href="datum/action/item_action/activate_uber.html" title="&#x2F;datum&#x2F;action&#x2F;item_action&#x2F;activate_uber">Activate Übercharge</a> - this could remove an admin-given godmode but theres like 0.001% chance that will ever be an issue</li>
     <li><a href="datum/action/item_action/agent_box.html" title="&#x2F;datum&#x2F;action&#x2F;item_action&#x2F;agent_box">Deploy Box</a> - MGS BOX!</li>
     </ul></li>
+    <li><a href="datum/action/toggle_buffer.html" title="&#x2F;datum&#x2F;action&#x2F;toggle_buffer">Activate Auto-Wash</a></li>
     <li class="has-children"><span class="no-substance">vehicle&#x2F;ridden&#x2F;</span><span title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter">scooter</span><ul class="index-tree">
     <li><span class="no-substance">airshoes&#x2F;</span><a href="datum/action/vehicle/ridden/scooter/airshoes/ollie.html" title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;airshoes&#x2F;ollie">Leap</a></li>
     <li><span class="no-substance">skateboard&#x2F;</span><a href="datum/action/vehicle/ridden/scooter/skateboard/ollie.html" title="&#x2F;datum&#x2F;action&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard&#x2F;ollie">Ollie</a></li>
@@ -1583,6 +1589,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/processing/quirks.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing&#x2F;quirks">Quirks</a></li>
     <li><a href="datum/controller/subsystem/processing/station.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing&#x2F;station">Station</a></li>
     </ul></li>
+    <li><a href="datum/controller/subsystem/research.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;research">Research</a></li>
     <li><a href="datum/controller/subsystem/runechat.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;runechat">Runechat</a></li>
     <li><a href="datum/controller/subsystem/shuttle.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;shuttle">Shuttle</a></li>
     <li><a href="datum/controller/subsystem/sounds.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;sounds">Sounds</a></li>
@@ -1647,6 +1654,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;board&#x2F;subspace_receiver">Machine Design (Subspace Receiver)</span> - Subspace Telecomms</li>
     </ul></li>
     <li><a href="datum/design/borg_upgrade_analyzer.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_analyzer">Cyborg Upgrade (Advanced Analyzer)</a></li>
+    <li><a href="datum/design/borg_upgrade_autocleaner.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_autocleaner">Cyborg Upgrade (Autocleaner)</a></li>
     <li><a href="datum/design/borg_upgrade_engi_advancedtools.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_engi_advancedtools">Cyborg Upgrade (Advanced Engineering Tools)</a></li>
     <li><a href="datum/design/borg_upgrade_gemsatchel.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_gemsatchel">Cyborg Upgrade (Gem Satchel)</a></li>
     <li><a href="datum/design/borg_upgrade_holosign.html" title="&#x2F;datum&#x2F;design&#x2F;borg_upgrade_holosign">Cyborg Upgrade (ATMOS Holofan Projector)</a></li>
@@ -1783,6 +1791,8 @@ When the object moves, it will unhook the signal and rehook it to the new object
     <li><a href="datum/element/death_explosion.html" title="&#x2F;datum&#x2F;element&#x2F;death_explosion">death_explosion</a></li>
     <li><a href="datum/element/effect_trail.html" title="&#x2F;datum&#x2F;element&#x2F;effect_trail">effect_trail</a></li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
+    <li><a href="datum/element/footstep.html" title="&#x2F;datum&#x2F;element&#x2F;footstep">footstep</a> - Footstep element. Plays footsteps at parents location when it is appropriate.</li>
+    <li><a href="datum/element/footstep_override.html" title="&#x2F;datum&#x2F;element&#x2F;footstep_override">footstep_override</a> - When attached, the footstep sound played by the footstep element will be replaced by this one's</li>
     <li><a href="datum/element/frozen.html" title="&#x2F;datum&#x2F;element&#x2F;frozen">frozen</a> - simple element to handle frozen obj's</li>
     <li><a href="datum/element/life_draining.html" title="&#x2F;datum&#x2F;element&#x2F;life_draining">life_draining</a> - Slowly drains HP from a living mob.</li>
     <li><a href="datum/element/movetype_handler.html" title="&#x2F;datum&#x2F;element&#x2F;movetype_handler">movetype_handler</a> - An element that enables and disables movetype bitflags whenever the relative traits are added or removed.
@@ -1847,6 +1857,7 @@ NOTICE: This is NOT fully implemented everywhere. Currently only used in: Prefer
     <li><a href="datum/light_source.html" title="&#x2F;datum&#x2F;light_source">light_source</a></li>
     <li><a href="datum/lighting_corner.html" title="&#x2F;datum&#x2F;lighting_corner">lighting_corner</a></li>
     <li><a href="datum/lighting_object.html" title="&#x2F;datum&#x2F;lighting_object">lighting_object</a></li>
+    <li><a href="datum/looping_sound.html" title="&#x2F;datum&#x2F;looping_sound">looping_sound</a></li>
     <li><a href="datum/map_config.html" title="&#x2F;datum&#x2F;map_config">map_config</a></li>
     <li class="has-children"><a href="datum/map_generator.html" title="&#x2F;datum&#x2F;map_generator">map_generator</a> - This type is responsible for any map generation behavior that is done in areas, override this to allow for area-specific map generation. This generation is ran by areas in initialize.<ul class="index-tree">
     <li class="has-children"><a href="datum/map_generator/cave_generator.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator">Cave Generator</a><ul class="index-tree">
@@ -2139,6 +2150,8 @@ Will give the value as 6 hex digits, without a hash.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;ambient_occlusion">ambient_occlusion</span> - Whether or not to toggle ambient occlusion, the shadows around people</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;ghost_hud">ghost_hud</span> - Toggles the HUD for ghosts</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;inquisitive_ghost">inquisitive_ghost</span> - Whether or not ghosts can examine things by clicking on them.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;tgui_input_large">tgui_input_large</span> - Large button preference. Error text is in tooltip.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;tgui_input_swapped">tgui_input_swapped</span> - Swapped button state - sets buttons to SS13 traditional SUBMIT/CANCEL</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;toggle&#x2F;window_flashing">window_flashing</span> - Enables flashing the window in your task tray for important events</li>
     </ul></li>
     </ul></li>
@@ -2442,9 +2455,14 @@ Repair Hairline Fracture (Severe)</li>
     </ul></li>
     <li><a href="datum/tgs_version.html" title="&#x2F;datum&#x2F;tgs_version">tgs_version</a> - Represents a version.</li>
     <li><a href="datum/tgui.html" title="&#x2F;datum&#x2F;tgui">tgui</a> - tgui datum (represents a UI).</li>
-    <li><a href="datum/tgui_input_number.html" title="&#x2F;datum&#x2F;tgui_input_number">tgui_input_number</a> - Datum used for instantiating and using a TGUI-controlled number input that prompts the user with
-a message and has an input for number entry.</li>
-    <li><a href="datum/tgui_input_text.html" title="&#x2F;datum&#x2F;tgui_input_text">tgui_input_text</a> - tgui_input_text</li>
+    <li class="has-children"><a href="datum/tgui_input_number.html" title="&#x2F;datum&#x2F;tgui_input_number">tgui_input_number</a> - Datum used for instantiating and using a TGUI-controlled numbox that prompts the user with
+a message and has an input for text entry.<ul class="index-tree">
+    <li><a href="datum/tgui_input_number/async.html" title="&#x2F;datum&#x2F;tgui_input_number&#x2F;async">async tgui_input_number</a> - An asynchronous version of tgui_input_number to be used with callbacks instead of waiting on user responses.</li>
+    </ul></li>
+    <li class="has-children"><a href="datum/tgui_input_text.html" title="&#x2F;datum&#x2F;tgui_input_text">tgui_input_text</a> - Datum used for instantiating and using a TGUI-controlled textbox that prompts the user with
+a message and has an input for text entry.<ul class="index-tree">
+    <li><a href="datum/tgui_input_text/async.html" title="&#x2F;datum&#x2F;tgui_input_text&#x2F;async">async tgui_input_text</a> - An asynchronous version of tgui_input_text to be used with callbacks instead of waiting on user responses.</li>
+    </ul></li>
     <li class="has-children"><a href="datum/tgui_list_input.html" title="&#x2F;datum&#x2F;tgui_list_input">tgui_list_input</a> - Datum used for instantiating and using a TGUI-controlled list input that prompts the user with
 a message and shows a list of selectable options<ul class="index-tree">
     <li><a href="datum/tgui_list_input/async.html" title="&#x2F;datum&#x2F;tgui_list_input&#x2F;async">async tgui_list_input</a> - An asynchronous version of tgui_list_input to be used with callbacks instead of waiting on user responses.</li>
@@ -3323,7 +3341,9 @@ obj/item/reagent_containers/glass/bottle/leadacetate</li>
     <li><a href="obj/item/research_notes.html" title="&#x2F;obj&#x2F;item&#x2F;research_notes">research notes</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;resonator">resonator</span> - Resonator</li>
     <li><span class="no-substance">restraints&#x2F;handcuffs&#x2F;</span><a href="obj/item/restraints/handcuffs/cable.html" title="&#x2F;obj&#x2F;item&#x2F;restraints&#x2F;handcuffs&#x2F;cable">cable restraints</a></li>
-    <li><a href="obj/item/robot_module.html" title="&#x2F;obj&#x2F;item&#x2F;robot_module">Default</a></li>
+    <li class="has-children"><a href="obj/item/robot_module.html" title="&#x2F;obj&#x2F;item&#x2F;robot_module">Default</a><ul class="index-tree">
+    <li><a href="obj/item/robot_module/janitor.html" title="&#x2F;obj&#x2F;item&#x2F;robot_module&#x2F;janitor">Janitor</a></li>
+    </ul></li>
     <li><a href="obj/item/robot_suit.html" title="&#x2F;obj&#x2F;item&#x2F;robot_suit">cyborg endoskeleton</a></li>
     <li class="has-children"><a href="obj/item/rsf.html" title="&#x2F;obj&#x2F;item&#x2F;rsf">Rapid Service Fabricator (RSF)</a><ul class="index-tree">
     <li><a href="obj/item/rsf/cookiesynth.html" title="&#x2F;obj&#x2F;item&#x2F;rsf&#x2F;cookiesynth">Cookie Synthesizer</a></li>
@@ -3456,6 +3476,8 @@ Does not need power to operate, it's more like a structure.</li>
 See [limbgrower_designs.dm] for everything we can make.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;manned_turret">machine gun turret</span> - MANNED TURRET</li>
     <li><a href="obj/machinery/mecha_part_fabricator.html" title="&#x2F;obj&#x2F;machinery&#x2F;mecha_part_fabricator">exosuit fabricator</a></li>
+    <li><a href="obj/machinery/mindmachine_hub.html" title="&#x2F;obj&#x2F;machinery&#x2F;mindmachine_hub">mind machine hub</a></li>
+    <li><a href="obj/machinery/mindmachine_pod.html" title="&#x2F;obj&#x2F;machinery&#x2F;mindmachine_pod">mind machine pod</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;mineral">mineral</span> - Mineral processing unit console<ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor">mining equipment vendor</span> - Mining Equipment Vendor<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;mineral&#x2F;equipment_vendor&#x2F;free_miner">free miner ship equipment vendor</span> - Free Miner Vendor</li>
@@ -3494,7 +3516,10 @@ See [limbgrower_designs.dm] for everything we can make.</li>
     <li><a href="obj/machinery/power/tracker.html" title="&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;tracker">solar tracker</a></li>
     </ul></li>
     <li><a href="obj/machinery/recharger.html" title="&#x2F;obj&#x2F;machinery&#x2F;recharger">recharger</a></li>
-    <li><span class="no-substance">rnd&#x2F;</span><a href="obj/machinery/rnd/production.html" title="&#x2F;obj&#x2F;machinery&#x2F;rnd&#x2F;production">technology fabricator</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;rnd">rnd</span><ul class="index-tree">
+    <li><a href="obj/machinery/rnd/production.html" title="&#x2F;obj&#x2F;machinery&#x2F;rnd&#x2F;production">technology fabricator</a></li>
+    <li><span class="no-substance">server&#x2F;</span><a href="obj/machinery/rnd/server/master.html" title="&#x2F;obj&#x2F;machinery&#x2F;rnd&#x2F;server&#x2F;master">master</a> - Master R&amp;D server. As long as this still exists and still holds the HDD for the theft objective, research points generate at normal speed. Destroy it or an antag steals the HDD? Half research speed.</li>
+    </ul></li>
     <li><a href="obj/machinery/sci_bombardment.html" title="&#x2F;obj&#x2F;machinery&#x2F;sci_bombardment">Lavaland Artillery Mainframe</a> - A machine used for Toxins scientists. Accepts tank transfer valves (TTVs),
 then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.</li>
     <li><a href="obj/machinery/seed_extractor.html" title="&#x2F;obj&#x2F;machinery&#x2F;seed_extractor">seed extractor</a></li>
@@ -3656,7 +3681,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/9f9a6a7147621db90fa11f3e4034b6f3e5cb8cbe">9f9a6a7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/05c464aa1906563c2c3126d90940dd2f5d37c63f">05c464a</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
