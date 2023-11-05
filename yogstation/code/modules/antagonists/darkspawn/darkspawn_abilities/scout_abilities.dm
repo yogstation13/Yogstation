@@ -119,6 +119,8 @@
 	if(!isliving(cast_on))
 		return
 	var/mob/living/target = cast_on
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
+		return
 	owner.visible_message(span_warning("<b>[owner]'s eyes flash a purpleish-red!</b>"))
 	var/distance = get_dist(target, owner)
 	if (distance <= 2 && strong)
@@ -177,8 +179,11 @@
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/void_jaunt
 	name = "Void Jaunt"
 	desc = "Move through the void for a time, avoiding mortal eyes and lights."
-	button_icon = 'icons/mob/actions/actions_spells.dmi'
-	button_icon_state = "jaunt"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "space_crawl"
 
 	cooldown_time = 60 SECONDS
 	antimagic_flags = NONE
@@ -209,3 +214,51 @@
 	name = "Legcuffs"
 	desc = "a dark bear trap."
 	object_type = /obj/item/restraints/legcuffs/beartrap/dark
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------------Trap abilities----------------------------//
+//////////////////////////////////////////////////////////////////////////
+datum/action/cooldown/spell/pointed/phase_jump/void_warp
+	name = "Void warp"
+	desc = "A short range targeted teleport."
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "voidblink"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+	panel = null
+
+	cooldown_time = 25 SECONDS
+	cast_range = 7
+	active_msg = span_velvet("You prepare to warp through the void.")
+	deactive_msg = span_notice("You relax your mind.")
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+
+//////////////////////////////////////////////////////////////////////////
+//-----------------------------AOE ice field----------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/aoe/permafrost
+	name = "Permafrost"
+	desc = "permafrost."
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon_state = "Kindle"
+	active_icon_state = "Kindle"
+	base_icon_state = "Kindle"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 30 SECONDS
+	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
+	aoe_radius = 3
+
+/datum/action/cooldown/spell/aoe/permafrost/cast_on_thing_in_aoe(atom/victim, atom/caster)
+	if(!isopenturf(victim))
+		return
+	var/turf/open/target = victim
+	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)

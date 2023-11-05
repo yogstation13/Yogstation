@@ -8,6 +8,9 @@
 	button_icon_state = "Kindle"
 	active_icon_state = "Kindle"
 	base_icon_state = "Kindle"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
 	panel = null
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	check_flags =  AB_CHECK_CONSCIOUS
@@ -36,6 +39,8 @@
 		return
 	if(ishuman(victim))//put out any
 		var/mob/living/carbon/human/target = victim
+		if(target.can_block_magic(antimagic_flags, charge_cost = 1))
+			return
 		target.extinguish_mob()
 		if(is_darkspawn_or_veil(target)) //don't put out or damage any lights carried by allies
 			return
@@ -138,6 +143,8 @@
 	if(!isliving(cast_on))
 		return FALSE
 	var/mob/living/living_cast_on = cast_on
+	if(living_cast_on.can_block_magic(antimagic_flags, charge_cost = 1))
+		return FALSE
 	if(living_cast_on.stat == DEAD)
 		to_chat(owner, span_warning("[cast_on] is dead!"))
 		return FALSE
@@ -189,3 +196,63 @@
 	cast_time = 0
 	object_type = /obj/effect/temp_visual/goliath_tentacle/darkspawn/original
 	can_density = TRUE
+
+//////////////////////////////////////////////////////////////////////////
+//--------------Gives everyone nearby a random hallucination------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/aoe/mass_hallucination
+	name = "Mass hallucination"
+	desc = "Mass hallucination."
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon_state = "Kindle"
+	active_icon_state = "Kindle"
+	base_icon_state = "Kindle"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 30 SECONDS
+	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
+	aoe_radius = 7
+
+/datum/action/cooldown/spell/aoe/mass_hallucination/cast_on_thing_in_aoe(atom/victim, atom/caster)
+	if(!isliving(victim))
+		return
+	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
+		return
+	var/mob/living/target = victim
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
+		return
+	if(is_darkspawn_or_veil(target)) //don't fuck with allies
+		return
+	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
+	target.cause_hallucination(picked_hallucination, "mass hallucination")
+
+
+//////////////////////////////////////////////////////////////////////////
+//-------------------------Shoots a projectile--------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/projectile/assault/darkspawn
+	name = "Mind blast"
+	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
+	button_icon = 'icons/obj/hand_of_god_structures.dmi'
+	button_icon_state = "ward-red"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+
+	sound = 'sound/weapons/resonator_blast.ogg'
+	cast_range = 7
+	cooldown_time = 25 SECONDS
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+
+	invocation = null
+	invocation_type = INVOCATION_NONE
+
+	projectile_type = /obj/projectile/heretic_assault
