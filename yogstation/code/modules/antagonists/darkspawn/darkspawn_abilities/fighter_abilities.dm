@@ -308,3 +308,51 @@
 	to_chat(owner, span_velvet("You release your grip on the shadows."))
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	REMOVE_TRAIT(owner, TRAIT_DARKSPAWN_CREEP, type)
+
+//////////////////////////////////////////////////////////////////////////
+//------------Toggled CC immunity force walking with psi drain----------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/toggle/indomitable
+	name = "Indomitable"
+	desc = "Grants immunity to all CC effects, but locks the user into walking."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "creep"
+	panel = null
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	var/datum/antagonist/darkspawn/cost
+	var/upkeep_cost = 1 //happens 5 times a second
+	var/was_running
+
+/datum/action/cooldown/spell/toggle/indomitable/Grant(mob/grant_to)
+	. = ..()
+	if(isdarkspawn(owner))
+		cost = isdarkspawn(owner)
+		
+/datum/action/cooldown/spell/toggle/indomitable/process()
+	if(active && cost && (!cost.use_psi(upkeep_cost)))
+		Activate(owner)
+	if(owner.m_intent != MOVE_INTENT_WALK)
+		owner.toggle_move_intent()
+	. = ..()
+
+/datum/action/cooldown/spell/toggle/indomitable/Enable()
+	owner.visible_message(span_warning("Shadows stitch [owner]'s legs to the ground!"), span_velvet("<b>odeahz</b><br>You begin using Psi to defend yourself from disruption."))
+	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
+	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, type)
+	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
+	was_running = (owner.m_intent == MOVE_INTENT_RUN)
+	if(was_running)
+		owner.toggle_move_intent()
+
+/datum/action/cooldown/spell/toggle/indomitable/Disable()
+	to_chat(owner, span_velvet("You release your grip on the shadows."))
+	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
+	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, type)
+	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
+	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
+		owner.toggle_move_intent()

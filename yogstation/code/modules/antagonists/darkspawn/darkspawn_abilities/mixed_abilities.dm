@@ -81,16 +81,15 @@
 	to_chat(owner, span_velvet("You freeze the nearby air."))
 
 /datum/action/cooldown/spell/aoe/icyveins/cast_on_thing_in_aoe(atom/target, atom/user)
+	if(!can_see(user, target))
+		return
 	if(!isliving(target))
 		return
 	var/mob/living/victim = target
 	if(is_darkspawn_or_veil(victim)) //no friendly fire
 		return
 	to_chat(victim, span_userdanger("A wave of shockingly cold air engulfs you!"))
-	victim.Stun(2) //microstun
 	victim.apply_damage(5, BURN)
-	if(victim.bodytemperature)
-		victim.adjust_bodytemperature(-100, 50)
 	if(victim.reagents)
-		victim.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5) //some amount of a cryo sting fucked if I care
+		victim.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5)
 		victim.reagents.add_reagent(/datum/reagent/shadowfrost, 5)
