@@ -1,0 +1,6 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Remote Light Switch"
+  - rscadd: "Light Switch Wallframe"
+  - tweak: "APCs can now toggle lights"
