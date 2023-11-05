@@ -113,7 +113,10 @@
 	var/fuel_injection_rate = 25
 	///User controlled variable to control the flow of the fusion by changing the amount of moderators injected
 	var/moderator_injection_rate = 25
-
+	///Amount of gas inside internal fuel being removed per tick by the reaction
+	var/list/delta_fuel_removed_list = list()
+	///Amount of gas inside moderator being removed per tick by the reaction
+	var/list/delta_mod_removed_list = list()
 	///Integrity of the machine, if reaches 900 the machine will explode
 	var/critical_threshold_proximity = 0
 	///Store the integrity for calculations
@@ -172,6 +175,9 @@
 	internal_fusion.set_volume(5000)
 	moderator_internal = new
 	moderator_internal.set_volume(10000)
+	for(var/datum/gas/gas in subtypesof(/datum/gas))
+		delta_mod_removed_list[gas.id] = 0
+		delta_fuel_removed_list[gas.id] = 0
 
 	radio = new(src)
 	radio.keyslot = new radio_key

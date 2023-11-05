@@ -249,6 +249,7 @@
 			fusion_gasdata.Add(list(list(
 			"id"= initial(gas.id),
 			"amount" = round(connected_core.internal_fusion.get_moles(gas), 0.01),
+			"remove_rate" = round(connected_core.delta_fuel_removed_list[gas.id], 0.01),
 			)))
 	else
 		for(var/gas_type in connected_core.internal_fusion.get_gases())
@@ -256,6 +257,7 @@
 			fusion_gasdata.Add(list(list(
 				"id"= initial(gas.id),
 				"amount" = 0,
+				"remove_rate" = round(connected_core.delta_fuel_removed_list[gas.id], 0.01),
 				)))
 	//Moderator gases
 	var/list/moderator_gasdata = list()
@@ -265,6 +267,7 @@
 			moderator_gasdata.Add(list(list(
 			"id"= initial(gas.id),
 			"amount" = round(connected_core.moderator_internal.get_moles(gas), 0.01),
+			"remove_rate" = round(connected_core.delta_mod_removed_list[gas.id], 0.01),
 			)))
 	else
 		for(var/gas_type in connected_core.moderator_internal.get_gases())
@@ -272,6 +275,7 @@
 			moderator_gasdata.Add(list(list(
 				"id"= initial(gas.id),
 				"amount" = 0,
+				"remove_rate" = round(connected_core.delta_mod_removed_list[gas.id], 0.01),
 				)))
 
 	data["fusion_gases"] = fusion_gasdata

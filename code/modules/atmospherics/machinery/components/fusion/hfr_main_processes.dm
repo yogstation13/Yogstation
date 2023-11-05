@@ -240,8 +240,12 @@
 	var/fuel_consumption = reaction_rate * 0.85 * selected_fuel.fuel_consumption_multiplier
 	var/scaled_production = reaction_rate * selected_fuel.gas_production_multiplier
 
-	for(var/gas_id in fuel.requirements)
-		internal_fusion.adjust_moles(gas_id, -min(fuel_list[gas_id], fuel_consumption))
+	for(var/datum/gas/gas_id in fuel.requirements)
+		var/remove_amount = min(fuel_list[gas_id], fuel_consumption)
+		internal_fusion.adjust_moles(gas_id, -remove_amount)
+		for(var/id in delta_fuel_removed_list)
+			if(gas_id == id)
+				delta_fuel_removed_list[id] = -remove_amount
 	for(var/gas_id in fuel.primary_products)
 		internal_fusion.adjust_moles(gas_id, fuel_consumption * 0.5)
 
@@ -269,30 +273,42 @@
 		if(1)
 			if(moderator_list[/datum/gas/plasma] > 100)
 				internal_output.adjust_moles(/datum/gas/nitrous_oxide, scaled_production * 0.5)
-				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 0.85))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 0.85)
+				delta_mod_removed_list["plasma"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/plasma, -remove_amount)
 			if(moderator_list[/datum/gas/bz] > 150)
 				internal_output.adjust_moles(/datum/gas/halon, scaled_production * 0.55)
-				moderator_internal.adjust_moles(/datum/gas/bz, -min(moderator_internal.get_moles(/datum/gas/bz), scaled_production * 0.95))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/bz), scaled_production * 0.95)
+				delta_mod_removed_list["bz"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/bz, -remove_amount)
 
 		if(2)
 			if(moderator_list[/datum/gas/plasma] > 50)
 				internal_output.adjust_moles(/datum/gas/bz, scaled_production * 1.8)
-				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.75))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.75)
+				delta_mod_removed_list["plasma"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/plasma, -remove_amount)
 			if(moderator_list[/datum/gas/pluonium] > 20)
 				radiation *= 1.55
 				heat_output *= 1.025
-				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35)
+				delta_mod_removed_list["pluonium"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/pluonium, -remove_amount)
 
 		if(3, 4)
 			if(moderator_list[/datum/gas/plasma] > 10)
 				internal_output.adjust_moles(/datum/gas/freon, scaled_production * 0.15)
-				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 0.45))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 0.45)
+				delta_mod_removed_list["plasma"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/plasma, -remove_amount)
 			if(moderator_list[/datum/gas/freon] > 50)
 				heat_output *= 0.9
 				radiation *= 0.8
 			if(moderator_list[/datum/gas/pluonium]> 15)
 				internal_output.adjust_moles(/datum/gas/halon, scaled_production * 1.15)
-				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.55))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.55)
+				delta_mod_removed_list["pluonium"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/pluonium, -remove_amount)
 				radiation *= 1.95
 				heat_output *= 1.25
 			if(moderator_list[/datum/gas/bz] > 100)
@@ -303,13 +319,17 @@
 		if(5)
 			if(moderator_list[/datum/gas/plasma] > 15)
 				internal_output.adjust_moles(/datum/gas/freon, scaled_production * 0.25)
-				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.45))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.45)
+				delta_mod_removed_list["plasma"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/plasma, -remove_amount)
 			if(moderator_list[/datum/gas/freon] > 500)
 				heat_output *= 0.5
 				radiation *= 0.2
 			if(moderator_list[/datum/gas/pluonium] > 50)
 				internal_output.adjust_moles(/datum/gas/pluoxium, scaled_production)
-				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35)
+				delta_mod_removed_list["pluonium"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/pluonium, -remove_amount)
 				radiation *= 1.95
 				heat_output *= 1.25
 			if(moderator_list[/datum/gas/bz] > 100)
@@ -319,18 +339,24 @@
 			if(moderator_list[/datum/gas/healium] > 100)
 				if(critical_threshold_proximity > 400)
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[/datum/gas/healium] / 100 * delta_time ), 0)
-					moderator_internal.adjust_moles(/datum/gas/healium, -min(moderator_internal.get_moles(/datum/gas/healium), scaled_production * 20))
+					var/remove_amount = min(moderator_internal.get_moles(/datum/gas/healium), scaled_production * 20)
+					delta_mod_removed_list["healium"] = -remove_amount
+					moderator_internal.adjust_moles(/datum/gas/healium, -remove_amount)
 			if(moderator_internal.return_temperature() < 1e7 || (moderator_list[/datum/gas/plasma] > 100 && moderator_list[/datum/gas/bz] > 50))
 				internal_output.adjust_moles(/datum/gas/antinoblium, dirty_production_rate * 0.9 / 0.065 * delta_time)
 
 		if(6)
 			if(moderator_list[/datum/gas/plasma] > 30)
 				internal_output.adjust_moles(/datum/gas/bz, scaled_production * 1.15)
-				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.45))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 1.45)
+				delta_mod_removed_list["plasma"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/plasma, -remove_amount)
 			if(moderator_list[/datum/gas/pluonium])
 				internal_output.adjust_moles(/datum/gas/zauker, scaled_production * 5.35)
 				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 2.15)
-				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 3.35))
+				var/remove_amount = min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 3.35)
+				delta_mod_removed_list["pluonium"] = -remove_amount
+				moderator_internal.adjust_moles(/datum/gas/pluonium, -remove_amount)
 				radiation *= 2
 				heat_output *= 2.25
 			if(moderator_list[/datum/gas/bz])
@@ -339,7 +365,9 @@
 			if(moderator_list[/datum/gas/healium] > 100)
 				if(critical_threshold_proximity > 400)
 					critical_threshold_proximity = max(critical_threshold_proximity - (moderator_list[/datum/gas/healium] / 100 * delta_time ), 0)
-					moderator_internal.adjust_moles(/datum/gas/healium, -min(moderator_internal.get_moles(/datum/gas/healium), scaled_production * 20))
+					var/remove_amount = min(moderator_internal.get_moles(/datum/gas/healium), scaled_production * 20)
+					delta_mod_removed_list["healium"] = -remove_amount
+					moderator_internal.adjust_moles(/datum/gas/healium, -remove_amount)
 			internal_fusion.adjust_moles(/datum/gas/antinoblium, dirty_production_rate * 0.01 / 0.095 * delta_time)
 
 	//Modifies the internal_fusion temperature with the amount of heat output
@@ -369,7 +397,9 @@
 			var/max_iron_removable = IRON_OXYGEN_HEAL_PER_SECOND
 			var/iron_removed = min(max_iron_removable * delta_time, iron_content)
 			iron_content -= iron_removed
-			moderator_internal.adjust_moles(/datum/gas/oxygen, -(iron_removed * OXYGEN_MOLES_CONSUMED_PER_IRON_HEAL))
+			var/remove_amount = iron_removed * OXYGEN_MOLES_CONSUMED_PER_IRON_HEAL
+			delta_mod_removed_list["o2"] = -remove_amount
+			moderator_internal.adjust_moles(/datum/gas/oxygen, -remove_amount)
 
 	check_gravity_pulse(delta_time)
 
@@ -381,7 +411,10 @@
 		return
 	// All gases in the moderator slowly burn away over time, whether used for production or not
 	if(moderator_internal.total_moles() > 0)
-		moderator_internal.remove(moderator_internal.total_moles() * (1 - (1 - 0.0005 * power_level) ** delta_time))
+		var/remove_amount = moderator_internal.total_moles() * (1 - (1 - 0.0005 * power_level) ** delta_time)
+		for(var/datum/gas/delta_gas in delta_mod_removed_list)
+			delta_mod_removed_list[delta_gas.id] -= remove_amount * moderator_internal.get_moles(delta_gas) / moderator_internal.total_moles()
+		moderator_internal.remove(remove_amount)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/process_damageheal(delta_time)
 	// Archive current health for damage cap purposes
@@ -472,8 +505,11 @@
 	if(!fuel_remove)
 		return
 
-	for(var/gas in internal_fusion.get_gases())
+	for(var/datum/gas/gas in internal_fusion.get_gases())
 		var/gas_removed = min(internal_fusion.get_moles(gas), fuel_filtering_rate/2 * delta_time)
+		for(var/id in delta_fuel_removed_list)
+			if(gas.id == id)
+				delta_fuel_removed_list[id] -= gas_removed
 		internal_fusion.adjust_moles(gas, -gas_removed)
 		linked_output.airs[1].adjust_moles(gas, gas_removed)
 
@@ -483,16 +519,22 @@
 		return
 
 	var/filtering_amount = moderator_scrubbing.len
-	for(var/gas in moderator_internal.get_gases() & moderator_scrubbing)
+	for(var/datum/gas/gas in moderator_internal.get_gases() & moderator_scrubbing)
 		var/gas_removed = min(moderator_internal.get_moles(gas), (moderator_filtering_rate / filtering_amount) * delta_time)
+		for(var/id in delta_mod_removed_list)
+			if(gas.id == id)
+				delta_mod_removed_list[id] -= gas_removed
 		moderator_internal.adjust_moles(gas, -gas_removed)
 		linked_output.airs[1].adjust_moles(gas, gas_removed)
 
 	if (selected_fuel)
-		for(var/gas_id in selected_fuel.primary_products)
+		for(var/datum/gas/gas_id in selected_fuel.primary_products)
 			if(internal_fusion.get_moles(gas_id) > 0)
 				var/gas_removed = min(internal_fusion.get_moles(gas_id), internal_fusion.get_moles(gas_id) * (1 - (1 - 0.25) ** delta_time))
 				internal_fusion.adjust_moles(gas_id, -gas_removed)
+				for(var/id in delta_fuel_removed_list)
+					if(gas_id.id == id)
+						delta_fuel_removed_list[id] -= gas_removed
 				linked_output.airs[1].adjust_moles(gas_id, gas_removed)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/process_internal_cooling(delta_time)
