@@ -166,13 +166,13 @@
 				healed.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
-/datum/action/cooldown/spell/pointed/extract/before_cast(atom/cast_on)
-	. = ..()
+/datum/action/cooldown/spell/pointed/extract/Trigger(trigger_flags, atom/target)
 	if(channeled)
 		channeled = null
 		if(visual)
 			qdel(visual)
-		return . | SPELL_CANCEL_CAST
+		return FALSE
+	. = ..()
 	
 /datum/action/cooldown/spell/pointed/extract/cast(mob/living/cast_on)
 	. = ..()
