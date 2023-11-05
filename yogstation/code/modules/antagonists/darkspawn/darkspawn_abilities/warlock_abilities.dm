@@ -118,7 +118,7 @@
 	var/mob/living/channeled
 	var/datum/beam/visual
 	var/datum/antagonist/darkspawn/cost
-	var/upkeep_cost = 1 //happens 5 times a second
+	var/upkeep_cost = 2 //happens 5 times a second
 	var/damage_amount = 2 //these both happen 5 times a second
 
 /datum/action/cooldown/spell/pointed/extract/New()
@@ -168,8 +168,6 @@
 
 /datum/action/cooldown/spell/pointed/extract/before_cast(atom/cast_on)
 	. = ..()
-	if(. & SPELL_CANCEL_CAST)
-		on_deactivation(owner, refund_cooldown = FALSE)
 	if(channeled)
 		channeled = null
 		if(visual)
