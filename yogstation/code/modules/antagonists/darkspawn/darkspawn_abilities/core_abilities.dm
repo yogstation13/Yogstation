@@ -272,6 +272,7 @@
 	var/casting = FALSE
 	var/cast_time = 2 SECONDS
 	var/object_type
+	var/can_density = FALSE
 
 /datum/action/cooldown/spell/pointed/darkspawn_build/can_cast_spell(feedback)
 	if(casting)
@@ -283,12 +284,9 @@
 	if(!object_type)
 		. = . | SPELL_CANCEL_CAST
 		CRASH("someone forgot to set the placed object of a darkspawn building ability")
-	if(cast_on.density)
+	if(cast_on.density && !can_density)
 		return . | SPELL_CANCEL_CAST
 	if(casting)
-		return . | SPELL_CANCEL_CAST
-	if(!can_see(owner, cast_on))
-		cast_on.balloon_alert(owner, "can't see target!")
 		return . | SPELL_CANCEL_CAST
 	if(. & SPELL_CANCEL_CAST)
 		return .
