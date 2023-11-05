@@ -5,7 +5,7 @@
 	filedesc = "Power Monitor"
 	category = PROGRAM_CATEGORY_ENGI
 	program_icon_state = "power_monitor"
-	extended_desc = "This program connects to sensors around the station to provide information about electrical systems"
+	extended_desc = "This program connects to sensors around the station to provide information about electrical systems."
 	ui_header = "power_norm.gif"
 	transfer_access = ACCESS_ENGINE
 	usage_flags = PROGRAM_ALL
