@@ -1659,3 +1659,17 @@
 /datum/status_effect/eldritch/knock/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
 	return ..()
+
+/datum/status_effect/taunt
+	id = "taunt"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 30 SECONDS
+	tick_interval = CLICK_CD_MELEE
+	var/mob/living/target
+
+/datum/status_effect/taunt/on_creation(mob/living/new_owner, ...)
+	. = ..()
+	
+/datum/status_effect/taunt/process(delta_time, times_fired)
+	. = ..()
+	
