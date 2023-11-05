@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/darkspawn_progenitor
-	name = "cosmic progenitor"
+	name = "void progenitor"
 	desc = "..."
 	icon = 'yogstation/icons/mob/darkspawn_progenitor.dmi'
 	icon_state = "darkspawn_progenitor"
@@ -14,7 +14,7 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	move_to_delay = 10
-	speed = 1
+	speed = 0
 	pixel_x = -48
 	pixel_y = -32
 	sentience_type = SENTIENCE_BOSS
@@ -30,6 +30,7 @@
 	layer = LARGE_MOB_LAYER
 	movement_type = FLYING
 	var/time_to_next_roar = 0
+	var/roar_cooldown = 20 SECONDS
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload)
 	. = ..()
@@ -52,12 +53,13 @@
 	I.pixel_x -= pixel_x
 	I.pixel_y -= pixel_y
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
-	time_to_next_roar = world.time + 30 SECONDS
+	time_to_next_roar = world.time + roar_cooldown
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
-	if(time_to_next_roar + 10 SECONDS <= world.time) //gives time to roar manually if you like want to do that
+	if(time_to_next_roar + roar_cooldown <= world.time) //gives time to roar manually if you like want to do that
 		roar()
+	COOLDOWN_START(src, psionic_roar, roar_cooldown)
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
@@ -72,33 +74,15 @@
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
 			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 25, FALSE, falloff_exponent = 5)
+		else if(is_darkspawn_or_veil(M))
+			continue
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF
 				to_chat(M, span_boldannounce("You stand paralyzed in the shadow of the cold as it descends from on high."))
 				L.Stun(20)
-	time_to_next_roar = world.time + 30 SECONDS
+	time_to_next_roar = world.time + roar_cooldown
 
-/datum/action/cooldown/spell/list_target/progenitor_curse
-	name = "Viscerate Mind"
-	desc = "Unleash a powerful psionic barrage into the mind of the target."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	button_icon_state = "veil_mind"
-	background_icon_state = "bg_alien"
-
-	cooldown_time = 5 SECONDS
-	spell_requirements = NONE
-
-/datum/action/cooldown/spell/list_target/progenitor_curse/cast(atom/target_atom)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/target = target_atom
-	var/zoinks = pick(0.1, 0.5, 1)//like, this isn't even my final form!
-	usr.visible_message(span_warning("[usr]'s sigils flare as it glances at [target]!"), \
-						span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!."))
-	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
-	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()
 	return
@@ -111,3 +95,34 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
+
+//////////////////////////////////////////////////////////////////////////
+//--------------------------Progenitor attack---------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/progenitor_curse
+	name = "Viscerate Mind"
+	desc = "Unleash a powerful psionic barrage into the mind of the target."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "veil_mind"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+
+	panel = null
+	spell_requirements = NONE
+	cast_range = 10
+
+/datum/action/cooldown/spell/pointed/progenitor_curse/is_valid_target(atom/cast_on)
+	if(!isliving(cast_on))
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/pointed/progenitor_curse/cast(atom/cast_on)
+	. = ..()
+	if(!isliving(cast_on)) //sanity check
+		return
+	var/mob/living/target = cast_on
+	var/zoinks = rand(1, 10) / 10 //like, this isn't even my final form!
+	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!."))
+	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)

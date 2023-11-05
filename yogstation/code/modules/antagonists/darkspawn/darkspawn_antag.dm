@@ -255,13 +255,13 @@
 	var/mob/living/carbon/human/user = owner.current
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
-		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
+		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
 	// Spawn the cosmic progenitor
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
-	var/datum/action/cooldown/spell/list_target/progenitor_curse/curse = new(progenitor)
+	var/datum/action/cooldown/spell/pointed/progenitor_curse/curse = new(owner)
 	curse.Grant(progenitor)
 	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
 	psi = 9999
@@ -270,7 +270,7 @@
 	psi_regen_delay = 1
 	SSticker.mode.sacrament_done = TRUE
 	darkspawn_state = PROGENITOR
-	QDEL_IN(user, 5)
+	QDEL_IN(user, 1)
 
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
 	SSshuttle.emergency.request(null, 0, null, 0.1)
