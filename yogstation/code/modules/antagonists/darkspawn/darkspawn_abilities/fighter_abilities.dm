@@ -345,6 +345,7 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
+	owner.move_resist = INFINITY
 	was_running = (owner.m_intent == MOVE_INTENT_RUN)
 	if(was_running)
 		owner.toggle_move_intent()
@@ -354,11 +355,12 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, type)
+	owner.move_resist = initial(target.move_resist)
 	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
 
 //////////////////////////////////////////////////////////////////////////
-//------------Toggled CC immunity force walking with psi drain----------//
+//-------------------AOE forced movement towards user-------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/taunt
 	name = "Taunt"
@@ -368,6 +370,7 @@
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
 	button_icon_state = "time_dilation"
+	sound = 'yogstation/sound/ambience/antag/veil_mind_scream.ogg'
 	panel = null
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
