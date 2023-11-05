@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Hug fire_stack transfer now works properly again"
-  - bugfix: "Drying off no longer takes 10x as long as it used to"
-  - bugfix: "Being on fire heats up as fast as it used to"

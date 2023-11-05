@@ -1,7 +1,0 @@
-author: " Timberpoes, ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new Master RND server, with a special hard drive that if removed, halves point generation."
-  - rscadd: "Add a new \"Steal Master HDD\" objective, where you must steal the hard drive and escape with it."
-  - rscadd: "Gives Ninja a different objective to sabotage research, and using their gloves on the server will drain all the points."
-  - rscdel: "Removes \"Steal Research\" objective as it's stupid easy."
