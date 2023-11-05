@@ -39,11 +39,15 @@
 	animate(src, alpha = 255, time = 1 SECONDS)
 	var/obj/item/radio/headset/silicon/ai/radio = new(src) //so the progenitor can hear people's screams over radio
 	radio.wires.cut(WIRE_TX) //but not talk over it
+	var/prefix = pick("ancestral", "void", "cosmic", "shadow", "darkspawn", "veil")
+	var/suffix = pick("progenitor", "ascended")
+	if(rand(0, 10000) == 0)
+		prefix = "vxtrin"
+	name = "[prefix] [suffix]"
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/AttackingTarget()
 	if(istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		playsound(target, 'yogstation/sound/magic/pass_smash_door.ogg', 100, FALSE)
-		obj_damage = 60
 	. = ..()
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/Login()

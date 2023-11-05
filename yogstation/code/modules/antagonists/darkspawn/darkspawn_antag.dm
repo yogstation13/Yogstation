@@ -226,6 +226,9 @@
 	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
 
+////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------Divulge--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/divulge(forced = FALSE)
 	if(darkspawn_state >= DIVULGED)
 		return FALSE
@@ -256,7 +259,7 @@
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-	// Spawn the cosmic progenitor
+	// Spawn the progenitor
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
 	user.status_flags |= GODMODE
