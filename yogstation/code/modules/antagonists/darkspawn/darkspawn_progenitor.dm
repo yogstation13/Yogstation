@@ -63,7 +63,6 @@
 	..()
 	if(time_to_next_roar + roar_cooldown <= world.time) //gives time to roar manually if you like want to do that
 		roar()
-	COOLDOWN_START(src, psionic_roar, roar_cooldown)
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
