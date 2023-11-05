@@ -448,11 +448,11 @@
 		if(initial(possible_wound.threshold_minimum) < injury_roll)
 			var/datum/wound/new_wound
 			if(replaced_wound)
-				new_wound = replaced_wound.replace_wound(possible_wound)
+				new_wound = replaced_wound.replace_wound(possible_wound, attack_direction = attack_direction)
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll, attack_direction = attack_direction) // dismembering wounds are logged in the apply_wound() for loss wounds since they delete themselves immediately, these will be immediately returned
 			else
 				new_wound = new possible_wound
-				new_wound.apply_wound(src)
+				new_wound.apply_wound(src, attack_direction = attack_direction)
 				log_wound(owner, new_wound, damage, wound_bonus, bare_wound_bonus, base_roll, attack_direction = attack_direction)
 			return new_wound
 
