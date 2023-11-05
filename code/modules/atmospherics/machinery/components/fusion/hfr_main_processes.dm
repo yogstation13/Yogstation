@@ -244,7 +244,7 @@
 		var/remove_amount = min(fuel_list[gas_id], fuel_consumption)
 		internal_fusion.adjust_moles(gas_id, -remove_amount)
 		for(var/id in delta_fuel_removed_list)
-			if(gas_id == id)
+			if(gas_id.id == id)
 				delta_fuel_removed_list[id] = -remove_amount
 	for(var/gas_id in fuel.primary_products)
 		internal_fusion.adjust_moles(gas_id, fuel_consumption * 0.5)
