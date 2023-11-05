@@ -222,6 +222,13 @@
 			"gas_production_multiplier" = recipe.gas_production_multiplier,
 			"temperature_multiplier" = recipe.temperature_change_multiplier,
 		))
+
+	data["gas_colors"] = list()
+	for(var/gas_id in GLOB.gas_data.ids)
+		data["gas_colors"] += list(list(
+			"id" = gas_id,
+			"ui_color" = GLOB.gas_data.ui_colors[gas_id]
+		))
 	return data
 
 /obj/machinery/hypertorus/interface/ui_data()
