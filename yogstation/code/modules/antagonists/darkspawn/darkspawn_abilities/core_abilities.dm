@@ -287,19 +287,23 @@
 		return . | SPELL_CANCEL_CAST
 	if(casting)
 		return . | SPELL_CANCEL_CAST
+	if(!can_see(owner, cast_on))
+		cast_on.balloon_alert(owner, "can't see target!")
+		return . | SPELL_CANCEL_CAST
 	if(. & SPELL_CANCEL_CAST)
 		return .
-	casting = TRUE
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
-	if(!do_after(owner, cast_time, cast_on))
+	if(cast_time)
+		casting = TRUE
+		playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
+		if(!do_after(owner, cast_time, cast_on))
+			casting = FALSE
+			return . | SPELL_CANCEL_CAST
 		casting = FALSE
-		return . | SPELL_CANCEL_CAST
-	casting = FALSE
 	
 /datum/action/cooldown/spell/pointed/darkspawn_build/cast(atom/cast_on)
 	. = ..()
 	if(!object_type) //sanity check
 		return
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	var/obj/thing = new object_type(get_turf(cast_on))
+	var/obj/thing = new object_type(get_turf(cast_on), owner)
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))
