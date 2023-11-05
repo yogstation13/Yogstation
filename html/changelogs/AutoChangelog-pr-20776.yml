@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "New preferences to enable TGUI and more."
-  - tweak: "Anything that uses tgui_input_text and tgui_input_number now have better looking input boxes. Can be disabled via preferences."
-  - tweak: "Hand labelers now uses tgui_input_text."

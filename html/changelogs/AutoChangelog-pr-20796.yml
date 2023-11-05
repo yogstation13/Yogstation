@@ -1,7 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Janitor Cyborgs can go through wet floor holobarriers."
-  - rscadd: "Janitor Cyborgs can now start a process which wets (and cleans) the floor under them at the cost of movement speed and requiring filling their bucket with water."
-  - tweak: "Janitor Cyborg's auto-cleaning ability is now an upgrade instead of being given to them round-start."
-  - soundadd: "Various sounds when a janitor cyborg starts and stops their new cleaning process."
