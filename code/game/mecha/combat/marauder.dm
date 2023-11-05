@@ -17,7 +17,6 @@
 	force = 40
 	max_equip = 4
 	bumpsmash = 1
-	step_energy_drain = 3
 
 /obj/mecha/combat/marauder/GrantActions(mob/living/user, human_occupant = 0)
 	..()

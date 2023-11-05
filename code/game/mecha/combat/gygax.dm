@@ -27,7 +27,6 @@
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
 	max_equip = 6
 	destruction_sleep_duration = 20
-	step_energy_drain = 3
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize(mapload)
 	. = ..()

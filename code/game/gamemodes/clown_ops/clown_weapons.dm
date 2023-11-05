@@ -287,7 +287,6 @@
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/honker/dark
 	max_equip = 3
-	step_energy_drain = 3
 
 /obj/mecha/combat/honker/dark/GrantActions(mob/living/user, human_occupant = 0)
 	..()

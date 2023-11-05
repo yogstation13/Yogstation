@@ -1238,7 +1238,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		return max(0, cell.charge)
 
 /obj/mecha/proc/use_power(amount)
-	amount *= (1 / max(scanmod.rating, 0.1)) // 0-5: 10x, 1x, 0.5x, 0.33x, 0.25x
+	amount *= (2.5 - (scanmod.rating / 2)) // 0-5: 2.5x, 2x, 1.5x, 1x, 0.5x
 	if(get_charge())
 		cell.use(amount)
 		return TRUE
