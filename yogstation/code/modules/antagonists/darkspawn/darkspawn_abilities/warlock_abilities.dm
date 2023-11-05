@@ -119,7 +119,7 @@
 	var/datum/beam/visual
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 2 //happens 5 times a second
-	var/damage_amount = 2 //these both happen 5 times a second
+	var/damage_amount = 2 //these also happens 5 times a second
 
 /datum/action/cooldown/spell/pointed/extract/New()
 	..()
@@ -145,7 +145,7 @@
 
 /datum/action/cooldown/spell/pointed/extract/process()
 	if(channeled)
-		if(channeled.stat == DEAD)
+		if(channeled.stat == DEAD || channeled.health >= channeled.maxHealth)
 			channeled = null
 			qdel(visual)
 			return
