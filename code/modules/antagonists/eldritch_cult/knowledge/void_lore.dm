@@ -87,9 +87,9 @@
 
 // /datum/eldritch_knowledge/spell/void_phase
 // 	name = "T1 - Void Phase"
-// 	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
+// 	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like 
 // 		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
-// 	desc = "Grants you Void Phase, a long range targeted teleport spell. \
+// 	desc = "Grants you Void Phase, a long range targeted teleport spell. 
 // 		Additionally causes damage to heathens around your original and target destination."
 // 	cost = 1
 // 	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
