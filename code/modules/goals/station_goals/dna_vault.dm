@@ -299,7 +299,7 @@
 			H.next_move_modifier *= 0.5
 			P.do_after_speed *= 0.5
 		if(VAULT_STRONG)
-			to_chat(H, span_notice("Your feel like you could lift the world."))
+			to_chat(H, span_notice("You feel like you could lift the world."))
 			ADD_TRAIT(H, TRAIT_QUICKEST_CARRY, "dna_vault")
 			ADD_TRAIT(H, TRAIT_STRONG_GRIP, "dna_vault")
 			P.punchdamagelow_bonus += 4
