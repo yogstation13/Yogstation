@@ -61,6 +61,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // create a conveyor
 /obj/machinery/conveyor/Initialize(mapload, newdir, newid)
 	. = ..()
+	AddElement(/datum/element/footstep_override, priority = STEP_SOUND_CONVEYOR_PRIORITY)
 	if(newdir)
 		setDir(newdir)
 	if(newid)

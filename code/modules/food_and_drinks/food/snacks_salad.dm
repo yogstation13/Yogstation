@@ -84,6 +84,25 @@
 	tastes = list("rice" = 1)
 	foodtype = GRAIN | RAW
 
+/obj/item/reagent_containers/food/snacks/salad/ricebowl/attackby(obj/item/W, mob/user, params)
+	if(!istype(W, /obj/item/paicard))
+		return ..()
+	var/obj/item/paicard/ricephone = W
+	if(!ricephone.pai)
+		return ..()
+	if(!ricephone.pai.has_status_effect(/datum/status_effect/speech/slurring/drunk) && !ricephone.pai.has_status_effect(/datum/status_effect/speech/stutter/derpspeech))
+		to_chat(user, span_notice("There are rumors that burying a pAI in rice can fix some internal damage, but yours seems to be working fine for now."))
+		return ..()
+	user.visible_message(span_notice("[user] buries [ricephone] into [src]..."), span_notice("You bury [ricephone] in [src]..."))
+	if(do_after(user, 10 SECONDS, src))
+		if(!ricephone.pai)
+			return FALSE
+		user.visible_message(span_notice("[user] removes [ricephone] from [src]."), span_notice("You remove [ricephone] from [src], the diagnostics showing significantly fewer warnings."))
+		to_chat(ricephone.pai, span_notice("System recovery complete."))
+		ricephone.pai.emote("ping")
+		ricephone.pai.remove_status_effect(/datum/status_effect/speech/slurring/drunk)
+		ricephone.pai.remove_status_effect(/datum/status_effect/speech/stutter/derpspeech)
+
 /obj/item/reagent_containers/food/snacks/salad/boiledrice
 	name = "boiled rice"
 	desc = "A warm bowl of rice."

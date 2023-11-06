@@ -236,7 +236,9 @@
 				AA.copy_overlays(changed_on, TRUE);\
 			}\
 		} \
-	}
+	}\
+	if(isturf(changed_on)){SSdemo.mark_turf(changed_on);}\
+	if(isobj(changed_on) || ismob(changed_on)){SSdemo.mark_dirty(changed_on);}\
 
 /**
 	Create a new timer and add it to the queue.

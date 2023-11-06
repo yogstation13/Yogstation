@@ -292,32 +292,36 @@
 
 /// Set the splatter up to fly through the air until it rounds out of steam or hits something. Contains sleep() pending imminent moveloop rework, don't call without async'ing it
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/fly_towards(turf/target_turf, range)
-	for(var/i in 1 to range)
-		step_towards(src,target_turf)
-		sleep(2) // Will be resolved pending Potato's moveloop rework
-		prev_loc = loc
-		for(var/atom/iter_atom in get_turf(src))
-			if(hit_endpoint)
-				return
-			if(splatter_strength <= 0)
-				break
+	if(range <= 0)
+		qdel(src)
+		return
 
-			if(isitem(iter_atom))
-				iter_atom.add_blood_DNA(blood_dna_info)
-				splatter_strength--
-			else if(ishuman(iter_atom))
-				var/mob/living/carbon/human/splashed_human = iter_atom
-				if(splashed_human.wear_suit)
-					splashed_human.wear_suit.add_blood_DNA(blood_dna_info)
-					splashed_human.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
-				if(splashed_human.w_uniform)
-					splashed_human.w_uniform.add_blood_DNA(blood_dna_info)
-					splashed_human.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
-				splatter_strength--
-		if(splatter_strength <= 0) // we used all the puff so we delete it.
-			qdel(src)
+	step_towards(src,target_turf)
+	prev_loc = loc
+	for(var/atom/iter_atom in get_turf(src))
+		if(hit_endpoint)
 			return
-	qdel(src)
+		if(splatter_strength <= 0)
+			break
+
+		if(isitem(iter_atom))
+			iter_atom.add_blood_DNA(blood_dna_info)
+			splatter_strength--
+		else if(ishuman(iter_atom))
+			var/mob/living/carbon/human/splashed_human = iter_atom
+			if(splashed_human.wear_suit)
+				splashed_human.wear_suit.add_blood_DNA(blood_dna_info)
+				splashed_human.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
+			if(splashed_human.w_uniform)
+				splashed_human.w_uniform.add_blood_DNA(blood_dna_info)
+				splashed_human.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
+			splatter_strength--
+
+	if(splatter_strength <= 0) // we used all the puff so we delete it.
+		qdel(src)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(fly_towards), target_turf, range -1), 2)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/bumped_atom)
 	if(!iswallturf(bumped_atom) && !istype(bumped_atom, /obj/structure/window))
