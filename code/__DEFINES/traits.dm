@@ -271,6 +271,7 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+#define TRAIT_MARINE			"marine"		//You become Marine!!!
 /// Immune to being afflicted by time stop (spell)
 #define TRAIT_TIME_STOP_IMMUNE "time_stop_immune"
 /// This mob has no soul
