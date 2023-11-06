@@ -404,6 +404,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	hitsound = 'sound/weapons/genhit.ogg'
 	attack_verb = list("stubbed", "poked")
 	resistance_flags = FIRE_PROOF
+	item_flags = SLOWS_WHILE_IN_HAND
 	var/extended = 0
 
 /obj/item/switchblade/attack_self(mob/user)
@@ -417,6 +418,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		sharpness = SHARP_EDGED
+		slowdown = -0.2 // Run faster with knife out
 	else
 		force = 3
 		w_class = WEIGHT_CLASS_SMALL
@@ -425,6 +427,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		attack_verb = list("stubbed", "poked")
 		hitsound = 'sound/weapons/genhit.ogg'
 		sharpness = SHARP_NONE
+		slowdown = initial(slowdown)
 
 /obj/item/switchblade/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))

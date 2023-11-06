@@ -197,6 +197,7 @@
 /obj/item/pen/red/edagger
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") //these wont show up if the pen is off
 	sharpness = SHARP_EDGED
+	item_flags = SLOWS_WHILE_IN_HAND
 	var/on = FALSE
 
 /obj/item/pen/red/edagger/Initialize(mapload)
@@ -221,6 +222,7 @@
 		hitsound = initial(hitsound)
 		embedding = embedding.setRating(embed_chance = EMBED_CHANCE)
 		throwforce = initial(throwforce)
+		slowdown = initial(slowdown)
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, 1)
 		to_chat(user, span_warning("[src] can now be concealed."))
 	else
@@ -235,6 +237,7 @@
 		hitsound = 'sound/weapons/blade1.ogg'
 		embedding = embedding.setRating(embed_chance = 100) //rule of cool
 		throwforce = 35
+		slowdown = -0.2 // Run faster with knife out
 		playsound(user, 'sound/weapons/saberon.ogg', 5, 1)
 		to_chat(user, span_warning("[src] is now active."))
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
