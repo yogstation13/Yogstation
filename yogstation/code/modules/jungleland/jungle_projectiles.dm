@@ -1,27 +1,27 @@
-/obj/item/projectile/jungle
+/obj/projectile/jungle
 	icon = 'yogstation/icons/obj/jungle.dmi'
 
-/obj/item/projectile/jungle/heal_orb
+/obj/projectile/jungle/heal_orb
 	name = "Orb of healing"
 	icon_state = "heal_orb"
 	damage = -10
 	speed = 2
 	homing = TRUE
 
-/obj/item/projectile/jungle/damage_orb
+/obj/projectile/jungle/damage_orb
 	name = "Orb of vengeance"
 	icon_state = "damage_orb"
 	damage = 20
 	speed = 1
 
-/obj/item/projectile/jungle/meduracha_spit
+/obj/projectile/jungle/meduracha_spit
 	name = "Glob of toxic goo"
 	icon_state = "meduracha_spit"
 	damage = 20
 	speed = 3
 	damage_type = TOX
 
-/obj/item/projectile/jungle/meduracha_spit/on_hit(atom/target, blocked)
+/obj/projectile/jungle/meduracha_spit/on_hit(atom/target, blocked)
 	. = ..()
 	if(!ishuman(target))
 		return

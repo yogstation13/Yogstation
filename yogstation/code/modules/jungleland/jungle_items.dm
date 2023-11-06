@@ -650,7 +650,7 @@
 /obj/item/crusher_trophy/jungleland/wasp_head/effect_desc()
 	return "Increases the damage of mark detonation proprotionally to distance travelled."
 
-/obj/item/crusher_trophy/jungleland/wasp_head/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+/obj/item/crusher_trophy/jungleland/wasp_head/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	first_loc = get_turf(user)
 
 /obj/item/crusher_trophy/jungleland/wasp_head/after_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced, damage_dealt)

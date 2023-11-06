@@ -25,7 +25,7 @@
 	melee_damage_upper = 25
 	ranged = TRUE 
 	ranged_cooldown = 5 SECONDS
-	projectiletype = /obj/item/projectile/jungle/meduracha_spit
+	projectiletype = /obj/projectile/jungle/meduracha_spit
 	sentience_type = SENTIENCE_BOSS
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
@@ -58,7 +58,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/shoot_projectile(atom/targeted_atom)
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new projectiletype(startloc)
+	var/obj/projectile/P = new projectiletype(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.starting = startloc
 	P.firer = src
@@ -185,7 +185,7 @@
 	ranged_cooldown = 7.5 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
-	projectiletype = /obj/item/projectile/jungle/damage_orb
+	projectiletype = /obj/projectile/jungle/damage_orb
 	sentience_type = SENTIENCE_BOSS
 
 	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
@@ -209,7 +209,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad/proc/shoot_projectile(atom/targeted_atom)
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new projectiletype(startloc)
+	var/obj/projectile/P = new projectiletype(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.starting = startloc
 	P.firer = src

@@ -50,9 +50,9 @@
 	ranged_cooldown_time = 4 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
-	projectiletype = /obj/item/projectile/jungle/damage_orb
+	projectiletype = /obj/projectile/jungle/damage_orb
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
-	var/alt_projectiletype = /obj/item/projectile/jungle/heal_orb
+	var/alt_projectiletype = /obj/projectile/jungle/heal_orb
 	var/alt_cooldown_time = 10 SECONDS
 
 /mob/living/simple_animal/hostile/yog_jungle/dryad/Shoot(atom/targeted_atom)
@@ -89,7 +89,7 @@
 	ranged_cooldown_time = 2 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
-	projectiletype = /obj/item/projectile/jungle/damage_orb
+	projectiletype = /obj/projectile/jungle/damage_orb
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad
 
 /mob/living/simple_animal/hostile/yog_jungle/meduracha
@@ -543,7 +543,7 @@
 	see_in_dark = 7
 	ventcrawler = 2
 	ranged_cooldown_time = 80
-	projectiletype = /obj/item/projectile/websling
+	projectiletype = /obj/projectile/websling
 	projectilesound = 'sound/weapons/pierce.ogg'
 	pass_flags = PASSTABLE
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -551,7 +551,7 @@
 	var/poison_type = /datum/reagent/toxin
 	var/poison_per_bite = 4
 
-/obj/item/projectile/websling
+/obj/projectile/websling
 	name = "web"
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	nodamage = TRUE
@@ -559,7 +559,7 @@
 	speed = 3 //you can dodge it from far away
 	icon_state = "websling"
 
-/obj/item/projectile/websling/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/websling/on_hit(atom/target, blocked = FALSE)
 	if(iscarbon(target) && blocked < 100)
 		var/obj/item/restraints/legcuffs/beartrap/emeraldspider/B = new /obj/item/restraints/legcuffs/beartrap/emeraldspider(get_turf(target))
 		B.Crossed(target)
@@ -655,7 +655,7 @@
 	inverse_faction_check = TRUE
 	ranged = TRUE
 	ranged_cooldown_time = 5 SECONDS
-	projectiletype = /obj/item/projectile/jungle/heal_orb
+	projectiletype = /obj/projectile/jungle/heal_orb
 
 /mob/living/simple_animal/hostile/tar/dryad/PickTarget(list/Targets)
 	if(!Targets.len)//We didnt find nothin!

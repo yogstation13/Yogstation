@@ -191,7 +191,7 @@
 	return ..()
 
 
-/obj/item/projectile/destabilizer/on_range()
+/obj/projectile/destabilizer/on_range()
 	SEND_SIGNAL(hammer_synced,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,firer,hammer_synced)
 	..()
 	
