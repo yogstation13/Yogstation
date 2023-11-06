@@ -12,8 +12,8 @@
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
 	var/psi_cap = 100 //Max Psi by default
-	var/psi_regen = 20 //How much Psi will regenerate after using an ability
-	var/psi_regen_delay = 5 //How many ticks need to pass before Psi regenerates
+	var/psi_regen_delay = 5 SECONDS //How long before psi starts regenerating
+	var/psi_per_second = 10 //how much psi is regenerated per second once it does start regenerating
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
@@ -159,7 +159,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/process() //This is here since it controls most of the Psi stuff
 	psi = min(psi, psi_cap)
-	if(psi != psi_cap && COOLDOWN_FINISHED(src, psi_cooldown))
+	if(psi < psi_cap && COOLDOWN_FINISHED(src, psi_cooldown) && !psi_regenerating)
 		regenerate_psi()
 	update_psi_hud()
 
@@ -177,18 +177,14 @@
 
 /datum/antagonist/darkspawn/proc/regenerate_psi()
 	set waitfor = FALSE
-	if(psi_regenerating)
+	psi_regenerating = TRUE 
+	psi = min(psi + 1, psi_cap)
+	update_psi_hud()
+	if(psi >= psi_cap || !COOLDOWN_FINISHED(src, psi_cooldown))
+		psi_regenerating = FALSE
 		return
-	psi_regenerating = TRUE
-	for(var/i in 1 to psi_regen) //tick it up very quickly instead of just increasing it by the regen; also include a failsafe to avoid infinite loops
-		if(psi >= psi_cap)
-			break
-		psi = min(psi + 1, psi_cap)
-		update_psi_hud()
-		sleep(0.05 SECONDS)
-	COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
-	psi_regenerating = FALSE
-	return TRUE
+	var/delay = (1/psi_per_second) SECONDS
+	addtimer(CALLBACK(src, PROC_REF(regenerate_psi)), delay, TIMER_UNIQUE) //tick it up very quickly
 
 /datum/antagonist/darkspawn/proc/update_psi_hud()
 	if(!owner.current || !owner.current.hud_used)
@@ -269,7 +265,7 @@
 	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
-	psi_regen = 9999
+	psi_per_second = 9999
 	psi_regen_delay = 1
 	SSticker.mode.sacrament_done = TRUE
 	darkspawn_state = PROGENITOR

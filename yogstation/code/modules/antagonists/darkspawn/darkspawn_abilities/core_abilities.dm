@@ -303,5 +303,5 @@
 	if(!object_type) //sanity check
 		return
 	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	var/obj/thing = new object_type(get_turf(cast_on), owner)
+	var/obj/thing = new object_type(get_turf(cast_on))
 	owner.visible_message(span_warning("[owner] knits shadows together into [thing]!"), span_velvet("You create [thing]"))

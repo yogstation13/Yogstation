@@ -127,11 +127,11 @@
 	shadow_flags = WARLOCK
 
 /datum/psi_web/psi_regen/on_gain()
-	darkspawn.psi_regen += 5
+	darkspawn.psi_per_second += 5
 	darkspawn.psi_regen_delay -= 3
 
 /datum/psi_web/psi_regen/on_loss()
-	darkspawn.psi_regen -= 5
+	darkspawn.psi_per_second -= 5
 	darkspawn.psi_regen_delay += 3
 
 //Increases healing in darkness by 25%.

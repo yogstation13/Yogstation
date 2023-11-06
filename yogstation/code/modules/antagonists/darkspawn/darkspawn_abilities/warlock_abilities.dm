@@ -126,6 +126,7 @@
 	var/upkeep_cost = 2 //happens 5 times a second
 	var/damage_amount = 2 //these also happens 5 times a second
 	var/actual_cooldown = 15 SECONDS //this only applies when the channel is broken
+	var/healing = FALSE
 
 /datum/action/cooldown/spell/pointed/extract/New()
 	..()
@@ -149,11 +150,17 @@
 	if(living_cast_on.stat == DEAD)
 		to_chat(owner, span_warning("[cast_on] is dead!"))
 		return FALSE
+	if(cast_on == owner)
+		to_chat(owner, span_warning("can't cast it on yourself!"))
+		return FALSE
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/extract/process()
 	if(channeled)
-		if(channeled.stat == DEAD || channeled.health >= channeled.maxHealth)
+		if(!healing && channeled.stat == DEAD)
+			cancel()
+			return
+		if(healing && channeled.health >= channeled.maxHealth)
 			cancel()
 			return
 		if(get_dist(owner, channeled) > cast_range)
@@ -162,7 +169,7 @@
 		if(cost && (!cost.use_psi(upkeep_cost)))
 			cancel()
 			return
-		if(is_darkspawn_or_veil(channeled))
+		if(healing)
 			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
 		else
 			channeled.apply_damage(damage_amount, BURN)
@@ -180,7 +187,8 @@
 	. = ..()
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on
-
+	healing = is_darkspawn_or_veil(channeled)
+	
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
 	if(visual)
 		qdel(visual)
