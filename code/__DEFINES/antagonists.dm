@@ -117,6 +117,7 @@
 #define PATH_VOID "Void"
 #define PATH_BLADE "Blade"
 #define PATH_COSMIC "Cosmic"
+#define PATH_KNOCK "Knock"
 
 #define TIER_NONE 0
 #define TIER_PATH 1

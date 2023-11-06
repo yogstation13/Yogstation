@@ -238,6 +238,8 @@
 	var/on = FALSE
 	var/time_on = 0
 	var/hasexerted = FALSE
+	var/list/hsv
+	var/last_step = 0
 	COOLDOWN_DECLARE(alertcooldown)
 	COOLDOWN_DECLARE(startsoundcooldown)
 	COOLDOWN_DECLARE(endsoundcooldown)
@@ -259,17 +261,23 @@
 			playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
 			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
 		if(syndicate_implant)//the toy doesn't do anything aside from the trail and the sound
-			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
+			if(ishuman(owner))
+				var/mob/living/carbon/human/human = owner
+				human.physiology.do_after_speed *= 0.7
+				human.physiology.crawl_speed -= 1
 			owner.next_move_modifier *= 0.7
-			owner?.dna?.species?.action_speed_coefficient *= 0.7
+			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
 		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
 			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
 		if(syndicate_implant)
+			if(ishuman(owner))
+				var/mob/living/carbon/human/human = owner
+				human.physiology.do_after_speed /= 0.7
+				human.physiology.crawl_speed += 1
 			owner.next_move_modifier /= 0.7
-			owner?.dna?.species?.action_speed_coefficient /= 0.7
 			owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	on = !on
@@ -289,30 +297,11 @@
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
 	var/turf/currentloc = get_turf(owner)
 	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
-	var/rvalue = 0
-	var/gvalue = 0
-	var/bvalue = 0
-	var/numcolors = (world.time * 32) % 1280
-	var/segment = numcolors / 256
-	var/specific_color = numcolors % 256 //works like any non-sine wave rainbow generator thing, google it
-	switch(segment)//transition isn't as precise as if i used sin() but this is far more efficient for runtime
-		if(0 to 1)
-			rvalue = 255
-			gvalue = specific_color
-		if(1 to 2)
-			rvalue = 255 - specific_color
-			gvalue = 255
-		if(2 to 3)
-			gvalue = 255
-			bvalue = specific_color
-		if(3 to 4)
-			gvalue = 255 - specific_color
-			bvalue = 255
-		if(4 to 5)
-			rvalue = specific_color
-			bvalue = 255 - specific_color
-	var/usedcolor = rgb(rvalue, gvalue, bvalue)
-	F.color = usedcolor	//gotta add the flair
+	if(!hsv)
+		hsv = RGBtoHSV(rgb(255, 0, 0))
+	hsv = RotateHue(hsv, world.time - last_step * 15)
+	last_step = world.time
+	F.color = HSVtoRGB(hsv)	//gotta add the flair
 
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
 	if(!syndicate_implant)//the toy doesn't have a drawback
@@ -334,7 +323,7 @@
 					to_chat(owner, span_userdanger("Your spine and brain feel like they're burning!"))
 					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 				hasexerted = TRUE
-				owner.set_drugginess(10)
+				owner.set_drugginess(2 SECONDS)
 				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(5)
 			if(100 to INFINITY)//no infinite abuse
