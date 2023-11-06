@@ -10,6 +10,7 @@
 #define VAULT_ARMOUR "Bone Reinforcement"
 #define VAULT_SPEED "Leg Muscle Stimulus"
 #define VAULT_QUICK "Arm Muscle Stimulus"
+#define VAULT_STRONG "Arm Muscle Reinforcement"
 
 /datum/station_goal/dna_vault
 	name = "DNA Vault"
@@ -188,7 +189,7 @@
 	if(user in power_lottery)
 		return
 	var/list/L = list()
-	var/list/possible_powers = list(VAULT_TOXIN,VAULT_SELFSUFFICIENT,VAULT_FIREPROOF,VAULT_STUNTIME,VAULT_ARMOUR,VAULT_SPEED,VAULT_QUICK)
+	var/list/possible_powers = list(VAULT_TOXIN,VAULT_SELFSUFFICIENT,VAULT_FIREPROOF,VAULT_STUNTIME,VAULT_ARMOUR,VAULT_SPEED,VAULT_QUICK,VAULT_STRONG)
 	L += pick_n_take(possible_powers)
 	L += pick_n_take(possible_powers)
 	power_lottery[user] = L
@@ -264,32 +265,45 @@
 				L.tox_breath_dam_min = 0
 				L.tox_breath_dam_max = 0
 			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
+			ADD_TRAIT(H, TRAIT_RADIMMUNE, "dna_vault")
 			P.tox_mod *= 0.2
-			H.dna.species.acidmod *= 0.2	//Remind me to move this to physiolgy later - Mqiib
+			P.acid_mod *= 0.2
 		if(VAULT_SELFSUFFICIENT)
 			to_chat(H, span_notice("You feel suddenly rejuvenated."))
 			ADD_TRAIT(H, TRAIT_NOBREATH, "dna_vault")
-			H.dna.species.species_traits += NOBLOOD	//This will definitely not create some strange interactions
+			P.bleed_mod *= 0						//rather than giving noblood, just make sure they can't bleed
 			P.oxy_mod *= 0							//To be triple hella sure
 			P.hunger_mod *= 0.1
 		if(VAULT_FIREPROOF)
 			to_chat(H, span_notice("You feel fireproof."))
 			P.burn_mod *= 0.5
+			P.pressure_mod *= 0.5 //for high pressure that comes with heat without ignoring it completely
 			ADD_TRAIT(H, TRAIT_RESISTHEAT, "dna_vault")
 			ADD_TRAIT(H, TRAIT_NOFIRE, "dna_vault")
 		if(VAULT_STUNTIME)
 			to_chat(H, span_notice("Nothing can keep you down for long."))
+			ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "dna_vault")
 			P.stun_mod *= 0.5
 			P.stamina_mod *= 0.5
 		if(VAULT_ARMOUR)
 			to_chat(H, span_notice("You feel tough."))
 			P.armor += 30
+			ADD_TRAIT(H, TRAIT_HARDLY_WOUNDED, "dna_vault")
 			ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, "dna_vault")
 		if(VAULT_SPEED)
 			to_chat(H, span_notice("Your legs feel faster."))
 			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-0.74, blacklisted_movetypes=(FLYING|FLOATING))
+			P.crawl_speed -= 2
 		if(VAULT_QUICK)
 			to_chat(H, span_notice("Your arms move as fast as lightning."))
-			H.next_move_modifier *= 0.5
+			H.next_move_modifier *= 0.65
+			P.do_after_speed *= 0.65
+		if(VAULT_STRONG)
+			to_chat(H, span_notice("Your feel like you could lift the world."))
+			ADD_TRAIT(H, TRAIT_QUICKEST_CARRY, "dna_vault")
+			ADD_TRAIT(H, TRAIT_STRONG_GRIP, "dna_vault")
+			P.punchdamagelow_bonus += 4
+			P.punchdamagehigh_bonus += 4
+			P.punchstunthreshold_bonus += 3 //bit better punch stuns
 	users[H] = TRUE
 	power_lottery[H] = list()

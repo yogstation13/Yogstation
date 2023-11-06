@@ -692,6 +692,7 @@
 
 	//DAMAGE//
 	var/damagemod = (dna && dna.species) ? dna.species.acidmod : 1 // yogs - Old Plant People
+	damagemod *= physiology.acid_mod
 	for(var/obj/item/bodypart/affecting in damaged)
 		affecting.receive_damage(acidity*damagemod, 2*acidity*damagemod)
 
