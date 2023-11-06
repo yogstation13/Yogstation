@@ -525,7 +525,7 @@
 
 	var/filtering_amount = moderator_scrubbing.len
 	for(var/gas_id in moderator_internal.get_gases() & moderator_scrubbing)
-		var/gas_removed = min(moderator_internal.get_moles(gas_id), (moderator_filtering_rate / filtering_amount) * delta_time)
+		var/gas_removed = min(moderator_internal.get_moles(gas_id), (moderator_filtering_rate / filtering_amount) / 2 * delta_time)
 		for(var/delta_id in delta_mod_removed_list)
 			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
 				delta_mod_removed_list[delta_id] -= gas_removed
