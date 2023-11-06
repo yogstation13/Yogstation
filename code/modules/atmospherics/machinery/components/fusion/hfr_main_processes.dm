@@ -5,7 +5,7 @@
  */
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/process(delta_time)
-	/*tmos
+	/*
 	 *Pre-checks
 	 */
 	//first check if the machine is active
