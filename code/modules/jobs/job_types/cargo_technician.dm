@@ -34,6 +34,8 @@
 		/obj/item/stack/sheet/mineral/diamond = 3,
 		/obj/item/gun/ballistic/rifle/boltaction = 1
 	)
+	
+	lightup_areas = list(/area/quartermaster/qm)
 
 	smells_like = "cardboard"
 

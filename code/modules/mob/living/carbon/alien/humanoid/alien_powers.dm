@@ -284,7 +284,7 @@ Doesn't work on other aliens/AI.*/
 		span_alertalien("You spit neurotoxin."),
 	)
 
-	var/obj/item/projectile/bullet/neurotoxin/neurotoxin = new /obj/item/projectile/bullet/neurotoxin(caller.loc)
+	var/obj/projectile/bullet/neurotoxin/neurotoxin = new /obj/projectile/bullet/neurotoxin(caller.loc)
 	neurotoxin.preparePixelProjectile(target, caller, params)
 	neurotoxin.firer = caller
 	neurotoxin.fire()

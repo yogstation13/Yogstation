@@ -997,7 +997,7 @@
 	glass_desc = "A soothing, mellow drink made from ginger."
 
 /datum/reagent/consumable/sol_dry/on_mob_life(mob/living/carbon/M)
-	M.adjust_disgust(-5)
+	M.adjust_disgust(-1)
 	..()
 
 /datum/reagent/consumable/red_queen
@@ -1100,3 +1100,20 @@
 		if(islizard(M))
 			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
 	return ..()
+
+/datum/reagent/consumable/cucumberjuice
+	name = "Cucumber Juice"
+	description = "Ordinary cucumber juice."
+	color = "#6cd87a" // rgb: 108, 216, 122
+	taste_description = "light cucumber"
+	glass_name = "glass of cucumber juice"
+	glass_desc = "A glass of cucumber juice."
+
+/datum/reagent/consumable/cucumberlemonade
+	name = "Cucumber Lemonade"
+	description = "Cucumber juice, sugar and soda, what else is needed for happiness?"
+	color = "#6cd87a"
+	taste_description = "citrus soda with cucumber"
+	glass_icon_state = "cucumber_lemonade"
+	glass_name = "cucumber lemonade"
+	glass_desc = "Lemonade, with added cucumber."

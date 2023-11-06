@@ -7,18 +7,30 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final)
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
 	route = PATH_FLESH
@@ -28,7 +40,7 @@
 
 /datum/eldritch_knowledge/base_flesh/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/flesh
+	var/obj/realknife = new /obj/item/melee/sickly_blade/flesh
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
@@ -36,32 +48,32 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_flesh/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-//	SIGNAL_HANDLER godammit
+//	SIGNAL_HANDLER so this one just sorta explodes if i uncomment it, no clue why
 
 	if(!ishuman(target) || target == source)
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/human/human_target = target
 
 	if(QDELETED(human_target) || human_target.stat != DEAD)
-		return
+		return 
 
 	human_target.grab_ghost()
 
 	if(!human_target.mind || !human_target.client)
 		to_chat(source, span_warning("There is no soul connected to this body..."))
-		return
+		return 
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
 		to_chat(source, span_warning("The body is too damaged to be revived this way!"))
-		return
+		return 
 
 	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
 		to_chat(source, span_warning("Their will cannot be malformed to obey your own!"))
-		return
+		return 
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
 		to_chat(source, span_warning("Your Oath cannot support more ghouls on this plane!"))
-		return
+		return 
 
 	LAZYADD(spooky_scaries, human_target)
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [source.real_name]")
@@ -87,7 +99,7 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/human_target = target
-	var/datum/status_effect/eldritch/eldritch_effect = human_target.has_status_effect(/datum/status_effect/eldritch/rust) || human_target.has_status_effect(/datum/status_effect/eldritch/ash) || human_target.has_status_effect(/datum/status_effect/eldritch/flesh) || human_target.has_status_effect(/datum/status_effect/eldritch/void)
+	var/datum/status_effect/eldritch/eldritch_effect = human_target.has_status_effect(/datum/status_effect/eldritch/rust) || human_target.has_status_effect(/datum/status_effect/eldritch/ash) || human_target.has_status_effect(/datum/status_effect/eldritch/flesh) || human_target.has_status_effect(/datum/status_effect/eldritch/void) || human_target.has_status_effect(/datum/status_effect/eldritch/cosmic)
 	if(eldritch_effect)
 		eldritch_effect.on_effect()
 		if(iscarbon(target))
@@ -110,7 +122,14 @@
 	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your flesh blade to detonate the mark, which causes significant bleeding on the target."
 	cost = 2
-	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/ash_mark,/datum/eldritch_knowledge/mind_mark,/datum/eldritch_knowledge/void_mark)
+	banned_knowledge = list(
+		/datum/eldritch_knowledge/rust_mark,
+		/datum/eldritch_knowledge/ash_mark,
+		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_FLESH
 	tier = TIER_MARK
 
@@ -154,7 +173,10 @@
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade)
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_FLESH
 	tier = TIER_BLADE
 

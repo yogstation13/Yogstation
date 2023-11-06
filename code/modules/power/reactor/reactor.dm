@@ -34,6 +34,7 @@
 	var/gas_absorption_effectiveness = 0.5
 	var/gas_absorption_constant = 0.5 //We refer to this one as it's set on init, randomized.
 	var/minimum_coolant_level = MINIMUM_MOLE_COUNT
+	var/integrity_restoration = 0
 	var/next_warning = 0 //To avoid spam.
 	var/last_power_produced = 0 //For logging purposes
 	var/next_flicker = 0 //Light flicker timer
@@ -347,6 +348,11 @@
 		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/tritium) * TRITIUM_RAD_MOD
 		radioactivity_spice_multiplier += moderator_input.get_moles(/datum/gas/antinoblium) * ANTINOBLIUM_RAD_MOD
 
+		// Integrity modification
+		var/healium_moles = moderator_input.get_moles(/datum/gas/healium)
+		if(healium_moles > minimum_coolant_level)
+			integrity_restoration = max((2400-max(TCMB, temperature))/300) * delta_time //At 1800K integrity_restoration should be around 1, which then it cant keep up with the heat damage (around 1.1 maximum in temp_damage) to restore integrity
+
 		// Degradation types: degrades the fuel rods
 		var/total_degradation_moles = moderator_input.get_moles(/datum/gas/pluonium) //Because it's quite hard to get.
 		if(total_degradation_moles >= minimum_coolant_level) //I'll be nice.
@@ -493,6 +499,10 @@
 		color = COLOR_CYAN
 	else
 		color = null
+
+	vessel_integrity += integrity_restoration
+	if(vessel_integrity > initial(vessel_integrity)) //hey you cant go above
+		vessel_integrity = initial(vessel_integrity)
 	
 	//Second alert condition: Overpressurized (the more lethal one)
 	if(pressure >= REACTOR_PRESSURE_CRITICAL)
@@ -596,7 +606,7 @@
 	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 	meltdown() //Double kill.
 	relay('sound/effects/reactor/explode.ogg')
-	SSweather.run_weather("nuclear fallout")
+	SSweather.run_weather("nuclear fallout", src.z)
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
@@ -954,7 +964,6 @@
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
 	/area/ai_monitored/turret_protected/ai, /area/shuttle)
-	target_trait = ZTRAIT_STATION
 	end_message = "<span class='notice'>The ash stops falling.</span>"
 	immunity_type = "rad"
 
@@ -1036,6 +1045,9 @@
 	- Hyper-Noblium: Extremely efficient permeability increase (10x as efficient as bz)<BR>\
 	Depletion types:<BR>\
 	- Pluonium: When you need weapons grade plutonium yesterday. Causes your fuel to deplete much, much faster. Not a huge amount of use outside of plutonium production or sabotage.<BR>\
+	- Healium: Can restore integrity if below 1800 Kelvin. The restoration rate is depended on the temperature, the lower the temperature the faster it is to restore integrity.<BR>\
+	<BR><B>Coolant effects</B><BR>\
+	- High heat capacity gases like water vapor and plasma are better coolants as they can transfer more heat per mole. The inverse is true for low heat capacity gases like tritium and antinoblium.<BR>\
 	<BR><B>OH GOD IT'S SCREAMING AT ME WHAT DO I DO</B><BR>\
 	Don't panic! There's a few things you can do to prevent the station from becoming an irradiated hellscape.<BR>\
 	Scenario 1: Overheating<BR>\

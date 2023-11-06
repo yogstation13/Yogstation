@@ -93,6 +93,8 @@
 	var/tame = 0
 
 	var/my_z // I don't want to confuse this with client registered_z
+	///What kind of footstep this mob should have. Null if it shouldn't have any.
+	var/footstep_type
 
 	var/do_footstep = FALSE
 
@@ -125,6 +127,8 @@
 		AddComponent(/datum/component/personal_crafting)
 	if(music_component && music_path)
 		AddComponent(music_component, music_path)
+	if(footstep_type)
+		AddElement(/datum/element/footstep, footstep_type)
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src
@@ -145,10 +149,6 @@
 	. = ..()
 	if(stat == DEAD)
 		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
-
-/mob/living/simple_animal/initialize_footstep()
-	if(do_footstep)
-		..()
 
 /mob/living/simple_animal/updatehealth()
 	..()
@@ -368,9 +368,6 @@
 		if(SP.pilot || SP.passengers.len)
 			return FALSE
 	// yogs end
-	return TRUE
-
-/mob/living/simple_animal/handle_fire()
 	return TRUE
 
 /mob/living/simple_animal/ignite_mob()

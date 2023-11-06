@@ -34,7 +34,7 @@
 /datum/action/cooldown/spell/touch/envy/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
 	if(!istype(target))
 		return FALSE
-	if(target.anti_magic_check())
+	if(target.can_block_magic())
 		to_chat(caster, span_warning("[target] resists your unholy jealousy!"))
 		to_chat(target, span_warning("A creeping feeling of jealousy dances around your mind before being suddenly dispelled."))
 		return FALSE

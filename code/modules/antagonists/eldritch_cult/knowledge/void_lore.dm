@@ -7,18 +7,26 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_flesh,
 		/datum/eldritch_knowledge/base_mind,
+		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final)
+		/datum/eldritch_knowledge/mind_final,
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_knife)
 	cost = 1
 	route = PATH_VOID
@@ -26,7 +34,7 @@
 
 /datum/eldritch_knowledge/base_void/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/void
+	var/obj/realknife = new /obj/item/melee/sickly_blade/void
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
@@ -34,10 +42,10 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_void/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-//	SIGNAL_HANDLER
+	SIGNAL_HANDLER
 
 	if(!iscarbon(target))
-		return
+		return COMPONENT_BLOCK_HAND_USE
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.adjust_silence(10 SECONDS)
 	carbon_target.apply_status_effect(/datum/status_effect/void_chill)
@@ -46,7 +54,7 @@
 	. = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh) || H.has_status_effect(/datum/status_effect/eldritch/void)
+		var/datum/status_effect/eldritch/E = H.has_status_effect(/datum/status_effect/eldritch/rust) || H.has_status_effect(/datum/status_effect/eldritch/ash) || H.has_status_effect(/datum/status_effect/eldritch/flesh) || H.has_status_effect(/datum/status_effect/eldritch/void) || H.has_status_effect(/datum/status_effect/eldritch/cosmic)
 		if(E)
 			E.on_effect()
 			H.adjust_silence(10)
@@ -61,8 +69,7 @@
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
 	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/mental_obfuscation, 
-		/datum/eldritch_knowledge/spell/ashen_shift)
+		/datum/eldritch_knowledge/spell/mental_obfuscation)
 	route = PATH_VOID
 	tier = TIER_1
 
@@ -86,7 +93,9 @@
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark)
+		/datum/eldritch_knowledge/mind_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark)
 	route = PATH_VOID
 	tier = TIER_MARK
 
@@ -141,7 +150,9 @@
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade)
+		/datum/eldritch_knowledge/mind_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade)
 	route = PATH_VOID
 	tier = TIER_BLADE
 

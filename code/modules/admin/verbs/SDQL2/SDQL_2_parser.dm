@@ -477,9 +477,11 @@
 			// And these 3 lines prevent it from happening while being quiet.
 			// So.. it works.
 			// Don't touch it.
-			var/whatthefuck = i
-			whatthefuck = src.type
-			whatthefuck = whatthefuck
+			// Looks like the bug got fixed, it works commented out now
+			// If it breaks again, try uncommenting
+			// var/whatthefuck = i
+			// whatthefuck = src.type
+			// whatthefuck = whatthefuck
 
 		while(token(i) && token(i) != "]")
 

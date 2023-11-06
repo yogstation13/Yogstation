@@ -96,7 +96,7 @@
  */
 /datum/action/cooldown/spell/pointed/projectile
 	/// What projectile we create when we shoot our spell.
-	var/obj/item/projectile/magic/projectile_type = /obj/item/projectile/magic/teleport
+	var/obj/projectile/magic/projectile_type = /obj/projectile/magic/teleport
 	/// How many projectiles we can fire per cast. Not all at once, per click, kinda like charges
 	var/projectile_amount = 1
 	/// How many projectiles we have yet to fire, based on projectile_amount
@@ -153,20 +153,20 @@
 /datum/action/cooldown/spell/pointed/projectile/proc/fire_projectile(atom/target)
 	current_amount--
 	for(var/i in 1 to projectiles_per_fire)
-		var/obj/item/projectile/to_fire = new projectile_type()
+		var/obj/projectile/to_fire = new projectile_type()
 		ready_projectile(to_fire, target, owner, i)
 		SEND_SIGNAL(owner, COMSIG_MOB_SPELL_PROJECTILE, src, target, to_fire)
 		to_fire.fire()
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/projectile/proc/ready_projectile(obj/item/projectile/to_fire, atom/target, mob/user, iteration)
+/datum/action/cooldown/spell/pointed/projectile/proc/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
 	to_fire.firer = owner
 	to_fire.fired_from = get_turf(owner)
 	to_fire.preparePixelProjectile(target, owner)
 	RegisterSignal(to_fire, COMSIG_PROJECTILE_SELF_ON_HIT, PROC_REF(on_cast_hit))
 
-	if(istype(to_fire, /obj/item/projectile/magic))
-		var/obj/item/projectile/magic/magic_to_fire = to_fire
+	if(istype(to_fire, /obj/projectile/magic))
+		var/obj/projectile/magic/magic_to_fire = to_fire
 		magic_to_fire.antimagic_flags = antimagic_flags
 
 /// Signal proc for whenever the projectile we fire hits someone.

@@ -38,6 +38,8 @@
 		/obj/item/clothing/suit/space/hardsuit/engine = 1
 	)
 
+	lightup_areas = list(/area/engine/atmos)
+	
 	smells_like = "welding fuel"
 
 GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))

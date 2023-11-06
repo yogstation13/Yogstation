@@ -10,7 +10,7 @@
 	/// How far we try to fire the basic projectile. Blocked by dense objects.
 	var/projectile_range = 7
 	/// The projectile type fired at all people around us
-	var/obj/item/projectile/projectile_type = /obj/item/projectile/magic/aoe/magic_missile
+	var/obj/projectile/projectile_type = /obj/projectile/magic/aoe/magic_missile
 
 /datum/action/cooldown/spell/basic_projectile/cast(atom/cast_on)
 	. = ..()
@@ -24,6 +24,6 @@
 	fire_projectile(target_turf, cast_on)
 
 /datum/action/cooldown/spell/basic_projectile/proc/fire_projectile(atom/target, atom/caster)
-	var/obj/item/projectile/to_fire = new projectile_type()
+	var/obj/projectile/to_fire = new projectile_type()
 	to_fire.preparePixelProjectile(target, caster)
 	to_fire.fire()

@@ -4,7 +4,7 @@
 	quality = POSITIVE
 	difficulty = 16
 	locked = TRUE
-	text_gain_indication = span_notice("Your feel your arteries cloying!")
+	text_gain_indication = span_notice("You feel your arteries cloying!")
 	instability = 20
 	/// The bloodiest wound that the patient has will have its blood_flow reduced by this much each tick
 	var/clot_rate = 0.2

@@ -193,6 +193,44 @@
 	icon_state = "artist"
 	custom_price = 10
 
+/obj/item/clothing/neck/anti_magic_collar
+	name = "anti-magic collar"
+	desc = "A tight collar used on prisoners to restrict their use of magic, while leaving them vulnerable to it's effects"
+	icon_state = "antimagiccollar"
+	resistance_flags = FIRE_PROOF
+	var/inmate_name = "none"
+
+/obj/item/clothing/neck/anti_magic_collar/Initialize(mapload)
+	..()
+	GLOB.tracked_collars += src
+
+/obj/item/clothing/neck/anti_magic_collar/Destroy()
+	. = ..()
+	GLOB.tracked_collars -= src
+
+/obj/item/clothing/neck/anti_magic_collar/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if((slot & slot_flags))
+		to_chat(user, span_danger("You hear the collar click as it locks around your neck!"))
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+		RegisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC, PROC_REF(restrict_casting_magic))
+		inmate_name = user.name
+		return
+	
+/obj/item/clothing/neck/anti_magic_collar/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_RESTRICT_MAGIC)
+	inmate_name = "none"
+
+///Prevents any magic from being used by the user.
+/obj/item/clothing/neck/anti_magic_collar/proc/restrict_casting_magic(mob/user, magic_flags)
+	SIGNAL_HANDLER
+	return COMPONENT_MAGIC_BLOCKED
+
+/obj/item/clothing/neck/anti_magic_collar/proc/unlock()
+	audible_message(span_danger("You hear a click, the collar unlocks!"))
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+
 //////////////
 //DOPE BLING//
 //////////////
@@ -445,7 +483,7 @@
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 
 /obj/item/clothing/neck/cloak/ranger/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(dodge(owner, hitby, attack_text))
+	if(!isprojectile(hitby) && dodge(owner, hitby, attack_text))
 		return TRUE
 	return ..()
 
@@ -453,7 +491,8 @@
 	if(update_signals(user))
 		set_cloak(cloak - cloak_move_loss)
 
-/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/item/projectile/P, def_zone)
+/obj/item/clothing/neck/cloak/ranger/proc/on_projectile_hit(mob/living/carbon/human/user, obj/projectile/P, def_zone)
+	SIGNAL_HANDLER
 	if(dodge(user, P, "[P]"))
 		return BULLET_ACT_FORCE_PIERCE
 
