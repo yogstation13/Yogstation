@@ -470,10 +470,7 @@
 		// Everyone else
 		var/dist = sqrt(1 / max(1, get_dist(near, location)))
 		near.adjust_hallucinations(max(150, strength * dist))
-		near.adjust_jitter(10 SECONDS)
-		near.adjust_confusion(10 SECONDS)
-		near.adjust_dizzy(10 SECONDS)
-		near.adjust_drowsiness(10 SECONDS)
+		near.adjust_timed_status_effect(3 MINUTES, /datum/status_effect/demonic_hallcuination)
 		var/static/list/messages = list(
 			"You feel your conscious mind fall apart!",
 			"Reality warps around you!",

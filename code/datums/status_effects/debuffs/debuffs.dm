@@ -334,6 +334,49 @@
 /datum/status_effect/pacify/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 
+/datum/status_effect/demonic_hallcuination
+	id = "demonic_hallcuination"
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 1
+	duration = 3 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/demonic_hallcuination
+	var/datum/brain_trauma/hypnosis/hypo
+	var/datum/brain_trauma/magic/stalker/stalk
+	var/datum/brain_trauma/magic/poltergeist/pol
+
+/atom/movable/screen/alert/status_effect/demonic_hallcuination
+	name = "Demonic hallcuination"
+	desc = "Strange hallucination has affected you, and you feel something is coming."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "curseblob"
+
+/datum/status_effect/demonic_hallcuination/on_creation(mob/living/new_owner, set_duration)
+	if(isnum(set_duration))
+		duration = set_duration
+	. = ..()
+
+/datum/status_effect/demonic_hallcuination/on_apply()
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon = owner
+		if(!carbon.has_trauma_type(hypo))
+			hypo = new()
+			hypo.hypnotic_phrase = "RUN!"
+			carbon.gain_trauma(hypo, TRAUMA_RESILIENCE_ABSOLUTE)
+		if(!carbon.has_trauma_type(stalk))
+			stalk = new()
+			carbon.gain_trauma(stalk, TRAUMA_RESILIENCE_ABSOLUTE)
+		if(!carbon.has_trauma_type(pol))
+			pol = new()
+			carbon.gain_trauma(pol, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/datum/status_effect/demonic_hallcuination/on_remove()
+	if(hypo)
+		QDEL_NULL(hypo)
+	if(pol)
+		QDEL_NULL(pol)
+	if(stalk)
+		QDEL_NULL(stalk)
+
 /datum/status_effect/his_wrath //does minor damage over time unless holding His Grace
 	id = "his_wrath"
 	duration = -1
