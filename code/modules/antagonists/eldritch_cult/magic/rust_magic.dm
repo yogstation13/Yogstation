@@ -4,6 +4,39 @@ RUST PATH SPELLS GO HERE
 
 */
 
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/rust
+	name = "Decaying Phase"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "curse"
+	sound = null
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	exit_jaunt_sound = null
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/rust_shift
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/rust_shift/out
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/rust/do_steam_effects()
+	return
+
+/obj/effect/temp_visual/dir_setting/rust_shift
+	name = "rust_shift"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "curse"
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/dir_setting/rust_shift/out
+	icon_state = "curse"
+
 /datum/action/cooldown/spell/aoe/rust_conversion
 	name = "Aggressive Spread"
 	desc = "Spread rust onto nearby turfs, possibly destroying rusted walls."

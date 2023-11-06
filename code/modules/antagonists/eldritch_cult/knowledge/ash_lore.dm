@@ -40,9 +40,17 @@
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.physiology.heat_mod *= 0.6
+		H.physiology.heat_mod *= 0.4
+		H.physiology.burn_mod *= 0.8
 	var/obj/realknife = new /obj/item/melee/sickly_blade/ash
 	user.put_in_hands(realknife)
+	///use is if you want to swap out a spell they get upon becoming their certain type of heretic
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/ash_jaunt = new(user)
+	ash_jaunt.Grant(user)
+
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/base_ash/on_lose(mob/user)

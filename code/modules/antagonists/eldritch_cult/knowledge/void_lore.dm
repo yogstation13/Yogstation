@@ -41,6 +41,15 @@
 	var/obj/realknife = new /obj/item/melee/sickly_blade/void
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	ADD_TRAIT(user, TRAIT_RESISTCOLD, INNATE_TRAIT)
+	ADD_TRAIT(user, TRAIT_NOSLIPICE, INNATE_TRAIT)
+	
+
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void/void_jaunt = new(user)
+	void_jaunt.Grant(user)
 
 /datum/eldritch_knowledge/base_void/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
@@ -64,18 +73,30 @@
 			H.adjust_silence(10)
 			H.adjust_bodytemperature(-10)
 
-/datum/eldritch_knowledge/spell/void_phase
-	name = "T1 - Void Phase"
-	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
-		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
-	desc = "Grants you Void Phase, a long range targeted teleport spell. \
-		Additionally causes damage to heathens around your original and target destination."
+/datum/eldritch_knowledge/rune_carver
+	name = "T1 - Carving Knife"
+	desc = "Allows you to transmute a knife, a shard of glass, and a piece of paper to create a Carving Knife. \
+		The Carving Knife allows you to etch difficult to see traps that trigger on heathens who walk overhead. \
+		Also makes for a handy throwing weapon."
+	gain_text = "Etched, carved... eternal. There is power hidden in everything. I can unveil it! \
+		I can carve the monolith to reveal the chains!"
+	unlocked_transmutations = list(/datum/eldritch_transmutation/rune_carver)
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/mental_obfuscation)
 	route = PATH_VOID
 	tier = TIER_1
+
+// /datum/eldritch_knowledge/spell/void_phase
+// 	name = "T1 - Void Phase"
+// 	gain_text = "The entity calls themself the Aristocrat. They effortlessly walk through air like \
+// 		nothing - leaving a harsh, cold breeze in their wake. They disappear, and I am left in the blizzard."
+// 	desc = "Grants you Void Phase, a long range targeted teleport spell. \
+// 		Additionally causes damage to heathens around your original and target destination."
+// 	cost = 1
+// 	spell_to_add = /datum/action/cooldown/spell/pointed/void_phase
+// 	banned_knowledge = list(
+// 		/datum/eldritch_knowledge/spell/mental_obfuscation)
+// 	route = PATH_VOID
+// 	tier = TIER_1
 
 /datum/eldritch_knowledge/void_cloak
 	name = "T1 - Void Cloak"
@@ -128,17 +149,6 @@
 	route = PATH_VOID
 	tier = TIER_2
 	
-/datum/eldritch_knowledge/rune_carver
-	name = "T2 - Carving Knife"
-	desc = "Allows you to transmute a knife, a shard of glass, and a piece of paper to create a Carving Knife. \
-		The Carving Knife allows you to etch difficult to see traps that trigger on heathens who walk overhead. \
-		Also makes for a handy throwing weapon."
-	gain_text = "Etched, carved... eternal. There is power hidden in everything. I can unveil it! \
-		I can carve the monolith to reveal the chains!"
-	unlocked_transmutations = list(/datum/eldritch_transmutation/rune_carver)
-	cost = 1
-	tier = TIER_2
-
 /datum/eldritch_knowledge/cold_snap/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	user.add_traits(list(TRAIT_NOBREATH, TRAIT_RESISTCOLD, TRAIT_NOSLIPICE), type)

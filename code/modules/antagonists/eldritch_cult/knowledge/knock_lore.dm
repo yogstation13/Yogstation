@@ -45,6 +45,13 @@
 	var/obj/realknife = new /obj/item/melee/sickly_blade/knock
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	ADD_TRAIT(user, TRAIT_QUICKEST_CARRY, INNATE_TRAIT)
+	
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/knock/knock_jaunt = new(user)
+	knock_jaunt.Grant(user)
 
 /datum/eldritch_knowledge/base_ash/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)

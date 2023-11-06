@@ -54,6 +54,15 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/melee/sickly_blade/dark
 	user.put_in_hands(realknife)
+
+	///use is if you want to swap out a spell they get upon becoming their certain type of heretic
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/blade/blade_jaunt = new(user)
+	blade_jaunt.Grant(user)
+
+	ADD_TRAIT(user, TRAIT_SILENT_FOOTSTEPS, INNATE_TRAIT)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/base_blade/on_lose(mob/user)
@@ -61,7 +70,6 @@
 
 /datum/eldritch_knowledge/base_blade/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
-
 
 	if(!isliving(target))
 		return COMPONENT_BLOCK_HAND_USE
