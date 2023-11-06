@@ -636,7 +636,7 @@
 /obj/item/crusher_trophy/jungleland/mosquito_sack/after_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/hammer_synced,damage_dealt)
 	user.adjustBruteLoss(-0.1 * damage_dealt)
 	user.adjustFireLoss(-0.1 * damage_dealt)
-	user.adjustToxLoss(-0.1 * damage_dealt)
+	user.adjustToxLoss(-0.1 * damage_dealt) 
 	
 /obj/item/crusher_trophy/jungleland/wasp_head
 	name = "Matriarch wasp's head"
