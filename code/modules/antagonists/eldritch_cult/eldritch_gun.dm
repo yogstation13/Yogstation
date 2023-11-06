@@ -9,21 +9,18 @@
 	desc = "An antique looking rifle that looks immaculate despite being clearly very old."
 	slot_flags = ITEM_SLOT_BACK
 	icon_state = "lionhunter"
-	inhand_icon_state = "lionhunter"
-	worn_icon_state = "lionhunter"
-	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
-	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
-
-	SET_BASE_PIXEL(-8, 0)
-
-/obj/item/gun/ballistic/rifle/lionhunter/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/scope, range_modifier = 3.2)
+	item_state = "lionhunter"
+	internal_magazine = TRUE
+	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
+	fire_sound = "sound/weapons/sniper_shot.ogg"
+	zoomable = TRUE
+	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
+	zoom_out_amt = 5
 
 /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
 	name = "lionhunter rifle internal magazine"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter
-	caliber = CALIBER_STRILKA310
+	caliber = "CALIBER_STRILKA310"
 	max_ammo = 3
 	multiload = TRUE
 
@@ -37,7 +34,7 @@
 	var/min_distance = 4
 
 /obj/item/ammo_casing/strilka310/lionhunter/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
-	if(!loaded_projectile)
+	if(!BB)
 		return
 	if(!check_fire(target, user))
 		return
@@ -64,7 +61,7 @@
 		return TRUE
 
 	user.balloon_alert(user, "taking aim...")
-	user.playsound_local(get_turf(user), 'sound/weapons/gun/general/chunkyrack.ogg', 100, TRUE)
+	user.playsound_local(get_turf(user), 'sound/weapons/chunkyrack.ogg', 100, TRUE)
 
 	var/image/reticle = image(
 		icon = 'icons/mob/actions/actions_items.dmi',
@@ -106,7 +103,7 @@
 	return TRUE
 
 /obj/item/ammo_casing/strilka310/lionhunter/ready_proj(atom/target, mob/living/user, quiet, zone_override, atom/fired_from)
-	if(!loaded_projectile)
+	if(!BB)
 		return
 
 	var/distance = get_dist(user, target)
@@ -115,15 +112,15 @@
 	// BUT, if we're at a decent range and the target's a living mob,
 	// the projectile's been channel fired. It has full effects and homes in.
 	if(distance > min_distance && isliving(target) && iscarbon(user))
-		loaded_projectile.damage *= 2
-		loaded_projectile.stamina *= 2
-		loaded_projectile.knockdown = 0.5 SECONDS
-		loaded_projectile.stutter = 6 SECONDS
-		loaded_projectile.projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
+		BB.damage *= 2
+		BB.stamina *= 2
+		BB.knockdown = 0.5 SECONDS
+		BB.stutter = 6 SECONDS
+		BB.projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOORS
 
-		loaded_projectile.homing = TRUE
-		loaded_projectile.homing_turn_speed = 80
-		loaded_projectile.set_homing_target(target)
+		BB.homing = TRUE
+		BB.homing_turn_speed = 80
+		BB.set_homing_target(target)
 
 	return ..()
 
@@ -133,7 +130,7 @@
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 30
 	stamina = 30
-	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
+	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOORS
 
 // Extra ammunition can be made with a heretic ritual.
 /obj/item/ammo_box/strilka310/lionhunter
