@@ -287,17 +287,17 @@
 			P.stamina_mod *= 0.5
 		if(VAULT_ARMOUR)
 			to_chat(H, span_notice("You feel tough."))
-			P.armor += 30
+			P.armor += 20
 			ADD_TRAIT(H, TRAIT_HARDLY_WOUNDED, "dna_vault")
 			ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, "dna_vault")
 		if(VAULT_SPEED)
 			to_chat(H, span_notice("Your legs feel faster."))
-			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-0.74, blacklisted_movetypes=(FLYING|FLOATING))
+			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
 			P.crawl_speed -= 2
 		if(VAULT_QUICK)
 			to_chat(H, span_notice("Your arms move as fast as lightning."))
-			H.next_move_modifier *= 0.5
-			P.do_after_speed *= 0.5
+			H.next_move_modifier *= 0.7
+			P.do_after_speed *= 0.7
 		if(VAULT_STRONG)
 			to_chat(H, span_notice("You feel like you could lift the world."))
 			ADD_TRAIT(H, TRAIT_QUICKEST_CARRY, "dna_vault")
