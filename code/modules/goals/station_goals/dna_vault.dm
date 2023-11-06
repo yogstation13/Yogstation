@@ -296,8 +296,8 @@
 			P.crawl_speed -= 2
 		if(VAULT_QUICK)
 			to_chat(H, span_notice("Your arms move as fast as lightning."))
-			H.next_move_modifier *= 0.65
-			P.do_after_speed *= 0.65
+			H.next_move_modifier *= 0.5
+			P.do_after_speed *= 0.5
 		if(VAULT_STRONG)
 			to_chat(H, span_notice("Your feel like you could lift the world."))
 			ADD_TRAIT(H, TRAIT_QUICKEST_CARRY, "dna_vault")
