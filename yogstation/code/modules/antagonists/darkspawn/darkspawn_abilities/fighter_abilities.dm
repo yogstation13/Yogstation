@@ -364,7 +364,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/aoe/taunt
 	name = "Taunt"
-	desc = "taunt everyone."
+	desc = "taunt everyone but disables attacking for a time."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -382,7 +382,7 @@
 	. = ..()
 	if(isliving(owner))
 		var/mob/living/target = owner
-		target.SetStun(5000 SECONDS, TRUE, TRUE)
+		target.SetDaze(5000 SECONDS, TRUE, TRUE)
 		ADD_TRAIT(target, TRAIT_PUSHIMMUNE, type)
 		target.move_resist = INFINITY
 		addtimer(CALLBACK(src, PROC_REF(unlock), target), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -390,7 +390,7 @@
 /datum/action/cooldown/spell/aoe/taunt/proc/unlock(mob/living/target)
 	REMOVE_TRAIT(target, TRAIT_PUSHIMMUNE, type)
 	target.move_resist = initial(target.move_resist)
-	target.SetStun(0, TRUE, TRUE)
+	target.SetDaze(0, TRUE, TRUE)
 
 /datum/action/cooldown/spell/aoe/taunt/cast_on_thing_in_aoe(atom/victim, atom/caster)
 	if(!isliving(victim) || !can_see(caster, victim))

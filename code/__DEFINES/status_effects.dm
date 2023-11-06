@@ -82,6 +82,8 @@
 
 #define STATUS_EFFECT_PARALYZED /datum/status_effect/incapacitating/paralyzed //the affected is unable to move, use items, or stand up.
 
+#define STATUS_EFFECT_DAZED /datum/status_effect/incapacitating/dazed //the affected is unable use items but can otherwise do everything else
+
 #define STATUS_EFFECT_UNCONSCIOUS /datum/status_effect/incapacitating/unconscious //the affected is unconscious
 
 #define STATUS_EFFECT_SLEEPING /datum/status_effect/incapacitating/sleeping //the affected is asleep
