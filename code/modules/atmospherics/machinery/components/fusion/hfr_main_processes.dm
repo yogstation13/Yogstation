@@ -511,7 +511,7 @@
 		return
 
 	for(var/gas_id in internal_fusion.get_gases())
-		var/gas_removed = min(internal_fusion.get_moles(gas_id), fuel_filtering_rate/2 * delta_time)
+		var/gas_removed = min(internal_fusion.get_moles(gas_id), fuel_filtering_rate * delta_time)
 		for(var/delta_id in delta_fuel_removed_list)
 			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
 				delta_fuel_removed_list[delta_id] -= gas_removed
@@ -525,7 +525,7 @@
 
 	var/filtering_amount = moderator_scrubbing.len
 	for(var/gas_id in moderator_internal.get_gases() & moderator_scrubbing)
-		var/gas_removed = min(moderator_internal.get_moles(gas_id), (moderator_filtering_rate / filtering_amount) / 2 * delta_time)
+		var/gas_removed = min(moderator_internal.get_moles(gas_id), (moderator_filtering_rate / filtering_amount) * delta_time)
 		for(var/delta_id in delta_mod_removed_list)
 			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
 				delta_mod_removed_list[delta_id] -= gas_removed
@@ -575,7 +575,7 @@
 	//Check and stores the gases from the moderator input in the moderator internal gasmix
 	var/datum/gas_mixture/moderator_port = linked_moderator.airs[1]
 	if(start_moderator && moderator_port.total_moles())
-		moderator_internal.merge(moderator_port.remove(moderator_injection_rate / 2 * delta_time))
+		moderator_internal.merge(moderator_port.remove(moderator_injection_rat * delta_time))
 		linked_moderator.update_parents()
 
 	//Check if the fuels are present and move them inside the fuel internal gasmix
