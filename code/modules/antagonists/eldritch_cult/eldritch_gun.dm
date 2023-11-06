@@ -8,9 +8,9 @@
 	name = "\improper Lionhunter's Rifle"
 	desc = "An antique looking rifle that looks immaculate despite being clearly very old."
 	slot_flags = ITEM_SLOT_BACK
+	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "lionhunter"
 	item_state = "lionhunter"
-	internal_magazine = TRUE
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
 	fire_sound = "sound/weapons/sniper_shot.ogg"
 	zoomable = TRUE
@@ -22,7 +22,7 @@
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter
 	caliber = "CALIBER_STRILKA310"
 	max_ammo = 3
-	multiload = TRUE
+	multiload = 1
 
 /obj/item/ammo_casing/strilka310/lionhunter
 	projectile_type = /obj/projectile/bullet/strilka310/lionhunter
@@ -130,7 +130,8 @@
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 30
 	stamina = 30
-	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOORS
+	penetration_type = 2
+	penetrating = TRUE
 
 // Extra ammunition can be made with a heretic ritual.
 /obj/item/ammo_box/strilka310/lionhunter
