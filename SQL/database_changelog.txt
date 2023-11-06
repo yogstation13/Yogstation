@@ -8,7 +8,7 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 14);
 
 In any query remember to add a prefix to the table names if you use one.
 
-version 5.15 2023-11-03
+version 5.14 2023-11-03
 Adds achievements & achievement_metadata to keep track of achievements players collected.
 Ported from the work of Anturke
 
@@ -28,7 +28,7 @@ CREATE TABLE `achievements` (
 	PRIMARY KEY (`ckey`,`achievement_key`)
 ) ENGINE=InnoDB;
 
-version 5.14 2023-05-10
+version 5.13 2023-05-10
 Adds allow_vpn to bound credentials flags
 
 ALTER TABLE `bound_credentials` MODIFY COLUMN flags set('bypass_bans','allow_proxies') DEFAULT NULL NULL;
