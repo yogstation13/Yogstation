@@ -240,13 +240,16 @@
 	var/fuel_consumption = reaction_rate * 0.85 * selected_fuel.fuel_consumption_multiplier
 	var/scaled_production = reaction_rate * selected_fuel.gas_production_multiplier
 
-	for(var/datum/gas/gas_id in fuel.requirements)
+	for(var/gas_id in fuel.requirements)
 		var/remove_amount = min(fuel_list[gas_id], fuel_consumption)
 		internal_fusion.adjust_moles(gas_id, -remove_amount)
-		for(var/id in delta_fuel_removed_list)
-			if(gas_id.id == id)
-				delta_fuel_removed_list[id] = -remove_amount
+		for(var/delta_id in delta_fuel_removed_list)
+			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
+				delta_fuel_removed_list[delta_id] = -remove_amount
 	for(var/gas_id in fuel.primary_products)
+		for(var/delta_id in delta_fuel_removed_list)
+			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
+				delta_fuel_removed_list[delta_id] = 0
 		internal_fusion.adjust_moles(gas_id, fuel_consumption * 0.5)
 
 	if(power_level < 1)
@@ -269,6 +272,8 @@
  * - Committing staged output, performing filtering, and making !FUN! emissions
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/moderator_common_process(delta_time, scaled_production, datum/gas_mixture/internal_output, moderator_list, dirty_production_rate, heat_output, radiation_modifier)
+	for(var/delta_id in delta_mod_removed_list)
+		delta_mod_removed_list[delta_id] = 0
 	switch(power_level)
 		if(1)
 			if(moderator_list[/datum/gas/plasma] > 100)
@@ -412,8 +417,8 @@
 	// All gases in the moderator slowly burn away over time, whether used for production or not
 	if(moderator_internal.total_moles() > 0)
 		var/remove_amount = moderator_internal.total_moles() * (1 - (1 - 0.0005 * power_level) ** delta_time)
-		for(var/datum/gas/delta_gas in delta_mod_removed_list)
-			delta_mod_removed_list[delta_gas.id] -= remove_amount * moderator_internal.get_moles(delta_gas) / moderator_internal.total_moles()
+		for(var/delta_id in delta_mod_removed_list)
+			delta_mod_removed_list[delta_id] -= remove_amount * moderator_internal.get_moles(gas_id2path(delta_id)) / moderator_internal.total_moles()
 		moderator_internal.remove(remove_amount)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/process_damageheal(delta_time)
@@ -505,13 +510,13 @@
 	if(!fuel_remove)
 		return
 
-	for(var/datum/gas/gas in internal_fusion.get_gases())
-		var/gas_removed = min(internal_fusion.get_moles(gas), fuel_filtering_rate/2 * delta_time)
-		for(var/id in delta_fuel_removed_list)
-			if(gas.id == id)
-				delta_fuel_removed_list[id] -= gas_removed
-		internal_fusion.adjust_moles(gas, -gas_removed)
-		linked_output.airs[1].adjust_moles(gas, gas_removed)
+	for(var/gas_id in internal_fusion.get_gases())
+		var/gas_removed = min(internal_fusion.get_moles(gas_id), fuel_filtering_rate/2 * delta_time)
+		for(var/delta_id in delta_fuel_removed_list)
+			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
+				delta_fuel_removed_list[delta_id] -= gas_removed
+		internal_fusion.adjust_moles(gas_id, -gas_removed)
+		linked_output.airs[1].adjust_moles(gas_id, gas_removed)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/remove_waste(delta_time)
 	//Gases can be removed from the moderator internal by using the interface.
@@ -519,22 +524,22 @@
 		return
 
 	var/filtering_amount = moderator_scrubbing.len
-	for(var/datum/gas/gas in moderator_internal.get_gases() & moderator_scrubbing)
-		var/gas_removed = min(moderator_internal.get_moles(gas), (moderator_filtering_rate / filtering_amount) * delta_time)
-		for(var/id in delta_mod_removed_list)
-			if(gas.id == id)
-				delta_mod_removed_list[id] -= gas_removed
-		moderator_internal.adjust_moles(gas, -gas_removed)
-		linked_output.airs[1].adjust_moles(gas, gas_removed)
+	for(var/gas_id in moderator_internal.get_gases() & moderator_scrubbing)
+		var/gas_removed = min(moderator_internal.get_moles(gas_id), (moderator_filtering_rate / filtering_amount) * delta_time)
+		for(var/delta_id in delta_mod_removed_list)
+			if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
+				delta_mod_removed_list[delta_id] -= gas_removed
+		moderator_internal.adjust_moles(gas_id, -gas_removed)
+		linked_output.airs[1].adjust_moles(gas_id, gas_removed)
 
 	if (selected_fuel)
-		for(var/datum/gas/gas_id in selected_fuel.primary_products)
+		for(var/gas_id in selected_fuel.primary_products)
 			if(internal_fusion.get_moles(gas_id) > 0)
 				var/gas_removed = min(internal_fusion.get_moles(gas_id), internal_fusion.get_moles(gas_id) * (1 - (1 - 0.25) ** delta_time))
 				internal_fusion.adjust_moles(gas_id, -gas_removed)
-				for(var/id in delta_fuel_removed_list)
-					if(gas_id.id == id)
-						delta_fuel_removed_list[id] -= gas_removed
+				for(var/delta_id in delta_fuel_removed_list)
+					if(delta_id == GLOB.meta_gas_info[gas_id][META_GAS_ID])
+						delta_fuel_removed_list[delta_id] -= gas_removed
 				linked_output.airs[1].adjust_moles(gas_id, gas_removed)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/process_internal_cooling(delta_time)
