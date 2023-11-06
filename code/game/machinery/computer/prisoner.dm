@@ -61,6 +61,21 @@
 			dat += "ID: [T.imp_in.name] | Location: [loc_display]<BR>"
 			dat += "<A href='?src=[REF(src)];warn=[REF(T)]'>(<font class='bad'><i>Message Holder</i></font>)</A> |<BR>"
 			dat += "********************************<BR>"
+		dat += "<HR>Anti-Magic Collars<BR>"
+		for(var/obj/item/clothing/neck/anti_magic_collar/collar in GLOB.tracked_collars)
+			Tr = get_turf(collar)
+			if((Tr) && (Tr.z != src.z))
+				continue//Out of range
+
+			var/loc_display = "Unknown"
+			var/mob/living/M = collar
+			if(is_station_level(Tr.z) && !isspaceturf(M.loc))
+				var/turf/mob_loc = get_turf(M)
+				loc_display = mob_loc.loc
+
+			dat += "ID: [collar.inmate_name] | Location: [loc_display]<BR>"
+			dat += "<A href='?src=[REF(src)];UNLOCK=[REF(collar)]'>(<font class='bad'><i>UNLOCK</i></font>)</A> |<BR>"
+			dat += "********************************<BR>"
 		dat += "<HR><A href='?src=[REF(src)];lock=1'>Lock Console</A>"
 	var/datum/browser/popup = new(user, "computer", "Prisoner Management Console", 400, 500)
 	popup.set_content(dat)
@@ -136,6 +151,11 @@
 				var/mob/living/R = I.imp_in
 				to_chat(R, span_italics("You hear a voice in your head saying: '[warning]'"))
 				log_directed_talk(usr, R, warning, LOG_SAY, "implant message")
+		
+		else if(href_list["UNLOCK"])
+			var/obj/item/clothing/neck/anti_magic_collar/C = locate(href_list["UNLOCK"]) in GLOB.tracked_collars
+			if(C && istype(C))
+				C.unlock()
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()

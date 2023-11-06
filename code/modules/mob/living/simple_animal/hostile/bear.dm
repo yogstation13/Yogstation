@@ -42,8 +42,7 @@
 
 	faction = list("russian")
 	gold_core_spawnable = HOSTILE_SPAWN
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/bear/loan
 	faction = list("hostile")

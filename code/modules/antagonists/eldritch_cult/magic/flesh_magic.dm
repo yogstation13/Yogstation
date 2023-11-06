@@ -19,7 +19,7 @@ FLESH PATH SPELLS GO HERE
 
 	invocation = "FL'MS O'ET'RN'ITY"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 6
 
@@ -86,7 +86,7 @@ FLESH PATH SPELLS GO HERE
 	cooldown_time = 15 SECONDS
 
 	invocation_type = INVOCATION_NONE
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/worm_contract/cast(mob/living/user)
 	. = ..()

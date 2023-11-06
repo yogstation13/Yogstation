@@ -23,8 +23,7 @@
 	projectiletype = /obj/projectile/mega_arachnid
 	projectilesound = 'sound/weapons/pierce.ogg'
 	alpha = 50
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/hostile/jungle/mega_arachnid/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()

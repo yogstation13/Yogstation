@@ -109,6 +109,16 @@
 	special_equipment += /obj/item/storage/box/syndie_kit/nuke
 	..()
 
+/datum/objective_item/steal/hdd_extraction
+	name = "the source code for Project Bee from the master R&D server mainframe."
+	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
+	difficulty = 10
+	excludefromjob = list("Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
+
+/datum/objective_item/steal/hdd_extraction/New()
+	special_equipment += /obj/item/paper/guides/antag/hdd_extraction
+	return ..()
+
 /datum/objective_item/steal/supermatter
 	name = "a sliver of a supermatter crystal. Be sure to use the proper safety equipment when extracting the sliver!"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
