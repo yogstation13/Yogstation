@@ -125,14 +125,7 @@
 	var/datum/antagonist/darkspawn/cost
 	var/upkeep_cost = 2 //happens 5 times a second
 	var/damage_amount = 2 //these also happens 5 times a second
-
-/datum/action/cooldown/spell/pointed/extract/New()
-	..()
-	START_PROCESSING(SSfastprocess, src)
-
-/datum/action/cooldown/spell/pointed/extract/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
-	return ..()
+	var/actual_cooldown = 15 SECONDS //this only applies when the channel is broken
 
 /datum/action/cooldown/spell/pointed/extract/Grant(mob/grant_to)
 	. = ..()
@@ -153,16 +146,13 @@
 /datum/action/cooldown/spell/pointed/extract/process()
 	if(channeled)
 		if(channeled.stat == DEAD || channeled.health >= channeled.maxHealth)
-			channeled = null
-			qdel(visual)
+			cancel()
 			return
 		if(get_dist(owner, channeled) > cast_range)
-			channeled = null
-			qdel(visual)
+			cancel()
 			return
 		if(cost && (!cost.use_psi(upkeep_cost)))
-			channeled = null
-			qdel(visual)
+			cancel()
 			return
 		if(is_darkspawn_or_veil(channeled))
 			channeled.heal_ordered_damage(damage_amount, list(STAMINA, BURN, BRUTE, TOX, OXY, CLONE))
@@ -174,10 +164,7 @@
 	build_all_button_icons(UPDATE_BUTTON_STATUS)
 
 /datum/action/cooldown/spell/pointed/extract/Trigger(trigger_flags, atom/target)
-	if(channeled)
-		channeled = null
-		if(visual)
-			qdel(visual)
+	if(cancel())
 		return FALSE
 	. = ..()
 	
@@ -185,6 +172,17 @@
 	. = ..()
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on
+	START_PROCESSING(SSfastprocess, src)
+
+/datum/action/cooldown/spell/pointed/extract/proc/cancel()
+	if(visual)
+		qdel(visual)
+	if(channeled)
+		channeled = null
+		StartCooldown(actual_cooldown)
+		return TRUE
+	return FALSE
+
 
 //////////////////////////////////////////////////////////////////////////
 //------------------Literally just goliath tendrils---------------------//
