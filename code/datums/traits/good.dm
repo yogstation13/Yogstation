@@ -377,7 +377,7 @@
 	mob_trait = TRAIT_MARINE
 	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills")
 	lose_text = span_danger("The rage and prestige of being a Marine is lost to you now")
-	medical_record_text = "Patient has heightened aggression and irritability, it would be wise not to anger them)
+	medical_record_text = ("Patient has heightened aggression and irritability, it would be wise not to anger them")
 
 /datum/quirk/multilingual
 	name = "Multilingual"
