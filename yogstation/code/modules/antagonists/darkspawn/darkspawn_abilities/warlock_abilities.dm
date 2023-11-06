@@ -127,6 +127,14 @@
 	var/damage_amount = 2 //these also happens 5 times a second
 	var/actual_cooldown = 15 SECONDS //this only applies when the channel is broken
 
+/datum/action/cooldown/spell/pointed/extract/New()
+	..()
+	START_PROCESSING(SSfastprocess, src)
+
+/datum/action/cooldown/spell/pointed/extract/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	return ..()
+
 /datum/action/cooldown/spell/pointed/extract/Grant(mob/grant_to)
 	. = ..()
 	if(isdarkspawn(owner))
@@ -172,7 +180,6 @@
 	. = ..()
 	visual = owner.Beam(cast_on, "slingbeam", 'yogstation/icons/mob/sling.dmi' , INFINITY, cast_range)
 	channeled = cast_on
-	START_PROCESSING(SSfastprocess, src)
 
 /datum/action/cooldown/spell/pointed/extract/proc/cancel()
 	if(visual)
