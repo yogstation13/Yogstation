@@ -28,6 +28,7 @@
 /obj/projectile/reagent/on_hit(atom/target, blocked = FALSE)
 	var/hit = ..()
 	if(blocked < 100 && (hit & BULLET_ACT_HIT))
+		log_combat(firer, target, "shot", src, addition = "with a projectile containing [reagents.log_list()]")
 		reagents.reaction(target, transfer_methods)
 	reagents.reaction(get_turf(target), transfer_methods)
 	return hit
