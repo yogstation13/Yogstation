@@ -266,11 +266,13 @@
 				L.tox_breath_dam_max = 0
 			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
 			ADD_TRAIT(H, TRAIT_RADIMMUNE, "dna_vault")
+			ADD_TRAIT(H, TRAIT_STABLELIVER, "dna_vault")
 			P.tox_mod *= 0.2
 			P.acid_mod *= 0.2
 		if(VAULT_SELFSUFFICIENT)
 			to_chat(H, span_notice("You feel suddenly rejuvenated."))
 			ADD_TRAIT(H, TRAIT_NOBREATH, "dna_vault")
+			ADD_TRAIT(H, TRAIT_STABLEHEART, "dna_vault")
 			P.bleed_mod *= 0						//rather than giving noblood, just make sure they can't bleed
 			P.oxy_mod *= 0							//To be triple hella sure
 			P.hunger_mod *= 0.1
