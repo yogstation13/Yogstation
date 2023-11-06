@@ -396,6 +396,6 @@
 	if(!isliving(victim) || !can_see(caster, victim))
 		return
 	var/mob/living/target = victim
-	if(is_darkspawn_or_veil(target) && ispreternis(target)) //don't make preterni allies wet
+	if(is_darkspawn_or_veil(target))
 		return
 	target.apply_status_effect(STATUS_EFFECT_TAUNT, owner)
