@@ -4,7 +4,7 @@
 // The Lionhunter, a gun for heretics
 // The ammo it uses takes time to "charge" before firing,
 // releasing a homing, very damaging projectile
-/obj/item/gun/ballistic/rifle/lionhunter
+/obj/item/gun/ballistic/rifle/boltaction/lionhunter
 	name = "\improper Lionhunter's Rifle"
 	desc = "An antique looking rifle that looks immaculate despite being clearly very old."
 	slot_flags = ITEM_SLOT_BACK
@@ -25,6 +25,10 @@
 	multiload = 1
 
 /obj/item/ammo_casing/strilka310/lionhunter
+	name = "strilka310 bullet casing"
+	desc = "A .310 bullet casing."
+	icon_state = "310-casing"
+	caliber = "CALIBER_STRILKA310"
 	projectile_type = /obj/projectile/bullet/strilka310/lionhunter
 	/// Whether we're currently aiming this casing at something
 	var/currently_aiming = FALSE
@@ -44,7 +48,7 @@
 /// Checks if we can successfully fire our projectile.
 /obj/item/ammo_casing/strilka310/lionhunter/proc/check_fire(atom/target, mob/living/user)
 	// In case someone puts this in turrets or something wacky, just fire like normal
-	if(!iscarbon(user) || !istype(loc, /obj/item/gun/ballistic/rifle/lionhunter))
+	if(!iscarbon(user) || !istype(loc, /obj/item/gun/ballistic/rifle/boltaction/lionhunter))
 		return TRUE
 
 	if(currently_aiming)

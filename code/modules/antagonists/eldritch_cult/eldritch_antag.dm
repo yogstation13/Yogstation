@@ -90,6 +90,7 @@
 		/datum/eldritch_knowledge/spell/furious_steel,
 		/datum/eldritch_knowledge/spell/cosmic_expansion,
 		/datum/eldritch_knowledge/spell/freedom_forever,
+		/datum/eldritch_knowledge/lionhunter_rifle,
 		/datum/eldritch_knowledge/ashy,
 		/datum/eldritch_knowledge/rusty,
 		/datum/eldritch_knowledge/spell/cleave,

@@ -9,24 +9,28 @@
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/mind_final,
 		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final)
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/void_knife)
 	cost = 1
 	route = PATH_VOID
@@ -95,7 +99,8 @@
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark)
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_VOID
 	tier = TIER_MARK
 
@@ -163,7 +168,8 @@
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade)
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade)
 	route = PATH_VOID
 	tier = TIER_BLADE
 
@@ -194,6 +200,22 @@
 	desc = "A powerful spell that calls forth memories of ice, will create a large area of ice around you."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/slip/void
+	tier = TIER_3
+
+/datum/eldritch_knowledge/lionhunter_rifle
+	name = "T3 - Lionhunter Rifle"
+	name = "Lionhunter's Rifle"
+	desc = "Allows you to transmute any ballistic weapon, with \
+		a plank of wood, a piece of gold and a camera to create the Lionhunter's rifle. \
+		The Lionhunter's Rifle is a long ranged ballistic weapon with three shots. \
+		These shots function as normal, albeit weak high caliber mutitions when fired from \
+		close range or at inanimate objects. You can aim the rifle at distant foes, \
+		causing the shot to deal massively increased damage and hone in on them. \
+		You can create more ammo with three casings and five bars of silver."
+	gain_text = "I met an old man in an anique shop who wielded a very unusual weapon. \
+		I could not purchase it at the time, but they showed me how they made it ages ago."
+	unlocked_transmutations = list(/datum/eldritch_transmutation/lionhunter, /datum/eldritch_transmutation/lionhunter_ammo)
+	cost = 1
 	tier = TIER_3
 
 /datum/eldritch_knowledge/void_final

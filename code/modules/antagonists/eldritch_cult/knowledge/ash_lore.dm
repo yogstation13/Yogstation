@@ -23,6 +23,7 @@
 		/datum/eldritch_knowledge/void_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/mind_final,
