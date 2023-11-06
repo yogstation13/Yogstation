@@ -175,8 +175,8 @@
 	internal_fusion.set_volume(5000)
 	moderator_internal = new
 	moderator_internal.set_volume(10000)
-	for(var/datum/gas/gas in subtypesof(/datum/gas))
-		var/id = gas.id
+	for(var/gas in GLOB.meta_gas_info)
+		var/id = GLOB.meta_gas_info[gas][META_GAS_ID]
 		delta_mod_removed_list[id] = 0
 		delta_fuel_removed_list[id] = 0
 
