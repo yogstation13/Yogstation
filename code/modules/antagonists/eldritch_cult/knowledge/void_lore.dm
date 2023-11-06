@@ -123,6 +123,17 @@
 	route = PATH_VOID
 	tier = TIER_2
 	
+/datum/eldritch_knowledge/rune_carver
+	name = "T2 - Carving Knife"
+	desc = "Allows you to transmute a knife, a shard of glass, and a piece of paper to create a Carving Knife. \
+		The Carving Knife allows you to etch difficult to see traps that trigger on heathens who walk overhead. \
+		Also makes for a handy throwing weapon."
+	gain_text = "Etched, carved... eternal. There is power hidden in everything. I can unveil it! \
+		I can carve the monolith to reveal the chains!"
+	unlocked_transmutations = list(/datum/eldritch_transmutation/rune_carver)
+	cost = 1
+	tier = TIER_2
+
 /datum/eldritch_knowledge/cold_snap/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	user.add_traits(list(TRAIT_NOBREATH, TRAIT_RESISTCOLD, TRAIT_NOSLIPICE), type)

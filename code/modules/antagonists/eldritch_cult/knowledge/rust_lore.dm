@@ -76,6 +76,14 @@
 	route = PATH_RUST
 	tier = TIER_1
 
+/datum/eldritch_knowledge/spell/rust_construction
+	name = "T1 - Rust Construction"
+	gain_text = "To destroy is also to build, the lack of an answer is itself an answer."
+	desc = "An instant spell that will create a wall at your command, only works on rusted tiles. Will knock back and damage anyone caught on the same tile."
+	cost = 1
+	spell_to_add = /datum/action/cooldown/spell/pointed/rust_construction
+	tier = TIER_1
+
 /datum/eldritch_knowledge/rust_regen/on_life(mob/user)
 	. = ..()
 	var/turf/user_loc_turf = get_turf(user)

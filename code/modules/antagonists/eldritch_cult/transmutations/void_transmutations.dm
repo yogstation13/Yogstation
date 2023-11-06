@@ -14,6 +14,15 @@
 	result_atoms = list(/obj/item/clothing/suit/cultrobes/void)
 	required_shit_list = "glass shard, clothing, bedsheet"
 
+/datum/eldritch_transmutation/rune_carver
+	name = "Carving Knife"
+	required_atoms = list(
+		/obj/item/shard = 1,
+		/obj/item/paper = 1
+	)
+	result_atoms = list(/obj/item/melee/rune_carver)
+	required_shit_list = "glass shard, piece of paper"
+
 /datum/eldritch_transmutation/final/void_final
 	name = "Waltz at the End of Time"
 	required_atoms = list(/mob/living/carbon/human)

@@ -117,6 +117,14 @@
 	route = PATH_FLESH
 	tier = TIER_1
 
+/datum/eldritch_knowledge/fire_shark
+	name = "T1- Heated Ritual"
+	gain_text = "It's stronger to hunt in a pack, rather than alone. Animals of all kind know this, and now, so do you."
+	desc = "Allows you to summon a Fire Shark by transmuting a pair of eyes, a pile of ash, and a sheet of plasma. Fire sharks leave behind a cloud of plasma upon death, and injects Phlogiston into the targets it bites."
+	cost = 1
+	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/fire_shark)
+	tier = TIER_1
+
 /datum/eldritch_knowledge/flesh_mark
 	name = "Grasp Mark - Lover's Exsanguination"
 	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
