@@ -40,16 +40,13 @@ jobs:
       - name: Misc Checks
         run: |
           python tools/travis/check_dme_alphabetical.py yogstation.dme
+          python tools/travis/ticked_file_enforcement/ticked_file_enforcement.py < tools/travis/ticked_file_enforcement/schemas/yogstation_dme.json
+          python tools/travis/ticked_file_enforcement/ticked_file_enforcement.py < tools/travis/ticked_file_enforcement/schemas/unit_tests.json
           tools/travis/check_filedirs.sh yogstation.dme
           tools/travis/check_changelogs.sh
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
           tools/build/build --ci lint tgui-test
           tools/travis/check_grep.sh
-      
-      - name: Validate DME
-        run: |
-          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/yogstation_dme.json
-          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/unit_tests.json
 
       - name: Run Linter
         id: linter
