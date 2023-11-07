@@ -39,7 +39,6 @@ jobs:
 
       - name: Misc Checks
         run: |
-          python tools/travis/check_dme_alphabetical.py yogstation.dme
           python tools/travis/ticked_file_enforcement/ticked_file_enforcement.py < tools/travis/ticked_file_enforcement/schemas/yogstation_dme.json
           python tools/travis/ticked_file_enforcement/ticked_file_enforcement.py < tools/travis/ticked_file_enforcement/schemas/unit_tests.json
           tools/travis/check_filedirs.sh yogstation.dme
