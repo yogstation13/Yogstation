@@ -22,20 +22,29 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/veil_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
-	if(!target.mind)
+	if(!target.mind && !target.last_mind)
 		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
 		return
-	if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && !isveil(target))
+	var/datum/mind/veilmind = isveil(target) || (!target.mind && target.last_mind.has_antag_datum(ANTAG_DATUM_VEIL))
+	if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && !(veilmind))
 		to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
 		return FALSE
+	if(veilmind)
+		if(target.stat == CONSCIOUS)
+			to_chat(owner, span_velvet("[target.real_name] is healthy enough to fend for themselves."))
+			return FALSE
+		else if(!target.getorganslot(ORGAN_SLOT_BRAIN))
+			to_chat(owner, span_danger("[target.real_name]'s brain is missing, you lack the conduit to revive them."))
+			return FALSE
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
-	if(isveil(target))
-		to_chat(owner, span_velvet("You revitalize your thrall [target.real_name]."))
-		target.revive(1)
+	if(veilmind)
+		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
+		target.revive(TRUE, TRUE)
+		target.grab_ghost()
 	else if(target.add_veil())
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 	else

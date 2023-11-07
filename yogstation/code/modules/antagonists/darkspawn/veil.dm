@@ -15,8 +15,10 @@
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 	if(iscarbon(owner.current))
 		var/mob/living/carbon/dude = owner.current
-		var/obj/item/organ/shadowtumor/ST = new
-		ST.Insert(dude, FALSE, FALSE)
+		var/obj/item/organ/shadowtumor/ST = dude.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+		if(!istype(ST))
+			ST = new
+			ST.Insert(dude, FALSE, FALSE)
 
 /datum/antagonist/veil/on_removal()
 	SSticker.mode.veils -= owner
