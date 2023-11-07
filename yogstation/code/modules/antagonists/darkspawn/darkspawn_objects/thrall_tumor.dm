@@ -43,6 +43,8 @@
 	// 	M.resting = FALSE //Remove all stuns
 	// 	M.SetAllImmobility(0, TRUE)
 	// 	for(var/mob/living/user in range(2, src))
+	// 		if(is_veil_or_darkspawn(user))
+	// 			return
 	// 		if(iscarbon(user))
 	// 			var/mob/living/carbon/C = user
 	// 			C.Knockdown(6)
