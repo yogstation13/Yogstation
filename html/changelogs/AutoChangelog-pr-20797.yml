@@ -1,0 +1,5 @@
+author: " Scrambledeggs00 (sprite), warface1234455 (code)"
+delete-after: true 
+changes: 
+  - imageadd: "Give supermatter energy ball a proper sprite"
+  - spellcheck: "Some descriptions for supermatter energy ball"
