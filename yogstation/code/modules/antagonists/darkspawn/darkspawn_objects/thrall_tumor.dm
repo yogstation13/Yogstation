@@ -56,7 +56,7 @@
 	// 			playsound(S, 'sound/effects/bang.ogg', 50, 1)
 	// 	return FALSE
 	. = ..()
-	M.remove_veil()
-	M.update_sight()
 	if(isturf(loc))//only do this if the tumor is removed from the head, not if the head gets cut off
+		M.remove_veil()
+		M.update_sight()
 		M.visible_message(span_warning("A strange black mass falls from [M]'s head!"))
