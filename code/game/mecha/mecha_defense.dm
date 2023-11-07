@@ -250,7 +250,6 @@
 				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				scanmod = W
 				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
 			else
 				to_chat(user, span_notice("There's already a scanning module installed."))
 		return
@@ -264,7 +263,6 @@
 				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				capacitor = W
 				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
 			else
 				to_chat(user, span_notice("There's already a capacitor installed."))
 		return
