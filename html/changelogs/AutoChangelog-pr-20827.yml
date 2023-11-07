@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Slipping on certain things (e.g. liquid-content slippery-skin plants) now trigger their callback."

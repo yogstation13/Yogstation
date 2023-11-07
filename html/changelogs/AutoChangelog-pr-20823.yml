@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "All mechs built by hand no longer cost energy to move"
-  - tweak: "Scanning modules on mechs now affect all power usage"
