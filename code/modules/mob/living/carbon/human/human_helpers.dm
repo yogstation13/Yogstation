@@ -339,6 +339,8 @@
 		visually_duplicate_and_equip_item(copied_human_mob.back, ITEM_SLOT_BACK, new_human_mob, dropdel)
 	if(copied_human_mob.belt)
 		visually_duplicate_and_equip_item(copied_human_mob.belt, ITEM_SLOT_BELT, new_human_mob, dropdel)
+	if(copied_human_mob.mask)
+		visually_duplicate_and_equip_item(copied_human_mob.mask, ITEM_SLOT_MASK, new_human_mob, dropdel)
 	if(copied_human_mob.ears)
 		visually_duplicate_and_equip_item(copied_human_mob.ears, ITEM_SLOT_EARS, new_human_mob, dropdel)
 	if(copied_human_mob.glasses)
