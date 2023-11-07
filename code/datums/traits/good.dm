@@ -372,7 +372,7 @@
 /datum/quirk/marine
 	name = "Marine"
 	desc = "You've unlocked your ancestory past and it has been revealed that you have hard-core Marine blood in your veins"
-	icon = "marine"
+	icon = "chevron-up"
 	value = 2
 	mob_trait = TRAIT_MARINE
 	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills")
