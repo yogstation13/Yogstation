@@ -38,6 +38,8 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		target.revive(1)
 	else if(target.add_veil())
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
+	else
+		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 	return TRUE
 
 //////////////////////////////////////////////////////////////////////////

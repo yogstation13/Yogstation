@@ -126,6 +126,8 @@
 	if(!isliving(cast_on)) //sanity check
 		return
 	var/mob/living/target = cast_on
+	if(is_darkspawn_or_veil(target))
+		return
 	var/zoinks = rand(1, 10) / 10 //like, this isn't even my final form!
 	owner.visible_message(span_warning("[owner]'s sigils flare as it glances at [target]!"), span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!."))
 	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)

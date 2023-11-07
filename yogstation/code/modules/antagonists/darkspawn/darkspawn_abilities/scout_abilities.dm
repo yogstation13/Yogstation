@@ -18,7 +18,7 @@
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/light_eater/can_cast_spell(feedback)
-	if(!owner.get_empty_held_indexes())
+	if(!owner.get_empty_held_indexes() && !active)
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE
@@ -59,7 +59,7 @@
 	. = ..()
 
 /datum/action/cooldown/spell/toggle/shadow_caster/can_cast_spell(feedback)
-	if(!owner.get_empty_held_indexes())
+	if(!owner.get_empty_held_indexes() && !active)
 		if(feedback)
 			to_chat(owner, span_warning("You need an empty hand for this!"))
 		return FALSE

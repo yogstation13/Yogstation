@@ -3,6 +3,7 @@
 	var/list/datum/mind/veils = list()
 	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
+	var/max_veils = 1
 
 /datum/game_mode/darkspawn
 	name = "darkspawn"
@@ -100,6 +101,8 @@
 
 /mob/living/proc/add_veil()
 	if(!istype(mind))
+		return FALSE
+	if(LAZYLEN(SSticker.mode.veils) >= SSticker.mode.max_veils)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		src.visible_message(span_warning("[src] seems to resist an unseen force!"))

@@ -4025,6 +4025,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\shadow_caster.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\shadow_step.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\simulacrum.dm"
+#include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\thrall_tumor.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\umbral_tendrils.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_objects\veil_camera.dm"
 #include "yogstation\code\modules\antagonists\gang\gang.dm"

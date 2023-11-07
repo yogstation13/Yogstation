@@ -13,6 +13,10 @@
 	owner.special_role = "veil"
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
+	if(iscarbon(owner.current))
+		var/mob/living/carbon/dude = owner.current
+		var/obj/item/organ/shadowtumor/ST = new
+		ST.Insert(dude, FALSE, FALSE)
 
 /datum/antagonist/veil/on_removal()
 	SSticker.mode.veils -= owner
@@ -27,6 +31,9 @@
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
 		to_chat(owner, span_notice("As your mind is released from their grasp, you feel your strength returning."))
+	var/obj/item/organ/tumor = M.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	if(tumor && istype(tumor, /obj/item/organ/shadowtumor))
+		qdel(tumor)
 	M.update_sight()
 	return ..()
 
