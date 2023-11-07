@@ -45,6 +45,11 @@ jobs:
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
           tools/build/build --ci lint tgui-test
           tools/travis/check_grep.sh
+      
+      - name: Validate DME
+        run: |
+          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/tgstation_dme.json
+          tools/bootstrap/python tools/ticked_file_enforcement/ticked_file_enforcement.py < tools/ticked_file_enforcement/schemas/unit_tests.json
 
       - name: Run Linter
         id: linter
