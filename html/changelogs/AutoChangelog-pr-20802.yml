@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscadd: "Syndicate Saboteur's Cyborg Chameleon Projector can now disguise as any cyborg module that is available to normal cyborgs."
-  - rscadd: " Syndicate Saboteur's Cyborg Chameleon Projector can be alt-clicked to re-randomize the disguise name."
