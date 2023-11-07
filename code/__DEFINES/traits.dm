@@ -272,7 +272,7 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
-///You become Marine!!!
+///You become a Marine that can eat crayons!!!
 #define TRAIT_MARINE  "marine"
 /// makes your footsteps completely silent
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
