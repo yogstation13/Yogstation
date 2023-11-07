@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Security winter coat hood has an item state now"
