@@ -90,7 +90,7 @@
 // Bitflags for magic resistance types
 /// Default magic resistance that blocks normal magic (wizard, spells, magical staff projectiles)
 #define MAGIC_RESISTANCE (1<<0)
-/// Tinfoil hat magic resistance that blocks mental magic (telepathy / mind links, mind curses, abductors)
+/// Tinfoil hat magic resistance that blocks mental magic (telepathy / mind links, mind curses, abductors, darkspawns)
 #define MAGIC_RESISTANCE_MIND (1<<1)
 /// Holy magic resistance that blocks unholy magic (revenant, vampire, voice of god)
 #define MAGIC_RESISTANCE_HOLY (1<<2)
