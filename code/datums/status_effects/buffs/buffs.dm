@@ -719,7 +719,7 @@
 
 /datum/status_effect/holylight_healboost
 	id = "holy healboost"
-	duration = 30 SECONDS
+	duration = 1 MINUTES
 	tick_interval = -1
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/holylight_healboost
