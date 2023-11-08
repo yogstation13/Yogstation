@@ -16,7 +16,7 @@
 	if(iscarbon(owner.current))
 		var/mob/living/carbon/dude = owner.current
 		var/obj/item/organ/shadowtumor/ST = dude.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
-		if(!istype(ST))
+		if(!ST || !istype(ST))
 			ST = new
 			ST.Insert(dude, FALSE, FALSE)
 

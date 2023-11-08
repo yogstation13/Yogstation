@@ -16,6 +16,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	invocation_type = INVOCATION_NONE
+	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/veil_mind/is_valid_target(atom/cast_on)
@@ -25,23 +26,18 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	if(!target.mind && !target.last_mind)
 		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
 		return
-	var/datum/mind/veilmind = isveil(target) || (!target.mind && target.last_mind.has_antag_datum(ANTAG_DATUM_VEIL))
-	if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && !(veilmind))
+	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
+		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
+		return FALSE
+	if(!(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) || isveil(target)))
 		to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
 		return FALSE
-	if(veilmind)
-		if(target.stat == CONSCIOUS)
-			to_chat(owner, span_velvet("[target.real_name] is healthy enough to fend for themselves."))
-			return FALSE
-		else if(!target.getorganslot(ORGAN_SLOT_BRAIN))
-			to_chat(owner, span_danger("[target.real_name]'s brain is missing, you lack the conduit to revive them."))
-			return FALSE
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
-	if(veilmind)
+	if(isveil(target))
 		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
@@ -143,10 +139,27 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 ////////////////////////////Global AOE heal//////////////////////////
 /datum/action/cooldown/spell/veilbuff/heal
 	name = "Heal veils"
+	desc = "Heals all veils for an amount of brute and burn."
+	var/heal_amount = 20
 
-/datum/action/cooldown/spell/veilbuff/empower(mob/living/carbon/human/target)
-	target.heal_overall_damage(25, 25, 0, BODYPART_ANY)
+/datum/action/cooldown/spell/veilbuff/heal/empower(mob/living/carbon/human/target)
+	target.heal_overall_damage(heal_amount, heal_amount, 0, BODYPART_ANY)
 
+////////////////////////////One click CC cleanse//////////////////////////
+/datum/action/cooldown/spell/veilbuff/cleanse
+	name = "Cleanse veils"
+	desc = "Cleanse all the crowd control effects currently applied to your veils."
+
+/datum/action/cooldown/spell/veilbuff/cleanse/empower(mob/living/carbon/human/target)
+	target.SetAllImmobility(0, TRUE)
+
+////////////////////////////Temporary speed boost//////////////////////////
+/datum/action/cooldown/spell/veilbuff/speed
+	name = "Expedite veils"
+	desc = "Give all veils a temporary movespeed bonus."
+
+/datum/action/cooldown/spell/veilbuff/speed/empower(mob/living/carbon/human/target)
+	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 5 SECONDS, type)
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//
