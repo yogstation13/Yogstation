@@ -131,6 +131,8 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 			if(ally.owner?.current && ishuman(ally.owner.current))
 				var/mob/living/carbon/human/target = ally.owner.current
 				if(target && istype(target))//sanity check
+					if(target == owner)//no self buffing
+						continue
 					empower(target)
 	
 /datum/action/cooldown/spell/veilbuff/proc/empower(mob/living/carbon/human/target)
