@@ -158,6 +158,7 @@
 /datum/component/overlay_lighting/proc/clean_old_turfs()
 	for(var/turf/lit_turf as anything in affected_turfs)
 		lit_turf.dynamic_lumcount -= lum_power
+		SSdemo.mark_turf(lit_turf)
 	affected_turfs = null
 
 
@@ -169,8 +170,8 @@
 	for(var/turf/lit_turf in view(lumcount_range, get_turf(current_holder)))
 		lit_turf.dynamic_lumcount += lum_power
 		. += lit_turf
-	if(length(.))
-		affected_turfs = .
+		SSdemo.mark_turf(lit_turf)
+		LAZYADD(affected_turfs, lit_turf)
 
 
 ///Clears the old affected turfs and populates the new ones.

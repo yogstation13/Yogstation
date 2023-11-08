@@ -61,7 +61,7 @@ Difficulty: Medium
 	internal_type = /obj/item/gps/internal/dragon
 	deathmessage = "collapses into a pile of bones, its flesh sloughing away."
 	deathsound = 'sound/magic/demon_dies.ogg'
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_HEAVY
 	initial_language_holder = /datum/language_holder/lizard
 	attack_action_types = list(/datum/action/innate/megafauna_attack/fire_cone,
 							   /datum/action/innate/megafauna_attack/fire_cone_meteors,

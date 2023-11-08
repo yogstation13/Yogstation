@@ -33,6 +33,8 @@
 		/obj/item/reagent_containers/food/snacks/monkeycube/bee = 2
 	)
 
+	minimal_lightup_areas = list(/area/hydroponics, /area/medical/morgue)
+	
 	smells_like = "fertilizer"
 
 /datum/outfit/job/botanist

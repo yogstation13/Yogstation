@@ -1,6 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new Heretic path"
-  - soundadd: "Adds a new sound for blade path"
-  - imageadd: "Adds new path blades"

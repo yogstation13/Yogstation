@@ -30,7 +30,9 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_mind,
 		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade),
+		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock),
 	TIER_1 = list(
 		/datum/eldritch_knowledge/madness_mask,
 		/datum/eldritch_knowledge/flesh_ghoul,
@@ -38,6 +40,8 @@
 		/datum/eldritch_knowledge/spell/mental_obfuscation,
 		/datum/eldritch_knowledge/spell/void_phase,
 		/datum/eldritch_knowledge/blade_dance,
+		/datum/eldritch_knowledge/spell/cosmic_runes,
+		/datum/eldritch_knowledge/key_ring,
 		/datum/eldritch_knowledge/armor,
 		/datum/eldritch_knowledge/void_cloak,
 		/datum/eldritch_knowledge/ashen_eyes,
@@ -49,7 +53,9 @@
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/mind_mark,
 		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark),
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark),
 	TIER_2 = list(
 		/datum/eldritch_knowledge/spell/volcano_blast,
 		/datum/eldritch_knowledge/raw_prophet,
@@ -57,6 +63,8 @@
 		/datum/eldritch_knowledge/spell/assault,
 		/datum/eldritch_knowledge/cold_snap,
 		/datum/eldritch_knowledge/duel_stance,
+		/datum/eldritch_knowledge/spell/star_blast,
+		/datum/eldritch_knowledge/spell/burglar_finesse,
 		/datum/eldritch_knowledge/spell/blood_siphon,
 		/datum/eldritch_knowledge/spell/eldritchbolt,
 		/datum/eldritch_knowledge/spell/void_blast),
@@ -66,7 +74,9 @@
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/mind_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade),
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade),
 	TIER_3 = list(
 		/datum/eldritch_knowledge/spell/flame_birth,
 		/datum/eldritch_knowledge/stalker,
@@ -74,6 +84,8 @@
 		/datum/eldritch_knowledge/cerebral_control,
 		/datum/eldritch_knowledge/spell/void_pull,
 		/datum/eldritch_knowledge/spell/furious_steel,
+		/datum/eldritch_knowledge/spell/cosmic_expansion,
+		/datum/eldritch_knowledge/spell/freedom_forever,
 		/datum/eldritch_knowledge/ashy,
 		/datum/eldritch_knowledge/rusty,
 		/datum/eldritch_knowledge/spell/cleave,
@@ -85,7 +97,9 @@
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/mind_final,
 		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final))
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final))
 
 	var/static/list/path_to_ui_color = list(
 		PATH_START = "grey",
@@ -358,8 +372,13 @@
 		else if(is_flesh())
 			if(transformed)
 				parts += "<span class='greentext big'>THE THIRSTLY SERPENT HAS ASCENDED!</span>"
-			else
-				parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
+		else if(is_cosmic())
+			if(transformed)
+				parts += "<span class='greentext big'>THE STAR GAZER HAS ASCENDED!</span>"
+		else if(is_knock())
+			parts += "<span class='greentext big'>THE SPIDER'S DOOR HAS BEEN OPENED!</span>"
+		else
+			parts += "<span class='greentext big'>THE OATHBREAKER HAS ASCENDED!</span>"
 	else
 		if(cultiewin)
 			parts += span_greentext("The [lowertext(lore)] heretic was successful!")
@@ -690,6 +709,68 @@
 				flavor_message += 	"Your bloodied hand pounds on the nearest wall, a failure of a smith you turned out to be. You pray someone finds your emergency beacon on this abandoned station."
 			else //Dead
 				flavor_message += 	"You lay there, life draining from your body onto the station around you. The last thing you see is your reflection in your own blade, and then it all goes dark."
+	
+	else if(is_cosmic()) //Cosmic epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"As the shuttle docks cosmic radiation pours from the doors, the lifeless corpses of those who dared defy you remain. Unmake the rest of them."
+			else if(alive)
+				flavor_message += 	"You turn to watch the escape shuttle leave, waving a small goodbye before beginning your new duty: Remaking the cosmos in your image."
+			else //Dead
+				flavor_message += 	"A loud scream is heard around the cosmos, your death cry will awaken your brothers and sisters, you will be remembered as a martyr."
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"You completed everything you had set out to do and more on this station, now you must take the art of the cosmos to the rest of humanity."
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"You feel the great creator look upon you with glee, opening a portal to his realm for you to join it."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"As your body melts away into the stars, your consciousness carries on to the nearest star, beginning a super nova. A victory, in a sense."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You step off the shuttle, knowing your time is limited now that you have failed. Cosmic radiation seeps through your soul, what will you do next?"
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Dragging your feet through what remains of the ruined station, you can only laugh as the stars continue to twinkle in the sky, despite everything."
+			else //Dead
+				flavor_message += 	"Your skin turns to dust and your bones reduce to raw atoms, you will be forgotten in the new cosmic age."
+
+	else if(is_knock()) //Cosmic epilogues
+
+		if(ascended)
+			message_color = "#FFD700"
+			if(escaped)
+				flavor_message += 	"The shuttle docks at Centcom, the doors open but instead of people a mass of horrors pour out, consuming everyone in their path."
+			else if(alive)
+				flavor_message += 	"You've opened the door, unlocked the lock, became the key. Crack open the rest of reality, door by door."
+			else //Dead
+				flavor_message += 	"For a fleeting moment, you opened a portal to the end of days. Nothing could have brought you greater satisfaction, and you pass in peace"
+	
+		else if(cultiewin) //Completed objectives
+			if(escaped)
+				flavor_message += 	"With each gleeful step you take through the station, you look at the passing airlocks, knowing the truth that you will bring."
+				message_color = "#008000"
+			else if(alive)
+				flavor_message += 	"The shuttle is gone, you are alone. And yet, as you turn to the nearest airlock, what waits beyond is something only you can see."
+				message_color = "#008000"
+			else //Dead
+				flavor_message += 	"Your death is not your end, as your bones will become the key for another's path to glory."
+				message_color = "#517fff"
+
+		else //Failed objectives
+			if(escaped)
+				flavor_message += 	"You escaped, but for what? For the rest of your life you avoid doorways, knowing that once you pass through one, you may not come back."
+				message_color = "#517fff"
+			else if(alive)
+				flavor_message += 	"Step by step, you walk the halls of the abandonded tarnished station, ID in hand looking for the right door. The door to oblivion."
+			else //Dead
+				flavor_message += 	"As the last of your life drains from you, all you can manage is to lay there dying. Nobody will remember your deeds here today."
 	else //Unpledged epilogues
 
 		if(cultiewin) //Completed objectives (WITH NO RESEARCH MIND YOU)
@@ -794,6 +875,12 @@
 
 /datum/antagonist/heretic/proc/is_blade()
 	return "[lore]" == "Blade"
+
+/datum/antagonist/heretic/proc/is_cosmic()
+	return "[lore]" == "Cosmic"
+
+/datum/antagonist/heretic/proc/is_knock()
+	return "[lore]" == "Knock"
 
 /datum/antagonist/heretic/proc/is_unpledged()
 	return "[lore]" == "Unpledged"

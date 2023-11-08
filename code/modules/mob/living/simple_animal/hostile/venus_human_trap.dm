@@ -114,16 +114,19 @@
 /mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	pull_vines()
-	if(check_gas())
-		adjustHealth(6)
-		to_chat(src, span_danger("The gas reacts with you and starts to melt you away!"))
+	if(kudzu_need(FALSE))
+		adjustHealth(-5)
 	
+/mob/living/simple_animal/hostile/venus_human_trap/proc/weedkiller(damage = 6)
+	adjustHealth(damage)
+	to_chat(src, span_danger("The chemical reacts with you and starts to melt you away!"))
+
 /mob/living/simple_animal/hostile/venus_human_trap/AttackingTarget()
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.stat != DEAD)
-			adjustHealth(-maxHealth * 0.1)
+		if(L.stat != DEAD && kudzu_need(FALSE))
+			adjustHealth(-maxHealth * 0.2)
 
 /mob/living/simple_animal/hostile/venus_human_trap/OpenFire(atom/the_target)
 	for(var/datum/beam/B in vines)
@@ -217,17 +220,9 @@
   * Checks if there is a kudzu within 3 tiles
   * Damages the mob if not
   */
-/mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need()
+/mob/living/simple_animal/hostile/venus_human_trap/proc/kudzu_need(feedback = TRUE)
 	for(var/obj/structure/spacevine/vine_found in view(3, src))
 		return TRUE
-	if(prob(20))
+	if(feedback && prob(20))
 		to_chat(src, span_danger("You wither away without the support of the kudzu..."))
-	return FALSE
-
-/mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
-	for(var/contents in src.loc)
-		if(istype(contents, /obj/effect/particle_effect/fluid/smoke/chem))
-			var/obj/effect/particle_effect/fluid/smoke/chem/gas = contents
-			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
-				return TRUE
 	return FALSE

@@ -167,6 +167,27 @@
 	if(damage < 0 && stamina < 0)
 		qdel(src)
 
+/obj/projectile/bullet/pellet/shotgun_anarchy
+	name = "anarchy pellet"
+	damage = 4 // 4x10 at point blank
+	sharpness = SHARP_NONE
+	ricochets_max = 3
+	reflect_range_decrease = 5
+	ricochet_chance = 100
+
+/obj/projectile/bullet/pellet/shotgun_anarchy/check_ricochet(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
+/obj/projectile/bullet/pellet/shotgun_anarchy/check_ricochet_flag(atom/A)
+	return TRUE
+
+/obj/projectile/bullet/shotgun/slug/rip
+	name = "ripslug"
+	armour_penetration = -50 // aim for the legs :)
+	damage =  30 //x2 because two slugs at once, on par with syndi slugs but with negative AP out the whazoo, and more drop off
+	
 // Mech Scattershot
 
 /obj/projectile/bullet/scattershot

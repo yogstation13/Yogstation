@@ -109,7 +109,7 @@
 	var/force_update = 0
 	var/emergency_lights = FALSE
 	var/nightshift_lights = FALSE
-	var/last_nightshift_switch = 0
+	var/last_light_switch = 0
 	var/update_state = -1
 	var/update_overlay = -1
 	var/icon_update_needed = FALSE
@@ -216,11 +216,11 @@
 	area.power_light = FALSE
 	area.power_equip = FALSE
 	area.power_environ = FALSE
+	area.poweralert(1, src)
 	area.power_change()
 	if(occupier)
 		malfvacate(1)
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
 	if(cell)
 		qdel(cell)
 	if(terminal)
@@ -242,8 +242,6 @@
 
 /obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
-	if(!mapload)
-		return
 	has_electronics = APC_ELECTRONICS_SECURED
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)
@@ -839,11 +837,24 @@
 		else
 			to_chat(user, span_warning("Access denied."))
 
-/obj/machinery/power/apc/proc/toggle_nightshift_lights(mob/living/user)
-	if(last_nightshift_switch > world.time - 100) //~10 seconds between each toggle to prevent spamming
-		to_chat(usr, span_warning("[src]'s night lighting circuit breaker is still cycling!"))
+/obj/machinery/power/apc/proc/toggle_lights(mob/living/user)
+	if(last_light_switch > world.time - 10 SECONDS) //~10 seconds between each toggle to prevent spamming
+		to_chat(usr, span_warning("[src]'s lighting circuit breaker is still cycling!"))
 		return
-	last_nightshift_switch = world.time
+	last_light_switch = world.time
+	area.lightswitch = !area.lightswitch
+	area.update_appearance(UPDATE_ICON)
+
+	for(var/obj/machinery/light_switch/L in area)
+		L.update_appearance(UPDATE_ICON)
+
+	area.power_change()
+
+/obj/machinery/power/apc/proc/toggle_nightshift_lights(mob/living/user)
+	if(last_light_switch > world.time - 10 SECONDS) //~10 seconds between each toggle to prevent spamming
+		to_chat(usr, span_warning("[src]'s lighting circuit breaker is still cycling!"))
+		return
+	last_light_switch = world.time
 	set_nightshift(!nightshift_lights)
 
 /obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
@@ -928,6 +939,7 @@
 		"coverLocked" = coverlocked,
 		"siliconUser" = user.has_unlimited_silicon_privilege || user.using_power_flow_console(),
 		"malfStatus" = get_malf_status(user),
+		"lights" = area.lightswitch,
 		"emergencyLights" = !emergency_lights,
 		"nightshiftLights" = nightshift_lights,
 
@@ -1033,7 +1045,17 @@
 		. = UI_INTERACTIVE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && action != "toggle_nightshift" && !(integration_cog && (is_servant_of_ratvar(usr)))))
+	if(..())
+		return
+	// For things that require no access
+	switch(action)
+		if("toggle_lights")
+			toggle_lights(usr)
+			. = TRUE
+		if("toggle_nightshift")
+			toggle_nightshift_lights()
+			. = TRUE
+	if(!can_use(usr, TRUE) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && !(integration_cog && (is_servant_of_ratvar(usr)))))
 		return
 	switch(action)
 		if("lock")
@@ -1049,9 +1071,6 @@
 			. = TRUE
 		if("breaker")
 			toggle_breaker(usr)
-			. = TRUE
-		if("toggle_nightshift")
-			toggle_nightshift_lights()
 			. = TRUE
 		if("charge")
 			chargemode = !chargemode

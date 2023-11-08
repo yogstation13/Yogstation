@@ -136,6 +136,10 @@
 	for (var/datum/lighting_corner/corner as anything in effect_str)
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
+		SSdemo.mark_turf(corner.master_NE)
+		SSdemo.mark_turf(corner.master_SE)
+		SSdemo.mark_turf(corner.master_SW)
+		SSdemo.mark_turf(corner.master_NW)
 
 /datum/light_source/proc/recalc_corner(datum/lighting_corner/corner)
 	LAZYINITLIST(effect_str)
@@ -223,6 +227,7 @@
 				corners[T.lighting_corner_SW] = 0
 				corners[T.lighting_corner_NW] = 0
 			turfs += T
+			SSdemo.mark_turf(T)
 		source_turf.luminosity = oldlum
 
 	var/list/datum/lighting_corner/new_corners = (corners - effect_str)

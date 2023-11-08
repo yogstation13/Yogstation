@@ -27,10 +27,7 @@
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
-	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1
-
-/turf/closed/indestructible/rust_heretic_act()
-	return
+	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1 | NO_RUST
 
 /turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return

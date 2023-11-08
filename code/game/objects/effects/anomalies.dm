@@ -2,6 +2,8 @@
 /// Chance of taking a step per second
 #define ANOMALY_MOVECHANCE 45
 
+/////////////////////
+
 /obj/effect/anomaly
 	name = "anomaly"
 	desc = "A mysterious anomaly, seen commonly only in the region of space that the station orbits..."
@@ -10,6 +12,7 @@
 	anchored = TRUE
 	light_range = 3
 	var/obj/item/assembly/signaler/anomaly/aSignal
+	var/core_type
 	var/area/impact_area
 
 	var/lifespan = 990
@@ -18,16 +21,32 @@
 	var/countdown_colour
 	var/obj/effect/countdown/anomaly/countdown
 
+	/// Do we keep on living forever?
+	var/immortal = FALSE
+
 /obj/effect/anomaly/Initialize(mapload, new_lifespan)
 	. = ..()
 	GLOB.poi_list |= src
 	START_PROCESSING(SSobj, src)
 	impact_area = get_area(src)
 
-	aSignal = new(src)
-	aSignal.name = "[name] core"
+	switch(core_type)
+		if(ANOMALY_RADIATION)
+			aSignal = new /obj/item/assembly/signaler/anomaly/radiation(src)
+		if(ANOMALY_HALLUCINATION)
+			aSignal = new /obj/item/assembly/signaler/anomaly/hallucination(src)
+		if(ANOMALY_FLUX)
+			aSignal = new /obj/item/assembly/signaler/anomaly/flux(src)
+		if(ANOMALY_GRAVITATIONAL)
+			aSignal = new /obj/item/assembly/signaler/anomaly/grav(src)
+		if(ANOMALY_PYRO)
+			aSignal = new /obj/item/assembly/signaler/anomaly/pyro(src)
+		if(ANOMALY_BLUESPACE)
+			aSignal = new /obj/item/assembly/signaler/anomaly/bluespace(src)
+		if(ANOMALY_VORTEX)
+			aSignal = new /obj/item/assembly/signaler/anomaly/vortex(src)
+
 	aSignal.code = rand(1,100)
-	aSignal.anomaly_type = type
 
 	var/frequency = rand(MIN_FREE_FREQ, MAX_FREE_FREQ)
 	if(ISMULTIPLE(frequency, 2))//signaller frequencies are always uneven!
@@ -37,6 +56,8 @@
 	if(new_lifespan)
 		lifespan = new_lifespan
 	death_time = world.time + lifespan
+	if(immortal)
+		return // no countdown for forever anomalies
 	countdown = new(src)
 	if(countdown_colour)
 		countdown.color = countdown_colour
@@ -44,7 +65,7 @@
 
 /obj/effect/anomaly/process(delta_time)
 	anomalyEffect(delta_time)
-	if(death_time < world.time)
+	if(death_time < world.time && !immortal)
 		if(loc)
 			detonate()
 		qdel(src)
@@ -84,6 +105,7 @@
 /obj/effect/anomaly/grav
 	name = "gravitational anomaly"
 	icon_state = "shield2"
+	core_type = ANOMALY_GRAVITATIONAL
 	density = FALSE
 	var/boing = 0
 
@@ -140,10 +162,14 @@
 /obj/effect/anomaly/flux
 	name = "flux wave anomaly"
 	icon_state = "electricity2"
+	core_type = ANOMALY_FLUX
 	density = FALSE // so it doesn't awkwardly block movement when it doesn't stun you
 	var/canshock = 0
 	var/shockdamage = 30
-	var/explosive = TRUE
+	var/explosive = ANOMALY_FLUX_NO_EXPLOSION
+
+/obj/effect/anomaly/flux/explosion
+	explosive = ANOMALY_FLUX_EXPLOSION
 
 /obj/effect/anomaly/flux/anomalyEffect(delta_time)
 	..()
@@ -184,13 +210,11 @@
 		span_italics("You hear a heavy electrical crack."))
 
 /obj/effect/anomaly/flux/detonate()
-	if(explosive)
-		message_admins("An anomaly has detonated.") //yogs
-		log_game("An anomaly has detonated.") //yogs
-		explosion(src, 1, 4, 16, 18) //Low devastation, but hits a lot of stuff.
-	else
-		new /obj/effect/particle_effect/sparks(loc)
-
+	switch(explosive)
+		if(ANOMALY_FLUX_EXPLOSION)
+			explosion(src, devastation_range = 1, heavy_impact_range = 4, light_impact_range = 16, flash_range = 18) //Low devastation, but hits a lot of stuff.
+		if(ANOMALY_FLUX_NO_EXPLOSION)
+			new /obj/effect/particle_effect/sparks(loc)
 
 /////////////////////
 
@@ -198,6 +222,7 @@
 	name = "bluespace anomaly"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
+	core_type = ANOMALY_BLUESPACE
 	density = TRUE
 
 /obj/effect/anomaly/bluespace/anomalyEffect()
@@ -269,6 +294,7 @@
 	name = "pyroclastic anomaly"
 	icon_state = "pyro"
 	color = "#ffa952"
+	core_type = ANOMALY_PYRO
 	var/ticks = 0
 	/// How many seconds between each gas release
 	var/releasedelay = 10
@@ -308,6 +334,7 @@
 /obj/effect/anomaly/bhole
 	name = "vortex anomaly"
 	icon_state = "bhole3"
+	core_type = ANOMALY_VORTEX
 	desc = "That's a nice station you have there. It'd be a shame if something happened to it."
 
 /obj/effect/anomaly/bhole/anomalyEffect()
@@ -371,51 +398,89 @@
  /////////////////////////
 /obj/effect/anomaly/radiation
 	name = "radiation anomaly"
-	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "radiation_anomaly"
+	core_type = ANOMALY_RADIATION
 	density = TRUE
-	var/spawn_goat = FALSE //For goat spawning
+	var/spawn_goat = ANOMALY_RADIATION_NO_GOAT //For goat spawning
 
-/obj/effect/anomaly/radiation/admin //bussing
-	spawn_goat = TRUE
+/obj/effect/anomaly/radiation/goat //bussing
+	spawn_goat = ANOMALY_RADIATION_YES_GOAT
 
 /obj/effect/anomaly/radiation/anomalyEffect()
 	..()
-	for(var/i = 1 to 15)
+	for(var/i = 1 to 5)
 		fire_nuclear_particle()
-	radiation_pulse(src, 500, 5)
+	radiation_pulse(src, 10000, 5)
 
 /obj/effect/anomaly/radiation/proc/makegoat()
-	var/turf/open/T = get_turf(src)
-	var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = new(T)
+	for(var/i=1 to 15)
+		fire_nuclear_particle()
+		radiation_pulse(src, 20000, 7)
+	if(spawn_goat == ANOMALY_RADIATION_YES_GOAT)
+		var/turf/open/T = get_turf(src)
+		var/mob/living/simple_animal/hostile/retaliate/goat/radioactive/S = new(T)
 
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a radioactive goat?", ROLE_SENTIENCE, null, null, 100, S, POLL_IGNORE_PYROSLIME)
-	if(LAZYLEN(candidates))
-		var/mob/dead/observer/chosen = pick(candidates)
-		S.key = chosen.key
-		var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
-		spell.Grant(S)
-		log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
+		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a radioactive goat?", ROLE_SENTIENCE, null, null, 100, S, POLL_IGNORE_PYROSLIME)
+		if(LAZYLEN(candidates))
+			var/mob/dead/observer/chosen = pick(candidates)
+			S.key = chosen.key
+			var/datum/action/cooldown/spell/conjure/radiation_anomaly/spell
+			spell.Grant(S)
+			log_game("[key_name(S.key)] was made into a radioactive goat by radiation anomaly at [AREACOORD(T)].")
 
 /obj/effect/anomaly/radiation/detonate()
-	INVOKE_ASYNC(src, PROC_REF(rad_Spin))
+	INVOKE_ASYNC(src, PROC_REF(makegoat))
 
-/obj/effect/anomaly/radiation/proc/rad_Spin(increment = 1)
-	if(increment > 100)
-		if(spawn_goat)//only spawn the goat once, when the anomaly explodes
-			INVOKE_ASYNC(src, PROC_REF(makegoat))
-		qdel(src)
-	radiation_pulse(src, 5000, 7)
-	var/turf/T = get_turf(src)
-	var/angle = increment * 10
-	T.fire_nuclear_particle(angle)
-	addtimer(CALLBACK(src, PROC_REF(rad_Spin), increment + 1), 0.7)
-		
+/////////////////////
 
-/obj/effect/anomaly/radiation/process(delta_time)
-	anomalyEffect(delta_time)
-	if(death_time < world.time)
-		if(loc)
-			detonate()
+/obj/effect/anomaly/hallucination
+	name = "hallucination anomaly"
+	icon_state = "hallucination_anomaly"
+	core_type = ANOMALY_HALLUCINATION
+	/// Time passed since the last effect, increased by delta_time of the SSobj
+	var/ticks = 0
+	/// How many seconds between each small hallucination pulses
+	var/release_delay = 5
+
+/obj/effect/anomaly/hallucination/anomalyEffect(delta_time)
+	. = ..()
+	ticks += delta_time
+	if(ticks < release_delay)
+		return
+	ticks -= release_delay
+	var/turf/open/our_turf = get_turf(src)
+	if(istype(our_turf))
+		hallucination_pulse(our_turf, 5)
+
+/obj/effect/anomaly/hallucination/detonate()
+	var/turf/open/our_turf = get_turf(src)
+	if(istype(our_turf))
+		hallucination_pulse(our_turf, 10)
+
+/proc/hallucination_pulse(turf/location, range, strength = 50)
+	for(var/mob/living/carbon/human/near in view(location, range))
+		// If they are immune to hallucinations
+		if (HAS_TRAIT(near, TRAIT_MESONS) || (near.mind && HAS_TRAIT(near.mind, TRAIT_MESONS)))
+			continue
+
+		// Blind people don't get hallucinations
+		if (is_blind(near))
+			continue
+
+		// Everyone else
+		var/dist = sqrt(1 / max(1, get_dist(near, location)))
+		near.adjust_hallucinations(max(150, strength * dist))
+		near.adjust_jitter(10 SECONDS)
+		near.adjust_confusion(10 SECONDS)
+		near.adjust_dizzy(10 SECONDS)
+		near.adjust_drowsiness(10 SECONDS)
+		var/static/list/messages = list(
+			"You feel your conscious mind fall apart!",
+			"Reality warps around you!",
+			"Something's whispering around you!",
+			"You are going insane!",
+			"What was that?!"
+		)
+		to_chat(near, span_warning("[pick(messages)]"))
 
 #undef ANOMALY_MOVECHANCE

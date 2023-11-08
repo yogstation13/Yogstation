@@ -232,3 +232,5 @@
 
 	///What receives our keyboard inputs. src by default. (from 'code/modules/keybindings/focus.dm')
 	var/datum/focus
+
+	var/fake_client = FALSE // Currently only used for examines

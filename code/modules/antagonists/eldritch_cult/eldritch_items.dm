@@ -187,6 +187,12 @@
 	throwforce = 5
 	block_chance = 10
 
+/obj/item/melee/sickly_blade/cosmic
+	name = "cosmic blade"
+	desc = "A piece of the cosmos, shaped like a weapon for you to wield."
+	icon_state = "cosmic_blade"
+	item_state = "cosmic_blade"
+
 /obj/item/melee/sickly_blade/dark/attack(mob/living/M, mob/living/user, secondattack = FALSE)
 	. = ..()
 	var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
@@ -195,6 +201,12 @@
 		secondsword.attack(M, user, TRUE)
 		user.changeNext_move(CLICK_CD_MELEE)
 	return
+
+/obj/item/melee/sickly_blade/knock
+	name = "key blade"
+	desc = "A blade in the shape of a key, what door will you unlock with it?"
+	icon_state = "knock_blade"
+	item_state = "knock_blade"
 
 /obj/item/clothing/neck/eldritch_amulet
 	name = "warm eldritch medallion"
@@ -327,7 +339,7 @@
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
-	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
 	resistance_flags = FIRE_PROOF
 	
 	/// The mob currently wearing this

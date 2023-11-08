@@ -8,21 +8,29 @@
 		/datum/eldritch_knowledge/base_flesh,
 		/datum/eldritch_knowledge/base_void,
 		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/void_mark,
 		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final)
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
 	cost = 1
 	route = PATH_MIND
@@ -78,7 +86,9 @@
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark)
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_MIND
 	tier = TIER_MARK
 
@@ -128,7 +138,9 @@
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade)
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_MIND
 	tier = TIER_BLADE
 

@@ -78,6 +78,8 @@
 #define MOB_EPIC		(1<<7) //megafauna
 #define MOB_REPTILE		(1<<8)
 #define MOB_SPIRIT		(1<<9)
+#define MOB_SPECIAL		(1<<10) //eldritch biggums
+
 
 /// All the biotypes that matter
 #define ALL_NON_ROBOTIC (MOB_ORGANIC|MOB_INORGANIC|MOB_UNDEAD)

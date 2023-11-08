@@ -1,8 +1,64 @@
+#define LIGHT_BARE 1
+#define LIGHT_WIRE 2
+#define LIGHT_CONSTRUCTED 3
+
+/datum/wires/light_switch
+	holder_type = /obj/machinery/light_switch
+	proper_name = "Light Switch"
+
+/datum/wires/light_switch/New(atom/holder)
+	wires = list(
+		WIRE_POWER,
+	)
+	..()
+
+/datum/wires/light_switch/interactable(mob/user)
+	var/obj/machinery/light_switch/A = holder
+	if(A.panel_open && A.construction_state == LIGHT_WIRE)
+		return TRUE
+
+/datum/wires/light_switch/get_status()
+	var/obj/machinery/light_switch/A = holder
+	var/list/status = list()
+	status += "The relay light is [A.area.lightswitch ? "green" : "red"]."
+	return status
+
+/datum/wires/light_switch/on_pulse(wire)
+	var/obj/machinery/light_switch/A = holder
+	switch(wire)
+		if(WIRE_POWER)
+			if(A.area.lightswitch)
+				A.turn_off()
+			else
+				A.turn_on()
+
+/datum/wires/light_switch/on_cut(wire, mend)
+	var/obj/machinery/light_switch/A = holder
+	switch(wire)
+		if(WIRE_POWER)
+			A.shock(usr, 50)
+			if(mend)
+				A.stat &= ~BROKEN
+				A.turn_on()
+			else
+				A.stat &= BROKEN
+				A.turn_off()
+
+
+
+/obj/item/wallframe/light_switch
+	name = "light switch frame"
+	desc = "Used for building light switches."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "light-b"
+	result_path = /obj/machinery/light_switch
+	pixel_shift = -25
+
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
 	icon = 'icons/obj/power.dmi'
-	icon_state = "light-p"
+	icon_state = "light-b"
 	desc = "Make dark."
 	power_channel = AREA_USAGE_LIGHT
 
@@ -12,9 +68,11 @@
 	/// Set this to a string, path, or area instance to control that area
 	/// instead of the switch's location.
 	var/area/area = null
+	var/construction_state = LIGHT_BARE
 
 /obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
+	wires = new /datum/wires/light_switch(src)
 	if(istext(area))
 		area = text2path(area)
 	if(ispath(area))
@@ -25,16 +83,54 @@
 	if(!name)
 		name = "light switch ([area.name])"
 
+	if(mapload)
+		construction_state = LIGHT_CONSTRUCTED
+
 	update_appearance(UPDATE_ICON)
+	if(mapload)
+		return INITIALIZE_HINT_LATELOAD
+	return INITIALIZE_HINT_NORMAL
+
+/obj/machinery/light_switch/LateInitialize()
+	if(!is_station_level(z))
+		return
+	var/area/source_area = get_area(get_turf(src))
+	if(source_area.lights_always_start_on)
+		return
+	turn_off()
 
 /obj/machinery/light_switch/update_overlays()
 	. = ..()
-	if(stat & NOPOWER)
+	if(stat & (NOPOWER|BROKEN))
+		return
+	if(construction_state != LIGHT_CONSTRUCTED)
 		return
 	if(area.lightswitch)
 		. += "light1"
 	else
 		. += "light0"
+
+/obj/machinery/light_switch/proc/turn_off()
+	if(!area.lightswitch)
+		return
+	area.lightswitch = FALSE
+	area.update_icon()
+
+	for(var/obj/machinery/light_switch/L in area)
+		L.update_icon()
+
+	area.power_change()
+
+/obj/machinery/light_switch/proc/turn_on()
+	if(area.lightswitch)
+		return
+	area.lightswitch = TRUE
+	area.update_icon()
+
+	for(var/obj/machinery/light_switch/L in area)
+		L.update_icon()
+
+	area.power_change()
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
@@ -45,6 +141,8 @@
 /obj/machinery/light_switch/interact(mob/user)
 	if(obj_flags & EMAGGED)
 		shock(user)
+	if(construction_state != LIGHT_CONSTRUCTED)
+		return
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
@@ -55,6 +153,59 @@
 		L.update_appearance(UPDATE_ICON)
 
 	area.power_change()
+
+/obj/machinery/light_switch/attackby(obj/item/W, mob/user, params)
+	switch(construction_state)
+		if(LIGHT_BARE)
+			var/obj/item/stack/cable_coil/c = W
+			if(istype(c) && c.use(1))
+				to_chat(user, span_notice("You insert wiring into [src]."))
+				construction_state = LIGHT_WIRE
+				update_appearance(UPDATE_ICON)
+				return
+			if(W.tool_behaviour == TOOL_WRENCH)
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You remove the frame."))
+				new /obj/item/wallframe/light_switch(loc)
+				return
+		if(LIGHT_WIRE)
+			if(W.tool_behaviour == TOOL_WIRECUTTER && wires.is_cut(WIRE_POWER))
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You cut the wires out."))
+				new /obj/item/stack/cable_coil(loc, 1)
+				construction_state = LIGHT_BARE
+				update_appearance(UPDATE_ICON)
+				return
+			if(panel_open && is_wire_tool(W))
+				wires.interact(user)
+				return
+			if(W.tool_behaviour == TOOL_SCREWDRIVER)
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You screw the cover on."))
+				panel_open = FALSE
+				construction_state = LIGHT_CONSTRUCTED
+				update_appearance(UPDATE_ICON)
+				return
+		if(LIGHT_CONSTRUCTED)
+			if(W.tool_behaviour == TOOL_SCREWDRIVER)
+				W.play_tool_sound(src)
+				to_chat(user, span_notice("You take the cover off."))
+				panel_open = TRUE
+				construction_state = LIGHT_WIRE
+				update_appearance(UPDATE_ICON)
+				return
+	return ..()
+
+/obj/machinery/light_switch/update_icon_state()
+	. = ..()
+	switch(construction_state)
+		if(LIGHT_BARE)
+			icon_state = "light-b"
+		if(LIGHT_WIRE)
+			icon_state = "light-w"
+		if(LIGHT_CONSTRUCTED)
+			icon_state = "light-c"
+
 
 /obj/machinery/light_switch/power_change()
 	if(area == get_area(src))

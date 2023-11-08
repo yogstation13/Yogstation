@@ -14,7 +14,6 @@
 	add_req_access = 0
 	internal_damage_threshold = 25
 	max_equip = 2
-	step_energy_drain = 3
 	color = "#87878715"
 	stepsound = null
 	turnsound = null

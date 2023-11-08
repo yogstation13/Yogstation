@@ -283,7 +283,7 @@
 /obj/effect/particle_effect/fluid/foam/firefighting/foam_mob(mob/living/foaming, delta_time)
 	if(!istype(foaming))
 		return
-	foaming.adjust_fire_stacks(-2)
+	foaming.adjust_wet_stacks(2)
 	foaming.extinguish_mob()
 
 /// A factory which produces firefighting foam

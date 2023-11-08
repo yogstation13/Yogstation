@@ -680,6 +680,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
+	var/turf/T = get_turf(src)
+	if(T)
+		for(var/obj/item/coin/C in T.contents)
+			add_to_stack(C, null, FALSE)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/coinstack/examine(mob/user)
@@ -721,8 +725,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	C.forceMove(src)
 	C.pixel_x = 0
 	C.pixel_y = 0
-	src.add_fingerprint(user)
-	to_chat(user,span_notice("You add [C] to the stack of coins."))
+	if(user)
+		src.add_fingerprint(user)
+		to_chat(user,span_notice("You add [C] to the stack of coins."))
 	update_appearance(UPDATE_ICON)
 	return TRUE
 

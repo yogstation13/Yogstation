@@ -709,7 +709,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C) || isethereal(C))
 		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
 			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
 			return ..()
@@ -1228,7 +1228,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/melee/knuckles(src)
+			new /obj/item/bloodbook(src)
 		if(2)
 			new /obj/item/clothing/gloves/bracer/cuffs(src)
 

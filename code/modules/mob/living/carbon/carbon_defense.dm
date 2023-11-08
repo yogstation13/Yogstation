@@ -380,7 +380,7 @@
 		var/obj/item/organ/O = X
 		O.emp_act(severity)
 
-/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
@@ -418,7 +418,14 @@
 			revive()
 			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 			adjust_jitter(10 SECONDS)
-			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
+			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199)
+	if(gib && siemens_coeff > 0)
+		visible_message(
+			span_danger("[src] body is emitting a loud noise!"), \
+			span_userdanger("You feel like you are about to explode!"), \
+			span_italics("You hear a loud noise!"), \
+		)
+		addtimer(CALLBACK(src, PROC_REF(supermatter_tesla_gib)), 4 SECONDS) //yogs end
 	if(override)
 		return override
 	else
@@ -464,11 +471,13 @@
 			trauma.on_hug(M, src)
 
 		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
-		fire_stacks = averagestacks
-		M.fire_stacks = averagestacks
 		if(averagestacks > 1)
+			adjust_fire_stacks(averagestacks)
+			M.adjust_fire_stacks(-averagestacks)
 			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
 		else if(averagestacks < -1)
+			adjust_wet_stacks(averagestacks)
+			M.adjust_wet_stacks(-averagestacks)
 			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
 
 	adjust_status_effects_on_shake_up()
