@@ -44,6 +44,7 @@
 	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
 	current_mob.add_overlay(veil_sigils)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(veil_life))
 	current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
@@ -52,10 +53,26 @@
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.cut_overlay(veil_sigils)
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
 	var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
 	if(cam)
 		cam.RemoveComponent()
 	QDEL_NULL(veil_sigils)
+
+/datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
+	if(!source || source.stat == DEAD)
+		return
+	var/obj/item/organ/tumor = M.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
+		source.remove_veil()
+		return
+
+	for(var/mob/living/thing in range(5, source))
+		if(!thing.client)
+			continue
+		if(is_darkspawn_or_veil(thing))
+			continue
+		to_chat(world, "[source] generating lucidity for being nearby [thing]")
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
