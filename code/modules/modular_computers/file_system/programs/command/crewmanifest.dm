@@ -3,7 +3,7 @@
 	filedesc = "Crew Manifest"
 	category = PROGRAM_CATEGORY_CMD
 	program_icon_state = "id"
-	extended_desc = "Program for viewing and printing the current crew manifest"
+	extended_desc = "Program for viewing and printing the current crew manifest."
 	requires_ntnet = FALSE
 	size = 4
 	tgui_id = "NtosCrewManifest"
