@@ -31,15 +31,13 @@
         )
 
 /datum/action/cooldown/spell/touch/invisible_touch/is_valid_target(atom/cast_on)
+	if(isturf(cast_on))
+		return FALSE
+	if(cast_on.type in blacklist)
+		return FALSE
 	return TRUE
 
 /datum/action/cooldown/spell/touch/invisible_touch/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
-	if(isturf(victim))
-		return FALSE
-	if(victim.type in blacklist)
-		to_chat(caster, span_warning("[victim] is too dangerous to mess with!"))
-		return FALSE
-	
 	if(ismob(victim))
 		if(ishuman(victim))
 			vanish_items(victim)
