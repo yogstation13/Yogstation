@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
+GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------Veil Creation----------------------------//
@@ -14,115 +14,83 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = NONE
 	panel = null
 	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	hand_path = /obj/item/melee/touch_attack/veil_mind
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	invocation_type = INVOCATION_NONE
+	psi_cost = 100
+	hand_path = /obj/item/melee/touch_attack/darkspawn
 
 /datum/action/cooldown/spell/touch/veil_mind/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/veil_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
-	if(!target.mind)
+	if(!target.mind && !target.last_mind)
 		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
 		return
-	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>[span_notice("You take a deep breath...")]")
+	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
+		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
+		return FALSE
+	if(!(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) || isveil(target)))
+		to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
+		return FALSE
+	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
 		return FALSE
-	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>[span_notice("You veil the minds of [target].")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_scream.ogg', 100)
 	if(isveil(target))
-		target.revive(1)
+		to_chat(owner, span_velvet("You revitalize your veil [target.real_name]."))
+		target.revive(TRUE, TRUE)
+		target.grab_ghost()
+	else if(target.add_veil())
+		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 	else
-		if(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && target.add_veil())
-			to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
-		else
-			to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
-			return FALSE
+		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 	return TRUE
 
-/obj/item/melee/touch_attack/veil_mind
-	name = "Veiling hand"
-	desc = "Concentrated psionic power, primed to toy with mortal minds."
-	icon_state = "flagellation"
-	item_state = "hivemind"
-
 //////////////////////////////////////////////////////////////////////////
-//--------------------------Veil Camera System--------------------------//
+//----------------------------Get rid of a thrall-----------------------//
 //////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/veil_cam
-	name = "Veil net"
-	desc = "Call up your boys."
-	panel = null
+/datum/action/cooldown/spell/unveil_mind
+	name = "Release veil"
+	desc = "Release a veil from your control, freeing your power to be redistributed."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	buttontooltipstyle = "alien"
-	button_icon_state = "sacrament"
+	button_icon_state = "veil_mind"
 	antimagic_flags = NONE
-	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_LYING
-	cooldown_time = 1 MINUTES
+	panel = null
+	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN
-	cast_range = 2
-	var/casting = FALSE
-	var/cast_time = 2 SECONDS
 
-/datum/action/cooldown/spell/pointed/veil_cam/can_cast_spell(feedback)
-	if(casting)
-		return FALSE
+/datum/action/cooldown/spell/unveil_mind/can_cast_spell(feedback)
+	if(!LAZYLEN(SSticker.mode.veils))
+		if(feedback)
+			to_chat(owner, "You have no veils to release.")
+		return
 	. = ..()
-
-/datum/action/cooldown/spell/pointed/veil_cam/before_cast(atom/cast_on)
-	. = ..()
-	if(cast_on.density)
-		return . | SPELL_CANCEL_CAST
-	if(casting)
-		return . | SPELL_CANCEL_CAST
-	if(. & SPELL_CANCEL_CAST)
-		return .
-	casting = TRUE
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_begin.ogg', 50, TRUE)
-	if(!do_after(owner, cast_time, cast_on))
-		casting = FALSE
-		return . | SPELL_CANCEL_CAST
-	casting = FALSE
 	
-/datum/action/cooldown/spell/pointed/veil_cam/cast(atom/cast_on)
+/datum/action/cooldown/spell/unveil_mind/cast(atom/cast_on)
 	. = ..()
-	owner.visible_message(span_warning("[owner] pulled shadows together into an orb!"), span_velvet("You summon your orb"))
-	playsound(get_turf(owner), 'yogstation/sound/magic/devour_will_end.ogg', 50, TRUE)
-	new /obj/machinery/computer/camera_advanced/darkspawn(get_turf(cast_on))
-	
-/obj/machinery/computer/camera_advanced/darkspawn
-	name = "dark orb"
-	desc = "SEND DUDES"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
-	special = TRUE
-	use_power = NO_POWER_USE
-	flags_1 = NODECONSTRUCT_1
-	max_integrity = 200
-	integrity_failure = 0
-	light_power = -1
-	light_color = COLOR_DARKSPAWN_PSI
-	light_system = MOVABLE_LIGHT //it's not movable, but the new system looks nicer for this purpose
-	networks = list(ROLE_DARKSPAWN)
-	clicksound = "crawling_shadows_walk"
+	var/loser = tgui_input_list(owner, "Select a veil to release from your control.", "Release a veil", SSticker.mode.veils)
+	if(!loser || !istype(loser, /datum/mind))
+		return
+	var/datum/mind/unveiled = loser
+	if(!unveiled.current)
+		return
+	unveiled.current.remove_veil()
+	to_chat(owner, span_velvet("You release your control over [unveiled]"))
 
-/obj/machinery/computer/camera_advanced/darkspawn/Initialize(mapload)
-	. = ..()
-	camnet = GLOB.veilnet
-
-/obj/machinery/computer/camera_advanced/darkspawn/can_use(mob/living/user)
-	if(user && !is_darkspawn_or_veil(user))
-		return FALSE
-	return ..()
-
-/obj/machinery/computer/camera_advanced/darkspawn/CreateEye()
-	. = ..()
-	eyeobj.nightvision = TRUE
-
-/obj/machinery/computer/camera_advanced/darkspawn/emp_act(severity)
-	return
+//////////////////////////////////////////////////////////////////////////
+//--------------------------Veil Camera System--------------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/darkspawn_build/veil_cam
+	name = "Panopticon"
+	desc = "Watch what your allies and servants are doing at all times."
+	button_icon_state = "sacrament"
+	cooldown_time = 1 MINUTES
+	cast_time = 2 SECONDS
+	object_type = /obj/machinery/computer/camera_advanced/darkspawn
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Global AOE Buff spells-------------------------//
@@ -139,9 +107,17 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	cooldown_time = 1 MINUTES
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
 	/// If the buff also buffs all darkspawns
 	var/darkspawns_too = FALSE
+
+/datum/action/cooldown/spell/veilbuff/before_cast(atom/cast_on)
+	. = ..()
+	/*
+	if(isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/antag = isdarkspawn(owner)
+		darkspawns_too = antag.buff_darkspawn					//change this to check for a special darkspawn variable
+	*/
 
 /datum/action/cooldown/spell/veilbuff/cast(atom/cast_on)
 	. = ..()
@@ -163,6 +139,60 @@ GLOBAL_DATUM_INIT(veilnet, /datum/cameranet/darkspawn, new)
 ////////////////////////////Global AOE heal//////////////////////////
 /datum/action/cooldown/spell/veilbuff/heal
 	name = "Heal veils"
+	desc = "Heals all veils for an amount of brute and burn."
+	var/heal_amount = 20
 
-/datum/action/cooldown/spell/veilbuff/empower(mob/living/carbon/human/target)
-	target.heal_overall_damage(25, 25, 0, BODYPART_ANY)
+/datum/action/cooldown/spell/veilbuff/heal/empower(mob/living/carbon/human/target)
+	target.heal_overall_damage(heal_amount, heal_amount, 0, BODYPART_ANY)
+
+////////////////////////////One click CC cleanse//////////////////////////
+/datum/action/cooldown/spell/veilbuff/cleanse
+	name = "Cleanse veils"
+	desc = "Cleanse all the crowd control effects currently applied to your veils."
+
+/datum/action/cooldown/spell/veilbuff/cleanse/empower(mob/living/carbon/human/target)
+	target.SetAllImmobility(0, TRUE)
+
+////////////////////////////Temporary speed boost//////////////////////////
+/datum/action/cooldown/spell/veilbuff/speed
+	name = "Expedite veils"
+	desc = "Give all veils a temporary movespeed bonus."
+
+/datum/action/cooldown/spell/veilbuff/speed/empower(mob/living/carbon/human/target)
+	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 5 SECONDS, type)
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------Abilities that thralls get----------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/glare/lesser //a defensive ability, nothing else. can't be used to stun people, steal tasers, etc. Just good for escaping
+	name = "Lesser Glare"
+	desc = "Makes a single target dizzy for a bit."
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "glare"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
+
+	cooldown_time = 45 SECONDS
+	spell_requirements = SPELL_REQUIRES_HUMAN
+	strong = FALSE
+
+/datum/action/cooldown/spell/toggle/nightvision
+	name = "Nightvision"
+	desc = "Grants sight in the dark."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "pass"
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/toggle/nightvision/Enable()
+	owner.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	owner.see_in_dark = 8
+
+/datum/action/cooldown/spell/toggle/nightvision/Disable()
+	owner.lighting_alpha = initial(owner.lighting_alpha)
+	owner.see_in_dark = initial(owner.see_in_dark)
+	owner.update_sight()

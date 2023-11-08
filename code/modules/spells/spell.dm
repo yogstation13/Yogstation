@@ -288,6 +288,7 @@
 	if(!(precast_result & SPELL_NO_IMMEDIATE_COOLDOWN))
 		// The entire spell is done, start the actual cooldown at its set duration
 		StartCooldown()
+		consume_resource() //a resource cost is basically the same as a cooldown
 
 	// And then proceed with the aftermath of the cast
 	// Final effects that happen after all the casting is done can go here
@@ -355,6 +356,13 @@
 	// Send signals last in case they delete the spell
 	SEND_SIGNAL(owner, COMSIG_MOB_AFTER_SPELL_CAST, src, cast_on)
 	SEND_SIGNAL(src, COMSIG_SPELL_AFTER_CAST, cast_on)
+
+/// Called after the effect happens, whether that's after the button press or after hitting someone with a touch ability
+/datum/action/cooldown/spell/proc/consume_resource() //to-do: rework vampire blood use into using this proc
+	if(psi_cost && isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
+		darkspawn.use_psi(psi_cost)
+
 
 /// Provides feedback after a spell cast occurs, in the form of a cast sound and/or invocation
 /datum/action/cooldown/spell/proc/spell_feedback()

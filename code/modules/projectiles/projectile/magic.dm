@@ -485,7 +485,7 @@
 
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 3 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 3 SECONDS)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()

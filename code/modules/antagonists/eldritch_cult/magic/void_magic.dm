@@ -20,7 +20,7 @@ VOID PATH SPELLS GO HERE
 
 	invocation = "RE'L'TY PH'S'E."
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 5
 	/// The minimum range to cast the phase.
@@ -95,7 +95,7 @@ VOID PATH SPELLS GO HERE
 
 	invocation = "FR'ZE!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	// In room temperature, the ice won't last very long
 	// ...but in space / freezing rooms, it will stick around
@@ -130,7 +130,7 @@ VOID PATH SPELLS GO HERE
 
 	cooldown_time = 50 SECONDS
 	aoe_radius = 2
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/aoe/slip/void/cast_on_thing_in_aoe(turf/open/target)
 	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)
@@ -150,7 +150,7 @@ VOID PATH SPELLS GO HERE
 
 	invocation = "BR'NG F'RTH TH'M T' M'."
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	aoe_radius = 7
 	/// The radius of the actual damage circle done before cast

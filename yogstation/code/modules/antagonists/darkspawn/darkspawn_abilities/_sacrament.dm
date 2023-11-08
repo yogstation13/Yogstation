@@ -80,7 +80,7 @@
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
 	for(var/turf/T in range(7, owner))
 		if(prob(25))
-			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(0.1, 4) SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
 	addtimer(CALLBACK(src, PROC_REF(shatter_lights)), 3.5 SECONDS)
 	QDEL_IN(soundloop, 39)
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)

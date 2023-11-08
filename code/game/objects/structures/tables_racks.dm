@@ -35,6 +35,7 @@
 
 /obj/structure/table/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/footstep_override, priority = STEP_SOUND_TABLE_PRIORITY)
 	AddElement(/datum/element/climbable)
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \

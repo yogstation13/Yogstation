@@ -11,6 +11,8 @@
 	if(IsAdminGhost(M))
 		//Access can't stop the abuse
 		return TRUE
+	if(HAS_TRAIT(M, TRAIT_ALWAYS_NO_ACCESS))
+		return FALSE
 	else if(istype(M) && SEND_SIGNAL(M, COMSIG_MOB_ALLOWED, src))
 		return TRUE
 	else if(ishuman(M))

@@ -35,7 +35,7 @@
 		user.visible_message(span_warning("[user] disassembles the [name]."), \
 							 "You start to disassemble the [name]...", \
 							 span_italics("You hear wrenching."))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src.loc, 'sound/items/ratchet.ogg', 50, 1)
 		if(do_after(user, 4 SECONDS/I.toolspeed, src))
 			to_chat(user, span_notice("You disassemble the [name]."))
 			var/obj/item/stack/sheet/metal/M = new (loc, 3)//spawn three metal for deconstruction
@@ -45,7 +45,7 @@
 			if (prob(50))
 				G.add_fingerprint(user)
 			deconstruct()//deconstruct then spawns an additional 2 metal, so you recover more mats using a wrench to decon than just destroying it.
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+			playsound(src.loc, 'sound/items/ratchet.ogg', 50, 1)
 			return
 	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !broken && !open)
 		//User is attempting to wrench a closed & non-broken fireaxe cab

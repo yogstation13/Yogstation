@@ -26,10 +26,11 @@
 	cooldown_time = 90 SECONDS
 	spell_requirements = NONE
 	var/length = 10 SECONDS
+	var/guardian_lock = TRUE
 
 /datum/action/cooldown/spell/erase_time/cast(mob/living/user)
 	. = ..()
-	if (!isturf(user.loc) || !isguardian(user))
+	if (!isturf(user.loc) || (!isguardian(user) && guardian_lock))
 		return
 	var/list/immune = list(user)
 	if (isguardian(user))
@@ -38,6 +39,8 @@
 			immune |= G.summoner.current
 			for(var/other in G.summoner.current.hasparasites())
 				immune |= other
+	else
+		immune |= user
 	for(var/mob/living/L in immune)
 		disappear(L, length, immune)
 	addtimer(CALLBACK(src, PROC_REF(StartCooldown)), length)

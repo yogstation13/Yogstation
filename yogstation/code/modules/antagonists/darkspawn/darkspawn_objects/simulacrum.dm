@@ -10,7 +10,7 @@
 /obj/effect/simulacrum/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
-	QDEL_IN(src, 100)
+	QDEL_IN(src, 5 SECONDS)
 
 /obj/effect/simulacrum/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)

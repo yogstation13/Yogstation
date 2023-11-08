@@ -559,6 +559,30 @@
 		"dna_extra.gif" = 'html/dna_extra.gif'
 	)
 
+/datum/asset/spritesheet/virology_symptoms
+	name = "virology_symptoms"
+
+/datum/asset/spritesheet/virology_symptoms/create_spritesheets()
+	InsertAll("", 'icons/UI_Icons/symptoms/symptoms.dmi')
+
+/datum/asset/simple/virology_symptoms_animated
+	assets = list(
+		"symptom.invalid.png" = 'icons/UI_Icons/symptoms/invalid.png',
+		"symptom.alkali_perspiration.gif" = 'icons/UI_Icons/symptoms/alkali_perspiration.gif',
+		"symptom.autophago_necrosis.gif" = 'icons/UI_Icons/symptoms/autophago_necrosis.gif',
+        "symptom.ionizing_cellular_emission.gif" = 'icons/UI_Icons/symptoms/ionizing_cellular_emission.gif',
+        "symptom.narcolepsy.gif" = 'icons/UI_Icons/symptoms/narcolepsy.gif',
+        "symptom.necrotizing_fasciitis.gif" = 'icons/UI_Icons/symptoms/necrotizing_fasciitis.gif',
+        "symptom.nocturnal_regeneration.gif" = 'icons/UI_Icons/symptoms/nocturnal_regeneration.gif',
+        "symptom.plasma_fixation.gif" = 'icons/UI_Icons/symptoms/plasma_fixation.gif',
+        "symptom.regen_coma.gif" = 'icons/UI_Icons/symptoms/regen_coma.gif',
+        "symptom.self_respiration.gif" = 'icons/UI_Icons/symptoms/self_respiration.gif',
+        "symptom.silicolysis.gif" = 'icons/UI_Icons/symptoms/silicolysis.gif',
+        "symptom.starlight_condensation.gif" = 'icons/UI_Icons/symptoms/starlight_condensation.gif',
+        "symptom.tissue_hydration.gif" = 'icons/UI_Icons/symptoms/tissue_hydration.gif',
+        "symptom.voice_change.gif" = 'icons/UI_Icons/symptoms/voice_change.gif'
+	)
+
 /datum/asset/simple/orbit
 	assets = list(
 		"ghost.png"	= 'html/ghost.png'

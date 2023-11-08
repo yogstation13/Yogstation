@@ -83,20 +83,18 @@
 	owner.remove_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-//INCAPACITATED
+//DAZED
 /// This status effect represents anything that leaves a character unable to perform basic tasks (interrupting do-afters, for example), but doesn't incapacitate them further than that (no stuns etc..)
-/datum/status_effect/incapacitating/incapacitated
-	id = "incapacitated"
+/datum/status_effect/incapacitating/dazed
+	id = "dazed"
 
-// What happens when you get the incapacitated status. You get TRAIT_INCAPACITATED added to you for the duration of the status effect.
-/datum/status_effect/incapacitating/incapacitated/on_apply()
+/datum/status_effect/incapacitating/dazed/on_apply()
 	. = ..()
 	if(!.)
 		return
 	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 
-// When the status effect runs out, your TRAIT_INCAPACITATED is removed.
-/datum/status_effect/incapacitating/incapacitated/on_remove()
+/datum/status_effect/incapacitating/dazed/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
@@ -742,7 +740,7 @@
 	deltimer(timerid)
 
 /datum/status_effect/progenitor_curse
-	duration = 200
+	duration = 30 SECONDS
 	tick_interval = 5
 
 /datum/status_effect/progenitor_curse/tick()
@@ -1068,7 +1066,14 @@
 	name = "Broken Will"
 	desc = "..."
 	icon_state = "broken_will"
-	alerttooltipstyle = "alien" //yogs end
+	alerttooltipstyle = "alien" 
+
+//used to prevent the use of devour will on the target
+/datum/status_effect/devoured_will
+	id = "devoured_will"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 60 SECONDS
+	alert_type = null //yogs end
 
 /datum/status_effect/eldritch
 	duration = 15 SECONDS
@@ -1639,3 +1644,42 @@
 	new teleport_effect(get_turf(owner))
 	owner.Paralyze(2 SECONDS)
 	return ..()
+
+/datum/status_effect/eldritch/knock
+	id = "knock_mark"
+	effect_sprite = "emark7"
+	duration = 10 SECONDS
+
+/datum/status_effect/eldritch/knock/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/eldritch/knock/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_ALWAYS_NO_ACCESS, STATUS_EFFECT_TRAIT)
+	return ..()
+
+/datum/status_effect/taunt
+	id = "taunt"
+	alert_type = /atom/movable/screen/alert/status_effect/star_mark
+	duration = 5 SECONDS
+	tick_interval = CLICK_CD_MELEE
+	var/mob/living/target
+
+/datum/status_effect/taunt/on_creation(mob/living/new_owner, mob/living/taunter)
+	target = taunter
+	. = ..()
+	
+/datum/status_effect/taunt/on_apply()
+	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_STUNIMMUNE))
+		return FALSE
+	if(!target)
+		return FALSE
+	owner.SetImmobilized(5 SECONDS)
+
+/datum/status_effect/taunt/tick(delta_time, times_fired)
+	step_towards(owner, target)
+	owner.SetImmobilized(5 SECONDS)
+
+/datum/status_effect/taunt/on_remove()
+	owner.SetImmobilized(0)
