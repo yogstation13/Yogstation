@@ -205,15 +205,27 @@
 //////////////////////////////////////////////////////////////////////////
 //Reskinned punji sticks that don't stun for as long
 /datum/action/cooldown/spell/pointed/darkspawn_build/punji
-	name = "Dark sticks"
+	name = "Damage trap"
 	desc = "Place dangerous punji sticks. Allies pass safely."
-	object_type = /obj/structure/dark_sticks
+	object_type = /obj/structure/trap/darkspawn/damage
 
 //Reskinned bear trap that doesn't slow as much and can't be picked up
 /datum/action/cooldown/spell/pointed/darkspawn_build/legcuff
 	name = "Legcuffs"
 	desc = "a dark bear trap."
 	object_type = /obj/item/restraints/legcuffs/beartrap/dark
+
+//Discombobulates people
+/datum/action/cooldown/spell/pointed/darkspawn_build/nausea
+	name = "Nausea trap"
+	desc = "a dark bear trap."
+	object_type = /obj/structure/trap/darkspawn/nausea
+
+//Discombobulates people
+/datum/action/cooldown/spell/pointed/darkspawn_build/nausea
+	name = "Teleport trap"
+	desc = "a dark bear trap."
+	object_type = /obj/structure/trap/darkspawn/teleport
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------------Trap abilities----------------------------//

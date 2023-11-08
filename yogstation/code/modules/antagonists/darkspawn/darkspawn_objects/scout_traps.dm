@@ -1,26 +1,3 @@
-//////////////////////////////////////////////////////////////////////////
-/obj/structure/dark_sticks
-	name = "dark sticks" //basicaly punji sticks
-	desc = "Don't step on this."
-	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "punji"
-	resistance_flags = FLAMMABLE
-	max_integrity = 30
-	density = FALSE
-	anchored = TRUE
-
-/obj/structure/dark_sticks/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/caltrop, 20, 30, 100, CALTROP_BYPASS_SHOES, 0.2 SECONDS)//basically a microstun
-	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
-
-/obj/structure/dark_sticks/Crossed(AM as mob|obj)
-	if(isliving(AM))
-		var/mob/living/target = AM
-		if(is_darkspawn_or_veil(target))
-			return
-	. = ..()
-
 //////////////////////////////////////////////////////////////////////////	
 /obj/item/restraints/legcuffs/beartrap/dark
 	name = "dark snare"
@@ -48,3 +25,61 @@
 	. = ..()
 	
 //////////////////////////////////////////////////////////////////////////
+//---------------------------Recharging trap----------------------------//
+//////////////////////////////////////////////////////////////////////////
+/obj/structure/trap/darkspawn
+	name = "void rune"
+	desc = "strange ephemeral shadows, knit together in the form of usual symbols."
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	max_integrity = 75
+	time_between_triggers = 1 MINUTES
+
+/obj/structure/trap/darkspawn/Initialize(mapload)
+	. = ..()
+	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
+
+/obj/structure/trap/darkspawn/Crossed(atom/movable/AM)
+	if(isliving(AM))
+		var/mob/living/target = AM
+		if(is_darkspawn_or_veil(target))
+			return
+	. = ..()
+
+/////////////////////////////Makes people sick////////////////////////////
+/obj/structure/trap/darkspawn/nausea
+
+/obj/structure/trap/darkspawn/nausea/flare()
+	. = ..()
+	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+
+/obj/structure/trap/darkspawn/nausea/trap_effect(mob/living/L)
+	L.adjust_disgust(30)
+	L.adjust_confusion(6 SECONDS)
+
+///////////////////teleport somewhere random on the station////////////////
+/obj/structure/trap/darkspawn/teleport
+	charges = 1
+
+/obj/structure/trap/darkspawn/teleport/flare()
+	. = ..()
+	playsound(get_turf(src), 'sound/effects/phasein.ogg', 60, 1)
+
+/obj/structure/trap/darkspawn/teleport/trap_effect(mob/living/L)
+	L.forceMove(get_safe_random_station_turf())
+	playsound(get_turf(L), 'sound/effects/phasein.ogg', 60, 1)
+
+///////////////////////basic damage trap///////////////////////////////////
+/obj/structure/trap/darkspawn/damage
+	max_integrity = 15
+	time_between_triggers = 15 SECONDS
+
+/obj/structure/trap/darkspawn/damage/flare()
+	. = ..()
+	playsound(get_turf(src), 'sound/effects/snap.ogg', 50, TRUE, -1)
+	playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
+
+/obj/structure/trap/darkspawn/damage/trap_effect(mob/living/L)
+	L.apply_damage(30, BRUTE)
+	L.Knockdown(2 SECONDS)
+
+	

@@ -9,6 +9,7 @@
 	var/last_trigger = 0
 	var/time_between_triggers = 1 MINUTES //takes a minute to recharge
 	var/charges = INFINITY
+	var/antimagic_flags = MAGIC_RESISTANCE
 
 	var/list/static/ignore_typecache
 	var/list/mob/immune_minds = list()
@@ -66,7 +67,7 @@
 		var/mob/M = AM
 		if(M.mind in immune_minds)
 			return
-		if(M.can_block_magic())
+		if(M.can_block_magic(antimagic_flags))
 			flare()
 			return
 	if(charges <= 0)
