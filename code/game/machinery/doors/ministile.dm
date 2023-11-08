@@ -49,7 +49,7 @@
 			if(allowed(rider) && !mover.pulledby) //defer to the above dragging code if we are being dragged
 				allowed = TRUE
 
-	if(get_dir(loc, mover.loc) == dir || allowed || mover==machineclimber) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
+	if(get_dir(loc, mover.loc) == dir || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("ministile_operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE

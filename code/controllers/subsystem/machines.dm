@@ -6,6 +6,8 @@ SUBSYSTEM_DEF(machines)
 	var/list/processing = list()
 	var/list/currentrun = list()
 	var/list/powernets = list()
+	/// Assosciative list of all machines that exist.
+	VAR_PRIVATE/list/machines_by_type = list()
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
@@ -67,3 +69,16 @@ SUBSYSTEM_DEF(machines)
 		processing = SSmachines.processing
 	if (istype(SSmachines.powernets))
 		powernets = SSmachines.powernets
+
+/// Gets a list of all machines that are either the passed type or a subtype.
+/datum/controller/subsystem/machines/proc/get_machines_by_type_and_subtypes(obj/machinery/machine_type)
+	if(!ispath(machine_type))
+		machine_type = machine_type.type
+	if(!ispath(machine_type, /obj/machinery))
+		CRASH("called get_machines_by_type_and_subtypes with a non-machine type [machine_type]")
+	var/list/machines = list()
+	for(var/next_type in typesof(machine_type))
+		var/list/found_machines = machines_by_type[next_type]
+		if(found_machines)
+			machines += found_machines 
+	return machines

@@ -316,6 +316,10 @@
 		/datum/action/cooldown/spell/basic_projectile/rust_wave/short,
 	)
 
+/mob/living/simple_animal/hostile/eldritch/rust_spirit/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_RUST)
+
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/setDir(newdir)
 	. = ..()
 	if(newdir == NORTH)
@@ -323,10 +327,6 @@
 	else if(newdir == SOUTH)
 		icon_state = "rust_walker_s"
 	update_appearance(UPDATE_ICON)
-
-/mob/living/simple_animal/hostile/eldritch/rust_spirit/Moved()
-	. = ..()
-	playsound(src, 'sound/effects/footstep/rustystep1.ogg', 100, TRUE)
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)

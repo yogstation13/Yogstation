@@ -299,12 +299,14 @@
 	icon_state = "black"
 
 /turf/open/floor/plating/rust
-	name = "rusted plating"
-	desc = "Corrupted steel."
-	icon_state = "plating_rust"
+	//SDMM supports colors, this is simply for easier mapping
+	//and should be removed on initialize
+	color = COLOR_BROWN
 
-/turf/open/floor/plating/rust/rust_heretic_act()
-	return
+/turf/open/floor/plating/rust/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rust)
+	color = null
 	
 /turf/open/floor/eighties
 	name = "retro floor"

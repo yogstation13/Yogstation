@@ -34,8 +34,8 @@
 	var/mob/living/carbon/occupant = null
 	var/step_in = 10 //make a step in step_in/10 sec.
 	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
-	var/normal_step_energy_drain = 10 //How much energy the mech will consume each time it moves. This variable is a backup for when leg actuators affect the energy drain.
-	var/step_energy_drain = 10
+	var/normal_step_energy_drain = 0 //How much energy the mech will consume each time it moves. This variable is a backup for when leg actuators affect the energy drain.
+	var/step_energy_drain = 0
 	var/melee_energy_drain = 15
 	var/overload_step_energy_drain_min = 100
 	max_integrity = 300 //max_integrity is base health
@@ -239,18 +239,6 @@
 	cell = locate(/obj/item/stock_parts/cell) in contents
 	scanmod = locate(/obj/item/stock_parts/scanning_module) in contents
 	capacitor = locate(/obj/item/stock_parts/capacitor) in contents
-	update_part_values()
-
-/// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
-/obj/mecha/proc/update_part_values()
-	if(scanmod)
-		// Starting at 20 energy per step (at tier 0), each tier reduces this value down by 5 until it reaches 0.
-		normal_step_energy_drain = max(20 - (5 * scanmod.rating), 0)
-		if(!leg_overload_mode)
-			step_energy_drain = normal_step_energy_drain
-	else
-		normal_step_energy_drain = 500 // If they somehow move, a massive energy drain per step.
-		step_energy_drain = normal_step_energy_drain
 
 ////////////////////////
 ////// Helpers /////////
@@ -675,7 +663,7 @@
 		return FALSE
 	if(!has_charge(step_energy_drain))
 		return FALSE
-	
+
 	if(defence_mode)
 		if(world.time - last_message > 20)
 			occupant_message(span_danger("Unable to move while in defence mode"))
@@ -1133,11 +1121,9 @@
 		return
 	if(scanmod && scanmod == M)
 		scanmod = null
-		update_part_values()
 		return
 	if(capacitor && capacitor == M)
 		capacitor = null
-		update_part_values()
 		return
 
 /obj/mecha/proc/go_out(forced, atom/newloc = loc)
@@ -1252,6 +1238,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		return max(0, cell.charge)
 
 /obj/mecha/proc/use_power(amount)
+	amount *= (2.5 - (scanmod.rating / 2)) // 0-5: 2.5x, 2x, 1.5x, 1x, 0.5x
 	if(get_charge())
 		cell.use(amount)
 		return TRUE

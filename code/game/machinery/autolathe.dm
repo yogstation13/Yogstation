@@ -186,6 +186,10 @@
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user, params)
 	if(user.a_intent == INTENT_DISARM && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
 		return TRUE
+	
+	// They do not have INTENT_DISARM.
+	if((issilicon(user) || isdrone(user)) && user.a_intent == INTENT_HELP && default_deconstruction_screwdriver(user, "autolathe_t", "autolathe", O))
+		return TRUE
 
 	if(default_deconstruction_crowbar(O))
 		return TRUE
