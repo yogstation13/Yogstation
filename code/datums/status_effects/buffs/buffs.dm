@@ -736,9 +736,10 @@
 	. = ..()
 	if(.)
 		owner.AddComponent(/datum/component/heal_react/boost/holylight)
-		owner.add_filter(HEALBOOST_FILTER, 2, list("type" = "outline", "color" = GLOB.freon_color_matrix, "alpha" = 0, "size" = 1))
+		owner.add_filter(HEALBOOST_FILTER, 2, list("type" = "outline", "color" = "#60A2A8", "alpha" = 0, "size" = 1))
 		var/filter = owner.get_filter(HEALBOOST_FILTER)
-		animate(filter, alpha = 200, time = 0.5 SECONDS, loop = -1)
+		animate(filter, alpha = 200, time = 1.5 SECONDS, loop = -1)
+		animate(alpha = 0, time = 1.5 SECONDS, loop = -1)
 
 /datum/status_effect/holylight_healboost/on_remove()
 	var/datum/component/heal_react/boost/holylight/healing = owner.GetComponent(/datum/component/heal_react/boost/holylight)
