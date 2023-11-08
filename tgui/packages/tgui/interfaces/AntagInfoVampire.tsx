@@ -42,6 +42,7 @@ export const AntagInfoVampire = (props, context) => {
               <div>This <span style={vampireRed}>WILL</span> alert everyone who can see it, as well as make a noise.</div>
               <div>{loud ? '' : 'You can extract blood '}<span style={vampireRed}>{loud ? '' : 'stealthily'}</span>{loud ? '' : ' by initiating without a grab.'}</div>
               <div>{loud ? '' : 'This will reduce the amount of blood taken by 50%.'}</div>
+              <div>{loud ? 'You can no longer drain blood stealthily.' : 'The ability to drain blood stealthily will be lost above 150 total blood.'}</div>
               <div>Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.</div>
             </Stack.Item>
             <Stack.Item>
