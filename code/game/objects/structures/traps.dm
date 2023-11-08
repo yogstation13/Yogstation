@@ -10,6 +10,8 @@
 	var/time_between_triggers = 1 MINUTES //takes a minute to recharge
 	var/charges = INFINITY
 	var/antimagic_flags = MAGIC_RESISTANCE
+	var/sparks = TRUE
+	var/can_reveal = TRUE
 
 	var/list/static/ignore_typecache
 	var/list/mob/immune_minds = list()
@@ -38,7 +40,7 @@
 		return
 	if(user.mind && (user.mind in immune_minds))
 		return
-	if(get_dist(user, src) <= 1)
+	if(can_reveal && get_dist(user, src) <= 1)
 		. += span_notice("You reveal [src]!")
 		flare()
 
@@ -46,7 +48,8 @@
 	// Makes the trap visible, and starts the cooldown until it's
 	// able to be triggered again.
 	visible_message(span_warning("[src] flares brightly!"))
-	spark_system.start()
+	if(sparks)
+		spark_system.start()
 	alpha = 200
 	last_trigger = world.time
 	charges--

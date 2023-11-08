@@ -33,6 +33,14 @@
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 	max_integrity = 75
 	time_between_triggers = 1 MINUTES
+	sparks = FALSE
+	can_reveal = FALSE
+	var/examine_text
+
+/obj/structure/trap/darkspawn/examine(mob/user)
+	. = ..()
+	if(examine_text && is_darkspawn_or_veil(user))
+		. += span_velvet("The runes denote [examine_text].")
 
 /obj/structure/trap/darkspawn/Initialize(mapload)
 	. = ..()
@@ -47,10 +55,12 @@
 
 /////////////////////////////Makes people sick////////////////////////////
 /obj/structure/trap/darkspawn/nausea
+	examine_text = "sickness"
 
 /obj/structure/trap/darkspawn/nausea/flare()
 	. = ..()
 	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 50, TRUE)
 
 /obj/structure/trap/darkspawn/nausea/trap_effect(mob/living/L)
 	L.adjust_disgust(30)
@@ -59,6 +69,7 @@
 ///////////////////teleport somewhere random on the station////////////////
 /obj/structure/trap/darkspawn/teleport
 	charges = 1
+	examine_text = "transposition"
 
 /obj/structure/trap/darkspawn/teleport/flare()
 	. = ..()
@@ -72,11 +83,12 @@
 /obj/structure/trap/darkspawn/damage
 	max_integrity = 15
 	time_between_triggers = 15 SECONDS
+	examine_text = "injury"
 
 /obj/structure/trap/darkspawn/damage/flare()
 	. = ..()
-	playsound(get_turf(src), 'sound/effects/snap.ogg', 50, TRUE, -1)
-	playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
+	playsound(get_turf(src), 'sound/effects/snap.ogg', 40, TRUE, -1)
+	playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 70, TRUE, -1)
 
 /obj/structure/trap/darkspawn/damage/trap_effect(mob/living/L)
 	L.apply_damage(30, BRUTE)

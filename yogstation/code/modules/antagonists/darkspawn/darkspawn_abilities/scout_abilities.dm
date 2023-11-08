@@ -222,7 +222,7 @@
 	object_type = /obj/structure/trap/darkspawn/nausea
 
 //Discombobulates people
-/datum/action/cooldown/spell/pointed/darkspawn_build/nausea
+/datum/action/cooldown/spell/pointed/darkspawn_build/teleport
 	name = "Teleport trap"
 	desc = "a dark bear trap."
 	object_type = /obj/structure/trap/darkspawn/teleport
@@ -240,6 +240,7 @@ datum/action/cooldown/spell/pointed/phase_jump/void_warp
 	button_icon_state = "voidblink"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 	panel = null
+	sound = 'sound/magic/voidblink.ogg'
 
 	cooldown_time = 25 SECONDS
 	cast_range = 7
@@ -247,6 +248,7 @@ datum/action/cooldown/spell/pointed/phase_jump/void_warp
 	deactive_msg = span_notice("You relax your mind.")
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	beam_icon = "curse0"
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------------AOE ice field----------------------------//
