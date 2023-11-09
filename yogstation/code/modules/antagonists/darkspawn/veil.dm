@@ -62,7 +62,7 @@
 /datum/antagonist/veil/proc/veil_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
-	var/obj/item/organ/tumor = M.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
 	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
 		source.remove_veil()
 		return
