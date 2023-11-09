@@ -25,7 +25,7 @@
 	speed = 8
 	glide_size = 2
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 	var/turtle_hide_max = 25 //The time spent hiding in its shell
 	var/turtle_hide_dur = 25 //Same as above, this is the var that physically counts down
