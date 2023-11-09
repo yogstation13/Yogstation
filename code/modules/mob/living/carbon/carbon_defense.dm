@@ -372,10 +372,12 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
-		severity -= EMP_LIGHT
-		if(severity < 1)
-			return
+
+	if(dna?.species)
+		severity *= dna.species.emp_mod
+	if(severity < 1)
+		return
+
 	for(var/obj/item/organ/O as anything in internal_organs)
 		O.emp_act(severity)
 	var/emp_message = TRUE
