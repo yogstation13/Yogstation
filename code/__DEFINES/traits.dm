@@ -479,10 +479,16 @@
 #define TRAIT_WEATHER_IMMUNE "weather_immune" //Immune to ALL weather effects.
 
 ///Darkspawn traits
-#define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" //lets darkspawns spacewalk safely
-#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" //lets darkspawns walk through weak light
-#define TRAIT_DARKSPAWN_CREEP "darkspawn_creep" //lets darkspawns walk through any light (look at creep.dm)
-#define TRAIT_DARKSPAWN_DEVOURED "darkspawn_creep" //permanently reduces the lucidity gained from future succs
+///lets darkspawns spacewalk safely
+#define TRAIT_DARKSPAWN_SPACEWALK "darkspawn_spacewalk" 
+///lets darkspawns walk through weak light
+#define TRAIT_DARKSPAWN_LIGHTRES "darkspawn_lightres" 
+///lets darkspawns walk through any light
+#define TRAIT_DARKSPAWN_CREEP "darkspawn_creep" 
+///permanently reduces the lucidity gained from future succs
+#define TRAIT_DARKSPAWN_DEVOURED "darkspawn_creep"
+///disable psi regeneration (make sure to remove it after some time)
+#define TRAIT_DARKSPAWN_PSIBLOCK "darkspawn_psiblock" 
 
 ///Movement type traits for movables. See elements/movetype_handler.dm
 #define TRAIT_MOVE_GROUND "move_ground"

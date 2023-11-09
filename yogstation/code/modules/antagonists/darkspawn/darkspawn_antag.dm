@@ -160,6 +160,9 @@
 /datum/antagonist/darkspawn/process() //This is here since it controls most of the Psi stuff
 	psi = min(psi, psi_cap)
 	if(psi < psi_cap && COOLDOWN_FINISHED(src, psi_cooldown) && !psi_regenerating)
+		if(owner.current && HAS_TRAIT(owner.current, TRAIT_DARKSPAWN_PSIBLOCK))
+			COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
+			return //prevent regeneration
 		regenerate_psi()
 	update_psi_hud()
 
