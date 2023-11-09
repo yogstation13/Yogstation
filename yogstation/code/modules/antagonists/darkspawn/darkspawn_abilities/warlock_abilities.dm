@@ -244,28 +244,3 @@
 	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
 	target.cause_hallucination(picked_hallucination, "mass hallucination")
 
-
-//////////////////////////////////////////////////////////////////////////
-//-------------------------Shoots a projectile--------------------------//
-//////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/pointed/projectile/assault/darkspawn
-	name = "Mind blast"
-	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
-	button_icon = 'icons/obj/hand_of_god_structures.dmi'
-	button_icon_state = "ward-red"
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
-
-	sound = 'sound/weapons/resonator_blast.ogg'
-	cast_range = 7
-	cooldown_time = 25 SECONDS
-	panel = null
-	antimagic_flags = MAGIC_RESISTANCE_MIND
-	check_flags =  AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
-
-	invocation = null
-	invocation_type = INVOCATION_NONE
-
-	projectile_type = /obj/projectile/heretic_assault

@@ -35,6 +35,7 @@
 	time_between_triggers = 1 MINUTES
 	sparks = FALSE
 	can_reveal = FALSE
+	mouse_opacity = MOUSE_OPACITY_OPAQUE //nothing draws under them and they really SHOULD be easier to click
 	var/examine_text
 
 /obj/structure/trap/darkspawn/examine(mob/user)

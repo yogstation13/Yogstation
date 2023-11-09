@@ -93,6 +93,81 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	object_type = /obj/machinery/computer/camera_advanced/darkspawn
 
 //////////////////////////////////////////////////////////////////////////
+//-----Shoots a projectile, but can be used through the cam system------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/mindblast
+	name = "Mind blast"
+	desc = "Blast a single ray of concentrated mental energy at a target, dealing high brute damage if they are caught in it"
+	button_icon = 'icons/obj/hand_of_god_structures.dmi'
+	button_icon_state = "ward-red"
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+
+	cast_range = INFINITY //lol
+	cooldown_time = 15 SECONDS
+	panel = null
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+
+	invocation = null
+	invocation_type = INVOCATION_NONE
+
+	var/body_range = 8 //how far the projectile can shoot from a body
+	var/projectile_type = /obj/projectile/mindblast
+
+/datum/action/cooldown/spell/pointed/mindblast/cast(atom/cast_on)
+	. = ..()
+
+	var/mob/shooter
+	var/closest_dude_dist = body_range
+	if(get_dist(owner, cast_on) > body_range)
+		for(var/mob/living/dude in range(body_range, cast_on))
+			if(is_darkspawn_or_veil(dude))
+				if(!isturf(dude.loc))
+					continue
+				if(get_dist(cast_on, dude) < closest_dude_dist)//always only get the closest dude
+					shooter = dude
+					closest_dude_dist = get_dist(cast_on, dude)
+	else
+		shooter = owner
+	if(!shooter)
+		to_chat(owner, span_warning("There is no one nearby to channel your power through."))
+		on_deactivation(owner, refund_cooldown = TRUE)
+		return FALSE
+	fire_projectile(cast_on, shooter)
+	playsound(get_turf(shooter), 'sound/weapons/resonator_blast.ogg', 50, 1)
+
+/datum/action/cooldown/spell/pointed/mindblast/proc/fire_projectile(atom/target, mob/shooter)
+	var/obj/projectile/to_fire = new projectile_type()
+	ready_projectile(to_fire, target, shooter)
+	SEND_SIGNAL(owner, COMSIG_MOB_SPELL_PROJECTILE, src, target, to_fire)
+	to_fire.fire()
+
+/datum/action/cooldown/spell/pointed/mindblast/proc/ready_projectile(obj/projectile/to_fire, atom/target, mob/shooter)
+	to_fire.firer = owner
+	to_fire.fired_from = shooter
+	to_fire.preparePixelProjectile(target, shooter)
+
+	if(istype(to_fire, /obj/projectile/magic))
+		var/obj/projectile/magic/magic_to_fire = to_fire
+		magic_to_fire.antimagic_flags = antimagic_flags
+
+/obj/projectile/mindblast
+	name ="mindbolt"
+	icon_state= "chronobolt"
+	damage = 30
+	armour_penetration = 100
+	speed = 1
+	eyeblur = 0
+	damage_type = BRUTE
+	pass_flags = PASSTABLE
+	range = 8
+	color = COLOR_VELVET
+
+//////////////////////////////////////////////////////////////////////////
 //-----------------------Global AOE Buff spells-------------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/veilbuff
@@ -147,14 +222,6 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff/heal/empower(mob/living/carbon/human/target)
 	target.heal_overall_damage(heal_amount, heal_amount, 0, BODYPART_ANY)
 
-////////////////////////////One click CC cleanse//////////////////////////
-/datum/action/cooldown/spell/veilbuff/cleanse
-	name = "Cleanse veils"
-	desc = "Cleanse all the crowd control effects currently applied to your veils."
-
-/datum/action/cooldown/spell/veilbuff/cleanse/empower(mob/living/carbon/human/target)
-	target.SetAllImmobility(0, TRUE)
-
 ////////////////////////////Temporary speed boost//////////////////////////
 /datum/action/cooldown/spell/veilbuff/speed
 	name = "Expedite veils"
@@ -163,6 +230,52 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 /datum/action/cooldown/spell/veilbuff/speed/empower(mob/living/carbon/human/target)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 5 SECONDS, type)
 
+//////////////////////////////////////////////////////////////////////////
+//----------------Single target global ally giga buff-------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/pointed/elucidate
+	name = "Elucidate"
+	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
+	panel = null
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "veil_sigils"
+	cast_range = INFINITY //lol
+	antimagic_flags = NONE
+	check_flags = AB_CHECK_CONSCIOUS
+	spell_requirements = SPELL_REQUIRES_DARKSPAWN | SPELL_REQUIRES_HUMAN
+	cooldown_time = 5 MINUTES //it's REALLY strong
+	psi_cost = 100 //it's REALLY strong
+
+/datum/action/cooldown/spell/pointed/elucidate/is_valid_target(atom/cast_on)
+	if(!iscarbon(cast_on))
+		return FALSE
+	var/mob/living/carbon/target = cast_on
+	if(!is_darkspawn_or_veil(target))
+		return FALSE
+	if(target.stat == DEAD)
+		to_chat(owner, span_velvet("This one is beyond our help at such a range"))
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/pointed/elucidate/cast(atom/cast_on)
+	. = ..()
+	if(!iscarbon(cast_on))
+		return FALSE
+	var/mob/living/carbon/target = cast_on
+	target.fully_heal()
+	target.SetAllImmobility(0, TRUE)
+	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 10 SECONDS, type)
+	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
+	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
+	if(target.handcuffed || target.legcuffed)
+		target.clear_cuffs(cuffs, TRUE, TRUE)
+		target.clear_cuffs(legcuffs, TRUE, TRUE)
+	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
+	
 //////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//
 //////////////////////////////////////////////////////////////////////////

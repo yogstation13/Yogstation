@@ -284,7 +284,7 @@
 	if(!object_type)
 		. = . | SPELL_CANCEL_CAST
 		CRASH("someone forgot to set the placed object of a darkspawn building ability")
-	if(cast_on.density && !can_density)
+	if(!can_density && cast_on.density)
 		return . | SPELL_CANCEL_CAST
 	if(casting)
 		return . | SPELL_CANCEL_CAST
