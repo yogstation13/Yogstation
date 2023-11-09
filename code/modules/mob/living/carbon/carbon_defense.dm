@@ -378,8 +378,6 @@
 	if(severity < 1)
 		return
 
-	for(var/obj/item/organ/O as anything in internal_organs)
-		O.emp_act(severity)
 	var/emp_message = TRUE
 	for(var/obj/item/bodypart/BP as anything in get_damageable_bodyparts(BODYPART_ROBOTIC))
 		if(!(BP.emp_act(severity, emp_message) & EMP_PROTECT_SELF))

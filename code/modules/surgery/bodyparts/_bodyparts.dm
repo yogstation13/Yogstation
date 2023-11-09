@@ -131,16 +131,20 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(status != BODYPART_ROBOTIC) // non-robotic limbs are don't get EMP'd
-		return
-	var/protection = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
-	receive_damage(0, severity / 2, severity, protection, TRUE, BODYPART_ROBOTIC, CANT_WOUND)
-	if(severity * (100 - protection) / 100 > EMP_LIGHT)
-		ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
-		addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
-	if(owner && emp_message)
-		owner.emote("scream")
-		to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+	var/blocked = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
+	if(receive_damage(0, severity / 2, severity, blocked, TRUE, BODYPART_ROBOTIC, CANT_WOUND)) // returns false for non-robotic limbs
+		if(severity > EMP_LIGHT)
+			ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+			addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(owner && emp_message)
+			owner.emote("scream")
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+	severity *= (100 - blocked) / 100
+	if(severity >= 1 && !(. & EMP_PROTECT_CONTENTS))
+		for(var/obj/item/organ/O as anything in get_organs())
+			O.emp_act(severity)
 
 /obj/item/bodypart/proc/after_emp()
 	REMOVE_TRAIT(src, TRAIT_PARALYSIS, "EMP")
