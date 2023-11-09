@@ -266,6 +266,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		return FALSE
 	var/mob/living/carbon/target = cast_on
 	target.fully_heal()
+	target.resting = FALSE
 	target.SetAllImmobility(0, TRUE)
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 10 SECONDS, type)
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
