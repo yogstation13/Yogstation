@@ -37,8 +37,13 @@
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(H.hair_color && H.hair_color != "mutcolor" && H.hair_color != "fixedmutcolor")
+			// Converts the hair color to HSV so we can desaturate it
+			var/hsv_hair_color = RGBtoHSV(H.hair_color)
+			var/list/hsv_list = ReadHSV(hsv_hair_color)
+			// Also caps the value, so we don't have "shadowling viro" catperson
+			var/desaturated_hair_color = HSVtoRGB(hsv( hsv_list[1], max(hsv_list[2] - 20, 0), clamp(hsv_list[3], 50, 200) ))
 			old_mcolor = H.dna.features["mcolor"]
-			H.dna.features["mcolor"] = H.hair_color
+			H.dna.features["mcolor"] = desaturated_hair_color
 			old_facial_hair_color = H.facial_hair_color
 			H.facial_hair_color = H.hair_color
 	. = ..()
