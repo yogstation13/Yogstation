@@ -606,11 +606,11 @@
 	organ_efficiency = 1.5
 	safe_oxygen_min = 13
 
-/obj/item/organ/lungs/cybernetic/emp_act()
+/obj/item/organ/lungs/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	owner.losebreath = 20
+	owner.losebreath = 2 * severity
 
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"

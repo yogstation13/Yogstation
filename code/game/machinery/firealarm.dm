@@ -101,7 +101,7 @@
 	if (. & EMP_PROTECT_SELF)
 		return
 
-	if(prob(50 / severity))
+	if(prob(5 * severity))
 		alarm()
 
 /obj/machinery/firealarm/emag_act(mob/user, obj/item/card/emag/emag_card)

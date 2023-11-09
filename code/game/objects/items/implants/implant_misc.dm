@@ -64,7 +64,7 @@
 /obj/item/implant/emp/activate()
 	. = ..()
 	uses--
-	empulse(imp_in, 3, 5)
+	empulse(imp_in, EMP_HEAVY, 5) // 10 severity, extends to 5 tiles
 	if(!uses)
 		qdel(src)
 

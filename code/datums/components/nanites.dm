@@ -185,8 +185,8 @@
 	if(HAS_TRAIT(host_mob, TRAIT_EMPPROOF_SELF))
 		return // don't do EMP effects if they're protected from EMPs
 	if(HAS_TRAIT(host_mob, TRAIT_FARADAYCAGE))
-		severity++
-		if(severity > EMP_LIGHT)
+		severity -= EMP_LIGHT
+		if(severity < 1)
 			return
 	nanite_volume *= 1 - (rand(0.1, 0.25) / severity)		//Lose 10-25% of nanites
 	adjust_nanites(null, -(rand(5, 30) / severity))		//Lose 5-30 flat nanite volume

@@ -761,7 +761,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			radiation_pulse(src, (100-support_integrity)*2, 4)
 			if(support_integrity<3)
 				var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
-				empulse(src, emp_power, emp_power*2)
+				empulse(src, emp_power)
 		if(support_integrity<100)
 			power += round((100-support_integrity)/2,1)
 		if(support_integrity<70)
@@ -782,7 +782,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
 			if(prob(2))
-				empulse(src, 10-support_integrity, (10-support_integrity)*2) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
+				empulse(src, 10-support_integrity) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 	return 1
 
 /obj/machinery/power/supermatter_crystal/bullet_act(obj/projectile/Proj)
@@ -1007,7 +1007,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		to_chat(user, "<span class='danger'>You attach the antinoblium shard to the [src], moving your hand away before a sudden gravitational wave pulls the [W] into the crystal as it flashes to ash!")
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 		radiation_pulse(src, 150, 4)
-		empulse(src, 3,6)
+		empulse(src, EMP_HEAVY, 6)
 		qdel(W)
 		return
 	else if(user.dropItemToGround(W))

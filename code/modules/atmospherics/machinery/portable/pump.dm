@@ -65,9 +65,9 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(is_operational())
-		if(prob(50 / severity))
+		if(prob(5 * severity))
 			on = !on
-		if(prob(100 / severity))
+		if(prob(10 * severity))
 			direction = PUMP_OUT
 		pump.target_pressure = rand(0, 100 * ONE_ATMOSPHERE)
 		update_appearance(UPDATE_ICON)

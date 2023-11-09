@@ -1227,7 +1227,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			A.emp_act(severity)
 	if (!(. & EMP_PROTECT_SELF))
 		emped += 1
-		spawn(200 * severity)
+		spawn(20 * severity)
 			emped -= 1
 
 /proc/get_viewable_pdas()

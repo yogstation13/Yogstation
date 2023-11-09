@@ -5,15 +5,15 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	take_holo_damage(50 / severity)
-	Stun(40 SECONDS / severity)
+	take_holo_damage(5 * severity)
+	Stun((4 * severity) SECONDS)
 	if(holoform)
 		fold_in(force = TRUE)
 	//Need more effects that aren't instadeath or permanent law corruption.
 	//Ask and you shall receive
 	switch(rand(1, 3))
 		if(1)
-			stuttering = 1 MINUTES / severity
+			stuttering = (6 * severity) SECONDS
 			to_chat(src, span_danger("Warning: Feedback loop detected in speech module."))
 		if(2)
 			slurring = INFINITY

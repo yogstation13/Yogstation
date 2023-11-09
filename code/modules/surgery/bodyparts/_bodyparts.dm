@@ -127,6 +127,24 @@
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
 
+/obj/item/bodypart/emp_act(severity, emp_message=TRUE)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	if(status != BODYPART_ROBOTIC) // non-robotic limbs are don't get EMP'd
+		return
+	var/protection = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
+	receive_damage(0, severity / 2, severity, protection, TRUE, BODYPART_ROBOTIC, CANT_WOUND)
+	if(severity * (100 - protection) / 100 > EMP_LIGHT)
+		ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+		addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
+	if(owner && emp_message)
+		owner.emote("scream")
+		to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
+
+/obj/item/bodypart/proc/after_emp()
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, "EMP")
+
 /obj/item/bodypart/Destroy()
 	if(owner)
 		owner.bodyparts -= src

@@ -373,12 +373,15 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(HAS_TRAIT(src, TRAIT_FARADAYCAGE))
-		severity++
-		if(severity > EMP_LIGHT)
+		severity -= EMP_LIGHT
+		if(severity < 1)
 			return
-	for(var/X in internal_organs)
-		var/obj/item/organ/O = X
+	for(var/obj/item/organ/O as anything in internal_organs)
 		O.emp_act(severity)
+	var/emp_message = TRUE
+	for(var/obj/item/bodypart/BP as anything in get_damageable_bodyparts(BODYPART_ROBOTIC))
+		if(!(BP.emp_act(severity, emp_message) & EMP_PROTECT_SELF))
+			emp_message = FALSE // if the EMP was successful, don't spam the chat with more messages
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE, gib = FALSE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))

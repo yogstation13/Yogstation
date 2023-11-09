@@ -138,8 +138,7 @@ THIS FILE IS FOR ALL HERETIC SPELLS THAT DO NOT CONFER TO A PATH'S THEME OR YOU 
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
-	emp_heavy = 6
-	emp_light = 10
+	radius = 10
 
 /datum/action/cooldown/spell/list_target/telepathy/eldritch
 	name = "Eldritch Telepathy"
