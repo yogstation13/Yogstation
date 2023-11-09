@@ -752,7 +752,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		range = severity
 
 	if (severity)
-		empulse(O, severity, range, ignore_cap=TRUE)
+		empulse(O, severity, range)
 		log_admin("[key_name(usr)] created an EM Pulse ([range] range, [severity] severity) at [AREACOORD(O)]")
 		message_admins("[key_name_admin(usr)] created an EM Pulse ([range] range, [severity] severity) at [AREACOORD(O)]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "EM Pulse") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

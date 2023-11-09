@@ -1,4 +1,4 @@
-/proc/empulse(turf/epicenter, severity, range=null, log=TRUE, ignore_cap=FALSE)
+/proc/empulse(turf/epicenter, severity, range=null, log=TRUE)
 	if(!epicenter)
 		CRASH("Warning: empulse() called without an epicenter!")
 
@@ -19,9 +19,6 @@
 		for(var/atom/A in epicenter)
 			A.emp_act(severity)
 		return
-
-	if(!ignore_cap)
-		severity = min(severity, EMP_HEAVY)
 
 	var/tile_falloff = severity / range
 	for(var/A in spiral_range(range, epicenter))
