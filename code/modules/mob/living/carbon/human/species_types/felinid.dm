@@ -7,7 +7,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
+	use_skintones = FALSE
+	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "#FFFFFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
 	rare_say_mod = list("meows"= 10)
@@ -24,18 +25,28 @@
 
 	smells_like = "hairballs and litter"
 
+	var/old_mcolor
+	var/old_facial_hair_color
+
 /datum/species/human/felinid/qualifies_for_rank(rank, list/features)
 	return TRUE
 
 //Curiosity killed the cat's wagging tail.
 
 /datum/species/human/felinid/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if(H.hair_color && H.hair_color != "mutcolor" && H.hair_color != "fixedmutcolor")
+			old_mcolor = H.dna.features["mcolor"]
+			H.dna.features["mcolor"] = H.hair_color
+			old_facial_hair_color = H.facial_hair_color
+			H.facial_hair_color = H.hair_color
 	. = ..()
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(!pref_load)			//Hah! They got forcefully purrbation'd. Force default felinid parts on them if they have no mutant parts in those areas!
 			if(H.dna.features["tail_human"] == "None")
-				H.dna.features["tail_human"] = "Cat"				
+				H.dna.features["tail_human"] = "Cat"
 			if(H.dna.features["ears"] == "None")
 				H.dna.features["ears"] = "Cat"
 		if(H.dna.features["ears"] == "Cat")
@@ -54,6 +65,12 @@
 /datum/species/human/felinid/on_species_loss(mob/living/carbon/H, datum/species/new_species, pref_load)
 	var/obj/item/organ/ears/cat/ears = H.getorgan(/obj/item/organ/ears/cat)
 	var/obj/item/organ/tail/cat/tail = H.getorgan(/obj/item/organ/tail/cat)
+
+	if(old_mcolor)
+		H.dna.features["mcolor"] = old_mcolor
+	if(ishuman(H) && old_facial_hair_color)
+		var/mob/living/carbon/human/human_loss = H
+		human_loss.facial_hair_color = old_facial_hair_color
 
 	if(ears)
 		var/obj/item/organ/ears/NE
@@ -79,7 +96,6 @@
 		else
 			tail.Remove(H)
 		H.dna.update_uf_block(DNA_HUMAN_TAIL_BLOCK)
-	
 
 ///turn everyone into catgirls. Technically not girls specifically but you get the point.
 /proc/mass_purrbation()
@@ -177,7 +193,7 @@
 	. = ..()
 	if((H.client && H.client.prefs.read_preference(/datum/preference/toggle/mood_tail_wagging)) && !is_wagging_tail() && H.mood_enabled)
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
-		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2))
 			return
 		var/chance = 0
 		switch(mood.shown_mood)
