@@ -1,0 +1,5 @@
+author: "Majkl-J"
+delete-after: true 
+changes: 
+  - rscadd: "Added invisible touch to mimes"
+  - imageadd: "Sprites for invisible touch"
