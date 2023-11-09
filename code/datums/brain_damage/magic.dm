@@ -33,17 +33,14 @@
 
 /datum/brain_trauma/magic/poltergeist/on_life()
 	..()
-	if(prob(4))
+	if(prob(10))
 		var/most_violent = -1 //So it can pick up items with 0 throwforce if there's nothing else
-		var/obj/item/throwing
 		for(var/obj/item/I in view(5, get_turf(owner)))
 			if(I.anchored)
 				continue
 			if(I.throwforce > most_violent)
 				most_violent = I.throwforce
-				throwing = I
-		if(throwing)
-			throwing.throw_at(owner, 8, 2)
+				I.throw_at(owner, 8, 2)
 
 /datum/brain_trauma/magic/antimagic
 	name = "Athaumasia"
@@ -74,8 +71,16 @@
 	..()
 
 /datum/brain_trauma/magic/stalker/proc/create_stalker()
-	var/turf/stalker_source = locate(owner.x + pick(-12, 12), owner.y + pick(-12, 12), owner.z) //random corner
-	stalker = new(stalker_source, owner)
+	var/turf/stalker_source
+	var/anomaly_near = FALSE
+	for(var/obj/effect/anomaly/hallucination/anomaly in view(5, owner)) //If there are multiple hallucination anomalies nearby you are fucked
+		if(anomaly)
+			anomaly_near = TRUE
+			stalker_source = anomaly.loc
+			stalker = new(stalker_source, owner)
+	if(!anomaly_near)
+		stalker_source = locate(owner.x + pick(-12, 12), owner.y + pick(-12, 12), owner.z) //random corner
+		stalker = new(stalker_source, owner)
 
 /datum/brain_trauma/magic/stalker/on_lose()
 	QDEL_NULL(stalker)

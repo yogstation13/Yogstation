@@ -160,7 +160,11 @@ GLOBAL_LIST_INIT(creepy_ambience,list(
 	'sound/hallucinations/turn_around1.ogg', 
 	'sound/hallucinations/turn_around2.ogg', 
 	'sound/hallucinations/veryfar_noise.ogg', 
-	'sound/hallucinations/wail.ogg'))
+	'sound/hallucinations/wail.ogg',
+	'sound/spookoween/ghost_whisper.ogg',
+	'sound/spookoween/ghosty_wind.ogg',
+	'sound/spookoween/girlscream.ogg',
+	))
 
 GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_GENERIC = GLOB.generic_ambience,
