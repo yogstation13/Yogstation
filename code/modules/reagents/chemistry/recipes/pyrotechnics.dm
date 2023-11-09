@@ -122,7 +122,7 @@
 	// 100 created volume = 8 severity & 14 range. 4 tiles larger than traitor EMP grenades.
 	// 200 created volume = 16 (capped to 10) severity & 28 range. 12 tiles larger than traitor EMP grenades. This is the maximum
 	created_volume = min(created_volume, 200)
-	empulse(location, round(created_volume / 12), round(created_volume / 7), 1)
+	empulse(location, min(round(created_volume / 12), EMP_HEAVY), round(created_volume / 7), 1)
 	holder.clear_reagents()
 
 
