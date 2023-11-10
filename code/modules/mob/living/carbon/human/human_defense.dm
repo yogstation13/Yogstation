@@ -546,6 +546,10 @@
 	if(dna)
 		return dna.species.spec_emag_act(src, user, emag_card)
 
+/mob/living/carbon/human/emp_act(severity)
+	severity *= physiology.emp_mod
+	return ..(severity)
+
 /mob/living/carbon/human/rad_act(amount, collectable_radiation)
 	. = ..()
 	dna?.species.spec_rad_act(src, amount, collectable_radiation)
