@@ -116,6 +116,6 @@
 	priority = INFINITY //we can't see colors anyway!
 
 /datum/client_colour/echolocate
-	colour = "#25a5ea"
+	colour = "#ffffff"
 	priority = 1
 

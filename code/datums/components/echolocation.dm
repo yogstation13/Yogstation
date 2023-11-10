@@ -66,8 +66,8 @@
 		client_color = echolocator.add_client_colour(color_path)
 	src.echo_group = echo_group || REF(src)
 	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), src.echo_group) //so they see all the tiles they echolocated, even if they are in the dark
-	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	echolocator.become_blind(ECHOLOCATION_TRAIT)
+	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	START_PROCESSING(SSfastprocess, src)
 
 /datum/component/echolocation/Destroy(force, silent)
