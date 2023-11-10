@@ -49,7 +49,7 @@
 	if(!danger_turfs)
 		danger_turfs = typecacheof(list(/turf/open/chasm, /turf/open/lava, /turf/open/floor/fakepit))
 	if(!allowed_paths)
-		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living)) + danger_turfs - typecacheof(/obj/effect/decal)
+		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living, /obj/structure)) + danger_turfs - typecacheof(/obj/effect/decal)
 	if(!isnull(echo_range))
 		src.echo_range = echo_range
 	if(!isnull(cooldown_time))
@@ -160,6 +160,10 @@
 	var/use_outline = TRUE
 	var/mutable_appearance/copied_appearance = new /mutable_appearance()
 	copied_appearance.appearance = input
+	if(istype(input, /obj/structure/table))
+		copied_appearance.cut_overlays()
+		copied_appearance.icon = 'icons/obj/structures.dmi'
+		copied_appearance.icon_state = "table"
 	if(istype(input, /obj/machinery/door/airlock)) //i hate you
 		copied_appearance.cut_overlays()
 		copied_appearance.icon = 'icons/obj/doors/airlocks/station/public.dmi'
