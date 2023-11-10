@@ -164,7 +164,7 @@
 		copied_appearance.cut_overlays()
 		copied_appearance.icon = 'icons/obj/structures.dmi'
 		copied_appearance.icon_state = "table"
-	if(istype(input, /obj/machinery/door/airlock)) //i hate you
+	else if(istype(input, /obj/machinery/door/airlock)) //i hate you
 		copied_appearance.cut_overlays()
 		copied_appearance.icon = 'icons/obj/doors/airlocks/station/public.dmi'
 		copied_appearance.icon_state = "closed"
