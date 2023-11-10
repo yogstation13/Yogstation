@@ -136,7 +136,7 @@
 		else
 			return range
 
-/datum/component/echolocation/proc/show_image(image/input_appearance, atom/input, current_time)
+/datum/component/echolocation/proc/show_image(mutable_appearance/input_appearance, atom/input, current_time)
 	var/image/final_image = image(input_appearance)
 	final_image.layer += EFFECTS_LAYER
 	final_image.plane = FULLSCREEN_PLANE
