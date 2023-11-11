@@ -60,7 +60,7 @@
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
-		BP.emp_reduction = 5
+		BP.emp_reduction = EMP_LIGHT
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
