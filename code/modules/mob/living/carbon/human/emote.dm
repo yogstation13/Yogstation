@@ -188,6 +188,25 @@
 	if(H.dna.species.is_wagging_tail())
 		. = null
 
+
+// Weh! Lizard exclusive emote.
+/datum/emote/living/carbon/human/weh
+	key = "weh"
+	key_third_person = "lets out a weh"
+	message = "lets out a weh!"
+	emote_type = EMOTE_AUDIBLE
+	cooldown = 2 SECONDS
+	vary = TRUE
+
+/datum/emote/living/carbon/human/weh/get_sound(mob/living/user)
+	return 'sound/voice/lizard/weh.ogg'
+
+/datum/emote/living/carbon/human/weh/can_run_emote(mob/user, status_check = TRUE, intentional)
+	. = ..()
+	if(!. || !user || !ishuman(user) || !islizard(user))
+		return FALSE
+	return TRUE
+
 /datum/emote/living/carbon/human/wing
 	key = "wing"
 	key_third_person = "wings"
