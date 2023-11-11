@@ -659,7 +659,7 @@
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, "<span class='notice'>You start assembling [src]...</span>")
+	to_chat(user, span_notice("You start assembling [src]..."))
 	if(do_after(user, 5 SECONDS, user))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
