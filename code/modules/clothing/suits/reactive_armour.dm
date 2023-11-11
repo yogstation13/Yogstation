@@ -371,8 +371,8 @@
 
 /obj/item/clothing/suit/armor/reactive/radiation/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], sending out radiation pulses and nuclear particles!"))
-	radiation_pulse(src, 1000, effect_range)
-	for(var/i = 1 to 15)
+	radiation_pulse(src, 500, effect_range)
+	for(var/i = 1 to 5)
 		fire_nuclear_particle()
 	return TRUE
 
