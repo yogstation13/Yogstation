@@ -154,6 +154,26 @@
 	key_third_person = "shrugs"
 	message = "shrugs."
 
+// Tail thump! Lizard-tail exclusive emote.
+/datum/emote/living/carbon/human/tailthump
+	key = "thump"
+	key_third_person = "thumps their tail"
+	message = "thumps their tail!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/carbon/human/tailthump/get_sound(mob/living/user)
+	return 'sound/voice/lizard/tailthump.ogg' // Source: https://freesound.org/people/TylerAM/sounds/389665/
+
+/datum/emote/living/carbon/human/tailthump/can_run_emote(mob/user, status_check = TRUE, intentional)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(H))
+		return FALSE
+	return ("tail_lizard" in H.dna.species.mutant_bodyparts) || ("waggingtail_lizard" in H.dna.species.mutant_bodyparts)
+
 /datum/emote/living/carbon/human/wag
 	key = "wag"
 	key_third_person = "wags"
