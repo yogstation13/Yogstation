@@ -15,6 +15,7 @@ BONUS
 */
 /datum/symptom/viraladaptation
 	name = "Viral self-adaptation"
+	icon = "viral_self_adaptation"
 	desc = "The virus mimics the function of normal body cells, becoming harder to spot and to eradicate, but reducing its speed."
 	stealth = 3
 	resistance = 5
@@ -39,6 +40,7 @@ BONUS
 */
 /datum/symptom/viralevolution
 	name = "Viral evolutionary acceleration"
+	icon = "viral_evolutionary_acceleration"
 	desc = "The virus quickly adapts to spread as fast as possible both outside and inside a host. \
 	This, however, makes the virus easier to spot, and less able to fight off a cure."
 	stealth = -2

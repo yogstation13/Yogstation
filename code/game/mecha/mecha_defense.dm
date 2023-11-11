@@ -113,11 +113,11 @@
 	. = ..()
 
 
-/obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
-	if ((!enclosed || istype(Proj, /obj/item/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+/obj/mecha/bullet_act(obj/projectile/Proj) //wrapper
+	if ((!enclosed || istype(Proj, /obj/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
-	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
+	log_message("Hit by projectile. Type: [Proj.name]([Proj.armor_flag]).", LOG_MECHA, color="red")
 	. = ..()
 
 /obj/mecha/ex_act(severity, target)
@@ -250,7 +250,6 @@
 				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				scanmod = W
 				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
 			else
 				to_chat(user, span_notice("There's already a scanning module installed."))
 		return
@@ -264,7 +263,6 @@
 				playsound(src, 'sound/items/screwdriver2.ogg', 50, FALSE)
 				capacitor = W
 				log_message("[W] installed", LOG_MECHA)
-				update_part_values()
 			else
 				to_chat(user, span_notice("There's already a capacitor installed."))
 		return

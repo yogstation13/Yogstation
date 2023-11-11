@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = 0					//currently only used for custom objectives.
 	var/martyr_compatible = 0			//If the objective is compatible with martyr objective, i.e. if you can still do it while dead.
+	var/optional = FALSE				//Whether the objective should show up as optional in the roundend screen
 
 /datum/objective/New(text)
 	GLOB.objectives += src
@@ -203,7 +204,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/proc/copy_target(datum/objective/old_obj)
 	target = old_obj.get_target()
 	target_amount = old_obj.target_amount
-	explanation_text = explanation_text
+	explanation_text = old_obj.explanation_text
 
 /datum/objective/assassinate
 	name = "assassinate"
@@ -814,51 +815,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Do not give up or lose [targetinfo.name]."
 	steal_target = targetinfo.targetitem
 
-
-/datum/objective/download
-	name = "download"
-
-/datum/objective/download/proc/gen_amount_goal()
-	target_amount = rand(20,40)
-	update_explanation_text()
-	return target_amount
-
-/datum/objective/download/update_explanation_text()
-	..()
-	explanation_text = "Download [target_amount] research node\s."
-
-/datum/objective/download/check_completion()
-	if(..())
-		return TRUE
-	var/datum/techweb/checking = new
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/owner in owners)
-		if(ismob(owner.current))
-			var/mob/M = owner.current			//Yeah if you get morphed and you eat a quantum tech disk with the RD's latest backup good on you soldier.
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H && (H.stat != DEAD) && istype(H.wear_suit, /obj/item/clothing/suit/space/space_ninja))
-					var/obj/item/clothing/suit/space/space_ninja/S = H.wear_suit
-					S.stored_research.copy_research_to(checking)
-			var/list/otherwise = M.get_all_contents()
-			for(var/obj/item/disk/tech_disk/TD in otherwise)
-				TD.stored_research.copy_research_to(checking)
-	if (istype(team, /datum/team/infiltrator))
-		for (var/area/A in world)
-			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/disk/tech_disk/TD in A.get_all_contents()) //Check for items
-					TD.stored_research.copy_research_to(checking)
-				CHECK_TICK
-			CHECK_TICK
-		CHECK_TICK
-	return checking.researched_nodes.len >= target_amount
-
-/datum/objective/download/admin_edit(mob/admin)
-	var/count = input(admin,"How many nodes ?","Nodes",target_amount) as num|null
-	if(count)
-		target_amount = count
-	update_explanation_text()
-
 /datum/objective/capture
 	name = "capture"
 
@@ -1156,6 +1112,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			if(!(wanted.organ_flags & ORGAN_FAILING) && !(wanted.organ_flags & ORGAN_SYNTHETIC))
 				stolen_count++
 	return stolen_count >= amount
+
+/datum/objective/research_secrets
+	explanation_text = "Use your gloves on a research & development server to sabotage research efforts.  Note that the AI will be alerted once you begin!"
 
 
 //Created by admin tools
@@ -1560,15 +1519,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/assist,
 		// Fulp edit START - Bloodsuckers
 		// DEFAULT OBJECTIVES //
-		/datum/objective/bloodsucker/lair,
+		/datum/objective/bloodsucker_lair,
 		/datum/objective/survive/bloodsucker,
-		/datum/objective/bloodsucker/protege,
-		/datum/objective/bloodsucker/heartthief,
-		/datum/objective/bloodsucker/vassalhim,
-		/datum/objective/bloodsucker/gourmand,
-		// MISC OBJECTIVES //
-		/datum/objective/bloodsucker/monsterhunter,
-		/datum/objective/bloodsucker/frenzy,
 		// Fulp edit END
 		/datum/objective/destroy,
 		/datum/objective/hijack,
@@ -1576,12 +1528,12 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/survive,
 		/datum/objective/martyr,
 		/datum/objective/steal,
-		/datum/objective/download,
 		/datum/objective/nuclear,
 		/datum/objective/capture,
 		/datum/objective/absorb,
 		/datum/objective/minor/pet,
-		/datum/objective/custom
+		/datum/objective/custom,
+		/datum/objective/gimmick //bee port
 	)
 
 	for(var/T in allowed_types)
@@ -1707,3 +1659,42 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		if(locate(target_obj_type) in target_area)
 			return FALSE
 	return TRUE
+
+//Bee port, gimmick objectives
+#define GIMMICK_OBJ_FILE "strings/gimmick_objectives.txt"
+#define DEPT_GIMMICK_OBJ_FILE "strings/dept_gimmick_objectives.txt"
+#define TARGET_GIMMICK_OBJ_FILE "strings/target_gimmick_objectives.txt"
+
+/datum/objective/gimmick
+	name = "gimmick"
+	martyr_compatible = TRUE
+	optional = TRUE
+
+/datum/objective/gimmick/update_explanation_text()
+	var/selected_department = pick(list( //Select a department for department-based objectives
+		DEPT_SCIENCE,
+		DEPT_ENGINEERING,
+		DEPT_SECURITY,
+		DEPT_MEDICAL,
+		DEPT_SERVICE,
+		DEPT_SUPPLY,
+		DEPT_COMMAND
+	))
+
+	var/list/gimmick_list = world.file2list(GIMMICK_OBJ_FILE) //gimmick_objectives.txt is for objectives without a specific target/department/etc
+	gimmick_list.Add(world.file2list(DEPT_GIMMICK_OBJ_FILE))
+	if(target?.current)
+		gimmick_list.Add(world.file2list(TARGET_GIMMICK_OBJ_FILE))
+
+	var/selected_gimmick = pick(gimmick_list)
+	selected_gimmick = replacetext(selected_gimmick, "%DEPARTMENT", selected_department)
+	if(target?.current)
+		selected_gimmick = replacetext(selected_gimmick, "%TARGET", target.name)
+
+	explanation_text = "[selected_gimmick]"
+
+/datum/objective/gimmick/check_completion()
+	return TRUE
+	
+/datum/objective/gimmick/admin_edit(mob/admin)
+	update_explanation_text()

@@ -6,7 +6,7 @@
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 	low_threshold_passed = span_info("Your Preternis eyes switch to battery saver mode.")
 	high_threshold_passed = span_info("Your Preternis eyes only show a sliver of battery life left!")
@@ -39,10 +39,10 @@
 	. = ..()
 	if(!owner)
 		return
-	if((owner.get_process_flags() & SYNTHETIC) && !powered)
+	if((owner.mob_biotypes & MOB_ROBOTIC) && !powered)
 		powered = TRUE
 		to_chat(owner, span_notice("A battery icon disappears from your vision as your [src] switch to external power."))
-	if(!(owner.get_process_flags() & SYNTHETIC) && powered) //these eyes depend on being inside a preternis for power
+	if(!(owner.mob_biotypes & MOB_ROBOTIC) && powered) //these eyes depend on being inside a preternis for power
 		powered = FALSE
 		to_chat(owner, span_boldwarning("Your [src] flash warnings that they've lost their power source, and are running on emergency power!"))
 	if(powered)
@@ -105,7 +105,7 @@
 	name = "preternis cell-stomach"
 	desc = "Calling it a stomach is perhaps a bit generous. It's better at grinding rocks than dissolving food. Also works as a power cell."
 	icon_state = "stomach-c"
-	process_flags = ORGANIC | SYNTHETIC // also works as a stomach, so organics can use it too
+	compatible_biotypes = ALL_BIOTYPES // also works as a stomach, so organics can use it too
 
 /obj/item/organ/stomach/cell/preternis/on_life()
 	. = ..()

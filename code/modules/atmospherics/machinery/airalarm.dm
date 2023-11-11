@@ -81,7 +81,11 @@
     )
 
 	var/danger_level = 0
+	var/trigger_reset = FALSE //Will reset all air alarms to normal state when all alerts are cleared
+	var/manual_override = FALSE
 	var/mode = AALARM_MODE_SCRUBBING
+
+	var/area/A = null
 
 	var/locked = TRUE
 	var/aidisabled = 0
@@ -221,10 +225,12 @@
 	var/list/air_scrub_names = list()
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()
+	var/manual_atmosalm = FALSE
 
 /obj/machinery/airalarm/New(loc, ndir, nbuild)
 	..()
 	wires = new /datum/wires/airalarm(src)
+	A = get_area(src)
 	if(ndir)
 		setDir(ndir)
 
@@ -241,8 +247,9 @@
 
 /obj/machinery/airalarm/Destroy()
 	SSradio.remove_object(src, frequency)
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
+	atmos_manualOverride(TRUE)
+	post_alert(0)
 	return ..()
 
 /obj/machinery/airalarm/Initialize(mapload)
@@ -280,7 +287,7 @@
 		"danger_level" = danger_level,
 	)
 
-	var/area/A = get_area(src)
+	data["manual_atmosalm"] = A.manual_atmosalm
 	data["atmos_alarm"] = A.atmosalm
 	data["fire_alarm"] = A.fire
 
@@ -450,14 +457,12 @@
 			apply_mode(usr)
 			. = TRUE
 		if("alarm")
-			var/area/A = get_area(src)
-			if(A.atmosalert(2, src))
-				post_alert(2)
+			atmos_manualOverride()
+			post_alert(2)
 			. = TRUE
 		if("reset")
-			var/area/A = get_area(src)
-			if(A.atmosalert(0, src))
-				post_alert(0)
+			atmos_manualOverride(TRUE)
+			post_alert(0)
 			. = TRUE
 	update_appearance(UPDATE_ICON)
 
@@ -523,7 +528,6 @@
 			return "Flood"
 
 /obj/machinery/airalarm/proc/apply_mode(atom/signal_source)
-	var/area/A = get_area(src)
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
 			for(var/device_id in A.air_scrub_names)
@@ -647,7 +651,6 @@
 		icon_state = "alarmp"
 		return
 
-	var/area/A = get_area(src)
 	switch(max(danger_level, A.atmosalm))
 		if(0)
 			icon_state = "alarm0"
@@ -658,6 +661,8 @@
 
 /obj/machinery/airalarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted)
+		atmos_manualOverride(TRUE)
+		post_alert(0)
 		return
 
 	var/turf/location = get_turf(src)
@@ -684,18 +689,34 @@
 		gas_dangerlevel = max(gas_dangerlevel, cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure))
 
 
-	var/old_danger_level = danger_level
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
 
-	if(old_danger_level != danger_level)
+	if(danger_level>0 && !manual_override)
 		apply_danger_level()
+	else if(trigger_reset && !manual_override)
+		apply_danger_level()
+
 	if(mode == AALARM_MODE_REPLACEMENT && environment_pressure < ONE_ATMOSPHERE * 0.05)
 		mode = AALARM_MODE_SCRUBBING
 		apply_mode(src)
-
+	
+/obj/machinery/airalarm/proc/atmos_manualOverride(resetArea = FALSE)
+	for(var/obj/machinery/airalarm/AA in A)
+		if(resetArea)
+			AA.manual_override = FALSE
+			AA.trigger_reset = TRUE
+		else
+			AA.manual_override = TRUE
 
 /obj/machinery/airalarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(alarm_frequency)
+	if(alert_level>0 && !manual_override)
+		trigger_reset = TRUE
+	else
+		trigger_reset = FALSE
+
+	A.atmosalert(alert_level, src)
+	A.manual_atmosalm = manual_override
 
 	if(!frequency)
 		return
@@ -704,7 +725,6 @@
 		"zone" = get_area_name(src),
 		"type" = "Atmospheric"
 	))
-	var/area/A = get_area(src)
 	if(alert_level==2)
 		alert_signal.data["alert"] = "severe"
 		A.set_vacuum_alarm_effect()
@@ -716,22 +736,26 @@
 
 	frequency.post_signal(src, alert_signal, range = -1)
 
+	for(var/obj/machinery/airalarm/AA in A)
+		AA.update_appearance(UPDATE_ICON)
+
 /obj/machinery/airalarm/proc/apply_danger_level()
-	var/area/A = get_area(src)
 
 	var/new_area_danger_level = 0
 	for(var/obj/machinery/airalarm/AA in A)
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level,AA.danger_level)
-	if(A.atmosalert(new_area_danger_level,src)) //if area was in normal state or if area was in alert state
-		post_alert(new_area_danger_level)
+			if(new_area_danger_level>1)
+				AA.manual_override = FALSE
+		
+	post_alert(new_area_danger_level)
 
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/airalarm/attackby(obj/item/W, mob/user, params)
 	switch(buildstage)
 		if(2)
-			if(W.tool_behaviour == TOOL_WIRECUTTER && panel_open && wires.is_all_cut())
+			if(W.tool_behaviour == TOOL_WIRECUTTER && panel_open && wires.is_cut(WIRE_POWER))
 				W.play_tool_sound(src)
 				to_chat(user, span_notice("You cut the final wires."))
 				new /obj/item/stack/cable_coil(loc, 5)
@@ -780,6 +804,7 @@
 						locked = FALSE
 						mode = 1
 						shorted = 0
+						atmos_manualOverride(TRUE)
 						post_alert(0)
 						buildstage = 2
 						update_appearance(UPDATE_ICON)

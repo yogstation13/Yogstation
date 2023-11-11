@@ -210,6 +210,7 @@
 				[(state == 3) ?"[cell?"<a href='?src=[REF(src)];drop_cell=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop power cell</a>":"No cell installed</br>"]":null]
 				[(state == 3) ?"[scanmod?"<a href='?src=[REF(src)];drop_scanmod=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop scanning module</a>":"No scanning module installed</br>"]":null]
 				[(state == 3) ?"[capacitor?"<a href='?src=[REF(src)];drop_cap=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop capacitor</a>":"No capacitor installed</br>"]":null]
+				[(state == 3) ?"[(silicon_pilot&&occupant)?"<a href='?src=[REF(src)];drop_mmi=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop neural interface</a>":"No neural interface installed</br>"]":null]
 				[(state == 3) ?"--------------------</br>":null]
 				[(state>0) ?"<a href='?src=[REF(src)];set_internal_tank_valve=1;user=[REF(user)]'>Set Cabin Air Pressure</a>":null]
 			</body>
@@ -234,9 +235,15 @@
 
 	if(in_range(src, usr))
 		var/obj/item/card/id/id_card
-		if (href_list["id_card"])
+		if(href_list["id_card"])
 			id_card = locate(href_list["id_card"])
-			if (!istype(id_card))
+			if(!istype(id_card))
+				return
+		
+		var/mob/user
+		if(href_list["user"])
+			user = locate(href_list["user"])
+			if(!istype(user))
 				return
 
 		if(href_list["req_access"] && add_req_access && id_card)
@@ -258,20 +265,28 @@
 
 		if(href_list["drop_cell"])
 			if(state == 3)
-				cell.forceMove(get_turf(src))
+				if(!user.put_in_hands(cell))
+					cell.forceMove(get_turf(user))
 				cell = null
 			output_maintenance_dialog(id_card,usr)
 			return
 		if(href_list["drop_scanmod"])
 			if(state == 3)
-				scanmod.forceMove(get_turf(src))
+				if(!user.put_in_hands(scanmod))
+					scanmod.forceMove(get_turf(user))
 				scanmod = null
 			output_maintenance_dialog(id_card,usr)
 			return
 		if(href_list["drop_cap"])
 			if(state == 3)
-				capacitor.forceMove(get_turf(src))
+				if(!user.put_in_hands(capacitor))
+					capacitor.forceMove(get_turf(user))
 				capacitor = null
+			output_maintenance_dialog(id_card,usr)
+			return
+		if(href_list["drop_mmi"])
+			if(state == 3)
+				remove_mmi(user)
 			output_maintenance_dialog(id_card,usr)
 			return
 

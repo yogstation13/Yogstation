@@ -201,7 +201,7 @@
 	var/glow_color
 	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
-	conflicts = list(/datum/mutation/human/glow/anti)
+	conflicts = list(/datum/mutation/human/glow/anti, /datum/mutation/human/radiantburst)
 
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -229,7 +229,7 @@
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
 	glow = -3.5
-	conflicts = list(/datum/mutation/human/glow)
+	conflicts = list(/datum/mutation/human/glow, /datum/mutation/human/radiantburst)
 	locked = TRUE
 
 /datum/mutation/human/thickskin

@@ -82,7 +82,7 @@
 	var/area/A = src.loc
 	A = A.loc
 
-	if(!detecting || !A.fire)
+	if(!A.fire && !A.delta_light)
 		. += "fire_off"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, EMISSIVE_PLANE, dir)

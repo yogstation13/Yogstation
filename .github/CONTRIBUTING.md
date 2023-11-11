@@ -118,6 +118,8 @@ There is no strict process when it comes to merging pull requests. Pull requests
 
 * We ask that you use the changelog system to document your player facing changes, which prevents our players from being caught unaware by said changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
 
+* If you are fixing a game-breaking bug, it's advised to use the [s] tag to not bring unwanted attention to your pull request. Very rarely is it acceptable to use this label outside of these situations, due to it hiding information from many sources.
+
 * If you are proposing multiple changes, which change many different aspects of the code, you are expected to section them off into different pull requests in order to make it easier to review them and to deny/accept the changes that are deemed acceptable.
 
 * If your pull request is accepted, the code you add no longer belongs exclusively to you but to everyone; everyone is free to work on it, but you are also free to support or object to any changes being made, which will likely hold more weight, as you're the one who added the feature. It is a shame this has to be explicitly said, but there have been cases where this would've saved some trouble.

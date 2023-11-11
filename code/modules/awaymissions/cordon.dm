@@ -11,15 +11,13 @@
 	blocks_air = TRUE
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	bullet_bounce_sound = null
+	flags_1 = CAN_BE_DIRTY_1 | NO_RUST
 
 /turf/cordon/AfterChange()
 	. = ..()
 	SSair.high_pressure_delta -= src
 
 /turf/cordon/attack_ghost(mob/dead/observer/user)
-	return FALSE
-
-/turf/cordon/rust_heretic_act()
 	return FALSE
 
 /turf/cordon/acid_act(acidpwr, acid_volume, acid_id)
@@ -35,7 +33,7 @@
 /turf/cordon/ScrapeAway(amount, flags)
 	return src // :devilcat:
 
-/turf/cordon/bullet_act(obj/item/projectile/hitting_projectile, def_zone, piercing_hit)
+/turf/cordon/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
 	return BULLET_ACT_HIT
 
 /turf/cordon/Adjacent(atom/neighbor, atom/target, atom/movable/mover)

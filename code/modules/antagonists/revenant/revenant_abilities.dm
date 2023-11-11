@@ -65,7 +65,7 @@
 				reveal(46)
 				stun(46)
 				target.visible_message(span_warning("[target] suddenly rises slightly into the air, [target.p_their()] skin turning an ashy gray."))
-				if(target.anti_magic_check(FALSE, TRUE))
+				if(target.can_block_magic(MAGIC_RESISTANCE_HOLY))
 					to_chat(src, span_revenminor("Something's wrong! [target] seems to be resisting the siphoning, leaving you vulnerable!"))
 					target.visible_message(span_warning("[target] slumps onto the ground."), \
 											   span_revenwarning("Violet lights, dancing in your vision, receding--"))
@@ -276,10 +276,10 @@
 	
 	if(victim.type == /turf/closed/wall && prob(15))
 		new /obj/effect/temp_visual/revenant(victim)
-		victim.ChangeTurf(/turf/closed/wall/rust)
+		victim.AddElement(/datum/element/rust)
 	if(victim.type == /turf/closed/wall/r_wall && prob(10))
 		new /obj/effect/temp_visual/revenant(victim)
-		victim.ChangeTurf(/turf/closed/wall/r_wall/rust)
+		victim.AddElement(/datum/element/rust)
 	for(var/obj/effect/decal/cleanable/food/salt/salt in victim)
 		new /obj/effect/temp_visual/revenant(victim)
 		qdel(salt)

@@ -51,7 +51,7 @@
 	if(istype(F, /datum/computer_file/program))
 		var/datum/computer_file/program/P = F
 		P.computer = holder
-	
+
 	stored_files.Add(F)
 	recalculate_size()
 	return F
@@ -120,6 +120,16 @@
 		if(F.filename == filename)
 			return F
 	return null
+
+/obj/item/computer_hardware/hard_drive/try_insert(obj/item/I, mob/living/user)
+	if(!holder)
+		return FALSE
+
+	for(var/datum/computer_file/file in stored_files)
+		if(file.try_insert(I, user))
+			return TRUE
+
+	return FALSE
 
 /obj/item/computer_hardware/hard_drive/Destroy()
 	for(var/F in stored_files)

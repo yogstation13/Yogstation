@@ -242,7 +242,7 @@
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
 				H.visible_message(span_warning("[user] delivers a heavy hit to [H]'s head, knocking [H.p_them()] out cold!"), \
 									   span_userdanger("[user] knocks you unconscious!"))
-				H.SetSleeping(300)
+				H.SetUnconscious(30 SECONDS)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	else
 		return ..()

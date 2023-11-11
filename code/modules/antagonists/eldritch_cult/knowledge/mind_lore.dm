@@ -7,18 +7,30 @@
 		/datum/eldritch_knowledge/base_rust,
 		/datum/eldritch_knowledge/base_flesh,
 		/datum/eldritch_knowledge/base_void,
+		/datum/eldritch_knowledge/base_blade,
+		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/void_final)
+		/datum/eldritch_knowledge/void_final,
+		/datum/eldritch_knowledge/blade_final,
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
 	cost = 1
 	route = PATH_MIND
@@ -26,14 +38,25 @@
 	
 /datum/eldritch_knowledge/base_mind/on_gain(mob/user)
 	. = ..()
-	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/mind
+	var/obj/realknife = new /obj/item/melee/sickly_blade/mind
 	user.put_in_hands(realknife)
-	var/datum/action/cooldown/spell/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
+	var/datum/action/cooldown/spell/touch/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
 	if(mansus_touch)
-		mansus_touch.Remove(user)
-	var/datum/action/cooldown/spell/pointed/mansus_ranged/ranged_touch = new(user)
-	ranged_touch.Grant(user)
-		
+		mansus_touch.hand_path = /obj/item/melee/touch_attack/mansus_fist/mind //longer range version
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/base_mind/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/base_mind/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
+	if(!ishuman(target))
+		return COMPONENT_BLOCK_HAND_USE
+	var/mob/living/carbon/human/human_target = target
+	human_target.blur_eyes(1 SECONDS)
+	human_target.Knockdown(2 SECONDS)
+
 /datum/eldritch_knowledge/spell/mental_obfuscation
 	name = "T1 - Mental Obfuscation"
 	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
@@ -41,9 +64,7 @@
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
 	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/ashen_shift,
-		/datum/eldritch_knowledge/spell/void_phase
-	)
+		/datum/eldritch_knowledge/spell/void_phase)
 	route = PATH_MIND
 	tier = TIER_1
 
@@ -64,17 +85,31 @@
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/void_mark)
+		/datum/eldritch_knowledge/void_mark,
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_MIND
 	tier = TIER_MARK
 
 /datum/eldritch_knowledge/mind_mark/on_gain(mob/user)
 	. = ..()
-	var/datum/action/cooldown/spell/ranged_touch = locate(/datum/action/cooldown/spell/pointed/mansus_ranged) in user.actions
-	if(ranged_touch)
-		ranged_touch.Remove(user)
-	var/datum/action/cooldown/spell/pointed/mansus_ranged/upgraded/ranged_touch_upgraded = new(user)
-	ranged_touch_upgraded.Grant(user)
+	var/datum/action/cooldown/spell/touch/mansus_touch = locate(/datum/action/cooldown/spell/touch/mansus_grasp) in user.actions
+	if(mansus_touch)
+		mansus_touch.hand_path = /obj/item/melee/touch_attack/mansus_fist/mind/upgraded //even longer range version
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/mind_mark/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/mind_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
+	if(!ishuman(target))
+		return COMPONENT_BLOCK_HAND_USE
+	var/mob/living/carbon/human/human_target = target
+	human_target.blur_eyes(2 SECONDS)
+	human_target.blind_eyes(1 SECONDS)
 
 /datum/eldritch_knowledge/spell/assault
 	name = "T2 - Amygdala Assault"
@@ -86,12 +121,12 @@
 	tier = TIER_2
 
 /datum/eldritch_knowledge/spell/famished_roar
-	name = "T2 - Famished Roar"
+	name = "T3 - Famished Roar"
 	gain_text = "Beasts all over the shop. You'll be one of them... Sooner or later... What's that smell? The sweet blood, oh, it sings to me. It's enough to make a man sick..."
 	desc = "An AOE roar spell that freezes all nearby people with sheer terror."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/immobilize/famished_roar
-	tier = TIER_2
+	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_blade_upgrade
 	name = "Blade Upgrade - Spine of The Infinite Beast"
@@ -102,7 +137,10 @@
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade)
+		/datum/eldritch_knowledge/void_blade_upgrade,
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_MIND
 	tier = TIER_BLADE
 
@@ -125,7 +163,7 @@
 	ADD_TRAIT(user, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/eldritch_knowledge/spell/eldritchbolt
-	name = "T3 - Eldritch Bolt"
+	name = "T2 - Eldritch Bolt"
 	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
 	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
 	cost = 1

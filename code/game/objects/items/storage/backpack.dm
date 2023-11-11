@@ -536,6 +536,23 @@
 	for(var/i in 7 to 8)
 		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random
+	desc = "A large duffel bag, packed to the brim with random Bulldog shotgun magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/m12g,
+		/obj/item/ammo_box/magazine/m12g/dragon,
+		/obj/item/ammo_box/magazine/m12g/frag,
+		/obj/item/ammo_box/magazine/m12g/meteor,
+		/obj/item/ammo_box/magazine/m12g/slug,
+		/obj/item/ammo_box/magazine/m12g/flechette
+	)
+
+	for(var/i in 1 to 10)
+		var/item = pick(item_list)
+		new item(src)
+
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
@@ -546,6 +563,21 @@
 		new /obj/item/ammo_box/magazine/smgm45/ap(src)
 	for(var/i in 8 to 9)
 		new /obj/item/ammo_box/magazine/smgm45/hp(src)
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random
+	desc = "A large duffel bag, packed to the brim with random C-20r magazines."
+
+/obj/item/storage/backpack/duffelbag/syndie/ammo/smg/random/PopulateContents()
+	var/list/item_list = list(
+		/obj/item/ammo_box/magazine/smgm45,
+		/obj/item/ammo_box/magazine/smgm45/ap,
+		/obj/item/ammo_box/magazine/smgm45/hp,
+		/obj/item/ammo_box/magazine/smgm45/venom
+	)
+
+	for(var/i in 1 to 11)
+		var/item = pick(item_list)
+		new item(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
@@ -756,14 +788,14 @@
 	new /obj/item/clothing/suit/det_suit/tan(src)
 	new /obj/item/clothing/head/fedora/det_hat/grey(src)
 	new /obj/item/clothing/shoes/laceup(src)
-	new /obj/item/clothing/under/rank/det/forensictech(src)
-	new /obj/item/clothing/under/rank/det/bluedetective(src)
-	new /obj/item/clothing/under/rank/det/golddetective(src)
-	new /obj/item/clothing/under/rank/det/greydetective(src)
-	new /obj/item/clothing/under/rank/det/blackdetective(src)
-	new /obj/item/clothing/suit/det_suit/golddetective(src)
-	new /obj/item/clothing/suit/det_suit/detectivecoat(src)
-	new /obj/item/clothing/suit/det_suit/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs(src)
+	new /obj/item/clothing/under/rank/det/yogs/forensictech(src)
+	new /obj/item/clothing/under/rank/det/yogs/bluedetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/golddetective(src)
+	new /obj/item/clothing/under/rank/det/yogs/greydetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs(src)
+	new /obj/item/clothing/suit/det_suit/yogs/golddetective(src)
+	new /obj/item/clothing/suit/det_suit/yogs/bluedetective(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/warden
 	name = "Warden's clothing duffelbag"
