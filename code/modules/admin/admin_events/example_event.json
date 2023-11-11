@@ -1,0 +1,16 @@
+{
+	"name": "Example Event",
+	"description": "During this event you find yourself on a testing server to see if new functionality is working",
+	"command_name": "Event Command",
+	"role_settings": {
+		"/datum/job/assistant": {
+			"disable": true,
+			"greeting": "As assistant during this event, you will need to do something idfk"
+		},
+		"/datum/antagonist/traitor": {
+			"start_slots": 69,
+			"total_slots": 420,
+			"greeting": "As traitor during this event, you will be doing special things as well"
+		}
+	}
+}

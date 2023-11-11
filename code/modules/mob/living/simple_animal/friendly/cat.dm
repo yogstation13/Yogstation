@@ -33,7 +33,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 	wuv_happy = "purrs!"
 	wuv_angy = "hisses!"
 

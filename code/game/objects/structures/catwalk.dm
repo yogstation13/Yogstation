@@ -8,10 +8,13 @@
 	canSmoothWith = null
 	obj_flags = CAN_BE_HIT
 
+/obj/structure/lattice/catwalk/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/footstep_override, footstep = FOOTSTEP_CATWALK)
+
 /obj/structure/lattice/catwalk/over
 	layer = CATWALK_LAYER
 	plane = GAME_PLANE
-
 
 /obj/structure/lattice/catwalk/deconstruction_hints(mob/user)
 	to_chat(user, span_notice("The supporting rods look like they could be <b>sliced</b>."))

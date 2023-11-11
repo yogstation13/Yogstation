@@ -435,6 +435,8 @@
 	if(edible && (M == user))
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")
 		var/eaten = use_charges(user, 5, FALSE)
+		if(!HAS_TRAIT(M, TRAIT_MARINE))
+			M.adjust_disgust(10)
 		if(check_empty(user)) //Prevents divsion by zero
 			return
 		var/fraction = min(eaten / reagents.total_volume, 1)
