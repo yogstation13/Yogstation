@@ -45,6 +45,7 @@
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
+	var/emp_reduction = 0	//Subtracted to EMP severity
 
 	//Coloring and proper item icon update
 	var/skin_tone = ""
@@ -133,7 +134,12 @@
 		return
 
 	var/blocked = owner.getarmor(body_zone, ENERGY) // energy armor protects against EMPs
-	if(receive_damage(0, severity / 2, severity, blocked, TRUE, BODYPART_ROBOTIC, CANT_WOUND)) // returns false for non-robotic limbs
+	severity *= (100 - blocked) / 100
+	severity -= emp_reduction
+	if(severity < 1)
+		return
+
+	if(receive_damage(0, severity / 2, severity, FALSE, TRUE, BODYPART_ROBOTIC, CANT_WOUND)) // returns false for non-robotic limbs
 		if(severity > EMP_LIGHT)
 			ADD_TRAIT(src, TRAIT_PARALYSIS, "EMP")
 			addtimer(CALLBACK(src, PROC_REF(after_emp)), min((severity / 2) SECONDS, 5 SECONDS), TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -141,8 +147,7 @@
 			owner.emote("scream")
 			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
 
-	severity *= (100 - blocked) / 100
-	if(severity >= 1 && !(. & EMP_PROTECT_CONTENTS))
+	if(!(. & EMP_PROTECT_CONTENTS))
 		for(var/obj/item/organ/O as anything in get_organs())
 			O.emp_act(severity)
 

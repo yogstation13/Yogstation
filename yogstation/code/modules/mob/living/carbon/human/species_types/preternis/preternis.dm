@@ -22,7 +22,6 @@
 	tempmod = 0.15 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	stunmod = 1.2 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
-	emp_mod = 0.5 // More resistant to EMPs, but not immune
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagehigh = 7 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //technically better stunning
@@ -61,6 +60,7 @@
 
 	for (var/obj/item/bodypart/BP in C.bodyparts)
 		BP.render_like_organic = TRUE 	// Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
+		BP.emp_reduction = 5
 		BP.burn_reduction = 2
 		BP.brute_reduction = 1
 		if(BP.body_zone == BODY_ZONE_CHEST)
@@ -81,6 +81,7 @@
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
+		BP.emp_reduction = initial(BP.emp_reduction)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
 
@@ -317,6 +318,12 @@
 	var/list/to_add = list()
 
 	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "Preterni have an outer plasteel shell that can block low-intensity EM interference.",
+		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "cookie-bite",
