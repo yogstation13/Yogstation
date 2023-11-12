@@ -63,7 +63,7 @@
 	scan_desc = "extra-sensory paranoia"
 	gain_text = span_warning("You feel like something wants to kill you...")
 	lose_text = span_notice("You no longer feel eyes on your back.")
-	var/obj/effect/hallucination/simple/stalker_phantom/stalker
+	var/list/stalkers = list()
 	var/close_stalker = FALSE //For heartbeat
 
 /datum/brain_trauma/magic/stalker/on_gain()
@@ -73,45 +73,51 @@
 /datum/brain_trauma/magic/stalker/proc/create_stalker()
 	var/turf/stalker_source
 	var/anomaly_near = FALSE
+	var/obj/effect/hallucination/simple/stalker_phantom/phantom
 	for(var/obj/effect/anomaly/hallucination/anomaly in view(5, owner)) //If there are multiple hallucination anomalies nearby you are fucked
 		if(anomaly)
 			anomaly_near = TRUE
 			stalker_source = anomaly.loc
-			stalker = new(stalker_source, owner)
+			phantom = new(stalker_source, owner)
+			stalkers += phantom
 	if(!anomaly_near)
 		stalker_source = locate(owner.x + pick(-12, 12), owner.y + pick(-12, 12), owner.z) //random corner
-		stalker = new(stalker_source, owner)
+		phantom = new(stalker_source, owner)
+		stalkers += phantom
 
 /datum/brain_trauma/magic/stalker/on_lose()
-	QDEL_NULL(stalker)
+	QDEL_LAZYLIST(stalkers)
 	..()
 
 /datum/brain_trauma/magic/stalker/on_life()
 	// Dead and unconscious people are not interesting to the psychic stalker.
 	if(owner.stat != CONSCIOUS)
 		return
-
+	for(var/obj/effect/hallucination/simple/stalker_phantom/stalker in stalkers)
 	// Not even nullspace will keep it at bay.
-	if(!stalker || !stalker.loc || stalker.z != owner.z)
-		qdel(stalker)
-		create_stalker()
+		if(!stalker)
+			create_stalker()
 
-	if(get_dist(owner, stalker) <= 1)
-		playsound(owner, 'sound/magic/demon_attack1.ogg', 50)
-		owner.visible_message(span_warning("[owner] is torn apart by invisible claws!"), span_userdanger("Ghostly claws tear your body apart!"))
-		owner.take_bodypart_damage(rand(20, 45), wound_bonus=CANT_WOUND)
-	else
-		stalker.forceMove(get_step_towards(stalker, owner))
+		if(!stalker.loc || stalker.z != owner.z)
+			qdel(stalker)
+			create_stalker()
 
-	if(get_dist(owner, stalker) <= 8)
-		if(!close_stalker)
-			var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
-			owner.playsound_local(owner, slowbeat, 40, 0, channel = CHANNEL_HEARTBEAT)
-			close_stalker = TRUE
-	else
-		if(close_stalker)
-			owner.stop_sound_channel(CHANNEL_HEARTBEAT)
-			close_stalker = FALSE
+		if(get_dist(owner, stalker) <= 1)
+			playsound(owner, 'sound/magic/demon_attack1.ogg', 50)
+			owner.visible_message(span_warning("[owner] is torn apart by invisible claws!"), span_userdanger("Ghostly claws tear your body apart!"))
+			owner.take_bodypart_damage(rand(20, 45), wound_bonus=CANT_WOUND)
+		else
+			stalker.forceMove(get_step_towards(stalker, owner))
+
+		if(get_dist(owner, stalker) <= 8)
+			if(!close_stalker)
+				var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
+				owner.playsound_local(owner, slowbeat, 40, 0, channel = CHANNEL_HEARTBEAT)
+				close_stalker = TRUE
+		else
+			if(close_stalker)
+				owner.stop_sound_channel(CHANNEL_HEARTBEAT)
+				close_stalker = FALSE
 	..()
 
 /obj/effect/hallucination/simple/stalker_phantom
