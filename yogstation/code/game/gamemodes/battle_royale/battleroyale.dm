@@ -263,7 +263,9 @@ GLOBAL_VAR(stormdamage)
 		if(istype(lootlake, /area/space))//no nearspace
 			continue
 		if(istype(lootlake, /area/solar))//no solars
-			BLACKJACK_CONTINUE
+			continue
+		if(istype(lootlake, /area/maintenance))//no maintenance, it's too large, it'd lag the hell out of the server and it's not as popular as main hallways
+			continue //also, ideally keeps people out of maints, and in larger open areas that are more interesting
 		var/amount = round(LAZYLEN(lootlake.get_contained_turfs()) / 40)//so bigger areas spawn more crates
 		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(lootlake))
