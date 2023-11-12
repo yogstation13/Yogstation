@@ -15,4 +15,10 @@
 	caster.Beam(victim, icon_state="red_lightning", time = 1.5 SECONDS)
 
 /obj/item/melee/touch_attack/shock/far
-	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 5, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+
+/obj/item/melee/touch_attack/shock/far/afterattack(atom/target, mob/living/carbon/user, proximity, click_parameters)
+	if(!can_see(user, target, 5) || get_dist(target, user) > 5)
+		user.visible_message(span_notice("[user]'s hand reaches out but nothing happens."))
+		return
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, TRUE, click_parameters) //we send the signal to trigger the signal applied to the touch attack item
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, TRUE, click_parameters) //proximity = TRUE, always within range
