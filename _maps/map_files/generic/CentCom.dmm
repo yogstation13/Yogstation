@@ -19698,10 +19698,6 @@
 /obj/item/bedsheet/black,
 /turf/open/floor/carpet/black,
 /area/yogs/infiltrator_base)
-"aOi" = (
-/obj/machinery/portable_atmospherics/canister/miasma,
-/turf/open/floor/bluespace,
-/area/centcom/testchamber)
 "aOj" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/centcom{
@@ -25301,20 +25297,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"aZA" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/miasma,
-/turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "aZB" = (
 /obj/structure/table/reinforced,
@@ -64478,8 +64460,8 @@ aaa
 aaa
 aaa
 aNt
-aOi
-aZA
+aYC
+auK
 aOX
 aPT
 aOX
