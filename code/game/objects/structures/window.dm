@@ -307,6 +307,8 @@
 	add_fingerprint(user)
 
 /obj/structure/window/Destroy()
+	density = FALSE
+	air_update_turf()
 	update_nearby_icons()
 	return ..()
 
