@@ -376,7 +376,7 @@
 	value = 2
 	mob_trait = TRAIT_MARINE
 	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills.")
-	lose_text = span_danger("You've lost the fierceless spirit of being a Marine, alongside your appetite for crayons.")
+	lose_text = span_danger("You've lost the fierceless spirit of a Marine, alongside your appetite for crayons.")
 	medical_record_text = ("Patient's stomach is unusually proficient at digesting wax.")
 
 /datum/quirk/multilingual
