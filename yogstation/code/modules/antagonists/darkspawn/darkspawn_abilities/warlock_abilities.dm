@@ -237,9 +237,9 @@
 	if(!can_see(caster, victim, aoe_radius)) //no putting out on the other side of walls
 		return
 	var/mob/living/target = victim
-	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
-		return
 	if(is_darkspawn_or_veil(target)) //don't fuck with allies
+		return
+	if(target.can_block_magic(antimagic_flags, charge_cost = 1))
 		return
 	var/datum/hallucination/picked_hallucination = pick(GLOB.hallucination_list)//not using weights
 	target.cause_hallucination(picked_hallucination, "mass hallucination")
