@@ -63,7 +63,7 @@
 /datum/station_trait/moonscortch
 	name = "Moonscortch"
 	trait_type = STATION_TRAIT_NEUTRAL
-	weight = 1000
-	report_message = "Rumors has it that the clown planet has been sending support packages to clowns in this system"
+	weight = 0.5
+	report_message = "The moon below looks like it's staring back, smiling at you."
 	trait_to_give = STATION_TRAIT_MOONSCORTCH
 
