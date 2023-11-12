@@ -339,8 +339,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 /obj/structure/closet/crate/battleroyale
 	name = "Supply Crate"
 	icon_state = "trashcart"
-	light_range = 10
-	light_color = LIGHT_COLOR_YELLOW //Let it glow, let it glow
 	dense_when_open = FALSE
 
 /obj/structure/closet/crate/battleroyale/PopulateContents()
@@ -399,7 +397,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
 
-	if(prob(0.1)) //0.1% chance of being clowned, probably won't see it every round
+	if(prob(1))
 		for(var/i = 0, i < 5, i++)
 			new /mob/living/simple_animal/hostile/retaliate/clown(src)// you've been clowned
 

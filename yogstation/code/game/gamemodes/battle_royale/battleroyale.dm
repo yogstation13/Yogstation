@@ -251,20 +251,27 @@ GLOBAL_VAR(stormdamage)
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(1)
+	loot_spawn()
 	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
 
-/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
-	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
-		var/area/AR = get_area(es)
+/datum/game_mode/fortnite/proc/loot_spawn()
+	for(var/area/lootlake as anything in GLOB.areas)
+		if(!is_station_level(lootlake.z))//don't spawn it if it isn't a station level
+			continue
+		var/amount = round(LAZYLEN(lootlake.get_contained_turfs()) / 60) + 1 //so bigger areas spawn more crates, but at least one box spawns in each area
 		for(var/I = 0, I < amount, I++)
-			var/turf/turfy = pick(get_area_turfs(AR))
-			while(turfy.density)//so it doesn't spawn inside walls
-				turfy = pick(get_area_turfs(AR))
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			new /obj/structure/closet/crate/battleroyale(pod)
-			new /obj/effect/DPtarget(turfy, pod)
+			var/turf/turfy = pick(get_area_turfs(lootlake))
+			for(var/L = 0, L < 15, L++)//cap so it doesn't somehow end in an infinite loop
+				if(!turfy.density)//so it doesn't spawn inside walls
+					break
+				turfy = pick(get_area_turfs(lootlake))
+			INVOKE_ASYNC(src, PROC_REF(drop_pod), turfy)//to slightly reduce the lag of calling this proc, maybe
+
+/datum/game_mode/fortnite/proc/drop_pod(turf/turfy)
+	var/obj/structure/closet/supplypod/centcompod/pod = new()
+	new /obj/structure/closet/crate/battleroyale(pod)
+	new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
 /datum/antagonist/battleroyale
