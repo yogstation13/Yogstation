@@ -328,7 +328,7 @@
 
 /atom/movable/screen/parallax_layer/planet/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORTCH))
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORCH))
 		icon_state = "rheus_moon"
 	else
 		icon_state = "planet"

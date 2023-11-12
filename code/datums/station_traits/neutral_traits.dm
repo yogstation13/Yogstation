@@ -60,11 +60,11 @@
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/medbot
 
-/datum/station_trait/moonscortch
-	name = "Moonscortch"
+/datum/station_trait/Moonscorch
+	name = "Moonscorch"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 0.2
 	show_in_report = TRUE
 	report_message = "The moon below looks like it's staring back, smiling at you."
-	trait_to_give = STATION_TRAIT_MOONSCORTCH
+	trait_to_give = STATION_TRAIT_MOONSCORCH
 
