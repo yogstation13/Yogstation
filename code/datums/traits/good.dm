@@ -371,7 +371,7 @@
 
 /datum/quirk/marine
 	name = "Marine"
-	desc = "Whether inherited from family or gained from years of service, you have the rugged blood of a Marine coursing through your veins. Crayons look quite tasty to you, and you aren't phased by eating them.")
+	desc = "Whether inherited from family or gained from years of service, you have the rugged blood of a Marine coursing through your veins. Crayons look quite tasty to you, and you aren't phased by eating them."
 	icon = "chevron-up"
 	value = 2
 	mob_trait = TRAIT_MARINE
