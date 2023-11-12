@@ -159,6 +159,7 @@
 /obj/item/clothing/head/det_hat/evil/throw_at(atom/target, range, speed, mob/thrower, spin=0, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
 	if(thrower && iscarbon(thrower))
 		fedora_man = thrower
+		fedora_man.changeNext_move(CLICK_CD_MELEE)//longer cooldown
 		returning = TRUE
 	. = ..()
 

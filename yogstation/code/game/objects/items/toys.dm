@@ -56,6 +56,11 @@
 /obj/item/toy/boomerang/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(src.loc)) //Did someone catch it?
 		return ..()
+	if(man_down_under && hit_atom == man_down_under)
+		if(man_down_under.put_in_hands(src))
+			return
+		else
+			return ..()
 	. = ..()
 	if(man_down_under && returning)
 		returning = FALSE //only try to return once
@@ -66,7 +71,7 @@
 /obj/item/toy/boomerang/proc/comeback()
 	throw_at(man_down_under, throw_range+3, throw_speed)
 
-/obj/item/toy/boomerang/throw_at(atom/target, range, speed, mob/thrower, spin=0, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
+/obj/item/toy/boomerang/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force, quickstart = TRUE)
 	if(thrower && iscarbon(thrower))
 		man_down_under = thrower
 		returning = TRUE
