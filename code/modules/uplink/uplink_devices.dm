@@ -97,6 +97,7 @@
 
 /obj/item/ntuplink/Initialize(mapload, owner)
 	. = ..()
+	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
 	datum_owner = owner
 	
 /obj/item/ntuplink/proc/finalize()
