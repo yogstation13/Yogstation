@@ -59,3 +59,11 @@
 /datum/station_trait/announcement_medbot/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/medbot
+
+/datum/station_trait/moonscortch
+	name = "Moonscortch"
+	trait_type = STATION_TRAIT_NEUTRAL
+	weight = 1000
+	report_message = "Rumors has it that the clown planet has been sending support packages to clowns in this system"
+	trait_to_give = STATION_TRAIT_MOONSCORTCH
+

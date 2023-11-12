@@ -326,6 +326,13 @@
 	speed = 3
 	layer = 30
 
+/atom/movable/screen/parallax_layer/planet/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_MOONSCORTCH))
+		icon_state = "rheus_moon"
+	else
+		icon_state = "planet"
+
 /atom/movable/screen/parallax_layer/planet/update_status(mob/M)
 	var/turf/T = get_turf(M)
 	if(is_station_level(T.z))
