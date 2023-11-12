@@ -154,7 +154,7 @@
 				O.renamedByPlayer = TRUE
 
 		if(penchoice == "Change description")
-			var/input = stripped_input(user,"Describe \the [O.name] here", ,"", 100)
+			var/input = stripped_input(user,"Describe \the [O.name] here", ,"", 200)
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 				return
 			O.desc = input

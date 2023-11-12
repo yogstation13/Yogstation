@@ -22,11 +22,10 @@
 	speed = 10
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
+	footstep_type = FOOTSTEP_MOB_HEAVY
 	var/hopping = FALSE
 	var/hop_cooldown = 0 //Strictly for player controlled leapers
 	var/projectile_ready = FALSE //Stopping AI leapers from firing whenever they want, and only doing it after a hop has finished instead
-
-	do_footstep = TRUE
 
 /obj/projectile/leaper
 	name = "leaper bubble"

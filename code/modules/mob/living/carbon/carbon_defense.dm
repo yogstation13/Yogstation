@@ -471,11 +471,13 @@
 			trauma.on_hug(M, src)
 
 		var/averagestacks = (fire_stacks + M.fire_stacks)/2 //transfer firestacks between players
-		fire_stacks = averagestacks
-		M.fire_stacks = averagestacks
 		if(averagestacks > 1)
+			adjust_fire_stacks(averagestacks)
+			M.adjust_fire_stacks(-averagestacks)
 			to_chat(src, span_notice("The hug [M] gave covered you in some weird flammable stuff..."))
 		else if(averagestacks < -1)
+			adjust_wet_stacks(averagestacks)
+			M.adjust_wet_stacks(-averagestacks)
 			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
 
 	adjust_status_effects_on_shake_up()

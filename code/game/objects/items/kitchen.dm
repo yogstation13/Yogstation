@@ -13,7 +13,7 @@
  */
 
 /obj/item/kitchen
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 
@@ -131,16 +131,16 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/ritual/holy
-	name = "ruinous knife" 
+	name = "ruinous knife"
 	desc = "The runes inscribed on the knife radiate a strange power. It looks like it could have more runes inscribed upon it..."
 
 /obj/item/kitchen/knife/ritual/holy/strong
-	name = "great ruinous knife" 
+	name = "great ruinous knife"
 	desc = "A heavy knife inscribed with dozens of runes."
 	force = 15
 
 /obj/item/kitchen/knife/ritual/holy/strong/blood
-	name = "blood-soaked ruinous knife" 
+	name = "blood-soaked ruinous knife"
 	desc = "Runes stretch across the surface of the knife, seemingly endless."
 	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
 
@@ -273,7 +273,7 @@
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
-	
+
 /obj/item/kitchen/knife/makeshift
 	name = "makeshift knife"
 	icon_state = "knife_makeshift"
