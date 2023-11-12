@@ -330,7 +330,7 @@
 		else
 			icon_state = "godeye"
 	user.update_inv_glasses()
-	
+
 /obj/item/clothing/suit/cultrobes/void
 	name = "ominous cloak"
 	desc = "A ragged, dusty cloak. Strange eyes line the inside."
@@ -341,7 +341,7 @@
 	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20) //interesting? Maybe?
 	resistance_flags = FIRE_PROOF
-	
+
 	/// The mob currently wearing this
 	var/mob/current_user
 	/// How much the user is cloaked as a percentage, which effects the wearer's transparency and dodge chance (dont edit this)
@@ -486,7 +486,7 @@
 /obj/item/clothing/mask/madness_mask/process(seconds_per_tick)
 	if(!local_user)
 		return PROCESS_KILL
-		
+
 	for(var/mob/living/carbon/human/human_in_range in view(local_user))
 		if(IS_HERETIC_OR_MONSTER(human_in_range) || is_blind(human_in_range))
 			continue
@@ -506,7 +506,7 @@
 
 /obj/item/sharpener/eldritch
 	name = "Master's Whetstone"
-	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "cult_sharpener"
 	desc = "An ancient block of metal from the abyss."
 	force = 5
