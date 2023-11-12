@@ -337,7 +337,7 @@
 /datum/status_effect/demonic_hallucination
 	id = "demonic_hallucination"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = 5 MINUTES
+	duration = 3 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/demonic_hallucination
 	var/datum/brain_trauma/magic/stalker/stalk
 	var/datum/brain_trauma/magic/poltergeist/pol
