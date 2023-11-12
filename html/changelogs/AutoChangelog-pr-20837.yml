@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - tweak: "clockwork golems are now golems and not robots made of brass, making them immune to the effects of their own EMP"
