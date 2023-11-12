@@ -63,7 +63,8 @@
 /datum/station_trait/moonscortch
 	name = "Moonscortch"
 	trait_type = STATION_TRAIT_NEUTRAL
-	weight = 0.5
+	weight = 0.2
+	show_in_report = TRUE
 	report_message = "The moon below looks like it's staring back, smiling at you."
 	trait_to_give = STATION_TRAIT_MOONSCORTCH
 
