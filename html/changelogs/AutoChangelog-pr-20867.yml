@@ -1,0 +1,5 @@
+author: "RG4ORDR"
+delete-after: true 
+changes: 
+  - tweak: "Lowered radiation pulse from 1000 to 500"
+  - tweak: "Lowered particle max spawn from 15 to 5."
