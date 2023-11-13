@@ -212,7 +212,7 @@
 	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot."
 	button_icon_state = "sting_mute"
 	sting_icon = "sting_mute"
-	chemical_cost = 20
+	chemical_cost = 40
 	dna_cost = 2
 
 /datum/action/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
@@ -227,7 +227,7 @@
 	helptext = "This sting completely blinds a target for a short time, and leaves them with blurred vision for a long time."
 	button_icon_state = "sting_blind"
 	sting_icon = "sting_blind"
-	chemical_cost = 25
+	chemical_cost = 40
 	dna_cost = 1
 
 /datum/action/changeling/sting/blind/sting_action(mob/user, mob/living/carbon/target)
@@ -259,7 +259,7 @@
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly freezing."
 	button_icon_state = "sting_cryo"
 	sting_icon = "sting_cryo"
-	chemical_cost = 15
+	chemical_cost = 30
 	dna_cost = 2
 	xenoling_available = FALSE
 
