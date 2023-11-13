@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new ethereal species martial art"
+  - tweak: "Granter books no longer repeat remarks"
