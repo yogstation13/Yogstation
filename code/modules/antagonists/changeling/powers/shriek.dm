@@ -3,7 +3,7 @@
 	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded. Costs 20 chemicals."
 	helptext = "Emits a high-frequency sound that confuses and deafens humans, blows out nearby lights and overloads cyborg sensors."
 	button_icon_state = "resonant_shriek"
-	chemical_cost = 20
+	chemical_cost = 40
 	dna_cost = 1
 	req_human = 1
 	xenoling_available = FALSE
@@ -41,7 +41,7 @@
 	name = "Dissonant Shriek"
 	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Costs 20 chemicals."
 	button_icon_state = "dissonant_shriek"
-	chemical_cost = 20
+	chemical_cost = 40
 	dna_cost = 1
 	xenoling_available = FALSE
 
