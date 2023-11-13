@@ -3,7 +3,7 @@
 	desc = "Expels impurifications from our form; curing diseases, removing parasites, sobering us, purging toxins and radiation, and resetting our genetic code completely. Costs 20 chemicals."
 	helptext = "Can be used while unconscious."
 	button_icon_state = "panacea"
-	chemical_cost = 20
+	chemical_cost = 30
 	dna_cost = 1
 	req_stat = UNCONSCIOUS
 
