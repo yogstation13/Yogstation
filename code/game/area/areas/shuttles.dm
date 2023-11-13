@@ -106,6 +106,7 @@
 	name = "Hyperspace"
 	desc = "Weeeeee"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	fullbright_type = FULLBRIGHT_STARLIGHT
 
 /area/shuttle/custom
 	name = "Custom player shuttle"

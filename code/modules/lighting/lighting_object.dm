@@ -25,9 +25,6 @@
 	affected_turf.lighting_object = src
 	affected_turf.luminosity = 0
 
-	for(var/turf/open/space/space_tile in RANGE_TURFS(1, affected_turf))
-		space_tile.update_starlight()
-
 	needs_update = TRUE
 	SSlighting.objects_queue += src
 
@@ -37,7 +34,7 @@
 	SSlighting.objects_queue -= src
 	if (isturf(affected_turf))
 		affected_turf.lighting_object = null
-		affected_turf.luminosity = 1
+		affected_turf.luminosity = initial(affected_turf.luminosity)
 		affected_turf.underlays -= current_underlay
 	affected_turf = null
 	return ..()

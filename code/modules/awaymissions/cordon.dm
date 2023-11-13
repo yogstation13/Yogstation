@@ -9,7 +9,7 @@
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	fullbright_type = FULLBRIGHT_NONE
 	bullet_bounce_sound = null
 	flags_1 = CAN_BE_DIRTY_1 | NO_RUST
 

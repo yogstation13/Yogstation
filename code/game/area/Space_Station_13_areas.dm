@@ -33,6 +33,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambient_music_index = AMBIENCE_SPACE
 	ambient_buzz = null
 	sound_environment = SOUND_AREA_SPACE
+	fullbright_type = FULLBRIGHT_STARLIGHT
 
 /area/space/nearstation
 	icon_state = "space_near"
@@ -65,6 +66,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	mining_speed = TRUE
 	ambience_index = AMBIENCE_MINING
 	sound_environment = SOUND_AREA_ASTEROID
+	fullbright_type = FULLBRIGHT_STARLIGHT
 
 /area/asteroid/nearstation
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED

@@ -74,3 +74,5 @@
 #define COMSIG_GLOB_LIGHT_MECHANISM_COMPLETED "!light_mechanism_completed"
 /// Global Signal sent when the crew wins the revolution (No arguments).
 #define COMSIG_GLOB_REVOLUTION_VICTORY "!revolution_victory"
+/// Called when the parallax background changes colour. (new_colour, transition_time)
+#define COMSIG_GLOB_STARLIGHT_COLOUR_CHANGE "!starlight_colour_change"

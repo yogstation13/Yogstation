@@ -19,3 +19,8 @@
 		.["color"] = color
 	if(!isnull(flags))
 		.["flags"] = flags
+
+/proc/gauss_blur_filter(size)
+	. = list("type" = "blur")
+	if(!isnull(size))
+		.["size"] = size

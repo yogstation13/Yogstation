@@ -225,7 +225,10 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
 
 	if(!IS_DYNAMIC_LIGHTING(src))
-		add_overlay(/obj/effect/fullbright)
+		if (fullbright_type == FULLBRIGHT_STARLIGHT)
+			add_overlay(GLOB.starlight_overlay)
+		else
+			add_overlay(GLOB.fullbright_overlay)
 
 	reg_in_areas_in_z()
 
