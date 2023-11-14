@@ -1,8 +1,0 @@
-author: "cowbot92"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new heretic stuff"
-  - rscdel: "Removes some heretic stuff"
-  - bugfix: "fixes some heretic stuff"
-  - tweak: "tweaks some heretic stuff"
-  - imageadd: "adds new heretic icons"
