@@ -1,9 +1,9 @@
 /datum/action/changeling/biodegrade
 	name = "Biodegrade"
-	desc = "Dissolves restraints or other objects preventing free movement. Costs 60 chemicals."
+	desc = "Dissolves restraints or other objects preventing free movement. Costs 40 chemicals."
 	helptext = "This is obvious to nearby people, and can destroy standard restraints and closets."
 	button_icon_state = "biodegrade"
-	chemical_cost = 60 //High cost to prevent spam
+	chemical_cost = 40 //It's just worse, more reactive adrenals
 	dna_cost = 2
 	req_human = 1
 
