@@ -97,10 +97,12 @@
 
 /obj/item/ntuplink/Initialize(mapload, owner)
 	. = ..()
-	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
+	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start) // So that admin spawned uplinks work
 	datum_owner = owner
 	
 /obj/item/ntuplink/proc/finalize()
+	var/datum/component/uplink/nanotrasen/uplink = uplink_holder.GetComponent(/datum/component/uplink/nanotrasen)
+	uplink.RemoveComponent() // remove generic component for specific component.
 	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
 
 /obj/item/ntuplink/official
