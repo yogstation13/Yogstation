@@ -73,6 +73,10 @@
 	volume = 40
 	sound = "softsparks"
 
+/obj/effect/particle_effect/sparks/electricity/short/loud //used for the martial art
+	volume = 100
+	sound = "sparks"
+
 /obj/effect/particle_effect/sparks/quantum
 	name = "quantum sparks"
 	icon_state = "quantum_sparks"
