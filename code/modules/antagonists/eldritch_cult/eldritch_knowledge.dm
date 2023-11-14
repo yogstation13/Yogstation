@@ -121,5 +121,5 @@
 	desc = "As your journey begins, you'll need a way to shift between realms easily, this movement ability will allow you to travel a small range and assist in escaping emergencies"
 	gain_text = "Your body's connection to this realm feels weakened, for better or worse."
 	cost = 0
-	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
+	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic
 	route = "Start"
