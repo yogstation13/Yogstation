@@ -3,7 +3,7 @@
 /obj/effect/particle_effect/water
 	name = "water"
 	icon_state = "extinguish"
-	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER | PASSSTRUCTURE | PASSGRILLE | PASSBLOB
+	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER | PASSSTRUCTURE | PASSGRILLE | PASSBLOB | PASSMECH | PASSMOB
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/turf/target_turf
