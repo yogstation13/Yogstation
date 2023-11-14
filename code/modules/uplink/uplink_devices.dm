@@ -101,7 +101,7 @@
 	datum_owner = owner
 	
 /obj/item/ntuplink/proc/finalize()
-	var/datum/component/uplink/nanotrasen/uplink = uplink_holder.GetComponent(/datum/component/uplink/nanotrasen)
+	var/datum/component/uplink/nanotrasen/uplink = owner.GetComponent(/datum/component/uplink/nanotrasen)
 	uplink.RemoveComponent() // remove generic component for specific component.
 	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
 
