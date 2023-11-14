@@ -61389,18 +61389,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"sxz" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/department/tcoms";
-	dir = 4;
-	name = "Telecommunications Maintenance APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/storage)
 "sxG" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -67860,6 +67848,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
+"uvK" = (
+/obj/machinery/power/apc{
+	areastring = "/area/tcommsat/storage";
+	dir = 4;
+	name = "Telecommunications Storage APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/storage)
 "uvM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -104873,7 +104873,7 @@ adm
 sSm
 eAO
 eTq
-sxz
+uvK
 nGS
 cgs
 snG

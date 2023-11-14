@@ -24306,6 +24306,21 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"fXb" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/tcommsat/storage";
+	dir = 1;
+	name = "Telecommunications Storage APC";
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/storage)
 "fXm" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -52329,21 +52344,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"qJF" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/department/tcoms";
-	dir = 1;
-	name = "Telecommunications Maintenance APC";
-	pixel_y = 23
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/storage)
 "qJI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -101172,7 +101172,7 @@ qjk
 fmC
 fmC
 lMT
-qJF
+fXb
 suV
 tto
 bVJ
