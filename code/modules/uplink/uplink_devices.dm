@@ -100,8 +100,8 @@
 	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start) // So that admin spawned uplinks work
 	datum_owner = owner
 	
-/obj/item/ntuplink/proc/finalize(owner)
-	var/datum/component/uplink/nanotrasen/uplink = owner.GetComponent(/datum/component/uplink/nanotrasen)
+/obj/item/ntuplink/proc/finalize(upl)
+	var/datum/component/uplink/nanotrasen/uplink = upl.GetComponent(/datum/component/uplink/nanotrasen)
 	uplink.RemoveComponent() // remove generic component for specific component.
 	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
 
