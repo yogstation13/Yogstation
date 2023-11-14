@@ -8,9 +8,18 @@
 	/// If our plane master allows for offsetting
 	/// Mostly used for planes that really don't need to be duplicated, like the hud planes
 	var/allows_offsetting = TRUE
+	/// Our offset from our "true" plane, see below
+	var/offset
+	/// When rendering multiz, lower levels get their own set of plane masters
+	/// Real plane here represents the "true" plane value of something, ignoring the offset required to handle lower levels
+	var/real_plane
 	//--rendering relay vars--
 	/// list of planes we will relay this plane's render to
 	var/list/render_relay_planes = list(RENDER_PLANE_GAME)
+
+/atom/movable/screen/plane_master/Initialize(mapload)
+	. = ..()
+	update_offset()
 
 /atom/movable/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
@@ -21,6 +30,17 @@
 //Why do plane masters need a backdrop sometimes? Read https://secure.byond.com/forum/?post=2141928
 //Trust me, you need one. Period. If you don't think you do, you're doing something extremely wrong.
 /atom/movable/screen/plane_master/proc/backdrop(mob/mymob)
+
+/// Updates our "offset", basically what layer of multiz we're meant to render
+/// Top is 0, goes up as you go down
+/// It's taken into account by render targets and relays, so we gotta make sure they're on the same page
+/atom/movable/screen/plane_master/proc/update_offset()
+	name = "[initial(name)] #[offset]"
+	SET_PLANE_W_SCALAR(src, real_plane, offset)
+	for(var/i in 1 to length(render_relay_planes))
+		render_relay_planes[i] = GET_NEW_PLANE(render_relay_planes[i], offset)
+	if(initial(render_target))
+		render_target = OFFSET_RENDER_TARGET(initial(render_target), offset)
 
 ///Things rendered on "openspace"; holes in multi-z
 /atom/movable/screen/plane_master/openspace
