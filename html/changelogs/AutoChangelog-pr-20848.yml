@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - imageadd: "One of the hos armor variants now has a digitigrade sprite"
-  - bugfix: "Hos leather coat now uses its digitigrade variant"
