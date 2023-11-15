@@ -778,3 +778,19 @@
 	build_path = /obj/item/circuitboard/computer/reactor
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+  
+/datum/design/board/mindmachine_hub
+	name = "Machine Design (Mind Machine Hub)"
+	desc = "The circuit board for a mind machine hub."
+	id = "mindmachine_hub"
+	build_path = /obj/item/circuitboard/machine/mindmachine_hub
+	category = list("Medical Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/board/mindmachine_pod
+	name = "Machine Design (Mind Machine Pod)"
+	desc = "The circuit board for a mind machine pod."
+	id = "mindmachine_pod"
+	build_path = /obj/item/circuitboard/machine/mindmachine_pod
+	category = list("Medical Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL

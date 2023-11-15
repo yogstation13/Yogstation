@@ -222,7 +222,7 @@
 	linked_martial.leaping = FALSE
 	build_all_button_icons()
 
-/datum/martial_art/flyingfang/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/flyingfang/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)
 	if(!leaping)
 		return FALSE
 	if(hit_atom)

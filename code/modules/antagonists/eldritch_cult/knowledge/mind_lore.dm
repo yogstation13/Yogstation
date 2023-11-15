@@ -9,24 +9,28 @@
 		/datum/eldritch_knowledge/base_void,
 		/datum/eldritch_knowledge/base_blade,
 		/datum/eldritch_knowledge/base_cosmic,
+		/datum/eldritch_knowledge/base_knock,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/rust_mark,
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/void_mark,
 		/datum/eldritch_knowledge/blade_mark,
 		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/rust_blade_upgrade,
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
 		/datum/eldritch_knowledge/blade_blade_upgrade,
 		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,
 		/datum/eldritch_knowledge/ash_final,
 		/datum/eldritch_knowledge/rust_final,
 		/datum/eldritch_knowledge/flesh_final,
 		/datum/eldritch_knowledge/void_final,
 		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final)
+		/datum/eldritch_knowledge/cosmic_final,
+		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
 	cost = 1
 	route = PATH_MIND
@@ -41,6 +45,12 @@
 		mansus_touch.hand_path = /obj/item/melee/touch_attack/mansus_fist/mind //longer range version
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mind/mind_jaunt = new(user)
+	mind_jaunt.Grant(user)
+
 /datum/eldritch_knowledge/base_mind/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
@@ -53,14 +63,23 @@
 	human_target.blur_eyes(1 SECONDS)
 	human_target.Knockdown(2 SECONDS)
 
-/datum/eldritch_knowledge/spell/mental_obfuscation
-	name = "T1 - Mental Obfuscation"
-	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
-	desc = "Allows you to teleport a short distance to a targeted destination."
+// /datum/eldritch_knowledge/spell/mental_obfuscation
+// 	name = "T1 - Mental Obfuscation"
+// 	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
+// 	desc = "Allows you to teleport a short distance to a targeted destination."
+// 	cost = 1
+// 	spell_to_add = /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
+// 	banned_knowledge = list(
+// 		/datum/eldritch_knowledge/spell/void_phase)
+// 	route = PATH_MIND
+// 	tier = TIER_1
+
+/datum/eldritch_knowledge/spell/eldritchbolt
+	name = "T1 - Eldritch Bolt"
+	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
+	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
 	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/spell/void_phase)
+	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
 	route = PATH_MIND
 	tier = TIER_1
 
@@ -82,7 +101,9 @@
 		/datum/eldritch_knowledge/flesh_mark,
 		/datum/eldritch_knowledge/ash_mark,
 		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark)
+		/datum/eldritch_knowledge/blade_mark,
+		/datum/eldritch_knowledge/cosmic_mark,
+		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_MIND
 	tier = TIER_MARK
 
@@ -132,7 +153,9 @@
 		/datum/eldritch_knowledge/flesh_blade_upgrade,
 		/datum/eldritch_knowledge/ash_blade_upgrade,
 		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade)
+		/datum/eldritch_knowledge/blade_blade_upgrade,
+		/datum/eldritch_knowledge/cosmic_blade_upgrade,
+		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_MIND
 	tier = TIER_BLADE
 
@@ -153,14 +176,6 @@
 /datum/eldritch_knowledge/cerebral_control/on_gain(mob/user)
 	. = ..()
 	ADD_TRAIT(user, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-
-/datum/eldritch_knowledge/spell/eldritchbolt
-	name = "T2 - Eldritch Bolt"
-	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
-	desc = "A strong single target spell, shoot a target with raw energy from another dimension."
-	cost = 1
-	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/lightningbolt/eldritchbolt
-	tier = TIER_2
 
 /datum/eldritch_knowledge/mind_final
 	name = "Ascension Rite - Beyond All Knowledge Lies Despair"

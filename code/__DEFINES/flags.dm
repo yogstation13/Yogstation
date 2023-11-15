@@ -61,6 +61,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
 #define NO_RUINS_1					(1<<18)
+/// Blocks this turf from being rusted
+#define NO_RUST 					(1<<19)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.
@@ -107,6 +109,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSMACHINES	(1<<7)
 #define PASSCOMPUTER	(1<<8)
 #define PASSSTRUCTURE	(1<<9)
+#define PASSDOORS 		(1<<10)
 
 //Movement Types
 #define GROUND			(1<<0)
