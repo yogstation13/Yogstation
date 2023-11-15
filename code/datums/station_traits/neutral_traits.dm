@@ -59,3 +59,10 @@
 /datum/station_trait/announcement_medbot/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/medbot
+
+/datum/station_trait/Moonscorch
+	name = "Moonscorch"
+	trait_type = STATION_TRAIT_NEUTRAL
+	weight = 0.2
+	trait_to_give = STATION_TRAIT_MOONSCORCH
+
