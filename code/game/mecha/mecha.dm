@@ -1102,6 +1102,17 @@
 	GrantActions(brainmob)
 	return TRUE
 
+/obj/mecha/proc/remove_mmi(mob/user)
+	if(!silicon_pilot) // this should be impossible unless someone is messing with the client to do unintended things
+		CRASH("[type] called remove_mmi() without having a silicon pilot!")
+	var/mob/living/brain/brainmob = occupant
+	go_out(FALSE, get_turf(src)) // eject any silicon pilot, including AIs
+	if(!istype(brainmob)) // if there wasn't a brain inside, no need to continue
+		return
+	var/obj/item/mmi/mmi = brainmob.container
+	if(user && !user.put_in_hands(mmi))
+		mmi.forceMove(get_turf(user))
+
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
@@ -1178,6 +1189,7 @@
 			if(mmi.brainmob)
 				L.forceMove(mmi)
 				L.reset_perspective()
+				L.remote_control = null
 			mmi.mecha = null
 			mmi.update_appearance(UPDATE_ICON)
 			L.mobility_flags = NONE

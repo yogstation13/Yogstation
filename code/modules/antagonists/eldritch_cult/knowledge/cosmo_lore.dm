@@ -41,6 +41,16 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/melee/sickly_blade/cosmic
 	user.put_in_hands(realknife)
+
+	///use is if you want to swap out a spell they get upon becoming their certain type of heretic
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/cosmic/cosmic_jaunt = new(user)
+	cosmic_jaunt.Grant(user)
+	
+	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, INNATE_TRAIT)
+	ADD_TRAIT(user, TRAIT_RESISTCOLD, INNATE_TRAIT)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/base_cosmic/on_lose(mob/user)

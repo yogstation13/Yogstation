@@ -70,7 +70,7 @@
 	if(!do_after(user, 5 SECONDS, src))
 		return FALSE
 
-	to_chat(user, span_notice("[length(remarks) ? pick(remarks) : "You keep reading..."]"))
+	to_chat(user, span_notice("[length(remarks) ? pick_n_take(remarks) : "You keep reading..."]"))
 	return TRUE
 
 /// Effects that occur whenever the book is read when it has no uses left.
