@@ -110,6 +110,8 @@
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
 	SSwardrobe.provide_type(/obj/item/extinguisher/mini, src)
 	SSwardrobe.provide_type(/obj/item/holosign_creator/multi/chief_engineer, src)
+	SSwardrobe.provide_type(/obj/item/construction/rcd/loaded, src)
+	SSwardrobe.provide_type(/obj/item/pipe_dispenser, src)
 	//much roomier now that we've managed to remove two tools
 
 /obj/item/storage/belt/utility/chief/full/ert
@@ -125,6 +127,8 @@
 	to_preload += /obj/item/stack/cable_coil
 	to_preload += /obj/item/extinguisher/mini
 	to_preload += /obj/item/holosign_creator/multi/chief_engineer
+	to_preload += /obj/item/construction/rcd/loaded
+	to_preload += /obj/item/pipe_dispenser
 	return to_preload
 
 /obj/item/storage/belt/utility/chief/admin/full

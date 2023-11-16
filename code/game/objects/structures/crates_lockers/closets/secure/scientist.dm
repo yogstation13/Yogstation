@@ -23,3 +23,6 @@
 	new /obj/item/clipboard/yog/paperwork/rd(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/rd(src)
 	new /obj/item/multitool/tricorder(src)
+	///designated engineer equipment
+	new /obj/item/clothing/accessory/armband/science(src)
+	new /obj/item/encryptionkey/headset_sci(src)

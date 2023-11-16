@@ -23,3 +23,6 @@
 	new /obj/item/storage/photo_album/QM(src)
 	new /obj/item/circuitboard/machine/ore_silo(src)
 	new /obj/item/card/id/departmental_budget/car(src)
+	///designated engineer equipment
+	new /obj/item/clothing/accessory/armband/cargo(src)
+	new /obj/item/encryptionkey/headset_cargo(src)
