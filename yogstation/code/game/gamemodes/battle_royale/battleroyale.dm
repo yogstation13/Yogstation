@@ -1,6 +1,7 @@
 GLOBAL_VAR(thebattlebus)
 GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 GLOBAL_VAR(stormdamage)
+GLOBAL_VAR(final_zone)
 
 /datum/game_mode/fortnite
 	name = "battle royale"
@@ -17,7 +18,7 @@ GLOBAL_VAR(stormdamage)
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale centre")
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering", "royale bridge")
 	var/stage_interval = 3 MINUTES
 	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/borderstage = 0
@@ -170,11 +171,14 @@ GLOBAL_VAR(stormdamage)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
 		if(8)
-			SSweather.run_weather("royale hallway", 2)//force them to bridge
+			var/weather = pick(randomweathers) //whichever one is left
+			weather = replacetext(weather, "royale ", "")
+			if(weather == "bridge")
+				weather = "the bridge"
+			GLOB.final_zone = weather
+			SSweather.run_weather("royale hallway", 2)//force them to the final department
 		if(9)//finish it
-			var/weather = pick(randomweathers)//now the ending department is random
-			SSweather.run_weather(weather, 2)
-			randomweathers -= weather
+			SSweather.run_weather("royale centre", 2)
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()

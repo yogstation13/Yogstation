@@ -91,11 +91,23 @@
 	areasToWeather = list(/area/security/checkpoint/supply)
 	areaTypesToWeather = list(/area/quartermaster, /area/vacant_room, /area/shuttle)
 
-/datum/weather/royale/hallway//
+/datum/weather/royale/bridge
+	name = "royale bridge"
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from the bridge!</i>")
+	areasToWeather = list(/area/teleporter, /area/crew_quarters/heads/captain, /area/crew_quarters/heads/hop)
+	areaTypesToWeather = list(/area/bridge)
+
+/datum/weather/royale/hallway
 	name = "royale hallway"
+	telegraph_duration = 30 SECONDS //hallway's a bit bigger
 	telegraph_message = span_narsiesmall("<i>The storm is closing in, get out of the hallways!</i>")
 	areaTypesToWeather = list(/area/hallway)
 
-/datum/weather/royale/six
+/datum/weather/royale/hallway/telegraph() //message changes depending on which one is left
+	if(GLOB.final_zone) 
+		telegraph_message = span_narsiesmall("<i>The storm is closing in, it all ends in [GLOB.final_zone]!</i>")
+	. = ..()
+
+/datum/weather/royale/final
 	name = "royale centre" //final wave, takes out the centre ring.
 	telegraph_message = span_narsiesmall("<i>The eye of the storm is closing, make your final stand!</i>")
