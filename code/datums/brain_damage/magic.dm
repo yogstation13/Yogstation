@@ -34,12 +34,14 @@
 /datum/brain_trauma/magic/poltergeist/on_life()
 	..()
 	if(prob(10))
-		var/most_violent = -1 //So it can pick up items with 0 throwforce if there's nothing else
+		var/combined_throwforce = 0
 		for(var/obj/item/I in view(5, get_turf(owner)))
 			if(I.anchored)
 				continue
-			if(I.throwforce > most_violent)
-				most_violent = I.throwforce
+			combined_throwforce += I.throwforce
+			if(combined_throwforce <= 20)
+				I.throw_at(owner, 8, 2) //Throw all items if below or equal to 20
+			else if(I.throwforce == max(I.throwforce)) //Otherwise pick 1 item having the highest throwforce
 				I.throw_at(owner, 8, 2)
 
 /datum/brain_trauma/magic/antimagic
