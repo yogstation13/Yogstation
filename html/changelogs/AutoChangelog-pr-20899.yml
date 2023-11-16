@@ -1,5 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - tweak: "Items dealing 14-20 force are now \"robust,\" changed from 11-20"
-  - tweak: "Items dealing 10-14 force are now \"high,\" changed from 10-11"
