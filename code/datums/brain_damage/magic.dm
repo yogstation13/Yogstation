@@ -34,15 +34,20 @@
 /datum/brain_trauma/magic/poltergeist/on_life()
 	..()
 	if(prob(10))
-		var/combined_throwforce = 0
-		for(var/obj/item/I in view(5, get_turf(owner)))
-			if(I.anchored)
+		var/list/obj/item/items_hitting_player = list()
+		for(var/obj/item/nearby_item in view(5, get_turf(owner)))
+			if(nearby_item.anchored)
 				continue
-			combined_throwforce += I.throwforce
-			if(combined_throwforce <= 20)
-				I.throw_at(owner, 8, 2) //Throw all items if below or equal to 20
-			else if(I.throwforce == max(I.throwforce)) //Otherwise pick 1 item having the highest throwforce
-				I.throw_at(owner, 8, 2)
+			if(items_hitting_player.len != 5) //Pick 5 items around the user
+				items_hitting_player += nearby_item
+				continue
+			for(var/obj/item/items_about_to_hit as anything in items_hitting_player)
+				if(nearby_item.throwforce > items_about_to_hit.throwforce) //Take the stronger one and remove the weak one
+					items_hitting_player += nearby_item
+					items_hitting_player -= items_about_to_hit
+					break
+		for(var/obj/item/hit_items as anything in items_hitting_player) //NOW FUCKING TRHOW THEM
+			hit_items.throw_at(owner, 8, 2)
 
 /datum/brain_trauma/magic/antimagic
 	name = "Athaumasia"
