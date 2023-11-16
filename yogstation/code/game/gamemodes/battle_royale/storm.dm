@@ -53,17 +53,17 @@
 
 /datum/weather/royale/security
 	name = "royale security" //North wave, takes out security, EVA, dorms and associated areas.
-	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from security and controlled areas!</i>")
+	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from security!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/hos)
-	areaTypesToWeather = list(/area/security, /area/ai_monitored, /area/lawoffice)
+	areaTypesToWeather = list(/area/security, /area/lawoffice)
 	areaIgnore = list(/area/security/checkpoint/science, /area/security/checkpoint/engineering, //ignore all department security offices
-	/area/security/checkpoint/medical, /area/security/checkpoint/supply)
+	/area/security/checkpoint/medical, /area/security/checkpoint/supply, /area/ai_monitored/security/armory)
 
 /datum/weather/royale/science
 	name = "royale science" //takes out science
 	telegraph_message = span_narsiesmall("<i>The storm is closing in, get away from science!</i>")
 	areasToWeather = list(/area/crew_quarters/heads/hor, /area/security/checkpoint/science)
-	areaTypesToWeather = list(/area/science)
+	areaTypesToWeather = list(/area/science, /area/ai_monitored)
 
 /datum/weather/royale/engineering
 	name = "royale engineering" //takes out engineering and atmos
