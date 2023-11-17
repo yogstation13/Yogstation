@@ -41,6 +41,13 @@
 	var/obj/realknife = new /obj/item/melee/sickly_blade/rust
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	ADD_TRAIT(user, TRAIT_PUSHIMMUNE, INNATE_TRAIT)
+	
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/rust/rust_jaunt = new(user)
+	rust_jaunt.Grant(user)
 
 /datum/eldritch_knowledge/base_rust/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
@@ -74,6 +81,14 @@
 	desc = "Passively heals you when you are on rusted tiles."
 	cost = 1
 	route = PATH_RUST
+	tier = TIER_1
+
+/datum/eldritch_knowledge/spell/rust_construction
+	name = "T1 - Rust Construction"
+	gain_text = "To destroy is also to build, the lack of an answer is itself an answer."
+	desc = "An instant spell that will create a wall at your command, only works on rusted tiles. Will knock back and damage anyone caught on the same tile."
+	cost = 1
+	spell_to_add = /datum/action/cooldown/spell/pointed/rust_construction
 	tier = TIER_1
 
 /datum/eldritch_knowledge/rust_regen/on_life(mob/user)
