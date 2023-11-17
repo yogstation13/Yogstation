@@ -23,9 +23,11 @@
 	name = "[initial(name)] ([storedorgan.name])"
 
 /obj/item/autosurgeon/attack_self(mob/user)//when the object it used...
-	if(storedorgan == /obj/item/organ/regenerative_core)
-		to_chat(user, span_notice("[src] melts away once it touches the cold metal!"))
-		qdel(storedorgan)
+	if(istype(storedorgan, /obj/item/organ/regenerative_core))
+		var/obj/item/organ/regenerative_core/cores = storedorgan
+		to_chat(user, span_notice("[src] fucking explodes!"))
+		qdel(cores)
+		explosion(get_turf(src), 0, 0, 2, flame_range = 5)
 	if(!uses)
 		to_chat(user, span_warning("[src] has already been used. The tools are dull and won't reactivate."))
 		return
