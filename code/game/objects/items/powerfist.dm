@@ -56,7 +56,7 @@
 		if(fisto_setting > max_setting)
 			fisto_setting = 1
 		W.play_tool_sound(src)
-		armour_penetration = initial(armour_penetration) * fisto_setting
+		user.balloon_alert(user, span_notice("power set to [fisto_setting]"))
 		to_chat(user, span_notice("You tweak \the [src]'s piston valve to [fisto_setting]."))
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(tank)
