@@ -469,18 +469,30 @@
 				newhall.name = "syndicate operative"
 				newhall.icon = 'icons/mob/simple_human.dmi'
 				newhall.icon_state = "syndicate_space_knife"
+				newhall.attacktext = "slashes"
+				newhall.attack_sound = 'sound/weapons/bladeslice.ogg'
 			if("cult")
 				newhall.name = "shade"
 				newhall.icon = 'icons/mob/nonhuman-player/cult.dmi'
 				newhall.icon_state = "shade_cult"
+				newhall.attacktext = "metaphysically strikes"
 
 /obj/effect/anomaly/hallucination/detonate()
 	var/mob/living/simple_animal/hostile/hallucination/anomaly/bighall = new(get_turf(src))
 	bighall.icon = icon
 	bighall.icon_state = icon_state
+	switch(hallucination_set)
+		if("syndicate")
+			bighall.attacktext = "slashes"
+			bighall.attack_sound = 'sound/weapons/bladeslice.ogg'
+		if("cult")
+			bighall.attacktext = "slashes"
+			bighall.attack_sound = 'sound/weapons/blade1.ogg'
 
 // Hallucination anomaly spawned mob, attacks deal stamina damage, if it stamcrits someone, they start hallucinating themself dying.
 /mob/living/simple_animal/hostile/hallucination
+	name = "Unknown"
+	desc = "Whoever they are, they look angry, and hard to look at."
 	maxHealth = 25
 	health = 25
 	melee_damage_lower = 15
@@ -488,7 +500,7 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = TRUE
 	icon = 'icons/mob/simple_human.dmi'
-	icon_state = "blank"
+	icon_state = "faceless"
 	obj_damage = 0
 	digitalinvis = TRUE //silicons can't hallucinate, as they are robots. they also can't take stamina damage.
 	melee_damage_type = STAMINA
