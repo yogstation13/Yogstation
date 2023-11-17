@@ -321,5 +321,4 @@
 
 /turf/open/floor/stone
     name = "stone brick floor"
-	icon = 'icons/turf/floors.dmi'
 	icon_state = "stone_floor"
