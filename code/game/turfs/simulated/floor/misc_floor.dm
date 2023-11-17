@@ -318,3 +318,8 @@
 /turf/open/floor/eighties/broken
 	icon_state = "eighties_damaged"
 	broken = TRUE
+
+/turf/open/floor/stone
+    name = "stone brick floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "stone_floor"
