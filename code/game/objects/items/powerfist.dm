@@ -125,7 +125,6 @@
 
 	log_combat(user, target, "power fisted", src)
 
-	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 	return COMPONENT_NO_ATTACK_HAND
 
 /obj/item/clothing/gloves/powerfist/proc/do_attack(mob/living/user, atom/target, punch_force)
@@ -136,6 +135,7 @@
 		var/obj/target_obj = target
 		target_obj.take_damage(punch_force, BRUTE, MELEE, FALSE)
 	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 
 /obj/item/clothing/gloves/powerfist/filled
 	var/obj/item/tank/internals/plasma/full/fire
