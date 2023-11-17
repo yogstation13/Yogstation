@@ -45,6 +45,13 @@
 	var/obj/realknife = new /obj/item/melee/sickly_blade/knock
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	ADD_TRAIT(user, TRAIT_QUICKEST_CARRY, INNATE_TRAIT)
+	
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/knock/knock_jaunt = new(user)
+	knock_jaunt.Grant(user)
 
 /datum/eldritch_knowledge/base_ash/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
@@ -158,13 +165,13 @@
 			return
 
 		if(A.hasPower())
-			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
+			user.visible_message(span_warning("[user] jams their blade into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			if(!do_after(user, 6 SECONDS, A))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
-		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
+		user.visible_message(span_warning("[user] forces the airlock to open with their blade!"), span_warning("We force the airlock to open."), //yogs modified description
 		span_italics("You hear a metal screeching sound."))
 		A.open(2)
 
