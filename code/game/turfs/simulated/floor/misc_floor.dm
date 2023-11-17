@@ -320,5 +320,5 @@
 	broken = TRUE
 
 /turf/open/floor/stone
-    name = "stone brick floor"
+	name = "stone brick floor"
 	icon_state = "stone_floor"
