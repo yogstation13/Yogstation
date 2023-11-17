@@ -463,7 +463,7 @@
 	ticks -= release_delay
 	var/turf/open/our_turf = get_turf(src)
 	if(istype(our_turf))
-		var/mob/living/newhall = new /mob/living/simple_animal/hostile/hallucination(our_turf)
+		var/mob/living/simple_animal/hostile/newhall = new /mob/living/simple_animal/hostile/hallucination(our_turf)
 		switch(hallucination_set)
 			if("syndicate")
 				newhall.name = "syndicate operative"
