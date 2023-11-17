@@ -51,3 +51,6 @@
 		<HR>
 		<b>Implant Details:</b><BR>
 		<b>Function:</b> Contains a small radio device and a microphone. Immediately broadcasts the user's location to available medical personnel when vital signs appear to have ceased.<BR>"}
+
+/obj/item/implanter/deathalarm
+	imp_type = /obj/item/implant/deathalarm
