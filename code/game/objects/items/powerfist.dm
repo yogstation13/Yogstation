@@ -20,6 +20,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/click_delay = 1.5
 	var/fisto_setting = 1
+	var/max_setting = 3
 	var/gasperfist = 3
 	var/obj/item/tank/internals/tank = null //Tank used for the gauntlet's piston-ram.
 
@@ -52,7 +53,7 @@
 			updateTank(W, 0, user)
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		fisto_setting++
-		if(fisto_setting > 3)
+		if(fisto_setting > max_setting)
 			fisto_setting = 1
 		W.play_tool_sound(src)
 		armour_penetration = initial(armour_penetration) * fisto_setting
