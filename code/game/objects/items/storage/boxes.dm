@@ -388,6 +388,18 @@
 		/obj/item/computer_hardware/hard_drive/portable/implant_tracker = 1)
 	generate_items_inside(items_inside,src)
 
+/obj/item/storage/box/deathimp
+	name = "boxed death implant kit"
+	desc = "For knowing when someone has died."
+	illustration = "implant"
+
+/obj/item/storage/box/deathimp/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/implantcase/deathalarm = 5,
+		/obj/item/implanter = 1,
+		/obj/item/implantpad = 1)
+	generate_items_inside(items_inside,src)
+
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
 	desc = "Box of stuff used to implant chemicals."

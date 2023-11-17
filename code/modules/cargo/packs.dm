@@ -1759,6 +1759,15 @@
 					/obj/item/vending_refill/wallmed,
 					/obj/item/vending_refill/wallhypo)
 	crate_name = "medical vending crate"
+	crate_type = /obj/structure/closet/crate/secure/medical
+	
+/datum/supply_pack/medical/deathimp
+	name = "Death Alarm Implants Crate"
+	desc = "Contains a box with five death alarm implants. Requires CMO access to open."
+	cost = 8000
+	access = ACCESS_CMO
+	contains = list(/obj/item/storage/box/deathimp)
+	crate_name = "death alarm implant crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Science /////////////////////////////////////////
@@ -1858,7 +1867,6 @@
 	cost = 750
 	contains = list(/obj/item/vending_refill/wallgene)
 	crate_name = "Genetics Crate"
-
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// Service //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

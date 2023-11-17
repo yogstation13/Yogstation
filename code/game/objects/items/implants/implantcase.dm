@@ -67,7 +67,6 @@
 		imp = new imp_type(src)
 	update_appearance(UPDATE_ICON)
 
-
 /obj/item/implantcase/tracking
 	name = "implant case - 'Tracking'"
 	desc = "A glass case containing a tracking implant."
@@ -82,3 +81,8 @@
 	name = "implant case - 'Adrenaline'"
 	desc = "A glass case containing an adrenaline implant."
 	imp_type = /obj/item/implant/adrenalin
+
+/obj/item/implantcase/deathalarm
+	name = "implant case - 'Death Alarm'"
+	desc = "A glass case containing a death alarm implant."
+	imp_type = /obj/item/implant/deathalarm
