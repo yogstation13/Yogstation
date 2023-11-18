@@ -11,7 +11,7 @@ mkdir travis_test/data
 cp tools/travis/travis_config.txt travis_test/config/config.txt
 
 #set the map
-cp _maps/$MAP.json ci_test/data/next_map.json
+cp _maps/$MAP.json travis_test/data/next_map.json
 
 cd travis_test
 ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
