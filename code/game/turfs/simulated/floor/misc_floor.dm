@@ -322,3 +322,4 @@
 /turf/open/floor/stone
 	name = "stone brick floor"
 	icon_state = "stone_floor"
+	floor_tile = /obj/item/stack/tile/plasteel
