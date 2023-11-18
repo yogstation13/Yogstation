@@ -1,0 +1,7 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - mapping: "Removed comms /maintenance/ area and icon"
+  - mapping: "Added /tcommsat/storage area and icon"
+  - mapping: "Replaced maint with storage on Box & Asteroid"
+  - mapping: "Fixed area swap on Asteroid"
