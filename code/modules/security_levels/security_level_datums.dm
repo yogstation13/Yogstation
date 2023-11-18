@@ -72,7 +72,7 @@
 /datum/security_level/red
 	name = "red"
 	announcement_color = "red"
-	sound = 'sound/misc/notice3.ogg' // More angry alarm
+	sound = 'sound/misc/notice4.ogg' // More angry alarm
 	number_level = SEC_LEVEL_RED
 	lowering_to_configuration_key = /datum/config_entry/string/alert_red_downto
 	elevating_to_configuration_key = /datum/config_entry/string/alert_red_upto
