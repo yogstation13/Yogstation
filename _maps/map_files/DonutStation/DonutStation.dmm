@@ -7042,16 +7042,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cRh" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/bridge)
 "cRl" = (
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel,
@@ -7790,6 +7780,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"dis" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/landmark/start/chief_medical_officer,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	id = "bridge blast";
+	name = "Bridge Blast Door Control";
+	pixel_x = 28;
+	pixel_y = 8;
+	req_access_txt = "19"
+	},
+/turf/open/floor/carpet,
+/area/bridge)
 "diJ" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
@@ -9344,15 +9353,6 @@
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall/rust,
 /area/quartermaster/warehouse)
-"dRo" = (
-/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "dRH" = (
 /obj/machinery/light{
 	dir = 8
@@ -12524,24 +12524,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"fjm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "fjw" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -13584,16 +13566,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
-"fGw" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/bridge)
 "fGB" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -14349,6 +14321,21 @@
 "fZd" = (
 /turf/open/floor/plasteel,
 /area/security/processing)
+"fZm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "fZy" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -15175,16 +15162,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"gsw" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/bridge)
 "gsD" = (
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12"
@@ -22776,6 +22753,14 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/closed/wall,
 /area/maintenance/fore)
+"jRs" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "jRC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -24067,6 +24052,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"ktH" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/bridge";
+	dir = 1;
+	name = "Bridge APC";
+	pixel_y = 23
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "ktL" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -31796,18 +31799,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"nLN" = (
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/landmark/start/chief_medical_officer,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/carpet,
-/area/bridge)
 "nLR" = (
 /obj/item/assembly/signaler{
 	pixel_y = 8
@@ -31960,6 +31951,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nOt" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "nOB" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -33972,6 +33977,28 @@
 "oJj" = (
 /turf/open/floor/plating/burnt,
 /area/maintenance/starboard)
+"oJI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "oJL" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/navbeacon{
@@ -34477,6 +34504,20 @@
 /obj/effect/landmark/start/detective,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+"oVz" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "oVN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -36181,6 +36222,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pIm" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "pIu" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/turf_decal/bot,
@@ -37160,6 +37215,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"qbo" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "qbq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -41343,6 +41412,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"rUJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "rUM" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -44339,13 +44418,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
-"tki" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/bridge)
 "tkl" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
@@ -50249,16 +50321,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/atmos)
-"vMQ" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/bridge)
 "vNc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -51491,12 +51553,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
-"wph" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "wpm" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -55340,6 +55396,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"xPn" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "xPu" = (
 /obj/structure/door_assembly/door_assembly_eng{
 	anchored = 1
@@ -101579,9 +101646,9 @@ fen
 fen
 iuE
 ouG
-fjm
-wph
-olk
+oJI
+rUJ
+jRs
 mfu
 ntn
 uVJ
@@ -103112,8 +103179,8 @@ szo
 nhk
 iOI
 iOI
-dRo
-bOf
+ktH
+fZm
 oGa
 ouG
 ouG
@@ -103889,7 +103956,7 @@ rca
 sMI
 ttj
 ksm
-nLN
+dis
 ttj
 ttj
 dcQ
@@ -105425,7 +105492,7 @@ okP
 mUq
 ylr
 mfu
-tki
+xPn
 pSc
 nQE
 roz
@@ -105435,7 +105502,7 @@ pYL
 wtE
 eyw
 xlj
-cRh
+qbo
 jEc
 jEc
 jEc
@@ -105682,17 +105749,17 @@ qGg
 xSu
 xSu
 xSu
-gsw
-fGw
-fGw
-fGw
-fGw
-fGw
-fGw
-fGw
-fGw
-fGw
-vMQ
+pIm
+oVz
+oVz
+oVz
+oVz
+oVz
+oVz
+oVz
+oVz
+oVz
+nOt
 ylr
 kkk
 dYk
