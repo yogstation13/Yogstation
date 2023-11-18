@@ -17,7 +17,16 @@
 
 	added_access = list(ACCESS_ATMOSPHERICS, ACCESS_RESEARCH, ACCESS_RND)
 	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE,
-									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
+									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM,
+									////////////////////////////////////////MEDICAL/////////////////////////////////////////
+									ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_CLONING, ACCESS_VIROLOGY,
+									///////////////////////////////////////SCIENCE//////////////////////////////////////////
+									ACCESS_TOX, ACCESS_XENOBIOLOGY, ACCESS_TOX_STORAGE, 
+									///////////////////////////////////////SERVICE//////////////////////////////////////////
+									ACCESS_HYDROPONICS, ACCESS_KITCHEN, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING,
+									////////////////////////////////////////CARGO///////////////////////////////////////////
+									ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
+								
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 
@@ -41,57 +50,6 @@
 	lightup_areas = list(/area/engine/atmos)
 	
 	smells_like = "welding fuel"
-
-GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
-
-/datum/job/engineer/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	// Assign department engineering
-	var/department
-	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.read_preference(/datum/preference/choiced/engineering_department)
-		if(!LAZYLEN(GLOB.available_depts_eng) || department == "None")
-			return
-		else if(department in GLOB.available_depts_eng)
-			LAZYREMOVE(GLOB.available_depts_eng, department)
-		else
-			department = pick_n_take(GLOB.available_depts_eng)
-	var/ears = null
-	var/accessory = null
-	var/list/dep_access = null
-	switch(department)
-		if(ENG_DEPT_SUPPLY)
-			ears = /obj/item/radio/headset/headset_eng/department/supply
-			dep_access = list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
-			accessory = /obj/item/clothing/accessory/armband/cargo
-		if(ENG_DEPT_MEDICAL)
-			ears = /obj/item/radio/headset/headset_eng/department/med
-			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_VIROLOGY, ACCESS_GENETICS)
-			accessory =  /obj/item/clothing/accessory/armband/medblue
-		if(ENG_DEPT_SCIENCE)
-			ears = /obj/item/radio/headset/headset_eng/department/sci
-			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_XENOBIOLOGY, ACCESS_TOX_STORAGE)
-			accessory = /obj/item/clothing/accessory/armband/science
-		if(ENG_DEPT_SERVICE)
-			ears = /obj/item/radio/headset/headset_eng/department/service
-			dep_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_LIBRARY, ACCESS_THEATRE, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING)
-			accessory =  /obj/item/clothing/accessory/armband/service
-
-	if(accessory)
-		var/obj/item/clothing/under/U = H.w_uniform
-		U.attach_accessory(new accessory)
-	if(ears)
-		if(H.ears)
-			qdel(H.ears)
-		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
-
-	var/obj/item/card/id/W = H.get_idcard()
-	W.access |= dep_access
-
-	if(department)
-		to_chat(M, "<b>You have been assigned to [department]!</b>")
-	else
-		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
 
 /datum/outfit/job/engineer
 	name = "Station Engineer"
