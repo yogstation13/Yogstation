@@ -136,7 +136,7 @@
 /obj/machinery/firealarm/examine(mob/user)
 	. = ..()
 	if(areafire_check())
-		. += span_danger("Fire detected in this area, current fire alarm temperature: [bad_temp+T0C]C")
+		. += span_danger("Fire detected in this area, current fire alarm temperature: [bad_temp-T0C]C")
 	else
 		. += span_notice("There's no fire detected.")
 
