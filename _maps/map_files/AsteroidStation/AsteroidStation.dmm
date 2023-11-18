@@ -11261,7 +11261,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
-	areastring = "/area/service hall";
+	areastring = "/area/hallway/secondary/service";
 	dir = 4;
 	name = "Service Hall APC";
 	pixel_x = 24
@@ -17380,7 +17380,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc{
-	areastring = "/area/medical/backroom";
+	areastring = "/area/medical/storage/backroom";
 	dir = 2;
 	name = "Medical Backrooms APC";
 	pixel_y = -23
