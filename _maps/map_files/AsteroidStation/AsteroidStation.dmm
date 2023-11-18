@@ -17374,6 +17374,20 @@
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"eHJ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/backroom";
+	dir = 2;
+	name = "Medical Backrooms APC";
+	pixel_y = -23
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel/white,
+/area/medical/storage/backroom)
 "eHP" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -17640,25 +17654,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/clerk)
-"eMa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/table,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/mask/muzzle,
-/obj/machinery/power/apc{
-	areastring = "/area/medical/central";
-	name = "Medbay Central APC";
-	pixel_y = -23
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "eMc" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics - Incinerator";
@@ -18565,6 +18560,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"eZo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/table,
+/obj/item/clothing/suit/straight_jacket,
+/obj/item/clothing/mask/muzzle,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/medbay/central";
+	name = "Medbay Central APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "eZK" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -29700,25 +29714,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"iFS" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "iFW" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos/storage)
@@ -43183,20 +43178,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"mSH" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	areastring = "/area/medical/backrooms";
-	dir = 2;
-	name = "Medical Backrooms APC";
-	pixel_y = -23
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/storage/backroom)
 "mSV" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -52394,6 +52375,22 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
+"pKn" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Port Docking Bay 2"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "pKr" = (
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 4
@@ -88665,7 +88662,7 @@ hOf
 eff
 orl
 mHY
-iFS
+pKn
 aPF
 acb
 acb
@@ -109267,7 +109264,7 @@ aZJ
 eQk
 haa
 nuJ
-eMa
+eZo
 aGU
 aGU
 aGU
@@ -112611,7 +112608,7 @@ jbG
 miU
 brL
 xrr
-mSH
+eHJ
 wOM
 faF
 vBA

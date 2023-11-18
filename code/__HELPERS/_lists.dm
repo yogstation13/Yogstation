@@ -388,6 +388,7 @@
 /// Is < 10 ints
 /proc/greatest_common_factor(list/values)
 	var/smallest = min(arglist(values))
+	log_world("MALLEST GCF IS [smallest]")
 	for(var/i in smallest to 1 step -1)
 		var/safe = TRUE
 		for(var/entry in values)
