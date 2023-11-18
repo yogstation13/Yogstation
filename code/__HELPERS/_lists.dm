@@ -365,6 +365,8 @@
 /// Takes a weighted list (see above) and expands it into raw entries
 /// This eats more memory, but saves time when actually picking from it
 /proc/expand_weights(list/list_to_pick)
+	if(!list_to_pick || list_to_pick.len == 0)
+		return list()
 	var/list/values = list()
 	for(var/item in list_to_pick)
 		var/value = list_to_pick[item]
@@ -388,7 +390,6 @@
 /// Is < 10 ints
 /proc/greatest_common_factor(list/values)
 	var/smallest = min(arglist(values))
-	log_world("SMALLEST GCF IS [smallest] [smallest == null] [values.len] [values[0]]")
 	for(var/i in smallest to 1 step -1)
 		var/safe = TRUE
 		for(var/entry in values)
