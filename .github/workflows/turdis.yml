@@ -174,5 +174,5 @@ jobs:
           
       - name: Run Tests
         run: |
-          tools/travis/run_server.sh $${{ matrix.map }}
+          tools/travis/run_server.sh ${{ matrix.map }}
 
