@@ -62,9 +62,9 @@
 	
 	var/mob/user = usr
 	var/obj/machinery/airalarm/found_air_alarm = locate() in zone_from_tgui
-	if(priority_air_alarm)
-		priority_air_alarm.atmos_manualOverride(TRUE)
-		priority_air_alarm.post_alert(0)
+	if(found_air_alarm)
+		found_air_alarm.atmos_manualOverride(TRUE)
+		found_air_alarm.post_alert(0)
 		priority_alarms -= zone_from_tgui
 		minor_alarms -= zone_from_tgui
 		if(user)
