@@ -321,5 +321,6 @@
 
 /turf/open/floor/stone
 	name = "stone brick floor"
+	desc = "Some stone brick tiles, how rustic."
 	icon_state = "stone_floor"
 	floor_tile = /obj/item/stack/tile/plasteel
