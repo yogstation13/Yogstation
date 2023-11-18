@@ -56,24 +56,16 @@
 	if(action != "clear")
 		return TRUE
 
-	var/area/zone_from_tgui = locate(params["zone_ref"]) in priority_alarms
+	var/area/zone_from_tgui = locate(params["zone_ref"]) in priority_alarms + minor_alarms
 	if(!zone_from_tgui || !istype(zone_from_tgui))
 		return TRUE
 	
 	var/mob/user = usr
-	var/obj/machinery/airalarm/priority_air_alarm = locate() in zone_from_tgui
+	var/obj/machinery/airalarm/found_air_alarm = locate() in zone_from_tgui
 	if(priority_air_alarm)
 		priority_air_alarm.atmos_manualOverride(TRUE)
 		priority_air_alarm.post_alert(0)
 		priority_alarms -= zone_from_tgui
-		if(user)
-			user.balloon_alert("alarm cleared.")
-		update_appearance(UPDATE_ICON)
-		return TRUE
-	var/obj/machinery/airalarm/minor_air_alarm = locate() in zone_from_tgui
-	if(minor_air_alarm)
-		minor_air_alarm.atmos_manualOverride(TRUE)
-		minor_air_alarm.post_alert(0)
 		minor_alarms -= zone_from_tgui
 		if(user)
 			user.balloon_alert("alarm cleared.")
