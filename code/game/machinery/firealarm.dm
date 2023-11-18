@@ -61,6 +61,7 @@
 
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src, TRUE)
+	QDEL_NULL(radio)
 	LAZYREMOVE(myarea.firealarms, src)
 	return ..()
 
