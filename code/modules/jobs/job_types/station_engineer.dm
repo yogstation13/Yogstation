@@ -25,7 +25,7 @@
 									///////////////////////////////////////SERVICE//////////////////////////////////////////
 									ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING,
 									////////////////////////////////////////CARGO///////////////////////////////////////////
-									ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO))
+									ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 
