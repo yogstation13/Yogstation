@@ -23,7 +23,7 @@
 									///////////////////////////////////////SCIENCE//////////////////////////////////////////
 									ACCESS_TOX, ACCESS_XENOBIOLOGY, ACCESS_TOX_STORAGE, 
 									///////////////////////////////////////SERVICE//////////////////////////////////////////
-									ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_JANITOR, ACCESS_CHAPEL_OFFICE, ACCESS_MANUFACTURING,
+									ACCESS_HYDROPONICS, ACCESS_KITCHEN, ACCESS_JANITOR, ACCESS_MANUFACTURING,
 									////////////////////////////////////////CARGO///////////////////////////////////////////
 									ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_CARGO)
 	paycheck = PAYCHECK_MEDIUM
