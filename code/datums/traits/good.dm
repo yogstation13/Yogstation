@@ -315,33 +315,32 @@
 	icon = "building-ngo"
 	value = 4
 	var/slot_string = "organ"
-	var/list/organ_list = list(ORGAN_SLOT_LUNGS, ORGAN_SLOT_HEART, ORGAN_SLOT_LIVER)
+	var/list/organ_list = list(
+		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic/upgraded, 
+		ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic/upgraded, 
+		ORGAN_SLOT_LIVER = /obj/item/organ/liver/cybernetic/upgraded,
+	)
 	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic organ."
 
 /datum/quirk/cyberorgan/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/list/temp = organ_list.Copy() //pretty sure this is global so i dont want to bugger with it :)
-	if(isjellyperson(H))
+	if(HAS_TRAIT_FROM(H, TRAIT_TOXINLOVER, SPECIES_TRAIT))
 		temp -= ORGAN_SLOT_LIVER
-	var/organ_slot = pick(temp)
-	var/obj/item/organ/old_part = H.getorganslot(organ_slot)
-	var/obj/item/organ/prosthetic
-	switch(organ_slot)
-		if(ORGAN_SLOT_LUNGS)
-			prosthetic = new/obj/item/organ/lungs/cybernetic/upgraded(quirk_holder)
-			slot_string = "lungs"
-		if(ORGAN_SLOT_HEART)
-			prosthetic = new/obj/item/organ/heart/cybernetic/upgraded(quirk_holder)
-			slot_string = "heart"
-		if(ORGAN_SLOT_LIVER)
-			prosthetic = new/obj/item/organ/liver/cybernetic/upgraded(quirk_holder)
-			slot_string = "liver"
+	if(HAS_TRAIT_FROM(H, TRAIT_NOBREATH, SPECIES_TRAIT))
+		temp -= ORGAN_SLOT_LUNGS
+	if(NOBLOOD in H.dna?.species.species_traits)
+		temp -= ORGAN_SLOT_HEART
+	var/organ_type = organ_list[pick(temp)]
+	var/obj/item/organ/prosthetic = new organ_type(quirk_holder)
+	var/obj/item/organ/old_part = H.getorganslot(prosthetic.slot)
+	slot_string = prosthetic.slot
 	prosthetic.Insert(H)
 	qdel(old_part)
 	H.regenerate_icons()
 
 /datum/quirk/cyberorgan/post_add()
-	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with an upgraded cybernetic variant.</span>")
+	to_chat(quirk_holder, span_boldannounce("Your [slot_string] has been replaced with an upgraded cybernetic variant."))
 
 /datum/quirk/cyberorgan/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
@@ -349,6 +348,45 @@
 	if(species_type == /datum/species/ipc) // IPCs are already cybernetic
 		return "You already have cybernetic organs!"
 	return FALSE
+
+/datum/quirk/cyberorgan/lungs
+	name = "Cybernetic Organ (Lungs)"
+	desc = "Due to a past incident you lost function of your lungs, but now have fancy upgraded cybernetic lungs!"
+	organ_list = list(ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic/upgraded)
+	medical_record_text = "During physical examination, patient was found to have upgraded cybernetic lungs."
+
+/datum/quirk/cyberorgan/lungs/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+	if(TRAIT_NOBREATH in species.inherent_traits) // species with TRAIT_NOBREATH don't have lungs
+		return "You don't have lungs!"
+	return ..()
+
+/datum/quirk/cyberorgan/heart
+	name = "Cybernetic Organ (Heart)"
+	desc = "Due to a past incident you lost function of your heart, but now have a fancy upgraded cybernetic heart!"
+	organ_list = list(ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic/upgraded)
+	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic heart."
+
+/datum/quirk/cyberorgan/heart/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+	if(NOBLOOD in species.species_traits) // species with NOBLOOD don't have a heart
+		return "You don't have a heart!"
+	return ..()
+
+/datum/quirk/cyberorgan/liver
+	name = "Cybernetic Organ (Liver)"
+	desc = "Due to a past incident you lost function of your liver, but now have a fancy upgraded cybernetic liver!"
+	organ_list = list(ORGAN_SLOT_LIVER = /obj/item/organ/liver/cybernetic/upgraded)
+	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic liver."
+
+/datum/quirk/cyberorgan/liver/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+	if(TRAIT_TOXINLOVER in species.inherent_traits) // species with TRAIT_TOXINLOVER slowly die when given upgraded livers
+		return "You aren't compatible with upgraded livers!"
+	return ..()
 
 /datum/quirk/telomeres_long
 	name = "Long Telomeres"
