@@ -30,14 +30,19 @@
 	light_range = 7
 	light_color = "#ff3232"
 
+	/// 1 = will auto detect fire, 0 = no auto
 	var/detecting = 1
-	var/buildstage = 2 // 2 = complete, 1 = no wires, 0 = circuit gone
+	/// 2 = complete, 1 = no wires, 0 = circuit gone
+	var/buildstage = 2
+	/// Cooldown for next alarm trigger, so it doesnt spam much
 	var/last_alarm = 0
+	/// The area of the current fire alarm
 	var/area/myarea = null
+	/// If true, then this area has a real fire and not by someone triggering it manually
 	var/real_fire = FALSE
-
-	var/bad_temp = null //Current bad temperature
-
+	/// If real_fire is true then it will show you the current hot temperature
+	var/bad_temp = null
+	/// The radio to alert engineers, atmos techs
 	var/obj/item/radio/radio
 
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
