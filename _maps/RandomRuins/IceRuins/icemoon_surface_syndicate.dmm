@@ -720,16 +720,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"eu" = (
-/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
-/obj/machinery/button/door{
-	id = "syndicateicemoon_xenokill";
-	req_access_txt = "150";
-	name = "Xenobiology Kill Chamber";
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "ew" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -2242,6 +2232,9 @@
 /obj/item/storage/pill_bottle/mutadone,
 /obj/item/storage/pill_bottle/charcoal,
 /obj/effect/turf_decal/bot,
+/obj/item/shovel,
+/obj/item/shovel,
+/obj/item/shovel,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "ow" = (
@@ -2841,6 +2834,7 @@
 	name = "Reactor Vent";
 	req_access_txt = "150"
 	},
+/obj/item/sealant,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/powerplant)
 "sC" = (
@@ -4481,17 +4475,6 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
-"CP" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/noslip,
-/area/ruin/syndicate_icemoon/powerplant)
 "CQ" = (
 /obj/structure/showcase/mecha/marauder/mauler,
 /obj/machinery/door/firedoor/border_only,
@@ -6446,6 +6429,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
+"Pd" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/noslip,
+/area/ruin/syndicate_icemoon/powerplant)
 "Pf" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering";
@@ -6454,6 +6448,16 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"Ph" = (
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
+/obj/machinery/button/door{
+	id = "syndicateicemoon_xenokill";
+	req_access_txt = "150";
+	name = "Xenobiology Kill Chamber";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "Pm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -6767,6 +6771,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/item/shovel,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/powerplant)
 "Rw" = (
@@ -6810,6 +6815,7 @@
 	pixel_x = 16
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/shovel,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/powerplant)
 "RN" = (
@@ -8414,7 +8420,7 @@ eM
 Kv
 Zu
 Zu
-CP
+Pd
 Zu
 Zu
 Zu
@@ -11473,7 +11479,7 @@ wH
 NL
 Yu
 yZ
-eu
+Ph
 zq
 mu
 St
