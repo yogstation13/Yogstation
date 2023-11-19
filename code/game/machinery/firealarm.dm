@@ -58,7 +58,7 @@
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
 	radio = new(src)
-	radio.keyslot = new /obj/item/encryptionkey/headset_eng
+	radio.keyslot = new /obj/item/encryptionkey/headset_eng()
 	radio.subspace_transmission = TRUE
 	radio.canhear_range = 0
 	radio.recalculateChannels()
