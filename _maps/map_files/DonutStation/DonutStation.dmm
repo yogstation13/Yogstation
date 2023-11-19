@@ -24523,18 +24523,16 @@
 /area/maintenance/fore)
 "kLb" = (
 /obj/structure/table/glass,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/camera{
 	c_tag = "Security - Medical Room";
 	dir = 1;
 	network = list("ss13","Security")
 	},
-/obj/item/reagent_containers/glass/bottle/epinephrine,
-/obj/item/reagent_containers/glass/bottle/charcoal,
-/obj/item/reagent_containers/syringe,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 10
+	},
+/obj/machinery/computer/med_data/laptop{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
@@ -48916,10 +48914,14 @@
 /area/clerk)
 "veY" = (
 /obj/structure/table/glass,
-/obj/machinery/computer/med_data/laptop,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/glass/bottle/charcoal,
+/obj/item/reagent_containers/glass/bottle/epinephrine,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "vfa" = (
