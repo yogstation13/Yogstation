@@ -165,7 +165,7 @@
 	icon_state = "tile-wood_large"
 	turf_type = /turf/open/floor/wood/large
 
-/obj/itemstack/tile/wood/tile
+/obj/item/stack/tile/wood/tile
 	name = "tiled wood floor tile"
 	singular_name = "tiled wood floor tile"
 	icon_state = "tile-wood_tile"
