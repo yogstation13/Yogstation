@@ -233,10 +233,10 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
 
 	new/datum/stack_recipe_list("floor tiles", list( \
-	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
-	new/datum/stack_recipe("parquet wood floor tile", /obj/item/stack/tile/wood/parquet, 1, 4, 20), \
-	new/datum/stack_recipe("large wood floor tile", /obj/item/stack/tile/wood/large, 1, 4, 20), \
-	new/datum/stack_recipe("tiled wood floor tile", /obj/item/stack/tile/wood/tile, 1, 4, 20), \
+		new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
+		new/datum/stack_recipe("parquet wood floor tile", /obj/item/stack/tile/wood/parquet, 1, 4, 20), \
+		new/datum/stack_recipe("large wood floor tile", /obj/item/stack/tile/wood/large, 1, 4, 20), \
+		new/datum/stack_recipe("tiled wood floor tile", /obj/item/stack/tile/wood/tile, 1, 4, 20), \
 	)), \
 	null, \
 	new/datum/stack_recipe_list("pews", list(
