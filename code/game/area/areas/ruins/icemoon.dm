@@ -40,6 +40,9 @@
 /area/ruin/syndicate_icemoon/engine
 	name = "Syndicate Research Outpost Engineering"
 
+/area/ruin/syndicate_icemoon/engine/powerplant
+	name = "Syndicate Research Outpost Nuclear Power Station"
+
 /area/ruin/syndicate_icemoon/dorms
 	name = "Syndicate Research Outpost Dormitories"
 
