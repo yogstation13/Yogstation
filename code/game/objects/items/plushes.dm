@@ -600,7 +600,7 @@
 	icon_state = "plush_cdragon"
 	item_state = "plush_cdragon"
 
-/obj/item/toy/plush/catslug
+/obj/item/toy/plush/slugcat
 	name = "catslug plushie"
 	desc = "What even is this thing?"
 	lefthand_file = 'icons/mob/inhands/plushes_lefthand.dmi'

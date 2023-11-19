@@ -38,6 +38,7 @@
 					/obj/item/toy/plush/foxplushie = 2,
 					/obj/item/toy/plush/pkplushie = 2,
 					/obj/item/toy/plush/cdragon = 2,
+					/obj/item/toy/plush/slugcat = 2,
 					/obj/item/clothing/head/yogs/froghat = 3,
 					/obj/item/instrument/accordion = 1,
 					/obj/item/instrument/eguitar = 1,

@@ -733,3 +733,8 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	plush = TRUE
 	unlock_path = /obj/item/toy/plush/realgoat
 	name = "Goat"
+
+/datum/donator_gear/slugcat
+	plush = TRUE
+	unlock_path = /obj/item/toy/plush/slugcat
+	name = "Catslug"
