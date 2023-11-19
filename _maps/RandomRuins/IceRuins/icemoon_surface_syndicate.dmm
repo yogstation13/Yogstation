@@ -490,6 +490,17 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"cY" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/noslip,
+/area/ruin/syndicate_icemoon/powerplant)
 "cZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 10
@@ -1596,6 +1607,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/engine)
 "kH" = (
@@ -2436,9 +2448,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "qi" = (
 /turf/open/floor/wood,
@@ -6482,9 +6492,7 @@
 	req_access_txt = "151";
 	specialfunctions = 4
 	},
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "PR" = (
 /obj/machinery/porta_turret/syndicate,
@@ -6708,6 +6716,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
+/obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/powerplant)
 "Rh" = (
@@ -7202,10 +7211,6 @@
 /area/ruin/syndicate_icemoon/powerplant)
 "Ul" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
@@ -7444,9 +7449,7 @@
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "VO" = (
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "VP" = (
 /obj/structure/cable{
@@ -8052,9 +8055,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/circuit/red/anim{
-	initial_gas_mix = "n2=100;TEMP=80"
-	},
+/turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
 "ZT" = (
 /obj/structure/cable{
@@ -8327,10 +8328,10 @@ eM
 eM
 eM
 eM
-eM
 FM
-eM
-eM
+Zu
+Zu
+Zu
 eM
 eM
 qK
@@ -8403,7 +8404,7 @@ eM
 Kv
 Zu
 Zu
-Zu
+cY
 Zu
 Zu
 Zu
