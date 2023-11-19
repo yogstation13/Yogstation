@@ -1,4 +1,0 @@
-author: " cark"
-delete-after: true 
-changes: 
-  - mapping: "fixes issues with the asteroid field on donut causing people to get teleported inside rocks when moving onto the z-level"
