@@ -490,17 +490,6 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"cY" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/noslip,
-/area/ruin/syndicate_icemoon/powerplant)
 "cZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 10
@@ -731,6 +720,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"eu" = (
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
+/obj/machinery/button/door{
+	id = "syndicateicemoon_xenokill";
+	req_access_txt = "150";
+	name = "Xenobiology Kill Chamber";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "ew" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -1588,13 +1587,13 @@
 /area/ruin/syndicate_icemoon/medical)
 "kx" = (
 /obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "syndicate_icemoon_reactor_access"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndicate_icemoon_reactor_access"
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/powerplant)
 "kF" = (
@@ -2002,9 +2001,6 @@
 /area/ruin/syndicate_icemoon/xenobio)
 "mA" = (
 /obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "syndicate_icemoon_reactor_access"
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2013,6 +2009,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndicate_icemoon_reactor_access"
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/powerplant)
 "mF" = (
@@ -4482,6 +4481,17 @@
 	},
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
+"CP" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/noslip,
+/area/ruin/syndicate_icemoon/powerplant)
 "CQ" = (
 /obj/structure/showcase/mecha/marauder/mauler,
 /obj/machinery/door/firedoor/border_only,
@@ -5302,14 +5312,14 @@
 /area/ruin/syndicate_icemoon/dorms)
 "Hu" = (
 /obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "syndicate_icemoon_reactor_access"
-	},
 /obj/machinery/atmospherics/pipe/simple/brown/visible,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndicate_icemoon_reactor_access"
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/powerplant)
 "Hz" = (
@@ -8404,7 +8414,7 @@ eM
 Kv
 Zu
 Zu
-cY
+CP
 Zu
 Zu
 Zu
@@ -11463,7 +11473,7 @@ wH
 NL
 Yu
 yZ
-MH
+eu
 zq
 mu
 St
