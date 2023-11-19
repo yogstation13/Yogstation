@@ -14,6 +14,48 @@
 	result_atoms = list(/obj/item/clothing/suit/cultrobes/void)
 	required_shit_list = "glass shard, clothing, bedsheet"
 
+/datum/eldritch_transmutation/rune_carver
+	name = "Carving Knife"
+	required_atoms = list(
+		/obj/item/shard = 1,
+		/obj/item/paper = 1
+	)
+	result_atoms = list(/obj/item/melee/rune_carver)
+	required_shit_list = "glass shard, piece of paper"
+
+/datum/eldritch_transmutation/lionhunter
+	name = "Lionhunter Rifle"
+	required_atoms = list(
+		/obj/item/gun = 1,
+		/obj/item/stack/sheet/mineral/wood = 1,
+		/obj/item/camera,
+		/obj/item/stack/sheet/mineral/gold
+
+	)
+	result_atoms = list(/obj/item/gun/ballistic/rifle/boltaction/lionhunter)
+	required_shit_list = "A gun, a piece of wood, a camera, and a piece of gold"
+
+
+/datum/eldritch_transmutation/lionhunter_ammo
+	name = "Lionhunter Rifle Ammo"
+	required_atoms = list(
+		/obj/item/ammo_casing = 3,
+		/obj/item/stack/sheet/mineral/silver = 5
+
+	)
+	result_atoms = list(/obj/item/ammo_casing/strilka310/lionhunter)
+	required_shit_list = "Three ammo casings and five bars of silver."
+
+/datum/eldritch_transmutation/rune_carver
+	name = "Carving Knife"
+	required_atoms = list(
+		/obj/item/shard = 1,
+		/obj/item/paper = 1
+	)
+	result_atoms = list(/obj/item/melee/rune_carver)
+	required_shit_list = "glass shard, piece of paper"
+
+
 /datum/eldritch_transmutation/final/void_final
 	name = "Waltz at the End of Time"
 	required_atoms = list(/mob/living/carbon/human)

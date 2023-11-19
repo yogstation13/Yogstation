@@ -54,6 +54,15 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/melee/sickly_blade/dark
 	user.put_in_hands(realknife)
+
+	///use is if you want to swap out a spell they get upon becoming their certain type of heretic
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/blade/blade_jaunt = new(user)
+	blade_jaunt.Grant(user)
+
+	ADD_TRAIT(user, TRAIT_SILENT_FOOTSTEPS, INNATE_TRAIT)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/base_blade/on_lose(mob/user)
@@ -61,7 +70,6 @@
 
 /datum/eldritch_knowledge/base_blade/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
-
 
 	if(!isliving(target))
 		return COMPONENT_BLOCK_HAND_USE
@@ -223,6 +231,16 @@
 	/// Whether we're currently in duelist stance, gaining certain buffs (low health)
 	var/in_duelist_stance = FALSE
 	route = PATH_BLADE
+	tier = TIER_2
+
+/datum/eldritch_knowledge/spell/realignment
+	name = "T2 - Realignment"
+	desc = "Grants you Realignment a spell that wil realign your body rapidly for a short period. \
+		During this process, you will rapidly regenerate stamina and quickly recover from stuns, however, you will be unable to attack. \
+		This spell can be cast in rapid succession, but doing so will increase the cooldown."
+	gain_text = "In the flurry of death, he found peace within himself. Despite insurmountable odds, he forged on."
+	cost = 1
+	spell_to_add = /datum/action/cooldown/spell/realignment
 	tier = TIER_2
 
 /datum/eldritch_knowledge/duel_stance/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
