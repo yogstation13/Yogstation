@@ -1,0 +1,9 @@
+author: " JohnFulpWillard, warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Atmos alert console can clear air alarm atmos alert"
+  - rscadd: "During an active fire nearby a firealarm, it will show you the current temperature when examined"
+  - tweak: "Firealarm now notify on engineering channel when theres a fire"
+  - bugfix: "Fix station alert console and program not updating overlays"
+  - bugfix: "Fix fire alerts not clearing when there are multiple fire alarms in one area"
+  - bugfix: "fix destroyed airalarm clearing atmos alert if theres an actual atmos alert in an area with multiple air alarms"
