@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "mech extinguisher uses firefighting foam instead of water"
+  - bugfix: "fixed extinguisher particles not disappearing when they stop moving"
+  - bugfix: "fixed blocking your own extinguisher when moving forward"
