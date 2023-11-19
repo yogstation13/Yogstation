@@ -1,11 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "ab" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -20,6 +13,28 @@
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
+"ad" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_icemoon/powerplant)
+"ai" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"ak" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 9
+	},
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "am" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
@@ -45,14 +60,21 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"at" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
+"aq" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
+"ar" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "au" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -66,6 +88,30 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"av" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	dir = 6
+	},
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"aB" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
+"aF" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "syndicate_icemoon_reactor_access";
+	name = "Reactor Access";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -105,11 +151,28 @@
 /obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"aU" = (
-/obj/structure/closet/emcloset/anchored,
-/obj/effect/turf_decal/bot_white,
+"aQ" = (
+/obj/effect/turf_decal/pool,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/hallway)
+/area/ruin/syndicate_icemoon/powerplant)
+"aS" = (
+/obj/structure/window/plasma/reinforced/spawner,
+/obj/structure/window/plasma/reinforced/spawner/west,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8
+	},
+/turf/open/floor/engine/o2,
+/area/ruin/syndicate_icemoon/powerplant)
 "bb" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
@@ -221,15 +284,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
-"bH" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "bP" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Equipment Room";
@@ -251,6 +305,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"bW" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
 "bY" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -289,19 +349,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"cg" = (
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "cn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -411,6 +458,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"cM" = (
+/obj/effect/turf_decal/stripes,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "cN" = (
 /obj/structure/mecha_wreckage/durand{
 	name = "old mech wreckage";
@@ -418,17 +472,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
-"cQ" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "syndicate_icemoon_reactor_access"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "cT" = (
 /obj/machinery/autolathe/hacked,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -453,6 +496,14 @@
 	},
 /turf/open/floor/engine/o2,
 /area/ruin/syndicate_icemoon/engine)
+"db" = (
+/obj/machinery/atmospherics/components/trinary/filter{
+	dir = 1;
+	filter_type = list(/datum/gas/pluonium)
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "dc" = (
 /obj/machinery/light{
 	dir = 1
@@ -504,6 +555,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"dj" = (
+/obj/structure/sign/warning/radiation{
+	pixel_y = -32;
+	name = "NUCLEAR FUEL DISPOSAL PORT";
+	desc = "A warning sign alerting the user of a nuclear waste disposal port."
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "dk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -513,11 +572,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "do" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "syndicate_icemoon_reactor_vent"
+/obj/structure/disposalpipe/trunk,
+/obj/structure/disposaloutlet{
+	dir = 1
 	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "dq" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south{
@@ -529,6 +589,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"dr" = (
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "dw" = (
 /obj/machinery/light{
 	dir = 4
@@ -597,17 +663,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"dR" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "dS" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -654,21 +709,17 @@
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"eo" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "syndicate_icemoon_reactor_access"
+"el" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#c1caff"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "ew" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -771,20 +822,22 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"fm" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "fs" = (
-/obj/structure/sign/warning/radiation{
-	pixel_y = -32;
-	name = "NUCLEAR FUEL DISPOSAL PORT";
-	desc = "A warning sign alerting the user of a nuclear waste disposal port."
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/effect/turf_decal/stripes,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
-"ft" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "fv" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -839,10 +892,6 @@
 /obj/item/paper/monitorkey,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
-"fG" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "fH" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/machinery/door/window/brigdoor{
@@ -859,10 +908,6 @@
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
-"fI" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
 "fJ" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -891,22 +936,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
-"fX" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "gf" = (
 /obj/structure/window/plasma/reinforced/spawner/north,
 /obj/machinery/door/firedoor/border_only{
@@ -914,12 +943,6 @@
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/xenobio)
-"gl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "go" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -979,13 +1002,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"gB" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "gE" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
@@ -1032,6 +1048,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"gH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "gK" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -1052,13 +1077,14 @@
 /obj/item/binoculars,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
-"gR" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+"gP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 6
 	},
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
+/area/ruin/syndicate_icemoon/powerplant)
 "gS" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/machinery/door/firedoor/border_only{
@@ -1082,6 +1108,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"he" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "hf" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "syndie_icemoon_warehouse"
@@ -1117,6 +1152,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "hs" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 10
@@ -1135,6 +1180,35 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"hD" = (
+/obj/machinery/disposal/bin{
+	name = "spent fuel disposal unit"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"hH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"hJ" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/plasma{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "hN" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -1150,18 +1224,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"hO" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "hR" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1176,6 +1238,13 @@
 /obj/effect/turf_decal/siding/blue/corner,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"hY" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "ia" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -1212,20 +1281,23 @@
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"io" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+"ig" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
+"il" = (
+/obj/item/fuel_rod{
+	pixel_x = 6
+	},
+/obj/item/fuel_rod{
+	pixel_x = -6
+	},
+/turf/open/indestructible/sound/pool{
+	id = 1
+	},
+/area/ruin/syndicate_icemoon/powerplant)
 "iy" = (
 /obj/machinery/griddle,
 /obj/machinery/light{
@@ -1234,13 +1306,14 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
 "iA" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
+/obj/item/fuel_rod{
+	pixel_x = 6
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/item/fuel_rod{
+	pixel_x = -6
+	},
+/turf/open/indestructible/sound/pool,
+/area/ruin/syndicate_icemoon/powerplant)
 "iC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -1263,6 +1336,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"iF" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "iG" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
@@ -1276,14 +1362,6 @@
 "iT" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/command)
-"iW" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "iY" = (
 /obj/machinery/reagentgrinder{
 	pixel_y = 5
@@ -1298,6 +1376,14 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/canteen)
+"jc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "jd" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Commander's Quarters";
@@ -1321,20 +1407,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
-"jv" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "jz" = (
 /obj/machinery/light{
 	dir = 8
@@ -1370,25 +1442,15 @@
 /obj/item/stack/sheet/mineral/silver/fifty,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"jB" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
+"jK" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10
 	},
-/obj/structure/railing,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
-"jD" = (
-/obj/structure/window/plasma/reinforced/spawner/north,
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1
-	},
-/turf/open/floor/engine/plasma,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "jL" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Security";
@@ -1421,6 +1483,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
+"jO" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "jP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1428,10 +1495,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"jU" = (
-/obj/structure/disposalpipe/segment,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "jX" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1442,16 +1505,40 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"km" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
+"jZ" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
+"kb" = (
+/obj/machinery/pool_filter,
+/turf/open/indestructible/sound/pool/end,
+/area/ruin/syndicate_icemoon/powerplant)
+"kc" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/railing,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"kg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/visible,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/engine)
 "kn" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/hallway)
@@ -1470,6 +1557,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"ku" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
 "kv" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/sleeper/syndie/fullupgrade{
@@ -1478,28 +1575,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/syndicate_icemoon/medical)
-"ky" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+"kx" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "syndicate_icemoon_reactor_access"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"kD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 5
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
 "kF" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150";
-	name = "Nuclear Power Station Access"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1533,13 +1620,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"kM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/visible,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+"kJ" = (
+/obj/structure/pool_ladder,
+/turf/open/indestructible/sound/pool/end,
+/area/ruin/syndicate_icemoon/powerplant)
 "kP" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)
@@ -1682,22 +1766,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
-"lB" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/terminal,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "lD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1705,6 +1773,12 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"lE" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "lG" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -1742,18 +1816,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"lP" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "lQ" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
@@ -1823,15 +1885,6 @@
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)
-"ma" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "mc" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(150)
@@ -1928,15 +1981,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"mo" = (
-/obj/effect/turf_decal/stripes{
-	dir = 6
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "mu" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -1944,6 +1988,32 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
+"mA" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "syndicate_icemoon_reactor_access"
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
+"mF" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "mJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -1966,15 +2036,16 @@
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"mO" = (
+"mQ" = (
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
@@ -2026,34 +2097,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"nk" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "nn" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"no" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "np" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	req_access = list(150)
@@ -2122,32 +2171,13 @@
 /obj/machinery/autolathe/hacked,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"nP" = (
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
+"nS" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
 	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"nQ" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/machinery/airalarm/syndicate{
-	pixel_y = 24
-	},
-/obj/effect/turf_decal/bot,
+/obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"nW" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "nY" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
@@ -2167,12 +2197,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"of" = (
-/obj/machinery/atmospherics/components/unary/portables_connector,
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "oh" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /obj/machinery/atmospherics/components/unary/cryo_cell{
@@ -2183,12 +2207,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/syndicate_icemoon/medical)
-"oj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "or" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2198,6 +2216,29 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"os" = (
+/obj/structure/closet/crate/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/geiger_counter,
+/obj/item/geiger_counter,
+/obj/item/geiger_counter,
+/obj/item/storage/pill_bottle/mutadone,
+/obj/item/storage/pill_bottle/charcoal,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"ow" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "oB" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/engine)
@@ -2234,6 +2275,20 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"oJ" = (
+/obj/structure/window/plasma/reinforced/spawner/north,
+/obj/structure/window/plasma/reinforced/spawner,
+/obj/structure/window/plasma/reinforced/spawner/west,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on,
+/turf/open/floor/engine/plasma,
+/area/ruin/syndicate_icemoon/powerplant)
 "oM" = (
 /obj/structure/chair/americandiner{
 	dir = 8
@@ -2250,9 +2305,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"oY" = (
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "pd" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2265,24 +2317,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
-"ph" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 8
-	},
-/turf/open/floor/engine/o2,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"pj" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "pl" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/box/red,
@@ -2298,14 +2332,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"pp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/turf_decal/stripes,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "pr" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/dorms)
@@ -2333,19 +2359,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"py" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"pA" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "pC" = (
 /obj/machinery/computer/monitor/secret{
 	dir = 4
@@ -2375,12 +2388,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"pU" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "pV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2412,15 +2419,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"qf" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+"qe" = (
+/obj/machinery/telecomms/relay/preset/ruskie,
+/obj/machinery/light/small{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/engine)
 "qg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -2438,6 +2443,13 @@
 "qi" = (
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"qn" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "qo" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Room";
@@ -2458,39 +2470,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"qp" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 5
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "qq" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Canteen"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
-"qx" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Power Storage and Radiation Response Equipment";
-	req_access_txt = "150"
+"qw" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
+/obj/machinery/power/port_gen/pacman{
+	sheets = 15
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "qC" = (
@@ -2511,13 +2504,18 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
 "qG" = (
-/obj/machinery/atmospherics/components/trinary/filter{
-	dir = 1;
-	filter_type = list(/datum/gas/pluonium)
+/obj/effect/turf_decal/stripes{
+	dir = 5
 	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "qH" = (
 /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon{
 	dir = 1
@@ -2575,21 +2573,6 @@
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
-"rb" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150";
-	name = "Nuclear Power Station"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "rc" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/machinery/monkey_recycler,
@@ -2639,6 +2622,15 @@
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"rn" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "ro" = (
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
@@ -2663,30 +2655,13 @@
 	icon_state = "platingdmg2"
 	},
 /area/ruin/syndicate_icemoon/xenobio)
-"rw" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "rA" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/port_gen/pacman{
-	sheets = 15
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"rB" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/xenobio)
 "rI" = (
 /obj/structure/flora/grass/brown,
 /obj/structure/cable/yellow{
@@ -2753,11 +2728,6 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
-"sc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
 "sd" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2787,12 +2757,37 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"sl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
+"sn" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Power Storage and Radiation Response Equipment";
+	req_access_txt = "150"
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"sr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"ss" = (
+/obj/effect/turf_decal/stripes{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "su" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Room";
@@ -2830,10 +2825,30 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"sz" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+"sA" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "syndicate_icemoon_reactor_vent";
+	name = "Reactor Vent";
+	req_access_txt = "150"
+	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
+"sC" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Fuel Storage";
+	req_access_txt = "150"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"sH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "sM" = (
 /obj/structure/showcase/mecha/gygax/dark,
 /obj/machinery/door/firedoor/border_only,
@@ -2877,13 +2892,19 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "tf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"tg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
 "tj" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
@@ -2905,12 +2926,6 @@
 /obj/item/lazarus_injector,
 /turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
-"tm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine)
 "to" = (
 /obj/structure/toilet{
 	dir = 8
@@ -2937,6 +2952,22 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"tB" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "tC" = (
 /obj/structure/table/reinforced,
 /obj/item/stock_parts/cell/high/plus,
@@ -2976,19 +3007,13 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
-"tP" = (
-/obj/structure/cable{
-	icon_state = "1-4"
+"tL" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
 	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "tU" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -3001,6 +3026,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"tZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "ua" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3045,62 +3074,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"ud" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"ue" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"ui" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/railing,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "uj" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/syndicate_icemoon/command)
-"uk" = (
-/obj/structure/window/plasma/reinforced/spawner/north,
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
+"ur" = (
+/obj/effect/turf_decal/pool,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/outlet_injector/on,
-/turf/open/floor/engine/plasma,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"um" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
-"uq" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine)
+/area/ruin/syndicate_icemoon/powerplant)
 "us" = (
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
@@ -3122,6 +3106,14 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"uF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "uG" = (
 /obj/machinery/deepfryer,
 /obj/machinery/power/apc/auto_name/south{
@@ -3133,10 +3125,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
-"uJ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "uS" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -3145,6 +3133,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"uT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
 "uY" = (
 /obj/structure/sink{
 	dir = 4;
@@ -3156,6 +3150,40 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"uZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"va" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"vb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"vc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "vd" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
@@ -3167,6 +3195,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"vm" = (
+/obj/structure/window/plasma/reinforced/spawner,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
+/turf/open/floor/engine/o2,
+/area/ruin/syndicate_icemoon/powerplant)
+"vo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "vt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -3230,10 +3270,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"vD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "vI" = (
 /obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
@@ -3254,44 +3290,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"vM" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"vQ" = (
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "vS" = (
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"vV" = (
-/obj/item/fuel_rod{
-	pixel_x = 6
-	},
-/obj/item/fuel_rod{
-	pixel_x = -6
-	},
-/turf/open/indestructible/sound/pool{
-	id = 1
-	},
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "vW" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
@@ -3311,6 +3314,25 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"vZ" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"wa" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "wc" = (
 /obj/structure/chair/americandiner{
 	dir = 4
@@ -3374,13 +3396,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"wt" = (
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "ww" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 8
@@ -3420,6 +3435,13 @@
 /obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/engine)
+"wF" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "wG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3435,14 +3457,6 @@
 "wH" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/xenobio)
-"wJ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "wK" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -3461,6 +3475,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"wN" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/mineral/random/high_chance/snow,
+/area/icemoon/surface/outdoors)
 "wO" = (
 /obj/machinery/button/door{
 	id = "syndie_icemoon_warehouse";
@@ -3476,6 +3494,16 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"xb" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "xe" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3509,16 +3537,17 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"xk" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible,
-/obj/effect/turf_decal/stripes{
-	dir = 8
+"xj" = (
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/vending/tool,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "xn" = (
 /obj/machinery/light{
 	dir = 8;
@@ -3530,13 +3559,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"xo" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/atmospherics/pipe/layer_manifold/visible,
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/atmospherics/pipe/simple/supply/visible,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine)
 "xs" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -3574,12 +3596,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"xz" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "xD" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -3599,15 +3615,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
-"xF" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "xG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -3643,6 +3650,17 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"xN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "xR" = (
 /obj/machinery/light/small,
 /obj/structure/cable{
@@ -3740,12 +3758,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"yq" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "yx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -3773,12 +3785,18 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"yA" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 6
+"yH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
+"yM" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "yQ" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -3789,13 +3807,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"yS" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "yW" = (
 /obj/machinery/chem_dispenser/fullupgrade,
 /obj/effect/turf_decal/box/red,
@@ -3808,14 +3819,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"zd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 6
-	},
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+"za" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/atmospherics/pipe/simple/supply/visible,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
 "zl" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3909,20 +3919,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"zH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"zK" = (
-/obj/machinery/power/apc/auto_name/south,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "zL" = (
 /obj/machinery/computer/operating{
 	dir = 4
@@ -3974,6 +3970,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"Ab" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Ac" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -3984,6 +3989,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"Ad" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Af" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/airlock/medical/glass{
@@ -4004,6 +4017,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"Ah" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Ao" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -4052,6 +4072,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"AK" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "AL" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -4077,22 +4104,23 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "AT" = (
-/obj/structure/closet/crate/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/geiger_counter,
-/obj/item/geiger_counter,
-/obj/item/geiger_counter,
-/obj/item/storage/pill_bottle/mutadone,
-/obj/item/storage/pill_bottle/charcoal,
-/obj/effect/turf_decal/bot,
+/obj/structure/closet/firecloset/full,
+/obj/item/clothing/suit/fire/atmos,
+/obj/item/clothing/mask/gas/atmos,
+/obj/item/clothing/head/beret/atmos,
+/obj/item/clothing/head/hardhat/atmos,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"AV" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "Ba" = (
 /obj/machinery/button/door{
 	id = "syndie_icemoon_warehouse";
@@ -4109,6 +4137,25 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"Bb" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"Be" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Bf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4121,6 +4168,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"Bh" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndicate_icemoon_reactor_vent"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
 "Bp" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -4177,11 +4231,23 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
 "BA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/closet/toolcloset,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "BB" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 4
@@ -4206,18 +4272,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"BF" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+"BG" = (
+/obj/effect/turf_decal/stripes{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "BO" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
@@ -4277,14 +4340,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"BZ" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Cc" = (
 /obj/structure/geyser/random,
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -4359,6 +4414,16 @@
 /obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
+"CB" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "CD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4383,17 +4448,15 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"CF" = (
-/obj/structure/railing,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "CH" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
 	},
-/obj/machinery/atmospherics/components/binary/pump,
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/xenobio)
 "CO" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/machinery/door/window/brigdoor{
@@ -4417,6 +4480,16 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"CR" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "CS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4465,30 +4538,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
 "CX" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "syndicate_icemoon_powerstation_windows"
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Da" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
+/area/ruin/syndicate_icemoon/engine)
 "Db" = (
 /obj/machinery/power/apc/auto_name/west{
 	pixel_x = -25;
@@ -4548,6 +4604,12 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"Dp" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Dq" = (
 /obj/structure/table/reinforced,
 /obj/item/phone/real/syndicate_ruin{
@@ -4644,21 +4706,30 @@
 "DM" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/xenobio)
-"DT" = (
+"DU" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
 /obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
+	dir = 8;
+	light_color = "#c1caff"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/engine)
 "DV" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/dorms)
+"DW" = (
+/obj/structure/railing,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "DX" = (
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/plasteel/grimy,
@@ -4677,18 +4748,43 @@
 /obj/effect/turf_decal/box/white,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"Ea" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
-"Ec" = (
+"DZ" = (
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_x = -32
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"Ea" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"Eb" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"Er" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/railing,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"Eu" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Ev" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "150"
@@ -4696,19 +4792,28 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
-"Ez" = (
-/obj/structure/window/plasma/reinforced/spawner,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on,
-/turf/open/floor/engine/o2,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"EA" = (
-/obj/structure/disposalpipe/trunk,
-/obj/structure/disposaloutlet{
-	dir = 1
+"Ey" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	pixel_x = -32
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"EC" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "ED" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/security)
@@ -4727,16 +4832,6 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/icemoon/surface/outdoors)
-"EJ" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "EM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4767,6 +4862,16 @@
 /obj/machinery/recharger,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"EQ" = (
+/obj/machinery/atmospherics/components/trinary/mixer/t_mixer{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "EU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -4806,19 +4911,6 @@
 /obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"Fe" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Fi" = (
 /obj/machinery/door/airlock/research{
 	name = "Research Wing";
@@ -4841,18 +4933,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"Fl" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
+"Fk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 10
 	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
-"Fm" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_icemoon/powerplant)
 "Fn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4861,20 +4947,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"Fp" = (
-/obj/structure/disposalpipe/segment,
-/turf/closed/mineral/random/high_chance/snow,
-/area/icemoon/surface/outdoors)
+"Fq" = (
+/obj/effect/turf_decal/stripes{
+	dir = 10
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "Fr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"Fx" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "Fz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -4892,22 +4977,27 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"FC" = (
+/obj/structure/flora/grass/brown,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"FE" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "FF" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
-"FG" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "syndicate_icemoon_powerstation_windows"
-	},
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "FH" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
@@ -4973,6 +5063,16 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"FT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/visible,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "FV" = (
 /obj/structure/railing{
 	dir = 4
@@ -4993,21 +5093,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"FX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 9
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "FZ" = (
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes{
@@ -5024,6 +5109,16 @@
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
+"Ge" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "syndicate_icemoon_powerstation_windows"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
 "Gi" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Warehouse Office"
@@ -5109,33 +5204,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"GB" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "GC" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"GE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
+"GJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/engine)
 "GM" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
@@ -5172,20 +5250,22 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
-"He" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4;
-	level = 2
+"Hj" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"Hj" = (
-/obj/effect/turf_decal/pool,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Hk" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/research)
@@ -5210,23 +5290,18 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"Hs" = (
-/obj/effect/turf_decal/pool,
-/obj/machinery/light/small{
-	dir = 4
+"Hu" = (
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "syndicate_icemoon_reactor_access"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Hv" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
 "Hz" = (
 /obj/structure/sign/painting{
 	pixel_x = 32
@@ -5260,19 +5335,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"HG" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+"HI" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/terminal,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/area/ruin/syndicate_icemoon/powerplant)
 "HL" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
@@ -5296,6 +5368,24 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
+"HR" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"HS" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "HV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -5312,18 +5402,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"Ia" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Ig" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Il" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -5337,6 +5415,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"In" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/binary/pump,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Io" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -5362,26 +5447,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"Iu" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
-"Iv" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Fuel Storage";
-	req_access_txt = "150"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Iw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5394,13 +5459,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"Iz" = (
-/obj/machinery/telecomms/relay/preset/ruskie,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/syndicate_icemoon/engine)
 "IA" = (
 /obj/effect/decal/remains/human,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -5419,13 +5477,15 @@
 /obj/item/soap/syndie,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
-"IJ" = (
+"IL" = (
+/obj/machinery/computer/reactor/syndie_base,
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 8
+/obj/machinery/light{
+	dir = 1
 	},
+/obj/item/paper/guides/jobs/engi/agcnr,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
+/area/ruin/syndicate_icemoon/powerplant)
 "IO" = (
 /mob/living/simple_animal/hostile/carp{
 	desc = "Cayenne the Third, a descendent of Cayenne the Second, who was a descendent of Cayenne the First.";
@@ -5460,6 +5520,12 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"Jb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "Jc" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 10
@@ -5498,21 +5564,19 @@
 "Jg" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/command)
-"Jj" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Fuel Storage";
-	req_access_txt = "150"
+"Jm" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Jl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/area/ruin/syndicate_icemoon/powerplant)
 "Jn" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -5555,28 +5619,10 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
-"JA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
-"JD" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "JE" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
-"JF" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "JJ" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medical Bay";
@@ -5631,31 +5677,16 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/canteen)
-"Ka" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/vending/tool,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"Kc" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
 "Ke" = (
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"Ki" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Kj" = (
 /obj/structure/easel,
 /obj/item/canvas/twentythreeXtwentythree,
@@ -5664,6 +5695,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"Kk" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Km" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -5696,22 +5734,23 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/xenobio)
 "Ks" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
+/obj/machinery/button/door{
+	id = "syndicate_icemoon_powerstation_windows";
+	name = "Window Shutters";
+	req_access_txt = "150";
+	pixel_x = 24
 	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Kv" = (
 /turf/closed/mineral/random/high_chance/snow,
 /area/icemoon/surface/outdoors)
-"Kw" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Ky" = (
 /obj/machinery/button/holosign{
 	id = "syndie_icemoon_surgery_holo";
@@ -5727,6 +5766,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"Kz" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "KA" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 1;
@@ -5736,14 +5782,20 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"KE" = (
-/obj/structure/closet/firecloset/full,
-/obj/item/clothing/suit/fire/atmos,
-/obj/item/clothing/mask/gas/atmos,
-/obj/item/clothing/head/beret/atmos,
-/obj/item/clothing/head/hardhat/atmos,
+"KB" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/area/ruin/syndicate_icemoon/powerplant)
 "KI" = (
 /obj/structure/closet/syndicate,
 /obj/item/ammo_box/magazine/m10mm,
@@ -5766,21 +5818,6 @@
 "KL" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"KN" = (
-/obj/machinery/button/door{
-	id = "syndicate_icemoon_powerstation_windows";
-	name = "Window Shutters";
-	req_access_txt = "150";
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "KP" = (
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security{
 	dir = 1
@@ -5791,13 +5828,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"KS" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
 "KT" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -5824,13 +5854,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"Lm" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 4;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/ruin/syndicate_icemoon/engine)
 "Lp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -5844,10 +5867,6 @@
 /obj/effect/turf_decal/siding/blue/corner,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"Lq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/visible,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "Lr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
@@ -5858,37 +5877,14 @@
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/xenobio)
-"Ls" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
+"Lw" = (
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/closet/toolcloset,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/pipe_dispenser,
-/obj/item/pipe_dispenser,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"Lt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 6
-	},
-/obj/machinery/airalarm/syndicate{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"Lx" = (
-/obj/structure/closet/radiation,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "Ly" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -5897,15 +5893,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"LA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 9
-	},
+"Lz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/structure/cable/yellow{
-	icon_state = "1-4"
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
+"LA" = (
+/turf/open/indestructible/sound/pool{
+	id = 1
+	},
+/area/ruin/syndicate_icemoon/powerplant)
 "LB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5916,6 +5921,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"LF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "LK" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /obj/machinery/light/small,
@@ -5965,15 +5976,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"LT" = (
-/obj/effect/turf_decal/tile/purple/half/contrasted{
-	dir = 1
-	},
-/obj/machinery/airalarm/syndicate{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "LV" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6055,13 +6057,27 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"Mp" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 4;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/engine)
 "Mt" = (
-/obj/effect/turf_decal/stripes,
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/turf_decal/stripes{
 	dir = 1
 	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Mu" = (
 /obj/machinery/vending/fishing{
 	onstation = 0
@@ -6116,30 +6132,13 @@
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"MM" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine)
-"MN" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	id = "syndicate_icemoon_reactor_vent";
-	name = "Reactor Vent";
-	req_access_txt = "150"
+"MJ" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4;
+	level = 2
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"MV" = (
-/obj/effect/turf_decal/stripes{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/engine)
 "MX" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -6151,33 +6150,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"MY" = (
-/obj/structure/pool_ladder,
-/turf/open/indestructible/sound/pool/end,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Na" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 9
+"Nd" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/machinery/airalarm/syndicate{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
-"Nb" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "Ng" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external{
@@ -6216,6 +6195,11 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"Nl" = (
+/obj/structure/table/reinforced,
+/obj/item/holosign_creator/atmos,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Ns" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -6245,16 +6229,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"Nw" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
+"Nx" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Nz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
@@ -6263,26 +6243,11 @@
 /obj/machinery/bookbinder,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"ND" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
-"NE" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	id = "syndicate_icemoon_reactor_access";
-	name = "Reactor Access";
-	req_access_txt = "150"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "NH" = (
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/syndie_base,
 /obj/structure/cable/yellow,
 /turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "NJ" = (
 /obj/structure/table/wood,
 /obj/machinery/airalarm/syndicate{
@@ -6329,11 +6294,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "NN" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 10
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "NO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -6343,12 +6308,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"NP" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "NQ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6363,33 +6322,12 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/icemoon/surface/outdoors)
-"NS" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "NW" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
-"NX" = (
-/obj/structure/flora/grass/brown,
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
 "Oa" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6405,23 +6343,12 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"Oe" = (
-/obj/machinery/atmospherics/components/trinary/mixer/t_mixer{
-	dir = 8
-	},
-/obj/machinery/light{
+"Og" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Og" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_icemoon/powerplant)
 "Oj" = (
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 4
@@ -6434,16 +6361,6 @@
 "Ok" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/canteen)
-"Ot" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 6
-	},
-/obj/effect/turf_decal/stripes{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Oy" = (
 /obj/structure/railing{
 	dir = 1
@@ -6490,18 +6407,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
-"ON" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "syndicate_icemoon_reactor_access"
-	},
-/obj/machinery/atmospherics/pipe/simple/brown/visible,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "OT" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
@@ -6514,22 +6419,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"OU" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/plasma{
-	dir = 1
+"OY" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Pc" = (
-/obj/machinery/computer/reactor/syndie_base,
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/paper/guides/jobs/engi/agcnr,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/xenobio)
 "Pf" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering";
@@ -6538,16 +6434,34 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"Pi" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Pm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/syndicate_icemoon/hallway)
+"Pq" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
+"Ps" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"PI" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "PN" = (
 /obj/machinery/light{
 	dir = 4
@@ -6587,13 +6501,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
-"PX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/pipe/simple/brown/visible{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "PY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -6606,15 +6513,21 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"Qe" = (
-/obj/effect/turf_decal/stripes{
-	dir = 10
+"Qd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 9
 	},
-/obj/effect/turf_decal/stripes/corner{
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Qg" = (
 /obj/machinery/computer/rdconsole/nolock/ruin,
 /obj/effect/turf_decal/siding/red{
@@ -6669,20 +6582,16 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/warehouse)
-"Qt" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+"Qx" = (
+/obj/item/fuel_rod{
+	pixel_x = 6
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Qw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/item/fuel_rod{
+	pixel_x = -6
 	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/obj/machinery/light,
+/turf/open/indestructible/sound/pool,
+/area/ruin/syndicate_icemoon/powerplant)
 "QB" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6737,15 +6646,27 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
-"QX" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
+"QV" = (
+/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"QW" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Fuel Storage";
+	req_access_txt = "150"
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Ra" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -6777,6 +6698,18 @@
 /obj/item/storage/box/firingpins/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"Re" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
 "Rh" = (
 /obj/machinery/light{
 	dir = 4
@@ -6798,12 +6731,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"Rm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "Rp" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
@@ -6816,13 +6743,13 @@
 /obj/machinery/suit_storage_unit/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"Rv" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
+"Rq" = (
+/obj/structure/closet/radiation,
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "Rw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -6853,25 +6780,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"RC" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
+"RB" = (
+/obj/structure/sign/warning/radiation/rad_area{
+	dir = 1;
+	pixel_y = 32
 	},
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 4
+/obj/structure/closet/radiation,
+/obj/machinery/light/small{
+	dir = 1;
+	pixel_x = 16
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/research)
-"RD" = (
-/obj/item/fuel_rod{
-	pixel_x = 6
-	},
-/obj/item/fuel_rod{
-	pixel_x = -6
-	},
-/obj/machinery/light,
-/turf/open/indestructible/sound/pool,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/powerplant)
 "RN" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6891,12 +6812,37 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"RS" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "RT" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"Sb" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
+"Sc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Se" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -6910,12 +6856,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"Sk" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable{
-	icon_state = "0-4"
+"Sj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	dir = 4
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
 "Sl" = (
@@ -6963,9 +6907,9 @@
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/xenobio)
 "Sx" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/effect/turf_decal/trimline/purple/filled/line/lower,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/research)
 "Sy" = (
 /obj/item/mining_scanner,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -6996,28 +6940,12 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
-"SE" = (
-/obj/item/fuel_rod{
-	pixel_x = 6
-	},
-/obj/item/fuel_rod{
-	pixel_x = -6
-	},
-/turf/open/indestructible/sound/pool,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "SF" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
-"SJ" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "SK" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
@@ -7038,13 +6966,15 @@
 /obj/item/stack/spacecash/c500,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"SQ" = (
-/obj/machinery/atmospherics/components/trinary/mixer/airmix/inverse{
+"SO" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/area/ruin/syndicate_icemoon/powerplant)
 "SS" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Cold Room";
@@ -7095,6 +7025,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"Ta" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150";
+	name = "Nuclear Power Station"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
 "Tb" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -7124,13 +7069,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
-"Tl" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
 "To" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7150,6 +7088,25 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
+"Tv" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150";
+	name = "Nuclear Power Station Access"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
 "TB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7182,6 +7139,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/medical)
+"TV" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "TW" = (
 /obj/structure/closet/crate,
 /obj/item/flashlight{
@@ -7211,16 +7175,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"TY" = (
-/obj/machinery/atmospherics/pipe/simple/brown/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Ua" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7229,6 +7183,37 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
+"Ud" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"Uf" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"Ui" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"Ul" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Un" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -7244,21 +7229,6 @@
 "Uo" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"Ur" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Us" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "syndie_icemoon_warehouse"
@@ -7279,26 +7249,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/warehouse)
-"Ut" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "syndicate_icemoon_reactor_vent"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Uu" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Uv" = (
 /obj/machinery/vending/syndichem{
 	onstation = 0;
@@ -7379,6 +7329,15 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"UJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "UK" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -7392,11 +7351,29 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
-"Vf" = (
-/obj/structure/table/reinforced,
-/obj/item/holosign_creator/atmos,
+"Vd" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "syndicate_icemoon_powerstation_windows"
+	},
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
+"Ve" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#c1caff"
+	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
+/area/ruin/syndicate_icemoon/engine)
 "Vg" = (
 /obj/machinery/light{
 	dir = 4
@@ -7415,6 +7392,27 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/dorms)
+"Vm" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"Vu" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "Vx" = (
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer{
 	dir = 1
@@ -7471,19 +7469,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"VX" = (
-/obj/structure/sign/warning/radiation/rad_area{
-	dir = 1;
-	pixel_y = 32
-	},
-/obj/structure/closet/radiation,
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_x = 16
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Wg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7566,6 +7551,37 @@
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
+"Wv" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
+"WE" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndicate_icemoon_reactor_vent"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/powerplant)
+"WF" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"WG" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"WJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/syndicate_icemoon/powerplant)
 "WK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -7573,6 +7589,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"WN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "WO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
@@ -7611,21 +7631,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
-"Xg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Xk" = (
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander{
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
-"Xn" = (
+"Xm" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 6
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -7633,16 +7648,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
-"Xp" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/area/ruin/syndicate_icemoon/powerplant)
 "Xq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -7689,11 +7695,8 @@
 	},
 /area/ruin/syndicate_icemoon/xenobio)
 "XG" = (
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/icemoon/surface/outdoors)
 "XI" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 1;
@@ -7708,6 +7711,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"XL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"XQ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "XR" = (
 /obj/machinery/light{
 	dir = 8
@@ -7747,22 +7760,6 @@
 /obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/ruin/syndicate_icemoon/canteen)
-"Ya" = (
-/obj/machinery/disposal/bin{
-	name = "spent fuel disposal unit"
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Yb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7785,10 +7782,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
-"Yl" = (
-/obj/machinery/pool_filter,
-/turf/open/indestructible/sound/pool/end,
-/area/ruin/syndicate_icemoon/engine/powerplant)
 "Ym" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
@@ -7802,13 +7795,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"Yp" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
+"Yq" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/engine)
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
 "Yu" = (
 /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon{
 	dir = 1
@@ -7831,6 +7823,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"Yw" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/simple/brown/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "Yz" = (
 /obj/structure/closet/secure_closet/syndicate{
 	name = "brig closet"
@@ -7851,6 +7850,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"YA" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon)
 "YB" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -7866,18 +7870,6 @@
 "YD" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/syndicate_icemoon/research)
-"YE" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/syndicate_icemoon/engine)
 "YG" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/syndicate_icemoon/engine)
@@ -7901,6 +7893,18 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/security)
+"YS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
 "YY" = (
 /obj/structure/chair/americandiner{
 	dir = 8
@@ -7929,6 +7933,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
+"Zb" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
+"Zc" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/powerplant)
+"Ze" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Zk" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -7971,19 +7997,25 @@
 /area/ruin/syndicate_icemoon/xenobio)
 "Zu" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/syndicate_icemoon/engine/powerplant)
-"Zx" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/area/ruin/syndicate_icemoon/powerplant)
+"Zv" = (
+/obj/structure/window/plasma/reinforced/spawner/north,
+/obj/structure/window/plasma/reinforced/spawner,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+/turf/open/floor/engine/plasma,
+/area/ruin/syndicate_icemoon/powerplant)
+"Zw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	dir = 10
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/engine)
 "Zz" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
@@ -7993,6 +8025,9 @@
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/syndicate_icemoon/engine)
+"ZB" = (
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/powerplant)
 "ZJ" = (
 /obj/structure/closet/firecloset/full,
 /obj/effect/turf_decal/tile/purple/fourcorners,
@@ -8033,9 +8068,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
-"ZU" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/icemoon/surface/outdoors)
 "ZV" = (
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci,
 /obj/machinery/firealarm{
@@ -8055,11 +8087,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"ZZ" = (
-/turf/open/indestructible/sound/pool{
-	id = 1
-	},
-/area/ruin/syndicate_icemoon/engine/powerplant)
 
 (1,1,1) = {"
 GU
@@ -8449,14 +8476,14 @@ Kv
 Kv
 Kv
 Zu
-VX
-io
-Jj
-jv
-Hj
-MY
-SE
-RD
+RB
+Ul
+sC
+Mt
+ur
+kJ
+iA
+Qx
 Zu
 qK
 qK
@@ -8517,20 +8544,20 @@ qK
 qK
 eM
 eM
-EA
-Fp
-Fp
-Fp
-Fp
-jU
-Lx
-NS
-jU
-Ya
-Hs
-Yl
-ZZ
-vV
+do
+wN
+wN
+wN
+wN
+ad
+Rq
+KB
+ad
+hD
+aQ
+kb
+LA
+il
 Zu
 eM
 eM
@@ -8591,14 +8618,14 @@ qK
 eM
 eM
 eM
-fs
-ZU
+dj
+XG
 Kv
 Zu
 Zu
 Zu
 Zu
-Iv
+QW
 Zu
 Zu
 Zu
@@ -8669,18 +8696,18 @@ Kv
 Kv
 Kv
 Zu
-Vf
-Ia
-Ur
-Fe
+Nl
+Ud
+Ey
+vZ
 Zu
-Ot
-xk
-qp
-MV
-Qe
+xb
+hq
+jZ
+BG
+Fq
 Zu
-Fm
+NN
 eM
 eM
 eM
@@ -8743,18 +8770,18 @@ Kv
 Kv
 Kv
 Zu
-MN
-yA
-TY
-Kw
-ON
-GB
-oY
-NP
-oY
-Mt
-do
-ND
+sA
+ig
+HI
+QV
+Hu
+AV
+ZB
+aB
+ZB
+cM
+WE
+Yq
 eM
 eM
 eM
@@ -8817,24 +8844,24 @@ Kv
 Kv
 Kv
 Zu
-Pc
-Pi
-BF
-at
-eo
-ud
-Og
+IL
+ow
+Xm
+ai
+mA
+mF
+Nd
 NH
-vD
-pp
-Ut
-Hv
-yq
-Fl
+tZ
+fs
+Bh
+hY
+XQ
+Ki
 Sy
-xF
-bH
-ft
+Vm
+Be
+HS
 qK
 qK
 qK
@@ -8891,24 +8918,24 @@ Kv
 Kv
 Kv
 Zu
-NE
-pA
-Nw
-rB
-cQ
-Qw
-oY
-oY
-oY
-Mt
-do
-ND
+aF
+Ah
+CB
+Ui
+kx
+yH
+ZB
+ZB
+ZB
+cM
+WE
+Yq
 IA
-KS
-KS
-KS
-KS
-ui
+Ps
+Ps
+Ps
+Ps
+kc
 qK
 qK
 qK
@@ -8965,24 +8992,24 @@ Kv
 Kv
 Kv
 Zu
-of
-CH
-km
-fX
+dr
+In
+Bb
+tB
 Zu
-cg
-nP
-vQ
-nP
-mo
+qG
+rn
+Vu
+rn
+ss
 Zu
-Fx
-Fl
+Nx
+Ki
 Tq
-KS
-KS
-KS
-jB
+Ps
+Ps
+Ps
+Er
 qK
 qK
 qK
@@ -9039,10 +9066,10 @@ Kv
 Kv
 Kv
 Zu
-JF
-Pi
-nW
-Ig
+yM
+ow
+he
+UJ
 Zu
 Zu
 Zu
@@ -9051,12 +9078,12 @@ Zu
 Zu
 Zu
 tj
-Ea
-JD
-Iu
-gB
-Ks
-CF
+lE
+Eb
+tL
+TV
+Dp
+DW
 eM
 qK
 qK
@@ -9113,20 +9140,20 @@ eM
 Kv
 Kv
 Zu
-nQ
-Pi
-nk
-Uu
-wJ
-OU
-Xg
-qG
-qG
-SJ
-ue
-uJ
-Sx
-Ks
+PI
+ow
+jK
+Jm
+uF
+hJ
+jc
+db
+db
+nS
+WJ
+XL
+va
+Dp
 tj
 tj
 tj
@@ -9187,16 +9214,16 @@ eM
 Kv
 Kv
 Zu
-zd
-PX
-zH
-FX
-Qt
-gl
-pj
-oj
-sz
-Rv
+gP
+Yw
+Uf
+Qd
+qn
+hH
+aq
+LF
+Zc
+wF
 Zu
 Kv
 eM
@@ -9261,15 +9288,15 @@ eM
 eM
 Kv
 Zu
-ph
-Pi
-uk
-no
-GE
-LA
-ma
-zK
-py
+aS
+ow
+oJ
+Lz
+xN
+gH
+SO
+Kk
+Og
 Zu
 Zu
 eM
@@ -9335,16 +9362,16 @@ eM
 eM
 eM
 Zu
-Ez
-Oe
-jD
-KN
-qf
-iW
-DT
-BZ
-rb
-lP
+vm
+EQ
+Zv
+Ks
+Ab
+FE
+YS
+Lw
+Ta
+Re
 Zu
 eM
 eM
@@ -9413,14 +9440,14 @@ Zu
 Zu
 Zu
 Zu
-FG
-CX
+Ge
+Vd
 Zu
 Zu
-BA
+Fk
 td
-ue
-pU
+WJ
+YA
 fg
 eM
 eM
@@ -9491,9 +9518,9 @@ eM
 FF
 eM
 eM
-Ec
-Zx
-Ec
+DZ
+uZ
+DZ
 eP
 eM
 VN
@@ -9566,7 +9593,7 @@ FF
 eM
 eM
 eM
-Zx
+uZ
 eM
 eM
 fg
@@ -9640,7 +9667,7 @@ FF
 eM
 eM
 eM
-Zx
+uZ
 eM
 eM
 eM
@@ -9702,7 +9729,7 @@ qK
 qK
 qK
 eM
-NX
+FC
 SF
 SF
 SF
@@ -9710,7 +9737,7 @@ SF
 SF
 SF
 SF
-QX
+WF
 eM
 eM
 oB
@@ -9788,9 +9815,9 @@ FF
 eM
 eM
 oB
-YE
+kF
 oB
-Lm
+Mp
 eM
 eM
 eM
@@ -9858,13 +9885,13 @@ eM
 eM
 YG
 oB
-MM
+bW
 oB
 oB
 oB
-kF
+Tv
 oB
-tm
+tg
 oB
 oB
 oB
@@ -9931,15 +9958,15 @@ eM
 eM
 YG
 oB
-AT
-HG
-Sk
+os
+DU
+CX
 oB
-iA
-vM
-xz
-rw
-fG
+fm
+CR
+wa
+el
+WN
 FK
 SK
 cZ
@@ -10004,17 +10031,17 @@ eM
 eM
 YG
 oB
-rA
-Yp
-lB
-dR
+qw
+Zb
+Hj
+Ze
 oB
-Lt
-Nb
-Lq
-kM
-Lq
-xo
+av
+iF
+GJ
+kg
+GJ
+za
 WO
 lS
 YC
@@ -10080,14 +10107,14 @@ oB
 oB
 oB
 oB
-qx
-uq
+sn
+ku
 oB
-SQ
-Nb
-kD
-Jl
-KE
+AK
+iF
+vb
+sH
+AT
 oB
 oB
 oB
@@ -10150,18 +10177,18 @@ FF
 eM
 eM
 oB
-Tl
+Kz
+Ve
+Ea
+Eu
+sr
+Sc
 Uo
-wt
-EJ
-Xn
-Xp
-Uo
-He
-mO
-XG
-aa
-fG
+MJ
+vc
+Sj
+WG
+WN
 FK
 Zz
 Jc
@@ -10227,15 +10254,15 @@ oB
 kP
 YH
 mY
-sl
-Ls
-Ka
-ky
-tP
-hO
-Rm
-kM
-Lq
+uT
+BA
+xj
+Ad
+mQ
+HR
+Zw
+FT
+GJ
 FK
 Wk
 eC
@@ -10373,7 +10400,7 @@ eM
 eM
 Wl
 wh
-Iz
+qe
 wh
 kP
 mV
@@ -10553,7 +10580,7 @@ Il
 Il
 Il
 Il
-aU
+Wv
 lU
 lU
 Pm
@@ -10692,11 +10719,11 @@ tG
 gw
 Bp
 Hk
-Na
+ak
 cT
 xn
-IJ
-NN
+EC
+Sb
 Hk
 qZ
 yW
@@ -10768,9 +10795,9 @@ lD
 Hk
 wM
 KL
-um
+Jb
 KL
-fI
+Sx
 iG
 us
 us
@@ -10842,9 +10869,9 @@ Gy
 Fi
 FQ
 QN
-Da
-sc
-JA
+Pq
+jO
+vo
 EM
 qF
 gt
@@ -10914,9 +10941,9 @@ Wg
 EG
 hv
 Hk
-Kc
+RS
 LV
-RC
+ar
 GM
 EY
 iG
@@ -11139,7 +11166,7 @@ wH
 VR
 FZ
 ab
-gR
+OY
 DM
 DM
 wH
@@ -11213,7 +11240,7 @@ wH
 UC
 qH
 ab
-gR
+OY
 fH
 eB
 wH
@@ -11284,10 +11311,10 @@ bP
 Lk
 oV
 wH
-LT
+CH
 tv
 ab
-yS
+rA
 CO
 gS
 wH
