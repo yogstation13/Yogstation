@@ -160,6 +160,18 @@
 /turf/open/floor/wood/cold/broken/seven
 	icon_state = "wood-broken7"
 
+/turf/open/floor/wood/parquet
+	icon_state = "wood-parquet"
+	broken_states = list("wood-parquet-broken", "wood-parquet-broken2", "wood-parquet-broken3", "wood-parquet-broken4", "wood-parquet-broken5", "wood-parquet-broken6", "wood-parquet-broken7")
+
+/turf/open/floor/wood/tile
+	icon_state = "wood-tile"
+	broken_states = list("wood-tile-broken", "wood-tile-broken2", "wood-tile-broken3")
+
+/turf/open/floor/wood/large
+	icon_state = "wood-large"
+	broken_states = list("wood-large-broken", "wood-large-broken2", "wood-large-broken3")
+
 /turf/open/floor/bamboo
 	desc = "A bamboo mat with a decorative trim."
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
