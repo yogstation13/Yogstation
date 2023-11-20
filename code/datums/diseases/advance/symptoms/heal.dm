@@ -514,7 +514,7 @@
 	stage_speed = -2
 	transmittable = 1
 
-	level = 6
+	level = 3
 	passive_message = span_notice("Your skin tingles")
 
 	var/threshold = 0.9 // Percentual total health we check against. This is less than a toolbox hit, so probably wont save you in combat
