@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/oxygen
 
 	name = "Self-Respiration"
+	icon = "symptom.self_respiration.gif"
 	desc = "The virus rapidly synthesizes oxygen, effectively removing the need for breathing."
 	stealth = 1
 	resistance = -3

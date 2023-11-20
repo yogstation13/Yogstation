@@ -3,18 +3,44 @@
 /obj/effect/particle_effect/water
 	name = "water"
 	icon_state = "extinguish"
-	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER | PASSSTRUCTURE | PASSGRILLE | PASSBLOB
+	pass_flags = PASSTABLE | PASSMACHINES | PASSCOMPUTER | PASSSTRUCTURE | PASSGRILLE | PASSBLOB | PASSMECH | PASSMOB
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/turf/target_turf
+	var/transfer_methods = TOUCH
+
+/obj/effect/particle_effect/water/New(loc, turf/target, methods, ...)
+	if(!isnull(target))
+		target_turf = target
+	if(!isnull(methods))
+		transfer_methods = methods
+	return ..()
 
 /obj/effect/particle_effect/water/Initialize(mapload)
 	. = ..()
+	create_reagents(5)
 	QDEL_IN(src, 70)
+	if(target_turf)
+		addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
+
+/obj/effect/particle_effect/water/proc/move_particle()
+	if(!target_turf)
+		return
+	var/starting_loc = loc
+	step_towards(src, target_turf)
+	if(starting_loc == loc)
+		qdel(src) // delete itself if it got blocked and can't move
+		return
+	addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
 	if (--src.life < 1)
 		qdel(src)
 		return FALSE
+	if(reagents)
+		reagents.reaction(newloc, transfer_methods)
+		for(var/atom/A in newloc)
+			reagents.reaction(A, transfer_methods)
 	return ..()
 
 /obj/effect/particle_effect/water/Bump(atom/A)

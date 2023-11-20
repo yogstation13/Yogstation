@@ -32,6 +32,7 @@
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -1345,12 +1346,15 @@
 
 /mob/living/carbon/human/species/ipc/empty/Initialize(mapload)
 	. = ..()
+	var/old_deathsound = deathsound
 	deathsound = null //make it a silent death
 	death()
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
 	if(B)
 		B.Remove(src)
 		QDEL_NULL(B)
+	// By this point they are allowed to die loudly again
+	deathsound = old_deathsound
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
