@@ -27,7 +27,7 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 datum/eldritch_knowledge/base_jungle/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-	SIGNAL_HANDLER
+	///SIGNAL_HANDLER
 
 	if(!ishuman(target))
 		return COMPONENT_BLOCK_HAND_USE
