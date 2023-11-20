@@ -508,8 +508,12 @@
 /datum/status_effect/regenerative_core
 	id = "Regenerative Core"
 	duration = 1 MINUTES
-	status_type = STATUS_EFFECT_REPLACE
+	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/regenerative_core
+	var/debuffCounter = 0
+	var/maxDebuff = 100 //max debuffs, percentage
+	var/healing = -25
+	var/textNotif = TRUE
 
 /datum/status_effect/regenerative_core/on_apply()
 	var/turf/T = get_turf(owner)
@@ -517,11 +521,40 @@
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
-	owner.adjustBruteLoss(-25, TRUE, FALSE, BODYPART_ANY)
-	owner.adjustFireLoss(-25, TRUE, FALSE, BODYPART_ANY)
+	owner.adjustBruteLoss(healing, TRUE, FALSE, BODYPART_ANY)
+	owner.adjustFireLoss(healing, TRUE, FALSE, BODYPART_ANY)
 	owner.remove_CC()
 	owner.bodytemperature = BODYTEMP_NORMAL
 	return TRUE
+
+/datum/status_effect/regenerative_core/tick(delta_time, times_fired)
+	. = ..()
+	if(!mining_check())
+		debuffCounter += 5 * delta_time
+	if(debuffCounter > 50 && !mining_check())
+		owner.add_movespeed_modifier(type, TRUE, 101, multiplicate_slowdown = 1, blacklisted_movetypes=(FLOATING))
+		if(textNotif)
+			textNotif = FALSE
+			to_chat(owner, span_danger("Your body feels sluggish as the strange force holding it together yearns for energy from the necropolis."))
+	else
+		owner.remove_movespeed_modifier(type, TRUE)
+		textNotif = TRUE
+
+/datum/status_effect/regenerative_core/proc/mining_check() //returns if the z level is considered off the station
+	var/turf/user_turf = get_turf(owner)
+	return (!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
+
+/datum/status_effect/regenerative_core/refresh(effect, ...) //apply the buffs and heals again when it's refreshed
+	. = ..()
+	debuffCounter += 10
+	var/efficiency = 1
+	if(!mining_check()) //only get weaker station side
+		efficiency *= ((maxDebuff - debuffCounter)/maxDebuff) //multiplies by 0 - 1
+	owner.adjustBruteLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
+	owner.adjustFireLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
+	if(efficiency > 0.5) //if they're down below half efficiency, stop removing CC and fixing body temp
+		owner.remove_CC()
+		owner.bodytemperature = BODYTEMP_NORMAL
 
 /datum/status_effect/regenerative_core/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)

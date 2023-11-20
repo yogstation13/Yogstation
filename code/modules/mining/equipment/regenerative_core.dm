@@ -76,7 +76,6 @@
 	. = ..()
 	if(proximity_flag && ishuman(target))
 		var/mob/living/carbon/human/H = target
-		var/turf/user_turf = get_turf(user)
 		if(inert)
 			to_chat(user, span_notice("[src] has decayed and can no longer be used to heal."))
 			return
@@ -85,29 +84,10 @@
 				to_chat(user, span_notice("[src] are useless on the dead."))
 				return
 			if(H != user)
-			
-				if(!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
-					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
-				else
-					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
-					balloon_alert(user, "Applying core...")
-					if(!do_after(user, 2 SECONDS, H)) //come on teamwork bonus?
-						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
-						return
-					balloon_alert(user, "Core applied!")
-					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
+				H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
-				if(!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
-					to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
-				else
-					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))
-					balloon_alert(user, "Applying core...")
-					if(!do_after(user, 4 SECONDS, src))
-						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
-						return
-					balloon_alert(user, "Core applied!")
-					to_chat(user, span_notice("[src] explodes into a flurry of tendrils, rapidly spreading across your body. They will hold you together and allow you to keep moving, but for how long?"))
+				to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
