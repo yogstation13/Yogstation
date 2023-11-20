@@ -532,7 +532,7 @@
 	if(!mining_check())
 		debuffCounter += 5 * delta_time
 	if(debuffCounter > 50 && !mining_check())
-		owner.add_movespeed_modifier(type, TRUE, 101, multiplicate_slowdown = 1, blacklisted_movetypes=(FLOATING))
+		owner.add_movespeed_modifier(type, TRUE, 101, multiplicative_slowdown = 1, blacklisted_movetypes=(FLOATING))
 		if(textNotif)
 			textNotif = FALSE
 			to_chat(owner, span_danger("Your body feels sluggish as the strange force holding it together yearns for energy from the necropolis."))
@@ -546,15 +546,17 @@
 
 /datum/status_effect/regenerative_core/refresh(effect, ...) //apply the buffs and heals again when it's refreshed
 	. = ..()
-	debuffCounter += 10
 	var/efficiency = 1
 	if(!mining_check()) //only get weaker station side
-		efficiency *= ((maxDebuff - debuffCounter)/maxDebuff) //multiplies by 0 - 1
+		debuffCounter += 25
+		efficiency *= ((maxDebuff - debuffCounter)/maxDebuff) //multiplies by anywhere from 1 to -infinity
 	owner.adjustBruteLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
 	owner.adjustFireLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
 	if(efficiency > 0.5) //if they're down below half efficiency, stop removing CC and fixing body temp
 		owner.remove_CC()
 		owner.bodytemperature = BODYTEMP_NORMAL
+	if(efficiency < 0)//if they've REALLY overused them, give them some sort of text to know why they're taking damage
+		to_chat(owner, span_userdanger("The power infused into your body starts to cannibalize it for more energy!"))
 
 /datum/status_effect/regenerative_core/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
