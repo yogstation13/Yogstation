@@ -265,7 +265,7 @@
 	if(force_multiplier)
 		parent_item.force /= force_multiplier
 	else if(force_wielded)
-		parent_item.force -= force_unwielded
+		parent_item.force -= force_wielded
 	
 	parent_item.weapon_stats = initial(parent_item.weapon_stats)
 
