@@ -535,6 +535,7 @@
 		threshold = SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
 
 /datum/symptom/heal/surface/CanHeal(datum/disease/advance/A)
+	var/mob/living/M = A.affected_mob
 	if(M.health == M.maxHealth)
 		return FALSE
 	return TRUE
