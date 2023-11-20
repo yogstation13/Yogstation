@@ -48,7 +48,6 @@
  * * attacksound (optional) The sound to play when wielded and attacking
  * * force_multiplier (optional) The force multiplier when wielded, do not use with force_wielded, and force_unwielded
  * * force_wielded (optional) The force setting when the item is wielded, do not use with force_multiplier
- * * force_unwielded (optional) The force setting when the item is unwielded, do not use with force_multiplier
  * * icon_wielded (optional) The icon to be used when wielded
  */
 /datum/component/two_handed/Initialize(
