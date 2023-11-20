@@ -547,14 +547,19 @@
 	var/efficiency = 1
 	if(!mining_check()) //only get weaker station side
 		debuffCounter += 30
-		efficiency *= ((100 - debuffCounter)/100) //multiplies by anywhere from 1 to -infinity
-	if(efficiency < 1)//if they've userused them to the point of ineffectivity
+		efficiency *= ((100 - debuffCounter)/100) //multiplies by anywhere from 0.7 to -infinity
 		to_chat(owner, span_danger("The power infused into your body struggles to knit you back together, weakened by it's distance from the necropolis!"))
+
 	owner.adjustBruteLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
 	owner.adjustFireLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
-	if(efficiency > 0.5) //if they're down below half efficiency, stop removing CC and fixing body temp
+	if(debuffCounter > 50) //if they're down below half efficiency, stop removing CC and fixing body temp
 		owner.remove_CC()
 		owner.bodytemperature = BODYTEMP_NORMAL
+	else
+		owner.add_movespeed_modifier(type, TRUE, 101, multiplicative_slowdown = 1, blacklisted_movetypes=(FLOATING))
+		if(textNotif)
+			textNotif = FALSE
+			to_chat(owner, span_danger("Your body feels sluggish as the strange force holding it together yearns for energy from the necropolis."))
 	. = ..()
 
 /datum/status_effect/regenerative_core/on_remove()
