@@ -34,6 +34,7 @@
 		PATH_BLADE = "label", // my favorite color is label
 		PATH_COSMIC = "purple",
 		PATH_KNOCK = "yellow",
+		PATH_JUNGLE = "green",
 	)
 
 /datum/antagonist/heretic/ui_data(mob/user)

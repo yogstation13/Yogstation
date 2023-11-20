@@ -515,3 +515,20 @@
 	max = 30
 	prefix = "abyss-sharpened"
 	requires_sharpness = 1
+
+
+/obj/item/restraints/legcuffs/bola/eldritch
+	name = "eldritch bola"
+	desc = "A bola made of vines and bark, writhing in your hand"
+	icon_state = "bola_r"
+	item_state = "bola_r"
+	breakouttime = 15 SECONDS
+	immobilize = 100
+
+
+/obj/item/restraints/legcuffs/bola/eldritch/equipped(mob/living/user, slot)
+	..()
+	if(!(IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user, span_cultlarge("\"Your fingers begin to bleed and blister!\""))
+		user.dropItemToGround(src, TRUE)
+		user.adjustFireLoss(10)
