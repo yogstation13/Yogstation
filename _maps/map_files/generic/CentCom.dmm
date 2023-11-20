@@ -26083,6 +26083,9 @@
 	},
 /turf/open/floor/plating/asteroid/snow/temperatre,
 /area/syndicate_mothership)
+"fUf" = (
+/turf/open/floor/holofloor/asteroid,
+/area/holodeck/rec_center/anthophila)
 "gbG" = (
 /obj/structure/goalnet{
 	dir = 1
@@ -90751,16 +90754,16 @@ aaa
 "}
 (246,1,1) = {"
 abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
 abj
 atb
 adn
@@ -91008,16 +91011,16 @@ aaa
 "}
 (247,1,1) = {"
 abj
+fUf
+fUf
+fUf
+fUf
+fUf
 abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
+fUf
+fUf
 abj
 aWR
 aRQ
@@ -91265,16 +91268,16 @@ aaa
 "}
 (248,1,1) = {"
 abj
+fUf
+fUf
+fUf
 abk
 abk
 abk
 abk
 abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
 abj
 aSp
 aRv
@@ -91522,16 +91525,16 @@ aaa
 "}
 (249,1,1) = {"
 abj
+fUf
+fUf
+fUf
 abk
 abk
 abk
 abk
 abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
 abj
 aGt
 aQd
@@ -91779,16 +91782,16 @@ aaa
 "}
 (250,1,1) = {"
 abj
-abk
-abk
-abk
+fUf
+fUf
+fUf
 abk
 ace
 acq
 abk
 abk
-abk
-abk
+fUf
+fUf
 abj
 aSP
 aTD
@@ -92036,16 +92039,16 @@ aaa
 "}
 (251,1,1) = {"
 abj
-abk
-abk
-abk
+fUf
+fUf
+fUf
 abk
 abk
 acr
 abk
 abk
-abk
-abk
+fUf
+fUf
 abj
 aTR
 abS
@@ -92293,16 +92296,16 @@ aaa
 "}
 (252,1,1) = {"
 abj
+fUf
+fUf
+fUf
 abk
 abk
 abk
 abk
 abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
 abj
 aUQ
 aNW
@@ -92550,16 +92553,16 @@ aaa
 "}
 (253,1,1) = {"
 abj
+fUf
+fUf
+fUf
+fUf
+fUf
 abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
+fUf
+fUf
 abj
 aUP
 aZj
@@ -92807,16 +92810,16 @@ aaa
 "}
 (254,1,1) = {"
 abj
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
-abk
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
+fUf
 abj
 aeo
 aZI
