@@ -49,6 +49,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		new/datum/stack_recipe("red filing cabinet", /obj/structure/filingcabinet/colored/red, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 		new/datum/stack_recipe("yellow filing cabinet", /obj/structure/filingcabinet/colored/yellow, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("rack parts", /obj/item/rack_parts), \
+	new/datum/stack_recipe("crate shelf parts", /obj/item/rack_parts/shelf), \
 		)), \
 	null, \
 	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister/generic, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
@@ -99,6 +100,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("airlock controller frame", /obj/item/wallframe/advanced_airlock_controller, 2), \
 	new/datum/stack_recipe("apc frame", /obj/item/wallframe/apc, 2), \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1), \
+	new/datum/stack_recipe("light switch frame", /obj/item/wallframe/light_switch, 1), \
 	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
 	new/datum/stack_recipe("telescreen frame", /obj/item/wallframe/telescreen, 3), \

@@ -1,9 +1,9 @@
 /datum/computer_file/program/ntnetmonitor
 	filename = "ntmonitor"
 	filedesc = "NTNet Diagnostics and Monitoring"
-	category = PROGRAM_CATEGORY_MISC
+	category = PROGRAM_CATEGORY_ENGI
 	program_icon_state = "comm_monitor"
-	extended_desc = "This program monitors stationwide NTNet network, provides access to logging systems, and allows for configuration changes"
+	extended_desc = "This program monitors stationwide NTNet network, provides access to logging systems, and allows for configuration changes."
 	size = 12
 	requires_ntnet = TRUE
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_PDA

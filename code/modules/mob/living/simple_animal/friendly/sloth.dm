@@ -24,7 +24,7 @@
 	speed = 10
 	glide_size = 2
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 
 //Cargo Sloth

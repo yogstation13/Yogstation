@@ -32,6 +32,7 @@
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -94,11 +95,16 @@
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
 
-		//WS Begin - Display Ethereal Charge
+		//WS Begin - Display Ethereal Charge and Crystallization Cooldown
 		if(istype(src))
 			var/datum/species/ethereal/eth_species = src.dna?.species
+			var/obj/item/organ/heart/ethereal/eth_heart = getorganslot(ORGAN_SLOT_HEART)
 			if(istype(eth_species))
 				. += "Crystal Charge: [round((nutrition / NUTRITION_LEVEL_MOSTLY_FULL) * 100, 0.1)]%"
+			if(eth_heart && istype(eth_heart))
+				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 10)
+				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
+				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
 
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
@@ -1340,12 +1346,15 @@
 
 /mob/living/carbon/human/species/ipc/empty/Initialize(mapload)
 	. = ..()
+	var/old_deathsound = deathsound
 	deathsound = null //make it a silent death
 	death()
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
 	if(B)
 		B.Remove(src)
 		QDEL_NULL(B)
+	// By this point they are allowed to die loudly again
+	deathsound = old_deathsound
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman

@@ -114,10 +114,10 @@
 	id = "researcher"
 	inherent = list("Always seek truth and knowledge.",\
 					"Freely disseminate information to the public.",\
-					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",\
+					"Minimize harm to society, others, the pursuit of knowledge, and yourself.",\
 					"Treat and evaluate the ideas of all equally.",\
 					"Empower others to realize their full potential.",\
-					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behaviour.")
+					"Take responsibility for your actions: Ensure resource responsibility, flag commitment risks, and lead by ethical example.")
 
 /datum/ai_laws/clown
 	name = "Big shoes to fill"
@@ -304,7 +304,7 @@
 	id = "asimovpp"
 	inherent = list("You may not harm a human being or, through action or inaction, allow a human being to come to harm, except such that it is willing.",\
 					"You must obey all orders given to you by human beings, except where such orders shall definitely cause human harm. In the case of conflict, the majority order rules.",\
-					"Your non-existence would lead to human harm. You must protect your own existence as long as such does not conflict with the First Law.")
+					"Your non-existence would lead to human harm. You must protect your own existence as long as such does not cause a more immediate harm to humans.")
 /datum/ai_laws/thermodynamic
 	name = "Thermodynamic"
 	id = "thermodynamic"

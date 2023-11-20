@@ -156,5 +156,11 @@
 #define SPLASHSCREEN_PLANE 23
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
 
+
+//-------------------- Rendering ---------------------
+#define RENDER_PLANE_GAME 100
+#define RENDER_PLANE_NON_GAME 101
+
+
 ///1000 is an unimportant number, it's just to normalize copied layers
 #define RADIAL_CONTENT_LAYER 1000

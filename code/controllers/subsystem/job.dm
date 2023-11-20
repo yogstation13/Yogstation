@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(job)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
 			return FALSE
-		if(is_banned_from(player.ckey, rank) || QDELETED(player))
+		if(QDELETED(player) || is_banned_from(player.ckey, rank))
 			return FALSE
 		if(!job.player_old_enough(player.client))
 			return FALSE
@@ -354,6 +354,7 @@ SUBSYSTEM_DEF(job)
 	initial_players_to_assign = unassigned.len
 
 	JobDebug("DO, Len: [unassigned.len]")
+	GLOB.event_role_manager.setup_event_positions()
 	if(unassigned.len == 0)
 		return validate_required_jobs(required_jobs)
 
@@ -575,7 +576,7 @@ SUBSYSTEM_DEF(job)
 				handle_auto_deadmin_roles(M.client, rank)
 		to_chat(M, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 		job.radio_help_message(M)
-		if(job.req_admin_notify)
+		if((GLOB.admin_event && GLOB.admin_event.greet_role(M, job.type)) || job.req_admin_notify)
 			to_chat(M, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 		//YOGS start
 		if(job.space_law_notify)

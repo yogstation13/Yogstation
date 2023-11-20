@@ -316,6 +316,10 @@
 		/datum/action/cooldown/spell/basic_projectile/rust_wave/short,
 	)
 
+/mob/living/simple_animal/hostile/eldritch/rust_spirit/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_RUST)
+
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/setDir(newdir)
 	. = ..()
 	if(newdir == NORTH)
@@ -323,10 +327,6 @@
 	else if(newdir == SOUTH)
 		icon_state = "rust_walker_s"
 	update_appearance(UPDATE_ICON)
-
-/mob/living/simple_animal/hostile/eldritch/rust_spirit/Moved()
-	. = ..()
-	playsound(src, 'sound/effects/footstep/rustystep1.ogg', 100, TRUE)
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)
@@ -372,3 +372,109 @@
 		/datum/action/cooldown/spell/shapeshift/eldritch,
 		/datum/action/cooldown/spell/emp/eldritch,
 	)
+
+/mob/living/simple_animal/hostile/eldritch/star_gazer
+	name = "Star Gazer"
+	desc = "A creature that has been tasked to watch over the stars."
+	icon = 'icons/mob/96x96eldritch_mobs.dmi'
+	icon_state = "star_gazer"
+	icon_living = "star_gazer"
+	pixel_x = -32
+	base_pixel_x = -32
+	mob_biotypes = MOB_HUMANOID | MOB_SPECIAL
+	speed = -0.2
+	maxHealth = 750
+	health = 750
+
+	obj_damage = 400
+	armour_penetration = 20
+	melee_damage_lower = 40
+	melee_damage_upper = 40
+	sentience_type = SENTIENCE_BOSS
+	attack_vis_effect = ATTACK_EFFECT_SLASH
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	speak_emote = list("growls")
+	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	deathsound = 'sound/magic/cosmic_expansion.ogg'
+	loot = list(/obj/effect/temp_visual/cosmic_domain)
+
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING
+	pull_force = MOVE_FORCE_OVERPOWERING
+	mob_size = MOB_SIZE_HUGE
+	layer = LARGE_MOB_LAYER
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
+
+	actions_to_add = list(
+		/datum/action/cooldown/spell/conjure/cosmic_expansion/large,
+		/datum/action/cooldown/spell/pointed/projectile/star_blast/ascended
+	)
+
+/mob/living/simple_animal/hostile/eldritch/star_gazer/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/death_explosion, 3, 6, 12)
+	AddElement(/datum/element/effect_trail, /obj/effect/forcefield/cosmic_field/fast)
+	AddComponent(/datum/component/regenerator, outline_colour = "#b97a5d")
+	ADD_TRAIT(src, TRAIT_LAVA_IMMUNE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_ASHSTORM_IMMUNE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT)
+	set_light(4, l_color = "#dcaa5b")
+
+/mob/living/simple_animal/hostile/eldritch/fire_shark
+	name = "Fire Shark"
+	real_name = "Ignis"
+	desc = "It is a eldritch dwarf space shark, also known as a fire shark."
+	icon = 'icons/mob/eldritch_mobs.dmi'
+	icon_state = "fire_shark"
+	icon_living = "fire_shark"
+	pass_flags = PASSTABLE | PASSMOB
+	mob_biotypes = MOB_ORGANIC | MOB_BEAST
+	speed = -0.5
+	health = 16
+	maxHealth = 16
+	melee_damage_lower = 8
+	melee_damage_upper = 8
+	attack_sound = 'sound/weapons/bite.ogg'
+	attack_vis_effect = ATTACK_EFFECT_BITE
+	attacktext = "bites"
+	obj_damage = 0
+	damage_coeff = list(BRUTE = 1, BURN = 0.25, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	mob_size = MOB_SIZE_TINY
+	speak_emote = list("screams")
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	minbodytemp = 0
+	maxbodytemp = 1500
+	pressure_resistance = 200
+	var/poison_per_bite = 2
+	var/poison_type = /datum/reagent/phlogiston
+	var/death_cloud_size = 1 //size of cloud produced from a dying shark
+
+/mob/living/simple_animal/hostile/eldritch/fire_shark/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/swarming)
+	AddComponent(/datum/component/regenerator, outline_colour = COLOR_DARK_RED)
+
+/mob/living/simple_animal/hostile/eldritch/fire_shark/AttackingTarget()
+	. = ..()
+	if(. && isliving(target))
+		var/mob/living/L = target
+		if(L.reagents && poison_per_bite)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
+	return .
+
+/mob/living/simple_animal/hostile/eldritch/fire_shark/death(gibbed)
+	// On death, create a small smoke of harmful gas (s-Acid)
+	var/datum/effect_system/fluid_spread/smoke/chem/S = new
+	var/turf/location = get_turf(src)
+
+	// Create the reagents to put into the air
+	create_reagents(10)
+	reagents.add_reagent(/datum/reagent/toxin/plasma, 40)
+
+	// Attach the smoke spreader and setup/start it.
+	S.attach(location)
+	S.set_up(death_cloud_size, location = location, carry = reagents, silent = TRUE)
+	S.start()
+	
+	..()
