@@ -522,9 +522,7 @@
 	desc = "A bola made of vines and bark, writhing in your hand"
 	icon_state = "bola_r"
 	item_state = "bola_r"
-	breakouttime = 15 SECONDS
-	immobilize = 100
-
+	breakouttime = 7 SECONDS
 
 /obj/item/restraints/legcuffs/bola/eldritch/equipped(mob/living/user, slot)
 	..()

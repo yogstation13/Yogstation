@@ -29,9 +29,11 @@
 datum/eldritch_knowledge/base_jungle/proc/on_mansus_grasp(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	if(!iscarbon(target))
+	if(!ishuman(target))
 		return COMPONENT_BLOCK_HAND_USE
-	var/mob/living/carbon/C = target
-	var/atom/throw_target = get_edge_target_turf(C, source.dir)
-	if(!C.anchored)
-		C.throw_at(throw_target, rand(4,8), 14, source)
+	var/mob/living/carbon/human/human_target = target
+	human_target.Immobilize(1 SECONDS)
+	var/mob/living/carbon/human/heretic_self = source
+	heretic_self.adjustBruteLoss(-10)
+	heretic_self.adjustFireLoss(-10)
+	heretic_self.adjustToxLoss(-10)

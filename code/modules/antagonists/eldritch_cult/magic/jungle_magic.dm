@@ -39,6 +39,8 @@ JUNGLE PATH SPELLS GO HERE
 	icon_state = "ash_shift"
 
 /datum/action/cooldown/spell/conjure_item/eldritch_bola
+	name = "Xibulba's Caress"
+	desc = "A powerful spell, allowing you to summon an eldritch bola at will."
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 1 MINUTES
 
