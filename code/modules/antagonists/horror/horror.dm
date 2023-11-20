@@ -73,6 +73,7 @@
 	add_ability(/datum/action/innate/horror/take_control)
 	add_ability(/datum/action/innate/horror/leave_body)
 	add_ability(/datum/action/innate/horror/make_chems)
+	add_ability(/datum/action/innate/horror/scan_host)
 	add_ability(/datum/action/innate/horror/give_back_control)
 	RefreshAbilities()
 
@@ -432,6 +433,17 @@
 	var/html = get_html_template(content)
 
 	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
+
+/mob/living/simple_animal/horror/proc/scan_host(mob/living/carbon/C)
+	if(!can_use_ability())
+		return
+	if(!victim)
+		to_chat(src, span_warning("You are not inside a host body."))
+		return
+
+	var/mob/living/simple_animal/horror/B = has_horror_inside()
+	healthscan(usr, B)
+	chemscan(usr, B)
 
 /mob/living/simple_animal/horror/proc/hide()
 	if(victim)
