@@ -349,6 +349,7 @@
 		return "You already have cybernetic organs!"
 	
 	var/datum/species/species = new species_type
+	var/list/temp = organ_list.Copy()
 	if(TRAIT_TOXINLOVER in species.inherent_traits)
 		temp -= ORGAN_SLOT_LIVER
 	if(TRAIT_NOBREATH in species.inherent_traits)
