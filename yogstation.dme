@@ -1841,6 +1841,7 @@
 #include "code\modules\antagonists\eldritch_cult\transmutations\blade_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\cosmo_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\flesh_transmutations.dm"
+#include "code\modules\antagonists\eldritch_cult\transmutations\jungle_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\knock_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\mind_transmutations.dm"
 #include "code\modules\antagonists\eldritch_cult\transmutations\rust_transmutations.dm"

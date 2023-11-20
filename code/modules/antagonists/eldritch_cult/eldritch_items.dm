@@ -530,3 +530,21 @@
 		to_chat(user, span_cultlarge("\"Your fingers begin to bleed and blister!\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjustFireLoss(10)
+
+/obj/item/shield/riot/eldritch
+	name = "eldritch shield"
+	desc = "A shield made of vines and bark, a gift from an unknown god."
+	icon_state = "buckler"
+	item_state = "buckler"
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	materials = list()
+	resistance_flags = FLAMMABLE
+	block_chance = 30
+	transparent = FALSE
+	max_integrity = 25
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/shield/riot/eldritch/shatter(mob/living/carbon/human/owner)
+	playsound(owner, 'sound/effects/bang.ogg', 50)
+	new /obj/item/stack/sheet/mineral/wood(get_turf(src))

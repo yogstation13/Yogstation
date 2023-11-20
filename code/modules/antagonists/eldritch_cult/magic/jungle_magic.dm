@@ -14,7 +14,7 @@ JUNGLE PATH SPELLS GO HERE
 	sound = null
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 15 SECONDS
+	cooldown_time = 25 SECONDS
 
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
