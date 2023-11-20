@@ -434,16 +434,14 @@
 
 	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
 
-/mob/living/simple_animal/horror/proc/scan_host(mob/living/carbon/C)
+/mob/living/simple_animal/horror/proc/scan_host()
 	if(!can_use_ability())
 		return
 	if(!victim)
 		to_chat(src, span_warning("You are not inside a host body."))
 		return
-
-	var/mob/living/simple_animal/horror/B = has_horror_inside()
-	healthscan(usr, B)
-	chemscan(usr, B)
+	healthscan(usr, victim)
+	chemscan(usr, victim)
 
 /mob/living/simple_animal/horror/proc/hide()
 	if(victim)
