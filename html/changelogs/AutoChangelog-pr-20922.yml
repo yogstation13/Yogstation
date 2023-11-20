@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a bug where lightning flow disabled certain actions if a dash ended weirdly"

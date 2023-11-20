@@ -4064,7 +4064,6 @@
 #include "yogstation\code\modules\antagonists\shadowling\thrall.dm"
 #include "yogstation\code\modules\antagonists\slaughter\slaughter.dm"
 #include "yogstation\code\modules\antagonists\traitor\datum_mindslave.dm"
-#include "yogstation\code\modules\antagonists\traitor\datum_traitor.dm"
 #include "yogstation\code\modules\assembly\signaler.dm"
 #include "yogstation\code\modules\atmospherics\airalarm.dm"
 #include "yogstation\code\modules\atmospherics\gasmixtures\gas_types.dm"

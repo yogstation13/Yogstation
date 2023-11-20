@@ -312,6 +312,7 @@
 			var/objective = stripped_input(mob_user, "Enter an objective")
 			if(!objective)
 				return
+			var/tc_amount = input(mob_user, "How much TC should they all get?") as null|num
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Traitor All", "[objective]"))
 			for(var/mob/living/H in GLOB.player_list)
 				if(!(ishuman(H)||istype(H, /mob/living/silicon/)))
@@ -327,6 +328,11 @@
 				new_objective.explanation_text = objective
 				T.add_objective(new_objective)
 				H.mind.add_antag_datum(T)
+				if(tc_amount && tc_amount != TELECRYSTALS_DEFAULT)//if the admin chose a different starting TC amount
+					if(T.uplink_holder)
+						var/datum/component/uplink/uplink = T.uplink_holder.GetComponent(/datum/component/uplink)
+						if(uplink)
+							uplink.telecrystals = tc_amount
 			message_admins(span_adminnotice("[key_name_admin(mob_user)] used everyone is a traitor secret. Objective is [objective]"))
 			log_admin("[key_name(mob_user)] used everyone is a traitor secret. Objective is [objective]")
 
