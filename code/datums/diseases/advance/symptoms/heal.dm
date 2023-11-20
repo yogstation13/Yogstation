@@ -526,17 +526,26 @@
 	)
 
 /datum/symptom/heal/surface/Start(datum/disease/advance/A)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(A.properties["stage_rate"] >= 8) //stronger healing
 		healing_power = 1.5
 	if(A.properties["resistance"] >= 10)
 		threshold = SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
 
+/datum/symptom/heal/surface/CanHeal(datum/disease/advance/A)
+	if(M.health == M.maxHealth)
+		return FALSE
+	return TRUE
+	
+
 /datum/symptom/heal/surface/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	if(M.health == M.maxHealth)
 		return
 	if(((M.health/M.maxHealth) > threshold))
+		healing_power = healing_power * actual_power
+
 		// We don't actually heal all damage types at once, but prioritise one over the other.
 		// Since the virus focuses mainly on surface damage, it will firstly heal those
 		// If it can't find any then it will consider healing some toxins (Not affected by healing power)
