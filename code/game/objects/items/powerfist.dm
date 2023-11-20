@@ -105,7 +105,7 @@
 		target.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as [user.p_they()] punch[user.p_es()] [target.name]!"), \
 			span_userdanger("[user]'s punches you!"))
 		return COMPONENT_NO_ATTACK_HAND
-	if(gasused.total_moles() < gasperfist)
+	if(gasused.total_moles() < gasperfist * fisto_setting)
 		to_chat(user, span_warning("\The [src]'s piston-ram lets out a weak hiss, it needs more gas!"))
 		playsound(loc, 'sound/weapons/punch4.ogg', 50, 1)
 		do_attack(user, target, force / 2)
