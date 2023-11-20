@@ -31,6 +31,8 @@
 
 	/// stat list for wielded/unwielded, switches with weapon_stats when wielding or unwielding
 	var/list/wielded_stats
+	/// keep track of unwielded stats, we'll need it later for properly unwielding without causing runtimes
+	var/list/unwielded_stats
 
 	/// A callback on the parent to be called when the item is wielded
 	var/datum/callback/wield_callback
@@ -218,6 +220,7 @@
 		parent_item.force *= force_multiplier
 	else if(force_wielded)
 		parent_item.force += force_wielded
+	unwielded_stats = parent_item.weapon_stats
 	parent_item.weapon_stats = wielded_stats
 	parent_item.name = "[parent_item.name] (Wielded)"
 	parent_item.update_appearance()
@@ -266,7 +269,7 @@
 	else if(force_wielded)
 		parent_item.force -= force_wielded
 	
-	parent_item.weapon_stats = initial(parent_item.weapon_stats)
+	parent_item.weapon_stats = unwielded_stats
 
 	// update the items name to remove the wielded status
 	var/sf = findtext(parent_item.name, " (Wielded)", -10) // 10 == length(" (Wielded)")
