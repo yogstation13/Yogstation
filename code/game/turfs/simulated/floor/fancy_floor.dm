@@ -177,6 +177,7 @@
 
 /turf/open/floor/wood/parquet/broken
 	icon_state = "wood-parquet-broken"
+	broken = TRUE
 
 /turf/open/floor/wood/parquet/broken/two
 	icon_state = "wood-parquet-broken2"
