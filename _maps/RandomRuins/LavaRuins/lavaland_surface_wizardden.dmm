@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE d
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -154,6 +154,12 @@
 	dir = 8
 	},
 /turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"H" = (
+/obj/structure/table/wood,
+/obj/structure/constructshell,
+/obj/item/book/granter/action/spell/true_random,
+/turf/open/floor/wood,
 /area/ruin/powered)
 "K" = (
 /mob/living/simple_animal/hostile/carp/ranged/chaos{
@@ -362,7 +368,7 @@ a
 a
 a
 x
-r
+H
 h
 g
 h
