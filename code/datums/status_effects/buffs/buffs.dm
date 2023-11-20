@@ -511,7 +511,6 @@
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/regenerative_core
 	var/debuffCounter = 0
-	var/maxDebuff = 100 //max debuffs, percentage
 	var/healing = -25
 	var/textNotif = TRUE
 
@@ -530,7 +529,7 @@
 /datum/status_effect/regenerative_core/tick(delta_time, times_fired)
 	. = ..()
 	if(!mining_check())
-		debuffCounter += 5 * delta_time
+		debuffCounter += 10 * delta_time
 	if(debuffCounter > 50 && !mining_check())
 		owner.add_movespeed_modifier(type, TRUE, 101, multiplicative_slowdown = 1, blacklisted_movetypes=(FLOATING))
 		if(textNotif)
@@ -545,22 +544,23 @@
 	return (!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
 
 /datum/status_effect/regenerative_core/refresh(effect, ...) //apply the buffs and heals again when it's refreshed
-	. = ..()
 	var/efficiency = 1
 	if(!mining_check()) //only get weaker station side
 		debuffCounter += 25
-		efficiency *= ((maxDebuff - debuffCounter)/maxDebuff) //multiplies by anywhere from 1 to -infinity
+		efficiency *= ((100 - debuffCounter)/100) //multiplies by anywhere from 1 to -infinity
+	if(efficiency < 1)//if they've userused them to the point of ineffectivity
+		to_chat(owner, span_danger("The power infused into your body struggles to knit you back together, weakened by it's distance from the necropolis!"))
 	owner.adjustBruteLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
 	owner.adjustFireLoss(healing * efficiency, TRUE, FALSE, BODYPART_ANY)
 	if(efficiency > 0.5) //if they're down below half efficiency, stop removing CC and fixing body temp
 		owner.remove_CC()
 		owner.bodytemperature = BODYTEMP_NORMAL
-	if(efficiency < 0)//if they've REALLY overused them, give them some sort of text to know why they're taking damage
-		to_chat(owner, span_userdanger("The power infused into your body starts to cannibalize it for more energy!"))
+	. = ..()
 
 /datum/status_effect/regenerative_core/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
+	owner.remove_movespeed_modifier(type, TRUE)
 
 /datum/status_effect/antimagic
 	id = "antimagic"
