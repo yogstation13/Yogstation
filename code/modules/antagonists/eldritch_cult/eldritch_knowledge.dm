@@ -17,8 +17,6 @@
 	var/cost = 0
 	///tier of the spell, 3 of any tier is required to purchase the next ugprade knowledge, and upgrades unlock the next tier. TIER_NONE will not advance anything.
 	var/tier = TIER_NONE
-	///What knowledge is incompatible with this. This will simply make it impossible to research knowledges that are in banned_knowledge once this gets researched.
-	var/list/banned_knowledge = list()
 	///What path is this on defaults to "Side"
 	var/route = PATH_SIDE
 	///transmutation recipes unlocked by this knowledge

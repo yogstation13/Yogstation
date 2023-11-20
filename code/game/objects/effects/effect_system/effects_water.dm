@@ -12,7 +12,6 @@
 /obj/effect/particle_effect/water/New(loc, turf/target, methods, ...)
 	if(!isnull(target))
 		target_turf = target
-		addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
 	if(!isnull(methods))
 		transfer_methods = methods
 	return ..()
@@ -21,6 +20,8 @@
 	. = ..()
 	create_reagents(5)
 	QDEL_IN(src, 70)
+	if(target_turf)
+		addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
 
 /obj/effect/particle_effect/water/proc/move_particle()
 	if(!target_turf)
@@ -29,17 +30,17 @@
 	step_towards(src, target_turf)
 	if(starting_loc == loc)
 		qdel(src) // delete itself if it got blocked and can't move
-
-	var/turf/T = get_turf(src)
-	reagents.reaction(T, transfer_methods)
-	for(var/atom/A in T)
-		reagents.reaction(T, transfer_methods)
+		return
 	addtimer(CALLBACK(src, PROC_REF(move_particle)), 2)
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
 	if (--src.life < 1)
 		qdel(src)
 		return FALSE
+	if(reagents)
+		reagents.reaction(newloc, transfer_methods)
+		for(var/atom/A in newloc)
+			reagents.reaction(A, transfer_methods)
 	return ..()
 
 /obj/effect/particle_effect/water/Bump(atom/A)
