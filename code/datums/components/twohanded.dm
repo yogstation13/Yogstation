@@ -270,6 +270,7 @@
 		parent_item.force -= force_wielded
 	
 	parent_item.weapon_stats = unwielded_stats
+	unwielded_stats = null
 
 	// update the items name to remove the wielded status
 	var/sf = findtext(parent_item.name, " (Wielded)", -10) // 10 == length(" (Wielded)")
