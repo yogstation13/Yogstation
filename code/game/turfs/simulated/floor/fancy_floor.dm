@@ -198,6 +198,7 @@
 
 /turf/open/floor/wood/tile/broken
 	icon_state = "wood-tile-broken"
+	broken = TRUE
 
 /turf/open/floor/wood/tile/broken/two
 	icon_state = "wood-tile-broken2"
