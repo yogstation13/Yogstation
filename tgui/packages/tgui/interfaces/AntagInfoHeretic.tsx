@@ -29,7 +29,6 @@ const hereticYellow = {
 };
 
 type Knowledge = {
-  path: string;
   name: string;
   desc: string;
   gainFlavor: string;
@@ -50,6 +49,7 @@ type Info = {
   ascended: BooleanLike;
   objectives: Objective[];
   can_change_objective: BooleanLike;
+  path: string;
 };
 
 const IntroductionSection = (props, context) => {
@@ -236,13 +236,30 @@ const ResearchedKnowledge = (props, context) => {
 
 const KnowledgeShop = (props, context) => {
   const { data, act } = useBackend<KnowledgeInfo>(context);
+  const { path } = props;
   const { learnableKnowledge } = data;
+  const pathKnowledge = learnableKnowledge.filter((Knowledge) => Knowledge.hereticPath === path);
+  const otherKnowledge = learnableKnowledge.filter((Knowledge) => Knowledge.hereticPath !== path);
+  otherKnowledge.sort((a, b) => {
+    const nameA = a.hereticPath.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.hereticPath.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
+  const sortedKnowledge = pathKnowledge.concat(otherKnowledge);
 
   return (
     <Stack.Item grow>
       <Section title="Potential Knowledge" fill scrollable>
-        {(!learnableKnowledge && 'None!') ||
-          learnableKnowledge.map((toLearn) => (
+        {(!sortedKnowledge && 'None!') ||
+          sortedKnowledge.map((toLearn) => (
             <Stack.Item key={toLearn.name} mb={1}>
               <Button
                 width="100%"
@@ -273,7 +290,7 @@ const KnowledgeShop = (props, context) => {
 
 const ResearchInfo = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { charges } = data;
+  const { charges, path } = data;
 
   return (
     <Stack justify="space-evenly" height="100%" width="100%">
@@ -289,7 +306,7 @@ const ResearchInfo = (props, context) => {
           <Stack.Item grow>
             <Stack height="100%">
               <ResearchedKnowledge />
-              <KnowledgeShop />
+              <KnowledgeShop path={path} />
             </Stack>
           </Stack.Item>
         </Stack>
