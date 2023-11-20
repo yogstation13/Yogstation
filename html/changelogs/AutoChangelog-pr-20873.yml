@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes extended shock touch not having a cooldown or sound effect"
