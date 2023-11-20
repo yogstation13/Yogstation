@@ -47,7 +47,7 @@
 			summoned.ghostize(0)
 			user.SetImmobilized(0)
 			for(var/datum/action/cooldown/spell/spells in user.actions)
-				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //I dont want big mobs to be able to use ash jaunt
+				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/cosmic)) //I dont want big mobs to be able to use jaunt
 					spells.Remove(user)
 					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the cosmos, for The Creator has ascended! Unmake all of reality! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)

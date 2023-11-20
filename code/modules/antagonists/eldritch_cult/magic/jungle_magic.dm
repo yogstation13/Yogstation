@@ -14,7 +14,7 @@ JUNGLE PATH SPELLS GO HERE
 	sound = null
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 25 SECONDS
+	cooldown_time = 15 SECONDS
 
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
@@ -60,3 +60,68 @@ JUNGLE PATH SPELLS GO HERE
 // override make_item here and let's not bother with tracking their weakrefs.
 /datum/action/cooldown/spell/conjure_item/eldritch_bola/make_item()
 	return new item_type()
+
+
+/datum/action/cooldown/spell/forcewall/vines
+	name = "Vine wall"
+	desc = "This spell creates a temporary wall of vines to shield yourself from incoming fire."
+	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
+
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "cultforcewall"
+
+	cooldown_time = 40 SECONDS
+	invocation_type = INVOCATION_NONE
+
+	wall_type = /obj/effect/forcefield/wizard/vines
+
+
+/datum/action/cooldown/spell/pointed/projectile/spell_cards/thorns
+	name = "Thorn Shot"
+	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
+	button_icon_state = "spellcard"
+
+	school = SCHOOL_EVOCATION
+	cooldown_time = 5 SECONDS
+
+	invocation = "Sigi'lu M'Fan 'Tasia!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
+
+	cast_range = 40
+	projectile_type = /obj/projectile/magic/thorn
+	projectile_amount = 3
+	projectiles_per_fire = 7
+
+
+/datum/action/cooldown/spell/cone/staggered/fire_breath/xibalba
+	name = "Toxic Breath"
+	desc = "You breathe a cone of fire directly in front of you."
+	button_icon_state = "fireball"
+	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
+
+	school = SCHOOL_EVOCATION
+	cooldown_time = 40 SECONDS
+	invocation_type = INVOCATION_NONE
+	spell_requirements = NONE
+	antimagic_flags = NONE
+
+	cone_levels = 6
+	respect_density = TRUE
+	/// The range our user is thrown backwards after casting the spell
+	self_throw_range = 0
+
+
+/datum/action/cooldown/spell/cone/staggered/fire_breath/xibalba/calculate_cone_shape(current_level)
+	// This makes the cone shoot out into a 3 wide column of flames.
+	// You may be wondering, "that equation doesn't seem like it'd make a 3 wide column"
+	// well it does, and that's all that matters.
+	return (4 * current_level) - 1
+
+/datum/action/cooldown/spell/cone/staggered/fire_breath/xibalba/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
+	// Further out targets take less immediate burn damage and get less fire stacks.
+	// The actual burn damage application is not blocked by fireproofing, like space dragons.
+	target_mob.apply_damage(max(40, 40 - (5 * level)), TOX)
+	target_mob.adjust_fire_stacks(max(2, 5 - level))
+	target_mob.ignite_mob()

@@ -49,6 +49,15 @@
 	CanAtmosPass = ATMOS_PASS_NO
 	initial_duration = 20 SECONDS
 
+/// ECult forcefields
+/obj/effect/forcefield/wizard/vines
+	name = "vine wall"
+	desc = "A wall of vines to provide succor."
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "cultshield"
+	CanAtmosPass = ATMOS_PASS_NO
+	initial_duration = 20 SECONDS
+
 /// Mime forcefields (invisible walls)
 
 /obj/effect/forcefield/mime

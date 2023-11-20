@@ -478,3 +478,50 @@
 	S.start()
 	
 	..()
+
+/mob/living/simple_animal/hostile/eldritch/xibalba_herald
+	name = "Xibalba's Herald"
+	desc = "The ultimate hunter of the jungle."
+	icon = 'icons/mob/96x96eldritch_mobs.dmi'
+	icon_state = "star_gazer"
+	icon_living = "star_gazer"
+	pixel_x = -32
+	base_pixel_x = -32
+	mob_biotypes = MOB_HUMANOID | MOB_SPECIAL
+	speed = -0.2
+	maxHealth = 750
+	health = 750
+
+	obj_damage = 400
+	armour_penetration = 20
+	melee_damage_lower = 40
+	melee_damage_upper = 40
+	sentience_type = SENTIENCE_BOSS
+	attack_vis_effect = ATTACK_EFFECT_SLASH
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	speak_emote = list("growls")
+	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	deathsound = 'sound/magic/cosmic_expansion.ogg'
+
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING
+	pull_force = MOVE_FORCE_OVERPOWERING
+	mob_size = MOB_SIZE_HUGE
+	layer = LARGE_MOB_LAYER
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
+
+	actions_to_add = list(
+		/datum/action/cooldown/spell/cone/staggered/fire_breath/xibalba,
+		/datum/action/innate/megafauna_attack/lava_swoop
+	)
+
+/mob/living/simple_animal/hostile/eldritch/xibalba_herald/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/death_explosion, 3, 6, 12)
+	AddElement(/datum/element/effect_trail, /obj/effect/forcefield/cosmic_field/fast)
+	AddComponent(/datum/component/regenerator, outline_colour = "#b97a5d")
+	ADD_TRAIT(src, TRAIT_LAVA_IMMUNE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_ASHSTORM_IMMUNE, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
+	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT)
+	set_light(4, l_color = "#dcaa5b")

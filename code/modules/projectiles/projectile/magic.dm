@@ -1109,3 +1109,12 @@
 	..()
 	empulse(target, heavy_emp_radius, light_emp_radius)
 	return BULLET_ACT_HIT
+
+/obj/projectile/magic/thorn
+	name = "eldritch thorn"
+	desc = "a piece of wood sharpened to a very thin point, good at hurting people who are infront of it."
+	icon_state = "spellcard"
+	damage_type = BRUTE
+	damage = 5
+	nodamage = FALSE
+	antimagic_charge_cost = 0 // since the cards gets spammed like a shotgun
