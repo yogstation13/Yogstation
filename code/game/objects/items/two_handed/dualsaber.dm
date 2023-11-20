@@ -203,7 +203,7 @@
 	name = "makeshift double-bladed energy sword"
 	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
 
-	force_wielded = 30 //total of 30 to be equal to an esword, it's literally just two duct taped together
+	force_wielded = 27 //total of 30 to be equal to an esword, it's literally just two duct taped together
 
 /obj/item/melee/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
 	if(prob(50))
