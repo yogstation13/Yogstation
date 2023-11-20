@@ -45,52 +45,51 @@
 /datum/horror_chem/epinephrine
 	chemname = "epinephrine"
 	R = /datum/reagent/medicine/epinephrine
-	chem_desc = "Stabilizes critical condition and slowly restores oxygen damage. Injects [quantity] units at once."
+	chem_desc = "Stabilizes critical condition and slowly restores oxygen damage."
 
 /datum/horror_chem/mannitol
 	chemname = "mannitol"
 	R = /datum/reagent/medicine/mannitol
-	chem_desc = "Heals brain damage. Injects [quantity] units at once."
-
+	chem_desc = "Heals brain damage."
 /datum/horror_chem/bicaridine
 	chemname = "bicaridine"
 	R = /datum/reagent/medicine/bicaridine
-	chem_desc = "Heals brute damage. Injects [quantity] units at once."
+	chem_desc = "Heals brute damage."
 
 /datum/horror_chem/kelotane
 	chemname = "kelotane"
 	R = /datum/reagent/medicine/kelotane
-	chem_desc = "Heals burn damage. Injects [quantity] units at once."
+	chem_desc = "Heals burn damage."
 
 /datum/horror_chem/charcoal
 	chemname = "charcoal"
 	R = /datum/reagent/medicine/charcoal
-	chem_desc = "Slowly heals toxin damage, while also slowly removing any other chemicals. Injects [quantity] units at once."
+	chem_desc = "Slowly heals toxin damage, while also slowly removing any other chemicals."
 
 /datum/horror_chem/adrenaline
 	chemname = "adrenaline"
 	R = /datum/reagent/medicine/changelingadrenaline
 	chemuse = 100
-	chem_desc = "Stimulates the brain, shrugging off effect of stuns while regenerating stamina. Injects [quantity] units at once."
+	chem_desc = "Stimulates the brain, shrugging off effect of stuns while regenerating stamina."
 
 /datum/horror_chem/rezadone
 	chemname = "rezadone"
 	R = /datum/reagent/medicine/rezadone
 	chemuse = 50
-	chem_desc = "Heals cellular damage. Injects [quantity] units at once."
+	chem_desc = "Heals cellular damage."
 
 /datum/horror_chem/pen_acid
 	chemname = "pentetic acid"
 	R = /datum/reagent/medicine/pen_acid
 	chemuse = 50
-	chem_desc = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body. Injects [quantity] units at once."
+	chem_desc = "Reduces massive amounts of radiation and toxin damage while purging other chemicals from the body."
 
 /datum/horror_chem/sal_acid
 	chemname = "salicyclic acid"
 	R = /datum/reagent/medicine/sal_acid
-	chem_desc = "Stimulates the healing of severe bruises. Rapidly heals severe bruising and slowly heals minor ones. Injects [quantity] units at once."
+	chem_desc = "Stimulates the healing of severe bruises. Rapidly heals severe bruising and slowly heals minor ones."
 
 /datum/horror_chem/oxandrolone
 	chemname = "oxandrolone"
 	R = /datum/reagent/medicine/oxandrolone
-	chem_desc = "Stimulates the healing of severe burns. Rapidly heals severe burns and slowly heals minor ones. Injects [quantity] units at once."
+	chem_desc = "Stimulates the healing of severe burns. Rapidly heals severe burns and slowly heals minor ones."
