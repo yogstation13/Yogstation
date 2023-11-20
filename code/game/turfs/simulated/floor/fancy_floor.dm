@@ -209,6 +209,7 @@
 
 /turf/open/floor/wood/large/broken
 	icon_state = "wood-large-broken"
+	broken = TRUE
 
 /turf/open/floor/wood/large/broken/two
 	icon_state = "wood-large-broken2"
