@@ -2,35 +2,6 @@
 	name = "Precipice Of Enlightenment"
 	desc = "Pledge yourself to knowledge everlasting. Allows you to transmute a knife and a book into a blade of pure thought. Additionally, Your mansus grasp now functions at a range, knocking them down and blurring their vision."
 	gain_text = "The corpse of an ancient God defiled, your fellow scholars enlightened by false knowledge, but you seek true insight. You seek the unknown, the invisible, the truth behind the veil."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic,
-		/datum/eldritch_knowledge/base_knock,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final,
-		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/mind_knife)
 	cost = 1
 	route = PATH_MIND
@@ -63,17 +34,6 @@
 	human_target.blur_eyes(1 SECONDS)
 	human_target.Knockdown(2 SECONDS)
 
-// /datum/eldritch_knowledge/spell/mental_obfuscation
-// 	name = "T1 - Mental Obfuscation"
-// 	gain_text = "A mind is such an easy thing to trick, nothing more than a lump of meat ready to be moulded by your hands."
-// 	desc = "Allows you to teleport a short distance to a targeted destination."
-// 	cost = 1
-// 	spell_to_add = /datum/action/cooldown/spell/pointed/phase_jump/obfuscation
-// 	banned_knowledge = list(
-// 		/datum/eldritch_knowledge/spell/void_phase)
-// 	route = PATH_MIND
-// 	tier = TIER_1
-
 /datum/eldritch_knowledge/spell/eldritchbolt
 	name = "T1 - Eldritch Bolt"
 	gain_text = "Remain wary of the frailty of men. Their wills are weak, minds young. Were it not for fear, death would go unlamented. Seek the old blood. Let us pray, let us wish... to partake in communion."
@@ -89,6 +49,7 @@
 	desc = "Allows you to craft an eldritch eye by transmuting a flashlight and a pair of eyes. Grants the user a hud type of their choosing, additionally also grants night vision but it cannot be removed."
 	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_eye)
 	cost = 1
+	route = PATH_MIND
 	tier = TIER_1
 
 /datum/eldritch_knowledge/mind_mark
@@ -96,14 +57,6 @@
 	gain_text = "They say the eyes are the gateway to the soul, a way to tell one's true intentions. Show them a single sliver of the truth of this world and their eyes will reject all."
 	desc = "Upgrade your mansus grasp, granting it the ability to blind a target on hit, as well as increasing the range"
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_MIND
 	tier = TIER_MARK
 
@@ -141,6 +94,7 @@
 	desc = "An AOE roar spell that freezes all nearby people with sheer terror."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/aoe/immobilize/famished_roar
+	route = PATH_MIND
 	tier = TIER_3
 
 /datum/eldritch_knowledge/mind_blade_upgrade
@@ -148,14 +102,6 @@
 	gain_text = "Curse here, Curse there. Curse for he and she, why care? A bottomless curse, a bottomless sea, source of all greatness, all things that be."
 	desc = "Your mind blade will now inject targets hit with mutetoxin, silencing them."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_MIND
 	tier = TIER_BLADE
 
