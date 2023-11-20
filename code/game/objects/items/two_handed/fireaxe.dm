@@ -19,13 +19,12 @@
 	wound_bonus = -15
 	bare_wound_bonus = 20
 
-	/// How much damage to do wielded
-	var/force_wielded = 24
+	/// Bonus damage from wielding
+	var/force_wielded = 19
 
 /obj/item/fireaxe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 	)
@@ -65,7 +64,7 @@
 	base_icon_state = "metalh2_axe"
 	name = "metallic hydrogen axe"
 	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherworldly weapon."
-	force_wielded = 23
+	force_wielded = 18
 
 /*
  * Bone Axe
@@ -75,7 +74,7 @@
 	base_icon_state = "bone_axe"
 	name = "bone axe"
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
-	force_wielded = 23
+	force_wielded = 18
 
 /*
  * Energy Fire Axe
@@ -98,14 +97,13 @@
 	sharpness = SHARP_NONE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-	force_wielded = 30
+	force_wielded = 25
 
 	var/w_class_on = WEIGHT_CLASS_BULKY
 
 /obj/item/fireaxe/energy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 		wieldsound = 'sound/weapons/saberon.ogg', \

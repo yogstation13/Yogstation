@@ -29,7 +29,7 @@
 	light_range = 2
 	light_power = 2
 
-	var/force_wielded = 28
+	var/force_wielded = 24
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
@@ -42,7 +42,6 @@
 	spark_system.attach(src)
 	set_light_on(FALSE)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)

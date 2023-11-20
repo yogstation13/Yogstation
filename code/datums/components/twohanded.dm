@@ -14,10 +14,8 @@
 	var/wielded = FALSE
 	/// The multiplier applied to force when wielded, does not work with force_wielded, and force_unwielded
 	var/force_multiplier = 0
-	/// The force of the item when wielded
+	/// Additional force when wielded
 	var/force_wielded = 0
-	/// The force of the item when unweilded
-	var/force_unwielded = 0
 	/// Play sound when wielded
 	var/wieldsound = FALSE
 	/// Play sound when unwielded
@@ -60,7 +58,6 @@
 	attacksound = FALSE,
 	force_multiplier = 0,
 	force_wielded = 0,
-	force_unwielded = 0,
 	icon_wielded = FALSE,
 	datum/callback/wield_callback,
 	datum/callback/unwield_callback,
@@ -75,7 +72,6 @@
 	src.attacksound = attacksound
 	src.force_multiplier = force_multiplier
 	src.force_wielded = force_wielded
-	src.force_unwielded = force_unwielded
 	src.icon_wielded = icon_wielded
 	src.wield_callback = wield_callback
 	src.unwield_callback = unwield_callback
@@ -93,7 +89,6 @@
 	unwieldsound,
 	force_multiplier,
 	force_wielded,
-	force_unwielded,
 	icon_wielded,
 	datum/callback/wield_callback,
 	datum/callback/unwield_callback,
@@ -113,8 +108,6 @@
 		src.force_multiplier = force_multiplier
 	if(force_wielded)
 		src.force_wielded = force_wielded
-	if(force_unwielded)
-		src.force_unwielded = force_unwielded
 	if(icon_wielded)
 		src.icon_wielded = icon_wielded
 	if(wield_callback)
@@ -225,9 +218,7 @@
 	if(force_multiplier)
 		parent_item.force *= force_multiplier
 	else if(force_wielded)
-		parent_item.force = force_wielded
-	if(sharpened_increase)
-		parent_item.force += sharpened_increase
+		parent_item.force += force_wielded
 	parent_item.weapon_stats = wielded_stats
 	parent_item.name = "[parent_item.name] (Wielded)"
 	parent_item.update_appearance()
@@ -271,12 +262,10 @@
 
 	// update item stats
 	var/obj/item/parent_item = parent
-	if(sharpened_increase)
-		parent_item.force -= sharpened_increase
 	if(force_multiplier)
 		parent_item.force /= force_multiplier
-	else if(force_unwielded)
-		parent_item.force = force_unwielded
+	else if(force_wielded)
+		parent_item.force -= force_unwielded
 	
 	parent_item.weapon_stats = initial(parent_item.weapon_stats)
 
@@ -373,14 +362,14 @@
 	if(sharpened_increase)
 		return COMPONENT_BLOCK_SHARPEN_ALREADY
 	var/wielded_val = 0
+	var/obj/item/parent_item = parent
 	if(force_multiplier)
-		var/obj/item/parent_item = parent
 		if(wielded)
 			wielded_val = parent_item.force
 		else
 			wielded_val = parent_item.force * force_multiplier
 	else
-		wielded_val = force_wielded
+		wielded_val = parent_item.force + (wielded ? 0 : force_wielded)
 	if(wielded_val > max_amount)
 		return COMPONENT_BLOCK_SHARPEN_MAXED
 	sharpened_increase = min(amount, (max_amount - wielded_val))

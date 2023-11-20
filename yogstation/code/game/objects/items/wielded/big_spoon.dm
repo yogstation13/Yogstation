@@ -24,8 +24,7 @@
 /obj/item/bigspoon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 2, \
-		force_wielded = 18, \
+		force_wielded = 16, \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)

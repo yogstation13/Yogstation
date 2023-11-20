@@ -26,15 +26,14 @@
 	wound_bonus = -15
 	bare_wound_bonus = 15
 
-	///How much damage to deal when wielded.
-	var/force_wielded = 18
+	///How much extra damage to deal when wielded.
+	var/force_wielded = 8
 	///Whether the spear can have an explosive attached to it.
 	var/can_be_explosive = TRUE
 
 /obj/item/melee/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5), \
@@ -149,12 +148,11 @@
 	throw_speed = 4
 	attack_verb = list("gored")
 
-	force_wielded = 25
+	force_wielded = 10
 
 /obj/item/melee/spear/grey_tide/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
@@ -199,13 +197,12 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	sharpness = SHARP_EDGED
 
-	force_wielded = 20 //I have no idea how to balance
+	force_wielded = 9 //I have no idea how to balance
 	can_be_explosive = FALSE
 
 /obj/item/melee/spear/bonespear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = force, \
 		force_wielded = force_wielded, \
 		icon_wielded = "[base_icon_state]1", \
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \

@@ -21,8 +21,7 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 5, \
-		force_wielded = 20, \
+		force_wielded = 15, \
 		icon_wielded = "[base_icon_state]1", \
 	)
 
@@ -98,8 +97,7 @@
 /obj/item/mjolnir/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 5, \
-		force_wielded = 25, \
+		force_wielded = 20, \
 		icon_wielded = "[base_icon_state]1", \
 	)
 
