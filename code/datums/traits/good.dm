@@ -310,10 +310,10 @@
 	medical_record_text = "Patient is unusually speedy when creating crafts."
 
 /datum/quirk/cyberorgan //random upgraded cybernetic organ
-	name = "Cybernetic Organ"
-	desc = "Due to a past incident you lost function of one of your organs, but now have a fancy upgraded cybernetic organ!"
+	name = "Upgraded Cybernetic Organ"
+	desc = "Due to a past incident you lost function of one of your organs, but now have a random upgraded cybernetic organ!"
 	icon = "building-ngo"
-	value = 4
+	value = 3
 	var/slot_string = "organ"
 	var/list/organ_list = list(
 		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic/upgraded, 
@@ -347,13 +347,25 @@
 
 	if(species_type == /datum/species/ipc) // IPCs are already cybernetic
 		return "You already have cybernetic organs!"
+	
+	var/datum/species/species = new species_type
+	if(TRAIT_TOXINLOVER in species.inherent_traits)
+		temp -= ORGAN_SLOT_LIVER
+	if(TRAIT_NOBREATH in species.inherent_traits)
+		temp -= ORGAN_SLOT_LUNGS
+	if(NOBLOOD in species.species_traits)
+		temp -= ORGAN_SLOT_HEART
+	if(temp.len <= 0)
+		return "You have no organs to replace!"
+
 	return FALSE
 
 /datum/quirk/cyberorgan/lungs
 	name = "Cybernetic Organ (Lungs)"
-	desc = "Due to a past incident you lost function of your lungs, but now have fancy upgraded cybernetic lungs!"
-	organ_list = list(ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic/upgraded)
+	desc = "Due to a past incident you lost function of your lungs, but now have cybernetic lungs!"
+	organ_list = list(ORGAN_SLOT_LUNGS = /obj/item/organ/lungs/cybernetic)
 	medical_record_text = "During physical examination, patient was found to have upgraded cybernetic lungs."
+	value = 0
 
 /datum/quirk/cyberorgan/lungs/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
@@ -364,9 +376,10 @@
 
 /datum/quirk/cyberorgan/heart
 	name = "Cybernetic Organ (Heart)"
-	desc = "Due to a past incident you lost function of your heart, but now have a fancy upgraded cybernetic heart!"
-	organ_list = list(ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic/upgraded)
-	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic heart."
+	desc = "Due to a past incident you lost function of your heart, but now have a cybernetic heart!"
+	organ_list = list(ORGAN_SLOT_HEART = /obj/item/organ/heart/cybernetic)
+	medical_record_text = "During physical examination, patient was found to have a cybernetic heart."
+	value = 0
 
 /datum/quirk/cyberorgan/heart/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
@@ -377,9 +390,10 @@
 
 /datum/quirk/cyberorgan/liver
 	name = "Cybernetic Organ (Liver)"
-	desc = "Due to a past incident you lost function of your liver, but now have a fancy upgraded cybernetic liver!"
-	organ_list = list(ORGAN_SLOT_LIVER = /obj/item/organ/liver/cybernetic/upgraded)
-	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic liver."
+	desc = "Due to a past incident you lost function of your liver, but now have a cybernetic liver!"
+	organ_list = list(ORGAN_SLOT_LIVER = /obj/item/organ/liver/cybernetic)
+	medical_record_text = "During physical examination, patient was found to have a cybernetic liver."
+	value = 0
 
 /datum/quirk/cyberorgan/liver/check_quirk(datum/preferences/prefs)
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
