@@ -110,6 +110,7 @@
 
 #define PATH_SIDE "Side"
 
+#define PATH_NONE "Unpledged"
 #define PATH_ASH "Ash"
 #define PATH_RUST "Rust"
 #define PATH_FLESH "Flesh"

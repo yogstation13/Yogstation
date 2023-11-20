@@ -35,9 +35,9 @@
 
 	if(alarm_area == get_area_name(src))
 		switch(alert)
-			if("severe")
+			if(ATMOS_ALARM_SEVERE)
 				autoclose = TRUE
 				close()
-			if("minor", "clear")
+			if(ATMOS_ALARM_MINOR, ATMOS_ALARM_CLEAR)
 				autoclose = FALSE
 				open()
