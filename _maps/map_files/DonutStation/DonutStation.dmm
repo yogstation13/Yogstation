@@ -377,14 +377,6 @@
 /obj/item/storage/fancy/cigarettes,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"ajI" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
-/area/chapel/main)
 "ajM" = (
 /obj/machinery/status_display,
 /turf/closed/wall,
@@ -1464,6 +1456,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"aFg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	areastring = "/area/chapel/office";
+	dir = 8;
+	name = "Chapel Office APC";
+	pixel_x = -25
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "aFm" = (
 /obj/structure/particle_accelerator/power_box{
 	dir = 1;
@@ -6848,6 +6853,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cMu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "cMw" = (
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;35"
@@ -9724,6 +9741,17 @@
 /obj/item/extinguisher,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"dZo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "dZx" = (
 /obj/structure/closet/secure_closet/security/sec,
 /turf/open/floor/plasteel/showroomfloor,
@@ -10838,15 +10866,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"ezL" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "eAb" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
@@ -12855,16 +12874,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"fqT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/effect/decal/cleanable/ash/crematorium,
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "fra" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 8;
@@ -13185,6 +13194,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fvT" = (
+/obj/machinery/door/airlock{
+	name = "Crematorium";
+	req_access_txt = "27"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "fvU" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Primary Tool Storage"
@@ -13882,6 +13913,28 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"fNj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance{
+	req_one_access_txt = "12"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port/aft)
 "fNl" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -18051,6 +18104,17 @@
 /obj/machinery/vending/clothing,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"hJN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "hJO" = (
 /obj/machinery/computer/shuttle/labor{
 	dir = 1;
@@ -20592,6 +20656,19 @@
 	},
 /turf/open/floor/grass,
 /area/medical/genetics)
+"iWP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/ash/crematorium,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "iXh" = (
 /obj/structure/closet/crate{
 	name = "Surplus Toxins Supplies"
@@ -23275,14 +23352,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
-"jZE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "jZF" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -24616,6 +24685,18 @@
 /obj/item/gps,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"kJb" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "kJg" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -27651,6 +27732,12 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"lYe" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "lYB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/structure/extinguisher_cabinet{
@@ -30918,25 +31005,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"nrb" = (
-/obj/machinery/door/airlock{
-	name = "Crematorium";
-	req_access_txt = "27"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "nrc" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plasteel,
@@ -35087,12 +35155,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"pjA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "pjJ" = (
 /obj/machinery/computer/med_data{
 	dir = 8;
@@ -36462,12 +36524,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"pLB" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "pLS" = (
 /obj/machinery/door/airlock/virology/glass{
 	name = "Monkey Pen";
@@ -36683,22 +36739,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/security/prison)
-"pOJ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/port/aft)
 "pOM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -36943,17 +36983,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"pTc" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "pTe" = (
 /obj/machinery/mineral/ore_redemption,
 /obj/machinery/door/firedoor/border_only{
@@ -38484,15 +38513,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qzN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "qzY" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -45656,15 +45676,6 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
-"tHu" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "tHB" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -51967,18 +51978,6 @@
 	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
-"wvu" = (
-/obj/machinery/power/apc{
-	areastring = "/area/chapel/office";
-	dir = 8;
-	name = "Chapel Office APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "wvA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -85603,7 +85602,7 @@ tIb
 fOG
 fOG
 kTi
-pOJ
+fNj
 kTi
 kTi
 xkg
@@ -89200,10 +89199,10 @@ uLk
 uLk
 ykw
 lpn
-rSz
-rSz
-rSz
-rSz
+akr
+akr
+akr
+akr
 iVj
 akr
 myW
@@ -98630,7 +98629,7 @@ jBL
 ghL
 vYa
 tJZ
-wvu
+ghL
 jBL
 vXY
 wSN
@@ -98887,7 +98886,7 @@ jBL
 bhD
 wXE
 iSI
-pLB
+ghL
 jBL
 nDI
 jMb
@@ -99144,7 +99143,7 @@ jBL
 aKj
 pSS
 wYC
-qzN
+lYe
 jBL
 faF
 csp
@@ -99399,9 +99398,9 @@ kqW
 jFa
 jBL
 npK
-ezL
-jZE
-pTc
+kJb
+dZo
+hJN
 uBj
 fXR
 yfT
@@ -99656,7 +99655,7 @@ kqW
 uGk
 jBL
 iaH
-tHu
+cMu
 ghL
 ghL
 nTb
@@ -99913,7 +99912,7 @@ kqW
 jFa
 jBL
 aLL
-tHu
+cMu
 bDL
 ghL
 kXM
@@ -100170,7 +100169,7 @@ kde
 jFa
 jBL
 jBL
-nrb
+fvT
 jBL
 jBL
 jBL
@@ -100427,8 +100426,8 @@ eGX
 brs
 jBL
 uzl
-fqT
-pjA
+iWP
+aFg
 wED
 jBL
 iSF
@@ -100947,7 +100946,7 @@ jBL
 jBL
 xJU
 nCv
-ajI
+xJU
 kZs
 xfr
 piy
