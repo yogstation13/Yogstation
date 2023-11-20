@@ -1,4 +1,5 @@
 {
+	"__comment": "Map json disabled due to crash during unit testing",
     "map_name": "MultiZ Debug",
     "map_path": "map_files/debug",
     "map_file": "multiz.dmm",

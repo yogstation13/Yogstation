@@ -3,35 +3,6 @@
 	desc = "Opens up the Path of Cosmos to you. \ Allows you to transmute a sheet of plasma and a knife into an Cosmic Blade. \
 			Additionally your grasp will now cause a cosmic ring on your targets, which are affected by your abilities."
 	gain_text = "A nebula appeared in the sky, its infernal birth shone upon me. This was the start of a great transcendence."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_knock,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/knock_mark,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/cosmic_knife)
 	cost = 1
 	route = PATH_COSMIC
@@ -41,6 +12,16 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/melee/sickly_blade/cosmic
 	user.put_in_hands(realknife)
+
+	///use is if you want to swap out a spell they get upon becoming their certain type of heretic
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/cosmic/cosmic_jaunt = new(user)
+	cosmic_jaunt.Grant(user)
+	
+	ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, INNATE_TRAIT)
+	ADD_TRAIT(user, TRAIT_RESISTCOLD, INNATE_TRAIT)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
 /datum/eldritch_knowledge/base_cosmic/on_lose(mob/user)
@@ -76,14 +57,6 @@
 		They will then be paralyzed for 2 seconds."
 	gain_text = "The Beast now whispered to me occasionally, only small tidbits of their circumstances. \
 		I can help them, I have to help them."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_COSMIC
 	tier = TIER_MARK
 
@@ -124,14 +97,6 @@
 	desc = "Your blade now deals damage to people's cells through cosmic radiation."
 	gain_text = "The Beast took my blades in their hand, I kneeled and felt a sharp pain. \
 		The blades now glistened with fragmented power. I fell to the ground and wept at the beast's feet."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade)
 	route = PATH_COSMIC
 	tier = TIER_BLADE
 
