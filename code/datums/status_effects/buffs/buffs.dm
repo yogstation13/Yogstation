@@ -546,7 +546,7 @@
 /datum/status_effect/regenerative_core/refresh(effect, ...) //apply the buffs and heals again when it's refreshed
 	var/efficiency = 1
 	if(!mining_check()) //only get weaker station side
-		debuffCounter += 25
+		debuffCounter += 30
 		efficiency *= ((100 - debuffCounter)/100) //multiplies by anywhere from 1 to -infinity
 	if(efficiency < 1)//if they've userused them to the point of ineffectivity
 		to_chat(owner, span_danger("The power infused into your body struggles to knit you back together, weakened by it's distance from the necropolis!"))
