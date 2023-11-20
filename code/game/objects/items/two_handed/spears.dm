@@ -65,7 +65,7 @@
 /obj/item/melee/spear/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if (istype(tip, /obj/item/shard/plasma))
-		SEND_SIGNAL(src, COMSIG_ITEM_SHARPEN_ACT, 1)
+		force_wielded += 1
 		force += 1
 		throwforce += 1
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
