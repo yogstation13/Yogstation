@@ -18,9 +18,9 @@ ASH PATH SPELLS GO HERE
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	exit_jaunt_sound = null
-	jaunt_duration = 1.1 SECONDS
-	jaunt_in_time = 1.3 SECONDS
-	jaunt_out_time = 0.6 SECONDS
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
 	
@@ -37,7 +37,7 @@ ASH PATH SPELLS GO HERE
 	name = "ash_shift"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ash_shift2"
-	duration = 1.3 SECONDS
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/dir_setting/ash_shift/out
 	icon_state = "ash_shift"

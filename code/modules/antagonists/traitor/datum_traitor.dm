@@ -17,6 +17,7 @@
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
 	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
+	var/obj/item/uplink_holder
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()

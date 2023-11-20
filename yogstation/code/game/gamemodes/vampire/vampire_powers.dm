@@ -72,40 +72,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/datum/action/cooldown/spell/vampire_help
-	name = "How to suck blood 101"
-	desc = "Explains how the vampire blood sucking system works."
-	button_icon_state = "bloodymaryglass"
-	button_icon = 'icons/obj/drinks.dmi'
-	background_icon_state = "bg_vampire"
-	overlay_icon_state = "bg_vampire_border"
-
-	school = SCHOOL_SANGUINE
-
-	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
-
-/datum/action/cooldown/spell/vampire_help/cast(mob/living/user)
-	. = ..()
-	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
-	if(!V) //sanity check
-		return
-	var/stealth = TRUE
-	if(V.get_ability(/datum/vampire_passive/nostealth))//different help text if you no longer have stealth
-		stealth = FALSE
-
-	var/list/string = list()
-	string += span_notice("You can consume blood from humanoid life by [span_red("punching their head while on the harm intent")]")
-	string += span_notice("Your bloodsucking speed depends on grab strength.")
-	string += span_notice("Having a <b>neck grab or stronger</b> increases blood drain rate by 50%.")
-	string += span_notice("This [span_red("WILL")] alert everyone who can see it, as well as make a noise.")
-	if(stealth)
-		string += span_notice("You can extract blood [span_red("<i>stealthily</i>")] by initiating without a grab.")
-		string += span_notice("This will reduce the amount of blood taken by 50%.")
-	string += span_notice("Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.")
-	to_chat(user, string.Join("<br>"))
-	return TRUE
-
 /datum/action/cooldown/spell/rejuvenate
 	name = "Rejuvenate (20)"
 	desc= "Flush your system with some spare blood to restore stamina over time."
