@@ -57,7 +57,7 @@ datum/eldritch_knowledge/base_jungle/proc/on_mansus_grasp(mob/living/source, mob
 
 /datum/eldritch_knowledge/jungle_mark/on_gain(mob/user)
 	. = ..()
-	user.add_movespeed_modifier(update=TRUE, priority=100, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
+	user.add_movespeed_modifier(update=TRUE, priority=100, multiplicative_slowdown=-0.3, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/eldritch_knowledge/spell/vine_wall
 	name = "T2 - Xibalba's Foresight"
@@ -82,10 +82,10 @@ datum/eldritch_knowledge/base_jungle/proc/on_mansus_grasp(mob/living/source, mob
 	bola_spell?.cooldown_time /= 2
 
 
-/datum/eldritch_knowledge/spell/vine_wall
+/datum/eldritch_knowledge/spell/thorn_shot
 	name = "T3 - Xibalba's Wrath"
 	gain_text = "Xibalba's anger causes even the mightiest of trees to bend and break, take a piece of it and use it upon thy enemies."
-	desc = "Fire an array of thorns."
+	desc = "Grants access to Thorn Shot, a spell which fires out an array of thorns."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/projectile/spell_cards/thorns
 	route = PATH_JUNGLE
