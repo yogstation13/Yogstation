@@ -168,43 +168,12 @@
 			var/turf/T4 = get_step(T2,turn(direction, -90))
 			the_targets.Add(T3,T4)
 
-		var/list/water_particles=list()
 		for(var/a=0, a<5, a++)
-			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
 			var/my_target = pick(the_targets)
-			water_particles[W] = my_target
-			// If precise, remove turf from targets so it won't be picked more than once
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src), my_target)
+			reagents.trans_to(W, chem_amount, transfered_by = user)
 			if(precision)
 				the_targets -= my_target
-			var/datum/reagents/R = new/datum/reagents(5)
-			W.reagents = R
-			R.my_atom = W
-			reagents.trans_to(W, chem_amount, transfered_by = user)
-
-		//Make em move dat ass, hun
-		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, water_particles), 2)
-
-//Particle movement loop
-/obj/item/extinguisher/proc/move_particles(list/particles, repetition=0)
-	//Check if there's anything in here first
-	if(!particles || particles.len == 0)
-		return
-	// Second loop: Get all the water particles and make them move to their target
-	for(var/obj/effect/particle_effect/water/W in particles)
-		var/turf/my_target = particles[W]
-		if(!W)
-			continue
-		step_towards(W,my_target)
-		if(!W.reagents)
-			continue
-		W.reagents.reaction(get_turf(W))
-		for(var/A in get_turf(W))
-			W.reagents.reaction(A)
-		if(W.loc == my_target)
-			particles -= W
-	if(repetition < power)
-		repetition++
-		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, particles, repetition), 2)
 
 //Chair movement loop
 /obj/item/extinguisher/proc/move_chair(obj/B, movementdirection, repetition=0)
