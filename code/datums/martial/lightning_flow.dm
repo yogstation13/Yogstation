@@ -78,7 +78,7 @@
 		
 /datum/martial_art/lightning_flow/proc/end_dash(mob/living/carbon/human/H)
 	dashing = FALSE
-	H.SetImmobilized(0)
+	H.SetImmobilized(0, TRUE, TRUE) //remove the block on movement
 
 /datum/martial_art/lightning_flow/handle_throw(atom/hit_atom, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	if(!dashing || !action_type)
