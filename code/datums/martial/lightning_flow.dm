@@ -72,10 +72,14 @@
 	dashing = TRUE
 	if(action_type && action_type == INTENT_DISARM)
 		H.Knockdown(2 SECONDS, TRUE, TRUE)
-	H.Immobilize(0.6 SECONDS, TRUE, TRUE) //just until the dash would end
+	H.Immobilize(1 SECONDS, TRUE, TRUE) //to prevent canceling the dash
 	new /obj/effect/particle_effect/sparks/electricity/short/loud(get_turf(H))
-	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, callback = VARSET_CALLBACK(src, dashing, FALSE))
+	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, callback = CALLBACK(src, PROC_REF(end_dash), H))
 		
+/datum/martial_art/lightning_flow/proc/end_dash(mob/living/carbon/human/H)
+	dashing = FALSE
+	H.SetImmobilized(0)
+
 /datum/martial_art/lightning_flow/handle_throw(atom/hit_atom, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	if(!dashing || !action_type)
 		return FALSE
@@ -83,14 +87,13 @@
 		return FALSE
 	var/mob/living/target = hit_atom
 	dashing = FALSE
-	H.SetImmobilized(0)
-	H.SetKnockdown(0)
 	switch(action_type)
 		if(INTENT_DISARM)
 			if(ishuman(target))
 				var/mob/living/carbon/human/victim = target
 				if(victim.check_shields(src, 0, "[H]", attack_type = LEAP_ATTACK))
 					return FALSE
+			H.SetKnockdown(0) //remove the self knockdown from the dropkick
 			dropkick(target, H, throwingdatum)
 		if(INTENT_GRAB)
 			target.grabbedby(H)
