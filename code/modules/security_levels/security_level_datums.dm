@@ -90,3 +90,32 @@
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
 	shuttle_call_time_mod = ALERT_COEFF_DELTA
+
+
+/**
+ * GAMMA
+ *
+ * Station is not having a very good fun time
+ */
+/datum/security_level/gamma
+	name = "gamma"
+	announcement_color = "orange"
+	sound = 'sound/misc/gamma_alert.ogg'// Air alarm to signify importance
+	number_level = SEC_LEVEL_GAMMA
+	elevating_to_configuration_key = /datum/config_entry/string/alert_gamma
+	shuttle_call_time_mod = ALERT_COEFF_GAMMA
+
+
+
+/**
+ * EPSILON
+ *
+ * Station destruction is here, and you probably caused it, you monster.
+ */
+/datum/security_level/epsilon
+	name = "epsilon"
+	announcement_color = "black"
+	sound = 'sound/misc/epsilon_alert.ogg'// Air alarm to signify importance
+	number_level = SEC_LEVEL_EPSILON
+	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
+	shuttle_call_time_mod = ALERT_COEFF_EPSILON
