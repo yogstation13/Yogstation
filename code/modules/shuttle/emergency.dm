@@ -453,6 +453,7 @@
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \
 						supervisor.", "SYSTEM ERROR:", alert=TRUE)
+					sound_to_playing_players('sound/misc/announce2.ogg')
 
 				dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME
