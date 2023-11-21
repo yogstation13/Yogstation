@@ -563,3 +563,4 @@
 			if(M.getStaminaLoss() < 65)
 				M.adjustStaminaLoss(20)
 		return TRUE
+#undef SYMPTOM_SUPERFICIAL_LOWER_THRESHOLD
