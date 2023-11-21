@@ -25,7 +25,7 @@
 /obj/item/autosurgeon/attack_self(mob/user)//when the object it used...
 	if(istype(storedorgan, /obj/item/organ/regenerative_core))
 		var/obj/item/organ/regenerative_core/cores = storedorgan
-		to_chat(user, span_notice("[src] fucking explodes!"))
+		to_chat(user, span_notice("[src] reacts violently with the core, destroying the organ!"))
 		qdel(cores)
 		explosion(get_turf(src), 0, 0, 2, flame_range = 5)
 	if(!uses)
