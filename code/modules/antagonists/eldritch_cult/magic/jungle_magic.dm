@@ -101,17 +101,15 @@ JUNGLE PATH SPELLS GO HERE
 	button_icon_state = "fireball"
 	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
 
-	school = SCHOOL_EVOCATION
-	cooldown_time = 40 SECONDS
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 30 SECONDS
 	invocation_type = INVOCATION_NONE
-	spell_requirements = NONE
-	antimagic_flags = NONE
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
-	cone_levels = 6
+	cone_levels = 10
 	respect_density = TRUE
 	/// The range our user is thrown backwards after casting the spell
 	self_throw_range = 0
-
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath/xibalba/calculate_cone_shape(current_level)
 	// This makes the cone shoot out into a 3 wide column of flames.
@@ -125,3 +123,16 @@ JUNGLE PATH SPELLS GO HERE
 	target_mob.apply_damage(max(40, 40 - (5 * level)), TOX)
 	target_mob.adjust_fire_stacks(max(2, 5 - level))
 	target_mob.ignite_mob()
+
+/datum/action/cooldown/spell/aoe/repulse/xibalba
+	name = "Xibalba's Scream"
+	desc = "This spell throws everything around the user away."
+	button_icon_state = "repulse"
+	sound = 'sound/magic/demon_dies.ogg'
+
+	school = SCHOOL_EVOCATION
+	aoe_radius = 7
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	cooldown_time = 60 SECONDS
+	

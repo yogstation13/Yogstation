@@ -482,11 +482,11 @@
 /mob/living/simple_animal/hostile/eldritch/xibalba_herald
 	name = "Xibalba's Herald"
 	desc = "The ultimate hunter of the jungle."
-	icon = 'icons/mob/96x96eldritch_mobs.dmi'
-	icon_state = "star_gazer"
-	icon_living = "star_gazer"
-	pixel_x = -32
-	base_pixel_x = -32
+	icon = 'icons/mob/64x64eldritch_mobs.dmi'
+	icon_state = "spacedragon"
+	icon_living = "spacedragon"
+	pixel_x = -16
+	base_pixel_x = -16
 	mob_biotypes = MOB_HUMANOID | MOB_SPECIAL
 	speed = -0.2
 	maxHealth = 750
@@ -518,10 +518,10 @@
 /mob/living/simple_animal/hostile/eldritch/xibalba_herald/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/death_explosion, 3, 6, 12)
-	AddElement(/datum/element/effect_trail, /obj/effect/forcefield/cosmic_field/fast)
 	AddComponent(/datum/component/regenerator, outline_colour = "#b97a5d")
 	ADD_TRAIT(src, TRAIT_LAVA_IMMUNE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_ASHSTORM_IMMUNE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_NO_TELEPORT, MEGAFAUNA_TRAIT)
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, INNATE_TRAIT)
 	set_light(4, l_color = "#dcaa5b")
+
