@@ -35,6 +35,10 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
+			else if(S.requires_bodypart_type == BODYPART_ORGANIC && !(M.mob_biotypes & MOB_ORGANIC))
+				continue //simplemob surgeries based on biotypes
+			else if(S.requires_bodypart_type == BODYPART_ROBOTIC && !(M.mob_biotypes & MOB_ROBOTIC))
+				continue
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
 				continue
 			if(!S.can_start(user, M))
@@ -79,7 +83,7 @@
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
 				user.visible_message("[user] prepares to operate on [M]'s [parse_zone(selected_zone)].", \
 					span_notice("You prepare to operate on [M]'s [parse_zone(selected_zone)]."))
-				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff = 1)
+				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff_exponent = 1)
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 				if(S.self_operable || user != M)
 					procedure.next_step(user, user.a_intent)
@@ -92,7 +96,7 @@
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
 	var/selected_zone = user.zone_selected
 	to_chat(user, span_notice("You begin to cancel \the [S]."))
-	if(!do_mob(user, M, 3 SECONDS))
+	if(!do_after(user, 3 SECONDS, M))
 		return
 	if(S.status == 1)
 		M.surgeries -= S
@@ -145,10 +149,10 @@
 			if(covered_locations & HEAD)
 				return 0
 		if(BODY_ZONE_PRECISE_EYES)
-			if(covered_locations & HEAD || face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES)
+			if(face_covered & HIDEEYES || eyesmouth_covered & GLASSESCOVERSEYES || eyesmouth_covered & HEADCOVERSEYES || eyesmouth_covered & MASKCOVERSEYES)
 				return 0
 		if(BODY_ZONE_PRECISE_MOUTH)
-			if(covered_locations & HEAD || face_covered & HIDEFACE || eyesmouth_covered & MASKCOVERSMOUTH || eyesmouth_covered & HEADCOVERSMOUTH)
+			if(face_covered & HIDEFACE || eyesmouth_covered & MASKCOVERSMOUTH || eyesmouth_covered & HEADCOVERSMOUTH)
 				return 0
 		if(BODY_ZONE_CHEST)
 			if(covered_locations & CHEST)

@@ -14,6 +14,31 @@
 			C.bloodiness += bloodiness
 	return ..()
 
+/obj/effect/decal/cleanable/whiteblood
+	name = "\"blood\""
+	desc = "It's an unsettling colour. Maybe it's the chef's cooking?"
+	icon = 'icons/effects/blood.dmi'
+	icon_state = "genericsplatter1"
+	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
+
+/obj/effect/decal/cleanable/whiteblood/ethereal
+	name = "glowing \"blood\""
+	desc = "It has a fading glow. Surely it's just the chef's cooking?"
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+
+/obj/effect/decal/cleanable/whiteblood/ethereal/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/whiteblood/ethereal/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
+
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."
@@ -52,6 +77,21 @@
 
 /obj/effect/decal/cleanable/trail_holder/can_bloodcrawl_in()
 	return TRUE
+
+/obj/effect/decal/cleanable/trail_holder/proc/Etherealify()
+	name = "glowing \"blood\""
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+	update_light()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/trail_holder/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
@@ -170,7 +210,7 @@
 			shoe_types |= S.type
 			if (!(entered_dirs & H.dir))
 				entered_dirs |= H.dir
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 /obj/effect/decal/cleanable/blood/footprints/Uncrossed(atom/movable/O)
 	..()
@@ -182,25 +222,25 @@
 			shoe_types  |= S.type
 			if (!(exited_dirs & H.dir))
 				exited_dirs |= H.dir
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 
-/obj/effect/decal/cleanable/blood/footprints/update_icon()
-	cut_overlays()
+/obj/effect/decal/cleanable/blood/footprints/update_overlays()
+	. = ..()
 
 	for(var/Ddir in GLOB.cardinals)
 		if(entered_dirs & Ddir)
 			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
 				GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]1", dir = Ddir)
-			add_overlay(bloodstep_overlay)
+			. += bloodstep_overlay
 		if(exited_dirs & Ddir)
 			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
 				GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]2", dir = Ddir)
-			add_overlay(bloodstep_overlay)
+			. += bloodstep_overlay
 
-	alpha = BLOODY_FOOTPRINT_BASE_ALPHA+bloodiness
+	alpha = BLOODY_FOOTPRINT_BASE_ALPHA + bloodiness
 
 
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)
@@ -252,32 +292,36 @@
 
 /// Set the splatter up to fly through the air until it rounds out of steam or hits something. Contains sleep() pending imminent moveloop rework, don't call without async'ing it
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/fly_towards(turf/target_turf, range)
-	for(var/i in 1 to range)
-		step_towards(src,target_turf)
-		sleep(2) // Will be resolved pending Potato's moveloop rework
-		prev_loc = loc
-		for(var/atom/iter_atom in get_turf(src))
-			if(hit_endpoint)
-				return
-			if(splatter_strength <= 0)
-				break
+	if(range <= 0)
+		qdel(src)
+		return
 
-			if(isitem(iter_atom))
-				iter_atom.add_blood_DNA(blood_dna_info)
-				splatter_strength--
-			else if(ishuman(iter_atom))
-				var/mob/living/carbon/human/splashed_human = iter_atom
-				if(splashed_human.wear_suit)
-					splashed_human.wear_suit.add_blood_DNA(blood_dna_info)
-					splashed_human.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
-				if(splashed_human.w_uniform)
-					splashed_human.w_uniform.add_blood_DNA(blood_dna_info)
-					splashed_human.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
-				splatter_strength--
-		if(splatter_strength <= 0) // we used all the puff so we delete it.
-			qdel(src)
+	step_towards(src,target_turf)
+	prev_loc = loc
+	for(var/atom/iter_atom in get_turf(src))
+		if(hit_endpoint)
 			return
-	qdel(src)
+		if(splatter_strength <= 0)
+			break
+
+		if(isitem(iter_atom))
+			iter_atom.add_blood_DNA(blood_dna_info)
+			splatter_strength--
+		else if(ishuman(iter_atom))
+			var/mob/living/carbon/human/splashed_human = iter_atom
+			if(splashed_human.wear_suit)
+				splashed_human.wear_suit.add_blood_DNA(blood_dna_info)
+				splashed_human.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
+			if(splashed_human.w_uniform)
+				splashed_human.w_uniform.add_blood_DNA(blood_dna_info)
+				splashed_human.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
+			splatter_strength--
+
+	if(splatter_strength <= 0) // we used all the puff so we delete it.
+		qdel(src)
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(fly_towards), target_turf, range -1), 2)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/bumped_atom)
 	if(!iswallturf(bumped_atom) && !istype(bumped_atom, /obj/structure/window))

@@ -50,7 +50,7 @@
 			if(!B.active)
 				holder.visible_message(span_danger("[icon2html(B, viewers(holder))] You hear the bomb start ticking!"))
 				B.activate()
-				B.update_icon()
+				B.update_appearance(UPDATE_ICON)
 			else if(B.delayedlittle)
 				holder.visible_message(span_notice("[icon2html(B, viewers(holder))] Nothing happens."))
 			else
@@ -82,7 +82,7 @@
 				B.active = FALSE
 				B.delayedlittle = FALSE
 				B.delayedbig = FALSE
-				B.update_icon()
+				B.update_appearance(UPDATE_ICON)
 
 /datum/wires/syndicatebomb/proc/tell_admins(obj/machinery/syndicatebomb/B)
 	if(istype(B, /obj/machinery/syndicatebomb/training))

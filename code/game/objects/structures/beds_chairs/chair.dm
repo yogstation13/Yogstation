@@ -296,6 +296,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
 	force = 8
 	throwforce = 10
 	throw_range = 3
@@ -526,7 +527,7 @@
 	. = ..()
 	if(world.time >= music_time)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation) //lets refresh the moodlet
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
 	music_time = 0
 
 /obj/structure/chair/comfy/plastic/proc/motivate(mob/living/M)
@@ -534,5 +535,5 @@
 		return
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation)
 	if(M.client && (M.client.prefs.toggles & SOUND_JUKEBOX))
-		M.stop_sound_channel(CHANNEL_AMBIENCE)
-		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENCE)
+		M.stop_sound_channel(CHANNEL_AMBIENT_EFFECTS)
+		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENT_EFFECTS)

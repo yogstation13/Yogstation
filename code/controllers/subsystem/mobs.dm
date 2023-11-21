@@ -16,6 +16,10 @@ SUBSYSTEM_DEF(mobs)
 	msg = "P:[length(GLOB.mob_living_list)]"
 	return ..()
 
+/datum/controller/subsystem/mobs/get_metrics()
+	. = ..()
+	.["mobs"] = length(GLOB.mob_living_list)
+
 /datum/controller/subsystem/mobs/proc/MaxZChanged()
 	if (!islist(clients_by_zlevel))
 		clients_by_zlevel = new /list(world.maxz,0)

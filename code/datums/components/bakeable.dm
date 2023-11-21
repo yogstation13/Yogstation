@@ -67,8 +67,7 @@
 		for(var/obj/O in original.ingredients)
 			BR.ingredients += O
 			BR.mix_filling_color(O)
-			BR.update_name(O)
-			BR.update_overlays(O)
+			BR.update_appearance()
 
 
 	if(original_object.custom_materials)

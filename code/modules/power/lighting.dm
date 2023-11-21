@@ -12,6 +12,9 @@
 #define BROKEN_SPARKS_MIN (30 SECONDS)
 #define BROKEN_SPARKS_MAX (90 SECONDS)
 
+#define LIGHT_ON_DELAY_UPPER 3 SECONDS
+#define LIGHT_ON_DELAY_LOWER 1 SECONDS
+
 /obj/item/wallframe/light_fixture
 	name = "light fixture frame"
 	desc = "Used for building lights."
@@ -87,7 +90,7 @@
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
-		cell.update_icon()
+		cell.update_appearance(UPDATE_ICON)
 		cell = null
 		add_fingerprint(user)
 
@@ -254,6 +257,12 @@
 	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
 	var/bulb_vacuum_brightness = 8
 
+	///So we don't have a lot of stress on startup.
+	var/maploaded = FALSE
+
+	///More stress stuff.
+	var/turning_on = FALSE
+
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
 	icon_state = "tube-broken"
@@ -305,12 +314,26 @@
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
+	GLOB.lights += src
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
+
+	//Setup area colours -pb
+	var/area/A = get_area(src)
+	if(bulb_colour == initial(bulb_colour))
+		if(istype(src, /obj/machinery/light/small))
+			bulb_colour = A.lighting_colour_bulb
+		else
+			bulb_colour = A.lighting_colour_tube
+
+	if(nightshift_light_color == initial(nightshift_light_color))
+		nightshift_light_color = A.lighting_colour_night
+
 	if(!mapload) //sync up nightshift lighting for player made lights
-		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
+	else
+		maploaded = TRUE
 
 	if(start_with_cell && !no_emergency)
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
@@ -329,9 +352,10 @@
 				if(prob(5))
 					break_light_tube(1)
 		spawn(1)
-			update(0)
+			update(FALSE, TRUE, maploaded)
 
 /obj/machinery/light/Destroy()
+	GLOB.lights.Remove(src)
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE && !forced_off
@@ -339,7 +363,11 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/update_icon(updates=ALL)
+	. = ..()
+	if(on && turning_on)
+		return
+
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -347,16 +375,21 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire))
+			if(emergency_mode || (A && (A.fire || A.delta_light)))
 				icon_state = "[base_state]_emergency"
 			else if (A && A.vacuum)
 				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
-				if(on && !forced_off)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
-					glowybit.alpha = clamp(light_power*250, 30, 200)
-					add_overlay(glowybit)
+			if(on && !forced_off)
+				var/glow_state = base_state
+				if(emergency_mode || (A && A.fire))
+					glow_state = "[base_state]_emergency"
+				else if ((A && A.vacuum) || nightshift_enabled)
+					glow_state = "[base_state]_nightshift"
+				var/mutable_appearance/glowybit = mutable_appearance(overlayicon, glow_state, layer)
+				//glowybit.alpha = clamp(light_power*250, 30, 200)
+				add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -368,44 +401,28 @@
 /obj/machinery/light/proc/clean_light(O,strength)
 	if(strength < CLEAN_TYPE_BLOOD)
 		return
-	bulb_colour = initial(bulb_colour)
+	var/area/A = get_area(src)
+	if(istype(src, /obj/machinery/light/small))
+		bulb_colour = A.lighting_colour_bulb
+	else
+		bulb_colour = A.lighting_colour_tube
 	update()
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = TRUE)
+/obj/machinery/light/proc/update(trigger = TRUE, quiet = FALSE, instant = FALSE)
 	switch(status)
 		if(LIGHT_BROKEN,LIGHT_BURNED,LIGHT_EMPTY)
 			on = FALSE
 	emergency_mode = FALSE
 	if(on)
-		var/BR = brightness
-		var/PO = bulb_power
-		var/CO = bulb_colour
-		if(color)
-			CO = color
-		var/area/A = get_area(src)
-		if (A && A.fire)
-			CO = bulb_emergency_colour
-		else if (A && A.vacuum)
-			CO = bulb_vacuum_colour
-			BR = bulb_vacuum_brightness
-		else if (nightshift_enabled)
-			BR = nightshift_brightness
-			PO = nightshift_light_power
-			if(!color)
-				CO = nightshift_light_color
-		var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
-		if(!matching)
-			switchcount++
-			if(rigged)
-				if(status == LIGHT_OK && trigger)
-					explode()
-			else if( prob( min(60, (switchcount^2)*0.01) ) )
-				if(trigger)
-					burn_out()
-			else
-				use_power = ACTIVE_POWER_USE
-				set_light(BR, PO, CO)
+		if(instant)
+			turn_on(trigger, quiet)
+		else if(maploaded)
+			turn_on(trigger, TRUE)
+			maploaded = FALSE
+		else if(!turning_on)
+			turning_on = TRUE
+			addtimer(CALLBACK(src, PROC_REF(turn_on), trigger, quiet), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = IDLE_POWER_USE
 		emergency_mode = TRUE
@@ -413,7 +430,7 @@
 	else
 		use_power = IDLE_POWER_USE
 		set_light(0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	active_power_usage = (brightness * 10)
 	if(on != on_gs)
@@ -425,6 +442,46 @@
 			removeStaticPower(static_power_used, AREA_USAGE_STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
+
+/obj/machinery/light/proc/turn_on(trigger, quiet = FALSE)
+	if(QDELETED(src))
+		return FALSE
+	turning_on = FALSE
+	if(!on)
+		return FALSE
+
+	var/BR = brightness
+	var/PO = bulb_power
+	var/CO = bulb_colour
+	if(color)
+		CO = color
+	var/area/A = get_area(src)
+	if (A && (A.fire || A.delta_light))
+		CO = bulb_emergency_colour
+	else if (A && A.vacuum)
+		CO = bulb_vacuum_colour
+		BR = bulb_vacuum_brightness
+	else if (nightshift_enabled)
+		BR = nightshift_brightness
+		PO = nightshift_light_power
+		if(!color)
+			CO = nightshift_light_color
+	var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
+	if(!matching)
+		switchcount++
+		if(rigged)
+			if(status == LIGHT_OK && trigger)
+				explode()
+		else if( prob( min(60, (switchcount^2)*0.01) ) )
+			if(trigger)
+				burn_out()
+		else
+			use_power = ACTIVE_POWER_USE
+			set_light(BR, PO, CO)
+			if(!quiet)
+				playsound(src.loc, 'sound/effects/light_on.ogg', 50)
+	update_icon()
+	return TRUE
 
 /obj/machinery/light/update_atom_colour()
 	..()
@@ -453,12 +510,14 @@
 		icon_state = "[base_state]-burned"
 		on = FALSE
 		set_light(0)
+		playsound(src.loc, 'sound/effects/burnout.ogg', 65)
+		update_icon()
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
 /obj/machinery/light/proc/seton(s)
 	on = (s && status == LIGHT_OK && !forced_off)
-	update()
+	update(FALSE)
 
 /obj/machinery/light/get_cell()
 	return cell
@@ -542,7 +601,7 @@
 		set_light(0)
 		forced_off = !forced_off
 		on = !on
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		update()
 	else
 		return ..()
@@ -588,7 +647,7 @@
 			if(prob(12))
 				electrocute_mob(user, get_area(src), src, 0.3, TRUE)
 
-/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && !QDELETED(src))
 		if(prob(damage_amount * 5))
@@ -687,14 +746,12 @@
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
-			var/datum/species/ethereal/eth_species = H.dna?.species
-			if(istype(eth_species))
+			if(isethereal(H))
 				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 5 SECONDS, src))
-					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
-					if(istype(stomach))
+				if(do_after(user, 1 SECONDS, src))
+					if(istype(H.getorganslot(ORGAN_SLOT_STOMACH), /obj/item/organ/stomach/cell))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
-						stomach.adjust_charge(25 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+						H.adjust_nutrition(100)
 					else
 						to_chat(H, span_notice("You can't receive charge from the [fitting]."))
 				return
@@ -785,7 +842,7 @@
 	on = TRUE && !forced_off
 	update()
 
-/obj/machinery/light/tesla_act(power, tesla_flags)
+/obj/machinery/light/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		explosion(src,0,0,0,flame_range = 5, adminlog = 0)
 		qdel(src)
@@ -967,3 +1024,10 @@
 	transfer_fingerprints_to(M)
 	qdel(src)
 
+/proc/flicker_all_lights()
+	for(var/obj/machinery/light/L in GLOB.machines)
+		if(is_station_level(L.z))
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, flicker), rand(3, 6)), rand(0, 15))
+
+#undef LIGHT_ON_DELAY_UPPER
+#undef LIGHT_ON_DELAY_LOWER

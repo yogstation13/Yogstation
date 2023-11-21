@@ -344,15 +344,15 @@
 	switch(invocation_type)
 		if(INVOCATION_SHOUT)
 			if(prob(50))
-				owner.say(invocation, forced = "spell ([src])")
+				owner.say(invocation, ignore_spam = TRUE, forced = "spell ([src])")
 			else
-				owner.say(replacetext(invocation," ","`"), forced = "spell ([src])")
+				owner.say(replacetext(invocation," ","`"), ignore_spam = TRUE, forced = "spell ([src])")
 
 		if(INVOCATION_WHISPER)
 			if(prob(50))
-				owner.whisper(invocation, forced = "spell ([src])")
+				owner.whisper(invocation, ignore_spam = TRUE, forced = "spell ([src])")
 			else
-				owner.whisper(replacetext(invocation," ","`"), forced = "spell ([src])")
+				owner.whisper(replacetext(invocation," ","`"), ignore_spam = TRUE, forced = "spell ([src])")
 
 		if(INVOCATION_EMOTE)
 			owner.visible_message(invocation, invocation_self_message)

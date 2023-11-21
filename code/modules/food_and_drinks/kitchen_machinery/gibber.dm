@@ -38,18 +38,18 @@
 			if(M.rating >= 2)
 				. += "<span class='notice'>Gibber has been upgraded to process inorganic materials.<span>"
 
-/obj/machinery/gibber/update_icon()
-	cut_overlays()
+/obj/machinery/gibber/update_overlays()
+	. = ..()
 	if (dirty)
-		add_overlay("grbloody")
+		. += "grbloody"
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		add_overlay("grjam")
+		. += "grjam"
 	else if (operating)
-		add_overlay("gruse")
+		. += "gruse"
 	else
-		add_overlay("gridle")
+		. += "gridle"
 
 /obj/machinery/gibber/attack_paw(mob/user)
 	return attack_hand(user)
@@ -99,7 +99,7 @@
 				user.visible_message(span_danger("[user] stuffs [C] into the gibber!"))
 				C.forceMove(src)
 				occupant = C
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else
 		startgibbing(user)
 
@@ -133,7 +133,7 @@
 
 /obj/machinery/gibber/proc/go_out()
 	dropContents()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/gibber/proc/startgibbing(mob/user)
 	if(src.operating)
@@ -145,7 +145,7 @@
 	visible_message(span_italics("You hear a loud squelchy grinding sound."))
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	operating = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = 200) //start shaking
@@ -221,7 +221,7 @@
 
 	pixel_x = initial(pixel_x) //return to its spot after shaking
 	operating = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //auto-gibs anything that bumps into it
 /obj/machinery/gibber/autogibber
@@ -229,8 +229,8 @@
 
 /obj/machinery/gibber/autogibber/Bumped(atom/movable/AM)
 	var/atom/input = get_step(src, input_dir)
-	if(ismob(AM))
-		var/mob/M = AM
+	if(isliving(AM))
+		var/mob/living/M = AM
 
 		if(M.loc == input)
 			M.forceMove(src)

@@ -176,6 +176,16 @@
 	clothing_traits = list(TRAIT_QUICKER_CARRY)
 	surgeryspeed = 0.8
 
+/obj/item/clothing/gloves/color/latex/fireproof
+	name = "fireproof surgical gloves"
+	desc = "Durable, thicker and head-resistant sterile gloves. Designed for medical first responders to fire emergencies. Transfers exhaustive paramedic knowledge into the user via nanochips."
+	icon_state = "mining_medic"
+	item_state = "mining_medic"
+	transfer_prints = FALSE
+	resistance_flags = FIRE_PROOF
+	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)//quickest carry because lavaland
+	surgeryspeed = 0.95 //slower than even basic latex gloves to make up for the extinguish and faster carry
+
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"
 	desc = "These look pretty fancy."

@@ -13,6 +13,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Operative" = 'icons/mob/screen_operative.dmi',
 	"Clockwork" = 'icons/mob/screen_clockwork.dmi',
 	"Detective" = 'icons/mob/screen_detective.dmi',
+	"Obsidian" = 'icons/mob/screen_obsidian.dmi',
 ))
 
 /proc/ui_style2icon(ui_style)
@@ -302,16 +303,15 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	hand_slots = list()
 	var/atom/movable/screen/inventory/hand/hand_box
 	for(var/i in 1 to mymob.held_items.len)
-		hand_box = new /atom/movable/screen/inventory/hand()
+		hand_box = new /atom/movable/screen/inventory/hand(src)
 		hand_box.name = mymob.get_held_index_name(i)
 		hand_box.icon = ui_style
 		hand_box.icon_state = "hand_[mymob.held_index_to_dir(i)]"
 		hand_box.screen_loc = ui_hand_position(i)
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
-		hand_box.hud = src
 		static_inventory += hand_box
-		hand_box.update_icon()
+		hand_box.update_appearance(UPDATE_ICON)
 
 	var/i = 1
 	for(var/atom/movable/screen/swap_hand/SH in static_inventory)

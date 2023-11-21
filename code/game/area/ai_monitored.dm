@@ -3,6 +3,8 @@
 	clockwork_warp_allowed = FALSE
 	var/list/obj/machinery/camera/motioncameras = list()
 	var/list/datum/weakref/motionTargets = list()
+	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 
 /area/ai_monitored/Initialize(mapload)
 	. = ..()

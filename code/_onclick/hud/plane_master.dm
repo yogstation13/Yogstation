@@ -5,6 +5,12 @@
 	blend_mode = BLEND_OVERLAY
 	var/show_alpha = 255
 	var/hide_alpha = 0
+	/// If our plane master allows for offsetting
+	/// Mostly used for planes that really don't need to be duplicated, like the hud planes
+	var/allows_offsetting = TRUE
+	//--rendering relay vars--
+	/// list of planes we will relay this plane's render to
+	var/list/render_relay_planes = list(RENDER_PLANE_GAME)
 
 /atom/movable/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
@@ -137,8 +143,6 @@
 
 /atom/movable/screen/plane_master/parallax/Initialize(mapload)
 	. = ..()
-	if(HAS_TRAIT(SSstation, STATION_TRAIT_STATION_ADRIFT))
-		SpinAnimation(15 MINUTES)
 	// Should be moved to the world render plate when render plates get ported in
 	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
@@ -180,3 +184,22 @@
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
+
+/**
+ * Render relay object assigned to a plane master to be able to relay it's render onto other planes that are not it's own
+ */
+/atom/movable/render_plane_relay
+	screen_loc = "CENTER"
+	layer = -1
+	plane = 0
+	appearance_flags = PASS_MOUSE | NO_CLIENT_COLOR | KEEP_TOGETHER
+	/// If we render into a critical plane master, or not
+	var/critical_target = FALSE
+
+/atom/movable/screen/plane_master/fullscreen
+	name = "Fullscreen"
+	plane = FULLSCREEN_PLANE
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
+	render_relay_planes = list(RENDER_PLANE_NON_GAME)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	allows_offsetting = FALSE

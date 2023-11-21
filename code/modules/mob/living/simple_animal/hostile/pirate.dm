@@ -5,7 +5,7 @@
 	icon_state = "piratemelee"
 	icon_living = "piratemelee"
 	icon_dead = "pirate_dead"
-	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "pushes"
@@ -42,8 +42,7 @@
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/rapierhit.ogg'
-
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
  
 /mob/living/simple_animal/hostile/pirate/melee/space
 	name = "Space Pirate Swashbuckler"
@@ -66,7 +65,7 @@
 	rapid_fire_delay = 6
 	retreat_distance = 5
 	minimum_distance = 5
-	projectiletype = /obj/item/projectile/beam/laser
+	projectiletype = /obj/projectile/beam/laser
 	loot = list(/obj/effect/mob_spawn/human/corpse/pirate/ranged)
 
 /mob/living/simple_animal/hostile/pirate/ranged/space

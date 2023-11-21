@@ -262,13 +262,14 @@
 
 /atom/movable/screen/button_palette/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/button_palette/proc/set_hud(datum/hud/our_hud)
 	src.our_hud = our_hud
 	refresh_owner()
 
-/atom/movable/screen/button_palette/proc/update_name(updates)
+/atom/movable/screen/button_palette/update_name(updates)
+	. = ..()
 	if(expanded)
 		name = "Hide Buttons"
 	else
@@ -357,7 +358,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 
 	expanded = new_expanded
 	our_group.refresh_actions()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(!usr.client)
 		return

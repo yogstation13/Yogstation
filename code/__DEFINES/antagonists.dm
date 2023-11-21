@@ -105,13 +105,20 @@
 ///It is faster as a macro than a proc
 #define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
 #define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
+#define IS_HERETIC_OR_MONSTER(mob) (IS_HERETIC(mob) || IS_HERETIC_MONSTER(mob))
 #define IS_EXCLUSIVE_KNOWLEDGE(knowledge) (knowledge.tier % 2)
 
 #define PATH_SIDE "Side"
 
+#define PATH_NONE "Unpledged"
 #define PATH_ASH "Ash"
 #define PATH_RUST "Rust"
 #define PATH_FLESH "Flesh"
+#define PATH_MIND "Mind"
+#define PATH_VOID "Void"
+#define PATH_BLADE "Blade"
+#define PATH_COSMIC "Cosmic"
+#define PATH_KNOCK "Knock"
 
 #define TIER_NONE 0
 #define TIER_PATH 1

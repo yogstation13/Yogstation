@@ -14,6 +14,7 @@ BONUS
 /datum/symptom/vitiligo
 
 	name = "Vitiligo"
+	icon = "vitiligo"
 	desc = "The virus destroys skin pigment cells, causing rapid loss of pigmentation in the host."
 	stealth = 2
 	resistance = 0
@@ -43,14 +44,14 @@ BONUS
 		var/mob/living/carbon/human/H = M
 		if(H.skin_tone == "albino")
 			return
-		if(H.dna.features["mcolor"] == "EEE")
+		if(H.dna.features["mcolor"] == "#EEEEEE")
 			return
 		switch(A.stage)
 			if(5)
 				if(H.dna.species.use_skintones)
 					H.skin_tone = "albino"
 				else if(MUTCOLORS in H.dna.species.species_traits)
-					H.dna.features["mcolor"] = "EEE" //pure white.
+					H.dna.features["mcolor"] = "#EEEEEE" //pure white.
 				H.regenerate_icons()
 			else
 				H.visible_message(span_warning("[H] looks a bit pale..."), span_notice("Your skin suddenly appears lighter..."))
@@ -81,6 +82,7 @@ BONUS
 
 /datum/symptom/revitiligo
 	name = "Revitiligo"
+	icon = "revitiligo"
 	desc = "The virus causes increased production of skin pigment cells, making the host's skin grow darker over time."
 	stealth = -1
 	resistance = 3
@@ -110,14 +112,14 @@ BONUS
 		var/mob/living/carbon/human/H = M
 		if(H.skin_tone == "african2")
 			return
-		if(H.dna.features["mcolor"] == "000")
+		if(H.dna.features["mcolor"] == "#000000")
 			return
 		switch(A.stage)
 			if(5)
 				if(H.dna.species.use_skintones)
 					H.skin_tone = "african2"
 				else if(MUTCOLORS in H.dna.species.species_traits)
-					H.dna.features["mcolor"] = "000" //pure black.
+					H.dna.features["mcolor"] = "#000000" //pure black.
 				H.regenerate_icons()
 			else
 				H.visible_message(span_warning("[H] looks a bit dark..."), span_notice("Your skin suddenly appears darker..."))
@@ -148,6 +150,7 @@ BONUS
 
 /datum/symptom/polyvitiligo
 	name = "Polyvitiligo"
+	icon = "polyvitiligo"
 	desc = "The virus replaces the melanin in the skin with reactive pigment."
 	stealth = -1
 	resistance = 3

@@ -304,15 +304,16 @@
 			qdel(O)
 	T.narsie_act()
 
-/obj/structure/destructible/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+/obj/structure/destructible/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/destructible/cult/pillar/Destroy()
 	new /obj/effect/decal/cleanable/ash(loc)
 	..()
 
-/obj/structure/destructible/cult/pillar/update_icon()
+/obj/structure/destructible/cult/pillar/update_icon_state()
+	. = ..()
 	icon_state = "pillar[alt ? "alt": ""]2"
 	if (obj_integrity < max_integrity/3)
 		icon_state = "pillar[alt ? "alt": ""]0"
@@ -398,7 +399,7 @@
 					M.playsound_local(src, 'sound/effects/explosionfar.ogg', 50, 1)
 					shake_camera(M, 1, 1)
 		for (var/obj/structure/destructible/cult/pillar/P in pillars)
-			P.update_icon()
+			P.update_appearance(UPDATE_ICON)
 
 /obj/structure/destructible/cult/bloodstone/proc/summon()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //should stop the stone from being destroyed by damage
@@ -406,9 +407,9 @@
 	sleep(4 SECONDS)
 	new /obj/singularity/narsie/large/cult(loc)
 
-/obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+/obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/destructible/cult/bloodstone/ex_act(severity)
 	switch(severity)
@@ -470,16 +471,19 @@
 			else
 				T.narsie_act(TRUE, TRUE)
 
-/obj/structure/destructible/cult/bloodstone/update_icon()
+/obj/structure/destructible/cult/bloodstone/update_icon_state()
+	. = ..()
 	icon_state = "bloodstone-[current_fullness]"
-	cut_overlays()
+
+/obj/structure/destructible/cult/bloodstone/update_overlays()
+	. = ..()
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
 	I_base.appearance_flags |= RESET_COLOR//we don't want the stone to pulse
 	overlays += I_base
 	if (obj_integrity <= max_integrity/3)
-		add_overlay("bloodstone_damage2")
+		. += "bloodstone_damage2"
 	else if (obj_integrity <= 2*max_integrity/3)
-		add_overlay("bloodstone_damage1")
+		. += "bloodstone_damage1"
 	set_light(3+current_fullness, 2+current_fullness)
 
 /obj/structure/destructible/cult/bloodstone/proc/set_animate()
@@ -500,7 +504,7 @@
 	animate(color = list(1.25,0.12,0,0,0,1.25,0.12,0,0.12,0,1.25,0,0,0,0,1,0,0,0,0), time = 0.1 SECONDS)
 	animate(color = list(1.125,0.06,0,0,0,1.125,0.06,0,0.06,0,1.125,0,0,0,0,1,0,0,0,0), time = 0.1 SECONDS)
 	set_light(20, 20)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/destructible/cult/bloodstone/conceal() //lol
 	return

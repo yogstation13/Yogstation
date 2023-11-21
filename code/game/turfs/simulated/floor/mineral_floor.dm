@@ -23,11 +23,12 @@
 	icons = typelist("icons", icons)
 
 
-/turf/open/floor/mineral/update_icon()
-	if(!..())
-		return 0
+/turf/open/floor/mineral/update_icon_state()
+	. = ..()
+	if(!.)
+		return
 	if(!broken && !burnt)
-		if( !(icon_state in icons) )
+		if(!(icon_state in icons))
 			icon_state = initial(icon_state)
 
 //PLASMA
@@ -37,6 +38,7 @@
 	icon_state = "plasma"
 	floor_tile = /obj/item/stack/tile/mineral/plasma
 	icons = list("plasma","plasma_dam")
+	flammability = 25 // oh fuck-
 
 /turf/open/floor/mineral/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
@@ -91,6 +93,7 @@
 /turf/open/floor/mineral/titanium
 	name = "shuttle floor"
 	icon_state = "titanium"
+	flags_1 = NO_RUST | CAN_BE_DIRTY_1
 	floor_tile = /obj/item/stack/tile/mineral/titanium
 	broken_states = list("titanium_dam1","titanium_dam2","titanium_dam3","titanium_dam4","titanium_dam5")
 

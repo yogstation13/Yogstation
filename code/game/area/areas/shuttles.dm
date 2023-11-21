@@ -13,6 +13,8 @@
 	unique = FALSE
 	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
 	var/list/gem_payout = list()
+	lighting_colour_tube = "#fff0dd"
+	lighting_colour_bulb = "#ffe1c1"
 
 /area/shuttle/Initialize(mapload)
 	if(!canSmoothWithAreas)
@@ -33,7 +35,7 @@
 /area/shuttle/syndicate
 	name = "Syndicate Infiltrator"
 	blob_allowed = FALSE
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
 	canSmoothWithAreas = /area/shuttle/syndicate
 
 /area/shuttle/syndicate/bridge

@@ -12,7 +12,7 @@
 	else
 		current_power = GLOB.clockwork_power = clamp(GLOB.clockwork_power + amount, 0, MAX_CLOCKWORK_POWER)
 	for(var/obj/effect/clockwork/sigil/transmission/T in GLOB.all_clockwork_objects)
-		T.update_icon()
+		T.update_appearance(UPDATE_ICON)
 	var/unlock_message
 	if(current_power >= SCRIPT_UNLOCK_THRESHOLD && !GLOB.script_scripture_unlocked)
 		GLOB.script_scripture_unlocked = TRUE

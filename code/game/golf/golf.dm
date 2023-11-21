@@ -1,76 +1,68 @@
-//This is for the mini-game golf.
+/**
+ * Golf hole machine
+ * Used to play golf using golfballs and golf sticks.
+ * Does not need power to operate, it's more like a structure.
+ */
 /obj/machinery/golfhole
-	desc = "A hole for the game of golf. Try to score a hole in one."
 	name = "golf hole"
+	desc = "A hole for the game of golf. Try to score a hole in one."
 	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
 	icon_state = "redgolfhole"
-	anchored = 0
-
-
-/obj/machinery/golfhole/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/wrench))
-		switch(anchored)
-			if(0)
-				anchored = 1
-				icon_state = icon_state + "_w"
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] secures [src] to the floor.", \
-				span_notice("You secure [src] to the floor."), \
-			"	[span_italics("You hear a ratchet")]")
-				src.anchored = 1
-			if(1)
-				anchored = 0
-				icon_state = initial(icon_state)
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] unsecures [src]  from the floor.", \
-				span_notice("You unwrench [src] from the floor."), \
-				span_italics("You hear a ratchet."))
-				src.anchored = 0
-
-/obj/machinery/golfhole/Cross(atom/movable/mover, turf/target)
-	. = ..()
-	if (istype(mover,/obj/item/golfball) && mover.throwing  && anchored)
-		if (contents.len >= 3)
-			visible_message(span_notice("The golf hole is full! Try removing golfballs from the hole."))
-			return FALSE
-
-		var/obj/item/golfball = mover
-		if(prob(75))
-			golfball.loc = src
-			visible_message(span_notice("The golfball lands in [src]."))
-
-			update_icon()
-		else
-			visible_message(span_notice("The golfball bounces out of [src]!"))
-		return FALSE
-	else
-		return ..()
-
-
-/obj/machinery/golfhole/attack_hand(atom, mob/user)
-	var/obj/item/golfball/ball = locate(/obj/item/golfball) in contents
-	if (ball)
-		visible_message(span_notice("The golfball is removed from the hole."))
-		ball.loc = get_turf(src.loc)
-
-
-/obj/machinery/golfhole/proc/hole_place_item_in(obj/item/golfball, mob/user)
-	golfball.loc = src
-	user.visible_message("[user.name] knocks the golfball into [src].", \
-						span_notice("You knock the golfball into [src]."))
+	base_icon_state = "redgolfhole"
+	use_power = NO_POWER_USE
+	anchored = FALSE
 
 /obj/machinery/golfhole/blue
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
+	name = "blue golf hole"
 	icon_state = "bluegolfhole"
 
-
 /obj/machinery/golfhole/puttinggreen
+	name = "green golf hole"
 	desc = "The captain's putting green for the game of golf. Try to score a hole in one."
-	icon = 'yogstation/icons/code/game/golf/golfstuff.dmi'
 	icon_state = "puttinggreen"
-	anchored = 1
+	anchored = TRUE
+
+/obj/machinery/golfhole/wrench_act(mob/living/user, obj/item/tool)
+	default_unfasten_wrench(user, tool)
+	update_appearance(UPDATE_ICON)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/machinery/golfhole/update_icon_state()
+	. = ..()
+	if(anchored)
+		icon_state = "[base_icon_state]_w"
+	else
+		icon_state = base_icon_state
+
+/obj/machinery/golfhole/Crossed(atom/movable/mover, oldloc)
+	. = ..()
+	if(!istype(mover, /obj/item/golfball) || !mover.throwing || !anchored)
+		return ..()
+	if (contents.len >= 3)
+		balloon_alert_to_viewers("rolls over...")
+		return FALSE
+
+	if(prob(75))
+		mover.forceMove(src)
+		balloon_alert_to_viewers("landed!")
+	else
+		balloon_alert_to_viewers("bounced off...")
 
 
+/obj/machinery/golfhole/attack_hand(mob/living/user)
+	. = ..()
+	if(!user.resting)
+		balloon_alert(user, "lie down first!")
+		return
+	var/obj/item/golfball/ball = locate(/obj/item/golfball) in contents
+	if(!ball)
+		balloon_alert(user, "empty...")
+		return
+	user.put_in_hands(ball)
+
+/**
+ * The golfball used to play.
+ */
 /obj/item/golfball
 	desc = "A ball for the game of golf."
 	name = "golfball"
@@ -78,13 +70,14 @@
 	icon_state ="golfball"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 12
-	attack_verb = list("hit")
+	attack_verb = list("hit", "balled")
 
-/obj/item/golfball/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/golfclub))
-		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 3 )
-		throw_at(throw_at, 3 , 2)
-		user.changeNext_move(CLICK_CD_RANGE)
+/obj/item/golfball/attackby(obj/item/hitby, mob/user, params)
+	if(!istype(hitby, /obj/item/golfclub))
+		return ..()
+	var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 3)
+	throw_at(throw_at, 3, 2)
+	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/golfclub
 	desc = "A club for the game of golf."
@@ -103,24 +96,11 @@
 	icon = 'yogstation/icons/obj/closet.dmi'
 	icon_state = "golf"
 
-/obj/structure/closet/golf/New()
-	..()
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfball(src)
-	new /obj/item/golfclub(src)
-	new /obj/item/golfclub(src)
-	new /obj/item/golfclub(src)
-	new /obj/item/golfclub(src)
-	new /obj/machinery/golfhole(src)
-	new /obj/machinery/golfhole(src)
-	new /obj/machinery/golfhole/blue(src)
-	new /obj/machinery/golfhole/blue(src)
+/obj/structure/closet/golf/PopulateContents()
+	. = ..()
+	for(var/i in 1 to 6)
+		new /obj/item/golfball(src)
+		new /obj/item/golfclub(src)
+	for(var/i in 1 to 2)
+		new /obj/machinery/golfhole(src)
+		new /obj/machinery/golfhole/blue(src)

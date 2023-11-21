@@ -23,7 +23,7 @@
 /area/template_noop)
 "ag" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -296,7 +296,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
 "yo" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/template_noop)
 "GX" = (
@@ -307,7 +307,7 @@
 /area/template_noop)
 "Ob" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plating,
 /area/template_noop)
 "QX" = (

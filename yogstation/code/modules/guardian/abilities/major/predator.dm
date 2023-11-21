@@ -37,7 +37,7 @@
 			var/list/prints = O.return_fingerprints()
 			if (LAZYLEN(prints))
 				for (var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-					if (H.dna && prints[md5(H.dna.uni_identity)])
+					if (H.dna && prints[md5(H.dna.unique_identity)])
 						if (!(H in can_track))
 							to_chat(guardian, span_italics(span_notice("We learn the identity of [H.real_name].")))
 							can_track += H
@@ -62,8 +62,6 @@
 
 /datum/action/cooldown/spell/predator/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	if (!isguardian(user))
 		return
 	var/mob/living/simple_animal/hostile/guardian/G = user
@@ -78,12 +76,10 @@
 		to_chat(G, span_notice("You didn't select anyone to track!"))
 		return
 	to_chat(G, span_notice("We begin to track [span_bold(prey.real_name)].[get_final_z(prey) == get_final_z(G) ? "" : " They are far away from here[G.stats.potential >= 4 ? ", on z-level [get_final_z(prey)]." : "."]"]"))
-	log_game("[key_name(G)] began to track [key_name(prey)] using Predator.") // why log this? Simple. Some idiot will eventually cry metacomms because someone used this ability to track them to their autistic maint base or random-ass locker.
+	log_game("[key_name(G)] began to track [key_name(prey)] using Predator.") // why log this? Simple. Some idiot will eventually cry metacomms because someone used this ability to track them to their autistic maint base or random-ass locker. //this post was fact-checked by real byond experts: TRUE
 	for (var/datum/status_effect/agent_pinpointer/predator/status in G.status_effects)
 		status.scan_target = prey
 		status.point_to_target()
-
-	return TRUE
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/predator
 	name = "Predator's All-Seeing Eyes"

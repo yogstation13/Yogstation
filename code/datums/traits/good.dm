@@ -214,7 +214,7 @@
 
 /datum/quirk/spiritual/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.equip_to_slot_or_del(new /obj/item/storage/box/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), ITEM_SLOT_BACKPACK)
 
 /datum/quirk/toxic_tastes
@@ -365,9 +365,19 @@
 	var/disallowed_trait = (NO_DNA_COPY in species.species_traits) //Can't pick if you have no DNA bruv.
 	qdel(species)
 
-	if(disallowed_trait) 
+	if(disallowed_trait)
 		return "You have no DNA!"
 	return FALSE
+
+/datum/quirk/marine
+	name = "Marine"
+	desc = "Whether inherited from family or gained from years of service, you have the rugged blood of a Marine coursing through your veins. Crayons look quite tasty to you, and you aren't phased by eating them."
+	icon = "chevron-up"
+	value = 2
+	mob_trait = TRAIT_MARINE
+	gain_text = span_notice("You've graduated top of your class and have over 300 confirmed kills.")
+	lose_text = span_danger("You've lost the fierceless spirit of a Marine, alongside your appetite for crayons.")
+	medical_record_text = ("Patient's stomach is unusually proficient at digesting wax.")
 
 /datum/quirk/multilingual
 	name = "Multilingual"

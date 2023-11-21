@@ -63,9 +63,6 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	team = new_team
 
-/datum/antagonist/zombie/proc/add_objectives()
-	objectives |= team.objectives
-
 ///datum/antagonist/zombie/Destroy()
 //	QDEL_NULL(zombify)
 //	return ..()
@@ -80,7 +77,6 @@
 /datum/antagonist/zombie/on_gain()
 	. = ..()
 	var/mob/living/current = owner.current
-	add_objectives()
 	GLOB.zombies += owner
 	current.log_message("has been made a zombie!", LOG_ATTACK, color="#960000")
 

@@ -118,6 +118,22 @@
 	},
 /turf/open/floor/carpet/black,
 /area/chapel/main)
+"gc" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	sortType = 17
+	},
+/turf/open/floor/carpet/black,
+/area/chapel/office)
 "gr" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -269,25 +285,6 @@
 /obj/structure/chair/wood/normal,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
-"mM" = (
-/obj/machinery/door/airlock{
-	name = "Crematorium";
-	req_access_txt = "27"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
 "oG" = (
 /obj/structure/table/wood/fancy,
 /obj/structure/railing{
@@ -478,7 +475,7 @@
 	},
 /area/chapel/main)
 "Cq" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "Cv" = (
@@ -492,20 +489,6 @@
 	pixel_y = 28
 	},
 /turf/open/floor/carpet/red,
-/area/chapel/office)
-"Cw" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/sorting/mail,
-/turf/open/floor/carpet/black,
 /area/chapel/office)
 "Cz" = (
 /obj/structure/cable{
@@ -723,6 +706,25 @@
 /obj/structure/closet/crate/coffin,
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
+"Jj" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/public/glass{
+	name = "Chapel Office";
+	req_access_txt = "22"
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -1365,8 +1367,8 @@ WA
 Zp
 Zw
 GD
-Cw
-mM
+gc
+Jj
 Gs
 ED
 by

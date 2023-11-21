@@ -15,7 +15,7 @@
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_type_department = EXP_TYPE_SCIENCE
-	exp_requirements = 1200 //20 hours
+	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
 	alt_titles = list("Chief Science Officer", "Head of Research", "Chief Technology Officer")
@@ -25,7 +25,7 @@
 	added_access = list(ACCESS_CAPTAIN)
 	base_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
 			            ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS, ACCESS_MECH_SCIENCE,
-			            ACCESS_RESEARCH, ACCESS_ROBO_CONTROL, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
+			            ACCESS_RESEARCH, ACCESS_RND, ACCESS_ROBO_CONTROL, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
 			            ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM,
 			            ACCESS_TECH_STORAGE, ACCESS_MINISAT, ACCESS_MAINT_TUNNELS, ACCESS_NETWORK)
 	paycheck = PAYCHECK_COMMAND
@@ -52,6 +52,18 @@
 		/obj/effect/spawner/lootdrop/engineering_tool_alien = 2,
 		/obj/effect/spawner/lootdrop/organ_spawner = 2,
 		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1
+	)
+
+	minimal_lightup_areas = list(
+		/area/crew_quarters/heads/hor,
+		/area/science/explab,
+		/area/science/misc_lab,
+		/area/science/mixing,
+		/area/science/nanite,
+		/area/science/robotics,
+		/area/science/server,
+		/area/science/storage,
+		/area/science/xenobiology
 	)
 
 	smells_like = "theorhetical education"

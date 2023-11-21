@@ -95,6 +95,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/toxmod = 1
 	/// multiplier for stun duration
 	var/staminamod = 1
+	/// multiplier for pressure damage
+	var/pressuremod = 1
 	/// multiplier for money paid at payday, species dependent
 	var/payday_modifier = 1
 	///Type of damage attack does
@@ -136,8 +138,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
 	var/wings_detail
-	/// Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
-	var/reagent_tag = PROCESS_ORGANIC
 	/// What kind of gibs to spawn
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	/// generic traits tied to having the species
 	var/list/inherent_traits = list()
 	///biotypes, used for viruses and the like
-	var/list/inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	var/list/inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	/// punch-specific attack verb
 	var/attack_verb = "punch"
 	///the melee attack sound
@@ -161,6 +161,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//Breathing!
 	///what type of gas is breathed
 	var/breathid = "o2"
+
+	/// The icon_state of the fire overlay added when sufficently ablaze and standing. see onfire.dmi
+	var/fire_overlay = "human" //not used until monkey is added as a species type rather than a mob
 
 	//Do NOT remove by setting to null. use OR make a RESPECTIVE TRAIT (removing stomach? add the NOSTOMACH trait to your species)
 	//why does it work this way? because traits also disable the downsides of not having an organ, removing organs but not having the trait will make your species die
@@ -209,7 +212,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/New()
 	if(!limbs_id)	//if we havent set a limbs id to use, just use our own id
 		limbs_id = id
-	
+
 	if(!plural_form)
 		plural_form = "[name]\s"
 
@@ -278,15 +281,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return randname
 
 //used to add things to the no_equip list that'll get inherited on species changes
-/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Add(slot)
+/datum/species/proc/add_no_equip_slot(mob/living/carbon/C, slot, source)
+	if(!("[slot]" in extra_no_equip))
+		extra_no_equip["[slot]"] = list(source)
+	else
+		extra_no_equip["[slot]"] |= list(source)
 	var/obj/item/thing = C.get_item_by_slot(slot)
 	if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
 		C.dropItemToGround(thing)
 
 //removes something from the extra_no_equip list as well as the normal no_equip list
-/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot)
-	extra_no_equip.Remove(slot)
+/datum/species/proc/remove_no_equip_slot(mob/living/carbon/C, slot, source)
+	extra_no_equip["[slot]"] -= source
+	if(!length(extra_no_equip["[slot]"]))
+		extra_no_equip -= "[slot]"
 
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)
@@ -357,6 +365,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					new_lizard_tail.tail_type = C.dna.features["tail_lizard"]
 					new_lizard_tail.spines = C.dna.features["spines"]
 
+	// if(tail && (!should_have_tail || replace_current))
+	// 	tail.Remove(C,1)
+	// 	QDEL_NULL(tail)
+	// if(should_have_tail && !tail)
+	// 	tail = new mutanttail
+	// 	if(iscatperson(C))
+	// 		tail.tail_type = C.dna.features["tail_human"]
+	// 	if(ispolysmorph(C))
+	// 		tail.tail_type = C.dna.features["tail_polysmorph"]
+	// 	if(islizard(C))
+	// 		var/obj/item/organ/tail/lizard/T = tail
+	// 		T.tail_type = C.dna.features["tail_lizard"]
+	// 		T.spines = C.dna.features["spines"]
+	// 	tail.Insert(C)
 			used_neworgan = TRUE
 			neworgan.Insert(C, TRUE, FALSE)
 
@@ -394,7 +416,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.gender = FEMALE
 	if((MGENDER in species_traits))
 		C.gender = MALE
-	extra_no_equip.Add(old_species.extra_no_equip)
+	extra_no_equip = old_species.extra_no_equip.Copy()
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -430,7 +452,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 				C.put_in_hands(new mutanthands())
 
-	if(ROBOTIC_LIMBS in species_traits)
+	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ROBOTIC) // Makes all Bodyparts robotic.
 			B.render_like_organic = TRUE
@@ -460,7 +482,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.dna.blood_type = random_blood_type()
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(TRUE)
-	if(ROBOTIC_LIMBS in species_traits)
+	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
 			B.render_like_organic = FALSE
@@ -560,13 +582,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(!forced_colour)
 				if(hair_color)
 					if(hair_color == "mutcolor")
-						facial_overlay.color = "#" + H.dna.features["mcolor"]
+						facial_overlay.color =  H.dna.features["mcolor"]
 					else if(hair_color == "fixedmutcolor")
-						facial_overlay.color = "#[fixed_mut_color]"
+						facial_overlay.color = fixed_mut_color
 					else
-						facial_overlay.color = "#" + hair_color
+						facial_overlay.color = hair_color
 				else
-					facial_overlay.color = "#" + H.facial_hair_color
+					facial_overlay.color = H.facial_hair_color
 			else
 				facial_overlay.color = forced_colour
 
@@ -623,13 +645,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color =  H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 
 					//Gradients
 					grad_style = H.grad_style
@@ -640,7 +662,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 						var/icon/temp_hair = icon(hair_file, hair_state)
 						temp.Blend(temp_hair, ICON_ADD)
 						gradient_overlay.icon = temp
-						gradient_overlay.color = "#" + grad_color
+						gradient_overlay.color = grad_color
 
 				else
 					hair_overlay.color = forced_colour
@@ -662,7 +684,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		//if you're working with sprite code i hope this helps because i wish i was dead now.
 			S = GLOB.pod_hair_list[H.dna.features["pod_hair"]]
 			if(S)
-				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#7F7F7F")[3])
+				if(ReadHSV(RGBtoHSV(H.hair_color))[3] <= ReadHSV("#777777")[3])
 					H.hair_color = H.dna.species.default_color
 				var/hair_state = S.icon_state
 				var/hair_file = S.icon
@@ -671,13 +693,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
+							hair_overlay.color = H.dna.features["mcolor"]
 						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
+							hair_overlay.color = fixed_mut_color
 						else
-							hair_overlay.color = "#" + hair_color
+							hair_overlay.color = hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = H.hair_color
 				hair_overlay.alpha = hair_alpha
 				standing+=hair_overlay
 				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
@@ -691,13 +713,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					if(!forced_colour)
 						if(hair_color)
 							if(hair_color == "mutcolor")
-								flower_overlay.color = "#" + H.dna.features["mcolor"]
+								flower_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								flower_overlay.color = "#[fixed_mut_color]"
+								flower_overlay.color = fixed_mut_color
 							else
-								flower_overlay.color = "#" + hair_color
+								flower_overlay.color = hair_color
 						else
-							flower_overlay.color = "#" + H.facial_hair_color
+							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
 	if(standing.len)
@@ -1016,20 +1038,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 							if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))			//HULK GO FIRST
 								accessory_overlay.color = "#00aa00"
 							else if(fixed_mut_color)													//Then fixed color if applicable
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else																		//Then snowflake color
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 						if(HAIR)
 							if(hair_color == "mutcolor")
-								accessory_overlay.color = "#[H.dna.features["mcolor"]]"
+								accessory_overlay.color = H.dna.features["mcolor"]
 							else if(hair_color == "fixedmutcolor")
-								accessory_overlay.color = "#[fixed_mut_color]"
+								accessory_overlay.color = fixed_mut_color
 							else
-								accessory_overlay.color = "#[H.hair_color]"
+								accessory_overlay.color = H.hair_color
 						if(FACEHAIR)
-							accessory_overlay.color = "#[H.facial_hair_color]"
+							accessory_overlay.color = H.facial_hair_color
 						if(EYECOLOR)
-							accessory_overlay.color = "#[H.eye_color]"
+							accessory_overlay.color = H.eye_color
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay
@@ -1083,7 +1105,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 //Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if((slot in no_equip) || (slot in extra_no_equip))
+	if((slot in no_equip) || ("[slot]" in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
@@ -1294,12 +1316,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		H.reagents.del_reagent(chem.type)
 		return TRUE
 	//This handles dumping unprocessable reagents.
-	var/dump_reagent = TRUE
-	if((chem.process_flags & SYNTHETIC) && (H.dna.species.reagent_tag & PROCESS_SYNTHETIC))		//SYNTHETIC-oriented reagents require PROCESS_SYNTHETIC
-		dump_reagent = FALSE
-	if((chem.process_flags & ORGANIC) && (H.dna.species.reagent_tag & PROCESS_ORGANIC))		//ORGANIC-oriented reagents require PROCESS_ORGANIC
-		dump_reagent = FALSE
-	if(dump_reagent)
+	if(!(chem.compatible_biotypes & H.mob_biotypes))
 		chem.holder.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
 	return FALSE
@@ -1322,7 +1339,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			REMOVE_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.update_inv_w_uniform()
 			H.update_inv_wear_suit()
-	else
+	else if(!HAS_TRAIT(H, TRAIT_POWERHUNGRY)) // why would you get fat if you run on electricity
 		if(H.overeatduration >= 100)
 			to_chat(H, span_danger("You suddenly feel blubbery!"))
 			ADD_TRAIT(H, TRAIT_FAT, OBESITY)
@@ -1384,6 +1401,23 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	get_hunger_alert(H)
 
 /datum/species/proc/get_hunger_alert(mob/living/carbon/human/H)
+	if(HAS_TRAIT(H, TRAIT_POWERHUNGRY))
+		var/obj/item/organ/cell = H.getorganslot(ORGAN_SLOT_STOMACH)
+		if(!(cell && istype(cell, /obj/item/organ/stomach/cell)))
+			H.throw_alert("nutrition", /atom/movable/screen/alert/nocell)
+			return
+		switch(H.nutrition)
+			if(NUTRITION_LEVEL_FED to INFINITY)
+				H.clear_alert("nutrition")
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 1)
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 2)
+			if(1 to NUTRITION_LEVEL_STARVING)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/lowcell, 3)
+			if(0)
+				H.throw_alert("nutrition", /atom/movable/screen/alert/emptycell)
+		return
 	switch(H.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/fat)
@@ -1417,7 +1451,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(radiation > RAD_MOB_MUTATE)
 		if(prob(1))
 			to_chat(H, span_danger("You mutate!"))
-			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
+			H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
 			H.emote("gasp")
 			H.domutcheck()
 
@@ -1440,11 +1474,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/movement_delay(mob/living/carbon/human/H)
 	. = 0	//We start at 0.
 	var/flight = 0	//Check for flight and flying items
-	var/gravity = 0
+	var/gravity = H.has_gravity()
 	if(H.movement_type & FLYING)
 		flight = 1
-
-	gravity = H.has_gravity()
 
 	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && gravity)
 		// Clothing slowdown
@@ -1466,6 +1498,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(health_deficiency >= H.maxHealth * 0.4)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
+				if(HAS_TRAIT(H, TRAIT_HIGHRESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.25
 				if(flight)
 					health_deficiency *= 0.333
 				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png https://www.desmos.com/calculator/qsf6iakqgp
@@ -1477,11 +1511,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
-			else if(isethereal(H))
-				var/datum/species/ethereal/E = H.dna.species
-				var/charge = E.get_charge(H)
-				if(charge <= ETHEREAL_CHARGE_NORMAL)
-					. += 1.5 * (1 - charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)
@@ -1504,11 +1533,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/spec_fully_heal(mob/living/carbon/human/H)
 	return
 
+/datum/species/proc/spec_rad_act(mob/living/carbon/human/H, amount, collectable_radiation)
+	return
+
 /datum/species/proc/spec_emp_act(mob/living/carbon/human/H, severity)
 	return
 
-/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user)
-	return
+/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user, obj/item/card/emag/emag_card)
+	return FALSE
 
 /datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	return
@@ -1520,15 +1552,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			log_combat(user, target, "shaken")
 		return 1
 	else
-		var/we_breathe = !HAS_TRAIT_FROM(user, TRAIT_NOBREATH, SPECIES_TRAIT)
-		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
-
-		if(we_breathe && we_lung)
-			user.do_cpr(target)
-		else if(we_breathe && !we_lung)
-			to_chat(user, span_warning("You have no lungs to breathe with, so you cannot perform CPR."))
-		else
-			to_chat(user, span_notice("You do not breathe, so you cannot perform CPR."))
+		user.do_cpr(target)
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	var/datum/martial_art/M = target.check_block()
@@ -1634,6 +1658,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(user == target)
 		return FALSE
 	if(user.loc == target.loc)
+		return FALSE
+	if(!QDELETED(target.pulledby) && HAS_TRAIT(target.pulledby, TRAIT_STRONG_GRIP) && target.pulledby != user)
 		return FALSE
 	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
 		return FALSE
@@ -1910,22 +1936,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				H.adjustStaminaLoss(damage * hit_percent * H.physiology.stamina_mod)
 		if(BRAIN)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage * hit_percent * H.physiology.brain_mod)
-	
+
 	if(H.stat == DEAD && (H.mobility_flags & MOBILITY_STAND))
 		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
 			var/obj/structure/sitter = H.buckled
 			sitter.take_damage(damage, damagetype)
 	return 1
 
-/datum/species/proc/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile
 	switch(P.type)
-		if(/obj/item/projectile/energy/floramut) // overwritten by plants/pods
+		if(/obj/projectile/energy/floramut) // overwritten by plants/pods
 			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
-		if(/obj/item/projectile/energy/florayield)
+		if(/obj/projectile/energy/florayield)
 			H.show_message(span_notice("The radiation beam dissipates harmlessly through your body."))
 
-/datum/species/proc/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/proc/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	// called before a projectile hit
 	return 0
 
@@ -1949,9 +1975,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
 		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
-			H.adjust_fire_stacks(-3)
+			H.adjust_wet_stacks(3)
 		else
-			H.adjust_fire_stacks(-2)
+			H.adjust_wet_stacks(2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
@@ -2048,7 +2074,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	switch(adjusted_pressure)
 		if(HAZARD_HIGH_PRESSURE to INFINITY)
 			if(!HAS_TRAIT(H, TRAIT_RESISTHIGHPRESSURE))
-				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod * H.dna.species.pressuremod)
 				H.throw_alert("pressure", /atom/movable/screen/alert/highpressure, 2)
 			else
 				H.clear_alert("pressure")
@@ -2062,74 +2088,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
-				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
+				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * H.dna.species.pressuremod)
 				H.throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 2)
 
 //////////
 // FIRE //
 //////////
 
-/datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
-	if(!Canignite_mob(H))
-		return TRUE
-	if(H.on_fire)
-		//the fire tries to damage the exposed clothes and items
-		var/list/burning_items = list()
-		var/list/obscured = H.check_obscured_slots(TRUE)
-		//HEAD//
-
-		if(H.glasses && !(ITEM_SLOT_EYES in obscured))
-			burning_items += H.glasses
-		if(H.wear_mask && !(ITEM_SLOT_MASK in obscured))
-			burning_items += H.wear_mask
-		if(H.wear_neck && !(ITEM_SLOT_NECK in obscured))
-			burning_items += H.wear_neck
-		if(H.ears && !(ITEM_SLOT_EARS in obscured))
-			burning_items += H.ears
-		if(H.head)
-			burning_items += H.head
-
-		//CHEST//
-		if(H.w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
-			burning_items += H.w_uniform
-		if(H.wear_suit)
-			burning_items += H.wear_suit
-
-		//ARMS & HANDS//
-		var/obj/item/clothing/arm_clothes = null
-		if(H.gloves && !(ITEM_SLOT_GLOVES in obscured))
-			arm_clothes = H.gloves
-		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & HANDS) || (H.wear_suit.body_parts_covered & ARMS)))
-			arm_clothes = H.wear_suit
-		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
-			arm_clothes = H.w_uniform
-		if(arm_clothes)
-			burning_items |= arm_clothes
-
-		//LEGS & FEET//
-		var/obj/item/clothing/leg_clothes = null
-		if(H.shoes && !(ITEM_SLOT_FEET in obscured))
-			leg_clothes = H.shoes
-		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & FEET) || (H.wear_suit.body_parts_covered & LEGS)))
-			leg_clothes = H.wear_suit
-		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & FEET) || (H.w_uniform.body_parts_covered & LEGS)))
-			leg_clothes = H.w_uniform
-		if(leg_clothes)
-			burning_items |= leg_clothes
-
-		for(var/X in burning_items)
-			var/obj/item/I = X
-			I.fire_act((H.fire_stacks * 50)) //damage taken is reduced to 2% of this value by fire_act()
-
-		var/thermal_protection = H.get_thermal_protection()
-
-		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
-			return
-		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
-			H.adjust_bodytemperature(11)
-		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 2))
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+/datum/species/proc/handle_fire(mob/living/carbon/human/H, seconds_per_tick, no_protection = FALSE)
+	return no_protection
 
 /datum/species/proc/Canignite_mob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
@@ -2153,7 +2120,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			flyslip(H)
 		stop_wagging_tail(H)
 	return stunmod * H.physiology.stun_mod * amount
-	
+
 
 //////////////
 //Space Move//
@@ -2168,7 +2135,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.movement_type & FLYING)
 		return TRUE
 	return FALSE
-	
+
 /datum/species/proc/has_heavy_gravity(mob/living/carbon/human/H)
 	return FALSE
 
@@ -2455,6 +2422,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(TRAIT_NOHUNGER in inherent_traits)
 		return null
 
+	if(TRAIT_POWERHUNGRY in inherent_traits)
+		return null
+
 	var/list/food_flags = FOOD_FLAGS
 
 	return list(
@@ -2706,6 +2676,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are completely unaffected by radiation. However, this doesn't mean they can't be irradiated.",
 		))
 
+	if(TRAIT_FARADAYCAGE in inherent_traits)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "[plural_form] have a unique physiology that shields them from weak EMPs.",
+		))
+
 	if(TRAIT_LIMBATTACHMENT in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -2714,7 +2692,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] limbs are easily readded, and as such do not \
 				require surgery to restore. Simply pick it up and pop it back in, champ!",
 		))
-
+	if(TRAIT_POWERHUNGRY in inherent_traits)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
+			SPECIES_PERK_NAME = "Power-Hungry",
+			SPECIES_PERK_DESC = "[plural_form] run off electricity rather than food.",
+		))
 	if(TRAIT_EASYDISMEMBER in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
@@ -2740,15 +2724,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
 
-	if(ROBOTIC_LIMBS in species_traits)//species traits is basically inherent traits
-		to_add += list(list(
-			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "fa-solid fa-gear",
-			SPECIES_PERK_NAME = "Robotic limbs",
-			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
-				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
-		))
-		
 	return to_add
 
 /**
@@ -2759,13 +2734,22 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/create_pref_biotypes_perks()
 	var/list/to_add = list()
 
-	if(MOB_UNDEAD in inherent_biotypes)
+	if(inherent_biotypes & MOB_UNDEAD)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
 			SPECIES_PERK_NAME = "Undead",
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
+		))
+
+	if(inherent_biotypes & MOB_ROBOTIC)//species traits is basically inherent traits
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "fa-solid fa-gear",
+			SPECIES_PERK_NAME = "Robotic",
+			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
+				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
 		))
 
 	return to_add

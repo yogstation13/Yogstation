@@ -14,6 +14,11 @@ SUBSYSTEM_DEF(idlenpcpool)
 	msg = "IdleNPCS:[length(idlelist)]|Z:[length(zlist)]"
 	return ..()
 
+/datum/controller/subsystem/idlenpcpool/get_metrics()
+	. = ..()
+	.["idle_npcs"] = length(GLOB.simple_animals[AI_IDLE])
+	.["z_zombies"] = length(GLOB.simple_animals[AI_Z_OFF])
+
 /datum/controller/subsystem/idlenpcpool/proc/MaxZChanged()
 	if (!islist(idle_mobs_by_zlevel))
 		idle_mobs_by_zlevel = new /list(world.maxz,0)

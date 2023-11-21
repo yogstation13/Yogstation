@@ -90,6 +90,11 @@
 	suffix = "engine_teg.dmm"
 	name = "Engine TEG"
 
+/datum/map_template/ruin/station/box/engine/reactor
+	id = "engine_reactor"
+	suffix = "engine_reactor.dmm"
+	name = "Engine Nuclear Reactor"
+
 /datum/map_template/ruin/station/box/testingsite/bunker
 	id = "testing_site_1"
 	suffix = "testingsite_range1.dmm"
@@ -270,6 +275,26 @@
 	suffix = "chapel2.dmm"
 	name = "Chapel 2"
 
+/datum/map_template/ruin/station/box/clerk/box
+	id = "clerk_box"
+	suffix = "clerk_box.dmm"
+	name = "Clerk Box"
+
+/datum/map_template/ruin/station/box/clerk/pod
+	id = "clerk_pod"
+	suffix = "clerk_pod.dmm"
+	name = "Clerk Pod"
+
+/datum/map_template/ruin/station/box/clerk/meta
+	id = "clerk_meta"
+	suffix = "clerk_meta.dmm"
+	name = "Clerk Meta"
+
+/datum/map_template/ruin/station/box/clerk/gamble
+	id = "clerk_gamble"
+	suffix = "clerk_gamble.dmm"
+	name = "Clerk Gambling Hall"
+
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 
@@ -287,7 +312,11 @@
 	id = "meta_teg"
 	suffix = "meta_teg.dmm"
 	name = "Meta TEG"
-	
+
+/datum/map_template/ruin/station/meta/reactor
+	id = "meta_reactor"
+	suffix = "meta_reactor.dmm"
+	name = "Meta Nuclear Reactor"
 
 //GaxStation
 
@@ -613,6 +642,11 @@
 	id = "checkpoint"
 	suffix = "3x5_checkpoint.dmm"
 	name = "Maint checkpoint"
+
+/datum/map_template/ruin/station/maint/threexfive/experimental
+	id = "experimental"
+	suffix = "3x5_experimental.dmm"
+	name = "Secure Loot"
 
 /datum/map_template/ruin/station/maint/threexfive/hank
 	id = "hank"
@@ -1197,7 +1231,7 @@
 	id = "junction"
 	suffix = "10x10_junction.dmm"
 	name = "Maint junction"
-
+	
 ///Lasertag-Author: Jcat
 /datum/map_template/ruin/station/maint/tenxten/lasertag
 	id = "lasertag"

@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		cartridge.host_pda = src
 	if(insert_type)
 		inserted_item = SSwardrobe.provide_type(insert_type, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/pda/Destroy()
 	GLOB.PDAs -= src
@@ -197,26 +197,26 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return TRUE
 	return FALSE
 
-/obj/item/pda/update_icon()
-	cut_overlays()
+/obj/item/pda/update_overlays()
+	. = ..()
 	var/mutable_appearance/overlay = new()
 	overlay.pixel_x = overlays_x_offset
 	if(id)
 		overlay.icon_state = "id_overlay"
-		add_overlay(new /mutable_appearance(overlay))
+		. += new /mutable_appearance(overlay)
 	if(inserted_item)
 		overlay.icon_state = "insert_overlay"
-		add_overlay(new /mutable_appearance(overlay))
+		. += new /mutable_appearance(overlay)
 	if(light_on)
 		overlay.icon_state = "light_overlay"
-		add_overlay(new /mutable_appearance(overlay))
+		. += new /mutable_appearance(overlay)
 	if(pai)
 		if(pai.pai)
 			overlay.icon_state = "pai_overlay"
-			add_overlay(new /mutable_appearance(overlay))
+			. += new /mutable_appearance(overlay)
 		else
 			overlay.icon_state = "pai_off_overlay"
-			add_overlay(new /mutable_appearance(overlay))
+			. += new /mutable_appearance(overlay)
 
 /obj/item/pda/MouseDrop(mob/over, src_location, over_location)
 	var/mob/M = usr
@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if (pai)
 					if(pai.loc != src)
 						pai = null
-						update_icon()
+						update_appearance(UPDATE_ICON)
 					else
 						dat += "<li><a href='byond://?src=[REF(src)];choice=pai;option=1'>pAI Device Configuration</a></li>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=pai;option=2'>Eject pAI Device</a></li>"
@@ -529,7 +529,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					scanmode = PDA_SCANNER_NONE
 					cartridge.host_pda = null
 					cartridge = null
-					update_icon()
+					update_appearance(UPDATE_ICON)
 
 //MENU FUNCTIONS===================================
 
@@ -722,7 +722,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 //EXTRA FUNCTIONS===================================
 
 	if (mode == 2 || mode == 21)//To clear message overlays.
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
@@ -753,7 +753,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	. = id
 	id = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
@@ -856,7 +856,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 		to_chat(L, "[icon2html(src)] <b>Message from [hrefstart][signal.data["name"]] ([signal.data["job"]])[hrefend], </b>[signal.format_message(L)] [reply]")
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	add_overlay(icon_alert)
 
 /obj/item/pda/proc/receive_ping(message)
@@ -949,7 +949,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		set_light_on(FALSE)
 	else if(light_range)
 		set_light_on(TRUE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -962,7 +962,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(inserted_item)
 		to_chat(usr, span_notice("You remove [inserted_item] from [src]."))
 		usr.put_in_hands(inserted_item) //Don't need to manage the pen ref, handled on Exited()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(usr, span_warning("This PDA does not have a pen in it!"))
 
@@ -981,7 +981,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		if(!user.transferItemToLoc(I, src))
 			return FALSE
 		insert_id(I, user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return TRUE
 
 
@@ -1007,7 +1007,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		cartridge = C
 		cartridge.host_pda = src
 		to_chat(user, span_notice("You insert [cartridge] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(C, /obj/item/card/id))
 		var/obj/item/card/id/idcard = C
@@ -1033,7 +1033,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			return
 		pai = C
 		to_chat(user, span_notice("You slot \the [C] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		updateUsrDialog()
 	else if(is_type_in_list(C, contained_item)) //Checks if there is a pen
 		if(inserted_item)
@@ -1043,7 +1043,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				return
 			to_chat(user, span_notice("You slide \the [C] into \the [src]."))
 			inserted_item = C
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else if(istype(C, /obj/item/photo))
 		var/obj/item/photo/P = C
 		picture = P.picture

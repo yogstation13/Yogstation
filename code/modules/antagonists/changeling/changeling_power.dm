@@ -18,6 +18,8 @@
 	var/ignores_fakedeath = FALSE // usable with the FAKEDEATH flag
 	var/active = FALSE //used by a few powers that toggle
 	var/xenoling_available = TRUE // Avaliable to xenolings
+	///list of power you cannot purchase together
+	var/list/conflicts = list()
 
 /*
 changeling code now relies on on_purchase to grant powers.

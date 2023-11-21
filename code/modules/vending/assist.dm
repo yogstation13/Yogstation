@@ -2,6 +2,7 @@
 	products = list(/obj/item/assembly/prox_sensor = 5,
 					/obj/item/assembly/igniter = 3,
 					/obj/item/assembly/signaler = 4,
+					/obj/item/assembly/signaler/button = 2,
 					/obj/item/wirecutters = 1,
 					/obj/item/cartridge/signal = 4)
 	premium = list(/obj/item/laserlevel = 1)

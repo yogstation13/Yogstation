@@ -109,7 +109,7 @@
 /area/template_noop)
 "tg" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/twohanded/fishingrod,
+/obj/item/fishingrod,
 /obj/structure/rack,
 /obj/item/poster/random_contraband,
 /obj/item/picket_sign,
@@ -317,7 +317,7 @@
 /obj/structure/rack,
 /obj/item/radio,
 /obj/item/relic,
-/obj/item/twohanded/fishingrod,
+/obj/item/fishingrod,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 4
@@ -356,7 +356,7 @@
 /area/template_noop)
 "MI" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/twohanded/fishingrod,
+/obj/item/fishingrod,
 /obj/structure/rack,
 /obj/item/pet_carrier,
 /turf/open/floor/plasteel/checker,
@@ -455,7 +455,7 @@
 /obj/structure/rack,
 /obj/item/soap/homemade,
 /obj/item/soap/homemade,
-/obj/item/twohanded/fishingrod,
+/obj/item/fishingrod,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light{
 	dir = 4

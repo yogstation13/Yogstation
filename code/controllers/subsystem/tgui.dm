@@ -40,6 +40,10 @@ SUBSYSTEM_DEF(tgui)
 	msg = "P:[length(open_uis)]"
 	return ..()
 
+/datum/controller/subsystem/tgui/get_metrics()
+	. = ..()
+	.["open_uis"] = length(open_uis)
+
 /datum/controller/subsystem/tgui/fire(resumed = FALSE)
 	if(!resumed)
 		src.current_run = open_uis.Copy()

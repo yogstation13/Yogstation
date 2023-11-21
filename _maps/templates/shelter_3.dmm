@@ -240,11 +240,11 @@
 /area/survivalpod)
 "S" = (
 /obj/structure/table/wood/fancy/black,
-/obj/item/storage/box/fancy/cigarettes/cigars/cohiba,
-/obj/item/storage/box/fancy/cigarettes/cigars/havana{
+/obj/item/storage/fancy/cigarettes/cigars/cohiba,
+/obj/item/storage/fancy/cigarettes/cigars/havana{
 	pixel_y = 5
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars{
+/obj/item/storage/fancy/cigarettes/cigars{
 	pixel_y = 10
 	},
 /turf/open/floor/pod/dark,

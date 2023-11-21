@@ -60,15 +60,15 @@
 	icon_state = "coloredcabinet_frame"
 	name = "colored cabinet"
 
-/obj/structure/filingcabinet/colored/update_icon()
-	cut_overlays()
+/obj/structure/filingcabinet/colored/update_overlays()
+	. = ..()
 	var/mutable_appearance/cab = mutable_appearance(icon, "coloredcabinet_trim")
 	cab.color = colour
-	add_overlay(cab)
+	. += cab
 
 /obj/structure/filingcabinet/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(mapload)
 		for(var/obj/item/I in loc)
 			if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
@@ -89,7 +89,7 @@
 		else
 			name = initial(name)
 		return
-	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/documents))
+	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/documents) || istype(P, /obj/item/clipboard))
 		if(!user.transferItemToLoc(P, src))
 			return
 		to_chat(user, span_notice("You put [P] in [src]."))
@@ -185,7 +185,7 @@
 			colour = colour_choice
 			name = "colored cabinet" // Having a cabinet called 'Purple Cabinet' while it's green colored would be weird
 			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
-			update_icon() // reset overlays
+			update_appearance(UPDATE_ICON) // reset overlays
 		return
 
 

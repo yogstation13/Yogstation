@@ -7,9 +7,11 @@
 #define BEING_SHOCKED			(1<<3) // Whether this thing is currently (already) being shocked by a tesla
 #define DANGEROUS_POSSESSION	(1<<4) //Admin possession yes/no
 #define ON_BLUEPRINTS			(1<<5)  //Are we visible on the station blueprints at roundstart?
-#define UNIQUE_RENAME			(1<<6) // can you customize the description/name of the thing?
+#define UNIQUE_RENAME			(1<<6) // can you customize the name of the thing?
 #define USES_TGUI				(1<<7)	//put on things that use tgui on ui_interact instead of custom/old UI.
 #define FROZEN					(1<<8)
+#define UNIQUE_REDESC			(1<<9) // can you customize the description of the thing?
+#define CMAGGED					(1<<10)
 
 // If you add new ones, be sure to add them to /obj/Initialize as well for complete mapping support
 
@@ -42,20 +44,23 @@
 
 // Flags for the clothing_flags var on /obj/item/clothing
 
-#define LAVAPROTECT (1<<0)
-#define STOPSPRESSUREDAMAGE		(1<<1)	//SUIT and HEAD items which stop pressure damage. To stop you taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCK_GAS_SMOKE_EFFECT	(1<<2)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
-#define MASKINTERNALS				    (1<<3)		// mask allows internals
-#define NOSLIP                  (1<<4)   //prevents from slipping on wet floors, in space etc
-#define NOSLIP_ICE				(1<<5)	 //prevents from slipping on frozen floors
-#define THICKMATERIAL				(1<<6)	//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define VOICEBOX_TOGGLABLE (1<<7) // The voicebox in this clothing can be toggled.
-#define VOICEBOX_DISABLED (1<<8) // The voicebox is currently turned off.
-#define SHOWEROKAY				(1<<9)	//prevents you from being stupid if you shower in them
-#define SCAN_REAGENTS (1<<10) // Allows helmets and glasses to scan reagents.
+#define LAVAPROTECT 			(1<<0)
+#define STOPSHIGHPRESSURE		(1<<1)	//SUIT and HEAD items which stop pressure damage. 
+#define STOPSLOWPRESSURE		(1<<2)	//To stop you taking all pressure damage you must have both a suit and head item with this flag.
+#define BLOCK_GAS_SMOKE_EFFECT	(1<<3)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
+#define MASKINTERNALS			(1<<4)		// mask allows internals
+#define NOSLIP                  (1<<5)   //prevents from slipping on wet floors, in space etc
+#define NOSLIP_ICE				(1<<6)	 //prevents from slipping on frozen floors
+#define THICKMATERIAL			(1<<7)	//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define VOICEBOX_TOGGLABLE 		(1<<8) // The voicebox in this clothing can be toggled.
+#define VOICEBOX_DISABLED 		(1<<9) // The voicebox is currently turned off.
+#define SHOWEROKAY				(1<<10)	//prevents you from being stupid if you shower in them
+#define SCAN_REAGENTS 			(1<<11) // Allows helmets and glasses to scan reagents.
 #define MASKEXTENDRANGE			(1<<12) //! For masks, allows you to breathe from internals on adjecent tiles
 /// Headgear/helmet allows internals
 #define HEADINTERNALS (1<<13)
+
+#define STOPSPRESSUREDAMAGE 	(STOPSHIGHPRESSURE | STOPSLOWPRESSURE) //covers both high and low pressure
 
 /// Flags for the organ_flags var on /obj/item/organ
 
@@ -72,6 +77,10 @@
 #define CLOTHING_PRISTINE	0 // We have no damage on the clothing
 #define CLOTHING_DAMAGED	1 // There's some damage on the clothing but it still has at least one functioning bodypart and can be equipped
 #define CLOTHING_SHREDDED	2 // The clothing is useless and cannot be equipped unless repaired first
+
+/// Flags for the upgrade_flags var on /obj/item/hypospray
+#define PIERCING		(1<<0) //whether or not it can pierce thick clothing
+#define SPEED_UP			(1<<1) //whether or not it's received a speed upgrade
 
 /// Wrapper for adding clothing based traits
 #define ADD_CLOTHING_TRAIT(mob, trait) ADD_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")

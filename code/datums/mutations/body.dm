@@ -37,12 +37,15 @@
 	to_chat(owner, text_gain_indication)
 	var/mob/new_mob
 	if(prob(95))
-		if(prob(50))
-			new_mob = owner.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
-		else
-			new_mob = owner.randmuti()
+		switch(rand(1,3))
+			if(1)
+				new_mob = owner.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
+			if(2)
+				new_mob = owner.random_mutate_unique_identity()
+			if(3)
+				new_mob = owner.random_mutate_unique_features()
 	else
-		new_mob = owner.easy_randmut(POSITIVE)
+		new_mob = owner.easy_random_mutate(POSITIVE)
 	if(new_mob && ismob(new_mob))
 		owner = new_mob
 	. = owner
@@ -195,14 +198,16 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 3.5
 	var/range = 2.5
+	var/glow_color
 	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
-	conflicts = list(/datum/mutation/human/glow/anti)
+	conflicts = list(/datum/mutation/human/glow/anti, /datum/mutation/human/radiantburst)
 
 /datum/mutation/human/glow/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
 	if(.)
 		return
+	glow_color = owner.dna.features["mcolor"]
 	glowth = new(owner)
 	modify()
 
@@ -210,19 +215,8 @@
 /datum/mutation/human/glow/modify()
 	if(!glowth)
 		return
-
-	var/glow_color
-
-	if(owner.dna.features["mcolor"][1] != "#")
-		//if it doesn't start with a pound, it needs that for the color
-		glow_color += "#"
-	if(length(owner.dna.features["mcolor"]) < 6)
-		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
-		glow_color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
-	else
-		glow_color += owner.dna.features["mcolor"]
-
-	glowth.set_light_range_power_color(range * GET_MUTATION_POWER(src), glow, glow_color)
+	var/power = GET_MUTATION_POWER(src)
+	glowth.set_light_range_power_color(range * power, glow * power, glow_color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()
@@ -235,7 +229,7 @@
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
 	glow = -3.5
-	conflicts = list(/datum/mutation/human/glow)
+	conflicts = list(/datum/mutation/human/glow, /datum/mutation/human/radiantburst)
 	locked = TRUE
 
 /datum/mutation/human/thickskin

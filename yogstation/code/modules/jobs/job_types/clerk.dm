@@ -27,10 +27,10 @@
 		/obj/effect/spawner/lootdrop/plushies = 20,
 		/obj/item/toy/minimeteor = 15,
 		/obj/item/circuitboard/computer/slot_machine = 15,
-		/obj/item/twohanded/dualsaber/toy = 10,
+		/obj/item/melee/dualsaber/toy = 10,
 		/obj/item/toy/windupToolbox = 10,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate = 5,
-		/obj/item/storage/box/fancy/heart_box = 5,
+		/obj/item/storage/fancy/cigarettes/cigpack_syndicate = 5,
+		/obj/item/storage/fancy/heart_box = 5,
 		/obj/item/lipstick/random = 5,
 		/obj/item/skub = 2, //pro skub have taken over the mail
 		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1

@@ -54,7 +54,7 @@
 	else
 		use_power = IDLE_POWER_USE
 		icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)
 	if(G.tool_behaviour == TOOL_WRENCH)
@@ -111,14 +111,14 @@
 
 	add_fingerprint(user)
 	if(charging)
-		charging.update_icon()
+		charging.update_appearance(UPDATE_ICON)
 		charging.forceMove(drop_location())
 		user.put_in_hands(charging)
 		setCharging(null)
 
 /obj/machinery/recharger/attack_tk(mob/user)
 	if(charging)
-		charging.update_icon()
+		charging.update_appearance(UPDATE_ICON)
 		charging.forceMove(drop_location())
 		setCharging(null)
 
@@ -132,7 +132,7 @@
 			if(C.charge < C.maxcharge)
 				C.give(C.chargerate * recharge_coeff * delta_time / 2)
 				use_power(125 * recharge_coeff * delta_time)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
@@ -142,7 +142,7 @@
 					if(R.stored_ammo.len <= R.max_ammo)
 						break
 				use_power(100 * recharge_coeff)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
 			var/obj/item/ammo_box/magazine/m308/laser/R = charging
@@ -150,11 +150,11 @@
 				for(var/i in 1 to recharge_coeff) //See above
 					R.stored_ammo += new R.ammo_type(R)
 				use_power(100 * recharge_coeff)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 	else
 		if(charging)
-			charging.update_icon()
+			charging.update_appearance(UPDATE_ICON)
 			charging.forceMove(drop_location())
 			setCharging(null)
 		return PROCESS_KILL
@@ -175,8 +175,8 @@
 				B.cell.charge = 0
 
 
-/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
-	cut_overlays()
+/obj/machinery/recharger/update_overlays()
+	. = ..()
 	if(charging)
 		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
@@ -194,7 +194,7 @@
 			scan.color = "#58d0ff"
 		else
 			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), num)
-		add_overlay(scan)
+		. += scan
 
 /obj/machinery/recharger/wallrecharger
 	name = "wall recharger"

@@ -335,6 +335,16 @@
 			S = apply_status_effect(STATUS_EFFECT_SLEEPING, amount, updating)
 		return S
 
+///////////////////////// CLEAR STATUS /////////////////////////
+
+/mob/living/proc/adjust_status_effects_on_shake_up()
+	AdjustStun(-6 SECONDS)
+	AdjustKnockdown(-6 SECONDS)
+	AdjustUnconscious(-6 SECONDS)
+	AdjustSleeping(-10 SECONDS)
+	AdjustParalyzed(-6 SECONDS)
+	AdjustImmobilized(-6 SECONDS)
+
 ///////////////////////////////// FROZEN /////////////////////////////////////
 
 /mob/living/proc/IsFrozen()
@@ -412,7 +422,7 @@
 	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		blind_eyes(1)
 	ADD_TRAIT(src, TRAIT_BLIND, source)
-
+		
 /mob/living/proc/cure_nearsighted(list/sources)
 	REMOVE_TRAIT(src, TRAIT_NEARSIGHT, sources)
 	if(!HAS_TRAIT(src, TRAIT_NEARSIGHT))

@@ -89,7 +89,7 @@ export const chat_looc: FeatureToggle = {
 };
 
 export const chat_prayer: FeatureToggle = {
-  name: "Listen to prayers",
+  name: "Listen to prayers and Centcom fax",
   category: "ADMIN",
   component: CheckboxInput,
 };

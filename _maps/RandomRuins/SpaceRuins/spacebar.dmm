@@ -527,7 +527,7 @@
 	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/bar,
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "tt" = (
@@ -542,7 +542,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/powered/spacebar)
 "tH" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -1392,7 +1392,7 @@
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
 	},
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "YH" = (

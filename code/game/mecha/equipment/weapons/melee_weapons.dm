@@ -235,7 +235,7 @@
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Half damage on mechs to prolong COOL MECH FIGHTS
-		O.take_damage(object_damage, dam_type, "melee", 0)
+		O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing * 2)
 	else
 		return
 	chassis.do_attack_animation(target, hit_effect)
@@ -433,7 +433,7 @@
 		else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha) && !precise_no_objdamage)	//If the initial target is a big object, hit it even if it's not dense.
 			var/obj/O = target
 			var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)	//Nukie mech, slightly less bad at killing mechs
-			O.take_damage(object_damage, dam_type, "melee", 0)
+			O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing * 2)
 		else
 			return
 		chassis.do_attack_animation(target, hit_effect)
@@ -517,7 +517,7 @@
 	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
 		var/obj/O = target
 		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult * (istype(target, /obj/mecha) ? mech_damage_multiplier : 1)
-		O.take_damage(object_damage, dam_type, "melee", 0)
+		O.take_damage(object_damage, dam_type, "melee", 0, armour_penetration = base_armor_piercing)
 		if(istype(target, /obj/mecha))
 			special_hit(target)	
 	else

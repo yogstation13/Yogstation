@@ -14,7 +14,6 @@
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
-	climbable = FALSE
 
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"

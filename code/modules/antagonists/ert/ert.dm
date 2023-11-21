@@ -62,7 +62,6 @@
 
 /datum/antagonist/ert/on_gain()
 	update_name()
-	forge_objectives()
 	equipERT()
 	. = ..()
 
@@ -252,10 +251,6 @@
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
-
-/datum/antagonist/ert/proc/forge_objectives()
-	if(ert_team)
-		objectives |= ert_team.objectives
 
 /datum/antagonist/ert/proc/equipERT()
 	var/mob/living/carbon/human/H = owner.current

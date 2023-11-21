@@ -231,6 +231,6 @@ Actual Adjacent procs :
 /turf/proc/reachableTurftestdensity(caller, turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
 		for(var/obj/D in T)
-			if(D.density)
+			if(!istype(D, /obj/structure/window) && D.density) //had to do it silly like this so rwindows didn't stop it outright
 				return FALSE
 		return TRUE

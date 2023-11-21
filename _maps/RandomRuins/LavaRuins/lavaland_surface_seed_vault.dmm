@@ -15,10 +15,10 @@
 /obj/structure/table/wood,
 /obj/item/lighter,
 /obj/item/lighter,
-/obj/item/storage/box/fancy/rollingpapers,
-/obj/item/storage/box/fancy/rollingpapers,
-/obj/item/storage/box/fancy/rollingpapers,
-/obj/item/storage/box/fancy/rollingpapers,
+/obj/item/storage/fancy/rollingpapers,
+/obj/item/storage/fancy/rollingpapers,
+/obj/item/storage/fancy/rollingpapers,
+/obj/item/storage/fancy/rollingpapers,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "e" = (

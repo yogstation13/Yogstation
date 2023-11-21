@@ -104,8 +104,8 @@ List of nuances:
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(!whisper)
-			L.say(message, "clock", spans, language=/datum/language/common, ignore_spam = TRUE)
+			L.say(message, "clock", spans, language=/datum/language/common, ignore_spam = TRUE, forced="clockwork_say")
 		else
-			L.whisper(message, "clock", spans, language=/datum/language/common)
+			L.whisper(message, "clock", spans, language=/datum/language/common, ignore_spam = TRUE, forced="clockwork_say")
 	else
-		AM.say(message, language=/datum/language/common)
+		AM.say(message, language=/datum/language/common, ignore_spam = TRUE, forced="clockwork_say")

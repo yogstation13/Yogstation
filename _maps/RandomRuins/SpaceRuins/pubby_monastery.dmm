@@ -38,13 +38,6 @@
 	},
 /turf/closed/wall/mineral/iron,
 /area/ruin/space/has_grav/monastery/maint)
-"aJ" = (
-/obj/structure/flora/ausbushes/genericbush,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "aM" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -174,10 +167,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/office)
-"cm" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "cr" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -199,7 +188,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
 "cH" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_y = 3
 	},
@@ -290,9 +279,20 @@
 /area/ruin/space/has_grav/monastery)
 "dF" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/monastery)
+"dI" = (
+/obj/structure/flora/ausbushes/genericbush,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
+"dQ" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/monastery)
 "dR" = (
 /obj/structure/cable{
@@ -310,7 +310,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
 "eg" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/machinery/firealarm{
@@ -504,12 +504,12 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery)
-"ge" = (
-/obj/structure/flora/ausbushes/ywflowers,
+"gb" = (
 /obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
 "go" = (
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/office)
@@ -531,10 +531,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
+"gr" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/poppy,
+/obj/machinery/light/small/broken,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "gw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
+"gz" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "gF" = (
 /turf/closed/wall/mineral/iron,
 /area/ruin/space/has_grav/monastery)
@@ -557,7 +567,7 @@
 /area/ruin/space/has_grav/monastery)
 "hb" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22";
 	pixel_y = 8
 	},
@@ -577,13 +587,6 @@
 "hi" = (
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery)
-"hk" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/beebox,
-/obj/item/queen_bee/bought,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "hp" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -683,20 +686,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"iz" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/carrot,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
-"iI" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "iJ" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/light/small{
@@ -770,6 +759,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
+"jw" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/wheat,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "jy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -826,6 +823,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
+"ki" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "ko" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -853,12 +855,6 @@
 	dir = 4
 	},
 /area/ruin/space/has_grav/monastery)
-"kA" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "kC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -892,6 +888,28 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/office)
+"lj" = (
+/obj/machinery/door/airlock{
+	name = "Garden"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/monastery)
 "ln" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Chapel";
@@ -931,6 +949,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
+"lI" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/monastery)
 "lK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1036,11 +1058,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"ne" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/watermelon/holy,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "np" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plasteel/dark,
@@ -1055,7 +1072,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
 "nI" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1072,18 +1089,11 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery)
-"ob" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/wheat,
-/obj/machinery/light/small{
-	dir = 8
-	},
+"oc" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
-"oi" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
 "on" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -1165,7 +1175,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
 "ph" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/structure/cable{
@@ -1208,18 +1218,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/dock)
+"pu" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "pv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
 /area/ruin/space/has_grav/monastery)
-"pG" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "pI" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lantern{
@@ -1237,10 +1247,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
-"pN" = (
-/obj/item/cultivator,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "pW" = (
 /obj/machinery/light/small/broken{
 	dir = 8
@@ -1310,6 +1316,17 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
+"qK" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/light/small,
+/obj/machinery/airalarm/all_access{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "qP" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/effect/turf_decal/tile/neutral{
@@ -1324,6 +1341,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/office)
+"qU" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/poppy,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "rc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1393,12 +1415,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
-"rE" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/poppy,
-/obj/machinery/light/small/broken,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "rL" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1414,12 +1430,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/office)
-"rN" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/monastery)
 "rV" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -1430,10 +1440,10 @@
 /obj/item/pen,
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/monastery/office)
-"sf" = (
+"sh" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
 "sn" = (
 /obj/item/clothing/suit/apron/chef,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1459,7 +1469,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery/maint)
 "sM" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /obj/item/radio/intercom{
@@ -1467,6 +1477,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library/lounge)
+"sO" = (
+/obj/structure/sink/puddle,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "sU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1542,10 +1557,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/monastery/office)
-"tE" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "tI" = (
 /obj/structure/chair/wood/normal{
 	dir = 1
@@ -1557,14 +1568,18 @@
 	dir = 1
 	},
 /area/ruin/space/has_grav/monastery)
-"tX" = (
+"tY" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/watermelon/holy,
 /obj/machinery/light/small/broken{
 	dir = 1
 	},
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
+"ue" = (
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "ug" = (
 /obj/machinery/door/airlock/external{
 	name = "Pod Docking Bay"
@@ -1627,7 +1642,7 @@
 /area/ruin/space/has_grav/monastery)
 "uP" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
 "uX" = (
@@ -1662,14 +1677,9 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery)
-"vn" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "vs" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
@@ -1690,6 +1700,14 @@
 "vK" = (
 /obj/item/wrench,
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/monastery)
+"vN" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/sugarcane,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/monastery)
 "vP" = (
 /obj/structure/grille,
@@ -1749,30 +1767,10 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/ruin/powered)
-"ws" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/pointybush,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "wy" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
-"wz" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/monastery)
 "wA" = (
 /obj/machinery/holopad,
 /obj/item/flashlight/lantern,
@@ -1818,6 +1816,11 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet,
+/area/ruin/space/has_grav/monastery)
+"wR" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/harebell,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/monastery)
 "wW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1891,21 +1894,6 @@
 /obj/item/barcodescanner,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
-"yd" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Garden APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "yi" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Library"
@@ -1922,7 +1910,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
 "yj" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/plasteel/dark,
@@ -1947,9 +1935,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library)
-"yp" = (
-/turf/closed/wall,
-/area/hydroponics/garden/monastery)
 "yq" = (
 /obj/structure/closet{
 	name = "beekeeping supplies"
@@ -2048,6 +2033,10 @@
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/monastery)
+"zn" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/monastery)
 "zz" = (
 /obj/machinery/door/airlock/grunge{
@@ -2153,7 +2142,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-10"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2228,16 +2217,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/dock)
-"BX" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/camera{
-	c_tag = "Monastery Garden";
-	dir = 2;
-	network = list("ss13","monastery")
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "BZ" = (
 /turf/closed/wall/rust,
 /area/ruin/unpowered/no_grav)
@@ -2281,6 +2260,15 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/monastery)
+"CC" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/monastery)
 "CD" = (
 /obj/structure/cable{
@@ -2428,11 +2416,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"Ec" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/sugarcane,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Ed" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/carpet,
@@ -2539,10 +2522,26 @@
 /obj/item/storage/box/bodybags,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/monastery/office)
+"FK" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
+"FR" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/watermelon/holy,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "FV" = (
 /obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library/lounge)
+"FZ" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/beebox,
+/obj/item/queen_bee/bought,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "Gd" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/cable{
@@ -2632,9 +2631,6 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/monastery/dock)
-"Hm" = (
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Ho" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Chapel";
@@ -2681,6 +2677,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library/lounge)
+"HK" = (
+/obj/structure/flora/ausbushes/pointybush,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "HO" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -2745,6 +2746,12 @@
 /obj/structure/grille,
 /turf/open/space,
 /area/ruin/unpowered/no_grav)
+"IM" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "IR" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -2776,7 +2783,7 @@
 /obj/structure/sign/plaques/deempisi{
 	pixel_y = 28
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21";
 	pixel_y = 3
 	},
@@ -2787,11 +2794,11 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library/lounge)
-"Js" = (
+"Jz" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/seeds/wheat,
+/obj/item/seeds/carrot,
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
 "JD" = (
 /obj/machinery/door/airlock/external,
 /obj/machinery/door/firedoor/border_only{
@@ -2845,6 +2852,11 @@
 "JW" = (
 /turf/closed/wall/mineral/iron,
 /area/ruin/space/has_grav/monastery/maint)
+"Kp" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/sugarcane,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "Kq" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Chapel Office";
@@ -2880,28 +2892,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library/lounge)
-"KN" = (
-/obj/machinery/door/airlock{
-	name = "Garden"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/hydroponics/garden/monastery)
 "KS" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2940,6 +2930,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/dock)
+"Li" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/wheat,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "Lk" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/structure/cable{
@@ -2947,6 +2942,11 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/monastery/maint)
+"Lq" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "LK" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -2979,7 +2979,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
 "LV" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2990,14 +2990,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"LY" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/sugarcane,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -3029,7 +3021,7 @@
 /turf/open/space/basic,
 /area/ruin/unpowered/no_grav)
 "Mn" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-08"
 	},
 /turf/open/floor/plasteel/dark,
@@ -3294,22 +3286,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
-"OY" = (
+"Ph" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
-"Pk" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/light/small,
-/obj/machinery/airalarm/all_access{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
 "Pu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3320,11 +3301,6 @@
 "Pz" = (
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/monastery/dock)
-"PB" = (
-/obj/structure/flora/ausbushes/pointybush,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "PC" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lantern{
@@ -3333,6 +3309,9 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
+"PE" = (
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "PH" = (
 /obj/structure/chair/wood/normal{
 	dir = 8
@@ -3353,11 +3332,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/office)
-"PS" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Qc" = (
 /obj/structure/closet,
 /obj/item/storage/backpack/cultpack,
@@ -3376,16 +3350,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/office)
-"Ql" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/harebell,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Qx" = (
 /obj/structure/table,
 /obj/item/crowbar,
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/monastery)
+"QE" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
 /area/ruin/space/has_grav/monastery)
 "QK" = (
 /obj/structure/lattice/catwalk,
@@ -3429,11 +3403,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/monastery/library/lounge)
-"Rc" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/poppy,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Rg" = (
 /obj/machinery/door/window/northright{
 	base_state = "right";
@@ -3755,10 +3724,18 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/space/has_grav/monastery/office)
-"Ua" = (
-/obj/structure/flora/tree/jungle/small,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+"TN" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/monastery)
 "Uc" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3834,11 +3811,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"UJ" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "UQ" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -3919,11 +3891,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
-"VA" = (
-/obj/structure/sink/puddle,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "VU" = (
 /obj/machinery/door/airlock/external{
 	name = "Dock Access"
@@ -3964,6 +3931,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library/lounge)
+"We" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "Wg" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -4102,12 +4076,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
-"Xd" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/palebush,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Xh" = (
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/monastery/office)
@@ -4145,31 +4113,10 @@
 /obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/office)
-"XD" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock{
-	name = "Garden"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/hydroponics/garden/monastery)
+"XF" = (
+/obj/item/cultivator,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/monastery)
 "XG" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Library"
@@ -4197,11 +4144,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery/library/lounge)
-"XS" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "XT" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4233,10 +4175,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/monastery)
-"YG" = (
-/obj/structure/flora/ausbushes/sparsegrass,
+"Yn" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/pointybush,
 /turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
+/area/ruin/space/has_grav/monastery)
 "YW" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -4274,10 +4217,6 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/ruin/unpowered/no_grav)
-"Ze" = (
-/mob/living/simple_animal/butterfly,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "Zf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
@@ -4298,7 +4237,7 @@
 /area/ruin/space/has_grav/monastery/library)
 "Zn" = (
 /obj/structure/table/wood,
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-05";
 	pixel_y = 10
 	},
@@ -4368,7 +4307,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -6294,7 +6233,7 @@ WU
 ds
 TD
 yX
-wz
+TN
 gp
 Xm
 dR
@@ -6383,7 +6322,7 @@ Rl
 Rl
 OQ
 Rl
-rN
+RG
 Rl
 Rl
 Rl
@@ -6468,15 +6407,15 @@ wZ
 gF
 RJ
 Rl
-yp
-oi
-oi
-yp
-XD
-yp
-oi
-oi
-yp
+iK
+lI
+lI
+iK
+lj
+iK
+lI
+lI
+iK
 Rl
 RJ
 JW
@@ -6557,15 +6496,15 @@ iK
 gF
 fx
 Rl
-oi
-PB
-OY
-yd
-pG
-ob
-Ql
-Rc
-oi
+lI
+HK
+oc
+We
+PE
+jw
+wR
+qU
+lI
 Rl
 Wz
 JW
@@ -6646,15 +6585,15 @@ Mn
 gF
 mX
 JG
-oi
-OY
-hk
-tE
-Hm
-Hm
-YG
-OY
-oi
+lI
+oc
+FZ
+dQ
+PE
+PE
+gz
+oc
+lI
 Rl
 Nv
 XT
@@ -6735,15 +6674,15 @@ Dw
 gF
 YW
 Rl
-yp
-iI
-Ua
-cm
-Hm
-Js
-Ql
-rE
-yp
+iK
+CC
+zn
+FK
+PE
+Li
+wR
+gr
+iK
 Rl
 ui
 JW
@@ -6824,15 +6763,15 @@ RG
 yJ
 LQ
 Rl
-oi
-BX
-hk
-YG
-VA
-Hm
-Hm
-vn
-oi
+lI
+oc
+FZ
+gz
+sO
+PE
+PE
+ki
+lI
 Rl
 RJ
 JW
@@ -6913,15 +6852,15 @@ RG
 yJ
 LQ
 Rl
-oi
-PS
-UJ
-Ze
-sf
-tE
-XS
-OY
-oi
+lI
+QE
+Lq
+ue
+sh
+dQ
+Ph
+oc
+lI
 wB
 ha
 VV
@@ -7002,15 +6941,15 @@ dF
 gF
 Sx
 Rl
-yp
-tX
-iz
-Ec
-pN
-Hm
-ge
-Pk
-yp
+iK
+tY
+Jz
+Kp
+XF
+PE
+pu
+qK
+iK
 Rl
 ui
 VV
@@ -7091,15 +7030,15 @@ Mn
 gF
 Fk
 Rl
-oi
-UJ
-Hm
-Hm
-Hm
-cm
-UJ
-Xd
-oi
+lI
+Lq
+PE
+PE
+PE
+FK
+Lq
+IM
+lI
 Rl
 Wz
 KJ
@@ -7180,15 +7119,15 @@ iK
 gF
 Sd
 Rl
-oi
-ne
-iz
-LY
-Hm
-aJ
-ws
-kA
-oi
+lI
+FR
+Jz
+vN
+PE
+dI
+Yn
+gb
+lI
 Rl
 oo
 DY
@@ -7269,15 +7208,15 @@ iK
 gF
 LQ
 Rl
-yp
-oi
-oi
-yp
-KN
-yp
-oi
-oi
-yp
+iK
+lI
+lI
+iK
+lj
+iK
+lI
+lI
+iK
 Rl
 LQ
 VV

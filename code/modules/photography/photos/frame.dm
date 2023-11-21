@@ -16,7 +16,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			displayed = I
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, "<span class=notice>\The [src] already contains a photo.</span>")
 	..()
@@ -31,7 +31,7 @@
 		user.put_in_hands(I)
 		to_chat(user, span_notice("You carefully remove the photo from \the [src]."))
 		displayed = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/item/wallframe/picture/attack_self(mob/user)
@@ -44,10 +44,10 @@
 	else
 		return ..()
 
-/obj/item/wallframe/picture/update_icon()
-	cut_overlays()
+/obj/item/wallframe/picture/update_overlays()
+	. = ..()
 	if(displayed)
-		add_overlay(image(displayed))
+		. += image(displayed)
 
 /obj/item/wallframe/picture/after_attach(obj/O)
 	..()
@@ -106,7 +106,7 @@
 		else
 			qdel(framed)
 		framed = P
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/picture_frame/examine(mob/user)
 	if(in_range(src, user) && framed)
@@ -135,7 +135,7 @@
 			if(!user.transferItemToLoc(P, src))
 				return
 			framed = P
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, "<span class=notice>\The [src] already contains a photo.</span>")
 
@@ -148,10 +148,10 @@
 	if(framed)
 		framed.show(user)
 
-/obj/structure/sign/picture_frame/update_icon()
-	cut_overlays()
+/obj/structure/sign/picture_frame/update_overlays()
+	. = ..()
 	if(framed)
-		add_overlay(image(framed))
+		. += image(framed)
 
 /obj/structure/sign/picture_frame/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -162,5 +162,5 @@
 		if(contents.len)
 			var/obj/item/I = pick(contents)
 			I.forceMove(F)
-		F.update_icon()
+		F.update_appearance(UPDATE_ICON)
 	qdel(src)

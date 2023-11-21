@@ -7,12 +7,22 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "clusterbang"
 	var/base_state = "clusterbang"
-	var/payload = /obj/item/grenade/flashbang/cluster
+	var/atom/payload = /obj/item/grenade/flashbang/cluster
 	var/payload_spawner = /obj/effect/payload_spawner
 	var/prime_sound = 'sound/weapons/armbomb.ogg'
 	var/min_spawned = 4
 	var/max_spawned = 8
 	var/segment_chance = 35
+
+/obj/item/grenade/clusterbuster/examine(mob/user)
+	. = ..()
+	if(payload)
+		. += span_info("It has a payload. You can look again to take a closer look...")
+
+/obj/item/grenade/clusterbuster/examine_more(mob/user)
+	. = ..()
+	if(payload)
+		return list(span_info("\The [src] contains [initial(payload.name)]s."))
 
 /obj/item/grenade/clusterbuster/prime()
 	update_mob()
@@ -77,7 +87,7 @@
 		var/obj/item/grenade/P = new type(loc)
 		if(istype(P))
 			P.active = TRUE
-			addtimer(CALLBACK(P, /obj/item/grenade/proc/prime), rand(15,60))
+			addtimer(CALLBACK(P, TYPE_PROC_REF(/obj/item/grenade, prime)), rand(15,60))
 		var/steps = rand(1,4)
 		for(var/i in 1 to steps)
 			step_away(src,loc)
@@ -106,7 +116,7 @@
 		var/chosen = pick(subtypesof(/obj/item/slime_extract))
 		var/obj/item/slime_extract/P = new chosen(loc)
 		if(volatile)
-			addtimer(CALLBACK(P, /obj/item/slime_extract/proc/activate_slime), rand(15,60))
+			addtimer(CALLBACK(P, TYPE_PROC_REF(/obj/item/slime_extract, activate_slime)), rand(15,60))
 		var/steps = rand(1,4)
 		for(var/i in 1 to steps)
 			step_away(src,loc)
@@ -191,6 +201,7 @@
 	name = "Blorble Blorble"
 	icon_state = "slimebang"
 	base_state = "slimebang"
+	payload = null
 	payload_spawner = /obj/effect/payload_spawner/random_slime
 	prime_sound = 'sound/effects/bubbles.ogg'
 

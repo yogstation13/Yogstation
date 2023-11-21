@@ -26,6 +26,7 @@
 		/datum/action/cooldown/spell/conjure/summon_mirror,
 		/datum/action/cooldown/spell/touch/mend,
 		/datum/action/cooldown/spell/touch/torment,
+		/datum/action/cooldown/spell/conjure/cursed_item,
 		))
 
 	var/static/list/sinfuldemon_traits = list(
@@ -131,12 +132,15 @@
 			ADD_TRAIT(owner.current, TRAIT_BOTTOMLESS_STOMACH, SINFULDEMON_TRAIT) // nutrition is capped for infinite eating
 			ADD_TRAIT(owner.current, TRAIT_VORACIOUS, SINFULDEMON_TRAIT) // eat and drink faster & eat infinite snacks
 
-		if(SIN_GREED)
+		if(SIN_GREED) 
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
 			demon_form.Grant(owner.current)
 
 			var/datum/action/cooldown/spell/conjure/summon_greedslots/gambling_addiction = new(owner.current)
 			gambling_addiction.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/conjure/cursed_item/immortal_temptation = new(owner.current)
+			immortal_temptation.Grant(owner.current)
 
 		if(SIN_WRATH)
 			var/datum/action/cooldown/spell/shapeshift/demon/wrath/wrath_demon = new(owner.current)

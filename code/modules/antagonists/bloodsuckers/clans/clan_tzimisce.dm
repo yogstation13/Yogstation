@@ -30,4 +30,4 @@
 	INVOKE_ASYNC(vassal, TYPE_PROC_REF(/mob/, set_species), /datum/species/szlachta)
 
 /datum/bloodsucker_clan/tzimisce/proc/slash_vassal(mob/living/bloodsucker, time, mob/living/vassal)
-	do_after(bloodsucker, time, vassal, FALSE, TRUE, null, FALSE) //necessary becaues of how signal handler works
+	do_after(bloodsucker, time, vassal, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM) //necessary becaues of how signal handler works

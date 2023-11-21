@@ -34,6 +34,10 @@
 	var/nonlethal = FALSE
 	///if the martial art can be overridden by temporary arts
 	var/allow_temp_override = TRUE
+	///the message for when you try to use a gun you can't use
+	var/no_gun_message = "Use of ranged weaponry would bring dishonor to the clan."
+	///used to allow certain guns as exceptions
+	var/gun_exceptions = list()
 
 /**
   * martial art specific disarm attacks
@@ -149,7 +153,7 @@
   *returns TRUE if the default throw impact shouldn't do anything, FALSE if you still slam into something at mach 20 and eat a stun
   */
 
-/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/proc/handle_throw(atom/hit_atom, mob/living/carbon/human/A, datum/thrownthing/throwingdatum)
 	return FALSE
 
 /**

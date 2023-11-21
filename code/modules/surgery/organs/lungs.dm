@@ -353,6 +353,20 @@
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
+	// Hyper-noblium
+		gas_breathed = breath.get_moles(/datum/gas/hypernoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/hypernoblium)
+			H.reagents.add_reagent(/datum/reagent/hypernoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/hypernoblium, -gas_breathed)
+	
+	// Anti-noblium
+		gas_breathed = breath.get_moles(/datum/gas/antinoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/antinoblium)
+			H.reagents.add_reagent(/datum/reagent/antinoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/antinoblium, -gas_breathed)
+
 	// Miasma
 		if (breath.get_moles(/datum/gas/miasma))
 			var/miasma_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/miasma))
@@ -489,6 +503,7 @@
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
+	compatible_biotypes = MOB_ROBOTIC // no more humans with IPC lungs, that's just silly
 	status = ORGAN_ROBOTIC
 	COOLDOWN_DECLARE(last_message)
 
@@ -617,3 +632,18 @@
 	heat_level_1_threshold = 500
 	heat_level_2_threshold = 800
 	heat_level_3_threshold = 1400
+
+// ELECTROLYZER LUNGS!!!!!
+/obj/item/organ/lungs/ethereal
+	name = "aeration reticulum"
+	desc = "These exotic lungs seem crunchier than most."
+	icon_state = "lungs-ethereal"
+	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/water_vapor = 1)
+
+/obj/item/organ/lungs/ethereal/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	. = ..()
+	var/electrolysis = breath.get_moles(/datum/gas/water_vapor)
+	if(electrolysis)
+		breath.adjust_moles(/datum/gas/water_vapor, -electrolysis)
+		breath.adjust_moles(/datum/gas/hydrogen, electrolysis)
+		breath.adjust_moles(/datum/gas/oxygen, electrolysis/2)

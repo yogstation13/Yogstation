@@ -33,14 +33,15 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 
 /obj/item/stack/marker_beacon/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/stack/marker_beacon/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Use in-hand to place a [singular_name].\n"+\
 	"Alt-click to select a color. Current color is [picked_color].</span>"
 
-/obj/item/stack/marker_beacon/update_icon()
+/obj/item/stack/marker_beacon/update_icon_state()
+	. = ..()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]"
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
@@ -64,7 +65,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 		return
 	if(input_color)
 		picked_color = input_color
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/marker_beacon
 	name = "marker beacon"
@@ -83,20 +84,21 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 /obj/structure/marker_beacon/Initialize(mapload, set_color)
 	. = ..()
 	picked_color = set_color
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/marker_beacon/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
-		M.update_icon()
+		M.update_appearance(UPDATE_ICON)
 	qdel(src)
 
 /obj/structure/marker_beacon/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to select a color. Current color is [picked_color].")
 
-/obj/structure/marker_beacon/update_icon()
+/obj/structure/marker_beacon/update_icon_state()
+	. = ..()
 	while(!picked_color || !GLOB.marker_beacon_colors[picked_color])
 		picked_color = pick(GLOB.marker_beacon_colors)
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
@@ -110,7 +112,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	if(do_after(user, remove_speed, src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
-		M.update_icon()
+		M.update_appearance(UPDATE_ICON)
 		transfer_fingerprints_to(M)
 		if(user.put_in_hands(M, TRUE)) //delete the beacon if it fails
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
@@ -143,4 +145,4 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 		return
 	if(input_color)
 		picked_color = input_color
-		update_icon()
+		update_appearance(UPDATE_ICON)

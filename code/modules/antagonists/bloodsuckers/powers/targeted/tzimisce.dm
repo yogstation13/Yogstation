@@ -138,7 +138,7 @@
 			target.adjustBruteLoss(25)
 		return
 	playsound(usr.loc, "sound/weapons/slice.ogg", 50, TRUE)
-	if(!do_mob(usr, target, 2.5 SECONDS))
+	if(!do_after(usr, 2.5 SECONDS, target))
 		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target

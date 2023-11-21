@@ -248,7 +248,10 @@ If you're feeling frisky, examine yourself and click the underlined item to pull
 /atom/movable/screen/alert/embeddedobject/Click()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		return C.try_remove_embedded_object(C)
+		if (C.incapacitated())
+			to_chat(C, span_warning("You can't do that while disabled!"))
+		else
+			return C.try_remove_embedded_object(C)
 
 /atom/movable/screen/alert/weightless
 	name = "Weightless"
@@ -516,6 +519,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"
 
+/atom/movable/screen/alert/style
+	name = "Style"
+	desc = "This is how stylish you are."
+	icon_state = "style"
+
 //SILICONS
 
 /atom/movable/screen/alert/nocell
@@ -663,6 +671,24 @@ so as to remain in compliance with the most up-to-date laws."
 	if(L.last_special <= world.time)
 		return L.resist_buckle()
 
+/atom/movable/screen/alert/revolution
+	name = "Revolution"
+	desc = "VIVA! VIVA! VIVA! You shouldn't be seeing this!"
+	icon_state = "revolution"
+
+/atom/movable/screen/alert/revolution/MouseEntered(location,control,params)
+	if(!istype(SSticker.mode, /datum/game_mode/revolution))
+		return
+	var/datum/game_mode/revolution/R = SSticker.mode
+	if(!R.loud && R.go_fucking_loud_time)
+		var/time_left = R.go_fucking_loud_time - world.time
+		desc = "Soon the revolution will boil over. If need be, rally yourselves and make preparations for fighting.<br>\
+			We will be discovered in [time_left / (1 MINUTES)] minutes if we sit idly.<br>\
+			If we eliminate all of the Command personnel, we will also be detected."
+	else if(R.loud)
+		desc = "The revolution has boiled over. Fight for your life and the life of your allies."
+	..()
+
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
@@ -692,9 +718,6 @@ so as to remain in compliance with the most up-to-date laws."
 		alert.screen_loc = .
 		mymob?.client?.screen |= alert
 	return 1
-
-/mob
-	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
 
 /atom/movable/screen/alert/Click(location, control, params)
 	if(!usr || !usr.client)

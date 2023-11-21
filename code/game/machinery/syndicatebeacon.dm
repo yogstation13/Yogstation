@@ -118,14 +118,14 @@
 	if(user)
 		to_chat(user, span_notice("Locked In."))
 		new droptype( user.loc )
-		playsound(src, 'sound/effects/pop.ogg', 100, 1, 1)
+		playsound(src, 'sound/effects/phasein.ogg', 25, 1, 1)
 		qdel(src)
 	return
 
 /obj/item/sbeacondrop/bomb
 	desc = "A label on it reads: <i>Warning: Activating this device will send a high-ordinance explosive to your location</i>."
 	droptype = /obj/machinery/syndicatebomb
-	
+
 /obj/item/sbeacondrop/emp
 	desc = "A label on it reads: <i>Warning: Activating this device will send a high-powered electromagnetic device to your location</i>."
 	droptype = /obj/machinery/syndicatebomb/emp

@@ -46,6 +46,7 @@
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
 	var/next_write_time = 0 // prevent crash exploit
+	var/timesstamped = 0 //prevent error exploit
 
 
 /obj/item/paper/pickup(user)
@@ -75,11 +76,11 @@
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	written = list()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
-/obj/item/paper/update_icon()
-
+/obj/item/paper/update_icon_state()
+	. = ..()
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
 		return
@@ -184,7 +185,7 @@
 	stamps = null
 	LAZYCLEARLIST(stamped)
 	cut_overlays()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user, iscrayon = 0)
@@ -278,7 +279,7 @@
 			else
 				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
 			usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 
 /obj/item/paper/attackby(obj/item/P, mob/living/carbon/human/user, params)
@@ -299,7 +300,8 @@
 			return
 
 	else if(istype(P, /obj/item/stamp))
-
+		if(timesstamped > 25)
+			return
 		if(!in_range(src, user))
 			return
 
@@ -315,6 +317,7 @@
 		add_overlay(stampoverlay)
 
 		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
+		timesstamped += 1
 
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
@@ -352,7 +355,7 @@
 		src.loc = B
 		P.loc = B
 		B.amount = 2
-		B.update_icon()
+		B.update_appearance(UPDATE_ICON)
 
 	add_fingerprint(user)
 
@@ -365,7 +368,7 @@
 
 /obj/item/paper/extinguish()
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /*
  * Construction paper
@@ -390,8 +393,9 @@
 	icon_state = "scrap"
 	slot_flags = null
 
-/obj/item/paper/crumpled/update_icon()
-	return
+/obj/item/paper/crumpled/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"

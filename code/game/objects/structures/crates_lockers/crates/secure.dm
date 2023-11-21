@@ -13,16 +13,16 @@
 		return 0
 	. = ..()
 
-/obj/structure/closet/crate/secure/update_icon()
-	..()
+/obj/structure/closet/crate/secure/update_overlays()
+	. = ..()
 	if(broken)
-		add_overlay("securecrateemag")
+		. += "securecrateemag"
 	else if(locked)
-		add_overlay("securecrater")
+		. += "securecrater"
 	else
-		add_overlay("securecrateg")
+		. += "securecrateg"
 
-/obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	if(prob(tamperproof) && damage_amount >= DAMAGE_PRECISION)
 		boom()
 	else
@@ -74,6 +74,12 @@
 	name = "secure engineering crate"
 	icon_state = "engi_secure_crate"
 
+/obj/structure/closet/crate/secure/radiation
+	desc = "A crate with a lock and is painted with a radiation sign on it. This crate is designed to prevent radiation from leaking outside of the crate."
+	name = "secure radiation crate"
+	icon_state = "radiation_secure"
+	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
+
 /obj/structure/closet/crate/secure/science
 	name = "secure science crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
@@ -96,6 +102,48 @@
 	var/privacy_lock = TRUE
 	///Is the crate being bought by a person, or a budget card?
 	var/department_purchase = FALSE
+
+/obj/structure/closet/crate/secure/owned/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/civ
+	icon_state = "plasmacrate"
+
+/obj/structure/closet/crate/secure/owned/radiation
+	icon_state = "radiation_secure"
+	flags_1 = RAD_CONTAIN_CONTENTS // rad-insulated
+
+/obj/structure/closet/crate/secure/owned/cheap
+
+/obj/structure/closet/crate/secure/owned/cheap/hydroponics
+	icon_state = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/engineering
+	icon_state = "engi_secure_crate"
+
+/obj/structure/closet/crate/secure/owned/cheap/science
+	icon_state = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/medical
+	icon_state = "medsecurecrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/gear
+	icon_state = "secgearcrate"
+
+/obj/structure/closet/crate/secure/owned/cheap/civ
+	icon_state = "plasmacrate"
 
 /obj/structure/closet/crate/secure/owned/examine(mob/user)
 	. = ..()
@@ -130,5 +178,5 @@
 		add_fingerprint(user)
 	locked = !locked
 	user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
-					span_notice("You [locked ? null : "un"]lock [src]."))
-	update_icon()
+	span_notice("You [locked ? null : "un"]lock [src]."))
+	update_appearance(UPDATE_ICON)

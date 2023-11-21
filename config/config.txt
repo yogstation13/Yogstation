@@ -437,8 +437,6 @@ DEFAULT_VIEW_SQUARE 15x15
 ## More API details can be found here: https://centcom.melonmesa.com
 CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 
-#AUTO_PROFILE
-
 ## Uncomment to disable hard deleting garbage collection failures. (Hard deleting GC failures causes lag in order to bring memory usage down and keep bugged objects from hanging around and causing bugs in other things.) You can safely enable this for performance on production if the lag spikes are too disruptive)
 #DISABLE_GC_FAILURE_HARD_DELETES
 
@@ -452,3 +450,6 @@ MAX_SHUTTLE_SIZE 300
 ## Enable/disable roundstart station traits
 #STATION_TRAITS
 
+## Comment to disable sending a toast notification on the host server when initializations complete.
+## Even if this is enabled, a notification will only be sent if there are no clients connected.
+TOAST_NOTIFICATION_ON_INIT

@@ -16,6 +16,13 @@
 	/// The amount of firestacks to put people afflicted.
 	var/firestacks_to_give = 20
 
+/datum/action/cooldown/spell/aoe/sacred_flame/weak //far weaker version, primarily for the greed cursed item
+	cooldown_time = 15 SECONDS
+
+	aoe_radius = 2
+
+	firestacks_to_give = 5
+
 /datum/action/cooldown/spell/aoe/sacred_flame/get_things_to_cast_on(atom/center)
 	var/list/things = list()
 	for(var/mob/living/nearby_mob in view(aoe_radius, center))

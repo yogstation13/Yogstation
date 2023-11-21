@@ -66,6 +66,24 @@ SUBSYSTEM_DEF(explosions)
 	msg += "} "
 	return ..()
 
+/datum/controller/subsystem/explosions/get_metrics()
+	. = ..()
+	.["cost_lowturf"] = cost_lowturf
+	.["cost_medturf"] = cost_medturf
+	.["cost_highturf"] = cost_highturf
+	.["cost_flameturf"] = cost_flameturf
+	.["cost_low_mov_atom"] = cost_low_mov_atom
+	.["cost_med_mov_atom"] = cost_med_mov_atom
+	.["cost_high_mov_atom"] = cost_high_mov_atom
+	.["cost_throwturf"] = cost_throwturf
+	.["lowturfs"] = lowturf.len
+	.["medturfs"] = medturf.len
+	.["highturfs"] = highturf.len
+	.["flameturfs"] = flameturf.len
+	.["low_mov_atom"] = low_mov_atom.len
+	.["med_mov_atom"] = med_mov_atom.len
+	.["high_mov_atom"] = high_mov_atom.len
+	.["throwturf"] = throwturf.len
 
 /datum/controller/subsystem/explosions/proc/is_exploding()
 	return (lowturf.len || medturf.len || highturf.len || flameturf.len || throwturf.len || low_mov_atom.len || med_mov_atom.len || high_mov_atom.len)
@@ -142,7 +160,7 @@ SUBSYSTEM_DEF(explosions)
 		else
 			continue
 
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 100)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wipe_color_and_text), wipe_colours), 100)
 
 /proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -248,6 +266,7 @@ SUBSYSTEM_DEF(explosions)
 
 		if(prob(devastation_range*DEVASTATION_PROB+heavy_impact_range*HEAVY_IMPACT_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
 			creaking_explosion = TRUE // prob over 100 always returns true
+			flicker_all_lights()
 
 		for(var/MN in GLOB.player_list)
 			var/mob/M = MN
@@ -286,7 +305,7 @@ SUBSYSTEM_DEF(explosions)
 					M.playsound_local(epicenter, null, echo_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
 
 				if(creaking_explosion) // 5 seconds after the bang, the station begins to creak
-					addtimer(CALLBACK(M, /mob/proc/playsound_local, epicenter, null, rand(FREQ_LOWER, FREQ_UPPER), 1, frequency, null, null, FALSE, hull_creaking_sound, 0), CREAK_DELAY)
+					addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, playsound_local), epicenter, null, rand(FREQ_LOWER, FREQ_UPPER), 1, frequency, null, null, FALSE, hull_creaking_sound, 0), CREAK_DELAY)
 
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E
@@ -503,7 +522,7 @@ SUBSYSTEM_DEF(explosions)
 		for(var/thing in flame_turf)
 			if(thing)
 				var/turf/T = thing
-				new /obj/effect/hotspot(T) //Mostly for ambience!
+				T.IgniteTurf(rand(4, 24)) //Mostly for ambience!
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		if (low_turf.len || med_turf.len || high_turf.len)

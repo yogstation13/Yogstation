@@ -1,9 +1,14 @@
+/// below these levels trigger the special sprites
+#define PAINTER_MOST 0.76
+#define PAINTER_MID 0.5
+#define PAINTER_LOW 0.2
+
 /obj/item/airlock_painter
 	name = "airlock painter"
 	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "paint sprayer"
-	item_state = "paint sprayer"
+	icon_state = "paint_sprayer"
+	item_state = "paint_sprayer"
 	
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -14,7 +19,10 @@
 	slot_flags = ITEM_SLOT_BELT
 	usesound = 'sound/effects/spray2.ogg'
 
+	/// The ink cartridge to pull charges from.
 	var/obj/item/toner/ink = null
+	/// The type path to instantiate for the ink cartridge the device initially comes with, eg. /obj/item/toner
+	var/initial_ink_type = /obj/item/toner
 	var/painter_mode = 1
 	/// Associate list of all paint jobs the airlock painter can apply. The key is the name of the airlock the user will see. The value is the type path of the airlock
 	var/list/available_paint_jobs = list(
@@ -33,12 +41,32 @@
 		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
 		"Virology" = /obj/machinery/door/airlock/virology,
 		"Standard" = /obj/machinery/door/airlock,
-	    "Centcom"  = /obj/machinery/door/airlock/centcom
+	    "Centcom"  = /obj/machinery/door/airlock/centcom,
+		"Shuttle" = /obj/machinery/door/airlock/shuttle,
+		"Alien" = /obj/machinery/door/airlock/abductor
 	)
 
 /obj/item/airlock_painter/Initialize(mapload)
 	. = ..()
-	ink = new /obj/item/toner(src)
+	ink = new initial_ink_type(src)
+
+/obj/item/airlock_painter/update_icon_state()
+	. = ..()
+	var/base = initial(icon_state)
+	if(!ink || !istype(ink))
+		icon_state = "[base]_none"
+		return
+	switch(ink.charges / ink.max_charges)
+		if(0.001 to PAINTER_LOW)
+			icon_state = "[base]_low"
+		if(PAINTER_LOW to PAINTER_MID)
+			icon_state = "[base]_mid"
+		if(PAINTER_MID to PAINTER_MOST)
+			icon_state = "[base]_most"
+		if(PAINTER_MOST to INFINITY)
+			icon_state = base
+		else
+			icon_state = "[base]_empty"
 
 /obj/item/airlock_painter/proc/get_mode()
 	return painter_mode
@@ -48,6 +76,7 @@
 /obj/item/airlock_painter/proc/use_paint(mob/user)
 	if(can_use(user))
 		ink.charges--
+		update_appearance(UPDATE_ICON)
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
 		return TRUE
 	else
@@ -58,15 +87,15 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		to_chat(user, span_warning("There is no toner cartridge installed in [src]!"))
+		balloon_alert(user, "no cartridge!")
 		return FALSE
 	else if(ink.charges < 1)
-		to_chat(user, span_warning("[src] is out of ink!"))
+		balloon_alert(user, "out of ink!")
 		return FALSE
 	else
 		return TRUE
 
-/obj/item/airlock_painter/suicide_act(mob/user)
+/obj/item/airlock_painter/suicide_act(mob/living/user)
 	var/obj/item/organ/lungs/L = user.getorganslot(ORGAN_SLOT_LUNGS)
 
 	if(can_use(user) && L)
@@ -116,39 +145,45 @@
 /obj/item/airlock_painter/examine(mob/user)
 	. = ..()
 	if(!ink)
-		. += span_notice("It doesn't have a toner cartridge installed.")
+		. += span_notice("The ink compartment hangs open.")
 		return
 	var/ink_level = "high"
-	if(ink.charges < 1)
+	switch(ink.charges/ink.max_charges)
+		if(0.001 to PAINTER_LOW)
+			ink_level = "extremely low"
+		if(PAINTER_LOW to PAINTER_MID)
+			ink_level = "low"
+		if(PAINTER_MID to 1)
+			ink_level = "high"
+		if(1 to INFINITY) //Over 100% (admin var edit)
+			ink_level = "dangerously high"
+	if(ink.charges <= 0)
 		ink_level = "empty"
-	else if((ink.charges/ink.max_charges) <= 0.25) //25%
-		ink_level = "low"
-	else if((ink.charges/ink.max_charges) > 1) //Over 100% (admin var edit)
-		ink_level = "dangerously high"
 	. += span_notice("Its ink levels look [ink_level].")
 
 
 /obj/item/airlock_painter/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/toner))
-		if(ink)
-			to_chat(user, span_warning("[src] already contains \a [ink]!"))
-			return
-		if(!user.transferItemToLoc(W, src))
-			return
-		to_chat(user, span_notice("You install [W] into [src]."))
-		ink = W
-		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	else
+	if(!istype(W, /obj/item/toner))
 		return ..()
+	if(ink)
+		to_chat(user, span_warning("[src] already contains \a [ink]!"))
+		return
+	if(!user.transferItemToLoc(W, src))
+		return
+	to_chat(user, span_notice("You install [W] into [src]."))
+	ink = W
+	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/airlock_painter/AltClick(mob/user, obj/item/W)
 	. = ..()
 	if(ink)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+		playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
 		user.put_in_hands(ink)
 		to_chat(user, span_notice("You remove [ink] from [src]."))
 		ink = null
+		update_appearance(UPDATE_ICON)
 
 /obj/item/airlock_painter/decal
 	name = "decal painter"
@@ -158,12 +193,43 @@
 	item_state = "decal_sprayer"
 	painter_mode = 2
 	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	initial_ink_type = /obj/item/toner/large
+	/// The current direction of the decal being printed
 	var/stored_dir = 2
-	var/stored_color = ""
+	/// The current color of the decal being printed.
+	var/stored_color = "yellow"
+	/// The current base icon state of the decal being printed.
 	var/stored_decal = "warningline"
+	/// The full icon state of the decal being printed.
 	var/stored_decal_total = "warningline"
-	var/color_list = list("","red","white")
-	var/dir_list = list(1,2,4,8)
+	/// The type path of the spritesheet being used for the frontend.
+	var/spritesheet_type = /datum/asset/spritesheet/decals // spritesheet containing previews
+	/// Does this printer implementation support custom colors?
+	var/supports_custom_color = FALSE
+	/// Current custom color
+	var/stored_custom_color
+	/// Is this painter a tile painter?
+	var/tile_painter = FALSE
+	/// Default alpha for /obj/effect/turf_decal
+	var/default_alpha = 255
+	/// List of color options as list(user-friendly label, color value to return)
+	var/color_list = list(
+		list("Yellow", "yellow"),
+		list("Red", "red"),
+		list("White", "white"),
+	)
+	/// List of direction options as list(user-friendly label, dir value to return)
+	var/dir_list = list(
+		list("North", NORTH),
+		list("South", SOUTH),
+		list("East", EAST),
+		list("West", WEST),
+		list("NorthEast", NORTHEAST),
+		list("NorthWest", NORTHWEST),
+		list("SouthEast", SOUTHEAST),
+		list("SouthWest", SOUTHWEST)
+	)
+	/// List of decal options as list(user-friendly label, icon state base value to return)
 	var/decal_list = list(list("Warning Line","warningline"),
 			list("Warning Line Corner","warninglinecorner"),
 			list("Warning Line U Corner","warn_end"),
@@ -171,13 +237,14 @@
 			list("Caution Label","caution"),
 			list("Directional Arrows","arrows"),
 			list("Stand Clear Label","stand_clear"),
-			list("Box","box"),
 			list("Box Corner","box_corners"),
+			list("Loading Arrow","loadingarea"),
 			list("Delivery Marker","delivery"),
 			list("Warning Box","warn_full"),
-			list("Loading Arrow","loadingarea"),
+			list("Box","box"),
 			list("Bot","bot"),
-			list("Bot Corners","bot_right"),
+			list("Bot Right","bot_right"),
+			list("Bot Left","bot_left"),
 			list("NO","no"),
 			list("Radiation Hazard","radiation"),
 			list("Circle Radiation Hazard","radiation_huge"),
@@ -200,8 +267,9 @@
 			list("RAVEN7","RAVEN7"),
 			list("RAVEN8","RAVEN8"),
 			list("RAVEN9","RAVEN9"),
+			list("Rainbow", "rainbow"),
 			list("Animated Red Circuit","rcircuitanim"),
-	        list("Animated Green Circuit","gcircuitanim"),
+			list("Animated Green Circuit","gcircuitanim"),
 			list("Blue Circuit","bcircuit"),
 			list("Green Circuit","gcircuit"),
 			list("Red Circuit","rcircuit"),
@@ -217,7 +285,7 @@
 			list("Dark Floor","elevatorshaft"),
 			list("Recharge Station","recharge_floor"),
 			list("Solar Panel","solarpanel"),
-		    list("Gaming Floor","eighties"),
+			list("Gaming Floor","eighties"),
 			list("Planet Floor","planet"),
 			list("Bamboo Floor","bamboo"),
 			list("Grass Floor","grass2"),
@@ -229,8 +297,8 @@
 			list("Sandstone Vault","sandstonevault"),
 			list("Rock Vault","rockvault"),
 			list("Alien Vault","alienvault"),
-	        list("Alien Floor","alienpod5"),
-            list("Wood Floor","wood"),
+			list("Alien Floor","alienpod5"),
+			list("Wood Floor","wood"),
 			list("Diamond Floor","diamond"),
 			list("Gold Floor","gold"),
 			list("Plasma Floor","plasma"),
@@ -246,8 +314,6 @@
 			list("Clockwork Floor","clockwork_floor"),
 			list("Cult Floor","cult"),
 			list("Paper Floor","paperfloor"),
-			list("Titanium Floor","titanium_white"),
-			list("Plastitanium Floor","plastitanium"),
 			list("Lavaland Floor","basalt1"),
 			list("Hierophant Floor","hiero"),
 			list("Wobby Hierophant Floor","hierophant1"),
@@ -257,34 +323,141 @@
 			list("Liquid Plasma","liquidplasma"),
 			list("Error","error"),
 			list("01010101","binary"),
-			list("Space","space"))
+			list("Space","space")
 
-/obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	var/turf/open/floor/F = target
-	if(!proximity)
-		to_chat(user, span_notice("You need to get closer!"))
-		return
-	if(!istype(F, /turf/open/floor))
-		to_chat(user, span_notice("[target] is not a tile!"))
-		return
-	if(use_paint(user))
-		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, FALSE, color, null, null, 255)
-
-/obj/item/airlock_painter/decal/attack_self(mob/user)
-	. = ..()
-	ui_interact(user)
+			
+	)
+	// These decals only have a south sprite.
+	var/nondirectional_decals = list(
+		"bot",
+		"box",
+		"rainbow",
+		"delivery",
+		"warn_full",
+		"warn_box",
+		"bot_right",
+		"bot_left",
+		"no",
+		"radiation",
+		"radiation_huge",
+		"bio",
+		"shock",
+		"danger",
+		"explosives",
+		"explosives2",
+		"fire",
+		"nosmoking2",
+		"nosmoking",
+		"safety",
+		"nanotrasen",
+		"RAVEN1",
+		"RAVEN2",
+		"RAVEN3",
+		"RAVEN4",
+		"RAVEN5",
+		"RAVEN6",
+		"RAVEN7",
+		"RAVEN8",
+		"RAVEN9",
+		"rcircuitanim",
+		"gcircuitanim",
+		"bcircuit",
+		"gcircuit",
+		"rcircuit",
+		"disco",
+		"grimy",
+		"chapel",
+		"sepia",
+		"pinkblack",
+		"blackwhite",
+		"noslip",
+		"podfloor_light",
+		"freezerfloor",
+		"elevatorshaft",
+		"recharge_floor",
+		"solarpanel",
+		"eighties",
+		"planet",
+		"bamboo",
+		"grass2",
+		"sand",
+		"asteroid",
+		"ironsand1",
+		"snow",
+		"ice",
+		"sandstonevault",
+		"rockvault",
+		"alienvault",
+		"alienpod5",
+		"wood",
+		"diamond",
+		"gold",
+		"plasma",
+		"silver",
+		"uranium",
+		"titanium_white",
+		"plastitanium",
+		"bluespace",
+		"engine",
+		"bananium",
+		"terracotta",
+		"copper",
+		"clockwork_floor",
+		"cult",
+		"paperfloor",
+		"basalt1",
+		"hiero",
+		"hierophant1",
+		"necro1",
+		"lava",
+		"riverwater_motion",
+		"liquidplasma",
+		"error",
+		"binary",
+		"space",
+	)
 
 /obj/item/airlock_painter/decal/Initialize(mapload)
 	. = ..()
-	ink = new /obj/item/toner/large(src)
+	stored_custom_color = stored_color
+
+/obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		to_chat(user, span_notice("You need to get closer!"))
+		return
+
+	if(isfloorturf(target) && use_paint(user))
+		paint_floor(target)
+
+/**
+ * Actually add current decal to the floor.
+ *
+ * Responsible for actually adding the element to the turf for maximum flexibility.area
+ * Can be overriden for different decal behaviors.
+ * Arguments:
+ * * target - The turf being painted to
+*/
+/obj/item/airlock_painter/decal/proc/paint_floor(turf/open/floor/target)
+	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, FALSE, color, null, null, 255)
+
+/**
+ * Return the final icon_state for the given decal options
+ *
+ * Arguments:
+ * * decal - the selected decal base icon state
+ * * color - the selected color
+ * * dir - the selected dir
+ */
+/obj/item/airlock_painter/decal/proc/get_decal_path(decal, color, dir)
+	// Special case due to icon_state names
+	if(color == "yellow")
+		color = ""
+
+	return "[decal][color ? "_" : ""][color]"
 
 /obj/item/airlock_painter/decal/proc/update_decal_path()
-	var/yellow_fix = "" //This will have to do until someone refactor's markings.dm
-	if (stored_color)
-		yellow_fix = "_"
-	stored_decal_total = "[stored_decal][yellow_fix][stored_color]"
-	return
+	stored_decal_total = get_decal_path(stored_decal, stored_color, stored_dir)
 
 /obj/item/airlock_painter/decal/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -292,31 +465,46 @@
 		ui = new(user, src, "DecalPainter", name)
 		ui.open()
 
+/obj/item/airlock_painter/decal/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(spritesheet_type)
+
+/obj/item/airlock_painter/decal/ui_static_data(mob/user)
+	. = ..()
+	var/datum/asset/spritesheet/icon_assets = get_asset_datum(spritesheet_type)
+
+	.["icon_prefix"] = "[icon_assets.name]32x32"
+	.["supports_custom_color"] = supports_custom_color
+	.["decal_list"] = list()
+	.["color_list"] = list()
+	.["dir_list"] = list()
+	.["nondirectional_decals"] = nondirectional_decals
+
+	for(var/decal in decal_list)
+		.["decal_list"] += list(list(
+			"name" = decal[1],
+			"decal" = decal[2],
+		))
+	for(var/color in color_list)
+		.["color_list"] += list(list(
+			"name" = color[1],
+			"color" = color[2],
+		))
+	for(var/dir in dir_list)
+		.["dir_list"] += list(list(
+			"name" = dir[1],
+			"dir" = dir[2],
+		))
+
 /obj/item/airlock_painter/decal/ui_data(mob/user)
-	var/list/data = list()
-	data["decal_direction"] = stored_dir
-	data["decal_color"] = stored_color
-	data["decal_style"] = stored_decal
-	data["decal_list"] = list()
-	data["color_list"] = list()
-	data["dir_list"] = list()
+	. = ..()
+	.["current_decal"] = stored_decal
+	.["current_color"] = stored_color
+	.["current_dir"] = stored_dir
+	.["current_custom_color"] = stored_custom_color
+	.["tile_painter"] = tile_painter
 
-	for(var/i in decal_list)
-		data["decal_list"] += list(list(
-			"name" = i[1],
-			"decal" = i[2]
-		))
-	for(var/j in color_list)
-		data["color_list"] += list(list(
-			"colors" = j
-		))
-	for(var/k in dir_list)
-		data["dir_list"] += list(list(
-			"dirs" = k
-		))
-	return data
-
-/obj/item/airlock_painter/decal/ui_act(action,list/params)
+/obj/item/airlock_painter/decal/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
@@ -324,13 +512,133 @@
 	switch(action)
 		//Lists of decals and designs
 		if("select decal")
-			var/selected_decal = params["decals"]
+			var/selected_decal = params["decal"]
+			var/selected_dir = text2num(params["dir"])
 			stored_decal = selected_decal
+			stored_dir = selected_dir
 		if("select color")
-			var/selected_color = params["colors"]
+			var/selected_color = params["color"]
 			stored_color = selected_color
-		if("selected direction")
-			var/selected_direction = text2num(params["dirs"])
-			stored_dir = selected_direction
+		if("pick custom color")
+			if(supports_custom_color)
+				var/chosen_color = input(usr, "Pick new color", "[src]", "yellow") as color|null
+				if(!chosen_color || QDELETED(src) || usr.incapacitated() || !usr.is_holding(src))
+					return
+				stored_custom_color = chosen_color
+				stored_color = chosen_color
 	update_decal_path()
 	. = TRUE
+
+
+
+/obj/item/airlock_painter/decal/tile
+	name = "tile sprayer"
+	desc = "An airlock painter, reprogramed to use a different style of paint in order to spray colors on floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed."
+//	desc_controls = "Alt-Click to remove the ink cartridge."
+	icon_state = "tile_sprayer"
+	stored_dir = 2
+	stored_color = "#D4D4D4"
+	stored_decal = "tile_corner"
+	spritesheet_type = /datum/asset/spritesheet/decals/tiles
+	supports_custom_color = TRUE
+	tile_painter = TRUE
+	dir_list = list(
+		list("North", NORTH),
+		list("South", SOUTH),
+		list("East", EAST),
+		list("West", WEST),
+		list("NorthEast", NORTHEAST),
+		list("NorthWest", NORTHWEST),
+		list("SouthEast", SOUTHEAST),
+		list("SouthWest", SOUTHWEST)
+	)
+	// Colors can have a an alpha component as RGBA, or just be RGB and use default alpha
+	color_list = list(
+		list("Neutral", "#D4D4D4"),
+		list("Dark", "#0e0f0f"),
+		list("Bar Burgundy", "#791500"),
+		list("Sec Red", "#DE3A3A"),
+		list("Cargo Brown", "#A46106"),
+		list("Engi Yellow", "#CCB223"),
+		list("Service Green", "#9FED58"),
+		list("Med Blue", "#52B4E9"),
+		list("R&D Purple", "#D381C9"),
+	)
+	decal_list = list(
+		list("Siding Corner", "siding_corner"),
+		list("Siding End", "siding_end"),
+		list("Siding Thinplating Corner", "siding_thinplating_corner"),
+		list("Siding Thinplating End", "siding_thinplating_end"),
+		list("Siding Thinplating Line", "siding_thinplating_line"),
+		list("Siding Wideplating Corner", "siding_wideplating_corner"),
+		list("Siding Wideplating End", "siding_wideplating_end"),
+		list("Siding Wideplating Line", "siding_wideplating_line"),
+		list("Siding Wood Corner", "siding_wood_corner"),
+		list("Siding Wood End", "siding_wood_end"),
+		list("Siding Wood Line", "siding_wood_line"),
+		list("Siding Line", "siding_line"),
+		list("Trimline", "trimline"),
+		list("Trimline Arrow CCw", "trimline_arrow_ccw"),
+		list("Trimline Arrow Ccw Fill", "trimline_arrow_ccw_fill"),
+		list("Trimline Arrow Cw", "trimline_arrow_cw"),
+		list("Trimline Arrow Cw Fill", "trimline_arrow_cw_fill"),
+		list("Trimline Box", "trimline_box"),
+		list("Trimline Box Fill", "trimline_box_fill"),
+		list("Trimline Box Fill Lower", "trimline_box_fill_lower"),
+		list("Trimline Corner", "trimline_corner"),
+		list("Trimline Corner Fill", "trimline_corner_fill"),
+		list("Trimline Corner Lower", "trimline_corner_lower"),
+		list("Trimline Corner Lower Warn", "trimline_corner_lower_warn"),
+		list("Trimline Corner Lower Warn Flip", "trimline_corner_lower_warn_flip"),
+		list("Trimline End Fill", "trimline_end_fill"),
+		list("Trimline End Fill Lower", "trimline_end_fill_lower"),
+		list("Trimline Fill", "trimline_fill"),
+		list("Trimline Fill Lower", "trimline_fill_lower"),
+		list("Trimline Shrink Ccw", "trimline_shrink_ccw"),
+		list("Trimline Shrink Ccw Lower", "trimline_shrink_ccw_lower"),
+		list("Trimline Shrink Cw", "trimline_shrink_cw"),
+		list("Trimline Shrink Cw Lower", "trimline_shrink_cw_lower"),
+		list("Trimline Warn", "trimline_warn"),
+		list("Trimline Warn End Fill Lower", "trimline_warn_end_fill_lower"),
+		list("Trimline Warn Fill", "trimline_warn_fill"),
+		list("Trimline Warn Fill Flip", "trimline_warn_fill_flip"),
+		list("Trimline Warn Lower", "trimline_warn_lower"),
+		list("Trimline Warn Lower Flip", "trimline_warn_lower_flip"),
+		list("Trimline Warn Lower Nobottom", "trimline_warn_lower_nobottom"),
+		list("Trimline Warn Lower Nobottom Flip", "trimline_warn_lower_notbottom_flip"),
+		list("4 Corners", "tile_fourcorners"),
+		list("Diagonal", "diagonal_centre"),
+		list("Corner", "tile_corner"),
+		list("Half", "tile_half_contrasted"),
+		list("Opposing Corners", "tile_opposing_corners"),
+		list("3 Corners", "tile_anticorner_contrasted"),
+
+	)
+	nondirectional_decals = list(
+		"tile_fourcorners",
+		"trimline_box_fill_lower",
+		"diagonal_centre",
+		"trimline_box_fill",
+		"trimline_box",
+		
+	)
+
+	/// Regex to split alpha out.
+	var/static/regex/rgba_regex = new(@"(#[0-9a-fA-F]{6})([0-9a-fA-F]{2})")
+
+/obj/item/airlock_painter/decal/tile/paint_floor(turf/open/floor/target)
+	// Account for 8-sided decals.
+	var/source_decal = stored_decal
+	var/source_dir = stored_dir
+	if(copytext(stored_decal, -3) == "__8")
+		source_decal = splicetext(stored_decal, -3, 0, "")
+		source_dir = turn(stored_dir, 45)
+
+	var/decal_color = stored_color
+	var/decal_alpha = default_alpha
+	// Handle the RGBA case.
+	if(rgba_regex.Find(decal_color))
+		decal_color = rgba_regex.group[1]
+		decal_alpha = text2num(rgba_regex.group[2], 16)
+
+	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', source_decal, source_dir, FALSE, decal_color, null, null, decal_alpha)

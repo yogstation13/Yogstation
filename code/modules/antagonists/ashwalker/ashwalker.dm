@@ -14,7 +14,6 @@
 /datum/antagonist/ashwalker/create_team(datum/team/team)
 	if(team)
 		ashie_team = team
-		objectives |= ashie_team.objectives
 	else
 		ashie_team = new
 

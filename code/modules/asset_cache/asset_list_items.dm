@@ -472,11 +472,115 @@
 		if(!sprites[imgid])
 			Insert(imgid, I)
 
+/datum/asset/spritesheet/decals
+	name = "floor_decals"
+	cross_round_cachable = TRUE
+
+	/// The floor icon used for blend_preview_floor()
+	var/preview_floor_icon = 'icons/turf/floors.dmi'
+	/// The floor icon state used for blend_preview_floor()
+	var/preview_floor_state = "floor"
+	/// The associated decal painter type to grab decals, colors, etc from.
+	var/painter_type = /obj/item/airlock_painter/decal
+
+/**
+ * Underlay an example floor for preview purposes, and return the new icon.
+ *
+ * Arguments:
+ * * decal - the decal to place over the example floor tile
+ */
+/datum/asset/spritesheet/decals/proc/blend_preview_floor(icon/decal)
+	var/icon/final = icon(preview_floor_icon, preview_floor_state)
+	final.Blend(decal, ICON_OVERLAY)
+	return final
+
+/**
+ * Insert a specific state into the spritesheet.
+ *
+ * Arguments:
+ * * decal - the given decal base state.
+ * * dir - the given direction.
+ * * color - the given color.
+ */
+/datum/asset/spritesheet/decals/proc/insert_state(decal, dir, color)
+	// Special case due to icon_state names
+	var/icon_state_color = color == "yellow" ? "" : color
+
+	var/icon/final = blend_preview_floor(icon('icons/turf/decals.dmi', "[decal][icon_state_color ? "_" : ""][icon_state_color]", dir))
+	Insert("[decal]_[dir]_[color]", final)
+
+/datum/asset/spritesheet/decals/create_spritesheets()
+	// Must actually create because initial(type) doesn't work for /lists for some reason.
+	var/obj/item/airlock_painter/decal/painter = new painter_type()
+
+	for(var/list/decal in painter.decal_list)
+		for(var/list/dir in painter.dir_list)
+			for(var/list/color in painter.color_list)
+				insert_state(decal[2], dir[2], color[2])
+			if(painter.supports_custom_color)
+				insert_state(decal[2], dir[2], "custom")
+
+	qdel(painter)
+
+/datum/asset/spritesheet/decals/tiles
+	name = "floor_tile_decals"
+	painter_type = /obj/item/airlock_painter/decal/tile
+
+/datum/asset/spritesheet/decals/tiles/insert_state(decal, dir, color)
+	// Account for 8-sided decals.
+	var/source_decal = decal
+	var/source_dir = dir
+	if(copytext(decal, -3) == "__8")
+		source_decal = splicetext(decal, -3, 0, "")
+		source_dir = turn(dir, 45)
+
+	// Handle the RGBA case.
+	var/obj/item/airlock_painter/decal/tile/tile_type = painter_type
+	var/render_color = color
+	var/render_alpha = initial(tile_type.default_alpha)
+	if(tile_type.rgba_regex.Find(color))
+		render_color = tile_type.rgba_regex.group[1]
+		render_alpha = text2num(tile_type.rgba_regex.group[2], 16)
+
+	var/icon/colored_icon = icon('icons/turf/decals.dmi', source_decal, dir=source_dir)
+	colored_icon.ChangeOpacity(render_alpha * 0.008)
+	if(color == "custom")
+		colored_icon.Blend(icon('icons/effects/random_spawners.dmi', "rainbow"), ICON_MULTIPLY)
+	else
+		colored_icon.Blend(render_color, ICON_MULTIPLY)
+
+	colored_icon = blend_preview_floor(colored_icon)
+	Insert("[decal]_[dir]_[replacetext(color, "#", "")]", colored_icon)
+
 /datum/asset/simple/genetics
 	assets = list(
 		"dna_discovered.gif" = 'html/dna_discovered.gif',
 		"dna_undiscovered.gif" = 'html/dna_undiscovered.gif',
 		"dna_extra.gif" = 'html/dna_extra.gif'
+	)
+
+/datum/asset/spritesheet/virology_symptoms
+	name = "virology_symptoms"
+
+/datum/asset/spritesheet/virology_symptoms/create_spritesheets()
+	InsertAll("", 'icons/UI_Icons/symptoms/symptoms.dmi')
+
+/datum/asset/simple/virology_symptoms_animated
+	assets = list(
+		"symptom.invalid.png" = 'icons/UI_Icons/symptoms/invalid.png',
+		"symptom.alkali_perspiration.gif" = 'icons/UI_Icons/symptoms/alkali_perspiration.gif',
+		"symptom.autophago_necrosis.gif" = 'icons/UI_Icons/symptoms/autophago_necrosis.gif',
+        "symptom.ionizing_cellular_emission.gif" = 'icons/UI_Icons/symptoms/ionizing_cellular_emission.gif',
+        "symptom.narcolepsy.gif" = 'icons/UI_Icons/symptoms/narcolepsy.gif',
+        "symptom.necrotizing_fasciitis.gif" = 'icons/UI_Icons/symptoms/necrotizing_fasciitis.gif',
+        "symptom.nocturnal_regeneration.gif" = 'icons/UI_Icons/symptoms/nocturnal_regeneration.gif',
+        "symptom.plasma_fixation.gif" = 'icons/UI_Icons/symptoms/plasma_fixation.gif',
+        "symptom.regen_coma.gif" = 'icons/UI_Icons/symptoms/regen_coma.gif',
+        "symptom.self_respiration.gif" = 'icons/UI_Icons/symptoms/self_respiration.gif',
+        "symptom.silicolysis.gif" = 'icons/UI_Icons/symptoms/silicolysis.gif',
+        "symptom.starlight_condensation.gif" = 'icons/UI_Icons/symptoms/starlight_condensation.gif',
+        "symptom.tissue_hydration.gif" = 'icons/UI_Icons/symptoms/tissue_hydration.gif',
+        "symptom.voice_change.gif" = 'icons/UI_Icons/symptoms/voice_change.gif'
 	)
 
 /datum/asset/simple/orbit

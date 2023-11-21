@@ -288,7 +288,7 @@
 
 /datum/design/board/shuttle/flight_control
 	name = "Computer Design (Shuttle Flight Controller)"
-	desc = "Allows for the construction of circuit boards used to build a console that enables shuttle flight"
+	desc = "Allows for the construction of circuit boards used to build a console that enables shuttle flight."
 	id = "shuttle_control"
 	build_path = /obj/item/circuitboard/computer/shuttle/flight_control
 	category = list("Computer Boards", "Shuttle Machinery")
@@ -296,12 +296,11 @@
 
 /datum/design/board/shuttle/shuttle_docker
 	name = "Computer Design (Shuttle Zoning Designator)"
-	desc = "Allows for the construction of circuit boards used to build a console that enables the targetting of custom flight locations"
+	desc = "Allows for the construction of circuit boards used to build a console that enables the targetting of custom flight locations."
 	id = "shuttle_docker"
 	build_path = /obj/item/circuitboard/computer/shuttle/docker
 	category = list("Computer Boards", "Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
-
 
 /datum/design/board/ai_server_overview
 	name = "Computer Design (AI Server Overview Console)"

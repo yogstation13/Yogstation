@@ -50,7 +50,7 @@
 	yeet.on_remove(src, user)
 	if(enabled && !use_power())
 		shutdown_computer()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /// This isn't the "uninstall fully" proc, it just makes the computer lose all its references to the component

@@ -180,3 +180,9 @@
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = display_names
 
 	return data
+
+/datum/preference/toggle/quiet_mode
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "quiet_mode"
+	savefile_identifier = PREFERENCE_PLAYER
+	default_value = FALSE

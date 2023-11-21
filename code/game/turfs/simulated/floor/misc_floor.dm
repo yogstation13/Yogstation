@@ -20,14 +20,15 @@
 
 /turf/open/floor/circuit/Initialize(mapload)
 	SSmapping.nuke_tiles += src
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	. = ..()
 
 /turf/open/floor/circuit/Destroy()
 	SSmapping.nuke_tiles -= src
 	return ..()
 
-/turf/open/floor/circuit/update_icon()
+/turf/open/floor/circuit/update_icon(updates=ALL)
+	. = ..()
 	if(on)
 		if(LAZYLEN(SSmapping.nuke_threats))
 			icon_state = "rcircuitanim"
@@ -298,12 +299,14 @@
 	icon_state = "black"
 
 /turf/open/floor/plating/rust
-	name = "rusted plating"
-	desc = "Corrupted steel."
-	icon_state = "plating_rust"
+	//SDMM supports colors, this is simply for easier mapping
+	//and should be removed on initialize
+	color = COLOR_BROWN
 
-/turf/open/floor/plating/rust/rust_heretic_act()
-	return
+/turf/open/floor/plating/rust/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rust)
+	color = null
 	
 /turf/open/floor/eighties
 	name = "retro floor"
@@ -315,3 +318,9 @@
 /turf/open/floor/eighties/broken
 	icon_state = "eighties_damaged"
 	broken = TRUE
+
+/turf/open/floor/stone
+	name = "stone brick floor"
+	desc = "Some stone brick tiles, how rustic."
+	icon_state = "stone_floor"
+	floor_tile = /obj/item/stack/tile/plasteel

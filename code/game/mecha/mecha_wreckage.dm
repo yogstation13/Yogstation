@@ -20,6 +20,7 @@
 	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
 	var/obj/item/stock_parts/scanning_module/scanmod ///Keeps track of the mech's scanning module
 	var/mob/living/silicon/ai/AI //AIs to be salvaged
+	var/self_destruct = 0 // no self-destruct by default
 
 /obj/structure/mecha_wreckage/examine(mob/user)
 	. = ..()
@@ -39,7 +40,12 @@
 
 /obj/structure/mecha_wreckage/Initialize(mapload, mob/living/silicon/ai/AI_pilot)
 	. = ..()
-	
+
+	if(self_destruct)
+		audible_message("*beep* *beep* *beep*")
+		playsound(src, 'sound/machines/triple_beep.ogg', 75, TRUE)
+		addtimer(CALLBACK(src, PROC_REF(detonate), self_destruct), 0.5 SECONDS)
+
 	if(!AI_pilot) //Type-checking for this is already done in mecha/Destroy()
 		return
 
@@ -50,6 +56,17 @@
 	add_overlay(mutable_appearance('icons/obj/projectiles.dmi', "green_laser")) //Overlay for the recovery beacon
 	AI.controlled_mech = null
 	AI.remote_control = null
+
+/obj/structure/mecha_wreckage/Destroy()
+	. = ..()
+	if(self_destruct && !QDELETED(src))
+		detonate(self_destruct)
+
+/obj/structure/mecha_wreckage/proc/detonate(explosion_size)
+	if(QDELETED(src))
+		return
+	explosion(get_turf(src), round(explosion_size / 4), round(explosion_size / 2), round(explosion_size))
+	qdel(src)
 
 /obj/structure/mecha_wreckage/examine(mob/user)
 	. = ..()
@@ -158,6 +175,7 @@
 	name = "\improper Dark Gygax wreckage"
 	icon_state = "darkgygax-broken"
 	orig_mecha = /obj/mecha/combat/gygax/dark
+	self_destruct = 4
 
 /obj/structure/mecha_wreckage/marauder
 	name = "\improper Marauder wreckage"
@@ -169,6 +187,7 @@
 	icon_state = "mauler-broken"
 	desc = "The Syndicate won't be very happy about this..."
 	orig_mecha = /obj/mecha/combat/marauder/mauler
+	self_destruct = 4
 
 /obj/structure/mecha_wreckage/seraph
 	name = "\improper Seraph wreckage"

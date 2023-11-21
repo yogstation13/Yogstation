@@ -10,3 +10,12 @@
 		.["render_source"] = render_source
 	if(!isnull(flags))
 		.["flags"] = flags
+
+/proc/outline_filter(size, color, flags)
+	. = list("type" = "outline")
+	if(!isnull(size))
+		.["size"] = size
+	if(!isnull(color))
+		.["color"] = color
+	if(!isnull(flags))
+		.["flags"] = flags

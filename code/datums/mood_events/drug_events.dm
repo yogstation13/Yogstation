@@ -2,6 +2,10 @@
 	mood_change = 6
 	description = "<span class='nicegreen'>Woooow duudeeeeee...I'm tripping baaalls...</span>\n"
 
+/datum/mood_event/red_eye
+	mood_change = 10
+	description = "<span class='nicegreen'>Keep those eyes open...</span>\n"
+
 /datum/mood_event/smoked
 	description = "<span class='nicegreen'>I have had a smoke recently.</span>\n"
 	mood_change = 2

@@ -5,7 +5,7 @@
 	say_mod = "grunts"
 	default_color = "FFFFDD"
 	species_traits = list(EYECOLOR,LIPS,HAS_FLESH,HAS_BONE)
-	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	coldmod =0.75 // Average 5% weaker to temperature-based damage
 	heatmod = 1.35
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT

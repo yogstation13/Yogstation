@@ -170,7 +170,7 @@
 	desc = "It is only wafer thin."
 	icon_state = "mint"
 	bitesize = 1
-	list_reagents = list(/datum/reagent/toxin/minttoxin = 2)
+	list_reagents = list(/datum/reagent/consumable/mintextract = 2)
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
 
@@ -240,7 +240,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 3, "oranges" = 1)
-	foodtype = JUNKFOOD | SUGAR | CHOCOLATE
+	foodtype = JUNKFOOD | SUGAR | CHOCOLATE | FRUIT
 
 /obj/item/reagent_containers/food/snacks/eggplantparm
 	name = "eggplant parmigiana"
@@ -269,8 +269,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	filling_color = "#FFEFD5"
-	tastes = list("torilla" = 2, "meat" = 3)
-	foodtype = GRAIN | MEAT
+	tastes = list("torilla" = 2, "soy beans" = 3)
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/fivelayerburrito
 	name = "five layer burrito"
@@ -279,8 +279,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 12)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	filling_color = "#FFEFD5"
-	tastes = list("torilla" = 2, "meat" = 3)
-	foodtype = GRAIN | MEAT
+	tastes = list("torilla" = 2, "soy beans" = 3)
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/cheesyburrito
 	name = "cheesy burrito"
@@ -309,8 +309,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	filling_color = "#FF2000"
-	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
-	foodtype = GRAIN | MEAT
+	tastes = list("torilla" = 2, "soy beans" = 3, "hot peppers" = 1)
+	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/yakiimo
 	name = "yaki imo"
@@ -383,6 +383,14 @@
 	tastes = list("grain alcohol" = 1, "fruit" = 1)
 	foodtype = FRUIT | ALCOHOL
 
+/obj/item/reagent_containers/food/snacks/granola_bar
+	name = "granola bar"
+	desc = "A dried mixture of oats, nuts, fruits, and chocolate condensed into a chewy bar."
+	icon_state = "granola_bar"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("granola" = 1, "nuts" = 1, "chocolate" = 1, "raisin" = 1)
+	foodtype = GRAIN | SUGAR | NUTS | FRUIT | CHOCOLATE
+
 /obj/item/reagent_containers/food/snacks/honeybar
 	name = "honey nut bar"
 	desc = "Oats and nuts compressed together into a bar, held together with a honey glaze."
@@ -391,7 +399,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/honey = 5)
 	filling_color = "#F2CE91"
 	tastes = list("oats" = 3, "nuts" = 2, "honey" = 1)
-	foodtype = FRUIT | SUGAR
+	foodtype = GRAIN | SUGAR | NUTS
 
 /obj/item/reagent_containers/food/snacks/stuffedlegion
 	name = "stuffed legion"
@@ -466,7 +474,7 @@
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "gumball"
 	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/c2/aiuri = 2)	//Kek
-	tastes = list("candy")
+	tastes = list("candy" = 1)
 	foodtype = JUNKFOOD
 
 /obj/item/reagent_containers/food/snacks/gumball/Initialize(mapload)
@@ -515,11 +523,31 @@
 	tastes = list("bran" = 4, "raisins" = 3, "salt" = 1)
 	foodtype = GRAIN | FRUIT | BREAKFAST
 
+/obj/item/reagent_containers/food/snacks/onigiri
+	name = "Onigiri"
+	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed. Other fillings can be added!"
+	icon_state = "onigiri"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("rice" = 1, "dried seaweed" = 1)
+	foodtype = VEGETABLES
+	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/onigiri
+
 /obj/item/reagent_containers/food/snacks/butter
 	name = "stick of butter"
 	desc = "A stick of delicious, golden, fatty goodness."
 	icon_state = "butter"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	filling_color = "#FFD700"
+	tastes = list("butter" = 1)
+	foodtype = DAIRY
+	slice_path = /obj/item/reagent_containers/food/snacks/butterslice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/butterslice
+	name = "slice of butter"
+	desc = "A slice of delicious, golden, fatty goodness."
+	icon_state = "butter_slice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	filling_color = "#FFD700"
 	tastes = list("butter" = 1)
 	foodtype = DAIRY
@@ -570,3 +598,11 @@
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
 
+/obj/item/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "Slightly shriveled darkish cucumber. Smelling something sour, but incredibly inviting."
+	icon_state = "pickle"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	filling_color = "#ffdf26"
+	tastes = list("pickle" = 1, "spices" = 1, "salt water" = 2)
+	foodtype = VEGETABLES

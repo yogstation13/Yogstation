@@ -5,9 +5,11 @@
 	icon_state = "sandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
-	cooked_type = /obj/item/reagent_containers/food/snacks/toastedsandwich
 	tastes = list("meat" = 2, "cheese" = 1, "bread" = 2, "lettuce" = 1)
 	foodtype = GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/sandwich/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/toastedsandwich, rand(20 SECONDS, 30 SECONDS), TRUE)
 
 /obj/item/reagent_containers/food/snacks/toastedsandwich
 	name = "toasted sandwich"
@@ -18,6 +20,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/carbon = 2)
 	tastes = list("toast" = 1)
 	foodtype = GRAIN
+	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/grilledcheese
 	name = "cheese sandwich"
@@ -26,7 +29,7 @@
 	icon_state = "toastedsandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("toast" = 1, "cheese" = 1)
+	tastes = list("bread" = 1, "cheese" = 1)
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/jellysandwich
@@ -87,7 +90,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "toast" = 1)
-	foodtype = GRAIN | BREAKFAST
+	foodtype = GRAIN | DAIRY | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/twobread
 	name = "two bread"
@@ -97,4 +100,32 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bread" = 2)
-	foodtype = GRAIN
+	foodtype = GRAIN | ALCOHOL
+
+/obj/item/reagent_containers/food/snacks/breadslice/toast
+	name = "toast"
+	desc = "A piece of toast."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "toast"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	tastes = list("toast" = 2)
+	foodtype = GRAIN | BREAKFAST
+	burns_on_grill = TRUE
+
+/obj/item/reagent_containers/food/snacks/pbj_sandwich
+	name = "peanut butter and jelly sandwich"
+	desc = "A classic PB&J sandwich, just like your mom used to make."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "pbj_sandwich"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("peanut butter" = 1, "jelly" = 1, "bread" = 2)
+	foodtype = GRAIN | FRUIT | NUTS
+
+/obj/item/reagent_containers/food/snacks/pbb_sandwich
+	name = "peanut butter and banana sandwich"
+	desc = "A peanut butter sandwich with banana slices mixed in, a good high protein treat."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "pbb_sandwich"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("peanut butter" = 1, "banana" = 1, "bread" = 2)
+	foodtype = GRAIN | FRUIT | NUTS

@@ -14,8 +14,8 @@
 
 	outfit = /datum/outfit/job/atmos
 
-	added_access = list(ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_EXTERNAL_AIRLOCKS)
-	base_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_MINERAL_STOREROOM, ACCESS_ENGINE)
+	added_access = list(ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE)
+	base_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_MINERAL_STOREROOM, ACCESS_ENGINE, ACCESS_EXTERNAL_AIRLOCKS)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
@@ -33,6 +33,8 @@
 		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
 		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
+	
+	minimal_lightup_areas = list(/area/engine/atmos)
 
 	smells_like = "a gas leak"
 

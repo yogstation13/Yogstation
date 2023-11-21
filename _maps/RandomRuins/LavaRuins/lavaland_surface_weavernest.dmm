@@ -30,7 +30,7 @@
 "dV" = (
 /obj/structure/table,
 /obj/effect/turf_decal/sand,
-/obj/item/twohanded/bonespear,
+/obj/item/melee/spear/bonespear,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "fQ" = (
@@ -150,7 +150,7 @@
 /area/ruin/unpowered)
 "za" = (
 /obj/effect/mob_spawn/human/skeleton,
-/obj/item/twohanded/bonespear,
+/obj/item/melee/spear/bonespear,
 /obj/item/reagent_containers/food/snacks/spidereggs,
 /obj/effect/spawner/lootdrop/mob/marrow_weaver,
 /obj/structure/spider/stickyweb,
@@ -222,7 +222,7 @@
 "He" = (
 /obj/effect/mob_spawn/human/skeleton,
 /obj/item/clothing/suit/armor/bone,
-/obj/item/twohanded/fireaxe/boneaxe,
+/obj/item/fireaxe/boneaxe,
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/cocoon,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,

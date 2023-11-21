@@ -8,7 +8,7 @@
 	var/icon_hiding = "yeeslow_scared"
 	speak_emote = list("yawns")
 	emote_hear = list("snores.","yawns.")
-	emote_see = list("Stretches out their neck.", "looks around slowly.")
+	emote_see = list("stretches out their neck.", "looks around slowly.")
 	speak_chance = 1
 	turns_per_move = 5
 	loot = list(/obj/item/clothing/head/franks_hat)
@@ -16,7 +16,7 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
-	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	gold_core_spawnable = FRIENDLY_SPAWN
 	melee_damage_lower = 18
 	melee_damage_upper = 18
@@ -25,7 +25,7 @@
 	speed = 8
 	glide_size = 2
 	can_be_held = TRUE
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_SHOE
 
 	var/turtle_hide_max = 25 //The time spent hiding in its shell
 	var/turtle_hide_dur = 25 //Same as above, this is the var that physically counts down
@@ -62,7 +62,7 @@
 	return ..()
 
 //Bullets
-/mob/living/simple_animal/turtle/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/turtle/bullet_act(obj/projectile/Proj)
 	if(!stat && !client)
 		if(icon_state == icon_hiding)
 			turtle_hide_dur = turtle_hide_max //Reset its hiding timer

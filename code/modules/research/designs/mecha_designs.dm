@@ -223,6 +223,29 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 	combat_design = TRUE
 
+/datum/design/mech_bfg
+	name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
+	desc = "Allows for the construction of the BFG-90 \"Graze\" Radioactive Cannon."
+	id = "mech_bfg"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
+	materials = list(/datum/material/iron=12000,/datum/material/uranium=6000,/datum/material/diamond=2000)
+	construction_time = 10 SECONDS
+	category = list("Exosuit Equipment")
+	combat_design = TRUE
+
+/datum/design/mech_bfg_ammo
+	name = "BFG-90 Radioactive Cannon Ammunition"
+	desc = "Ammunition for the BFG-90 \"Graze\" Radioactive Cannon."
+	id = "mech_bfg_ammo"
+	build_type = PROTOLATHE | MECHFAB
+	build_path = /obj/item/mecha_ammo/bfg
+	materials = list(/datum/material/iron=6000,/datum/material/uranium=6000,/datum/material/diamond=2000)
+	construction_time = 20
+	category = list("Exosuit Ammunition", "Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	combat_design = TRUE
+
 /datum/design/mech_ion
 	name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
 	desc = "Allows for the construction of the MKIV Ion Heavy Cannon."

@@ -13,6 +13,11 @@ SUBSYSTEM_DEF(lighting)
 	msg = "L:[length(sources_queue)]|C:[length(corners_queue)]|O:[length(objects_queue)]"
 	return ..()
 
+/datum/controller/subsystem/lighting/get_metrics()
+	. = ..()
+	.["queue_sources"] = length(sources_queue)
+	.["queue_corners"] = length(corners_queue)
+	.["queue_objects"] = length(objects_queue)
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
 	if(!initialized)

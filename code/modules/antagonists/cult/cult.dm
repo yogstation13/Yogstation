@@ -40,9 +40,6 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	cult_team = new_team
 
-/datum/antagonist/cult/proc/add_objectives()
-	objectives |= cult_team.objectives
-
 /datum/antagonist/cult/Destroy()
 	QDEL_NULL(communion)
 	QDEL_NULL(vote)
@@ -70,9 +67,7 @@
 	owner.announce_objectives()
 
 /datum/antagonist/cult/on_gain()
-//	add_objectives() figure it out sometime later (remove cult the gamemode in favor of dynamic ruleset)
 	. = ..()
-	add_objectives()
 	var/mob/living/current = owner.current
 	if(ishuman(current))
 		var/mob/living/carbon/human/H = current
@@ -373,7 +368,7 @@
 /datum/team/cult/proc/make_image(datum/objective/sacrifice/sac_objective)
 	var/datum/job/job_of_sacrifice = sac_objective.target.assigned_role
 	var/datum/preferences/prefs_of_sacrifice = sac_objective.target.current.client.prefs
-	var/icon/reshape = get_flat_human_icon(null, job_of_sacrifice, prefs_of_sacrifice, list(SOUTH))
+	var/icon/reshape = get_flat_human_icon(null, SSjob.GetJob(job_of_sacrifice), prefs_of_sacrifice, list(SOUTH))
 	reshape.Shift(SOUTH, 4)
 	reshape.Shift(EAST, 1)
 	reshape.Crop(7,4,26,31)
@@ -481,12 +476,6 @@
 	var/sacced = FALSE
 	var/sac_image
 
-/datum/objective/sacrifice/is_valid_target(possible_target)
-	. = ..()
-	var/datum/mind/M = possible_target
-	if(istype(M) && isipc(M.current))
-		return FALSE
-
 /// Unregister signals from the old target so it doesn't cause issues when sacrificed of when a new target is found.
 /datum/objective/sacrifice/proc/clear_sacrifice()
 	if(!target)
@@ -503,13 +492,29 @@
 	var/datum/team/cult/cult = team
 	var/list/target_candidates = list()
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
-			target_candidates += player.mind
+		if(!player.mind)
+			continue
+		if(player.mind.has_antag_datum(/datum/antagonist/cult))
+			continue
+		if(is_convertable_to_cult(player))
+			continue
+		if(isipc(player))
+			continue
+		if(player.stat == DEAD)
+			continue
+		target_candidates += player.mind
 	if(target_candidates.len == 0)
 		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
-			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)
-				target_candidates += player.mind
+			if(!player.mind)
+				continue
+			if(player.mind.has_antag_datum(/datum/antagonist/cult))
+				continue
+			if(isipc(player))
+				continue
+			if(player.stat == DEAD)
+				continue
+			target_candidates += player.mind
 	listclearnulls(target_candidates)
 	if(LAZYLEN(target_candidates))
 		target = pick(target_candidates)
@@ -581,7 +586,7 @@
 	update_explanation_text()
 
 /datum/objective/eldergod/update_explanation_text()
-	explanation_text = "Summon Nar'sie by invoking the rune 'Summon Nar'sie'. <b>The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin.</b>"
+	explanation_text = "Summon Nar'sie by invoking the rune 'Summon Nar'sie'. The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin."
 
 /datum/objective/eldergod/check_completion()
 	if(killed)

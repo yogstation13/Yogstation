@@ -15,9 +15,9 @@
 	bolt_drop_sound = "sound/weapons/mosinboltin.ogg"
 	tac_reloads = FALSE
 
-obj/item/gun/ballistic/rifle/update_icon()
-	..()
-	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+obj/item/gun/ballistic/rifle/update_overlays()
+	. = ..()
+	. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
 
 obj/item/gun/ballistic/rifle/rack(mob/user = null)
 	if (bolt_locked == FALSE)
@@ -25,7 +25,7 @@ obj/item/gun/ballistic/rifle/rack(mob/user = null)
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		process_chamber(FALSE, FALSE, FALSE)
 		bolt_locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	drop_bolt(user)
 
@@ -35,7 +35,7 @@ obj/item/gun/ballistic/rifle/can_shoot()
 	return ..()
 
 obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
-	if (!bolt_locked)
+	if(internal_magazine && !bolt_locked)
 		to_chat(user, span_notice("The bolt is closed!"))
 		return
 	return ..()
@@ -152,3 +152,40 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 		user.put_in_hands(gun)
 	else
 		user.dropItemToGround(src, TRUE)
+
+//////////////////
+// SNIPER RIFLE //
+//////////////////
+
+/obj/item/gun/ballistic/rifle/sniper_rifle
+	name = "\improper anti-materiel sniper rifle"
+	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
+	icon_state = "sniper"
+	item_state = "sniper"
+	fire_sound = "sound/weapons/sniper_shot.ogg"
+	fire_sound_volume = 90
+	vary_fire_sound = FALSE
+	load_sound = "sound/weapons/sniper_mag_insert.ogg"
+	rack_sound = "sound/weapons/sniper_rack.ogg"
+	recoil = 2
+	rack_delay = 1 SECONDS
+	weapon_weight = WEAPON_HEAVY
+	internal_magazine = FALSE
+	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
+	spread = 0
+	w_class = WEIGHT_CLASS_NORMAL
+	zoomable = TRUE
+	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
+	zoom_out_amt = 5
+	slot_flags = ITEM_SLOT_BACK
+	actions_types = list()
+	mag_display = TRUE
+
+/obj/item/gun/ballistic/rifle/sniper_rifle/syndicate
+	desc = "An illegally modified .50 BMG sniper rifle with suppression compatibility. Quickscoping still doesn't work."
+	can_suppress = TRUE
+	can_unsuppress = TRUE
+	pin = /obj/item/firing_pin/implant/pindicate
+
+/obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure
+	pin = /obj/item/firing_pin/fucked

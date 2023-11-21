@@ -1,7 +1,7 @@
 /obj/item/ammo_casing/reusable/foam_dart
 	name = "foam dart"
 	desc = "It's nerf or nothing! Ages 8 and up."
-	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart
+	projectile_type = /obj/projectile/bullet/reusable/foam_dart
 	caliber = "foam_force"
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foamdart"
@@ -10,8 +10,8 @@
 	var/modified = FALSE
 	var/obj/item/pen/pen
 
-/obj/item/ammo_casing/reusable/foam_dart/update_icon()
-	..()
+/obj/item/ammo_casing/reusable/foam_dart/update_icon_state()
+	. = ..()
 	if (modified)
 		icon_state = "foamdart_empty"
 	else
@@ -26,7 +26,7 @@
 	if (A.tool_behaviour == TOOL_SCREWDRIVER && !modified)
 		modified = TRUE
 		to_chat(user, span_notice("You pop the safety cap off [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if (istype(A, /obj/item/pen))
 		if(modified)
 			if(!pen)
@@ -61,6 +61,6 @@
 /obj/item/ammo_casing/reusable/foam_dart/riot
 	name = "riot foam dart"
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
-	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart/riot
+	projectile_type = /obj/projectile/bullet/reusable/foam_dart/riot
 	icon_state = "foamdart_riot"
 	materials = list(/datum/material/iron = 1125)

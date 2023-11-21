@@ -7,11 +7,12 @@
 	w_class = WEIGHT_CLASS_TINY
 	max_amount = 50
 	item_flags = NOBLUDGEON
+	grind_results = list(/datum/reagent/redspace = 20)
 
 /obj/item/stack/telecrystal/attack_self(mob/user)
 	if(!isliving(user))
 		return
-	
+
 	var/mob/living/L = user
 
 	var/turf/destination = get_teleport_loc(loc, L, rand(3,6)) // Gets 3-6 tiles in the user's direction
@@ -23,7 +24,7 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 
-	if(!do_teleport(L, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
 		L.visible_message(span_warning("[src] refuses to be crushed by [L]! There must be something interfering!"), span_danger("[src] suddenly hardens in your hand! There must be something interfering!"))
 		return
 
@@ -33,7 +34,7 @@
 		var/mob/living/carbon/C = L
 		// Half as debilitating than a bluespace crystal, as this is a precious resource you're using
 		C.adjust_disgust(15)
-	
+
 	use(1)
 
 /obj/item/stack/telecrystal/attack(mob/target, mob/user)

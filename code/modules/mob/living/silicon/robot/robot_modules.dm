@@ -8,6 +8,11 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
 
+	/// Sets the cyborg's armor values to these upon selecting their module.
+	var/list/module_armor = list()
+	/// Determines if the module will give '/datum/component/armor_plate' and how many times it can be done.
+	var/use_armorplates = 0
+
 	var/list/basic_modules = list() ///a list of paths, converted to a list of instances on New()
 	var/list/emag_modules = list() ///ditto
 	var/list/ratvar_modules = list() ///ditto ditto
@@ -24,7 +29,6 @@
 
 	var/can_be_pushed = TRUE
 	var/magpulsing = FALSE
-	var/clean_on_move = FALSE
 
 	var/did_feedback = FALSE
 
@@ -54,6 +58,7 @@
 		var/obj/item/I = new i(src)
 		ratvar_modules += I
 		ratvar_modules -= i
+	
 
 /obj/item/robot_module/Destroy()
 	basic_modules.Cut()
@@ -62,6 +67,7 @@
 	modules.Cut()
 	added_modules.Cut()
 	storages.Cut()
+
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
@@ -135,12 +141,21 @@
 	return I
 
 /obj/item/robot_module/proc/remove_module(obj/item/I, delete_after)
+	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+	
+	// Keeping these to reset their module slots to what they were previously.
+	var/list/held_modules = R.held_items.Copy()
+	var/active_module_num = R.get_selected_module()
+	R.uneq_all() // Must be done before module removed; otherwise, will CRASH().
+
 	basic_modules -= I
 	modules -= I
 	emag_modules -= I
 	ratvar_modules -= I
 	added_modules -= I
-	rebuild_modules()
+	rebuild_modules(held_modules, active_module_num)
 	if(delete_after)
 		qdel(I)
 
@@ -153,7 +168,7 @@
 			var/obj/item/assembly/flash/F = I
 			F.times_used = 0
 			F.burnt_out = FALSE
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 		else if(istype(I, /obj/item/melee/baton))
 			var/obj/item/melee/baton/B = I
 			if(B.cell)
@@ -165,10 +180,18 @@
 
 	R.toner = R.tonermax
 
-/obj/item/robot_module/proc/rebuild_modules() ///builds the usable module list from the modules we have
+/obj/item/robot_module/proc/rebuild_modules(list/last_held_modules = null, last_active_module_num = null) ///builds the usable module list from the modules we have
 	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return
+
 	var/list/held_modules = R.held_items.Copy()
-	var/active_module = R.module_active
+	if(last_held_modules) 
+		held_modules = last_held_modules
+	var/active_module_num = R.get_selected_module()
+	if(last_active_module_num)
+		active_module_num = last_active_module_num
+
 	R.uneq_all()
 	modules = list()
 	for(var/obj/item/I in basic_modules)
@@ -182,15 +205,17 @@
 	for(var/obj/item/I in added_modules)
 		add_module(I, FALSE, FALSE)
 	for(var/i in held_modules)
-		if(i)
-			R.equip_module_to_slot(i, held_modules.Find(i))
-	if(active_module)
-		R.select_module(held_modules.Find(active_module))
+		if(i && (i in modules))
+			var/slot = held_modules.Find(i)
+			R.equip_module_to_slot(i, slot)
+			if(slot == active_module_num)
+				R.select_module(slot)
 	if(R.hud_used)
 		R.hud_used.update_robot_modules_display()
 
 /obj/item/robot_module/proc/transform_to(new_module_type)
 	var/mob/living/silicon/robot/R = loc
+	R.uneq_all()
 	var/obj/item/robot_module/RM = new new_module_type(R)
 	if(!RM.be_transformed_to(src))
 		qdel(RM)
@@ -200,6 +225,13 @@
 	R.update_module_innate()
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
+	var/datum/component/armor_plate/C = R.GetComponent(/datum/component/armor_plate)
+	if(C) // Remove armor plating.
+		C.dropplates()
+		C.Destroy() // It is possible to switch over to a module that has a different 'use_armorplates' value, thus we remove in all cases.
+	if(RM.use_armorplates > 0) // Add armor plating.
+		R.AddComponent(/datum/component/armor_plate, RM.use_armorplates)
+	R.armor = getArmor(arglist(RM.module_armor))
 
 	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
 	qdel(src)
@@ -292,7 +324,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/borghypo,
+		/obj/item/reagent_containers/borghypo/medical,
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
@@ -309,9 +341,9 @@
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/stack/medical/bone_gel/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+		/obj/item/borg_snack_dispenser/medical)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
-	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
 		/obj/item/clockwork/weapon/ratvarian_spear)
@@ -336,6 +368,7 @@
 		/obj/item/multitool/cyborg,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
+		/obj/item/borg/gripper/engineering,
 		/obj/item/geiger_counter/cyborg,
 		/obj/item/assembly/signaler/cyborg,
 		/obj/item/areaeditor/blueprints/cyborg,
@@ -389,7 +422,7 @@
 		if(T.cell.charge < T.cell.maxcharge)
 			var/obj/item/ammo_casing/energy/S = T.ammo_type[T.select]
 			T.cell.give(S.e_cost * coeff)
-			T.update_icon()
+			T.update_appearance(UPDATE_ICON)
 		else
 			T.charge_timer = 0
 
@@ -397,7 +430,7 @@
 	name = "Peacekeeper"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
-		/obj/item/rsf/cookiesynth,
+		/obj/item/borg_snack_dispenser/peacekeeper,
 		/obj/item/harmalarm,
 		/obj/item/reagent_containers/borghypo/peace,
 		/obj/item/holosign_creator/cyborg,
@@ -444,7 +477,194 @@
 	cyborg_base_icon = "janitor"
 	moduleselect_icon = "janitor"
 	hat_offset = -5
-	clean_on_move = TRUE
+	/// Weakref to the wash toggle action we own
+	var/datum/weakref/wash_toggle_ref
+
+/obj/item/robot_module/janitor/be_transformed_to(obj/item/robot_module/old_module, forced = FALSE)
+	. = ..()
+	if(!.)
+		return
+	var/datum/action/wash_toggle = new /datum/action/toggle_buffer(loc)
+	wash_toggle.Grant(loc)
+	wash_toggle_ref = WEAKREF(wash_toggle)
+
+/obj/item/robot_module/janitor/Destroy()
+	QDEL_NULL(wash_toggle_ref)
+	return ..()
+
+/datum/action/toggle_buffer
+	name = "Activate Auto-Wash"
+	desc = "Trade speed and water for a clean floor."
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon_state = "activate_wash"
+	var/block_buffer_change	= FALSE
+	var/buffer_on = FALSE
+	///The bucket we draw water from
+	var/datum/weakref/bucket_ref
+	///Our looping sound
+	var/datum/looping_sound/wash/wash_audio
+	///Toggle cooldown to prevent sound spam
+	COOLDOWN_DECLARE(toggle_cooldown)
+
+/datum/action/toggle_buffer/Destroy()
+	if(buffer_on)
+		turn_off_wash()
+	QDEL_NULL(wash_audio)
+	return ..()
+
+/datum/action/toggle_buffer/Grant(mob/M)
+	. = ..()
+	wash_audio = new(list(owner), FALSE)
+
+/datum/action/toggle_buffer/IsAvailable(feedback = FALSE)
+	if(!issilicon(owner))
+		return FALSE
+	return ..()
+
+/datum/action/toggle_buffer/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	block_buffer_change = DOING_INTERACTION(owner, "auto_wash_toggle")
+	if(block_buffer_change)
+		return FALSE
+
+	var/mob/living/silicon/robot/robot_owner = owner
+	var/obj/item/reagent_containers/glass/bucket/our_bucket = locate(/obj/item/reagent_containers/glass/bucket) in robot_owner.module.modules
+	bucket_ref = WEAKREF(our_bucket)
+	
+	// Spam preventation.
+	if(!COOLDOWN_FINISHED(src, toggle_cooldown))
+		if(!buffer_on)
+			robot_owner.balloon_alert(robot_owner, "auto-wash refreshing, please hold...")
+		else
+			robot_owner.balloon_alert(robot_owner, "auto-wash deactivating, please hold...")
+		return FALSE
+
+	// Turning off.
+	if(buffer_on)
+		robot_owner.balloon_alert(robot_owner, "de-activating auto-wash...")
+		deactivate_wash() // Handles its own cooldown for spam prevention.
+		return TRUE
+
+	// Turning on - checks.
+	if(!allow_buffer_activate())
+		return FALSE
+
+	// Turning on.
+	COOLDOWN_START(src, toggle_cooldown, 4 SECONDS)
+	robot_owner.balloon_alert(robot_owner, "activating auto-wash...")
+	// Start the sound. it'll just last the 4 seconds it takes for us to rev up.
+	wash_audio.start()
+	// We're just gonna shake the borg a bit. Not a ton, but just enough that it feels like the audio makes sense.
+	var/base_x = robot_owner.base_pixel_x
+	var/base_y = robot_owner.base_pixel_y
+	animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1, loop = -1)
+	for(var/i in 1 to 17) // Startup rumble.
+		var/x_offset = base_x + rand(-1, 1)
+		var/y_offset = base_y + rand(-1, 1)
+		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
+	if(!do_after(robot_owner, 4 SECONDS, extra_checks = CALLBACK(src, PROC_REF(allow_buffer_activate))))
+		wash_audio.stop() // Coward.
+		animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1)
+		return FALSE
+	activate_wash()
+
+/// Activate the buffer, comes with a nice animation that loops while it's on
+/datum/action/toggle_buffer/proc/activate_wash()
+	var/mob/living/silicon/robot/robot_owner = owner
+	buffer_on = TRUE
+	// Slow em down a bunch.
+	robot_owner.add_movespeed_modifier("janiborg buffer", multiplicative_slowdown = 3)
+	RegisterSignal(robot_owner, COMSIG_MOVABLE_MOVED, PROC_REF(clean))
+	// This is basically just about adding a shake to the borg, effect should look ilke an engine's running.
+	var/base_x = robot_owner.base_pixel_x
+	var/base_y = robot_owner.base_pixel_y
+	robot_owner.pixel_x = base_x + rand(-7, 7)
+	robot_owner.pixel_y = base_y + rand(-7, 7)
+	// Larger shake with more changes to start out, feels like "Revving".
+	animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1, loop = -1)
+	for(var/i in 1 to 100)
+		var/x_offset = base_x + rand(-2, 2)
+		var/y_offset = base_y + rand(-2, 2)
+		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
+	if(!wash_audio.is_active())
+		wash_audio.start()
+	clean()
+	name = "De-Activate Auto-Wash"
+	button_icon_state = "deactivate_wash"
+	build_all_button_icons()
+
+/// Start the process of disabling the buffer. Plays some effects, waits a bit, then finishes.
+/datum/action/toggle_buffer/proc/deactivate_wash()
+	var/mob/living/silicon/robot/robot_owner = owner
+	var/time_left = timeleft(wash_audio.timerid) // We delay by the timer of our wash cause well, we want to hear the ramp down.
+	var/finished_by = time_left + 2.6 SECONDS
+	// Need to ensure that people don't spawn the deactivate button.
+	COOLDOWN_START(src, toggle_cooldown, finished_by)
+	// Diable the cleaning, we're revving down
+	UnregisterSignal(robot_owner, COMSIG_MOVABLE_MOVED)
+	// Do the rumble animation till we're all finished.
+	var/base_x = robot_owner.base_pixel_x
+	var/base_y = robot_owner.base_pixel_y
+	animate(robot_owner, pixel_x = base_x, pixel_y = base_y, time = 1)
+	for(var/i in 1 to finished_by - 0.1 SECONDS) //We rumble until we're finished making noise
+		var/x_offset = base_x + rand(-1, 1)
+		var/y_offset = base_y + rand(-1, 1)
+		animate(pixel_x = x_offset, pixel_y = y_offset, time = 1)
+	// Reset our animations.
+	animate(pixel_x = base_x, pixel_y = base_y, time = 2)
+	addtimer(CALLBACK(wash_audio, /datum/looping_sound/proc/stop), time_left)
+	addtimer(CALLBACK(src, PROC_REF(turn_off_wash)), finished_by)
+
+/// Called by [deactivate_wash] on a timer to allow noises and animation to play out.
+/// Finally disables the buffer. Doesn't do everything mind, just the stuff that we wanted to delay.
+/datum/action/toggle_buffer/proc/turn_off_wash()
+	var/mob/living/silicon/robot/robot_owner = owner
+	buffer_on = FALSE
+	robot_owner.remove_movespeed_modifier("janiborg buffer")
+	name = "Activate Auto-Wash"
+	button_icon_state = "activate_wash"
+	build_all_button_icons()
+
+/// Should we keep trying to activate our buffer, or did you fuck it up somehow.
+/datum/action/toggle_buffer/proc/allow_buffer_activate()
+	var/mob/living/silicon/robot/robot_owner = owner
+	if(block_buffer_change)
+		robot_owner.balloon_alert(robot_owner, "activation cancelled!")
+		return FALSE
+
+	var/obj/item/reagent_containers/glass/bucket/our_bucket = bucket_ref?.resolve()
+	if(!buffer_on && our_bucket?.reagents?.total_volume < 0.1)
+		robot_owner.balloon_alert(robot_owner, "bucket is empty!")
+		return FALSE
+	return TRUE
+
+/// Call this to attempt to actually clean the turf underneath us.
+/datum/action/toggle_buffer/proc/clean()
+	SIGNAL_HANDLER
+	var/mob/living/silicon/robot/robot_owner = owner
+
+	var/obj/item/reagent_containers/glass/bucket/our_bucket = bucket_ref?.resolve()
+	var/datum/reagents/reagents = our_bucket?.reagents
+
+	if(!reagents || reagents.total_volume < 0.1)
+		robot_owner.balloon_alert(robot_owner, "bucket is empty, de-activating...")
+		deactivate_wash()
+		return
+
+	var/turf/our_turf = get_turf(robot_owner)
+	
+	// We're realistically only going to have water, but here is the full list of chems that can clean anyways.
+	if(reagents.has_reagent(/datum/reagent/water, 1) || reagents.has_reagent(/datum/reagent/water/holywater, 1) || reagents.has_reagent(/datum/reagent/consumable/ethanol/vodka, 1) || reagents.has_reagent(/datum/reagent/space_cleaner, 1))
+		our_turf.wash(CLEAN_SCRUB)
+	
+	// Deals with any sleeps().
+	INVOKE_ASYNC(reagents, TYPE_PROC_REF(/datum/reagents, reaction), our_turf, TOUCH, 10)
+
+	// We use more water doing this then mopping.
+	reagents.remove_any(2) //reaction() doesn't use up the reagents.
 
 /obj/item/reagent_containers/spray/cyborg_drying
 	name = "drying agent spray"
@@ -486,7 +706,7 @@
 		/obj/item/lipstick/purple,
 		/obj/item/holosign_creator/clown/cyborg, //Evil
 		/obj/item/borg/cyborghug/peacekeeper,
-		/obj/item/borg/lollipop/clown,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/picket_sign/cyborg,
 		/obj/item/reagent_containers/borghypo/clown,
 		/obj/item/extinguisher/mini)
@@ -502,10 +722,11 @@
 	cyborg_base_icon = "clown"
 	hat_offset = -2
 
-/obj/item/robot_module/butler
+/obj/item/robot_module/service
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/storage/bag/money, // For charging a fee or getting onto the luxury shuttle.
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
 		/obj/item/reagent_containers/food/condiment/enzyme,
 		/obj/item/pen,
@@ -514,13 +735,14 @@
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
 		/obj/item/rsf,
+		/obj/item/borg/gripper/service,
 		/obj/item/instrument/guitar,
 		/obj/item/instrument/piano_synth,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		/obj/item/reagent_containers/borghypo/borgshaker,
-		/obj/item/borg/lollipop,
+		/obj/item/borg_snack_dispenser/medical,
 		/obj/item/reagent_containers/glass/rag,
 		/obj/item/soap/infinite)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
@@ -529,15 +751,18 @@
 		/obj/item/borg/sight/xray/truesight_lens)
 	moduleselect_icon = "service"
 	special_light_key = "service"
+	cyborg_base_icon = "tophat"
 	hat_offset = 0
 
-/obj/item/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
+/obj/item/robot_module/service/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
 	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
-/obj/item/robot_module/butler/be_transformed_to(obj/item/robot_module/old_module)
+// The reason why spawning a `silicon/robot/modules/service` or forcing a cyborg into ..
+// .. Service doesn't work as it prompts the cyborg into selecting their initial skin first:
+/obj/item/robot_module/service/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/list/service_icons = sortList(list(
 		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f"),
@@ -573,7 +798,7 @@
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore/cyborg,
 		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/shovel,
+		/obj/item/shovel, // This is here for: the ability to butcher & tool behavior of TOOL_SHOVEL. In all other cases, the cyborg drill is better.
 		/obj/item/crowbar/cyborg,
 		/obj/item/weldingtool/mini,
 		/obj/item/extinguisher/mini,
@@ -591,6 +816,8 @@
 	cyborg_base_icon = "miner"
 	moduleselect_icon = "miner"
 	hat_offset = 0
+	module_armor = list(MELEE = 20)
+	use_armorplates = 3
 	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner //built in memes.
 
 /obj/item/robot_module/miner/rebuild_modules()
@@ -637,7 +864,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg/combat,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/twohanded/shockpaddles/syndicate,
+		/obj/item/shockpaddles/syndicate,
 		/obj/item/healthanalyzer,
 		/obj/item/retractor,
 		/obj/item/hemostat,
@@ -677,6 +904,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/wirecutters/cyborg,
 		/obj/item/multitool/cyborg,
+		/obj/item/borg/gripper/engineering,
 		/obj/item/stack/sheet/metal/cyborg,
 		/obj/item/stack/sheet/glass/cyborg,
 		/obj/item/stack/sheet/rglass/cyborg,

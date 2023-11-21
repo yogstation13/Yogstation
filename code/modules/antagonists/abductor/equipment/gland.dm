@@ -4,6 +4,7 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "gland"
 	status = ORGAN_ROBOTIC
+	compatible_biotypes = ALL_BIOTYPES
 	beating = TRUE
 	var/true_name = "baseline placebo referencer"
 	var/cooldown_low = 30 SECONDS
@@ -50,8 +51,9 @@
 	else
 		holder.icon_state = "hudgland_spent"
 
-/obj/item/organ/heart/gland/update_icon()
-	return // stop it from switching to the non existent heart_on sprite
+/obj/item/organ/heart/gland/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 	
 /obj/item/organ/heart/gland/proc/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
@@ -249,6 +251,7 @@
 	randomize_human(owner)
 	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/gorilla, /datum/species/moth, /datum/species/fly)) // yogs -- gorilla people
 	owner.set_species(species)
+	owner.dna.update_dna_identity()
 
 /obj/item/organ/heart/gland/ventcrawling
 	true_name = "pliant cartilage enabler"
@@ -475,7 +478,7 @@
 
 /obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(vomit_gas)), 20 SECONDS) //Yogstation change: plasma -> gas
 
 /obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas

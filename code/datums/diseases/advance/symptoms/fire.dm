@@ -18,6 +18,7 @@ Bonus
 /datum/symptom/fire
 
 	name = "Spontaneous Combustion"
+	icon = "spontaneous_combustion"
 	desc = "The virus turns fat into an extremely flammable compound, and raises the body's temperature, making the host burst into flames spontaneously."
 	stealth = 1
 	resistance = -4
@@ -104,6 +105,7 @@ Bonus
 /datum/symptom/alkali
 
 	name = "Alkali perspiration"
+	icon = "symptom.alkali_perspiration.gif"
 	desc = "The virus attaches to sudoriferous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
 	stealth = 2
 	resistance = -2
@@ -121,7 +123,7 @@ Bonus
 		"Stage Speed 8" = "Increases explosion radius and explosion damage to the host when the host is wet.",
 		"Transmission 8" = "Additionally synthesizes chlorine trifluoride and napalm inside the host. More chemicals are synthesized if the resistance 9 threshold has been met."
 	)
-	process_flags = ORGANIC | SYNTHETIC //is funny
+	compatible_biotypes = ALL_BIOTYPES //is funny
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
 	. = ..()

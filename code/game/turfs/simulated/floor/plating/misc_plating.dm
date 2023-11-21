@@ -182,10 +182,15 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	flammability = -5
 
 /turf/open/floor/plating/ice/Initialize(mapload)
 	. = ..()
 	MakeSlippery(TURF_WET_PERMAFROST, INFINITY, 0, INFINITY, TRUE)
+
+/turf/open/floor/plating/ice/singularity_act()
+	. = ..() //take the wires n shit out
+	return 0
 
 /turf/open/floor/plating/ice/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
@@ -210,6 +215,9 @@
 /turf/open/floor/plating/ice/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
+/turf/open/floor/plating/ice/icemoon/top_layer
+	light_range = 2
+	light_power = 0.1
 
 /turf/open/floor/plating/snowed
 	name = "snowed-over plating"

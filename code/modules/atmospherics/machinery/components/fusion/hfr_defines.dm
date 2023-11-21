@@ -140,15 +140,26 @@
 //
 // Explosion flags for use in fuel recipes
 //
+
+/// Causes a light explosion on meltdown
 #define HYPERTORUS_FLAG_BASE_EXPLOSION (1<<0)
+/// Causes a heavy explosion on meltdown
 #define HYPERTORUS_FLAG_MEDIUM_EXPLOSION (1<<1)
+/// Causes a devastating explosion on meltdown
 #define HYPERTORUS_FLAG_DEVASTATING_EXPLOSION (1<<2)
+/// Causes a radiation pulse on meltdown
 #define HYPERTORUS_FLAG_RADIATION_PULSE (1<<3)
+/// Causes an EMP on meltdown
 #define HYPERTORUS_FLAG_EMP (1<<4)
+/// Small radiation/EMP radius
 #define HYPERTORUS_FLAG_MINIMUM_SPREAD (1<<5)
+/// Medium radiation/EMP radius
 #define HYPERTORUS_FLAG_MEDIUM_SPREAD (1<<6)
+/// Large radiation/EMP radius
 #define HYPERTORUS_FLAG_BIG_SPREAD (1<<7)
+/// Very large radiation/EMP radius
 #define HYPERTORUS_FLAG_MASSIVE_SPREAD (1<<8)
+/// Doubles explosion size and radiation/EMP radius
 #define HYPERTORUS_FLAG_CRITICAL_MELTDOWN (1<<9)
 
 ///High power damage

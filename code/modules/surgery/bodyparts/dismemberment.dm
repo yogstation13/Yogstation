@@ -20,9 +20,10 @@
 	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
+	var/should_disintegrate = !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if their limb falls off easily it should just fall off instead
 	drop_limb()
 
-	if(dam_type == BURN)
+	if(dam_type == BURN && should_disintegrate)
 		burn()
 		return 1
 	add_mob_blood(C)
@@ -230,7 +231,7 @@
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
 			if(R)
-				R.update_icon()
+				R.update_appearance(UPDATE_ICON)
 		if(C.gloves)
 			C.dropItemToGround(C.gloves, TRUE)
 		C.update_inv_gloves() //to remove the bloody hands overlay
@@ -248,7 +249,7 @@
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]
 			if(L)
-				L.update_icon()
+				L.update_appearance(UPDATE_ICON)
 		if(C.gloves)
 			C.dropItemToGround(C.gloves, TRUE)
 		C.update_inv_gloves() //to remove the bloody hands overlay
@@ -333,7 +334,7 @@
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/hand = C.hud_used.hand_slots["[held_index]"]
 			if(hand)
-				hand.update_icon()
+				hand.update_appearance(UPDATE_ICON)
 		C.update_inv_gloves()
 
 	if(special) //non conventional limb attachment
@@ -363,7 +364,7 @@
 		LAZYADD(C.all_scars, thing)
 
 	update_bodypart_damage_state()
-	if(C.dna && C.dna.species && (ROBOTIC_LIMBS in C.dna.species.species_traits) && src.status == BODYPART_ROBOTIC)
+	if(C.dna && C.dna.species && (C.mob_biotypes & MOB_ROBOTIC) && src.status == BODYPART_ROBOTIC)
 		src.render_like_organic = TRUE
 
 	C.updatehealth()
@@ -443,7 +444,7 @@
 
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
-			if(H.dna && H.dna.species && (ROBOTIC_LIMBS in H.dna.species.species_traits))
+			if(H.dna && H.dna.species && (H.mob_biotypes & MOB_ROBOTIC))
 				L.change_bodypart_status(BODYPART_ROBOTIC)
 				L.render_like_organic = TRUE
 			if(limb_zone == "head" && H.dna && H.dna.species && (NOMOUTH in H.dna.species.species_traits))

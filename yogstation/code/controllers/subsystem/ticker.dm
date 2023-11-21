@@ -29,7 +29,7 @@
 		"https://www.youtube.com/watch?v=orT5RN3Zwak",						// Kirk Franklin - Revolution
 		"https://www.youtube.com/watch?v=9whQIbNmu9s",						// Admiral Hippie - Clown.wmv
 		"https://www.youtube.com/watch?v=UlHGGKgzgzI",						// Elbow - Leaders of the Free World
-		"https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
+		"https://www.youtube.com/watch?v=67BwWgrMlxk",						// Chris Christodoulou - Risk of Rain Coalescence
 		"https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=jJDAV9vSmYc",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
@@ -55,7 +55,7 @@
 		"https://www.youtube.com/watch?v=8GW6sLrK40k",						// HOME - Resonance
 		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						// Chris Christodoulou - Dies Irae
 		"https://www.youtube.com/watch?v=Nn9trJXUrp0",						// Chris Christodoulou - ...con lentitud poderosa
-		"https://www.youtube.com/watch?v=rkas-NHQnsI",						// Clint Eastwood - Magnum Force Theme 
+		"https://www.youtube.com/watch?v=rkas-NHQnsI",						// Clint Eastwood - Magnum Force Theme
 		"https://www.youtube.com/watch?v=e3t_dbLaw-M",						// DM Dokuro - Treasures Within The Abomination
 		"https://www.youtube.com/watch?v=2O4C8J4bcXw",						// Blinch - Loop Hero OST - Loop Blues
 		"https://www.youtube.com/watch?v=4q-La8uR0HU",						// Blinch - Loop Hero OST - Dark Matter Moon
@@ -64,8 +64,11 @@
 		"https://www.youtube.com/watch?v=0-CLAPJ1PLs",						// Pizza Tower OST - Tunnely Shimbers
 		"https://www.youtube.com/watch?v=4JkIs37a2JE",						// Jamiroquai - Virtual Insanity
 		"https://www.youtube.com/watch?v=z01VlftkqY8",						// PilotRedSun - The Grinch's Ultimatum
-		"https://www.youtube.com/watch?v=rcmQefeyPBs"						// Nightmargin - IT'S TIME TO FIGHT CRIME
-		)						
+		"https://www.youtube.com/watch?v=rcmQefeyPBs",						// Nightmargin - IT'S TIME TO FIGHT CRIME
+		"https://www.youtube.com/watch?v=OGcMPp7TNo4",						// Bear McCreary - Wander My Friends
+		"https://soundcloud.com/lemmino/firecracker",						// LEMMiNO - Firecracker - CC BY-SA 4.0
+		"https://www.youtube.com/watch?v=bJNXazHoLkE",						// Bright Primate - Bio-Engineering
+		)
 	selected_lobby_music = pick(songs)
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!

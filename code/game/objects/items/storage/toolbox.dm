@@ -6,8 +6,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 12
-	throwforce = 12
+	force = 15
+	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
@@ -28,13 +28,12 @@
 			latches = "double_latch"
 			if(prob(1))
 				latches = "triple_latch"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/toolbox/update_icon()
-	..()
-	cut_overlays()
+/obj/item/storage/toolbox/update_overlays()
+	. = ..()
 	if(has_latches)
-		add_overlay(latches)
+		. += latches
 
 
 /obj/item/storage/toolbox/suicide_act(mob/user)
@@ -93,7 +92,7 @@
 /obj/item/storage/toolbox/mechanical/old/heirloom
 	name = "toolbox" //this will be named "X family toolbox"
 	desc = "It's seen better days."
-	force = 5
+	force = 8
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/mechanical/old/heirloom/PopulateContents()
@@ -105,15 +104,15 @@
 	icon_state = "oldtoolboxclean"
 	item_state = "toolbox_blue"
 	has_latches = FALSE
-	force = 19
-	throwforce = 22
+	force = 22
+	throwforce = 25
 
 /obj/item/storage/toolbox/mechanical/old/clean/proc/calc_damage()
 	var/power = 0
 	for (var/obj/item/stack/telecrystal/TC in get_all_contents())
 		power += TC.amount
-	force = 19 + power
-	throwforce = 22 + power
+	force = initial(force) + power
+	throwforce = initial(throwforce) + power
 
 /obj/item/storage/toolbox/mechanical/old/clean/attack(mob/target, mob/living/user)
 	calc_damage()
@@ -155,8 +154,8 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	force = 15
-	throwforce = 18
+	force = 18
+	throwforce = 21
 	w_class = WEIGHT_CLASS_NORMAL
 	material_flags = MATERIAL_NO_COLOR
 
@@ -176,6 +175,12 @@
 	//YOGS start - toolspeed
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5
+
+/obj/item/storage/toolbox/syndicate/real/PopulateContents()
+	. = ..()
+	for(var/obj/item/I in contents)
+		I.toolspeed = 0.33
+		I.name = "syndicate [I.name]"
 
 /obj/item/storage/toolbox/drone
 	name = "mechanical toolbox"
@@ -284,7 +289,8 @@
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
-							/obj/item/storage/toolbox/syndicate)
+							/obj/item/storage/toolbox/syndicate,
+							/obj/item/storage/toolbox/syndicate/real)
 
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		..()
@@ -308,8 +314,10 @@
 				B.toolbox_color = "g"
 			if(/obj/item/storage/toolbox/syndicate)
 				B.toolbox_color = "s"
+			if(/obj/item/storage/toolbox/syndicate/real)
+				B.toolbox_color = "s"
 		user.put_in_hands(B)
-		B.update_icon()
+		B.update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You add the tiles into the empty [name]. They protrude from the top."))
 		qdel(src)
 	else

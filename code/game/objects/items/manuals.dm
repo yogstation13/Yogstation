@@ -104,19 +104,19 @@
 				<h2>Basic ingredients preparation:</h2>
 
 				<b>Dough:</b> 10u water + 15u flour for simple dough.<br>
-				15u egg yolk + 15u flour + 5u sugar for cake batter.<br>
-				Doughs can be transformed by using a knife and rolling pin.<br>
-				All doughs can be microwaved.<br>
+				15u egg yolk or soy milk + 15u flour + 5u sugar for cake batter.<br>
+				Doughs can be transformed by using a rolling pin and knife.<br>
+				All doughs can be cooked in the oven.<br>
 				<b>Bowl:</b> Add water to it for soup preparation.<br>
-				<b>Meat:</b> Microwave it, process it, slice it into microwavable cutlets with your knife, or use it raw.<br>
-				<b>Cheese:</b> Add 5u universal enzyme (catalyst) to milk and soy milk to prepare cheese (sliceable) and tofu.<br>
+				<b>Meat:</b> Griddle it, process it, slice it into cutlets with your knife, or use it raw.<br>
+				<b>Cheese:</b> Add 5u universal enzyme (catalyst) to milk and soy milk to prepare cheese mix and tofu.<br>
 				<b>Rice:</b> Mix 10u rice with 10u water in a bowl then microwave it.
 
 				<h2>Custom food:</h2>
 				Add ingredients to a base item to prepare a custom meal.<br>
 				The bases are:<br>
 				- bun (burger)<br>
-				- breadslices(sandwich)<br>
+				- bread slices(sandwich)<br>
 				- plain bread<br>
 				- plain pie<br>
 				- vanilla cake<br>
@@ -124,36 +124,45 @@
 				- bowl with 10u water (soup)<br>
 				- boiled spaghetti<br>
 				- pizza bread<br>
-				- metal rod (kebab)
+				- metal rod (kebab)<br>
+				- seaweed sheet (sushi)
 
 				<h2>Table Craft:</h2>
-				Put ingredients on table, then click and drag the table onto yourself to see what recipes you can prepare.
+				Put ingredients around you or in your hands, then use the crafting menu to see what recipes you can prepare.
 
 				<h2>Microwave:</h2>
-				Use it to cook or boil food ingredients (meats, doughs, egg, spaghetti, donkpocket, etc...).
+				Use it to cook or boil food ingredients (egg, spaghetti, donkpocket, cheese mix).
 				It can cook multiple items at once.
 
+				<h2>Griddle:</h2>
+				Use it to grill food (meats, cutlets, bacon, bread slices, patties).
+				It can grill multiple items at once.
+
+				<h2>Oven:</h2>
+				Use it to bake raw food (doughs, donkpocket).
+				It can bake multiple items at once.
+
 				<h2>Processor:</h2>
-				Use it to process certain ingredients (meat into meatball, doughslice into spaghetti, potato into fries,etc...)
+				Use it to process certain ingredients (meat into meatball, dough slice into spaghetti, potato slice into fries, cutlet into bacon, heated cheese mix to cheese).
 
 				<h2>Gibber:</h2>
-				Stuff an animal in it to grind it into meat.
+				Stuff a dead person in it to grind them into meat.
 
 				<h2>Meat spike:</h2>
-				Stick an animal on it then begin collecting its meat.
+				Stick an animal on it then butcher to collect its meat.
 
 
 				<h2>Example recipes:</h2>
-				<b>Vanilla Cake</b>: Microwave cake batter.<br>
-				<b>Burger:</b> 1 bun + 1 meat steak<br>
-				<b>Bread:</b> Microwave dough.<br>
-				<b>Waffles:</b> 2 pastry base<br>
+				<b>Vanilla Cake:</b> Bake cake batter.<br>
+				<b>Burger:</b> 1 bun + 1 meat patty (flatten a meatball)<br>
+				<b>Bread:</b> Bake dough.<br>
+				<b>Waffles:</b> Craft using 2 pastry bases<br>
 				<b>Popcorn:</b> Microwave corn.<br>
-				<b>Meat Steak:</b> Microwave meat.<br>
-				<b>Meat Pie:</b> 1 plain pie + 1u black pepper + 1u salt + 2 meat cutlets<br>
-				<b>Boiled Spagetti:</b> Microwave spaghetti.<br>
-				<b>Donuts:</b> 1u sugar + 1 pastry base<br>
-				<b>Fries:</b> Process potato.
+				<b>Meat Steak:</b> Griddle meat.<br>
+				<b>Meat Pie:</b> Craft using 1 plain pie + 1u black pepper + 1u salt + 1 steak<br>
+				<b>Boiled Spagetti:</b> Microwave raw spaghetti.<br>
+				<b>Donuts:</b> Craft using 1u sugar + 1 pastry base<br>
+				<b>Fries:</b> Cut a potato and process the slice.
 
 				<h2>Sharing your food:</h2>
 				You can put your meals on your kitchen counter or load them in the snack vending machines.
@@ -237,7 +246,7 @@
 
 				<h2>Flora:</h2>
 
-				Every plant we are blessed with can be used in some way. 
+				Every plant we are blessed with can be used in some way.
 				All are not dangerous when consumed in moderation, save for mushroom caps.
 				All may be fermented and brewed into substances that induce a woozy and feel-good high.
 				Cacti fruit is rich in juices that will nurture and heal your body.

@@ -341,12 +341,12 @@
 				else if(mechsyringe.loc == trg)
 					mechsyringe.icon_state = initial(mechsyringe.icon_state)
 					mechsyringe.icon = initial(mechsyringe.icon)
-					mechsyringe.update_icon()
+					mechsyringe.update_appearance(UPDATE_ICON)
 					break
 			else
 				mechsyringe.icon_state = initial(mechsyringe.icon_state)
 				mechsyringe.icon = initial(mechsyringe.icon)
-				mechsyringe.update_icon()
+				mechsyringe.update_appearance(UPDATE_ICON)
 				break
 			sleep(0.1 SECONDS)
 	return 1
@@ -535,6 +535,10 @@
 	. = ..()
 	medigun = new(src)
 
+/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/can_attach(obj/mecha/M)
+	. = ..()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam) in M.equipment)
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam/Destroy()
 	qdel(medigun)

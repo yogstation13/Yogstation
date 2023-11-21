@@ -91,7 +91,7 @@
 	switch(rand(1, 100))
 		if(1 to 40)
 			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), pick("blink", "blink_r"))
-			owner.blur_eyes(10 SECONDS)
+			owner.blur_eyes(10)
 			to_chat(owner, span_userdanger("You sweat profusely and have a hard time focusing..."))
 		if(41 to 80)
 			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "pale")
@@ -100,7 +100,7 @@
 			to_chat(owner, span_userdanger("You feel your heart lurching in your chest..."))
 		if(81 to 100)
 			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "cough")
-			owner.adjust_dizzy(20 SECONDS)
+			owner.adjust_dizzy(20)
 			owner.adjust_disgust(5)
 			to_chat(owner, span_userdanger("You gag and swallow a bit of bile..."))
 
@@ -108,7 +108,7 @@
 
 	if(examining_mob != owner || !triggering_examiner || prob(50))
 		return
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), obsession, span_warning("You catch [examining_mob] staring at you...")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), obsession, span_warning("You catch [examining_mob] staring at you...")), 3)
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/brain_trauma/special/obsessed/proc/find_obsession()

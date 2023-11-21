@@ -80,8 +80,9 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/mauler
-	max_equip = 6
+	max_equip = 7
 	destruction_sleep_duration = 20
+	ejection_distance = 8
 
 /obj/mecha/combat/marauder/mauler/loaded/Initialize(mapload)
 	. = ..()
@@ -96,6 +97,8 @@
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe(src)		//NOT BECAUSE IT'S USEFUL, BUT BECAUSE IT'S AWESOME
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/emergency_eject(src) // YEET
 	ME.attach(src)
 	max_ammo()
 

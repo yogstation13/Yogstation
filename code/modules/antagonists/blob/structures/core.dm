@@ -15,24 +15,24 @@
 	GLOB.blob_cores += src
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
-	update_icon() //so it atleast appears
+	update_appearance(UPDATE_ICON) //so it atleast appears
 	if(!placed && !overmind)
 		return INITIALIZE_HINT_QDEL
 	if(overmind)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/structure/blob/core/scannerreport()
 	return "Directs the blob's expansion, gradually expands, and sustains nearby blob spores and blobbernauts."
 
-/obj/structure/blob/core/update_icon()
-	cut_overlays()
+/obj/structure/blob/core/update_overlays()
+	. = ..()
 	color = null
 	var/mutable_appearance/blob_overlay = mutable_appearance('icons/mob/blob.dmi', "blob")
 	if(overmind)
 		blob_overlay.color = overmind.blobstrain.color
-	add_overlay(blob_overlay)
-	add_overlay(mutable_appearance('icons/mob/blob.dmi', "blob_core_overlay"))
+	. += blob_overlay
+	. += mutable_appearance('icons/mob/blob.dmi', "blob_core_overlay")
 
 /obj/structure/blob/core/Destroy()
 	GLOB.blob_cores -= src
@@ -49,7 +49,7 @@
 	var/damage = 50 - 10 * severity //remember, the core takes half brute damage, so this is 20/15/10 damage based on severity
 	take_damage(damage, BRUTE, BOMB, 0)
 
-/obj/structure/blob/core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, overmind_reagent_trigger = 1)
+/obj/structure/blob/core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0, overmind_reagent_trigger = 1)
 	. = ..()
 	if(obj_integrity > 0)
 		if(overmind) //we should have an overmind, but...

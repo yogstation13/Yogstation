@@ -36,13 +36,13 @@
 		else if(prob(5))
 			new /obj/structure/lattice/clockwork(src)
 
-/turf/open/indestructible/reebe_void/Enter(atom/movable/AM, atom/old_loc)
+/turf/open/indestructible/reebe_void/Enter(atom/movable/AM, atom/old_loc, no_side_effects = FALSE)
 	if(!..())
 		return FALSE
 	else
 		if(istype(AM, /obj/structure/window))
 			return FALSE
-		if(istype(AM, /obj/item/projectile))
+		if(istype(AM, /obj/projectile))
 			return TRUE
 		if((locate(/obj/structure/lattice) in src))
 			return TRUE

@@ -60,22 +60,9 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"j" = (
-/mob/living/simple_animal/hostile/carp/ranged/chaos{
-	name = "Blossom"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
 "k" = (
 /obj/machinery/light/small{
 	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"l" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/carp/ranged/chaos{
-	name = "Buttercup"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -155,11 +142,10 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "D" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/carp/ranged/chaos{
-	name = "Bubbles"
+	name = "Buttercup";
+	wander = 0
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -168,6 +154,23 @@
 	dir = 8
 	},
 /turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"K" = (
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	name = "Blossom";
+	wander = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"N" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	name = "Bubbles";
+	wander = 0
+	},
+/turf/open/floor/wood,
 /area/ruin/powered)
 "P" = (
 /obj/effect/decal/cleanable/dirt,
@@ -227,7 +230,7 @@ a
 a
 x
 e
-l
+D
 p
 x
 U
@@ -276,7 +279,7 @@ a
 x
 h
 h
-D
+N
 h
 g
 h
@@ -298,7 +301,7 @@ a
 (10,1,1) = {"
 a
 x
-j
+K
 n
 x
 s

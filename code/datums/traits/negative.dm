@@ -49,13 +49,14 @@
 	name = "Blind"
 	desc = "You are completely blind, nothing can counteract this."
 	icon = "eye-slash"
-	value = -9
+	value = -6
 	gain_text = span_danger("You can't see anything.")
 	lose_text = span_notice("You miraculously gain back your vision.")
 	medical_record_text = "Patient has permanent blindness."
 
 /datum/quirk/blindness/add()
 	quirk_holder.become_blind(ROUNDSTART_TRAIT)
+	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -156,11 +157,11 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = (NOMOUTH in species.species_traits) // Cant drink
+	var/disallowed_trait = (NOMOUTH in species.species_traits) || !(species.inherent_biotypes & MOB_ORGANIC)// Cant drink or process alcohol
 	qdel(species)
 
 	if(disallowed_trait)
-		return "You don't have the ability to drink!"
+		return "You don't have the ability to consume alcohol!"
 	return FALSE
 
 /datum/quirk/nearsighted //t. errorage
@@ -259,7 +260,7 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
-	
+
 /datum/quirk/poor_aim/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.dna.species.aiminginaccuracy += 25
@@ -301,16 +302,14 @@
 			prosthetic = new/obj/item/bodypart/r_arm/robot/surplus(quirk_holder)
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
-			if(DIGITIGRADE in H.dna.species.species_traits)
-				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus/digitigrade(quirk_holder)
-			else
-				prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			var/obj/item/bodypart/l_leg/L = H.get_bodypart(BODY_ZONE_L_LEG)
+			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			prosthetic.set_digitigrade(L.use_digitigrade)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
-			if(DIGITIGRADE in H.dna.species.species_traits)
-				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus/digitigrade(quirk_holder)
-			else
-				prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			var/obj/item/bodypart/r_leg/R = H.get_bodypart(BODY_ZONE_R_LEG)
+			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			prosthetic.set_digitigrade(R.use_digitigrade)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
 	qdel(old_part)
@@ -449,7 +448,7 @@
 	if(prob(85) || (istype(mind_check) && mind_check.mind))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
 
 /datum/quirk/social_anxiety/proc/eye_contact(datum/source, mob/living/other_mob, triggering_examiner)
 	var/mob/living/carbon/human/quirker = quirk_holder
@@ -473,7 +472,7 @@
 			msg += "causing you to freeze up!"
 
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
@@ -501,6 +500,7 @@
 	var/obj/item/accessory_type //If this is null, it won't be spawned.
 	var/obj/item/accessory_instance
 	var/tick_counter = 0
+	var/junkie_warning = null
 
 /datum/quirk/junkie/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -510,6 +510,8 @@
 		reagent_type = prot_holder.type
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
+	if (!junkie_warning)
+		junkie_warning = ("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again...")
 	var/current_turf = get_turf(quirk_holder)
 	if (!drug_container_type)
 		drug_container_type = /obj/item/storage/pill_bottle
@@ -552,7 +554,7 @@
 		if(!in_list)
 			H.reagents.addiction_list += reagent_instance
 			reagent_instance.addiction_stage = 0
-			to_chat(quirk_holder, span_danger("You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again..."))
+			to_chat(quirk_holder, span_danger("[junkie_warning]"))
 		tick_counter = 0
 	else
 		++tick_counter
@@ -570,7 +572,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = species.reagent_tag == PROCESS_SYNTHETIC //can't lose blood if your species doesn't have any
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
 	qdel(species)
 
 	if(disallowed_trait)
@@ -590,14 +592,14 @@
 	accessory_type = /obj/item/lighter/greyscale
 
 /datum/quirk/junkie/smoker/on_spawn()
-	drug_container_type = pick(/obj/item/storage/box/fancy/cigarettes,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_midori,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_uplift,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
-		/obj/item/storage/box/fancy/cigarettes/cigpack_carp,
-		/obj/item/storage/box/fancy/cigarettes/cigars,
-		/obj/item/storage/box/fancy/cigarettes/cigars/havana)
+	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes/cigpack_midori,
+		/obj/item/storage/fancy/cigarettes/cigpack_uplift,
+		/obj/item/storage/fancy/cigarettes/cigpack_robust,
+		/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
+		/obj/item/storage/fancy/cigarettes/cigpack_carp,
+		/obj/item/storage/fancy/cigarettes/cigars,
+		/obj/item/storage/fancy/cigarettes/cigars/havana)
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -609,11 +611,42 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(ITEM_SLOT_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
+		var/obj/item/storage/fancy/cigarettes/C = drug_instance
 		if(istype(I, C.spawn_type))
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
+
+
+/datum/quirk/junkie/drunkard
+	name = "Drunkard"
+	desc = "In space there's no such thing as day drinking."
+	icon = "beer" 
+	value = -2
+	mood_quirk = TRUE
+	gain_text = span_danger("You could really go for a stiff drink right about now.")
+	lose_text = span_notice("You no longer feel dependent on alcohol to function.")
+	medical_record_text = "Patient is known to be dependent on alcohol."
+	reagent_type = /datum/reagent/consumable/ethanol
+	junkie_warning = "You suddenly feel like you need another drink..."
+	
+/datum/quirk/junkie/drunkard/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.reagents.add_reagent(/datum/reagent/consumable/ethanol, 20)
+	drug_container_type = pick(/obj/item/reagent_containers/food/drinks/beer/light/plastic)
+	. = ..()
+
+	
+/datum/quirk/junkie/drunkard/check_quirk(datum/preferences/prefs)
+	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	var/datum/species/species = new species_type
+
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC)
+	qdel(species)
+
+	if(disallowed_trait)
+		return "You don't process normal chemicals!"
+	return FALSE
 
 /datum/quirk/unstable
 	name = "Unstable"
@@ -701,7 +734,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = species.reagent_tag == PROCESS_SYNTHETIC //can't lose blood if your species doesn't have any
+	var/disallowed_trait = !(species.inherent_biotypes & MOB_ORGANIC) // why would robots be allergic to things
 	qdel(species)
 
 	if(disallowed_trait)
@@ -761,11 +794,10 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/has_flesh = (HAS_FLESH in species.species_traits)
-	var/no_blood = (NOBLOOD in species.species_traits)
+	var/disallowed_trait = (NOBLOOD in species.species_traits)
 	qdel(species)
 
-	if(has_flesh || no_blood)
+	if(disallowed_trait)
 		return "You can't bleed."
 	return ..()
 
@@ -791,7 +823,8 @@
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."
 	icon = "palette"
-	value = -2
+	value = -4
+	mob_trait = TRAIT_COLORBLIND
 	medical_record_text = "Patient is afflicted with almost complete color blindness."
 
 /datum/quirk/monochromatic/add()
@@ -813,7 +846,7 @@
 	value = -1
 	mob_trait = TRAIT_BADMAIL
 
-/datum/quirk/telomeres_short 
+/datum/quirk/telomeres_short
 	name = "Short Telomeres"
 	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
 	icon = "magnifying-glass-minus"

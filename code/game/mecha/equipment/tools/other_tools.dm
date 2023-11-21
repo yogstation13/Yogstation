@@ -470,3 +470,22 @@
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
 	if(..())
 		radiation_pulse(get_turf(src), rad_per_cycle)
+
+
+
+/////////////////////////////////////////// EJECTION /////////////////////////////////////////////
+
+/obj/item/mecha_parts/mecha_equipment/emergency_eject
+	name = "emergency ejection system"
+	desc = "An emergency quick-eject system designed to protect the pilot from injury if the exosuit suffers catastrophic damage."
+	icon_state = "mecha_eject"
+	var/ejection_distance = 8
+
+/obj/item/mecha_parts/mecha_equipment/emergency_eject/attach(obj/mecha/M)
+	. = ..()
+	M.ejection_distance += ejection_distance
+
+/obj/item/mecha_parts/mecha_equipment/emergency_eject/detach(atom/moveto)
+	if(chassis)
+		chassis.ejection_distance -= ejection_distance
+	. = ..()

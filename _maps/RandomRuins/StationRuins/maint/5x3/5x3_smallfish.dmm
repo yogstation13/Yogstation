@@ -67,7 +67,7 @@
 	dir = 8
 	},
 /obj/structure/chair/stool/bamboo,
-/obj/item/twohanded/fishingrod{
+/obj/item/fishingrod{
 	pixel_x = -6;
 	pixel_y = 7
 	},

@@ -47,7 +47,7 @@
 	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(attack_with_hurt_hand))
 	if(limb.held_index && victim.get_item_for_held_index(limb.held_index) && (disabling || prob(30 * severity)))
 		var/obj/item/I = victim.get_item_for_held_index(limb.held_index)
-		if(istype(I, /obj/item/twohanded/offhand))
+		if(istype(I, /obj/item/offhand))
 			I = victim.get_inactive_held_item()
 
 		if(I && victim.dropItemToGround(I))
@@ -187,8 +187,6 @@
 	else if(limb.body_zone in list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		if(limb.current_gauze)
 			interaction_efficiency_penalty = 1 + ((interaction_efficiency_penalty - 1) * limb.current_gauze.splint_factor)
-		else
-			interaction_efficiency_penalty = interaction_efficiency_penalty
 
 	if(initial(disabling))
 		set_disabling(!limb.current_gauze)

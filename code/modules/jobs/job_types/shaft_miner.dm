@@ -13,7 +13,7 @@
 
 	outfit = /datum/outfit/job/miner
 
-	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_QM, ACCESS_RESEARCH)
+	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_QM, ACCESS_RESEARCH, ACCESS_RND)
 	base_access = list(ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_CAR
@@ -34,7 +34,7 @@
 		/obj/item/grenade/plastic/miningcharge/mega = 1,
 		/obj/item/card/mining_point_card/fivethousand = 1
 	)
-	
+
 	smells_like = "ash and dust"
 
 /datum/outfit/job/miner
@@ -63,7 +63,6 @@
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	box = /obj/item/storage/box/survival_mining
-	ipc_box = /obj/item/storage/box/ipc/miner
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 

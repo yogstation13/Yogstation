@@ -30,7 +30,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/extra_toggles = TOGGLES_DEFAULT_EXTRA
-	var/yogtoggles = YOGTOGGLES_DEFAULT
 	var/ghost_form = "ghost"
 
 	var/list/player_alt_titles = list()
@@ -79,6 +78,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// If set to TRUE, will update character_profiles on the next ui_data tick.
 	var/tainted_character_profiles = FALSE
+
+
+	///removed, kept here for migration in 'legacy_mood_migration.dm'
+	///DO NOT USE THIS!
+	var/yogtoggles
 
 /datum/preferences/Destroy(force, ...)
 	QDEL_NULL(character_preview_view)
@@ -264,14 +268,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (isnull(requested_preference))
 				return FALSE
 
-			if (!istype(requested_preference, /datum/preference/color) \
-				&& !istype(requested_preference, /datum/preference/color_legacy) \
-			)
+			if (!istype(requested_preference, /datum/preference/color))
 				return FALSE
 
 			var/default_value = read_preference(requested_preference.type)
-			if (istype(requested_preference, /datum/preference/color_legacy))
-				default_value = expand_three_digit_color(default_value)
+
 
 			// Yielding
 			var/new_color = input(

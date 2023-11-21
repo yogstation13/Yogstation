@@ -3,6 +3,7 @@
 /area/ruin/space
 	has_gravity = FALSE
 	blob_allowed = FALSE //Nope, no winning in space as a blob. Gotta eat the station.
+	mining_speed = FALSE
 
 /area/ruin/space/has_grav
 	has_gravity = STANDARD_GRAVITY
@@ -22,8 +23,12 @@
 	power_environ = FALSE
 	valid_territory = FALSE
 	outdoors = TRUE
-	ambientsounds = SPACE
 	blob_allowed = FALSE
+	ambience_index = null
+	ambient_music_index = AMBIENCE_SPACE
+	ambient_buzz = null
+	sound_environment = SOUND_AREA_SPACE
+	mining_speed = FALSE
 
 /////////////
 
@@ -228,16 +233,12 @@
 	icon_state = "green"
 
 
-//Ruin of ancient Space Station
+//Old Station
+//please stop calling it charlie station, that's just the cryo module
 
 /area/ruin/space/has_grav/ancientstation
 	name = "Charlie Station Main Corridor"
 	icon_state = "green"
-
-/area/ruin/space/has_grav/ancientstation/powered
-	name = "Powered Tile"
-	icon_state = "teleporter"
-	requires_power = FALSE
 
 /area/ruin/space/has_grav/ancientstation/space
 	name = "Exposed To Space"
@@ -252,8 +253,12 @@
 	name = "Beta Station North Corridor"
 	icon_state = "blue"
 
-/area/ruin/space/has_grav/ancientstation/solar
-	name = "Station Solar Array"
+/area/ruin/space/has_grav/ancientstation/solars
+	name = "Beta Station Solar Control"
+	icon_state = "blue"
+
+/area/ruin/space/has_grav/ancientstation/solararray
+	name = "Beta Station Solar Array"
 	icon_state = "panelsAP"
 
 /area/ruin/space/has_grav/ancientstation/engi
@@ -309,9 +314,7 @@
 	name = "Delta Station Research and Development"
 	icon_state = "toxlab"
 
-/area/ruin/space/has_grav/ancientstation/hivebot
-	name = "Hivebot Mothership"
-	icon_state = "teleporter"
+
 
 //DERELICT
 
@@ -485,3 +488,43 @@
 
 /area/ruin/space/has_grav/monastery/library/lounge
 	name = "Monastery Library Lounge"
+
+//SYNDICATE DERELICT STATION
+
+/area/ruin/space/has_grav/syndiederelict
+	name = "Syndicate Derelict Station"
+	icon_state = "red"
+
+/area/ruin/space/has_grav/syndiederelict/engineering
+	name = "Syndicate Derelict Engineering"
+	icon_state = "construction"
+
+/area/ruin/space/has_grav/syndiederelict/solars
+	name = "Syndicate Derelict Solar Array"
+	icon_state = "yellow"
+	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
+
+/area/ruin/space/has_grav/syndiederelict/hydroponics
+	name = "Syndicate Derelict Hydroponics"
+	icon_state = "hydro"
+
+/area/ruin/space/has_grav/syndiederelict/kitchen
+	name = "Syndicate Derelict Kitchen"
+	icon_state = "kitchen"
+
+/area/ruin/space/has_grav/syndiederelict/hallway
+	name = "Syndicate Derelict Hallway"
+	icon_state = "red"
+
+/area/ruin/space/has_grav/syndiederelict/research
+	name = "Syndicate Derelict Research Wing"
+	icon_state = "toxlab"
+
+/area/ruin/space/has_grav/syndiederelict/medbay
+	name = "Syndicate Derelict Medical Bay"
+	icon_state = "medbay"
+
+/area/ruin/space/has_grav/syndiederelict/virology
+	name = "Syndicate Derelict Virology"
+	icon_state = "virology"

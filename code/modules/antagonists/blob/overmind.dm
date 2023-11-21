@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/has_announced = FALSE
 	var/basemodifier = 1
 
-/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1)
+/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1, announcement_delay = 6000)
 	validate_location()
 	blob_points = starting_points
 	basemodifier = pointmodifier
@@ -59,9 +59,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	set_strain(BS)
 	color = blobstrain.complementary_color
 	if(blob_core)
-		blob_core.update_icon()
+		blob_core.update_appearance(UPDATE_ICON)
 	SSshuttle.registerHostileEnvironment(src)
-	announcement_time = world.time + 6000
+	announcement_time = world.time + announcement_delay
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		var/obj/structure/blob/B = BL
 		if(B && B.overmind == src)
 			B.overmind = null
-			B.update_icon() //reset anything that was ours
+			B.update_appearance(UPDATE_ICON) //reset anything that was ours
 	for(var/BLO in blob_mobs)
 		var/mob/living/simple_animal/hostile/blob/BM = BLO
 		if(BM)

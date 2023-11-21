@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(job)
 
 		name_occupations_all[job.title] = job
 
-		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
+		if(SEND_SIGNAL(job, SSmapping.config.internal_name != "" ? SSmapping.config.internal_name : SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config")
 			continue
 
@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(job)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
 			return FALSE
-		if(is_banned_from(player.ckey, rank) || QDELETED(player))
+		if(QDELETED(player) || is_banned_from(player.ckey, rank))
 			return FALSE
 		if(!job.player_old_enough(player.client))
 			return FALSE
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(job)
 			JobDebug("FOC incompatible with antagonist role, Player: [player]")
 			continue
 		// yogs start - Donor features, quiet round
-		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.yogtoggles & QUIET_ROUND))
+		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.read_preference(/datum/preference/toggle/quiet_mode)))
 			JobDebug("FOC quiet check failed, Player: [player]")
 			continue
 		// yogs end
@@ -354,6 +354,7 @@ SUBSYSTEM_DEF(job)
 	initial_players_to_assign = unassigned.len
 
 	JobDebug("DO, Len: [unassigned.len]")
+	GLOB.event_role_manager.setup_event_positions()
 	if(unassigned.len == 0)
 		return validate_required_jobs(required_jobs)
 
@@ -575,7 +576,7 @@ SUBSYSTEM_DEF(job)
 				handle_auto_deadmin_roles(M.client, rank)
 		to_chat(M, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 		job.radio_help_message(M)
-		if(job.req_admin_notify)
+		if((GLOB.admin_event && GLOB.admin_event.greet_role(M, job.type)) || job.req_admin_notify)
 			to_chat(M, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 		//YOGS start
 		if(job.space_law_notify)
@@ -607,6 +608,8 @@ SUBSYSTEM_DEF(job)
 		irish_override() // Assuming direct control.
 	else if(living_mob.job == "Bartender")
 		job.give_bar_choice(living_mob, M)
+	else if(living_mob.job == "Clerk")
+		job.give_clerk_choice(living_mob, M)
 	log_game("[living_mob.real_name]/[M.client.ckey] joined the round as [living_mob.job].") //yogs - Job logging
 
 	return living_mob
@@ -679,6 +682,71 @@ SUBSYSTEM_DEF(job)
 		message_admins("UNABLE TO SPAWN BAR")
 	
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+		template.load(B.loc, centered = FALSE)
+		qdel(B)
+
+
+/datum/controller/subsystem/job/proc/random_clerk_init()
+	try
+		var/list/player_box = list()
+		for(var/mob/H in GLOB.player_list)
+			if(H.client && H.client.prefs) // Prefs was null once and there was no clerk
+				player_box += H.client.prefs.read_preference(/datum/preference/choiced/clerk_choice)
+
+		var/choice
+		if(player_box.len == 0)
+			choice = "Random"
+		else
+			choice = pick(player_box)
+
+		if(choice != "Random")
+			var/clerk_sanitize = FALSE
+			for(var/A in GLOB.potential_box_clerk)
+				if(choice == A)
+					clerk_sanitize = TRUE
+					break
+		
+			if(!clerk_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_clerk)
+
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
+
+		if(isnull(template))
+			message_admins("WARNING: CLERK TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			log_game("WARNING: CLERK TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			for(var/backup_clerk in GLOB.potential_box_clerk)
+				template = SSmapping.station_room_templates[backup_clerk]
+				if(!isnull(template))
+					break
+				message_admins("WARNING: CLERK TEMPLATE [backup_clerk] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+				log_game("WARNING: CLERK TEMPLATE [backup_clerk] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+
+		if(isnull(template))
+			message_admins("WARNING: CLERK RECOVERY FAILED! THERE WILL BE NO CLERK SHOP FOR THIS ROUND!")
+			log_game("WARNING: CLERK RECOVERY FAILED! THERE WILL BE NO CLERK SHOP FOR THIS ROUND!")
+			return
+
+		for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN RANDOM_CLERK_INIT")
+		spawn_clerk()
+		throw e
+
+/proc/spawn_clerk()
+	var/datum/map_template/template
+	for(var/backup_clerk in GLOB.potential_box_clerk)
+		template = SSmapping.station_room_templates[backup_clerk]
+		if(!isnull(template))
+			break
+	if(isnull(template))
+		message_admins("UNABLE TO SPAWN CLERK")
+	
+	for(var/obj/effect/landmark/stationroom/box/clerk/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
 		qdel(B)
 
@@ -836,7 +904,7 @@ SUBSYSTEM_DEF(job)
 		//last hurrah
 		var/list/avail = list()
 		for(var/turf/T in A)
-			if(!is_blocked_turf(T, TRUE))
+			if(!T.is_blocked_turf(TRUE))
 				avail += T
 		if(avail.len)
 			destination = pick(avail)
@@ -847,7 +915,7 @@ SUBSYSTEM_DEF(job)
 	var/list/arrivals_turfs = shuffle(get_area_turfs(/area/shuttle/arrival))
 	if(arrivals_turfs.len)
 		for(var/turf/T in arrivals_turfs)
-			if(!is_blocked_turf(T, TRUE))
+			if(!T.is_blocked_turf(TRUE))
 				T.JoinPlayerHere(M, FALSE)
 				return
 		//last chance, pick ANY spot on arrivals and dump em

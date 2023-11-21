@@ -15,7 +15,7 @@
 
 	outfit = /datum/outfit/job/engineer
 
-	added_access = list(ACCESS_ATMOSPHERICS)
+	added_access = list(ACCESS_ATMOSPHERICS, ACCESS_RESEARCH, ACCESS_RND)
 	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE,
 									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
@@ -38,6 +38,8 @@
 		/obj/item/clothing/suit/space/hardsuit/engine = 1
 	)
 
+	lightup_areas = list(/area/engine/atmos)
+	
 	smells_like = "welding fuel"
 
 GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))

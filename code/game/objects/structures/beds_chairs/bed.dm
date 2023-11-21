@@ -25,7 +25,7 @@
 /obj/structure/bed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
-		success_chance = 0.8, \
+		success_chance = 0.85, \
 	)
 
 /obj/structure/bed/examine(mob/user)

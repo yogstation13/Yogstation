@@ -30,9 +30,7 @@
 		ert_team = new_team
 
 /datum/antagonist/centcom/proc/forge_objectives()
-	if (ert_team)
-		objectives |= ert_team.objectives
-	else if (!mission)
+	if(!ert_team && !mission)
 		var/datum/objective/missionobj = new
 		missionobj.owner = owner
 		missionobj.explanation_text = "Conduct a routine performance review of [station_name()] and its Captain."

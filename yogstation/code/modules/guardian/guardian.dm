@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	desc = "A mysterious being that stands by its charge, ever vigilant."
 	speak_emote = list("hisses")
 	gender = NEUTER
-	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
+	mob_biotypes = MOB_INORGANIC|MOB_SPIRIT
 	bubble_icon = "guardian"
 	response_help  = "passes through"
 	response_disarm = "flails at"
@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	obj_damage = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	projectilesound = 'sound/weapons/lasgun.ogg'
 	AIStatus = AI_OFF
 	light_system = MOVABLE_LIGHT
 	light_range = 3
@@ -196,12 +197,12 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 				forceMove(summoner.current)
 				to_chat(src, span_userdanger("Your summoner has died!"))
 				visible_message(span_bolddanger("[src] dies along with its user!"))
-				summoner.current.visible_message(span_bolddanger("[summoner.current]'s body is completely consumed by the strain of sustaining [src]!"))
-				for (var/obj/item/W in summoner.current)
-					if (!summoner.current.dropItemToGround(W))
-						qdel(W)
 				death(TRUE)
-				summoner.current.dust()
+				if(HAS_TRAIT_FROM(summoner.current, TRAIT_NO_SOUL, LICH_TRAIT))//body will be dusted upon revival anyways
+					summoner.current.visible_message(span_bolddanger("[summoner.current]'s body sudders as clashing forces fight for the soul!"))
+				else
+					summoner.current.visible_message(span_bolddanger("[summoner.current]'s body is completely consumed by the strain of sustaining [src]!"))
+					summoner.current.dust(drop_items = TRUE)
 	else
 		if (transforming)
 			GoBerserk()
@@ -352,8 +353,8 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	if (QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from)
 		return
 	var/turf/startloc = get_turf(targets_from)
-	var/obj/item/projectile/guardian/emerald_splash = new(startloc)
-	playsound(src, projectilesound, 100, 1)
+	var/obj/projectile/guardian/emerald_splash = new(startloc)
+	playsound(src, projectilesound, 50, TRUE)
 	if (namedatum)
 		emerald_splash.color = namedatum.color
 	emerald_splash.guardian_master = summoner
@@ -639,7 +640,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			var/mob/living/simple_animal/hostile/guardian/G = para
 			if(G.summoner?.current.ckey == src.ckey)
 				users += carbon_minds
-				
+
 
 	for(var/datum/mind/user_minds in users)
 		if(!user_minds.current || user_minds.current == src)
@@ -665,7 +666,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	/// Will yield a "?"
 	else
 		to_chat(src, span_notice("There are no users nearby."))
-		
+
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
@@ -787,10 +788,11 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 						jojo.reset(TRUE, "host mind transfer")
 				to_chat(jojo, span_notice("You manifest into existence, as your master's soul appears in a new body!"))
 
-/obj/item/projectile/guardian
+/obj/projectile/guardian
 	name = "crystal bolt"
 	icon_state = "greyscale_bolt"
 	damage = 10
 	damage_type = BRUTE
-	armour_penetration = 100 // no one can just deflect the emerald splash!
+	armor_flag = ENERGY
+	hitsound = 'sound/weapons/pierce_slow.ogg'
 	var/datum/mind/guardian_master

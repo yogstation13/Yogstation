@@ -64,7 +64,7 @@
 			if(S.merge_type == merge_type)
 				merge(S)
 	update_weight()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/stack/proc/update_weight()
 	if(amount <= (max_amount * (1/3)))
@@ -74,16 +74,16 @@
 	else
 		w_class = full_w_class
 
-/obj/item/stack/update_icon()
+/obj/item/stack/update_icon_state()
+	. = ..()
 	if(novariants)
-		return ..()
+		return
 	if(amount <= (max_amount * (1/3)))
 		icon_state = initial(icon_state)
 	else if (amount <= (max_amount * (2/3)))
 		icon_state = "[initial(icon_state)]_2"
 	else
 		icon_state = "[initial(icon_state)]_3"
-	..()
 
 /obj/item/stack/examine(mob/user)
 	. = ..()
@@ -205,7 +205,7 @@
 				var/adjusted_time = 0
 				usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>", "<span class='notice'>You start building \a [R.title]...</span>")
 				adjusted_time = R.time
-				if(!do_after(usr, adjusted_time, target = usr))
+				if(!do_after(usr, adjusted_time, usr))
 					return
 				if(!building_checks(R, multiplier))
 					return
@@ -312,7 +312,7 @@
 	amount -= used
 	if(check)
 		zero_amount()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	update_weight()
 	return TRUE
 
@@ -343,7 +343,7 @@
 		source.add_charge(amount * cost)
 	else
 		src.amount += amount
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	update_weight()
 
 /obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible

@@ -813,7 +813,7 @@
 /area/shuttle/escape)
 "Ug" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Uh" = (

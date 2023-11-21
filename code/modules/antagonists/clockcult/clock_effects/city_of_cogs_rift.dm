@@ -22,7 +22,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			if(get_dist(src, M) >= 7)
-				M.playsound_local(src, 'sound/magic/blink.ogg', 10, FALSE, falloff = 10)
+				M.playsound_local(src, 'sound/magic/blink.ogg', 10, FALSE, falloff_exponent = 10)
 			else
 				M.playsound_local(src, 'sound/magic/blink.ogg', 50, FALSE)
 

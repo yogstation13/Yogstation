@@ -10,6 +10,10 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
+if grep -REl 'list\(.*[^ ]=' --include='*.dmm' _maps; then
+    echo "ERROR: Associative list missing leading and trailing space. Update your mapping tool!"
+    st=1
+fi;
 if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\) code/**/*.dm'; then
     echo "ERROR: changed files contains proc argument starting with 'var'"
     st=1
@@ -44,7 +48,7 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
 fi;
 if grep -i 'balloon_alert\(.*?, ?"[A-Z]'; then
 	echo
-	echo "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
+	echo "ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT()."
 	st=1
 fi;
 if grep '\.proc/' code/**/*.dm | grep -v 'code/__byond_version_compat.dm'; then
@@ -56,7 +60,11 @@ if ls _maps/*.json | grep -P "[A-Z]"; then
 	st=1
 fi;
 if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' code/**/*.dm; then
-	echo "ERROR: Initialize override without 'mapload' argument.${NC}"
+	echo "ERROR: Initialize override without 'mapload' argument."
+	st=1
+fi;
+if grep -P '^\s*(\w+)\s*=\s*(\1)\b\s*$' code/**/*.dm; then
+	echo "ERROR: Variable is assigned to itself"
 	st=1
 fi;
 for json in _maps/*.json

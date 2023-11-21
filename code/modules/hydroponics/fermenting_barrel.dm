@@ -50,8 +50,14 @@
 		to_chat(user, span_notice("You place [I] into [src] to start the fermentation process."))
 		addtimer(CALLBACK(src, PROC_REF(makeWine), fruit), rand(80, 120) * speed_multiplier)
 		return TRUE
+	if(I.is_refillable())
+		return FALSE
 	else
 		return ..()
+
+/obj/structure/fermenting_barrel/deconstruct(disassembled = TRUE)
+	new /obj/item/stack/sheet/mineral/wood (loc, 10)
+	qdel(src)
 
 /obj/structure/fermenting_barrel/attack_hand(mob/user)
 	open = !open
@@ -63,9 +69,10 @@
 		ENABLE_BITFIELD(reagents.flags, DRAINABLE)
 		DISABLE_BITFIELD(reagents.flags, REFILLABLE)
 		to_chat(user, span_notice("You close [src], letting you draw from its tap."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/fermenting_barrel/update_icon()
+/obj/structure/fermenting_barrel/update_icon_state()
+	. = ..()
 	if(open)
 		icon_state = "barrel_open"
 	else
@@ -74,6 +81,6 @@
 /datum/crafting_recipe/fermenting_barrel
 	name = "Wooden Barrel"
 	result = /obj/structure/fermenting_barrel
-	reqs = list(/obj/item/stack/sheet/mineral/wood = 30)
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 10)
 	time = 5 SECONDS
 	category = CAT_STRUCTURES

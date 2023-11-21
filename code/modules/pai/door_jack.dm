@@ -116,7 +116,7 @@
 		untrack_thing(hacking_cable)
 		QDEL_NULL(hacking_cable)
 		if(!QDELETED(card))
-			card.update_icon()
+			card.update_appearance(UPDATE_ICON)
 		return FALSE
 	var/obj/machinery/door/door = hacking_cable.machine
 	balloon_alert(src, "success")

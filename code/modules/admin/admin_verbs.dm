@@ -22,6 +22,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/fix_air_z,
 	/client/proc/debugstatpanel,
 	/client/proc/clear_mfa,
+	/client/proc/show_rights
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -128,7 +129,9 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away,
-	/client/proc/centcom_podlauncher/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
+	/client/proc/load_json_admin_event,
+	/client/proc/event_role_manager
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
@@ -756,6 +759,13 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[src] re-adminned themselves.")
 	log_admin("[src] re-adminned themselves.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Readmin")
+
+/client/proc/show_rights()
+	set name = "Show Rights"
+	set category = "Admin"
+	set desc = "Shows access rights"
+
+	to_chat(src, span_interface("You have the following permissions:\n[rights2text(GLOB.permissions.get_rights_for_ckey(ckey), "\n")]"))
 
 /client/proc/populate_world(amount = 50 as num)
 	set name = "Populate World"

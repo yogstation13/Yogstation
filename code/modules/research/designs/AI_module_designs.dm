@@ -110,6 +110,15 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/pranksimov_module
+	name = "Core Module Design (Pranksimov)"
+	desc = "Allows for the construction of a Pranksimov AI Core Module."
+	id = "pranksimov_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/bananium = 2000)
+	build_path = /obj/item/aiModule/core/full/pranksimov
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/paladin_module
 	name = "Core Module Design (P.A.L.A.D.I.N.)"
 	desc = "Allows for the construction of a P.A.L.A.D.I.N. AI Core Module."
@@ -185,7 +194,7 @@
 
 /datum/design/board/researcher_module
 	name = "Core Module Design (Ethical Researcher)"
-	desc = "Allows for the construction of a Ethical Researcher AI Core Module."
+	desc = "Allows for the construction of an Ethical Researcher AI Core Module."
 	id = "researcher_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
 	build_path = /obj/item/aiModule/core/full/researcher
@@ -270,5 +279,14 @@
 	id = "reporter_module"
 	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
 	build_path = /obj/item/aiModule/core/full/reporter
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/wafflehouse_module
+	name = "Core Module Design (Waffle House Host)"
+	desc = "Allows for the construction of a Waffle House Host AI Core Module."
+	id = "wafflehouse_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/wafflehouse
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

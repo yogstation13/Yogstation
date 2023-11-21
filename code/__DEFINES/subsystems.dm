@@ -172,11 +172,13 @@
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
+#define FIRE_PRIORITY_AMBIENCE		10
 #define FIRE_PRIORITY_IDLE_NPC		10
 #define FIRE_PRIORITY_SERVER_MAINT	10
 #define FIRE_PRIORITY_RESEARCH		10
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_ECHOLOCATION  15
 #define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_FLUIDS		20
 #define FIRE_PRIORITY_AIR			20
@@ -234,7 +236,9 @@
 				AA.copy_overlays(changed_on, TRUE);\
 			}\
 		} \
-	}
+	}\
+	if(isturf(changed_on)){SSdemo.mark_turf(changed_on);}\
+	if(isobj(changed_on) || ismob(changed_on)){SSdemo.mark_dirty(changed_on);}\
 
 /**
 	Create a new timer and add it to the queue.

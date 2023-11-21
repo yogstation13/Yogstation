@@ -125,7 +125,7 @@
 				if(istype(retrieved_item, /obj/machinery/portable_atmospherics))
 					var/obj/machinery/portable_atmospherics/atmos_item = retrieved_item
 					atmos_item.disconnect()
-					atmos_item.update_icon()
+					atmos_item.update_appearance(UPDATE_ICON)
 
 				// Otherwise bring the whole thing with us
 				item_to_retrieve = retrieved_item

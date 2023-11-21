@@ -116,6 +116,8 @@ GLOBAL_LIST_INIT(global_all_wound_types, list(/datum/wound/blunt/critical, /datu
 #define MANGLES_BONE	(1<<3)
 /// If this wound marks the limb as being allowed to have gauze applied
 #define ACCEPTS_GAUZE	(1<<4)
+/// If this wound can be healed by cryoxadone
+#define ACCEPTS_CRYO	(1<<5)
 
 // ~scar persistence defines
 // The following are the order placements for persistent scar save formats

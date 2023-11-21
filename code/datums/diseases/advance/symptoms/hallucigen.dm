@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/hallucigen
 	name = "Hallucigen"
+	icon = "hallucigen"
 	desc = "The virus stimulates the brain, causing occasional hallucinations."
 	stealth = -2
 	resistance = -3
@@ -32,7 +33,7 @@ Bonus
 		"Stage Speed 7" = "Increases the amount of hallucinations.",
 		"Stealth 4" = "The virus mimics positive symptoms.",
 	)
-	process_flags = ORGANIC | SYNTHETIC
+	compatible_biotypes = ALL_BIOTYPES
 
 /datum/symptom/hallucigen/Start(datum/disease/advance/A)
 	. = ..()

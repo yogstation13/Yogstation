@@ -105,16 +105,16 @@
 /obj/item/map/station/Initialize(mapload)
 	..()
 	minimaps += SSmapping.station_minimaps
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/map/update_icon()
-	cut_overlays()
+/obj/item/map/update_overlays()
+	. = ..()
 	var/datum/minimap/map = minimaps[1]
 	if(!map) return
 	var/image/I = image(map.overlay_icon)
 	I.pixel_x = 8
 	I.pixel_y = 8
-	add_overlay(I)
+	. += I
 
 /obj/item/map/interact(mob/user)
 	if(!in_range(user, src) && !isobserver(user))

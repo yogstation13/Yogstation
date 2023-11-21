@@ -1,3 +1,6 @@
+#define DECONSTRUCT 0
+#define WALL 1
+#define AIRLOCK 2
 
 //Hydraulic clamp, Kill clamp, Extinguisher, RCD, Cable layer.
 
@@ -187,54 +190,42 @@
 	equip_cooldown = 5
 	energy_drain = 0
 	range = MECHA_MELEE|MECHA_RANGED
+	var/chem_amount = 2
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/Initialize(mapload)
 	. = ..()
 	create_reagents(1000)
-	reagents.add_reagent(/datum/reagent/water, 1000)
+	reagents.add_reagent(/datum/reagent/firefighting_foam, 1000)
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
-	if(!action_checks(target) || get_dist(chassis, target)>3)
+	if(!action_checks(target))
 		return
 
-	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
-		var/obj/structure/reagent_dispensers/watertank/WT = target
+	if(istype(target, /obj/structure/reagent_dispensers/foamtank) && get_dist(chassis,target) <= 1)
+		var/obj/structure/reagent_dispensers/WT = target
 		WT.reagents.trans_to(src, 1000)
 		occupant_message(span_notice("Extinguisher refilled."))
 		playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
-	else
-		if(reagents.total_volume > 0)
-			playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
-			var/direction = get_dir(chassis,target)
-			var/turf/T = get_turf(target)
-			var/turf/T1 = get_step(T,turn(direction, 90))
-			var/turf/T2 = get_step(T,turn(direction, -90))
+	else if(reagents.total_volume >= 1)
+		playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
 
-			var/list/the_targets = list(T,T1,T2)
-			spawn(0)
-				for(var/a=0, a<5, a++)
-					var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(chassis))
-					if(!W)
-						return
-					var/turf/my_target = pick(the_targets)
-					var/datum/reagents/R = new/datum/reagents(5)
-					W.reagents = R
-					R.my_atom = W
-					reagents.trans_to(W,1, transfered_by = chassis.occupant)
-					for(var/b=0, b<4, b++)
-						if(!W)
-							return
-						step_towards(W,my_target)
-						if(!W)
-							return
-						var/turf/W_turf = get_turf(W)
-						W.reagents.reaction(W_turf)
-						for(var/atom/atm in W_turf)
-							W.reagents.reaction(atm)
-						if(W.loc == my_target)
-							break
-						sleep(0.2 SECONDS)
+		//Get all the turfs that can be shot at
+		var/direction = get_dir(chassis,target)
+		var/turf/T = get_turf(target)
+		var/turf/T1 = get_step(T,turn(direction, 90))
+		var/turf/T2 = get_step(T,turn(direction, -90))
+		var/turf/T3 = get_step(T1, turn(direction, 90))
+		var/turf/T4 = get_step(T2,turn(direction, -90))
+		var/list/the_targets = list(T,T1,T2,T3,T4)
+
+		for(var/a=0, a<5, a++)
+			var/my_target = pick(the_targets)
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src), my_target)
+			reagents.trans_to(W, chem_amount, transfered_by = chassis.occupant)
+			the_targets -= my_target
 		return 1
+	else
+		occupant_message(span_warning("[src] is empty!"))
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher/get_equip_info()
 	return "[..()] \[[src.reagents.total_volume]\]"
@@ -255,7 +246,7 @@
 	energy_drain = 50
 	range = MECHA_MELEE|MECHA_RANGED
 	item_flags = NO_MAT_REDEMPTION
-	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
+	var/mode = DECONSTRUCT
 	var/play_sound = TRUE //so fancy mime RCD can be silent
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Initialize(mapload)
@@ -278,8 +269,11 @@
 		playsound(chassis, 'sound/machines/click.ogg', 50, 1)
 
 	switch(mode)
-		if(0)
+		if(DECONSTRUCT)
 			if(iswallturf(target))
+				if(istype(target, /turf/closed/wall/r_wall))
+					occupant_message("Wall reinforcements are too complex for deconstruction, must be deconstructed manually.")
+					return
 				energy_drain = 500
 				var/turf/closed/wall/W = target
 				occupant_message("Deconstructing [W]...")
@@ -291,6 +285,9 @@
 				if(target == /turf/closed/wall/r_wall)
 					energy_drain = 2000
 			else if(isfloorturf(target))
+				if(istype(target, /turf/open/floor/engine))
+					occupant_message("Floor reinforcements prevent deconstruction, remove before continuing.")
+					return
 				energy_drain = 100
 				var/turf/open/floor/F = target
 				occupant_message("Deconstructing [F]...")
@@ -300,6 +297,10 @@
 					if(play_sound)
 						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 			else if (istype(target, /obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/A = target
+				if(A.damage_deflection > 21)
+					occupant_message("Airlock too reinforced for deconstruction, remove reinforcements before continuing.")
+					return
 				energy_drain = 500
 				occupant_message("Deconstructing [target]...")
 				if(do_after_cooldown(target))
@@ -307,7 +308,7 @@
 					qdel(target)
 					if(play_sound)
 						playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
-		if(1)
+		if(WALL)
 			if(isspaceturf(target))
 				var/turf/open/space/S = target
 				occupant_message("Building Floor...")
@@ -325,7 +326,7 @@
 					if(play_sound)
 						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
-		if(2)
+		if(AIRLOCK)
 			if(isfloorturf(target))
 				energy_drain = 750
 				occupant_message("Building Airlock...")
@@ -483,13 +484,13 @@
 	var/obj/structure/cable/NC = new(new_turf, "red")
 	NC.d1 = 0
 	NC.d2 = fdirn
-	NC.update_icon()
+	NC.update_appearance(UPDATE_ICON)
 
 	var/datum/powernet/PN
 	if(last_piece && last_piece.d2 != chassis.dir)
 		last_piece.d1 = min(last_piece.d2, chassis.dir)
 		last_piece.d2 = max(last_piece.d2, chassis.dir)
-		last_piece.update_icon()
+		last_piece.update_appearance(UPDATE_ICON)
 		PN = last_piece.powernet
 
 	if(!PN)
@@ -543,7 +544,6 @@
 		N.capacitor = M.capacitor
 		M.capacitor.forceMove(N)
 		M.capacitor = null
-	N.update_part_values()
 	for(var/obj/item/mecha_parts/E in M.contents)
 		if(istype(E, /obj/item/mecha_parts/concealed_weapon_bay)) //why is the bay not just a variable change who did this
 			E.forceMove(N)
@@ -561,3 +561,7 @@
 	qdel(M)
 	playsound(get_turf(N),'sound/items/ratchet.ogg',50,1)
 	return
+
+#undef DECONSTRUCT
+#undef WALL
+#undef AIRLOCK

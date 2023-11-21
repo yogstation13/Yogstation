@@ -5,9 +5,9 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
+	species_traits = list(MUTCOLORS, EYECOLOR, HAS_FLESH, HAS_BONE)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
-	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
+	default_features = list("mcolor" = "#00FF00", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
@@ -30,6 +30,7 @@
 	species_language_holder = /datum/language_holder/pod
 	wings_icon = "Plant"
 	wings_detail = "Plantdetails"
+	inert_mutation = SAPBLOOD
 
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
@@ -109,7 +110,7 @@
 					H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
-					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
+					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier, required_status = BODYPART_ORGANIC)
 					//podpeople shouldn't be able to outheal radiation damage, making them functionally immune
 					if(H.radiation < 500)
 						H.adjustToxLoss(-0.5 * light_heal_multiplier, 1)
@@ -121,7 +122,7 @@
 					H.nutrition += light_amount * 1.5
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
-					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier)
+					H.heal_overall_damage(1.5 * light_heal_multiplier, 1.5 * light_heal_multiplier, required_status = BODYPART_ORGANIC)
 					if(H.radiation < 500)
 						H.adjustToxLoss(-1 * light_heal_multiplier, 1)
 	else
@@ -190,9 +191,9 @@
 		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
 		if(prob(10))
 			if(prob(95))
-				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
+				H.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.easy_randmut(POSITIVE)
+				H.easy_random_mutate(POSITIVE)
 
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
@@ -271,18 +272,18 @@
 	else
 		no_light_heal = FALSE
 
-/datum/species/pod/on_hit(obj/item/projectile/P, mob/living/carbon/human/H)
+/datum/species/pod/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	switch(P.type)
-		if(/obj/item/projectile/energy/floramut)
+		if(/obj/projectile/energy/floramut)
 			H.rad_act(rand(20, 30))
 			H.adjustFireLoss(5)
 			H.visible_message(span_warning("[H] writhes in pain as [H.p_their()] vacuoles boil."), span_userdanger("You writhe in pain as your vacuoles boil!"), span_italics("You hear the crunching of leaves."))
 			if(prob(80))
-				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
+				H.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.easy_randmut(POSITIVE)
+				H.easy_random_mutate(POSITIVE)
 			H.domutcheck()
-		if(/obj/item/projectile/energy/florayield)
+		if(/obj/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
 /datum/species/pod/random_name(gender,unique,lastname)

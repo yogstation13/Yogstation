@@ -47,8 +47,6 @@ GLOBAL_LIST_EMPTY(holopads)
 	var/list/masters
 	/// Holoray-mob link
 	var/list/holorays
-	/// To prevent request spam. ~Carn
-	var/last_request = 0
 	/// Change to change how far the AI can move away from the holopad before deactivating
 	var/holo_range = 5
 	/// Array of /datum/holocalls
@@ -84,6 +82,8 @@ GLOBAL_LIST_EMPTY(holopads)
 	var/calling = FALSE
 	/// Name of the holopad
 	var/padname = null
+	/// Holopad Harassment Cooldown
+	var/holopad_cooldown = 20 SECONDS
 
 /obj/machinery/holopad/secure
 	name = "secure holopad"
@@ -234,7 +234,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 	var/list/data = list()
 	data["calling"] = calling
 	data["on_network"] = on_network
-	data["on_cooldown"] = last_request + 200 < world.time ? FALSE : TRUE
+	data["on_cooldown"] = TIMER_COOLDOWN_CHECK(src, "holopad")
 	data["allowed"] = allowed(user)
 	data["disk"] = disk ? TRUE : FALSE
 	data["disk_record"] = disk?.record ? TRUE : FALSE
@@ -259,38 +259,36 @@ obj/machinery/holopad/secure/Initialize(mapload)
 
 	switch(action)
 		if("AIrequest")
-			if(last_request + 200 < world.time)
-				last_request = world.time
-				to_chat(usr, span_info("You requested an AI's presence."))
-				var/area/area = get_area(src)
-				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
-					if(!AI.client)
-						continue
-					to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
-				return TRUE
-			else
+			if(TIMER_COOLDOWN_CHECK(src, "holopad"))
 				to_chat(usr, span_info("A request for AI presence was already sent recently."))
 				return
+			TIMER_COOLDOWN_START(src, "holopad", holopad_cooldown)
+			to_chat(usr, span_info("You requested an AI's presence."))
+			var/area/A = get_area(src)
+			for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+				if(!AI.client)
+					continue
+				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [A]</a>."))
+			return TRUE
 		if("holocall")
 			if(outgoing_call)
 				return
-			if(usr.loc == loc)
-				var/list/callnames = list()
-				for(var/obj/machinery/holopad/pad in GLOB.holopads)
-					if(pad.padname)
-						LAZYADD(callnames[pad.padname], pad)
-				callnames -= padname
-				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
-				if(QDELETED(usr) || !result || outgoing_call)
-					return
-				if(usr.loc == loc)
-					var/input = text2num(params["headcall"])
-					var/headcall = input == 1 ? TRUE : FALSE
-					new /datum/holocall(usr, src, callnames[result], headcall)
-					calling = TRUE
-					return TRUE
-			else
+			if(usr.loc != loc)
 				to_chat(usr, span_warning("You must stand on the holopad to make a call!"))
+				return TRUE
+			var/list/callnames = list()
+			for(var/obj/machinery/holopad/pad in GLOB.holopads)
+				if(pad == src)
+					continue
+				if(pad.is_operational())
+					LAZYADD(callnames[pad.padname], pad)
+			var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
+			if(QDELETED(usr) || !result || outgoing_call) // Is this even needed? could trigger but holocall will catch it
+				return
+			var/datum/hcall = new /datum/holocall(usr, src, callnames[result], text2num(params["headcall"]))
+			if(!QDELETED(hcall))
+				calling = TRUE
+			return TRUE
 		if("connectcall")
 			var/datum/holocall/call_to_connect = locate(params["holopad"]) in holo_calls
 			if(!QDELETED(call_to_connect))
@@ -388,18 +386,16 @@ obj/machinery/holopad/secure/Initialize(mapload)
 			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
 				HC.Answer(src)
 				break
-			if(HC.head_call && secure)
+			if(HC.head_call) //captain is calling: ACCEPT | ACCEPT
 				HC.Answer(src)
 				break
-			if(!secure)
-				HC.Answer(src)
 			if(outgoing_call)
 				HC.Disconnect(src)//can't answer calls while calling
 			else
 				playsound(src, 'sound/machines/twobeep.ogg', 100)	//bring, bring!
 				ringing = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/holopad/proc/activate_holo(mob/living/user)
 	var/mob/living/silicon/ai/AI = user
@@ -467,9 +463,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		set_light_on(TRUE)
 	else
 		set_light_on(FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holopad/update_icon()
+/obj/machinery/holopad/update_icon_state()
+	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"

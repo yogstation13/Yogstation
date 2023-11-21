@@ -83,6 +83,12 @@
 	difficulty = 3
 	excludefromjob = list("Head of Security", "Warden")
 
+/datum/objective_item/steal/aiupload
+	name = "an AI upload board."
+	targetitem = /obj/item/circuitboard/computer/aiupload
+	difficulty = 5
+	excludefromjob = list("Network Admin", "Chief Engineer", "Research Director") // CE has access. RD has authority. 
+
 /datum/objective_item/steal/reactive
 	name = "the Research Director's reactive teleport armor."
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
@@ -102,6 +108,16 @@
 /datum/objective_item/steal/nuke_core/New()
 	special_equipment += /obj/item/storage/box/syndie_kit/nuke
 	..()
+
+/datum/objective_item/steal/hdd_extraction
+	name = "the source code for Project Bee from the master R&D server mainframe."
+	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
+	difficulty = 10
+	excludefromjob = list("Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
+
+/datum/objective_item/steal/hdd_extraction/New()
+	special_equipment += /obj/item/paper/guides/antag/hdd_extraction
+	return ..()
 
 /datum/objective_item/steal/supermatter
 	name = "a sliver of a supermatter crystal. Be sure to use the proper safety equipment when extracting the sliver!"

@@ -369,7 +369,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "rf" = (
-/obj/item/twohanded/required/pool/rubber_ring,
+/obj/item/pool/rubber_ring,
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "tt" = (
@@ -380,9 +380,9 @@
 /area/shuttle/escape)
 "wx" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/item/twohanded/required/pool/rubber_ring,
-/obj/item/twohanded/required/pool/rubber_ring,
-/obj/item/twohanded/required/pool/rubber_ring,
+/obj/item/pool/rubber_ring,
+/obj/item/pool/rubber_ring,
+/obj/item/pool/rubber_ring,
 /obj/structure/closet/athletic_mixed{
 	name = "pool floaties"
 	},
@@ -492,7 +492,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "Ut" = (
-/obj/item/twohanded/required/pool/pool_noodle,
+/obj/item/pool/pool_noodle,
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
 "Wn" = (
@@ -536,9 +536,9 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Yy" = (
-/obj/item/twohanded/required/pool/pool_noodle,
-/obj/item/twohanded/required/pool/pool_noodle,
-/obj/item/twohanded/required/pool/pool_noodle,
+/obj/item/pool/pool_noodle,
+/obj/item/pool/pool_noodle,
+/obj/item/pool/pool_noodle,
 /obj/structure/closet/athletic_mixed{
 	name = "pool noodles"
 	},

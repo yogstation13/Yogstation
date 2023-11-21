@@ -47,6 +47,10 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RAD_PROTECT_CONTENTS_1 (1 << 15)
 /// should this object be allowed to be contaminated
 #define RAD_NO_CONTAMINATE_1 (1 << 16)
+/// Prevents most radiation on this turf from leaving it
+#define RAD_CONTAIN_CONTENTS (1<<17)
+/// Is the thing currently spinning?
+#define IS_SPINNING_1 (1<<18)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -56,7 +60,9 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Blocks lava rivers being generated on the turf
 #define NO_LAVA_GEN_1				(1<<6)
 /// Blocks ruins spawning on the turf
-#define NO_RUINS_1					(1<<10)
+#define NO_RUINS_1					(1<<18)
+/// Blocks this turf from being rusted
+#define NO_RUST 					(1<<19)
 
 //AREA FLAGS
 /// If blobs can spawn there and if it counts towards their score.
@@ -71,6 +77,22 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
 /// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
 #define NOTELEPORT (1<<6)
+
+// Update flags for [/atom/proc/update_appearance]
+/// Update the atom's name
+#define UPDATE_NAME (1<<0)
+/// Update the atom's desc
+#define UPDATE_DESC (1<<1)
+/// Update the atom's icon state
+#define UPDATE_ICON_STATE (1<<2)
+/// Update the atom's overlays
+#define UPDATE_OVERLAYS (1<<3)
+/// Update the atom's greyscaling
+#define UPDATE_GREYSCALE (1<<4)
+/// Update the atom's smoothing. (More accurately, queue it for an update)
+#define UPDATE_SMOOTHING (1<<5)
+/// Update the atom's icon
+#define UPDATE_ICON (UPDATE_ICON_STATE|UPDATE_OVERLAYS)
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
@@ -87,6 +109,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSMACHINES	(1<<7)
 #define PASSCOMPUTER	(1<<8)
 #define PASSSTRUCTURE	(1<<9)
+#define PASSDOORS 		(1<<10)
+#define PASSMECH		(1<<11)
 
 //Movement Types
 #define GROUND			(1<<0)
@@ -124,7 +148,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //EMP protection
 #define EMP_PROTECT_SELF 		(1<<0)
 #define EMP_PROTECT_CONTENTS 	(1<<1)
-#define EMP_PROTECT_WIRES 		(1<<2)
 
 //Mob mobility var flags
 /// can move
@@ -170,3 +193,17 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 
 /// 33554431 (2^24 - 1) is the maximum value our bitflags can reach.
 #define MAX_BITFLAG_DIGITS 8
+
+// timed_action_flags parameter for `/proc/do_after`
+/// Can do the action even if mob moves location
+#define IGNORE_USER_LOC_CHANGE (1<<0)
+/// Can do the action even if the target moves location
+#define IGNORE_TARGET_LOC_CHANGE (1<<1)
+/// Can do the action even if the item is no longer being held
+#define IGNORE_HELD_ITEM (1<<2)
+/// Can do the action even if the mob is incapacitated (ex. handcuffed)
+#define IGNORE_INCAPACITATED (1<<3)
+/// Used to prevent important slowdowns from being abused by drugs like kronkaine
+#define IGNORE_SLOWDOWNS (1<<4)
+
+#define IGNORE_ALL (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM|IGNORE_INCAPACITATED|IGNORE_SLOWDOWNS)

@@ -7,7 +7,8 @@
 
 /obj/item/implant/infiltrator/Initialize(mapload, _owner, _team)
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES | EMP_PROTECT_CONTENTS)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 	var/datum/component/uplink/uplink = AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, 20)
 	uplink.set_gamemode(/datum/game_mode/infiltration)
 	alert_radio = new(src)

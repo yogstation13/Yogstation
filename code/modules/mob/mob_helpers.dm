@@ -312,12 +312,7 @@
 		var/mob/B = A
 		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
-
-///Is the mob hallucinating?
-/mob/proc/hallucinating()
-	return FALSE
-
-
+	
 // moved out of admins.dm because things other than admin procs were calling this.
 /**
   * Is this mob special to the gamemode?
@@ -430,6 +425,9 @@
   */
 /proc/item_heal_robotic(mob/living/carbon/human/H, mob/user, brute_heal, burn_heal)
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+	var/list/damaged_parts = H.get_damaged_bodyparts(brute_heal, burn_heal, status = BODYPART_ROBOTIC) // list of damaged parts we can heal
+	if(damaged_parts.len && !(affecting in damaged_parts))
+		affecting = pick(damaged_parts) // pick a random damaged part if the selected one is fine
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
 		var/dam //changes repair text based on how much brute/burn was supplied
 		if(brute_heal > burn_heal)

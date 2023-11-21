@@ -26,11 +26,11 @@
 
 /obj/mecha/working/makeshift/go_out()
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/mecha/working/makeshift/moved_inside(mob/living/carbon/human/H)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/mecha/working/makeshift/Exit(atom/movable/O)

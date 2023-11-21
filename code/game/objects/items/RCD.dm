@@ -114,7 +114,7 @@ RLD
 		loaded = loadwithsheets(O, user)
 	if(loaded)
 		to_chat(user, span_notice("[src] now holds [matter]/[max_matter] matter-units."))
-		update_icon()	//ensures that ammo counters (if present) get updated
+		update_appearance(UPDATE_ICON)	//ensures that ammo counters (if present) get updated
 	return loaded
 
 /obj/item/construction/proc/loadwithsheets(obj/item/stack/S, mob/user)
@@ -148,7 +148,7 @@ RLD
 				to_chat(user, no_ammo_message)
 			return FALSE
 		matter -= amount
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	else
 		if(silo_mats.on_hold())
@@ -736,16 +736,15 @@ RLD
 	explosion(src, 0, 0, 3, 1, flame_range = 1)
 	qdel(src)
 
-/obj/item/construction/rcd/update_icon()
-	..()
+/obj/item/construction/rcd/update_overlays()
+	. = ..()
 	if(has_ammobar)
 		var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
-		cut_overlays()	//To prevent infinite stacking of overlays
-		add_overlay("[icon_state]_charge[ratio]")
+		. += "[icon_state]_charge[ratio]"
 
 /obj/item/construction/rcd/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/construction/rcd/borg
 	no_ammo_message = span_warning("Insufficient charge.")
@@ -875,10 +874,9 @@ RLD
 	else
 		..()
 
-/obj/item/construction/rld/update_icon()
+/obj/item/construction/rld/update_icon_state()
+	. = ..()
 	icon_state = "rld-[round(matter/35)]"
-	..()
-
 
 /obj/item/construction/rld/attack_self(mob/user)
 	..()

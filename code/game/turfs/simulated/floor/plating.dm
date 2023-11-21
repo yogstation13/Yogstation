@@ -16,6 +16,7 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	grime = TRUE
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1\
@@ -44,8 +45,9 @@
 	else
 		icon_plating = initial(icon_state)
 
-/turf/open/floor/plating/update_icon()
-	if(!..())
+/turf/open/floor/plating/update_icon_state()
+	. = ..()
+	if(!.)
 		return
 	if(!broken && !burnt)
 		icon_state = icon_plating //Because asteroids are 'platings' too.

@@ -15,4 +15,3 @@
 /obj/item/book/granter/mechpiloting/on_reading_finished(mob/user)
 	. = ..()
 	user.AddComponent(/datum/component/mech_pilot, 0.8)
-	on_reading_finished(user)

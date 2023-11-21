@@ -92,7 +92,7 @@
 		var/x_offset = base_x + rand(-3, 3)
 		var/y_offset = base_y + rand(-3, 3)
 		animate(pixel_x = x_offset, pixel_y = y_offset, time = 0.1 SECONDS)
-	if(!do_after(owner, 4 SECONDS, stayStill = FALSE, extra_checks = CALLBACK(src, PROC_REF(CheckCanTarget), target_atom)))
+	if(!do_after(owner, 4 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(CheckCanTarget), target_atom)))
 		end_target_lunge(base_x, base_y)
 
 		return FALSE

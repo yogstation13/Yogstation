@@ -64,7 +64,6 @@
 /datum/antagonist/abductor/on_gain()
 	owner.special_role = "[name] [sub_role]"
 	owner.assigned_role = "[name] [sub_role]"
-	objectives += team.objectives
 	finalize_abductor()
 	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()

@@ -258,7 +258,7 @@
 "aU" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/wood,
 /area/ruin/unpowered/russianbunker)
 "aX" = (

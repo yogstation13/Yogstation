@@ -23,7 +23,7 @@
 	name = "Distributed Neurons"
 	color = "#E88D5D"
 
-/datum/reagent/blob/distributed_neurons/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, permeability, mob/camera/blob/O)
+/datum/reagent/blob/distributed_neurons/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message, permeability, mob/camera/blob/O)
 	reac_volume = ..()
 	M.apply_damage(0.6*reac_volume, TOX)
 	if(O && ishuman(M) && M.stat == UNCONSCIOUS)

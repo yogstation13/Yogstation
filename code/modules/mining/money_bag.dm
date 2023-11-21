@@ -2,6 +2,7 @@
 
 /obj/item/storage/bag/money
 	name = "money bag"
+	desc = "A bag for storing your profits."
 	icon_state = "moneybag"
 	force = 10
 	throwforce = 0

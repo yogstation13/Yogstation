@@ -265,7 +265,7 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C)))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return

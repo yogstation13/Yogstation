@@ -65,6 +65,23 @@ SUBSYSTEM_DEF(air)
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
 	return ..()
 
+/datum/controller/subsystem/air/get_metrics()
+	. = ..()
+	.["cost_equalize"] = cost_equalize
+	.["cost_turfs"] = cost_turfs
+	.["cost_groups"] = cost_groups
+	.["cost_highpressure"] = cost_highpressure
+	.["cost_hotspots"] = cost_hotspots
+	.["cost_superconductivity"] = cost_superconductivity
+	.["cost_pipenets"] = cost_pipenets
+	.["cost_rebuilds"] = cost_rebuilds
+	.["cost_atmos_machinery"] = cost_atmos_machinery
+	.["active_turfs"] = active_turfs.len
+	.["excited_gruops"] = get_amt_excited_groups()
+	.["hotspts"] = hotspots.len
+	.["networks"] = networks.len
+	.["high_pressure_delta"] = high_pressure_delta.len
+	.["active_super_conductivity"] = active_super_conductivity.len
 
 /datum/controller/subsystem/air/Initialize(timeofday)
 	extools_update_ssair()
@@ -210,7 +227,7 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/obj/machinery/M = currentrun[currentrun.len]
 		currentrun.len--
-		if(!M || (M.process_atmos() == PROCESS_KILL))
+		if(!M || (M.process_atmos(wait / (1 SECONDS)) == PROCESS_KILL))
 			atmos_machinery.Remove(M)
 		if(MC_TICK_CHECK)
 			return

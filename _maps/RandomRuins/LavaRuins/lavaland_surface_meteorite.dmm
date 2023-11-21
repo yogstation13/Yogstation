@@ -337,7 +337,7 @@
 	pixel_x = -3;
 	pixel_y = -6
 	},
-/obj/item/twohanded/fireaxe/boneaxe,
+/obj/item/fireaxe/boneaxe,
 /mob/living/simple_animal/hostile/asteroid/gutlunch,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
@@ -1339,7 +1339,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "yJ" = (
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -1912,7 +1912,7 @@
 /obj/structure/closet/crate/necropolis{
 	anchored = 1
 	},
-/obj/item/twohanded/required/gibtonite{
+/obj/item/melee/gibtonite{
 	quality = 3
 	},
 /obj/item/survivalcapsule/luxuryelite{
@@ -2636,11 +2636,11 @@
 /obj/structure/stone_tile/cracked{
 	dir = 1
 	},
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear{
 	pixel_x = -11;
 	pixel_y = 1
 	},
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear{
 	pixel_x = 3;
 	pixel_y = -1
 	},
@@ -2651,11 +2651,11 @@
 /obj/structure/stone_tile/cracked{
 	dir = 1
 	},
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear{
 	pixel_x = -11;
 	pixel_y = 1
 	},
-/obj/item/twohanded/bonespear{
+/obj/item/melee/spear/bonespear{
 	pixel_x = 3;
 	pixel_y = -1
 	},

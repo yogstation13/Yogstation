@@ -104,13 +104,13 @@
 			else
 				if(A.hasPower())
 					A.unbolt()
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 		if(WIRE_IDSCAN) // Pulse to disable emergency access and flash red lights.
 			if(A.hasPower() && A.density)
 				A.do_animate("deny")
 				if(A.emergency)
 					A.emergency = FALSE
-					A.update_icon()
+					A.update_appearance(UPDATE_ICON)
 		if(WIRE_AI) // Pulse to disable WIRE_AI control for 10 ticks (follows same rules as cutting).
 			if(A.aiControlDisabled == AI_WIRE_NORMAL)
 				A.aiControlDisabled = AI_WIRE_DISABLED
@@ -129,7 +129,7 @@
 			A.normalspeed = !A.normalspeed
 		if(WIRE_LIGHT)
 			A.lights = !A.lights
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/airlock/proc/reset_ai_wire()
 	if(aiControlDisabled == AI_WIRE_DISABLED)
@@ -188,7 +188,7 @@
 				A.close()
 		if(WIRE_LIGHT) // Cut to disable lights, mend to re-enable.
 			A.lights = mend
-			A.update_icon()
+			A.update_appearance(UPDATE_ICON)
 		if(WIRE_ZAP1, WIRE_ZAP2) // Ouch.
 			if(usr)
 				A.shock(usr, 50)

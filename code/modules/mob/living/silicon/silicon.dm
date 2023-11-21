@@ -11,10 +11,13 @@
 	bubble_icon = "machine"
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
-	mob_biotypes = list(MOB_ROBOTIC)
+	mob_biotypes = MOB_ROBOTIC
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+
+	/// Set during initialization. If initially a list, then the resulting armor will gain the listed armor values.
+	var/datum/armor/armor
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -59,6 +62,13 @@
 		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
+	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
+	if (islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor()
+	else if (!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud
@@ -506,3 +516,29 @@
 			else
 				jobname = "Silicon"
 			msgr.username = "[newname] ([jobname])"
+
+/// Returns damage value after processing various factors like the silicon's armor and armor penetration.
+/mob/living/silicon/proc/run_armor(damage_amount, damage_type, damage_flag = 0, armor_penetration = 0)
+	if(damage_type != BRUTE && damage_type != BURN)
+		return 0
+	var/armor_protection = 0
+	if(damage_flag)
+		armor_protection = armor.getRating(damage_flag)
+	if(armor_protection) // Armour penetration only matters if the silicon has armour.
+		armor_protection = clamp(armor_protection - armor_penetration, min(armor_protection, 0), 100) // Reduce 'armor_protection' down by 'armor_penetration' to minimum of 0.
+	return clamp(damage_amount * (1 - armor_protection/100), 1, damage_amount) // Minimum of 1 damage.
+
+/// Copy of '/mob/living/attacked_by', except it sets damage to what is returned by 'proc/run_armor'.
+/mob/living/silicon/attacked_by(obj/item/I, mob/living/user)
+	send_item_attack_message(I, user)
+	if(I.force)
+		var/damage = run_armor(I.force, I.damtype, MELEE)
+		apply_damage(damage, I.damtype)
+		if(I.damtype == BRUTE)
+			if(prob(33))
+				I.add_mob_blood(src)
+				var/turf/location = get_turf(src)
+				add_splatter_floor(location)
+				if(get_dist(user, src) <= 1)
+					user.add_mob_blood(src)
+		return TRUE

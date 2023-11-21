@@ -30,10 +30,20 @@
 	light_range = 7
 	light_color = "#ff3232"
 
+	/// 1 = will auto detect fire, 0 = no auto
 	var/detecting = 1
-	var/buildstage = 2 // 2 = complete, 1 = no wires, 0 = circuit gone
+	/// 2 = complete, 1 = no wires, 0 = circuit gone
+	var/buildstage = 2
+	/// Cooldown for next alarm trigger, so it doesnt spam much
 	var/last_alarm = 0
+	/// The area of the current fire alarm
 	var/area/myarea = null
+	/// If true, then this area has a real fire and not by someone triggering it manually
+	var/real_fire = FALSE
+	/// If real_fire is true then it will show you the current hot temperature
+	var/bad_temp = null
+	/// The radio to alert engineers, atmos techs
+	var/obj/item/radio/radio
 
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
 	. = ..()
@@ -44,55 +54,62 @@
 		panel_open = TRUE
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
+	radio = new(src)
+	radio.keyslot = new /obj/item/encryptionkey/headset_eng()
+	radio.subspace_transmission = TRUE
+	radio.canhear_range = 0
+	radio.recalculateChannels()
+	STOP_PROCESSING(SSmachines, src) // I will do this
 
 /obj/machinery/firealarm/Destroy()
+	myarea.firereset(src, TRUE)
+	QDEL_NULL(radio)
 	LAZYREMOVE(myarea.firealarms, src)
 	return ..()
 
-/obj/machinery/firealarm/update_icon()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
+/obj/machinery/firealarm/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "fire_b[buildstage]"
 		return
-
 	if(stat & BROKEN)
 		icon_state = "firex"
 		return
-
 	icon_state = "fire0"
 
-	if(stat & NOPOWER)
+/obj/machinery/firealarm/update_overlays()
+	. = ..()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	if(stat & (NOPOWER|BROKEN))
 		return
 
-	add_overlay("fire_overlay")
+	. += "fire_overlay"
 
 	if(is_station_level(z))
-		add_overlay("fire_[GLOB.security_level]")
+		. += "fire_[GLOB.security_level]"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, EMISSIVE_PLANE, dir)
 	else
-		add_overlay("fire_[SEC_LEVEL_GREEN]")
+		. += "fire_[SEC_LEVEL_GREEN]"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, EMISSIVE_PLANE, dir)
 
 	var/area/A = src.loc
 	A = A.loc
 
-	if(!detecting || !A.fire)
-		add_overlay("fire_off")
+	if(!A.fire && !A.delta_light)
+		. += "fire_off"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, EMISSIVE_PLANE, dir)
 	else if(obj_flags & EMAGGED)
-		add_overlay("fire_emagged")
+		. += "fire_emagged"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, EMISSIVE_PLANE, dir)
 	else
-		add_overlay("fire_on")
+		. += "fire_on"
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, EMISSIVE_PLANE, dir)
 
@@ -105,27 +122,53 @@
 	if(prob(50 / severity))
 		alarm()
 
-/obj/machinery/firealarm/emag_act(mob/user)
+/obj/machinery/firealarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		return
+		return FALSE
 	obj_flags |= EMAGGED
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(user)
 		user.visible_message(span_warning("Sparks fly out of [src]!"),
 							span_notice("You emag [src], disabling its thermal sensors."))
 	playsound(src, "sparks", 50, 1)
+	return TRUE
+
+/obj/machinery/firealarm/examine(mob/user)
+	. = ..()
+	if(areafire_check())
+		. += span_danger("Fire detected in this area, current fire alarm temperature: [bad_temp-T0C]C")
+	else
+		. += span_notice("There's no fire detected.")
 
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
-	if((temperature > T0C + 200 || temperature < BODYTEMP_COLD_DAMAGE_LIMIT) && (last_alarm+FIREALARM_COOLDOWN < world.time) && !(obj_flags & EMAGGED) && detecting && !stat)
+	var/turf/open/T = get_turf(src)
+	if((temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST || temperature < BODYTEMP_COLD_DAMAGE_LIMIT || (istype(T) && T.turf_fire)) && (last_alarm+FIREALARM_COOLDOWN < world.time) && !(obj_flags & EMAGGED) && detecting && !stat)
+		if(!real_fire)
+			radio.talk_into(src, "Fire detected in [myarea].", RADIO_CHANNEL_ENGINEERING)
+		real_fire = TRUE
+		bad_temp = temperature
 		alarm()
+		START_PROCESSING(SSmachines, src)
 	..()
+
+/obj/machinery/firealarm/process() //Fire alarm only start processing when its triggered by temperature_expose()
+	var/turf/open/T = get_turf(src)
+	var/datum/gas_mixture/env = T.return_air()
+	if(env.return_temperature() < FIRE_MINIMUM_TEMPERATURE_TO_EXIST && env.return_temperature() > BODYTEMP_COLD_DAMAGE_LIMIT && (istype(T) && !T.turf_fire))
+		real_fire = FALSE
+		STOP_PROCESSING(SSmachines, src)
+
+/obj/machinery/firealarm/proc/areafire_check()
+	for(var/obj/machinery/firealarm/FA in myarea.firealarms)
+		if(FA.real_fire)
+			return TRUE
+	return FALSE
 
 /obj/machinery/firealarm/proc/alarm(mob/user)
 	if(!is_operational() || (last_alarm+FIREALARM_COOLDOWN > world.time))
 		return
 	last_alarm = world.time
-	var/area/A = get_area(src)
-	A.firealert(src)
+	myarea.firealert(src)
 	playsound(loc, 'goon/sound/machinery/FireAlarm.ogg', 75)
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
@@ -133,8 +176,9 @@
 /obj/machinery/firealarm/proc/reset(mob/user)
 	if(!is_operational())
 		return
-	var/area/A = get_area(src)
-	A.firereset(src)
+	for(var/obj/machinery/firealarm/F in myarea.firealarms)
+		F.myarea.firereset(F)
+		F.bad_temp = null
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
 
@@ -142,8 +186,8 @@
 	if(buildstage != 2)
 		return ..()
 	add_fingerprint(user)
-	var/area/A = get_area(src)
-	if(A.fire || A.party)
+	play_click_sound("button")
+	if(myarea.fire || myarea.party)
 		reset(user)
 	else
 		alarm(user)
@@ -161,7 +205,7 @@
 		W.play_tool_sound(src)
 		panel_open = !panel_open
 		to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(panel_open)
@@ -194,13 +238,12 @@
 					W.play_tool_sound(src)
 					new /obj/item/stack/cable_coil(user.loc, 5)
 					to_chat(user, span_notice("You cut the wires from \the [src]."))
-					update_icon()
+					update_appearance(UPDATE_ICON)
 					return
 
 				else if(W.force) //hit and turn it on
 					..()
-					var/area/A = get_area(src)
-					if(!A.fire)
+					if(!myarea.fire)
 						alarm()
 					return
 
@@ -213,7 +256,7 @@
 						coil.use(5)
 						buildstage = 2
 						to_chat(user, span_notice("You wire \the [src]."))
-						update_icon()
+						update_appearance(UPDATE_ICON)
 					return
 
 				else if(W.tool_behaviour == TOOL_CROWBAR)
@@ -228,14 +271,14 @@
 								to_chat(user, span_notice("You pry out the circuit."))
 								new /obj/item/electronics/firealarm(user.loc)
 							buildstage = 0
-							update_icon()
+							update_appearance(UPDATE_ICON)
 					return
 			if(0)
 				if(istype(W, /obj/item/electronics/firealarm))
 					to_chat(user, span_notice("You insert the circuit."))
 					qdel(W)
 					buildstage = 1
-					update_icon()
+					update_appearance(UPDATE_ICON)
 					return
 
 				else if(istype(W, /obj/item/electroadaptive_pseudocircuit))
@@ -245,7 +288,7 @@
 					user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 					span_notice("You adapt a fire alarm circuit and slot it into the assembly."))
 					buildstage = 1
-					update_icon()
+					update_appearance(UPDATE_ICON)
 					return
 
 				else if(W.tool_behaviour == TOOL_WRENCH)
@@ -271,11 +314,11 @@
 			user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 			span_notice("You adapt a fire alarm circuit and slot it into the assembly."))
 			buildstage = 1
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return TRUE
 	return FALSE
 
-/obj/machinery/firealarm/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/firealarm/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.) //damage received
 		if(obj_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
@@ -293,6 +336,7 @@
 
 	. = ..()
 	if(.)
+		myarea.firereset(src, TRUE)
 		LAZYREMOVE(myarea.firealarms, src)
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
@@ -310,10 +354,10 @@
 		return  // do nothing if we're already active
 	if(fire)
 		set_light(l_power = 0.8)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		set_light(l_power = 0)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /*
  * Return of the Return of the Party button
@@ -330,19 +374,17 @@
 /obj/machinery/firealarm/partyalarm/reset()
 	if (stat & (NOPOWER|BROKEN))
 		return
-	var/area/A = get_area(src)
-	if (!A || !A.party)
+	if (!myarea || !myarea.party)
 		return
-	A.party = FALSE
-	A.cut_overlay(party_overlay)
+	myarea.party = FALSE
+	myarea.cut_overlay(party_overlay)
 
 /obj/machinery/firealarm/partyalarm/alarm()
 	if (stat & (NOPOWER|BROKEN))
 		return
-	var/area/A = get_area(src)
-	if (!A || A.party || A.name == "Space")
+	if (!myarea || myarea.party || istype(myarea, /area/space))
 		return
-	A.party = TRUE
+	myarea.party = TRUE
 	if (!party_overlay)
 		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
-	A.add_overlay(party_overlay)
+	myarea.add_overlay(party_overlay)

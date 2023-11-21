@@ -14,6 +14,10 @@ SUBSYSTEM_DEF(processing)
 	msg = "[stat_tag]:[length(processing)]"
 	return ..()
 
+/datum/controller/subsystem/processing/get_metrics()
+	. = ..()
+	.["processing_queue"] = length(processing)
+
 /datum/controller/subsystem/processing/fire(resumed = 0)
 	if (!resumed)
 		currentrun = processing.Copy()

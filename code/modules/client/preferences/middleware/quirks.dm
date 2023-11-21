@@ -17,8 +17,7 @@
 	data["locked_quirks"] = get_locked_quirks()
 
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
-	data["mood_enabled"] = ismoody
+	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 
@@ -31,8 +30,7 @@
 		data["locked_quirks"] = get_locked_quirks()
 	
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.yogtoggles & PREF_MOOD))
-	data["mood_enabled"] = ismoody
+	data["mood_enabled"] = (!CONFIG_GET(flag/disable_human_mood) || (user.client?.prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	return data
 

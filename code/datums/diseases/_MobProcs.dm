@@ -14,24 +14,14 @@
 	if(HasDisease(D))
 		return FALSE
 
-	var/can_infect = FALSE
-	for(var/host_type in D.infectable_biotypes)
-		if(host_type in mob_biotypes)
-			can_infect = TRUE
-			break
-	if(!can_infect)
+	if(!(mob_biotypes & D.infectable_biotypes))
 		return FALSE
 
-	can_infect = FALSE // var reuse
 	for(var/viable_types in D.viable_mobtypes)
 		if(typesof(src,viable_types))
-			can_infect = TRUE
-			break
+			return TRUE
 
-	if(!can_infect)
-		return FALSE
-
-	return TRUE
+	return FALSE
 
 
 /mob/living/proc/ContactContractDisease(datum/disease/D)

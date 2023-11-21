@@ -75,7 +75,7 @@
 	category = list("initial","Food")
 
 /datum/design/meat
-	name = "Synthetic meat"
+	name = "Synthetic Meat"
 	id = "meat"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 150)
@@ -83,7 +83,7 @@
 	category = list("initial","Food")
 
 /datum/design/egg
-	name = "Synthetic egg"
+	name = "Synthetic Egg"
 	id = "egg"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -191,7 +191,7 @@
 	id = "rollingpapers"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 50)
-	build_path = /obj/item/storage/box/fancy/rollingpapers
+	build_path = /obj/item/storage/fancy/rollingpapers
 	category = list("initial", "Organic Materials")
 
 /datum/design/cloth

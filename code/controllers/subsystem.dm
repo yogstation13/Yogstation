@@ -303,3 +303,17 @@
 		if (NAMEOF(src, queued_priority)) //editing this breaks things.
 			return FALSE
 	. = ..()
+
+/datum/controller/subsystem/proc/get_metrics()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	.["@measurement"] = "subsystem"
+	.["@tags"] = list("subsystem" = type)
+	.["$cost"] = cost
+	.["$tick_usage"] = tick_usage
+	.["$tick_overrun"] = tick_overrun
+	.["$last_fire"] = last_fire
+	.["$next_fire"] = next_fire
+	.["$tick_allocation_avg"] = tick_allocation_avg
+	.["$times_fired"] = times_fired
+	.["$postponed_fires"] = postponed_fires

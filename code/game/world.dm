@@ -24,6 +24,8 @@ GLOBAL_VAR(restart_counter)
 	world.Profile(PROFILE_START)
 #endif
 
+	SSmetrics.world_init_time = REALTIMEOFDAY
+
 	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
@@ -209,19 +211,19 @@ GLOBAL_VAR(restart_counter)
 	var/list/fail_reasons
 	if(GLOB)
 		if(GLOB.total_runtimes != 0)
-			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
+			fail_reasons = list(TEST_OUTPUT_RED("Total runtimes: [GLOB.total_runtimes]"))
 #ifdef UNIT_TESTS
 		if(GLOB.failed_any_test)
-			LAZYADD(fail_reasons, "Unit Tests failed!")
+			LAZYADD(fail_reasons, TEST_OUTPUT_RED("Unit Tests failed!"))
 #endif
 		if(!GLOB.log_directory)
-			LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+			LAZYADD(fail_reasons, TEST_OUTPUT_RED("Missing GLOB.log_directory!"))
 	else
-		fail_reasons = list("Missing GLOB!")
+		fail_reasons = list(TEST_OUTPUT_RED("Missing GLOB!"))
 	if(!fail_reasons)
 		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
 	else
-		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
+		log_world("[TEST_OUTPUT_RED("Test run failed")]!\n[fail_reasons.Join("\n")]")
 	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
 	qdel(src) //shut it down
 

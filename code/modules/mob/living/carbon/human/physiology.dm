@@ -10,6 +10,7 @@
 	var/brain_mod = 1   	// % of brain damage taken from all sources
 
 	var/pressure_mod = 1	// % of brute damage taken from low or high pressure (stacks with brute_mod)
+	var/temp_mod = 1		// % of temperature change actually taken
 	var/heat_mod = 1    	// % of burn damage taken from heat (stacks with burn_mod)
 	var/cold_mod = 1    	// % of burn damage taken from cold (stacks with burn_mod)
 

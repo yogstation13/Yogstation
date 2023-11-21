@@ -165,6 +165,7 @@
 	if(!helmet)
 		return
 	suittoggled = FALSE
+	helmet.unequip_hat()
 	if(ishuman(helmet.loc))
 		var/mob/living/carbon/H = helmet.loc
 		if(helmet.on)

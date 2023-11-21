@@ -14,7 +14,6 @@
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
-	climbable = TRUE
 
 /obj/machinery/ministile/hop
 	name = "HOP line turnstile"
@@ -23,6 +22,7 @@
 /obj/machinery/ministile/Initialize(mapload)
 	. = ..()
 	icon_state = "ministile"
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/ministile/CanAtmosPass(turf/T)
 	return TRUE
@@ -49,7 +49,7 @@
 			if(allowed(rider) && !mover.pulledby) //defer to the above dragging code if we are being dragged
 				allowed = TRUE
 
-	if(get_dir(loc, mover.loc) == dir || allowed || mover==machineclimber) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
+	if(get_dir(loc, mover.loc) == dir || allowed) //Make sure looking at appropriate border, loc is first so the turnstyle faces the mover
 		flick("ministile_operate", src)
 		playsound(src,'sound/items/ratchet.ogg',50,0,3)
 		return TRUE

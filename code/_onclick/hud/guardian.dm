@@ -5,21 +5,20 @@
 	..()
 	var/atom/movable/screen/using
 
-	pull_icon = new /atom/movable/screen/pull()
+	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = ui_style
-	pull_icon.update_icon()
+	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_living_pull
-	pull_icon.hud = src
 	static_inventory += pull_icon
 
-	healths = new /atom/movable/screen/healths/guardian()
+	healths = new /atom/movable/screen/healths/guardian(src)
 	infodisplay += healths
 
-	using = new /atom/movable/screen/guardian/Manifest()
+	using = new /atom/movable/screen/guardian/Manifest(src)
 	using.screen_loc = ui_hand_position(2)
 	static_inventory += using
 
-	using = new /atom/movable/screen/guardian/Recall()
+	using = new /atom/movable/screen/guardian/Recall(src)
 	using.screen_loc = ui_hand_position(1)
 	static_inventory += using
 
@@ -27,11 +26,11 @@
 	using.screen_loc = ui_storage1
 	static_inventory += using
 
-	using = new /atom/movable/screen/guardian/ToggleLight()
+	using = new /atom/movable/screen/guardian/ToggleLight(src)
 	using.screen_loc = ui_inventory
 	static_inventory += using
 
-	using = new /atom/movable/screen/guardian/Communicate()
+	using = new /atom/movable/screen/guardian/Communicate(src)
 	using.screen_loc = ui_back
 	static_inventory += using
 

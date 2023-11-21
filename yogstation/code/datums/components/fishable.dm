@@ -15,7 +15,6 @@
 
 /datum/component/fishable/proc/get_reward(fishing_power = 0)
 	var/chance = list(
-		FISHING_LOOT_NOTHING = min(max(0,100 - fishing_power),50),
 		FISHING_LOOT_JUNK = min(max(0,50 - fishing_power),25),
 		FISHING_LOOT_COMMON = min(fishing_power / 5,50),
 		FISHING_LOOT_UNCOMMON = min(fishing_power / 10,33),

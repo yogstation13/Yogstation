@@ -9,7 +9,7 @@
 
 /datum/hud/chemical_counter/New(mob/owner)
 	. = ..()
-	chemical_counter = new /atom/movable/screen/horror_chemicals
+	chemical_counter = new /atom/movable/screen/horror_chemicals(src)
 	infodisplay += chemical_counter
 
 /datum/hud/chemical_counter/Destroy()
