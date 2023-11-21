@@ -193,6 +193,7 @@
 /obj/item/autosurgeon/suspicious
 	name = "syndicate autosurgeon"
 	icon_state = "autoimplanter_red"
+	desc = "WARNING: Not compatable with organic regnerative cores. May cause Vomiting, Nausea, Lung Cancer, Mesotheleoma, and a large chance of internal detonation"
 
 //Limb autosurgeons
 
