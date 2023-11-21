@@ -86,7 +86,7 @@
 /datum/security_level/delta
 	name = "delta"
 	announcement_color = "purple"
-	sound = 'sound/misc/airraid.ogg' // Air alarm to signify importance
+	sound = 'sound/misc/delta_alert.ogg' // Air alarm to signify importance
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
 	shuttle_call_time_mod = ALERT_COEFF_DELTA
