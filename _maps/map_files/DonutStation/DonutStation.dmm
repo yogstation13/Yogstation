@@ -15320,6 +15320,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"gtn" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/light_switch{
+	pixel_x = -4;
+	pixel_y = -24
+	},
+/turf/open/floor/carpet/black,
+/area/crew_quarters/bar)
 "gtI" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -15377,6 +15387,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"guW" = (
+/obj/structure/chair/stool/bar,
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "gvo" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
@@ -27229,6 +27246,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"lNv" = (
+/obj/structure/closet/secure_closet/bartender,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/cable_coil,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "lNJ" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
@@ -32850,10 +32874,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"odp" = (
-/obj/structure/closet/secure_closet/bartender,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ody" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 8
@@ -35568,12 +35588,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"pqV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/carpet/black,
-/area/crew_quarters/bar)
 "prf" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -86617,7 +86631,7 @@ gxy
 lML
 fmF
 fGO
-odp
+lNv
 ixS
 gxy
 qmO
@@ -87390,7 +87404,7 @@ qTz
 ghI
 pOm
 pOm
-pqV
+gtn
 gxy
 gxy
 fOG
@@ -89447,7 +89461,7 @@ uLk
 dZz
 kVY
 qoy
-dZz
+guW
 uLk
 kVY
 uLk
