@@ -80,7 +80,17 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			return ..()
 		var/obj/item/surveillance_upgrade/upgrade = W
 		upgrade.afterattack(AI, user)
-
+		return FALSE
+	if(istype(W, /obj/item/cameragun_upgrade))
+		if(!authenticated)
+			to_chat(user, span_warning("You need to be logged in to do this!"))
+			return ..()
+		var/mob/living/silicon/ai/AI = input("Select an AI", "Select an AI", null, null) as null|anything in GLOB.ai_list
+		if(!AI)
+			return ..()
+		var/obj/item/cameragun_upgrade/upgrade = W
+		upgrade.afterattack(AI, user)
+		return FALSE
 	if(istype(W, /obj/item/malf_upgrade))
 		if(!authenticated)
 			to_chat(user, span_warning("You need to be logged in to do this!"))
@@ -90,7 +100,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			return ..()
 		var/obj/item/malf_upgrade/upgrade = W
 		upgrade.afterattack(AI, user)
-
+		return FALSE
 	return ..()
 
 /obj/machinery/computer/ai_control_console/emag_act(mob/user, obj/item/card/emag/emag_card)
