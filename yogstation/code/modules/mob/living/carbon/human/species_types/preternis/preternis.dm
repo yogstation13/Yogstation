@@ -86,7 +86,6 @@
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
-	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
 	C.remove_movespeed_modifier("preternis_maglock")
 
@@ -173,7 +172,6 @@
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
-	burnmod = initial(burnmod)
 
 /datum/species/preternis/movement_delay(mob/living/carbon/human/H)
 	. = ..()
