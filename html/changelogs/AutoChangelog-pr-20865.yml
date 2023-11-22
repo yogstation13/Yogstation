@@ -1,5 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - rscdel: "Removed helmet, bulletproof helmet and riot helmet crates"
-  - tweak: "armor, bulletproof armor and riot armor crates now contain helmets as well, price adjusted to cost the same as before"
