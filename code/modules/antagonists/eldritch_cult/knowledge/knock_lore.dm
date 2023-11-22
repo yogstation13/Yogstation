@@ -3,35 +3,6 @@
 	desc = "Opens up the Path of Knock to you. \
 		Allows you to transmute a knife and a crowbar into a Key Blade. Additionally, your grasp will open up numerous locked things when used upon them."
 	gain_text = "The Knock permits no seal and no isolation. It thrusts us gleefully out of the safety of ignorance."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/knock_knife)
 	cost = 1
 	route = PATH_KNOCK
@@ -45,6 +16,13 @@
 	var/obj/realknife = new /obj/item/melee/sickly_blade/knock
 	user.put_in_hands(realknife)
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+	ADD_TRAIT(user, TRAIT_QUICKEST_CARRY, INNATE_TRAIT)
+	
+	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
+	if(basic_jaunt)
+		basic_jaunt.Remove(user)
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/knock/knock_jaunt = new(user)
+	knock_jaunt.Grant(user)
 
 /datum/eldritch_knowledge/base_ash/on_lose(mob/user)
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
@@ -91,14 +69,6 @@
 		Attack a marked person to bar them from all passages for the duration of the mark."
 	gain_text = "Their requests for passage will remain unheeded."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark)
 	route = PATH_KNOCK
 	tier = TIER_MARK
 
@@ -130,14 +100,6 @@
 	name = "Blade Upgrade - Opening Blade"
 	desc = "Your blade will be able to pry open unlocked airlocks."
 	gain_text = "The power of my patron courses through my blade, willing their very flesh to part."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,)
 	route = PATH_KNOCK
 	tier = TIER_BLADE
 
@@ -158,13 +120,13 @@
 			return
 
 		if(A.hasPower())
-			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
+			user.visible_message(span_warning("[user] jams their blade into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			if(!do_after(user, 6 SECONDS, A))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
-		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
+		user.visible_message(span_warning("[user] forces the airlock to open with their blade!"), span_warning("We force the airlock to open."), //yogs modified description
 		span_italics("You hear a metal screeching sound."))
 		A.open(2)
 

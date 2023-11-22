@@ -56,7 +56,7 @@
 
 /datum/quirk/blindness/add()
 	quirk_holder.become_blind(ROUNDSTART_TRAIT)
-//	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
+	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
