@@ -50,7 +50,7 @@
 /datum/chemical_reaction/glycerol
 	name = "Glycerol"
 	id = /datum/reagent/glycerol
-	results = list(/datum/reagent/glycerol = 1)
+	results = list(/datum/reagent/glycerol = 3)
 	required_reagents = list(/datum/reagent/consumable/cornoil = 3, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/sodiumchloride
