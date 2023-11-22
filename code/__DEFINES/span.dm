@@ -121,6 +121,7 @@
 #define span_phobia(str) ("<span class='phobia'>" + str + "</span>")
 #define span_prefix(str) ("<span class='prefix'>" + str + "</span>")
 #define span_priority(str) ("<span class='priority'>" + str + "</span>")
+#define span_progenitor(str) ("<span class='progenitor'>" + str + "</span>")
 #define span_purple(str) ("<span class='purple'>" + str + "</span>")
 #define span_radio(str) ("<span class='radio'>" + str + "</span>")
 #define span_ratvar(str) ("<span class='ratvar'>" + str + "</span>")

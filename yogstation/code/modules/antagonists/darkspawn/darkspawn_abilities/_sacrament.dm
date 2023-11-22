@@ -29,13 +29,13 @@
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
-	if(SSticker.mode.sacrament_done)
-		darkspawn.sacrament()
-		return
 	if(!darkspawn || darkspawn.lucidity_drained < SSticker.mode.required_succs)
 		to_chat(usr, span_warning("You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])"))
 		return
 	if(alert(usr, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
+		return
+	if(SSticker.mode.sacrament_done)
+		darkspawn.sacrament()
 		return
 	in_use = TRUE
 	var/mob/living/carbon/human/user = usr
@@ -63,6 +63,9 @@
 					if(M != user)
 						to_chat(M, span_warning("What is that sound...?"))
 			if(2)
+				for(var/turf/T in range(15, owner))
+					if(prob(25))
+						addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 15 SECONDS))
 				user.visible_message(span_userdanger("[user] begins to... <i>grow.</i>."), \
 									span_velvet("Yes! <font size=3>Yes! You feel the weak mortal shell coming apart!</font>"))
 				for(var/mob/M in GLOB.player_list)
@@ -74,24 +77,21 @@
 			in_use = FALSE
 			QDEL_NULL(soundloop)
 			return
-	for(var/mob/M in GLOB.player_list)
-		M.playsound_local(M, 'yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
+
 	soundloop.stage = 3
-	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
-	for(var/turf/T in range(7, owner))
+	sound_to_playing_players('yogstation/sound/magic/sacrament_ending.ogg', 75, FALSE, pressure_affected = FALSE)
+	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("AND THE WEAK WILL KNOW <i>FEAR--</i>"))
+
+	for(var/turf/T in range(15, owner))
 		if(prob(25))
 			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(1, 40))
-	addtimer(CALLBACK(src, PROC_REF(shatter_lights)), 3.5 SECONDS)
+
 	QDEL_IN(soundloop, 39)
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
 	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
 
 /datum/action/cooldown/spell/sacrament/proc/unleashed_psi(turf/T)
+	if(!in_use)
+		return
 	playsound(T, 'yogstation/sound/magic/divulge_end.ogg', 25, FALSE)
 	new/obj/effect/temp_visual/revenant/cracks(T)
-
-/datum/action/cooldown/spell/sacrament/proc/shatter_lights()
-	if(SSticker.mode.sacrament_done)
-		return
-	for(var/obj/machinery/light/light in SSmachines.processing)
-		light.break_light_tube()

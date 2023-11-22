@@ -161,7 +161,8 @@
 	psi = min(psi, psi_cap)
 	if(psi < psi_cap && COOLDOWN_FINISHED(src, psi_cooldown) && !psi_regenerating)
 		if(owner.current && HAS_TRAIT(owner.current, TRAIT_DARKSPAWN_PSIBLOCK))
-			COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
+			if(psi_regen_delay)
+				COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
 			return //prevent regeneration
 		regenerate_psi()
 	update_psi_hud()
@@ -172,7 +173,8 @@
 /datum/antagonist/darkspawn/proc/use_psi(amt)
 	if(!has_psi(amt))
 		return
-	COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
+	if(psi_regen_delay)
+		COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
 	psi -= amt
 	psi = round(psi, 0.2)
 	update_psi_hud()
@@ -218,7 +220,7 @@
 	span_userdanger("You can't maintain your disguise any more! It begins sloughing off!"))
 	playsound(H, 'yogstation/sound/creatures/darkspawn_force_divulge.ogg', 50, FALSE)
 	H.do_jitter_animation(1000)
-	var/processed_message = span_velvet("<b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b>")
+	var/processed_message = span_progenitor("\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.")
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && isdarkspawn(M))
 			to_chat(M, processed_message)
@@ -255,24 +257,39 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/sacrament()
 	var/mob/living/carbon/human/user = owner.current
-	if(!SSticker.mode.sacrament_done)
-		set_security_level(SEC_LEVEL_GAMMA)
-		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
-	// Spawn the progenitor
-	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
-	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
+
+	if(!istype(user))//sanity check
+		return
+
 	user.status_flags |= GODMODE
+
+	if(!SSticker.mode.sacrament_done)
+		SSticker.mode.sacrament_done = TRUE
+		set_security_level(SEC_LEVEL_GAMMA)
+		shatter_lights()
+		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 5 SECONDS)
+
+	SSachievements.unlock_achievement(/datum/achievement/greentext/darkspawn, user.client)
+
+	for(var/datum/action/cooldown/spell/spells in user.actions) //they'll have progenitor specific abilities
+		spells.Remove(user)
+		qdel(spells)
+	// Spawn the progenitor
+	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user), user.real_name)
 	user.mind.transfer_to(progenitor)
-	var/datum/action/cooldown/spell/pointed/progenitor_curse/curse = new(owner)
-	curse.Grant(progenitor)
-	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
+
 	psi = 9999
 	psi_cap = 9999
 	psi_per_second = 9999
-	psi_regen_delay = 1
-	SSticker.mode.sacrament_done = TRUE
+	psi_regen_delay = 0
+	update_psi_hud()
+
 	darkspawn_state = PROGENITOR
 	QDEL_IN(user, 1)
+
+/datum/antagonist/darkspawn/proc/shatter_lights()
+	for(var/obj/machinery/light/L in GLOB.machines)
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, break_light_tube)), rand(1, 30)) //stagger the shatter to reduce lag
 
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
 	SSshuttle.emergency.request(null, 0, null, 0.1)
