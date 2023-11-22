@@ -2,35 +2,6 @@
 	name = "Principle of Hunger"
 	desc = "Pledges yourself to the path of Flesh. Allows you to transmute a pool of blood with a knife into a flesh blade. Additionally, your Mansus grasp now raises dead humanoids into subservient ghouls if they are not mindshielded or husked. It will husk the person it's used on."
 	gain_text = "The Priest has seduced countless into his flock. He will entice countless more with the Glorious Feast. You knelt before his statue and swore the Red Oath."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_blade,
-		/datum/eldritch_knowledge/base_cosmic,
-		/datum/eldritch_knowledge/base_knock,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/blade_final,
-		/datum/eldritch_knowledge/cosmic_final,
-		/datum/eldritch_knowledge/knock_final)
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/flesh_blade)
 	route = PATH_FLESH
@@ -131,6 +102,7 @@
 	desc = "Allows you to summon a Fire Shark by transmuting a pair of eyes, a pile of ash, and a sheet of plasma. Fire sharks leave behind a cloud of plasma upon death, and injects Phlogiston into the targets it bites."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/fire_shark)
+	route = PATH_FLESH
 	tier = TIER_1
 
 /datum/eldritch_knowledge/flesh_mark
@@ -138,14 +110,6 @@
 	gain_text = "She revels and laughs when life begins to flow. Her kiss rips and feasts on flesh alike. This imitates her touch."
 	desc = "Your Mansus grasp now applies a mark on hit. Use your flesh blade to detonate the mark, which causes significant bleeding on the target."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/blade_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,)
 	route = PATH_FLESH
 	tier = TIER_MARK
 
@@ -178,6 +142,7 @@
 	desc = "A touch spell that drains a target's health and restores yours."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/pointed/blood_siphon
+	route = PATH_FLESH
 	tier = TIER_2
 
 /datum/eldritch_knowledge/flesh_blade_upgrade
@@ -185,14 +150,6 @@
 	gain_text = "Ebis, the Owl, was the second to take the Red Oath. They still grant the gift of their steel to those powerful enough to resist their incursions."
 	desc = "Your flesh blade will now cause additional bleeding on hit."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/blade_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	route = PATH_FLESH
 	tier = TIER_BLADE
 
@@ -219,6 +176,7 @@
 	desc = "You can now summon an Ashman by transmuting a pile of ash, a head, and a book. Ashmen have powerful offensive abilities and access to the Ashen Shift spell."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/ashy)
+	route = PATH_FLESH
 	tier = TIER_3
 
 /datum/eldritch_knowledge/rusty
@@ -227,6 +185,7 @@
 	desc = "You can now summon a Rustwalker transmuting a vomit pool and a book. Rustwalkers are capable of spreading rust and have a strong, short-ranged projectile attack."
 	cost = 1
 	unlocked_transmutations = list(/datum/eldritch_transmutation/summon/rusty)
+	route = PATH_FLESH
 	tier = TIER_3
 
 /datum/eldritch_knowledge/flesh_final
