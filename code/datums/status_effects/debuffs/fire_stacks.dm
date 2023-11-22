@@ -138,7 +138,7 @@
 	/// Type of mob light emitter we use when on fire
 	var/moblight_type = /obj/effect/dummy/lighting_obj/moblight/fire
 
-/datum/status_effect/fire_handler/fire_stacks/tick(seconds_between_ticks)
+/datum/status_effect/fire_handler/fire_stacks/tick(delta_time, times_fired)
 	if(stacks <= 0)
 		qdel(src)
 		return TRUE
@@ -146,7 +146,7 @@
 	if(!on_fire)
 		return TRUE
 
-	adjust_stacks(-0.05 * seconds_between_ticks)
+	adjust_stacks(-0.05 * delta_time SECONDS)
 
 	if(stacks <= 0)
 		qdel(src)
@@ -157,7 +157,7 @@
 		qdel(src)
 		return TRUE
 
-	deal_damage(seconds_between_ticks)
+	deal_damage(delta_time SECONDS)
 	update_overlay()
 	update_particles()
 
@@ -176,7 +176,7 @@
  * Proc that handles damage dealing and all special effects
  *
  * Arguments:
- * - seconds_between_ticks
+ * - seconds_per_tick
  *
  */
 
@@ -190,7 +190,7 @@
  * Used to deal damage to humans and count their protection.
  *
  * Arguments:
- * - seconds_between_ticks
+ * - seconds_per_tick
  * - no_protection: When set to TRUE, fire will ignore any possible fire protection
  *
  */
@@ -277,8 +277,8 @@
 	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
 	stack_modifier = -1
 
-/datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
-	adjust_stacks(-0.5 * seconds_between_ticks)
+/datum/status_effect/fire_handler/wet_stacks/tick(delta_time, times_fired)
+	adjust_stacks(-0.5 * delta_time SECONDS)
 	if(stacks <= 0)
 		qdel(src)
 

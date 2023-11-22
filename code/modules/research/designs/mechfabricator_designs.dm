@@ -1057,6 +1057,16 @@
 	construction_time = 4 SECONDS
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_autocleaner
+	name = "Cyborg Upgrade (Autocleaner)"
+	id = "borg_upgrade_janitor_autocleaner"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/janitor_autocleaner
+	/// Cost of a pimpin' ride upgrade.
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
+	construction_time = 4 SECONDS
+	category = list("Cyborg Upgrade Modules")
+
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracker (Exosuit Tracking Beacon)"

@@ -88,9 +88,29 @@ jobs:
       - name: Compile All Maps
         run: |
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
+  find_all_maps:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    name: Find Maps to Test
+    runs-on: ubuntu-20.04
+    outputs:
+      maps: ${{ steps.map_finder.outputs.maps }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find Maps
+        id: map_finder
+        run: |
+          echo "$(ls -mw0 _maps/*.json)" > maps_output.txt
+          sed -i -e s+_maps/+\"+g -e s+.json+\"+g maps_output.txt
+          echo "Maps: $(cat maps_output.txt)"
+          echo "maps={\"paths\":[$(cat maps_output.txt)]}" >> $GITHUB_OUTPUT
   test:
     name: Compile and Run Tests
     runs-on: ubuntu-20.04
+    needs: [find_all_maps]
+    strategy:
+      fail-fast: false
+      matrix:
+        map: ${{ fromJSON(needs.find_all_maps.outputs.maps).paths }}
     services:
       mariadb:
        image: mariadb
@@ -98,7 +118,9 @@ jobs:
          - 3306:3306
        env:
         MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
-        
+    concurrency:
+      group: ci-${{ github.ref }}-${{ matrix.map }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v2
         
@@ -136,7 +158,7 @@ jobs:
       - name: Compile
         run: |
           tools/build/build --ci dm -DCIBUILDING
-          tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
+          tools/travis/dm.sh -DTRAVISBUILDING -DANSICOLORS yogstation.dme || travis_terminate 1
           
       - name: Prepare Artifacts
         run: |
@@ -147,10 +169,23 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v1
         with: 
-          name: DMB + RSC
+          name: DMB + RSC ${{matrix.map}}
           path: ${{github.workspace}}/artifacts
           
       - name: Run Tests
         run: |
-          tools/travis/run_server.sh
+          tools/travis/run_server.sh ${{ matrix.map }}
+  results:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    name: Final Map Test
+    needs: [test]
+    steps:
+      - run: exit 1
+        # see https://stackoverflow.com/a/67532120/4907315
+        if: >-
+          ${{
+               contains(needs.*.result, 'failure')
+            || contains(needs.*.result, 'cancelled')
+          }}
 
