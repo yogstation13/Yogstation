@@ -1,0 +1,5 @@
+author: " PositiveEntropy, Cark, Blutsu"
+delete-after: true 
+changes: 
+  - imageadd: "new wood sprites from TG, and resprites on stairs by Blutsu"
+  - imagedel: "replaces old wood tile sprites"
