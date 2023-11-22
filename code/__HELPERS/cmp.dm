@@ -150,9 +150,3 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 	rhs = ispath(B, /datum/reagent) ? 0 : 1
 
 	return lhs - rhs
-
-/// Used by /datum/achievement_data/load_all_achievements() to determine in which order awards have to be loaded.
-/proc/cmp_award_priority(type_a, type_b)
-	var/datum/award/award_a = SSachievements.awards[type_a]
-	var/datum/award/award_b = SSachievements.awards[type_b]
-	return award_b?.load_priority - award_a?.load_priority
