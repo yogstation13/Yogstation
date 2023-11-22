@@ -219,6 +219,7 @@
 	self_consuming = TRUE
 	compatible_biotypes = ALL_BIOTYPES
 	var/shock_timer = 0
+	var/teslium_trip = FALSE
 
 /datum/reagent/teslium/on_mob_metabolize(mob/living/L)
 	. = ..()
@@ -230,11 +231,30 @@
 		shock_timer = 0
 		M.electrocute_act(rand(5,20), "Teslium in their body", 1, 1) //Override because it's caused from INSIDE of you
 		playsound(M, "sparks", 50, 1)
+
+	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY)) //twice as effective as liquid electricity
+		M.adjust_nutrition(10 * REAGENTS_METABOLISM)
+
+	if(ispreternis(M)) //no clue why preterni function this way, but why not (makes more sense for ethereals honestly)
+		teslium_trip = TRUE
+		var/mob/living/carbon/human/H = M
+		H.add_movespeed_modifier(type, TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
+		H.adjustOxyLoss(-2 * REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustBruteLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
+		H.adjustFireLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
+		H.AdjustAllImmobility(-3)
+		H.adjustStaminaLoss(-5 * REAGENTS_EFFECT_MULTIPLIER)
+		H.physiology.burn_mod *= 10
 	..()
 
 /datum/reagent/teslium/on_mob_end_metabolize(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_EMPPROOF_SELF, "teslium")
+	if(teslium_trip)
+		L.remove_movespeed_modifier(type, TRUE)
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.physiology.burn_mod /= 10
 
 /datum/reagent/teslium/energized_jelly
 	name = "Energized Jelly"
