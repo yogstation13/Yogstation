@@ -495,3 +495,8 @@ GLOBAL_LIST_INIT(pipe_paint_colors, list(
 #define MIASMA_GIBS_MOLES 0.005
 
 #define TURF_SHARES(T) (LAZYLEN(T.atmos_adjacent_turfs))
+
+//Defines for air alarm severities in areas.
+#define ATMOS_ALARM_SEVERE "severe"
+#define ATMOS_ALARM_MINOR "minor"
+#define ATMOS_ALARM_CLEAR "clear"
