@@ -1,0 +1,4 @@
+author: " cark"
+delete-after: true 
+changes: 
+  - mapping: "bridge on donut now has an APC and blast doors, apc in chapel is moved and some other minor fixes"
