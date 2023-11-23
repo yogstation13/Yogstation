@@ -74,7 +74,7 @@
 		H.Knockdown(2 SECONDS, TRUE, TRUE)
 	H.Immobilize(0.6 SECONDS, TRUE, TRUE) //just until the dash would end
 	new /obj/effect/particle_effect/sparks/electricity/short/loud(get_turf(H))
-	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, TRUE)
+	H.throw_at(target, DASH_RANGE, DASH_SPEED, H, FALSE, callback = VARSET_CALLBACK(src, dashing, FALSE))
 		
 /datum/martial_art/lightning_flow/handle_throw(atom/hit_atom, mob/living/carbon/human/H, datum/thrownthing/throwingdatum)
 	if(!dashing || !action_type)

@@ -295,6 +295,11 @@
 			return TRUE
 	return FALSE
 
+/obj/mecha/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..() // if something can go through machines it can go through mechs
+	if(istype(mover) && (mover.pass_flags & PASSMECH))
+		return TRUE
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/mecha/examine(mob/user)
