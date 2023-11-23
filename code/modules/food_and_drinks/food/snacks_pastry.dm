@@ -786,31 +786,39 @@
 		. += "It contains [contents.len?"[ingredients_listed]":"no ingredient, "]on top of a [initial(name)]."
 	bitecount = originalBites
 
-/obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes))
-		var/obj/item/reagent_containers/food/snacks/pancakes/P = I
-		if((contents.len >= PANCAKE_MAX_STACK) || ((P.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
+/obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/item, mob/living/user, params)
+	if(istype(item, /obj/item/reagent_containers/food/snacks/pancakes))
+		var/obj/item/reagent_containers/food/snacks/pancakes/pancake = item
+		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
 			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
 		else
-			if(!user.transferItemToLoc(I, src))
+			if(!user.transferItemToLoc(item, src))
 				return
-			to_chat(user, span_notice("You add the [I] to the [name]."))
-			P.name = initial(P.name)
-			contents += P
-			update_overlays(P)
-			if (P.contents.len)
-				for(var/V in P.contents)
-					P = V
-					P.name = initial(P.name)
-					contents += P
-					update_overlays(P)
-			P = I
-			LAZYCLEARLIST(P.contents)
+			to_chat(user, span_notice("You add the [item] to the [name]."))
+			pancake.name = initial(pancake.name)
+			contents += pancake
+			update_snack_overlays(pancake)
+			if (pancake.contents.len)
+				for(var/V in pancake.contents)
+					pancake = V
+					pancake.name = initial(pancake.name)
+					contents += pancake
+					update_snack_overlays(pancake)
+			pancake = item
+			LAZYCLEARLIST(pancake.contents)
 		return
 	else if(contents.len)
 		var/obj/O = contents[contents.len]
-		return O.attackby(I, user, params)
-	..()
+		return O.attackby(item, user, params)
+	return ..()
+
+/obj/item/reagent_containers/food/snacks/pancakes/update_snack_overlays(obj/item/reagent_containers/food/snacks/pancakes/pancake)
+	var/mutable_appearance/pancake_visual = mutable_appearance(icon, "[pancake.item_state]_[rand(1, 3)]")
+	pancake_visual.pixel_x = rand(-1, 1)
+	pancake_visual.pixel_y = 3 * contents.len - 1
+	pancake_visual.layer = layer + (contents.len * 0.01)
+	add_overlay(pancake_visual)
+	update_appearance()
 
 /obj/item/reagent_containers/food/snacks/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)
