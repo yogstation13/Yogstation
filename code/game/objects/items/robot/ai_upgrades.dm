@@ -147,7 +147,7 @@
 			break
 		if(get_dist(cam, target) > 12)
 			continue
-		if(!can_shoot_to(cam, target)) // Camera can hit this spot.
+		if(!can_shoot_to(cam, target)) // Camera cannot hit this target (assuming they are not moving).
 			continue
 		if(!chosen_camera)
 			chosen_camera = cam
