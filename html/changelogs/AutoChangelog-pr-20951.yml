@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "The door between the armory and the auxiliary armory are now default security access"
