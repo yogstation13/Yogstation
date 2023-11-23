@@ -25,9 +25,6 @@
 	QDEL_NULL(dna)
 	GLOB.carbon_list -= src
 
-/mob/living/carbon/initialize_footstep()
-	AddComponent(/datum/component/footstep, 1, 2)
-
 /mob/living/carbon/perform_hand_swap(held_index)
 	. = ..()
 	if(!.)
@@ -91,7 +88,7 @@
 	return ..()
 
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(mind?.martial_art.handle_throw(hit_atom, src))
+	if(mind?.martial_art.handle_throw(hit_atom, src, throwingdatum))
 		return
 	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
 		return

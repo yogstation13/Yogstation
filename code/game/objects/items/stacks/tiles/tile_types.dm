@@ -153,6 +153,24 @@
 	turf_type = /turf/open/floor/wood
 	resistance_flags = FLAMMABLE
 
+/obj/item/stack/tile/wood/parquet
+	name = "parquet wood floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood_parquet"
+	turf_type = /turf/open/floor/wood/parquet
+
+/obj/item/stack/tile/wood/large
+	name = "large wood floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood_large"
+	turf_type = /turf/open/floor/wood/large
+
+/obj/item/stack/tile/wood/tile
+	name = "tiled wood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood_tile"
+	turf_type = /turf/open/floor/wood/tile
+
 //Bamboo
 /obj/item/stack/tile/bamboo
 	name = "bamboo mat pieces"

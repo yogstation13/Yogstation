@@ -15,12 +15,12 @@ ASH PATH SPELLS GO HERE
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	exit_jaunt_sound = null
-	jaunt_duration = 1.1 SECONDS
-	jaunt_in_time = 1.3 SECONDS
-	jaunt_out_time = 0.6 SECONDS
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
 	
@@ -37,7 +37,7 @@ ASH PATH SPELLS GO HERE
 	name = "ash_shift"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ash_shift2"
-	duration = 1.3 SECONDS
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/dir_setting/ash_shift/out
 	icon_state = "ash_shift"
@@ -57,7 +57,7 @@ ASH PATH SPELLS GO HERE
 	invocation = "CL'VE"
 	invocation_type = INVOCATION_WHISPER
 
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 4
 
@@ -117,7 +117,7 @@ ASH PATH SPELLS GO HERE
 	invocation_type = INVOCATION_WHISPER
 	
 	cooldown_time = 30 SECONDS
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	/// The length of the flame line spit out.
 	var/flame_line_length = 15
@@ -184,7 +184,7 @@ ASH PATH SPELLS GO HERE
 	invocation_type = INVOCATION_WHISPER
 
 	cooldown_time = 30 SECONDS
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	/// The radius the flames will go around the caster.
 	var/flame_radius = 4
@@ -220,7 +220,7 @@ ASH PATH SPELLS GO HERE
 	
 	invocation = "FL'MS"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	/// The radius of the fire ring
 	var/fire_radius = 1
@@ -282,7 +282,7 @@ ASH PATH SPELLS GO HERE
 
 	invocation = "GL'RY T' TH' N'GHT'W'TCH'ER"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/aoe/fiery_rebirth/cast(mob/living/carbon/human/cast_on)
 	cast_on.extinguish_mob()
@@ -336,5 +336,5 @@ ASH PATH SPELLS GO HERE
 
 	invocation = "FIR'AGA!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
