@@ -19,9 +19,7 @@
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
-	//Lucidity variables
 	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
-	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
 
 	//Default light damage variables (modified by some abilities)
 	var/dark_healing = 5
@@ -48,7 +46,7 @@
 	
 	data["antag_name"] = name
 	data["objectives"] = get_objectives()
-	data["lucidity_drained"] = lucidity_drained
+	data["lucidity_drained"] = SSticker.mode.lucidity
 	data["required_succs"] = SSticker.mode.required_succs
 	data["specialization"] = specialization //whether or not they've picked their specializationW
 
@@ -180,23 +178,32 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/get_admin_commands()
 	. = ..()
-	.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
-	.["Enable Sacrament"] = CALLBACK(src, PROC_REF(enable_sacrament))
+	if(darkspawn_state == MUNDANE)
+		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
+	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
+	.["Set Shop"] = CALLBACK(src, PROC_REF(set_shop))
 	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
 
-/datum/antagonist/darkspawn/proc/enable_sacrament()
-	SSticker.mode.required_succs = 0
+/datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
+	var/lucid = input(admin, "How much lucidity should all darkspawns have?") as null|num
+	if(lucid)
+		SSticker.mode.lucidity = lucid
+
+/datum/antagonist/darkspawn/proc/set_shop(mob/admin)
+	var/shop = input(admin, "How much shop currency should [owner] have?") as null|num
+	if(shop)
+		lucidity = shop
 
 /datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
-	var/thrall = input(admin, "How many veils should the darkspawns be able to get?") as null|num
+	var/thrall = input(admin, "How many veils should the darkspawn team be able to get?") as null|num
 	if(thrall)
 		SSticker.mode.max_veils = thrall
 
 /datum/antagonist/darkspawn/antag_panel_data()
-	. = "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
+	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"]<br>"
 	. += "<b>Sacrament Requirement:</b> [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
 	. += "<b>Current Lucidity:</b> [lucidity ? lucidity : "0"]<br>"
-	. += "<b>Total Lucidity:</b> [lucidity_drained ? lucidity_drained : "0"]<br>"
+	. = "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
 
 	. += "<b>Upgrades:</b><br>"
 	for(var/V in upgrades)

@@ -2,6 +2,7 @@
 	var/list/datum/mind/darkspawn = list()
 	var/list/datum/mind/veils = list()
 	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	var/lucidity = 0
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
 	var/max_veils = 1
 

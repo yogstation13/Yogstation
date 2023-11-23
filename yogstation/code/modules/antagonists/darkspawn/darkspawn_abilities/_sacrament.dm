@@ -29,8 +29,8 @@
 
 /datum/action/cooldown/spell/sacrament/cast(atom/cast_on)
 	. = ..()
-	if(!darkspawn || darkspawn.lucidity_drained < SSticker.mode.required_succs)
-		to_chat(owner, span_warning("You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])"))
+	if(!darkspawn || SSticker.mode.lucidity < SSticker.mode.required_succs)
+		to_chat(owner, span_warning("You do not have enough unique lucidity! ([SSticker.mode.lucidity] / [SSticker.mode.required_succs])"))
 		return
 	if(alert(owner, "The Sacrament is ready! Are you prepared?", name, "Yes", "No") == "No")
 		return

@@ -113,7 +113,7 @@
 		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
 		if(teammate && istype(teammate))//sanity check
 			teammate.lucidity += lucidity_amount
-			teammate.lucidity_drained += lucidity_amount
+	SSticker.mode.lucidity += lucidity_amount
 
 	to_chat(target, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	target.playsound_local(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
