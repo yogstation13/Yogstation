@@ -61684,7 +61684,7 @@
 "umX" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Armory";
-	req_access_txt = "3";
+	req_access_txt = "1";
 	security_level = 1
 	},
 /obj/machinery/door/firedoor/border_only{
