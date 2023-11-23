@@ -35,6 +35,8 @@
 	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/lasombra)
 	if(ishuman(bloodsuckerdatum.owner.current))
 		var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
+		human_user.physiology.brute_mod = 0
+		human_user.physiology.burn_mod *= 2
 		human_user.eye_color = BLOODCULT_EYE
 		human_user.updateappearance()
 	ADD_TRAIT(bloodsuckerdatum.owner.current, CULT_EYES, BLOODSUCKER_TRAIT)
