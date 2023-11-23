@@ -2680,6 +2680,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4 // Not as "destructive" as the emag. In addition, less features than the normal emag. Increase price once more impactful features are added.
 	restricted_roles = list("Clown")
 
+/datum/uplink_item/role_restricted/ai_cameragun
+	name = "AI Camera Gun Upgrade"
+	desc = "A disk containing experimental and illegal software that allows an AI to temporarily override the safety features on their cameras, enabling them to shoot a laser beam out of them."
+	item = /obj/item/cameragun_upgrade
+	cost = 8 // Considering that you have to: subvert an AI, trust the AI not to be a traitor/unsubverted, accept that every camera is gonna get disabled later, and pay more than an emag for this... 8 is fair.
+	restricted_roles = list("Roboticist", "Research Director")
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
