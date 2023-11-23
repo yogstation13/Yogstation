@@ -2,35 +2,6 @@
 	name = "The Cutting Edge"
 	desc = "Pledges yourself to the path of Blade. Allows you to transmute a bar of silver with a knife or its derivatives into a Sundered Blade. Additionally, empowers your Mansus grasp to deal brute damage and paralyze enemies hit."
 	gain_text = "Our great ancestors forged swords and practiced sparring on the eve of great battles."
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/base_ash,
-		/datum/eldritch_knowledge/base_rust,
-		/datum/eldritch_knowledge/base_flesh,
-		/datum/eldritch_knowledge/base_mind,
-		/datum/eldritch_knowledge/base_void,
-		/datum/eldritch_knowledge/base_cosmic,
-		/datum/eldritch_knowledge/base_knock,
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,
-		/datum/eldritch_knowledge/ash_final,
-		/datum/eldritch_knowledge/rust_final,
-		/datum/eldritch_knowledge/flesh_final,
-		/datum/eldritch_knowledge/mind_final,
-		/datum/eldritch_knowledge/void_final,
-		/datum/eldritch_knowledge/cosmic_final,
-		/datum/eldritch_knowledge/knock_final)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/dark_knife)
 	cost = 1
 	route = PATH_BLADE
@@ -201,14 +172,6 @@
 		That is how I met them. Their name was The Colonel."
 	desc = "Allows you to craft Eldrtich Whetstones, one time use items that can enhance the sharpness of your blades up to a certain degree."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_mark,
-		/datum/eldritch_knowledge/rust_mark,
-		/datum/eldritch_knowledge/flesh_mark,
-		/datum/eldritch_knowledge/mind_mark,
-		/datum/eldritch_knowledge/void_mark,
-		/datum/eldritch_knowledge/cosmic_mark,
-		/datum/eldritch_knowledge/knock_mark,)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/eldritch_whetstone)
 	route = PATH_BLADE
 	tier = TIER_MARK
@@ -217,7 +180,6 @@
 	. = ..()
 	var/obj/eldwhetstone = new /obj/item/sharpener/eldritch
 	user.put_in_hands(eldwhetstone)
-
 
 /datum/eldritch_knowledge/duel_stance
 	name = "T2 - Stance of the Torn Champion"
@@ -241,6 +203,7 @@
 	gain_text = "In the flurry of death, he found peace within himself. Despite insurmountable odds, he forged on."
 	cost = 1
 	spell_to_add = /datum/action/cooldown/spell/realignment
+	route = PATH_BLADE
 	tier = TIER_2
 
 /datum/eldritch_knowledge/duel_stance/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
@@ -287,14 +250,6 @@
 	gain_text = "I found him cleaved in twain, halves locked in a duel without end; \
 		a flurry of blades, neither hitting their mark, for the Champion was indomitable."
 	cost = 2
-	banned_knowledge = list(
-		/datum/eldritch_knowledge/ash_blade_upgrade,
-		/datum/eldritch_knowledge/rust_blade_upgrade,
-		/datum/eldritch_knowledge/flesh_blade_upgrade,
-		/datum/eldritch_knowledge/mind_blade_upgrade,
-		/datum/eldritch_knowledge/void_blade_upgrade,
-		/datum/eldritch_knowledge/cosmic_blade_upgrade,
-		/datum/eldritch_knowledge/knock_blade_upgrade,)
 	unlocked_transmutations = list(/datum/eldritch_transmutation/bone_knife)
 	route = PATH_BLADE
 	tier = TIER_BLADE
