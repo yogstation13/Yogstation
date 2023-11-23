@@ -45,7 +45,7 @@
 			aSignal = new /obj/item/assembly/signaler/anomaly/bluespace(src)
 		if(ANOMALY_VORTEX)
 			aSignal = new /obj/item/assembly/signaler/anomaly/vortex(src)
-		
+
 	aSignal.code = rand(1,100)
 
 	var/frequency = rand(MIN_FREE_FREQ, MAX_FREE_FREQ)
@@ -477,7 +477,7 @@
 		var/static/list/messages = list(
 			"You feel your conscious mind fall apart!",
 			"Reality warps around you!",
-			"Something's wispering around you!",
+			"Something's whispering around you!",
 			"You are going insane!",
 			"What was that?!"
 		)

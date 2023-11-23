@@ -76,7 +76,7 @@
 			SpellAdd(/datum/action/cooldown/spell/pointed/mind_transfer, 5)
 
 /datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 1, custom_name = "") //0 is the first level (cause logic (arrays start at one))
-	var/datum/action/cooldown/spell/spell_to_add = new spellType(owner.current)
+	var/datum/action/cooldown/spell/spell_to_add = new spellType(owner)
 	spell_to_add.Grant(owner.current)
 	spell_to_add.spell_level = level
 	spell_to_add.name = length(custom_name) ? custom_name : "Instant [spell_to_add.name]"

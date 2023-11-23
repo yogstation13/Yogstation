@@ -4,6 +4,39 @@ VOID PATH SPELLS GO HERE
 
 */
 
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void
+	name = "Void Shift"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "voidblink"
+	sound = null
+
+	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
+
+	exit_jaunt_sound = null
+	jaunt_duration = 1.5 SECONDS
+	jaunt_in_time = 0.5 SECONDS
+	jaunt_out_time = 0.5 SECONDS
+	jaunt_in_type = /obj/effect/temp_visual/dir_setting/void_shift
+	jaunt_out_type = /obj/effect/temp_visual/dir_setting/void_shift/out
+
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/void/do_steam_effects()
+	return
+
+/obj/effect/temp_visual/dir_setting/void_shift
+	name = "void_shift"
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "void_blink_in"
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/dir_setting/void_shift/out
+	icon_state = "void_blink_out"
+
 /datum/action/cooldown/spell/pointed/void_phase
 	name = "Void Phase"
 	desc = "Let's you blink to your pointed destination, causes 3x3 aoe damage bubble \
@@ -20,7 +53,7 @@ VOID PATH SPELLS GO HERE
 
 	invocation = "RE'L'TY PH'S'E."
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	cast_range = 5
 	/// The minimum range to cast the phase.
@@ -95,7 +128,7 @@ VOID PATH SPELLS GO HERE
 
 	invocation = "FR'ZE!"
 	invocation_type = INVOCATION_SHOUT
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	// In room temperature, the ice won't last very long
 	// ...but in space / freezing rooms, it will stick around
@@ -130,7 +163,7 @@ VOID PATH SPELLS GO HERE
 
 	cooldown_time = 50 SECONDS
 	aoe_radius = 2
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/aoe/slip/void/cast_on_thing_in_aoe(turf/open/target)
 	target.MakeSlippery(TURF_WET_PERMAFROST, 15 SECONDS, 15 SECONDS)
@@ -150,7 +183,7 @@ VOID PATH SPELLS GO HERE
 
 	invocation = "BR'NG F'RTH TH'M T' M'."
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
+	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION | SPELL_REQUIRES_NO_ANTIMAGIC
 
 	aoe_radius = 7
 	/// The radius of the actual damage circle done before cast

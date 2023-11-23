@@ -162,6 +162,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///what type of gas is breathed
 	var/breathid = "o2"
 
+	/// The icon_state of the fire overlay added when sufficently ablaze and standing. see onfire.dmi
+	var/fire_overlay = "human" //not used until monkey is added as a species type rather than a mob
+
 	//Do NOT remove by setting to null. use OR make a RESPECTIVE TRAIT (removing stomach? add the NOSTOMACH trait to your species)
 	//why does it work this way? because traits also disable the downsides of not having an organ, removing organs but not having the trait will make your species die
 
@@ -715,7 +718,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 								flower_overlay.color = fixed_mut_color
 							else
 								flower_overlay.color = hair_color
-						else		
+						else
 							flower_overlay.color = H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
 					standing += flower_overlay
@@ -1495,6 +1498,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(health_deficiency >= H.maxHealth * 0.4)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
+				if(HAS_TRAIT(H, TRAIT_HIGHRESISTDAMAGESLOWDOWN))
+					health_deficiency *= 0.25
 				if(flight)
 					health_deficiency *= 0.333
 				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png https://www.desmos.com/calculator/qsf6iakqgp
@@ -1970,9 +1975,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(environment.get_moles(/datum/gas/water_vapor) > 10)//water vapour above a certain amount makes you wet
 		if(environment.get_moles(/datum/gas/water_vapor) > 40)//if there's a lot of water vapour, preterni ded
-			H.adjust_fire_stacks(-3)
+			H.adjust_wet_stacks(3)
 		else
-			H.adjust_fire_stacks(-2)
+			H.adjust_wet_stacks(2)
 
 	var/loc_temp = H.get_temperature(environment)
 	var/heat_capacity_factor = min(1, environment.heat_capacity() / environment.return_volume())
@@ -2090,67 +2095,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 // FIRE //
 //////////
 
-/datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
-	if(!Canignite_mob(H))
-		return TRUE
-	if(H.on_fire)
-		//the fire tries to damage the exposed clothes and items
-		var/list/burning_items = list()
-		var/list/obscured = H.check_obscured_slots(TRUE)
-		//HEAD//
-
-		if(H.glasses && !(ITEM_SLOT_EYES in obscured))
-			burning_items += H.glasses
-		if(H.wear_mask && !(ITEM_SLOT_MASK in obscured))
-			burning_items += H.wear_mask
-		if(H.wear_neck && !(ITEM_SLOT_NECK in obscured))
-			burning_items += H.wear_neck
-		if(H.ears && !(ITEM_SLOT_EARS in obscured))
-			burning_items += H.ears
-		if(H.head)
-			burning_items += H.head
-
-		//CHEST//
-		if(H.w_uniform && !(ITEM_SLOT_ICLOTHING in obscured))
-			burning_items += H.w_uniform
-		if(H.wear_suit)
-			burning_items += H.wear_suit
-
-		//ARMS & HANDS//
-		var/obj/item/clothing/arm_clothes = null
-		if(H.gloves && !(ITEM_SLOT_GLOVES in obscured))
-			arm_clothes = H.gloves
-		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & HANDS) || (H.wear_suit.body_parts_covered & ARMS)))
-			arm_clothes = H.wear_suit
-		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
-			arm_clothes = H.w_uniform
-		if(arm_clothes)
-			burning_items |= arm_clothes
-
-		//LEGS & FEET//
-		var/obj/item/clothing/leg_clothes = null
-		if(H.shoes && !(ITEM_SLOT_FEET in obscured))
-			leg_clothes = H.shoes
-		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & FEET) || (H.wear_suit.body_parts_covered & LEGS)))
-			leg_clothes = H.wear_suit
-		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & FEET) || (H.w_uniform.body_parts_covered & LEGS)))
-			leg_clothes = H.w_uniform
-		if(leg_clothes)
-			burning_items |= leg_clothes
-
-		for(var/X in burning_items)
-			var/obj/item/I = X
-			I.fire_act((H.fire_stacks * 50)) //damage taken is reduced to 2% of this value by fire_act()
-
-		var/thermal_protection = H.get_thermal_protection()
-
-		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
-			return
-		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
-			H.adjust_bodytemperature(11)
-		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 2))
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+/datum/species/proc/handle_fire(mob/living/carbon/human/H, seconds_per_tick, no_protection = FALSE)
+	return no_protection
 
 /datum/species/proc/Canignite_mob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
@@ -2475,7 +2421,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/get_species_diet()
 	if(TRAIT_NOHUNGER in inherent_traits)
 		return null
-	
+
 	if(TRAIT_POWERHUNGRY in inherent_traits)
 		return null
 
@@ -2777,7 +2723,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "Toxins damage dealt to [plural_form] are reversed - healing toxins will instead cause harm, and \
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
-		
+
 	return to_add
 
 /**
@@ -2796,7 +2742,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
 				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
 		))
-	
+
 	if(inherent_biotypes & MOB_ROBOTIC)//species traits is basically inherent traits
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,

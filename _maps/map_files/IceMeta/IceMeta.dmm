@@ -51204,6 +51204,10 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
+"oUt" = (
+/obj/machinery/rnd/server/master,
+/turf/open/floor/circuit/telecomms/server,
+/area/science/server)
 "oUy" = (
 /obj/structure/chair{
 	dir = 8
@@ -67999,16 +68003,6 @@
 "tQH" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"tQI" = (
-/obj/machinery/airalarm/server{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/science/server)
 "tQJ" = (
 /obj/item/flashlight/lantern{
 	pixel_y = 7
@@ -74827,6 +74821,16 @@
 	},
 /turf/open/floor/wood,
 /area/bridge/showroom/corporate)
+"vKY" = (
+/obj/machinery/airalarm/server{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/science/server)
 "vLa" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -117136,8 +117140,8 @@ ixR
 ddI
 rjn
 qTF
-lWy
-tQI
+oUt
+vKY
 lWy
 qTF
 dVG

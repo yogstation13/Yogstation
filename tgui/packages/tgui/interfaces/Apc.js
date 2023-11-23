@@ -7,7 +7,7 @@ export const Apc = (props, context) => {
   return (
     <Window
       width={450}
-      height={445}
+      height={455}
       resizable>
       <Window.Content scrollable>
         <ApcContent />
@@ -201,6 +201,14 @@ const ApcContent = (props, context) => {
                 content={data.emergencyLights ? 'Enabled' : 'Disabled'}
                 disabled={locked}
                 onClick={() => act('emergency_lighting')} />
+            )} />
+          <LabeledList.Item
+            label="Light Switch"
+            buttons={(
+            <Button
+              icon="lightbulb-o"
+              content={data.lights ? 'Enabled' : 'Disabled'}
+              onClick={() => act('toggle_lights')} />
             )} />
           <LabeledList.Item
             label="Night Shift Lighting"
