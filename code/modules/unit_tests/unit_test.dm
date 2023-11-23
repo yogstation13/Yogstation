@@ -130,11 +130,12 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	var/skip_test = (test_path in SSmapping.config.skipped_tests)
 	var/test_output_desc = "[test_path]"
 	var/message = ""
+	var/map_name = SSmapping.config.map_name
 
 	log_world("::group::[test_path]")
 
 	if(skip_test)
-		log_world("[TEST_OUTPUT_YELLOW("SKIPPED")] Skipped run on map [SSmapping.config.map_name].")
+		log_world("[TEST_OUTPUT_YELLOW("SKIPPED")] Skipped run on map [map_name].")
 
 	else
 
@@ -144,7 +145,9 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		GLOB.current_test = null
 		GLOB.failed_any_test |= !test.succeeded
 
-		var/list/log_entry = list()
+		var/list/log_entry = list(
+			"[test.succeeded ? TEST_OUTPUT_GREEN("PASS") : TEST_OUTPUT_RED("FAIL")]: [test_path] [duration / 10]s"
+		)
 		var/list/fail_reasons = test.fail_reasons
 
 		for(var/reasonID in 1 to LAZYLEN(fail_reasons))
@@ -153,6 +156,14 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 			var/line = fail_reasons[reasonID][3]
 
 			test.log_for_test(text, "error", file, line)
+
+			// Github action annotation.
+			// See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+			// Need to escape the text to properly support newlines.
+			var/annotation_text = replacetext(text, "%", "%25")
+			annotation_text = replacetext(annotation_text, "\n", "%0A")
+
+			log_world("::error file=[file],line=[line],title=[map_name]: [test_path]::[annotation_text]")
 
 			// Normal log message
 			log_entry += "\tFAILURE #[reasonID]: [text] at [file]:[line]"
@@ -166,9 +177,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 			log_world("[TEST_OUTPUT_GREEN("PASS")] [test_output_desc]")
 
 	log_world("::endgroup::")
-
-	if (!test.succeeded && !skip_test)
-		log_world("::error::[TEST_OUTPUT_RED("FAIL")] [test_output_desc]")
 
 	var/final_status = skip_test ? UNIT_TEST_SKIPPED : (test.succeeded ? UNIT_TEST_PASSED : UNIT_TEST_FAILED)
 	test_results[test_path] = list("status" = final_status, "message" = message, "name" = test_path)

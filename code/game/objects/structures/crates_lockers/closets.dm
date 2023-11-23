@@ -78,6 +78,12 @@ GLOBAL_LIST_EMPTY(lockers)
 	GLOB.lockers -= src
 	return ..()
 
+/obj/structure/closet/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(var_name == NAMEOF(src, locked))
+		update_appearance()
+		. = TRUE
+
 /obj/structure/closet/update_overlays()
 	. = ..()
 	if(opened)

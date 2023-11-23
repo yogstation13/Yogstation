@@ -4,9 +4,9 @@
  * @license MIT
  */
 
-import { clamp01 } from 'common/math';
+import { Loader } from "./common/Loader";
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Section, Input } from '../components';
+import { Button, Flex, Section, Input } from '../components';
 import { Window } from '../layouts';
 
 const ARROW_KEY_UP = 38;
@@ -194,19 +194,5 @@ export const ListInput = (props, context) => {
         </Flex>
       </Window.Content>
     </Window>
-  );
-};
-
-export const Loader = props => {
-  const { value } = props;
-  return (
-    <div
-      className="ListInput__Loader">
-      <Box
-        className="ListInput__LoaderProgress"
-        style={{
-          width: clamp01(value) * 100 + '%',
-        }} />
-    </div>
   );
 };

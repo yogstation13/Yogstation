@@ -19,6 +19,7 @@ BONUS
 /datum/symptom/itching
 
 	name = "Itching"
+	icon = "itching"
 	desc = "The virus irritates the skin, causing itching."
 	stealth = 0
 	resistance = 3
