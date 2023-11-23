@@ -445,8 +445,9 @@
 	var/mob/living/carbon/human/bloodsucker = owner.current
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-	bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
-	bloodsucker.physiology.burn_mod = initial(bloodsucker.physiology.brute_mod)
+	if(my_clan != CLAN_LASOMBRA)
+		bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
+	bloodsucker.physiology.burn_mod /= 0.75
 	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
 	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
