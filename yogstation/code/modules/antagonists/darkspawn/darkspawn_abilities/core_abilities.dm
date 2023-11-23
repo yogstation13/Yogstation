@@ -88,31 +88,32 @@
 
 	REMOVE_TRAIT(target, TRAIT_PARALYSIS, type)
 
-	var/lucidity_amount = 5
+	var/willpower_amount = 4
+	var/lucidity_amount = 1
 	var/list/self_text = list() //easier to format this way
 	self_text += span_velvet("<b>...aranupdejc</b>")
-	self_text += span_velvet("You devour [target]'s will. Your Psi has been fully restored.")
-	self_text += span_velvet("Additionally, you have gained [lucidity_amount] lucidity. Use it to purchase and upgrade abilities.")
+	self_text += span_velvet("You devour [target]'s will.")
+	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED)) //change the numbers before text
+		lucidity_amount = 0
+		willpower_amount *= 0.5
+		willpower_amount = round(willpower_amount) //make sure it's a whole number still
+	
+	self_text += span_velvet("You have gained [willpower_amount] willpower. Use willpower to purchase abilities and passives.")
 	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
-		lucidity_amount *= 0.5
-		lucidity_amount = round(lucidity_amount) //make sure it's a whole number still
-		self_text += span_warning("[target] has already been devoured before so they have granted less lucidity.")
+		self_text += span_warning("[target]'s mind is already damaged by previous devouring and has granted less willpower and no lucidity.")
 	else
-		self_text += span_warning("[target] will also grant less lucidity any future times their will is devoured.")
+		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
+		self_text += span_warning("After meddling with [target]'s mind, they will grant less willpower and no lucidity any future times their will is devoured.")
+
 	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
 
 	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
-
 	playsound(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 
-	darkspawn.psi = darkspawn.psi_cap
-	darkspawn.update_psi_hud()
-
-	to_chat(caster, "<span class ='velvet'> This individual's lucidity brings you one step closer to the sacrament...</span>")
 	for(var/datum/mind/dark_mind in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/antagonist/darkspawn/teammate = dark_mind.has_antag_datum(/datum/antagonist/darkspawn)
 		if(teammate && istype(teammate))//sanity check
-			teammate.lucidity += lucidity_amount
+			teammate.willpower += willpower_amount
 	SSticker.mode.lucidity += lucidity_amount
 
 	to_chat(target, span_userdanger("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))

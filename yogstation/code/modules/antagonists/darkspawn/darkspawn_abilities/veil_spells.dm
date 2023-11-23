@@ -5,7 +5,7 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/veil_mind
 	name = "Veil mind"
-	desc = "Consume a lucidity to veil a target's mind. To be eligible, they must be alive and recently drained by Devour Will."
+	desc = "Consume a 2 willpower to veil a target's mind. To be eligible, they must be alive and recently drained by Devour Will."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -18,20 +18,32 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 	invocation_type = INVOCATION_NONE
 	psi_cost = 100
 	hand_path = /obj/item/melee/touch_attack/darkspawn
+	var/willpower_cost = 2
 
 /datum/action/cooldown/spell/touch/veil_mind/is_valid_target(atom/cast_on)
 	return ishuman(cast_on)
 
 /datum/action/cooldown/spell/touch/veil_mind/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
+	if(!isdarkspawn(caster))//sanity check
+		return
 	if(!target.mind && !target.last_mind)
 		to_chat(owner, "This mind is too feeble to even be worthy of veiling.")
 		return
 	if(!target.getorganslot(ORGAN_SLOT_BRAIN))
 		to_chat(owner, span_danger("[target]'s brain is missing, you lack the conduit to control them."))
 		return FALSE
-	if(!(target.has_status_effect(STATUS_EFFECT_BROKEN_WILL) || isveil(target)))
-		to_chat(owner, span_velvet("[target]'s will is still too strong to veil"))
-		return FALSE
+	if(isdarkspawn(target))
+		to_chat(owner, span_progenitor("You will never be strong enough to control the will of another."))
+		return
+	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
+	if(!isveil(target))
+		if(!target.has_status_effect(STATUS_EFFECT_BROKEN_WILL))
+			to_chat(owner, span_velvet("[target]'s will is still too strong to veil."))
+			return FALSE
+		if(master.willpower < willpower_cost)
+			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
+			return FALSE
+
 	to_chat(owner, span_velvet("You begin to channel your psionic powers through [target]'s mind."))
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
 	if(!do_after(owner, 2 SECONDS, owner))
@@ -42,6 +54,10 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		target.revive(TRUE, TRUE)
 		target.grab_ghost()
 	else if(target.add_veil())
+		if(master.willpower < willpower_cost) //sanity check
+			to_chat(owner, span_velvet("You do not have enough will to veil [target]."))
+			return FALSE
+		master.willpower -= willpower_cost
 		to_chat(owner, span_velvet("<b>[target.real_name]</b> has become a veil!"))
 	else
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))

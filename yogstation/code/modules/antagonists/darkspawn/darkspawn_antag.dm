@@ -19,7 +19,7 @@
 	COOLDOWN_DECLARE(psi_cooldown)//When this finishes it's cooldown, regenerate Psi and restart
 	var/psi_regenerating = FALSE //Used to prevent duplicate regen proc calls
 
-	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
+	var/willpower = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
 
 	//Default light damage variables (modified by some abilities)
 	var/dark_healing = 5
@@ -36,9 +36,8 @@
 /datum/antagonist/darkspawn/ui_data(mob/user)
 	var/list/data = list()
 
-	data["lucidity"] = lucidity
+	data["willpower"] = willpower
 	
-
 	return data
 
 /datum/antagonist/darkspawn/ui_static_data(mob/user)
@@ -181,7 +180,7 @@
 	if(darkspawn_state == MUNDANE)
 		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
 	.["Set Lucidity"] = CALLBACK(src, PROC_REF(set_lucidity))
-	.["Set Shop"] = CALLBACK(src, PROC_REF(set_shop))
+	.["Set Willpower"] = CALLBACK(src, PROC_REF(set_shop))
 	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
 
 /datum/antagonist/darkspawn/proc/set_lucidity(mob/admin)
@@ -190,9 +189,9 @@
 		SSticker.mode.lucidity = lucid
 
 /datum/antagonist/darkspawn/proc/set_shop(mob/admin)
-	var/shop = input(admin, "How much shop currency should [owner] have?") as null|num
-	if(shop)
-		lucidity = shop
+	var/will = input(admin, "How much willpower should [owner] have?") as null|num
+	if(will)
+		willpower = will
 
 /datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
 	var/thrall = input(admin, "How many veils should the darkspawn team be able to get?") as null|num
@@ -202,7 +201,7 @@
 /datum/antagonist/darkspawn/antag_panel_data()
 	. += "<b>Lucidity:</b> [SSticker.mode.lucidity ? SSticker.mode.lucidity : "0"]<br>"
 	. += "<b>Sacrament Requirement:</b> [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
-	. += "<b>Current Lucidity:</b> [lucidity ? lucidity : "0"]<br>"
+	. += "<b>Willpower:</b> [willpower ? willpower : "0"]<br>"
 	. = "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
 
 	. += "<b>Upgrades:</b><br>"

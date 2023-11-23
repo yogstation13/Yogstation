@@ -17,7 +17,7 @@
 	///Icon that gets displayed
 	var/icon = ""
 	///Cost of to learn this
-	var/lucidity_cost = 0
+	var/willpower_cost = 0
 	///What specialization can buy this
 	var/shadow_flags = NONE
 	///what ability is granted if any
@@ -39,12 +39,12 @@
 		return FALSE
 	if(shadow_flags && !(darkspawn.specialization & shadow_flags))//they shouldn't even be shown it in the first place, but just in case
 		return FALSE
-	if(darkspawn.lucidity < lucidity_cost)
+	if(darkspawn.willpower < willpower_cost)
 		return FALSE
 
 	if(learn_text)
 		to_chat(owner, span_velvet(learn_text))
-	darkspawn.lucidity -= lucidity_cost
+	darkspawn.willpower -= willpower_cost
 	//darkspawn.upgrades |= src //add it to the list
 	on_gain()
 	if(learned_ability)
@@ -62,7 +62,7 @@
 /datum/psi_web/proc/remove(refund = FALSE)
 	on_loss()
 	if(refund)
-		darkspawn.lucidity += lucidity_cost
+		darkspawn.willpower += willpower_cost
 	darkspawn.upgrades -= src //add it to the list
 	return QDEL_HINT_QUEUE
 
@@ -108,7 +108,7 @@
 /datum/psi_web/psi_cap
 	name = "\'Psi\' Sigils"
 	desc = "The Atlwjz sigils, representing Psi, are etched onto the forehead. Unlocking these sigils increases your maximum Psi by 25."
-	lucidity_cost = 2
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -122,7 +122,7 @@
 /datum/psi_web/psi_regen
 	name = "\'Recovery\' Sigil"
 	desc = "The Mqeygjao sigil, representing swiftness, is etched onto the forehead. Unlocking this sigil causes your Psi to regenerate 3 ticks sooner, and you will regenerate up to 25 Psi instead of 20."
-	lucidity_cost = 1
+	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = WARLOCK
 
@@ -138,7 +138,7 @@
 /datum/psi_web/dark_healing
 	name = "\'Mending\' Sigil"
 	desc = "The Naykranu sigil, representing perseverence, is etched onto the back. Unlocking this sigil increases your healing in darkness by 25%."
-	lucidity_cost = 1
+	willpower_cost = 1
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
@@ -152,7 +152,7 @@
 /datum/psi_web/light_resistance
 	name = "\'Lightward\' Sigil"
 	desc = "The Lnkpayp sigil, representing imperviousness, is etched onto the abdomen. Unlocking this sigil halves light damage taken and protects from dim light."
-	lucidity_cost = 2
+	willpower_cost = 2
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER
 
@@ -168,7 +168,7 @@
 /datum/psi_web/spacewalking
 	name = "\'Starlight\' Sigils"
 	desc = "The Jaxqhw sigils, representing the void, are etched multiple times across the body. Unlocking these sigils provides the ability to walk freely in space without fear of starlight."
-	lucidity_cost = 3
+	willpower_cost = 3
 	menu_tab = STORE_PASSIVE
 	shadow_flags = FIGHTER | SCOUT
 
@@ -185,7 +185,7 @@
 /datum/psi_web/twin_tendrils
 	name = "\'Duality\' Sigils"
 	desc = "The Zkqxha sigils, representing duality, are etched onto the arms. Unlocking these sigils causes tendrils to form in both hands if possible, which empowers both."
-	lucidity_cost = 1
+	willpower_cost = 1
 	shadow_flags = FIGHTER
 	menu_tab = STORE_PASSIVE
 
