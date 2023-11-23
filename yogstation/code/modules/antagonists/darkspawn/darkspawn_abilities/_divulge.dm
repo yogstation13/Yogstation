@@ -27,34 +27,41 @@
 	if(!ishuman(user))
 		to_chat(user, span_warning("You need to be human-er to do that!"))
 		return
+
 	if(isethereal(user))//disable the light for long enough to start divulge
 		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 			
 	if(spot.get_lumcount() > SHADOW_SPECIES_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return
+
 	if(alert(user, "You are ready to divulge. Are you sure?", name, "Yes", "No") == "No")
 		return
 	in_use = TRUE
+
 	if(istype(user.dna.species, /datum/species/pod))
 		to_chat(user, span_notice("Your disguise is stabilized by the divulgance..."))
 		user.reagents.add_reagent(/datum/reagent/medicine/salbutamol,20)
+
 	if(istype(user.dna.species, /datum/species/plasmaman))
 		to_chat(user, span_notice("Your bones harden to protect you from the atmosphere..."))
 		user.set_species(/datum/species/skeleton)
-	user.visible_message("<b>[user]</b> flaps their wings.", span_velvet("You begin creating a psychic barrier around yourself..."))
+
+	to_chat(user, span_velvet("You begin creating a psychic barrier around yourself..."))
 	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return
-	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "divulge")
-	notify_ghosts("Darkspawn [user.real_name] has begun divulging at [get_area(user)]! ", source = user, ghost_sound = 'yogstation/sound/magic/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
-	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will keep you shielded to a point.."))
-	user.visible_message(span_danger("[user] slowly rises into the air, their belongings falling away, and begins to shimmer..."), \
-						"<span class='velvet big'><b>You begin the removal of your human disguise. You will be completely vulnerable during this time.</b></span>")
-	user.setDir(SOUTH)
-	user.unequip_everything()
 	for(var/turf/T in RANGE_TURFS(1, user))
 		new/obj/structure/psionic_barrier(T, 35 SECONDS)
+	user.visible_message(span_warning("A vortex of violet energies surrounds [user]!"), span_velvet("Your barrier will keep you shielded to a point.."))
+
+	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "divulge")
+	notify_ghosts("Darkspawn [user.real_name] has begun divulging at [get_area(user)]! ", source = user, ghost_sound = 'yogstation/sound/magic/devour_will_victim.ogg', alert_overlay = alert_overlay, action = NOTIFY_ORBIT)
+
+	user.visible_message(span_danger("[user] slowly rises into the air, their belongings falling away, and begins to shimmer..."), span_progenitor("You begin the removal of your human disguise. You will be completely vulnerable during this time."))
+	user.setDir(SOUTH)
+	user.unequip_everything()
+
 	for(var/stage in 1 to 3)
 		if(isethereal(user))//keep the light disabled
 			user.dna.species.spec_emp_act(user, EMP_HEAVY)
@@ -81,31 +88,25 @@
 	if(isethereal(user))//keep the light disabled
 		user.dna.species.spec_emp_act(user, EMP_HEAVY)
 	playsound(user, 'yogstation/sound/magic/divulge_ending.ogg', 50, 0)
-	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>Your mind...! can't--- THINK--</span>")
+	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), span_progenitor("Your mind...! can't--- THINK--"))
 	animate(user, pixel_y = user.pixel_y + 8, time = 6 SECONDS)
 	sleep(4.5 SECONDS)
+
 	user.Shake(5, 5, 11 SECONDS)
 	for(var/i in 1 to 20)
-		to_chat(user, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", "<i>THINK!!!</i>")]</span>")
+		to_chat(user, span_progenitor("[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-", "<i>THINK!!!</i>")]"))
 		sleep(0.1 SECONDS) //Spooky flavor message spam
-	user.visible_message(span_userdanger("A tremendous shockwave emanates from [user]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
+
+	user.visible_message(span_userdanger("A tremendous shockwave emanates from [user]!"), span_progenitor("YOU ARE FREE!!"))
 	playsound(user, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
 	animate(user, color = initial(user.color), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
+
 	for(var/mob/living/L in view(7, user))
-		if(L == user)
+		if(is_darkspawn_or_veil(L) || L == user) //probably won't have veils yet, but might as well check just in case
 			continue
 		L.flash_act(1, 1)
 		L.Knockdown(5 SECONDS)
-	var/old_name = user.real_name
-	var/processed_message = span_velvet("<b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b>")
-	for(var/T in GLOB.alive_mob_list)
-		var/mob/M = T
-		if(is_darkspawn_or_veil(M))
-			to_chat(M, processed_message)
-	for(var/T in GLOB.dead_mob_list)
-		var/mob/M = T
-		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
+
 	if(isdarkspawn(owner))//sanity check
 		var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
-		if(darkspawn.divulge())
-			Remove(user)//they don't need it anymore
+		darkspawn.divulge()

@@ -9,6 +9,8 @@
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	antag_moodlet = /datum/mood_event/sling
 
+	var/disguise_name //name of the player character
+
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
 	var/psi_cap = 100 //Max Psi by default
@@ -30,6 +32,9 @@
 	
 	var/specialization = NONE
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------UI and Psi web stuff--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/ui_data(mob/user)
 	var/list/data = list()
 
@@ -61,7 +66,9 @@
 			//var/datum/psi_web/selected = new upgrade_path
 			SEND_SIGNAL(owner, COMSIG_DARKSPAWN_PURCHASE_POWER, upgrade_path)
 
-// Antagonist datum things like assignment //
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Gain and loss stuff---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/on_gain()
 	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
@@ -104,50 +111,29 @@
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
 
-//Round end stuff
-/datum/antagonist/darkspawn/proc/check_darkspawn_death()
-	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
-		var/datum/mind/dark_mind = DM
-		if(istype(dark_mind))
-			if((dark_mind?.current?.stat != DEAD) && ishuman(dark_mind.current))
-				return FALSE
-	return TRUE
-
-/datum/antagonist/darkspawn/roundend_report()
-	return "[owner ? printplayer(owner) : "Unnamed Darkspawn"]"
-
-/datum/antagonist/darkspawn/roundend_report_header()
-	if(SSticker.mode.sacrament_done)
-		return "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
-	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
-		return "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
-	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		return "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
-	else
-		return "<span class='redtext big'>The darkspawn have failed!</span><br>"
-
-//Admin panel stuff
-/datum/antagonist/darkspawn/antag_panel_data()
-	. = "<b>Upgrades:</b><br>"
-	for(var/V in upgrades)
-		. += "[V]<br>"
-
-//i have deleted all admin procs because i don't want to have to worry about those while reworking it, they can be added in a later PR
-//i'm making this rework for the players (and for me) not the admins
-
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Greet and Objective---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/greet()
-	to_chat(owner.current, "<span class='velvet bold big'>You are a darkspawn!</span>")
-	to_chat(owner.current, "<i>Append :[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN] before your message to silently speak with any other darkspawn.</i>")
-	to_chat(owner.current, "<i>When you're ready, retreat to a hidden location and Divulge to shed your human skin.</i>")
-	to_chat(owner.current, span_boldwarning("If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly."))
-	to_chat(owner.current, "<i>Remember that this will make you die in the light and heal in the dark - keep to the shadows.</i>")
-	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
+	var/mob/user = owner.current
+	if(!user) //sanity check
+		return
+		
+	user.playsound_local(get_turf(user), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
+
+	var/list/report = list()
+	report += span_progenitor("You are a darkspawn!")
+	report += span_notice("Add :[MODE_KEY_DARKSPAWN] or .[MODE_KEY_DARKSPAWN] before your message to silently speak with any other darkspawn.")
+	report += "When you are ready, retreat to a hidden location and Divulge to shed your human skin."
+	report += "Remember that this will make you die in the light and heal in the dark - keep to the shadows."
+	report += span_boldwarning("If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly.")
+	to_chat(user, report.Join("<br>"))
 
 /datum/objective/darkspawn
 	explanation_text = "Become lucid and perform the Sacrament."
 
 /datum/objective/darkspawn/update_explanation_text()
-	explanation_text = "Become lucid and perform the Sacrament. You will need to devour [SSticker.mode.required_succs] different people's wills and purchase all passive upgrades to do so."
+	explanation_text = "Devour enough wills to gain [SSticker.mode.required_succs] lucidity and perform the sacrament."
 
 /datum/objective/darkspawn/check_completion()
 	if(..())
@@ -155,15 +141,69 @@
 	return (SSticker.mode.sacrament_done)
 
 ////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Round End stuff-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/roundend_report()
+	return "[owner ? printplayer(owner) : "Unnamed Darkspawn"]"
+
+/datum/antagonist/darkspawn/roundend_report_header() //put lore flavour in here
+	var/list/report = list()
+
+	if(SSticker.mode.sacrament_done)
+		report += "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
+	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
+		report += "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
+	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+		report += "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
+	else //fallback in case the round ends weirdly
+		report += "<span class='redtext big'>The darkspawn have failed!</span><br>"
+
+	return report
+
+/datum/antagonist/darkspawn/proc/check_darkspawn_death() //check if a darkspawn is still alive
+	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
+		var/datum/mind/dark_mind = DM
+		if(istype(dark_mind) && (dark_mind?.current?.stat != DEAD))
+			return FALSE
+	return TRUE
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Admin panel stuff---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/get_admin_commands()
+	. = ..()
+	.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
+	.["Enable Sacrament"] = CALLBACK(src, PROC_REF(enable_sacrament))
+	.["Set Max Veils"] = CALLBACK(src, PROC_REF(set_max_veils))
+
+/datum/antagonist/darkspawn/proc/enable_sacrament()
+	SSticker.mode.required_succs = 0
+
+/datum/antagonist/darkspawn/proc/set_max_veils()
+	var/thrall = input(mob_user, "How many veils should the darkspawns be able to get?") as null|num
+	if(thrall)
+		SSticker.mode.max_veils = thrall
+
+/datum/antagonist/darkspawn/antag_panel_data()
+	. = "<b>Max Veils:</b> [SSticker.mode.max_veils ? SSticker.mode.max_veils : "0"]<br>"
+	. += "<b>Sacrament Requirement:</b> [SSticker.mode.required_succs ? SSticker.mode.required_succs : "0"]<br>"
+	. += "<b>Current Lucidity:</b> [lucidity ? lucidity : "0"]<br>"
+	. += "<b>Total Lucidity:</b> [lucidity_drained ? lucidity_drained : "0"]<br>"
+
+	. += "<b>Upgrades:</b><br>"
+	for(var/V in upgrades)
+		. += "[V]<br>"
+
+////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Psi regen and usage-------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/process() //This is here since it controls most of the Psi stuff
+/datum/antagonist/darkspawn/process(delta_time)
 	psi = min(psi, psi_cap)
 	if(psi < psi_cap && COOLDOWN_FINISHED(src, psi_cooldown) && !psi_regenerating)
 		if(owner.current && HAS_TRAIT(owner.current, TRAIT_DARKSPAWN_PSIBLOCK))
-			if(psi_regen_delay)
+			if(psi_regen_delay) //prevent regeneration
 				COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
-			return //prevent regeneration
+			return 
 		regenerate_psi()
 	update_psi_hud()
 
@@ -198,7 +238,61 @@
 	counter.maptext = ANTAG_MAPTEXT(psi, COLOR_DARKSPAWN_PSI)
 
 ////////////////////////////////////////////////////////////////////////////////////
-//-------------------------------------Divulge------------------------------------//
+//-----------------------------------Divulge--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/darkspawn/proc/divulge(forced = FALSE)
+	if(darkspawn_state >= DIVULGED)
+		return FALSE
+		
+	var/mob/living/carbon/human/user = owner.current
+
+	if(!user || !istype(user))//sanity check
+		return
+
+	if(forced)
+		owner.current.visible_message(
+			span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), 
+			span_userdanger("You have forcefully divulged!"))
+
+	for(var/datum/action/cooldown/spell/spells in user.actions) //remove the ability that triggers this
+		if(istype(spells, /datum/action/cooldown/spell/divulge))
+			spells.Remove(user)
+			qdel(spells)
+
+
+	disguise_name = user.real_name //keep track of the old name
+	user.fully_heal()
+	user.set_species(/datum/species/shadow/darkspawn)
+	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
+
+	show_to_ghosts = TRUE
+	var/processed_message = span_velvet("<b>\[Mindlink\] [disguise_name] has removed their human disguise and is now [user.real_name].</b>")
+	for(var/T in GLOB.alive_mob_list)
+		var/mob/M = T
+		if(is_darkspawn_or_veil(M))
+			to_chat(M, processed_message)
+	for(var/T in GLOB.dead_mob_list)
+		var/mob/M = T
+		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
+
+
+	//will be handled by darkspawn classes when chubby finishes them
+	var/datum/action/cooldown/spell/touch/devour_will/devour = new(owner)
+	upgrades |= devour
+	devour.Grant(owner.current)
+	var/datum/action/cooldown/spell/toggle/light_eater/eater = new(owner)
+	upgrades |= eater
+	eater.Grant(owner.current)
+	var/datum/action/cooldown/spell/sacrament/sacrament = new(owner)
+	upgrades |= sacrament
+	sacrament.Grant(owner.current)
+
+	darkspawn_state = DIVULGED
+	to_chat(user, span_velvet("<b>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</b>"))
+	return TRUE
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Forced Divulge------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/begin_force_divulge()
 	if(darkspawn_state != MUNDANE)
@@ -228,37 +322,12 @@
 	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
 
 ////////////////////////////////////////////////////////////////////////////////////
-//-----------------------------------Divulge--------------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/proc/divulge(forced = FALSE)
-	if(darkspawn_state >= DIVULGED)
-		return FALSE
-	if(forced)
-		owner.current.visible_message(
-			span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), 
-			span_userdanger("You have forcefully divulged!"))
-	var/mob/living/carbon/human/user = owner.current
-	to_chat(user, "<span class='velvet bold'>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</span>")
-	user.fully_heal()
-	user.set_species(/datum/species/shadow/darkspawn)
-	ADD_TRAIT(user, TRAIT_SPECIESLOCK, "darkspawn divulge") //prevent them from swapping species which can fuck stuff up
-	show_to_ghosts = TRUE
-	var/datum/action/cooldown/spell/touch/devour_will/devour = new(src)
-	upgrades |= devour
-	devour.Grant(owner.current)
-	var/datum/action/cooldown/spell/toggle/light_eater/eater = new(src)
-	upgrades |= eater
-	eater.Grant(owner.current)
-	darkspawn_state = DIVULGED
-	return TRUE
-
-////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------Sacrament------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/darkspawn/proc/sacrament()
 	var/mob/living/carbon/human/user = owner.current
 
-	if(!istype(user))//sanity check
+	if(!user || !istype(user))//sanity check
 		return
 
 	user.status_flags |= GODMODE
@@ -287,16 +356,17 @@
 	darkspawn_state = PROGENITOR
 	QDEL_IN(user, 1)
 
+///get rid of all lights by calling the light eater proc
 /datum/antagonist/darkspawn/proc/shatter_lights()
 	for(var/obj/machinery/light/L in GLOB.machines)
-		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, break_light_tube)), rand(1, 30)) //stagger the shatter to reduce lag
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, on_light_eater)), rand(1, 30)) //stagger the "shatter" to reduce lag
 
+///call a shuttle
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
 	SSshuttle.emergency.request(null, 0, null, 0.1)
 
+///To get the icon in preferences
 /datum/antagonist/darkspawn/get_preview_icon()
 	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
-
 	darkspawn_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
-
 	return darkspawn_icon
