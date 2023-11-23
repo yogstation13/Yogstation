@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(overlays)
 	iconbro.icon = icon
 	return iconbro.appearance
 
-/atom/proc/build_appearance_list(build_overlays)
+/atom/proc/build_appearance_list(list/build_overlays)
 	if (!islist(build_overlays))
 		build_overlays = list(build_overlays)
 	for (var/overlay in build_overlays)
@@ -46,11 +46,19 @@ SUBSYSTEM_DEF(overlays)
 			build_overlays -= overlay
 			continue
 		if (istext(overlay))
-			build_overlays -= overlay
-			build_overlays += iconstate2appearance(icon, overlay)
+			// This is too expensive to run normally but running it during CI is a good test
+			// if (PERFORM_ALL_TESTS(focus_only/invalid_overlays))
+			// 	var/list/icon_states_available = icon_states(icon)
+			// 	if(!(overlay in icon_states_available))
+			// 		var/icon_file = "[icon]" || "Unknown Generated Icon"
+			// 		stack_trace("Invalid overlay: Icon object '[icon_file]' [REF(icon)] used in '[src]' [type] is missing icon state [overlay].")
+			// 		continue
+
+			var/index = build_overlays.Find(overlay)
+			build_overlays[index] = iconstate2appearance(icon, overlay)
 		else if(isicon(overlay))
-			build_overlays -= overlay
-			build_overlays += icon2appearance(overlay)
+			var/index = build_overlays.Find(overlay)
+			build_overlays[index] = icon2appearance(overlay)
 	return build_overlays
 
 /atom/proc/cut_overlays()
@@ -125,3 +133,99 @@ SUBSYSTEM_DEF(overlays)
 			overlays |= cached_other
 	else if(cut_old)
 		cut_overlays()
+
+
+/atom
+	/// List of overlay "keys" (info about the appearance) -> mutable versions of static appearances
+	/// Drawn from the overlays list
+	var/list/realized_overlays
+	/// List of underlay "keys" (info about the appearance) -> mutable versions of static appearances
+	/// Drawn from the underlays list
+	var/list/realized_underlays
+
+/image
+	/// List of overlay "keys" (info about the appearance) -> mutable versions of static appearances
+	/// Drawn from the overlays list
+	var/list/realized_overlays
+	/// List of underlay "keys" (info about the appearance) -> mutable versions of static appearances
+	/// Drawn from the underlays list
+	var/list/realized_underlays
+
+/// Takes the atoms's existing overlays and underlays, and makes them mutable so they can be properly vv'd in the realized_overlays/underlays list
+/atom/proc/realize_overlays()
+	realized_overlays = realize_appearance_queue(overlays)
+	realized_underlays = realize_appearance_queue(underlays)
+
+/// Takes the image's existing overlays, and makes them mutable so they can be properly vv'd in the realized_overlays list
+/image/proc/realize_overlays()
+	realized_overlays = realize_appearance_queue(overlays)
+	realized_underlays = realize_appearance_queue(underlays)
+
+/// Takes a list of appearnces, makes them mutable so they can be properly vv'd and inspected
+/proc/realize_appearance_queue(list/appearances)
+	var/list/real_appearances = list()
+	var/list/queue = appearances.Copy()
+	var/queue_index = 0
+	while(queue_index < length(queue))
+		queue_index++
+		// If it's not a command, we assert that it's an appearance
+		var/mutable_appearance/appearance = queue[queue_index]
+		if(!appearance) // Who fucking adds nulls to their sublists god you people are the worst
+			continue
+
+		var/mutable_appearance/new_appearance = new /mutable_appearance()
+		new_appearance.appearance = appearance
+		var/key = "[appearance.icon]-[appearance.icon_state]-[appearance.plane]-[appearance.layer]-[appearance.dir]-[appearance.color]"
+		var/tmp_key = key
+		var/appearance_indx = 1
+		while(real_appearances[tmp_key])
+			tmp_key = "[key]-[appearance_indx]"
+			appearance_indx++
+
+		real_appearances[tmp_key] = new_appearance
+		var/add_index = queue_index
+		// Now check its children
+		for(var/mutable_appearance/child_appearance as anything in appearance.overlays)
+			add_index++
+			queue.Insert(add_index, child_appearance)
+		for(var/mutable_appearance/child_appearance as anything in appearance.underlays)
+			add_index++
+			queue.Insert(add_index, child_appearance)
+	return real_appearances
+
+/// Takes two appearances as args, prints out, logs, and returns a text representation of their differences
+/// Including suboverlays
+/proc/diff_appearances(mutable_appearance/first, mutable_appearance/second, iter = 0)
+	var/list/diffs = list()
+	var/list/firstdeet = first.vars
+	var/list/seconddeet = second.vars
+	var/diff_found = FALSE
+	for(var/name in first.vars)
+		var/firstv = firstdeet[name]
+		var/secondv = seconddeet[name]
+		if(firstv ~= secondv)
+			continue
+		if((islist(firstv) || islist(secondv)) && length(firstv) == 0 && length(secondv) == 0)
+			continue
+		if(name == "vars") // Go away
+			continue
+		if(name == "_listen_lookup") // This is just gonna happen with marked datums, don't care
+			continue
+		if(name == "overlays")
+			first.realize_overlays()
+			second.realize_overlays()
+			var/overlays_differ = FALSE
+			for(var/i in 1 to length(first.realized_overlays))
+				if(diff_appearances(first.realized_overlays[i], second.realized_overlays[i], iter + 1))
+					overlays_differ = TRUE
+
+			if(!overlays_differ)
+				continue
+
+		diff_found = TRUE
+		diffs += "Diffs detected at [name]: First ([firstv]), Second ([secondv])"
+
+	var/text = "Depth of: [iter]\n\t[diffs.Join("\n\t")]"
+	message_admins(text)
+	log_world(text)
+	return diff_found

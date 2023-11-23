@@ -342,7 +342,7 @@
 	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
 
 /// For finding out what body parts a body zone covers, the inverse of the below basically
-/proc/zone2body_parts_covered(def_zone)
+/proc/body_zone2cover_flags(def_zone)
 	switch(def_zone)
 		if(BODY_ZONE_CHEST)
 			return list(CHEST, GROIN)
@@ -359,7 +359,7 @@
 
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
 //(I challenge you to find a use for this)-I found a use for it!!
-/proc/body_parts_covered2organ_names(bpc)
+/proc/cover_flags2body_zones(bpc)
 	var/list/covered_parts = list()
 
 	if(!bpc)

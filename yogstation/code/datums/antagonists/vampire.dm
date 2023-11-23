@@ -9,6 +9,8 @@
 	job_rank = ROLE_VAMPIRE
 	antag_hud_name = "vampire"
 
+	ui_name = "AntagInfoVampire"
+
 	var/usable_blood = 0
 	var/total_blood = 0
 	var/converted = 0
@@ -24,7 +26,6 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
-		/datum/action/cooldown/spell/vampire_help = 0,
 		/datum/action/cooldown/spell/rejuvenate = 0,
 		/datum/action/cooldown/spell/pointed/gaze = 0,
 		/datum/action/cooldown/spell/pointed/hypno = 0,
@@ -40,6 +41,13 @@
 		/datum/action/cooldown/spell/summon_coat = 400,
 		/datum/vampire_passive/full = 400,
 		/datum/action/cooldown/spell/pointed/vampirize = 450)
+
+/datum/antagonist/vampire/ui_static_data(mob/user)
+	var/list/data = list()
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	data["loud"] = get_ability(/datum/vampire_passive/nostealth)
+	return data
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE
@@ -71,9 +79,10 @@
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
-	var/mob/living/carbon/human/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		RegisterSignal(H, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
+		var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
 			B.organ_flags &= ~ORGAN_VITAL
 			B.decoy_override = TRUE
@@ -86,6 +95,7 @@
 	owner.special_role = null
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
+		UnregisterSignal(H, COMSIG_HUMAN_BURNING)
 		if(owner && H.hud_used && H.hud_used.vamp_blood_display)
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
 	for(var/O in objectives_given)
@@ -198,6 +208,11 @@
 		L.adjust_fire_stacks(5)
 		L.ignite_mob()
 	return
+
+/datum/antagonist/vampire/proc/handle_fire()
+	var/mob/living/carbon/human/dude = owner.current
+	if(dude.on_fire && dude.stat == DEAD && !get_ability(/datum/vampire_passive/full))
+		dude.dust()
 
 /datum/antagonist/vampire/proc/check_sun()
 	var/mob/living/carbon/C = owner.current

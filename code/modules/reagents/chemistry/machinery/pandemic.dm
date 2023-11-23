@@ -77,8 +77,7 @@
 			this["symptoms"] = list()
 			for(var/symptom in A.symptoms)
 				var/datum/symptom/S = symptom
-				var/list/this_symptom = list()
-				this_symptom = get_symptom_data(S)
+				var/list/this_symptom = get_symptom_data(S)
 				this["symptoms"] += list(this_symptom)
 			this["resistance"] = A.totalResistance()
 			this["stealth"] = A.totalStealth()
@@ -94,17 +93,16 @@
 
 /obj/machinery/computer/pandemic/proc/get_symptom_data(datum/symptom/S)
 	. = list()
-	var/list/this = list()
-	this["name"] = S.name
-	this["desc"] = S.desc
-	this["stealth"] = S.stealth
-	this["resistance"] = S.resistance
-	this["stage_speed"] = S.stage_speed
-	this["transmission"] = S.transmittable
-	this["level"] = S.level
-	this["neutered"] = S.neutered
-	this["threshold_desc"] = S.threshold_descs
-	. += this
+	.["name"] = S.name
+	.["desc"] = S.desc
+	.["icon"] = S.icon
+	.["stealth"] = S.stealth
+	.["resistance"] = S.resistance
+	.["stage_speed"] = S.stage_speed
+	.["transmission"] = S.transmittable
+	.["level"] = S.level
+	.["neutered"] = S.neutered
+	.["threshold_desc"] = S.threshold_descs
 
 /obj/machinery/computer/pandemic/proc/get_resistance_data(datum/reagent/blood/B)
 	. = list()
@@ -150,6 +148,11 @@
 	if(!ui)
 		ui = new(user, src, "Pandemic", name)
 		ui.open()
+
+/obj/machinery/computer/pandemic/ui_assets()
+	. = ..() || list()
+	. += get_asset_datum(/datum/asset/spritesheet/virology_symptoms)
+	. += get_asset_datum(/datum/asset/simple/virology_symptoms_animated)
 
 /obj/machinery/computer/pandemic/ui_data(mob/user)
 	var/list/data = list()
