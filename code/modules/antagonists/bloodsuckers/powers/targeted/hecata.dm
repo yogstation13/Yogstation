@@ -74,71 +74,71 @@
 
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
 	. = ..()
+	if(!iscarbon(target_atom))
+		return
+	if(!isliving(owner))
+		return
 	var/mob/living/carbon/target = target_atom
 	var/mob/living/user = owner
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(target.stat == DEAD && user.Adjacent(target))
-		owner.balloon_alert(owner, "attempting to revive...")
-		if(HAS_TRAIT(target, TRAIT_MINDSHIELD)) //if they have a mindshield
-			owner.balloon_alert(owner, "mindshield detected, this will take longer...")
-			if(!do_after(user, 18 SECONDS, target))
-				return FALSE
-			for(var/obj/item/implant/mindshield/L in target)
-				if(L)
-					qdel(L)
-		else
-			if(!do_after(user, 6 SECONDS, target))
-				return FALSE
-		if(IS_VASSAL(target))
-			power_activated_sucessfully()
-			owner.balloon_alert(owner, "we revive [target]!")
-			zombify(target)
-			bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
-			return
-		if(IS_MONSTERHUNTER(target))
-			owner.balloon_alert(owner, "their body refuses to react...")
-			DeactivatePower()
-			return
-		var/old_species = target.dna?.species.type
-		zombify(target)
-		bloodsuckerdatum.make_vassal(target)
-		power_activated_sucessfully()
-		bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
-		to_chat(user, span_warning("We revive [target]!"))
-		var/living_time
-		switch(level_current)
-			if(0)
-				living_time = 2 MINUTES
-			if(1)
-				living_time = 5 MINUTES
-			if(2)
-				living_time = 8 MINUTES
-			if(3)
-				living_time = 11 MINUTES
-			if(4)
-				living_time = 14 MINUTES 
-			if(5 to 99)
-				living_time = 17 MINUTES //in general, they don't last long, make the most of them.
-		addtimer(CALLBACK(src, PROC_REF(end_necromance), target, old_species), living_time)
-	else //extra check, but this shouldn't happen
-		owner.balloon_alert(owner, "out of range/not dead.")
+	if(!IS_BLOODSUCKER(owner)) //sanity check
+		return
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
+	
+	if(target.stat != DEAD)
+		owner.balloon_alert(owner, "not dead.")
 		return FALSE
+
+	if(!user.Adjacent(target))
+		owner.balloon_alert(owner, "out of range.")
+		return FALSE
+
+
+	owner.balloon_alert(owner, "attempting to revive...")
+	if(HAS_TRAIT(target, TRAIT_MINDSHIELD)) //if they have a mindshield
+		owner.balloon_alert(owner, "mindshield detected, this will take longer...")
+		if(!do_after(user, 12 SECONDS, target))
+			return FALSE
+		for(var/obj/item/implant/mindshield/L in target)
+			qdel(L)
+		owner.balloon_alert(owner, "mindshield destroyed, proceeding with revival...")
+	if(!do_after(user, 6 SECONDS, target))
+		return FALSE
+
+	if(IS_MONSTERHUNTER(target))
+		owner.balloon_alert(owner, "their body refuses to react...")
+		DeactivatePower()
+		return
+	
+	if(!IS_VASSAL(target))
+		var/living_time = (2 + min(level_current * 3, 15)) MINUTES //in general, they don't last long, make the most of them.
+		bloodsuckerdatum.make_vassal(target)
+		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
+	bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
+	zombify(target)
+	to_chat(user, span_warning("We revive [target]!"))
+	power_activated_sucessfully()
 	DeactivatePower()
 	
-/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/user)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/carbon/user)
+	if(!user.mind || !istype(user))
+		return
 	user.mind.grab_ghost()
+	zombies |= user
+	if(user.dna?.species?.type)
+		zombies[user] = user.dna.species.type
 	user.set_species(/datum/species/zombie/hecata) //imitation zombies that shamble around and beat people with their fists
 	user.revive(full_heal = TRUE, admin_revive = TRUE)
 	user.visible_message(span_danger("[user] suddenly convulses, as [user.p_they()] stagger to their feet and gain a ravenous hunger in [user.p_their()] eyes!"), span_alien("You RISE!"))
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	to_chat(user, span_warning("Your broken form is picked up by strange shadows. If you were previously not a vassal, it is unlikely these shadows will be strong enough to keep you going for very long."))
 	to_chat(user, span_notice("You are resilient to many things like the vacuum of space, can punch harder, and can take more damage before dropping. However, you are unable to use guns and are slower."))
-	zombies |= user
 
-/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/user, old_species)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/carbon/user)
+	if(!istype(user) || !(user in zombies))
+		return
 	user.mind.remove_antag_datum(/datum/antagonist/vassal)
 	to_chat(user, span_warning("You feel the shadows around you weaken, your form falling limp like a puppet cut from its strings!"))
-	user.set_species(old_species ? old_species : /datum/species/krokodil_addict) //go back to original species, or lesser zombie if they somehow didn't have one
+	user.set_species(zombies[user] ? zombies[user] : /datum/species/krokodil_addict) //go back to original species, or lesser zombie if they somehow didn't have one
 	user.death()
 	zombies -= user
 
