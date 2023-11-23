@@ -7,7 +7,7 @@
 		Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows."
 	clan_objective = /datum/objective/lasombra_clan_objective
 	join_icon_state = "lasombra"
-	join_description = "Heal more on the dark, transform abilties into upgraded ones, become one with the darkness."
+	join_description = "Heal more in the dark, transform abilities into upgraded ones, become one with the darkness."
 	control_type = BLOODSUCKER_CONTROL_SHADOWS
 
 /datum/objective/lasombra_clan_objective
