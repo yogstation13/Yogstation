@@ -61,8 +61,8 @@
 	ability.Grant(AI)
 
 	to_chat(user, span_notice("You upgrade [AI]. [src] is consumed in the process."))
-	log_game("[key_name(user)] has upgraded [key_name(AI)] with a [src].")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with a [src].")
+	log_game("[key_name(user)] has upgraded [key_name(AI)] with [src].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has upgraded [ADMIN_LOOKUPFLW(AI)] with [src].")
 	qdel(src)
 
 /// An ability that allows the user to shoot a laser beam at a target from the nearest camera.
