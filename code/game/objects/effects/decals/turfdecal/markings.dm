@@ -249,13 +249,22 @@
 
 /obj/effect/turf_decal/siding/wood
 	icon_state = "siding_wood_line"
-	color = "#55391A"
+	color = "#5d341f"
 
 /obj/effect/turf_decal/siding/wood/corner
 	icon_state = "siding_wood_corner"
 
 /obj/effect/turf_decal/siding/wood/end
 	icon_state = "siding_wood_end"
+
+/obj/effect/turf_decal/siding/wood/thin
+	icon_state = "siding_wood_line_thin"
+
+/obj/effect/turf_decal/siding/wood/corner/thin
+	icon_state = "siding_wood_corner_thin"
+
+/obj/effect/turf_decal/siding/wood/end/thin
+	icon_state = "siding_wood_end_thin"
 
 /obj/effect/turf_decal/siding/thinplating
 	icon_state = "siding_thinplating_line"
