@@ -68,7 +68,7 @@
 /// An ability that allows the user to shoot a laser beam at a target from the nearest camera.
 /datum/action/innate/ai/ranged/cameragun
 	name = "Camera Laser Gun"
-	desc = "Shoots a laser from the nearest available camera toward a chosen destination. Accuracy not guaranteed." // Disclaimer is to warn people to treat this like a turret's aiming -- it might be a bit dumb at times.
+	desc = "Shoots a laser from the nearest available camera toward a chosen destination. Only fires if the laser will hit target/destination." // This means if you aim at a turf and it doesn't collide, it won't fire.
 	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "laser"
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
@@ -77,27 +77,31 @@
 	COOLDOWN_DECLARE(next_shot)
 	var/cooldown = 10 SECONDS
 
+
 /// Checks if it is possible for an projectile to reach a target in a straight line from a camera.
-/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, turf/target, atom/A, confidence = 0)
-	var/turf/turf_camera = get_turf(C.loc)
-	var/obj/dummy = new(turf_camera)
-	switch(confidence) // How confident do we want to be about the projectile reaching their destination? Lower is more restrictive/confident.
-		if(0)
-			dummy.pass_flags |= PASSTABLE // Might hit their attached wall if the camera is on a corner -- should hit otherwise.
-		if(1)
-			dummy.pass_flags |= PASSTABLE|PASSGLASS|PASSGRILLE // Same concerns above.
-		if(2)
-			dummy.pass_flags |= PASSTABLE|PASSGLASS|PASSGRILLE|PASSMACHINES|PASSCOMPUTER|PASSMOB|PASSSTRUCTURE // May hit a dense object on the way, but intentional.
-	for(var/turf/turf in getline(turf_camera, target))
-		if(turf.density)
-			qdel(dummy)
-			return FALSE
-		for(var/atom/movable/AM in turf)
-			if(!AM.CanPass(dummy, turf, 1))
-				qdel(dummy)
-				return FALSE
-	qdel(dummy)
-	return TRUE
+/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, turf/target, confidence = 0)
+	var/obj/projectile/proj = new /obj/projectile
+	proj.icon = null
+	proj.icon_state = null
+	proj.hitsound = ""
+	proj.suppressed = TRUE
+	proj.ricochets_max = 0
+	proj.ricochet_chance = 0
+	proj.damage = 0
+	proj.nodamage = TRUE
+	proj.log_override = TRUE
+	proj.hitscan = TRUE
+	proj.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+
+	var/turf/current_turf = get_turf(C)
+	proj.preparePixelProjectile(target, current_turf)
+	proj.fire()
+
+	var/turf/target_turf = get_turf(target)
+	var/turf/last_turf = proj.hitscan_last
+	if(last_turf == target_turf)
+		return TRUE
+	return FALSE
 
 /datum/action/innate/ai/ranged/cameragun/New()
 	..()
@@ -140,15 +144,12 @@
 		var/turf/loc_camera = get_turf(cam)
 		if(loc_target.z != loc_camera.z)
 			continue
-		if(get_dist(cam, target) > 12)
-			continue
 		if(get_dist(cam, target) == 0) // Pointblank shot.
 			chosen_camera = cam
 			break
-		if(can_shoot_to(cam, loc_target, null, confidence = 0)) // Camera with the best accuracy.
-			chosen_camera = cam
-			break
-		if(!can_shoot_to(cam, loc_target, null, confidence = 2)) // Never had the possibility to hit.
+		if(get_dist(cam, target) > 12)
+			continue
+		if(!can_shoot_to(cam, loc_target)) // Camera can hit this spot.
 			continue
 		if(!chosen_camera)
 			chosen_camera = cam
