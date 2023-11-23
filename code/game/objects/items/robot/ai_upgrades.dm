@@ -68,7 +68,7 @@
 /// An ability that allows the user to shoot a laser beam at a target from the nearest camera.
 /datum/action/innate/ai/ranged/cameragun
 	name = "Camera Laser Gun"
-	desc = "Shoots a laser from the nearest available camera toward a chosen destination. Only fires if the laser will hit target/destination." // This means if you aim at a turf and it doesn't collide, it won't fire.
+	desc = "Shoots a laser from the nearest available camera toward a chosen destination. Only fires if the laser could reach destination." // This means if you aim at a turf and it doesn't collide, it won't fire. Beware of moving targets.
 	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "laser"
 	enable_text = span_notice("You prepare to overcharge a camera. Click a target for a nearby camera to shoot a laser at.")
@@ -77,9 +77,8 @@
 	COOLDOWN_DECLARE(next_shot)
 	var/cooldown = 10 SECONDS
 
-
 /// Checks if it is possible for an projectile to reach a target in a straight line from a camera.
-/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, turf/target, confidence = 0)
+/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, atom/target, confidence = 0)
 	var/obj/projectile/proj = new /obj/projectile
 	proj.icon = null
 	proj.icon_state = null
@@ -93,8 +92,7 @@
 	proj.hitscan = TRUE
 	proj.pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
-	var/turf/current_turf = get_turf(C)
-	proj.preparePixelProjectile(target, current_turf)
+	proj.preparePixelProjectile(target, C)
 	proj.fire()
 
 	var/turf/target_turf = get_turf(target)
@@ -149,7 +147,7 @@
 			break
 		if(get_dist(cam, target) > 12)
 			continue
-		if(!can_shoot_to(cam, loc_target)) // Camera can hit this spot.
+		if(!can_shoot_to(cam, target)) // Camera can hit this spot.
 			continue
 		if(!chosen_camera)
 			chosen_camera = cam
@@ -166,7 +164,7 @@
 	var/turf/loc_chosen = get_turf(chosen_camera)
 	var/obj/projectile/beam/laser/proj = null
 	proj = new /obj/projectile/beam/laser(loc_chosen)
-	proj.preparePixelProjectile(target, loc_chosen)
+	proj.preparePixelProjectile(target, chosen_camera)
 	proj.firer = caller
 
 	// Fire the shot.
