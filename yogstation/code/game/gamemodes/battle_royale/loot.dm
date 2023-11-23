@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/baseball_bat/homerun = 1,
 		/obj/item/fireaxe = 1,
 		/obj/item/nullrod/talking = 1,
-		/obj/item/melee/powerfist/filled = 1,
+		/obj/item/clothing/gloves/powerfist/filled = 1,
 
 		/obj/item/melee/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/automatic/pistol = 0,
