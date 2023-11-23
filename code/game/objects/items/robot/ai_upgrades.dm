@@ -111,9 +111,6 @@
 	build_all_button_icons() // To update the button to display if active/available.
 
 /datum/action/innate/ai/ranged/cameragun/Activate(loud = TRUE)
-	if(!COOLDOWN_FINISHED(src, next_shot))
-		to_chat(owner, span_notice("Wait [COOLDOWN_TIMELEFT(src, next_shot)/10] seconds for the next camera overcharge."))
-		return
 	set_ranged_ability(owner, loud ? enable_text : null)
 	active = TRUE
 	background_icon_state = "bg_default_on"
