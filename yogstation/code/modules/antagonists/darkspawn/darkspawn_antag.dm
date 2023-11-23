@@ -72,22 +72,10 @@
 /datum/antagonist/darkspawn/on_gain()
 	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
-	owner.current.hud_used.psi_counter.invisibility = 0
-	update_psi_hud()
-	var/datum/action/cooldown/spell/divulge/action = new()
-	action.Grant(owner.current)
-	upgrades += action
-	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
-	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
 	objectives += O
 	O.update_explanation_text()
 	owner.announce_objectives()
-	if(owner.current)
-		owner.current.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
-		var/datum/component/internal_cam/cam = owner.current.GetComponent(/datum/component/internal_cam)
-		if(cam)
-			cam.change_cameranet(GLOB.thrallnet)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -96,20 +84,40 @@
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""
 	STOP_PROCESSING(SSprocessing, src)
-	if(owner.current)
-		var/datum/component/internal_cam/cam = owner.current.GetComponent(/datum/component/internal_cam)
-		if(cam)
-			cam.RemoveComponent()
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
+	if(!current_mob)
+		return
 	handle_clown_mutation(current_mob, mob_override ? null : "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-	current_mob.grant_language(/datum/language/darkspawn)
 	add_team_hud(current_mob)
+	current_mob.grant_language(/datum/language/darkspawn)
+
+	//psi stuff
+	current_mob.hud_used.psi_counter.invisibility = 0
+	update_psi_hud()
+	START_PROCESSING(SSprocessing, src)
+
+	//for panopticon
+	if(current_mob)
+		current_mob.AddComponent(/datum/component/internal_cam, list(ROLE_DARKSPAWN))
+		var/datum/component/internal_cam/cam = current_mob.GetComponent(/datum/component/internal_cam)
+		if(cam)
+			cam.change_cameranet(GLOB.thrallnet)
+
+	//divulge
+	var/datum/action/cooldown/spell/divulge/action = new(owner)
+	action.Grant(current_mob)
+	upgrades += action
+	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 
 /datum/antagonist/darkspawn/remove_innate_effects()
 	owner.current.remove_language(/datum/language/darkspawn)
+	if(owner.current)
+		var/datum/component/internal_cam/cam = owner.current.GetComponent(/datum/component/internal_cam)
+		if(cam)
+			cam.RemoveComponent()
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------Greet and Objective---------------------------------//
@@ -179,8 +187,8 @@
 /datum/antagonist/darkspawn/proc/enable_sacrament()
 	SSticker.mode.required_succs = 0
 
-/datum/antagonist/darkspawn/proc/set_max_veils()
-	var/thrall = input(mob_user, "How many veils should the darkspawns be able to get?") as null|num
+/datum/antagonist/darkspawn/proc/set_max_veils(mob/admin)
+	var/thrall = input(admin, "How many veils should the darkspawns be able to get?") as null|num
 	if(thrall)
 		SSticker.mode.max_veils = thrall
 
