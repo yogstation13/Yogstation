@@ -29,7 +29,7 @@
 		"https://www.youtube.com/watch?v=orT5RN3Zwak",						// Kirk Franklin - Revolution
 		"https://www.youtube.com/watch?v=9whQIbNmu9s",						// Admiral Hippie - Clown.wmv
 		"https://www.youtube.com/watch?v=UlHGGKgzgzI",						// Elbow - Leaders of the Free World
-		"https://www.youtube.com/watch?v=ysPtBjY8o_A",						// Chris Christodoulou - Risk of Rain Coalescence
+		"https://www.youtube.com/watch?v=67BwWgrMlxk",						// Chris Christodoulou - Risk of Rain Coalescence
 		"https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
 		"https://www.youtube.com/watch?v=jJDAV9vSmYc",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
