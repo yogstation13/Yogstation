@@ -78,10 +78,10 @@
 	var/cooldown = 10 SECONDS
 
 /// Checks if it is possible for an projectile to reach a target in a straight line from a camera.
-/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, turf/target, atom/A, ensureness = 0)
+/datum/action/innate/ai/ranged/cameragun/proc/can_shoot_to(obj/machinery/camera/C, turf/target, atom/A, confidence = 0)
 	var/turf/turf_camera = get_turf(C.loc)
 	var/obj/dummy = new(turf_camera)
-	switch(ensureness) // How confident do we want to be about the projectile reaching their destination? Lower is more restrictive/confident.
+	switch(confidence) // How confident do we want to be about the projectile reaching their destination? Lower is more restrictive/confident.
 		if(0)
 			dummy.pass_flags |= PASSTABLE // Might hit their attached wall if the camera is on a corner -- should hit otherwise.
 		if(1)
@@ -145,10 +145,10 @@
 		if(get_dist(cam, target) == 0) // Pointblank shot.
 			chosen_camera = cam
 			break
-		if(can_shoot_to(cam, loc_target, null, ensureness = 0)) // Camera with the best accuracy.
+		if(can_shoot_to(cam, loc_target, null, confidence = 0)) // Camera with the best accuracy.
 			chosen_camera = cam
 			break
-		if(!can_shoot_to(cam, loc_target, null, ensureness = 2)) // Never had the possibility to hit.
+		if(!can_shoot_to(cam, loc_target, null, confidence = 2)) // Never had the possibility to hit.
 			continue
 		if(!chosen_camera)
 			chosen_camera = cam
