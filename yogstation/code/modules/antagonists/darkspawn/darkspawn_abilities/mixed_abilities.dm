@@ -41,8 +41,8 @@
 //-------------------Scout and warlock, erase time----------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/erase_time/darkspawn
-	name = "shadow play"
-	desc = "Erase the very concept of time for a short period of time."
+	name = "Quantum disruption"
+	desc = "Disrupt the flow of possibilities, where you are, where you could be."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -56,6 +56,12 @@
 	cooldown_time = 60 SECONDS
 	length = 5 SECONDS
 	guardian_lock = FALSE
+
+/datum/action/cooldown/spell/erase_time/darkspawn/cast(mob/living/user)
+	. = ..()
+	if(. && isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
+		shadowling.block_psi(10 SECONDS)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------Scout and warlock, aoe slow and chill----------------//

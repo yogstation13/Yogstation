@@ -292,6 +292,9 @@ GLOBAL_DATUM_INIT(thrallnet, /datum/cameranet/darkspawn, new)
 		target.clear_cuffs(cuffs, TRUE, TRUE)
 		target.clear_cuffs(legcuffs, TRUE, TRUE)
 	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
+	if(isdarkspawn(owner))
+		var/datum/antagonist/darkspawn/shadowling = isdarkspawn(owner)
+		shadowling.block_psi(10 SECONDS)
 	
 //////////////////////////////////////////////////////////////////////////
 //----------------------Abilities that thralls get----------------------//

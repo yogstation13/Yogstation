@@ -214,10 +214,8 @@
 /datum/antagonist/darkspawn/process(delta_time)
 	psi = min(psi, psi_cap)
 	if(psi < psi_cap && COOLDOWN_FINISHED(src, psi_cooldown) && !psi_regenerating)
-		if(owner.current && HAS_TRAIT(owner.current, TRAIT_DARKSPAWN_PSIBLOCK))
-			if(psi_regen_delay) //prevent regeneration
-				COOLDOWN_START(src, psi_cooldown, psi_regen_delay)
-			return 
+		if(HAS_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK))
+			return //prevent regeneration
 		regenerate_psi()
 	update_psi_hud()
 
@@ -244,6 +242,14 @@
 		return
 	var/delay = (1/psi_per_second) SECONDS
 	addtimer(CALLBACK(src, PROC_REF(regenerate_psi)), delay, TIMER_UNIQUE) //tick it up very quickly
+
+///temporarily block psi regeneration
+/datum/antagonist/darkspawn/proc/block_psi(duration)
+	ADD_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, type)
+	addtimer(CALLBACK(src, PROC_REF(unblock_psi)), duration, TIMER_OVERRIDE | TIMER_UNIQUE)
+
+/datum/antagonist/darkspawn/proc/unblock_psi()
+	REMOVE_TRAIT(src, TRAIT_DARKSPAWN_PSIBLOCK, type)
 
 /datum/antagonist/darkspawn/proc/update_psi_hud()
 	if(!owner.current || !owner.current.hud_used)
