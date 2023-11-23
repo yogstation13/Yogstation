@@ -1,5 +1,6 @@
 /datum/symptom/nano_boost
 	name = "Nano-symbiosis"
+	icon = "nano_symbiosis"
 	desc = "The virus reacts to nanites in the host's bloodstream by enhancing their replication cycle."
 	stealth = 0
 	resistance = 2
@@ -37,6 +38,7 @@
 			
 /datum/symptom/nano_destroy
 	name = "Silicolysis"
+	icon = "symptom.silicolysis.gif"
 	desc = "The virus reacts to nanites in the host's bloodstream by attacking and consuming them."
 	stealth = 0
 	resistance = 4
