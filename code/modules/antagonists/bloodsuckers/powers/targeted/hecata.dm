@@ -82,7 +82,7 @@
 	var/mob/living/user = owner
 	if(!IS_BLOODSUCKER(owner)) //sanity check
 		return
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind?.has_antag_datum(/datum/antagonist/bloodsucker)
 	
 	if(target.stat != DEAD)
 		owner.balloon_alert(owner, "not dead.")
@@ -109,13 +109,14 @@
 		DeactivatePower()
 		return
 	
-	if(!IS_VASSAL(target))
-		var/living_time = (2 + min(level_current * 3, 15)) MINUTES //in general, they don't last long, make the most of them.
-		bloodsuckerdatum.make_vassal(target)
-		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
 	bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
 	zombify(target)
 	to_chat(user, span_warning("We revive [target]!"))
+	if(!IS_VASSAL(target))
+		var/living_time = (2 + min(level_current * 3, 15)) MINUTES //in general, they don't last long, make the most of them.
+		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
+		bloodsuckerdatum.make_vassal(target)
+		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(remove_vasssal), target) //only remove vassal from those that were initially not one
 	power_activated_sucessfully()
 	DeactivatePower()
 	
@@ -133,10 +134,13 @@
 	to_chat(user, span_warning("Your broken form is picked up by strange shadows. If you were previously not a vassal, it is unlikely these shadows will be strong enough to keep you going for very long."))
 	to_chat(user, span_notice("You are resilient to many things like the vacuum of space, can punch harder, and can take more damage before dropping. However, you are unable to use guns and are slower."))
 
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/remove_vassal(mob/living/carbon/user)
+	if(user.mind)
+		user.mind.remove_antag_datum(/datum/antagonist/vassal)
+
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/carbon/user)
 	if(!istype(user) || !(user in zombies))
 		return
-	user.mind.remove_antag_datum(/datum/antagonist/vassal)
 	to_chat(user, span_warning("You feel the shadows around you weaken, your form falling limp like a puppet cut from its strings!"))
 	user.set_species(zombies[user] ? zombies[user] : /datum/species/krokodil_addict) //go back to original species, or lesser zombie if they somehow didn't have one
 	user.death()
