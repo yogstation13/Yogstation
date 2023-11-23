@@ -224,6 +224,12 @@
 /datum/reagent/teslium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_EMPPROOF_SELF, "teslium")
+	if(ispreternis(L)) //no clue why preterni function this way, but why not (makes more sense for ethereals honestly)
+		L.add_movespeed_modifier(type, TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
+		teslium_trip = TRUE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.physiology.burn_mod *= 10
 	
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
@@ -235,16 +241,12 @@
 	if(HAS_TRAIT(M, TRAIT_POWERHUNGRY)) //twice as effective as liquid electricity
 		M.adjust_nutrition(10 * REAGENTS_METABOLISM)
 
-	if(ispreternis(M)) //no clue why preterni function this way, but why not (makes more sense for ethereals honestly)
-		teslium_trip = TRUE
-		var/mob/living/carbon/human/H = M
-		H.add_movespeed_modifier(type, TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustOxyLoss(-2 * REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustBruteLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
-		H.adjustFireLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
-		H.AdjustAllImmobility(-3)
-		H.adjustStaminaLoss(-5 * REAGENTS_EFFECT_MULTIPLIER)
-		H.physiology.burn_mod *= 10
+	if(teslium_trip)
+		M.adjustOxyLoss(-2 * REAGENTS_EFFECT_MULTIPLIER)
+		M.adjustBruteLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
+		M.adjustFireLoss(-2 * REAGENTS_EFFECT_MULTIPLIER, TRUE, FALSE, BODYPART_ANY)
+		M.AdjustAllImmobility(-3)
+		M.adjustStaminaLoss(-5 * REAGENTS_EFFECT_MULTIPLIER)
 	..()
 
 /datum/reagent/teslium/on_mob_end_metabolize(mob/living/L)
