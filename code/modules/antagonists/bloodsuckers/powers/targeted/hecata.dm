@@ -31,7 +31,18 @@
 	cooldown_time = 45 SECONDS
 	target_range = 1
 	prefire_message = "Select a target."
+	var/list/zombies = list()
 	
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/Grant(mob/user)
+	. = ..()
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(die))
+
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/die()
+	for(var/dude in zombies)
+		if(isliving(dude)) //sanity check
+			var/mob/living/alive = dude
+			end_necromance(alive)
+
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
@@ -114,12 +125,6 @@
 		return FALSE
 	DeactivatePower()
 	
-/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/user, old_species)
-	user.mind.remove_antag_datum(/datum/antagonist/vassal)
-	to_chat(user, span_warning("You feel the shadows around you weaken, your form falling limp like a puppet cut from its strings!"))
-	user.set_species(old_species ? old_species : /datum/species/krokodil_addict) //go back to original species, or lesser zombie if they somehow didn't have one
-	user.death()
-
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/user)
 	user.mind.grab_ghost()
 	user.set_species(/datum/species/zombie/hecata) //imitation zombies that shamble around and beat people with their fists
@@ -128,6 +133,14 @@
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	to_chat(user, span_warning("Your broken form is picked up by strange shadows. If you were previously not a vassal, it is unlikely these shadows will be strong enough to keep you going for very long."))
 	to_chat(user, span_notice("You are resilient to many things like the vacuum of space, can punch harder, and can take more damage before dropping. However, you are unable to use guns and are slower."))
+	zombies |= user
+
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/user, old_species)
+	user.mind.remove_antag_datum(/datum/antagonist/vassal)
+	to_chat(user, span_warning("You feel the shadows around you weaken, your form falling limp like a puppet cut from its strings!"))
+	user.set_species(old_species ? old_species : /datum/species/krokodil_addict) //go back to original species, or lesser zombie if they somehow didn't have one
+	user.death()
+	zombies -= user
 
 /datum/action/cooldown/bloodsucker/hecata
 	purchase_flags = HECATA_CAN_BUY
