@@ -178,5 +178,5 @@
 	Deactivate(FALSE)
 	to_chat(caller, span_danger("Camera overcharged."))
 
-	chosen_camera.emp_act(EMP_LIGHT) // 90 seconds downtime -- definitely enough time to toolbox this camera (unless it is emp-proof).
+	chosen_camera.emp_act(EMP_HEAVY) // 90 seconds downtime -- definitely enough time to toolbox this camera (unless it is emp-proof).
 	return TRUE
