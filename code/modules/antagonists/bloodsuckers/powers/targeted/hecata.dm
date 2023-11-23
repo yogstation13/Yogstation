@@ -116,7 +116,7 @@
 		var/living_time = (2 + min(level_current * 3, 15)) MINUTES //in general, they don't last long, make the most of them.
 		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
 		bloodsuckerdatum.make_vassal(target)
-		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(remove_vasssal), target) //only remove vassal from those that were initially not one
+		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(remove_vassal), target) //only remove vassal from those that were initially not one
 	power_activated_sucessfully()
 	DeactivatePower()
 	
